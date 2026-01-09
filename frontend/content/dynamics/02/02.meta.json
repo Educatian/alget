@@ -1,0 +1,35 @@
+{
+    "chapter": "02",
+    "section": "02",
+    "title": "Work and Energy",
+    "course": "dynamics",
+    "learning_objectives": [
+        "Calculate work done by forces",
+        "Apply the work-energy theorem",
+        "Distinguish conservative and non-conservative forces",
+        "Use energy conservation to solve problems"
+    ],
+    "concept_ids": [
+        "work",
+        "kinetic_energy",
+        "potential_energy",
+        "conservation_of_energy"
+    ],
+    "physics_prereqs": [
+        "newtons_second_law"
+    ],
+    "math_prereqs": [
+        "integrals"
+    ],
+    "units_focus": [
+        "J",
+        "N",
+        "m"
+    ],
+    "common_errors": [
+        "sign",
+        "reference_point",
+        "conservative_nonconservative"
+    ],
+    "estimated_time_minutes": 55
+}

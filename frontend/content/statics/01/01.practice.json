@@ -1,0 +1,59 @@
+{
+    "problems": [
+        {
+            "id": "p001",
+            "type": "numeric",
+            "difficulty": "medium",
+            "statement": "A 50 kg object is suspended by a single cable at an angle of 45° from horizontal. Calculate the tension in the cable.",
+            "givens": {
+                "mass": "50 kg",
+                "angle": "45°",
+                "g": "9.81 m/s²"
+            },
+            "solver_id": "statics_tension_inclined",
+            "expected_value": 693.67,
+            "expected_unit": "N",
+            "tolerance": 0.02,
+            "require_unit": true,
+            "hint": "Use ΣFy = 0. The vertical component of tension (T·sin(45°)) must equal the weight (mg).",
+            "steps": [
+                {
+                    "step_index": 1,
+                    "description": "Calculate the weight W = mg",
+                    "expected_value": 490.5,
+                    "expected_unit": "N"
+                },
+                {
+                    "step_index": 2,
+                    "description": "Apply ΣFy = 0: T·sin(45°) = W",
+                    "expected_value": 693.67,
+                    "expected_unit": "N"
+                }
+            ]
+        },
+        {
+            "id": "p002",
+            "type": "numeric",
+            "difficulty": "easy",
+            "statement": "A 25 kg lamp hangs vertically from a single cable. What is the tension in the cable?",
+            "givens": {
+                "mass": "25 kg",
+                "g": "9.81 m/s²"
+            },
+            "solver_id": "statics_tension_vertical",
+            "expected_value": 245.25,
+            "expected_unit": "N",
+            "tolerance": 0.01,
+            "require_unit": true,
+            "hint": "For a vertically hanging object, the tension equals the weight.",
+            "steps": [
+                {
+                    "step_index": 1,
+                    "description": "Calculate T = mg",
+                    "expected_value": 245.25,
+                    "expected_unit": "N"
+                }
+            ]
+        }
+    ]
+}

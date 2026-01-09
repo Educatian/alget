@@ -1,0 +1,113 @@
+# Newton's Second Law
+
+> **"Force equals mass times acceleration—the most powerful equation in mechanics."**  
+> — Isaac Newton, *Principia Mathematica*
+
+---
+
+## Prerequisites
+
+`fbd` `friction` `rectilinear_motion`
+
+---
+
+## Learning Objectives
+
+1. **Apply** $\sum \vec{F} = m\vec{a}$ to particle dynamics
+2. **Draw** free body diagrams for dynamic problems
+3. **Solve** problems involving friction, tension, and inclines
+4. **Analyze** systems with multiple particles
+
+---
+
+## Notation & Sign Convention
+
+| Symbol | Meaning | Units |
+|--------|---------|-------|
+| $\sum F$ | Net force | N |
+| $m$ | Mass | kg |
+| $a$ | Acceleration | m/s² |
+
+> 📐 **Convention**: Choose +x in direction of expected acceleration.
+
+---
+
+## The Equation of Motion
+
+$$
+\boxed{\sum \vec{F} = m \vec{a}}
+$$
+
+In component form (2D):
+
+$$
+\sum F_x = ma_x, \quad \sum F_y = ma_y
+$$
+
+> 💡 **Difference from Statics**: In dynamics, $\sum F \neq 0$. The net force causes acceleration!
+
+---
+
+## Problem-Solving Strategy
+
+### Step 1: Draw FBD
+Show all forces on the particle.
+
+### Step 2: Choose Coordinates
+Align one axis with acceleration direction.
+
+### Step 3: Write Equations
+Apply $\sum F_x = ma_x$ and $\sum F_y = ma_y$.
+
+### Step 4: Solve
+Substitute knowns and solve for unknowns.
+
+---
+
+## Worked Example
+
+### Example 2.1: Block on Rough Incline
+
+**Problem:** A 10 kg block slides down a 30° incline with $\mu_k = 0.2$. Find the acceleration.
+
+**Solution:**
+
+*FBD (forces):*
+- Weight: $W = mg = 98.1$ N (down)
+- Normal: $N$ (perpendicular to surface)
+- Friction: $f = \mu_k N$ (up the incline)
+
+*Equations along incline (+x down):*
+$$
+\sum F_x = ma_x: \quad mg\sin 30° - \mu_k N = ma
+$$
+
+*Perpendicular to incline:*
+$$
+\sum F_y = 0: \quad N - mg\cos 30° = 0 \Rightarrow N = 84.9 \text{ N}
+$$
+
+*Friction:*
+$$
+f = 0.2 \times 84.9 = 17.0 \text{ N}
+$$
+
+*Acceleration:*
+$$
+a = \frac{mg\sin 30° - f}{m} = \frac{49.05 - 17.0}{10} = \boxed{3.21 \text{ m/s}^2}
+$$
+
+---
+
+## Summary
+
+- $\sum F = ma$ is the fundamental equation of dynamics
+- Draw the FBD before writing equations
+- Choose coordinates aligned with motion
+- For friction, use $f = \mu_k N$ (kinetic) when moving
+
+---
+
+## What's Next?
+
+In **Section 2.2: Work and Energy**, we'll use energy methods to solve problems without needing acceleration.

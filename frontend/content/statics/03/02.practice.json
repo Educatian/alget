@@ -1,0 +1,18 @@
+{
+    "problems": [
+        {
+            "id": "joint_equilibrium",
+            "type": "numeric",
+            "stem": "At joint A of a truss, two members meet at angles of 30° and 60° from horizontal. A vertical reaction of 100 N acts upward. If both members are in tension, find the force in the member at 60°.",
+            "hints": [
+                "Use ΣFy = 0 with both vertical components",
+                "Consider both member forces contribute to equilibrium"
+            ],
+            "final_answer": {
+                "value": 115.5,
+                "unit": "N",
+                "tolerance": 5
+            }
+        }
+    ]
+}

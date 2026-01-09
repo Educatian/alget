@@ -1,0 +1,34 @@
+{
+    "problems": [
+        {
+            "id": "work_basic",
+            "type": "numeric",
+            "stem": "A 50 N force pushes a box 4 m at 60° to the horizontal. Find the work done.",
+            "final_answer": {
+                "value": 100,
+                "unit": "J",
+                "tolerance": 1
+            }
+        },
+        {
+            "id": "kinetic_energy",
+            "type": "numeric",
+            "stem": "A 10 kg object moves at 6 m/s. Find its kinetic energy.",
+            "final_answer": {
+                "value": 180,
+                "unit": "J",
+                "tolerance": 1
+            }
+        },
+        {
+            "id": "work_energy_theorem",
+            "type": "numeric",
+            "stem": "A 2 kg ball drops 5 m from rest. Find its speed at the bottom (use g = 10 m/s²).",
+            "final_answer": {
+                "value": 10,
+                "unit": "m/s",
+                "tolerance": 0.1
+            }
+        }
+    ]
+}

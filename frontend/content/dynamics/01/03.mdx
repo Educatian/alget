@@ -1,0 +1,145 @@
+# Relative Motion
+
+> **"All motion is relative—the question is: relative to what?"**
+
+---
+
+## Prerequisites
+
+`rectilinear_motion` `curvilinear_motion` `vectors`
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Calculate** relative velocity between two moving objects
+2. **Apply** the Galilean transformation for velocities
+3. **Analyze** relative motion in 2D
+4. **Solve** practical problems involving relative motion
+
+---
+
+## The Fundamental Equation
+
+The velocity of particle B as observed from (relative to) particle A:
+
+$$
+\boxed{\vec{v}_{B/A} = \vec{v}_B - \vec{v}_A}
+$$
+
+Reading: "velocity of B relative to A"
+
+Equivalently:
+$$
+\vec{v}_B = \vec{v}_A + \vec{v}_{B/A}
+$$
+
+> 💡 **Interpretation**: To find what velocity B appears to have when you're riding on A, subtract A's velocity from B's velocity.
+
+---
+
+## Sign Convention in 1D
+
+For motion along a line, choose a positive direction:
+
+| Scenario | Calculation |
+|----------|-------------|
+| Both moving right | $v_{B/A} = v_B - v_A$ |
+| A right, B left | Use signs: $v_B < 0$ if leftward |
+| Approaching | $v_{B/A}$ has opposite sign to $v_A$ |
+| Separating | $v_{B/A}$ has same sign as $v_A$ |
+
+---
+
+## 2D Relative Motion
+
+For vectors in 2D:
+
+$$
+\vec{v}_{B/A} = (v_{Bx} - v_{Ax})\hat{i} + (v_{By} - v_{Ay})\hat{j}
+$$
+
+Magnitude:
+$$
+|\vec{v}_{B/A}| = \sqrt{(v_{Bx} - v_{Ax})^2 + (v_{By} - v_{Ay})^2}
+$$
+
+---
+
+## Common Applications
+
+| Problem Type | Key Approach |
+|--------------|--------------|
+| Two cars on highway | 1D subtraction |
+| Airplane in wind | Vector addition |
+| River crossing | Decompose into components |
+| Approaching collision | Find when $\vec{r}_{B/A} = 0$ |
+
+---
+
+## Worked Examples
+
+### Example 1.4: Cars on Highway
+
+**Problem:** Car A travels east at 25 m/s. Car B travels west at 20 m/s. Find the velocity of B relative to A.
+
+**Solution:**
+
+Let east = positive.
+- $v_A = +25$ m/s
+- $v_B = -20$ m/s (west is negative)
+
+$$
+v_{B/A} = v_B - v_A = -20 - 25 = \boxed{-45 \text{ m/s}}
+$$
+
+To observer in A, B appears to approach at 45 m/s from the east.
+
+---
+
+### Example 1.5: Airplane in Wind
+
+**Problem:** A plane has airspeed 200 m/s north. Wind blows 50 m/s east. Find the ground velocity.
+
+**Solution:**
+
+$$
+\vec{v}_{plane/ground} = \vec{v}_{plane/air} + \vec{v}_{air/ground}
+$$
+
+$$
+\vec{v} = 200\hat{j} + 50\hat{i}
+$$
+
+Magnitude:
+$$
+|\vec{v}| = \sqrt{200^2 + 50^2} = \sqrt{42500} = \boxed{206.2 \text{ m/s}}
+$$
+
+Direction: $\theta = \tan^{-1}(50/200) = 14.0°$ east of north.
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+|---------|----------|
+| Relative velocity | $\vec{v}_{B/A} = \vec{v}_B - \vec{v}_A$ |
+| Absolute from relative | $\vec{v}_B = \vec{v}_A + \vec{v}_{B/A}$ |
+
+### Key Takeaways
+
+- ✅ "Velocity of B relative to A" = $\vec{v}_B - \vec{v}_A$
+- ✅ Choose a consistent **reference frame**
+- ✅ In 2D, use **vector subtraction** component-wise
+- ✅ Relative motion simplifies many "collision" problems
+
+---
+
+## What's Next?
+
+In **Chapter 2: Kinetics of Particles**, we'll apply Newton's Second Law to find the forces causing motion.

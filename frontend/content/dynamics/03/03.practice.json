@@ -1,0 +1,28 @@
+{
+    "problems": [
+        {
+            "id": "rotational_ke",
+            "type": "numeric",
+            "stem": "A flywheel with I = 2 kg·m² spins at 50 rad/s. Find its rotational kinetic energy.",
+            "final_answer": {
+                "value": 2500,
+                "unit": "J",
+                "tolerance": 10
+            }
+        },
+        {
+            "id": "rolling_speed",
+            "type": "numeric",
+            "stem": "A solid sphere rolls down a 3 m high ramp. Find its speed at the bottom.",
+            "hints": [
+                "For solid sphere: I = (2/5)mr²",
+                "Use energy conservation with rolling constraint"
+            ],
+            "final_answer": {
+                "value": 6.48,
+                "unit": "m/s",
+                "tolerance": 0.1
+            }
+        }
+    ]
+}

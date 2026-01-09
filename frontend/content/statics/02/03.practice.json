@@ -1,0 +1,28 @@
+{
+    "problems": [
+        {
+            "id": "beam_reaction",
+            "type": "numeric",
+            "stem": "An 8 m simply supported beam has a pin at A and roller at B. A 2000 N load acts 2 m from A. Find the reaction at B.",
+            "hints": [
+                "Take moments about A to find B directly",
+                "ΣMA = 0: By(8) - 2000(2) = 0"
+            ],
+            "final_answer": {
+                "value": 500,
+                "unit": "N",
+                "tolerance": 5
+            }
+        },
+        {
+            "id": "cantilever_moment",
+            "type": "numeric",
+            "stem": "A 5 m cantilever has a 1500 N load at the free end. Find the moment reaction at the fixed support.",
+            "final_answer": {
+                "value": 7500,
+                "unit": "N·m",
+                "tolerance": 10
+            }
+        }
+    ]
+}

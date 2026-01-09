@@ -1,0 +1,26 @@
+{
+    "problems": [
+        {
+            "id": "truss_determinacy",
+            "type": "multiple_choice",
+            "stem": "A truss has 11 members and 7 joints. Is it statically determinate?",
+            "options": [
+                "Unstable (too few members)",
+                "Statically determinate",
+                "Statically indeterminate (too many members)"
+            ],
+            "correct_index": 1,
+            "explanation": "Using m = 2j - 3: 2(7) - 3 = 11. Since m = 11 = 2j - 3, the truss is statically determinate."
+        },
+        {
+            "id": "truss_members_needed",
+            "type": "numeric",
+            "stem": "A simple truss has 8 joints. How many members are needed for it to be statically determinate?",
+            "final_answer": {
+                "value": 13,
+                "unit": "",
+                "tolerance": 0
+            }
+        }
+    ]
+}

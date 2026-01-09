@@ -1,0 +1,76 @@
+{
+    "problems": [
+        {
+            "id": "fbd_inclined_block",
+            "type": "numeric",
+            "solver_id": "solve_inclined_normal",
+            "stem": "A 30 kg block rests on a smooth (frictionless) inclined plane at 40° to the horizontal. Calculate the normal force exerted by the surface on the block.",
+            "params": {
+                "mass_kg": 30,
+                "angle_deg": 40,
+                "g": 9.81
+            },
+            "steps": [
+                {
+                    "step_id": 1,
+                    "description": "Calculate the weight of the block",
+                    "expected_value": 294.3,
+                    "unit": "N",
+                    "tolerance": 0.5
+                },
+                {
+                    "step_id": 2,
+                    "description": "Calculate the normal force (N = W·cos(θ))",
+                    "expected_value": 225.4,
+                    "unit": "N",
+                    "tolerance": 0.5
+                }
+            ],
+            "hints": [
+                "Draw the FBD first! What forces act on the block?",
+                "Weight acts straight down, Normal acts perpendicular to the surface",
+                "The component of weight perpendicular to surface equals the normal force"
+            ],
+            "final_answer": {
+                "value": 225.4,
+                "unit": "N",
+                "tolerance": 0.5
+            }
+        },
+        {
+            "id": "fbd_pulley_tension",
+            "type": "numeric",
+            "solver_id": "solve_simple_pulley",
+            "stem": "A 25 kg mass hangs from a rope that passes over a frictionless pulley. What is the tension in the rope?",
+            "params": {
+                "mass_kg": 25,
+                "g": 9.81
+            },
+            "steps": [
+                {
+                    "step_id": 1,
+                    "description": "Draw FBD of the hanging mass",
+                    "expected_value": "conceptual",
+                    "unit": ""
+                },
+                {
+                    "step_id": 2,
+                    "description": "Apply ΣFy = 0: T - W = 0",
+                    "expected_value": 245.25,
+                    "unit": "N",
+                    "tolerance": 0.5
+                }
+            ],
+            "hints": [
+                "For a hanging mass at rest, what must be true about the forces?",
+                "The only two forces are tension (up) and weight (down)",
+                "At equilibrium: T = W = mg"
+            ],
+            "final_answer": {
+                "value": 245.25,
+                "unit": "N",
+                "tolerance": 0.5
+            }
+        }
+    ]
+}

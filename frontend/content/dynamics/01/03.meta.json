@@ -1,0 +1,33 @@
+{
+    "chapter": "01",
+    "section": "03",
+    "title": "Relative Motion",
+    "course": "dynamics",
+    "learning_objectives": [
+        "Calculate relative velocity between two moving objects",
+        "Apply the Galilean transformation for velocities",
+        "Analyze relative motion in 2D",
+        "Solve practical problems involving relative motion"
+    ],
+    "concept_ids": [
+        "relative_velocity",
+        "reference_frame",
+        "galilean_transform"
+    ],
+    "physics_prereqs": [
+        "rectilinear_motion",
+        "curvilinear_motion"
+    ],
+    "math_prereqs": [
+        "vectors"
+    ],
+    "units_focus": [
+        "m/s"
+    ],
+    "common_errors": [
+        "frame",
+        "direction",
+        "sign"
+    ],
+    "estimated_time_minutes": 45
+}

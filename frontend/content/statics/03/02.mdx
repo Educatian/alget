@@ -1,0 +1,181 @@
+# Method of Joints
+
+> **"Analyze one joint at a time, and the whole truss reveals itself."**
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Apply** the method of joints to analyze trusses
+2. **Draw** FBDs for individual joints
+3. **Solve** for member forces systematically
+4. **Determine** if members are in tension or compression
+
+---
+
+## The Basic Idea
+
+The **method of joints** treats each joint as a particle in equilibrium:
+
+$$
+\sum F_x = 0, \quad \sum F_y = 0
+$$
+
+Each joint provides **2 equations**, so we can solve for up to **2 unknowns** per joint.
+
+> 💡 **Strategy**: Start at a joint with only 2 unknown member forces (often at a support), then work through the truss joint by joint.
+
+---
+
+## Problem-Solving Procedure
+
+### Step 1: Find Support Reactions
+Analyze the entire truss as a rigid body to find reactions at supports.
+
+### Step 2: Select Starting Joint
+Choose a joint with **at most 2 unknown forces**.
+
+### Step 3: Draw Joint FBD
+Isolate the joint. Draw all forces:
+- Known external forces/reactions
+- Unknown member forces (assume tension: pointing away from joint)
+
+### Step 4: Apply Equilibrium
+$$
+\sum F_x = 0, \quad \sum F_y = 0
+$$
+
+### Step 5: Interpret Results
+- **Positive result**: Force is tension (T) as assumed
+- **Negative result**: Force is compression (C) (reverse direction)
+
+### Step 6: Move to Next Joint
+Use the forces just found as known values at adjacent joints.
+
+---
+
+## Sign Convention
+
+When drawing the FBD of a joint:
+
+| Assumption | Arrow Direction | Meaning |
+|------------|-----------------|---------|
+| Tension | **Away from** joint | Member pulling on joint |
+| Compression | **Toward** joint | Member pushing on joint |
+
+> 🔑 **Standard Practice**: Always assume tension initially. If the answer is negative, the member is in compression.
+
+---
+
+## Worked Example
+
+### Example 3.1: Simple Truss Analysis
+
+**Problem:** Find all member forces in the truss shown.
+
+```
+              10 kN
+                ↓
+                C
+               ╱╲
+              ╱  ╲
+             ╱    ╲
+            A──────B
+            △      ○
+            
+    AC = BC = 5 m, AB = 8 m
+    Angle at A and B = 51.3°
+```
+
+**Solution:**
+
+*Step 1: Support Reactions*
+
+By symmetry:
+$$
+A_y = B_y = 5 \text{ kN}
+$$
+$$
+A_x = 0
+$$
+
+*Step 2: Analyze Joint A*
+
+```
+        F_AC
+         ↗
+        ╱ 51.3°
+       A●───────→ F_AB
+       ↑
+       5 kN
+```
+
+**ΣFy = 0:**
+$$
+5 + F_{AC} \sin(51.3°) = 0
+$$
+$$
+F_{AC} = -\frac{5}{0.78} = -6.41 \text{ kN}
+$$
+
+Negative → **Compression: FAC = 6.41 kN (C)**
+
+**ΣFx = 0:**
+$$
+F_{AB} + F_{AC} \cos(51.3°) = 0
+$$
+$$
+F_{AB} = -(-6.41)(0.625) = 4.01 \text{ kN}
+$$
+
+Positive → **Tension: FAB = 4.01 kN (T)**
+
+*Step 3: By Symmetry*
+
+$$
+F_{BC} = 6.41 \text{ kN (C)}
+$$
+
+**Final Results:**
+
+| Member | Force | Type |
+|--------|-------|------|
+| AC | 6.41 kN | Compression |
+| BC | 6.41 kN | Compression |
+| AB | 4.01 kN | Tension |
+
+---
+
+## Tips for Efficiency
+
+1. **Exploit symmetry** when possible
+2. **Identify zero-force members** first
+3. **Choose smart starting joints** (supports often have few unknowns)
+4. **Check your work** at the final joint (should satisfy equilibrium)
+
+---
+
+## Summary
+
+### Method of Joints Procedure
+
+1. Find support reactions
+2. Start at joint with ≤2 unknowns
+3. Apply $\sum F_x = 0$, $\sum F_y = 0$
+4. Interpret signs (+ = T, − = C)
+5. Move to adjacent joint
+
+### Key Takeaways
+
+- ✅ Each joint is a **particle in equilibrium**
+- ✅ Two equations per joint → solve 2 unknowns
+- ✅ Assume **tension** initially, negative means compression
+- ✅ Proceed **systematically** through the truss
+
+---
+
+## What's Next?
+
+In **Section 3.3: Method of Sections**, we'll learn how to cut through a truss to find specific member forces directly—without analyzing every joint.

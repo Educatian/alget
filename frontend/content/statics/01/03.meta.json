@@ -1,0 +1,23 @@
+{
+    "chapter": "01",
+    "section": "03",
+    "title": "Two-Force and Three-Force Members",
+    "course": "statics",
+    "learning_objectives": [
+        "Identify two-force members in a structure",
+        "Apply the two-force member principle to simplify analysis",
+        "Recognize three-force member conditions",
+        "Use concurrency for three-force equilibrium"
+    ],
+    "concept_ids": [
+        "two_force_member",
+        "three_force_member",
+        "concurrency",
+        "truss_analysis"
+    ],
+    "prerequisites": [
+        "fbd",
+        "equilibrium_condition"
+    ],
+    "estimated_time_minutes": 40
+}

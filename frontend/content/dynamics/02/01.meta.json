@@ -1,0 +1,38 @@
+{
+    "chapter": "02",
+    "section": "01",
+    "title": "Newton's Second Law",
+    "chapter_title": "Kinetics of Particles",
+    "course": "dynamics",
+    "learning_objectives": [
+        "Apply ΣF = ma to particle dynamics",
+        "Draw free body diagrams for dynamic problems",
+        "Solve problems involving friction, tension, and inclines",
+        "Analyze systems with multiple particles"
+    ],
+    "concept_ids": [
+        "newtons_second_law",
+        "equation_of_motion",
+        "dynamic_friction"
+    ],
+    "physics_prereqs": [
+        "fbd",
+        "friction",
+        "rectilinear_motion"
+    ],
+    "math_prereqs": [
+        "algebra",
+        "trig"
+    ],
+    "units_focus": [
+        "N",
+        "kg",
+        "m/s^2"
+    ],
+    "common_errors": [
+        "sign",
+        "component",
+        "mass_weight"
+    ],
+    "estimated_time_minutes": 60
+}

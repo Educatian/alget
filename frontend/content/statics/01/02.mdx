@@ -1,0 +1,270 @@
+# Free Body Diagrams
+
+> **"The free body diagram is the key to solving any problem in mechanics."**  
+> — R.C. Hibbeler, *Engineering Mechanics: Statics*
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Draw** complete and accurate free body diagrams
+2. **Identify** all forces acting on an isolated body
+3. **Apply** the systematic 6-step FBD procedure
+4. **Recognize** common FBD errors and how to avoid them
+
+---
+
+## Why Free Body Diagrams Matter
+
+In the previous section, we learned that equilibrium requires $\sum \vec{F} = 0$. But how do we know which forces to include in that sum?
+
+The answer is the **Free Body Diagram (FBD)**—the most important problem-solving tool in all of mechanics.
+
+> 🎯 **The Truth About Statics**: Most errors in statics problems don't come from math mistakes. They come from **incomplete or incorrect FBDs**. Master the FBD, and you'll master statics.
+
+---
+
+## What Is a Free Body Diagram?
+
+A **free body diagram** is a simplified sketch that shows:
+
+1. The **body of interest**, isolated from everything else
+2. **All external forces** acting on that body
+3. A **coordinate system** for reference
+
+### The Key Principle: Isolation
+
+The word "free" in free body diagram means the body is **freed from its surroundings**. We mentally "cut" the object away from everything it touches, then replace each connection with the force it exerts.
+
+| What You Remove | What You Draw Instead |
+|-----------------|----------------------|
+| Cable/rope | Tension force along cable |
+| Surface contact | Normal force (perpendicular) |
+| Rough surface | Normal + Friction forces |
+| Pin/hinge | Reaction forces (Rx, Ry) |
+| Fixed support | Reactions + Moment |
+
+---
+
+## The 6-Step FBD Procedure
+
+Follow this systematic procedure for every problem:
+
+### Step 1: Identify the Body
+
+Clearly define what object you're analyzing. Draw it as a simple shape (dot, box, or line).
+
+### Step 2: Isolate the Body
+
+Mentally "cut" the body free from its surroundings. Remove all cables, supports, and contacts.
+
+### Step 3: Establish Coordinates
+
+Draw x and y axes. Usually:
+- **x**: horizontal (positive right)
+- **y**: vertical (positive up)
+
+For inclined surfaces, consider rotating axes.
+
+### Step 4: Draw the Weight
+
+Every object with mass has weight:
+
+$$
+W = mg
+$$
+
+Always draw weight pointing **straight down** (toward Earth's center).
+
+### Step 5: Draw Contact and Connection Forces
+
+At every point where you "cut" a connection:
+
+| Connection Type | Force to Draw |
+|-----------------|---------------|
+| Cable/Rope | $T$ along cable, away from body |
+| Smooth surface | $N$ perpendicular to surface |
+| Rough surface | $N$ perpendicular + $f$ parallel |
+| Pin support | $R_x$ and $R_y$ (unknown directions) |
+
+### Step 6: Label Everything
+
+Use symbols ($T$, $N$, $W$, $R$) and include:
+- Known magnitudes
+- Unknown variables
+- Angles
+
+---
+
+## Force Identification Checklist
+
+Use this checklist to ensure you don't miss any forces:
+
+| Category | Check | Common Forces |
+|----------|-------|---------------|
+| ✅ Gravity | Does it have mass? | Weight $W = mg$ |
+| ✅ Cables | Is anything attached by rope/cable? | Tension $T$ |
+| ✅ Surfaces | Is it touching any surface? | Normal $N$, Friction $f$ |
+| ✅ Supports | Is it connected to ground/wall? | Reactions $R_x$, $R_y$ |
+| ✅ Applied | Are external forces mentioned? | Push/Pull $P$ |
+
+---
+
+## Common FBD Mistakes
+
+### Mistake 1: Missing the Weight
+
+**Wrong:**
+```
+    T₁       T₂
+     ↖     ↗
+      ╲   ╱
+       ╲ ╱
+        ●
+```
+
+**Correct:**
+```
+    T₁       T₂
+     ↖     ↗
+      ╲   ╱
+       ╲ ╱
+        ●
+        │
+        ↓ W
+```
+
+> ⚠️ **Every object with mass has weight!** This is the most common mistake beginners make.
+
+### Mistake 2: Wrong Tension Direction
+
+**Wrong:** Tension pointing toward the object
+```
+        ← T
+        ●
+```
+
+**Correct:** Tension pointing away from the object (cables **pull**)
+```
+        T →
+        ●
+```
+
+### Mistake 3: Including Internal Forces
+
+If analyzing a system of connected objects, don't draw internal forces that cancel out.
+
+### Mistake 4: Forgetting Reaction Forces
+
+At every support, there must be a reaction force to maintain equilibrium.
+
+---
+
+## Worked Examples
+
+### Example 2.1: Block on Inclined Plane
+
+**Problem:** A 20 kg block rests on a smooth (frictionless) inclined plane at 30° to the horizontal. Draw the FBD.
+
+**Solution:**
+
+*Step 1-2: Identify and Isolate*
+
+The block is our body of interest. We remove the inclined surface.
+
+*Step 3: Coordinates*
+
+Use standard axes or rotate to align with the incline:
+
+```
+        y
+        ↑
+        │  ╱
+        │ ╱ N
+        │╱θ
+        ●───→ x
+       ╱│
+      ╱ │
+     ╱  ↓ W
+    ╱
+   ╱ 30°
+```
+
+*Step 4-5: Forces*
+
+| Force | Magnitude | Direction |
+|-------|-----------|-----------|
+| Weight $W$ | $(20)(9.81) = 196.2$ N | Straight down |
+| Normal $N$ | Unknown | Perpendicular to surface |
+
+*Step 6: Complete FBD*
+
+$$
+W = mg = 196.2 \text{ N}
+$$
+
+The normal force $N$ balances the component of weight perpendicular to the surface.
+
+---
+
+### Example 2.2: Pulley System
+
+**Problem:** A 50 kg mass hangs from a rope that passes over a frictionless pulley. Draw the FBD of the mass and the pulley.
+
+**Solution:**
+
+*FBD of the Mass:*
+
+```
+    ↑ T
+    │
+    ● mass
+    │
+    ↓ W = 490.5 N
+```
+
+*FBD of the Pulley:*
+
+```
+        ↑ R (support reaction)
+        │
+        ○ pulley
+       ╱ ╲
+      ↓   ↓
+      T   T
+```
+
+**Key Insight:** For a frictionless pulley, the tension is the same on both sides of the rope.
+
+---
+
+## Summary
+
+### Key Takeaways
+
+- ✅ The FBD is your **most important tool** in statics
+- ✅ Always **isolate** the body from its surroundings
+- ✅ Replace connections with appropriate **force vectors**
+- ✅ Use the **6-step procedure** systematically
+- ✅ Check your work with the **force identification checklist**
+
+### FBD Quality Checklist
+
+Before solving, verify:
+
+| Check | Question |
+|-------|----------|
+| ☐ | Is the body clearly isolated? |
+| ☐ | Is weight included (if the body has mass)? |
+| ☐ | Are all contact forces shown? |
+| ☐ | Do tension forces point away from the body? |
+| ☐ | Are all forces labeled with symbols? |
+| ☐ | Is a coordinate system defined? |
+
+---
+
+## What's Next?
+
+In **Section 1.3: Two-Force and Three-Force Members**, we'll learn shortcuts for special cases that simplify our analysis significantly.

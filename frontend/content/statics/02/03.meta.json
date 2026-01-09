@@ -1,0 +1,22 @@
+{
+    "chapter": "02",
+    "section": "03",
+    "title": "Equilibrium of Rigid Bodies",
+    "course": "statics",
+    "learning_objectives": [
+        "Apply equilibrium equations for rigid bodies",
+        "Write three equilibrium equations: ΣFx=0, ΣFy=0, ΣM=0",
+        "Solve statically determinate problems",
+        "Identify support reactions"
+    ],
+    "concept_ids": [
+        "rigid_body_equilibrium",
+        "support_reactions",
+        "beam_equilibrium"
+    ],
+    "prerequisites": [
+        "moment",
+        "couple"
+    ],
+    "estimated_time_minutes": 55
+}

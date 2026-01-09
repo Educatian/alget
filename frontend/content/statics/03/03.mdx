@@ -1,0 +1,188 @@
+# Method of Sections
+
+> **"Why analyze every joint when you can cut straight to the answer?"**
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Apply** the method of sections to analyze trusses
+2. **Cut** through a truss strategically
+3. **Use** moment equilibrium to find specific member forces
+4. **Choose** between methods for efficiency
+
+---
+
+## The Basic Idea
+
+The **method of sections** involves:
+
+1. Making an imaginary **cut** through the truss
+2. Treating either section as a **rigid body** in equilibrium
+3. Using **3 equilibrium equations** to solve for up to 3 unknown member forces
+
+> 🎯 **When to Use**: When you need forces in **specific members** (especially those in the middle) without analyzing every joint.
+
+---
+
+## Method of Sections vs. Method of Joints
+
+| Aspect | Method of Joints | Method of Sections |
+|--------|------------------|-------------------|
+| Equations per step | 2 (particle) | 3 (rigid body) |
+| Unknowns per step | ≤2 | ≤3 |
+| Best for | All member forces | Specific members |
+| Progression | Joint by joint | Direct to target |
+
+---
+
+## Problem-Solving Procedure
+
+### Step 1: Find Support Reactions
+Analyze the entire truss first.
+
+### Step 2: Plan the Cut
+Draw an imaginary line through the truss that:
+- Passes through the **target member(s)**
+- Cuts through **no more than 3 members** (usually)
+- Divides the truss into two parts
+
+### Step 3: Choose a Section
+Analyze the section with **fewer forces** (simpler FBD).
+
+### Step 4: Draw the FBD
+Show:
+- External forces and reactions on that section
+- Internal member forces at the cut (assume tension)
+
+### Step 5: Apply Equilibrium
+$$
+\sum F_x = 0, \quad \sum F_y = 0, \quad \sum M_O = 0
+$$
+
+**Pro tip**: Choose moment points that eliminate unwanted unknowns!
+
+---
+
+## Strategic Moment Points
+
+When taking moments, choose a point where **unknown forces intersect**:
+
+| To Find | Take Moments About |
+|---------|-------------------|
+| Top chord force | Point on bottom chord |
+| Bottom chord force | Point on top chord |
+| Diagonal force | Intersection of other two cut members |
+
+---
+
+## Worked Example
+
+### Example 3.2: Finding a Middle Member Force
+
+**Problem:** Find the force in member BC using the method of sections.
+
+```
+        1000 N   1000 N
+          ↓        ↓
+    ●─────●─────●─────●
+    │╲    │    ╱│    ╱│
+    │ ╲   │   ╱ │   ╱ │
+    │  ╲  │  ╱  │  ╱  │
+    ●─────●─────●─────●
+    △                 ○
+    A                 E
+    
+    Cut line: through BC
+```
+
+**Solution:**
+
+*Step 1: Support Reactions*
+
+$$
+A_y = 1000 \text{ N}, \quad E_y = 1000 \text{ N}
+$$
+
+*Step 2: Make the Cut*
+
+Cut through members BF, BC, and AC.
+
+```
+    Cut section (left):
+    
+        1000 N
+          ↓
+    ●─────●═══╳ F_BF
+    │╲    │   
+    │ ╲   │   
+    │  ╲  │  F_BC
+    ●─────●═══╳──→
+    △     
+    ↑ 1000 N
+    
+    (F_AC also at cut)
+```
+
+*Step 3: Take Moments about point where F_BF and F_AC intersect*
+
+Taking moments about the bottom-left joint (A):
+
+$$
+\sum M_A = 0
+$$
+
+$$
+1000(4) - F_{BC}(3) = 0
+$$
+
+$$
+F_{BC} = \frac{4000}{3} = \boxed{1333 \text{ N (T)}}
+$$
+
+---
+
+## When to Use Each Method
+
+| Situation | Recommended Method |
+|-----------|-------------------|
+| Need ALL member forces | **Joints** (systematic) |
+| Need ONE specific force | **Sections** (direct) |
+| Forces in middle of truss | **Sections** |
+| Starting point analysis | **Joints** |
+| Complex geometry | Combine both |
+
+---
+
+## Summary
+
+### Method of Sections Procedure
+
+1. Find support reactions
+2. Make strategic cut (≤3 members)
+3. Draw FBD of one section
+4. Apply $\sum F_x = 0$, $\sum F_y = 0$, $\sum M = 0$
+5. Choose smart moment points
+
+### Key Takeaways
+
+- ✅ Cut through **at most 3 members** for direct solution
+- ✅ Choose **moment points** to eliminate unknowns
+- ✅ Best for finding **specific member forces** quickly
+- ✅ Combine with method of joints for complex trusses
+
+---
+
+## Chapter 3 Summary
+
+You've now mastered truss analysis:
+
+| Method | Use When | Key Idea |
+|--------|----------|----------|
+| Simple Trusses | Checking stability | $m = 2j - 3$ |
+| Method of Joints | Finding all forces | 2 equations per joint |
+| Method of Sections | Finding specific forces | Cut and use rigid body eqns |
+
+Congratulations on completing the Structural Analysis chapter! 🎉

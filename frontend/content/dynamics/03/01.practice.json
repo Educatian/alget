@@ -1,0 +1,24 @@
+{
+    "problems": [
+        {
+            "id": "angular_velocity",
+            "type": "numeric",
+            "stem": "A disk rotates at 300 rpm. Find the angular velocity in rad/s.",
+            "final_answer": {
+                "value": 31.42,
+                "unit": "rad/s",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "linear_speed",
+            "type": "numeric",
+            "stem": "A wheel of radius 0.5 m rotates at 10 rad/s. Find the speed of a point on the rim.",
+            "final_answer": {
+                "value": 5,
+                "unit": "m/s",
+                "tolerance": 0.1
+            }
+        }
+    ]
+}

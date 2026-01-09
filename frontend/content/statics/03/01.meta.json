@@ -1,0 +1,24 @@
+{
+    "chapter": "03",
+    "section": "01",
+    "title": "Simple Trusses",
+    "chapter_title": "Structural Analysis",
+    "course": "statics",
+    "learning_objectives": [
+        "Define a truss and identify its components",
+        "Recognize assumptions in truss analysis",
+        "Identify simple trusses and understand their stability",
+        "Classify trusses as statically determinate or indeterminate"
+    ],
+    "concept_ids": [
+        "truss",
+        "joint",
+        "member",
+        "statical_determinacy"
+    ],
+    "prerequisites": [
+        "two_force_member",
+        "rigid_body_equilibrium"
+    ],
+    "estimated_time_minutes": 40
+}

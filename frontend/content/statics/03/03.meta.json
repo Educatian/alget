@@ -1,0 +1,22 @@
+{
+    "chapter": "03",
+    "section": "03",
+    "title": "Method of Sections",
+    "course": "statics",
+    "learning_objectives": [
+        "Apply the method of sections to analyze trusses",
+        "Cut through a truss strategically",
+        "Use moment equilibrium to find specific member forces",
+        "Choose between methods for efficiency"
+    ],
+    "concept_ids": [
+        "method_of_sections",
+        "cutting_plane",
+        "internal_forces"
+    ],
+    "prerequisites": [
+        "method_of_joints",
+        "rigid_body_equilibrium"
+    ],
+    "estimated_time_minutes": 50
+}

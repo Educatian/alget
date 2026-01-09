@@ -1,0 +1,215 @@
+{
+    "problems": [
+        {
+            "id": "rectilinear_concept_1",
+            "type": "multiple_choice",
+            "stem": "A car is moving to the right and slowing down. What is the sign of its acceleration (if right is positive)?",
+            "options": [
+                "Positive (same as velocity)",
+                "Negative (opposite to velocity)",
+                "Zero (since it's slowing)",
+                "Cannot be determined"
+            ],
+            "correct_index": 1,
+            "explanation": "When an object slows down, acceleration opposes velocity. If velocity is positive (right), acceleration is negative (left)."
+        },
+        {
+            "id": "rectilinear_concept_2",
+            "type": "multiple_choice",
+            "stem": "Which kinematic equation should you use if you know v₀, a, and s, and want to find v (without needing t)?",
+            "options": [
+                "v = v₀ + at",
+                "s = v₀t + ½at²",
+                "v² = v₀² + 2a(s - s₀)",
+                "s = ½(v₀ + v)t"
+            ],
+            "correct_index": 2,
+            "explanation": "The equation v² = v₀² + 2a(s - s₀) relates velocity and position without time."
+        },
+        {
+            "id": "rectilinear_concept_3",
+            "type": "multiple_choice",
+            "stem": "Can you use s = v₀t + ½at² when acceleration is not constant?",
+            "options": [
+                "Yes, always",
+                "No, only for constant acceleration",
+                "Only if a is decreasing",
+                "Only if v₀ = 0"
+            ],
+            "correct_index": 1,
+            "explanation": "The constant acceleration kinematic equations are derived assuming a = constant. For variable a, you must integrate."
+        },
+        {
+            "id": "rectilinear_concept_4",
+            "type": "multiple_choice",
+            "stem": "If you double the initial velocity of a braking car (same deceleration), the stopping distance becomes:",
+            "options": [
+                "Double",
+                "Quadruple (4×)",
+                "Half",
+                "Same"
+            ],
+            "correct_index": 1,
+            "explanation": "From v² = v₀² + 2as, with v = 0: s = v₀²/(2a). Doubling v₀ quadruples s."
+        },
+        {
+            "id": "rectilinear_numeric_1",
+            "type": "numeric",
+            "solver_id": "solve_kinematics_vf",
+            "stem": "A particle starts from rest and accelerates at 3 m/s² for 8 seconds. Find its final velocity.",
+            "params": {
+                "v0": 0,
+                "a": 3,
+                "t": 8
+            },
+            "hints": [
+                "Use v = v₀ + at",
+                "v₀ = 0 since it starts from rest"
+            ],
+            "final_answer": {
+                "value": 24,
+                "unit": "m/s",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "rectilinear_numeric_2",
+            "type": "numeric",
+            "solver_id": "solve_kinematics_distance",
+            "stem": "A car traveling at 30 m/s brakes with a = -6 m/s². How far does it travel before stopping?",
+            "params": {
+                "v0": 30,
+                "v": 0,
+                "a": -6
+            },
+            "hints": [
+                "Use v² = v₀² + 2as and solve for s",
+                "The car stops when v = 0"
+            ],
+            "final_answer": {
+                "value": 75,
+                "unit": "m",
+                "tolerance": 0.5
+            }
+        },
+        {
+            "id": "rectilinear_numeric_3",
+            "type": "numeric",
+            "solver_id": "solve_kinematics_time",
+            "stem": "A ball is dropped from 80 m. How long does it take to reach the ground? (g = 10 m/s²)",
+            "params": {
+                "s0": 0,
+                "s": 80,
+                "v0": 0,
+                "a": 10
+            },
+            "hints": [
+                "Use s = v₀t + ½at² with v₀ = 0",
+                "Solve for t"
+            ],
+            "final_answer": {
+                "value": 4,
+                "unit": "s",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "rectilinear_numeric_4",
+            "type": "numeric",
+            "solver_id": "solve_kinematics_accel",
+            "stem": "A rocket accelerates from 0 to 100 m/s over a distance of 500 m. What is its acceleration?",
+            "params": {
+                "v0": 0,
+                "v": 100,
+                "s": 500
+            },
+            "hints": [
+                "Use v² = v₀² + 2as",
+                "Solve for a"
+            ],
+            "final_answer": {
+                "value": 10,
+                "unit": "m/s²",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "rectilinear_step_1",
+            "type": "step_based",
+            "solver_id": "solve_kinematics_steps",
+            "stem": "A train traveling at 20 m/s begins to decelerate at 2 m/s². Find the distance traveled in 6 seconds and the final velocity.",
+            "params": {
+                "v0": 20,
+                "a": -2,
+                "t": 6
+            },
+            "steps": [
+                {
+                    "step_id": 1,
+                    "description": "Calculate final velocity using v = v₀ + at",
+                    "expected_value": 8,
+                    "unit": "m/s",
+                    "tolerance": 0.1
+                },
+                {
+                    "step_id": 2,
+                    "description": "Calculate distance using s = v₀t + ½at²",
+                    "expected_value": 84,
+                    "unit": "m",
+                    "tolerance": 0.5
+                }
+            ],
+            "final_answer": {
+                "value": 84,
+                "unit": "m",
+                "tolerance": 0.5
+            }
+        },
+        {
+            "id": "rectilinear_step_2",
+            "type": "step_based",
+            "solver_id": "solve_two_phase_motion",
+            "stem": "A car accelerates from rest at 4 m/s² for 5 s, then maintains constant velocity for 10 s. Find total distance.",
+            "params": {
+                "a1": 4,
+                "t1": 5,
+                "t2": 10
+            },
+            "steps": [
+                {
+                    "step_id": 1,
+                    "description": "Find velocity at end of acceleration phase: v = at₁",
+                    "expected_value": 20,
+                    "unit": "m/s",
+                    "tolerance": 0.1
+                },
+                {
+                    "step_id": 2,
+                    "description": "Find distance during acceleration: s₁ = ½at₁²",
+                    "expected_value": 50,
+                    "unit": "m",
+                    "tolerance": 0.5
+                },
+                {
+                    "step_id": 3,
+                    "description": "Find distance during constant velocity: s₂ = v·t₂",
+                    "expected_value": 200,
+                    "unit": "m",
+                    "tolerance": 0.5
+                },
+                {
+                    "step_id": 4,
+                    "description": "Find total distance: s = s₁ + s₂",
+                    "expected_value": 250,
+                    "unit": "m",
+                    "tolerance": 0.5
+                }
+            ],
+            "final_answer": {
+                "value": 250,
+                "unit": "m",
+                "tolerance": 0.5
+            }
+        }
+    ]
+}

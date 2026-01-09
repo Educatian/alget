@@ -1,0 +1,265 @@
+# Friction
+
+> **"Friction is the force that keeps the world from sliding apart—literally."**
+
+---
+
+## Prerequisites
+
+`equilibrium` `fbd` `normal_force`
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Distinguish** between static and kinetic friction
+2. **Apply** the maximum static friction condition $F_s \leq \mu_s N$
+3. **Identify** impending motion conditions
+4. **Determine** friction force direction
+
+---
+
+## Notation & Sign Convention
+
+| Symbol | Meaning | Units |
+|--------|---------|-------|
+| $N$ | Normal force | N |
+| $F_s$ | Static friction force | N |
+| $F_k$ | Kinetic friction force | N |
+| $\mu_s$ | Static friction coefficient | dimensionless |
+| $\mu_k$ | Kinetic friction coefficient | dimensionless |
+
+> 📐 **Direction Convention**: Friction always opposes *relative motion* or *tendency to move*.
+
+---
+
+## What Is Friction?
+
+**Friction** is a force that resists the relative motion (or tendency of motion) between two surfaces in contact.
+
+```
+        Applied Force P →
+        ┌─────────────┐
+        │    Block    │ → Tends to move right
+        └─────────────┘
+        ← f (friction)
+    ════════════════════
+          Surface
+```
+
+> 💡 **Key Insight**: Friction acts **parallel** to the contact surface, opposing the direction of (intended) motion.
+
+---
+
+## Static vs. Kinetic Friction
+
+| Property | Static Friction ($F_s$) | Kinetic Friction ($F_k$) |
+|----------|------------------------|-------------------------|
+| When | Object at rest | Object moving |
+| Range | $0 \leq F_s \leq \mu_s N$ | $F_k = \mu_k N$ (constant) |
+| Coefficient | $\mu_s$ (higher) | $\mu_k$ (lower) |
+| Key point | **Variable** up to max | **Fixed** value |
+
+### The Critical Relationship
+
+$$
+\boxed{F_s \leq \mu_s N}
+$$
+
+Static friction **adjusts** to match the applied force—until it reaches its maximum.
+
+$$
+(F_s)_{\max} = \mu_s N
+$$
+
+> ⚠️ **Common Pitfall**: Don't assume $F_s = \mu_s N$ always! The equality holds **only** at impending motion.
+
+---
+
+## Impending Motion
+
+**Impending motion** is the condition when an object is *just about to slip*.
+
+At impending motion:
+- $F_s = (F_s)_{\max} = \mu_s N$
+- The block is still stationary, but any additional force would cause slipping
+
+### Sign of Impending Motion
+
+Before solving, you must **assume a direction** of impending motion:
+1. Guess which way the object tends to slide
+2. Draw friction opposing that direction
+3. Solve and check: if $P > 0$, your assumption was correct
+
+---
+
+## Friction Force Direction
+
+> 🎯 **Rule**: Friction always **opposes the relative motion** or **tendency to move**.
+
+| Situation | Friction Direction |
+|-----------|-------------------|
+| Block pushed right | Friction points left ← |
+| Block slides down incline | Friction points up incline ↗ |
+| Block about to tip | Friction opposes horizontal motion |
+
+---
+
+## Worked Examples
+
+### Example 1.4: Block on Horizontal Surface
+
+**Problem:** A 50 kg block rests on a horizontal surface with $\mu_s = 0.4$. What horizontal force $P$ is required to cause impending motion?
+
+**Solution:**
+
+*Step 1: Draw FBD*
+
+```
+          P →
+    ┌─────────────┐
+    │   50 kg     │
+    └─────────────┘
+    ↑N    ← f
+    ════════════════
+          ↓ W
+```
+
+*Step 2: Find Normal Force*
+
+$$
+\sum F_y = 0: \quad N - W = 0
+$$
+$$
+N = mg = (50)(9.81) = 490.5 \text{ N}
+$$
+
+*Step 3: Maximum Friction*
+
+$$
+(F_s)_{\max} = \mu_s N = (0.4)(490.5) = 196.2 \text{ N}
+$$
+
+*Step 4: At Impending Motion*
+
+$$
+P = (F_s)_{\max} = \boxed{196.2 \text{ N}}
+$$
+
+---
+
+### Example 1.5: Block on Inclined Plane (Impending Slip Down)
+
+**Problem:** A block rests on a 30° incline with $\mu_s = 0.5$. Will it slip?
+
+**Solution:**
+
+*Step 1: Components along incline*
+
+- Weight component down incline: $W_{\parallel} = mg\sin(30°)$
+- Weight component into incline: $W_{\perp} = mg\cos(30°)$
+
+*Step 2: Normal force*
+
+$$
+N = mg\cos(30°)
+$$
+
+*Step 3: Maximum friction*
+
+$$
+(F_s)_{\max} = \mu_s N = \mu_s mg\cos(30°)
+$$
+
+*Step 4: Compare forces*
+
+For equilibrium: friction must balance weight component down incline.
+
+$$
+\text{Required: } F_s = mg\sin(30°)
+$$
+
+$$
+\text{Available: } (F_s)_{\max} = (0.5)mg\cos(30°) = 0.433mg
+$$
+
+$$
+\text{Required: } mg\sin(30°) = 0.5mg
+$$
+
+Since $0.433mg < 0.5mg$, maximum friction is **insufficient**.
+
+$$
+\boxed{\text{The block will slip!}}
+$$
+
+---
+
+## Common Pitfall
+
+> ❌ **Mistake**: Assuming $F = \mu N$ for all friction problems.
+>
+> ✅ **Correct**: Use $F_s \leq \mu_s N$ for statics. The equality holds **only at impending motion**.
+
+---
+
+## Unit Check
+
+| Calculation | Units Check |
+|-------------|-------------|
+| $\mu N$ | (dimensionless)(N) = N ✓ |
+| $mg\sin\theta$ | (kg)(m/s²) = N ✓ |
+
+---
+
+## Sanity Check
+
+- Higher $\mu_s$ → harder to start motion ✓
+- Higher $N$ → more friction ✓
+- At $\theta = 0°$ (horizontal), $N = mg$ and friction can be up to $\mu_s mg$ ✓
+
+---
+
+## Mini Check
+
+> **Quick Question**: A 100 N block sits on a surface with $\mu_s = 0.3$. What is the maximum static friction force possible?
+>
+> **Answer**: $(F_s)_{\max} = 0.3 \times 100 = 30$ N
+
+---
+
+## Summary
+
+### Key Equations
+
+| Condition | Equation |
+|-----------|----------|
+| Static friction | $F_s \leq \mu_s N$ |
+| Kinetic friction | $F_k = \mu_k N$ |
+| At impending motion | $F_s = \mu_s N$ |
+
+### Key Takeaways
+
+- ✅ Friction **opposes** motion or the tendency to move
+- ✅ Static friction is **variable**: $0 \leq F_s \leq \mu_s N$
+- ✅ Use $F_s = \mu_s N$ **only at impending motion**
+- ✅ Always draw the **FBD** and identify friction direction first
+
+---
+
+## Key Terms
+
+| Term | Definition |
+|------|------------|
+| **Static friction** | Friction that prevents motion between stationary surfaces |
+| **Kinetic friction** | Friction between surfaces in relative motion |
+| **Impending motion** | The instant just before sliding begins |
+| **Coefficient of friction** | Ratio of friction force to normal force |
+
+---
+
+## What's Next?
+
+In **Chapter 2: Force Systems**, we'll extend our analysis to include moments and solve rigid body equilibrium problems.

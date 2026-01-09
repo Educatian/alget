@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* ===== UA BRANDING COLORS ===== */
+:root {
+  --crimson: #9E1B32;
+  --crimson-dark: #7A1527;
+  --crimson-light: #C41E3A;
+}
+
+/* ===== GLOBAL STYLES ===== */
+body {
+  @apply bg-gray-50 text-gray-900 antialiased;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ===== GLASSMORPHISM ===== */
+.glass {
+  @apply bg-white/80 backdrop-blur-xl border border-white/50;
+}
+
+/* ===== CRIMSON BUTTON ===== */
+.btn-crimson {
+  @apply bg-gradient-to-r from-[#9E1B32] to-[#7A1527] text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-red-900/25 hover:shadow-xl hover:shadow-red-900/35 hover:-translate-y-0.5 transition-all duration-300 ease-out;
+}
+
+/* ===== CONTENT CARD ===== */
+.content-card {
+  @apply bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-[#9E1B32]/30 transition-all duration-300;
+}
+
+/* ===== STEPPER ===== */
+.step-circle {
+  @apply w-12 h-12 rounded-full flex items-center justify-center font-semibold text-lg transition-all duration-300;
+}
+
+.step-circle.active {
+  @apply bg-gradient-to-br from-[#9E1B32] to-[#7A1527] text-white shadow-lg shadow-red-900/30;
+}
+
+.step-circle.completed {
+  @apply bg-emerald-500 text-white;
+}
+
+.step-circle.inactive {
+  @apply bg-gray-100 text-gray-400 border-2 border-gray-200;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+/* ===== TEXTBOOK STYLING ===== */
+
+/* Premium Tables */
+.prose table {
+  @apply w-full border-collapse my-6 text-sm;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.prose thead {
+  background: linear-gradient(135deg, #9E1B32 0%, #7A1527 100%);
+}
+
+.prose th {
+  @apply text-white font-semibold py-3 px-4 text-left;
+  border: none !important;
+}
+
+.prose tbody tr {
+  @apply border-b border-gray-100;
+}
+
+.prose tbody tr:nth-child(even) {
+  @apply bg-gray-50/50;
+}
+
+.prose tbody tr:hover {
+  @apply bg-blue-50/50;
+}
+
+.prose td {
+  @apply py-3 px-4 text-gray-700;
+  border: none !important;
+}
+
+/* Math/Equation Blocks */
+.prose .katex-display {
+  @apply my-6 py-4 px-6 bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl border border-gray-200;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.prose .katex {
+  font-size: 1.1em;
+}
+
+/* Blockquotes - Enhanced */
+.prose blockquote {
+  @apply border-l-4 border-[#9E1B32] bg-gradient-to-r from-red-50/80 to-transparent py-4 px-5 my-6 rounded-r-xl;
+  font-style: normal;
+}
+
+.prose blockquote p {
+  @apply text-gray-700 font-medium m-0;
+}
+
+/* Code Blocks - Modern */
+.prose pre {
+  @apply bg-slate-900 text-slate-100 rounded-xl p-5 my-6 overflow-x-auto;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.9em;
+  line-height: 1.6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.prose code:not(pre code) {
+  @apply bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded font-medium text-sm;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Horizontal Rules - Elegant */
+.prose hr {
+  @apply my-10 border-0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #9E1B32, transparent);
+}
+
+/* Lists - Enhanced */
+.prose ul {
+  @apply space-y-2;
+}
+
+.prose ul li {
+  @apply relative pl-1;
+}
+
+.prose ul li::marker {
+  color: #9E1B32;
+}
+
+.prose ol li::marker {
+  color: #9E1B32;
+  font-weight: 600;
+}
+
+/* Strong/Bold Emphasis */
+.prose strong {
+  @apply text-[#9E1B32] font-bold;
+}
+
+/* Headers - Premium */
+.prose h2 {
+  @apply text-2xl font-bold text-gray-900 mt-12 mb-4 pb-3 border-b-2 border-[#9E1B32]/20;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold text-gray-800 mt-8 mb-3;
+}
+
+.prose h4 {
+  @apply text-lg font-semibold text-[#9E1B32] mt-6 mb-2;
+}
+
+/* Paragraph Spacing */
+.prose p {
+  @apply leading-relaxed text-gray-600 my-4;
+}
+
+/* Links */
+.prose a {
+  @apply text-[#9E1B32] font-medium hover:underline;
+}
+
+/* Special Callout Boxes */
+.prose blockquote:has(strong:first-child) {
+  @apply bg-gradient-to-r from-blue-50 to-transparent border-l-blue-500;
+}
+
+/* Emoji Callouts */
+.prose p:has(> :first-child:is(img[alt*="💡"], img[alt*="⚠️"], img[alt*="📌"], img[alt*="🎯"], img[alt*="🧠"])) {
+  @apply bg-amber-50/80 border border-amber-200 rounded-xl p-4 my-4;
+}
+
+/* Details/Summary for expandable content */
+.prose details {
+  @apply bg-gray-50 rounded-xl border border-gray-200 my-4 overflow-hidden;
+}
+
+.prose details summary {
+  @apply cursor-pointer px-4 py-3 font-medium text-gray-700 hover:bg-gray-100 transition-colors;
+}
+
+.prose details[open] summary {
+  @apply border-b border-gray-200;
+}
+
+.prose details>*:not(summary) {
+  @apply px-4 py-3;
+}

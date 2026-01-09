@@ -1,0 +1,236 @@
+# Moment of a Force
+
+> **"Give me a lever long enough and a fulcrum on which to place it, and I shall move the world."**  
+> — Archimedes
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Define** the moment of a force about a point
+2. **Calculate** moments using the cross product
+3. **Determine** the sense and magnitude of a moment
+4. **Apply** Varignon's theorem to calculate moments
+
+---
+
+## Introduction: Beyond Equilibrium of Forces
+
+In Chapter 1, we analyzed particles where all forces act at a single point. But real structures are **rigid bodies**—they have size and shape. Forces can act at different locations, and this matters!
+
+Consider a door: pushing near the hinge versus near the handle produces very different effects, even with the same force. The **moment** captures this rotational effect.
+
+> 🎯 **The Big Idea**: The moment measures a force's tendency to cause rotation about a point.
+
+---
+
+## Definition of Moment
+
+The **moment** (or **torque**) of a force about a point O is:
+
+$$
+\boxed{M_O = r \times F}
+$$
+
+where:
+- $\vec{r}$ = position vector from O to any point on the line of action of $\vec{F}$
+- $\vec{F}$ = the force vector
+- $\times$ = cross product
+
+### Scalar Formulation (2D)
+
+For planar problems, the magnitude is simply:
+
+$$
+M_O = F \cdot d
+$$
+
+where $d$ is the **perpendicular distance** (moment arm) from point O to the line of action of the force.
+
+| Symbol | Meaning | Units |
+|--------|---------|-------|
+| $M_O$ | Moment about point O | N·m or lb·ft |
+| $F$ | Force magnitude | N or lb |
+| $d$ | Perpendicular distance (moment arm) | m or ft |
+
+---
+
+## Sign Convention
+
+In 2D analysis, moments are either:
+
+| Direction | Sign | Physical Meaning |
+|-----------|------|------------------|
+| Counterclockwise (CCW) | **Positive** (+) | Right-hand rule: thumb up |
+| Clockwise (CW) | **Negative** (−) | Right-hand rule: thumb down |
+
+```
+        ↺ CCW = +M
+        
+        ↻ CW = −M
+```
+
+> 💡 **Right-Hand Rule**: Curl fingers in the direction of rotation. Your thumb points in the direction of the moment vector.
+
+---
+
+## Calculating Moments
+
+### Method 1: Perpendicular Distance (Easiest for 2D)
+
+$$
+M_O = F \cdot d
+$$
+
+Find the perpendicular distance from O to the force's line of action.
+
+### Method 2: Force Components (Most Common)
+
+Break the force into components and sum their individual moments:
+
+$$
+M_O = F_x \cdot d_y - F_y \cdot d_x
+$$
+
+This is essentially **Varignon's Theorem** in practice.
+
+### Method 3: Cross Product (General 3D)
+
+$$
+\vec{M}_O = \vec{r} \times \vec{F} = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ r_x & r_y & r_z \\ F_x & F_y & F_z \end{vmatrix}
+$$
+
+---
+
+## Varignon's Theorem
+
+> **The moment of a force about a point equals the sum of the moments of its components about that same point.**
+
+$$
+M_O(\vec{F}) = M_O(\vec{F}_x) + M_O(\vec{F}_y)
+$$
+
+This theorem simplifies calculations by allowing us to work with rectangular components.
+
+---
+
+## Worked Examples
+
+### Example 2.1: Simple Moment Calculation
+
+**Problem:** A 100 N force acts horizontally at point A, which is 2 m above point O. Calculate the moment about O.
+
+```
+    F = 100 N
+    ●────────→  A
+    │
+    │ 2 m
+    │
+    ○ O
+```
+
+**Solution:**
+
+*Step 1: Identify the moment arm*
+
+The perpendicular distance from O to the force's line of action is $d = 2$ m.
+
+*Step 2: Calculate the moment*
+
+$$
+M_O = F \cdot d = (100 \text{ N})(2 \text{ m}) = \boxed{200 \text{ N·m (CW)}}
+$$
+
+The force tends to rotate the system clockwise about O, so the moment is negative by convention: $M_O = -200$ N·m.
+
+---
+
+### Example 2.2: Using Components (Varignon's Theorem)
+
+**Problem:** A 500 N force acts at 30° from horizontal at point P, located at coordinates (3, 4) m from origin O. Calculate $M_O$.
+
+**Solution:**
+
+*Step 1: Find force components*
+
+$$
+F_x = 500 \cos(30°) = 433 \text{ N}
+$$
+
+$$
+F_y = 500 \sin(30°) = 250 \text{ N}
+$$
+
+*Step 2: Apply Varignon's Theorem*
+
+$$
+M_O = F_x \cdot y - F_y \cdot x
+$$
+
+$$
+M_O = (433)(4) - (250)(3)
+$$
+
+$$
+M_O = 1732 - 750 = \boxed{982 \text{ N·m (CCW)}}
+$$
+
+---
+
+### Example 2.3: Cross Product Method (3D)
+
+**Problem:** Force $\vec{F} = (3\hat{i} + 4\hat{j} - 2\hat{k})$ kN acts at point A with position $\vec{r} = (1\hat{i} - 2\hat{j} + 3\hat{k})$ m from O. Find $\vec{M}_O$.
+
+**Solution:**
+
+$$
+\vec{M}_O = \vec{r} \times \vec{F} = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ 1 & -2 & 3 \\ 3 & 4 & -2 \end{vmatrix}
+$$
+
+$$
+\vec{M}_O = \vec{i}[(-2)(-2) - (3)(4)] - \vec{j}[(1)(-2) - (3)(3)] + \vec{k}[(1)(4) - (-2)(3)]
+$$
+
+$$
+\vec{M}_O = \vec{i}[4 - 12] - \vec{j}[-2 - 9] + \vec{k}[4 + 6]
+$$
+
+$$
+\vec{M}_O = \boxed{-8\hat{i} + 11\hat{j} + 10\hat{k} \text{ kN·m}}
+$$
+
+---
+
+## Common Mistakes to Avoid
+
+| Mistake | Why It's Wrong | Correct Approach |
+|---------|----------------|------------------|
+| Using any distance as moment arm | Moment arm must be **perpendicular** | Draw perpendicular from point to force line |
+| Forgetting sign convention | Moments have direction | Use right-hand rule consistently |
+| Adding moment magnitudes incorrectly | Moments are vectors | Add algebraically with signs |
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | 2D Formula | 3D Formula |
+|---------|------------|------------|
+| Moment | $M_O = F \cdot d$ | $\vec{M}_O = \vec{r} \times \vec{F}$ |
+| Using components | $M_O = F_x y - F_y x$ | Determinant expansion |
+
+### Key Takeaways
+
+- ✅ Moment measures a force's **rotational effect** about a point
+- ✅ The **moment arm** is the perpendicular distance to the force's line of action
+- ✅ Use **Varignon's theorem** to simplify calculations with components
+- ✅ Always apply consistent **sign convention** (CCW = +, CW = −)
+
+---
+
+## What's Next?
+
+In **Section 2.2: Couple and Moment of a Couple**, we'll learn about a special force system that produces pure rotation with no translation.

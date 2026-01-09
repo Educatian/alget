@@ -1,0 +1,22 @@
+{
+    "chapter": "03",
+    "section": "02",
+    "title": "Method of Joints",
+    "course": "statics",
+    "learning_objectives": [
+        "Apply the method of joints to analyze trusses",
+        "Draw FBDs for individual joints",
+        "Solve for member forces systematically",
+        "Determine if members are in tension or compression"
+    ],
+    "concept_ids": [
+        "method_of_joints",
+        "joint_equilibrium",
+        "member_force"
+    ],
+    "prerequisites": [
+        "truss",
+        "two_force_member"
+    ],
+    "estimated_time_minutes": 55
+}

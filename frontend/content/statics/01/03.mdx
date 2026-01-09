@@ -1,0 +1,279 @@
+# Two-Force and Three-Force Members
+
+> **"Recognizing special cases saves time and reduces errors."**  
+> — Ferdinand P. Beer, *Vector Mechanics for Engineers*
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Identify** two-force members in a structure
+2. **Apply** the two-force member principle to simplify analysis
+3. **Recognize** three-force member conditions
+4. **Use** concurrency for three-force equilibrium
+
+---
+
+## Introduction
+
+In many engineering structures, certain members have special loading conditions that dramatically simplify our analysis. By recognizing **two-force** and **three-force members**, we can often determine force directions without even writing equilibrium equations.
+
+> 🎯 **Why This Matters**: In truss analysis, nearly every member is a two-force member. Mastering this concept is essential for structural engineering.
+
+---
+
+## Two-Force Members
+
+### Definition
+
+A **two-force member** is a body that:
+
+1. Has forces applied at **only two points**
+2. Has **no moments** applied anywhere
+3. Is in **equilibrium**
+
+### The Two-Force Member Principle
+
+For a two-force member in equilibrium:
+
+> **The two forces must be:**
+> - **Equal in magnitude**
+> - **Opposite in direction**
+> - **Collinear** (along the line connecting the two points)
+
+This is a direct consequence of equilibrium:
+
+$$
+\sum F = 0 \quad \Rightarrow \quad \vec{F}_A = -\vec{F}_B
+$$
+
+$$
+\sum M = 0 \quad \Rightarrow \quad \text{Forces must be collinear}
+$$
+
+### Visual Representation
+
+```
+Two-Force Member:
+
+        F_A                           F_B
+    ←────●═════════════════════════●────→
+         A                         B
+
+    • Forces at only 2 points (A and B)
+    • Forces are equal, opposite, collinear
+    • Member is in tension (as shown) or compression
+```
+
+### Identifying Two-Force Members
+
+| Condition | Two-Force Member? |
+|-----------|-------------------|
+| Pin-connected at both ends, no other loads | ✅ Yes |
+| Weight is negligible | ✅ Yes |
+| Has a force applied in the middle | ❌ No |
+| Has a distributed load | ❌ No |
+| Supports a moment | ❌ No |
+
+---
+
+## Applications of Two-Force Members
+
+### Trusses
+
+In a truss, **every member** (assuming weightless) is a two-force member:
+
+```
+        P (load)
+          ↓
+          ●
+         ╱ ╲
+        ╱   ╲
+       ╱     ╲
+      ●───────●
+      A   B   C
+```
+
+Each member (AB, BC, AC) experiences only axial force (tension or compression).
+
+### Link Mechanisms
+
+Connecting links in machines are typically two-force members:
+
+```
+    ●══════════●══════════●
+    │          │          │
+    │          │          │
+   Pin        Link       Pin
+```
+
+---
+
+## Worked Example: Two-Force Member
+
+### Example 3.1: Truss Member Force Direction
+
+**Problem:** In the truss below, identify the two-force members and determine if member BC is in tension or compression.
+
+```
+        1000 N
+          ↓
+          B
+         ╱│╲
+        ╱ │ ╲
+       ╱  │  ╲
+      A───┴───C
+```
+
+**Solution:**
+
+*Step 1: Identify Two-Force Members*
+
+Member BC is connected by pins at B and C only, with no intermediate loads.
+
+$$
+\text{BC is a two-force member}
+$$
+
+*Step 2: Analyze Direction*
+
+At joint B, the 1000 N load pushes down. For equilibrium, members AB and BC must push outward (compression).
+
+$$
+F_{BC} \text{ is in } \boxed{\text{compression}}
+$$
+
+---
+
+## Three-Force Members
+
+### Definition
+
+A **three-force member** is a body that:
+
+1. Has forces applied at **exactly three points**
+2. Is in **equilibrium**
+
+### The Three-Force Principle
+
+For a three-force member in equilibrium:
+
+> **The three forces must be:**
+> - **Coplanar** (in the same plane)
+> - **Concurrent** (meeting at a single point) **OR**
+> - **Parallel**
+
+### Why Concurrent?
+
+If three non-parallel forces are in equilibrium:
+
+$$
+\sum M_{\text{point}} = 0
+$$
+
+For this to be true at all points, the forces must pass through a common point.
+
+### Visual Representation
+
+```
+Three-Force Member:
+
+              F₁
+               ↓
+        ●──────●
+       ╱        ╲
+      ╱     O    ╲     ← Concurrent point
+     ↙            ↘
+   F₂              F₃
+
+   All three forces meet at point O
+```
+
+---
+
+## Worked Example: Three-Force Member
+
+### Example 3.2: Beam with Three Forces
+
+**Problem:** A beam is supported by a pin at A and a roller at B, with a concentrated load P at point C. Determine the direction of the reaction at A.
+
+```
+        P
+        ↓
+    ●───C───●
+    A       B
+    △       ○
+```
+
+**Solution:**
+
+*Step 1: Identify Forces*
+
+Three forces act on the beam:
+1. Load $P$ at C (vertical, down)
+2. Reaction $R_B$ at B (vertical, up - roller)
+3. Reaction $R_A$ at A (unknown direction)
+
+*Step 2: Apply Three-Force Principle*
+
+Since $P$ and $R_B$ are both vertical (parallel), $R_A$ must also be vertical for equilibrium.
+
+Alternatively: The three forces must be concurrent. Since two are parallel, the third must also be parallel.
+
+$$
+R_A \text{ is vertical}
+$$
+
+---
+
+## Comparison Table
+
+| Property | Two-Force Member | Three-Force Member |
+|----------|------------------|-------------------|
+| Number of force points | 2 | 3 |
+| Force requirement | Equal, opposite, collinear | Concurrent or parallel |
+| Common examples | Truss members, links | Beams, frames |
+| Known before solving | Force direction | Force must pass through common point |
+
+---
+
+## Problem-Solving Strategy
+
+### When You See Two Force Points:
+
+1. Check: Is it truly a two-force member?
+2. If yes: Forces act along the line connecting the two points
+3. Member is either in **tension** or **compression**
+
+### When You See Three Force Points:
+
+1. Identify the lines of action of any known forces
+2. Find where two known forces intersect
+3. The third force must pass through this intersection point
+
+---
+
+## Summary
+
+### Key Takeaways
+
+- ✅ **Two-force members** have forces at only two points → forces are collinear
+- ✅ **Three-force members** have forces at three points → forces are concurrent
+- ✅ Recognizing these special cases **simplifies analysis significantly**
+- ✅ Most truss members are two-force members
+- ✅ Use the three-force principle to find unknown force directions
+
+### Quick Reference
+
+| Member Type | Condition | Consequence |
+|-------------|-----------|-------------|
+| Two-Force | 2 force points only | Forces along line AB |
+| Three-Force | 3 force points | Forces meet at one point |
+
+---
+
+## What's Next?
+
+In **Chapter 2: Rigid Body Equilibrium**, we'll extend our analysis to include moments and solve more complex structural problems.

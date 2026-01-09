@@ -1,0 +1,44 @@
+{
+    "problems": [
+        {
+            "id": "moment_perpendicular",
+            "type": "numeric",
+            "solver_id": "solve_moment_2d",
+            "stem": "A 150 N horizontal force acts at a point 3 meters directly above point O. Calculate the magnitude of the moment about O.",
+            "params": {
+                "force_N": 150,
+                "distance_m": 3
+            },
+            "hints": [
+                "The moment arm is the perpendicular distance from O to the force's line of action",
+                "M = F × d"
+            ],
+            "final_answer": {
+                "value": 450,
+                "unit": "N·m",
+                "tolerance": 1
+            }
+        },
+        {
+            "id": "moment_components",
+            "type": "numeric",
+            "solver_id": "solve_moment_varignon",
+            "stem": "A 200 N force acts at 45° from horizontal at point P located at (2, 3) m from origin O. Calculate the moment about O using Varignon's theorem.",
+            "params": {
+                "force_N": 200,
+                "angle_deg": 45,
+                "x_m": 2,
+                "y_m": 3
+            },
+            "hints": [
+                "First find Fx and Fy components",
+                "M = Fx·y - Fy·x"
+            ],
+            "final_answer": {
+                "value": 141.4,
+                "unit": "N·m",
+                "tolerance": 5
+            }
+        }
+    ]
+}

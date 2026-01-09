@@ -1,0 +1,57 @@
+{
+    "problems": [
+        {
+            "id": "newton_basic",
+            "type": "numeric",
+            "stem": "A 5 kg object experiences a net force of 20 N. Find its acceleration.",
+            "final_answer": {
+                "value": 4,
+                "unit": "m/s²",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "newton_incline",
+            "type": "numeric",
+            "stem": "A 15 kg block slides down a frictionless 40° incline. Find the acceleration.",
+            "final_answer": {
+                "value": 6.31,
+                "unit": "m/s²",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "newton_friction",
+            "type": "step_based",
+            "stem": "A 20 kg crate is pushed with 80 N horizontal force on a floor with μk = 0.3. Find acceleration.",
+            "steps": [
+                {
+                    "step_id": 1,
+                    "description": "Find normal force N = mg",
+                    "expected_value": 196.2,
+                    "unit": "N",
+                    "tolerance": 1
+                },
+                {
+                    "step_id": 2,
+                    "description": "Find friction f = μkN",
+                    "expected_value": 58.9,
+                    "unit": "N",
+                    "tolerance": 1
+                },
+                {
+                    "step_id": 3,
+                    "description": "Find net force and acceleration",
+                    "expected_value": 1.06,
+                    "unit": "m/s²",
+                    "tolerance": 0.1
+                }
+            ],
+            "final_answer": {
+                "value": 1.06,
+                "unit": "m/s²",
+                "tolerance": 0.1
+            }
+        }
+    ]
+}
