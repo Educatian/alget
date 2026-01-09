@@ -1,0 +1,14 @@
+{
+    "problems": [
+        {
+            "id": "couple_moment",
+            "type": "numeric",
+            "stem": "Two 80 N forces act in opposite directions, separated by 0.6 m. Calculate the couple moment.",
+            "final_answer": {
+                "value": 48,
+                "unit": "N·m",
+                "tolerance": 0.5
+            }
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "chapter": "02",
+    "section": "02",
+    "title": "Couples and Equivalent Systems",
+    "course": "statics",
+    "learning_objectives": [
+        "Define a couple and calculate its moment",
+        "Understand that a couple is a free vector",
+        "Replace force systems with equivalent systems",
+        "Move forces to different points using couples"
+    ],
+    "concept_ids": [
+        "couple",
+        "equivalent_systems",
+        "force_couple_system"
+    ],
+    "prerequisites": [
+        "moment"
+    ],
+    "estimated_time_minutes": 45
+}

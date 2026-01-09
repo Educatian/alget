@@ -1,0 +1,23 @@
+{
+    "chapter": "01",
+    "section": "04",
+    "title": "Friction",
+    "course": "statics",
+    "learning_objectives": [
+        "Distinguish between static and kinetic friction",
+        "Apply the maximum static friction condition Fs ≤ μsN",
+        "Identify impending motion conditions",
+        "Determine friction force direction"
+    ],
+    "concept_ids": [
+        "static_friction",
+        "kinetic_friction",
+        "friction_coefficient",
+        "impending_motion"
+    ],
+    "prerequisites": [
+        "equilibrium_condition",
+        "fbd"
+    ],
+    "estimated_time_minutes": 50
+}

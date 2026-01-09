@@ -1,0 +1,185 @@
+# Equilibrium of Rigid Bodies
+
+> **"For a rigid body in equilibrium, both forces AND moments must balance."**
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Apply** equilibrium equations for rigid bodies
+2. **Write** three equilibrium equations: ΣFx=0, ΣFy=0, ΣM=0
+3. **Solve** statically determinate problems
+4. **Identify** support reactions
+
+---
+
+## From Particles to Rigid Bodies
+
+For a **particle**, we only needed force equilibrium:
+
+$$
+\sum \vec{F} = 0
+$$
+
+For a **rigid body**, we also need moment equilibrium:
+
+$$
+\sum \vec{M}_O = 0
+$$
+
+Together, these give us **6 equations in 3D** (3 force, 3 moment) or **3 equations in 2D**:
+
+$$
+\boxed{
+\begin{aligned}
+\sum F_x &= 0 \\
+\sum F_y &= 0 \\
+\sum M_O &= 0
+\end{aligned}
+}
+$$
+
+---
+
+## Support Reactions
+
+Different supports provide different reactions:
+
+| Support Type | Reactions Provided | Diagram |
+|--------------|-------------------|---------|
+| **Pin/Hinge** | $R_x$, $R_y$ (2 forces) | △ |
+| **Roller** | $R$ perpendicular to surface (1 force) | ○ |
+| **Fixed (Cantilever)** | $R_x$, $R_y$, $M$ (2 forces + 1 moment) | ▌ |
+| **Cable** | $T$ along cable (1 force, tension only) | ─ |
+
+> 💡 **Rule**: Count unknowns. For a 2D problem, you need exactly 3 unknowns for static determinacy.
+
+---
+
+## Problem-Solving Strategy
+
+### Step 1: Draw the FBD
+Show all external forces including support reactions.
+
+### Step 2: Establish Coordinate System
+Usually: x horizontal (→+), y vertical (↑+), moments CCW (+).
+
+### Step 3: Write Equilibrium Equations
+
+$$
+\sum F_x = 0, \quad \sum F_y = 0, \quad \sum M_A = 0
+$$
+
+Choose the moment point wisely—picking a point where unknown forces act eliminates those unknowns from the moment equation.
+
+### Step 4: Solve the System
+Usually 3 equations with 3 unknowns.
+
+---
+
+## Worked Examples
+
+### Example 2.6: Simply Supported Beam
+
+**Problem:** A 6 m beam is supported by a pin at A and a roller at B. A 1000 N load acts at the center. Find the reactions.
+
+```
+        1000 N
+          ↓
+    A─────C─────B
+    △     3m    ○
+    ├─────┼─────┤
+       3m    3m
+```
+
+**Solution:**
+
+*Step 1: FBD*
+- At A: $A_x$ (→), $A_y$ (↑)
+- At B: $B_y$ (↑)
+- Load: 1000 N (↓) at C
+
+*Step 2: Equilibrium Equations*
+
+**ΣFx = 0:**
+$$
+A_x = 0
+$$
+
+**ΣMA = 0** (taking moments about A):
+$$
+B_y(6) - 1000(3) = 0
+$$
+$$
+B_y = 500 \text{ N}
+$$
+
+**ΣFy = 0:**
+$$
+A_y + B_y - 1000 = 0
+$$
+$$
+A_y = 500 \text{ N}
+$$
+
+**Results:**
+$$
+\boxed{A_x = 0, \quad A_y = 500 \text{ N}, \quad B_y = 500 \text{ N}}
+$$
+
+---
+
+### Example 2.7: Cantilever Beam
+
+**Problem:** A 4 m cantilever beam has a fixed support at A and a 2000 N load at the free end B. Find the reactions at A.
+
+```
+    ▌═════════●
+    A    4m    B
+              ↓ 2000 N
+```
+
+**Solution:**
+
+*Step 1: FBD at A*
+- $A_x$ (horizontal reaction)
+- $A_y$ (vertical reaction)  
+- $M_A$ (moment reaction)
+
+*Step 2: Equilibrium*
+
+**ΣFx = 0:** $A_x = 0$
+
+**ΣFy = 0:** $A_y - 2000 = 0 \Rightarrow A_y = 2000$ N
+
+**ΣMA = 0:** $M_A - 2000(4) = 0 \Rightarrow M_A = 8000$ N·m
+
+**Results:**
+$$
+\boxed{A_x = 0, \quad A_y = 2000 \text{ N}, \quad M_A = 8000 \text{ N·m (CCW)}}
+$$
+
+---
+
+## Summary
+
+### Key Equations
+
+$$
+\sum F_x = 0, \quad \sum F_y = 0, \quad \sum M_O = 0
+$$
+
+### Key Takeaways
+
+- ✅ Rigid bodies require **3 equilibrium equations** in 2D
+- ✅ Choose moment point to **eliminate unknowns**
+- ✅ Identify support types to determine **reaction forces**
+- ✅ Check: Do your answers make physical sense?
+
+---
+
+## What's Next?
+
+In **Chapter 3: Structural Analysis**, we'll analyze trusses and frames—structures made of multiple connected members.

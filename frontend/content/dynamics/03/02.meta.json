@@ -1,0 +1,35 @@
+{
+    "chapter": "03",
+    "section": "02",
+    "title": "Equations of Motion for Rigid Bodies",
+    "course": "dynamics",
+    "learning_objectives": [
+        "Apply ΣF = ma for rigid body center of mass",
+        "Apply ΣM = Iα for rotation about center of mass",
+        "Solve planar rigid body dynamics problems",
+        "Use mass moment of inertia"
+    ],
+    "concept_ids": [
+        "rigid_body_kinetics",
+        "mass_moment_of_inertia",
+        "rotational_equation"
+    ],
+    "physics_prereqs": [
+        "newtons_second_law",
+        "rigid_body_motion"
+    ],
+    "math_prereqs": [
+        "integrals"
+    ],
+    "units_focus": [
+        "kg·m²",
+        "N·m",
+        "rad/s²"
+    ],
+    "common_errors": [
+        "parallel_axis",
+        "sign",
+        "reference_point"
+    ],
+    "estimated_time_minutes": 60
+}

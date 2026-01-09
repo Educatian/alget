@@ -1,0 +1,24 @@
+{
+    "problems": [
+        {
+            "id": "moment_of_inertia",
+            "type": "numeric",
+            "stem": "A solid disk has mass 8 kg and radius 0.4 m. Find its moment of inertia about the center.",
+            "final_answer": {
+                "value": 0.64,
+                "unit": "kg·m²",
+                "tolerance": 0.01
+            }
+        },
+        {
+            "id": "angular_accel",
+            "type": "numeric",
+            "stem": "A moment of 12 N·m acts on a disk with I = 3 kg·m². Find the angular acceleration.",
+            "final_answer": {
+                "value": 4,
+                "unit": "rad/s²",
+                "tolerance": 0.1
+            }
+        }
+    ]
+}

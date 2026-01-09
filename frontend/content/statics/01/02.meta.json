@@ -1,0 +1,22 @@
+{
+    "chapter": "01",
+    "section": "02",
+    "title": "Free Body Diagrams",
+    "course": "statics",
+    "learning_objectives": [
+        "Draw complete and accurate free body diagrams",
+        "Identify all forces acting on an isolated body",
+        "Apply the systematic 6-step FBD procedure",
+        "Recognize common FBD errors and how to avoid them"
+    ],
+    "concept_ids": [
+        "fbd",
+        "force_identification",
+        "particle_model",
+        "reaction_forces"
+    ],
+    "prerequisites": [
+        "equilibrium_condition"
+    ],
+    "estimated_time_minutes": 45
+}

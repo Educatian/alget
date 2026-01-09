@@ -1,0 +1,63 @@
+{
+    "problems": [
+        {
+            "id": "curvilinear_concept_1",
+            "type": "multiple_choice",
+            "stem": "A car moves at constant speed around a circular track. What can we say about its acceleration?",
+            "options": [
+                "Acceleration is zero",
+                "Acceleration is tangential only",
+                "Acceleration is normal (centripetal) only",
+                "Acceleration has both components"
+            ],
+            "correct_index": 2,
+            "explanation": "Constant speed means aₜ = 0. But direction changes, so aₙ = v²/r ≠ 0."
+        },
+        {
+            "id": "curvilinear_concept_2",
+            "type": "multiple_choice",
+            "stem": "In which direction does the normal acceleration point?",
+            "options": [
+                "Along velocity",
+                "Opposite to velocity",
+                "Toward center of curvature",
+                "Away from center"
+            ],
+            "correct_index": 2,
+            "explanation": "Normal (centripetal) acceleration always points toward the center of curvature."
+        },
+        {
+            "id": "curvilinear_numeric_1",
+            "type": "numeric",
+            "stem": "A particle moves at 15 m/s on a curve of radius 50 m. Find the normal acceleration.",
+            "final_answer": {
+                "value": 4.5,
+                "unit": "m/s²",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "curvilinear_numeric_2",
+            "type": "numeric",
+            "stem": "A car has aₜ = 3 m/s² and aₙ = 4 m/s². Find the magnitude of total acceleration.",
+            "final_answer": {
+                "value": 5,
+                "unit": "m/s²",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "curvilinear_circular",
+            "type": "numeric",
+            "stem": "A wheel rotates at 120 rpm. Find the angular velocity in rad/s.",
+            "hints": [
+                "1 rpm = 2π/60 rad/s"
+            ],
+            "final_answer": {
+                "value": 12.57,
+                "unit": "rad/s",
+                "tolerance": 0.1
+            }
+        }
+    ]
+}

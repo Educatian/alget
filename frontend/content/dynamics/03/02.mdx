@@ -1,0 +1,90 @@
+# Equations of Motion for Rigid Bodies
+
+> **"For rigid bodies: forces govern translation, moments govern rotation."**
+
+---
+
+## Prerequisites
+
+`newtons_second_law` `rigid_body_motion`
+
+---
+
+## Learning Objectives
+
+1. **Apply** $\sum F = ma_G$ for center of mass
+2. **Apply** $\sum M_G = I_G \alpha$ for rotation
+3. **Solve** planar rigid body dynamics problems
+4. **Use** mass moment of inertia
+
+---
+
+## The Equations of Motion
+
+For a rigid body in plane motion:
+
+$$
+\boxed{\sum F_x = m(a_G)_x}
+$$
+
+$$
+\boxed{\sum F_y = m(a_G)_y}
+$$
+
+$$
+\boxed{\sum M_G = I_G \alpha}
+$$
+
+where:
+- $G$ = center of mass
+- $I_G$ = mass moment of inertia about G
+- $\alpha$ = angular acceleration
+
+---
+
+## Mass Moment of Inertia
+
+| Shape | $I_G$ |
+|-------|-------|
+| Slender rod (about center) | $\frac{1}{12}mL^2$ |
+| Thin disk/cylinder | $\frac{1}{2}mr^2$ |
+| Solid sphere | $\frac{2}{5}mr^2$ |
+
+**Parallel Axis Theorem:**
+$$
+I = I_G + md^2
+$$
+
+---
+
+## Worked Example
+
+**Problem:** A 10 kg disk (r = 0.3 m) has a tangential force of 20 N at its rim. Find angular acceleration.
+
+**Solution:**
+
+$$
+I_G = \frac{1}{2}mr^2 = \frac{1}{2}(10)(0.3)^2 = 0.45 \text{ kg·m}^2
+$$
+
+$$
+\sum M_G = F \cdot r = 20 \times 0.3 = 6 \text{ N·m}
+$$
+
+$$
+\alpha = \frac{\sum M_G}{I_G} = \frac{6}{0.45} = \boxed{13.3 \text{ rad/s}^2}
+$$
+
+---
+
+## Summary
+
+- Translation: $\sum F = ma_G$
+- Rotation: $\sum M_G = I_G \alpha$
+- Use parallel axis theorem when rotating about non-CG point
+
+---
+
+## What's Next?
+
+In **Section 3.3: Work-Energy for Rigid Bodies**, we'll extend energy methods to rotating systems.

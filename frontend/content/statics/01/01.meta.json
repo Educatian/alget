@@ -1,0 +1,23 @@
+{
+    "title": "Equilibrium Conditions",
+    "chapter_title": "Equilibrium of Particles",
+    "course": "statics",
+    "chapter": "01",
+    "section": "01",
+    "learning_objectives": [
+        "Define equilibrium for a particle",
+        "Apply the condition ΣF = 0 to solve for unknown forces",
+        "Construct and interpret free body diagrams"
+    ],
+    "concept_ids": [
+        "equilibrium",
+        "sum_of_forces",
+        "fbd",
+        "tension"
+    ],
+    "prereq_section_ids": [],
+    "practice_ids": [
+        "p001",
+        "p002"
+    ]
+}

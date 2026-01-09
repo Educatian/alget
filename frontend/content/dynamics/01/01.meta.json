@@ -1,0 +1,39 @@
+{
+    "chapter": "01",
+    "section": "01",
+    "title": "Rectilinear Motion",
+    "chapter_title": "Kinematics of Particles",
+    "course": "dynamics",
+    "learning_objectives": [
+        "Define position, velocity, and acceleration for 1D motion",
+        "Apply the kinematic equations for constant acceleration",
+        "Solve problems using s-v-a relationships",
+        "Integrate/differentiate to convert between kinematic quantities"
+    ],
+    "concept_ids": [
+        "position",
+        "velocity",
+        "acceleration",
+        "constant_acceleration",
+        "kinematics"
+    ],
+    "physics_prereqs": [
+        "Newton's laws basics"
+    ],
+    "math_prereqs": [
+        "derivatives",
+        "integrals"
+    ],
+    "units_focus": [
+        "m",
+        "m/s",
+        "m/s^2",
+        "s"
+    ],
+    "common_errors": [
+        "sign",
+        "unit",
+        "initial_conditions"
+    ],
+    "estimated_time_minutes": 55
+}

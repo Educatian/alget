@@ -1,0 +1,33 @@
+{
+    "chapter": "03",
+    "section": "03",
+    "title": "Work-Energy for Rigid Bodies",
+    "course": "dynamics",
+    "learning_objectives": [
+        "Calculate rotational kinetic energy",
+        "Apply work-energy to rotating systems",
+        "Analyze rolling motion using energy",
+        "Combine translational and rotational energy"
+    ],
+    "concept_ids": [
+        "rotational_kinetic_energy",
+        "rolling_motion",
+        "energy_conservation_rigid"
+    ],
+    "physics_prereqs": [
+        "work_energy",
+        "rigid_body_kinetics"
+    ],
+    "math_prereqs": [
+        "integrals"
+    ],
+    "units_focus": [
+        "J",
+        "rad/s"
+    ],
+    "common_errors": [
+        "rolling_constraint",
+        "energy_terms"
+    ],
+    "estimated_time_minutes": 50
+}

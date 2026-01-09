@@ -1,0 +1,91 @@
+# Work-Energy for Rigid Bodies
+
+> **"For a rigid body: total kinetic energy = translational + rotational."**
+
+---
+
+## Prerequisites
+
+`work_energy` `rigid_body_kinetics`
+
+---
+
+## Learning Objectives
+
+1. **Calculate** rotational kinetic energy
+2. **Apply** work-energy to rotating systems
+3. **Analyze** rolling motion using energy
+4. **Combine** translational and rotational energy
+
+---
+
+## Kinetic Energy of a Rigid Body
+
+$$
+\boxed{T = \frac{1}{2}mv_G^2 + \frac{1}{2}I_G\omega^2}
+$$
+
+- First term: translational KE
+- Second term: rotational KE
+
+---
+
+## Rolling Without Slipping
+
+For a wheel rolling without slipping:
+
+$$
+\boxed{v_G = r\omega}
+$$
+
+Combined kinetic energy:
+$$
+T = \frac{1}{2}mv_G^2 + \frac{1}{2}I_G\omega^2 = \frac{1}{2}(I_G + mr^2)\omega^2
+$$
+
+---
+
+## Work-Energy Principle
+
+$$
+T_1 + V_1 + W_{nc} = T_2 + V_2
+$$
+
+where $T$ now includes both translational and rotational parts.
+
+---
+
+## Worked Example
+
+**Problem:** A solid disk (m = 5 kg, r = 0.2 m) rolls down a 2 m high ramp from rest. Find its speed at the bottom.
+
+**Solution:**
+
+Energy conservation:
+$$
+mgh = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2
+$$
+
+For a disk: $I = \frac{1}{2}mr^2$, and $v = r\omega$:
+
+$$
+mgh = \frac{1}{2}mv^2 + \frac{1}{2}(\frac{1}{2}mr^2)(\frac{v}{r})^2 = \frac{3}{4}mv^2
+$$
+
+$$
+v = \sqrt{\frac{4gh}{3}} = \sqrt{\frac{4(9.81)(2)}{3}} = \boxed{5.11 \text{ m/s}}
+$$
+
+---
+
+## Summary
+
+- Total KE = $\frac{1}{2}mv_G^2 + \frac{1}{2}I_G\omega^2$
+- Rolling: $v = r\omega$ (constraint)
+- Apply work-energy just like particles, but include rotation
+
+---
+
+## Congratulations!
+
+You've completed the Dynamics course! 🎉

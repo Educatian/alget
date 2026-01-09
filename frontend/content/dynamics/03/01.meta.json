@@ -1,0 +1,38 @@
+{
+    "chapter": "03",
+    "section": "01",
+    "title": "Kinematics of Rigid Bodies",
+    "chapter_title": "Planar Rigid Body Dynamics",
+    "course": "dynamics",
+    "learning_objectives": [
+        "Describe rigid body types of motion (translation, rotation, general plane)",
+        "Relate angular and linear quantities",
+        "Apply the velocity and acceleration equations for rotation",
+        "Analyze relative motion on a rigid body"
+    ],
+    "concept_ids": [
+        "rigid_body_motion",
+        "angular_velocity",
+        "angular_acceleration",
+        "rotation_about_fixed_axis"
+    ],
+    "physics_prereqs": [
+        "curvilinear_motion",
+        "newtons_second_law"
+    ],
+    "math_prereqs": [
+        "vectors",
+        "derivatives"
+    ],
+    "units_focus": [
+        "rad/s",
+        "rad/s^2",
+        "m/s"
+    ],
+    "common_errors": [
+        "tangent_vs_normal",
+        "direction",
+        "radius"
+    ],
+    "estimated_time_minutes": 50
+}

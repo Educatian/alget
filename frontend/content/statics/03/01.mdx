@@ -1,0 +1,155 @@
+# Simple Trusses
+
+> **"The truss is one of humanity's greatest structural inventions—maximum strength with minimum material."**
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Define** a truss and identify its components
+2. **Recognize** assumptions in truss analysis
+3. **Identify** simple trusses and understand their stability
+4. **Classify** trusses as statically determinate or indeterminate
+
+---
+
+## What Is a Truss?
+
+A **truss** is a structure composed of:
+- **Members**: Straight, slender elements (beams, bars)
+- **Joints**: Connection points (usually pins)
+- **Loads**: Applied only at joints
+
+```
+        P (load)
+          ↓
+          ●───────●
+         ╱ ╲     ╱ ╲
+        ╱   ╲   ╱   ╲
+       ●─────●─────●
+       △           ○
+      Pin        Roller
+```
+
+> 🏗️ **Real-World Examples**: Bridges, roof structures, towers, cranes
+
+---
+
+## Truss Assumptions
+
+For analysis, we make these simplifying assumptions:
+
+| Assumption | Implication |
+|------------|-------------|
+| Members connected by **frictionless pins** | Only axial forces (no moments) |
+| Loads applied **only at joints** | Members are two-force members |
+| Member **weight is negligible** | Simplifies calculations |
+| All members are **straight** | Forces act along member axes |
+
+> 💡 **Key Result**: Under these assumptions, every member is a **two-force member**—it experiences only tension (T) or compression (C).
+
+---
+
+## Tension vs. Compression
+
+| State | Member is... | Force Direction |
+|-------|-------------|-----------------|
+| **Tension (T)** | Being pulled apart | Away from joint |
+| **Compression (C)** | Being pushed together | Toward joint |
+
+```
+Tension:      ●←─────────→●
+              
+Compression:  ●→─────────←●
+```
+
+---
+
+## Simple Truss Construction
+
+A **simple truss** is built by:
+1. Starting with a basic triangle (3 members, 3 joints)
+2. Adding 2 new members and 1 new joint at a time
+
+This ensures the truss is:
+- **Stable** (rigid, won't collapse)
+- **Statically determinate** (can be solved with equilibrium alone)
+
+### The m-2j+3 Rule
+
+For a 2D truss to be statically determinate:
+
+$$
+\boxed{m = 2j - 3}
+$$
+
+where:
+- $m$ = number of members
+- $j$ = number of joints
+
+| Condition | Classification |
+|-----------|----------------|
+| $m < 2j - 3$ | Unstable (mechanism) |
+| $m = 2j - 3$ | Statically determinate |
+| $m > 2j - 3$ | Statically indeterminate |
+
+---
+
+## Example: Checking Determinacy
+
+**Problem:** A truss has 9 members and 6 joints. Is it determinate?
+
+**Solution:**
+
+$$
+2j - 3 = 2(6) - 3 = 9
+$$
+
+Since $m = 9 = 2j - 3$, the truss is **statically determinate**. ✅
+
+---
+
+## Common Truss Types
+
+| Name | Shape | Use |
+|------|-------|-----|
+| **Warren** | Equilateral triangles | Bridges |
+| **Pratt** | Vertical + diagonal members | Short-span bridges |
+| **Howe** | Opposite diagonal direction | Buildings |
+| **K-Truss** | K-shaped panels | Long-span bridges |
+
+---
+
+## Zero-Force Members
+
+Some members carry **no load** under certain conditions:
+
+1. Two non-collinear members at an unloaded joint → Both are zero-force
+2. Three members at a joint, two collinear, one not → Non-collinear is zero-force
+
+> 🎯 **Why It Matters**: Identifying zero-force members simplifies analysis significantly.
+
+---
+
+## Summary
+
+### Key Equations
+
+$$
+m = 2j - 3 \quad \text{(for static determinacy)}
+$$
+
+### Key Takeaways
+
+- ✅ Trusses consist of **members** connected at **joints**
+- ✅ All truss members are **two-force members** (tension or compression only)
+- ✅ Use the **m = 2j - 3** rule to check determinacy
+- ✅ Identify **zero-force members** to simplify analysis
+
+---
+
+## What's Next?
+
+In **Section 3.2: Method of Joints**, we'll learn the systematic approach to finding forces in every member of a truss.

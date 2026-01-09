@@ -1,0 +1,34 @@
+{
+    "chapter": "02",
+    "section": "03",
+    "title": "Impulse and Momentum",
+    "course": "dynamics",
+    "learning_objectives": [
+        "Define linear momentum and impulse",
+        "Apply the impulse-momentum theorem",
+        "Use conservation of momentum for collisions",
+        "Distinguish elastic and inelastic collisions"
+    ],
+    "concept_ids": [
+        "momentum",
+        "impulse",
+        "conservation_of_momentum",
+        "collision"
+    ],
+    "physics_prereqs": [
+        "newtons_second_law"
+    ],
+    "math_prereqs": [
+        "integrals"
+    ],
+    "units_focus": [
+        "kg·m/s",
+        "N·s"
+    ],
+    "common_errors": [
+        "sign",
+        "vector",
+        "average_vs_impulse"
+    ],
+    "estimated_time_minutes": 55
+}

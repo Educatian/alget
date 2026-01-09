@@ -1,0 +1,45 @@
+{
+    "section_id": "dynamics_0101",
+    "misconceptions": [
+        {
+            "id": "sign_confusion",
+            "pattern": "sign_error",
+            "description": "Confusing acceleration sign when object slows down",
+            "trigger": "answer has wrong sign but correct magnitude",
+            "feedback": "Remember: acceleration is negative when it opposes the direction of velocity. If moving right (+) and slowing, a is negative.",
+            "rail_action": "explain"
+        },
+        {
+            "id": "unit_mismatch",
+            "pattern": "unit_error",
+            "description": "Missing or incorrect units in answer",
+            "trigger": "numeric correct but unit wrong/missing",
+            "feedback": "Check your units! Velocity should be in m/s, acceleration in m/s², distance in m.",
+            "rail_action": "explain"
+        },
+        {
+            "id": "wrong_equation",
+            "pattern": "equation_selection",
+            "description": "Using wrong kinematic equation for the given knowns",
+            "trigger": "answer significantly wrong, not a calculation error",
+            "feedback": "Make sure to choose the kinematic equation that contains your known quantities. List what you know (v₀, v, a, t, s) and pick accordingly.",
+            "rail_action": "represent"
+        },
+        {
+            "id": "initial_conditions",
+            "pattern": "initial_value_error",
+            "description": "Forgetting initial velocity or position",
+            "trigger": "answer missing v₀ or s₀ term",
+            "feedback": "Don't forget initial conditions! 'From rest' means v₀ = 0. 'Initially at origin' means s₀ = 0.",
+            "rail_action": "explain"
+        },
+        {
+            "id": "variable_acceleration",
+            "pattern": "method_error",
+            "description": "Using constant-a equations when acceleration varies",
+            "trigger": "problem states a = f(t) or a = f(v) but student used constant-a formula",
+            "feedback": "These equations only work for constant acceleration. For variable a, you must integrate: v = ∫a dt.",
+            "rail_action": "explain"
+        }
+    ]
+}

@@ -1,0 +1,187 @@
+{
+    "problems": [
+        {
+            "id": "friction_direction_conceptual_1",
+            "type": "multiple_choice",
+            "stem": "A block is pushed to the right on a horizontal surface. In which direction does friction act?",
+            "options": [
+                "To the right (same as push)",
+                "To the left (opposite to push)",
+                "Upward (perpendicular to surface)",
+                "Downward (into surface)"
+            ],
+            "correct_index": 1,
+            "explanation": "Friction always opposes the direction of motion or tendency to move. If the block tends to move right, friction acts left."
+        },
+        {
+            "id": "friction_direction_conceptual_2",
+            "type": "multiple_choice",
+            "stem": "A block on an inclined plane tends to slide down. Which direction does friction act?",
+            "options": [
+                "Down the incline",
+                "Up the incline",
+                "Perpendicular to incline, outward",
+                "Perpendicular to incline, inward"
+            ],
+            "correct_index": 1,
+            "explanation": "Friction opposes the tendency to slide down, so it acts up the incline."
+        },
+        {
+            "id": "friction_coefficient_conceptual",
+            "type": "multiple_choice",
+            "stem": "Which coefficient is typically larger?",
+            "options": [
+                "Static friction coefficient (μs)",
+                "Kinetic friction coefficient (μk)",
+                "They are always equal",
+                "It depends on the material"
+            ],
+            "correct_index": 0,
+            "explanation": "Static friction coefficient is typically larger than kinetic. It takes more force to start motion than to maintain it."
+        },
+        {
+            "id": "friction_impending_conceptual",
+            "type": "multiple_choice",
+            "stem": "When can we use Fs = μsN (equality)?",
+            "options": [
+                "Always",
+                "Only when the object is moving",
+                "Only at impending motion (about to slip)",
+                "Only when friction is kinetic"
+            ],
+            "correct_index": 2,
+            "explanation": "Static friction is variable (Fs ≤ μsN). The maximum value Fs = μsN is reached only at impending motion."
+        },
+        {
+            "id": "friction_common_mistake",
+            "type": "multiple_choice",
+            "stem": "A block sits at rest on a surface with μs = 0.5. If no horizontal force is applied, what is the friction force?",
+            "options": [
+                "Fs = μsN",
+                "Fs = μsmg",
+                "Fs = 0",
+                "Fs = mg"
+            ],
+            "correct_index": 2,
+            "explanation": "With no applied horizontal force, there's no tendency to move, so friction is zero. Friction adjusts to balance applied forces."
+        },
+        {
+            "id": "friction_max_force",
+            "type": "numeric",
+            "solver_id": "solve_max_friction",
+            "stem": "A 80 kg crate sits on a floor with μs = 0.35. Calculate the maximum static friction force.",
+            "params": {
+                "mass_kg": 80,
+                "mu_s": 0.35,
+                "g": 9.81
+            },
+            "hints": [
+                "First find the normal force: N = mg",
+                "Then apply: (Fs)max = μsN"
+            ],
+            "final_answer": {
+                "value": 274.7,
+                "unit": "N",
+                "tolerance": 1
+            }
+        },
+        {
+            "id": "friction_impending_force",
+            "type": "numeric",
+            "solver_id": "solve_impending_friction",
+            "stem": "What horizontal push force P is needed to cause impending motion of a 60 kg block on a surface with μs = 0.45?",
+            "params": {
+                "mass_kg": 60,
+                "mu_s": 0.45,
+                "g": 9.81
+            },
+            "hints": [
+                "At impending motion, friction equals its maximum value",
+                "The push must overcome maximum friction"
+            ],
+            "final_answer": {
+                "value": 264.9,
+                "unit": "N",
+                "tolerance": 1
+            }
+        },
+        {
+            "id": "friction_incline_angle",
+            "type": "numeric",
+            "solver_id": "solve_friction_angle",
+            "stem": "A block sits on an incline. If μs = 0.4, at what angle θ will the block be on the verge of slipping down?",
+            "params": {
+                "mu_s": 0.4
+            },
+            "hints": [
+                "At impending slip: mgsinθ = μs(mgcosθ)",
+                "This simplifies to: tanθ = μs"
+            ],
+            "final_answer": {
+                "value": 21.8,
+                "unit": "°",
+                "tolerance": 0.5
+            }
+        },
+        {
+            "id": "friction_will_slip",
+            "type": "multiple_choice",
+            "stem": "A 20 kg block is on a 35° incline with μs = 0.5. Will it slip?",
+            "options": [
+                "Yes, it will slip (required friction > max available)",
+                "No, it won't slip (max available friction > required)",
+                "It's exactly at impending motion",
+                "Cannot determine without more information"
+            ],
+            "correct_index": 0,
+            "explanation": "tan(35°) = 0.70 > μs = 0.5. The required friction to prevent slip exceeds the maximum available, so the block will slip."
+        },
+        {
+            "id": "friction_step_based",
+            "type": "step_based",
+            "solver_id": "solve_friction_incline_steps",
+            "stem": "A 30 kg block rests on a 25° incline with μs = 0.5. Determine if it will slip and find the friction force.",
+            "params": {
+                "mass_kg": 30,
+                "angle_deg": 25,
+                "mu_s": 0.5,
+                "g": 9.81
+            },
+            "steps": [
+                {
+                    "step_id": 1,
+                    "description": "Calculate the weight component parallel to incline (W∥ = mg sinθ)",
+                    "expected_value": 124.4,
+                    "unit": "N",
+                    "tolerance": 1
+                },
+                {
+                    "step_id": 2,
+                    "description": "Calculate the normal force (N = mg cosθ)",
+                    "expected_value": 266.7,
+                    "unit": "N",
+                    "tolerance": 1
+                },
+                {
+                    "step_id": 3,
+                    "description": "Calculate maximum static friction ((Fs)max = μsN)",
+                    "expected_value": 133.4,
+                    "unit": "N",
+                    "tolerance": 1
+                },
+                {
+                    "step_id": 4,
+                    "description": "Compare: Since (Fs)max > W∥, the block does NOT slip. The actual friction force equals W∥.",
+                    "expected_value": 124.4,
+                    "unit": "N",
+                    "tolerance": 1
+                }
+            ],
+            "final_answer": {
+                "value": 124.4,
+                "unit": "N",
+                "tolerance": 1
+            }
+        }
+    ]
+}

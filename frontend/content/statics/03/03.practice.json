@@ -1,0 +1,24 @@
+{
+    "problems": [
+        {
+            "id": "sections_method",
+            "type": "numeric",
+            "stem": "A truss is cut through 3 members. The vertical equilibrium of the left section requires the vertical component of a diagonal member to balance a 500 N reaction. If the diagonal makes 45° with horizontal, find the total force in that diagonal member.",
+            "hints": [
+                "Vertical component = F × sin(45°)",
+                "F × sin(45°) = 500 N"
+            ],
+            "final_answer": {
+                "value": 707.1,
+                "unit": "N",
+                "tolerance": 5
+            }
+        },
+        {
+            "id": "moment_about_point",
+            "type": "conceptual",
+            "stem": "When using the method of sections, why is it advantageous to take moments about a point where two unknown forces intersect?",
+            "expected_answer": "Taking moments about this point eliminates both unknown forces from the moment equation, leaving only one unknown that can be solved directly."
+        }
+    ]
+}

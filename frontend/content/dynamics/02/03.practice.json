@@ -1,0 +1,34 @@
+{
+    "problems": [
+        {
+            "id": "momentum_basic",
+            "type": "numeric",
+            "stem": "A 4 kg ball moves at 8 m/s. Find its momentum.",
+            "final_answer": {
+                "value": 32,
+                "unit": "kg·m/s",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "impulse_calc",
+            "type": "numeric",
+            "stem": "A 60 N force acts for 0.5 s. Find the impulse.",
+            "final_answer": {
+                "value": 30,
+                "unit": "N·s",
+                "tolerance": 0.1
+            }
+        },
+        {
+            "id": "collision_inelastic",
+            "type": "numeric",
+            "stem": "A 5 kg object at 10 m/s collides and sticks with a 5 kg stationary object. Find final velocity.",
+            "final_answer": {
+                "value": 5,
+                "unit": "m/s",
+                "tolerance": 0.1
+            }
+        }
+    ]
+}

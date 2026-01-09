@@ -1,0 +1,44 @@
+{
+    "problems": [
+        {
+            "id": "two_force_identify",
+            "type": "multiple_choice",
+            "stem": "Which of the following is a two-force member?",
+            "options": [
+                "A beam with a uniformly distributed load",
+                "A truss member connected by pins at both ends with no intermediate loads",
+                "A cantilever beam with an end load",
+                "A column supporting a moment at the top"
+            ],
+            "correct_index": 1,
+            "explanation": "A two-force member has forces applied at only two points and no moments. A truss member with pins at both ends and no other loads fits this definition exactly."
+        },
+        {
+            "id": "three_force_concurrent",
+            "type": "conceptual",
+            "stem": "A rigid body is acted upon by exactly three forces and is in equilibrium. If two of the forces are not parallel, what must be true about all three forces?",
+            "expected_answer": "They must be concurrent (pass through a single common point)",
+            "explanation": "For three non-parallel coplanar forces to be in equilibrium, they must all pass through a common point. This is necessary to satisfy the moment equilibrium condition."
+        },
+        {
+            "id": "truss_member_force",
+            "type": "numeric",
+            "solver_id": "solve_truss_member",
+            "stem": "In a simple truss, member AB connects joints A and B, which are 2 meters apart. If the internal force in member AB is 5000 N compression, what is the force component in the direction from A to B?",
+            "params": {
+                "force_N": 5000,
+                "type": "compression"
+            },
+            "hints": [
+                "In a two-force member, the force acts along the line connecting the two pin joints",
+                "Compression means the member is pushing outward from the joint",
+                "The magnitude is simply the given force value"
+            ],
+            "final_answer": {
+                "value": 5000,
+                "unit": "N",
+                "tolerance": 1
+            }
+        }
+    ]
+}

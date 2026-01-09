@@ -1,0 +1,24 @@
+{
+    "chapter": "02",
+    "section": "01",
+    "title": "Moment of a Force",
+    "chapter_title": "Force Systems",
+    "course": "statics",
+    "learning_objectives": [
+        "Define the moment of a force about a point",
+        "Calculate moments using the cross product",
+        "Determine the sense and magnitude of a moment",
+        "Apply Varignon's theorem to calculate moments"
+    ],
+    "concept_ids": [
+        "moment",
+        "cross_product",
+        "varignon_theorem",
+        "torque"
+    ],
+    "prerequisites": [
+        "equilibrium_condition",
+        "fbd"
+    ],
+    "estimated_time_minutes": 50
+}

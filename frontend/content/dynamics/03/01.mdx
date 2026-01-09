@@ -1,0 +1,78 @@
+# Kinematics of Rigid Bodies
+
+> **"A rigid body can both translate and rotate—and often does both simultaneously."**
+
+---
+
+## Prerequisites
+
+`curvilinear_motion` `newtons_second_law`
+
+---
+
+## Learning Objectives
+
+1. **Describe** rigid body types of motion
+2. **Relate** angular and linear quantities
+3. **Apply** velocity/acceleration equations for rotation
+4. **Analyze** relative motion on a rigid body
+
+---
+
+## Types of Rigid Body Motion
+
+| Type | Description |
+|------|-------------|
+| **Translation** | All points move with same velocity |
+| **Rotation about fixed axis** | All points circle around the axis |
+| **General plane motion** | Translation + rotation combined |
+
+---
+
+## Angular Kinematics (Fixed Axis)
+
+$$
+\omega = \frac{d\theta}{dt}, \quad \alpha = \frac{d\omega}{dt}
+$$
+
+For constant $\alpha$:
+$$
+\omega = \omega_0 + \alpha t
+$$
+$$
+\theta = \theta_0 + \omega_0 t + \frac{1}{2}\alpha t^2
+$$
+
+---
+
+## Relating Linear and Angular
+
+For a point at distance $r$ from axis:
+
+$$
+\boxed{v = r\omega, \quad a_t = r\alpha, \quad a_n = r\omega^2}
+$$
+
+---
+
+## Relative Motion on Rigid Body
+
+$$
+\vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A}
+$$
+
+where $\vec{r}_{B/A}$ is the position of B relative to A.
+
+---
+
+## Summary
+
+- Rigid bodies can translate, rotate, or do both
+- $v = r\omega$, $a_t = r\alpha$, $a_n = r\omega^2$
+- For general motion: $v_B = v_A + \omega \times r_{B/A}$
+
+---
+
+## What's Next?
+
+In **Section 3.2: Equations of Motion**, we'll apply Newton's laws to rotating rigid bodies.
