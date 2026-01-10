@@ -118,19 +118,7 @@ export default function LandingPage({ onLogin }) {
                 </div>
             </section>
 
-            {/* CTA Section */}
-            <section className="relative z-10 max-w-4xl mx-auto px-8 py-20 text-center">
-                <div className="bg-gradient-to-r from-[#9E1B32] to-[#7A1527] rounded-3xl p-12">
-                    <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Learning?</h2>
-                    <p className="text-white/80 mb-8">Join thousands of UA engineering students already learning smarter.</p>
-                    <button
-                        onClick={() => setAuthOpen(true)}
-                        className="px-8 py-4 bg-white text-[#9E1B32] rounded-xl font-semibold text-lg hover:shadow-xl transition-all"
-                    >
-                        Create Free Account
-                    </button>
-                </div>
-            </section>
+
 
             {/* Footer */}
             <footer className="relative z-10 border-t border-white/10 py-8 text-center text-gray-500 text-sm">

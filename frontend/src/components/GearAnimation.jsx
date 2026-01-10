@@ -1,6 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
-// Gear Animation Component - Mechanical Engineering Vibe
+/**
+ * Network/Plexus Animation - Sophisticated tech background
+ */
 export default function GearAnimation() {
     const canvasRef = useRef(null)
 
@@ -9,136 +11,164 @@ export default function GearAnimation() {
         if (!canvas) return
 
         const ctx = canvas.getContext('2d')
-        const width = canvas.width = window.innerWidth
-        const height = canvas.height = 600
+        let animationId
+        let particles = []
+        let mouse = { x: null, y: null, radius: 150 }
 
-        // Gear class
-        class Gear {
-            constructor(x, y, radius, teeth, speed, color) {
-                this.x = x
-                this.y = y
-                this.radius = radius
-                this.teeth = teeth
-                this.speed = speed
-                this.color = color
-                this.angle = Math.random() * Math.PI * 2
-                this.toothHeight = radius * 0.15
-            }
-
-            draw(ctx) {
-                ctx.save()
-                ctx.translate(this.x, this.y)
-                ctx.rotate(this.angle)
-
-                // Draw outer ring
-                ctx.beginPath()
-                ctx.arc(0, 0, this.radius, 0, Math.PI * 2)
-                ctx.strokeStyle = this.color
-                ctx.lineWidth = 3
-                ctx.stroke()
-
-                // Draw teeth
-                for (let i = 0; i < this.teeth; i++) {
-                    const toothAngle = (i / this.teeth) * Math.PI * 2
-                    const innerX = Math.cos(toothAngle) * this.radius
-                    const innerY = Math.sin(toothAngle) * this.radius
-                    const outerX = Math.cos(toothAngle) * (this.radius + this.toothHeight)
-                    const outerY = Math.sin(toothAngle) * (this.radius + this.toothHeight)
-
-                    ctx.beginPath()
-                    ctx.moveTo(innerX, innerY)
-                    ctx.lineTo(outerX, outerY)
-                    ctx.strokeStyle = this.color
-                    ctx.lineWidth = 4
-                    ctx.stroke()
-                }
-
-                // Draw center
-                ctx.beginPath()
-                ctx.arc(0, 0, this.radius * 0.2, 0, Math.PI * 2)
-                ctx.fillStyle = this.color
-                ctx.fill()
-
-                ctx.restore()
-            }
-
-            update() {
-                this.angle += this.speed
-            }
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth
+            canvas.height = window.innerHeight
         }
+        resizeCanvas()
+        window.addEventListener('resize', resizeCanvas)
 
-        // Particle class for background
+        // Particle class
         class Particle {
             constructor() {
-                this.reset()
+                this.x = Math.random() * canvas.width
+                this.y = Math.random() * canvas.height
+                this.size = Math.random() * 2 + 1
+                this.baseX = this.x
+                this.baseY = this.y
+                this.density = Math.random() * 30 + 1
+                this.speedX = (Math.random() - 0.5) * 0.3
+                this.speedY = (Math.random() - 0.5) * 0.3
             }
 
-            reset() {
-                this.x = Math.random() * width
-                this.y = Math.random() * height
-                this.size = Math.random() * 3 + 1
-                this.speedX = (Math.random() - 0.5) * 0.5
-                this.speedY = (Math.random() - 0.5) * 0.5
-                this.opacity = Math.random() * 0.5 + 0.1
-            }
-
-            draw(ctx) {
+            draw() {
+                ctx.fillStyle = 'rgba(158, 27, 50, 0.8)'
                 ctx.beginPath()
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-                ctx.fillStyle = `rgba(158, 27, 50, ${this.opacity})`
+                ctx.closePath()
                 ctx.fill()
             }
 
             update() {
-                this.x += this.speedX
-                this.y += this.speedY
-                if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-                    this.reset()
+                // Mouse interaction
+                if (mouse.x != null && mouse.y != null) {
+                    const dx = mouse.x - this.x
+                    const dy = mouse.y - this.y
+                    const distance = Math.sqrt(dx * dx + dy * dy)
+                    if (distance < mouse.radius) {
+                        const forceDirectionX = dx / distance
+                        const forceDirectionY = dy / distance
+                        const force = (mouse.radius - distance) / mouse.radius
+                        this.x -= forceDirectionX * force * this.density * 0.5
+                        this.y -= forceDirectionY * force * this.density * 0.5
+                    }
+                }
+
+                // Return to base
+                const bx = this.baseX - this.x
+                const by = this.baseY - this.y
+                this.x += bx * 0.05
+                this.y += by * 0.05
+
+                // Slight drift
+                this.baseX += this.speedX
+                this.baseY += this.speedY
+
+                if (this.baseX < 0 || this.baseX > canvas.width) this.speedX *= -1
+                if (this.baseY < 0 || this.baseY > canvas.height) this.speedY *= -1
+            }
+        }
+
+        // Initialize particles
+        const initParticles = () => {
+            particles = []
+            const numberOfParticles = Math.min(100, (canvas.width * canvas.height) / 15000)
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push(new Particle())
+            }
+        }
+        initParticles()
+
+        // Connect particles
+        const connectParticles = () => {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x
+                    const dy = particles[a].y - particles[b].y
+                    const distance = Math.sqrt(dx * dx + dy * dy)
+
+                    if (distance < 120) {
+                        const opacity = 1 - distance / 120
+                        ctx.strokeStyle = `rgba(158, 27, 50, ${opacity * 0.4})`
+                        ctx.lineWidth = 1
+                        ctx.beginPath()
+                        ctx.moveTo(particles[a].x, particles[a].y)
+                        ctx.lineTo(particles[b].x, particles[b].y)
+                        ctx.stroke()
+                    }
                 }
             }
         }
 
-        // Create gears
-        const gears = [
-            new Gear(width * 0.15, 150, 60, 12, 0.01, 'rgba(158, 27, 50, 0.3)'),
-            new Gear(width * 0.15 + 85, 150, 40, 8, -0.015, 'rgba(158, 27, 50, 0.25)'),
-            new Gear(width * 0.85, 200, 80, 16, -0.008, 'rgba(158, 27, 50, 0.2)'),
-            new Gear(width * 0.85 - 60, 280, 35, 7, 0.018, 'rgba(158, 27, 50, 0.25)'),
-            new Gear(width * 0.5, 100, 50, 10, 0.012, 'rgba(158, 27, 50, 0.15)'),
+        // Floating orbs
+        const orbs = [
+            { x: canvas.width * 0.2, y: canvas.height * 0.3, radius: 200, color: 'rgba(158, 27, 50, 0.1)' },
+            { x: canvas.width * 0.8, y: canvas.height * 0.7, radius: 250, color: 'rgba(122, 21, 39, 0.08)' },
+            { x: canvas.width * 0.5, y: canvas.height * 0.5, radius: 300, color: 'rgba(196, 30, 58, 0.05)' },
         ]
 
-        // Create particles
-        const particles = Array.from({ length: 50 }, () => new Particle())
+        const drawOrbs = () => {
+            orbs.forEach(orb => {
+                const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.radius)
+                gradient.addColorStop(0, orb.color)
+                gradient.addColorStop(1, 'transparent')
+                ctx.fillStyle = gradient
+                ctx.beginPath()
+                ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2)
+                ctx.fill()
+
+                // Animate orb position slightly
+                orb.x += Math.sin(Date.now() / 3000) * 0.3
+                orb.y += Math.cos(Date.now() / 4000) * 0.3
+            })
+        }
 
         // Animation loop
-        let animationId
         const animate = () => {
-            ctx.clearRect(0, 0, width, height)
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-            // Draw particles
-            particles.forEach(p => {
-                p.update()
-                p.draw(ctx)
-            })
+            drawOrbs()
 
-            // Draw gears
-            gears.forEach(g => {
-                g.update()
-                g.draw(ctx)
-            })
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update()
+                particles[i].draw()
+            }
+            connectParticles()
 
             animationId = requestAnimationFrame(animate)
         }
 
+        // Mouse events
+        const handleMouseMove = (e) => {
+            mouse.x = e.clientX
+            mouse.y = e.clientY
+        }
+        const handleMouseLeave = () => {
+            mouse.x = null
+            mouse.y = null
+        }
+
+        canvas.addEventListener('mousemove', handleMouseMove)
+        canvas.addEventListener('mouseleave', handleMouseLeave)
+
         animate()
 
-        return () => cancelAnimationFrame(animationId)
+        return () => {
+            cancelAnimationFrame(animationId)
+            window.removeEventListener('resize', resizeCanvas)
+            canvas.removeEventListener('mousemove', handleMouseMove)
+            canvas.removeEventListener('mouseleave', handleMouseLeave)
+        }
     }, [])
 
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 pointer-events-none opacity-50"
+            className="fixed inset-0 pointer-events-auto"
             style={{ zIndex: 0 }}
         />
     )
