@@ -5,6 +5,7 @@ import ReadingPane from '../components/ReadingPane'
 import IntelRail from '../components/IntelRail'
 import ChatWidget from '../components/ChatWidget'
 import HighlightableContent from '../components/HighlightableContent'
+import { logPageView } from '../lib/loggingService'
 import '../index.css'
 
 const API_BASE = '/api'
@@ -31,9 +32,14 @@ export default function BookLayout({ user, onLogout }) {
             .catch(console.error)
     }, [course])
 
-    // Fetch section content
+    // Fetch section content and log page view
     useEffect(() => {
+        const sectionPath = `${course}/${chapter}/${section}`
         setLoading(true)
+
+        // Log page view
+        logPageView(sectionPath)
+
         fetch(`${API_BASE}/book/${course}/${chapter}/${section}`)
             .then(res => res.json())
             .then(data => {

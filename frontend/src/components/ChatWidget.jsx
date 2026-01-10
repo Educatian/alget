@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 import { supabase } from '../lib/supabase'
+import { logChatMessage } from '../lib/loggingService'
 
 const API_BASE = '/api'
 
@@ -89,10 +90,14 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         if (!text.trim() || loading) return
 
         const userMessage = text.trim()
+        const turnNumber = messages.length + 1
         const newMessages = [...messages, { role: 'user', content: userMessage }]
         setMessages(newMessages)
         setInputValue('')
         setLoading(true)
+
+        // Log user message (PII-safe: length only)
+        logChatMessage(turnNumber, userMessage.length, true, context?.sectionId)
 
         try {
             const res = await fetch(`${API_BASE}/assist/chat`, {
@@ -110,6 +115,9 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
             const assistantMessage = { role: 'assistant', content: data.response }
             const finalMessages = [...newMessages, assistantMessage]
             setMessages(finalMessages)
+
+            // Log assistant response (PII-safe: length only)
+            logChatMessage(turnNumber + 1, data.response.length, false, context?.sectionId)
 
             // Save to database
             await saveHistory(finalMessages)
