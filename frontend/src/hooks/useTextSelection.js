@@ -65,44 +65,73 @@ export function useTextSelection({ sectionId, userId }) {
         })
     }, [])
 
-    // Save highlight to Supabase
+    // Save highlight to Supabase (or local-only if DB fails)
     const saveHighlight = useCallback(async (text, color = 'yellow') => {
-        if (!userId || !sectionId || !text) return null
+        if (!sectionId || !text) return null
 
-        const { data, error } = await supabase
-            .from('highlights')
-            .insert({
-                user_id: userId,
-                section_id: sectionId,
-                text_content: text,
-                start_offset: 0,  // Simplified - using text matching instead
-                end_offset: text.length,
-                color
-            })
-            .select()
-            .single()
-
-        if (error) {
-            console.error('Error saving highlight:', error)
-            return null
+        // Create local highlight object first
+        const localHighlight = {
+            id: `local-${Date.now()}`,
+            user_id: userId,
+            section_id: sectionId,
+            text_content: text,
+            color,
+            created_at: new Date().toISOString()
         }
 
-        setHighlights(prev => [...prev, data])
+        // Immediately update local state (optimistic update)
+        setHighlights(prev => [...prev, localHighlight])
         setSelection(null)
         window.getSelection()?.removeAllRanges()
-        return data
+
+        // Try to persist to database if userId exists
+        if (userId) {
+            try {
+                const { data, error } = await supabase
+                    .from('highlights')
+                    .insert({
+                        user_id: userId,
+                        section_id: sectionId,
+                        text_content: text,
+                        start_offset: 0,
+                        end_offset: text.length,
+                        color
+                    })
+                    .select()
+                    .single()
+
+                if (error) {
+                    console.warn('Highlight saved locally only (DB error):', error.message)
+                } else if (data) {
+                    // Replace local highlight with DB version
+                    setHighlights(prev => prev.map(h =>
+                        h.id === localHighlight.id ? data : h
+                    ))
+                }
+            } catch (err) {
+                console.warn('Highlight saved locally only:', err)
+            }
+        }
+
+        return localHighlight
     }, [userId, sectionId])
 
-    // Delete highlight
+    // Delete highlight (local or from database)
     const deleteHighlight = useCallback(async (highlightId) => {
-        const { error } = await supabase
-            .from('highlights')
-            .delete()
-            .eq('id', highlightId)
-            .eq('user_id', userId)
+        // Always remove from local state first
+        setHighlights(prev => prev.filter(h => h.id !== highlightId))
 
-        if (!error) {
-            setHighlights(prev => prev.filter(h => h.id !== highlightId))
+        // Only try to delete from database if it's not a local-only highlight
+        if (highlightId && !String(highlightId).startsWith('local-') && userId) {
+            try {
+                await supabase
+                    .from('highlights')
+                    .delete()
+                    .eq('id', highlightId)
+                    .eq('user_id', userId)
+            } catch (err) {
+                console.warn('Could not delete from database:', err)
+            }
         }
     }, [userId])
 
