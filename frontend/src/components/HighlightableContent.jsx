@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useTextSelection } from '../hooks/useTextSelection'
+import { logHighlightCreate } from '../lib/loggingService'
 
 /**
  * Highlightable content wrapper with selection popup, notes, and collaborative highlights
@@ -221,6 +222,8 @@ export default function HighlightableContent({
     const handleHighlight = async (color = 'yellow') => {
         if (selectionState?.text) {
             await saveHighlight(selectionState.text, color, noteInput)
+            // Log highlight creation (PII-safe: only length and note flag)
+            logHighlightCreate(selectionState.text.length, !!noteInput, sectionId)
             clearSelection()
         }
     }
@@ -307,28 +310,42 @@ export default function HighlightableContent({
             {/* Note Input Popup */}
             {showNoteInput && (
                 <div
-                    className="fixed z-[100] bg-white rounded-lg shadow-xl border border-gray-200 p-3 w-72"
+                    className="fixed z-[100] bg-white rounded-lg shadow-xl border border-gray-200 p-3 w-80"
                     style={{
-                        top: selectionState?.rect.top ? selectionState.rect.top - 120 : 100,
-                        left: selectionState?.rect.left || 100,
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
                     }}
+                    onMouseDown={(e) => e.stopPropagation()}
                 >
                     <p className="text-xs text-gray-500 mb-2">
-                        {editingNoteId ? 'Edit note:' : `Add note to: "${selectionState?.text?.slice(0, 30)}..."`}
+                        {editingNoteId ? 'Edit note:' : `Add note to highlighted text`}
                     </p>
                     <textarea
                         value={noteInput}
                         onChange={(e) => setNoteInput(e.target.value)}
                         placeholder="Type your note..."
                         className="w-full px-2 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-300 resize-none"
-                        rows={2}
+                        rows={3}
                         autoFocus
                     />
-                    <div className="flex justify-end gap-2 mt-2">
-                        <button onClick={clearSelection} className="px-3 py-1 text-xs text-gray-500 hover:text-gray-700">Cancel</button>
+                    <div className="flex justify-end gap-2 mt-3">
                         <button
-                            onClick={editingNoteId ? saveNote : () => handleHighlight('yellow')}
-                            className="px-3 py-1 text-xs bg-yellow-400 hover:bg-yellow-500 rounded font-medium"
+                            onMouseDown={(e) => { e.preventDefault(); clearSelection(); }}
+                            className="px-4 py-1.5 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            onMouseDown={(e) => {
+                                e.preventDefault();
+                                if (editingNoteId) {
+                                    saveNote();
+                                } else {
+                                    handleHighlight('yellow');
+                                }
+                            }}
+                            className="px-4 py-1.5 text-xs bg-yellow-400 hover:bg-yellow-500 rounded font-medium"
                         >
                             {editingNoteId ? 'Save Note' : 'Highlight + Note'}
                         </button>
