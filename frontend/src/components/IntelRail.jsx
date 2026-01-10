@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-
-const API_BASE = '/api'
+import API_BASE from '../lib/apiConfig'
 
 export default function IntelRail({ context, stuckEvent, onClose }) {
     const [activeTab, setActiveTab] = useState('explain')

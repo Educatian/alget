@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { detectStuckEvent, STUCK_RULES } from '../lib/stuckDetector'
-
-const API_BASE = '/api'
+import API_BASE from '../lib/apiConfig'
 
 export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -164,10 +163,10 @@ export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
                     </span>
                     {currentProblem?.difficulty && (
                         <span className={`px-2 py-1 rounded-full text-xs font-bold uppercase ${currentProblem.difficulty === 'easy'
-                                ? 'bg-emerald-100 text-emerald-700'
-                                : currentProblem.difficulty === 'medium'
-                                    ? 'bg-amber-100 text-amber-700'
-                                    : 'bg-red-100 text-red-700'
+                            ? 'bg-emerald-100 text-emerald-700'
+                            : currentProblem.difficulty === 'medium'
+                                ? 'bg-amber-100 text-amber-700'
+                                : 'bg-red-100 text-red-700'
                             }`}>
                             {currentProblem.difficulty}
                         </span>
@@ -242,16 +241,16 @@ export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
                 ) : (
                     /* Result Display */
                     <div className={`rounded-xl p-4 ${gradeResults[currentProblem?.id].is_correct
-                            ? 'bg-emerald-50 border border-emerald-200'
-                            : 'bg-red-50 border border-red-200'
+                        ? 'bg-emerald-50 border border-emerald-200'
+                        : 'bg-red-50 border border-red-200'
                         }`}>
                         <div className="flex items-center gap-2 mb-2">
                             <span className="text-2xl">
                                 {gradeResults[currentProblem?.id].is_correct ? '✓' : '✗'}
                             </span>
                             <span className={`font-bold ${gradeResults[currentProblem?.id].is_correct
-                                    ? 'text-emerald-700'
-                                    : 'text-red-700'
+                                ? 'text-emerald-700'
+                                : 'text-red-700'
                                 }`}>
                                 {gradeResults[currentProblem?.id].is_correct ? 'Correct!' : 'Incorrect'}
                             </span>

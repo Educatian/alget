@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 import { supabase } from '../lib/supabase'
 import { logChatMessage } from '../lib/loggingService'
-
-const API_BASE = '/api'
+import API_BASE from '../lib/apiConfig'
 
 const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId }, ref) {
     const [isOpen, setIsOpen] = useState(false)
