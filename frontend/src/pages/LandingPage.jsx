@@ -122,7 +122,8 @@ export default function LandingPage({ onLogin }) {
 
             {/* Footer */}
             <footer className="relative z-10 border-t border-white/10 py-8 text-center text-gray-500 text-sm">
-                <p>© 2024 ALGET • AI-Powered Learning for Engineers • 🏈 Roll Tide!</p>
+                <p>© 2026 ALGET • AI-Powered Learning for Engineers • 🏈 Roll Tide!</p>
+                <p className="mt-1 text-gray-600">Designed by Adaptive Design of e-Learning Lab</p>
             </footer>
 
             {/* Auth Modal */}
