@@ -133,23 +133,15 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                 {/* Mode Switcher */}
                 <div className="mt-6 text-center text-sm">
                     {mode === 'signin' && (
-                        <>
+                        <div>
+                            <span className="text-gray-500">Don't have an account? </span>
                             <button
-                                onClick={() => setMode('forgot')}
-                                className="text-gray-500 hover:text-[#9E1B32]"
+                                onClick={() => setMode('signup')}
+                                className="text-[#9E1B32] font-semibold hover:underline"
                             >
-                                Forgot password?
+                                Sign Up
                             </button>
-                            <div className="mt-3">
-                                <span className="text-gray-500">Don't have an account? </span>
-                                <button
-                                    onClick={() => setMode('signup')}
-                                    className="text-[#9E1B32] font-semibold hover:underline"
-                                >
-                                    Sign Up
-                                </button>
-                            </div>
-                        </>
+                        </div>
                     )}
                     {mode === 'signup' && (
                         <div>
