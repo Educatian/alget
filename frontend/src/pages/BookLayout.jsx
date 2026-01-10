@@ -6,9 +6,8 @@ import IntelRail from '../components/IntelRail'
 import ChatWidget from '../components/ChatWidget'
 import HighlightableContent from '../components/HighlightableContent'
 import { logPageView } from '../lib/loggingService'
+import API_BASE from '../lib/apiConfig'
 import '../index.css'
-
-const API_BASE = '/api'
 
 export default function BookLayout({ user, onLogout }) {
     const { course = 'statics', chapter = '01', section = '01' } = useParams()
