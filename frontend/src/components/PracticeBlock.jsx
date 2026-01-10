@@ -173,8 +173,9 @@ export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
                     )}
                 </div>
 
+
                 {/* Problem Statement */}
-                <p className="text-gray-800 font-medium mb-6">{currentProblem?.statement}</p>
+                <p className="text-gray-800 font-medium mb-6">{currentProblem?.stem || currentProblem?.statement}</p>
 
                 {/* Given Values */}
                 {currentProblem?.givens && (
