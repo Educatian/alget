@@ -1,12 +1,14 @@
 import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
+import { supabase } from '../lib/supabase'
 
 const API_BASE = '/api'
 
-const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent }, ref) {
+const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId }, ref) {
     const [isOpen, setIsOpen] = useState(false)
     const [messages, setMessages] = useState([])
     const [inputValue, setInputValue] = useState('')
     const [loading, setLoading] = useState(false)
+    const [historyLoaded, setHistoryLoaded] = useState(false)
     const messagesEndRef = useRef(null)
 
     // Expose methods via ref
@@ -18,26 +20,78 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         }
     }))
 
-    // Handle initialQuestion from highlight selection
+    // Load chat history from Supabase
     useEffect(() => {
-        if (initialQuestion) {
-            setInputValue(`About this text: "${initialQuestion}"`)
+        if (!userId || !context?.sectionId || historyLoaded) return
+
+        const loadHistory = async () => {
+            try {
+                const { data } = await supabase
+                    .from('chat_history')
+                    .select('messages')
+                    .eq('user_id', userId)
+                    .eq('section_id', context.sectionId)
+                    .single()
+
+                if (data?.messages) {
+                    setMessages(data.messages)
+                }
+            } catch (err) {
+                // No history yet, that's fine
+            }
+            setHistoryLoaded(true)
+        }
+
+        loadHistory()
+    }, [userId, context?.sectionId, historyLoaded])
+
+    // Save chat history to Supabase
+    const saveHistory = async (newMessages) => {
+        if (!userId || !context?.sectionId) return
+
+        try {
+            await supabase
+                .from('chat_history')
+                .upsert({
+                    user_id: userId,
+                    section_id: context.sectionId,
+                    messages: newMessages,
+                    updated_at: new Date().toISOString()
+                }, {
+                    onConflict: 'user_id,section_id'
+                })
+        } catch (err) {
+            console.warn('Could not save chat history:', err)
+        }
+    }
+
+    // Handle initialQuestion from highlight selection - AUTO SEND
+    useEffect(() => {
+        if (initialQuestion && !loading) {
+            const question = `Explain this passage: "${initialQuestion}"`
             setIsOpen(true)
+
+            // Auto-send the question
+            setTimeout(() => {
+                sendMessageWithText(question)
+            }, 100)
+
             onQuestionSent?.()
         }
-    }, [initialQuestion, onQuestionSent])
+    }, [initialQuestion])
 
     // Auto-scroll to bottom
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, [messages])
 
-    const sendMessage = async () => {
-        if (!inputValue.trim() || loading) return
+    const sendMessageWithText = async (text) => {
+        if (!text.trim() || loading) return
 
-        const userMessage = inputValue.trim()
+        const userMessage = text.trim()
+        const newMessages = [...messages, { role: 'user', content: userMessage }]
+        setMessages(newMessages)
         setInputValue('')
-        setMessages(prev => [...prev, { role: 'user', content: userMessage }])
         setLoading(true)
 
         try {
@@ -53,22 +107,45 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                 })
             })
             const data = await res.json()
-            setMessages(prev => [...prev, { role: 'assistant', content: data.response }])
+            const assistantMessage = { role: 'assistant', content: data.response }
+            const finalMessages = [...newMessages, assistantMessage]
+            setMessages(finalMessages)
+
+            // Save to database
+            await saveHistory(finalMessages)
         } catch (err) {
             console.error(err)
-            setMessages(prev => [...prev, {
+            const errorMessages = [...newMessages, {
                 role: 'assistant',
                 content: 'Sorry, I encountered an error. Please try again.'
-            }])
+            }]
+            setMessages(errorMessages)
         } finally {
             setLoading(false)
         }
+    }
+
+    const sendMessage = async () => {
+        await sendMessageWithText(inputValue)
     }
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault()
             sendMessage()
+        }
+    }
+
+    const clearHistory = async () => {
+        if (confirm('Clear all chat history for this section?')) {
+            setMessages([])
+            if (userId && context?.sectionId) {
+                await supabase
+                    .from('chat_history')
+                    .delete()
+                    .eq('user_id', userId)
+                    .eq('section_id', context.sectionId)
+            }
         }
     }
 
@@ -105,14 +182,25 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 <p className="text-white/70 text-xs">Your Engineering Tutor</p>
                             </div>
                         </div>
-                        <button
-                            onClick={() => setIsOpen(false)}
-                            className="text-white/70 hover:text-white p-1"
-                        >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
+                        <div className="flex items-center gap-2">
+                            {messages.length > 0 && (
+                                <button
+                                    onClick={clearHistory}
+                                    className="text-white/50 hover:text-white/80 text-xs"
+                                    title="Clear history"
+                                >
+                                    🗑️
+                                </button>
+                            )}
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                className="text-white/70 hover:text-white p-1"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     {/* Messages */}
@@ -122,6 +210,9 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 <span className="text-5xl block mb-3">🐘</span>
                                 <p className="text-sm font-medium text-gray-600">Hi! I'm BigAL</p>
                                 <p className="text-xs mt-1">Ask me about Statics or Dynamics!</p>
+                                <p className="text-xs mt-3 text-gray-400">
+                                    💡 Tip: Select text and click "Ask BigAL"
+                                </p>
                             </div>
                         )}
                         {messages.map((msg, idx) => (

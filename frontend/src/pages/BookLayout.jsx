@@ -148,6 +148,7 @@ export default function BookLayout({ user, onLogout }) {
                 ref={chatWidgetRef}
                 initialQuestion={highlightQuestion}
                 onQuestionSent={() => setHighlightQuestion(null)}
+                userId={user?.id}
                 context={{
                     sectionId: `${course}/${chapter}/${section}`,
                     pageContent: sectionData?.raw || '',

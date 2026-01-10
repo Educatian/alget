@@ -2,36 +2,47 @@ import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '../lib/supabase'
 
 /**
- * Hook to handle text selection and highlighting
+ * Hook to handle text selection, highlighting, and notes
  */
 export function useTextSelection({ sectionId, userId }) {
     const [selection, setSelection] = useState(null)
     const [highlights, setHighlights] = useState([])
     const [popularHighlights, setPopularHighlights] = useState([])
+    const [loading, setLoading] = useState(false)
 
     // Fetch existing highlights for this section
     useEffect(() => {
         if (!sectionId) return
 
         const fetchHighlights = async () => {
-            // Fetch user's own highlights
-            if (userId) {
-                const { data: userHighlights } = await supabase
-                    .from('highlights')
+            setLoading(true)
+            try {
+                // Fetch user's own highlights
+                if (userId) {
+                    const { data: userHighlights, error } = await supabase
+                        .from('highlights')
+                        .select('*')
+                        .eq('section_id', sectionId)
+                        .eq('user_id', userId)
+                        .order('created_at', { ascending: true })
+
+                    if (!error && userHighlights) {
+                        setHighlights(userHighlights)
+                    }
+                }
+
+                // Fetch popular highlights (from view)
+                const { data: popular } = await supabase
+                    .from('popular_highlights')
                     .select('*')
                     .eq('section_id', sectionId)
-                    .eq('user_id', userId)
 
-                setHighlights(userHighlights || [])
+                setPopularHighlights(popular || [])
+            } catch (err) {
+                console.warn('Error fetching highlights:', err)
+            } finally {
+                setLoading(false)
             }
-
-            // Fetch popular highlights (from view)
-            const { data: popular } = await supabase
-                .from('popular_highlights')
-                .select('*')
-                .eq('section_id', sectionId)
-
-            setPopularHighlights(popular || [])
         }
 
         fetchHighlights()
@@ -65,8 +76,8 @@ export function useTextSelection({ sectionId, userId }) {
         })
     }, [])
 
-    // Save highlight to Supabase (or local-only if DB fails)
-    const saveHighlight = useCallback(async (text, color = 'yellow') => {
+    // Save highlight with optional note
+    const saveHighlight = useCallback(async (text, color = 'yellow', note = '') => {
         if (!sectionId || !text) return null
 
         // Create local highlight object first
@@ -76,6 +87,7 @@ export function useTextSelection({ sectionId, userId }) {
             section_id: sectionId,
             text_content: text,
             color,
+            note: note || null,
             created_at: new Date().toISOString()
         }
 
@@ -84,7 +96,7 @@ export function useTextSelection({ sectionId, userId }) {
         setSelection(null)
         window.getSelection()?.removeAllRanges()
 
-        // Try to persist to database if userId exists
+        // Persist to database if userId exists
         if (userId) {
             try {
                 const { data, error } = await supabase
@@ -95,7 +107,8 @@ export function useTextSelection({ sectionId, userId }) {
                         text_content: text,
                         start_offset: 0,
                         end_offset: text.length,
-                        color
+                        color,
+                        note: note || null
                     })
                     .select()
                     .single()
@@ -116,12 +129,33 @@ export function useTextSelection({ sectionId, userId }) {
         return localHighlight
     }, [userId, sectionId])
 
-    // Delete highlight (local or from database)
+    // Update highlight note
+    const updateHighlightNote = useCallback(async (highlightId, note) => {
+        // Update local state
+        setHighlights(prev => prev.map(h =>
+            h.id === highlightId ? { ...h, note } : h
+        ))
+
+        // Persist to database
+        if (highlightId && !String(highlightId).startsWith('local-') && userId) {
+            try {
+                await supabase
+                    .from('highlights')
+                    .update({ note })
+                    .eq('id', highlightId)
+                    .eq('user_id', userId)
+            } catch (err) {
+                console.warn('Could not update note in database:', err)
+            }
+        }
+    }, [userId])
+
+    // Delete highlight
     const deleteHighlight = useCallback(async (highlightId) => {
         // Always remove from local state first
         setHighlights(prev => prev.filter(h => h.id !== highlightId))
 
-        // Only try to delete from database if it's not a local-only highlight
+        // Only delete from database if not local-only
         if (highlightId && !String(highlightId).startsWith('local-') && userId) {
             try {
                 await supabase
@@ -139,8 +173,10 @@ export function useTextSelection({ sectionId, userId }) {
         selection,
         highlights,
         popularHighlights,
+        loading,
         handleSelection,
         saveHighlight,
+        updateHighlightNote,
         deleteHighlight,
         clearSelection: () => setSelection(null)
     }
