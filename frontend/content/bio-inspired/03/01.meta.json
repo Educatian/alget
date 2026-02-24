@@ -1,0 +1,15 @@
+{
+    "title": "Passive Cooling",
+    "chapter_title": "Thermoregulation",
+    "learning_objectives": [
+        "Examine non-mechanical strategies nature uses for thermal regulation.",
+        "Analyze convection currents and thermal mass properties.",
+        "Translate these principles into passive cooling architectures for buildings."
+    ],
+    "concept_ids": [
+        "passive_cooling",
+        "termite_mound",
+        "convection",
+        "ventilation"
+    ]
+}

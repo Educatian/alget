@@ -9,18 +9,38 @@
 
 /* ===== GLOBAL STYLES ===== */
 body {
-  @apply bg-gray-50 text-gray-900 antialiased;
+  @apply bg-slate-50 text-slate-800 antialiased selection:bg-[#9E1B32]/20;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.015em;
 }
 
-/* ===== GLASSMORPHISM ===== */
+/* ===== ADVANCED GLASSMORPHISM ===== */
 .glass {
-  @apply bg-white/80 backdrop-blur-xl border border-white/50;
+  @apply bg-white/70 backdrop-blur-2xl border border-white/60;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.glass-panel {
+  @apply bg-white/80 backdrop-blur-xl border border-white/50 shadow-xl shadow-slate-200/50 rounded-2xl;
+}
+
+.glass-dark {
+  @apply bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 shadow-2xl;
 }
 
 /* ===== CRIMSON BUTTON ===== */
 .btn-crimson {
-  @apply bg-gradient-to-r from-[#9E1B32] to-[#7A1527] text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-red-900/25 hover:shadow-xl hover:shadow-red-900/35 hover:-translate-y-0.5 transition-all duration-300 ease-out;
+  @apply relative overflow-hidden bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white font-semibold py-3 px-6 rounded-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 ease-out;
+  box-shadow: 0 8px 20px -6px rgba(158, 27, 50, 0.5);
+}
+
+.btn-crimson:hover {
+  box-shadow: 0 12px 25px -6px rgba(158, 27, 50, 0.6);
+}
+
+.btn-crimson::after {
+  content: '';
+  @apply absolute inset-0 bg-white/20 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none;
 }
 
 /* ===== CONTENT CARD ===== */
@@ -34,7 +54,7 @@ body {
 }
 
 .step-circle.active {
-  @apply bg-gradient-to-br from-[#9E1B32] to-[#7A1527] text-white shadow-lg shadow-red-900/30;
+  @apply bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white shadow-lg shadow-red-900/30;
 }
 
 .step-circle.completed {
@@ -64,67 +84,69 @@ body {
 
 /* ===== TEXTBOOK STYLING ===== */
 
+/* Base text for prose */
+.prose {
+  @apply text-slate-700;
+}
+
 /* Premium Tables */
 .prose table {
-  @apply w-full border-collapse my-6 text-sm;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
-  overflow: hidden;
+  @apply w-full border-collapse my-8 text-sm bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden;
 }
 
 .prose thead {
-  background: linear-gradient(135deg, #9E1B32 0%, #7A1527 100%);
+  @apply bg-slate-50 border-b border-slate-200;
 }
 
 .prose th {
-  @apply text-white font-semibold py-3 px-4 text-left;
-  border: none !important;
+  @apply text-slate-800 font-bold py-4 px-5 text-left tracking-wide;
 }
 
 .prose tbody tr {
-  @apply border-b border-gray-100;
+  @apply border-b border-slate-100 transition-colors duration-150;
+}
+
+.prose tbody tr:last-child {
+  @apply border-0;
 }
 
 .prose tbody tr:nth-child(even) {
-  @apply bg-gray-50/50;
+  @apply bg-slate-50/50;
 }
 
 .prose tbody tr:hover {
-  @apply bg-blue-50/50;
+  @apply bg-[#9E1B32]/5;
 }
 
 .prose td {
-  @apply py-3 px-4 text-gray-700;
-  border: none !important;
+  @apply py-3.5 px-5 text-slate-600;
 }
 
 /* Math/Equation Blocks */
 .prose .katex-display {
-  @apply my-6 py-4 px-6 bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl border border-gray-200;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+  @apply my-8 py-5 px-6 bg-linear-to-br from-slate-50 to-white rounded-2xl border border-slate-200/80 shadow-sm overflow-x-auto;
 }
 
 .prose .katex {
-  font-size: 1.1em;
+  font-size: 1.15em;
 }
 
-/* Blockquotes - Enhanced */
+/* Blockquotes - Enhanced with Glassmorphism */
 .prose blockquote {
-  @apply border-l-4 border-[#9E1B32] bg-gradient-to-r from-red-50/80 to-transparent py-4 px-5 my-6 rounded-r-xl;
+  @apply relative overflow-hidden border-l-[3px] border-[#9E1B32] bg-linear-to-r from-red-50/50 to-transparent py-5 px-6 my-8 rounded-r-2xl;
   font-style: normal;
 }
 
 .prose blockquote p {
-  @apply text-gray-700 font-medium m-0;
+  @apply text-slate-700 font-medium m-0 leading-relaxed text-lg;
 }
 
-/* Code Blocks - Modern */
+/* Code Blocks - Modern IDE style */
 .prose pre {
-  @apply bg-slate-900 text-slate-100 rounded-xl p-5 my-6 overflow-x-auto;
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  @apply bg-slate-900 text-slate-100 rounded-2xl p-6 my-8 overflow-x-auto shadow-2xl shadow-slate-900/20 border border-slate-800;
+  font-family: 'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
   font-size: 0.9em;
   line-height: 1.6;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .prose code:not(pre code) {
@@ -141,53 +163,61 @@ body {
 
 /* Lists - Enhanced */
 .prose ul {
-  @apply space-y-2;
+  @apply space-y-3 my-6 pl-2;
 }
 
 .prose ul li {
-  @apply relative pl-1;
+  @apply relative pl-2 leading-relaxed;
 }
 
 .prose ul li::marker {
   color: #9E1B32;
 }
 
+.prose ol {
+  @apply space-y-3 my-6 pl-5;
+}
+
 .prose ol li::marker {
   color: #9E1B32;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Strong/Bold Emphasis */
 .prose strong {
-  @apply text-[#9E1B32] font-bold;
+  @apply text-slate-900 font-bold bg-amber-50/50 px-1 rounded-sm;
 }
 
 /* Headers - Premium */
+.prose h1 {
+  @apply text-4xl font-extrabold text-slate-900 mt-16 mb-8 tracking-tight;
+}
+
 .prose h2 {
-  @apply text-2xl font-bold text-gray-900 mt-12 mb-4 pb-3 border-b-2 border-[#9E1B32]/20;
+  @apply text-2xl font-bold text-slate-900 mt-14 mb-6 pb-4 border-b border-slate-200 tracking-tight;
 }
 
 .prose h3 {
-  @apply text-xl font-semibold text-gray-800 mt-8 mb-3;
+  @apply text-xl font-bold text-slate-800 mt-10 mb-4 tracking-tight;
 }
 
 .prose h4 {
-  @apply text-lg font-semibold text-[#9E1B32] mt-6 mb-2;
+  @apply text-[1.1rem] font-bold text-[#9E1B32] mt-8 mb-3 tracking-wide uppercase;
 }
 
 /* Paragraph Spacing */
 .prose p {
-  @apply leading-relaxed text-gray-600 my-4;
+  @apply leading-[1.8] text-slate-700 my-5 text-[1.05rem];
 }
 
 /* Links */
 .prose a {
-  @apply text-[#9E1B32] font-medium hover:underline;
+  @apply text-[#9E1B32] font-semibold underline decoration-[#9E1B32]/30 decoration-2 underline-offset-4 hover:decoration-[#9E1B32] transition-colors duration-200;
 }
 
 /* Special Callout Boxes */
 .prose blockquote:has(strong:first-child) {
-  @apply bg-gradient-to-r from-blue-50 to-transparent border-l-blue-500;
+  @apply bg-linear-to-r from-blue-50 to-transparent border-l-blue-500;
 }
 
 /* Emoji Callouts */

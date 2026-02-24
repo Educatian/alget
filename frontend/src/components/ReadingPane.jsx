@@ -45,15 +45,15 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
 
                 {/* Learning Objectives */}
                 {meta?.learning_objectives?.length > 0 && (
-                    <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
-                        <h3 className="text-sm font-semibold text-blue-800 mb-2">
+                    <div className="bg-linear-to-r from-blue-50 to-indigo-50/30 border-l-4 border-blue-500 rounded-r-xl p-5 shadow-inner">
+                        <h3 className="text-sm font-bold text-blue-900 mb-2.5 uppercase tracking-wider">
                             🎯 Learning Objectives
                         </h3>
-                        <ul className="space-y-1">
+                        <ul className="space-y-2">
                             {meta.learning_objectives.map((obj, i) => (
-                                <li key={i} className="text-sm text-blue-700 flex items-start gap-2">
-                                    <span className="text-blue-400">•</span>
-                                    <span>{obj}</span>
+                                <li key={i} className="text-[1.05rem] text-blue-800/90 flex items-start gap-3 font-medium">
+                                    <span className="text-blue-500 mt-0.5 opacity-80">•</span>
+                                    <span className="leading-relaxed">{obj}</span>
                                 </li>
                             ))}
                         </ul>
@@ -89,29 +89,31 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
                 <div className="space-y-4 mb-8">
                     {/* Simulation Block */}
                     {simulation && (
-                        <div className="border border-gray-200 rounded-xl overflow-hidden">
+                        <div className="content-card overflow-hidden">
                             <button
                                 onClick={() => setShowSimulation(!showSimulation)}
-                                className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors"
+                                className="w-full flex items-center justify-between px-5 py-4 bg-linear-to-r from-slate-50 to-white hover:bg-slate-50 transition-colors"
                             >
-                                <span className="flex items-center gap-2 font-medium text-gray-700">
-                                    <span className="text-lg">🎮</span>
+                                <span className="flex items-center gap-3 font-bold text-slate-800">
+                                    <span className="text-xl">🎮</span>
                                     Interactive Simulation
                                 </span>
-                                <span className={`text-gray-400 transition-transform ${showSimulation ? 'rotate-180' : ''}`}>
+                                <span className={`text-slate-400 transition-transform duration-300 ${showSimulation ? 'rotate-180' : ''}`}>
                                     ▼
                                 </span>
                             </button>
 
                             {showSimulation && (
-                                <div className="p-4 border-t border-gray-200">
-                                    <p className="text-sm text-gray-500 mb-3">{simulation.description}</p>
-                                    <iframe
-                                        srcDoc={simulation.html_code}
-                                        className="w-full h-[400px] rounded-lg border border-gray-200"
-                                        sandbox="allow-scripts"
-                                        title="Interactive Simulation"
-                                    />
+                                <div className="p-5 border-t border-slate-100 bg-linear-to-b from-slate-50/50 to-white animate-fade-in">
+                                    <p className="text-sm font-medium text-slate-500 mb-4">{simulation.description}</p>
+                                    <div className="rounded-xl overflow-hidden border border-slate-200 shadow-inner bg-white">
+                                        <iframe
+                                            srcDoc={simulation.html_code}
+                                            className="w-full h-[450px]"
+                                            sandbox="allow-scripts"
+                                            title="Interactive Simulation"
+                                        />
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -119,29 +121,29 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
 
                     {/* Illustration Block */}
                     {illustration && (
-                        <div className="border border-gray-200 rounded-xl overflow-hidden">
+                        <div className="content-card overflow-hidden">
                             <button
                                 onClick={() => setShowIllustration(!showIllustration)}
-                                className="w-full flex items-center justify-between px-4 py-3 bg-gray-50 hover:bg-gray-100 transition-colors"
+                                className="w-full flex items-center justify-between px-5 py-4 bg-linear-to-r from-slate-50 to-white hover:bg-slate-50 transition-colors"
                             >
-                                <span className="flex items-center gap-2 font-medium text-gray-700">
-                                    <span className="text-lg">🖼️</span>
+                                <span className="flex items-center gap-3 font-bold text-slate-800">
+                                    <span className="text-xl">🖼️</span>
                                     Concept Illustration
                                 </span>
-                                <span className={`text-gray-400 transition-transform ${showIllustration ? 'rotate-180' : ''}`}>
+                                <span className={`text-slate-400 transition-transform duration-300 ${showIllustration ? 'rotate-180' : ''}`}>
                                     ▼
                                 </span>
                             </button>
 
                             {showIllustration && (
-                                <div className="p-4 border-t border-gray-200">
-                                    <div className="bg-gray-100 rounded-lg p-6 text-center">
-                                        <p className="text-gray-600">{illustration.description}</p>
+                                <div className="p-5 border-t border-slate-100 bg-white animate-fade-in">
+                                    <div className="bg-slate-50 rounded-xl p-8 border border-slate-100 text-center shadow-inner">
+                                        <p className="text-slate-700 font-medium text-lg leading-relaxed">{illustration.description}</p>
                                         {illustration.image_url && (
                                             <img
                                                 src={illustration.image_url}
                                                 alt={illustration.description}
-                                                className="mt-4 mx-auto max-w-full rounded-lg"
+                                                className="mt-6 mx-auto max-w-full rounded-xl shadow-lg ring-1 ring-black/5"
                                             />
                                         )}
                                     </div>
@@ -154,15 +156,15 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
 
             {/* Concept Tags */}
             {meta?.concept_ids?.length > 0 && (
-                <div className="mb-8">
-                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                <div className="mb-10">
+                    <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">
                         📌 Key Concepts
                     </h3>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2.5">
                         {meta.concept_ids.map((concept, i) => (
                             <span
                                 key={i}
-                                className="px-3 py-1.5 bg-gray-100 text-gray-700 text-sm rounded-full border border-gray-200"
+                                className="px-4 py-1.5 bg-white text-slate-700 text-sm font-semibold rounded-full border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all cursor-default"
                             >
                                 {concept.replace(/_/g, ' ')}
                             </span>

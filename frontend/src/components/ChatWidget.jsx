@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 're
 import { supabase } from '../lib/supabase'
 import { logChatMessage } from '../lib/loggingService'
 import API_BASE from '../lib/apiConfig'
+import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard } from './IntentCards'
 
 const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId }, ref) {
     const [isOpen, setIsOpen] = useState(false)
@@ -99,24 +100,26 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         logChatMessage(turnNumber, userMessage.length, true, context?.sectionId)
 
         try {
-            const res = await fetch(`${API_BASE}/assist/chat`, {
+            const res = await fetch(`${API_BASE}/orchestrate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message: userMessage,
-                    section_id: context?.sectionId || 'general',
-                    page_content: context?.pageContent || '',
-                    section_title: context?.sectionTitle || '',
-                    history: messages.slice(-6)
+                    query: userMessage,
+                    grade_level: "Sophomore",
+                    interest: "Robotics",
+                    current_bio_context: "",
+                    history: messages.slice(-10) // Send more history for better context
                 })
             })
             const data = await res.json()
-            const assistantMessage = { role: 'assistant', content: data.response }
+
+            // The new API returns an intent object, not just a text string
+            const assistantMessage = { role: 'assistant', content: data }
             const finalMessages = [...newMessages, assistantMessage]
             setMessages(finalMessages)
 
-            // Log assistant response (PII-safe: length only)
-            logChatMessage(turnNumber + 1, data.response.length, false, context?.sectionId)
+            // Log assistant response (just marking a response occurred, as length is now an object)
+            logChatMessage(turnNumber + 1, 100, false, context?.sectionId)
 
             // Save to database
             await saveHistory(finalMessages)
@@ -161,14 +164,14 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
             {/* Floating Bubble Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 z-50 ${isOpen
-                    ? 'bg-gray-600 hover:bg-gray-700'
-                    : 'bg-[#9E1B32] hover:bg-[#7A1527]'
+                className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 z-50 hover:scale-105 active:scale-95 ${isOpen
+                    ? 'bg-slate-700 hover:bg-slate-800'
+                    : 'bg-linear-to-br from-[#9E1B32] to-[#7A1527] hover:shadow-red-900/30'
                     }`}
             >
                 {isOpen ? (
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 ) : (
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,14 +182,17 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50 border border-gray-200">
+                <div className="fixed bottom-24 right-6 w-[420px] h-[600px] glass-panel flex flex-col overflow-hidden z-50 animate-fade-in ring-1 ring-black/5 shadow-2xl">
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-[#9E1B32] to-[#7A1527] px-4 py-3 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <span className="text-2xl">🐘</span>
+                    <div className="bg-linear-to-r from-slate-900 to-slate-800 px-6 py-5 flex items-center justify-between shadow-md relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-40 h-40 bg-[#9E1B32]/20 rounded-full -mr-16 -mt-16 blur-2xl pointer-events-none"></div>
+                        <div className="flex items-center gap-4 relative z-10">
+                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-[#9E1B32] to-[#7A1527] flex items-center justify-center text-xl shadow-inner border border-white/10">
+                                🐘
+                            </div>
                             <div>
-                                <h3 className="text-white font-bold text-sm">BigAL</h3>
-                                <p className="text-white/70 text-xs">Your Engineering Tutor</p>
+                                <h3 className="text-white font-bold text-lg tracking-tight leading-tight">BigAL Tutor</h3>
+                                <p className="text-slate-300 text-xs font-medium tracking-wide">Bio-Inspired Engineering</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -211,39 +217,55 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     </div>
 
                     {/* Messages */}
-                    <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+                    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50/50 scroll-smooth">
                         {messages.length === 0 && (
-                            <div className="text-center text-gray-400 py-12">
-                                <span className="text-5xl block mb-3">🐘</span>
-                                <p className="text-sm font-medium text-gray-600">Hi! I'm BigAL</p>
-                                <p className="text-xs mt-1">Ask me about Statics or Dynamics!</p>
-                                <p className="text-xs mt-3 text-gray-400">
-                                    💡 Tip: Select text and click "Ask BigAL"
+                            <div className="h-full flex flex-col items-center justify-center text-center px-6 animate-fade-in">
+                                <div className="w-16 h-16 mb-4 rounded-2xl bg-white shadow-sm flex items-center justify-center ring-1 ring-slate-100">
+                                    <span className="text-3xl">✨</span>
+                                </div>
+                                <h4 className="text-slate-800 font-bold text-lg mb-2">How can I help you today?</h4>
+                                <p className="text-slate-500 text-sm leading-relaxed">
+                                    Ask me about bridging biological mechanisms into engineering design.
                                 </p>
                             </div>
                         )}
-                        {messages.map((msg, idx) => (
-                            <div
-                                key={idx}
-                                className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                            >
-                                <div
-                                    className={`max-w-[80%] px-3 py-2 rounded-2xl text-sm ${msg.role === 'user'
-                                        ? 'bg-[#9E1B32] text-white rounded-br-md'
-                                        : 'bg-white text-gray-800 shadow-sm border border-gray-100 rounded-bl-md'
-                                        }`}
-                                >
-                                    {msg.content}
-                                </div>
-                            </div>
-                        ))}
+                        {messages.map((msg, idx) => {
+                            if (msg.role === 'user') {
+                                return (
+                                    <div key={idx} className="flex justify-end animate-fade-in">
+                                        <div className="max-w-[85%] px-4 py-2.5 rounded-2xl text-[0.95rem] bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white rounded-br-sm shadow-md shadow-red-900/10 leading-relaxed font-medium">
+                                            {msg.content}
+                                        </div>
+                                    </div>
+                                )
+                            } else {
+                                // Assistant messages could be complex objects now
+                                const data = typeof msg.content === 'object' ? msg.content : { intent: 'legacy', text: msg.content }
+
+                                return (
+                                    <div key={idx} className="flex justify-start animate-fade-in">
+                                        <div className="max-w-[92%] px-4 py-3 rounded-2xl text-[0.95rem] bg-white text-slate-800 shadow-sm border border-slate-200/60 rounded-bl-sm leading-relaxed">
+                                            {data.intent === 'learn' && <LearnIntentCard data={data} />}
+                                            {data.intent === 'evaluate' && <EvaluateIntentCard data={data} />}
+                                            {data.intent === 'brainstorm' && <BrainstormIntentCard data={data} />}
+                                            {data.intent === 'help' && <ScaffoldingIntentCard data={data} />}
+                                            {data.intent === 'illustrate' && <IllustrateIntentCard data={data} />}
+                                            {data.intent === 'simulate' && <SimulateIntentCard data={data} />}
+                                            {(!['learn', 'evaluate', 'brainstorm', 'help', 'illustrate', 'simulate'].includes(data.intent)) && (
+                                                <p className="whitespace-pre-wrap">{data.text || JSON.stringify(data)}</p>
+                                            )}
+                                        </div>
+                                    </div>
+                                )
+                            }
+                        })}
                         {loading && (
-                            <div className="flex justify-start">
-                                <div className="bg-white px-4 py-2 rounded-2xl rounded-bl-md shadow-sm border border-gray-100">
-                                    <div className="flex gap-1">
-                                        <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                                        <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                                        <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                            <div className="flex justify-start animate-fade-in">
+                                <div className="bg-white px-5 py-3.5 rounded-2xl rounded-bl-sm shadow-sm border border-slate-200/60">
+                                    <div className="flex gap-1.5 items-center h-2">
+                                        <span className="w-2 h-2 bg-[#9E1B32]/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                                        <span className="w-2 h-2 bg-[#9E1B32]/60 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                                        <span className="w-2 h-2 bg-[#9E1B32] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
                                     </div>
                                 </div>
                             </div>
@@ -252,28 +274,28 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     </div>
 
                     {/* Input */}
-                    <div className="p-3 bg-white border-t border-gray-100">
-                        <div className="flex gap-2">
+                    <div className="p-4 bg-white/80 backdrop-blur-md border-t border-slate-200/60 shadow-[0_-4px_20px_rgb(0,0,0,0.02)]">
+                        <div className="flex gap-3 relative">
                             <input
                                 type="text"
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
                                 onKeyPress={handleKeyPress}
                                 placeholder="Type your question..."
-                                className="flex-1 px-4 py-2.5 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-[#9E1B32]/20"
+                                className="flex-1 pl-5 pr-12 py-3 bg-slate-100/80 border border-slate-200 focus:bg-white rounded-full text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#9E1B32]/30 focus:border-[#9E1B32]/30 transition-all placeholder:text-slate-400"
                             />
                             <button
                                 onClick={sendMessage}
                                 disabled={!inputValue.trim() || loading}
-                                className="w-10 h-10 bg-[#9E1B32] text-white rounded-full flex items-center justify-center hover:bg-[#7A1527] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                className="absolute right-1.5 top-1.5 bottom-1.5 w-9 h-9 bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white rounded-full flex items-center justify-center hover:shadow-md hover:shadow-red-900/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                <svg className="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                 </svg>
                             </button>
                         </div>
                     </div>
-                </div>
+                </div >
             )}
         </>
     )

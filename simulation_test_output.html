@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Gecko-Inspired Climbing Pad</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+    #sketch-holder {
+      width: 600px;
+      height: 400px;
+      margin: 20px auto;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gecko-Inspired Climbing Pad</h1>
+  <p>Adjust the contact area to see how it affects adhesion.</p>
+
+  <div>
+    <label for="areaSlider">Contact Area:</label>
+    <input type="range" id="areaSlider" min="1" max="100" value="50">
+    <span id="areaValue">50</span> cm²
+  </div>
+
+  <div id="sketch-holder"></div>
+
+  <script>
+    let areaSlider;
+    let areaValue;
+    let adhesionForce = 0;
+    let climberY = 0;
+    let isClimbing = true;
+    let gravity = 0.1; // Simulate gravity
+    let climberHeight = 50;
+    let maxClimberY = 350 - climberHeight;
+
+    function setup() {
+      let canvas = createCanvas(600, 400);
+      canvas.parent('sketch-holder');
+
+      areaSlider = document.getElementById('areaSlider');
+      areaValue = document.getElementById('areaValue');
+
+      areaSlider.addEventListener('input', updateArea);
+    }
+
+    function draw() {
+      background(220);
+
+      // Update adhesion force based on contact area (simplified model)
+      adhesionForce = map(areaSlider.value, 1, 100, 0.1, 10); // Map area to force
+
+      // Simulate climbing dynamics
+      if (isClimbing) {
+        climberY -= adhesionForce - gravity; // Climbing up
+        if (climberY < 0) climberY = 0; // Prevent from climbing above
+      } else {
+        climberY += gravity; // Falling down
+        if (climberY > maxClimberY) climberY = maxClimberY; // Prevent from falling below
+      }
+
+      // Draw the wall
+      fill(150);
+      rect(0, 0, width, height);
+
+      // Draw the climber
+      fill(0, 102, 153);
+      rect(width / 2 - 25, height - 50 - climberY, 50, climberHeight);
+
+      // Display adhesion force
+      textSize(16);
+      fill(0);
+      text("Adhesion Force: " + adhesionForce.toFixed(2), 20, 30);
+
+      // Display climber's vertical position
+      text("Climber Height: " + (height - 50 - climberY).toFixed(2), 20, 50)
+    }
+
+    function updateArea() {
+      areaValue.textContent = areaSlider.value;
+    }
+  </script>
+</body>
+</html>

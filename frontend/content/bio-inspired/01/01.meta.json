@@ -1,0 +1,14 @@
+{
+    "title": "Cellular Solids",
+    "chapter_title": "Structural Biomimicry",
+    "learning_objectives": [
+        "Understand the principles of structural efficiency in natural forms.",
+        "Analyze the physical properties of cellular solids like honeycomb and cancellous bone.",
+        "Apply volume and mass reduction techniques to engineering design."
+    ],
+    "concept_ids": [
+        "cellular_solids",
+        "porosity",
+        "strength_to_weight"
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "title": "Fluid Dynamics",
+    "chapter_title": "Locomotion & Kinematics",
+    "learning_objectives": [
+        "Understand passive drag reduction in natural aquatic and aerial systems.",
+        "Analyze the structural morphology of shark denticles and riblets.",
+        "Apply boundary layer modification concepts to aerospace and marine engineering."
+    ],
+    "concept_ids": [
+        "fluid_dynamics",
+        "drag_reduction",
+        "shark_skin",
+        "vortex_shedding"
+    ]
+}
