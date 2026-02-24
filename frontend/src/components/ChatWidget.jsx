@@ -32,7 +32,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     .select('messages')
                     .eq('user_id', userId)
                     .eq('section_id', context.sectionId)
-                    .single()
+                    .maybeSingle()
 
                 if (data?.messages) {
                     setMessages(data.messages)
