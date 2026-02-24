@@ -47,7 +47,7 @@ export async function initSession(user) {
     }
 
     // Create session in database
-    if (userId) {
+    if (userId && userId !== '00000000-0000-0000-0000-000000000000') {
         try {
             await supabase.from('user_sessions').insert({
                 id: sessionId,
@@ -176,6 +176,12 @@ export function logHighlightCreate(textLength, hasNote, sectionId) {
 async function flushEvents() {
     if (eventQueue.length === 0 || !userId) return
 
+    // Do not sync events to Supabase for the guest user
+    if (userId === '00000000-0000-0000-0000-000000000000') {
+        eventQueue = []
+        return
+    }
+
     const eventsToSend = [...eventQueue]
     eventQueue = []
 
@@ -202,7 +208,7 @@ export async function endSession() {
     await flushEvents()
 
     // Update session record
-    if (userId) {
+    if (userId && userId !== '00000000-0000-0000-0000-000000000000') {
         try {
             await supabase.from('user_sessions').update({
                 ended_at: new Date().toISOString(),
