@@ -12,7 +12,8 @@ from prompts import (
     get_narrative_prompt,
     get_activity_prompt,
     get_simulation_prompt,
-    get_scenario_prompt
+    get_scenario_prompt,
+    get_expert_evaluation_prompt
 )
 
 # Google GenAI SDK
@@ -43,8 +44,8 @@ def generate_narrative(
     """
     if not GENAI_AVAILABLE or not api_key:
         return {
-            "title": "The Engineering Student's Discovery",
-            "story": "**[API Key Required]**\n\nEnter your Gemini API key in the sidebar to generate personalized narratives.\n\nThis story would feature a UA engineering student discovering the concepts of " + ", ".join(keywords) + " through a real-world scenario at Bryant-Denny Stadium or the Mercedes-Benz plant.",
+            "title": "The Student's Biological Discovery",
+            "story": "**[API Key Required]**\n\nEnter your Gemini API key in the sidebar to generate personalized narratives.\n\nThis story would feature a bio-engineering student discovering the concepts of " + ", ".join(keywords) + " through a real-world biological system.",
             "key_concepts": keywords
         }
     
@@ -232,6 +233,50 @@ def generate_module_content(
         "simulation": simulation,
         "illustration": illustration
     }
+
+def generate_expert_feedback(biology_topic: str, engineering_problem: str, student_proposal: str, api_key: str) -> dict:
+    """
+    Generate expert evaluation feedback using the Janine Benyus persona.
+    """
+    if not GENAI_AVAILABLE or not api_key:
+        return {
+            "strengths": "[API Key Required] You correctly identified the structural mechanism.",
+            "biomimicry_gaps": "[API Key Required] However, nature uses bottom-up assembly rather than top-down manufacturing.",
+            "guiding_question": "[API Key Required] How might you redesign this to grow rather than be built?",
+            "benyus_quote": "[API Key Required] Life creates conditions conducive to life."
+        }
+    
+    try:
+        client = genai.Client(api_key=api_key)
+        prompt = get_expert_evaluation_prompt(biology_topic, engineering_problem, student_proposal)
+        
+        response = client.models.generate_content(
+            model='gemini-2.0-flash',
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                temperature=0.7,
+                response_mime_type="application/json",
+            )
+        )
+        
+        # Parse JSON
+        result = json.loads(response.text)
+        return {
+            "strengths": result.get("strengths", "No strengths identified."),
+            "biomimicry_gaps": result.get("biomimicry_gaps", "No gaps identified."),
+            "guiding_question": result.get("guiding_question", "How can you improve this?"),
+            "benyus_quote": result.get("benyus_quote", "Nature has already solved this.")
+        }
+        
+    except json.JSONDecodeError:
+        return {
+            "error": "Failed to parse the evaluation format.",
+            "raw_text": response.text if 'response' in locals() else "Unknown error."
+        }
+    except Exception as e:
+        return {
+            "error": f"API Error: {str(e)}"
+        }
 
 
 # ============================================================================

@@ -177,29 +177,38 @@ def generate_simulation(
             "html_code": placeholder_html
         }
     
-    try:
-        client = genai.Client(api_key=api_key)
-        prompt = get_simulation_prompt(module, keywords)
-        
-        response = client.models.generate_content(
-            model='gemini-2.0-flash',
-            contents=prompt,
-            config=types.GenerateContentConfig(
-                temperature=0.7,
-                max_output_tokens=4096,
-                response_mime_type="application/json"
-            )
-        )
-        
-        result = json.loads(response.text)
-        return result
-        
-    except Exception as e:
-        return {
-            "description": f"Error: {str(e)}",
-            "concepts_shown": keywords,
-            "html_code": f"<html><body><h2>Error generating simulation</h2><p>{str(e)}</p></body></html>"
+    # Deprecated fallback since moving to the SimulationAgent -> Orchestrator dynamic flow
+    placeholder_html = """
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: 'Inter', sans-serif; padding: 20px; background: #f8f9fa; }
+        h3 { color: #9E1B32; margin-bottom: 10px; }
+        .placeholder { 
+            background: linear-gradient(135deg, #9E1B32, #7A1527);
+            color: white; 
+            padding: 40px; 
+            border-radius: 16px; 
+            text-align: center;
         }
+        .icon { font-size: 48px; margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+    <div class="placeholder">
+        <div class="icon">🚀</div>
+        <h3>Simulations Upgraded</h3>
+        <p>This endpoint has been deprecated. Please use the new AI-Synergy pipeline (OrchestratorAgent -> SimulationAgent) to generate physically validated simulations.</p>
+    </div>
+</body>
+</html>
+"""
+    return {
+        "description": "DEPRECATED: Use Orchestrator -> SimulationAgent.",
+        "concepts_shown": keywords,
+        "html_code": placeholder_html
+    }
 
 
 def generate_module_content(

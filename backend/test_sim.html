@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kingfisher Beak to Bullet Train: Aerodynamic Simulation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #sketch-container {
+            width: 600px;
+            height: 400px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        .slider-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .slider-label {
+            width: 150px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        #info-panel {
+            width: 600px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+        #drag-coefficient {
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+<body>
+    <h1>Kingfisher Beak to Bullet Train</h1>
+    <div id="sketch-container"></div>
+    <div class="slider-container">
+        <label for="morph" class="slider-label">Shape (Beak to Train):</label>
+        <input type="range" id="morph" min="0" max="100" value="0">
+    </div>
+    <div class="slider-container">
+        <label for="speed" class="slider-label">Speed (m/s):</label>
+        <input type="range" id="speed" min="0" max="300" value="50">
+    </div>
+    <div id="info-panel">
+        <p>Drag Coefficient: <span id="drag-coefficient">-</span></p>
+    </div>
+
+    <script>
+        let sketch = function(p) {
+            let morphSlider, speedSlider;
+            let dragCoefficientDisplay;
+            let shapeMorph = 0;
+            let speed = 50;
+            let pointsBeak = [];
+            let pointsTrain = [];
+
+            p.setup = function() {
+                let canvas = p.createCanvas(600, 400);
+                canvas.parent('sketch-container');
+
+                morphSlider = document.getElementById('morph');
+                speedSlider = document.getElementById('speed');
+                dragCoefficientDisplay = document.getElementById('drag-coefficient');
+
+                morphSlider.addEventListener('input', function() {
+                    shapeMorph = parseFloat(this.value);
+                });
+
+                speedSlider.addEventListener('input', function() {
+                    speed = parseFloat(this.value);
+                });
+
+                // Define points for Kingfisher Beak (simplified)
+                pointsBeak = [
+                    p.createVector(50, 200),
+                    p.createVector(150, 150),
+                    p.createVector(250, 180),
+                    p.createVector(350, 200),
+                    p.createVector(250, 220),
+                    p.createVector(150, 250)
+                ];
+
+                // Define points for Bullet Train (simplified)
+                pointsTrain = [
+                    p.createVector(50, 200),
+                    p.createVector(200, 130),
+                    p.createVector(350, 130),
+                    p.createVector(550, 200),
+                    p.createVector(350, 270),
+                    p.createVector(200, 270)
+                ];
+
+                p.frameRate(30);
+            };
+
+            p.draw = function() {
+                p.background(220);
+
+                // Interpolate between beak and train shapes
+                let points = [];
+                for (let i = 0; i < pointsBeak.length; i++) {
+                    let x = p.lerp(pointsBeak[i].x, pointsTrain[i].x, shapeMorph / 100);
+                    let y = p.lerp(pointsBeak[i].y, pointsTrain[i].y, shapeMorph / 100);
+                    points.push(p.createVector(x, y));
+                }
+
+                // Calculate a simplified drag coefficient based on shape and speed
+                let dragCoefficient = calculateDragCoefficient(shapeMorph / 100, speed);
+                dragCoefficientDisplay.innerText = dragCoefficient.toFixed(3);
+
+                // Draw the shape
+                p.beginShape();
+                for (let i = 0; i < points.length; i++) {
+                    p.vertex(points[i].x, points[i].y);
+                }
+                p.endShape(p.CLOSE);
+
+                // Draw airflow (simplified pressure visualization)
+                drawAirflow(points, speed);
+            };\n
+            function calculateDragCoefficient(morphValue, speed) {
+                // Simplified model:  higher morphValue (train) = lower drag
+                // Higher speed = higher drag
+                let baseDrag = 0.5; // Base drag coefficient
+                let shapeFactor = 1 - (morphValue * 0.7); // Reduce drag as shape morphs to train
+                let speedFactor = speed / 100; // Increase drag with speed
+                return baseDrag * shapeFactor * (1 + speedFactor);
+            }
+
+            function drawAirflow(points, speed) {
+                // Simplified airflow visualization using color gradients
+                p.noStroke();
+                for (let i = 0; i < points.length - 1; i++) {
+                    let startX = points[i].x;
+                    let startY = points[i].y;
+                    let endX = points[i + 1].x;
+                    let endY = points[i + 1].y;
+
+                    let steps = 20;
+                    for (let j = 0; j < steps; j++) {
+                        let x = p.lerp(startX, endX, j / steps);
+                        let y = p.lerp(startY, endY, j / steps);
+                        let distance = p.dist(x, y, 300, 200);
+
+                        // Simulate pressure based on distance and speed
+                        let pressure = p.map(distance, 0, 300, 255, 0) + (speed * 0.5);
+                        pressure = p.constrain(pressure, 0, 255);
+
+                        // Color based on pressure (Red = High, Blue = Low)
+                        let red = pressure;
+                        let blue = 255 - pressure;
+                        let green = 0;
+                        p.fill(red, green, blue, 150);
+
+                        p.ellipse(x + p.random(-10, 10), y + p.random(-10, 10), 15, 15);
+                    }
+                }
+            }
+        };
+
+        new p5(sketch);
+    </script>
+</body>
+</html>

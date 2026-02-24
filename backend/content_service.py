@@ -152,39 +152,39 @@ def generate_toc(course: str) -> dict:
 def get_fallback_toc(course: str) -> dict:
     """Get fallback TOC structure for development."""
     
-    if course == "statics":
+    if course == "bio-inspired" or True: # Default fallback to bio-inspired design
         return {
-            "course": "statics",
-            "title": "Statics",
+            "course": "bio-inspired",
+            "title": "Bio-Inspired Design",
             "chapters": [
                 {
                     "id": "01",
-                    "title": "Equilibrium of Particles",
-                    "icon": "⚖️",
+                    "title": "Structural Biomimicry",
+                    "icon": "🦴",
                     "sections": [
-                        {"id": "01", "title": "Equilibrium Conditions"},
-                        {"id": "02", "title": "Free Body Diagrams"},
-                        {"id": "03", "title": "Two-Force Members"}
+                        {"id": "01", "title": "Cellular Solids"},
+                        {"id": "02", "title": "Hierarchical Structures"},
+                        {"id": "03", "title": "Directional Adhesion"}
                     ]
                 },
                 {
                     "id": "02",
-                    "title": "Force Systems",
-                    "icon": "🔀",
+                    "title": "Locomotion & Kinematics",
+                    "icon": "🦅",
                     "sections": [
-                        {"id": "01", "title": "2D Force Systems"},
-                        {"id": "02", "title": "3D Force Systems"},
-                        {"id": "03", "title": "Moment of a Force"}
+                        {"id": "01", "title": "Fluid Dynamics"},
+                        {"id": "02", "title": "Flapping Flight"},
+                        {"id": "03", "title": "Soft Robotic Motion"}
                     ]
                 },
                 {
                     "id": "03",
-                    "title": "Equilibrium of Rigid Bodies",
-                    "icon": "📐",
+                    "title": "Thermoregulation",
+                    "icon": "☀️",
                     "sections": [
-                        {"id": "01", "title": "2D Rigid Body Equilibrium"},
-                        {"id": "02", "title": "3D Rigid Body Equilibrium"},
-                        {"id": "03", "title": "Two- and Three-Force Members"}
+                        {"id": "01", "title": "Passive Cooling"},
+                        {"id": "02", "title": "Thermal Exchange"},
+                        {"id": "03", "title": "Solar Harvesting"}
                     ]
                 }
             ]

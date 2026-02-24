@@ -5,162 +5,83 @@ When PDF is loaded, these hooks connect to extracted content.
 """
 
 # ============================================================================
-# FRESHMAN YEAR MODULES
+# BIO-INSPIRED DESIGN MODULES
 # ============================================================================
-FRESHMAN_MODULES = {
-    "INTRO_TO_ENGINEERING": {
-        "title": "Introduction to Engineering",
-        "icon": "🔧",
-        "course_code": "ME 101",
-        "description": "Overview of engineering professions and problem-solving approaches",
+BIO_INSPIRED_MODULES = {
+    "STRUCTURAL_BIOMIMICRY": {
+        "title": "Structural Biomimicry",
+        "icon": "🦴",
+        "course_code": "BIO-ME 301",
+        "description": "Translating natural load-bearing and material structures into engineering design",
         "hooks": [
-            {"id": "eng_design", "name": "Engineering Design Process", "keywords": ["design", "prototype", "iteration"]},
-            {"id": "eng_ethics", "name": "Engineering Ethics", "keywords": ["ethics", "professional", "responsibility"]},
-            {"id": "teamwork", "name": "Teamwork & Communication", "keywords": ["team", "collaboration", "present"]},
-            {"id": "cad_basics", "name": "CAD Fundamentals", "keywords": ["cad", "drawing", "solidworks", "3d model"]},
+            {"id": "cellular_solids", "name": "Cellular Solids", "keywords": ["honeycomb", "cancellous bone", "wood", "porous"]},
+            {"id": "hierarchical_structures", "name": "Hierarchical Structures", "keywords": ["spider silk", "collagen", "nacre", "multi-scale"]},
+            {"id": "directional_adhesion", "name": "Directional Adhesion", "keywords": ["gecko feet", "van der waals", "setae", "adhesion"]},
+            {"id": "impact_resistance", "name": "Impact Resistance", "keywords": ["woodpecker skull", "pomelo peel", "shock absorption", "damping"]},
         ]
     },
-    "CALCULUS_1": {
-        "title": "Calculus I",
-        "icon": "📐",
-        "course_code": "MATH 125",
-        "description": "Limits, derivatives, and applications to engineering",
+    "LOCOMOTION_KINEMATICS": {
+        "title": "Locomotion & Kinematics",
+        "icon": "🦅",
+        "course_code": "BIO-ME 302",
+        "description": "Abstracting biological movement and fluid dynamics to mechanical systems",
         "hooks": [
-            {"id": "limits", "name": "Limits & Continuity", "keywords": ["limit", "continuous", "approach"]},
-            {"id": "derivatives", "name": "Derivatives", "keywords": ["derivative", "rate of change", "slope", "differentiate"]},
-            {"id": "optimization", "name": "Optimization Problems", "keywords": ["maximum", "minimum", "optimize", "critical point"]},
-            {"id": "related_rates", "name": "Related Rates", "keywords": ["related rates", "rate", "changing"]},
+            {"id": "fluid_dynamics", "name": "Biological Fluid Dynamics", "keywords": ["shark skin", "riblets", "drag reduction", "vortex shedding"]},
+            {"id": "flapping_flight", "name": "Avian & Insect Flight", "keywords": ["flapping", "kingfisher beak", "aerodynamics", "lift"]},
+            {"id": "terrestrial_gaits", "name": "Terrestrial Gaits", "keywords": ["cheetah spine", "hexapod", "walking", "kinematics"]},
+            {"id": "soft_robotic_motion", "name": "Soft Body Locomotion", "keywords": ["octopus", "caterpillar", "peristalsis", "soft robotics"]},
         ]
     },
-    "PHYSICS_1": {
-        "title": "Physics I: Mechanics",
-        "icon": "⚡",
-        "course_code": "PH 101",
-        "description": "Classical mechanics, motion, forces, and energy",
+    "THERMOREGULATION": {
+        "title": "Thermoregulation & Energy",
+        "icon": "☀️",
+        "course_code": "BIO-ME 303",
+        "description": "Biological approaches to heat transfer, energy harvesting, and climate control",
         "hooks": [
-            {"id": "kinematics", "name": "Kinematics", "keywords": ["velocity", "acceleration", "motion", "displacement"]},
-            {"id": "newtons_laws", "name": "Newton's Laws", "keywords": ["newton", "force", "F=ma", "inertia"]},
-            {"id": "work_energy", "name": "Work & Energy", "keywords": ["work", "kinetic energy", "potential energy", "joule"]},
-            {"id": "momentum", "name": "Momentum & Collisions", "keywords": ["momentum", "impulse", "collision", "conservation"]},
-            {"id": "rotational", "name": "Rotational Motion", "keywords": ["rotation", "angular", "torque", "moment of inertia"]},
+            {"id": "passive_cooling", "name": "Passive Cooling", "keywords": ["termite mound", "ventilation", "thermal mass", "convection"]},
+            {"id": "counter_current", "name": "Counter-Current Exchange", "keywords": ["penguin feet", "heat exchange", "gradient", "thermal recovery"]},
+            {"id": "solar_harvesting", "name": "Solar Harvesting", "keywords": ["photosynthesis", "leaf morphology", "light trapping", "energy"]},
+            {"id": "water_collection", "name": "Atmospheric Water Collection", "keywords": ["namib desert beetle", "hydrophilic", "hydrophobic", "condensation"]},
         ]
     },
-    "CHEMISTRY": {
-        "title": "General Chemistry",
-        "icon": "🧪",
-        "course_code": "CH 101",
-        "description": "Chemical principles for engineers",
+    "SENSORY_SYSTEMS": {
+        "title": "Sensory & Information Systems",
+        "icon": "🦇",
+        "course_code": "BIO-ME 304",
+        "description": "Bio-analogues for sensors, signal processing, and navigation",
         "hooks": [
-            {"id": "atomic_structure", "name": "Atomic Structure", "keywords": ["atom", "electron", "orbital", "element"]},
-            {"id": "bonding", "name": "Chemical Bonding", "keywords": ["bond", "ionic", "covalent", "molecular"]},
-            {"id": "thermochem", "name": "Thermochemistry", "keywords": ["enthalpy", "exothermic", "endothermic", "heat"]},
-            {"id": "materials", "name": "Materials Chemistry", "keywords": ["metal", "polymer", "ceramic", "material"]},
+            {"id": "echolocation", "name": "Echolocation & Sonar", "keywords": ["bat", "dolphin", "acoustic", "sonar"]},
+            {"id": "optical_sensors", "name": "Optical Systems", "keywords": ["compound eye", "moth eye", "anti-reflective", "vision"]},
+            {"id": "chemoreception", "name": "Chemoreception", "keywords": ["olfactory", "chemical sensor", "sniffing", "detection"]},
+            {"id": "swarm_logic", "name": "Swarm Intelligence", "keywords": ["ant colony", "flocking", "distributed control", "algorithm"]},
         ]
-    },
+    }
 }
 
-# ============================================================================
-# SOPHOMORE YEAR MODULES
-# ============================================================================
-SOPHOMORE_MODULES = {
-    "STATICS": {
-        "title": "Statics",
-        "icon": "⚖️",
-        "course_code": "ME 270",
-        "description": "Analysis of forces on bodies at rest",
-        "hooks": [
-            {"id": "fbd", "name": "Free Body Diagrams", "keywords": ["free body", "fbd", "diagram", "isolate"]},
-            {"id": "equilibrium", "name": "Equilibrium Equations", "keywords": ["equilibrium", "sum of forces", "balance"]},
-            {"id": "moments", "name": "Moments & Couples", "keywords": ["moment", "couple", "torque", "rotation"]},
-            {"id": "trusses", "name": "Truss Analysis", "keywords": ["truss", "joint", "member", "tension", "compression"]},
-            {"id": "friction", "name": "Friction", "keywords": ["friction", "coefficient", "slip", "static friction"]},
-            {"id": "centroids", "name": "Centroids & Inertia", "keywords": ["centroid", "center of mass", "moment of inertia"]},
-        ]
-    },
-    "DYNAMICS": {
-        "title": "Dynamics",
-        "icon": "🚀",
-        "course_code": "ME 274",
-        "description": "Motion of particles and rigid bodies",
-        "hooks": [
-            {"id": "particle_kin", "name": "Particle Kinematics", "keywords": ["position", "velocity", "acceleration", "path"]},
-            {"id": "particle_dyn", "name": "Particle Dynamics", "keywords": ["newton", "equation of motion", "F=ma"]},
-            {"id": "work_energy_dyn", "name": "Work-Energy Methods", "keywords": ["work", "kinetic", "potential", "conservation"]},
-            {"id": "impulse_momentum", "name": "Impulse-Momentum", "keywords": ["impulse", "momentum", "impact"]},
-            {"id": "rigid_body", "name": "Rigid Body Motion", "keywords": ["rigid body", "rotation", "translation"]},
-            {"id": "vibrations", "name": "Vibrations Intro", "keywords": ["vibration", "oscillation", "frequency", "damping"]},
-        ]
-    },
-    "THERMODYNAMICS": {
-        "title": "Thermodynamics",
-        "icon": "🔥",
-        "course_code": "ME 200",
-        "description": "Energy, heat, and work in systems",
-        "hooks": [
-            {"id": "properties", "name": "System Properties", "keywords": ["property", "state", "intensive", "extensive"]},
-            {"id": "first_law", "name": "First Law", "keywords": ["first law", "energy balance", "conservation"]},
-            {"id": "second_law", "name": "Second Law & Entropy", "keywords": ["second law", "entropy", "irreversible"]},
-            {"id": "cycles", "name": "Power Cycles", "keywords": ["cycle", "carnot", "rankine", "otto", "diesel"]},
-            {"id": "refrigeration", "name": "Refrigeration Cycles", "keywords": ["refrigeration", "heat pump", "cop"]},
-            {"id": "psychrometrics", "name": "Psychrometrics", "keywords": ["humidity", "air conditioning", "moist air"]},
-        ]
-    },
-    "MATERIALS": {
-        "title": "Mechanics of Materials",
-        "icon": "🏗️",
-        "course_code": "ME 323",
-        "description": "Stress, strain, and deformation",
-        "hooks": [
-            {"id": "stress_strain", "name": "Stress & Strain", "keywords": ["stress", "strain", "deformation"]},
-            {"id": "axial", "name": "Axial Loading", "keywords": ["axial", "tension", "compression", "elongation"]},
-            {"id": "torsion", "name": "Torsion", "keywords": ["torsion", "twist", "shear stress", "shaft"]},
-            {"id": "bending", "name": "Beam Bending", "keywords": ["bending", "beam", "moment", "neutral axis"]},
-            {"id": "combined", "name": "Combined Loading", "keywords": ["combined", "principal stress", "mohr"]},
-            {"id": "failure", "name": "Failure Theories", "keywords": ["failure", "yield", "factor of safety"]},
-        ]
-    },
-    "CALCULUS_2": {
-        "title": "Calculus II",
-        "icon": "📊",
-        "course_code": "MATH 126",
-        "description": "Integration and series",
-        "hooks": [
-            {"id": "integration", "name": "Integration Techniques", "keywords": ["integral", "integrate", "antiderivative"]},
-            {"id": "applications", "name": "Applications of Integration", "keywords": ["area", "volume", "arc length"]},
-            {"id": "sequences", "name": "Sequences & Series", "keywords": ["sequence", "series", "convergence"]},
-            {"id": "diff_eq_intro", "name": "Differential Equations Intro", "keywords": ["differential equation", "ODE"]},
-        ]
-    },
-}
 
 # ============================================================================
 # ACTIVITY TEMPLATES
 # ============================================================================
 ACTIVITY_TEMPLATES = {
-    "conceptual": {
-        "icon": "💭",
-        "name": "Conceptual Question",
-        "template": "Explain in your own words: {concept}. Give a real-world example from {ua_context}."
+    "biological_abstraction": {
+        "icon": "🔬",
+        "name": "Biological Abstraction",
+        "template": "Identify the core functional mechanism in the {concept} found in nature. What is the active principle?"
     },
-    "calculation": {
-        "icon": "🧮",
-        "name": "Calculation Problem",
-        "template": "Given the following scenario at {ua_context}: {problem_setup}. Calculate {target_variable}."
-    },
-    "diagram": {
-        "icon": "✏️",
-        "name": "Diagram Activity",
-        "template": "Draw a {diagram_type} for the following situation: {situation}."
+    "engineering_translation": {
+        "icon": "⚙️",
+        "name": "Engineering Translation",
+        "template": "How can the biological principle of {concept} be abstracted into an engineering design to solve {problem_setup}?"
     },
     "comparison": {
         "icon": "⚖️",
         "name": "Compare & Contrast",
-        "template": "Compare {concept_a} and {concept_b}. How are they similar? Different?"
+        "template": "Compare the biological structure of {concept} with a standard human engineering approach. How are they similar? Different?"
     },
     "application": {
         "icon": "🔗",
         "name": "Real-World Application",
-        "template": "How would you apply {concept} to solve a problem at {ua_context}?"
+        "template": "How would you apply {concept} to build a more sustainable or efficient product in the context of {ua_context}?"
     },
 }
 
@@ -176,57 +97,49 @@ IMAGE_PROMPTS = {
 
 
 def get_all_modules():
-    """Return all modules organized by year."""
-    return {
-        "Freshman": FRESHMAN_MODULES,
-        "Sophomore": SOPHOMORE_MODULES
-    }
+    """Return all modules."""
+    return {"Bio-Inspired Design": BIO_INSPIRED_MODULES}
 
 
-def get_module_titles(grade_level: str) -> list:
+def get_module_titles(grade_level: str = None) -> list:
     """
-    Return list of module titles for the given grade level.
+    Return list of module titles.
     Used for the module selection dropdown.
     """
-    modules = FRESHMAN_MODULES if grade_level == "Freshman" else SOPHOMORE_MODULES
-    return [f"{mod['icon']} {mod['title']}" for mod in modules.values()]
+    return [f"{mod['icon']} {mod['title']}" for mod in BIO_INSPIRED_MODULES.values()]
 
 
-def get_hooks_for_module(module_display_name: str, grade_level: str) -> list:
+def get_hooks_for_module(module_display_name: str, grade_level: str = None) -> list:
     """
     Return hook names for the given module.
     Used for the keyword multiselect.
     
     Args:
-        module_display_name: The display name with icon (e.g., "🚀 Dynamics")
-        grade_level: "Freshman" or "Sophomore"
+        module_display_name: The display name with icon (e.g., "🦴 Structural Biomimicry")
+        grade_level: Ignored in bio-inspired context
     """
     # Strip icon from display name
     title = module_display_name.split(" ", 1)[1] if " " in module_display_name else module_display_name
     
-    modules = FRESHMAN_MODULES if grade_level == "Freshman" else SOPHOMORE_MODULES
-    
-    for key, mod in modules.items():
+    for key, mod in BIO_INSPIRED_MODULES.items():
         if mod["title"] == title:
             return [hook["name"] for hook in mod["hooks"]]
     return []
 
 
-def get_module_info(module_display_name: str, grade_level: str) -> dict:
+def get_module_info(module_display_name: str, grade_level: str = None) -> dict:
     """
     Get full module information including description and all hooks.
     """
     title = module_display_name.split(" ", 1)[1] if " " in module_display_name else module_display_name
     
-    modules = FRESHMAN_MODULES if grade_level == "Freshman" else SOPHOMORE_MODULES
-    
-    for key, mod in modules.items():
+    for key, mod in BIO_INSPIRED_MODULES.items():
         if mod["title"] == title:
             return mod
     return None
 
 
-def get_keywords_for_hooks(hook_names: list, module_display_name: str, grade_level: str) -> list:
+def get_keywords_for_hooks(hook_names: list, module_display_name: str, grade_level: str = None) -> list:
     """
     Get all keywords associated with selected hooks.
     Used for building Gemini prompts.
@@ -251,7 +164,7 @@ def find_matching_hooks(query: str, pdf_text: str = None):
     query_lower = query.lower()
     matches = []
     
-    all_modules = {**FRESHMAN_MODULES, **SOPHOMORE_MODULES}
+    all_modules = BIO_INSPIRED_MODULES
     
     for module_key, module in all_modules.items():
         for hook in module["hooks"]:

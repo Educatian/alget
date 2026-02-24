@@ -6,6 +6,7 @@ import LandingPage from './pages/LandingPage'
 import MainApp from './pages/MainApp'
 import BookLayout from './pages/BookLayout'
 import DiagnosticAssessment from './pages/DiagnosticAssessment'
+import GenerativeLab from './pages/GenerativeLab'
 import GlobalClickLogger from './components/GlobalClickLogger'
 import './index.css'
 
@@ -112,6 +113,17 @@ export default function App() {
             element={
               user ? (
                 <BookLayout user={user} onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
+          />
+          {/* Generative Lab Route */}
+          <Route
+            path="/lab"
+            element={
+              user ? (
+                <GenerativeLab />
               ) : (
                 <Navigate to="/" replace />
               )

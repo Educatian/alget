@@ -1,0 +1,15 @@
+{
+    "title": "Directional Adhesion",
+    "chapter_title": "Structural Biomimicry",
+    "learning_objectives": [
+        "Understand the physics of intermolecular forces (van der Waals) in biological systems.",
+        "Examine surface area manipulation in setal structures.",
+        "Apply directional adhesion principles to dry adhesive engineering."
+    ],
+    "concept_ids": [
+        "directional_adhesion",
+        "gecko",
+        "van_der_waals",
+        "spatial_geometry"
+    ]
+}

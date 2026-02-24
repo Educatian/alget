@@ -29,16 +29,18 @@ print(f"[INFO] GEMINI_API_KEY loaded: {'Yes' if GEMINI_API_KEY else 'No'}")
 # Add current directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+from agents.orchestrator import OrchestratorAgent
+from agents.curriculum_agent import CurriculumAgent
 from logic_engine import generate_module_content
 from module_hooks import (
     get_module_titles,
     get_hooks_for_module,
     get_module_info,
-    FRESHMAN_MODULES,
-    SOPHOMORE_MODULES
+    BIO_INSPIRED_MODULES
 )
 from content_service import load_section, generate_toc, get_fallback_toc
 from grading_service import grade_problem
+from rag_service import rag_service
 
 # Initialize FastAPI
 app = FastAPI(
@@ -56,6 +58,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.on_event("startup")
+async def startup_event():
+    """Initialize systems on backend startup."""
+    print("[INFO] Application startup: Indexing Bio-Inspired curriculum for RAG...")
+    # Get absolute path to frontend/content/bio-inspired
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    content_dir = os.path.join(base_dir, "frontend", "content", "bio-inspired")
+    if os.path.exists(content_dir):
+        rag_service.load_curriculum(content_dir)
+    else:
+        print(f"[ERROR] Curriculum directory not found: {content_dir}")
+
 # ============================================================================
 # DATA MODELS
 # ============================================================================
@@ -65,6 +79,14 @@ class GenerateRequest(BaseModel):
     keywords: List[str]
     grade_level: str = "Sophomore"
     interest: str = "Sports"
+    api_key: str = ""
+
+class OrchestrateRequest(BaseModel):
+    query: str
+    grade_level: str = "Sophomore"
+    interest: str = "Robotics"
+    current_bio_context: str = ""
+    history: List[dict] = []
     api_key: str = ""
 
 class ModuleInfo(BaseModel):
@@ -92,6 +114,11 @@ class StuckEventRequest(BaseModel):
     section_id: Optional[str]
     reason: str
     timestamp: str
+
+class CurriculumGenerateRequest(BaseModel):
+    biology_context: str
+    engineering_application: str
+    api_key: str = ""
 
 # ============================================================================
 # LEGACY ENDPOINTS (Module-based generation)
@@ -157,18 +184,31 @@ async def generate_content(request: GenerateRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Generation error: {str(e)}")
 
+@app.post("/api/orchestrate")
+async def orchestrate_query(request: OrchestrateRequest):
+    """Analyze student query and delegate to specialist agents based on intent."""
+    try:
+        api_key = GEMINI_API_KEY or request.api_key
+        agent = OrchestratorAgent(api_key=api_key)
+        result = agent.orchestrate(
+            query=request.query,
+            grade_level=request.grade_level,
+            interest=request.interest,
+            current_bio_context=request.current_bio_context,
+            history=request.history
+        )
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Orchestration error: {str(e)}")
+
 
 @app.get("/api/all-modules")
 async def get_all_modules():
-    """Get all modules organized by grade level."""
+    """Get all bio-inspired modules."""
     return {
-        "Freshman": [
+        "Bio-Inspired Design": [
             {"icon": m["icon"], "title": m["title"], "description": m["description"]}
-            for m in FRESHMAN_MODULES.values()
-        ],
-        "Sophomore": [
-            {"icon": m["icon"], "title": m["title"], "description": m["description"]}
-            for m in SOPHOMORE_MODULES.values()
+            for m in BIO_INSPIRED_MODULES.values()
         ]
     }
 
@@ -261,6 +301,61 @@ T_A = 100 × 9.81 / sin(30°) = **1962 N**
             }
         return section_data
     except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/book/generate_custom_module")
+async def generate_custom_module(request: CurriculumGenerateRequest):
+    """Dynamically generate and write a full textbook module from Lab context."""
+    try:
+        api_key = GEMINI_API_KEY or request.api_key
+        agent = CurriculumAgent(api_key=api_key)
+        
+        result = agent.generate_module(
+            bio_context=request.biology_context,
+            eng_context=request.engineering_application
+        )
+        
+        if "error" in result:
+            raise HTTPException(status_code=500, detail=result["error"])
+            
+        slug = result.get("slug", "custom_module")
+        slug = "".join(x for x in slug if x.isalnum() or x in "-_").lower()
+        if not slug:
+            slug = "custom_module"
+            
+        import json
+        
+        # Define directory
+        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        chapter_dir = os.path.join(base_dir, "frontend", "content", "bio-inspired", slug, "01")
+        
+        os.makedirs(chapter_dir, exist_ok=True)
+        
+        # Write files
+        mdx_path = os.path.join(chapter_dir, "01.mdx")
+        meta_path = os.path.join(chapter_dir, "01.meta.json")
+        practice_path = os.path.join(chapter_dir, "01.practice.json")
+        
+        with open(mdx_path, "w", encoding="utf-8") as f:
+            f.write(result.get("mdx_content", "Content generation failed."))
+            
+        with open(meta_path, "w", encoding="utf-8") as f:
+            json.dump(result.get("meta", {}), f, indent=4)
+            
+        with open(practice_path, "w", encoding="utf-8") as f:
+            json.dump(result.get("practice", {"problems": []}), f, indent=4)
+            
+        return {
+            "success": True,
+            "course": "bio-inspired",
+            "chapter": slug,
+            "section": "01",
+            "message": "Module successfully synthesized."
+        }
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -608,5 +703,5 @@ Requirements:
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
 

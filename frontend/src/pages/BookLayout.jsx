@@ -74,32 +74,43 @@ export default function BookLayout({ user, onLogout }) {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-            {/* Header */}
-            <header className="bg-gradient-to-r from-[#9E1B32] via-[#7A1527] to-[#1a1a2e] text-white px-6 py-4 flex justify-between items-center">
-                <div className="flex items-center gap-4">
-                    <span className="text-2xl font-bold">📚</span>
+        <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 flex flex-col font-sans selection:bg-[#9E1B32]/20">
+            {/* Header - Premium SaaS style */}
+            <header className="bg-white/70 backdrop-blur-2xl border-b border-white/60 px-6 py-3.5 flex justify-between items-center shadow-[0_4px_30px_rgb(0,0,0,0.03)] z-50 sticky top-0">
+                <div className="flex items-center gap-4 cursor-pointer" onClick={() => navigate('/')}>
+                    <div className="w-10 h-10 rounded-xl bg-linear-to-br from-[#9E1B32] to-[#7A1527] flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-red-900/20 ring-1 ring-white/20">
+                        <span className="tracking-tight">AL</span>
+                    </div>
                     <div>
-                        <h1 className="text-lg font-bold">UA Intelligent Textbook</h1>
-                        <p className="text-white/70 text-sm">
+                        <h1 className="text-lg font-bold text-slate-900 tracking-tight leading-tight">ALGET Intelligent Textbook</h1>
+                        <p className="text-slate-500 text-xs font-medium uppercase tracking-wider mt-0.5">
                             {course.charAt(0).toUpperCase() + course.slice(1)} • Chapter {chapter} • Section {section}
                         </p>
                     </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-5">
                     <button
                         onClick={toggleRail}
-                        className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${railOpen
-                            ? 'bg-white/20 text-white'
-                            : 'bg-white/10 hover:bg-white/20 text-white/80'
+                        className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${railOpen
+                            ? 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                            : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-100'
                             }`}
                     >
                         {railOpen ? '✕ Close Help' : '💡 Get Help'}
                     </button>
-                    <span className="text-white/60 text-sm">{user?.email}</span>
+
+                    <div className="h-8 w-px bg-slate-200"></div>
+
+                    <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 font-medium text-sm">
+                            {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
+                        </div>
+                        <span className="text-slate-600 text-sm font-medium hidden sm:block">{user?.email}</span>
+                    </div>
+
                     <button
                         onClick={onLogout}
-                        className="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-lg text-sm"
+                        className="px-3 md:px-4 py-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-200/50 rounded-lg text-sm font-semibold transition-all duration-200"
                     >
                         Sign Out
                     </button>
@@ -107,9 +118,9 @@ export default function BookLayout({ user, onLogout }) {
             </header>
 
             {/* Main 3-Panel Layout */}
-            <div className="flex-1 flex overflow-hidden">
+            <div className="flex-1 flex overflow-hidden relative">
                 {/* Left Panel: TOC */}
-                <aside className="w-64 bg-white border-r border-gray-200 overflow-y-auto flex-shrink-0">
+                <aside className="w-64 bg-white/60 backdrop-blur-md border-r border-slate-200/60 overflow-y-auto shrink-0 z-10">
                     <BookToc
                         toc={toc}
                         currentChapter={chapter}
@@ -135,7 +146,7 @@ export default function BookLayout({ user, onLogout }) {
 
                 {/* Right Panel: Intel Rail (collapsible) */}
                 <aside
-                    className={`bg-white border-l border-gray-200 overflow-y-auto transition-all duration-300 ${railOpen ? 'w-80' : 'w-0'
+                    className={`bg-white/80 backdrop-blur-xl border-l border-slate-200/60 shadow-[-10px_0_30px_rgba(0,0,0,0.02)] overflow-y-auto transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] z-20 ${railOpen ? 'w-80 translate-x-0' : 'w-0 translate-x-full'
                         }`}
                 >
                     {railOpen && (
