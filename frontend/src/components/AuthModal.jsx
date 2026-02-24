@@ -167,7 +167,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                 {/* Dev Bypass */}
                 <div className="mt-4 pt-4 border-t border-gray-100 text-center">
                     <button
-                        onClick={() => onSuccess({ email: 'dev@test.com', id: 'dev-user' })}
+                        onClick={() => onSuccess({ email: 'dev@test.com', id: '00000000-0000-0000-0000-000000000000' })}
                         className="text-xs text-gray-400 hover:text-gray-600"
                     >
                         Skip for Testing →
