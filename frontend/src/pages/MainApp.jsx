@@ -10,27 +10,29 @@ export default function MainApp({ user, onLogout }) {
   const courses = [
     {
       id: 'statics',
-      title: 'Statics',
-      icon: '⚖️',
-      description: 'Study of forces on bodies at rest. Master equilibrium analysis, free body diagrams, and structural systems.',
+      title: 'ME 121: Engineering Statics',
+      icon: '⚙️',
+      description: 'Foundational U of Alabama curriculum. Study forces on bodies at rest, equilibrium analysis, and structural systems like trusses and frames.',
       topics: ['Equilibrium', 'Force Systems', 'Trusses', 'Friction'],
-      chapters: 3,
-      sections: 10,
-      duration: '7 hours',
-      level: 'Foundational',
-      gradient: 'from-slate-700 to-slate-900'
+      chapters: 10,
+      sections: 45,
+      duration: '15 weeks',
+      level: 'Core Requirement',
+      gradient: 'from-slate-700 to-slate-900',
+      badge: null
     },
     {
-      id: 'dynamics',
-      title: 'Dynamics',
-      icon: '🚀',
-      description: 'Study of bodies in motion. Analyze kinematics, kinetics, and rigid body dynamics with energy methods.',
-      topics: ['Kinematics', 'Newton\'s Laws', 'Work-Energy', 'Momentum'],
+      id: 'bio-inspired',
+      title: 'Bio-Inspired Design',
+      icon: '🌿',
+      description: 'Specialized modular sequence. Learn how nature engineers solutions through deep-ocean sponges, mangroves, and gecko adhesion.',
+      topics: ['Biomimicry', 'Natural Trusses', 'Filtration', 'Adhesion'],
       chapters: 3,
-      sections: 9,
-      duration: '7.5 hours',
-      level: 'Intermediate',
-      gradient: 'from-indigo-600 to-indigo-900'
+      sections: 12,
+      duration: 'Self-Paced',
+      level: 'Specialized Track',
+      gradient: 'from-[#4A148C] to-[#004D40]',
+      badge: 'Premium'
     }
   ]
 
@@ -125,9 +127,16 @@ export default function MainApp({ user, onLogout }) {
                   <div>
                     <span className="text-4xl mb-5 block drop-shadow-md">{course.icon}</span>
                     <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{course.title}</h3>
-                    <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-white font-semibold text-xs uppercase tracking-wider border border-white/10 shadow-sm">
-                      {course.level}
-                    </span>
+                    <div className="flex gap-2 items-center flex-wrap">
+                      <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-white font-semibold text-xs uppercase tracking-wider border border-white/10 shadow-sm">
+                        {course.level}
+                      </span>
+                      {course.badge && (
+                        <span className="inline-block px-3 py-1 bg-teal-500/80 backdrop-blur-md rounded-lg text-white font-bold text-xs uppercase tracking-wider border border-teal-300/30 shadow-sm">
+                          {course.badge}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div className="text-right text-white/95 font-medium text-sm space-y-1.5 bg-black/20 backdrop-blur-md px-4 py-3.5 rounded-xl border border-white/20 shadow-inner">
                     <div className="flex items-center gap-2 justify-end">
