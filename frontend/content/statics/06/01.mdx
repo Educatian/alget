@@ -1,0 +1,41 @@
+# 6.1 Introduction to Trusses
+
+In engineering statics, a **truss** is a structure composed of slender members joined together at their end points. Trusses are commonly used in constructing bridges, roof supports, and aerospace structures due to their high strength-to-weight ratio.
+
+### Key Assumptions
+To simplify the mathematical analysis of a truss, we make two primary assumptions:
+1. **All loadings are applied at the joints.** The weight of the members is often neglected as it is small compared to the applied forces. If a weight is to be considered, it is generally applied as a force at the structural joints.
+2. **The members are joined together by smooth pins.** Because of these assumptions, each truss member acts as a **two-force member**, meaning the force within the member is directed along the axis of the member (either in tension or compression).
+
+---
+
+<div className="my-8 p-6 bg-gradient-to-br from-purple-50 to-indigo-50 border-l-4 border-purple-600 rounded-r-xl shadow-sm">
+  <div className="flex items-center gap-3 mb-3">
+    <span className="text-2xl">🌿</span>
+    <h3 className="text-xl font-bold text-slate-800 m-0">Bio-Inspired Link: Nature's Trusses</h3>
+  </div>
+  <p className="text-slate-700 leading-relaxed font-medium mb-4">
+    Human engineers didn't invent the truss. Nature has been optimizing structural frameworks for millions of years to achieve maximum strength with minimal material. For instance, the **Venus Flower Basket** (*Euplectella aspergillum*), a deep-sea glass sponge, features a complex, hierarchical silica skeleton that perfectly mirrors a reinforced truss structure to withstand deep ocean currents. 
+  </p>
+  <p className="text-slate-700 leading-relaxed font-medium mb-4">
+    By studying the diagonal bracing and grid-like architecture of this sponge, engineers are developing new, highly resilient structures for civil and aerospace applications. Do you want to see how this translates directly into a real-world building?
+  </p>
+  <a href="/book/bio-inspired/03/01" className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-colors no-underline shadow-md shadow-purple-900/20">
+    Explore the Bio-Inspired Design Module <span className="text-xl">→</span>
+  </a>
+</div>
+
+---
+
+### The Method of Joints
+
+The **Method of Joints** allows us to determine the internal forces in the various members of a truss. Since the entire truss is in equilibrium, each individual joint must also be in equilibrium.
+
+#### Procedure for Analysis:
+1. **Draw a Free-Body Diagram (FBD)** of the entire truss.
+2. **Determine the external support reactions** by applying the equations of global equilibrium ($\Sigma F_x = 0$, $\Sigma F_y = 0$, $\Sigma M = 0$).
+3. **Select a joint** with at least one known force and at most two unknown forces.
+4. Apply the scalar equations of equilibrium ($\Sigma F_x = 0$ and $\Sigma F_y = 0$) to solve for the unknowns at that joint.
+5. Proceed to the next joint and repeat the process.
+
+**Remember:** Assume all unknown member forces are in **tension** (pulling away from the joint). If your calculated answer is negative, it means the member is actually in **compression** (pushing into the joint).

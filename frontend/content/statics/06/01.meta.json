@@ -1,0 +1,13 @@
+{
+    "title": "6.1 Introduction to Trusses",
+    "chapter_title": "Chapter 6: Structural Analysis",
+    "learning_objectives": [
+        "Define a simple truss and identify its basic elements.",
+        "State the assumptions used in truss analysis.",
+        "Apply the Method of Joints to determine forces in truss members."
+    ],
+    "concept_ids": [
+        "statics_truss_basics",
+        "statics_method_of_joints"
+    ]
+}

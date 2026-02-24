@@ -78,7 +78,7 @@ class CurriculumAgent:
                             },
                             "mdx_content": {
                                 "type": "STRING",
-                                "description": "The full instructional content formatted in Markdown. Start with an # Introduction, then ## The Biological Mechanism, then ## Engineering Translation, and finally ## Future Outlook. Use latex math formatting where appropriate, bolding, and bullet points. Make it read like an engaging textbook chapter."
+                                "description": "The full instructional content formatted in Markdown. Start with an # Introduction, then ## The Biological Mechanism, then ## Engineering Translation, then ### Professor's Implementation Guide (Domain Analogy), and finally ## Future Outlook. Use latex math formatting where appropriate, bolding, and bullet points. Make it read like an engaging textbook chapter."
                             },
                             "practice": {
                                 "type": "OBJECT",
@@ -125,6 +125,15 @@ class CurriculumAgent:
         Take the following biological context and engineering application and transform it 
         into a highly engaging, structured textbook chapter suitable for an engineering student.
         
+        CRITICAL ACCESSIBILITY REQUIREMENT (PHASE 8):
+        Traditional Mechanical Engineering professors (specializing in Thermodynamics, Dynamic Systems & Controls, or Material Manufacturing) 
+        need to be able to use this module WITHOUT extensive prior biological knowledge. 
+        
+        Therefore, you MUST include a dedicated section titled "### Professor's Implementation Guide (Domain Analogy)". 
+        In this section, explicitly map the biological concept to established ME paradigms using highly accessible analogies 
+        (e.g., comparing a biological pump to an HVAC fluid system, or a neural reflex to a PID controller). 
+        Do not over-complicate the biological taxonomy; frame it as a traditional engineering problem.
+        
         This will be deployed directly as an active module in the ALGET Intelligent Textbook.
         
         Biological Context (Mechanism):
@@ -133,5 +142,5 @@ class CurriculumAgent:
         Engineering Application (Translation):
         \"\"\"{eng_context}\"\"\"
         
-        Generate a complete module. Ensure that the 'practice' section contains at least 1 actual calculable numeric engineering problem (e.g. lift force, tension, efficiency) that stems directly from the provided engineering context. Do not invent magical physics; stick to standard engineering principles. Ensure the 'mdx_content' includes standard Markdown headers and paragraphs.
+        Generate a complete module. Ensure that the 'practice' section contains at least 1 actual calculable numeric engineering problem (e.g. lift force, tension, efficiency) that stems directly from the provided engineering context. Do not invent magical physics; stick to standard engineering principles. Ensure the 'mdx_content' includes standard Markdown headers, paragraphs, and the Professor's Implementation Guide.
         """

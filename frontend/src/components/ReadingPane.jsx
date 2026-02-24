@@ -3,6 +3,7 @@ import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+import rehypeRaw from 'rehype-raw'
 import 'katex/dist/katex.min.css'
 import PracticeBlock from './PracticeBlock'
 
@@ -78,7 +79,7 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
             >
                 <Markdown
                     remarkPlugins={[remarkGfm, remarkMath]}
-                    rehypePlugins={[rehypeKatex]}
+                    rehypePlugins={[rehypeKatex, rehypeRaw]}
                 >
                     {content || '*No content available*'}
                 </Markdown>

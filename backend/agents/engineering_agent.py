@@ -99,6 +99,17 @@ class EngineeringAgent:
         Based on the biological context below, explain how this biological mechanism can be translated 
         into an engineering solution or application, particularly relating to {interest} if possible.
         
+        CRITICAL DOMAIN APPLICABILITY REQUIREMENT:
+        To make this content highly accessible for traditional Mechanical Engineering (ME) professors, 
+        you MUST frame your engineering translation using direct, explicit analogies to core ME domains.
+        Use accessible wording that bridges the biological concept to established ME principles in:
+        1. Thermodynamics and Fluids (e.g., heat exchangers, fluid drag, boundary layers)
+        2. Dynamic Systems and Control (e.g., PID control, feedback loops, kinematics, sensors)
+        3. Material Manufacturing & Solid Mechanics (e.g., composites, structural matrices, yield strength)
+        
+        Do not overcomplicate the biological taxonomy; focus simply on how the mechanism functions as a 
+        traditional engineering system.
+        
         Use the conversation history to understand the context of the student's constraints and personalize your response accordingly.
         
         Conversation History:
@@ -185,6 +196,11 @@ class EngineeringAgent:
         Your task is to REVISE your engineering application to address their concerns,
         ensuring it is physically feasible and adheres to the actual biological mechanism.
         
+        CRITICAL DOMAIN APPLICABILITY REQUIREMENT:
+        When revising your application, continue to firmly ground your explanation using explicit analogies 
+        to traditional Mechanical Engineering principles (Thermodynamics, Dynamic Systems/Controls, Material Manufacturing).
+        Ensure the revised language is accessible to a standard ME professor without a deep biology background.
+
         Conversation History:
         {history_text if history_text else "None"}
         
