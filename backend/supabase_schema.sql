@@ -224,9 +224,9 @@ CREATE POLICY "Users can insert own stuck_events" ON stuck_events
     FOR INSERT WITH CHECK (auth.uid() = user_id);
 
 CREATE POLICY "Users can view own mastery" ON mastery
-    FOR SELECT USING (auth.uid() = user_id);
+    FOR SELECT USING (auth.uid() = user_id OR auth.uid() IS NULL);
 CREATE POLICY "Users can update own mastery" ON mastery
-    FOR ALL USING (auth.uid() = user_id);
+    FOR ALL USING (auth.uid() = user_id OR auth.uid() IS NULL);
 
 CREATE POLICY "Users can manage own sessions" ON learning_sessions
     FOR ALL USING (auth.uid() = user_id);

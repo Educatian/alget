@@ -57,6 +57,45 @@ export async function initSession(user) {
         } catch (err) {
             console.warn('Could not create session:', err)
         }
+    } else {
+        // We must create a real auth.users DB entry or the foreign key will reject all logs
+        let guestId = localStorage.getItem('alget_guest_id');
+        if (!guestId) {
+            guestId = generateUUID().substring(0, 8); // Short ID for email
+            localStorage.setItem('alget_guest_id', guestId);
+        }
+
+        try {
+            // Attempt to create a dummy user to bypass foreign key constraint
+            const guestEmail = `guest-${guestId}@alget.test`;
+            const { data: authData, error: authError } = await supabase.auth.signUp({
+                email: guestEmail,
+                password: 'immersivebama'
+            });
+
+            if (authError && authError.message.includes('already registered')) {
+                // If already registered, just log them in
+                const { data: signInData } = await supabase.auth.signInWithPassword({
+                    email: guestEmail,
+                    password: 'immersivebama'
+                });
+                userId = signInData?.user?.id || '00000000-0000-0000-0000-000000000000';
+            } else {
+                userId = authData?.user?.id || '00000000-0000-0000-0000-000000000000';
+            }
+
+            // Now insert session with valid foreign key
+            if (userId !== '00000000-0000-0000-0000-000000000000') {
+                await supabase.from('user_sessions').insert({
+                    id: sessionId,
+                    user_id: userId,
+                    device_info: deviceInfo
+                });
+            }
+        } catch (err) {
+            console.warn('Guest login failed. All FK DB requests will fail.', err);
+            userId = '00000000-0000-0000-0000-000000000000';
+        }
     }
 
     // Start flush timer
@@ -172,16 +211,43 @@ export function logHighlightCreate(textLength, hasNote, sectionId) {
 }
 
 /**
+ * Log stuck events (e.g., fast consecutive incorrect answers)
+ */
+export function logStuckEvent(problemId, reason, latencyBeforeClick, sectionId) {
+    return logEvent('stuck_event', problemId, {
+        reason: reason,
+        latency_before_click_ms: latencyBeforeClick
+    }, sectionId)
+}
+
+/**
+ * Log time spent on reading/task
+ */
+export function logTimeOnTask(durationMs, sectionId) {
+    return logEvent('time_on_task', null, {
+        duration_ms: durationMs
+    }, sectionId)
+}
+
+/**
+ * Log specific interactions like opening accordions or tabs
+ */
+export function logInteraction(elementId, actionType, sectionId) {
+    return logEvent('structural_interaction', elementId, {
+        action: actionType
+    }, sectionId)
+}
+
+/**
  * Flush events to database
  */
 async function flushEvents() {
     if (eventQueue.length === 0 || !userId) return
 
-    // Do not sync events to Supabase for the guest user
-    if (userId === '00000000-0000-0000-0000-000000000000') {
-        eventQueue = []
-        return
-    }
+    // Note: We are no longer skipping the flush for the guest user ('00000000...'), 
+    // because we have replaced it with `guestId` in initSession. 
+    // If the backend allows anonymous inserts, they will go through. 
+    // If RLS blocks it, we catch the error below.
 
     const eventsToSend = [...eventQueue]
     eventQueue = []

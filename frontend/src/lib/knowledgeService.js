@@ -38,12 +38,12 @@ export const updateMastery = async (conceptId, isCorrect) => {
     try {
         // 1. Get current user
         const { data: { session } } = await supabase.auth.getSession();
-        if (!session || !session.user) {
-            console.warn('No active user session for mastery update');
+        let userId = session?.user?.id;
+
+        if (!userId) {
+            console.warn('No active user session for mastery update. Mastery will not be saved.');
             return null;
         }
-
-        const userId = session.user.id;
 
         // 2. Fetch existing mastery record
         const { data: existingRecords, error: fetchError } = await supabase
