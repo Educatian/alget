@@ -29,9 +29,13 @@ export default function LandingPage({ onLogin }) {
     ]
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-[#1a1a2e] text-white overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#1e1b2e] to-[#120f1c] text-white overflow-hidden relative">
             {/* Gear Animation Background */}
             <GearAnimation />
+            <div className="absolute top-0 inset-x-0 h-[800px] overflow-hidden pointer-events-none z-0">
+                <div className="glow-orb-dark bg-indigo-500/30 w-[40rem] h-[40rem] -top-40 -left-20 animate-float-slow"></div>
+                <div className="glow-orb-dark bg-[#9E1B32]/30 w-[35rem] h-[35rem] top-20 -right-20 animate-float-delayed"></div>
+            </div>
 
             {/* Navigation */}
             <nav className="relative z-10 flex justify-between items-center px-8 py-6">
@@ -53,12 +57,12 @@ export default function LandingPage({ onLogin }) {
                     🏈 University of Alabama • Mechanical Engineering
                 </div>
 
-                <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
-                    <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight drop-shadow-2xl">
+                    <span className="bg-gradient-to-r from-white via-indigo-50 to-slate-300 bg-clip-text text-transparent">
                         AI-Powered Learning
                     </span>
                     <br />
-                    <span className="text-[#C41E3A]">for Engineers</span>
+                    <span className="animate-gradient-x bg-gradient-to-r from-[#ff4d6d] via-[#9E1B32] to-[#ff4d6d] bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,77,109,0.5)]">for Engineers</span>
                 </h1>
 
                 <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
@@ -69,7 +73,7 @@ export default function LandingPage({ onLogin }) {
                 <div className="flex justify-center gap-4">
                     <button
                         onClick={() => setAuthOpen(true)}
-                        className="px-8 py-4 bg-gradient-to-r from-[#9E1B32] to-[#C41E3A] rounded-xl font-semibold text-lg shadow-lg shadow-red-900/30 hover:shadow-xl hover:-translate-y-1 transition-all"
+                        className="px-8 py-4 bg-gradient-to-r from-[#9E1B32] to-[#C41E3A] rounded-xl font-bold text-lg shadow-[0_0_30px_rgba(158,27,50,0.5)] hover:shadow-[0_0_50px_rgba(196,30,58,0.7)] hover:-translate-y-1 transition-all border border-white/20"
                     >
                         Get Started Free
                     </button>
@@ -86,11 +90,11 @@ export default function LandingPage({ onLogin }) {
                     {features.map((feature, i) => (
                         <div
                             key={i}
-                            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all"
+                            className="glass-panel border-white/10 bg-white/5 p-6 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-300 group cursor-pointer"
                         >
-                            <div className="text-4xl mb-4">{feature.icon}</div>
-                            <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                            <p className="text-gray-400 text-sm">{feature.description}</p>
+                            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 drop-shadow-md">{feature.icon}</div>
+                            <h3 className="text-lg font-bold mb-2 text-indigo-50 leading-tight">{feature.title}</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed font-medium">{feature.description}</p>
                         </div>
                     ))}
                 </div>

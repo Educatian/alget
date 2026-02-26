@@ -43,8 +43,8 @@ export default function MainApp({ user, onLogout }) {
   return (
     <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 font-sans selection:bg-[#9E1B32]/20">
       {/* Premium Header */}
-      <header className="bg-white/70 backdrop-blur-2xl border-b border-white/60 shadow-[0_4px_30px_rgb(0,0,0,0.03)] sticky top-0 z-50 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
+      <header className="glass-panel border-b-0 rounded-none rounded-b-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] sticky top-0 z-50 transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 bg-white/20">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4 group cursor-pointer">
               <div className="w-11 h-11 bg-linear-to-br from-[#9E1B32] to-[#7A1527] rounded-xl flex items-center justify-center shadow-lg shadow-red-900/20">
@@ -88,10 +88,11 @@ export default function MainApp({ user, onLogout }) {
         {/* Generative Lab CTA - Glassmorphism */}
         <div
           onClick={() => navigate('/lab')}
-          className="mb-16 relative overflow-hidden glass-panel p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between cursor-pointer group hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-900/10 border-purple-100/50 transition-all duration-500 ease-out"
+          className="mb-16 relative overflow-hidden glass-panel p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between cursor-pointer group hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(147,51,234,0.15)] border border-purple-200/50 transition-all duration-500 ease-out"
         >
           {/* Subtle background gradient */}
-          <div className="absolute inset-0 bg-linear-to-r from-purple-50/50 via-white to-blue-50/50 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-linear-to-r from-purple-50/80 via-white to-blue-50/80 pointer-events-none"></div>
+          <div className="absolute -top-40 -left-20 w-[40rem] h-[40rem] bg-purple-400/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-purple-400/20 transition-colors duration-500 animate-float-slow"></div>
 
           <div className="relative z-10 w-full mb-6 md:mb-0">
             <div className="flex items-center gap-3 mb-3">
@@ -118,11 +119,11 @@ export default function MainApp({ user, onLogout }) {
             <div
               key={course.id}
               onClick={() => handleCourseSelect(course.id)}
-              className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:border-slate-300 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 cursor-pointer flex flex-col"
+              className="group glass-panel overflow-hidden hover:border-indigo-200/50 hover:shadow-[0_24px_50px_rgba(15,23,42,0.12)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col relative"
             >
               {/* Course Header */}
-              <div className={`bg-linear-to-br ${course.gradient} p-8 relative overflow-hidden`}>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-10 -mt-10 blur-2xl pointer-events-none"></div>
+              <div className={`bg-linear-to-br ${course.gradient} p-8 relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500`}>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-10 -mt-10 blur-2xl pointer-events-none group-hover:bg-white/30 transition-colors max-w-none"></div>
                 <div className="flex items-start justify-between relative z-10">
                   <div>
                     <span className="text-4xl mb-5 block drop-shadow-md">{course.icon}</span>
@@ -192,7 +193,7 @@ export default function MainApp({ user, onLogout }) {
         </div>
 
         {/* Features Section */}
-        <div className="glass-panel p-8 lg:p-10 mb-8 border-slate-200">
+        <div className="glass-panel p-8 lg:p-10 mb-8 border border-white/60 bg-white/40">
           <h3 className="text-xl font-bold text-slate-900 mb-8 tracking-tight">Platform Capabilities</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="flex flex-col gap-4">
