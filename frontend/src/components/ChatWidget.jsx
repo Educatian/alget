@@ -164,9 +164,9 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
             {/* Floating Bubble Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 z-50 hover:scale-105 active:scale-95 ${isOpen
-                    ? 'bg-slate-700 hover:bg-slate-800'
-                    : 'bg-linear-to-br from-[#9E1B32] to-[#7A1527] hover:shadow-red-900/30'
+                className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-[0_8px_30px_rgba(158,27,50,0.4)] flex items-center justify-center transition-all duration-300 z-50 hover:scale-110 active:scale-95 ${isOpen
+                    ? 'bg-slate-800 hover:bg-slate-900 shadow-[0_8px_30px_rgba(0,0,0,0.3)]'
+                    : 'bg-linear-to-br from-[#9E1B32] to-[#C41E3A] hover:shadow-[0_12px_40px_rgba(196,30,58,0.6)]'
                     }`}
             >
                 {isOpen ? (
@@ -182,10 +182,10 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="fixed bottom-24 right-6 w-[420px] h-[600px] glass-panel flex flex-col overflow-hidden z-50 animate-fade-in ring-1 ring-black/5 shadow-2xl">
+                <div className="fixed bottom-24 right-6 w-[420px] h-[600px] glass-panel border border-white/60 shadow-[0_24px_60px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden z-50 animate-fade-in origin-bottom-right">
                     {/* Header */}
                     <div className="bg-linear-to-r from-slate-900 to-slate-800 px-6 py-5 flex items-center justify-between shadow-md relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-40 h-40 bg-[#9E1B32]/20 rounded-full -mr-16 -mt-16 blur-2xl pointer-events-none"></div>
+                        <div className="absolute top-0 right-0 w-40 h-40 bg-[#9E1B32]/30 rounded-full -mr-16 -mt-16 blur-[40px] pointer-events-none animate-float-slow"></div>
                         <div className="flex items-center gap-4 relative z-10">
                             <div className="w-10 h-10 rounded-full bg-linear-to-br from-[#9E1B32] to-[#7A1527] flex items-center justify-center text-xl shadow-inner border border-white/10">
                                 🐘
@@ -274,7 +274,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     </div>
 
                     {/* Input */}
-                    <div className="p-4 bg-white/80 backdrop-blur-md border-t border-slate-200/60 shadow-[0_-4px_20px_rgb(0,0,0,0.02)]">
+                    <div className="p-4 bg-white/60 backdrop-blur-3xl border-t border-white/80 shadow-[0_-10px_30px_rgba(0,0,0,0.03)] z-10">
                         <div className="flex gap-3 relative">
                             <input
                                 type="text"
@@ -282,7 +282,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 onChange={(e) => setInputValue(e.target.value)}
                                 onKeyPress={handleKeyPress}
                                 placeholder="Type your question..."
-                                className="flex-1 pl-5 pr-12 py-3 bg-slate-100/80 border border-slate-200 focus:bg-white rounded-full text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#9E1B32]/30 focus:border-[#9E1B32]/30 transition-all placeholder:text-slate-400"
+                                className="flex-1 pl-5 pr-12 py-3 bg-white/80 border border-white focus:bg-white rounded-full text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#9E1B32]/40 shadow-inner transition-all placeholder:text-slate-400"
                             />
                             <button
                                 onClick={sendMessage}

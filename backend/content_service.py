@@ -119,8 +119,8 @@ def generate_toc(course: str) -> dict:
         
         # Scan section files
         for file in sorted(chapter_dir.iterdir()):
-            if file.suffix == '.meta.json':
-                section_id = file.stem.replace('.meta', '')
+            if file.name.endswith('.meta.json'):
+                section_id = file.name.replace('.meta.json', '')
                 meta = load_section_meta(course, chapter_id, section_id)
                 
                 if meta:
@@ -152,7 +152,7 @@ def generate_toc(course: str) -> dict:
 def get_fallback_toc(course: str) -> dict:
     """Get fallback TOC structure for development."""
     
-    if course == "bio-inspired" or True: # Default fallback to bio-inspired design
+    if course == "bio-inspired": # Default fallback to bio-inspired design
         return {
             "course": "bio-inspired",
             "title": "Bio-Inspired Design",

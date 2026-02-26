@@ -76,7 +76,7 @@ export default function BookLayout({ user, onLogout }) {
     return (
         <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 flex flex-col font-sans selection:bg-[#9E1B32]/20">
             {/* Header - Premium SaaS style */}
-            <header className="bg-white/70 backdrop-blur-2xl border-b border-white/60 px-6 py-3.5 flex justify-between items-center shadow-[0_4px_30px_rgb(0,0,0,0.03)] z-50 sticky top-0">
+            <header className="glass-panel border-x-0 border-t-0 rounded-none shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-6 py-3.5 flex justify-between items-center z-50 sticky top-0 bg-white/30 backdrop-blur-3xl">
                 <div className="flex items-center gap-4 cursor-pointer" onClick={() => navigate('/')}>
                     <div className="w-10 h-10 rounded-xl bg-linear-to-br from-[#9E1B32] to-[#7A1527] flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-red-900/20 ring-1 ring-white/20">
                         <span className="tracking-tight">AL</span>
@@ -120,7 +120,7 @@ export default function BookLayout({ user, onLogout }) {
             {/* Main 3-Panel Layout */}
             <div className="flex-1 flex overflow-hidden relative">
                 {/* Left Panel: TOC */}
-                <aside className="w-64 bg-white/60 backdrop-blur-md border-r border-slate-200/60 overflow-y-auto shrink-0 z-10">
+                <aside className="w-64 bg-white/40 backdrop-blur-3xl border-r border-white/60 shadow-[10_0_30px_rgba(0,0,0,0.02)] overflow-y-auto shrink-0 z-10">
                     <BookToc
                         toc={toc}
                         currentChapter={chapter}
@@ -146,7 +146,7 @@ export default function BookLayout({ user, onLogout }) {
 
                 {/* Right Panel: Intel Rail (collapsible) */}
                 <aside
-                    className={`bg-white/80 backdrop-blur-xl border-l border-slate-200/60 shadow-[-10px_0_30px_rgba(0,0,0,0.02)] overflow-y-auto transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] z-20 ${railOpen ? 'w-80 translate-x-0' : 'w-0 translate-x-full'
+                    className={`bg-white/50 backdrop-blur-3xl border-l border-white/60 shadow-[-20px_0_40px_rgba(0,0,0,0.05)] overflow-y-auto transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] z-20 ${railOpen ? 'w-80 translate-x-0' : 'w-0 translate-x-full'
                         }`}
                 >
                     {railOpen && (
