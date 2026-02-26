@@ -120,6 +120,20 @@ body {
   }
 }
 
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%) scaleX(0.2);
+  }
+
+  50% {
+    transform: translateX(50%) scaleX(1);
+  }
+
+  100% {
+    transform: translateX(200%) scaleX(0.2);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.2s ease-out;
 }
