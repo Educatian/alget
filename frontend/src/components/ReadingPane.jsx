@@ -7,10 +7,41 @@ import rehypeRaw from 'rehype-raw'
 import 'katex/dist/katex.min.css'
 import PracticeBlock from './PracticeBlock'
 import KnowledgeCheck from './KnowledgeCheck'
+import { logTimeOnTask, logInteraction } from '../lib/loggingService'
+import { useEffect, useRef } from 'react'
 
 export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
+    const startTimeRef = useRef(Date.now())
+
+    // Section ID computation
+    const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null;
+
+    useEffect(() => {
+        // Reset timer when section changes
+        startTimeRef.current = Date.now();
+
+        return () => {
+            // Log time on task when component unmounts or section changes
+            if (sectionId) {
+                const durationMs = Date.now() - startTimeRef.current;
+                logTimeOnTask(durationMs, sectionId);
+            }
+        }
+    }, [sectionId]);
+
+    const handleToggleSimulation = () => {
+        const newState = !showSimulation;
+        setShowSimulation(newState);
+        logInteraction('simulation_accordion', newState ? 'opened' : 'closed', sectionId);
+    };
+
+    const handleToggleIllustration = () => {
+        const newState = !showIllustration;
+        setShowIllustration(newState);
+        logInteraction('illustration_accordion', newState ? 'opened' : 'closed', sectionId);
+    };
 
     if (loading) {
         return (
@@ -122,7 +153,7 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
                     {simulation && (
                         <div className="content-card overflow-hidden">
                             <button
-                                onClick={() => setShowSimulation(!showSimulation)}
+                                onClick={handleToggleSimulation}
                                 className="w-full flex items-center justify-between px-5 py-4 bg-linear-to-r from-slate-50 to-white hover:bg-slate-50 transition-colors"
                             >
                                 <span className="flex items-center gap-3 font-bold text-slate-800">
@@ -154,7 +185,7 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
                     {illustration && (
                         <div className="content-card overflow-hidden">
                             <button
-                                onClick={() => setShowIllustration(!showIllustration)}
+                                onClick={handleToggleIllustration}
                                 className="w-full flex items-center justify-between px-5 py-4 bg-linear-to-r from-slate-50 to-white hover:bg-slate-50 transition-colors"
                             >
                                 <span className="flex items-center gap-3 font-bold text-slate-800">

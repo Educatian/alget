@@ -7,6 +7,7 @@ import MainApp from './pages/MainApp'
 import BookLayout from './pages/BookLayout'
 import DiagnosticAssessment from './pages/DiagnosticAssessment'
 import GenerativeLab from './pages/GenerativeLab'
+import AnalyticsDashboard from './pages/AnalyticsDashboard'
 import GlobalClickLogger from './components/GlobalClickLogger'
 import './index.css'
 
@@ -128,6 +129,11 @@ export default function App() {
                 <Navigate to="/" replace />
               )
             }
+          />
+          {/* Analytics Route */}
+          <Route
+            path="/analytics"
+            element={<AnalyticsDashboard user={user} />}
           />
         </Routes>
       </GlobalClickLogger>

@@ -5,7 +5,7 @@ import ReadingPane from '../components/ReadingPane'
 import IntelRail from '../components/IntelRail'
 import ChatWidget from '../components/ChatWidget'
 import HighlightableContent from '../components/HighlightableContent'
-import { logPageView } from '../lib/loggingService'
+import { logPageView, logStuckEvent } from '../lib/loggingService'
 import API_BASE from '../lib/apiConfig'
 import '../index.css'
 
@@ -56,7 +56,7 @@ export default function BookLayout({ user, onLogout }) {
         navigate(`/book/${course}/${ch}/${sec}`)
     }
 
-    // Handle stuck event (opens Rail automatically)
+    // Handle stuck event (opens Rail automatically and logs to DB)
     const handleStuckEvent = (event) => {
         setStuckEvent(event)
         setRailContext({
@@ -66,6 +66,7 @@ export default function BookLayout({ user, onLogout }) {
             reason: event.reason
         })
         setRailOpen(true)
+        logStuckEvent(event.problemId, event.reason, 0, `${course}/${chapter}/${section}`)
     }
 
     // Toggle Rail manually
