@@ -41,6 +41,7 @@ from module_hooks import (
 from content_service import load_section, generate_toc, get_fallback_toc
 from grading_service import grade_problem
 from rag_service import rag_service
+from agents.assessment_agent import AssessmentAgent
 
 # Initialize FastAPI
 app = FastAPI(
@@ -125,6 +126,12 @@ class CurriculumGenerateRequest(BaseModel):
     engineering_application: str
     api_key: str = ""
 
+class AssessmentRequest(BaseModel):
+    section_title: str
+    biology_context: str
+    engineering_context: str
+    api_key: str = ""
+
 # ============================================================================
 # LEGACY ENDPOINTS (Module-based generation)
 # ============================================================================
@@ -206,6 +213,24 @@ async def orchestrate_query(request: OrchestrateRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Orchestration error: {str(e)}")
 
+@app.post("/api/generate_assessment")
+async def generate_assessment(request: AssessmentRequest):
+    """Generate a formative assessment (MCQ) for the given context."""
+    try:
+        api_key = GEMINI_API_KEY or request.api_key
+        agent = AssessmentAgent(api_key=api_key)
+        
+        # We need to make sure we parse the response which might be wrapped in JSON markdown blocks
+        # or it might just be the dict already
+        
+        result_json = agent.generate_assessment(
+            bio_context=request.biology_context,
+            eng_context=request.engineering_context,
+            section_title=request.section_title
+        )
+        return result_json
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Assessment generation error: {str(e)}")
 
 @app.get("/api/all-modules")
 async def get_all_modules():

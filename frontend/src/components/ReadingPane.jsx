@@ -6,6 +6,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import 'katex/dist/katex.min.css'
 import PracticeBlock from './PracticeBlock'
+import KnowledgeCheck from './KnowledgeCheck'
 
 export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
     const [showSimulation, setShowSimulation] = useState(false)
@@ -13,8 +14,37 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center h-full">
-                <div className="text-gray-400 text-lg">Loading section...</div>
+            <div className="flex flex-col items-center justify-center h-full min-h-[60vh] animate-fade-in relative overflow-hidden text-center px-4">
+                {/* Background glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#9E1B32]/10 rounded-full blur-2xl"></div>
+
+                <div className="relative z-10">
+                    {/* Animated Engine Icon */}
+                    <div className="w-20 h-20 mx-auto mb-8 bg-white/50 backdrop-blur-md border border-white/60 shadow-xl rounded-2xl flex items-center justify-center relative shadow-indigo-900/10 drop-shadow-xl overflow-hidden">
+                        <span className="text-4xl relative z-10 origin-center animate-[spin_4s_linear_infinite]">⚙️</span>
+                        <div className="absolute inset-0 bg-linear-to-tr from-[#9E1B32]/10 to-indigo-500/10 animate-pulse"></div>
+                    </div>
+
+                    <h2 className="text-2xl font-bold text-slate-800 mb-3 tracking-tight">
+                        Waking up the AI Engine...
+                    </h2>
+
+                    <p className="text-slate-500 max-w-sm mx-auto mb-8 text-[15px] leading-relaxed font-medium">
+                        Since this is your first visit in a while, our backend is spinning up. This usually takes about <span className="text-indigo-600 font-semibold">30 to 60 seconds</span>.
+                    </p>
+
+                    {/* Progress indicator */}
+                    <div className="w-64 mx-auto space-y-2">
+                        <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden shadow-inner">
+                            <div className="h-full bg-linear-to-r from-indigo-500 via-[#9E1B32] to-[#ff4d6d] w-1/2 rounded-full animate-[progress-indeterminate_2s_ease-in-out_infinite] shadow-[0_0_10px_rgba(158,27,50,0.5)]"></div>
+                        </div>
+                        <div className="flex justify-between text-xs font-semibold uppercase tracking-widest text-slate-400 px-1">
+                            <span>Initializing</span>
+                            <span className="text-[#9E1B32] animate-pulse">Running</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -173,6 +203,16 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
                     </div>
                 </div>
             )}
+
+            {/* Divider */}
+            <hr className="border-gray-200 my-8" />
+
+            {/* Knowledge Check (Formative Assessment) */}
+            <KnowledgeCheck
+                bioContext={content}
+                engContext={meta?.description}
+                sectionTitle={meta?.title}
+            />
 
             {/* Divider */}
             <hr className="border-gray-200 my-8" />

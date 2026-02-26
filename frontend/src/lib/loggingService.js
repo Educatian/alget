@@ -102,7 +102,8 @@ export function logEvent(eventType, eventTarget, eventData = {}, sectionId = nul
  */
 export function logClick(target, x, y, sectionId = null) {
     const now = Date.now()
-    const targetId = target?.dataset?.testid || target?.id || target?.className?.split(' ')[0] || 'unknown'
+    const targetClassName = typeof target?.className === 'string' ? target.className : '';
+    const targetId = target?.dataset?.testid || target?.id || targetClassName.split(' ')[0] || 'unknown'
 
     // Merge consecutive clicks on same target
     if (targetId === lastClickTarget && now - lastClickTime < CLICK_MERGE_MS) {
