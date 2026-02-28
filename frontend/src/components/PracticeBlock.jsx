@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
-import { detectStuckEvent, STUCK_RULES } from '../lib/stuckDetector'
 import API_BASE from '../lib/apiConfig'
+import { fuseTelemetry } from '../lib/knowledgeService'
+
+const STUCK_RULES = {
+    IDLE_TIMEOUT_MS: 90000,
+    CONSECUTIVE_WRONG: 2,
+    HINT_CLICK_COUNT: 2
+}
 
 export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -100,6 +106,17 @@ export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
         setHintCount(newCount)
         setShowHint(true)
 
+        // Dispatch an event to open ChatWidget for Socratic hinting
+        const event = new CustomEvent('open-chat', {
+            detail: { message: `I'm struggling with this problem: "${currentProblem?.statement || currentProblem?.stem}". Can you give me a specific Socratic hint to guide me without giving away the answer?` }
+        });
+        window.dispatchEvent(event);
+
+        // Record Soft Evidence: Hint Request (Increases slip/transit)
+        if (currentProblem && currentProblem.concept_id) {
+            fuseTelemetry(currentProblem.concept_id, 'hint_request', 1.0).catch(console.error);
+        }
+
         // Check if stuck (2 consecutive hints)
         if (newCount >= STUCK_RULES.HINT_CLICK_COUNT) {
             onStuckEvent?.({
@@ -150,7 +167,7 @@ export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
             {/* Progress Bar */}
             <div className="bg-gray-200 rounded-full h-2 overflow-hidden">
                 <div
-                    className="bg-gradient-to-r from-[#9E1B32] to-[#7A1527] h-full transition-all duration-300"
+                    className="bg-linear-to-r from-[#9E1B32] to-[#7A1527] h-full transition-all duration-300"
                     style={{ width: `${(totalAnswered / problems.length) * 100}%` }}
                 />
             </div>

@@ -8,6 +8,7 @@ export function useTextSelection({ sectionId, userId }) {
     const [selection, setSelection] = useState(null)
     const [highlights, setHighlights] = useState([])
     const [popularHighlights, setPopularHighlights] = useState([])
+    const [peerHighlights, setPeerHighlights] = useState([])
     const [loading, setLoading] = useState(false)
 
     // Fetch existing highlights for this section
@@ -28,6 +29,19 @@ export function useTextSelection({ sectionId, userId }) {
 
                     if (!error && userHighlights) {
                         setHighlights(userHighlights)
+                    }
+
+                    // Fetch peer highlights
+                    const { data: others } = await supabase
+                        .from('highlights')
+                        .select('*')
+                        .eq('section_id', sectionId)
+                        .neq('user_id', userId)
+                        .order('created_at', { ascending: false })
+                        .limit(50) // limit so we don't fetch too many
+
+                    if (others) {
+                        setPeerHighlights(others)
                     }
                 }
 
@@ -172,6 +186,7 @@ export function useTextSelection({ sectionId, userId }) {
     return {
         selection,
         highlights,
+        peerHighlights,
         popularHighlights,
         loading,
         handleSelection,

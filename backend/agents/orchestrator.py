@@ -44,7 +44,7 @@ class OrchestratorAgent:
         self.illustration_agent = IllustrationAgent(api_key)
         self.scaffolding_agent = ScaffoldingAgent(api_key)
 
-    def orchestrate(self, query: str, grade_level: str, interest: str, current_bio_context: str = "", history: list = None) -> dict:
+    def orchestrate(self, query: str, course: str = "bio-inspired", current_content: str = "", history: list = None, is_highlight: bool = False) -> dict:
         """
         Main orchestration method:
         1. Analyzes intent.
@@ -62,6 +62,26 @@ class OrchestratorAgent:
                 "summary": "API Key is missing."
             }
             
+        if is_highlight:
+            logger.info("Highlight detected. Applying Explain First friction gate...")
+            import re
+            match = re.search(r'Explain this passage: "(.*?)"', query)
+            passage = match.group(1) if match else query
+            short_passage = passage[:40] + "..." if len(passage) > 40 else passage
+            
+            return {
+                "intent": "help",
+                "scaffolding": {
+                    "misconception_identified": "Student hasn't attempted to formulate their own understanding of the highlight.",
+                    "encouraging_remark": "That's a great passage to focus on! Before I break it down, I'd love to hear your initial thoughts.",
+                    "guiding_questions": [
+                        f"Based on what you've read so far, how would you interpret '{short_passage}' in your own words?",
+                        "How might this connect to the main concepts we've been discussing?"
+                    ]
+                },
+                "summary": "Explain First gate triggered for highlight."
+            }
+            
         logger.info(f"Processing query: {query}")
         
         # Determine Intent
@@ -70,11 +90,23 @@ class OrchestratorAgent:
         
         # Retrieve context from RAG Service
         rag_contexts = rag_service.retrieve_context(query, top_k=2)
-        background_knowledge = "\\n\\n".join([
-            f"Excerpt from {c['metadata'].get('filename', 'Textbook')}:\\n{c['content']}" 
+        background_knowledge = "\n\n".join([
+            f"Excerpt from {c['metadata'].get('filename', 'Textbook')}:\n{c['content']}" 
             for c in rag_contexts
         ]) if rag_contexts else ""
         
+        # Branch for non-bio courses
+        if course != "bio-inspired":
+            logger.info(f"Routing to general_tutor for course: {course}")
+            final_summary_dict = self.tutor_agent.general_tutor(query, course, current_content, background_knowledge, history)
+            return {
+                "intent": "learn", # Fallback to learn card for generic content
+                "query": query,
+                "summary": final_summary_dict
+            }
+        
+        current_bio_context = current_content # Temporary backwards compatibility
+
         if intent == "evaluate":
             evaluation = self.evaluator_agent.evaluate_design(query, current_bio_context, history=history)
             return {

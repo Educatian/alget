@@ -147,6 +147,53 @@ export default function DiagnosticAssessment() {
                 correct: 2,
                 prereqFor: ['03/02', '03/03']
             }
+        ],
+        'inst-design': [
+            {
+                id: 1,
+                concept: 'learning theories',
+                stem: 'Which learning theory focuses primarily on observable behaviors rather than internal mental states?',
+                options: ['Cognitivism', 'Constructivism', 'Behaviorism', 'Connectivism'],
+                correct: 2,
+                prereqFor: ['01/01', '01/02']
+            },
+            {
+                id: 2,
+                concept: 'instructional design models',
+                stem: 'What does the acronym ADDIE stand for?',
+                options: [
+                    'Analyze, Design, Develop, Implement, Evaluate',
+                    'Assess, Draft, Deploy, Interact, Examine',
+                    'Acquire, Discuss, Discover, Internalize, Expand',
+                    'Align, Deliver, Design, Innovate, Educate'
+                ],
+                correct: 0,
+                prereqFor: ['01/01']
+            },
+            {
+                id: 3,
+                concept: 'cognitive load',
+                stem: 'Extraneous cognitive load is caused by:',
+                options: ['The inherent difficulty of the material', 'Poor instructional design and presentation', 'The learner\'s prior knowledge', 'Schema construction'],
+                correct: 1,
+                prereqFor: ['01/02']
+            },
+            {
+                id: 4,
+                concept: 'schema theory',
+                stem: 'A key goal of instruction according to cognitivism is to help learners build and refine:',
+                options: ['Stimulus-response associations', 'Behavioral conditioning', 'Mental schemas', 'Rote memorization pathways'],
+                correct: 2,
+                prereqFor: ['01/02']
+            },
+            {
+                id: 5,
+                concept: 'constructivism',
+                stem: 'In a constructivist classroom, the teacher acts primarily as a:',
+                options: ['Transmitter of knowledge', 'Strict disciplinarian', 'Passive observer', 'Facilitator or guide'],
+                correct: 3,
+                prereqFor: ['01/03']
+            }
         ]
     }
 
@@ -235,10 +282,10 @@ export default function DiagnosticAssessment() {
                     <div className="bg-white rounded-xl border border-gray-200 p-8 mb-8">
                         <div className="text-center mb-8">
                             <div className={`inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 ${results.percentage >= 70 ? 'bg-emerald-100' :
-                                    results.percentage >= 40 ? 'bg-amber-100' : 'bg-red-100'
+                                results.percentage >= 40 ? 'bg-amber-100' : 'bg-red-100'
                                 }`}>
                                 <span className={`text-3xl font-bold ${results.percentage >= 70 ? 'text-emerald-600' :
-                                        results.percentage >= 40 ? 'text-amber-600' : 'text-red-600'
+                                    results.percentage >= 40 ? 'text-amber-600' : 'text-red-600'
                                     }`}>
                                     {results.percentage}%
                                 </span>
@@ -294,7 +341,7 @@ export default function DiagnosticAssessment() {
                         {/* CTA */}
                         <button
                             onClick={handleStartLearning}
-                            className="w-full py-3 bg-[#9E1B32] text-white rounded-lg font-medium hover:bg-[#7A1527] transition-colors"
+                            className="w-full py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
                         >
                             Start Learning →
                         </button>
@@ -305,7 +352,7 @@ export default function DiagnosticAssessment() {
                         Want to try again?{' '}
                         <button
                             onClick={() => { setShowResults(false); setCurrentQuestion(0); setAnswers({}); }}
-                            className="text-[#9E1B32] hover:underline"
+                            className="text-indigo-600 hover:underline"
                         >
                             Retake Assessment
                         </button>
@@ -353,7 +400,7 @@ export default function DiagnosticAssessment() {
                     </div>
                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                         <div
-                            className="h-full bg-[#9E1B32] transition-all duration-300"
+                            className="h-full bg-indigo-600 transition-all duration-300"
                             style={{ width: `${((currentQuestion + 1) / totalQuestions) * 100}%` }}
                         />
                     </div>
@@ -377,11 +424,11 @@ export default function DiagnosticAssessment() {
                                 key={idx}
                                 onClick={() => handleAnswer(idx)}
                                 className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all ${answers[currentQuestion] === idx
-                                        ? 'border-[#9E1B32] bg-[#9E1B32]/5'
-                                        : 'border-gray-200 hover:border-gray-300'
+                                    ? 'border-indigo-600 bg-indigo-50'
+                                    : 'border-gray-200 hover:border-gray-300'
                                     }`}
                             >
-                                <span className={`font-medium ${answers[currentQuestion] === idx ? 'text-[#9E1B32]' : 'text-gray-700'
+                                <span className={`font-medium ${answers[currentQuestion] === idx ? 'text-indigo-700' : 'text-gray-700'
                                     }`}>
                                     {String.fromCharCode(65 + idx)}. {option}
                                 </span>
@@ -402,7 +449,7 @@ export default function DiagnosticAssessment() {
                     <button
                         onClick={handleNext}
                         disabled={answers[currentQuestion] === undefined}
-                        className="px-6 py-2 bg-[#9E1B32] text-white rounded-lg font-medium hover:bg-[#7A1527] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {currentQuestion === totalQuestions - 1 ? 'See Results' : 'Next →'}
                     </button>

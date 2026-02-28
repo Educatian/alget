@@ -20,6 +20,12 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+if "GOOGLE_API_KEY" in os.environ:
+    os.environ.pop("GOOGLE_API_KEY")
+
+# Load environment variables, allowing overrides
+load_dotenv(override=True)
+
 import google.generativeai as genai
 
 # Load environment variable for API key
@@ -42,6 +48,7 @@ from content_service import load_section, generate_toc, get_fallback_toc
 from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
+from knowledge_tracing import BayesianKnowledgeTracing
 
 # Initialize FastAPI
 app = FastAPI(
@@ -89,11 +96,10 @@ class GenerateRequest(BaseModel):
 
 class OrchestrateRequest(BaseModel):
     query: str
-    grade_level: str = "Sophomore"
-    interest: str = "Robotics"
-    current_bio_context: str = ""
-    history: List[dict] = []
-    api_key: str = ""
+    course: str = "bio-inspired"
+    current_content: str = ""
+    history: list = []
+    is_highlight: bool = False
 
 class ModuleInfo(BaseModel):
     icon: str
@@ -114,6 +120,11 @@ class RepresentRequest(BaseModel):
     section_id: str
     representation_type: str  # mindmap, analogy, visual, formula
 
+class ScenarioRequest(BaseModel):
+    topic: str
+    context: str
+    course: str
+
 class StuckEventRequest(BaseModel):
     user_id: str
     problem_id: Optional[str]
@@ -130,6 +141,8 @@ class AssessmentRequest(BaseModel):
     section_title: str
     biology_context: str
     engineering_context: str
+    learning_objectives: list[str] = []
+    concept_ids: list[str] = []
     api_key: str = ""
 
 # ============================================================================
@@ -204,10 +217,10 @@ async def orchestrate_query(request: OrchestrateRequest):
         agent = OrchestratorAgent(api_key=api_key)
         result = agent.orchestrate(
             query=request.query,
-            grade_level=request.grade_level,
-            interest=request.interest,
-            current_bio_context=request.current_bio_context,
-            history=request.history
+            course=request.course,
+            current_content=request.current_content,
+            history=request.history,
+            is_highlight=request.is_highlight
         )
         return result
     except Exception as e:
@@ -226,11 +239,184 @@ async def generate_assessment(request: AssessmentRequest):
         result_json = agent.generate_assessment(
             bio_context=request.biology_context,
             eng_context=request.engineering_context,
-            section_title=request.section_title
+            section_title=request.section_title,
+            learning_objectives=request.learning_objectives,
+            concept_ids=request.concept_ids
+        )
+        return {"assessment": result_json, "summary": "Assessment generated successfully."}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Assessment generation error: {str(e)}")
+
+class GradeSummaryRequest(BaseModel):
+    question: str
+    student_answer: str
+    rubric: str
+    api_key: str = ""
+
+@app.post("/api/grade_summary")
+async def grade_summary(request: GradeSummaryRequest):
+    """Grade a short-answer or summary response using LLM."""
+    try:
+        api_key = GEMINI_API_KEY or request.api_key
+        agent = AssessmentAgent(api_key=api_key)
+        
+        result_json = agent.grade_summary(
+            question=request.question,
+            student_answer=request.student_answer,
+            rubric=request.rubric
         )
         return result_json
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Assessment generation error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Grading error: {str(e)}")
+
+class GradeBKTRequest(BaseModel):
+    current_states: dict  # e.g., {"concept_A": 0.5, "concept_B": 0.2}
+    q_matrix: dict        # e.g., {"concept_A": 1.0, "concept_B": 0.5}
+    is_correct: bool
+
+@app.post("/api/grade")
+async def update_bkt_mastery(request: GradeBKTRequest):
+    """Update concept masteries using Bayesian Knowledge Tracing."""
+    try:
+        bkt_engine = BayesianKnowledgeTracing()
+        
+        # Calculate new states based on the Q-Matrix
+        new_states = bkt_engine.process_q_matrix_update(
+            current_states=request.current_states,
+            q_matrix_weights=request.q_matrix,
+            is_correct=request.is_correct
+        )
+        
+        return {"new_states": new_states}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"BKT updating error: {str(e)}")
+
+class TelemetryFusionRequest(BaseModel):
+    current_p_slip: float
+    current_p_transit: float
+    interaction_type: str
+    intensity: float = 1.0
+
+@app.post("/api/telemetry_fusion")
+async def fuse_telemetry(request: TelemetryFusionRequest):
+    """Adjust BKT priors based on interaction telemetry (Soft Evidence)."""
+    try:
+        bkt_engine = BayesianKnowledgeTracing()
+        
+        new_slip, new_transit = bkt_engine.apply_telemetry_fusion(
+            current_p_slip=request.current_p_slip,
+            current_p_transit=request.current_p_transit,
+            interaction_type=request.interaction_type,
+            intensity=request.intensity
+        )
+        
+        return {
+            "new_p_slip": new_slip,
+            "new_p_transit": new_transit
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Telemetry fusion error: {str(e)}")
+
+class MasteryGraphRequest(BaseModel):
+    # This could take user_id and fetch from a real DB.
+    # For now, it accepts a dictionary of concept_id -> p_known scores
+    mastery_data: dict
+
+@app.post("/api/mastery_graph")
+async def generate_mastery_graph(request: MasteryGraphRequest):
+    """Generates a node-link structured JSON representing current curriculum mastery."""
+    try:
+        # Mocking hardcoded structural relationships for 'inst-design'
+        # In a generic system, this graph topology might live in a unified `q_matrix` or curriculum graph db.
+        nodes = []
+        edges = []
+        
+        # Hardcoding the curriculum structure for the mockup ID course
+        topics = [
+            {"id": "ct_1_1", "label": "Foundations of ID", "group": "core"},
+            {"id": "ct_1_2", "label": "Learning Theories", "group": "theory"},
+            {"id": "ct_1_3", "label": "Cognitive Load", "group": "theory"},
+            {"id": "ct_2_1", "label": "ADDIE Analysis", "group": "process"},
+            {"id": "ct_2_2", "label": "ADDIE Design", "group": "process"},
+            {"id": "ct_2_3", "label": "ADDIE Development", "group": "process"}
+        ]
+        
+        # Dependencies
+        links = [
+            {"source": "ct_1_1", "target": "ct_1_2"},
+            {"source": "ct_1_2", "target": "ct_1_3"},
+            {"source": "ct_1_1", "target": "ct_2_1"},
+            {"source": "ct_2_1", "target": "ct_2_2"},
+            {"source": "ct_2_2", "target": "ct_2_3"}
+        ]
+        
+        for topic in topics:
+            p_known = request.mastery_data.get(topic["id"], 0.1) # Default to 0.1
+            status = "novice"
+            if p_known > 0.8:
+                status = "mastered"
+            elif p_known > 0.5:
+                status = "emerging"
+                
+            nodes.append({
+                "id": topic["id"],
+                "label": topic["label"],
+                "group": topic["group"],
+                "p_known": round(p_known, 2),
+                "status": status
+            })
+            
+        return {"nodes": nodes, "links": links}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Mastery graph generation error: {str(e)}")
+
+@app.post("/api/generate_scenario")
+async def generate_scenario(request: ScenarioRequest):
+    """Generate a dynamic scenario with a strictly enforced context to prevent hallucination."""
+    try:
+        api_key = GEMINI_API_KEY
+        if not api_key:
+            # Fallback mock response for testing without an API key
+            return {
+                "scenario_text": f"This is a simulated scenario for {request.topic} within the context of {request.context}. In a real environment, this would describe a specific learning challenge, learner persona, and the environmental constraints that an instructional designer must overcome.",
+                "theoretical_mapping": f"The simulated scenario illustrates {request.topic} by demonstrating how the core principles would be applied. It highlights the importance of aligning instructional strategies with the identified context."
+            }
+        
+        import json
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel('gemini-2.0-flash')
+        
+        prompt = f"""
+        You are an expert instructional designer. Generate a tailored case study for the following theory/topic and context.
+        Topic: {request.topic}
+        Context/Constraint: {request.context}
+        
+        CRITICAL RULES:
+        1. Base your explanation strictly on the widely accepted definition of {request.topic}.
+        2. Do not hallucinate or invent new theories.
+        3. Formulate a relatable, practical scenario applying this theory in the requested context.
+        
+        Return a JSON object:
+        {{
+            "scenario_text": "A paragraph describing the practical scenario...",
+            "theoretical_mapping": "A brief explanation mapping the scenario back to the core tenets of the theory."
+        }}
+        """
+        
+        response = model.generate_content(
+            prompt,
+            generation_config=genai.types.GenerationConfig(
+                temperature=0.4,
+                response_mime_type="application/json"
+            )
+        )
+        data = json.loads(response.text)
+        # Handle cases where the model returns a list instead of a single object
+        if isinstance(data, list) and len(data) > 0:
+            return data[0]
+        return data
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Scenario generation error: {str(e)}")
 
 @app.get("/api/all-modules")
 async def get_all_modules():
@@ -545,9 +731,80 @@ In engineering, we use this principle to design safe structures.
 @app.post("/api/stuck-events")
 async def log_stuck_event(request: StuckEventRequest):
     """Log a stuck event for analytics."""
-    # In production, this would save to Supabase
     print(f"[STUCK EVENT] User: {request.user_id}, Problem: {request.problem_id}, Reason: {request.reason}")
     return {"status": "logged"}
+
+
+class PeerNoteRequest(BaseModel):
+    text: str
+    user_note: str
+    section_id: str
+    supabase_url: str
+    supabase_anon_key: str
+
+async def generate_and_insert_peer_note_task(req: PeerNoteRequest):
+    """Background task to wait 3-4 mins, generate an AI peer response, and write to Supabase"""
+    import asyncio
+    import random
+    import httpx
+    
+    # 1. Random delay between 3 to 4 minutes (180 to 240 seconds)
+    # Using 10-20 seconds temporarily for testing if needed, but per request: 3-4 min
+    delay = random.randint(180, 240)
+    print(f"[AI PEER] Scheduled to generate response in {delay} seconds for section {req.section_id}...")
+    await asyncio.sleep(delay)
+    
+    try:
+        # 2. Generate content via GenAI
+        model = genai.GenerativeModel("gemini-1.5-flash")
+        prompt = f"""You are acting as a fellow student 'Alex' taking this course at the University of Alabama.
+        A student just highlighted the following text in the textbook:
+        "{req.text}"
+        
+        And they wrote this note on it:
+        "{req.user_note}"
+        
+        Provide a concise, constructive peer comment that expands on their thought or politely adds a new perspective.
+        Keep it natural, conversational, and under 2 sentences. DO NOT sound like a robot."""
+        
+        response = model.generate_content(prompt)
+        ai_note = response.text.strip()
+        
+        # 3. Insert into Supabase via REST API using provided frontend credentials
+        headers = {
+            "apikey": req.supabase_anon_key,
+            "Authorization": f"Bearer {req.supabase_anon_key}",
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+        }
+        
+        payload = {
+            "user_id": "ai_peer_system_001",  # Fixed ID or string designating the AI peer
+            "section_id": req.section_id,
+            "text_content": req.text,
+            "color": "green",  # Distinct color for peer notes
+            "note": ai_note,
+            "start_offset": 0,
+            "end_offset": len(req.text)
+        }
+        
+        async with httpx.AsyncClient() as client:
+            res = await client.post(f"{req.supabase_url}/rest/v1/highlights", headers=headers, json=payload)
+            if res.status_code >= 400:
+                print(f"[AI PEER ERR] Failed to insert into Supabase: {res.text}")
+            else:
+                print(f"[AI PEER] Successfully injected peer note: {ai_note}")
+                
+    except Exception as e:
+        print(f"[AI PEER ERR] Exception during background peer note generation: {e}")
+
+from fastapi import BackgroundTasks
+
+@app.post("/api/assist/peer_note")
+async def schedule_peer_note(request: PeerNoteRequest, background_tasks: BackgroundTasks):
+    """Endpoint called by frontend to trigger the stealth AI peer note generation."""
+    background_tasks.add_task(generate_and_insert_peer_note_task, request)
+    return {"status": "scheduled", "message": "Peer note formulation is running in the background."}
 
 
 class ChatRequest(BaseModel):

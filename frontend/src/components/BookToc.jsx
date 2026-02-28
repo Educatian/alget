@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function BookToc({ toc, currentChapter, currentSection, onNavigate }) {
+export default function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigate, completedSections }) {
     const [searchQuery, setSearchQuery] = useState('')
     const [expandedChapters, setExpandedChapters] = useState([currentChapter])
 
@@ -79,14 +79,19 @@ export default function BookToc({ toc, currentChapter, currentSection, onNavigat
                                         <li key={section.id}>
                                             <button
                                                 onClick={() => onNavigate(chapter.id, section.id)}
-                                                className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-all ${isActive
-                                                        ? 'bg-[#9E1B32] text-white font-medium shadow-sm'
-                                                        : 'text-gray-600 hover:bg-gray-100'
+                                                className={`w-full flex items-center justify-between px-3 py-2 text-sm rounded-lg transition-all ${isActive
+                                                    ? 'bg-[#9E1B32] text-white font-medium shadow-sm'
+                                                    : 'text-gray-600 hover:bg-gray-100'
                                                     }`}
                                             >
                                                 <span className="line-clamp-1">
                                                     {chapter.id}.{section.id} {section.title}
                                                 </span>
+                                                {completedSections?.includes(`${currentCourse}/${chapter.id}/${section.id}`) && (
+                                                    <span className={`shrink-0 ml-2 ${isActive ? 'text-white' : 'text-emerald-500'}`} title="Completed">
+                                                        ✓
+                                                    </span>
+                                                )}
                                             </button>
                                         </li>
                                     )
