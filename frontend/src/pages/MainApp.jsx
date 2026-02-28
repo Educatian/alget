@@ -1,13 +1,16 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../index.css'
 
-// ============================================================================
-// MAIN APP COMPONENT - Course Dashboard
-// ============================================================================
 export default function MainApp({ user, onLogout }) {
   const navigate = useNavigate()
 
-  const courses = [
+  const [unlockedMode, setUnlockedMode] = useState(null)
+  const [selectedMode, setSelectedMode] = useState('engineering')
+  const [passcode, setPasscode] = useState('')
+  const [error, setError] = useState('')
+
+  const engineeringCourses = [
     {
       id: 'statics',
       title: 'ME 121: Engineering Statics',
@@ -36,17 +39,47 @@ export default function MainApp({ user, onLogout }) {
     }
   ]
 
+  const educationCourses = [
+    {
+      id: 'inst-design',
+      title: 'Foundation of Instructional Design',
+      icon: '🎓',
+      description: 'Core instructional design principles at the University of Alabama. Explore learning theories, curriculum development, and pedagogical strategies.',
+      topics: ['Learning Theories', 'ADDIE Model', 'Assessment', 'Pedagogy'],
+      chapters: 8,
+      sections: 32,
+      duration: '12 weeks',
+      level: 'Core Requirement',
+      gradient: 'from-blue-700 to-blue-900',
+      badge: 'New'
+    }
+  ]
+
   const handleCourseSelect = (courseId) => {
     navigate(`/diagnostic/${courseId}`)
   }
 
+  const handleUnlock = (e) => {
+    e.preventDefault()
+    // Simple passcode check for testing (e.g. 'eng123' and 'edu123')
+    if (selectedMode === 'engineering' && passcode === 'eng123') {
+      setUnlockedMode('engineering')
+      setError('')
+    } else if (selectedMode === 'education' && passcode === 'edu123') {
+      setUnlockedMode('education')
+      setError('')
+    } else {
+      setError('Invalid passcode. Try eng123 or edu123')
+    }
+  }
+
   return (
     <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 font-sans selection:bg-[#9E1B32]/20">
-      {/* Premium Header */}
+      {/* Header */}
       <header className="glass-panel border-b-0 rounded-none rounded-b-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] sticky top-0 z-50 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 bg-white/20">
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4 group cursor-pointer">
+            <div className="flex items-center gap-4 group cursor-pointer" onClick={() => setUnlockedMode(null)}>
               <div className="w-11 h-11 bg-linear-to-br from-[#9E1B32] to-[#7A1527] rounded-xl flex items-center justify-center shadow-lg shadow-red-900/20">
                 <span className="text-white text-xl font-extrabold tracking-tight">AL</span>
               </div>
@@ -84,162 +117,201 @@ export default function MainApp({ user, onLogout }) {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="mb-10 text-center lg:text-left">
-          <h2 className="text-4xl font-extrabold text-slate-900 mb-3 tracking-tight">
-            Learning Pathways
-          </h2>
-          <p className="text-slate-600 text-lg max-w-2xl font-medium">
-            Select a module to access structured, AI-guided engineering content.
-          </p>
-        </div>
-
-        {/* Generative Lab CTA - Glassmorphism */}
-        <div
-          onClick={() => navigate('/lab')}
-          className="mb-16 relative overflow-hidden glass-panel p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between cursor-pointer group hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(147,51,234,0.15)] border border-purple-200/50 transition-all duration-500 ease-out"
-        >
-          {/* Subtle background gradient */}
-          <div className="absolute inset-0 bg-linear-to-r from-purple-50/80 via-white to-blue-50/80 pointer-events-none"></div>
-          <div className="absolute -top-40 -left-20 w-[40rem] h-[40rem] bg-purple-400/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-purple-400/20 transition-colors duration-500 animate-float-slow"></div>
-
-          <div className="relative z-10 w-full mb-6 md:mb-0">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl shadow-sm border border-purple-200">
-                🔬
+        {!unlockedMode ? (
+          /* -------- MODE SELECTION / PASSCODE VIEW -------- */
+          <div className="max-w-md mx-auto mt-20">
+            <div className="glass-panel p-8 text-center border border-white/60 bg-white/40 shadow-xl">
+              <div className="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-100 shadow-sm text-3xl">
+                🔒
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Generative Bio-Design Lab</h2>
-              <span className="bg-linear-to-r from-purple-600 to-indigo-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-widest shadow-sm">Preview</span>
-            </div>
-            <p className="text-slate-600 text-lg max-w-2xl font-medium leading-relaxed">
-              Explore bio-inspired engineering designs, brainstorm with AI, and generate interactive physical simulations in real-time.
-            </p>
-          </div>
-          <div className="relative z-10 hidden md:flex items-center justify-center w-14 h-14 bg-white border border-slate-200 shadow-sm group-hover:bg-purple-50 group-hover:border-purple-200 rounded-full text-slate-400 group-hover:text-purple-600 transition-all duration-300">
-            <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
-        </div>
+              <h2 className="text-2xl font-bold text-slate-900 mb-2">Module Access</h2>
+              <p className="text-slate-500 mb-8 font-medium">Select your learning track and enter the required passcode to continue.</p>
 
-        {/* Course Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {courses.map((course) => (
-            <div
-              key={course.id}
-              onClick={() => handleCourseSelect(course.id)}
-              className="group glass-panel overflow-hidden hover:border-indigo-200/50 hover:shadow-[0_24px_50px_rgba(15,23,42,0.12)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col relative"
-            >
-              {/* Course Header */}
-              <div className={`bg-linear-to-br ${course.gradient} p-8 relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500`}>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-10 -mt-10 blur-2xl pointer-events-none group-hover:bg-white/30 transition-colors max-w-none"></div>
-                <div className="flex items-start justify-between relative z-10">
-                  <div>
-                    <span className="text-4xl mb-5 block drop-shadow-md">{course.icon}</span>
-                    <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{course.title}</h3>
-                    <div className="flex gap-2 items-center flex-wrap">
-                      <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-white font-semibold text-xs uppercase tracking-wider border border-white/10 shadow-sm">
-                        {course.level}
-                      </span>
-                      {course.badge && (
-                        <span className="inline-block px-3 py-1 bg-teal-500/80 backdrop-blur-md rounded-lg text-white font-bold text-xs uppercase tracking-wider border border-teal-300/30 shadow-sm">
-                          {course.badge}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="text-right text-white/95 font-medium text-sm space-y-1.5 bg-black/20 backdrop-blur-md px-4 py-3.5 rounded-xl border border-white/20 shadow-inner">
-                    <div className="flex items-center gap-2 justify-end">
-                      <svg className="w-4.5 h-4.5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                      {course.chapters} Chapters
-                    </div>
-                    <div className="flex items-center gap-2 justify-end">
-                      <svg className="w-4.5 h-4.5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
-                      {course.sections} Sections
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Course Body bg */}
-              <div className="p-8 flex-1 flex flex-col justify-between">
+              <form onSubmit={handleUnlock} className="space-y-5 text-left">
                 <div>
-                  <p className="text-slate-600 mb-6 leading-relaxed text-[1.05rem]">
-                    {course.description}
-                  </p>
-
-                  {/* Topics Tags */}
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {course.topics.map((topic) => (
-                      <span
-                        key={topic}
-                        className="px-3.5 py-1.5 bg-slate-100 text-slate-700 text-sm font-medium rounded-lg border border-slate-200/60"
-                      >
-                        {topic}
-                      </span>
-                    ))}
-                  </div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">Select Track</label>
+                  <select
+                    value={selectedMode}
+                    onChange={(e) => setSelectedMode(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/20 outline-none text-slate-700 bg-white font-medium"
+                  >
+                    <option value="engineering">Engineering Mode</option>
+                    <option value="education">Education Module</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">Passcode</label>
+                  <input
+                    type="password"
+                    value={passcode}
+                    onChange={(e) => setPasscode(e.target.value)}
+                    placeholder="Enter passcode"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/20 outline-none text-slate-900 bg-white"
+                  />
+                  <p className="text-xs text-slate-400 mt-2">Hint: Use <strong>eng123</strong> or <strong>edu123</strong> for testing</p>
                 </div>
 
-                {/* Footer section of Card */}
-                <div className="flex items-center justify-between pt-5 border-t border-slate-100">
-                  <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
-                    <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>{course.duration}</span>
+                {error && (
+                  <div className="text-red-500 text-sm font-medium text-center bg-red-50 py-2 rounded-lg">
+                    {error}
                   </div>
-                  <span className="text-[#9E1B32] font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    Start Pathway
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+                )}
 
-        {/* Features Section */}
-        <div className="glass-panel p-8 lg:p-10 mb-8 border border-white/60 bg-white/40">
-          <h3 className="text-xl font-bold text-slate-900 mb-8 tracking-tight">Platform Capabilities</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div className="flex flex-col gap-4">
-              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 border border-blue-100 shadow-sm">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-800 mb-2">Structured Pedagogy</h4>
-                <p className="text-slate-600 leading-relaxed font-medium">Research-backed curriculum mapping biological solutions to engineering systems.</p>
-              </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 shadow-sm">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-800 mb-2">Socratic Diagnostics</h4>
-                <p className="text-slate-600 leading-relaxed font-medium">Advanced AI agents orchestrate guided hints instead of giving direct answers.</p>
-              </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center shrink-0 border border-purple-100 shadow-sm">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-800 mb-2">Multi-Agent Verification</h4>
-                <p className="text-slate-600 leading-relaxed font-medium">Complex workflows evaluate edge cases with 'Janine Benyus' persona analysis.</p>
-              </div>
+                <button
+                  type="submit"
+                  className="w-full bg-[#9E1B32] hover:bg-[#7A1527] text-white font-bold py-3.5 rounded-xl transition-colors shadow-md shadow-red-900/10 mt-2"
+                >
+                  Unlock Module
+                </button>
+              </form>
             </div>
           </div>
-        </div>
+        ) : (
+          /* -------- DASHBOARD / COURSES VIEW -------- */
+          <>
+            <div className="mb-10 text-center lg:text-left flex items-center justify-between">
+              <div>
+                <h2 className="text-4xl font-extrabold text-slate-900 mb-3 tracking-tight">
+                  {unlockedMode === 'engineering' ? 'Engineering Pathways' : 'Education Pathways'}
+                </h2>
+                <p className="text-slate-600 text-lg max-w-2xl font-medium">
+                  Select a module to access structured, AI-guided content.
+                </p>
+              </div>
+              <button
+                onClick={() => { setUnlockedMode(null); setPasscode(''); }}
+                className="hidden lg:flex px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-sm font-bold transition-colors"
+              >
+                ← Change Track
+              </button>
+            </div>
+
+            {unlockedMode === 'engineering' && (
+              <div
+                onClick={() => navigate('/lab')}
+                className="mb-16 relative overflow-hidden glass-panel p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between cursor-pointer group hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(147,51,234,0.15)] border border-purple-200/50 transition-all duration-500 ease-out"
+              >
+                <div className="absolute inset-0 bg-linear-to-r from-purple-50/80 via-white to-blue-50/80 pointer-events-none"></div>
+                <div className="absolute -top-40 -left-20 w-[40rem] h-[40rem] bg-purple-400/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-purple-400/20 transition-colors duration-500 animate-float-slow"></div>
+
+                <div className="relative z-10 w-full mb-6 md:mb-0">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl shadow-sm border border-purple-200">
+                      🔬
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Generative Bio-Design Lab</h2>
+                    <span className="bg-linear-to-r from-purple-600 to-indigo-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-widest shadow-sm">Preview</span>
+                  </div>
+                  <p className="text-slate-600 text-lg max-w-2xl font-medium leading-relaxed">
+                    Explore bio-inspired engineering designs, brainstorm with AI, and generate interactive physical simulations in real-time.
+                  </p>
+                </div>
+                <div className="relative z-10 hidden md:flex items-center justify-center w-14 h-14 bg-white border border-slate-200 shadow-sm group-hover:bg-purple-50 group-hover:border-purple-200 rounded-full text-slate-400 group-hover:text-purple-600 transition-all duration-300">
+                  <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+              {(unlockedMode === 'engineering' ? engineeringCourses : educationCourses).map((course) => (
+                <div
+                  key={course.id}
+                  onClick={() => handleCourseSelect(course.id)}
+                  className="group glass-panel overflow-hidden hover:border-indigo-200/50 hover:shadow-[0_24px_50px_rgba(15,23,42,0.12)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col relative"
+                >
+                  <div className={`bg-linear-to-br ${course.gradient} p-8 relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500`}>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-10 -mt-10 blur-2xl pointer-events-none group-hover:bg-white/30 transition-colors max-w-none"></div>
+                    <div className="flex items-start justify-between relative z-10">
+                      <div>
+                        <span className="text-4xl mb-5 block drop-shadow-md">{course.icon}</span>
+                        <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{course.title}</h3>
+                        <div className="flex gap-2 items-center flex-wrap">
+                          <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-white font-semibold text-xs uppercase tracking-wider border border-white/10 shadow-sm">
+                            {course.level}
+                          </span>
+                          {course.badge && (
+                            <span className="inline-block px-3 py-1 bg-teal-500/80 backdrop-blur-md rounded-lg text-white font-bold text-xs uppercase tracking-wider border border-teal-300/30 shadow-sm">
+                              {course.badge}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="text-right text-white/95 font-medium text-sm space-y-1.5 bg-black/20 backdrop-blur-md px-4 py-3.5 rounded-xl border border-white/20 shadow-inner">
+                        <div className="flex items-center gap-2 justify-end">
+                          <svg className="w-4.5 h-4.5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                          {course.chapters} Chapters
+                        </div>
+                        <div className="flex items-center gap-2 justify-end">
+                          <svg className="w-4.5 h-4.5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+                          {course.sections} Sections
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-8 flex-1 flex flex-col justify-between">
+                    <div>
+                      <p className="text-slate-600 mb-6 leading-relaxed text-[1.05rem]">
+                        {course.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-8">
+                        {course.topics.map((topic) => (
+                          <span key={topic} className="px-3.5 py-1.5 bg-slate-100 text-slate-700 text-sm font-medium rounded-lg border border-slate-200/60">
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between pt-5 border-t border-slate-100">
+                      <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
+                        <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>{course.duration}</span>
+                      </div>
+                      <span className="text-[#9E1B32] font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                        Start Pathway
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="glass-panel p-8 lg:p-10 mb-8 border border-white/60 bg-white/40">
+              <h3 className="text-xl font-bold text-slate-900 mb-8 tracking-tight">Platform Capabilities</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div className="flex flex-col gap-4">
+                  <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 border border-blue-100 shadow-sm">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800 mb-2">Structured Pedagogy</h4>
+                    <p className="text-slate-600 leading-relaxed font-medium">Research-backed curriculum mapped to your field.</p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4">
+                  <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 shadow-sm">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800 mb-2">Socratic Diagnostics</h4>
+                    <p className="text-slate-600 leading-relaxed font-medium">Advanced AI agents orchestrate guided hints instead of direct answers.</p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4">
+                  <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center shrink-0 border border-purple-100 shadow-sm">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800 mb-2">Multi-Agent Verification</h4>
+                    <p className="text-slate-600 leading-relaxed font-medium">Complex workflows evaluate edge cases with specialized persona analysis.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </main>
 
       {/* Footer */}

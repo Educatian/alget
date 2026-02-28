@@ -70,11 +70,7 @@ export default function App() {
           <Route
             path="/"
             element={
-              user ? (
-                <Navigate to="/learn" replace />
-              ) : (
-                <LandingPage onLogin={handleLogin} />
-              )
+              <LandingPage onLogin={handleLogin} user={user} onLogout={handleLogout} />
             }
           />
           <Route
