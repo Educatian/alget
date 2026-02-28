@@ -25,7 +25,8 @@ load_dotenv()
 # Load environment variables, allowing overrides
 load_dotenv(override=True)
 
-import google.generativeai as genai
+from google import genai
+from google.genai import types as genai_types
 
 # Load environment variable for API key
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
@@ -393,14 +394,7 @@ async def generate_scenario(request: ScenarioRequest):
             raise HTTPException(status_code=400, detail="GEMINI_API_KEY is not set on the server or provided in the request.")
         
         import json
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-2.0-flash')
-        
-        from pydantic import BaseModel
-        
-        class ScenarioResponse(BaseModel):
-            scenario_text: str
-            theoretical_mapping: str
+        client = genai.Client(api_key=api_key)
 
         prompt = f"""
         You are an expert instructional designer. Generate a tailored case study for the following theory/topic and context.
@@ -413,18 +407,31 @@ async def generate_scenario(request: ScenarioRequest):
         3. Formulate a relatable, practical scenario applying this theory in the requested context.
         """
         
-        response = model.generate_content(
-            prompt,
-            generation_config=genai.types.GenerationConfig(
+        response = client.models.generate_content(
+            model='gemini-2.0-flash',
+            contents=prompt,
+            config=genai_types.GenerateContentConfig(
                 temperature=0.4,
                 response_mime_type="application/json",
-                response_schema=ScenarioResponse
+                response_schema={
+                    "type": "OBJECT",
+                    "properties": {
+                        "scenario_text": {
+                            "type": "STRING",
+                            "description": "A vivid, practical case study scenario applying the theory."
+                        },
+                        "theoretical_mapping": {
+                            "type": "STRING",
+                            "description": "How the scenario maps to the key tenets of the theory."
+                        }
+                    },
+                    "required": ["scenario_text", "theoretical_mapping"]
+                }
             )
         )
         
         data = json.loads(response.text)
         
-        # Ensure we always return the fields exactly to avoid frontend missing them
         return {
             "scenario_text": data.get("scenario_text", ""),
             "theoretical_mapping": data.get("theoretical_mapping", "")
@@ -820,31 +827,32 @@ BigAL:"""
             return {"response": "BigAL is not configured yet. Please set up the API key."}
         
         print("[BIGAL] Calling Gemini API with RAG context...")
-        genai.configure(api_key=_key)
-        model = genai.GenerativeModel("gemini-2.0-flash")
-        response = model.generate_content(prompt)
+        client = genai.Client(api_key=_key)
+        response = client.models.generate_content(
+            model='gemini-2.0-flash',
+            contents=prompt,
+            config=genai_types.GenerateContentConfig(temperature=0.7)
+        )
         
         print(f"[BIGAL] Response received: {response.text[:100]}...")
         return {"response": response.text}
     
     except Exception as e:
-        print(f"[BIGAL ERROR] Exception: {type(e).__name__}: {e}")
-        import traceback
-        traceback.print_exc()
         return {"response": "I'm having trouble connecting right now. Please try again in a moment."}
-
 
 @app.get("/api/debug_env")
 async def debug_env():
     """Temporary endpoint to check which env vars exist."""
-    gemini = os.environ.get("GEMINI_API_KEY", "NOT_FOUND")
-    google = os.environ.get("GOOGLE_API_KEY", "NOT_FOUND")
+    gemini = os.environ.get("GEMINI_API_KEY", "")
+    google = os.environ.get("GOOGLE_API_KEY", "")
     return {
-        "env_keys": list(os.environ.keys()),
         "gemini_len": len(gemini),
-        "gemini_startswith": gemini[:2] if len(gemini) > 2 else gemini,
+        "gemini_startswith": gemini[:4] if len(gemini) > 4 else gemini,
         "google_len": len(google)
     }
+
+
+# debug_env endpoint removed
 
 # ============================================================================
 # IMAGE GENERATION API (Gemini)
