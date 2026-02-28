@@ -190,6 +190,34 @@ def get_fallback_toc(course: str) -> dict:
             ]
         }
     
+    elif course == "inst-design":
+        return {
+            "course": "inst-design",
+            "title": "Instructional Design",
+            "chapters": [
+                {
+                    "id": "01",
+                    "title": "Learning Theories",
+                    "icon": "🧠",
+                    "sections": [
+                        {"id": "01", "title": "Constructivism"},
+                        {"id": "02", "title": "Cognitivism"},
+                        {"id": "03", "title": "Behaviorism"}
+                    ]
+                },
+                {
+                    "id": "02",
+                    "title": "Assessment & Evaluation",
+                    "icon": "✏️",
+                    "sections": [
+                        {"id": "01", "title": "Formative vs Summative"},
+                        {"id": "02", "title": "Rubric Design"},
+                        {"id": "03", "title": "Feedback Models"}
+                    ]
+                }
+            ]
+        }
+    
     return {
         "course": course,
         "title": course.title(),

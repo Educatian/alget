@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
+import API_BASE from '../lib/apiConfig';
 
 export default function KnowledgeGraph() {
     const [graphData, setGraphData] = useState(null);
@@ -29,13 +30,16 @@ export default function KnowledgeGraph() {
                 }
 
                 // 2. Fetch the graph topology from our new backend endpoint
-                const response = await fetch('http://localhost:8000/api/mastery_graph', {
+                const response = await fetch(`${API_BASE}/api/mastery_graph`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ mastery_data: masteryMap })
                 });
 
-                if (!response.ok) throw new Error("Failed to load graph data");
+                if (!response.ok) {
+                    const errText = await response.text();
+                    throw new Error(`Failed to load graph data: ${response.status} ${errText}`);
+                }
                 const data = await response.json();
 
                 // Add layout positions mechanically for our 6 hardcoded nodes
