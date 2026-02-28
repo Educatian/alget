@@ -6,10 +6,10 @@ try:
     from google import genai
     from google.genai.errors import ClientError
 
-    print(f"API KEY: {os.environ.get('GEMINI_API_KEY')}")
-    os.environ.pop('GOOGLE_API_KEY', None)
+    api_key = os.environ.get('GEMINI_API_KEY') or os.environ.get('GOOGLE_API_KEY')
+    print(f"API KEY Found: {'Yes' if api_key else 'No'}")
 
-    client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
+    client = genai.Client(api_key=api_key)
     
     print("Testing embed_content with text-embedding-004...")
     try:

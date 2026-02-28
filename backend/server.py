@@ -20,8 +20,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-if "GOOGLE_API_KEY" in os.environ:
-    os.environ.pop("GOOGLE_API_KEY")
+# Allow standard GOOGLE_API_KEY to persist
 
 # Load environment variables, allowing overrides
 load_dotenv(override=True)
@@ -34,7 +33,7 @@ print(f"[INFO] GEMINI_API_KEY loaded: {'Yes' if GEMINI_API_KEY else 'No'}")
 
 def get_api_key(request=None):
     """Get API key at request time: env var (fresh read) > request body > cached module var."""
-    key = os.environ.get("GEMINI_API_KEY", "")
+    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY", "")
     if key:
         return key
     if request and hasattr(request, 'api_key') and request.api_key:
