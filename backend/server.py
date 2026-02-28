@@ -33,14 +33,31 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 print(f"[INFO] GEMINI_API_KEY loaded: {'Yes' if GEMINI_API_KEY else 'No'}")
 
 def get_api_key(request=None):
-    """Get API key at request time: env var (fresh read) > request body > cached module var."""
-    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY", "")
-    if key:
-        return key
-    if request and hasattr(request, 'api_key') and request.api_key:
-        return request.api_key
-    if GEMINI_API_KEY:
+    """Get API key at request time: request body > env var > cached module var."""
+    # 1. First, always prioritize the explicit key sent from the frontend request
+    if request and hasattr(request, 'api_key') and getattr(request, 'api_key'):
+        req_key = request.api_key.strip()
+        if len(req_key) > 20:  # Valid keys are much longer than 20 chars
+            print("[AUTH] Using API key from request payload")
+            return req_key
+            
+    # 2. Next, try environment variables (but ignore dummy values like "NOT_FOUND")
+    env_gemini = os.environ.get("GEMINI_API_KEY", "").strip()
+    if env_gemini and len(env_gemini) > 20:
+        print("[AUTH] Using API key from GEMINI_API_KEY env var")
+        return env_gemini
+        
+    env_google = os.environ.get("GOOGLE_API_KEY", "").strip()
+    if env_google and len(env_google) > 20:
+        print("[AUTH] Using API key from GOOGLE_API_KEY env var")
+        return env_google
+        
+    # 3. Fallback to module level variable
+    if GEMINI_API_KEY and len(GEMINI_API_KEY) > 20:
+        print("[AUTH] Using API key from cached module var")
         return GEMINI_API_KEY
+        
+    print("[AUTH WARNING] No valid API key found!")
     return None
 
 # Add current directory to path for imports
