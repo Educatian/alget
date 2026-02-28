@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 import { supabase } from '../lib/supabase'
 import { logChatMessage } from '../lib/loggingService'
+import { fuseTelemetry } from '../lib/knowledgeService'
 import API_BASE from '../lib/apiConfig'
 import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard } from './IntentCards'
 
