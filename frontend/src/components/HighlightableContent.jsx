@@ -262,7 +262,7 @@ export default function HighlightableContent({
             // Hybrid AI Peer Logic: If user leaves a note, schedule an AI response
             if (noteInput) {
                 try {
-                    const apiKey = localStorage.getItem('gemini_api_key') || '';
+                    const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
                     fetch(`${API_BASE}/assist/peer_note`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
