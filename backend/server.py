@@ -386,6 +386,12 @@ async def generate_scenario(request: ScenarioRequest):
         genai.configure(api_key=api_key)
         model = genai.GenerativeModel('gemini-2.0-flash')
         
+        from pydantic import BaseModel
+        
+        class ScenarioResponse(BaseModel):
+            scenario_text: str
+            theoretical_mapping: str
+
         prompt = f"""
         You are an expert instructional designer. Generate a tailored case study for the following theory/topic and context.
         Topic: {request.topic}
@@ -395,26 +401,24 @@ async def generate_scenario(request: ScenarioRequest):
         1. Base your explanation strictly on the widely accepted definition of {request.topic}.
         2. Do not hallucinate or invent new theories.
         3. Formulate a relatable, practical scenario applying this theory in the requested context.
-        
-        Return a JSON object:
-        {{
-            "scenario_text": "A paragraph describing the practical scenario...",
-            "theoretical_mapping": "A brief explanation mapping the scenario back to the core tenets of the theory."
-        }}
         """
         
         response = model.generate_content(
             prompt,
             generation_config=genai.types.GenerationConfig(
                 temperature=0.4,
-                response_mime_type="application/json"
+                response_mime_type="application/json",
+                response_schema=ScenarioResponse
             )
         )
+        
         data = json.loads(response.text)
-        # Handle cases where the model returns a list instead of a single object
-        if isinstance(data, list) and len(data) > 0:
-            return data[0]
-        return data
+        
+        # Ensure we always return the fields exactly to avoid frontend missing them
+        return {
+            "scenario_text": data.get("scenario_text", ""),
+            "theoretical_mapping": data.get("theoretical_mapping", "")
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Scenario generation error: {str(e)}")
 
