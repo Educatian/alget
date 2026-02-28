@@ -453,6 +453,8 @@ async def generate_scenario(request: ScenarioRequest):
             "scenario_text": data.get("scenario_text", ""),
             "theoretical_mapping": data.get("theoretical_mapping", "")
         }
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Scenario generation error: {str(e)}")
 
