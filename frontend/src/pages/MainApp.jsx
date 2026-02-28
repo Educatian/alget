@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StaticsIllustration, BioInspiredIllustration, InstDesignIllustration } from '../components/CourseIllustrations'
+import SettingsModal from '../components/SettingsModal'
+import { Settings } from 'lucide-react'
 import '../index.css'
 
 export default function MainApp({ user, onLogout }) {
@@ -10,6 +12,7 @@ export default function MainApp({ user, onLogout }) {
   const [selectedMode, setSelectedMode] = useState('engineering')
   const [passcode, setPasscode] = useState('')
   const [error, setError] = useState('')
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
 
   const engineeringCourses = [
     {
@@ -76,6 +79,8 @@ export default function MainApp({ user, onLogout }) {
 
   return (
     <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 font-sans selection:bg-[#9E1B32]/20">
+      <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+
       {/* Header */}
       <header className="glass-panel border-b-0 rounded-none rounded-b-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] sticky top-0 z-50 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 bg-white/20">
@@ -96,6 +101,13 @@ export default function MainApp({ user, onLogout }) {
                 </div>
                 <span className="text-sm font-medium text-slate-600">{user?.email}</span>
               </div>
+              <button
+                onClick={() => setIsSettingsOpen(true)}
+                className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-indigo-600 bg-white/50 hover:bg-indigo-50 rounded-lg transition-all"
+                title="API Settings"
+              >
+                <Settings className="w-5 h-5" />
+              </button>
               <button
                 onClick={() => navigate('/analytics')}
                 className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-slate-700 bg-white/50 hover:bg-slate-200/50 rounded-lg transition-all"

@@ -5,6 +5,8 @@ import ReadingPane from '../components/ReadingPane'
 import IntelRail from '../components/IntelRail'
 import ChatWidget from '../components/ChatWidget'
 import HighlightableContent from '../components/HighlightableContent'
+import SettingsModal from '../components/SettingsModal'
+import { Settings } from 'lucide-react'
 import { logPageView, logStuckEvent } from '../lib/loggingService'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
@@ -23,6 +25,7 @@ export default function BookLayout({ user, onLogout }) {
     const [railContext, setRailContext] = useState(null)
     const [stuckEvent, setStuckEvent] = useState(null)
     const [highlightQuestion, setHighlightQuestion] = useState(null)
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false)
     const chatWidgetRef = useRef(null)
 
     // Fetch TOC
@@ -78,6 +81,7 @@ export default function BookLayout({ user, onLogout }) {
 
     return (
         <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 flex flex-col font-sans selection:bg-[#9E1B32]/20">
+            <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
             {/* Header - Premium SaaS style */}
             <header className="glass-panel border-x-0 border-t-0 rounded-none shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-6 py-3.5 flex justify-between items-center z-50 sticky top-0 bg-white/30 backdrop-blur-3xl">
                 <div className="flex items-center gap-4 cursor-pointer" onClick={() => navigate('/')}>
@@ -103,6 +107,24 @@ export default function BookLayout({ user, onLogout }) {
                     </button>
 
                     <div className="h-8 w-px bg-slate-200"></div>
+
+                    <button
+                        onClick={() => setIsSettingsOpen(true)}
+                        className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-indigo-600 bg-white/50 hover:bg-indigo-50 rounded-lg transition-all border shadow-sm border-slate-200"
+                        title="API Settings"
+                    >
+                        <Settings className="w-4 h-4" />
+                    </button>
+
+                    <button
+                        onClick={() => navigate('/analytics')}
+                        className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg transition-all"
+                        title="Researcher Dashboard"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </button>
 
                     <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 font-medium text-sm">
