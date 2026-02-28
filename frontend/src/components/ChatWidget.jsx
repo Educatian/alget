@@ -114,6 +114,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
         const isHighlight = userMessage.startsWith('Explain this passage:');
         try {
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const res = await fetch(`${API_BASE}/orchestrate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -122,7 +123,8 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     course: context?.course || "bio-inspired",
                     current_content: context?.pageContent ? context.pageContent.substring(0, 2000) : "",
                     history: messages.slice(-10), // Send more history for better context
-                    is_highlight: isHighlight
+                    is_highlight: isHighlight,
+                    api_key: apiKey
                 })
             })
             const data = await res.json()
