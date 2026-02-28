@@ -254,6 +254,15 @@ export default function DiagnosticAssessment() {
         )
     }
 
+    // Loading guard - questions are populated async via useEffect
+    if (questions.length === 0) {
+        return (
+            <div className="min-h-screen bg-[#fafafa] flex items-center justify-center">
+                <div className="text-gray-500 text-lg">Loading assessment...</div>
+            </div>
+        )
+    }
+
     // Assessment Screen
     const currentQ = questions[currentQuestion]
 
