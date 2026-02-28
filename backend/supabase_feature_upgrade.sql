@@ -57,7 +57,8 @@ CREATE TABLE IF NOT EXISTS chat_history (
     section_id TEXT NOT NULL,
     messages JSONB NOT NULL DEFAULT '[]'::jsonb,
     created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    UNIQUE(user_id, section_id)
 );
 
 CREATE INDEX IF NOT EXISTS idx_chat_history_user ON chat_history(user_id);
