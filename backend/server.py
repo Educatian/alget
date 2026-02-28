@@ -834,6 +834,11 @@ BigAL:"""
         return {"response": "I'm having trouble connecting right now. Please try again in a moment."}
 
 
+@app.get("/api/debug_env")
+async def debug_env():
+    """Temporary endpoint to check which env vars exist."""
+    return {"env_keys": list(os.environ.keys())}
+
 # ============================================================================
 # IMAGE GENERATION API (Gemini)
 # ============================================================================
