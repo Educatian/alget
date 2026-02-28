@@ -111,6 +111,7 @@ class OrchestrateRequest(BaseModel):
     current_content: str = ""
     history: list = []
     is_highlight: bool = False
+    api_key: str = ""
 
 class ModuleInfo(BaseModel):
     icon: str
@@ -126,15 +127,18 @@ class ExplainRequest(BaseModel):
     section_id: str
     problem_id: Optional[str] = None
     stuck_reason: Optional[str] = None
+    api_key: str = ""
 
 class RepresentRequest(BaseModel):
     section_id: str
     representation_type: str  # mindmap, analogy, visual, formula
+    api_key: str = ""
 
 class ScenarioRequest(BaseModel):
     topic: str
     context: str
     course: str
+    api_key: str = ""
 
 class StuckEventRequest(BaseModel):
     user_id: str
@@ -839,6 +843,7 @@ class ImageGenerateRequest(BaseModel):
     prompt: str
     context: Optional[str] = None  # Section context
     style: str = "technical"  # technical, diagram, fbd, concept
+    api_key: str = ""
 
 @app.post("/api/generate-image")
 async def generate_image(request: ImageGenerateRequest):
