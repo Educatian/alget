@@ -837,7 +837,14 @@ BigAL:"""
 @app.get("/api/debug_env")
 async def debug_env():
     """Temporary endpoint to check which env vars exist."""
-    return {"env_keys": list(os.environ.keys())}
+    gemini = os.environ.get("GEMINI_API_KEY", "NOT_FOUND")
+    google = os.environ.get("GOOGLE_API_KEY", "NOT_FOUND")
+    return {
+        "env_keys": list(os.environ.keys()),
+        "gemini_len": len(gemini),
+        "gemini_startswith": gemini[:2] if len(gemini) > 2 else gemini,
+        "google_len": len(google)
+    }
 
 # ============================================================================
 # IMAGE GENERATION API (Gemini)
