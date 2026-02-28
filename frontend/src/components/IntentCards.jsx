@@ -197,13 +197,15 @@ export function IllustrateIntentCard({ data }) {
             const fetchImage = async () => {
                 setLoadingImage(true);
                 try {
+                    const apiKey = localStorage.getItem('gemini_api_key') || '';
                     const response = await fetch(`${API_BASE}/generate-image`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
                             prompt: illData.image_prompt,
                             context: illData.conceptual_design,
-                            style: "concept"
+                            style: "concept",
+                            api_key: apiKey
                         })
                     });
 

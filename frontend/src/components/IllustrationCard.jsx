@@ -12,6 +12,7 @@ export default function IllustrationCard({ data }) {
         setLoading(true);
         setError(null);
         try {
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const response = await fetch(`${API_BASE}/generate-image`, {
                 method: 'POST',
                 headers: {
@@ -20,7 +21,8 @@ export default function IllustrationCard({ data }) {
                 body: JSON.stringify({
                     prompt: data.image_prompt || data.conceptual_design,
                     context: data.conceptual_design,
-                    style: 'diagram'
+                    style: 'diagram',
+                    api_key: apiKey
                 }),
             });
 

@@ -720,6 +720,7 @@ class PeerNoteRequest(BaseModel):
     section_id: str
     supabase_url: str
     supabase_anon_key: str
+    api_key: str = ""
 
 async def generate_and_insert_peer_note_task(req: PeerNoteRequest):
     """Background task to wait 3-4 mins, generate an AI peer response, and write to Supabase"""
@@ -734,8 +735,16 @@ async def generate_and_insert_peer_note_task(req: PeerNoteRequest):
     await asyncio.sleep(delay)
     
     try:
-        # 2. Generate content via GenAI
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        # 2. Check API Key
+        _key = get_api_key(req)
+        if not _key:
+            print(f"[AI PEER ERR] No Gemini API Key configured. Skipping peer note.")
+            return
+
+        # 3. Generate content via GenAI SDK
+        from google import genai
+        client = genai.Client(api_key=_key)
+        
         prompt = f"""You are acting as a fellow student 'Alex' taking this course at the University of Alabama.
         A student just highlighted the following text in the textbook:
         "{req.text}"
@@ -746,10 +755,13 @@ async def generate_and_insert_peer_note_task(req: PeerNoteRequest):
         Provide a concise, constructive peer comment that expands on their thought or politely adds a new perspective.
         Keep it natural, conversational, and under 2 sentences. DO NOT sound like a robot."""
         
-        response = model.generate_content(prompt)
+        response = client.models.generate_content(
+            model='gemini-2.0-flash',
+            contents=prompt
+        )
         ai_note = response.text.strip()
         
-        # 3. Insert into Supabase via REST API using provided frontend credentials
+        # 4. Insert into Supabase via REST API using provided frontend credentials
         headers = {
             "apikey": req.supabase_anon_key,
             "Authorization": f"Bearer {req.supabase_anon_key}",
