@@ -452,70 +452,10 @@ async def get_book_section(course: str, chapter: str, section: str):
     try:
         section_data = load_section(course, chapter, section)
         if section_data.get("error"):
-            # Return placeholder content for development
-            return {
-                "meta": {
-                    "title": f"Section {chapter}.{section}",
-                    "course": course,
-                    "chapter": chapter,
-                    "section": section,
-                    "learning_objectives": [
-                        "Understand equilibrium conditions",
-                        "Apply ΣF = 0 to particle systems"
-                    ],
-                    "concept_ids": ["equilibrium", "sum_of_forces", "fbd"]
-                },
-                "content": f"""
-## Introduction
-
-This section covers the fundamentals of **equilibrium** for particles.
-
-When a particle is in equilibrium, the vector sum of all forces acting on it is zero:
-
-$$\\sum \\vec{{F}} = 0$$
-
-### Key Concepts
-
-1. **Equilibrium Condition**: A particle is in equilibrium when the resultant of all forces is zero.
-
-2. **Free Body Diagram (FBD)**: A diagram showing all external forces acting on a body.
-
-3. **Two-Force Members**: When only two forces act on a body in equilibrium, those forces must be equal, opposite, and collinear.
-
-### Example Problem
-
-A 100 kg crate is suspended by two cables. If cable A makes an angle of 30° with the horizontal, find the tension in cable A.
-
-**Given:**
-- Mass: 100 kg
-- Angle: 30°
-- g = 9.81 m/s²
-
-**Solution:**
-Using ΣFy = 0:
-T_A sin(30°) = mg
-T_A = 100 × 9.81 / sin(30°) = **1962 N**
-                """,
-                "simulation": None,
-                "illustration": None,
-                "practice": {
-                    "problems": [
-                        {
-                            "id": "p001",
-                            "type": "numeric",
-                            "difficulty": "medium",
-                            "statement": "A 50 kg object is suspended by a cable at 45° from horizontal. Calculate the tension in the cable (in N).",
-                            "givens": {"mass": "50 kg", "angle": "45°", "g": "9.81 m/s²"},
-                            "expected_value": 693.67,
-                            "expected_unit": "N",
-                            "tolerance": 0.02,
-                            "require_unit": True,
-                            "hint": "Use ΣFy = 0. The vertical component of tension must equal the weight."
-                        }
-                    ]
-                }
-            }
+            raise HTTPException(status_code=404, detail="Section not found.")
         return section_data
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
