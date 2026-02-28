@@ -23,13 +23,15 @@ export default function IntelRail({ context, stuckEvent, onClose }) {
         if (!context) return
         setLoading(true)
         try {
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const res = await fetch(`${API_BASE}/assist/explain`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     section_id: context.sectionId,
                     problem_id: context.problemId,
-                    stuck_reason: context.reason
+                    stuck_reason: context.reason,
+                    api_key: apiKey
                 })
             })
             const data = await res.json()
@@ -47,12 +49,14 @@ export default function IntelRail({ context, stuckEvent, onClose }) {
         if (!context) return
         setLoading(true)
         try {
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const res = await fetch(`${API_BASE}/assist/represent`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     section_id: context.sectionId,
-                    representation_type: type
+                    representation_type: type,
+                    api_key: apiKey
                 })
             })
             const data = await res.json()
@@ -75,13 +79,15 @@ export default function IntelRail({ context, stuckEvent, onClose }) {
         setChatLoading(true)
 
         try {
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const res = await fetch(`${API_BASE}/assist/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: userMessage,
                     section_id: context?.sectionId || 'general',
-                    history: messages.slice(-6) // Last 6 messages for context
+                    history: messages.slice(-6), // Last 6 messages for context
+                    api_key: apiKey
                 })
             })
             const data = await res.json()

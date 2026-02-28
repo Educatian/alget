@@ -6,6 +6,7 @@ import { supabase } from './supabase';
  */
 export const generateAssessment = async (sectionTitle, bioContext, engContext, learningObjectives, conceptIds) => {
     try {
+        const apiKey = localStorage.getItem('gemini_api_key') || '';
         const response = await fetch(`${API_BASE}/generate_assessment`, {
             method: 'POST',
             headers: {
@@ -16,7 +17,8 @@ export const generateAssessment = async (sectionTitle, bioContext, engContext, l
                 biology_context: bioContext,
                 engineering_context: engContext,
                 learning_objectives: learningObjectives,
-                concept_ids: conceptIds
+                concept_ids: conceptIds,
+                api_key: apiKey
             })
         });
 
@@ -37,6 +39,7 @@ export const generateAssessment = async (sectionTitle, bioContext, engContext, l
  */
 export const gradeSummary = async (question, studentAnswer, rubric) => {
     try {
+        const apiKey = localStorage.getItem('gemini_api_key') || '';
         const response = await fetch(`${API_BASE}/grade_summary`, {
             method: 'POST',
             headers: {
@@ -45,7 +48,8 @@ export const gradeSummary = async (question, studentAnswer, rubric) => {
             body: JSON.stringify({
                 question: question,
                 student_answer: studentAnswer,
-                rubric: rubric
+                rubric: rubric,
+                api_key: apiKey
             })
         });
 
@@ -93,7 +97,7 @@ export const updateMastery = async (qMatrix, isCorrect) => {
         });
 
         // 2. Call Python backend BKT engine
-        const response = await fetch('http://localhost:8000/api/grade', {
+        const response = await fetch(`${API_BASE}/grade`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -163,7 +167,7 @@ export const fuseTelemetry = async (conceptId, interactionType, intensity = 1.0)
         let currentSlip = records?.p_slip ?? 0.1;
         let currentTransit = records?.p_transit ?? 0.1;
 
-        const response = await fetch('http://localhost:8000/api/telemetry_fusion', {
+        const response = await fetch(`${API_BASE}/telemetry_fusion`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

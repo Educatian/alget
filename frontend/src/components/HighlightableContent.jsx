@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useTextSelection } from '../hooks/useTextSelection'
 import { logHighlightCreate } from '../lib/loggingService'
+import API_BASE from '../lib/apiConfig'
 import { MessageSquarePlus, Sparkles, Highlighter, X } from 'lucide-react'
 
 /**
@@ -261,7 +262,8 @@ export default function HighlightableContent({
             // Hybrid AI Peer Logic: If user leaves a note, schedule an AI response
             if (noteInput) {
                 try {
-                    fetch('http://localhost:8000/api/assist/peer_note', {
+                    const apiKey = localStorage.getItem('gemini_api_key') || '';
+                    fetch(`${API_BASE}/assist/peer_note`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -269,7 +271,8 @@ export default function HighlightableContent({
                             user_note: noteInput,
                             section_id: sectionId,
                             supabase_url: import.meta.env.VITE_SUPABASE_URL,
-                            supabase_anon_key: import.meta.env.VITE_SUPABASE_ANON_KEY
+                            supabase_anon_key: import.meta.env.VITE_SUPABASE_ANON_KEY,
+                            api_key: apiKey
                         })
                     }).catch(err => console.warn('Failed to schedule peer note:', err));
                 } catch (e) {

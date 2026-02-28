@@ -33,6 +33,7 @@ export default function GenerativeLab() {
         setResult(null);
 
         try {
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const response = await fetch(`${API_BASE}/orchestrate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -41,7 +42,8 @@ export default function GenerativeLab() {
                     grade_level: 'Undergraduate',
                     interest: 'Bio-Inspired Design',
                     current_bio_context: "", // Empty string initially to match FastAPI Pydantic model
-                    history: history         // Send the history *before* this query
+                    history: history,         // Send the history *before* this query
+                    api_key: apiKey
                 })
             });
 
@@ -71,12 +73,14 @@ export default function GenerativeLab() {
         setError(null);
 
         try {
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const response = await fetch(`${API_BASE}/book/generate_custom_module`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     biology_context: JSON.stringify(result.biology_context),
-                    engineering_application: JSON.stringify(result.engineering_application)
+                    engineering_application: JSON.stringify(result.engineering_application),
+                    api_key: apiKey
                 })
             });
 
