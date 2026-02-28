@@ -23,7 +23,7 @@ export default function IntelRail({ context, stuckEvent, onClose }) {
         if (!context) return
         setLoading(true)
         try {
-            const apiKey = localStorage.getItem('gemini_api_key') || '';
+            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
             const res = await fetch(`${API_BASE}/assist/explain`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -49,7 +49,7 @@ export default function IntelRail({ context, stuckEvent, onClose }) {
         if (!context) return
         setLoading(true)
         try {
-            const apiKey = localStorage.getItem('gemini_api_key') || '';
+            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
             const res = await fetch(`${API_BASE}/assist/represent`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -79,7 +79,7 @@ export default function IntelRail({ context, stuckEvent, onClose }) {
         setChatLoading(true)
 
         try {
-            const apiKey = localStorage.getItem('gemini_api_key') || '';
+            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
             const res = await fetch(`${API_BASE}/assist/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

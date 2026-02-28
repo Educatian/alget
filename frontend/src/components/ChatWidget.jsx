@@ -115,7 +115,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
         const isHighlight = userMessage.startsWith('Explain this passage:');
         try {
-            const apiKey = localStorage.getItem('gemini_api_key') || '';
+            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
             const res = await fetch(`${API_BASE}/orchestrate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
