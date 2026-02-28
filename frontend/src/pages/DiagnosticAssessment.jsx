@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabase'
 import '../index.css'
 
 // ============================================================================
@@ -13,191 +14,49 @@ export default function DiagnosticAssessment() {
     const [answers, setAnswers] = useState({})
     const [showResults, setShowResults] = useState(false)
     const [results, setResults] = useState(null)
+    const [questions, setQuestions] = useState([])
 
     // Question banks for each course
     const questionBanks = {
         statics: [
-            {
-                id: 1,
-                concept: 'vectors',
-                stem: 'What is the x-component of a 100 N force acting at 60° from the horizontal?',
-                options: ['50 N', '86.6 N', '100 N', '70.7 N'],
-                correct: 0,
-                prereqFor: ['01/01', '01/02']
-            },
-            {
-                id: 2,
-                concept: 'equilibrium',
-                stem: 'For a particle in equilibrium, what is the sum of all forces?',
-                options: ['Maximum force', 'Minimum force', 'Zero', 'Cannot be determined'],
-                correct: 2,
-                prereqFor: ['01/01']
-            },
-            {
-                id: 3,
-                concept: 'trigonometry',
-                stem: 'In a right triangle with angle θ = 30°, if the hypotenuse is 10, what is the opposite side?',
-                options: ['5', '8.66', '10', '7.07'],
-                correct: 0,
-                prereqFor: ['01/01', '02/01']
-            },
-            {
-                id: 4,
-                concept: 'moments',
-                stem: 'A moment is the product of:',
-                options: ['Force and mass', 'Force and perpendicular distance', 'Mass and acceleration', 'Force and velocity'],
-                correct: 1,
-                prereqFor: ['02/01', '02/02']
-            },
-            {
-                id: 5,
-                concept: 'fbd',
-                stem: 'A free body diagram should include:',
-                options: ['Only external forces', 'Only internal forces', 'Both internal and external forces', 'No forces'],
-                correct: 0,
-                prereqFor: ['01/02', '01/03']
-            },
-            {
-                id: 6,
-                concept: 'friction',
-                stem: 'Static friction force is always:',
-                options: ['Equal to μN', 'Greater than μN', 'Less than or equal to μN', 'Zero'],
-                correct: 2,
-                prereqFor: ['01/04']
-            },
-            {
-                id: 7,
-                concept: 'units',
-                stem: 'What are the SI units for moment (torque)?',
-                options: ['N', 'N·m', 'kg·m/s²', 'J/s'],
-                correct: 1,
-                prereqFor: ['02/01', '02/02']
-            },
-            {
-                id: 8,
-                concept: 'trusses',
-                stem: 'In a simple truss, members are assumed to be:',
-                options: ['Rigid beams', 'Two-force members', 'Flexible cables', 'Compression only'],
-                correct: 1,
-                prereqFor: ['03/01', '03/02']
-            }
+            { id: 1, concept: 'vectors', stem: 'What is the x-component of a 100 N force acting at 60° from the horizontal?', options: ['50 N', '86.6 N', '100 N', '70.7 N'], correct: 0, prereqFor: ['01/01', '01/02'] },
+            { id: 2, concept: 'equilibrium', stem: 'For a particle in equilibrium, what is the sum of all forces?', options: ['Maximum force', 'Minimum force', 'Zero', 'Cannot be determined'], correct: 2, prereqFor: ['01/01'] },
+            { id: 3, concept: 'trigonometry', stem: 'In a right triangle with angle θ = 30°, if the hypotenuse is 10, what is the opposite side?', options: ['5', '8.66', '10', '7.07'], correct: 0, prereqFor: ['01/01', '02/01'] },
+            { id: 4, concept: 'moments', stem: 'A moment is the product of:', options: ['Force and mass', 'Force and perpendicular distance', 'Mass and acceleration', 'Force and velocity'], correct: 1, prereqFor: ['02/01', '02/02'] },
+            { id: 5, concept: 'fbd', stem: 'A free body diagram should include:', options: ['Only external forces', 'Only internal forces', 'Both internal and external forces', 'No forces'], correct: 0, prereqFor: ['01/02', '01/03'] },
+            { id: 6, concept: 'friction', stem: 'Static friction force is always:', options: ['Equal to μN', 'Greater than μN', 'Less than or equal to μN', 'Zero'], correct: 2, prereqFor: ['01/04'] },
+            { id: 7, concept: 'units', stem: 'What are the SI units for moment (torque)?', options: ['N', 'N·m', 'kg·m/s²', 'J/s'], correct: 1, prereqFor: ['02/01', '02/02'] },
+            { id: 8, concept: 'trusses', stem: 'In a simple truss, members are assumed to be:', options: ['Rigid beams', 'Two-force members', 'Flexible cables', 'Compression only'], correct: 1, prereqFor: ['03/01', '03/02'] }
         ],
         dynamics: [
-            {
-                id: 1,
-                concept: 'kinematics',
-                stem: 'If velocity is constant, what is the acceleration?',
-                options: ['Equal to velocity', 'Maximum', 'Zero', 'Cannot be determined'],
-                correct: 2,
-                prereqFor: ['01/01']
-            },
-            {
-                id: 2,
-                concept: 'calculus',
-                stem: 'Acceleration is the derivative of:',
-                options: ['Position', 'Velocity', 'Force', 'Energy'],
-                correct: 1,
-                prereqFor: ['01/01', '01/02']
-            },
-            {
-                id: 3,
-                concept: 'vectors',
-                stem: 'For circular motion, centripetal acceleration points:',
-                options: ['Tangent to path', 'Toward center', 'Away from center', 'Along velocity'],
-                correct: 1,
-                prereqFor: ['01/02']
-            },
-            {
-                id: 4,
-                concept: 'newton',
-                stem: 'Newton\'s Second Law states that F equals:',
-                options: ['mv', 'ma', 'mv²', 'm/a'],
-                correct: 1,
-                prereqFor: ['02/01']
-            },
-            {
-                id: 5,
-                concept: 'energy',
-                stem: 'Kinetic energy is proportional to:',
-                options: ['v', 'v²', 'v³', '1/v'],
-                correct: 1,
-                prereqFor: ['02/02']
-            },
-            {
-                id: 6,
-                concept: 'momentum',
-                stem: 'Momentum is conserved when:',
-                options: ['Energy is conserved', 'No external net force', 'Friction is present', 'Always'],
-                correct: 1,
-                prereqFor: ['02/03']
-            },
-            {
-                id: 7,
-                concept: 'angular',
-                stem: 'Angular velocity ω has units of:',
-                options: ['m/s', 'rad/s', 'm/s²', 'rad/s²'],
-                correct: 1,
-                prereqFor: ['03/01']
-            },
-            {
-                id: 8,
-                concept: 'inertia',
-                stem: 'Moment of inertia depends on:',
-                options: ['Mass only', 'Distance from axis only', 'Both mass and distance from axis', 'Angular velocity'],
-                correct: 2,
-                prereqFor: ['03/02', '03/03']
-            }
+            { id: 1, concept: 'kinematics', stem: 'If velocity is constant, what is the acceleration?', options: ['Equal to velocity', 'Maximum', 'Zero', 'Cannot be determined'], correct: 2, prereqFor: ['01/01'] }
         ],
         'inst-design': [
-            {
-                id: 1,
-                concept: 'learning theories',
-                stem: 'Which learning theory focuses primarily on observable behaviors rather than internal mental states?',
-                options: ['Cognitivism', 'Constructivism', 'Behaviorism', 'Connectivism'],
-                correct: 2,
-                prereqFor: ['01/01', '01/02']
-            },
-            {
-                id: 2,
-                concept: 'instructional design models',
-                stem: 'What does the acronym ADDIE stand for?',
-                options: [
-                    'Analyze, Design, Develop, Implement, Evaluate',
-                    'Assess, Draft, Deploy, Interact, Examine',
-                    'Acquire, Discuss, Discover, Internalize, Expand',
-                    'Align, Deliver, Design, Innovate, Educate'
-                ],
-                correct: 0,
-                prereqFor: ['01/01']
-            },
-            {
-                id: 3,
-                concept: 'cognitive load',
-                stem: 'Extraneous cognitive load is caused by:',
-                options: ['The inherent difficulty of the material', 'Poor instructional design and presentation', 'The learner\'s prior knowledge', 'Schema construction'],
-                correct: 1,
-                prereqFor: ['01/02']
-            },
-            {
-                id: 4,
-                concept: 'schema theory',
-                stem: 'A key goal of instruction according to cognitivism is to help learners build and refine:',
-                options: ['Stimulus-response associations', 'Behavioral conditioning', 'Mental schemas', 'Rote memorization pathways'],
-                correct: 2,
-                prereqFor: ['01/02']
-            },
-            {
-                id: 5,
-                concept: 'constructivism',
-                stem: 'In a constructivist classroom, the teacher acts primarily as a:',
-                options: ['Transmitter of knowledge', 'Strict disciplinarian', 'Passive observer', 'Facilitator or guide'],
-                correct: 3,
-                prereqFor: ['01/03']
-            }
+            { id: 1, concept: 'ct_1_2', stem: 'Which learning theory focuses primarily on observable behaviors rather than internal mental states?', options: ['Cognitivism', 'Constructivism', 'Behaviorism', 'Connectivism'], correct: 2, prereqFor: ['01/03'] },
+            { id: 2, concept: 'ct_2_1', stem: 'What does the acronym ADDIE stand for?', options: ['Analyze, Design, Develop, Implement, Evaluate', 'Assess, Draft, Deploy, Interact, Examine', 'Acquire, Discuss, Discover, Internalize, Expand', 'Align, Deliver, Design, Innovate, Educate'], correct: 0, prereqFor: ['02/01'] },
+            { id: 3, concept: 'ct_1_3', stem: 'Extraneous cognitive load is caused by:', options: ['The inherent difficulty of the material', 'Poor instructional design and presentation', "The learner's prior knowledge", 'Schema construction'], correct: 1, prereqFor: ['01/02'] },
+            { id: 4, concept: 'ct_1_2', stem: 'A key goal of instruction according to cognitivism is to help learners build and refine:', options: ['Stimulus-response associations', 'Behavioral conditioning', 'Mental schemas', 'Rote memorization pathways'], correct: 2, prereqFor: ['01/02'] },
+            { id: 5, concept: 'ct_1_2', stem: 'In a constructivist classroom, the teacher acts primarily as a:', options: ['Transmitter of knowledge', 'Strict disciplinarian', 'Passive observer', 'Facilitator or guide'], correct: 3, prereqFor: ['01/01'] },
+            { id: 6, concept: 'ct_2_2', stem: 'Which evaluation occurs DURING the learning process to improve instruction?', options: ['Summative', 'Formative', 'Diagnostic', 'Confirmative'], correct: 1, prereqFor: ['02/01'] },
+            { id: 7, concept: 'ct_2_2', stem: 'A well-designed rubric primarily helps to:', options: ['Confuse students with complex grading scales', 'Provide objective, transparent assessment criteria', 'Reduce the amount of grading work', 'Automatically generate test questions'], correct: 1, prereqFor: ['02/02'] },
+            { id: 8, concept: 'ct_2_3', stem: 'Kirkpatrick\'s Four Levels of Evaluation are Reaction, Learning, Behavior, and:', options: ['Results', 'Return on Investment', 'Retention', 'Recall'], correct: 0, prereqFor: ['02/03'] },
+            { id: 9, concept: 'ct_1_1', stem: 'Which scenario best represents an application of situated learning?', options: ['Memorizing state capitals', 'Taking a multiple-choice test', 'Learning math by running a mock store', 'Reading a textbook chapter linearly'], correct: 2, prereqFor: ['01/01'] },
+            { id: 10, concept: 'ct_1_3', stem: 'According to Cognitive Load Theory, intrinsic load refers to:', options: ['The way information is presented', 'The natural complexity of the information', 'The learner\'s motivation level', 'The background noise in the classroom'], correct: 1, prereqFor: ['01/02'] },
+            { id: 11, concept: 'ct_2_1', stem: 'A Needs Analysis in the ADDIE model aims to answer which question?', options: ['What color scheme should the modules be?', 'Who are the learners and what do they need to know?', 'How much will the development cost?', 'Where will the course be hosted?'], correct: 1, prereqFor: ['02/01'] },
+            { id: 12, concept: 'ct_2_2', stem: 'Backward Design (Understanding by Design) starts with identifying:', options: ['Learning activities', 'Assessment methods', 'Desired results (learning goals)', 'Textbook chapters'], correct: 2, prereqFor: ['02/02'] },
+            { id: 13, concept: 'ct_1_2', stem: 'Vygotsky\'s Zone of Proximal Development (ZPD) relies heavily on the concept of:', options: ['Punishment', 'Scaffolding', 'Classical conditioning', 'Rote learning'], correct: 1, prereqFor: ['01/01'] },
+            { id: 14, concept: 'ct_1_1', stem: 'Bloom\'s Taxonomy is primarily used for:', options: ['Organizing classrooms logically', 'Classifying educational learning objectives', 'Developing grading rubrics automatically', 'Scheduling instructional time'], correct: 1, prereqFor: ['01/01'] },
+            { id: 15, concept: 'ct_2_3', stem: 'A summative assessment is typically given:', options: ['Before instruction begins', 'During instruction to adjust pacing', 'At the end of an instructional unit', 'Only when a student fails a formative test'], correct: 2, prereqFor: ['02/01'] }
         ]
     }
 
-    const questions = questionBanks[course] || questionBanks.statics
+    useEffect(() => {
+        // Load and shuffle questions for the current course (pull 5 random questions)
+        const allQuestions = questionBanks[course] || questionBanks['statics']
+        const shuffled = [...allQuestions].sort(() => 0.5 - Math.random())
+        setQuestions(shuffled.slice(0, 5))
+    }, [course])
+
     const totalQuestions = questions.length
 
     const handleAnswer = (optionIndex) => {
@@ -223,22 +82,55 @@ export default function DiagnosticAssessment() {
         navigate(`/book/${course}/01/01`)
     }
 
-    const analyzeResults = () => {
+    const analyzeResults = async () => {
         const gaps = []
         const masteredConcepts = []
         let score = 0
 
+        // Tracking concept mastery for db update
+        const conceptUpdates = {}
+
         questions.forEach((q, idx) => {
-            if (answers[idx] === q.correct) {
+            const isCorrect = answers[idx] === q.correct
+            if (isCorrect) {
                 score++
                 masteredConcepts.push(q.concept)
+                // Boost p_known heavily if they got it right in a diagnostic
+                conceptUpdates[q.concept] = Math.min((conceptUpdates[q.concept] || 0.5) + 0.4, 0.95)
             } else {
                 gaps.push({
                     concept: q.concept,
                     sections: q.prereqFor
                 })
+                // Lower p_known 
+                conceptUpdates[q.concept] = Math.max((conceptUpdates[q.concept] || 0.5) - 0.3, 0.1)
             }
         })
+
+        // Attempt to sync with Supabase Knowledge Graph stats
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user?.id) {
+            const userId = session.user.id;
+
+            const recordsToUpsert = Object.entries(conceptUpdates).map(([conceptId, p_known]) => {
+                return {
+                    user_id: userId,
+                    concept_id: conceptId,
+                    p_known: p_known,
+                    skill_level: p_known >= 0.8 ? 'mastered' : p_known >= 0.5 ? 'emerging' : 'novice'
+                };
+            });
+
+            if (recordsToUpsert.length > 0) {
+                const { error } = await supabase
+                    .from('mastery')
+                    .upsert(recordsToUpsert, { onConflict: 'user_id, concept_id' });
+
+                if (error) {
+                    console.error("Failed to update mastery from diagnostic: ", error);
+                }
+            }
+        }
 
         // Determine recommended starting point
         const gapSections = [...new Set(gaps.flatMap(g => g.sections))]
@@ -253,7 +145,7 @@ export default function DiagnosticAssessment() {
             masteredConcepts,
             recommendedStart,
             recommendedSections: gapSections,
-            level: score >= 7 ? 'Advanced' : score >= 4 ? 'Intermediate' : 'Foundational'
+            level: score >= 4 ? 'Advanced' : score >= 2 ? 'Intermediate' : 'Foundational' // adjust thresholds for 5 Qs
         }
 
         setResults(analysisResults)
