@@ -114,3 +114,85 @@ class TutorAgent:
         Validation Critique (Scientific Assessment of Feasibility & Biological Fidelity):
         {val_context_str}
         """
+
+    def general_tutor(self, query: str, course: str, current_content: str, rag_context: str, history: list = None) -> dict:
+        """
+        Generic tutoring method for courses other than bio-inspired design.
+        """
+        if not self.client:
+            return {
+                "error": "Gemini API key is required.",
+                "synthesis": "API Key is missing."
+            }
+            
+        logger.info(f"Generating generic tutor response for course {course}, query: {query}")
+        
+        history_text = ""
+        if history:
+            for msg in history:
+                role = "Student" if msg.get("role") == "user" else "Assistant"
+                history_text += f"{role}: {msg.get('content', '')}\n"
+
+        # Determine domain persona based on course
+        domain = "Instructional Design and Educational Technology" if course == "inst-design" else course.replace('-', ' ').title()
+        
+        prompt = f"""
+        You are a highly knowledgeable Tutor Agent specializing in {domain}.
+        A student is asking a question. Synthesize an encouraging, easy-to-understand response based on the context provided.
+        
+        Use the conversation history to understand the context of the student's question and personalize your response accordingly.
+        
+        Conversation History:
+        {history_text if history_text else "None"}
+        
+        Ensure your response directly answers the student's query and leverages the retrieved textbook knowledge and current page context.
+        
+        Student Query: {query}
+        
+        Current Page Content (What the student is currently reading):
+        {current_content if current_content else "No explicit page content provided."}
+        
+        Retrieved Textbook/Literature Context: 
+        {rag_context if rag_context else "No retrieved context."}
+        """
+        
+        try:
+            response = self.client.models.generate_content(
+                model='gemini-2.0-flash',
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    temperature=0.7,
+                    response_mime_type="application/json",
+                    response_schema={
+                        "type": "OBJECT",
+                        "properties": {
+                            "synthesis": {
+                                "type": "STRING",
+                                "description": f"An engaging, cohesive narrative answering the student's question about {domain}."
+                            },
+                            "encouragement": {
+                                "type": "STRING",
+                                "description": "A supportive closing remark to motivate the student."
+                            },
+                            "next_steps": {
+                                "type": "ARRAY",
+                                "items": {"type": "STRING"},
+                                "description": "1-3 actionable questions or activities the student can think about next."
+                            }
+                        },
+                        "required": ["synthesis", "encouragement", "next_steps"]
+                    }
+                )
+            )
+            
+            try:
+                result_json = json.loads(response.text)
+                return result_json
+            except json.JSONDecodeError:
+                return {
+                    "error": "Failed to parse JSON response.",
+                    "raw_response": response.text
+                }
+                
+        except Exception as e:
+            return {"error": f"Error from Tutor Agent: {str(e)}"}

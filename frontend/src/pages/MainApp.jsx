@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { StaticsIllustration, BioInspiredIllustration, InstDesignIllustration } from '../components/CourseIllustrations'
 import '../index.css'
 
 export default function MainApp({ user, onLogout }) {
@@ -14,7 +15,7 @@ export default function MainApp({ user, onLogout }) {
     {
       id: 'statics',
       title: 'ME 121: Engineering Statics',
-      icon: '⚙️',
+      icon: <StaticsIllustration />,
       description: 'Foundational U of Alabama curriculum. Study forces on bodies at rest, equilibrium analysis, and structural systems like trusses and frames.',
       topics: ['Equilibrium', 'Force Systems', 'Trusses', 'Friction'],
       chapters: 10,
@@ -27,7 +28,7 @@ export default function MainApp({ user, onLogout }) {
     {
       id: 'bio-inspired',
       title: 'Bio-Inspired Design',
-      icon: '🌿',
+      icon: <BioInspiredIllustration />,
       description: 'Specialized modular sequence. Learn how nature engineers solutions through deep-ocean sponges, mangroves, and gecko adhesion.',
       topics: ['Biomimicry', 'Natural Trusses', 'Filtration', 'Adhesion'],
       chapters: 3,
@@ -43,7 +44,7 @@ export default function MainApp({ user, onLogout }) {
     {
       id: 'inst-design',
       title: 'Foundation of Instructional Design',
-      icon: '🎓',
+      icon: <InstDesignIllustration />,
       description: 'Core instructional design principles at the University of Alabama. Explore learning theories, curriculum development, and pedagogical strategies.',
       topics: ['Learning Theories', 'ADDIE Model', 'Assessment', 'Pedagogy'],
       chapters: 8,
@@ -225,7 +226,7 @@ export default function MainApp({ user, onLogout }) {
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-10 -mt-10 blur-2xl pointer-events-none group-hover:bg-white/30 transition-colors max-w-none"></div>
                     <div className="flex items-start justify-between relative z-10">
                       <div>
-                        <span className="text-4xl mb-5 block drop-shadow-md">{course.icon}</span>
+                        <div className="mb-5 drop-shadow-md">{course.icon}</div>
                         <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{course.title}</h3>
                         <div className="flex gap-2 items-center flex-wrap">
                           <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-white font-semibold text-xs uppercase tracking-wider border border-white/10 shadow-sm">

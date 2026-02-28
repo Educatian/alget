@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
@@ -7,13 +7,26 @@ import rehypeRaw from 'rehype-raw'
 import 'katex/dist/katex.min.css'
 import PracticeBlock from './PracticeBlock'
 import KnowledgeCheck from './KnowledgeCheck'
-import { logTimeOnTask, logInteraction } from '../lib/loggingService'
-import { useEffect, useRef } from 'react'
+import TextAnnotator from './TextAnnotator'
+import DynamicScenario from './DynamicScenario'
+import ConceptDiagrams from './ConceptDiagrams'
+import InteractiveQuiz from './InteractiveQuiz'
+import AffectiveReaction from './AffectiveReaction'
+import KnowledgeGraph from './KnowledgeGraph'
+import { logTimeOnTask, logInteraction, logEvent } from '../lib/loggingService'
 
-export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
+export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskAi, isCompleted, markCompleted }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
+    const [showGraph, setShowGraph] = useState(false)
     const startTimeRef = useRef(Date.now())
+    const [activeHeading, setActiveHeading] = useState('Introduction')
+
+    const markdownComponents = useMemo(() => ({
+        'dynamic-scenario': ({ node, ...props }) => <DynamicScenario {...props} />,
+        'concept-diagram': ({ node, ...props }) => <ConceptDiagrams {...props} />,
+        'interactive-quiz': ({ node, options, ...props }) => <InteractiveQuiz options={options} {...props} />,
+    }), [])
 
     // Section ID computation
     const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null;
@@ -21,8 +34,29 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
     useEffect(() => {
         // Reset timer when section changes
         startTimeRef.current = Date.now();
+        setActiveHeading('Introduction');
+
+        // Setup Intersection Observer for reading context tracking
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visibleEntries = entries.filter(ent => ent.isIntersecting);
+                if (visibleEntries.length > 0) {
+                    visibleEntries.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                    setActiveHeading(visibleEntries[0].target.innerText);
+                }
+            },
+            { rootMargin: '-10% 0px -80% 0px', threshold: 0.1 }
+        );
+
+        // Attach observer after render
+        const timeoutId = setTimeout(() => {
+            const headings = document.querySelectorAll('.prose h1, .prose h2, .prose h3');
+            headings.forEach(h => observer.observe(h));
+        }, 500);
 
         return () => {
+            clearTimeout(timeoutId);
+            observer.disconnect();
             // Log time on task when component unmounts or section changes
             if (sectionId) {
                 const durationMs = Date.now() - startTimeRef.current;
@@ -98,12 +132,30 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
         <div className="max-w-3xl mx-auto px-8 py-8">
             {/* Section Header */}
             <header className="mb-8">
-                <div className="text-sm text-[#9E1B32] font-medium mb-2">
-                    Chapter {meta?.chapter} • Section {meta?.section}
+                <div className="text-sm text-[#9E1B32] font-medium mb-2 flex items-center justify-between">
+                    <span>Chapter {meta?.chapter} • Section {meta?.section}</span>
+                    {meta?.estimated_time_minutes && (
+                        <span className="text-slate-500 font-semibold bg-slate-100 px-3 py-1 rounded-full text-xs flex items-center gap-1.5 shadow-inner">
+                            ⏱️ {meta.estimated_time_minutes} min read
+                        </span>
+                    )}
                 </div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                    {meta?.title || 'Section Title'}
+                <h1 className="text-3xl font-bold text-gray-900 mb-4 flex items-center justify-between">
+                    <span>{meta?.title || 'Section Title'}</span>
+                    <button
+                        onClick={() => setShowGraph(!showGraph)}
+                        className={`text-sm px-4 py-2 rounded-lg font-bold border transition-colors ${showGraph ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+                    >
+                        {showGraph ? 'Hide Brain Network' : '🧠 View Brain Network'}
+                    </button>
                 </h1>
+
+                {/* Knowledge Graph Overlay */}
+                {showGraph && (
+                    <div className="mb-8 animate-fade-in origin-top">
+                        <KnowledgeGraph />
+                    </div>
+                )}
 
                 {/* Learning Objectives */}
                 {meta?.learning_objectives?.length > 0 && (
@@ -138,12 +190,32 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
         prose-td:border prose-td:border-gray-300 prose-td:px-3 prose-td:py-2
         mb-8"
             >
-                <Markdown
-                    remarkPlugins={[remarkGfm, remarkMath]}
-                    rehypePlugins={[rehypeKatex, rehypeRaw]}
-                >
-                    {content || '*No content available*'}
-                </Markdown>
+                <TextAnnotator
+                    onAskAi={(selectedText, latencyMs) => {
+                        logInteraction('annotation_ask_ai', selectedText, sectionId)
+                        if (latencyMs) {
+                            logEvent('highlight_to_chat_latency', activeHeading, {
+                                latency_ms: latencyMs,
+                                viewport_context: activeHeading,
+                                text: selectedText
+                            }, sectionId)
+                        }
+                        if (onAskAi) onAskAi(selectedText)
+                    }}
+                    onAddNote={(selectedText) => {
+                        logInteraction('annotation_add_note', selectedText, sectionId)
+                        // Trigger ghost peer AI logic here eventually
+                    }}
+                    content={
+                        <Markdown
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex, rehypeRaw]}
+                            components={markdownComponents}
+                        >
+                            {content || '*No content available*'}
+                        </Markdown>
+                    }
+                />
             </article>
 
             {/* Embedded Blocks (Simulation/Illustration) */}
@@ -235,6 +307,12 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
                 </div>
             )}
 
+            {/* Affective Telemetry */}
+            <AffectiveReaction
+                sectionId={sectionId}
+                conceptIds={meta?.concept_ids}
+            />
+
             {/* Divider */}
             <hr className="border-gray-200 my-8" />
 
@@ -243,6 +321,8 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
                 bioContext={content}
                 engContext={meta?.description}
                 sectionTitle={meta?.title}
+                learningObjectives={meta?.learning_objectives}
+                conceptIds={meta?.concept_ids}
             />
 
             {/* Divider */}
@@ -254,6 +334,28 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent }) {
                 sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}
                 onStuckEvent={onStuckEvent}
             />
+
+            {/* Mark as read button */}
+            <div className="mt-12 mb-8 flex justify-center">
+                <button
+                    onClick={markCompleted}
+                    disabled={isCompleted}
+                    className={`px-8 py-3.5 rounded-xl text-lg font-bold flex items-center gap-3 transition-all ${isCompleted
+                        ? 'bg-emerald-100 text-emerald-700 cursor-default ring-1 ring-emerald-200'
+                        : 'bg-linear-to-r from-[#9E1B32] to-[#c72240] text-white hover:from-[#7A1527] hover:to-[#9E1B32] shadow-lg shadow-red-900/20 hover:shadow-xl hover:-translate-y-0.5'
+                        }`}
+                >
+                    {isCompleted ? (
+                        <>
+                            <span className="text-xl">✅</span> Section Completed
+                        </>
+                    ) : (
+                        <>
+                            <span className="text-xl">📚</span> Mark as Complete
+                        </>
+                    )}
+                </button>
+            </div>
         </div>
     )
 }

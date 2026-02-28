@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useTextSelection } from '../hooks/useTextSelection'
 import { logHighlightCreate } from '../lib/loggingService'
+import { MessageSquarePlus, Sparkles, Highlighter, X } from 'lucide-react'
 
 /**
  * Highlightable content wrapper with selection popup, notes, and collaborative highlights
@@ -20,6 +21,7 @@ export default function HighlightableContent({
 
     const {
         highlights,
+        peerHighlights,
         popularHighlights,
         saveHighlight,
         updateHighlightNote,
@@ -103,7 +105,7 @@ export default function HighlightableContent({
 
                     // Hover for notes
                     if (onHover) {
-                        mark.addEventListener('mouseenter', () => onHover({ id: highlightId, note, text }))
+                        mark.addEventListener('mouseenter', () => onHover({ id: highlightId, note, text, isPeer: type === 'peer' }))
                         mark.addEventListener('mouseleave', () => onHover(null))
                     }
 
@@ -122,6 +124,22 @@ export default function HighlightableContent({
 
                     textNode.parentNode.replaceChild(fragment, textNode)
                 }
+            })
+        }
+
+        // Apply peer highlights (green)
+        if (peerHighlights) {
+            peerHighlights.forEach(ph => {
+                const isAI = ph.user_id && ph.user_id.startsWith('ai_peer');
+                applyHighlight(ph.text_content, {
+                    className: `bg-green-100/70 border-b-2 border-green-300 rounded px-0.5 cursor-help`,
+                    title: ph.note ? `${isAI ? '🤖 AI Peer' : '🧑‍🎓 Peer'} Note` : 'Peer Highlight',
+                    type: 'peer',
+                    highlightId: ph.id,
+                    note: ph.note,
+                    onClick: null,
+                    onHover: setHoveredHighlight
+                })
             })
         }
 
@@ -168,8 +186,12 @@ export default function HighlightableContent({
         })
     }, [highlights, popularHighlights, children, deleteHighlight])
 
+    // Ref to persist the selected text even after browser selection clears
+    const selectedTextRef = useRef(null)
+
     // Handle text selection
     const handleMouseUp = useCallback(() => {
+        if (showNoteInput) return; // Guard: don't alter selection while modal is open
         setTimeout(() => {
             const sel = window.getSelection()
             if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
@@ -194,36 +216,67 @@ export default function HighlightableContent({
             }
 
             const rect = range.getBoundingClientRect()
-            setSelectionState({
+            const newState = {
                 text,
                 rect: { top: rect.top, left: rect.left, width: rect.width, height: rect.height }
-            })
+            }
+            setSelectionState(newState)
+            selectedTextRef.current = text // Persist in ref
         }, 10)
-    }, [])
+    }, [showNoteInput])
 
     const clearSelection = useCallback(() => {
         setSelectionState(null)
         setShowNoteInput(false)
         setEditingNoteId(null)
         setNoteInput('')
+        selectedTextRef.current = null
         window.getSelection()?.removeAllRanges()
     }, [])
 
+    const handleScroll = useCallback(() => {
+        // Don't close the selection if the user is actively typing a note
+        if (!showNoteInput) {
+            clearSelection()
+        }
+    }, [showNoteInput, clearSelection])
+
     useEffect(() => {
         document.addEventListener('mouseup', handleMouseUp)
-        document.addEventListener('scroll', clearSelection, true)
+        document.addEventListener('scroll', handleScroll, true)
         return () => {
             document.removeEventListener('mouseup', handleMouseUp)
-            document.removeEventListener('scroll', clearSelection, true)
+            document.removeEventListener('scroll', handleScroll, true)
         }
-    }, [handleMouseUp, clearSelection])
+    }, [handleMouseUp, handleScroll])
 
-    // Handle highlight with optional note
+    // Enhanced Highlight handler with Hybrid AI Peer logic
     const handleHighlight = async (color = 'yellow') => {
-        if (selectionState?.text) {
-            await saveHighlight(selectionState.text, color, noteInput)
-            // Log highlight creation (PII-safe: only length and note flag)
-            logHighlightCreate(selectionState.text.length, !!noteInput, sectionId)
+        // Use ref for text since browser selection may have been cleared
+        const text = selectedTextRef.current || selectionState?.text
+        if (text) {
+            await saveHighlight(text, color, noteInput)
+            logHighlightCreate(text.length, !!noteInput, sectionId)
+
+            // Hybrid AI Peer Logic: If user leaves a note, schedule an AI response
+            if (noteInput) {
+                try {
+                    fetch('http://localhost:8000/api/assist/peer_note', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            text: text,
+                            user_note: noteInput,
+                            section_id: sectionId,
+                            supabase_url: import.meta.env.VITE_SUPABASE_URL,
+                            supabase_anon_key: import.meta.env.VITE_SUPABASE_ANON_KEY
+                        })
+                    }).catch(err => console.warn('Failed to schedule peer note:', err));
+                } catch (e) {
+                    console.warn('Stealth peer dispatch failed', e)
+                }
+            }
+
             clearSelection()
         }
     }
@@ -277,33 +330,46 @@ export default function HighlightableContent({
             {/* Selection Popup */}
             {selectionState && !showNoteInput && (
                 <div
-                    className="fixed z-[100] bg-white rounded-lg shadow-xl border border-gray-200 p-2 flex flex-col gap-2"
+                    className="fixed z-[100] flex items-center gap-1 bg-slate-900 border border-slate-700 p-1 rounded-xl shadow-2xl animate-in fade-in zoom-in-95 duration-200"
                     style={{
-                        top: selectionState.rect.top - 90,
-                        left: Math.max(10, selectionState.rect.left + (selectionState.rect.width / 2) - 120),
+                        top: selectionState.rect.top - 60,
+                        left: Math.max(10, selectionState.rect.left + (selectionState.rect.width / 2) - 130),
                     }}
                 >
-                    <div className="flex gap-1">
-                        <button
-                            onClick={() => handleHighlight('yellow')}
-                            className="px-3 py-1.5 text-xs font-medium bg-yellow-100 hover:bg-yellow-200 rounded-md flex items-center gap-1"
-                        >
-                            <span className="text-yellow-600">✨</span> Highlight
-                        </button>
-                        <button
-                            onClick={() => setShowNoteInput(true)}
-                            className="px-3 py-1.5 text-xs font-medium bg-gray-100 hover:bg-gray-200 rounded-md flex items-center gap-1"
-                        >
-                            <span>📝</span> + Note
-                        </button>
-                        <button
-                            onClick={handleAskBigAL}
-                            className="px-3 py-1.5 text-xs font-medium bg-[#9E1B32]/10 hover:bg-[#9E1B32]/20 text-[#9E1B32] rounded-md flex items-center gap-1"
-                        >
-                            <span>🐘</span> Ask BigAL
-                        </button>
-                        <button onClick={clearSelection} className="px-2 py-1.5 text-xs text-gray-400 hover:text-gray-600">✕</button>
-                    </div>
+                    <button
+                        onClick={() => handleHighlight('yellow')}
+                        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800 rounded-lg transition-colors group"
+                    >
+                        <Highlighter className="w-4 h-4 text-yellow-400 group-hover:text-yellow-300" />
+                        Highlight
+                    </button>
+
+                    <div className="w-px h-5 bg-slate-700 mx-1"></div>
+
+                    <button
+                        onClick={() => setShowNoteInput(true)}
+                        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800 rounded-lg transition-colors group"
+                    >
+                        <MessageSquarePlus className="w-4 h-4 text-emerald-400 group-hover:text-emerald-300" />
+                        Add Note
+                    </button>
+
+                    <div className="w-px h-5 bg-slate-700 mx-1"></div>
+
+                    <button
+                        onClick={handleAskBigAL}
+                        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800 rounded-lg transition-colors group"
+                    >
+                        <Sparkles className="w-4 h-4 text-indigo-400 group-hover:text-indigo-300" />
+                        Ask AI
+                    </button>
+
+                    <button onClick={clearSelection} className="px-2 py-1.5 ml-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors">
+                        <X className="w-4 h-4" />
+                    </button>
+
+                    {/* Triangle pointer */}
+                    <div className="absolute left-1/2 -bottom-2 -translate-x-1/2 border-8 border-transparent border-t-slate-900"></div>
                 </div>
             )}
 
@@ -316,7 +382,6 @@ export default function HighlightableContent({
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
                     }}
-                    onMouseDown={(e) => e.stopPropagation()}
                 >
                     <p className="text-xs text-gray-500 mb-2">
                         {editingNoteId ? 'Edit note:' : `Add note to highlighted text`}
@@ -331,21 +396,20 @@ export default function HighlightableContent({
                     />
                     <div className="flex justify-end gap-2 mt-3">
                         <button
-                            onMouseDown={(e) => { e.preventDefault(); clearSelection(); }}
-                            className="px-4 py-1.5 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded"
+                            onClick={clearSelection}
+                            className="px-4 py-1.5 text-xs text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded cursor-pointer pointer-events-auto"
                         >
                             Cancel
                         </button>
                         <button
-                            onMouseDown={(e) => {
-                                e.preventDefault();
+                            onClick={() => {
                                 if (editingNoteId) {
                                     saveNote();
                                 } else {
                                     handleHighlight('yellow');
                                 }
                             }}
-                            className="px-4 py-1.5 text-xs bg-yellow-400 hover:bg-yellow-500 rounded font-medium"
+                            className="px-4 py-1.5 text-xs bg-yellow-400 hover:bg-yellow-500 rounded font-medium cursor-pointer pointer-events-auto shadow-sm"
                         >
                             {editingNoteId ? 'Save Note' : 'Highlight + Note'}
                         </button>

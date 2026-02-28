@@ -46,6 +46,19 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         loadHistory()
     }, [userId, context?.sectionId, historyLoaded])
 
+    // Listen for global open-chat events
+    useEffect(() => {
+        const handleOpenChat = (e) => {
+            const { message } = e.detail || {};
+            if (message) {
+                setInputValue(message);
+                setIsOpen(true);
+            }
+        };
+        window.addEventListener('open-chat', handleOpenChat);
+        return () => window.removeEventListener('open-chat', handleOpenChat);
+    }, []);
+
     // Save chat history to Supabase
     const saveHistory = async (newMessages) => {
         if (!userId || !context?.sectionId) return
@@ -99,16 +112,17 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         // Log user message (PII-safe: length only)
         logChatMessage(turnNumber, userMessage.length, true, context?.sectionId)
 
+        const isHighlight = userMessage.startsWith('Explain this passage:');
         try {
             const res = await fetch(`${API_BASE}/orchestrate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     query: userMessage,
-                    grade_level: "Sophomore",
-                    interest: "Robotics",
-                    current_bio_context: "",
-                    history: messages.slice(-10) // Send more history for better context
+                    course: context?.course || "bio-inspired",
+                    current_content: context?.pageContent ? context.pageContent.substring(0, 2000) : "",
+                    history: messages.slice(-10), // Send more history for better context
+                    is_highlight: isHighlight
                 })
             })
             const data = await res.json()
@@ -123,6 +137,15 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
             // Save to database
             await saveHistory(finalMessages)
+
+            // ECD Phase 3: Telemetry Fusion - Soft Evidence for Chat Engagement
+            // If the user is having a back-and-forth deep chat (turnNumber > 2) and we know the context
+            if (turnNumber > 2 && context?.sectionId) {
+                // Approximate a conceptId based on context (in a real system, you might ask the LLM what concept this was about)
+                const primaryConcept = `concept_from_${context?.sectionId}`;
+                fuseTelemetry(primaryConcept, 'chat_engagement', 1.0).catch(console.error);
+            }
+
         } catch (err) {
             console.error(err)
             const errorMessages = [...newMessages, {
@@ -192,7 +215,9 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             </div>
                             <div>
                                 <h3 className="text-white font-bold text-lg tracking-tight leading-tight">BigAL Tutor</h3>
-                                <p className="text-slate-300 text-xs font-medium tracking-wide">Bio-Inspired Engineering</p>
+                                <p className="text-slate-300 text-xs font-medium tracking-wide">
+                                    {context?.course === 'inst-design' ? 'Instructional Design' : 'Bio-Inspired Engineering'}
+                                </p>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -225,7 +250,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 </div>
                                 <h4 className="text-slate-800 font-bold text-lg mb-2">How can I help you today?</h4>
                                 <p className="text-slate-500 text-sm leading-relaxed">
-                                    Ask me about bridging biological mechanisms into engineering design.
+                                    {context?.course === 'inst-design' ? 'Ask me about creating effective learning experiences.' : 'Ask me about bridging biological mechanisms into engineering design.'}
                                 </p>
                             </div>
                         )}

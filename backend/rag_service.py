@@ -23,7 +23,7 @@ class RAGService:
         self.api_key = api_key or os.environ.get("GEMINI_API_KEY")
         if GENAI_AVAILABLE and self.api_key:
             self.client = genai.Client(api_key=self.api_key)
-            self.embedding_model = 'text-embedding-004'
+            self.embedding_model = 'gemini-embedding-001'
         else:
             self.client = None
             

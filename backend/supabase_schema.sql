@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS problems (
     require_unit BOOLEAN DEFAULT TRUE,
     hint TEXT,
     explanation TEXT,
+    q_matrix JSONB,  -- {"concept_id": weight} mappings for multi-dimensional grading
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -172,7 +173,11 @@ CREATE INDEX IF NOT EXISTS idx_stuck_created ON stuck_events(created_at);
 CREATE TABLE IF NOT EXISTS mastery (
     user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
     concept_id TEXT REFERENCES concepts(id),
-    mastery_score FLOAT DEFAULT 0.0,  -- 0.0 to 1.0
+    mastery_score FLOAT DEFAULT 0.0,  -- 0.0 to 1.0 (legacy or aggregate)
+    p_known FLOAT DEFAULT 0.1,        -- BKT: Probability student knows the concept
+    p_guess FLOAT DEFAULT 0.2,        -- BKT: Probability of correct answer without knowing
+    p_slip FLOAT DEFAULT 0.1,         -- BKT: Probability of mistake despite knowing
+    p_transit FLOAT DEFAULT 0.1,      -- BKT: Probability of learning after attempt
     attempts_count INT DEFAULT 0,
     correct_count INT DEFAULT 0,
     last_practiced_at TIMESTAMPTZ,

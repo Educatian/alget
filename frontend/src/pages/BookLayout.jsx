@@ -6,12 +6,14 @@ import IntelRail from '../components/IntelRail'
 import ChatWidget from '../components/ChatWidget'
 import HighlightableContent from '../components/HighlightableContent'
 import { logPageView, logStuckEvent } from '../lib/loggingService'
+import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
 import '../index.css'
 
 export default function BookLayout({ user, onLogout }) {
     const { course = 'statics', chapter = '01', section = '01' } = useParams()
     const navigate = useNavigate()
+    const { completedSections, markCompleted, isCompleted } = useCourseProgress(user)
 
     // State
     const [toc, setToc] = useState(null)
@@ -124,9 +126,11 @@ export default function BookLayout({ user, onLogout }) {
                 <aside className="w-64 bg-white/40 backdrop-blur-3xl border-r border-white/60 shadow-[10_0_30px_rgba(0,0,0,0.02)] overflow-y-auto shrink-0 z-10">
                     <BookToc
                         toc={toc}
+                        currentCourse={course}
                         currentChapter={chapter}
                         currentSection={section}
                         onNavigate={handleNavigate}
+                        completedSections={completedSections}
                     />
                 </aside>
 
@@ -138,9 +142,14 @@ export default function BookLayout({ user, onLogout }) {
                         onAskBigAL={(text) => setHighlightQuestion(text)}
                     >
                         <ReadingPane
+                            course={course}
+                            chapter={chapter}
+                            section={section}
                             sectionData={sectionData}
                             loading={loading}
                             onStuckEvent={handleStuckEvent}
+                            isCompleted={isCompleted(course, chapter, section)}
+                            markCompleted={() => markCompleted(course, chapter, section)}
                         />
                     </HighlightableContent>
                 </main>

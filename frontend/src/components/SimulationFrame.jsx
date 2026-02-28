@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { fuseTelemetry } from '../lib/knowledgeService';
 
 export default function SimulationFrame({ htmlCode, description, concepts }) {
     const iframeRef = useRef(null);
@@ -11,14 +12,21 @@ export default function SimulationFrame({ htmlCode, description, concepts }) {
         try {
             const iframe = iframeRef.current;
             if (iframe) {
-                // Force the iframe to use the provided HTML
+                const handleIframeLoad = () => {
+                    // Send Telemetry Evidence when user starts playing with the simulation
+                    if (concepts && concepts.length > 0) {
+                        fuseTelemetry(concepts[0], 'simulation_play', 1.0).catch(console.error);
+                    }
+                };
+
+                iframe.onload = handleIframeLoad;
                 iframe.srcdoc = htmlCode;
             }
         } catch (e) {
             console.error("Failed to inject simulation HTML into iframe:", e);
             setLoadError(true);
         }
-    }, [htmlCode]);
+    }, [htmlCode, concepts]);
 
     if (!htmlCode) return null;
 

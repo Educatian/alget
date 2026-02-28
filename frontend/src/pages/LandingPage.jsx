@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import GearAnimation from '../components/GearAnimation'
 import AuthModal from '../components/AuthModal'
+import GenerativeIllustration from '../components/GenerativeIllustration'
 
 export default function LandingPage({ onLogin, user, onLogout }) {
     const [authOpen, setAuthOpen] = useState(false)
@@ -173,20 +174,8 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                             </div>
                         </div>
                         {/* Abstract visual representation of UI */}
-                        <div className="relative h-full min-h-[300px] w-full bg-slate-100 rounded-3xl border border-slate-200 p-8 overflow-hidden shadow-inner flex flex-col justify-between">
-                            <div className="w-full h-12 bg-white rounded-xl shadow-sm mb-4"></div>
-                            <div className="w-3/4 h-8 bg-indigo-100 rounded-lg mb-8"></div>
-
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="h-32 bg-white rounded-2xl shadow-sm border border-slate-100 p-4">
-                                    <div className="w-8 h-8 rounded-full bg-indigo-50 mb-3"></div>
-                                    <div className="w-full h-2 bg-slate-100 rounded-full mb-2"></div>
-                                    <div className="w-2/3 h-2 bg-slate-100 rounded-full"></div>
-                                </div>
-                                <div className="h-32 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl shadow-sm p-4 relative overflow-hidden">
-                                    <div className="absolute -right-4 -bottom-4 w-16 h-16 bg-white/20 rounded-full blur-md"></div>
-                                </div>
-                            </div>
+                        <div className="relative h-full min-h-[300px] w-full bg-slate-900 rounded-[2.5rem] border border-slate-800 p-8 shadow-2xl flex items-center justify-center">
+                            <GenerativeIllustration />
                         </div>
                     </div>
                 </div>
