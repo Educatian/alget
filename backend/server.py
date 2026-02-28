@@ -32,6 +32,17 @@ import google.generativeai as genai
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 print(f"[INFO] GEMINI_API_KEY loaded: {'Yes' if GEMINI_API_KEY else 'No'}")
 
+def get_api_key(request=None):
+    """Get API key at request time: env var (fresh read) > request body > cached module var."""
+    key = os.environ.get("GEMINI_API_KEY", "")
+    if key:
+        return key
+    if request and hasattr(request, 'api_key') and request.api_key:
+        return request.api_key
+    if GEMINI_API_KEY:
+        return GEMINI_API_KEY
+    return None
+
 # Add current directory to path for imports
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -196,7 +207,7 @@ async def generate_content(request: GenerateRequest):
     """Generate learning content (narrative, activity, simulation, illustration)."""
     try:
         # Use env var if available, otherwise use request payload
-        api_key = GEMINI_API_KEY or getattr(request, 'api_key', None)
+        api_key = get_api_key(request)
         
         content = generate_module_content(
             module=request.module,
@@ -213,7 +224,7 @@ async def generate_content(request: GenerateRequest):
 async def orchestrate_query(request: OrchestrateRequest):
     """Analyze student query and delegate to specialist agents based on intent."""
     try:
-        api_key = GEMINI_API_KEY or getattr(request, 'api_key', None)
+        api_key = get_api_key(request)
         agent = OrchestratorAgent(api_key=api_key)
         result = agent.orchestrate(
             query=request.query,
@@ -230,7 +241,7 @@ async def orchestrate_query(request: OrchestrateRequest):
 async def generate_assessment(request: AssessmentRequest):
     """Generate a formative assessment (MCQ) for the given context."""
     try:
-        api_key = GEMINI_API_KEY or getattr(request, 'api_key', None)
+        api_key = get_api_key(request)
         agent = AssessmentAgent(api_key=api_key)
         
         # We need to make sure we parse the response which might be wrapped in JSON markdown blocks
@@ -257,7 +268,7 @@ class GradeSummaryRequest(BaseModel):
 async def grade_summary(request: GradeSummaryRequest):
     """Grade a short-answer or summary response using LLM."""
     try:
-        api_key = GEMINI_API_KEY or getattr(request, 'api_key', None)
+        api_key = get_api_key(request)
         agent = AssessmentAgent(api_key=api_key)
         
         result_json = agent.grade_summary(
@@ -374,7 +385,7 @@ async def generate_mastery_graph(request: MasteryGraphRequest):
 async def generate_scenario(request: ScenarioRequest):
     """Generate a dynamic scenario with a strictly enforced context to prevent hallucination."""
     try:
-        api_key = os.environ.get("GEMINI_API_KEY") or getattr(request, 'api_key', None) or GEMINI_API_KEY
+        api_key = get_api_key(request)
         if not api_key:
             raise HTTPException(status_code=400, detail="GEMINI_API_KEY is not set on the server or provided in the request.")
         
@@ -464,7 +475,7 @@ async def get_book_section(course: str, chapter: str, section: str):
 async def generate_custom_module(request: CurriculumGenerateRequest):
     """Dynamically generate and write a full textbook module from Lab context."""
     try:
-        api_key = GEMINI_API_KEY or request.api_key
+        api_key = get_api_key(request)
         agent = CurriculumAgent(api_key=api_key)
         
         result = agent.generate_module(
@@ -563,11 +574,12 @@ async def explain_easier(request: ExplainRequest):
     """Generate an easier explanation for the current concept."""
     try:
         # Use Gemini to generate explanation
-        if GEMINI_API_KEY:
+        _key = get_api_key()
+        if _key:
             from google import genai
             from google.genai import types
             
-            client = genai.Client(api_key=GEMINI_API_KEY)
+            client = genai.Client(api_key=_key)
             
             prompt = f"""
             A student is stuck on section: {request.section_id}
@@ -799,12 +811,13 @@ RESPONSE GUIDELINES:
 BigAL:"""
 
         # Configure Gemini API
-        if not GEMINI_API_KEY:
+        _key = get_api_key()
+        if not _key:
             print("[BIGAL ERROR] No API key configured!")
             return {"response": "BigAL is not configured yet. Please set up the API key."}
         
         print("[BIGAL] Calling Gemini API with RAG context...")
-        genai.configure(api_key=GEMINI_API_KEY)
+        genai.configure(api_key=_key)
         model = genai.GenerativeModel("gemini-2.0-flash")
         response = model.generate_content(prompt)
         
@@ -831,7 +844,8 @@ class ImageGenerateRequest(BaseModel):
 async def generate_image(request: ImageGenerateRequest):
     """Generate a diagram or illustration using Gemini API."""
     try:
-        if not GEMINI_API_KEY:
+        _key = get_api_key()
+        if not _key:
             return {
                 "success": False,
                 "error": "Gemini API key not configured",
@@ -843,7 +857,7 @@ async def generate_image(request: ImageGenerateRequest):
         from google.genai import types
         import base64
         
-        client = genai.Client(api_key=GEMINI_API_KEY)
+        client = genai.Client(api_key=_key)
         
         # Build the image generation prompt
         style_guides = {
