@@ -12,14 +12,16 @@ export default function DynamicScenario({ topic, userContext }) {
         setLoading(true)
         setError(null)
         try {
-            // we will create a special endpoint /api/generate_scenario for this, passing the topic and context
+            const apiKey = localStorage.getItem('gemini_api_key') || ''
+
             const res = await fetch(`${API_BASE}/generate_scenario`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     topic: topic,
                     context: userContext || "General application",
-                    course: "inst-design"
+                    course: "inst-design",
+                    api_key: apiKey
                 })
             })
 

@@ -374,13 +374,9 @@ async def generate_mastery_graph(request: MasteryGraphRequest):
 async def generate_scenario(request: ScenarioRequest):
     """Generate a dynamic scenario with a strictly enforced context to prevent hallucination."""
     try:
-        api_key = GEMINI_API_KEY
+        api_key = os.environ.get("GEMINI_API_KEY") or getattr(request, 'api_key', None) or GEMINI_API_KEY
         if not api_key:
-            # Fallback mock response for testing without an API key
-            return {
-                "scenario_text": f"This is a simulated scenario for {request.topic} within the context of {request.context}. In a real environment, this would describe a specific learning challenge, learner persona, and the environmental constraints that an instructional designer must overcome.",
-                "theoretical_mapping": f"The simulated scenario illustrates {request.topic} by demonstrating how the core principles would be applied. It highlights the importance of aligning instructional strategies with the identified context."
-            }
+            raise HTTPException(status_code=400, detail="GEMINI_API_KEY is not set on the server or provided in the request.")
         
         import json
         genai.configure(api_key=api_key)
