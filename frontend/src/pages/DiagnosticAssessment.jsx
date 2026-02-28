@@ -116,8 +116,7 @@ export default function DiagnosticAssessment() {
                 return {
                     user_id: userId,
                     concept_id: conceptId,
-                    p_known: p_known,
-                    skill_level: p_known >= 0.8 ? 'mastered' : p_known >= 0.5 ? 'emerging' : 'novice'
+                    p_known: p_known
                 };
             });
 
