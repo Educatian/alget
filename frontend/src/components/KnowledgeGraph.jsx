@@ -30,7 +30,7 @@ export default function KnowledgeGraph() {
                 }
 
                 // 2. Fetch the graph topology from our new backend endpoint
-                const response = await fetch(`${API_BASE}/api/mastery_graph`, {
+                const response = await fetch(`${API_BASE}/mastery_graph`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ mastery_data: masteryMap })
