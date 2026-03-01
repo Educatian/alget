@@ -1,39 +1,18 @@
 {
     "chapter": "01",
     "section": "02",
-    "title": "Curvilinear Motion",
+    "title": "Rigid Body Mechanics in Motion",
     "course": "dynamics",
     "learning_objectives": [
-        "Describe motion using normal-tangential (n-t) coordinates",
-        "Apply polar (r-θ) coordinates for circular motion",
-        "Calculate tangential and normal acceleration components",
-        "Analyze circular motion problems"
+        "Calculate torque at rotational joints",
+        "Understand moment arms and angular velocity",
+        "Apply standard kinematic formulas to complex bodies"
     ],
     "concept_ids": [
-        "curvilinear",
-        "tangential_acceleration",
-        "normal_acceleration",
-        "polar_coords",
-        "circular_motion"
-    ],
-    "physics_prereqs": [
-        "rectilinear_motion"
-    ],
-    "math_prereqs": [
-        "derivatives",
-        "vectors",
-        "trig"
-    ],
-    "units_focus": [
-        "m/s",
-        "m/s^2",
-        "rad/s",
-        "rad/s^2"
-    ],
-    "common_errors": [
-        "component",
-        "radius",
-        "direction"
-    ],
-    "estimated_time_minutes": 60
+        "rigid_body",
+        "torque",
+        "angular_velocity",
+        "kinematics",
+        "joints"
+    ]
 }

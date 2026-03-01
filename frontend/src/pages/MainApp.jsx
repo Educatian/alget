@@ -16,11 +16,11 @@ export default function MainApp({ user, onLogout }) {
 
   const engineeringCourses = [
     {
-      id: 'statics',
-      title: 'ME 121: Engineering Statics',
+      id: 'dynamics',
+      title: 'ME 201: Engineering Dynamics',
       icon: <StaticsIllustration />,
-      description: 'Foundational U of Alabama curriculum. Study forces on bodies at rest, equilibrium analysis, and structural systems like trusses and frames.',
-      topics: ['Equilibrium', 'Force Systems', 'Trusses', 'Friction'],
+      description: 'Foundational U of Alabama curriculum. Study forces and motion, focusing on particle and rigid body kinematics and kinetics.',
+      topics: ['Kinematics', 'Kinetics', 'Work & Energy', 'Impulse & Momentum'],
       chapters: 10,
       sections: 45,
       duration: '15 weeks',

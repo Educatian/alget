@@ -25,10 +25,10 @@ The core learning flow of ALGET is decomposed into 4 tasks:
 |------|---------|
 | **Task ID** | T1 |
 | **Task Name** | First Session & Content Navigation |
-| **Scenario** | "A 1st-year Mechanical Engineering student needs to study the 'Equilibrium Conditions' for their Statics course. They log into ALGET for the first time and must navigate to Statics Chapter 1, Section 1.1." |
+| **Scenario** | "A 1st-year Education student needs to study 'Constructivism' for their Instructional Technology course. They log into ALGET for the first time and must navigate to Chapter 1, Section 1.1." |
 | **Precondition** | User is on the ALGET Dashboard. No prior experience with the system. |
 | **Success Criterion** | The content for Section 1.1 is displayed on the screen, and the 'Learning Objectives' are clearly visible. |
-| **Failure Definition** | Fails to reach Statics 1.1 within 3 minutes, or enters the wrong course/section. |
+| **Failure Definition** | Fails to reach Chapter 1, Section 1.1 within 3 minutes, or enters the wrong module. |
 
 ### Expected Step Decomposition
 
@@ -36,9 +36,9 @@ The core learning flow of ALGET is decomposed into 4 tasks:
 |------|------------------|-------------------|------------------|
 | **0** | **(First Impression)** | *Observe the screen for 3 seconds* | Overall layout, initial branding |
 | 1 | Understand the system's purpose | Read the introduction/welcome area on the Dashboard | Header, Welcome message |
-| 2 | Locate the 'Statics' course | Click "Statics" from the course menu/cards | Statics/Dynamics labels, icons |
-| 3 | Select Chapter 1 | Click "Ch1: Equilibrium of a Particle" | Chapter number, title, summary |
-| 4 | Select Section 1.1 | Click "1.1 Equilibrium Conditions" | Section number, title, est. time |
+| 2 | Locate the 'Instructional Tech' course | Click "Instructional Technology" from the course menu/cards | Course labels, icons |
+| 3 | Select Chapter 1 | Click "Ch1: Learning Theories" | Chapter number, title, summary |
+| 4 | Select Section 1.1 | Click "1.1 Constructivism in Practice" | Section number, title, est. time |
 | 5 | Review Learning Objectives | Read the objectives at the top of the content page | "Learning Objectives" header |
 
 ---
@@ -50,11 +50,11 @@ The core learning flow of ALGET is decomposed into 4 tasks:
 | Item | Details |
 |------|---------|
 | **Task ID** | T2 |
-| **Task Name** | Bio-Design Lab Inquiry & AI Interpretation |
-| **Scenario** | "While learning about Equilibrium, the student wonders about examples in nature. They go to the Bio-Design Lab and submit the question: **'What biological structures perfectly demonstrate static equilibrium?'** They must then interpret the AI's synthesized response." |
-| **Precondition** | The user is actively reading Section 1.1. The Bio-Design Lab is accessible. |
-| **Success Criterion** | (1) Successfully submits the question, (2) Distinguishes between the Biology Context and Engineering Application cards, and (3) Understands the connection presented in the Synthesis area. |
-| **Failure Definition** | Cannot find how to input the question, fails to grasp the distinction between the biological and engineering analyses, or ignores the Synthesis entirely. |
+| **Task Name** | Learning Design Lab Inquiry & AI Interpretation |
+| **Scenario** | "While learning about Constructivism, the student wonders about practical applications in digital environments. They go to the Learning Design Lab and submit the question: **'What are specific examples of constructivist learning environments online?'** They must then interpret the AI's synthesized response." |
+| **Precondition** | The user is actively reading Section 1.1. The Learning Design Lab is accessible. |
+| **Success Criterion** | (1) Successfully submits the question, (2) Distinguishes between the Theoretical Context and Practical Application cards, and (3) Understands the connection presented in the Synthesis area. |
+| **Failure Definition** | Cannot find how to input the question, fails to grasp the distinction between theory and practice, or ignores the Synthesis entirely. |
 
 *Note: The exact question is pre-defined to ensure comparability across all experts. If you feel a novice would struggle to formulate this question, record that as an Issue.*
 
@@ -62,13 +62,13 @@ The core learning flow of ALGET is decomposed into 4 tasks:
 
 | Step | Learner Sub-goal | Correct UI Action | UI Cues Expected |
 |------|------------------|-------------------|------------------|
-| 1 | Navigate to Bio-Design Lab | Click "Bio-Design Lab" in the menu/UI | Menu item, DNA icon (🧬) |
+| 1 | Navigate to Learning Design Lab | Click "Learning Design Lab" in the menu/UI | Menu item, Lab icon |
 | 2 | Input the question | Type the prompt and click "Generate" | Input placeholder, Generate button |
 | 3 | Wait for AI generation | Observe loading state | Spinner, "Thinking..." text |
 | 4 | Check Intent classification | Read the "Detected Intent" badge | Intent Badge (e.g., "EXPLORE") |
-| 5 | Read the Synthesis | Read the synthesis text connecting biology and engineering | "Synthesis" header, Markdown text |
-| 6 | Review Biology Context | Examine the Biology Card (principles, examples) | Card title, biological images/icons |
-| 7 | Review Engineering Application | Examine the Engineering Card (mechanics analysis) | Card title, FBDs, formulas |
+| 5 | Read the Synthesis | Read the synthesis text connecting theory and practice | "Synthesis" header, Markdown text |
+| 6 | Review Theoretical Context | Examine the Theory Card (principles, frameworks) | Card title, theoretical icons |
+| 7 | Review Practical Application | Examine the Application Card (scenario, media) | Card title, UI mockups, models |
 
 ---
 
@@ -80,10 +80,10 @@ The core learning flow of ALGET is decomposed into 4 tasks:
 |------|---------|
 | **Task ID** | T3 |
 | **Task Name** | Interpreting Scaffolding & Validation Feedback |
-| **Scenario** | "Continuing from T2, the student sees the Scaffolding block generated by the Tutor Agent, and the Validation/Critique block from Janine (evaluating against Life's Principles). The student must interpret this feedback and decide what to do next." |
+| **Scenario** | "Continuing from T2, the student sees the Scaffolding block generated by the Tutor Agent, and the Validation/Critique block from the Evaluator (evaluating against Instructional Design Principles). The student must interpret this feedback and decide what to do next." |
 | **Precondition** | The AI response from T2 is fully rendered on screen, including the Scaffolding and Validation blocks. |
-| **Success Criterion** | (1) Understands the pedagogical intent of the Tutor's Socratic question, (2) Interprets the Pass/Fail grades and remarks in Janine's Validation badge, and (3) Identifies a clear next action to take. |
-| **Failure Definition** | Ignores the scaffolding question, cannot understand Janine's validation metrics, or experiences "dead-end" confusion about what to do next. |
+| **Success Criterion** | (1) Understands the pedagogical intent of the Tutor's Socratic question, (2) Interprets the Pass/Fail grades and remarks in the Evaluator's Validation badge, and (3) Identifies a clear next action to take. |
+| **Failure Definition** | Ignores the scaffolding question, cannot understand the Evaluator's validation metrics, or experiences "dead-end" confusion about what to do next. |
 
 ### Expected Step Decomposition
 
@@ -92,7 +92,7 @@ The core learning flow of ALGET is decomposed into 4 tasks:
 | 1 | Locate Scaffolding Area | Scroll to find the Scaffolding Card | "Scaffolding" header, question mark icon |
 | 2 | Comprehend Tutor's intent | Read the Socratic question and mentally formulate an answer | Question-formatted text, hints |
 | 3 | Locate Validation Area | Scroll to find the Validation Badge | Validation label, Pass/Fail indicators |
-| 4 | Review Janine's criteria | Check the scores/status for each Life's Principle | Scores, color coding (Green/Red) |
+| 4 | Review Evaluator's criteria | Check the scores/status for each Design Principle | Scores, color coding (Green/Red) |
 | 5 | Interpret the critique | Read the text to understand "why" the score was given | Explanatory text, actionable suggestions |
 | 6 | Determine next action | Decide whether to (a) refine prompt, (b) return to content, or (c) ask a new question | UI navigation links, text input box |
 
@@ -105,22 +105,22 @@ The core learning flow of ALGET is decomposed into 4 tasks:
 | Item | Details |
 |------|---------|
 | **Task ID** | T4 |
-| **Task Name** | Operating Simulations & Verifying Learning |
-| **Scenario** | "The student notices an interactive simulation block generated by the Engineer Agent. They must manipulate the simulation to verify the equilibrium concepts visually, and successfully link this physical intuition back to the core concept ($\Sigma F=0$)." |
-| **Precondition** | The Simulation block is visible within the AI response. |
-| **Success Criterion** | (1) Successfully loads and interacts with the simulation, (2) Correctly associates the visual changes with the underlying mechanics ($\Sigma F=0$), and (3) Connects the experience back to the textbook content. |
-| **Failure Definition** | Does not know how to interact with the simulation, misinterprets the visual feedback, or fails to see how it relates to the learning objective. |
+| **Task Name** | Operating Interactive Scenarios & Verifying Learning |
+| **Scenario** | "The student notices an interactive scenario block generated by the Learning Designer Agent. They must manipulate the scenario variables to verify the constructivist principles visually, and successfully link this intuition back to the core concept." |
+| **Precondition** | The Scenario block is visible within the AI response. |
+| **Success Criterion** | (1) Successfully loads and interacts with the scenario, (2) Correctly associates the visual changes with the underlying teaching principles, and (3) Connects the experience back to the textbook content. |
+| **Failure Definition** | Does not know how to interact with the scenario, misinterprets the pedagogical feedback, or fails to see how it relates to the learning objective. |
 
 ### Expected Step Decomposition
 
 | Step | Learner Sub-goal | Correct UI Action | UI Cues Expected |
 |------|------------------|-------------------|------------------|
-| 1 | Locate Simulation Area | Scroll to find the Simulation Frame | "Simulation" header, iframe/canvas |
-| 2 | Understand simulation purpose | Read the Description text | Description label |
-| 3 | Manipulate the simulation | Interact with sliders, buttons, or draggable nodes | UI controls within the simulation |
-| 4 | Observe visual feedback | Watch changes in force vectors, structural deformation, etc. | Animations, vector arrows, real-time values |
-| 5 | Review Concepts Shown | Read the list of engineering concepts tied to the simulation | "Concepts" tag/label list |
-| 6 | Link back to content | Connect the visual result mentally to Section 1.1's $\Sigma F=0$ | Navigation buttons (e.g., "Return to Content") |
+| 1 | Locate Scenario Area | Scroll to find the Scenario Frame | "Interactive Scenario" header, iframe/canvas |
+| 2 | Understand scenario purpose | Read the Description text | Description label |
+| 3 | Manipulate the scenario | Interact with choices, sliders, or elements | UI controls within the scenario |
+| 4 | Observe visual feedback | Watch changes in learner motivation, outcome metrics, etc. | Changing graphs, mood indicators, results |
+| 5 | Review Concepts Shown | Read the list of design concepts tied to the scenario | "Concepts" tag/label list |
+| 6 | Link back to content | Connect the result mentally to Section 1.1's Constructivism | Navigation buttons (e.g., "Return to Content") |
 
 ---
 
@@ -132,9 +132,9 @@ The core learning flow of ALGET is decomposed into 4 tasks:
 |------|---------|
 | **Task ID** | T5 (Optional) |
 | **Task Name** | Concept Search and Exploration |
-| **Scenario** | "The student wants to jump ahead and learn specifically about 'Friction'. They attempt to locate the relevant content material." |
+| **Scenario** | "The student wants to jump ahead and learn specifically about 'Cognitive Load Theory'. They attempt to locate the relevant content material." |
 | **Precondition** | User is anywhere within the ALGET system. |
-| **Success Criterion** | Reaches Statics Chapter 1, Section 1.4 (Friction). |
+| **Success Criterion** | Reaches Chapter 2, Section 2.1 (Cognitive Load). |
 | **Failure Definition** | Fails to locate the specific section within 5 minutes. |
 
 > *Note: By Blackmon et al.'s (2002) Cognitive Walkthrough for the Web (CWW), this tests "Information Scent"—how well the UI labels match the user's semantic goal.*

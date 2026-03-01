@@ -162,6 +162,20 @@ J = Δp = F·Δt
 - Sports physics (football tackles)
         """,
         "keywords": ["velocity", "mass", "collision", "impulse", "conservation"]
+    },
+    "aeroacoustics": {
+        "definition": """
+**Aeroacoustics** is the branch of acoustics that studies noise generation via aerodynamic forces interacting with solid surfaces.
+
+**Key Concepts:**
+- Trailing edge noise
+- Vortex shedding
+- Micro-turbulence
+
+**Bio-Inspired Context**:
+Owls use wing serrations to break down large, loud vortices into smaller, higher-frequency micro-turbulences that are rapidly dissipated by atmospheric absorption.
+        """,
+        "keywords": ["noise", "turbulence", "vortex", "serration", "wings", "drones"]
     }
 }
 
@@ -173,7 +187,8 @@ UA_CONTEXTS = {
     "statics": "Bridge loads spanning the Black Warrior River",
     "entropy": "Heat dissipation in Mercedes-Benz Vance's paint shop",
     "torque": "Alabama Football weight room training equipment",
-    "momentum": "Tackling physics analyzed by UA's sports science lab"
+    "momentum": "Tackling physics analyzed by UA's sports science lab",
+    "aeroacoustics": "Designing quieter drones for UA campus delivery systems"
 }
 
 def get_mock_definition(query: str) -> str:

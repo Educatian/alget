@@ -8,12 +8,12 @@
 
 | Item | Details |
 |------|---------|
-| **Study / Course** | Educational Technology – ALGET Intelligent Textbook Prototyping |
+| **Study / Course** | Mechanical Engineering (Dynamics & Bio-Design) – ALGET Prototype |
 | **Prototype** | _(URL / Figma / Build Link)_ |
 | **Version / Date** | v3.0 (English) / 2026-02-28 |
 | **Evaluator Name** | |
 | **Evaluator ID** | E__ (E1–E5) |
-| **Evaluator Type** | ☐ UX/HCI ☐ Learning Sciences ☐ Domain SME ☐ EdTech/AI ☐ Target Learner |
+| **Evaluator Type** | ☐ UX/HCI ☐ Learning Sciences ☐ Domain SME (Dynamics/Bio-Design) ☐ EdTech/AI ☐ Target Learner |
 | **Evaluation Date** | |
 | **Duration** | Start: _____ End: _____ Total: _____ min |
 
@@ -27,11 +27,11 @@
 
 | Attribute | Profile |
 |-----------|---------|
-| **Learner Type** | Undergraduate Education Student (1st–2nd year) |
-| **Prior Knowledge** | General high school education. No exposure to formal Learning Theories. |
+| **Learner Type** | Undergraduate Mechanical Engineering Student (2nd year) |
+| **Prior Knowledge** | General physics and calculus. (Emphasis on understanding concepts over complex derivations - ALGET Tutor provides scaffolding for advanced Navier-Stokes or aerodynamic theory). |
 | **Digital Literacy** | Medium (Used Canvas/LMS; minimal AI tool exposure). |
 | **AI Tool Exp.** | Uses ChatGPT occasionally. Never used an 'AI Textbook' |
-| **Context** | Doing a homework assignment on Constructivism. |
+| **Context** | Doing assignments on Rigid Body Kinematics & Avian Aerodynamics. |
 | **Motivation** | Mixed (Curiosity + Deadline pressure). |
 
 ### A2. ALGET's "Intelligent" Features Scope
@@ -41,7 +41,7 @@ Check the features that are **actually working** in this prototype:
 - [x] Hints/Scaffolding — Tutor Agent
 - [x] Generative AI Tutor Feedback — Multi-Agent
 - [x] Metacognitive Support — Evaluator's reflective feedback
-- [x] Interactive Scenario — Learning Designer Agent
+- [x] Interactive Simulation — Simulation Agent
 - [ ] Adaptive Learning Pathways
 - [ ] Diagnostic Placement
 - [ ] Learning Analytics Dashboard
@@ -61,10 +61,10 @@ Evaluation Mode: ☐ Demo Mode (Cached responses)  ☐ Live Mode (Real-time Gene
 
 | Task ID | Task Name | Core Action |
 |---------|-----------|----------|
-| T1 | First Session & Content Navigation | Dashboard → Navigate to Section 1.1 |
-| T2 | Learning Design Lab Inquiry & AI Interpretation | Prompt input → Interpret Synthesis |
-| T3 | Interpreting Scaffolding & Validation | Use Tutor question + Evaluator critique |
-| T4 | Operating Interactive Scenarios & Verifying | Manipulate scenario → Concept link |
+| T1 | First Session & Dynamics Navigation | Dashboard → Navigate to Section 1.2 |
+| T2 | Dynamics Lab Inquiry & AI Interpretation | Prompt input → Interpret Synthesis |
+| T3 | Interpreting Scaffolding in Bio-Inspired Design | Use Tutor question + Evaluator critique |
+| T4 | Operating Interactive Biomimetic Simulations | Manipulate simulation → Concept link |
 
 ---
 
@@ -117,11 +117,13 @@ Impression Memo: _____________________________________________
 
 #### Intelligent Features Analysis Table (per Step)
 
-| Step# | L5 Adaptivity(Y/N) | L6 Transparency(Y/N) | L7 Metacognition(Y/N) | L8 Flow(Y/N) |
+| Step# | L5 Adaptivity(Y/N) | L6 Transparency(Y/N) | L7 Metacog(Y/N)* | L8 Flow(Y/N) |
 |-------|--------------------|----------------------|-----------------------|--------------|
 | 1 | | | | |
 | 2 | | | | |
 | 3 | | | | |
+
+- **L7 Metacognition (Engineering Context)**: Does the system prompt the user to verify their own boundary conditions, units, or modeling assumptions before giving the answer?
 
 #### Issue Log
 
@@ -143,7 +145,7 @@ _Type codes: Goal / Find / Understand / Feedback / Nav-Search / Learning_
 
 #### Content Accuracy (E3: Domain SME ONLY)
 
-Factual correctness of AI-generated instructional technology content:
+Factual correctness of AI-generated engineering content and biological fidelity:
 
 | Step# | Content Element | Accurate? (Y/N) | Error Description |
 |-------|-----------------|-----------------|-------------------|

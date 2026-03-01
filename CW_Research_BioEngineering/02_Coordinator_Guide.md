@@ -8,8 +8,8 @@
 
 | Item | Details |
 |------|---------|
-| **Study / Course** | Educational Technology – ALGET Intelligent Textbook Prototyping |
-| **Prototype** | ALGET: Generative Multi-Agent Architecture for Instructional Technology Education |
+| **Study / Course** | Mechanical Engineering – ALGET Intelligent Textbook Prototyping |
+| **Prototype** | ALGET: Generative Multi-Agent Architecture for Engineering Education |
 | **Version / Date** | v3.0 (English) / 2026-02-28 |
 | **Coordinator** | _(Insert Name)_ |
 
@@ -25,20 +25,20 @@ To evaluate the **Learnability and Pedagogical Usability** of the ALGET Intellig
 
 ### What is ALGET?
 
-- **Multi-Agent Intelligent Textbook** for Instructional Technology
-- Teaches educational theories and instructional design principles
-- Features 4 AI Agents: Orchestrator, Tutor, Evaluator, Learning Designer
+- **Multi-Agent Intelligent Textbook** for Mechanical Engineering
+- Teaches via two modules: **Dynamics** and **Bio-Inspired Design**
+- Features 4 AI Agents: Orchestrator, Tutor, Evaluator, Simulation Agent
 
 ### Core Features (Evaluation Scope)
 
 | Feature | Description | Relevant Agent |
 |---------|-------------|----------------|
-| **Generative Learning Design Lab** | Student prompt → AI synthesizes learning theories into scenario | Orchestrator |
+| **Generative Bio-Design Lab** | Student prompt → AI synthesizes biological theories into engineering application | Orchestrator |
 | **Scaffolding** | Socratic questioning for step-by-step guidance | Tutor |
-| **Validation & Critique** | Feedback based on Instructional Design frameworks | Evaluator |
-| **Scenario Modeling** | Learner personas, context analysis, application models | Learning Designer |
-| **Interactive Scenarios** | Interactive HTML-based case studies | Learning Designer |
-| **Content Navigation** | Browsing the textbook modules on Instructional Technology | System |
+| **Validation & Critique** | Feedback based on Engineering and Physics frameworks | Evaluator |
+| **Scenario Modeling** | Learner personas, context analysis, application models | Simulation Agent |
+| **Interactive Simulations** | Interactive HTML-based simulations | Simulation Agent |
+| **Content Navigation** | Browsing the textbook modules on Bio-Inspired Design | System |
 
 ### "Intelligent" Feature Checklist (For Section A2 of Step Sheet)
 
@@ -57,7 +57,7 @@ To evaluate the **Learnability and Pedagogical Usability** of the ALGET Intellig
 |----|-------------|--------------------|--------|
 | E1 | UX/HCI Expert | Interface usability, navigation, IA | ☐ Pending |
 | E2 | Learning Sciences / ID | Learning goals, feedback design, CTML | ☐ Pending |
-| E3 | Domain SME (Instructional Tech) | Content accuracy, learning theories | ☐ Pending |
+| E3 | Domain SME (Mechanical Engineering) | Content accuracy, aerodynamic theories | ☐ Pending |
 | E4 | EdTech / AI Systems | AI feedback logic, scaffolding, latency | ☐ Pending |
 | E5 | Target Learner Rep | Novice mindset, motivation, digital literacy | ☐ Pending |
 
@@ -80,7 +80,7 @@ To evaluate the **Learnability and Pedagogical Usability** of the ALGET Intellig
 | Step | Action | Est. Time |
 |------|--------|-----------|
 | 1.1 | Read Briefing & Target Persona | 15m |
-| 1.2 | Complete Step Sheet for Tasks 1–4 sequentially | 60–90m |
+| 1.2 | Complete Step Sheet for Tasks 1–4 sequentially (spanning Dynamics & Bio-Design) | 60–90m |
 | 1.3 | Write Task Summaries | 15–20m |
 | 1.4 | Write Overall Summary | 10m |
 | **Total** | | **~1.5–2 hours** |

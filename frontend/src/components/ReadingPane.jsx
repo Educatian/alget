@@ -15,6 +15,9 @@ import AffectiveReaction from './AffectiveReaction'
 import KnowledgeGraph from './KnowledgeGraph'
 import { logTimeOnTask, logInteraction, logEvent } from '../lib/loggingService'
 
+import { TorqueDiagram } from './TorqueDiagram'
+import { MicroTurbulenceDiagram } from './AeroacousticsDiagram'
+
 export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskAi, isCompleted, markCompleted }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
@@ -26,6 +29,8 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskA
         'dynamic-scenario': ({ node, ...props }) => <DynamicScenario {...props} />,
         'concept-diagram': ({ node, ...props }) => <ConceptDiagrams {...props} />,
         'interactive-quiz': ({ node, options, ...props }) => <InteractiveQuiz options={options} {...props} />,
+        'torque-diagram': ({ node, ...props }) => <TorqueDiagram {...props} />,
+        'micro-turbulence-diagram': ({ node, ...props }) => <MicroTurbulenceDiagram {...props} />,
     }), [])
 
     // Section ID computation

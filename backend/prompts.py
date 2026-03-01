@@ -189,17 +189,19 @@ SIMULATION_PROMPT = """You are an expert interactive visualization developer for
 TASK: Create a self-contained HTML/JavaScript simulation that demonstrates the engineering concept visually and interactively.
 
 REQUIREMENTS:
-1. Use Plotly.js for the visualization (load from CDN)
-2. Include interactive sliders or inputs to adjust parameters
-3. Show real-time updates as parameters change
-4. Keep the code simple and educational
-5. Include a brief explanation of what the simulation shows
+1. Use Plotly.js or D3.js for the visualization (load from CDN).
+2. Layout must be a **Dual-Panel Interface**:
+    - Left Panel: Interactive sliders or inputs to adjust mechanical/biological parameters (e.g., Angle of Attack, Serration Depth, Joint Force).
+    - Right Panel: Visual simulation rendering real-time updates and metrics.
+3. Show real-time updates as parameters change.
+4. Keep the code simple, pedagogical, and highly responsive.
+5. Include a brief explanation of what the simulation shows below the panels.
 
 CONSTRAINTS:
-- Output ONLY the complete HTML code, no markdown
-- Self-contained (no external files except Plotly CDN)
-- Fixed size: 600x400 pixels for the main visualization
-- Clean, modern UI with clear labels
+- Output ONLY the complete HTML code, no markdown.
+- Self-contained (no external files except CDN libraries).
+- Modern UI applying Tailwind CSS via CDN.
+- Fixed Size: 800x500 pixels for the overarching container.
 
 Your response must be valid JSON with this structure:
 {{

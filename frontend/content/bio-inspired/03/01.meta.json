@@ -1,15 +1,18 @@
 {
-    "title": "Passive Cooling",
+    "chapter": "03",
+    "section": "01",
+    "title": "Aeroacoustics & Wing Serrations",
     "chapter_title": "Thermoregulation",
+    "course": "bio-inspired",
     "learning_objectives": [
-        "Examine non-mechanical strategies nature uses for thermal regulation.",
-        "Analyze convection currents and thermal mass properties.",
-        "Translate these principles into passive cooling architectures for buildings."
+        "Examine the acoustic damping properties of owl wing serrations.",
+        "Abstract the biological principle of micro-turbulence separation.",
+        "Apply geometric patterns to mechanical drone propeller design."
     ],
     "concept_ids": [
-        "passive_cooling",
-        "termite_mound",
-        "convection",
-        "ventilation"
+        "aeroacoustics",
+        "wing_serrations",
+        "drone_propellers",
+        "turbulence"
     ]
 }

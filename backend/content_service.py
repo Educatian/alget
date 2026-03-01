@@ -190,6 +190,34 @@ def get_fallback_toc(course: str) -> dict:
             ]
         }
     
+    elif course == "dynamics":
+        return {
+            "course": "dynamics",
+            "title": "ME 201: Engineering Dynamics",
+            "chapters": [
+                {
+                    "id": "01",
+                    "title": "Foundational Kinematics",
+                    "icon": "📐",
+                    "sections": [
+                        {"id": "01", "title": "Introduction to Dynamics"},
+                        {"id": "02", "title": "Rigid Body Mechanics in Motion"},
+                        {"id": "03", "title": "Newton-Euler Equations"}
+                    ]
+                },
+                {
+                    "id": "02",
+                    "title": "Work and Energy",
+                    "icon": "⚡",
+                    "sections": [
+                        {"id": "01", "title": "Work of a Force"},
+                        {"id": "02", "title": "Conservation of Energy"},
+                        {"id": "03", "title": "Power and Efficiency"}
+                    ]
+                }
+            ]
+        }
+    
     elif course == "inst-design":
         return {
             "course": "inst-design",
