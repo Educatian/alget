@@ -223,6 +223,63 @@ async def get_module_details(grade_level: str, module: str):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+@app.get("/api/diagnostic/questions/{course_id}")
+async def get_diagnostic_questions(course_id: str):
+    """
+    Get diagnostic questions for a specific course.
+    Eventually, this will query the Supabase 'questions' table.
+    """
+    try:
+        # Fallback question banks mapping
+        question_banks = {
+            "statics": [
+                {"id": 1, "concept": "vectors", "stem": "What is the x-component of a 100 N force acting at 60° from the horizontal?", "options": ["50 N", "86.6 N", "100 N", "70.7 N"], "correct": 0, "prereqFor": ["01/01", "01/02"]},
+                {"id": 2, "concept": "equilibrium", "stem": "For a particle in equilibrium, what is the sum of all forces?", "options": ["Maximum force", "Minimum force", "Zero", "Cannot be determined"], "correct": 2, "prereqFor": ["01/01"]},
+                {"id": 3, "concept": "trigonometry", "stem": "In a right triangle with angle θ = 30°, if the hypotenuse is 10, what is the opposite side?", "options": ["5", "8.66", "10", "7.07"], "correct": 0, "prereqFor": ["01/01", "02/01"]},
+                {"id": 4, "concept": "moments", "stem": "A moment is the product of:", "options": ["Force and mass", "Force and perpendicular distance", "Mass and acceleration", "Force and velocity"], "correct": 1, "prereqFor": ["02/01", "02/02"]},
+                {"id": 5, "concept": "fbd", "stem": "A free body diagram should include:", "options": ["Only external forces", "Only internal forces", "Both internal and external forces", "No forces"], "correct": 0, "prereqFor": ["01/02", "01/03"]},
+                {"id": 6, "concept": "friction", "stem": "Static friction force is always:", "options": ["Equal to μN", "Greater than μN", "Less than or equal to μN", "Zero"], "correct": 2, "prereqFor": ["01/04"]},
+                {"id": 7, "concept": "units", "stem": "What are the SI units for moment (torque)?", "options": ["N", "N·m", "kg·m/s²", "J/s"], "correct": 1, "prereqFor": ["02/01", "02/02"]},
+                {"id": 8, "concept": "trusses", "stem": "In a simple truss, members are assumed to be:", "options": ["Rigid beams", "Two-force members", "Flexible cables", "Compression only"], "correct": 1, "prereqFor": ["03/01", "03/02"]}
+            ],
+            "dynamics": [
+                {"id": 1, "concept": "kinematics", "stem": "If velocity is constant, what is the acceleration?", "options": ["Equal to velocity", "Maximum", "Zero", "Cannot be determined"], "correct": 2, "prereqFor": ["01/01"]}
+            ],
+            "inst-design": [
+                {"id": 1, "concept": "ct_1_2", "stem": "Which learning theory focuses primarily on observable behaviors rather than internal mental states?", "options": ["Cognitivism", "Constructivism", "Behaviorism", "Connectivism"], "correct": 2, "prereqFor": ["01/03"]},
+                {"id": 2, "concept": "ct_2_1", "stem": "What does the acronym ADDIE stand for?", "options": ["Analyze, Design, Develop, Implement, Evaluate", "Assess, Draft, Deploy, Interact, Examine", "Acquire, Discuss, Discover, Internalize, Expand", "Align, Deliver, Design, Innovate, Educate"], "correct": 0, "prereqFor": ["02/01"]},
+                {"id": 3, "concept": "ct_1_3", "stem": "Extraneous cognitive load is caused by:", "options": ["The inherent difficulty of the material", "Poor instructional design and presentation", "The learner's prior knowledge", "Schema construction"], "correct": 1, "prereqFor": ["01/02"]},
+                {"id": 4, "concept": "ct_1_2", "stem": "A key goal of instruction according to cognitivism is to help learners build and refine:", "options": ["Stimulus-response associations", "Behavioral conditioning", "Mental schemas", "Rote memorization pathways"], "correct": 2, "prereqFor": ["01/02"]},
+                {"id": 5, "concept": "ct_1_2", "stem": "In a constructivist classroom, the teacher acts primarily as a:", "options": ["Transmitter of knowledge", "Strict disciplinarian", "Passive observer", "Facilitator or guide"], "correct": 3, "prereqFor": ["01/01"]},
+                {"id": 6, "concept": "ct_2_2", "stem": "Which evaluation occurs DURING the learning process to improve instruction?", "options": ["Summative", "Formative", "Diagnostic", "Confirmative"], "correct": 1, "prereqFor": ["02/01"]},
+                {"id": 7, "concept": "ct_2_2", "stem": "A well-designed rubric primarily helps to:", "options": ["Confuse students with complex grading scales", "Provide objective, transparent assessment criteria", "Reduce the amount of grading work", "Automatically generate test questions"], "correct": 1, "prereqFor": ["02/02"]},
+                {"id": 8, "concept": "ct_2_3", "stem": "Kirkpatrick's Four Levels of Evaluation are Reaction, Learning, Behavior, and:", "options": ["Results", "Return on Investment", "Retention", "Recall"], "correct": 0, "prereqFor": ["02/03"]},
+                {"id": 9, "concept": "ct_1_1", "stem": "Which scenario best represents an application of situated learning?", "options": ["Memorizing state capitals", "Taking a multiple-choice test", "Learning math by running a mock store", "Reading a textbook chapter linearly"], "correct": 2, "prereqFor": ["01/01"]},
+                {"id": 10, "concept": "ct_1_3", "stem": "According to Cognitive Load Theory, intrinsic load refers to:", "options": ["The way information is presented", "The natural complexity of the information", "The learner's motivation level", "The background noise in the classroom"], "correct": 1, "prereqFor": ["01/02"]},
+                {"id": 11, "concept": "ct_2_1", "stem": "A Needs Analysis in the ADDIE model aims to answer which question?", "options": ["What color scheme should the modules be?", "Who are the learners and what do they need to know?", "How much will the development cost?", "Where will the course be hosted?"], "correct": 1, "prereqFor": ["02/01"]},
+                {"id": 12, "concept": "ct_2_2", "stem": "Backward Design (Understanding by Design) starts with identifying:", "options": ["Learning activities", "Assessment methods", "Desired results (learning goals)", "Textbook chapters"], "correct": 2, "prereqFor": ["02/02"]},
+                {"id": 13, "concept": "ct_1_2", "stem": "Vygotsky's Zone of Proximal Development (ZPD) relies heavily on the concept of:", "options": ["Punishment", "Scaffolding", "Classical conditioning", "Rote learning"], "correct": 1, "prereqFor": ["01/01"]},
+                {"id": 14, "concept": "ct_1_1", "stem": "Bloom's Taxonomy is primarily used for:", "options": ["Organizing classrooms logically", "Classifying educational learning objectives", "Developing grading rubrics automatically", "Scheduling instructional time"], "correct": 1, "prereqFor": ["01/01"]},
+                {"id": 15, "concept": "ct_2_3", "stem": "A summative assessment is typically given:", "options": ["Before instruction begins", "During instruction to adjust pacing", "At the end of an instructional unit", "Only when a student fails a formative test"], "correct": 2, "prereqFor": ["02/01"]}
+            ],
+            "bio-inspired": [
+                {"id": 1, "concept": "cellular_solids", "stem": "Which of the following biological structures is an example of an open-cell porous solid used to maximize structural efficiency?", "options": ["Shark continuous dermal skin", "Turtle rigid shell", "Cancellous (spongy) bone", "Gecko foot spatulae"], "correct": 2, "prereqFor": ["01/01"]},
+                {"id": 2, "concept": "hierarchical_structures", "stem": "What is the primary mechanical advantage of combining stiff mineral platelets within a soft protein matrix (like in nacre)?", "options": ["It decreases the overall weight to zero.", "It provides extreme stiffness and high fracture toughness.", "It creates completely transparent layers.", "It prevents heat transfer completely."], "correct": 1, "prereqFor": ["01/02"]},
+                {"id": 3, "concept": "directional_adhesion", "stem": "Geckos cling to sheer surfaces primarily through:", "options": ["Sticky liquid mucous secretion", "Microscopic suction cups", "Van der Waals forces between billions of setae and the surface", "Electromagnetic charging of the glass"], "correct": 2, "prereqFor": ["01/03"]},
+                {"id": 4, "concept": "fluid_dynamics", "stem": "Riblets on shark skin reduce drag by:", "options": ["Coating the skin in a frictionless layer of oil", "Physically confining and lifting turbulent vortices away from valleys", "Preventing any water from touching the shark", "Increasing laminar flow perfectly across all curves"], "correct": 1, "prereqFor": ["02/01"]},
+                {"id": 5, "concept": "aeroacoustics", "stem": "Trailing edge serrations on an owl wing suppress flight noise by:", "options": ["Slowing down the bird dramatically", "Absorbing sound waves like a sponge", "Breaking large coherent vortices into smaller, high-frequency micro-turbulences", "Reflecting sound waves back upwards"], "correct": 2, "prereqFor": ["03/01"]}
+            ]
+        }
+        
+        # Default to statics if course not found
+        questions = question_banks.get(course_id, question_banks["statics"])
+        return {"questions": questions}
+        
+    except Exception as e:
+        logger.error(f"Error fetching diagnostic questions: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.post("/api/generate")
 async def generate_content(request: GenerateRequest):
     """Generate learning content (narrative, activity, simulation, illustration)."""
