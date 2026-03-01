@@ -12,12 +12,13 @@ import DynamicScenario from './DynamicScenario'
 import ConceptDiagrams from './ConceptDiagrams'
 import InteractiveQuiz from './InteractiveQuiz'
 import AffectiveReaction from './AffectiveReaction'
-import KnowledgeGraph from './KnowledgeGraph'
-import { logTimeOnTask, logInteraction, logEvent } from '../lib/loggingService'
-
 import { TorqueDiagram } from './TorqueDiagram'
 import { MicroTurbulenceDiagram } from './AeroacousticsDiagram'
 import { KinematicsDiagram } from './KinematicsDiagram'
+import { FluidDynamicsDiagram } from './FluidDynamicsDiagram'
+import { CellularSolidDiagram } from './CellularSolidDiagram'
+import { HierarchicalStructureDiagram } from './HierarchicalStructureDiagram'
+import { DirectionalAdhesionDiagram } from './DirectionalAdhesionDiagram'
 
 export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskAi, isCompleted, markCompleted }) {
     const [showSimulation, setShowSimulation] = useState(false)
@@ -33,6 +34,10 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskA
         'torque-diagram': ({ node, ...props }) => <TorqueDiagram {...props} />,
         'kinematics-diagram': ({ node, ...props }) => <KinematicsDiagram {...props} />,
         'micro-turbulence-diagram': ({ node, ...props }) => <MicroTurbulenceDiagram {...props} />,
+        'fluid-dynamics-diagram': ({ node, ...props }) => <FluidDynamicsDiagram {...props} />,
+        'cellular-solid-diagram': ({ node, ...props }) => <CellularSolidDiagram {...props} />,
+        'hierarchical-structure-diagram': ({ node, ...props }) => <HierarchicalStructureDiagram {...props} />,
+        'directional-adhesion-diagram': ({ node, ...props }) => <DirectionalAdhesionDiagram {...props} />,
     }), [])
 
     // Section ID computation
