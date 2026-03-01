@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const LearningTheoriesDiagram = () => (
     <div className="my-8 flex flex-col items-center">
@@ -40,92 +40,153 @@ const LearningTheoriesDiagram = () => (
     </div>
 );
 
-const CognitiveLoadDiagram = () => (
-    <div className="my-8 flex justify-center">
-        <svg viewBox="0 0 500 300" className="w-full max-w-xl font-sans drop-shadow-sm">
-            {/* Background container (Total Working Memory) */}
-            <rect x="50" y="20" width="400" height="240" rx="12" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="5 5" />
-            <text x="250" y="45" textAnchor="middle" className="text-sm font-bold fill-slate-600 uppercase tracking-widest">Total Working Memory Capacity</text>
+const CognitiveLoadDiagram = () => {
+    const [intrinsic, setIntrinsic] = useState(30);
+    const [extraneous, setExtraneous] = useState(20);
+    const [germane, setGermane] = useState(20);
 
-            {/* Intrinsic Load */}
-            <rect x="90" y="70" width="320" height="60" rx="6" fill="#e0e7ff" opacity="0.8" />
-            <text x="250" y="100" textAnchor="middle" className="text-sm font-bold fill-blue-800">Intrinsic Load</text>
-            <text x="250" y="115" textAnchor="middle" className="text-xs fill-blue-600">Inherent complexity of the material</text>
+    const totalLoad = intrinsic + extraneous + germane;
+    const isOverload = totalLoad > 100;
 
-            {/* Extraneous Load */}
-            <rect x="90" y="140" width="320" height="40" rx="6" fill="#fee2e2" opacity="0.8" />
-            <text x="250" y="160" textAnchor="middle" className="text-sm font-bold fill-red-800">Extraneous Load</text>
-            <text x="250" y="172" textAnchor="middle" className="text-xs fill-red-600">Poor design / Distractions</text>
+    return (
+        <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
+            <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: Cognitive Load Balancer</h3>
+            <p className="text-sm text-slate-500 mb-6 text-center max-w-lg">
+                Drag the sliders to adjust the cognitive loads. Working Memory has a strictly finite capacity (100%). If the total load exceeds 100%, learning halts.
+            </p>
 
-            {/* Germane Load */}
-            <rect x="90" y="190" width="320" height="50" rx="6" fill="#dcfce7" opacity="0.8" />
-            <text x="250" y="215" textAnchor="middle" className="text-sm font-bold fill-green-800">Germane Load</text>
-            <text x="250" y="228" textAnchor="middle" className="text-xs fill-green-600">Schema construction (Learning)</text>
+            <div className="w-full max-w-md mb-6 space-y-4">
+                <div>
+                    <label className="text-xs font-bold text-blue-800 flex justify-between">
+                        <span>Intrinsic Load (Task Complexity)</span>
+                        <span>{intrinsic}%</span>
+                    </label>
+                    <input type="range" min="10" max="80" value={intrinsic} onChange={(e) => setIntrinsic(Number(e.target.value))} className="w-full accent-blue-600" />
+                </div>
+                <div>
+                    <label className="text-xs font-bold text-red-800 flex justify-between">
+                        <span>Extraneous Load (Bad Design / Distractions)</span>
+                        <span>{extraneous}%</span>
+                    </label>
+                    <input type="range" min="0" max="60" value={extraneous} onChange={(e) => setExtraneous(Number(e.target.value))} className="w-full accent-red-600" />
+                </div>
+                <div>
+                    <label className="text-xs font-bold text-green-800 flex justify-between">
+                        <span>Germane Load (Schema Construction)</span>
+                        <span>{germane}%</span>
+                    </label>
+                    <input type="range" min="0" max="60" value={germane} onChange={(e) => setGermane(Number(e.target.value))} className="w-full accent-green-600" />
+                </div>
+            </div>
 
-            {/* Optimizer lines/arrows */}
-            <path d="M 425 160 Q 460 160 460 130" fill="none" stroke="#ef4444" strokeWidth="2" strokeDasharray="3 3" />
-            <text x="460" y="120" textAnchor="middle" className="text-xs font-bold fill-red-600">Minimize</text>
+            <div className={`w-full max-w-md h-12 rounded-lg flex overflow-hidden border-2 transition-colors ${isOverload ? 'border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.5)]' : 'border-slate-300'}`}>
+                <div style={{ width: `${(intrinsic / totalLoad) * 100}%` }} className="h-full bg-blue-200 flex items-center justify-center font-bold text-blue-900 text-xs transition-all">I</div>
+                <div style={{ width: `${(extraneous / totalLoad) * 100}%` }} className="h-full bg-red-200 flex items-center justify-center font-bold text-red-900 text-xs transition-all">E</div>
+                <div style={{ width: `${(germane / totalLoad) * 100}%` }} className="h-full bg-green-200 flex items-center justify-center font-bold text-green-900 text-xs transition-all">G</div>
+            </div>
 
-            <path d="M 425 215 Q 460 215 460 245" fill="none" stroke="#22c55e" strokeWidth="2" strokeDasharray="3 3" />
-            <text x="460" y="260" textAnchor="middle" className="text-xs font-bold fill-green-600">Maximize</text>
-        </svg>
-    </div>
-);
+            <div className="mt-4 font-bold text-lg">
+                {isOverload ? (
+                    <span className="text-red-600 animate-pulse">⚠️ COGNITIVE OVERLOAD ({totalLoad}%) ⚠️</span>
+                ) : (
+                    <span className="text-slate-700">Total Working Memory Used: {totalLoad}%</span>
+                )}
+            </div>
+        </div>
+    );
+};
 
-const AddieModelDiagram = () => (
-    <div className="my-8 flex justify-center">
-        <svg viewBox="0 0 500 500" className="w-full max-w-md font-sans drop-shadow-md">
-            <defs>
-                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                    <polygon points="0 0, 10 3.5, 0 7" fill="#cbd5e1" />
-                </marker>
-            </defs>
+const AddieModelDiagram = () => {
+    const [selected, setSelected] = useState(null);
 
-            {/* Center Evaluation */}
-            <circle cx="250" cy="250" r="60" fill="#f8fafc" stroke="#94a3b8" strokeWidth="2" />
-            <text x="250" y="255" textAnchor="middle" className="font-bold fill-slate-700">Evaluate</text>
+    const phases = {
+        A: { title: "Analyze", text: "Who are the learners? What is the performance gap? What are the technical constraints? Determine if training is actually the solution to the business problem.", color: "border-blue-300 bg-blue-50 text-blue-900" },
+        D1: { title: "Design", text: "Create the blueprint. Write testable Learning Objectives, define graphic design standards, map out UI interactions, and sequence the modules.", color: "border-indigo-300 bg-indigo-50 text-indigo-900" },
+        D2: { title: "Develop", text: "Build the actual assets. Record audio, code interactive elements, write the textbook, and assemble the course in an authoring tool.", color: "border-purple-300 bg-purple-50 text-purple-900" },
+        I: { title: "Implement", text: "Deploy the course to the LMS. Train the instructors on how to use the materials, and enroll the target learners.", color: "border-fuchsia-300 bg-fuchsia-50 text-fuchsia-900" },
+        E: { title: "Evaluate", text: "Measure effectiveness using Kirkpatrick's 4 Levels. Did they like it? Did they learn? Did behavior change? Did the business improve?", color: "border-red-300 bg-red-50 text-red-900" }
+    };
 
-            {/* Connecting lines */}
-            <g stroke="#cbd5e1" strokeWidth="3" markerEnd="url(#arrowhead)">
-                <path d="M 250 110 L 250 170" />
-                <path d="M 390 250 L 330 250" />
-                <path d="M 250 390 L 250 330" />
-                <path d="M 110 250 L 170 250" />
-            </g>
+    return (
+        <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
+            <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: ADDIE Model</h3>
+            <p className="text-sm text-slate-500 mb-6 text-center max-w-lg">
+                Click a phase to examine the core instructional design tasks performed during that step. Note how Evaluation touches every single phase iteratively.
+            </p>
 
-            {/* Connecting lines outward from evaluate to the others (iterative loops) */}
-            <g stroke="#cbd5e1" strokeWidth="1" strokeDasharray="4 4" fill="none">
-                <path d="M 190 190 Q 150 150 120 220" />
-                <path d="M 310 190 Q 350 150 380 220" />
-                <path d="M 310 310 Q 350 350 380 280" />
-                <path d="M 190 310 Q 150 350 120 280" />
-            </g>
+            <svg viewBox="0 0 500 500" className="w-full max-w-md font-sans drop-shadow-sm cursor-pointer">
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#cbd5e1" />
+                    </marker>
+                </defs>
 
-            {/* Analysis (Top) */}
-            <circle cx="250" cy="70" r="50" fill="#e0e7ff" stroke="#818cf8" strokeWidth="2" />
-            <text x="250" y="75" textAnchor="middle" className="text-sm font-bold fill-blue-900">Analysis</text>
+                {/* Connecting lines */}
+                <g stroke="#cbd5e1" strokeWidth="3" markerEnd="url(#arrowhead)">
+                    <path d="M 250 110 L 250 170" />
+                    <path d="M 390 250 L 330 250" />
+                    <path d="M 250 390 L 250 330" />
+                    <path d="M 110 250 L 170 250" />
+                </g>
 
-            {/* Design (Right) */}
-            <circle cx="430" cy="250" r="50" fill="#dbeafe" stroke="#60a5fa" strokeWidth="2" />
-            <text x="430" y="255" textAnchor="middle" className="text-sm font-bold fill-blue-900">Design</text>
+                {/* Connecting lines outward from evaluate to the others (iterative loops) */}
+                <g stroke="#cbd5e1" strokeWidth="1" strokeDasharray="4 4" fill="none">
+                    <path d="M 190 190 Q 150 150 120 220" />
+                    <path d="M 310 190 Q 350 150 380 220" />
+                    <path d="M 310 310 Q 350 350 380 280" />
+                    <path d="M 190 310 Q 150 350 120 280" />
+                </g>
 
-            {/* Development (Bottom) */}
-            <circle cx="250" cy="430" r="50" fill="#ffedd5" stroke="#93c5fd" strokeWidth="2" />
-            <text x="250" y="435" textAnchor="middle" className="text-sm font-bold fill-blue-900">Develop</text>
+                {/* Outer Circular Flow arrows */}
+                <path d="M 285 45 A 200 200 0 0 1 455 215" fill="none" stroke="#e2e8f0" strokeWidth="10" strokeLinecap="round" />
+                <path d="M 455 285 A 200 200 0 0 1 285 455" fill="none" stroke="#e2e8f0" strokeWidth="10" strokeLinecap="round" />
+                <path d="M 215 455 A 200 200 0 0 1 45 285" fill="none" stroke="#e2e8f0" strokeWidth="10" strokeLinecap="round" />
+                <path d="M 45 215 A 200 200 0 0 1 215 45" fill="none" stroke="#e2e8f0" strokeWidth="10" strokeLinecap="round" />
 
-            {/* Implementation (Left) */}
-            <circle cx="70" cy="250" r="50" fill="#fae8ff" stroke="#a78bfa" strokeWidth="2" />
-            <text x="70" y="255" textAnchor="middle" className="text-sm font-bold fill-blue-900">Implement</text>
+                {/* Center Evaluation */}
+                <g onClick={() => setSelected('E')} className="hover:scale-105 transform origin-[250px_250px] transition-transform">
+                    <circle cx="250" cy="250" r="60" className={`${selected === 'E' ? 'fill-red-100 drop-shadow-md' : 'fill-slate-50'} stroke-red-200 stroke-4 transition-all`} />
+                    <text x="250" y="255" textAnchor="middle" className="font-bold fill-red-800">Evaluate</text>
+                </g>
 
-            {/* Outer Circular Flow arrows */}
-            <path d="M 285 45 A 200 200 0 0 1 455 215" fill="none" stroke="#e2e8f0" strokeWidth="10" strokeLinecap="round" />
-            <path d="M 455 285 A 200 200 0 0 1 285 455" fill="none" stroke="#e2e8f0" strokeWidth="10" strokeLinecap="round" />
-            <path d="M 215 455 A 200 200 0 0 1 45 285" fill="none" stroke="#e2e8f0" strokeWidth="10" strokeLinecap="round" />
-            <path d="M 45 215 A 200 200 0 0 1 215 45" fill="none" stroke="#e2e8f0" strokeWidth="10" strokeLinecap="round" />
+                {/* Analysis (Top) */}
+                <g onClick={() => setSelected('A')} className="hover:scale-105 transform origin-[250px_70px] transition-transform">
+                    <circle cx="250" cy="70" r="50" className={`${selected === 'A' ? 'fill-blue-200 drop-shadow-md' : 'fill-blue-50'} stroke-blue-300 stroke-4 transition-all`} />
+                    <text x="250" y="75" textAnchor="middle" className="text-sm font-bold fill-blue-900">Analysis</text>
+                </g>
 
-        </svg>
-    </div>
-);
+                {/* Design (Right) */}
+                <g onClick={() => setSelected('D1')} className="hover:scale-105 transform origin-[430px_250px] transition-transform">
+                    <circle cx="430" cy="250" r="50" className={`${selected === 'D1' ? 'fill-indigo-200 drop-shadow-md' : 'fill-indigo-50'} stroke-indigo-300 stroke-4 transition-all`} />
+                    <text x="430" y="255" textAnchor="middle" className="text-sm font-bold fill-indigo-900">Design</text>
+                </g>
+
+                {/* Development (Bottom) */}
+                <g onClick={() => setSelected('D2')} className="hover:scale-105 transform origin-[250px_430px] transition-transform">
+                    <circle cx="250" cy="430" r="50" className={`${selected === 'D2' ? 'fill-purple-200 drop-shadow-md' : 'fill-purple-50'} stroke-purple-300 stroke-4 transition-all`} />
+                    <text x="250" y="435" textAnchor="middle" className="text-sm font-bold fill-purple-900">Develop</text>
+                </g>
+
+                {/* Implementation (Left) */}
+                <g onClick={() => setSelected('I')} className="hover:scale-105 transform origin-[70px_250px] transition-transform">
+                    <circle cx="70" cy="250" r="50" className={`${selected === 'I' ? 'fill-fuchsia-200 drop-shadow-md' : 'fill-fuchsia-50'} stroke-fuchsia-300 stroke-4 transition-all`} />
+                    <text x="70" y="255" textAnchor="middle" className="text-sm font-bold fill-fuchsia-900">Implement</text>
+                </g>
+            </svg>
+
+            <div className={`w-full max-w-md mt-4 p-4 rounded-lg border min-h-[110px] flex flex-col justify-center transition-all ${selected ? phases[selected].color : 'bg-slate-50 border-slate-200 text-slate-400 items-center'}`}>
+                {selected ? (
+                    <>
+                        <h4 className="font-bold mb-1">{phases[selected].title} Phase</h4>
+                        <p className="text-sm">{phases[selected].text}</p>
+                    </>
+                ) : (
+                    <p className="font-medium">👆 Select an ADDIE phase to explore its purpose.</p>
+                )}
+            </div>
+        </div>
+    );
+};
 
 const KirkpatrickDiagram = () => (
     <div className="my-8 flex justify-center">
@@ -185,55 +246,134 @@ const AgileIDDiagram = () => (
 );
 
 
-const ArcsModelDiagram = () => (
-    <div className="my-8 flex justify-center">
-        <svg viewBox="0 0 600 200" className="w-full max-w-2xl drop-shadow-md font-sans bg-white rounded-xl border border-slate-200">
-            <rect x="20" y="50" width="120" height="100" rx="8" fill="#f0f9ff" stroke="#38bdf8" strokeWidth="2" />
-            <text x="80" y="85" textAnchor="middle" className="font-bold fill-sky-900">Attention</text>
-            <text x="80" y="110" textAnchor="middle" className="text-xs fill-sky-700">Arouse Curiosity</text>
+const ArcsModelDiagram = () => {
+    const [selected, setSelected] = useState(null);
 
-            <path d="M 140 100 L 170 100" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead)" />
+    const content = {
+        attention: { title: "Attention", detail: "Use perceptual arousal (surprise, paradox) or inquiry arousal (challenging questions) to grab the learner's brain immediately.", color: "bg-sky-50 text-sky-900 border-sky-200" },
+        relevance: { title: "Relevance", detail: "Connect the material to the learner's future career, past experiences, or immediate real-world problems. Why should they care?", color: "bg-purple-50 text-purple-900 border-purple-200" },
+        confidence: { title: "Confidence", detail: "Scaffold the learning. Provide clear grading rubrics, small early victories, and low-stakes practice to build self-efficacy.", color: "bg-green-50 text-green-900 border-green-200" },
+        satisfaction: { title: "Satisfaction", detail: "Provide immediate, meaningful feedback and opportunities to use the new skill. Extrinsic rewards (certificates) should not overcome intrinsic pride.", color: "bg-yellow-50 text-yellow-900 border-yellow-200" }
+    };
 
-            <rect x="170" y="50" width="120" height="100" rx="8" fill="#fdf4ff" stroke="#c084fc" strokeWidth="2" />
-            <text x="230" y="85" textAnchor="middle" className="font-bold fill-purple-900">Relevance</text>
-            <text x="230" y="110" textAnchor="middle" className="text-xs fill-purple-700">Connect to goals</text>
+    return (
+        <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
+            <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: The ARCS Model</h3>
+            <p className="text-sm text-slate-500 mb-6 text-center max-w-lg">
+                Click on any of the four pillars of Keller's motivational model to see how to implement it in instructional design.
+            </p>
 
-            <path d="M 290 100 L 320 100" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead)" />
+            <svg viewBox="0 0 600 180" className="w-full max-w-2xl font-sans cursor-pointer">
+                <defs>
+                    <marker id="arrowhead2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                        <polygon points="0 0, 6 3, 0 6" fill="#94a3b8" />
+                    </marker>
+                </defs>
+                <g onClick={() => setSelected('attention')} className="hover:opacity-80 transition-opacity">
+                    <rect x="20" y="20" width="120" height="100" rx="8" fill={selected === 'attention' ? "#bae6fd" : "#f0f9ff"} stroke="#38bdf8" strokeWidth={selected === 'attention' ? "4" : "2"} />
+                    <text x="80" y="65" textAnchor="middle" className="font-bold fill-sky-900">Attention</text>
+                    <text x="80" y="90" textAnchor="middle" className="text-xs fill-sky-700">Arouse Curiosity</text>
+                </g>
 
-            <rect x="320" y="50" width="120" height="100" rx="8" fill="#f0fdf4" stroke="#4ade80" strokeWidth="2" />
-            <text x="380" y="85" textAnchor="middle" className="font-bold fill-green-900">Confidence</text>
-            <text x="380" y="110" textAnchor="middle" className="text-xs fill-green-700">Scaffold Success</text>
+                <path d="M 140 70 L 170 70" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead2)" />
 
-            <path d="M 440 100 L 470 100" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead)" />
+                <g onClick={() => setSelected('relevance')} className="hover:opacity-80 transition-opacity">
+                    <rect x="170" y="20" width="120" height="100" rx="8" fill={selected === 'relevance' ? "#f3e8ff" : "#fdf4ff"} stroke="#c084fc" strokeWidth={selected === 'relevance' ? "4" : "2"} />
+                    <text x="230" y="65" textAnchor="middle" className="font-bold fill-purple-900">Relevance</text>
+                    <text x="230" y="90" textAnchor="middle" className="text-xs fill-purple-700">Connect to goals</text>
+                </g>
 
-            <rect x="470" y="50" width="120" height="100" rx="8" fill="#fffbeb" stroke="#facc15" strokeWidth="2" />
-            <text x="530" y="85" textAnchor="middle" className="font-bold fill-yellow-900">Satisfaction</text>
-            <text x="530" y="110" textAnchor="middle" className="text-xs fill-yellow-700">Reward Effort</text>
-        </svg>
-    </div>
-);
+                <path d="M 290 70 L 320 70" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead2)" />
 
-const ZpdModelDiagram = () => (
-    <div className="my-8 flex justify-center">
-        <svg viewBox="0 0 500 500" className="w-full max-w-md drop-shadow-md font-sans bg-white rounded-xl border border-slate-200">
-            {/* Outer Circle: Cannot do */}
-            <circle cx="250" cy="250" r="200" fill="#fee2e2" stroke="#f87171" strokeWidth="2" />
-            <text x="250" y="90" textAnchor="middle" className="font-bold fill-red-900 text-lg">Cannot Do (Even with Help)</text>
-            <text x="250" y="110" textAnchor="middle" className="text-sm fill-red-700">Anxiety Zone</text>
+                <g onClick={() => setSelected('confidence')} className="hover:opacity-80 transition-opacity">
+                    <rect x="320" y="20" width="120" height="100" rx="8" fill={selected === 'confidence' ? "#bbf7d0" : "#f0fdf4"} stroke="#4ade80" strokeWidth={selected === 'confidence' ? "4" : "2"} />
+                    <text x="380" y="65" textAnchor="middle" className="font-bold fill-green-900">Confidence</text>
+                    <text x="380" y="90" textAnchor="middle" className="text-xs fill-green-700">Scaffold Success</text>
+                </g>
 
-            {/* Middle Circle: ZPD */}
-            <circle cx="250" cy="250" r="130" fill="#fef08a" stroke="#facc15" strokeWidth="2" />
-            <text x="250" y="160" textAnchor="middle" className="font-bold fill-yellow-900 text-base">Zone of Proximal Development</text>
-            <text x="250" y="180" textAnchor="middle" className="text-xs fill-yellow-700">Learning happens here (with Scaffolding)</text>
+                <path d="M 440 70 L 470 70" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead2)" />
 
-            {/* Inner Circle: Can do */}
-            <circle cx="250" cy="250" r="70" fill="#dcfce7" stroke="#4ade80" strokeWidth="2" />
-            <text x="250" y="245" textAnchor="middle" className="font-bold fill-green-900 text-sm">Can Do</text>
-            <text x="250" y="265" textAnchor="middle" className="text-xs fill-green-700">Independently</text>
-            <text x="250" y="285" textAnchor="middle" className="text-xs fill-green-700">(Boredom Zone)</text>
-        </svg>
-    </div>
-);
+                <g onClick={() => setSelected('satisfaction')} className="hover:opacity-80 transition-opacity">
+                    <rect x="470" y="20" width="120" height="100" rx="8" fill={selected === 'satisfaction' ? "#fef08a" : "#fffbeb"} stroke="#facc15" strokeWidth={selected === 'satisfaction' ? "4" : "2"} />
+                    <text x="530" y="65" textAnchor="middle" className="font-bold fill-yellow-900">Satisfaction</text>
+                    <text x="530" y="90" textAnchor="middle" className="text-xs fill-yellow-700">Reward Effort</text>
+                </g>
+            </svg>
+
+            <div className={`w-full max-w-2xl mt-2 p-4 rounded-lg border min-h-[100px] flex flex-col justify-center transition-all ${selected ? content[selected].color : 'bg-slate-50 border-slate-200 text-slate-400 items-center'}`}>
+                {selected ? (
+                    <>
+                        <h4 className="font-bold mb-1">{content[selected].title} Implementation:</h4>
+                        <p className="text-sm">{content[selected].detail}</p>
+                    </>
+                ) : (
+                    <p className="font-medium">👆 Click a pillar above to explore implementation strategies.</p>
+                )}
+            </div>
+        </div>
+    );
+};
+
+const ZpdModelDiagram = () => {
+    const [selected, setSelected] = useState(null);
+
+    const zones = {
+        bore: { title: "What I Can Do Unassisted", text: "Comfort Zone. Learning is minimal here because the skills are already mastered. Prolonged exposure leads to boredom and disengagement.", color: "bg-green-50 text-green-900 border-green-200" },
+        zpd: { title: "Zone of Proximal Development (ZPD)", text: "Sweet Spot. The learner cannot do this alone, but CAN do it with guidance (scaffolding). Maximum neural plasticity and learning occur here.", color: "bg-yellow-50 text-yellow-900 border-yellow-200" },
+        panic: { title: "What I Cannot Do", text: "Panic Zone. The cognitive leap is too far, even with a teacher. Exposure here leads to frustration, burnout, and giving up.", color: "bg-red-50 text-red-900 border-red-200" }
+    };
+
+    return (
+        <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
+            <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: Vygotsky's ZPD</h3>
+            <p className="text-sm text-slate-500 mb-6 text-center max-w-lg">
+                Click on the concentric rings to understand the psychological state of the learner in each zone.
+            </p>
+
+            <svg viewBox="0 0 500 400" className="w-full max-w-md font-sans drop-shadow-sm cursor-pointer">
+                {/* Panic Zone */}
+                <g onClick={() => setSelected('panic')} className="hover:opacity-90 transition-opacity">
+                    <circle cx="250" cy="200" r="180" className={`${selected === 'panic' ? 'fill-red-200' : 'fill-red-50'} stroke-red-300 stroke-4 transition-all`} />
+                    <text x="250" y="60" textAnchor="middle" className="text-sm font-bold fill-red-800 uppercase tracking-widest">Panic Zone</text>
+                    <text x="250" y="80" textAnchor="middle" className="text-xs fill-red-700">(What I Cannot Do)</text>
+                </g>
+
+                {/* ZPD */}
+                <g onClick={() => setSelected('zpd')} className="hover:opacity-90 transition-opacity">
+                    <circle cx="250" cy="200" r="120" className={`${selected === 'zpd' ? 'fill-yellow-200 drop-shadow-lg' : 'fill-yellow-50'} stroke-yellow-400 stroke-4 transition-all`} />
+                    <text x="250" y="115" textAnchor="middle" className="text-sm font-bold fill-yellow-900 uppercase tracking-widest">Z.P.D.</text>
+                    <text x="250" y="130" textAnchor="middle" className="text-[10px] fill-yellow-800">(What I can do with help)</text>
+                </g>
+
+                {/* Comfort / Boredom Zone */}
+                <g onClick={() => setSelected('bore')} className="hover:opacity-90 transition-opacity">
+                    <circle cx="250" cy="200" r="60" className={`${selected === 'bore' ? 'fill-green-200' : 'fill-green-50'} stroke-green-400 stroke-4 transition-all`} />
+                    <text x="250" y="195" textAnchor="middle" className="text-xs font-bold fill-green-900">Comfort</text>
+                    <text x="250" y="210" textAnchor="middle" className="text-[10px] fill-green-800">Zone</text>
+                </g>
+
+                {/* Scaffolding representation */}
+                {selected === 'zpd' && (
+                    <g className="animate-pulse">
+                        <path d="M 250 200 L 250 150 L 320 150" fill="none" stroke="#eab308" strokeWidth="3" strokeDasharray="4 4" markerEnd="url(#arrowhead)" />
+                        <text x="330" y="155" className="text-xs font-bold fill-yellow-700 bg-white">Scaffolding Provided</text>
+                    </g>
+                )}
+            </svg>
+
+            <div className={`w-full max-w-md mt-4 p-4 rounded-lg border min-h-[110px] flex flex-col justify-center transition-all ${selected ? zones[selected].color : 'bg-slate-50 border-slate-200 text-slate-400 items-center'}`}>
+                {selected ? (
+                    <>
+                        <h4 className="font-bold mb-1">{zones[selected].title}</h4>
+                        <p className="text-sm">{zones[selected].text}</p>
+                    </>
+                ) : (
+                    <p className="font-medium">👆 Click a zone to explore the cognitive state.</p>
+                )}
+            </div>
+        </div>
+    );
+};
 
 const ThermodynamicsDiagram = () => (
     <div className="my-8 flex justify-center">
@@ -300,37 +440,79 @@ const AndragogyDiagram = () => (
     </div>
 );
 
-const UdlDiagram = () => (
-    <div className="my-8 flex justify-center">
-        <svg viewBox="0 0 600 250" className="w-full max-w-2xl drop-shadow-md font-sans bg-white border border-slate-200 rounded-xl">
-            {/* Multiple Means of Representation */}
-            <rect x="30" y="40" width="160" height="150" rx="8" fill="#fdf4ff" stroke="#c084fc" strokeWidth="2" />
-            <text x="110" y="70" textAnchor="middle" className="font-bold fill-purple-900 text-sm">Representation</text>
-            <text x="110" y="90" textAnchor="middle" className="text-xs fill-purple-700">The "WHAT" of learning</text>
-            <line x1="50" y1="110" x2="170" y2="110" stroke="#e879f9" strokeWidth="1" strokeDasharray="3 3" />
-            <text x="110" y="135" textAnchor="middle" className="text-[11px] fill-purple-800">Audio, Video, Text</text>
-            <text x="110" y="155" textAnchor="middle" className="text-[11px] fill-purple-800">Translations, Alt-Text</text>
+const UdlDiagram = () => {
+    const [selected, setSelected] = useState(null);
 
-            {/* Multiple Means of Action & Expression */}
-            <rect x="220" y="40" width="160" height="150" rx="8" fill="#f0fdf4" stroke="#4ade80" strokeWidth="2" />
-            <text x="300" y="70" textAnchor="middle" className="font-bold fill-green-900 text-sm">Action & Expression</text>
-            <text x="300" y="90" textAnchor="middle" className="text-xs fill-green-700">The "HOW" of learning</text>
-            <line x1="240" y1="110" x2="360" y2="110" stroke="#4ade80" strokeWidth="1" strokeDasharray="3 3" />
-            <text x="300" y="135" textAnchor="middle" className="text-[11px] fill-green-800">Essays, Presentations</text>
-            <text x="300" y="155" textAnchor="middle" className="text-[11px] fill-green-800">Projects, Portfolios</text>
+    const principles = {
+        representation: {
+            title: "Multiple Means of Representation",
+            text: "Learners differ in the ways they perceive and comprehend info. Provide text, audio, video, alt-text, and clear semantic structure.",
+            color: "bg-purple-50 text-purple-900 border-purple-200"
+        },
+        action: {
+            title: "Multiple Means of Action & Expression",
+            text: "Learners differ in how they can navigate a learning environment and express what they know. Offer tests, essays, projects, or oral presentations as options.",
+            color: "bg-green-50 text-green-900 border-green-200"
+        },
+        engagement: {
+            title: "Multiple Means of Engagement",
+            text: "Learners differ in the ways they can be engaged or motivated. Provide safe quiet paths, highly social paths, and clear real-world relevance.",
+            color: "bg-blue-50 text-blue-900 border-blue-200"
+        }
+    };
 
-            {/* Multiple Means of Engagement */}
-            <rect x="410" y="40" width="160" height="150" rx="8" fill="#eff6ff" stroke="#3b82f6" strokeWidth="2" />
-            <text x="490" y="70" textAnchor="middle" className="font-bold fill-blue-900 text-sm">Engagement</text>
-            <text x="490" y="90" textAnchor="middle" className="text-xs fill-blue-700">The "WHY" of learning</text>
-            <line x1="430" y1="110" x2="550" y2="110" stroke="#60a5fa" strokeWidth="1" strokeDasharray="3 3" />
-            <text x="490" y="135" textAnchor="middle" className="text-[11px] fill-blue-800">Autonomy, Relevance</text>
-            <text x="490" y="155" textAnchor="middle" className="text-[11px] fill-blue-800">Gamification, Goals</text>
+    return (
+        <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
+            <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: UDL Core Principles</h3>
+            <p className="text-sm text-slate-500 mb-6 text-center max-w-lg">
+                Click on the core networks of the UDL framework to understand their instructional application.
+            </p>
 
-            <text x="300" y="225" textAnchor="middle" className="font-bold fill-slate-500 text-sm">Universal Design for Learning (UDL) Principles</text>
-        </svg>
-    </div>
-);
+            <svg viewBox="0 0 600 180" className="w-full max-w-2xl font-sans drop-shadow-sm cursor-pointer">
+                {/* Multiple Means of Representation */}
+                <g onClick={() => setSelected('representation')} className="hover:-translate-y-1 transition-transform">
+                    <rect x="30" y="10" width="160" height="150" rx="8" className={`${selected === 'representation' ? 'fill-purple-100' : 'fill-purple-50'} stroke-purple-400 stroke-4 transition-all`} />
+                    <text x="110" y="40" textAnchor="middle" className="font-bold fill-purple-900 text-sm">Representation</text>
+                    <text x="110" y="60" textAnchor="middle" className="text-xs fill-purple-700">The "WHAT" of learning</text>
+                    <line x1="50" y1="80" x2="170" y2="80" stroke="#c084fc" strokeWidth="1" strokeDasharray="3 3" />
+                    <text x="110" y="105" textAnchor="middle" className="text-[11px] fill-purple-800">Audio, Video, Text</text>
+                    <text x="110" y="125" textAnchor="middle" className="text-[11px] fill-purple-800">Translations, Alt-Text</text>
+                </g>
+
+                {/* Multiple Means of Action & Expression */}
+                <g onClick={() => setSelected('action')} className="hover:-translate-y-1 transition-transform">
+                    <rect x="220" y="10" width="160" height="150" rx="8" className={`${selected === 'action' ? 'fill-green-100' : 'fill-green-50'} stroke-green-400 stroke-4 transition-all`} />
+                    <text x="300" y="40" textAnchor="middle" className="font-bold fill-green-900 text-sm">Action & Expression</text>
+                    <text x="300" y="60" textAnchor="middle" className="text-xs fill-green-700">The "HOW" of learning</text>
+                    <line x1="240" y1="80" x2="360" y2="80" stroke="#4ade80" strokeWidth="1" strokeDasharray="3 3" />
+                    <text x="300" y="105" textAnchor="middle" className="text-[11px] fill-green-800">Essays, Presentations</text>
+                    <text x="300" y="125" textAnchor="middle" className="text-[11px] fill-green-800">Projects, Portfolios</text>
+                </g>
+
+                {/* Multiple Means of Engagement */}
+                <g onClick={() => setSelected('engagement')} className="hover:-translate-y-1 transition-transform">
+                    <rect x="410" y="10" width="160" height="150" rx="8" className={`${selected === 'engagement' ? 'fill-blue-100' : 'fill-blue-50'} stroke-blue-400 stroke-4 transition-all`} />
+                    <text x="490" y="40" textAnchor="middle" className="font-bold fill-blue-900 text-sm">Engagement</text>
+                    <text x="490" y="60" textAnchor="middle" className="text-xs fill-blue-700">The "WHY" of learning</text>
+                    <line x1="430" y1="80" x2="550" y2="80" stroke="#60a5fa" strokeWidth="1" strokeDasharray="3 3" />
+                    <text x="490" y="105" textAnchor="middle" className="text-[11px] fill-blue-800">Autonomy, Relevance</text>
+                    <text x="490" y="125" textAnchor="middle" className="text-[11px] fill-blue-800">Gamification, Goals</text>
+                </g>
+            </svg>
+
+            <div className={`w-full max-w-2xl mt-4 p-4 rounded-lg border min-h-[90px] flex flex-col justify-center transition-all ${selected ? principles[selected].color : 'bg-slate-50 border-slate-200 text-slate-400 items-center'}`}>
+                {selected ? (
+                    <>
+                        <h4 className="font-bold mb-1">{principles[selected].title}</h4>
+                        <p className="text-sm">{principles[selected].text}</p>
+                    </>
+                ) : (
+                    <p className="font-medium">👆 Click a network block to reveal more details.</p>
+                )}
+            </div>
+        </div>
+    );
+};
 
 const BloomSigmaDiagram = () => (
     <div className="my-8 flex justify-center">
