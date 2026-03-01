@@ -52,7 +52,7 @@ export const FeedbackModelsDiagram = () => {
 
                     {/* Central anchor */}
                     <circle cx="200" cy="100" r="40" fill="#1e293b" stroke="#334155" strokeWidth="2" />
-                    <text x="200" y="105" fill="#94a3b8" fontSize="12" fontWeight="bold" textAnchor="middle">Learner</text>
+                    <text x="200" y="105" fill="#e2e8f0" fontSize="12" fontWeight="bold" textAnchor="middle">Learner</text>
 
                     {/* Arrows connecting the nodes */}
                     {/* Action -> Data */}

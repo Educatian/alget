@@ -25,7 +25,7 @@ export const RubricDesignDiagram = () => {
 
                 {/* Header Row */}
                 <div className="grid grid-cols-5 gap-2 w-full mb-2">
-                    <div className="col-span-1 text-xs font-bold text-slate-500 uppercase tracking-wider flex items-end pb-2">Criteria</div>
+                    <div className="col-span-1 text-xs font-bold text-slate-300 uppercase tracking-wider flex items-end pb-2">Criteria</div>
                     {levels.map(level => (
                         <div
                             key={level.id}
