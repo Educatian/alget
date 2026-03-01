@@ -26,11 +26,11 @@ HEADERS = {
     'apikey': KEY,
     'Authorization': f'Bearer {KEY}',
     'Content-Type': 'application/json',
-    'Prefer': 'return=minimal'
+    'Prefer': 'resolution=merge-duplicates,return=minimal'
 }
 
 def upsert_table(table_name, payload):
-    endpoint = f"{URL}/rest/v1/{table_name}"
+    endpoint = f"{URL}/rest/v1/{table_name}?on_conflict=id"
     req = urllib.request.Request(endpoint, data=json.dumps(payload).encode('utf-8'), headers=HEADERS, method='POST')
     try:
         response = urllib.request.urlopen(req)
@@ -41,32 +41,32 @@ def upsert_table(table_name, payload):
 
 CONCEPTS = [
     # Bio-inspired Domain
-    {'id': 'cellular_solids', 'name': 'Cellular Solids', 'category': 'bio_inspired'},
-    {'id': 'hierarchical_structures', 'name': 'Hierarchical Structures', 'category': 'bio_inspired'},
-    {'id': 'directional_adhesion', 'name': 'Directional Adhesion', 'category': 'bio_inspired'},
-    {'id': 'fluid_dynamics', 'name': 'Fluid Dynamics', 'category': 'bio_inspired'},
-    {'id': 'aeroacoustics', 'name': 'Aeroacoustics', 'category': 'bio_inspired'},
+    {'id': 'cellular_solids', 'name': 'Cellular Solids'},
+    {'id': 'hierarchical_structures', 'name': 'Hierarchical Structures'},
+    {'id': 'directional_adhesion', 'name': 'Directional Adhesion'},
+    {'id': 'fluid_dynamics', 'name': 'Fluid Dynamics'},
+    {'id': 'aeroacoustics', 'name': 'Aeroacoustics'},
 
     # Statics Domain
-    {'id': 'vectors', 'name': 'Vectors', 'category': 'statics'},
-    {'id': 'equilibrium', 'name': 'Equilibrium', 'category': 'statics'},
-    {'id': 'trigonometry', 'name': 'Trigonometry', 'category': 'statics'},
-    {'id': 'moments', 'name': 'Moments (Torque)', 'category': 'statics'},
-    {'id': 'fbd', 'name': 'Free Body Diagrams', 'category': 'statics'},
-    {'id': 'friction', 'name': 'Friction', 'category': 'statics'},
-    {'id': 'units', 'name': 'Units of Measurement', 'category': 'statics'},
-    {'id': 'trusses', 'name': 'Trusses', 'category': 'statics'},
+    {'id': 'vectors', 'name': 'Vectors'},
+    {'id': 'equilibrium', 'name': 'Equilibrium'},
+    {'id': 'trigonometry', 'name': 'Trigonometry'},
+    {'id': 'moments', 'name': 'Moments (Torque)'},
+    {'id': 'fbd', 'name': 'Free Body Diagrams'},
+    {'id': 'friction', 'name': 'Friction'},
+    {'id': 'units', 'name': 'Units of Measurement'},
+    {'id': 'trusses', 'name': 'Trusses'},
 
     # Dynamics Domain
-    {'id': 'kinematics', 'name': 'Kinematics', 'category': 'dynamics'},
+    {'id': 'kinematics', 'name': 'Kinematics'},
 
     # Instructional Design 
-    {'id': 'ct_1_2', 'name': 'Cognitivism', 'category': 'inst_design'},
-    {'id': 'ct_2_1', 'name': 'Instructional Models (ADDIE)', 'category': 'inst_design'},
-    {'id': 'ct_1_3', 'name': 'Cognitive Load', 'category': 'inst_design'},
-    {'id': 'ct_2_2', 'name': 'Formative Evaluation', 'category': 'inst_design'},
-    {'id': 'ct_2_3', 'name': 'Summative Evaluation', 'category': 'inst_design'},
-    {'id': 'ct_1_1', 'name': 'Situated Learning & Context', 'category': 'inst_design'}
+    {'id': 'ct_1_2', 'name': 'Cognitivism'},
+    {'id': 'ct_2_1', 'name': 'Instructional Models (ADDIE)'},
+    {'id': 'ct_1_3', 'name': 'Cognitive Load'},
+    {'id': 'ct_2_2', 'name': 'Formative Evaluation'},
+    {'id': 'ct_2_3', 'name': 'Summative Evaluation'},
+    {'id': 'ct_1_1', 'name': 'Situated Learning & Context'}
 ]
 
 QUESTIONS = [
