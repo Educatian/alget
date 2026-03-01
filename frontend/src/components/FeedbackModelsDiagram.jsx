@@ -22,13 +22,13 @@ export const FeedbackModelsDiagram = () => {
     }, [isPlaying]);
 
     return (
-        <div className="my-8 p-6 bg-slate-900 rounded-2xl border border-slate-700 shadow-[0_10px_40px_rgba(0,0,0,0.2)] max-w-2xl mx-auto font-sans relative overflow-hidden">
-            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-800 pb-6">
+        <div className="my-8 p-6 bg-white rounded-2xl border border-slate-200 shadow-md max-w-2xl mx-auto font-sans relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-200 pb-6">
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
-                        <span className="text-teal-400">🔄</span> The Feedback Loop
+                    <h3 className="text-xl font-bold text-slate-800 mb-1 flex items-center gap-2">
+                        <span className="text-teal-500">🔄</span> The Feedback Loop
                     </h3>
-                    <p className="text-sm text-slate-400">Feedback is only effective if it loops back to modify future actions.</p>
+                    <p className="text-sm text-slate-600">Feedback is only effective if it loops back to modify future actions.</p>
                 </div>
                 <button
                     onClick={() => setIsPlaying(!isPlaying)}
@@ -39,28 +39,28 @@ export const FeedbackModelsDiagram = () => {
                 </button>
             </div>
 
-            <div className="w-full h-56 bg-slate-950 rounded-xl border border-slate-800/50 shadow-inner relative flex items-center justify-center p-4">
+            <div className="w-full h-56 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center p-4">
                 <svg viewBox="0 0 400 200" className="w-full h-full relative z-10">
                     <defs>
                         <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" />
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8" />
                         </marker>
                         <marker id="arrow-active" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#e2e8f0" />
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1e293b" />
                         </marker>
                     </defs>
 
                     {/* Central anchor */}
-                    <circle cx="200" cy="100" r="40" fill="#1e293b" stroke="#334155" strokeWidth="2" />
-                    <text x="200" y="105" fill="#e2e8f0" fontSize="12" fontWeight="bold" textAnchor="middle">Learner</text>
+                    <circle cx="200" cy="100" r="40" fill="#ffffff" stroke="#cbd5e1" strokeWidth="2" />
+                    <text x="200" y="105" fill="#475569" fontSize="12" fontWeight="bold" textAnchor="middle">Learner</text>
 
                     {/* Arrows connecting the nodes */}
                     {/* Action -> Data */}
-                    <path d="M 230 45 Q 290 60 310 80" fill="none" stroke={step === 1 ? steps[1].color : "#334155"} strokeWidth={step === 1 ? 4 : 2} markerEnd={step === 1 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
+                    <path d="M 230 45 Q 290 60 310 80" fill="none" stroke={step === 1 ? steps[1].color : "#cbd5e1"} strokeWidth={step === 1 ? 4 : 2} markerEnd={step === 1 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
                     {/* Data -> Feedback */}
-                    <path d="M 310 120 Q 290 140 230 155" fill="none" stroke={step === 2 ? steps[2].color : "#334155"} strokeWidth={step === 2 ? 4 : 2} markerEnd={step === 2 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
+                    <path d="M 310 120 Q 290 140 230 155" fill="none" stroke={step === 2 ? steps[2].color : "#cbd5e1"} strokeWidth={step === 2 ? 4 : 2} markerEnd={step === 2 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
                     {/* Feedback -> Adjustment */}
-                    <path d="M 170 155 Q 110 140 90 120" fill="none" stroke={step === 3 ? steps[3].color : "#334155"} strokeWidth={step === 3 ? 4 : 2} markerEnd={step === 3 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
+                    <path d="M 170 155 Q 110 140 90 120" fill="none" stroke={step === 3 ? steps[3].color : "#cbd5e1"} strokeWidth={step === 3 ? 4 : 2} markerEnd={step === 3 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
                     {/* Adjustment -> Action */}
                     <path d="M 90 80 Q 110 60 170 45" fill="none" stroke={step === 0 && isPlaying ? steps[0].color : "#334155"} strokeWidth={step === 0 && isPlaying ? 4 : 2} markerEnd={step === 0 && isPlaying ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
 
@@ -69,7 +69,7 @@ export const FeedbackModelsDiagram = () => {
                         const isActive = step === idx;
                         return (
                             <g key={idx} className="transition-all duration-500" style={{ transform: isActive ? 'scale(1.1)' : 'scale(1)', transformOrigin: `${s.x}px ${s.y}px` }}>
-                                <rect x={s.x - 60} y={s.y - 15} width="120" height="30" rx="15" fill={isActive ? s.color : '#1e293b'} stroke={isActive ? 'white' : s.color} strokeWidth="2" className="transition-colors duration-300 shadow-lg" />
+                                <rect x={s.x - 60} y={s.y - 15} width="120" height="30" rx="15" fill={isActive ? s.color : '#ffffff'} stroke={isActive ? 'white' : s.color} strokeWidth="2" className="transition-colors duration-300 shadow-md" />
                                 <text x={s.x} y={s.y + 4} fill={isActive ? 'white' : s.color} fontSize="10" fontWeight="bold" textAnchor="middle">{s.label}</text>
                             </g>
                         );
