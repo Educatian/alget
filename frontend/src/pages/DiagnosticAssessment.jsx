@@ -47,6 +47,13 @@ export default function DiagnosticAssessment() {
             { id: 13, concept: 'ct_1_2', stem: 'Vygotsky\'s Zone of Proximal Development (ZPD) relies heavily on the concept of:', options: ['Punishment', 'Scaffolding', 'Classical conditioning', 'Rote learning'], correct: 1, prereqFor: ['01/01'] },
             { id: 14, concept: 'ct_1_1', stem: 'Bloom\'s Taxonomy is primarily used for:', options: ['Organizing classrooms logically', 'Classifying educational learning objectives', 'Developing grading rubrics automatically', 'Scheduling instructional time'], correct: 1, prereqFor: ['01/01'] },
             { id: 15, concept: 'ct_2_3', stem: 'A summative assessment is typically given:', options: ['Before instruction begins', 'During instruction to adjust pacing', 'At the end of an instructional unit', 'Only when a student fails a formative test'], correct: 2, prereqFor: ['02/01'] }
+        ],
+        'bio-inspired': [
+            { id: 1, concept: 'cellular_solids', stem: 'Which of the following biological structures is an example of an open-cell porous solid used to maximize structural efficiency?', options: ['Shark continuous dermal skin', 'Turtle rigid shell', 'Cancellous (spongy) bone', 'Gecko foot spatulae'], correct: 2, prereqFor: ['01/01'] },
+            { id: 2, concept: 'hierarchical_structures', stem: 'What is the primary mechanical advantage of combining stiff mineral platelets within a soft protein matrix (like in nacre)?', options: ['It decreases the overall weight to zero.', 'It provides extreme stiffness and high fracture toughness.', 'It creates completely transparent layers.', 'It prevents heat transfer completely.'], correct: 1, prereqFor: ['01/02'] },
+            { id: 3, concept: 'directional_adhesion', stem: 'Geckos cling to sheer surfaces primarily through:', options: ['Sticky liquid mucous secretion', 'Microscopic suction cups', 'Van der Waals forces between billions of setae and the surface', 'Electromagnetic charging of the glass'], correct: 2, prereqFor: ['01/03'] },
+            { id: 4, concept: 'fluid_dynamics', stem: 'Riblets on shark skin reduce drag by:', options: ['Coating the skin in a frictionless layer of oil', 'Physically confining and lifting turbulent vortices away from valleys', 'Preventing any water from touching the shark', 'Increasing laminar flow perfectly across all curves'], correct: 1, prereqFor: ['02/01'] },
+            { id: 5, concept: 'aeroacoustics', stem: 'Trailing edge serrations on an owl wing suppress flight noise by:', options: ['Slowing down the bird dramatically', 'Absorbing sound waves like a sponge', 'Breaking large coherent vortices into smaller, high-frequency micro-turbulences', 'Reflecting sound waves back upwards'], correct: 2, prereqFor: ['03/01'] }
         ]
     }
 
@@ -126,7 +133,8 @@ export default function DiagnosticAssessment() {
                     .upsert(recordsToUpsert, { onConflict: 'user_id, concept_id' });
 
                 if (error) {
-                    console.error("Failed to update mastery from diagnostic: ", error);
+                    console.error("Failed to update mastery from diagnostic. Supabase might need 'concepts' table updated with the new bio-inspired keys: ", error);
+                    // Do not block the user from proceeding if the database insert fails
                 }
             }
         }
