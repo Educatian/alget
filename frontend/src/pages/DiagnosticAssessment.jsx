@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import API_BASE from '../lib/apiConfig'
 import '../index.css'
 
 // ============================================================================
@@ -22,7 +23,7 @@ export default function DiagnosticAssessment() {
         const fetchQuestions = async () => {
             try {
                 // Fetch dynamic assessment questions based on course context
-                const response = await fetch(`/api/diagnostic/questions/${course || 'statics'}`)
+                const response = await fetch(`${API_BASE}/diagnostic/questions/${course || 'statics'}`)
                 if (!response.ok) {
                     throw new Error(`Failed to fetch specific questions for ${course}`)
                 }
