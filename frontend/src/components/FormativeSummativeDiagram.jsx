@@ -4,37 +4,37 @@ export const FormativeSummativeDiagram = () => {
     const [view, setView] = useState('both'); // formative, summative, both
 
     return (
-        <div className="my-8 p-6 bg-slate-900 rounded-2xl border border-slate-700 shadow-[0_10px_40px_rgba(0,0,0,0.2)] max-w-2xl mx-auto font-sans relative overflow-hidden">
-            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-800 pb-6">
+        <div className="my-8 p-6 bg-white rounded-2xl border border-slate-200 shadow-md max-w-2xl mx-auto font-sans relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-200 pb-6">
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
-                        <span className="text-pink-400">⚖️</span> Assessment Types
+                    <h3 className="text-xl font-bold text-slate-800 mb-1 flex items-center gap-2">
+                        <span className="text-pink-500">⚖️</span> Assessment Types
                     </h3>
-                    <p className="text-sm text-slate-400">Compare continuous (formative) vs final point-in-time (summative) evaluation.</p>
+                    <p className="text-sm text-slate-600">Compare continuous (formative) vs final point-in-time (summative) evaluation.</p>
                 </div>
                 <div className="flex gap-2">
                     <button
                         onClick={() => setView('formative')}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'formative' ? 'bg-pink-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'formative' ? 'bg-pink-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
                     >
                         Formative
                     </button>
                     <button
                         onClick={() => setView('summative')}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'summative' ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'summative' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
                     >
                         Summative
                     </button>
                     <button
                         onClick={() => setView('both')}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'both' ? 'bg-slate-200 text-slate-900' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'both' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
                     >
                         Compare Both
                     </button>
                 </div>
             </div>
 
-            <div className="w-full h-48 bg-slate-950 rounded-xl border border-slate-800/50 shadow-inner relative flex items-center justify-center p-4">
+            <div className="w-full h-48 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center p-4">
                 <svg viewBox="0 0 400 120" className="w-full h-full relative z-10">
                     <defs>
                         <mask id="fadeMask" x="0" y="0" width="400" height="120">
@@ -43,9 +43,9 @@ export const FormativeSummativeDiagram = () => {
                     </defs>
 
                     {/* Time Axis */}
-                    <line x1="20" y1="100" x2="380" y2="100" stroke="#334155" strokeWidth="2" />
-                    <text x="380" y="115" fill="#cbd5e1" fontSize="8" textAnchor="end">Learning Timeline →</text>
-                    <text x="20" y="115" fill="#cbd5e1" fontSize="8" textAnchor="start">Start</text>
+                    <line x1="20" y1="100" x2="380" y2="100" stroke="#cbd5e1" strokeWidth="2" />
+                    <text x="380" y="115" fill="#475569" fontSize="8" textAnchor="end">Learning Timeline →</text>
+                    <text x="20" y="115" fill="#475569" fontSize="8" textAnchor="start">Start</text>
 
                     {/* Formative Concept (Continuous Cycle) */}
                     <g className={`transition-all duration-500 ${view === 'summative' ? 'opacity-10 grayscale' : 'opacity-100'}`}>
@@ -86,11 +86,11 @@ export const FormativeSummativeDiagram = () => {
                         <line x1="350" y1="20" x2="350" y2="100" stroke="#4f46e5" strokeWidth="2" />
                     </g>
 
-                    <rect x="10" y="10" width="80" height="20" rx="4" fill={view === 'formative' || view === 'both' ? '#db2777' : '#334155'} className="transition-colors duration-300" />
-                    <text x="50" y="24" fill="white" fontSize="9" textAnchor="middle" fontWeight="bold">Formative = During</text>
+                    <rect x="10" y="10" width="80" height="20" rx="4" fill={view === 'formative' || view === 'both' ? '#db2777' : '#e2e8f0'} className="transition-colors duration-300" />
+                    <text x="50" y="24" fill={view === 'formative' || view === 'both' ? 'white' : '#64748b'} fontSize="9" textAnchor="middle" fontWeight="bold">Formative = During</text>
 
-                    <rect x="290" y="10" width="90" height="20" rx="4" fill={view === 'summative' || view === 'both' ? '#4f46e5' : '#334155'} className="transition-colors duration-300" />
-                    <text x="335" y="24" fill="white" fontSize="9" textAnchor="middle" fontWeight="bold">Summative = After</text>
+                    <rect x="290" y="10" width="90" height="20" rx="4" fill={view === 'summative' || view === 'both' ? '#4f46e5' : '#e2e8f0'} className="transition-colors duration-300" />
+                    <text x="335" y="24" fill={view === 'summative' || view === 'both' ? 'white' : '#64748b'} fontSize="9" textAnchor="middle" fontWeight="bold">Summative = After</text>
 
                 </svg>
             </div>

@@ -8,13 +8,13 @@ export const ConstructivismDiagram = () => {
     };
 
     return (
-        <div className="my-8 p-6 bg-slate-900 rounded-2xl border border-slate-700 shadow-[0_10px_40px_rgba(0,0,0,0.2)] max-w-2xl mx-auto font-sans relative overflow-hidden">
-            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-800 pb-6">
+        <div className="my-8 p-6 bg-white rounded-2xl border border-slate-200 shadow-md max-w-2xl mx-auto font-sans relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-200 pb-6">
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
-                        <span className="text-emerald-400">🧱</span> Constructing Knowledge
+                    <h3 className="text-xl font-bold text-slate-800 mb-1 flex items-center gap-2">
+                        <span className="text-emerald-500">🧱</span> Constructing Knowledge
                     </h3>
-                    <p className="text-sm text-slate-400">Experience how learners actively build new schemas upon prior knowledge foundations.</p>
+                    <p className="text-sm text-slate-600">Experience how learners actively build new schemas upon prior knowledge foundations.</p>
                 </div>
                 <button
                     onClick={handleScaffoldClick}
@@ -24,12 +24,12 @@ export const ConstructivismDiagram = () => {
                 </button>
             </div>
 
-            <div className="w-full h-56 bg-slate-950 rounded-xl border border-slate-800/50 shadow-inner relative flex flex-col items-center justify-end overflow-hidden">
+            <div className="w-full h-56 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex flex-col items-center justify-end overflow-hidden">
                 <svg viewBox="0 0 400 200" className="w-full h-full relative z-10">
                     <defs>
                         <linearGradient id="block-base" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stopColor="#475569" />
-                            <stop offset="100%" stopColor="#334155" />
+                            <stop offset="0%" stopColor="#94a3b8" />
+                            <stop offset="100%" stopColor="#64748b" />
                         </linearGradient>
                         <linearGradient id="block-new" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="0%" stopColor="#10b981" />
@@ -42,18 +42,18 @@ export const ConstructivismDiagram = () => {
                     </defs>
 
                     {/* Background Grid Pattern representing environment */}
-                    <g opacity="0.1">
-                        <path d="M0 20 H400 M0 40 H400 M0 60 H400 M0 80 H400 M0 100 H400 M0 120 H400 M0 140 H400 M0 160 H400 M0 180 H400" stroke="#94a3b8" strokeWidth="1" />
-                        <path d="M20 0 V200 M40 0 V200 M60 0 V200 M80 0 V200 M100 0 V200 M120 0 V200 M140 0 V200 M160 0 V200 M180 0 V200 M200 0 V200 M220 0 V200 M240 0 V200 M260 0 V200 M280 0 V200 M300 0 V200 M320 0 V200 M340 0 V200 M360 0 V200 M380 0 V200" stroke="#94a3b8" strokeWidth="1" />
+                    <g opacity="0.3">
+                        <path d="M0 20 H400 M0 40 H400 M0 60 H400 M0 80 H400 M0 100 H400 M0 120 H400 M0 140 H400 M0 160 H400 M0 180 H400" stroke="#cbd5e1" strokeWidth="1" />
+                        <path d="M20 0 V200 M40 0 V200 M60 0 V200 M80 0 V200 M100 0 V200 M120 0 V200 M140 0 V200 M160 0 V200 M180 0 V200 M200 0 V200 M220 0 V200 M240 0 V200 M260 0 V200 M280 0 V200 M300 0 V200 M320 0 V200 M340 0 V200 M360 0 V200 M380 0 V200" stroke="#cbd5e1" strokeWidth="1" />
                     </g>
 
                     {/* Ground Layer */}
-                    <rect x="0" y="190" width="400" height="10" fill="#1e293b" />
+                    <rect x="0" y="190" width="400" height="10" fill="#e2e8f0" />
 
                     {/* Level 0: Prior Knowledge Foundation */}
                     <g className="transition-all duration-500">
-                        <rect x="130" y="160" width="140" height="30" rx="4" fill="url(#block-base)" stroke="#94a3b8" strokeWidth="1" />
-                        <text x="200" y="179" fill="#e2e8f0" fontSize="12" fontWeight="bold" textAnchor="middle">Prior Knowledge</text>
+                        <rect x="130" y="160" width="140" height="30" rx="4" fill="url(#block-base)" stroke="#64748b" strokeWidth="1" />
+                        <text x="200" y="179" fill="white" fontSize="12" fontWeight="bold" textAnchor="middle">Prior Knowledge</text>
                     </g>
 
                     {/* Level 1: New Experiences Built on top */}
