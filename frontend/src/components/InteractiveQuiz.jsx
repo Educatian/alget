@@ -5,7 +5,18 @@ export default function InteractiveQuiz({ question, options, explanation }) {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     // Parse options if passed as a JSON string from MDX
-    const parsedOptions = typeof options === 'string' ? JSON.parse(options) : options;
+    let parsedOptions = [];
+    try {
+        parsedOptions = typeof options === 'string' ? JSON.parse(options) : (options || []);
+    } catch (e) {
+        console.error('InteractiveQuiz: Failed to parse options JSON:', e.message, '\nRaw options:', options);
+        return (
+            <div className="my-10 bg-amber-50 border border-amber-300 rounded-xl p-6 font-sans">
+                <p className="text-amber-800 font-medium">⚠️ Quiz loading error — question data could not be parsed.</p>
+                <p className="text-amber-600 text-sm mt-1">This is usually caused by special characters in the question text. Please try refreshing.</p>
+            </div>
+        );
+    }
 
     const handleSelect = (idx) => {
         if (isSubmitted) return;
