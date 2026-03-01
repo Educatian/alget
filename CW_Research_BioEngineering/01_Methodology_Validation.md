@@ -80,9 +80,9 @@ Following the "Double Expert" principle to maximize discovery rate:
 |----|-------------|--------------------|------------------|
 | E1 | **UX/HCI Expert** | Interface usability, information architecture | Traditional usability focus (CW-Q1~Q4) |
 | E2 | **Learning Sciences / Instructional Designer** | Pedagogical strategies, feedback design | Focuses heavily on Learning Add-ons (L1~L3, L4~L5) |
-| E3 | **Domain SME (Instructional Tech/Design)** | Content accuracy, instructional models | Verifies academic correctness of AI outputs |
+| E3 | **Domain SME (Mechanical/Bio-Design)** | Content accuracy, aerodynamic models | Verifies academic correctness of AI outputs |
 | E4 | **EdTech/AI Systems Expert** | Adaptive logic, conversational UI pacing | Evaluates the "intelligence" of the system |
-| E5 | **Target Learner Rep / Junior UX** | Digital literacy, motivation | Represents the intended "Novice" baseline |
+| E5 | **Target Learner Rep / Junior Engineer** | Digital literacy, motivation | Represents the intended "Novice" baseline |
 
 > **Note**: E5 is not strictly an "expert", but is justified as a proxy for the Novice perspective (an alternative to Wharton's "evaluator simulating the novice" approach).
 

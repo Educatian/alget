@@ -12,20 +12,23 @@ Evaluating the Learnability and Pedagogical Usability of the ALGET Intelligent T
 
 ### Context
 
-- **Course**: Educational Technology
+- **Course**: Mechanical Engineering
 - **Project**: Intelligent Textbook Prototyping
-- **Target**: ALGET (A Generative Multi-Agent Architecture for Instructional Technology Education)
+- **Target**: ALGET (A Generative Multi-Agent Architecture for Engineering Education)
 
-### What is ALGET?
+### Prototype Characteristics
 
-ALGET is a **multi-agent intelligent textbook** designed for Undergraduate/Graduate Education students. It teaches **Instructional Technology and Learning Theories**.
+This version of ALGET includes two specialized modules for Mechanical Engineering:
+
+1. **Module A (Dynamics)**: Focuses on foundational rigid body mechanics with light biological analogies (e.g., calculating forces using a cheetah's kinematics).
+2. **Module B (Bio-Inspired Design)**: Highly focused on transforming deep biological properties (e.g., owl wing aeroacoustics) into complex engineering applications (e.g., drone design).
 
 It uses 4 AI Agents:
 
 - **Orchestrator**: Evaluates intent and routes prompts.
 - **Tutor**: Provides Socratic scaffolding and hints.
-- **Evaluator**: Evaluates instructional designs against pedagogical principles.
-- **Learning Designer**: Handles interactive scenarios and multimedia content.
+- **Evaluator**: Evaluates engineering designs against aerodynamic/physics principles.
+- **Simulation Agent**: Handles interactive simulations and multimedia content.
 
 ---
 
@@ -71,11 +74,11 @@ You must simulate the **Target Learner Persona** below.
 
 | Attribute | Profile |
 |-----------|---------|
-| **Learner Type** | Undergraduate Education Student (1st–2nd year) |
-| **Prior Knowledge** | General high school education. No exposure to formal Learning Theories. |
+| **Learner Type** | Undergraduate Mechanical Engineering Student (2nd year) |
+| **Prior Knowledge** | General physics and calculus. No exposure to formal biological systems or aerodynamics. |
 | **Digital Literacy** | Medium (Used canvas/LMS; minimal AI tool exposure). |
 | **AI Experience** | Has tried ChatGPT, but has never used an "AI Textbook." |
-| **Context** | Doing a homework assignment on Constructivism. |
+| **Context** | Doing a homework assignment on Avian Aerodynamics. |
 | **Motivation** | Mixed (Curiosity + Deadline pressure). |
 
 > **CRUCIAL**: Do not evaluate based on what *you* know. Always ask: "Would *this student* know what to do here?"
@@ -122,10 +125,10 @@ You must simulate the **Target Learner Persona** below.
 
 | Task | Core Action |
 |------|-------------|
-| **T1** | Dashboard $\rightarrow$ Navigate to Section 1.1 |
-| **T2** | Input query in Learning Design Lab $\rightarrow$ Interpret Synthesized Output |
+| **T1** | Dashboard $\rightarrow$ Navigate to Section 2.1 |
+| **T2** | Input query in Bio-Design Lab $\rightarrow$ Interpret Synthesized Output |
 | **T3** | Read Tutor Scaffolding & AI Critique $\rightarrow$ Determine next step |
-| **T4** | Manipulate Interactive Scenario $\rightarrow$ Connect to theory |
+| **T4** | Manipulate Interactive Simulation $\rightarrow$ Connect to theory |
 
 ---
 

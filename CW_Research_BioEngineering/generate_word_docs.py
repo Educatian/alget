@@ -127,8 +127,8 @@ def gen_07():
     para(doc, "5. Primary Expertise (Check all that apply):")
     checkbox_line(doc, "UX/HCI/Usability")
     checkbox_line(doc, "Learning Sciences / Instructional Design")
-    checkbox_line(doc, "Education (Instructional Technology)")
-    checkbox_line(doc, "Educational Technology (EdTech)")
+    checkbox_line(doc, "Mechanical Engineering")
+    checkbox_line(doc, "Engineering Education Tools")
     checkbox_line(doc, "AI/ML Systems")
     checkbox_line(doc, "Other: ___________________________")
 
@@ -137,9 +137,9 @@ def gen_07():
     para(doc, "8. e-Learning/EdTech Evaluation Experience: ☐ None  ☐ 1-2 times  ☐ 3-5 times  ☐ 5+ times")
 
     h1(doc, "Section 3: Domain Knowledge")
-    para(doc, "9. Knowledge level in Learning Theories / Instructional Design:")
+    para(doc, "9. Knowledge level in Fluid Dynamics / Aerodynamics:")
     para(doc, "   ☐ None  ☐ Beginner  ☐ Intermediate  ☐ Expert")
-    para(doc, "10. Knowledge level in Technology Integration in Education:")
+    para(doc, "10. Knowledge level in Bio-Inspired Design:")
     para(doc, "   ☐ None  ☐ Beginner  ☐ Intermediate  ☐ Expert")
 
     h1(doc, "Section 4: AI Tool Experience")
@@ -204,7 +204,7 @@ def gen_08():
             ["Orchestrator (Intent Routing)", "☐","☐","☐","☐","☐","☐"],
             ["Tutor (Socratic Scaffolding)", "☐","☐","☐","☐","☐","☐"],
             ["Evaluator (Pedagogical Validation)", "☐","☐","☐","☐","☐","☐"],
-            ["Learning Designer (Scenario/Multimedia)", "☐","☐","☐","☐","☐","☐"],
+            ["Simulation Agent (Interactive Models)", "☐","☐","☐","☐","☐","☐"],
         ])
     doc.add_paragraph()
 
@@ -230,9 +230,9 @@ def gen_09():
     doc = new_doc("Informed Consent Form", "ALGET Cognitive Walkthrough Participation Consent")
 
     h1(doc, "Study Information")
-    para(doc, "Study Title: Evaluating the Learnability and Pedagogical Usability of the ALGET Intelligent Textbook Prototype")
+    para(doc, "Study Title: Evaluating the Learnability and Pedagogical Usability of the ALGET Intelligent Textbook Prototype for Engineering Education")
     para(doc, "Researcher: ___________________________")
-    para(doc, "Department: Educational Technology (Insert Course Name)")
+    para(doc, "Department: Mechanical Engineering (Insert Course Name)")
     para(doc, "Contact: ___________________________")
 
     h1(doc, "Purpose of the Study")
@@ -318,7 +318,7 @@ def gen_03_enhanced():
     doc = new_doc("Expert Step Sheet (Enhanced)", "ALGET CW Expert Worksheet — Multi-Agent Review Final Version")
 
     doc_control(doc, [
-        ("Study / Course", "Educational Technology – ALGET Intelligent Textbook"),
+        ("Study / Course", "Mechanical Engineering (Dynamics & Bio-Design) – ALGET Prototype"),
         ("Prototype", "(URL / Figma / Build)"),
         ("Version / Date", "v3.0 (English) / 2026-02-28"),
         ("Evaluator Name", ""),
@@ -334,11 +334,11 @@ def gen_03_enhanced():
     add_table(doc,
         ["Attribute", "Profile"],
         [
-            ["Learner Type", "Undergraduate Education Student (1st–2nd year)"],
-            ["Prior Knowledge", "General high school education. No exposure to formal Learning Theories."],
+            ["Learner Type", "Undergraduate Engineering Student (1st–2nd year)"],
+            ["Prior Knowledge", "1st year engineering physics. Basic understanding of fluid dynamics."],
             ["Digital Literacy", "Medium (LMS experience, limited AI tools)"],
             ["AI Tool Exp.", "Uses ChatGPT occasionally. Never used an 'AI Textbook' ★NEW"],
-            ["Context", "Doing a homework assignment (Constructivism)"],
+            ["Context", "Doing assignments on Rigid Body Kinematics & Avian Aerodynamics"],
             ["Motivation", "Mixed (Curiosity + Deadline pressure)"],
         ])
 
@@ -347,7 +347,7 @@ def gen_03_enhanced():
     checkbox_line(doc, "Hints/Scaffolding — Tutor Agent", True)
     checkbox_line(doc, "Generative AI Tutor Feedback — Multi-Agent", True)
     checkbox_line(doc, "Metacognitive Support — Evaluator's reflective feedback", True)
-    checkbox_line(doc, "Interactive Scenario — Learning Designer Agent", True)
+    checkbox_line(doc, "Interactive Simulation — Simulation Agent", True)
     checkbox_line(doc, "Adaptive Learning Pathways")
     checkbox_line(doc, "Diagnostic Placement")
     checkbox_line(doc, "Learning Analytics Dashboard")
@@ -363,10 +363,10 @@ def gen_03_enhanced():
     add_table(doc,
         ["Task ID", "Task Name", "Core Action"],
         [
-            ["T1", "First Session & Content Navigation", "Dashboard → Navigate to Statics 1.1"],
-            ["T2", "Learning Design Lab Inquiry & AI Interpretation", "Prompt input → Interpret Synthesis"],
-            ["T3", "Interpreting Scaffolding & Validation", "Use Tutor question + Evaluator critique"],
-            ["T4", "Operating Interactive Scenarios & Verifying Learning", "Manipulate scenario → Concept link"],
+            ["T1", "First Session & Dynamics Navigation", "Dashboard → Navigate to Section 1.2"],
+            ["T2", "Dynamics Lab Inquiry & AI Interpretation", "Prompt input → Interpret Synthesis"],
+            ["T3", "Interpreting Scaffolding in Bio-Inspired Design", "Use Tutor question + Evaluator critique"],
+            ["T4", "Operating Interactive Biomimetic Simulations", "Manipulate simulation → Concept link"],
         ])
 
     # ─ C. Severity ─
@@ -432,7 +432,7 @@ def gen_03_enhanced():
 
     doc.add_paragraph()
     h3(doc, "★ Content Accuracy (E3: Domain SME ONLY) — NEW")
-    para(doc, "Factual correctness of AI-generated instructional technology content:")
+    para(doc, "Factual correctness of AI-generated engineering content:")
     add_table(doc,
         ["Step#", "Content Element (e.g., Lesson Plan)", "Accurate? (Y/N)", "Error Description"],
         [["","","",""] for _ in range(3)])
