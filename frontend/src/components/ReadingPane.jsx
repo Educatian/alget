@@ -21,6 +21,10 @@ import { FluidDynamicsDiagram } from './FluidDynamicsDiagram'
 import { CellularSolidDiagram } from './CellularSolidDiagram'
 import { HierarchicalStructureDiagram } from './HierarchicalStructureDiagram'
 import { DirectionalAdhesionDiagram } from './DirectionalAdhesionDiagram'
+import { GeckoAdhesionDiagram } from './GeckoAdhesionDiagram'
+import { StructuralColorDiagram } from './StructuralColorDiagram'
+import { SelfHealingDiagram } from './SelfHealingDiagram'
+import { SwarmDiagram } from './SwarmDiagram'
 
 import { ConstructivismDiagram } from './ConstructivismDiagram'
 import { CognitivismDiagram } from './CognitivismDiagram'
@@ -47,6 +51,10 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskA
         'cellular-solid-diagram': ({ node, ...props }) => <CellularSolidDiagram {...props} />,
         'hierarchical-structure-diagram': ({ node, ...props }) => <HierarchicalStructureDiagram {...props} />,
         'directional-adhesion-diagram': ({ node, ...props }) => <DirectionalAdhesionDiagram {...props} />,
+        'gecko-adhesion-diagram': ({ node, ...props }) => <GeckoAdhesionDiagram {...props} />,
+        'structural-color-diagram': ({ node, ...props }) => <StructuralColorDiagram {...props} />,
+        'self-healing-diagram': ({ node, ...props }) => <SelfHealingDiagram {...props} />,
+        'swarm-diagram': ({ node, ...props }) => <SwarmDiagram {...props} />,
 
         'constructivism-diagram': ({ node, ...props }) => <ConstructivismDiagram {...props} />,
         'cognitivism-diagram': ({ node, ...props }) => <CognitivismDiagram {...props} />,
