@@ -22,6 +22,13 @@ import { CellularSolidDiagram } from './CellularSolidDiagram'
 import { HierarchicalStructureDiagram } from './HierarchicalStructureDiagram'
 import { DirectionalAdhesionDiagram } from './DirectionalAdhesionDiagram'
 
+import { ConstructivismDiagram } from './ConstructivismDiagram'
+import { CognitivismDiagram } from './CognitivismDiagram'
+import { BehaviorismDiagram } from './BehaviorismDiagram'
+import { FormativeSummativeDiagram } from './FormativeSummativeDiagram'
+import { RubricDesignDiagram } from './RubricDesignDiagram'
+import { FeedbackModelsDiagram } from './FeedbackModelsDiagram'
+
 export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskAi, isCompleted, markCompleted }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
@@ -40,6 +47,13 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskA
         'cellular-solid-diagram': ({ node, ...props }) => <CellularSolidDiagram {...props} />,
         'hierarchical-structure-diagram': ({ node, ...props }) => <HierarchicalStructureDiagram {...props} />,
         'directional-adhesion-diagram': ({ node, ...props }) => <DirectionalAdhesionDiagram {...props} />,
+
+        'constructivism-diagram': ({ node, ...props }) => <ConstructivismDiagram {...props} />,
+        'cognitivism-diagram': ({ node, ...props }) => <CognitivismDiagram {...props} />,
+        'behaviorism-diagram': ({ node, ...props }) => <BehaviorismDiagram {...props} />,
+        'formative-summative-diagram': ({ node, ...props }) => <FormativeSummativeDiagram {...props} />,
+        'rubric-design-diagram': ({ node, ...props }) => <RubricDesignDiagram {...props} />,
+        'feedback-models-diagram': ({ node, ...props }) => <FeedbackModelsDiagram {...props} />,
     }), [])
 
     // Section ID computation
