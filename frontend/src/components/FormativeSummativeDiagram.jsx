@@ -44,8 +44,8 @@ export const FormativeSummativeDiagram = () => {
 
                     {/* Time Axis */}
                     <line x1="20" y1="100" x2="380" y2="100" stroke="#334155" strokeWidth="2" />
-                    <text x="380" y="115" fill="#64748b" fontSize="8" textAnchor="end">Learning Timeline →</text>
-                    <text x="20" y="115" fill="#64748b" fontSize="8" textAnchor="start">Start</text>
+                    <text x="380" y="115" fill="#cbd5e1" fontSize="8" textAnchor="end">Learning Timeline →</text>
+                    <text x="20" y="115" fill="#cbd5e1" fontSize="8" textAnchor="start">Start</text>
 
                     {/* Formative Concept (Continuous Cycle) */}
                     <g className={`transition-all duration-500 ${view === 'summative' ? 'opacity-10 grayscale' : 'opacity-100'}`}>

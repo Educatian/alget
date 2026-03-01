@@ -36,9 +36,9 @@ export const BehaviorismDiagram = () => {
                     <circle cx="200" cy="60" r="40" fill={action === 'response' ? '#eab308' : '#1e293b'} opacity={action === 'response' ? 0.3 : 1} className="transition-all duration-300" />
                     <circle cx="320" cy="60" r="40" fill={action === 'reinforcement' ? '#22c55e' : '#1e293b'} opacity={action === 'reinforcement' ? 0.3 : 1} className="transition-all duration-300" />
 
-                    <text x="80" y="65" fill={action === 'stimulus' ? '#fed7aa' : 'gray'} fontSize="12" fontWeight="bold" textAnchor="middle">Stimulus</text>
-                    <text x="200" y="65" fill={action === 'response' ? '#fef08a' : 'gray'} fontSize="12" fontWeight="bold" textAnchor="middle">Behavior</text>
-                    <text x="320" y="65" fill={action === 'reinforcement' ? '#bbf7d0' : 'gray'} fontSize="12" fontWeight="bold" textAnchor="middle">Reward</text>
+                    <text x="80" y="65" fill={action === 'stimulus' ? '#fed7aa' : '#94a3b8'} fontSize="12" fontWeight="bold" textAnchor="middle">Stimulus</text>
+                    <text x="200" y="65" fill={action === 'response' ? '#fef08a' : '#94a3b8'} fontSize="12" fontWeight="bold" textAnchor="middle">Behavior</text>
+                    <text x="320" y="65" fill={action === 'reinforcement' ? '#bbf7d0' : '#94a3b8'} fontSize="12" fontWeight="bold" textAnchor="middle">Reward</text>
 
                     {/* Connecting Lines */}
                     <path d="M 120 60 Q 140 40 160 60" fill="none" stroke="#334155" strokeWidth="2" />

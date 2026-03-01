@@ -44,7 +44,7 @@ export const CognitivismDiagram = () => {
                     {/* 1. Sensory Register */}
                     <rect x="20" y="30" width="80" height="60" rx="8" fill={processStage === 'sensory' ? '#1e3a8a' : '#1e293b'} stroke="#3b82f6" strokeWidth={processStage === 'sensory' ? 3 : 1} className="transition-all duration-300" />
                     <text x="60" y="55" fill="white" fontSize="10" textAnchor="middle">Sensory</text>
-                    <text x="60" y="70" fill="gray" fontSize="9" textAnchor="middle">Input (1-3s)</text>
+                    <text x="60" y="70" fill="#94a3b8" fontSize="9" textAnchor="middle">Input (1-3s)</text>
                     {processStage === 'sensory' && (
                         <circle cx="10" cy="60" r="15" fill="url(#data-pulse)" className="animate-ping" />
                     )}
@@ -52,7 +52,7 @@ export const CognitivismDiagram = () => {
                     {/* Arrow 1 (Attention) */}
                     <path d="M 105 60 L 165 60" stroke="#475569" strokeWidth="2" markerEnd="url(#arrowhead)" />
                     <path d="M 105 60 L 165 60" stroke="#3b82f6" strokeWidth="2" strokeDasharray="5" className={`transition-opacity duration-300 ${processStage === 'working' ? 'opacity-100 animate-[dash_1s_linear_infinite]' : 'opacity-0'}`} />
-                    <text x="135" y="50" fill={processStage === 'working' ? '#93c5fd' : '#64748b'} fontSize="9" textAnchor="middle" className="font-bold">Attention</text>
+                    <text x="135" y="50" fill={processStage === 'working' ? '#93c5fd' : '#94a3b8'} fontSize="9" textAnchor="middle" className="font-bold">Attention</text>
 
                     {/* 2. Working Memory */}
                     <rect x="170" y="20" width="90" height="80" rx="8" fill={processStage === 'working' ? '#1e3a8a' : '#1e293b'} stroke="#3b82f6" strokeWidth={processStage === 'working' ? 3 : 1} className="transition-all duration-300" />
@@ -72,17 +72,17 @@ export const CognitivismDiagram = () => {
                     <path d="M 265 50 L 305 50" stroke="#475569" strokeWidth="2" />
                     <path d="M 265 50 L 305 50" stroke="#3b82f6" strokeWidth="2" strokeDasharray="5" className={`transition-opacity duration-300 ${processStage === 'longTerm' ? 'opacity-100 animate-[dash_1s_linear_infinite]' : 'opacity-0'}`} />
                     <polygon points="305,47 310,50 305,53" fill={processStage === 'longTerm' ? '#3b82f6' : '#475569'} />
-                    <text x="285" y="42" fill={processStage === 'longTerm' ? '#93c5fd' : '#64748b'} fontSize="8" textAnchor="middle">Encoding</text>
+                    <text x="285" y="42" fill={processStage === 'longTerm' ? '#93c5fd' : '#94a3b8'} fontSize="8" textAnchor="middle">Encoding</text>
 
                     {/* Retrieval */}
                     <path d="M 305 70 L 265 70" stroke="#475569" strokeWidth="2" />
                     <polygon points="265,67 260,70 265,73" fill="#475569" />
-                    <text x="285" y="83" fill="#64748b" fontSize="8" textAnchor="middle">Retrieval</text>
+                    <text x="285" y="83" fill="#94a3b8" fontSize="8" textAnchor="middle">Retrieval</text>
 
                     {/* 3. Long Term Memory */}
                     <rect x="315" y="30" width="70" height="60" rx="8" fill={processStage === 'longTerm' ? '#1e3a8a' : '#1e293b'} stroke="#6366f1" strokeWidth={processStage === 'longTerm' ? 3 : 1} className="transition-all duration-300" />
                     <text x="350" y="55" fill="white" fontSize="10" textAnchor="middle">Long-Term</text>
-                    <text x="350" y="70" fill="gray" fontSize="9" textAnchor="middle">Infinite Size</text>
+                    <text x="350" y="70" fill="#94a3b8" fontSize="9" textAnchor="middle">Infinite Size</text>
                     {processStage === 'longTerm' && (
                         <g>
                             <line x1="330" y1="80" x2="370" y2="80" stroke="#60a5fa" strokeWidth="2" className="animate-pulse" />
