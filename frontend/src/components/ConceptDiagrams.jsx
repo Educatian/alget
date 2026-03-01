@@ -266,6 +266,100 @@ const ThermodynamicsDiagram = () => (
     </div>
 );
 
+const AndragogyDiagram = () => (
+    <div className="my-8 flex justify-center">
+        <svg viewBox="0 0 500 300" className="w-full max-w-lg drop-shadow-md font-sans bg-white border border-slate-200 rounded-xl">
+            {/* Pedagogy Side */}
+            <rect x="40" y="40" width="180" height="220" rx="8" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="4 4" />
+            <text x="130" y="70" textAnchor="middle" className="font-bold fill-slate-500">Pedagogy (Child)</text>
+            <circle cx="130" cy="110" r="20" fill="#94a3b8" />
+            <text x="130" y="115" textAnchor="middle" className="font-bold fill-white text-xs">Instructor</text>
+            <path d="M 130 140 L 90 180 M 130 140 L 130 180 M 130 140 L 170 180" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead)" />
+            <circle cx="90" cy="200" r="15" fill="#e2e8f0" />
+            <circle cx="130" cy="200" r="15" fill="#e2e8f0" />
+            <circle cx="170" cy="200" r="15" fill="#e2e8f0" />
+            <text x="130" y="245" textAnchor="middle" className="text-[10px] fill-slate-500">Dependent, Subject-Centered</text>
+
+            {/* Andragogy Side */}
+            <rect x="280" y="40" width="180" height="220" rx="8" fill="#eff6ff" stroke="#3b82f6" strokeWidth="2" />
+            <text x="370" y="70" textAnchor="middle" className="font-bold fill-blue-900">Andragogy (Adult)</text>
+            <circle cx="370" cy="150" r="35" fill="#bfdbfe" />
+            <text x="370" y="155" textAnchor="middle" className="font-bold fill-blue-900 text-[10px]">Problem</text>
+
+            {/* Adults collaborating around problem */}
+            <circle cx="310" cy="110" r="15" fill="#60a5fa" />
+            <circle cx="430" cy="110" r="15" fill="#60a5fa" />
+            <circle cx="370" cy="210" r="15" fill="#60a5fa" />
+
+            <path d="M 320 120 L 345 135" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#arrowhead)" />
+            <path d="M 420 120 L 395 135" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#arrowhead)" />
+            <path d="M 370 190 L 370 170" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#arrowhead)" />
+
+            <text x="370" y="245" textAnchor="middle" className="text-[10px] fill-blue-700 font-bold">Self-Directed, Problem-Centered</text>
+        </svg>
+    </div>
+);
+
+const UdlDiagram = () => (
+    <div className="my-8 flex justify-center">
+        <svg viewBox="0 0 600 250" className="w-full max-w-2xl drop-shadow-md font-sans bg-white border border-slate-200 rounded-xl">
+            {/* Multiple Means of Representation */}
+            <rect x="30" y="40" width="160" height="150" rx="8" fill="#fdf4ff" stroke="#c084fc" strokeWidth="2" />
+            <text x="110" y="70" textAnchor="middle" className="font-bold fill-purple-900 text-sm">Representation</text>
+            <text x="110" y="90" textAnchor="middle" className="text-xs fill-purple-700">The "WHAT" of learning</text>
+            <line x1="50" y1="110" x2="170" y2="110" stroke="#e879f9" strokeWidth="1" strokeDasharray="3 3" />
+            <text x="110" y="135" textAnchor="middle" className="text-[11px] fill-purple-800">Audio, Video, Text</text>
+            <text x="110" y="155" textAnchor="middle" className="text-[11px] fill-purple-800">Translations, Alt-Text</text>
+
+            {/* Multiple Means of Action & Expression */}
+            <rect x="220" y="40" width="160" height="150" rx="8" fill="#f0fdf4" stroke="#4ade80" strokeWidth="2" />
+            <text x="300" y="70" textAnchor="middle" className="font-bold fill-green-900 text-sm">Action & Expression</text>
+            <text x="300" y="90" textAnchor="middle" className="text-xs fill-green-700">The "HOW" of learning</text>
+            <line x1="240" y1="110" x2="360" y2="110" stroke="#4ade80" strokeWidth="1" strokeDasharray="3 3" />
+            <text x="300" y="135" textAnchor="middle" className="text-[11px] fill-green-800">Essays, Presentations</text>
+            <text x="300" y="155" textAnchor="middle" className="text-[11px] fill-green-800">Projects, Portfolios</text>
+
+            {/* Multiple Means of Engagement */}
+            <rect x="410" y="40" width="160" height="150" rx="8" fill="#eff6ff" stroke="#3b82f6" strokeWidth="2" />
+            <text x="490" y="70" textAnchor="middle" className="font-bold fill-blue-900 text-sm">Engagement</text>
+            <text x="490" y="90" textAnchor="middle" className="text-xs fill-blue-700">The "WHY" of learning</text>
+            <line x1="430" y1="110" x2="550" y2="110" stroke="#60a5fa" strokeWidth="1" strokeDasharray="3 3" />
+            <text x="490" y="135" textAnchor="middle" className="text-[11px] fill-blue-800">Autonomy, Relevance</text>
+            <text x="490" y="155" textAnchor="middle" className="text-[11px] fill-blue-800">Gamification, Goals</text>
+
+            <text x="300" y="225" textAnchor="middle" className="font-bold fill-slate-500 text-sm">Universal Design for Learning (UDL) Principles</text>
+        </svg>
+    </div>
+);
+
+const BloomSigmaDiagram = () => (
+    <div className="my-8 flex justify-center">
+        <svg viewBox="0 0 500 250" className="w-full max-w-lg drop-shadow-md font-sans bg-white border border-slate-200 rounded-xl">
+            {/* Axes */}
+            <line x1="50" y1="200" x2="450" y2="200" stroke="#64748b" strokeWidth="2" />
+            <line x1="50" y1="200" x2="50" y2="50" stroke="#64748b" strokeWidth="2" />
+
+            <text x="250" y="230" textAnchor="middle" className="text-xs font-bold fill-slate-500">Student Achievement Score</text>
+            <text x="30" y="130" transform="rotate(-90 30 130)" textAnchor="middle" className="text-xs font-bold fill-slate-500">Number of Students</text>
+
+            {/* Conventional Curve */}
+            <path d="M 80 200 Q 150 50 220 200" fill="none" stroke="#94a3b8" strokeWidth="3" strokeDasharray="5 5" />
+            <line x1="150" y1="200" x2="150" y2="125" stroke="#94a3b8" strokeWidth="1" />
+            <text x="150" y="115" textAnchor="middle" className="text-xs font-bold fill-slate-500">Conventional (1:30)</text>
+
+            {/* Tutoring Curve */}
+            <path d="M 230 200 Q 300 50 370 200" fill="none" stroke="#3b82f6" strokeWidth="3" />
+            <line x1="300" y1="200" x2="300" y2="125" stroke="#3b82f6" strokeWidth="1" />
+            <text x="300" y="115" textAnchor="middle" className="text-xs font-bold fill-blue-600">1:1 Tutoring</text>
+
+            {/* Difference indicator */}
+            <path d="M 150 160 L 300 160" fill="none" stroke="#ef4444" strokeWidth="2" markerEnd="url(#arrowhead)" markerStart="url(#arrowhead)" />
+            <text x="225" y="150" textAnchor="middle" className="text-sm font-bold fill-red-600">2 Sigma (2.0 Standard Deviations)</text>
+            <text x="225" y="180" textAnchor="middle" className="text-[10px] fill-red-500">98% outscore conventional learners</text>
+        </svg>
+    </div>
+);
+
 export default function ConceptDiagrams({ type }) {
     switch (type) {
         case 'learning-theories':
@@ -284,6 +378,12 @@ export default function ConceptDiagrams({ type }) {
             return <ZpdModelDiagram />;
         case 'thermodynamics':
             return <ThermodynamicsDiagram />;
+        case 'andragogy-diagram':
+            return <AndragogyDiagram />;
+        case 'udl-diagram':
+            return <UdlDiagram />;
+        case 'bloom-sigma-diagram':
+            return <BloomSigmaDiagram />;
         default:
             return null;
     }
