@@ -17,6 +17,7 @@ import { logTimeOnTask, logInteraction, logEvent } from '../lib/loggingService'
 
 import { TorqueDiagram } from './TorqueDiagram'
 import { MicroTurbulenceDiagram } from './AeroacousticsDiagram'
+import { KinematicsDiagram } from './KinematicsDiagram'
 
 export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskAi, isCompleted, markCompleted }) {
     const [showSimulation, setShowSimulation] = useState(false)
@@ -30,6 +31,7 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskA
         'concept-diagram': ({ node, ...props }) => <ConceptDiagrams {...props} />,
         'interactive-quiz': ({ node, options, ...props }) => <InteractiveQuiz options={options} {...props} />,
         'torque-diagram': ({ node, ...props }) => <TorqueDiagram {...props} />,
+        'kinematics-diagram': ({ node, ...props }) => <KinematicsDiagram {...props} />,
         'micro-turbulence-diagram': ({ node, ...props }) => <MicroTurbulenceDiagram {...props} />,
     }), [])
 
