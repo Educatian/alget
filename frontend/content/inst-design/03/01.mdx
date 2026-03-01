@@ -1,0 +1,65 @@
+## Mayer's Cognitive Theory of Multimedia Learning
+
+In the modern era of eLearning, instructional designers are rarely just writing textbooks. They are building complex digital environments that combine text, narration, high-definition video, animations, and interactive software simulations. 
+
+However, throwing more media at a learner does not mean they learn more. In fact, if not designed properly, it mathematically guarantees a crash in their cognitive processing capability. To solve this, Dr. Richard E. Mayer developed the **Cognitive Theory of Multimedia Learning (CTML)**.
+
+### The Three Core Assumptions of CTML
+
+Mayer's theory is built on three absolute cognitive constraints:
+1. **Dual Channels:** The human brain processes visual information (pictures, text) and auditory information (spoken words, sounds) through two entirely separate, independent physiological channels.
+2. **Limited Capacity:** Each channel can only hold a few pieces of information at any given time (usually considered $7 \pm 2$ chunks, though modern research suggests even less, like 3 to 4 chunks). 
+3. **Active Processing:** Learning is not passive absorption. A human must actively engage in cognitive processes: selecting relevant information, organizing it into coherent mental models, and integrating it with existing long-term memory schemas. 
+
+If an instructional design violates these constraints, the learner's working memory buffer overflows. This is known as **Cognitive Overload**.
+
+<concept-diagram type="cognitive-load"></concept-diagram>
+
+---
+
+## Mayer's 12 Principles of Multimedia Learning
+
+Through decades of strictly controlled empirical studies, Mayer identified 12 design principles to optimize how we present multimedia. These are split into three categories:
+
+### A. Principles to Reduce Extraneous Processing (Cutting out the garbage)
+Extraneous load is brain power wasted on things that don't matter to the learning objective.
+1. **Coherence Principle:** People learn better when extraneous words, pictures, and sounds are excluded. (Stop adding dramatic background music or decorative, irrelevant stock photos to your slides).
+2. **Signaling Principle:** People learn better when cues are added that highlight the essential material. (Use bright red arrows or bold highlighting to guide the eye).
+3. **Redundancy Principle:** People learn better from graphics + narration, than from graphics + narration + on-screen text. (If you are speaking, do NOT put your exact script on the screen. The eyes bouncing between the text and you causes cognitive friction).
+4. **Spatial Contiguity Principle:** People learn better when corresponding words and pictures are presented near each other physically. (Don't put a legend for a diagram on the next page; put the labels directly *on* the diagram).
+5. **Temporal Contiguity Principle:** People learn better when corresponding words and pictures are presented simultaneously, not successively. (Don't show the animation, and *then* explain it. Explain it *while* it animates).
+
+### B. Principles to Manage Essential Processing (Getting the core info in)
+Essential load is the brain power required to actually grasp the complexity of the task itself.
+6. **Segmenting Principle:** People learn better when a multimedia lesson is presented in user-paced segments rather than a continuous, unstoppable unit. (Break a 30-minute video into 5-minute chunks with a 'Next' button).
+7. **Pre-training Principle:** People learn better when they know the names and fundamental characteristics of the main concepts *before* starting the complex module.
+8. **Modality Principle:** People learn better from graphics + narration than from graphics + on-screen text. (Because text and graphics both compete for the same visual channel. Using narration offloads text to the auditory channel).
+
+### C. Principles to Foster Generative Processing (Making it stick)
+Generative load is the brain power used to actually build the new schema and map it to long-term memory.
+9.  **Multimedia Principle:** People learn better from words and pictures combined than from words alone.
+10. **Personalization Principle:** People learn better when words are in a conversational style (e.g., using "you" and "I") rather than strict, formal academic tone.
+11. **Voice Principle:** People learn better from a standard, human-sounding voice than from a robotic, synthetic machine voice.
+12. **Image Principle:** People do NOT necessarily learn better when the speaker's talking head is added to the screen. (The "talking head" often becomes an extraneous distraction).
+
+---
+
+### The Power of Spatial Contiguity
+
+Let's look at a mathematical proof of spatial contiguity failure. 
+Imagine a diagram of a complex vascular plant circulatory system. 
+- **Bad Design:** The diagram has numbers (1, 2, 3) pointing to the roots, xylem, and phloem. At the bottom of the page is a legend mapping 1 to Roots, etc. 
+- **Cognitive Cost:** The eye must travel from the node (1) down to the legend, store "Roots" in the visual scratchpad, travel back up to the diagram to re-locate node (1), and attempt to map the word to the image. 
+- **Good Design:** The word "Roots" is placed directly next to the roots. The cognitive travel time is reduced to $0ms$. 
+
+<dynamic-scenario topic="Mayer's Principles" context="A junior designer who insists on putting extremely loud, dramatic Hans Zimmer music behind a tutorial on how to fill out a tax form."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz 
+  question="A professor is giving a live lecture using a massive slide deck. The slide displays a 200-word paragraph of text, and the professor reads the paragraph word-for-word exactly as it is written on the screen. Which of Mayer's principles is the professor catastrophically violating?" 
+  options='[{"text":"The Multimedia Principle","isCorrect":false},{"text":"The Redundancy Principle","isCorrect":true},{"text":"The Segmenting Principle","isCorrect":false}]' 
+  explanation="Correct! By projecting the text AND reading the exact text simultaneously, the professor is violating the Redundancy Principle. The learners are forced to read and listen to the same stream, causing a 'split-attention' cognitive overload in their working memory." 
+/>

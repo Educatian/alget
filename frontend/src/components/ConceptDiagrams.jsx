@@ -185,6 +185,87 @@ const AgileIDDiagram = () => (
 );
 
 
+const ArcsModelDiagram = () => (
+    <div className="my-8 flex justify-center">
+        <svg viewBox="0 0 600 200" className="w-full max-w-2xl drop-shadow-md font-sans bg-white rounded-xl border border-slate-200">
+            <rect x="20" y="50" width="120" height="100" rx="8" fill="#f0f9ff" stroke="#38bdf8" strokeWidth="2" />
+            <text x="80" y="85" textAnchor="middle" className="font-bold fill-sky-900">Attention</text>
+            <text x="80" y="110" textAnchor="middle" className="text-xs fill-sky-700">Arouse Curiosity</text>
+
+            <path d="M 140 100 L 170 100" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead)" />
+
+            <rect x="170" y="50" width="120" height="100" rx="8" fill="#fdf4ff" stroke="#c084fc" strokeWidth="2" />
+            <text x="230" y="85" textAnchor="middle" className="font-bold fill-purple-900">Relevance</text>
+            <text x="230" y="110" textAnchor="middle" className="text-xs fill-purple-700">Connect to goals</text>
+
+            <path d="M 290 100 L 320 100" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead)" />
+
+            <rect x="320" y="50" width="120" height="100" rx="8" fill="#f0fdf4" stroke="#4ade80" strokeWidth="2" />
+            <text x="380" y="85" textAnchor="middle" className="font-bold fill-green-900">Confidence</text>
+            <text x="380" y="110" textAnchor="middle" className="text-xs fill-green-700">Scaffold Success</text>
+
+            <path d="M 440 100 L 470 100" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrowhead)" />
+
+            <rect x="470" y="50" width="120" height="100" rx="8" fill="#fffbeb" stroke="#facc15" strokeWidth="2" />
+            <text x="530" y="85" textAnchor="middle" className="font-bold fill-yellow-900">Satisfaction</text>
+            <text x="530" y="110" textAnchor="middle" className="text-xs fill-yellow-700">Reward Effort</text>
+        </svg>
+    </div>
+);
+
+const ZpdModelDiagram = () => (
+    <div className="my-8 flex justify-center">
+        <svg viewBox="0 0 500 500" className="w-full max-w-md drop-shadow-md font-sans bg-white rounded-xl border border-slate-200">
+            {/* Outer Circle: Cannot do */}
+            <circle cx="250" cy="250" r="200" fill="#fee2e2" stroke="#f87171" strokeWidth="2" />
+            <text x="250" y="90" textAnchor="middle" className="font-bold fill-red-900 text-lg">Cannot Do (Even with Help)</text>
+            <text x="250" y="110" textAnchor="middle" className="text-sm fill-red-700">Anxiety Zone</text>
+
+            {/* Middle Circle: ZPD */}
+            <circle cx="250" cy="250" r="130" fill="#fef08a" stroke="#facc15" strokeWidth="2" />
+            <text x="250" y="160" textAnchor="middle" className="font-bold fill-yellow-900 text-base">Zone of Proximal Development</text>
+            <text x="250" y="180" textAnchor="middle" className="text-xs fill-yellow-700">Learning happens here (with Scaffolding)</text>
+
+            {/* Inner Circle: Can do */}
+            <circle cx="250" cy="250" r="70" fill="#dcfce7" stroke="#4ade80" strokeWidth="2" />
+            <text x="250" y="245" textAnchor="middle" className="font-bold fill-green-900 text-sm">Can Do</text>
+            <text x="250" y="265" textAnchor="middle" className="text-xs fill-green-700">Independently</text>
+            <text x="250" y="285" textAnchor="middle" className="text-xs fill-green-700">(Boredom Zone)</text>
+        </svg>
+    </div>
+);
+
+const ThermodynamicsDiagram = () => (
+    <div className="my-8 flex justify-center">
+        <svg viewBox="0 0 400 400" className="w-full max-w-sm drop-shadow-md font-sans bg-white rounded-xl border border-slate-200">
+            <defs>
+                <marker id="arrowUp" markerWidth="10" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                    <polygon points="0 7, 5 3.5, 0 0, 10 3.5" fill="#ef4444" />
+                </marker>
+                <marker id="arrowIn" markerWidth="10" markerHeight="7" refX="5" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
+                </marker>
+            </defs>
+            {/* Mound shape */}
+            <path d="M 50 350 Q 80 200 180 50 Q 200 20 220 50 Q 320 200 350 350 Z" fill="#fcd34d" stroke="#ca8a04" strokeWidth="3" />
+            {/* Chimney */}
+            <rect x="185" y="60" width="30" height="240" fill="#fff" stroke="#ca8a04" strokeWidth="2" />
+
+            <text x="200" y="320" textAnchor="middle" className="font-bold fill-amber-900 text-xs">Fungus Garden (Heat Source)</text>
+
+            {/* Hot air rising */}
+            <line x1="200" y1="290" x2="200" y2="100" stroke="#ef4444" strokeWidth="4" strokeDasharray="5 5" markerEnd="url(#arrowUp)" />
+            <text x="215" y="150" className="text-xs font-bold fill-red-600">Hot Air Rises</text>
+
+            {/* Cold air entering */}
+            <path d="M 20 330 Q 60 330 110 340" fill="none" stroke="#3b82f6" strokeWidth="3" markerEnd="url(#arrowIn)" />
+            <path d="M 380 330 Q 340 330 290 340" fill="none" stroke="#3b82f6" strokeWidth="3" markerEnd="url(#arrowIn)" />
+            <text x="65" y="315" textAnchor="middle" className="text-[10px] font-bold fill-blue-600">Cool Air Intake</text>
+            <text x="335" y="315" textAnchor="middle" className="text-[10px] font-bold fill-blue-600">Cool Air Intake</text>
+        </svg>
+    </div>
+);
+
 export default function ConceptDiagrams({ type }) {
     switch (type) {
         case 'learning-theories':
@@ -197,6 +278,12 @@ export default function ConceptDiagrams({ type }) {
             return <KirkpatrickDiagram />;
         case 'agile-id':
             return <AgileIDDiagram />;
+        case 'arcs-model':
+            return <ArcsModelDiagram />;
+        case 'zpd-model':
+            return <ZpdModelDiagram />;
+        case 'thermodynamics':
+            return <ThermodynamicsDiagram />;
         default:
             return null;
     }
