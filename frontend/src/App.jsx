@@ -9,6 +9,7 @@ import DiagnosticAssessment from './pages/DiagnosticAssessment'
 import GenerativeLab from './pages/GenerativeLab'
 import AnalyticsDashboard from './pages/AnalyticsDashboard'
 import GlobalClickLogger from './components/GlobalClickLogger'
+import API_BASE from './lib/apiConfig'
 import './index.css'
 
 export default function App() {
@@ -16,6 +17,9 @@ export default function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // Wake up backend immediately (Render free tier sleeps after inactivity)
+    fetch(`${API_BASE}/book/inst-design/toc`, { method: 'GET' }).catch(() => {})
+
     // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
