@@ -55,7 +55,17 @@ export default function GenerativeLab() {
             setResult(data);
 
             // Append assistant response to state memory for the next turn
-            const assistantContent = data.summary || data.scaffolding || "Responded.";
+            let assistantContent = "Responded.";
+            if (data.summary) {
+                assistantContent = typeof data.summary === 'string' ? data.summary : (data.summary.synthesis || JSON.stringify(data.summary));
+            } else if (data.scaffolding) {
+                assistantContent = typeof data.scaffolding === 'string' ? data.scaffolding : (data.scaffolding.encouraging_remark || JSON.stringify(data.scaffolding));
+            } else if (data.evaluation) {
+                assistantContent = "Received evaluation.";
+            } else if (data.illustration) {
+                assistantContent = "Created illustration.";
+            }
+            
             setHistory([...currentHistory, { role: 'assistant', content: assistantContent }]);
 
         } catch (err) {
@@ -196,9 +206,9 @@ export default function GenerativeLab() {
                                         : 'glass-panel text-slate-800 prose prose-slate prose-sm max-w-none'
                                         }`}>
                                         {msg.role === 'assistant' ? (
-                                            <div dangerouslySetInnerHTML={{ __html: msg.content.replace(/\n/g, '<br />') }} />
+                                            <div dangerouslySetInnerHTML={{ __html: (typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)).replace(/\n/g, '<br />') }} />
                                         ) : (
-                                            <p className="m-0 text-[15px] font-medium leading-relaxed">{msg.content}</p>
+                                            <p className="m-0 text-[15px] font-medium leading-relaxed">{typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)}</p>
                                         )}
                                     </div>
                                 </div>
@@ -250,7 +260,22 @@ export default function GenerativeLab() {
                                     <span className="text-2xl">📝</span>
                                     <h3 className="text-xl font-bold text-slate-900 m-0">Synthesis</h3>
                                 </div>
-                                <div className="font-medium text-[1.05rem]" dangerouslySetInnerHTML={{ __html: result.summary.replace(/\n/g, '<br />') }} />
+                                <div className="font-medium text-[1.05rem]" dangerouslySetInnerHTML={{ __html: (typeof result.summary === 'string' ? result.summary : (result.summary.synthesis || JSON.stringify(result.summary))).replace(/\n/g, '<br />') }} />
+                                
+                                {typeof result.summary === 'object' && result.summary.encouragement && (
+                                    <p className="mt-6 italic text-slate-600 font-medium">{result.summary.encouragement}</p>
+                                )}
+                                
+                                {typeof result.summary === 'object' && result.summary.next_steps && result.summary.next_steps.length > 0 && (
+                                    <div className="mt-5 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                        <p className="font-bold text-slate-800 text-sm tracking-wide uppercase mb-3">Next Steps to Explore:</p>
+                                        <ul className="list-disc pl-5 m-0 space-y-2">
+                                            {result.summary.next_steps.map((step, idx) => (
+                                                <li key={idx} className="text-slate-700 text-[0.95rem]">{step}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
                         )}
 
