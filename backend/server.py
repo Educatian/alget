@@ -16,14 +16,9 @@ from typing import List, Optional
 import sys
 import os
 
-# Load .env file
+# Load .env file (do NOT override existing env vars — Render sets them at the OS level)
 from dotenv import load_dotenv
-load_dotenv()
-
-# Allow standard GOOGLE_API_KEY to persist
-
-# Load environment variables, allowing overrides
-load_dotenv(override=True)
+load_dotenv()  # only fills in vars that are not already set
 
 from google import genai
 from google.genai import types as genai_types
