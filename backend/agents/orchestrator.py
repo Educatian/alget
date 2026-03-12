@@ -53,6 +53,11 @@ class OrchestratorAgent:
         """
         if history is None:
             history = []
+        
+        # Default parameters for sub-agents
+        grade_level = "Undergraduate"
+        interest = "Bio-Inspired Design"
+        
         if not self.client:
             return {
                 "intent": "error",
