@@ -320,6 +320,7 @@ async def orchestrate_query(request: OrchestrateRequest):
     """Analyze student query and delegate to specialist agents based on intent."""
     try:
         api_key = get_api_key(request)
+        print(f"[ORCHESTRATE] API key present: {bool(api_key)}, query: {request.query[:50]}")
         agent = OrchestratorAgent(api_key=api_key)
         result = agent.orchestrate(
             query=request.query,
@@ -330,6 +331,8 @@ async def orchestrate_query(request: OrchestrateRequest):
         )
         return result
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Orchestration error: {str(e)}")
 
 @app.post("/api/generate_assessment")
