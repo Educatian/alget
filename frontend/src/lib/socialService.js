@@ -1,4 +1,5 @@
 import { supabase } from './supabase'
+import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
 
 const SOCIAL_ALIAS_KEY = 'alget_social_alias'
 const SOCIAL_COLOR_KEY = 'alget_social_color'
@@ -61,17 +62,17 @@ export function getSocialIdentity(user) {
         }
     }
 
-    let alias = window.localStorage.getItem(SOCIAL_ALIAS_KEY)
-    let colorToken = window.localStorage.getItem(SOCIAL_COLOR_KEY)
+    let alias = safeLocalStorageGet(SOCIAL_ALIAS_KEY)
+    let colorToken = safeLocalStorageGet(SOCIAL_COLOR_KEY)
 
     if (!alias) {
         alias = `${pickRandom(ADJECTIVES)} ${pickRandom(ANIMALS)}`
-        window.localStorage.setItem(SOCIAL_ALIAS_KEY, alias)
+        safeLocalStorageSet(SOCIAL_ALIAS_KEY, alias)
     }
 
     if (!colorToken) {
         colorToken = pickRandom(COLOR_TOKENS)
-        window.localStorage.setItem(SOCIAL_COLOR_KEY, colorToken)
+        safeLocalStorageSet(SOCIAL_COLOR_KEY, colorToken)
     }
 
     return {
@@ -344,22 +345,22 @@ export function summarizeSocialSignals(signals, heading) {
 export function shouldEmitCompletionSignal(userId, sectionId) {
     if (typeof window === 'undefined') return true
     const key = getCompletionStorageKey(userId, sectionId)
-    const hasCompleted = window.localStorage.getItem(key)
+    const hasCompleted = safeLocalStorageGet(key)
     if (hasCompleted) return false
-    window.localStorage.setItem(key, new Date().toISOString())
+    safeLocalStorageSet(key, new Date().toISOString())
     return true
 }
 
 export function shouldEmitHelpSignal(userId, sectionId) {
     if (typeof window === 'undefined') return true
     const key = getHelpStorageKey(userId, sectionId)
-    const previous = window.localStorage.getItem(key)
+    const previous = safeLocalStorageGet(key)
     const now = Date.now()
 
     if (previous && now - new Date(previous).getTime() < SOCIAL_HELP_COOLDOWN_MS) {
         return false
     }
 
-    window.localStorage.setItem(key, new Date(now).toISOString())
+    safeLocalStorageSet(key, new Date(now).toISOString())
     return true
 }

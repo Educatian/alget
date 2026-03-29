@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { supabase } from './lib/supabase'
 import { initSession, endSession } from './lib/loggingService'
 import GlobalClickLogger from './components/GlobalClickLogger'
+import AppErrorBoundary from './components/AppErrorBoundary'
 import API_BASE from './lib/apiConfig'
 import './index.css'
 
@@ -21,7 +22,7 @@ function RouteFallback() {
           <span className="animate-pulse text-2xl font-bold">AL</span>
         </div>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Preparing workspace</p>
-        <p className="mt-2 text-slate-600">Loading the next learning surface...</p>
+        <p className="mt-2 text-slate-600">Loading Alabama Generative Intelligent Textbook...</p>
       </div>
     </div>
   )
@@ -85,72 +86,74 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <GlobalClickLogger>
-        <Suspense fallback={<RouteFallback />}>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <LandingPage onLogin={handleLogin} user={user} onLogout={handleLogout} />
-              }
-            />
-            <Route
-              path="/learn"
-              element={
-                user ? (
-                  <MainApp user={user} onLogout={handleLogout} />
-                ) : (
-                  <Navigate to="/" replace />
-                )
-              }
-            />
-            <Route
-              path="/diagnostic/:course"
-              element={
-                user ? (
-                  <DiagnosticAssessment />
-                ) : (
-                  <Navigate to="/" replace />
-                )
-              }
-            />
-            <Route
-              path="/book/:course"
-              element={
-                user ? (
-                  <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
-                ) : (
-                  <Navigate to="/" replace />
-                )
-              }
-            />
-            <Route
-              path="/book/:course/:chapter/:section"
-              element={
-                user ? (
-                  <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
-                ) : (
-                  <Navigate to="/" replace />
-                )
-              }
-            />
-            <Route
-              path="/lab"
-              element={
-                user ? (
-                  <GenerativeLab />
-                ) : (
-                  <Navigate to="/" replace />
-                )
-              }
-            />
-            <Route
-              path="/analytics"
-              element={<AnalyticsDashboard user={user} />}
-            />
-          </Routes>
-        </Suspense>
-      </GlobalClickLogger>
+      <AppErrorBoundary>
+        <GlobalClickLogger>
+          <Suspense fallback={<RouteFallback />}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <LandingPage onLogin={handleLogin} user={user} onLogout={handleLogout} />
+                }
+              />
+              <Route
+                path="/learn"
+                element={
+                  user ? (
+                    <MainApp user={user} onLogout={handleLogout} />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/diagnostic/:course"
+                element={
+                  user ? (
+                    <DiagnosticAssessment />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/book/:course"
+                element={
+                  user ? (
+                    <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/book/:course/:chapter/:section"
+                element={
+                  user ? (
+                    <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/lab"
+                element={
+                  user ? (
+                    <GenerativeLab />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/analytics"
+                element={<AnalyticsDashboard user={user} />}
+              />
+            </Routes>
+          </Suspense>
+        </GlobalClickLogger>
+      </AppErrorBoundary>
     </BrowserRouter>
   )
 }

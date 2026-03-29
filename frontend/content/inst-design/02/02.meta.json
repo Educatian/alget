@@ -1,8 +1,18 @@
 {
     "chapter_title": "The ADDIE Framework",
     "title": "Module 2: Development & Implementation Phases",
+    "description": "Show how design plans become instructional assets and how those assets are launched, facilitated, and supported during implementation.",
     "learning_objectives": [
         "Describe the transition from storyboards (Design) to tangible assets (Development).",
-        "Outline the key logistical and pedagogical steps in the Implementation phase."
-    ]
+        "Outline the key logistical and pedagogical steps in the Implementation phase.",
+        "Evaluate how development choices affect fidelity, usability, and rollout quality."
+    ],
+    "concept_ids": [
+        "development_phase",
+        "implementation_phase",
+        "storyboarding",
+        "instructional_assets",
+        "facilitation_logistics"
+    ],
+    "estimated_time_minutes": 11
 }

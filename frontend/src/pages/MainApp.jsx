@@ -129,8 +129,8 @@ export default function MainApp({ user, onLogout }) {
                             AL
                         </div>
                         <div>
-                            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-slate-400">Program Workspace</p>
-                            <h1 className="text-xl font-bold tracking-tight text-slate-900">ALGET Pathways</h1>
+                            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-slate-400">Alabama Generative Intelligent Textbook</p>
+                            <h1 className="text-xl font-bold tracking-tight text-slate-900">Pathways Workspace</h1>
                         </div>
                     </div>
 
@@ -152,7 +152,7 @@ export default function MainApp({ user, onLogout }) {
                             onClick={() => navigate('/analytics')}
                             className="rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-white"
                         >
-                            Researcher Dashboard
+                            Research Console
                         </button>
                         <button
                             onClick={onLogout}
@@ -389,7 +389,7 @@ export default function MainApp({ user, onLogout }) {
             <footer className="mt-auto border-t border-slate-200/70 bg-white/80">
                 <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm font-medium text-slate-500 lg:flex-row lg:items-center lg:justify-between lg:px-8">
                     <span>University of Alabama · College of Engineering and Education</span>
-                    <span>ALGET pathways for adaptive reading, generative learning, and learner-model visibility</span>
+                    <span>Alabama Generative Intelligent Textbook pathways for adaptive reading, generative learning, and learner-model visibility</span>
                 </div>
             </footer>
         </div>

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage';
 import { supabase } from '../lib/supabase';
 
 function getStorageKey(userId) {
@@ -23,7 +24,7 @@ function loadCompletedSections(userId) {
         return [];
     }
 
-    const saved = window.localStorage.getItem(getStorageKey(userId));
+    const saved = safeLocalStorageGet(getStorageKey(userId));
 
     if (!saved) {
         return [];
@@ -42,7 +43,7 @@ function persistCompletedSections(userId, sectionIds) {
         return;
     }
 
-    window.localStorage.setItem(getStorageKey(userId), JSON.stringify(dedupeSections(sectionIds)));
+    safeLocalStorageSet(getStorageKey(userId), JSON.stringify(dedupeSections(sectionIds)));
 }
 
 async function fetchCloudProgress(userId) {
