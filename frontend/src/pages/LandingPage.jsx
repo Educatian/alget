@@ -114,9 +114,9 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         </div>
 
                         <h1 className="mt-8 max-w-3xl text-5xl font-black tracking-tight text-slate-950 md:text-7xl">
-                            The commercial-grade
+                            Alabama
                             <span className="block bg-gradient-to-r from-[#9E1B32] via-[#c41e3a] to-[#2563eb] bg-clip-text text-transparent">
-                                generative learning surface
+                                Generative Intelligent Textbook
                             </span>
                         </h1>
 
@@ -255,7 +255,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         <GraduationCap className="h-4 w-4" />
                         <span>Adaptive Design of e-Learning Lab · University of Alabama</span>
                     </div>
-                    <span>Commercial-grade generative textbook interface for engineering and education pathways</span>
+                    <span>Alabama Generative Intelligent Textbook for engineering and education pathways</span>
                 </div>
             </footer>
 
