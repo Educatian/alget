@@ -1,5 +1,18 @@
 {
     "title": "Module 7: Self-Healing Materials",
-    "description": "How modern polymer science mimics the human cardiovascular system and blood clotting to create materials that automatically repair microscopic fractures.",
-    "order": 7
+    "description": "Examine how biology-inspired repair strategies inform polymer, composite, and infrastructure materials that can respond to microscopic damage.",
+    "order": 7,
+    "chapter_title": "Resilience and Material Repair",
+    "learning_objectives": [
+        "Explain how capsule-based self-healing materials work.",
+        "Compare biological repair logic with engineering repair strategies.",
+        "Evaluate when self-healing materials are worth the added cost and complexity."
+    ],
+    "concept_ids": [
+        "fatigue_failure",
+        "self_healing_materials",
+        "microvascular_repair",
+        "resilient_design"
+    ],
+    "estimated_time_minutes": 12
 }
