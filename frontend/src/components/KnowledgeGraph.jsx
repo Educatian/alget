@@ -1,133 +1,248 @@
-import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
-import API_BASE from '../lib/apiConfig';
+import { useEffect, useState } from 'react'
+import { supabase } from '../lib/supabase'
+import API_BASE from '../lib/apiConfig'
 
-export default function KnowledgeGraph() {
-    const [graphData, setGraphData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [hoveredNode, setHoveredNode] = useState(null);
+function humanizeLabel(value) {
+    if (!value) return 'Untitled concept'
+    return value
+        .replace(/[-_]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/\b\w/g, (match) => match.toUpperCase())
+}
+
+function buildLayout(nodes) {
+    const chapterSpacing = 260
+    const sectionSpacing = 150
+    const conceptSpacing = 92
+    const leftPadding = 140
+    const topPadding = 110
+
+    const positionedNodes = nodes.map((node) => ({
+        ...node,
+        x: leftPadding + ((node.chapter_order || 1) - 1) * chapterSpacing + ((node.section_order || 1) - 1) * 24,
+        y: topPadding + ((node.section_order || 1) - 1) * sectionSpacing + ((node.concept_order || 1) - 1) * conceptSpacing,
+    }))
+
+    const width = Math.max(
+        900,
+        leftPadding + (Math.max(...positionedNodes.map((node) => node.x), 0)) + 220,
+    )
+    const height = Math.max(
+        520,
+        topPadding + (Math.max(...positionedNodes.map((node) => node.y), 0)) + 140,
+    )
+
+    return {
+        nodes: positionedNodes,
+        width,
+        height,
+    }
+}
+
+export default function KnowledgeGraph({
+    course = 'inst-design',
+    currentSectionId = null,
+    currentConceptIds = [],
+}) {
+    const [graphData, setGraphData] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+    const [hoveredNode, setHoveredNode] = useState(null)
+    const serializedCurrentConcepts = JSON.stringify(currentConceptIds)
 
     useEffect(() => {
-        const fetchGraph = async () => {
-            try {
-                // 1. Fetch user mastery from Supabase
-                const { data: { session } } = await supabase.auth.getSession();
-                const userId = session?.user?.id;
+        let isCancelled = false
 
-                let masteryMap = {};
+        const fetchGraph = async () => {
+            setLoading(true)
+            setError(null)
+
+            try {
+                const currentConcepts = JSON.parse(serializedCurrentConcepts)
+                const { data: { session } } = await supabase.auth.getSession()
+                const userId = session?.user?.id
+
+                const masteryMap = {}
                 if (userId) {
-                    const { data: masteryRecords } = await supabase
+                    const { data: masteryRecords, error: masteryError } = await supabase
                         .from('mastery')
-                        .select('concept_id, p_known')
-                        .eq('user_id', userId);
+                        .select('concept_id, p_known, mastery_score')
+                        .eq('user_id', userId)
+
+                    if (masteryError) {
+                        throw masteryError
+                    }
 
                     if (masteryRecords) {
-                        masteryRecords.forEach(record => {
-                            masteryMap[record.concept_id] = record.p_known;
-                        });
+                        masteryRecords.forEach((record) => {
+                            masteryMap[record.concept_id] = record.mastery_score ?? record.p_known ?? 0.1
+                        })
                     }
                 }
 
-                // 2. Fetch the graph topology from our new backend endpoint
                 const response = await fetch(`${API_BASE}/mastery_graph`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ mastery_data: masteryMap })
-                });
+                    body: JSON.stringify({
+                        mastery_data: masteryMap,
+                        course,
+                        current_section_id: currentSectionId,
+                        current_concepts: currentConcepts,
+                    }),
+                })
 
                 if (!response.ok) {
-                    const errText = await response.text();
-                    throw new Error(`Failed to load graph data: ${response.status} ${errText}`);
+                    const errText = await response.text()
+                    throw new Error(`Failed to load graph data: ${response.status} ${errText}`)
                 }
-                const data = await response.json();
 
-                // Add layout positions mechanically for our 6 hardcoded nodes
-                const layedOutNodes = data.nodes.map(node => {
-                    const positions = {
-                        "ct_1_1": { x: 400, y: 100 },
-                        "ct_1_2": { x: 250, y: 200 },
-                        "ct_1_3": { x: 250, y: 350 },
-                        "ct_2_1": { x: 550, y: 200 },
-                        "ct_2_2": { x: 550, y: 300 },
-                        "ct_2_3": { x: 550, y: 400 },
-                    };
-                    return { ...node, ...positions[node.id] };
-                });
+                const data = await response.json()
+                const layout = buildLayout(data.nodes || [])
 
-                setGraphData({ nodes: layedOutNodes, links: data.links });
+                if (!isCancelled) {
+                    setGraphData({
+                        ...layout,
+                        links: data.links || [],
+                    })
+                }
             } catch (err) {
-                console.error(err);
-                setError(err.message);
+                console.error(err)
+                if (!isCancelled) {
+                    setError(err.message || 'Failed to load graph data.')
+                }
             } finally {
-                setLoading(false);
+                if (!isCancelled) {
+                    setLoading(false)
+                }
             }
-        };
-
-        fetchGraph();
-    }, []);
-
-    if (loading) return <div className="text-center p-8 text-slate-500 animate-pulse">Loading Brain Network...</div>;
-    if (error) return <div className="text-center p-8 text-red-500">Failed to load graph.</div>;
-    if (!graphData) return null;
-
-    const getNodeColor = (status) => {
-        switch (status) {
-            case 'mastered': return 'fill-emerald-500 stroke-emerald-200';
-            case 'emerging': return 'fill-yellow-400 stroke-yellow-200';
-            default: return 'fill-slate-300 stroke-slate-200';
         }
-    };
 
-    const getGlow = (status) => {
-        if (status === 'mastered') return 'drop-shadow-[0_0_8px_rgba(16,185,129,0.6)]';
-        if (status === 'emerging') return 'drop-shadow-[0_0_6px_rgba(250,204,21,0.5)]';
-        return '';
-    };
+        fetchGraph()
+
+        return () => {
+            isCancelled = true
+        }
+    }, [course, currentSectionId, serializedCurrentConcepts])
+
+    if (loading) {
+        return <div className="text-center p-8 text-slate-500 animate-pulse">Loading brain network...</div>
+    }
+
+    if (error) {
+        return <div className="text-center p-8 text-red-500">Failed to load brain network.</div>
+    }
+
+    if (!graphData || graphData.nodes.length === 0) {
+        return <div className="text-center p-8 text-slate-500">No connected concepts found for this course yet.</div>
+    }
+
+    const getNodeColor = (node) => {
+        if (node.is_current) return 'fill-indigo-500 stroke-indigo-200'
+        if (node.status === 'mastered') return 'fill-emerald-500 stroke-emerald-200'
+        if (node.status === 'emerging') return 'fill-amber-400 stroke-amber-100'
+        return 'fill-slate-400 stroke-slate-200'
+    }
+
+    const getGlow = (node) => {
+        if (node.is_current) return 'drop-shadow-[0_0_14px_rgba(99,102,241,0.55)]'
+        if (node.status === 'mastered') return 'drop-shadow-[0_0_10px_rgba(16,185,129,0.45)]'
+        if (node.status === 'emerging') return 'drop-shadow-[0_0_8px_rgba(251,191,36,0.35)]'
+        return ''
+    }
+
+    const chapterHeaders = Array.from(
+        new Map(
+            graphData.nodes.map((node) => [
+                `${node.chapter_order}`,
+                {
+                    id: node.chapter_order,
+                    title: node.chapter_title || humanizeLabel(node.chapter),
+                    x: node.x,
+                },
+            ]),
+        ).values(),
+    )
 
     return (
-        <div className="bg-slate-900 rounded-3xl p-6 shadow-2xl overflow-hidden relative border border-slate-700">
-            <h3 className="text-white font-bold text-lg mb-2 flex items-center gap-2">
-                <span className="text-2xl">🧠</span> My Knowledge Graph
-            </h3>
-            <p className="text-slate-400 text-sm mb-6 max-w-md">
-                Your real-time Bayesian Knowledge Trace. Nodes turn <span className="text-yellow-400 font-semibold px-1">yellow</span> as you begin to understand concepts, and <span className="text-emerald-400 font-semibold px-1">green</span> when mastered.
-            </p>
+        <div className="bg-slate-950 rounded-3xl p-6 shadow-2xl overflow-hidden relative border border-slate-800">
+            <div className="mb-5 flex items-start justify-between gap-4">
+                <div>
+                    <h3 className="text-white font-bold text-lg">Brain Network</h3>
+                    <p className="text-slate-400 text-sm max-w-2xl">
+                        This map is now connected to the current course, section, and concept focus. Blue nodes mark the concept cluster you are reading now.
+                    </p>
+                </div>
+                <div className="flex items-center gap-3 text-xs text-slate-400">
+                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-indigo-500" />Current</span>
+                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-amber-400" />Emerging</span>
+                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />Mastered</span>
+                </div>
+            </div>
 
-            <div className="relative w-full h-[500px]">
-                <svg width="100%" height="100%" viewBox="0 0 800 500" className="absolute inset-0">
+            <div className="relative w-full overflow-x-auto rounded-2xl border border-slate-800 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.12),transparent_35%),linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98))]">
+                <svg width="100%" height="540" viewBox={`0 0 ${graphData.width} ${graphData.height}`} className="min-w-[860px]">
                     <defs>
-                        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+                        <pattern id="graph-grid" width="36" height="36" patternUnits="userSpaceOnUse">
+                            <path d="M 36 0 L 0 0 0 36" fill="none" stroke="rgba(148,163,184,0.08)" strokeWidth="1" />
                         </pattern>
                     </defs>
-                    <rect width="100%" height="100%" fill="url(#grid)" />
 
-                    {/* Edges */}
-                    {graphData.links.map((link, i) => {
-                        const sourceNode = graphData.nodes.find(n => n.id === link.source);
-                        const targetNode = graphData.nodes.find(n => n.id === link.target);
-                        if (!sourceNode || !targetNode) return null;
+                    <rect width={graphData.width} height={graphData.height} fill="url(#graph-grid)" />
 
-                        const isHovered = hoveredNode === sourceNode.id || hoveredNode === targetNode.id;
+                    {chapterHeaders.map((chapter) => (
+                        <g key={chapter.id}>
+                            <text
+                                x={chapter.x - 28}
+                                y="58"
+                                fill="#cbd5e1"
+                                fontSize="14"
+                                fontWeight="700"
+                                letterSpacing="0.08em"
+                            >
+                                {chapter.title}
+                            </text>
+                            <line
+                                x1={chapter.x - 30}
+                                y1="74"
+                                x2={chapter.x + 130}
+                                y2="74"
+                                stroke="rgba(148,163,184,0.16)"
+                                strokeWidth="1"
+                            />
+                        </g>
+                    ))}
+
+                    {graphData.links.map((link, index) => {
+                        const sourceNode = graphData.nodes.find((node) => node.id === link.source)
+                        const targetNode = graphData.nodes.find((node) => node.id === link.target)
+                        if (!sourceNode || !targetNode) return null
+
+                        const isHighlighted =
+                            hoveredNode === sourceNode.id ||
+                            hoveredNode === targetNode.id ||
+                            sourceNode.is_current ||
+                            targetNode.is_current
 
                         return (
                             <line
-                                key={i}
+                                key={`${link.source}-${link.target}-${index}`}
                                 x1={sourceNode.x}
                                 y1={sourceNode.y}
                                 x2={targetNode.x}
                                 y2={targetNode.y}
-                                stroke={isHovered ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.1)"}
-                                strokeWidth={isHovered ? "3" : "1.5"}
+                                stroke={isHighlighted ? 'rgba(129,140,248,0.65)' : 'rgba(148,163,184,0.22)'}
+                                strokeWidth={isHighlighted ? '3' : '1.75'}
                                 className="transition-all duration-300"
                             />
                         )
                     })}
 
-                    {/* Nodes */}
                     {graphData.nodes.map((node) => {
-                        const isHovered = hoveredNode === node.id;
+                        const isHovered = hoveredNode === node.id
+                        const radius = node.is_current ? 24 : node.status === 'mastered' ? 20 : node.status === 'emerging' ? 18 : 16
+                        const label = node.label || humanizeLabel(node.id)
+                        const labelWidth = Math.max(92, label.length * 8 + 18)
 
                         return (
                             <g
@@ -135,42 +250,50 @@ export default function KnowledgeGraph() {
                                 transform={`translate(${node.x},${node.y})`}
                                 onMouseEnter={() => setHoveredNode(node.id)}
                                 onMouseLeave={() => setHoveredNode(null)}
-                                className="cursor-pointer transition-transform duration-300 hover:scale-110"
+                                className="cursor-pointer transition-transform duration-300 hover:scale-105"
                             >
                                 <circle
-                                    r={node.status === 'mastered' ? 24 : node.status === 'emerging' ? 20 : 16}
-                                    className={`${getNodeColor(node.status)} ${getGlow(node.status)} transition-all duration-500`}
+                                    r={radius}
+                                    className={`${getNodeColor(node)} ${getGlow(node)} transition-all duration-500`}
                                     strokeWidth="4"
                                 />
 
-                                {/* Label background for readability */}
                                 <rect
                                     x="30"
-                                    y="-12"
-                                    width={node.label.length * 8 + 20}
-                                    height="24"
-                                    rx="6"
-                                    fill="rgba(15, 23, 42, 0.8)"
-                                    className={`transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-80'}`}
+                                    y="-14"
+                                    width={labelWidth}
+                                    height="28"
+                                    rx="8"
+                                    fill={isHovered || node.is_current ? 'rgba(15,23,42,0.96)' : 'rgba(15,23,42,0.78)'}
+                                    stroke={node.is_current ? 'rgba(129,140,248,0.5)' : 'rgba(148,163,184,0.18)'}
                                 />
 
                                 <text
-                                    x="40"
-                                    y="4"
-                                    fill={isHovered ? "white" : "#94a3b8"}
-                                    fontSize="14"
+                                    x="42"
+                                    y="5"
+                                    fill={isHovered || node.is_current ? '#ffffff' : '#cbd5e1'}
+                                    fontSize="13"
                                     fontWeight="600"
-                                    className="transition-colors duration-300"
                                 >
-                                    {node.label}
+                                    {label}
                                 </text>
 
-                                {/* Hover Tooltip Data */}
-                                {isHovered && (
-                                    <g transform="translate(40, -25)" className="animate-fade-in">
-                                        <rect x="-5" y="-15" width="60" height="20" rx="4" fill="#3b82f6" />
-                                        <text x="0" y="0" fill="white" fontSize="12" fontWeight="bold">
-                                            p: {node.p_known.toFixed(2)}
+                                {(isHovered || node.is_current) && (
+                                    <g transform="translate(34, -52)">
+                                        <rect
+                                            x="0"
+                                            y="0"
+                                            width="162"
+                                            height="42"
+                                            rx="10"
+                                            fill="rgba(30,41,59,0.96)"
+                                            stroke="rgba(129,140,248,0.34)"
+                                        />
+                                        <text x="12" y="17" fill="#e2e8f0" fontSize="12" fontWeight="700">
+                                            {node.section_title || 'Current section'}
+                                        </text>
+                                        <text x="12" y="32" fill="#94a3b8" fontSize="11">
+                                            Mastery {Number(node.p_known || 0).toFixed(2)}
                                         </text>
                                     </g>
                                 )}
@@ -180,5 +303,5 @@ export default function KnowledgeGraph() {
                 </svg>
             </div>
         </div>
-    );
+    )
 }

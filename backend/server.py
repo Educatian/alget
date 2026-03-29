@@ -70,7 +70,7 @@ from module_hooks import (
     get_module_info,
     BIO_INSPIRED_MODULES
 )
-from content_service import load_section, generate_toc, get_fallback_toc
+from content_service import load_section, load_section_meta, generate_toc, get_fallback_toc
 from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
@@ -1042,55 +1042,110 @@ async def adaptive_recommendation(request: AdaptiveRecommendationRequest):
         raise HTTPException(status_code=500, detail=f"Adaptive recommendation error: {str(e)}")
 
 class MasteryGraphRequest(BaseModel):
-    # This could take user_id and fetch from a real DB.
-    # For now, it accepts a dictionary of concept_id -> p_known scores
     mastery_data: dict
+    course: str = "inst-design"
+    current_section_id: Optional[str] = None
+    current_concepts: list[str] = Field(default_factory=list)
+
+
+def _humanize_graph_label(value: Optional[str]) -> str:
+    text = _ensure_str(value)
+    if not text:
+        return "Untitled concept"
+    text = text.replace("-", " ").replace("_", " ").strip()
+    return " ".join(part.capitalize() for part in text.split())
+
+
+def _build_graph_status(p_known: float) -> str:
+    if p_known >= 0.8:
+        return "mastered"
+    if p_known >= 0.5:
+        return "emerging"
+    return "novice"
+
+
+def build_mastery_graph_payload(
+    course: str,
+    mastery_data: dict[str, Any],
+    current_section_id: Optional[str] = None,
+    current_concepts: Optional[list[str]] = None,
+) -> dict[str, list[dict[str, Any]]]:
+    toc = generate_toc(course)
+    if not toc.get("chapters"):
+        toc = get_fallback_toc(course)
+
+    current_concepts = current_concepts or []
+    nodes: list[dict[str, Any]] = []
+    links: list[dict[str, str]] = []
+    previous_section_last_node_id: Optional[str] = None
+
+    for chapter_index, chapter in enumerate(toc.get("chapters", []), start=1):
+        chapter_id = _ensure_str(chapter.get("id"))
+        chapter_title = _ensure_str(chapter.get("title")) or f"Chapter {chapter_id}"
+
+        for section_index, section in enumerate(chapter.get("sections", []), start=1):
+            section_id = _ensure_str(section.get("id"))
+            section_title = _ensure_str(section.get("title")) or f"Section {section_id}"
+            section_slug = f"{course}/{chapter_id}/{section_id}"
+            meta = load_section_meta(course, chapter_id, section_id) or {}
+            concept_ids = meta.get("concept_ids") or [f"section_{chapter_id}_{section_id}"]
+            section_node_ids: list[str] = []
+
+            for concept_index, concept_id in enumerate(concept_ids, start=1):
+                raw_mastery = mastery_data.get(concept_id, 0.1) if isinstance(mastery_data, dict) else 0.1
+                p_known = _normalize_ratio(raw_mastery, 0.1)
+                node_id = _ensure_str(concept_id) or f"section_{chapter_id}_{section_id}_{concept_index}"
+                section_node_ids.append(node_id)
+
+                nodes.append(
+                    {
+                        "id": node_id,
+                        "label": _humanize_graph_label(concept_id),
+                        "group": chapter_id,
+                        "course": course,
+                        "chapter": chapter_id,
+                        "chapter_title": chapter_title,
+                        "chapter_order": chapter_index,
+                        "section_id": section_slug,
+                        "section_title": section_title,
+                        "section_order": section_index,
+                        "concept_order": concept_index,
+                        "p_known": round(p_known, 2),
+                        "status": _build_graph_status(p_known),
+                        "is_current": section_slug == current_section_id or node_id in current_concepts,
+                    }
+                )
+
+            for source, target in zip(section_node_ids, section_node_ids[1:]):
+                links.append({"source": source, "target": target})
+
+            if previous_section_last_node_id and section_node_ids:
+                links.append({"source": previous_section_last_node_id, "target": section_node_ids[0]})
+
+            if section_node_ids:
+                previous_section_last_node_id = section_node_ids[-1]
+
+    nodes.sort(
+        key=lambda node: (
+            node.get("chapter_order", 0),
+            node.get("section_order", 0),
+            node.get("concept_order", 0),
+        )
+    )
+
+    return {"nodes": nodes, "links": links}
+
 
 @app.post("/api/mastery_graph")
 async def generate_mastery_graph(request: MasteryGraphRequest):
     """Generates a node-link structured JSON representing current curriculum mastery."""
     try:
-        # Mocking hardcoded structural relationships for 'inst-design'
-        # In a generic system, this graph topology might live in a unified `q_matrix` or curriculum graph db.
-        nodes = []
-        edges = []
-        
-        # Hardcoding the curriculum structure for the mockup ID course
-        topics = [
-            {"id": "ct_1_1", "label": "Foundations of ID", "group": "core"},
-            {"id": "ct_1_2", "label": "Learning Theories", "group": "theory"},
-            {"id": "ct_1_3", "label": "Cognitive Load", "group": "theory"},
-            {"id": "ct_2_1", "label": "ADDIE Analysis", "group": "process"},
-            {"id": "ct_2_2", "label": "ADDIE Design", "group": "process"},
-            {"id": "ct_2_3", "label": "ADDIE Development", "group": "process"}
-        ]
-        
-        # Dependencies
-        links = [
-            {"source": "ct_1_1", "target": "ct_1_2"},
-            {"source": "ct_1_2", "target": "ct_1_3"},
-            {"source": "ct_1_1", "target": "ct_2_1"},
-            {"source": "ct_2_1", "target": "ct_2_2"},
-            {"source": "ct_2_2", "target": "ct_2_3"}
-        ]
-        
-        for topic in topics:
-            p_known = request.mastery_data.get(topic["id"], 0.1) # Default to 0.1
-            status = "novice"
-            if p_known > 0.8:
-                status = "mastered"
-            elif p_known > 0.5:
-                status = "emerging"
-                
-            nodes.append({
-                "id": topic["id"],
-                "label": topic["label"],
-                "group": topic["group"],
-                "p_known": round(p_known, 2),
-                "status": status
-            })
-            
-        return {"nodes": nodes, "links": links}
+        return build_mastery_graph_payload(
+            course=request.course,
+            mastery_data=request.mastery_data,
+            current_section_id=request.current_section_id,
+            current_concepts=request.current_concepts,
+        )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Mastery graph generation error: {str(e)}")
 

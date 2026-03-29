@@ -211,7 +211,11 @@ export default function ReadingPane({
                 {/* Knowledge Graph Overlay */}
                 {showGraph && (
                     <div className="mb-8 animate-fade-in origin-top">
-                        <KnowledgeGraph />
+                        <KnowledgeGraph
+                            course={meta?.course || 'inst-design'}
+                            currentSectionId={sectionId}
+                            currentConceptIds={meta?.concept_ids || []}
+                        />
                     </div>
                 )}
 
