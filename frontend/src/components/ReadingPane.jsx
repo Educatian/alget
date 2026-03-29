@@ -32,7 +32,6 @@ import { BehaviorismDiagram } from './BehaviorismDiagram'
 import { FormativeSummativeDiagram } from './FormativeSummativeDiagram'
 import { RubricDesignDiagram } from './RubricDesignDiagram'
 import { FeedbackModelsDiagram } from './FeedbackModelsDiagram'
-import SocialPresencePanel from './SocialPresencePanel'
 
 export default function ReadingPane({
     sectionData,
@@ -41,9 +40,7 @@ export default function ReadingPane({
     onAskAi,
     isCompleted,
     markCompleted,
-    onHeadingChange,
-    socialState,
-    onSocialReaction
+    onHeadingChange
 }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
@@ -235,21 +232,6 @@ export default function ReadingPane({
                     </div>
                 )}
             </header>
-
-            <SocialPresencePanel
-                connected={socialState?.connected}
-                peers={socialState?.peers || []}
-                sameHeadingPeers={socialState?.sameHeadingPeers || []}
-                sameConceptPeers={socialState?.sameConceptPeers || []}
-                signalSummary={socialState?.signalSummary || {
-                    completionsToday: 0,
-                    helpOpensToday: 0,
-                    reactionCounts: {}
-                }}
-                liveFeed={socialState?.liveFeed || []}
-                onReaction={onSocialReaction}
-                sectionTitle={meta?.title}
-            />
 
             {/* Main Content (Narrative) with LaTeX Support */}
             <article className="prose prose-lg max-w-none 

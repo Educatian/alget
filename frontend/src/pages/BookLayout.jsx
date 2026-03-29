@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import * as Popover from '@radix-ui/react-popover'
 import BookToc from '../components/BookToc'
 import ReadingPane from '../components/ReadingPane'
 import IntelRail from '../components/IntelRail'
 import ChatWidget from '../components/ChatWidget'
 import HighlightableContent from '../components/HighlightableContent'
 import SettingsModal from '../components/SettingsModal'
+import SocialPresencePanel from '../components/SocialPresencePanel'
 import { ChevronLeft, ChevronRight, Settings } from 'lucide-react'
 import { logPageView, logStuckEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
@@ -183,13 +185,55 @@ export default function BookLayout({ user, onLogout }) {
                     </div>
                 </div>
                 <div className="flex items-center gap-5">
-                    <div className="hidden xl:flex items-center gap-3 rounded-full border border-slate-200 bg-white/70 px-3 py-1.5 shadow-sm">
-                        <span className={`inline-flex h-2.5 w-2.5 rounded-full ${socialState.connected ? 'bg-emerald-500' : 'bg-slate-300'}`}></span>
-                        <span className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Social Pulse</span>
-                        <span className="text-sm font-bold text-slate-700">
-                            {socialState.peers.length} live peer{socialState.peers.length === 1 ? '' : 's'}
-                        </span>
-                    </div>
+                    <Popover.Root>
+                        <Popover.Trigger asChild>
+                            <button
+                                type="button"
+                                className="hidden xl:flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-2.5 py-1.5 shadow-sm transition-all hover:bg-white hover:shadow-md"
+                                aria-label="Open social presence"
+                            >
+                                <span className={`inline-flex h-2.5 w-2.5 rounded-full ${socialState.connected ? 'bg-emerald-500' : 'bg-slate-300'}`}></span>
+                                <div className="flex -space-x-2">
+                                    {socialState.peers.slice(0, 3).map((peer) => (
+                                        <span
+                                            key={peer.key}
+                                            className={`flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-linear-to-br ${peer.colorToken || 'from-slate-500 to-slate-400'} text-[10px] font-bold text-white shadow-sm`}
+                                            title={peer.alias}
+                                        >
+                                            {peer.alias?.split(' ').map((part) => part[0]).join('').slice(0, 2).toUpperCase()}
+                                        </span>
+                                    ))}
+                                    {socialState.peers.length === 0 && (
+                                        <span className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-slate-100 text-[10px] font-bold text-slate-500 shadow-sm">
+                                            0
+                                        </span>
+                                    )}
+                                </div>
+                                <span className="text-sm font-semibold text-slate-600">
+                                    {socialState.peers.length > 0 ? `${socialState.peers.length} here now` : 'Live'}
+                                </span>
+                            </button>
+                        </Popover.Trigger>
+                        <Popover.Portal>
+                            <Popover.Content
+                                side="bottom"
+                                align="end"
+                                sideOffset={12}
+                                className="z-[90] w-[26rem] rounded-3xl border border-white/70 bg-white/95 p-0 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-2xl"
+                            >
+                                <SocialPresencePanel
+                                    connected={socialState.connected}
+                                    peers={socialState.peers}
+                                    sameHeadingPeers={socialState.sameHeadingPeers}
+                                    sameConceptPeers={socialState.sameConceptPeers}
+                                    signalSummary={socialState.signalSummary}
+                                    liveFeed={socialState.liveFeed}
+                                    onReaction={socialState.sendReaction}
+                                    sectionTitle={sectionData?.meta?.title || sectionData?.title || ''}
+                                />
+                            </Popover.Content>
+                        </Popover.Portal>
+                    </Popover.Root>
 
                     <button
                         onClick={toggleRail}
@@ -271,8 +315,6 @@ export default function BookLayout({ user, onLogout }) {
                                     loading={loading}
                                     onStuckEvent={handleStuckEvent}
                                     onHeadingChange={setActiveHeading}
-                                    socialState={socialState}
-                                    onSocialReaction={socialState.sendReaction}
                                     isCompleted={isCompleted(course, chapter, section)}
                                     markCompleted={() => {
                                         const alreadyCompleted = isCompleted(course, chapter, section)

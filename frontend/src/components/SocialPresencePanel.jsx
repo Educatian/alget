@@ -37,7 +37,7 @@ export default function SocialPresencePanel({
     const sameConceptCount = sameConceptPeers.length
 
     return (
-        <section className="mb-8 rounded-3xl border border-slate-200 bg-white/85 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+        <section className="rounded-3xl border border-slate-200 bg-white/85 p-5 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                 <div className="flex-1 space-y-4">
                     <div className="flex items-center gap-3">
@@ -48,7 +48,7 @@ export default function SocialPresencePanel({
                             <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-400">
                                 Social Pulse
                             </p>
-                            <h3 className="text-lg font-bold text-slate-900">
+                            <h3 className="text-base font-bold text-slate-900">
                                 {livePeerCount > 0
                                     ? `${pluralize(livePeerCount, 'peer is', 'peers are')} reading ${sectionTitle || 'this section'} right now.`
                                     : 'Be the first live reader in this section right now.'}
