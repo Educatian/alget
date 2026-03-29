@@ -185,7 +185,7 @@ export default function BookLayout({ user, onLogout }) {
     }, [handleNavigate, nextSection, previousSection])
 
     return (
-        <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(158,27,50,0.08),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(37,99,235,0.08),_transparent_28%),linear-gradient(to_bottom,_#f8fafc,_#eef2f7)] flex flex-col font-sans selection:bg-[#9E1B32]/20">
+        <div className="h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(158,27,50,0.08),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(37,99,235,0.08),_transparent_28%),linear-gradient(to_bottom,_#f8fafc,_#eef2f7)] flex flex-col font-sans selection:bg-[#9E1B32]/20">
             {isSettingsOpen && (
                 <Suspense fallback={<div className="fixed inset-0 z-[100] bg-slate-950/10 backdrop-blur-sm" />}>
                     <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
@@ -333,8 +333,8 @@ export default function BookLayout({ user, onLogout }) {
                 </div>
             </header>
 
-            <div className="relative flex flex-1 overflow-hidden">
-                <aside className="w-72 shrink-0 overflow-y-auto border-r border-white/70 bg-white/45 shadow-[10px_0_30px_rgba(15,23,42,0.03)] backdrop-blur-3xl">
+            <div className="relative flex min-h-0 flex-1 overflow-hidden">
+                <aside className="min-h-0 w-72 shrink-0 overflow-y-auto border-r border-white/70 bg-white/45 shadow-[10px_0_30px_rgba(15,23,42,0.03)] backdrop-blur-3xl">
                     <BookToc
                         toc={toc}
                         currentCourse={course}
@@ -345,8 +345,8 @@ export default function BookLayout({ user, onLogout }) {
                     />
                 </aside>
 
-                <div className="group/nav relative flex-1 overflow-hidden">
-                    <main ref={mainScrollRef} className="h-full overflow-y-auto">
+                <div className="group/nav relative min-h-0 flex-1 overflow-hidden">
+                    <main ref={mainScrollRef} className="h-full min-h-0 overflow-y-auto">
                         <div
                             key={sectionPath}
                             className={`min-h-full ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
@@ -424,12 +424,12 @@ export default function BookLayout({ user, onLogout }) {
                 </div>
 
                 <aside
-                    className={`relative z-20 hidden shrink-0 xl:block transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${railOpen ? 'w-[22rem] pl-4 pr-4 py-4' : 'w-0 pl-0 pr-0 py-0'
+                    className={`relative z-20 hidden min-h-0 shrink-0 xl:block transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${railOpen ? 'w-[22rem] pl-4 pr-4 py-4' : 'w-0 pl-0 pr-0 py-0'
                         }`}
                     aria-hidden={!railOpen}
                 >
                     {railOpen && (
-                        <div className="sticky top-4 h-[calc(100vh-7.5rem)] min-h-[34rem]">
+                        <div className="sticky top-4 h-[calc(100dvh-7.5rem)] min-h-[34rem]">
                             <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/80 bg-white/78 shadow-[-20px_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-3xl">
                                 <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
                                     <IntelRail
