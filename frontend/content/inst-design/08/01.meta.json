@@ -1,5 +1,19 @@
 {
     "title": "Module 8: Emerging Technologies in Learning",
     "description": "Analyzing the impact of Artificial Intelligence Tutors, Large Language Models (LLMs), and VR/AR on the future architecture of learning.",
+    "chapter_title": "Future Learning Systems",
+    "learning_objectives": [
+        "Evaluate where AI tutors, LLMs, and immersive media fit in instructional ecosystems.",
+        "Identify the instructional opportunities and risks of emerging learning technologies.",
+        "Design a future-facing learning workflow that still preserves pedagogy, ethics, and human support."
+    ],
+    "concept_ids": [
+        "ai_tutors",
+        "large_language_models",
+        "extended_reality_learning",
+        "future_learning_ecosystems",
+        "human_ai_orchestration"
+    ],
+    "estimated_time_minutes": 12,
     "order": 8
 }

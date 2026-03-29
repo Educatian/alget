@@ -1,5 +1,19 @@
 {
     "title": "Module 3: Multimedia Learning Principles",
     "description": "Understanding how the brain processes multimedia information through Mayer's 12 Principles. Avoiding cognitive overload when combining text, audio, and graphics.",
+    "chapter_title": "Multimedia and Message Design",
+    "learning_objectives": [
+        "Explain why multimedia learning depends on coordinated verbal and visual processing.",
+        "Apply Mayer's principles to reduce cognitive overload in instructional media.",
+        "Diagnose when text, graphics, and narration are competing instead of reinforcing learning."
+    ],
+    "concept_ids": [
+        "multimedia_learning",
+        "mayer_principles",
+        "dual_channel_processing",
+        "cognitive_overload",
+        "modality_effect"
+    ],
+    "estimated_time_minutes": 12,
     "order": 3
 }

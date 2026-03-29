@@ -1,20 +1,21 @@
 import { useState } from 'react'
 import { Key, X, Check, Eye, EyeOff } from 'lucide-react'
+import { safeLocalStorageGet, safeLocalStorageRemove, safeLocalStorageSet } from '../lib/browserStorage'
 
 export default function SettingsModal({ isOpen, onClose }) {
-    const [apiKey, setApiKey] = useState(() => localStorage.getItem('gemini_api_key') || '')
+    const [apiKey, setApiKey] = useState(() => safeLocalStorageGet('gemini_api_key', ''))
     const [saved, setSaved] = useState(false)
     const [showKey, setShowKey] = useState(false)
 
     const handleSave = () => {
         if (apiKey.trim()) {
-            localStorage.setItem('gemini_api_key', apiKey.trim())
+            safeLocalStorageSet('gemini_api_key', apiKey.trim())
             setSaved(true)
             setTimeout(() => {
                 onClose()
             }, 1000)
         } else {
-            localStorage.removeItem('gemini_api_key')
+            safeLocalStorageRemove('gemini_api_key')
             setApiKey('')
             setSaved(true)
         }

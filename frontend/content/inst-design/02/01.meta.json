@@ -1,8 +1,18 @@
 {
     "chapter_title": "The ADDIE Framework",
     "title": "Module 1: Analysis & Design Phases",
+    "description": "Trace how instructional designers move from learner and context analysis into concrete learning goals, sequencing, and blueprint-level design decisions.",
     "learning_objectives": [
         "Identify the key components of the Analysis phase (learner, context, task).",
-        "Explain how the Design phase translates analysis into actionable learning blueprints."
-    ]
+        "Explain how the Design phase translates analysis into actionable learning blueprints.",
+        "Connect learner analysis data to measurable instructional objectives and content sequencing."
+    ],
+    "concept_ids": [
+        "analysis_phase",
+        "design_phase",
+        "learner_analysis",
+        "task_analysis",
+        "instructional_objectives"
+    ],
+    "estimated_time_minutes": 11
 }

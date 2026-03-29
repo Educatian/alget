@@ -3,6 +3,7 @@
  * Research-grade behavioral logging with sequential analysis support
  */
 import { supabase } from './supabase'
+import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
 
 // Session state
 let sessionId = null
@@ -31,17 +32,17 @@ function generateUUID() {
 }
 
 function ensureGuestCredentials() {
-    let guestId = localStorage.getItem('alget_guest_id')
-    let guestPassword = localStorage.getItem('alget_guest_password')
+    let guestId = safeLocalStorageGet('alget_guest_id')
+    let guestPassword = safeLocalStorageGet('alget_guest_password')
 
     if (!guestId) {
         guestId = generateUUID().substring(0, 8)
-        localStorage.setItem('alget_guest_id', guestId)
+        safeLocalStorageSet('alget_guest_id', guestId)
     }
 
     if (!guestPassword) {
         guestPassword = generateUUID() + generateUUID()
-        localStorage.setItem('alget_guest_password', guestPassword)
+        safeLocalStorageSet('alget_guest_password', guestPassword)
     }
 
     return {

@@ -1,5 +1,19 @@
 {
     "title": "Module 6: Collaborative & Social Learning",
     "description": "Exploring Vygotsky's Zone of Proximal Development (ZPD) and Communities of Practice in modern, networked learning environments.",
+    "chapter_title": "Motivation and Learner-Centered Design",
+    "learning_objectives": [
+        "Explain how collaborative interaction can accelerate understanding and transfer.",
+        "Use the Zone of Proximal Development to design peer support and coaching structures.",
+        "Apply communities-of-practice thinking to online or blended learning environments."
+    ],
+    "concept_ids": [
+        "collaborative_learning",
+        "social_learning",
+        "zone_of_proximal_development",
+        "communities_of_practice",
+        "peer_scaffolding"
+    ],
+    "estimated_time_minutes": 11,
     "order": 6
 }

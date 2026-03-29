@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Activity, ArrowRight, Brain, Flame, Users } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
+import { safeSessionStorageGet, safeSessionStorageRemove, safeSessionStorageSet } from '../lib/browserStorage'
 import { supabase } from '../lib/supabase'
 import '../index.css'
 
@@ -14,21 +15,29 @@ const EMPTY_SOCIAL = {
     reactionsToday: 0,
     topReactions: [],
     topSections: [],
-    progressByCourse: []
+    progressByCourse: [],
+    liveSectionConcurrency: [],
+    signalMix: []
 }
 
 function getInitialAuthState() {
-    return typeof window !== 'undefined' && window.sessionStorage.getItem('alget_researcher_access') === 'granted'
+    return safeSessionStorageGet('alget_researcher_access') === 'granted'
 }
 
 function summarizeSocialData(signals = [], presenceRows = [], progressRows = []) {
     const reactionCounts = {}
     const sectionCounts = {}
     const progressByCourse = {}
+    const signalMix = {}
+    const liveSectionConcurrency = {}
 
     signals.forEach((signal) => {
         if (signal.signal_type === 'reaction' && signal.signal_value) {
             reactionCounts[signal.signal_value] = (reactionCounts[signal.signal_value] || 0) + 1
+        }
+
+        if (signal.signal_type) {
+            signalMix[signal.signal_type] = (signalMix[signal.signal_type] || 0) + 1
         }
 
         if (signal.section_id) {
@@ -39,6 +48,17 @@ function summarizeSocialData(signals = [], presenceRows = [], progressRows = [])
     progressRows.forEach((row) => {
         const course = row.course || 'unknown'
         progressByCourse[course] = (progressByCourse[course] || 0) + 1
+    })
+
+    presenceRows.forEach((row) => {
+        if (!row.section_id) return
+        if (!liveSectionConcurrency[row.section_id]) {
+            liveSectionConcurrency[row.section_id] = {
+                count: 0,
+                course: row.course || 'unknown'
+            }
+        }
+        liveSectionConcurrency[row.section_id].count += 1
     })
 
     const uniqueReaders = new Set(presenceRows.map((row) => row.presence_key || row.alias)).size
@@ -61,6 +81,12 @@ function summarizeSocialData(signals = [], presenceRows = [], progressRows = [])
             .sort((left, right) => right[1] - left[1])
             .slice(0, 5),
         progressByCourse: Object.entries(progressByCourse)
+            .sort((left, right) => right[1] - left[1]),
+        liveSectionConcurrency: Object.entries(liveSectionConcurrency)
+            .map(([sectionId, data]) => ({ sectionId, course: data.course, count: data.count }))
+            .sort((left, right) => right.count - left.count)
+            .slice(0, 5),
+        signalMix: Object.entries(signalMix)
             .sort((left, right) => right[1] - left[1])
     }
 }
@@ -102,6 +128,20 @@ export default function AnalyticsDashboard() {
         }
     }, [masteryData])
 
+    const struggleConcepts = useMemo(() => {
+        return masteryData
+            .filter((row) => (row.mastery_score || 0) < 0.6)
+            .sort((left, right) => {
+                const leftScore = left.mastery_score || 0
+                const rightScore = right.mastery_score || 0
+                if (leftScore !== rightScore) {
+                    return leftScore - rightScore
+                }
+                return (right.attempts_count || 0) - (left.attempts_count || 0)
+            })
+            .slice(0, 6)
+    }, [masteryData])
+
     const handleAuthenticate = async (event) => {
         event.preventDefault()
         setLoading(true)
@@ -128,7 +168,7 @@ export default function AnalyticsDashboard() {
                 return
             }
 
-            window.sessionStorage.setItem('alget_researcher_access', 'granted')
+            safeSessionStorageSet('alget_researcher_access', 'granted')
             setIsAuthenticated(true)
             setPasscode('')
         } catch (err) {
@@ -212,9 +252,9 @@ export default function AnalyticsDashboard() {
                         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white shadow-lg shadow-red-900/20">
                             <Brain className="h-8 w-8" />
                         </div>
-                        <h1 className="text-2xl font-black tracking-tight text-slate-900">Researcher Dashboard</h1>
+                        <h1 className="text-2xl font-black tracking-tight text-slate-900">Research Console</h1>
                         <p className="mt-2 text-sm leading-6 text-slate-500">
-                            Access mastery, social pulse, progression, and cohort-level learning signals.
+                            Access Alabama Generative Intelligent Textbook mastery, social pulse, progression, and cohort-level learning signals.
                         </p>
                     </div>
 
@@ -255,9 +295,9 @@ export default function AnalyticsDashboard() {
                 <header className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl">
                     <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                         <div>
-                            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#9E1B32]">Research surface</p>
+                            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#9E1B32]">Alabama Generative Intelligent Textbook</p>
                             <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
-                                Open learner model and
+                                Research console and
                                 <span className="block bg-gradient-to-r from-[#9E1B32] via-[#c41e3a] to-[#2563eb] bg-clip-text text-transparent">
                                     social learning pulse
                                 </span>
@@ -276,7 +316,7 @@ export default function AnalyticsDashboard() {
                             </button>
                             <button
                                 onClick={() => {
-                                    window.sessionStorage.removeItem('alget_researcher_access')
+                                    safeSessionStorageRemove('alget_researcher_access')
                                     setIsAuthenticated(false)
                                 }}
                                 className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
@@ -456,6 +496,84 @@ export default function AnalyticsDashboard() {
                                     ))}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="grid gap-8 lg:grid-cols-3">
+                    <div className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Intervention queue</p>
+                        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Concepts needing attention</h2>
+                        <div className="mt-6 space-y-4">
+                            {struggleConcepts.length === 0 ? (
+                                <p className="text-sm text-slate-500">No high-priority support concepts are flagged right now.</p>
+                            ) : struggleConcepts.map((concept) => (
+                                <div key={concept.concept_id} className="rounded-[1.6rem] border border-red-100 bg-red-50/55 p-4">
+                                    <div className="flex items-start justify-between gap-3">
+                                        <div>
+                                            <p className="text-sm font-bold uppercase tracking-[0.08em] text-slate-900">
+                                                {formatConceptLabel(concept.concept_id)}
+                                            </p>
+                                            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-red-500">
+                                                {concept.confidence_level || 'low confidence'}
+                                            </p>
+                                        </div>
+                                        <span className="rounded-full bg-white px-2.5 py-1 text-xs font-bold text-red-600">
+                                            {Math.round((concept.mastery_score || 0) * 100)}%
+                                        </span>
+                                    </div>
+                                    <p className="mt-3 text-sm text-slate-600">
+                                        {concept.correct_count || 0} correct across {concept.attempts_count || 0} attempts.
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Live section concurrency</p>
+                        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Where peers are clustering now</h2>
+                        <div className="mt-6 space-y-3">
+                            {socialMetrics.liveSectionConcurrency.length === 0 ? (
+                                <p className="text-sm text-slate-500">Live section clustering appears once active readers are present.</p>
+                            ) : socialMetrics.liveSectionConcurrency.map((entry) => (
+                                <div key={entry.sectionId} className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3">
+                                    <div className="flex items-center justify-between gap-3">
+                                        <div>
+                                            <p className="text-sm font-semibold text-slate-800">{entry.sectionId}</p>
+                                            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                                                {formatConceptLabel(entry.course)}
+                                            </p>
+                                        </div>
+                                        <span className="rounded-full bg-white px-3 py-1 text-sm font-bold text-slate-900">
+                                            {entry.count}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Signal mix today</p>
+                        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Help, reaction, and completion balance</h2>
+                        <div className="mt-6 space-y-4">
+                            {socialMetrics.signalMix.length === 0 ? (
+                                <p className="text-sm text-slate-500">Signal mix appears after social and completion activity is recorded.</p>
+                            ) : socialMetrics.signalMix.map(([signal, count]) => (
+                                <div key={signal}>
+                                    <div className="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700">
+                                        <span className="capitalize">{formatSignalLabel(signal)}</span>
+                                        <span>{count}</span>
+                                    </div>
+                                    <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+                                        <div
+                                            className="h-full rounded-full bg-linear-to-r from-[#9E1B32] to-[#2563eb]"
+                                            style={{ width: `${Math.min(100, count * 12)}%` }}
+                                        ></div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>

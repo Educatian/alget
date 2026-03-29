@@ -1,14 +1,8 @@
-import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
+import { Suspense, lazy, useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import * as Popover from '@radix-ui/react-popover'
 import { ChevronLeft, ChevronRight, Settings } from 'lucide-react'
 import BookToc from '../components/BookToc'
-import ReadingPane from '../components/ReadingPane'
-import IntelRail from '../components/IntelRail'
-import ChatWidget from '../components/ChatWidget'
-import HighlightableContent from '../components/HighlightableContent'
-import SettingsModal from '../components/SettingsModal'
-import SocialPresencePanel from '../components/SocialPresencePanel'
 import { logPageView, logStuckEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
 import { useCourseProgress } from '../hooks/useCourseProgress'
@@ -16,11 +10,27 @@ import { useSocialPresence } from '../hooks/useSocialPresence'
 import API_BASE from '../lib/apiConfig'
 import '../index.css'
 
+const ReadingPane = lazy(() => import('../components/ReadingPane'))
+const IntelRail = lazy(() => import('../components/IntelRail'))
+const ChatWidget = lazy(() => import('../components/ChatWidget'))
+const HighlightableContent = lazy(() => import('../components/HighlightableContent'))
+const SettingsModal = lazy(() => import('../components/SettingsModal'))
+const SocialPresencePanel = lazy(() => import('../components/SocialPresencePanel'))
+
 function formatCourseLabel(course) {
     return course
         .split('-')
         .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
         .join(' ')
+}
+
+function SurfaceFallback({ label, compact = false }) {
+    return (
+        <div className={`rounded-[2rem] border border-white/70 bg-white/75 shadow-[0_12px_30px_rgba(15,23,42,0.04)] ${compact ? 'p-4' : 'p-6'}`}>
+            <p className="text-sm font-semibold text-slate-500">{label}</p>
+            <div className={`mt-4 animate-pulse rounded-2xl bg-slate-100 ${compact ? 'h-24' : 'h-40'}`} />
+        </div>
+    )
 }
 
 export default function BookLayout({ user, onLogout }) {
@@ -110,7 +120,11 @@ export default function BookLayout({ user, onLogout }) {
 
     useEffect(() => {
         if (!mainScrollRef.current) return
-        mainScrollRef.current.scrollTo({ top: 0, behavior: 'smooth' })
+        if (typeof mainScrollRef.current.scrollTo === 'function') {
+            mainScrollRef.current.scrollTo({ top: 0, behavior: 'smooth' })
+        } else {
+            mainScrollRef.current.scrollTop = 0
+        }
     }, [sectionPath])
 
     const handleNavigate = useCallback((nextChapter, nextSection, direction = 'forward') => {
@@ -172,7 +186,11 @@ export default function BookLayout({ user, onLogout }) {
 
     return (
         <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(158,27,50,0.08),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(37,99,235,0.08),_transparent_28%),linear-gradient(to_bottom,_#f8fafc,_#eef2f7)] flex flex-col font-sans selection:bg-[#9E1B32]/20">
-            {isSettingsOpen && <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />}
+            {isSettingsOpen && (
+                <Suspense fallback={<div className="fixed inset-0 z-[100] bg-slate-950/10 backdrop-blur-sm" />}>
+                    <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+                </Suspense>
+            )}
 
             <header className="sticky top-0 z-50 border-b border-white/70 bg-white/70 px-6 py-4 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-3xl">
                 <div className="flex flex-wrap items-center justify-between gap-4">
@@ -181,8 +199,8 @@ export default function BookLayout({ user, onLogout }) {
                             AL
                         </div>
                         <div className="min-w-0">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-slate-400">ALGET Learning Surface</p>
-                            <h1 className="truncate text-lg font-bold tracking-tight text-slate-900">Intelligent Textbook Workspace</h1>
+                            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-slate-400">Alabama Generative Intelligent Textbook</p>
+                            <h1 className="truncate text-lg font-bold tracking-tight text-slate-900">Learning Workspace</h1>
                             <p className="truncate text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
                                 {formatCourseLabel(course)} · Chapter {chapter} · Section {section}
                             </p>
@@ -252,16 +270,18 @@ export default function BookLayout({ user, onLogout }) {
                                     sideOffset={12}
                                     className="z-[90] w-[26rem] rounded-3xl border border-white/70 bg-white/95 p-0 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-2xl"
                                 >
-                                    <SocialPresencePanel
-                                        connected={socialState.connected}
-                                        peers={socialState.peers}
-                                        sameHeadingPeers={socialState.sameHeadingPeers}
-                                        sameConceptPeers={socialState.sameConceptPeers}
-                                        signalSummary={socialState.signalSummary}
-                                        liveFeed={socialState.liveFeed}
-                                        onReaction={socialState.sendReaction}
-                                        sectionTitle={sectionData?.meta?.title || sectionData?.title || ''}
-                                    />
+                                    <Suspense fallback={<SurfaceFallback label="Loading social presence..." compact />}>
+                                        <SocialPresencePanel
+                                            connected={socialState.connected}
+                                            peers={socialState.peers}
+                                            sameHeadingPeers={socialState.sameHeadingPeers}
+                                            sameConceptPeers={socialState.sameConceptPeers}
+                                            signalSummary={socialState.signalSummary}
+                                            liveFeed={socialState.liveFeed}
+                                            onReaction={socialState.sendReaction}
+                                            sectionTitle={sectionData?.meta?.title || sectionData?.title || ''}
+                                        />
+                                    </Suspense>
                                 </Popover.Content>
                             </Popover.Portal>
                         </Popover.Root>
@@ -289,7 +309,7 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             onClick={() => navigate('/analytics')}
                             className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-700"
-                            title="Researcher Dashboard"
+                            title="Research Console"
                         >
                             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -313,7 +333,7 @@ export default function BookLayout({ user, onLogout }) {
                 </div>
             </header>
 
-            <div className="flex flex-1 overflow-hidden relative">
+            <div className="relative flex flex-1 overflow-hidden">
                 <aside className="w-72 shrink-0 overflow-y-auto border-r border-white/70 bg-white/45 shadow-[10px_0_30px_rgba(15,23,42,0.03)] backdrop-blur-3xl">
                     <BookToc
                         toc={toc}
@@ -331,29 +351,31 @@ export default function BookLayout({ user, onLogout }) {
                             key={sectionPath}
                             className={`min-h-full ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
                         >
-                            <HighlightableContent
-                                sectionId={sectionPath}
-                                userId={user?.id}
-                                onAskBigAL={(text) => setHighlightQuestion(text)}
-                            >
-                                <ReadingPane
-                                    course={course}
-                                    chapter={chapter}
-                                    section={section}
-                                    sectionData={sectionData}
-                                    loading={loading}
-                                    onStuckEvent={handleStuckEvent}
-                                    onHeadingChange={setActiveHeading}
-                                    isCompleted={isCompleted(course, chapter, section)}
-                                    markCompleted={() => {
-                                        const alreadyCompleted = isCompleted(course, chapter, section)
-                                        markCompleted(course, chapter, section)
-                                        if (!alreadyCompleted) {
-                                            void socialState.recordCompletion()
-                                        }
-                                    }}
-                                />
-                            </HighlightableContent>
+                            <Suspense fallback={<div className="mx-auto max-w-3xl px-8 py-12"><SurfaceFallback label="Loading reading surface..." /></div>}>
+                                <HighlightableContent
+                                    sectionId={sectionPath}
+                                    userId={user?.id}
+                                    onAskBigAL={(text) => setHighlightQuestion(text)}
+                                >
+                                    <ReadingPane
+                                        course={course}
+                                        chapter={chapter}
+                                        section={section}
+                                        sectionData={sectionData}
+                                        loading={loading}
+                                        onStuckEvent={handleStuckEvent}
+                                        onHeadingChange={setActiveHeading}
+                                        isCompleted={isCompleted(course, chapter, section)}
+                                        markCompleted={() => {
+                                            const alreadyCompleted = isCompleted(course, chapter, section)
+                                            markCompleted(course, chapter, section)
+                                            if (!alreadyCompleted) {
+                                                void socialState.recordCompletion()
+                                            }
+                                        }}
+                                    />
+                                </HighlightableContent>
+                            </Suspense>
                         </div>
                     </main>
 
@@ -402,40 +424,70 @@ export default function BookLayout({ user, onLogout }) {
                 </div>
 
                 <aside
-                    className={`overflow-y-auto border-l border-white/70 bg-white/55 shadow-[-20px_0_40px_rgba(15,23,42,0.05)] backdrop-blur-3xl transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] z-20 ${railOpen ? 'w-80 translate-x-0' : 'w-0 translate-x-full'
+                    className={`relative z-20 hidden shrink-0 xl:block transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${railOpen ? 'w-[22rem] pl-4 pr-4 py-4' : 'w-0 pl-0 pr-0 py-0'
                         }`}
+                    aria-hidden={!railOpen}
                 >
                     {railOpen && (
-                        <IntelRail
-                            context={railContext?.sectionId === sectionPath ? railContext : null}
-                            stuckEvent={railContext?.sectionId === sectionPath ? stuckEvent : null}
-                            sectionInfo={{
-                                sectionId: sectionPath,
-                                sectionTitle: sectionData?.meta?.title || sectionData?.title || '',
-                                conceptIds: sectionData?.meta?.concept_ids || [],
-                                currentHeading: sectionData?.meta?.title || '',
-                                pageContent: sectionData?.raw || ''
-                            }}
-                            onClose={() => setRailOpen(false)}
-                        />
+                        <div className="sticky top-4 h-[calc(100vh-7.5rem)] min-h-[34rem]">
+                            <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/80 bg-white/78 shadow-[-20px_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-3xl">
+                                <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
+                                    <IntelRail
+                                        context={railContext?.sectionId === sectionPath ? railContext : null}
+                                        stuckEvent={railContext?.sectionId === sectionPath ? stuckEvent : null}
+                                        sectionInfo={{
+                                            sectionId: sectionPath,
+                                            sectionTitle: sectionData?.meta?.title || sectionData?.title || '',
+                                            conceptIds: sectionData?.meta?.concept_ids || [],
+                                            currentHeading: sectionData?.meta?.title || '',
+                                            pageContent: sectionData?.raw || ''
+                                        }}
+                                        onClose={() => setRailOpen(false)}
+                                    />
+                                </Suspense>
+                            </div>
+                        </div>
                     )}
                 </aside>
+
+                {railOpen && (
+                    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 px-4 pb-4 xl:hidden">
+                        <div className="pointer-events-auto mx-auto h-[min(72vh,42rem)] max-w-xl overflow-hidden rounded-[2rem] border border-white/80 bg-white/88 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-3xl">
+                            <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
+                                <IntelRail
+                                    context={railContext?.sectionId === sectionPath ? railContext : null}
+                                    stuckEvent={railContext?.sectionId === sectionPath ? stuckEvent : null}
+                                    sectionInfo={{
+                                        sectionId: sectionPath,
+                                        sectionTitle: sectionData?.meta?.title || sectionData?.title || '',
+                                        conceptIds: sectionData?.meta?.concept_ids || [],
+                                        currentHeading: sectionData?.meta?.title || '',
+                                        pageContent: sectionData?.raw || ''
+                                    }}
+                                    onClose={() => setRailOpen(false)}
+                                />
+                            </Suspense>
+                        </div>
+                    </div>
+                )}
             </div>
 
-            <ChatWidget
-                key={sectionPath}
-                ref={chatWidgetRef}
-                initialQuestion={highlightQuestion}
-                onQuestionSent={() => setHighlightQuestion(null)}
-                userId={user?.id}
-                context={{
-                    sectionId: sectionPath,
-                    pageContent: sectionData?.raw || '',
-                    sectionTitle: sectionData?.title || '',
-                    conceptIds: sectionData?.meta?.concept_ids || [],
-                    course
-                }}
-            />
+            <Suspense fallback={null}>
+                <ChatWidget
+                    key={sectionPath}
+                    ref={chatWidgetRef}
+                    initialQuestion={highlightQuestion}
+                    onQuestionSent={() => setHighlightQuestion(null)}
+                    userId={user?.id}
+                    context={{
+                        sectionId: sectionPath,
+                        pageContent: sectionData?.raw || '',
+                        sectionTitle: sectionData?.title || '',
+                        conceptIds: sectionData?.meta?.concept_ids || [],
+                        course
+                    }}
+                />
+            </Suspense>
         </div>
     )
 }

@@ -1,37 +1,20 @@
-import { useState, useEffect, useRef, useMemo } from 'react'
-import Markdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
-import rehypeRaw from 'rehype-raw'
-import 'katex/dist/katex.min.css'
-import PracticeBlock from './PracticeBlock'
-import KnowledgeCheck from './KnowledgeCheck'
-import TextAnnotator from './TextAnnotator'
-import DynamicScenario from './DynamicScenario'
-import ConceptDiagrams from './ConceptDiagrams'
-import InteractiveQuiz from './InteractiveQuiz'
-import AffectiveReaction from './AffectiveReaction'
-import KnowledgeGraph from './KnowledgeGraph'
-import { logTimeOnTask, logInteraction, logEvent } from '../lib/loggingService'
-import { TorqueDiagram } from './TorqueDiagram'
-import { MicroTurbulenceDiagram } from './AeroacousticsDiagram'
-import { KinematicsDiagram } from './KinematicsDiagram'
-import { FluidDynamicsDiagram } from './FluidDynamicsDiagram'
-import { CellularSolidDiagram } from './CellularSolidDiagram'
-import { HierarchicalStructureDiagram } from './HierarchicalStructureDiagram'
-import { DirectionalAdhesionDiagram } from './DirectionalAdhesionDiagram'
-import { GeckoAdhesionDiagram } from './GeckoAdhesionDiagram'
-import { StructuralColorDiagram } from './StructuralColorDiagram'
-import { SelfHealingDiagram } from './SelfHealingDiagram'
-import { SwarmDiagram } from './SwarmDiagram'
+import { Suspense, lazy, useState } from 'react'
+import { logInteraction } from '../lib/loggingService'
 
-import { ConstructivismDiagram } from './ConstructivismDiagram'
-import { CognitivismDiagram } from './CognitivismDiagram'
-import { BehaviorismDiagram } from './BehaviorismDiagram'
-import { FormativeSummativeDiagram } from './FormativeSummativeDiagram'
-import { RubricDesignDiagram } from './RubricDesignDiagram'
-import { FeedbackModelsDiagram } from './FeedbackModelsDiagram'
+const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
+const PracticeBlock = lazy(() => import('./PracticeBlock'))
+const KnowledgeCheck = lazy(() => import('./KnowledgeCheck'))
+const AffectiveReaction = lazy(() => import('./AffectiveReaction'))
+const KnowledgeGraph = lazy(() => import('./KnowledgeGraph'))
+
+function PanelFallback({ label }) {
+    return (
+        <div className="rounded-[1.75rem] border border-slate-200 bg-white/75 p-6 shadow-sm">
+            <p className="text-sm font-semibold text-slate-500">{label}</p>
+            <div className="mt-4 h-24 animate-pulse rounded-2xl bg-slate-100" />
+        </div>
+    )
+}
 
 export default function ReadingPane({
     sectionData,
@@ -45,95 +28,21 @@ export default function ReadingPane({
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
     const [showGraph, setShowGraph] = useState(false)
-    const startTimeRef = useRef(0)
-    const [activeHeading, setActiveHeading] = useState('Introduction')
 
     // Section ID computation
-    const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null;
-
-    const markdownComponents = useMemo(() => ({
-        'dynamic-scenario': (props) => (
-            <DynamicScenario
-                {...props}
-                course={sectionData?.meta?.course || 'bio-inspired'}
-            />
-        ),
-        'concept-diagram': (props) => <ConceptDiagrams {...props} />,
-        'interactive-quiz': ({ options, ...props }) => (
-            <InteractiveQuiz
-                options={options}
-                sectionId={sectionId}
-                defaultConceptId={sectionData?.meta?.concept_ids?.[0] || null}
-                {...props}
-            />
-        ),
-        'torque-diagram': (props) => <TorqueDiagram {...props} />,
-        'kinematics-diagram': (props) => <KinematicsDiagram {...props} />,
-        'micro-turbulence-diagram': (props) => <MicroTurbulenceDiagram {...props} />,
-        'fluid-dynamics-diagram': (props) => <FluidDynamicsDiagram {...props} />,
-        'cellular-solid-diagram': (props) => <CellularSolidDiagram {...props} />,
-        'hierarchical-structure-diagram': (props) => <HierarchicalStructureDiagram {...props} />,
-        'directional-adhesion-diagram': (props) => <DirectionalAdhesionDiagram {...props} />,
-        'gecko-adhesion-diagram': (props) => <GeckoAdhesionDiagram {...props} />,
-        'structural-color-diagram': (props) => <StructuralColorDiagram {...props} />,
-        'self-healing-diagram': (props) => <SelfHealingDiagram {...props} />,
-        'swarm-diagram': (props) => <SwarmDiagram {...props} />,
-
-        'constructivism-diagram': (props) => <ConstructivismDiagram {...props} />,
-        'cognitivism-diagram': (props) => <CognitivismDiagram {...props} />,
-        'behaviorism-diagram': (props) => <BehaviorismDiagram {...props} />,
-        'formative-summative-diagram': (props) => <FormativeSummativeDiagram {...props} />,
-        'rubric-design-diagram': (props) => <RubricDesignDiagram {...props} />,
-        'feedback-models-diagram': (props) => <FeedbackModelsDiagram {...props} />,
-    }), [sectionData?.meta?.concept_ids, sectionData?.meta?.course, sectionId])
-
-    useEffect(() => {
-        // Reset timer when section changes
-        startTimeRef.current = Date.now();
-        // Setup Intersection Observer for reading context tracking
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const visibleEntries = entries.filter(ent => ent.isIntersecting);
-                if (visibleEntries.length > 0) {
-                    visibleEntries.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-                    setActiveHeading(visibleEntries[0].target.innerText);
-                }
-            },
-            { rootMargin: '-10% 0px -80% 0px', threshold: 0.1 }
-        );
-
-        // Attach observer after render
-        const timeoutId = setTimeout(() => {
-            const headings = document.querySelectorAll('.prose h1, .prose h2, .prose h3');
-            headings.forEach(h => observer.observe(h));
-        }, 500);
-
-        return () => {
-            clearTimeout(timeoutId);
-            observer.disconnect();
-            // Log time on task when component unmounts or section changes
-            if (sectionId) {
-                const durationMs = Date.now() - startTimeRef.current;
-                logTimeOnTask(durationMs, sectionId);
-            }
-        }
-    }, [sectionId]);
-
-    useEffect(() => {
-        onHeadingChange?.(activeHeading)
-    }, [activeHeading, onHeadingChange])
+    const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null
 
     const handleToggleSimulation = () => {
-        const newState = !showSimulation;
-        setShowSimulation(newState);
-        logInteraction('simulation_accordion', newState ? 'opened' : 'closed', sectionId);
-    };
+        const newState = !showSimulation
+        setShowSimulation(newState)
+        logInteraction('simulation_accordion', newState ? 'opened' : 'closed', sectionId)
+    }
 
     const handleToggleIllustration = () => {
-        const newState = !showIllustration;
-        setShowIllustration(newState);
-        logInteraction('illustration_accordion', newState ? 'opened' : 'closed', sectionId);
-    };
+        const newState = !showIllustration
+        setShowIllustration(newState)
+        logInteraction('illustration_accordion', newState ? 'opened' : 'closed', sectionId)
+    }
 
     if (loading) {
         return (
@@ -211,11 +120,13 @@ export default function ReadingPane({
                 {/* Knowledge Graph Overlay */}
                 {showGraph && (
                     <div className="mb-8 animate-fade-in origin-top">
-                        <KnowledgeGraph
-                            course={meta?.course || 'inst-design'}
-                            currentSectionId={sectionId}
-                            currentConceptIds={meta?.concept_ids || []}
-                        />
+                        <Suspense fallback={<PanelFallback label="Loading brain network..." />}>
+                            <KnowledgeGraph
+                                course={meta?.course || 'inst-design'}
+                                currentSectionId={sectionId}
+                                currentConceptIds={meta?.concept_ids || []}
+                            />
+                        </Suspense>
                     </div>
                 )}
 
@@ -238,47 +149,19 @@ export default function ReadingPane({
             </header>
 
             {/* Main Content (Narrative) with LaTeX Support */}
-            <article className="prose prose-lg max-w-none 
-        prose-headings:text-gray-900 prose-headings:font-semibold
-        prose-p:text-gray-600 prose-p:leading-relaxed
-        prose-strong:text-[#9E1B32] prose-strong:font-semibold
-        prose-em:text-gray-700
-        prose-ul:text-gray-600 prose-li:my-1
-        prose-blockquote:border-l-[#9E1B32] prose-blockquote:bg-gray-50 
-        prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-lg
-        prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-        prose-pre:bg-gray-900 prose-pre:text-gray-100
-        prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:bg-gray-100 prose-th:px-3 prose-th:py-2
-        prose-td:border prose-td:border-gray-300 prose-td:px-3 prose-td:py-2
-        mb-8"
-            >
-                <TextAnnotator
-                    onAskAi={(selectedText, latencyMs) => {
-                        logInteraction('annotation_ask_ai', selectedText, sectionId)
-                        if (latencyMs) {
-                            logEvent('highlight_to_chat_latency', activeHeading, {
-                                latency_ms: latencyMs,
-                                viewport_context: activeHeading,
-                                text: selectedText
-                            }, sectionId)
-                        }
-                        if (onAskAi) onAskAi(selectedText)
+            <Suspense fallback={<PanelFallback label="Loading reading narrative..." />}>
+                <ReadingNarrative
+                    content={content}
+                    sectionId={sectionId}
+                    course={sectionData?.meta?.course}
+                    conceptIds={sectionData?.meta?.concept_ids || []}
+                    sectionDescription={sectionData?.meta?.description}
+                    onAskAi={onAskAi}
+                    onHeadingChange={(heading) => {
+                        onHeadingChange?.(heading)
                     }}
-                    onAddNote={(selectedText) => {
-                        logInteraction('annotation_add_note', selectedText, sectionId)
-                        // Trigger ghost peer AI logic here eventually
-                    }}
-                    content={
-                        <Markdown
-                            remarkPlugins={[remarkGfm, remarkMath]}
-                            rehypePlugins={[rehypeKatex, rehypeRaw]}
-                            components={markdownComponents}
-                        >
-                            {content || '*No content available*'}
-                        </Markdown>
-                    }
                 />
-            </article>
+            </Suspense>
 
             {/* Embedded Blocks (Simulation/Illustration) */}
             {(simulation || illustration) && (
@@ -370,32 +253,38 @@ export default function ReadingPane({
             )}
 
             {/* Affective Telemetry */}
-            <AffectiveReaction
-                sectionId={sectionId}
-                conceptIds={meta?.concept_ids}
-            />
+            <Suspense fallback={<PanelFallback label="Loading reflection tools..." />}>
+                <AffectiveReaction
+                    sectionId={sectionId}
+                    conceptIds={meta?.concept_ids}
+                />
+            </Suspense>
 
             {/* Divider */}
             <hr className="border-gray-200 my-8" />
 
             {/* Knowledge Check (Formative Assessment) */}
-            <KnowledgeCheck
-                bioContext={content}
-                engContext={meta?.description}
-                sectionTitle={meta?.title}
-                learningObjectives={meta?.learning_objectives}
-                conceptIds={meta?.concept_ids}
-            />
+            <Suspense fallback={<PanelFallback label="Loading knowledge check..." />}>
+                <KnowledgeCheck
+                    bioContext={content}
+                    engContext={meta?.description}
+                    sectionTitle={meta?.title}
+                    learningObjectives={meta?.learning_objectives}
+                    conceptIds={meta?.concept_ids}
+                />
+            </Suspense>
 
             {/* Divider */}
             <hr className="border-gray-200 my-8" />
 
             {/* Practice Block */}
-            <PracticeBlock
-                practice={practice}
-                sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}
-                onStuckEvent={onStuckEvent}
-            />
+            <Suspense fallback={<PanelFallback label="Loading practice..." />}>
+                <PracticeBlock
+                    practice={practice}
+                    sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}
+                    onStuckEvent={onStuckEvent}
+                />
+            </Suspense>
 
             {/* Mark as read button */}
             <div className="mt-12 mb-8 flex justify-center">
