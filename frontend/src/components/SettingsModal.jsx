@@ -1,19 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Key, X, Check, Eye, EyeOff } from 'lucide-react'
 
 export default function SettingsModal({ isOpen, onClose }) {
-    const [apiKey, setApiKey] = useState('')
+    const [apiKey, setApiKey] = useState(() => localStorage.getItem('gemini_api_key') || '')
     const [saved, setSaved] = useState(false)
     const [showKey, setShowKey] = useState(false)
-
-    useEffect(() => {
-        if (isOpen) {
-            const stored = localStorage.getItem('gemini_api_key')
-            if (stored) setApiKey(stored)
-            setSaved(false)
-            setShowKey(false)
-        }
-    }, [isOpen])
 
     const handleSave = () => {
         if (apiKey.trim()) {
@@ -39,7 +30,7 @@ export default function SettingsModal({ isOpen, onClose }) {
                         <Key className="w-5 h-5 text-indigo-600" />
                         API Settings
                     </h3>
-                    <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
+                    <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -72,12 +63,14 @@ export default function SettingsModal({ isOpen, onClose }) {
 
                 <div className="px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
                     <button
+                        type="button"
                         onClick={onClose}
                         className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
                     >
                         Cancel
                     </button>
                     <button
+                        type="button"
                         onClick={handleSave}
                         className="px-4 py-2 text-sm font-medium bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2"
                     >

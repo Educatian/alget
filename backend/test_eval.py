@@ -1,33 +1,29 @@
+import socket
+
+import pytest
 import requests
-import json
 
-url = "http://localhost:8000/api/orchestrate"
 
-payload = {
-  "query": "Evaluate my design: I want to make a train purely out of kingfisher feathers to reduce drag.",
-  "grade_level": "Undergraduate",
-  "interest": "Aerospace Engineering",
-  "history": []
-}
+def _local_server_available(host: str = "127.0.0.1", port: int = 8000) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.settimeout(0.25)
+        return sock.connect_ex((host, port)) == 0
 
-print(f"Testing Orchestrator API for Evaluation Intent...")
 
-try:
-    response = requests.post(url, json=payload)
-    if response.status_code == 200:
-        data = response.json()
-        print(f"Intent detected: {data.get('intent')}")
-        
-        eval_data = data.get('evaluation')
-        if eval_data:
-            print("Successfully received evaluation data!")
-            print(json.dumps(eval_data, indent=2))
-        else:
-            print("FAILED to get evaluation data. Output:")
-            print(json.dumps(data, indent=2))
-            
-    else:
-        print(f"Error {response.status_code}: {response.text}")
-        
-except Exception as e:
-    print(f"Connection failed: {e}")
+@pytest.mark.skipif(
+    not _local_server_available(),
+    reason="Local backend server is not running on http://127.0.0.1:8000.",
+)
+def test_orchestrate_evaluate_endpoint_responds():
+    response = requests.post(
+        "http://127.0.0.1:8000/api/orchestrate",
+        json={
+            "query": "Evaluate my design: I want to make a train purely out of kingfisher feathers to reduce drag.",
+            "grade_level": "Undergraduate",
+            "interest": "Aerospace Engineering",
+            "history": [],
+        },
+        timeout=30,
+    )
+
+    assert response.status_code == 200

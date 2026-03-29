@@ -4,9 +4,13 @@
     "title": "Introduction to Dynamics",
     "chapter_title": "Foundational Kinematics",
     "course": "dynamics",
+    "description": "Differentiate kinematics from kinetics and interpret velocity and acceleration in engineering motion problems.",
+    "estimated_time_minutes": 12,
     "learning_objectives": [
         "Understand the difference between statics and dynamics",
-        "Define position, velocity, and acceleration"
+        "Define position, velocity, and acceleration",
+        "Interpret the signs of velocity and acceleration in one-dimensional motion",
+        "Explain why engineers separate describing motion from explaining its causes"
     ],
     "concept_ids": [
         "kinematics",

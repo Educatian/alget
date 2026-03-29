@@ -31,7 +31,7 @@ export const SwarmDiagram = () => {
     const shortPathPheromoneOpacity = Math.min(1.0, 0.2 + (step / 80));
 
     // Ant positions calculated via simple offsets
-    const calcAnts = (path, amount, offset) => {
+    const calcAnts = (path, amount) => {
         return Array.from({ length: amount }).map((_, i) => {
             // A pseudo-random flutter based on step
             let xOffset = Math.sin((step + i * 10) * 0.1) * 3;
@@ -89,8 +89,8 @@ export const SwarmDiagram = () => {
                 <path d="M 140 150 Q 300 280 470 150" fill="none" stroke="#ef4444" strokeWidth="15" strokeLinecap="round" style={{ opacity: step === 0 ? 0 : shortPathPheromoneOpacity, transition: 'opacity 0.2s' }} />
 
                 {/* Ants rendering based on stage */}
-                {calcAnts('long', earlyStage ? 10 : (lateStage ? 1 : 5), 0)}
-                {calcAnts('short', earlyStage ? 10 : (lateStage ? 15 : 8), 0)}
+                {calcAnts('long', earlyStage ? 10 : (lateStage ? 1 : 5))}
+                {calcAnts('short', earlyStage ? 10 : (lateStage ? 15 : 8))}
 
                 <text x="300" y="30" textAnchor="middle" className="text-sm font-bold fill-slate-400">Long Route</text>
                 <text x="300" y="260" textAnchor="middle" className="text-sm font-bold fill-red-600 drop-shadow-sm">Short Route (Stigmergic Winner)</text>

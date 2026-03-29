@@ -30,6 +30,26 @@ function generateUUID() {
     })
 }
 
+function ensureGuestCredentials() {
+    let guestId = localStorage.getItem('alget_guest_id')
+    let guestPassword = localStorage.getItem('alget_guest_password')
+
+    if (!guestId) {
+        guestId = generateUUID().substring(0, 8)
+        localStorage.setItem('alget_guest_id', guestId)
+    }
+
+    if (!guestPassword) {
+        guestPassword = generateUUID() + generateUUID()
+        localStorage.setItem('alget_guest_password', guestPassword)
+    }
+
+    return {
+        guestEmail: `guest-${guestId}@alget.test`,
+        guestPassword
+    }
+}
+
 /**
  * Initialize a new session
  */
@@ -59,25 +79,20 @@ export async function initSession(user) {
         }
     } else {
         // We must create a real auth.users DB entry or the foreign key will reject all logs
-        let guestId = localStorage.getItem('alget_guest_id');
-        if (!guestId) {
-            guestId = generateUUID().substring(0, 8); // Short ID for email
-            localStorage.setItem('alget_guest_id', guestId);
-        }
+        const { guestEmail, guestPassword } = ensureGuestCredentials()
 
         try {
             // Attempt to create a dummy user to bypass foreign key constraint
-            const guestEmail = `guest-${guestId}@alget.test`;
             const { data: authData, error: authError } = await supabase.auth.signUp({
                 email: guestEmail,
-                password: 'immersivebama'
+                password: guestPassword
             });
 
             if (authError && authError.message.includes('already registered')) {
                 // If already registered, just log them in
                 const { data: signInData } = await supabase.auth.signInWithPassword({
                     email: guestEmail,
-                    password: 'immersivebama'
+                    password: guestPassword
                 });
                 userId = signInData?.user?.id || '00000000-0000-0000-0000-000000000000';
             } else {

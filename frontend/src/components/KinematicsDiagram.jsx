@@ -11,17 +11,16 @@ export const KinematicsDiagram = () => {
             interval = setInterval(() => {
                 setTime((t) => (t + 1) % 100); // Loop from 0 to 99
             }, 50);
-        } else {
-            clearInterval(interval);
-            setTime(0);
         }
         return () => clearInterval(interval);
     }, [isPlaying]);
 
+    const displayedTime = isPlaying ? time : 0;
+
     // Path mathematics (Projectile motion arc)
     // Formula for simple parabolic motion: y = a(x - h)^2 + k
     // Let's scale t(0 to 100) to map to x(50 to 350)
-    const tScaled = time / 100;
+    const tScaled = displayedTime / 100;
     const x = 50 + tScaled * 300;
 
     // Parabola passing through (50, 100), peak at (200, 20), down at (350, 100)
@@ -84,7 +83,7 @@ export const KinematicsDiagram = () => {
 
                     {/* Active Variables Display */}
                     <g transform="translate(150, 140)">
-                        <text x="0" y="0" fill="#64748b" fontSize="10" fontWeight="bold">t = {(time / 10).toFixed(1)}s</text>
+                        <text x="0" y="0" fill="#64748b" fontSize="10" fontWeight="bold">t = {(displayedTime / 10).toFixed(1)}s</text>
                     </g>
 
                     {/* Dynamic Moving System */}

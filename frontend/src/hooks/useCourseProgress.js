@@ -1,17 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+
+function loadCompletedSections(userId) {
+    const saved = localStorage.getItem(`alget_progress_${userId || 'guest'}`);
+
+    if (!saved) {
+        return [];
+    }
+
+    try {
+        return JSON.parse(saved);
+    } catch {
+        return [];
+    }
+}
 
 export function useCourseProgress(user) {
-    const [completedSections, setCompletedSections] = useState([]);
-
-    useEffect(() => {
-        const key = `alget_progress_${user?.id || 'guest'}`;
-        const saved = localStorage.getItem(key);
-        if (saved) {
-            try {
-                setCompletedSections(JSON.parse(saved));
-            } catch (e) { }
-        }
-    }, [user]);
+    const [completedSections, setCompletedSections] = useState(() => loadCompletedSections(user?.id));
 
     const markCompleted = (course, chapter, section) => {
         const id = `${course}/${chapter}/${section}`;

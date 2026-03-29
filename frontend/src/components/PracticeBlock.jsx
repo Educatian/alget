@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import API_BASE from '../lib/apiConfig'
-import { fuseTelemetry } from '../lib/knowledgeService'
+import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
 
 const STUCK_RULES = {
     IDLE_TIMEOUT_MS: 90000,
@@ -8,7 +8,7 @@ const STUCK_RULES = {
     HINT_CLICK_COUNT: 2
 }
 
-export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
+export default function PracticeBlock({ practice, onStuckEvent, sectionId }) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [answers, setAnswers] = useState({})
     const [gradeResults, setGradeResults] = useState({})
@@ -50,6 +50,12 @@ export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
         }
     }, [currentProblem, onStuckEvent])
 
+    useEffect(() => {
+        setHintCount(0)
+        setShowHint(false)
+        setConsecutiveWrong(0)
+    }, [currentProblem?.id])
+
     // Handle answer submission
     const handleSubmit = async (problemId) => {
         const answer = answers[problemId]
@@ -68,6 +74,18 @@ export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
             const result = await res.json()
 
             setGradeResults(prev => ({ ...prev, [problemId]: result }))
+            recordAdaptiveSignal(
+                sectionId,
+                result.is_correct ? 'practice_correct' : 'practice_incorrect',
+                {
+                    problemId,
+                    conceptId: currentProblem?.concept_id || null
+                }
+            )
+
+            if (currentProblem?.concept_id) {
+                await updateMastery({ [currentProblem.concept_id]: 1.0 }, result.is_correct)
+            }
 
             // Track consecutive wrong answers
             if (!result.is_correct) {
@@ -105,6 +123,10 @@ export default function PracticeBlock({ practice, sectionId, onStuckEvent }) {
         const newCount = hintCount + 1
         setHintCount(newCount)
         setShowHint(true)
+        recordAdaptiveSignal(sectionId, 'hint_request', {
+            problemId: currentProblem?.id,
+            conceptId: currentProblem?.concept_id || null
+        })
 
         // Dispatch an event to open ChatWidget for Socratic hinting
         const event = new CustomEvent('open-chat', {

@@ -1,30 +1,24 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { fuseTelemetry } from '../lib/knowledgeService';
 
 export default function SimulationFrame({ htmlCode, description, concepts }) {
     const iframeRef = useRef(null);
-    const [loadError, setLoadError] = useState(false);
 
     useEffect(() => {
         if (!htmlCode) return;
 
-        // Safety check - we inject the raw HTML string into an iframe srcdoc so it executes sandboxed
         try {
             const iframe = iframeRef.current;
-            if (iframe) {
-                const handleIframeLoad = () => {
-                    // Send Telemetry Evidence when user starts playing with the simulation
-                    if (concepts && concepts.length > 0) {
-                        fuseTelemetry(concepts[0], 'simulation_play', 1.0).catch(console.error);
-                    }
-                };
+            if (!iframe) return;
 
-                iframe.onload = handleIframeLoad;
-                iframe.srcdoc = htmlCode;
-            }
-        } catch (e) {
-            console.error("Failed to inject simulation HTML into iframe:", e);
-            setLoadError(true);
+            iframe.onload = () => {
+                if (concepts && concepts.length > 0) {
+                    fuseTelemetry(concepts[0], 'simulation_play', 1.0).catch(console.error);
+                }
+            };
+            iframe.srcdoc = htmlCode;
+        } catch (error) {
+            console.error('Failed to inject simulation HTML into iframe:', error);
         }
     }, [htmlCode, concepts]);
 
@@ -37,7 +31,7 @@ export default function SimulationFrame({ htmlCode, description, concepts }) {
             <div className="bg-slate-800/80 backdrop-blur-md px-5 py-4 border-b border-slate-700/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 bg-blue-500/10 text-blue-400 rounded-md flex items-center justify-center text-lg shadow-[inset_0_2px_4px_rgb(0,0,0,0.1)] border border-blue-500/20">
-                        🕹️
+                        Sim
                     </div>
                     <h3 className="text-white font-bold flex items-center gap-3 tracking-wide">
                         Interactive Physics Simulation
@@ -55,23 +49,14 @@ export default function SimulationFrame({ htmlCode, description, concepts }) {
                 )}
             </div>
 
-            {loadError ? (
-                <div className="p-10 text-center bg-slate-900/50 relative z-10">
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-red-500/10 text-red-400 mb-3 border border-red-500/20">
-                        ⚠️
-                    </div>
-                    <p className="text-red-300 font-medium">Failed to load the interactive simulation renderer.</p>
-                </div>
-            ) : (
-                <div className="relative w-full z-10 bg-black/50" style={{ paddingBottom: '56.25%' /* 16:9 Aspect Ratio */ }}>
-                    <iframe
-                        ref={iframeRef}
-                        title="Generated Physics Simulation"
-                        className="absolute top-0 left-0 w-full h-full border-0 bg-slate-50"
-                        sandbox="allow-scripts allow-same-origin"
-                    />
-                </div>
-            )}
+            <div className="relative w-full z-10 bg-black/50" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                    ref={iframeRef}
+                    title="Generated Physics Simulation"
+                    className="absolute top-0 left-0 w-full h-full border-0 bg-slate-50"
+                    sandbox="allow-scripts allow-same-origin"
+                />
+            </div>
 
             {description && (
                 <div className="bg-slate-800/80 backdrop-blur-md px-6 py-5 border-t border-slate-700/80 relative z-10">

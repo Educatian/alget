@@ -23,11 +23,24 @@ if (supabaseUrl && supabaseAnonKey) {
             getUser: async () => ({ data: { user: null } }),
             onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => { } } } }),
         },
+        channel: () => ({
+            on() { return this },
+            subscribe(callback) {
+                callback?.('CLOSED')
+                return this
+            },
+            track: noOp,
+            send: noOp,
+            presenceState: () => ({}),
+            unsubscribe: noOp,
+        }),
+        removeChannel: noOp,
         from: () => {
             const chain = {
                 insert: () => chain,
                 select: () => chain,
                 eq: () => chain,
+                gte: () => chain,
                 neq: () => chain,
                 order: () => chain,
                 upsert: () => chain,

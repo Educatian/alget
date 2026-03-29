@@ -52,8 +52,6 @@ export default function KnowledgeCheck({ bioContext, engContext, sectionTitle, l
 
         setResults([...results, { isCorrect, conceptId: currentQ.concept_id, type: 'mcq' }]);
 
-        setResults([...results, { isCorrect, conceptId: currentQ.concept_id, type: 'mcq' }]);
-
         // Send to Knowledge Tracing backend (q_matrix format)
         updateMastery({ [currentQ.concept_id]: 1.0 }, isCorrect).catch(console.error);
     };

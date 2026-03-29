@@ -1,6 +1,130 @@
 import API_BASE from './apiConfig';
 import { supabase } from './supabase';
 
+const ADAPTIVE_SIGNAL_KEY = 'alget_adaptive_signals_v1';
+const ADAPTIVE_SIGNAL_WINDOW_MS = 1000 * 60 * 90;
+const MAX_ADAPTIVE_SIGNALS = 250;
+
+const emptyTelemetrySummary = () => ({
+    hint_requests: 0,
+    stuck_events: 0,
+    consecutive_wrong: 0,
+    idle_events: 0,
+    practice_attempts: 0,
+    correct_attempts: 0,
+    chat_turns: 0,
+    affect_confused: 0,
+    affect_insight: 0,
+    affect_engaged: 0,
+    affect_disengaged: 0,
+    representation_requests: 0,
+    explain_requests: 0
+});
+
+function readAdaptiveSignals() {
+    if (typeof window === 'undefined') return [];
+
+    try {
+        const raw = window.sessionStorage.getItem(ADAPTIVE_SIGNAL_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (error) {
+        console.warn('Could not read adaptive signals:', error);
+        return [];
+    }
+}
+
+function writeAdaptiveSignals(signals) {
+    if (typeof window === 'undefined') return;
+
+    try {
+        window.sessionStorage.setItem(ADAPTIVE_SIGNAL_KEY, JSON.stringify(signals.slice(-MAX_ADAPTIVE_SIGNALS)));
+    } catch (error) {
+        console.warn('Could not persist adaptive signals:', error);
+    }
+}
+
+export function recordAdaptiveSignal(sectionId, type, payload = {}) {
+    if (!sectionId || !type) return;
+
+    const nextSignals = [
+        ...readAdaptiveSignals(),
+        {
+            sectionId,
+            type,
+            payload,
+            timestamp: new Date().toISOString()
+        }
+    ];
+
+    writeAdaptiveSignals(nextSignals);
+}
+
+export function summarizeAdaptiveSignals(sectionId) {
+    const summary = emptyTelemetrySummary();
+    const cutoff = Date.now() - ADAPTIVE_SIGNAL_WINDOW_MS;
+    const signals = readAdaptiveSignals()
+        .filter((signal) => signal?.sectionId === sectionId)
+        .filter((signal) => {
+            const signalTime = Date.parse(signal?.timestamp || '');
+            return Number.isFinite(signalTime) && signalTime >= cutoff;
+        })
+        .sort((left, right) => Date.parse(left.timestamp) - Date.parse(right.timestamp));
+
+    let trailingWrong = 0;
+
+    signals.forEach((signal) => {
+        switch (signal.type) {
+            case 'hint_request':
+                summary.hint_requests += 1;
+                break;
+            case 'stuck_event':
+                summary.stuck_events += 1;
+                if ((signal.payload?.reason || '').toLowerCase().includes('idle')) {
+                    summary.idle_events += 1;
+                }
+                break;
+            case 'practice_correct':
+            case 'inline_quiz_correct':
+                summary.practice_attempts += 1;
+                summary.correct_attempts += 1;
+                trailingWrong = 0;
+                break;
+            case 'practice_incorrect':
+            case 'inline_quiz_incorrect':
+                summary.practice_attempts += 1;
+                trailingWrong += 1;
+                break;
+            case 'affect_confused':
+                summary.affect_confused += 1;
+                break;
+            case 'affect_insight':
+                summary.affect_insight += 1;
+                break;
+            case 'affect_engaged':
+                summary.affect_engaged += 1;
+                break;
+            case 'affect_disengaged':
+                summary.affect_disengaged += 1;
+                break;
+            case 'chat_engagement':
+                summary.chat_turns += 1;
+                break;
+            case 'representation_request':
+                summary.representation_requests += 1;
+                break;
+            case 'explanation_request':
+                summary.explain_requests += 1;
+                break;
+            default:
+                break;
+        }
+    });
+
+    summary.consecutive_wrong = trailingWrong;
+    return summary;
+}
+
 /**
  * Generates a formative assessment based on current context.
  */
@@ -193,6 +317,64 @@ export const fuseTelemetry = async (conceptId, interactionType, intensity = 1.0)
 
     } catch (error) {
         console.error('Error fusing telemetry:', error);
+        return null;
+    }
+};
+
+export const getAdaptiveRecommendation = async ({
+    sectionId,
+    sectionTitle = '',
+    conceptIds = [],
+    currentHeading = '',
+    stuckReason = null
+}) => {
+    try {
+        let mastery = [];
+        const { data: { session } } = await supabase.auth.getSession();
+        const userId = session?.user?.id;
+
+        if (userId && conceptIds.length > 0) {
+            const { data, error } = await supabase
+                .from('mastery')
+                .select('*')
+                .eq('user_id', userId)
+                .in('concept_id', conceptIds);
+
+            if (!error && Array.isArray(data)) {
+                mastery = data.map((row) => ({
+                    concept_id: row.concept_id,
+                    p_known: row.p_known ?? row.mastery_score ?? 0.0,
+                    mastery_score: row.mastery_score ?? row.p_known ?? 0.0,
+                    attempts_count: row.attempts_count ?? 0,
+                    correct_count: row.correct_count ?? 0,
+                    confidence_level: row.confidence_level ?? '',
+                    p_slip: row.p_slip ?? 0.1,
+                    p_transit: row.p_transit ?? 0.1
+                }));
+            }
+        }
+
+        const response = await fetch(`${API_BASE}/adaptive_recommendation`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                section_id: sectionId,
+                section_title: sectionTitle,
+                concept_ids: conceptIds,
+                current_heading: currentHeading,
+                stuck_reason: stuckReason,
+                mastery,
+                telemetry: summarizeAdaptiveSignals(sectionId)
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`Adaptive recommendation failed: ${response.status}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error getting adaptive recommendation:', error);
         return null;
     }
 };

@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
+import { useState, useRef, useEffect, forwardRef, useImperativeHandle, useEffectEvent } from 'react'
 import { supabase } from '../lib/supabase'
 import { logChatMessage } from '../lib/loggingService'
-import { fuseTelemetry } from '../lib/knowledgeService'
+import { fuseTelemetry, recordAdaptiveSignal } from '../lib/knowledgeService'
 import API_BASE from '../lib/apiConfig'
-import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard } from './IntentCards'
+import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard, ErrorIntentCard } from './IntentCards'
 
 const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId }, ref) {
     const [isOpen, setIsOpen] = useState(false)
@@ -12,6 +12,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     const [loading, setLoading] = useState(false)
     const [historyLoaded, setHistoryLoaded] = useState(false)
     const messagesEndRef = useRef(null)
+    const lastAutoQuestionRef = useRef(null)
 
     // Expose methods via ref
     useImperativeHandle(ref, () => ({
@@ -21,6 +22,14 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
             setIsOpen(true)
         }
     }))
+
+    useEffect(() => {
+        setMessages([])
+        setInputValue('')
+        setLoading(false)
+        setHistoryLoaded(false)
+        lastAutoQuestionRef.current = null
+    }, [context?.sectionId])
 
     // Load chat history from Supabase
     useEffect(() => {
@@ -38,7 +47,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                 if (data?.messages) {
                     setMessages(data.messages)
                 }
-            } catch (err) {
+            } catch {
                 // No history yet, that's fine
             }
             setHistoryLoaded(true)
@@ -80,20 +89,26 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         }
     }
 
+    const sendInitialQuestion = useEffectEvent((question) => {
+        setIsOpen(true)
+        void sendMessageWithText(question)
+        onQuestionSent?.()
+    })
+
     // Handle initialQuestion from highlight selection - AUTO SEND
     useEffect(() => {
-        if (initialQuestion && !loading) {
-            const question = `Explain this passage: "${initialQuestion}"`
-            setIsOpen(true)
+        if (!initialQuestion || loading) return
 
-            // Auto-send the question
-            setTimeout(() => {
-                sendMessageWithText(question)
-            }, 100)
+        const question = `Explain this passage: "${initialQuestion}"`
+        if (lastAutoQuestionRef.current === question) return
 
-            onQuestionSent?.()
-        }
-    }, [initialQuestion])
+        lastAutoQuestionRef.current = question
+        const timerId = setTimeout(() => {
+            sendInitialQuestion(question)
+        }, 100)
+
+        return () => clearTimeout(timerId)
+    }, [initialQuestion, loading])
 
     // Auto-scroll to bottom
     useEffect(() => {
@@ -112,6 +127,10 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
         // Log user message (PII-safe: length only)
         logChatMessage(turnNumber, userMessage.length, true, context?.sectionId)
+        recordAdaptiveSignal(context?.sectionId, 'chat_engagement', {
+            messageLength: userMessage.length,
+            conceptId: context?.conceptIds?.[0] || null
+        })
 
         const isHighlight = userMessage.startsWith('Explain this passage:');
         try {
@@ -142,11 +161,8 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
             await saveHistory(finalMessages)
 
             // ECD Phase 3: Telemetry Fusion - Soft Evidence for Chat Engagement
-            // If the user is having a back-and-forth deep chat (turnNumber > 2) and we know the context
-            if (turnNumber > 2 && context?.sectionId) {
-                // Approximate a conceptId based on context (in a real system, you might ask the LLM what concept this was about)
-                const primaryConcept = `concept_from_${context?.sectionId}`;
-                fuseTelemetry(primaryConcept, 'chat_engagement', 1.0).catch(console.error);
+            if (turnNumber > 2 && context?.conceptIds?.[0]) {
+                fuseTelemetry(context.conceptIds[0], 'chat_engagement', 1.0).catch(console.error)
             }
 
         } catch (err) {
@@ -275,13 +291,14 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                         <div className="max-w-[92%] px-4 py-3 rounded-2xl text-[0.95rem] bg-white text-slate-800 shadow-sm border border-slate-200/60 rounded-bl-sm leading-relaxed">
                                             {data.intent === 'learn' && <LearnIntentCard data={data} />}
                                             {data.intent === 'evaluate' && <EvaluateIntentCard data={data} />}
-                                            {data.intent === 'brainstorm' && <BrainstormIntentCard data={data} />}
-                                            {data.intent === 'help' && <ScaffoldingIntentCard data={data} />}
-                                            {data.intent === 'illustrate' && <IllustrateIntentCard data={data} />}
-                                            {data.intent === 'simulate' && <SimulateIntentCard data={data} />}
-                                            {(!['learn', 'evaluate', 'brainstorm', 'help', 'illustrate', 'simulate'].includes(data.intent)) && (
-                                                <p className="whitespace-pre-wrap">{data.text || JSON.stringify(data)}</p>
-                                            )}
+                                             {data.intent === 'brainstorm' && <BrainstormIntentCard data={data} />}
+                                             {data.intent === 'help' && <ScaffoldingIntentCard data={data} />}
+                                             {data.intent === 'illustrate' && <IllustrateIntentCard data={data} />}
+                                             {data.intent === 'simulate' && <SimulateIntentCard data={data} />}
+                                             {data.intent === 'error' && <ErrorIntentCard data={data} />}
+                                             {(!['learn', 'evaluate', 'brainstorm', 'help', 'illustrate', 'simulate', 'error'].includes(data.intent)) && (
+                                                 <p className="whitespace-pre-wrap">{data.error || data.text || data.summary || JSON.stringify(data)}</p>
+                                             )}
                                         </div>
                                     </div>
                                 )

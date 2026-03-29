@@ -134,6 +134,30 @@ body {
   }
 }
 
+@keyframes section-slide-forward {
+  from {
+    opacity: 0;
+    transform: translateX(28px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes section-slide-backward {
+  from {
+    opacity: 0;
+    transform: translateX(-28px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 0.2s ease-out;
 }
@@ -153,6 +177,14 @@ body {
 .animate-gradient-x {
   animation: gradient-x 15s ease infinite;
   background-size: 200% 200%;
+}
+
+.animate-section-forward {
+  animation: section-slide-forward 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-section-backward {
+  animation: section-slide-backward 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ===== TEXTBOOK STYLING ===== */

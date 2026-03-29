@@ -1,12 +1,99 @@
 # Introduction to Dynamics
 
-Dynamics is the branch of classical mechanics that deals with the study of forces and their effects on motion. 
-Unlike statics, which examines systems in equilibrium, dynamics focuses on objects that are accelerating.
+Dynamics studies how motion changes when forces act on a body. In statics, we were satisfied once the net force and net moment were zero. In dynamics, that same imbalance is the whole story: if a body's velocity changes in magnitude or direction, something in the force environment is causing it.
 
-## Key Concepts
-- **Kinematics:** The geometry of motion (position, velocity, acceleration) without considering forces.
-- **Kinetics:** The relationship between the forces acting on a body and its resulting motion.
+That shift matters because engineers rarely design for perfectly frozen systems. Cars brake, drones pitch forward, robotic arms accelerate into place, and packaging lines speed up and slow down to protect products. Dynamics gives us the language to describe those changes precisely enough to predict them.
+
+## The First Big Distinction: Kinematics vs. Kinetics
+
+Dynamics is usually split into two complementary viewpoints:
+
+- **Kinematics** describes motion itself: position, displacement, velocity, and acceleration.
+- **Kinetics** explains why that motion happens by connecting it to force, mass, and moment.
+
+You can think of kinematics as the "what is the body doing?" layer, and kinetics as the "what made it do that?" layer. Good engineers move back and forth between both.
 
 <kinematics-diagram />
 
-In this course, we will heavily focus on Rigid Body Mechanics and investigate how forces generate torque and translation.
+## Motion Is More Than Speed
+
+Students often treat motion as if it only means "how fast something is going." Dynamics is richer than that. A body can:
+
+- move fast with **zero acceleration** if its velocity stays constant
+- move slowly with **large acceleration** if its velocity is changing rapidly
+- have positive velocity and negative acceleration when it is moving in the positive direction but slowing down
+
+This is where sign conventions become important. In one-dimensional motion, the sign of velocity tells you direction. The sign of acceleration tells you how velocity is changing. Those are not the same question.
+
+### A Quick Engineering Reading of the Signs
+
+Suppose we define motion to the right as positive.
+
+- `v > 0, a > 0`: moving right and speeding up
+- `v > 0, a < 0`: moving right and slowing down
+- `v < 0, a < 0`: moving left and speeding up
+- `v < 0, a > 0`: moving left and slowing down
+
+That simple table is the beginning of nearly every rectilinear motion model in this course.
+
+## Why Engineers Care
+
+Dynamics is not abstract bookkeeping. These quantities drive design decisions:
+
+- braking distance depends on how velocity and acceleration evolve over time
+- passenger comfort depends on how abruptly acceleration changes
+- actuator sizing depends on how quickly a mechanism must change speed
+- safety margins depend on whether a structure experiences smooth loading or sudden impact
+
+When we model motion well, we can move from intuition to prediction.
+
+<dynamic-scenario
+  topic="Velocity and Acceleration in Vehicle Motion"
+  context="A campus shuttle leaves Bryant-Denny Stadium after a game. It accelerates away from the curb, brakes for pedestrians, then merges back into traffic. Explain how velocity and acceleration help the engineer reason about safety and rider comfort."
+  course="dynamics"
+></dynamic-scenario>
+
+## A Useful Mental Model
+
+One of the cleanest ways to begin dynamics is to separate three questions:
+
+1. Where is the body?
+2. How fast is its position changing?
+3. How fast is that velocity changing?
+
+Those questions correspond to:
+
+- position `x(t)`
+- velocity `v(t) = dx/dt`
+- acceleration `a(t) = dv/dt`
+
+Later in the course, these derivatives will become the bridge between geometry, forces, energy, and momentum.
+
+## Common Beginner Mistakes
+
+- Confusing **velocity** with **acceleration**
+- Assuming an object that is "slowing down" must have negative velocity
+- Forgetting that acceleration can be nonzero even when speed is constant but direction is changing
+- Using constant-acceleration equations when the acceleration is actually varying
+
+When you feel stuck in dynamics, it is often because one of those four confusions is hiding inside the setup.
+
+## Check Your Understanding
+
+<interactive-quiz
+  question="A car is moving to the right, but its speed is decreasing. If right is defined as positive, which statement must be true?"
+  conceptId="acceleration"
+  options='[{"text":"Its velocity and acceleration are both positive.","isCorrect":false},{"text":"Its velocity is positive and its acceleration is negative.","isCorrect":true},{"text":"Its velocity is negative and its acceleration is positive.","isCorrect":false},{"text":"Its velocity is zero because it is slowing down.","isCorrect":false}]'
+  explanation="Exactly. The car is still moving right, so velocity is positive. Because its speed is decreasing, the acceleration must point opposite the motion, which makes it negative in this sign convention."
+/>
+
+<interactive-quiz
+  question="Why is the distinction between kinematics and kinetics so important in engineering dynamics?"
+  conceptId="kinematics"
+  options='[{"text":"Because kinematics and kinetics are just two words for the same equations.","isCorrect":false},{"text":"Because kinematics describes the motion, while kinetics explains the forces and moments causing it.","isCorrect":true},{"text":"Because kinetics is only used for chemistry problems, not mechanics.","isCorrect":false}]'
+  explanation="Right. Kinematics tells us what the motion looks like; kinetics tells us why it is happening. Strong problem solving in dynamics depends on knowing when you are describing motion and when you are explaining its cause."
+/>
+
+## Looking Ahead
+
+In the next sections, we will formalize rectilinear motion and start building predictive equations for particles moving along a line. The goal is not just to manipulate symbols. It is to build a disciplined habit: describe motion clearly first, then connect that motion to the forces that produce it.

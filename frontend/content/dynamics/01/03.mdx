@@ -1,145 +1,137 @@
 # Relative Motion
 
-> **"All motion is relative—the question is: relative to what?"**
+All motion is relative. A train can be moving at high speed relative to the ground while a passenger quietly sipping coffee feels almost at rest relative to the seat. In engineering, the key question is never just "How fast is it moving?" but rather:
 
----
+**Moving relative to what frame of reference?**
 
-## Prerequisites
+That one question matters in highway safety, drone navigation, robotics, river crossing, spacecraft docking, and collision analysis.
 
-`rectilinear_motion` `curvilinear_motion` `vectors`
+## The Core Equation
 
----
-
-## Learning Objectives
-
-By the end of this section, you will be able to:
-
-1. **Calculate** relative velocity between two moving objects
-2. **Apply** the Galilean transformation for velocities
-3. **Analyze** relative motion in 2D
-4. **Solve** practical problems involving relative motion
-
----
-
-## The Fundamental Equation
-
-The velocity of particle B as observed from (relative to) particle A:
+The velocity of particle B relative to particle A is:
 
 $$
-\boxed{\vec{v}_{B/A} = \vec{v}_B - \vec{v}_A}
+\vec{v}_{B/A} = \vec{v}_B - \vec{v}_A
 $$
 
-Reading: "velocity of B relative to A"
+Read this carefully as:
 
-Equivalently:
+"the velocity of B as observed by someone riding on A."
+
+An equivalent rearrangement is:
+
 $$
 \vec{v}_B = \vec{v}_A + \vec{v}_{B/A}
 $$
 
-> 💡 **Interpretation**: To find what velocity B appears to have when you're riding on A, subtract A's velocity from B's velocity.
+This form is especially useful when you know the platform velocity and the motion measured from that platform.
 
----
+## Why Reference Frames Matter
 
-## Sign Convention in 1D
+Reference frames are not decorative labels. They change the meaning of the numbers.
 
-For motion along a line, choose a positive direction:
+- A cyclist moving at $8 \text{ m/s}$ relative to the road is at rest relative to the bicycle seat.
+- A boat moving north in still water has a different ground velocity if a river current pushes east.
+- A sensor mounted on a robot arm may see a moving part as stationary relative to one joint and fast-moving relative to the room.
 
-| Scenario | Calculation |
-|----------|-------------|
-| Both moving right | $v_{B/A} = v_B - v_A$ |
-| A right, B left | Use signs: $v_B < 0$ if leftward |
-| Approaching | $v_{B/A}$ has opposite sign to $v_A$ |
-| Separating | $v_{B/A}$ has same sign as $v_A$ |
+If you mix frames accidentally, the algebra can look correct while the answer is physically wrong.
 
----
+## Relative Motion in 1D
 
-## 2D Relative Motion
+For straight-line motion, the equation reduces to signed subtraction. Choose a positive direction first.
 
-For vectors in 2D:
+### Example: Two Cars on a Highway
+
+Let east be positive.
+
+- Car A travels east at $25 \text{ m/s}$, so $v_A = +25 \text{ m/s}$
+- Car B travels west at $20 \text{ m/s}$, so $v_B = -20 \text{ m/s}$
+
+Then:
+
+$$
+v_{B/A} = v_B - v_A = -20 - 25 = -45 \text{ m/s}
+$$
+
+To the driver in Car A, Car B appears to approach at $45 \text{ m/s}$ from the east.
+
+The negative sign does not mean the speed is "bad." It simply tells you the relative motion points opposite your chosen positive direction.
+
+## Relative Motion in 2D
+
+When motion is planar, treat each component separately:
 
 $$
 \vec{v}_{B/A} = (v_{Bx} - v_{Ax})\hat{i} + (v_{By} - v_{Ay})\hat{j}
 $$
 
-Magnitude:
+The magnitude is:
+
 $$
 |\vec{v}_{B/A}| = \sqrt{(v_{Bx} - v_{Ax})^2 + (v_{By} - v_{Ay})^2}
 $$
 
----
+### Example: Aircraft in Wind
 
-## Common Applications
-
-| Problem Type | Key Approach |
-|--------------|--------------|
-| Two cars on highway | 1D subtraction |
-| Airplane in wind | Vector addition |
-| River crossing | Decompose into components |
-| Approaching collision | Find when $\vec{r}_{B/A} = 0$ |
-
----
-
-## Worked Examples
-
-### Example 1.4: Cars on Highway
-
-**Problem:** Car A travels east at 25 m/s. Car B travels west at 20 m/s. Find the velocity of B relative to A.
-
-**Solution:**
-
-Let east = positive.
-- $v_A = +25$ m/s
-- $v_B = -20$ m/s (west is negative)
-
-$$
-v_{B/A} = v_B - v_A = -20 - 25 = \boxed{-45 \text{ m/s}}
-$$
-
-To observer in A, B appears to approach at 45 m/s from the east.
-
----
-
-### Example 1.5: Airplane in Wind
-
-**Problem:** A plane has airspeed 200 m/s north. Wind blows 50 m/s east. Find the ground velocity.
-
-**Solution:**
+Suppose a plane has airspeed $200 \text{ m/s}$ north and the wind blows $50 \text{ m/s}$ east.
 
 $$
 \vec{v}_{plane/ground} = \vec{v}_{plane/air} + \vec{v}_{air/ground}
 $$
 
 $$
-\vec{v} = 200\hat{j} + 50\hat{i}
+\vec{v}_{plane/ground} = 50\hat{i} + 200\hat{j}
 $$
 
 Magnitude:
+
 $$
-|\vec{v}| = \sqrt{200^2 + 50^2} = \sqrt{42500} = \boxed{206.2 \text{ m/s}}
+|\vec{v}| = \sqrt{50^2 + 200^2} = 206.2 \text{ m/s}
 $$
 
-Direction: $\theta = \tan^{-1}(50/200) = 14.0°$ east of north.
+Direction:
 
----
+$$
+\theta = \tan^{-1}\left(\frac{50}{200}\right) = 14.0^\circ
+$$
 
-## Summary
+So the plane moves at $206.2 \text{ m/s}$, heading $14.0^\circ$ east of north relative to the ground.
 
-### Key Equations
+## Practical Engineering Uses
 
-| Concept | Equation |
-|---------|----------|
-| Relative velocity | $\vec{v}_{B/A} = \vec{v}_B - \vec{v}_A$ |
-| Absolute from relative | $\vec{v}_B = \vec{v}_A + \vec{v}_{B/A}$ |
+Relative motion shows up whenever two moving systems interact.
 
-### Key Takeaways
+- **Autonomous driving:** whether a nearby car is closing in or drifting away.
+- **Mobile robotics:** how a manipulator tip moves relative to a conveyor belt.
+- **Marine engineering:** how water current changes the actual path of a vessel.
+- **Sports biomechanics:** how a runner's limb segments move relative to the torso.
 
-- ✅ "Velocity of B relative to A" = $\vec{v}_B - \vec{v}_A$
-- ✅ Choose a consistent **reference frame**
-- ✅ In 2D, use **vector subtraction** component-wise
-- ✅ Relative motion simplifies many "collision" problems
+A lot of "surprise" failures in motion analysis come from forgetting that the chosen frame quietly changes the answer.
 
----
+<dynamic-scenario topic="Relative Motion in Navigation" context="An autonomous rescue drone must deliver medicine to a boat moving downstream while crosswinds push the drone sideways." />
 
-## What's Next?
+## Common Errors
 
-In **Chapter 2: Kinetics of Particles**, we'll apply Newton's Second Law to find the forces causing motion.
+- **Subtracting speeds instead of velocities:** direction must be included.
+- **Switching frames mid-problem:** for example, mixing air-relative and ground-relative values.
+- **Ignoring signs in 1D:** approaching and separating cases can flip quickly if directions are not defined first.
+
+## Check Your Understanding
+
+<interactive-quiz
+  question="A runner moves east at 6 m/s on a moving walkway that itself moves east at 2 m/s relative to the ground. What is the runner's velocity relative to the ground?"
+  conceptId="relative_velocity"
+  options='[{"text":"8 m/s east, because the walkway and runner velocities add in the same direction.","isCorrect":true},{"text":"4 m/s east, because the walkway speed must always be subtracted.","isCorrect":false},{"text":"6 m/s east, because only the runner motion counts for relative motion.","isCorrect":false}]'
+  explanation="Correct. When the motions are in the same direction, the ground-relative velocity is the platform velocity plus the motion measured relative to that platform."
+/>
+
+<interactive-quiz
+  question="Why is it dangerous to solve a boat-in-current problem using the boat speed through water as if it were already the ground speed?"
+  conceptId="reference_frame"
+  options='[{"text":"Because water-relative speed and ground-relative speed belong to different reference frames and cannot be treated as interchangeable.","isCorrect":true},{"text":"Because boats only follow scalar equations, not vector equations.","isCorrect":false},{"text":"Because currents affect acceleration but never velocity.","isCorrect":false}]'
+  explanation="Correct. A boat's speed relative to water is not the same as its speed relative to shore. The current changes the frame, so the velocity must be recombined vectorially."
+/>
+
+## Looking Ahead
+
+Relative motion closes the kinematics chapter by reminding us that velocity descriptions depend on perspective. The next step in dynamics is to ask not just how motion looks, but **what forces make it happen**.

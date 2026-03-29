@@ -8,10 +8,8 @@ export const SelfHealingDiagram = () => {
         let interval;
         if (isStressing && crackProgress < 100) {
             interval = setInterval(() => {
-                setCrackProgress(p => p + 2);
+                setCrackProgress((p) => Math.min(p + 2, 100));
             }, 30);
-        } else if (crackProgress >= 100) {
-            setIsStressing(false);
         }
         return () => clearInterval(interval);
     }, [isStressing, crackProgress]);
@@ -50,6 +48,7 @@ export const SelfHealingDiagram = () => {
     // Healing agent bleed
     const bleedOpacity = hitCapsule1 ? Math.min(1, (crackProgress - 50) / 20) : 0;
     const polymerizedOpacity = hitCapsule1 ? Math.min(1, (crackProgress - 70) / 20) : 0;
+    const isAnimating = isStressing && crackProgress < 100;
 
     return (
         <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
@@ -63,7 +62,7 @@ export const SelfHealingDiagram = () => {
 
             <button
                 onClick={handleStress}
-                disabled={isStressing}
+                disabled={isAnimating}
                 className="mb-6 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-400 text-white font-bold rounded-lg transition-colors shadow-sm active:scale-95"
             >
                 {crackProgress === 0 ? "Apply Structural Stress" : (crackProgress >= 100 ? "Reset & Re-stress" : "Fracturing...")}

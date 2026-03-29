@@ -1,12 +1,125 @@
 # Rigid Body Mechanics in Motion
 
-A rigid body is an idealized representation of a solid object wherein the distance between any two given points remains constant regardless of external forces.
+When we treated an object like a particle, we only cared about where its mass center moved. Real engineering systems are richer than that. A robot leg swings, a wrench rotates, a satellite tumbles, and a bicycle wheel both translates and spins. To model those systems, we need the idea of a **rigid body**: an idealization in which the distance between any two points stays constant even while the object moves.
 
-## Rotational Kinematics & Torque
-When analyzing rigid bodies like a robotic leg joint, we must calculate the **Torque ($\tau$)**:
-$$\tau = r \times F$$
-Where $r$ is the moment arm vector and $F$ is the force vector.
+This assumption lets us track both **translation** and **rotation** without having to model every molecule in the object.
 
-**Ask ALGET:** Try asking the AI tutor to compare the torque required for a robotic knee joint versus the biomechanical joint of a cheetah's leg.
+## Why Rigid Bodies Matter
+
+A rigid-body model becomes useful whenever shape and orientation affect performance.
+
+- A door opens because the force is applied away from the hinge.
+- A prosthetic knee needs enough joint torque to support body weight while still moving smoothly.
+- A drone propeller blade can have the same center-of-mass motion as another blade but a completely different rotational speed and aerodynamic response.
+
+In other words, a rigid body asks two questions at once:
+
+1. Where is the object moving?
+2. How is the object rotating while it moves?
+
+## Translation Versus Rotation
+
+Every rigid-body motion can be interpreted as some combination of:
+
+- **Translation:** every point in the body moves with the same velocity.
+- **Rotation:** points in the body move around an axis, so points farther from the axis sweep faster.
+
+That second point is the key reason rotation feels different from straight-line motion. If a wheel doubles its angular speed, the rim experiences a much larger linear speed than the hub because:
+
+$$
+v = r\omega
+$$
+
+where:
+
+- $v$ is tangential speed
+- $r$ is distance from the axis
+- $\omega$ is angular velocity
+
+If the angular speed changes, the tangential acceleration follows:
+
+$$
+a_t = r\alpha
+$$
+
+where $\alpha$ is angular acceleration.
+
+## Torque: The Rotational Version of Push
+
+A force does not automatically create rotation. Rotation depends on both the force and **where** that force is applied relative to the pivot or axis. That turning effect is **torque**:
+
+$$
+\tau = r \times F
+$$
+
+For magnitude in a planar problem:
+
+$$
+|\tau| = rF\sin{\theta}
+$$
+
+where:
+
+- $r$ is the moment arm from the pivot to the point of application
+- $F$ is the applied force
+- $\theta$ is the angle between them
+
+This equation explains why a longer wrench feels stronger. The force from your hand may be the same, but the larger moment arm creates more torque.
+
+## Engineering Intuition: Moment Arm Design
+
+Suppose an exoskeleton knee actuator can apply a force of $180 \text{ N}$.
+
+- If the actuator is attached $0.04 \text{ m}$ from the joint center, the available torque is:
+
+$$
+\tau = 0.04 \times 180 = 7.2 \text{ N m}
+$$
+
+- If the attachment point is moved to $0.06 \text{ m}$ while keeping the same force:
+
+$$
+\tau = 0.06 \times 180 = 10.8 \text{ N m}
+$$
+
+The second design produces 50% more torque without changing the motor. The tradeoff is that the larger mechanism may be bulkier, slower, or harder to package. This is exactly the sort of design compromise rigid-body mechanics helps us reason about.
+
+## Common Mistakes
+
+- **Confusing force with torque:** a large force applied directly through the pivot can produce almost no rotation.
+- **Ignoring direction:** clockwise and counterclockwise torques must be signed consistently.
+- **Forgetting radius effects:** points on the same rigid body do not all move at the same linear speed during rotation.
 
 <torque-diagram />
+
+## From Biology to Machines
+
+Rigid-body reasoning becomes especially useful in biomechanics and bio-inspired design.
+
+- A cheetah's leg does not simply "push harder"; it uses joint geometry and tendon routing to generate favorable torques during stance.
+- Human elbows and knees use changing moment arms through the range of motion, which is why muscle leverage is not constant.
+- Robotic limbs often borrow these ideas by shaping linkage geometry so that torque output is highest where support demand is highest.
+
+This is one reason mechanics and biology talk to each other so naturally: both care deeply about how force, geometry, and motion interact.
+
+<dynamic-scenario topic="Robotic Knee Torque" context="A biomechatronics team is redesigning a powered knee brace and must decide whether to lengthen the actuator moment arm or increase motor force to help users stand up from a chair." />
+
+## Check Your Understanding
+
+<interactive-quiz
+  question="A technician pushes on a stuck door very hard, but they push almost directly at the hinge. Why does the door barely rotate?"
+  conceptId="torque"
+  options='[{"text":"Because torque depends on both force and moment arm, and the moment arm is nearly zero near the hinge.","isCorrect":true},{"text":"Because all horizontal forces automatically cancel when an object is rigid.","isCorrect":false},{"text":"Because rigid bodies cannot rotate unless they are already moving.","isCorrect":false}]'
+  explanation="Correct. A force applied close to the pivot has very little lever arm, so it creates very little torque even if the force magnitude is large."
+/>
+
+<interactive-quiz
+  question="Two points lie on the same spinning wheel. Point A is twice as far from the center as Point B. If the wheel spins with the same angular velocity everywhere, how do their tangential speeds compare?"
+  conceptId="angular_velocity"
+  options='[{"text":"Point A moves twice as fast as Point B because tangential speed scales with radius.","isCorrect":true},{"text":"They move at the same tangential speed because all points on a rigid body share the same velocity.","isCorrect":false},{"text":"Point B moves faster because it is closer to the axis and experiences less inertia.","isCorrect":false}]'
+  explanation="Correct. In rigid-body rotation, angular velocity is shared, but tangential speed depends on distance from the axis through v = r omega."
+/>
+
+## Looking Ahead
+
+Once rotation is part of the story, we can no longer treat motion as a single number along a line. The next step is to compare what different observers see when both they and the object are moving, which leads naturally into **relative motion**.

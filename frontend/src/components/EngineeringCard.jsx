@@ -2,6 +2,11 @@ import React from 'react';
 
 export default function EngineeringCard({ data }) {
     if (!data) return null;
+    const title = data.application_idea || data.engineering_principle || data.proposed_solution || data.application_name;
+    const description = data.feasibility_analysis || data.proposed_solution || data.description;
+    const supportingPoints = data.challenges?.length
+        ? data.challenges
+        : (data.application_areas?.length ? data.application_areas : data.design_principles || []);
 
     return (
         <div className="glass-panel p-6 mb-6 border-blue-200/60 relative overflow-hidden group h-full">
@@ -19,23 +24,23 @@ export default function EngineeringCard({ data }) {
                         <h4 className="font-bold text-blue-700 text-xs uppercase tracking-widest mb-1.5 flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Proposed Application
                         </h4>
-                        <p className="text-slate-700 font-medium text-[15px]">{data.application_name}</p>
+                        <p className="text-slate-700 font-medium text-[15px]">{title}</p>
                     </div>
 
                     <div>
                         <h4 className="font-bold text-blue-700 text-xs uppercase tracking-widest mb-1.5 flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span> How it Works
                         </h4>
-                        <p className="text-slate-600 leading-relaxed text-[15px]">{data.description}</p>
+                        <p className="text-slate-600 leading-relaxed text-[15px]">{description}</p>
                     </div>
 
-                    {data.design_principles && data.design_principles.length > 0 && (
+                    {supportingPoints.length > 0 && (
                         <div>
                             <h4 className="font-bold text-blue-700 text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Design Principles
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span> Design Notes
                             </h4>
                             <div className="flex flex-col gap-2">
-                                {data.design_principles.map((principle, index) => (
+                                {supportingPoints.map((principle, index) => (
                                     <div key={index} className="flex items-start gap-2 bg-blue-50/50 p-2.5 rounded-lg border border-blue-100/50">
                                         <svg className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                                         <span className="text-sm text-slate-600 font-medium leading-relaxed">{principle}</span>

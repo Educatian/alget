@@ -9,6 +9,7 @@ import SimulationFrame from '../components/SimulationFrame';
 import JanineEvaluator from '../components/JanineEvaluator';
 import ScaffoldingCard from '../components/ScaffoldingCard';
 import IllustrationCard from '../components/IllustrationCard';
+import { BrainstormIntentCard, ErrorIntentCard } from '../components/IntentCards';
 
 export default function GenerativeLab() {
     const navigate = useNavigate();
@@ -39,9 +40,10 @@ export default function GenerativeLab() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     query: userText,
+                    course: 'bio-inspired',
                     grade_level: 'Undergraduate',
                     interest: 'Bio-Inspired Design',
-                    current_bio_context: "", // Empty string initially to match FastAPI Pydantic model
+                    current_content: '',
                     history: history,         // Send the history *before* this query
                     api_key: apiKey
                 })
@@ -64,6 +66,10 @@ export default function GenerativeLab() {
                 assistantContent = "Received evaluation.";
             } else if (data.illustration) {
                 assistantContent = "Created illustration.";
+            } else if (data.activity_brainstorm) {
+                assistantContent = data.activity_brainstorm.lateral_thinking_prompt || "Created a brainstorm.";
+            } else if (data.error) {
+                assistantContent = data.error;
             }
             
             setHistory([...currentHistory, { role: 'assistant', content: assistantContent }]);
@@ -276,6 +282,18 @@ export default function GenerativeLab() {
                                         </ul>
                                     </div>
                                 )}
+                            </div>
+                        )}
+
+                        {result.intent === 'brainstorm' && result.activity_brainstorm && (
+                            <div className="w-full">
+                                <BrainstormIntentCard data={result} />
+                            </div>
+                        )}
+
+                        {result.intent === 'error' && (
+                            <div className="w-full">
+                                <ErrorIntentCard data={result} />
                             </div>
                         )}
 

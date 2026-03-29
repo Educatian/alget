@@ -32,46 +32,67 @@ import { BehaviorismDiagram } from './BehaviorismDiagram'
 import { FormativeSummativeDiagram } from './FormativeSummativeDiagram'
 import { RubricDesignDiagram } from './RubricDesignDiagram'
 import { FeedbackModelsDiagram } from './FeedbackModelsDiagram'
+import SocialPresencePanel from './SocialPresencePanel'
 
-export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskAi, isCompleted, markCompleted }) {
+export default function ReadingPane({
+    sectionData,
+    loading,
+    onStuckEvent,
+    onAskAi,
+    isCompleted,
+    markCompleted,
+    onHeadingChange,
+    socialState,
+    onSocialReaction
+}) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
     const [showGraph, setShowGraph] = useState(false)
-    const startTimeRef = useRef(Date.now())
+    const startTimeRef = useRef(0)
     const [activeHeading, setActiveHeading] = useState('Introduction')
-
-    const markdownComponents = useMemo(() => ({
-        'dynamic-scenario': ({ node, ...props }) => <DynamicScenario {...props} />,
-        'concept-diagram': ({ node, ...props }) => <ConceptDiagrams {...props} />,
-        'interactive-quiz': ({ node, options, ...props }) => <InteractiveQuiz options={options} {...props} />,
-        'torque-diagram': ({ node, ...props }) => <TorqueDiagram {...props} />,
-        'kinematics-diagram': ({ node, ...props }) => <KinematicsDiagram {...props} />,
-        'micro-turbulence-diagram': ({ node, ...props }) => <MicroTurbulenceDiagram {...props} />,
-        'fluid-dynamics-diagram': ({ node, ...props }) => <FluidDynamicsDiagram {...props} />,
-        'cellular-solid-diagram': ({ node, ...props }) => <CellularSolidDiagram {...props} />,
-        'hierarchical-structure-diagram': ({ node, ...props }) => <HierarchicalStructureDiagram {...props} />,
-        'directional-adhesion-diagram': ({ node, ...props }) => <DirectionalAdhesionDiagram {...props} />,
-        'gecko-adhesion-diagram': ({ node, ...props }) => <GeckoAdhesionDiagram {...props} />,
-        'structural-color-diagram': ({ node, ...props }) => <StructuralColorDiagram {...props} />,
-        'self-healing-diagram': ({ node, ...props }) => <SelfHealingDiagram {...props} />,
-        'swarm-diagram': ({ node, ...props }) => <SwarmDiagram {...props} />,
-
-        'constructivism-diagram': ({ node, ...props }) => <ConstructivismDiagram {...props} />,
-        'cognitivism-diagram': ({ node, ...props }) => <CognitivismDiagram {...props} />,
-        'behaviorism-diagram': ({ node, ...props }) => <BehaviorismDiagram {...props} />,
-        'formative-summative-diagram': ({ node, ...props }) => <FormativeSummativeDiagram {...props} />,
-        'rubric-design-diagram': ({ node, ...props }) => <RubricDesignDiagram {...props} />,
-        'feedback-models-diagram': ({ node, ...props }) => <FeedbackModelsDiagram {...props} />,
-    }), [])
 
     // Section ID computation
     const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null;
 
+    const markdownComponents = useMemo(() => ({
+        'dynamic-scenario': (props) => (
+            <DynamicScenario
+                {...props}
+                course={sectionData?.meta?.course || 'bio-inspired'}
+            />
+        ),
+        'concept-diagram': (props) => <ConceptDiagrams {...props} />,
+        'interactive-quiz': ({ options, ...props }) => (
+            <InteractiveQuiz
+                options={options}
+                sectionId={sectionId}
+                defaultConceptId={sectionData?.meta?.concept_ids?.[0] || null}
+                {...props}
+            />
+        ),
+        'torque-diagram': (props) => <TorqueDiagram {...props} />,
+        'kinematics-diagram': (props) => <KinematicsDiagram {...props} />,
+        'micro-turbulence-diagram': (props) => <MicroTurbulenceDiagram {...props} />,
+        'fluid-dynamics-diagram': (props) => <FluidDynamicsDiagram {...props} />,
+        'cellular-solid-diagram': (props) => <CellularSolidDiagram {...props} />,
+        'hierarchical-structure-diagram': (props) => <HierarchicalStructureDiagram {...props} />,
+        'directional-adhesion-diagram': (props) => <DirectionalAdhesionDiagram {...props} />,
+        'gecko-adhesion-diagram': (props) => <GeckoAdhesionDiagram {...props} />,
+        'structural-color-diagram': (props) => <StructuralColorDiagram {...props} />,
+        'self-healing-diagram': (props) => <SelfHealingDiagram {...props} />,
+        'swarm-diagram': (props) => <SwarmDiagram {...props} />,
+
+        'constructivism-diagram': (props) => <ConstructivismDiagram {...props} />,
+        'cognitivism-diagram': (props) => <CognitivismDiagram {...props} />,
+        'behaviorism-diagram': (props) => <BehaviorismDiagram {...props} />,
+        'formative-summative-diagram': (props) => <FormativeSummativeDiagram {...props} />,
+        'rubric-design-diagram': (props) => <RubricDesignDiagram {...props} />,
+        'feedback-models-diagram': (props) => <FeedbackModelsDiagram {...props} />,
+    }), [sectionData?.meta?.concept_ids, sectionData?.meta?.course, sectionId])
+
     useEffect(() => {
         // Reset timer when section changes
         startTimeRef.current = Date.now();
-        setActiveHeading('Introduction');
-
         // Setup Intersection Observer for reading context tracking
         const observer = new IntersectionObserver(
             (entries) => {
@@ -100,6 +121,10 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskA
             }
         }
     }, [sectionId]);
+
+    useEffect(() => {
+        onHeadingChange?.(activeHeading)
+    }, [activeHeading, onHeadingChange])
 
     const handleToggleSimulation = () => {
         const newState = !showSimulation;
@@ -210,6 +235,21 @@ export default function ReadingPane({ sectionData, loading, onStuckEvent, onAskA
                     </div>
                 )}
             </header>
+
+            <SocialPresencePanel
+                connected={socialState?.connected}
+                peers={socialState?.peers || []}
+                sameHeadingPeers={socialState?.sameHeadingPeers || []}
+                sameConceptPeers={socialState?.sameConceptPeers || []}
+                signalSummary={socialState?.signalSummary || {
+                    completionsToday: 0,
+                    helpOpensToday: 0,
+                    reactionCounts: {}
+                }}
+                liveFeed={socialState?.liveFeed || []}
+                onReaction={onSocialReaction}
+                sectionTitle={meta?.title}
+            />
 
             {/* Main Content (Narrative) with LaTeX Support */}
             <article className="prose prose-lg max-w-none 
