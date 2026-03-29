@@ -145,7 +145,7 @@ export default function ReadingPane({
                 <div className="relative z-10">
                     {/* Animated Engine Icon */}
                     <div className="w-20 h-20 mx-auto mb-8 bg-white/50 backdrop-blur-md border border-white/60 shadow-xl rounded-2xl flex items-center justify-center relative shadow-indigo-900/10 drop-shadow-xl overflow-hidden">
-                        <span className="text-4xl relative z-10 origin-center animate-[spin_4s_linear_infinite]">⚙️</span>
+                        <span className="text-4xl relative z-10 origin-center animate-[spin_4s_linear_infinite]">AL</span>
                         <div className="absolute inset-0 bg-linear-to-tr from-[#9E1B32]/10 to-indigo-500/10 animate-pulse"></div>
                     </div>
 
@@ -176,7 +176,7 @@ export default function ReadingPane({
         return (
             <div className="flex items-center justify-center h-full">
                 <div className="text-center">
-                    <div className="text-6xl mb-4">📚</div>
+                    <div className="mb-4 text-5xl font-bold text-slate-300">AL</div>
                     <h2 className="text-xl font-semibold text-gray-700 mb-2">Section Not Found</h2>
                     <p className="text-gray-500">Select a section from the table of contents.</p>
                 </div>
@@ -204,7 +204,7 @@ export default function ReadingPane({
                         onClick={() => setShowGraph(!showGraph)}
                         className={`text-sm px-4 py-2 rounded-lg font-bold border transition-colors ${showGraph ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
                     >
-                        {showGraph ? 'Hide Brain Network' : '🧠 View Brain Network'}
+                        {showGraph ? 'Hide Brain Network' : 'View Brain Network'}
                     </button>
                 </h1>
 
@@ -219,7 +219,7 @@ export default function ReadingPane({
                 {meta?.learning_objectives?.length > 0 && (
                     <div className="bg-linear-to-r from-blue-50 to-indigo-50/30 border-l-4 border-blue-500 rounded-r-xl p-5 shadow-inner">
                         <h3 className="text-sm font-bold text-blue-900 mb-2.5 uppercase tracking-wider">
-                            🎯 Learning Objectives
+                            Learning Objectives
                         </h3>
                         <ul className="space-y-2">
                             {meta.learning_objectives.map((obj, i) => (
@@ -287,7 +287,7 @@ export default function ReadingPane({
                                 className="w-full flex items-center justify-between px-5 py-4 bg-linear-to-r from-slate-50 to-white hover:bg-slate-50 transition-colors"
                             >
                                 <span className="flex items-center gap-3 font-bold text-slate-800">
-                                    <span className="text-xl">🎮</span>
+                                    <span className="text-xl">SIM</span>
                                     Interactive Simulation
                                 </span>
                                 <span className={`text-slate-400 transition-transform duration-300 ${showSimulation ? 'rotate-180' : ''}`}>
@@ -319,7 +319,7 @@ export default function ReadingPane({
                                 className="w-full flex items-center justify-between px-5 py-4 bg-linear-to-r from-slate-50 to-white hover:bg-slate-50 transition-colors"
                             >
                                 <span className="flex items-center gap-3 font-bold text-slate-800">
-                                    <span className="text-xl">🖼️</span>
+                                    <span className="text-xl">VIS</span>
                                     Concept Illustration
                                 </span>
                                 <span className={`text-slate-400 transition-transform duration-300 ${showIllustration ? 'rotate-180' : ''}`}>
@@ -350,7 +350,7 @@ export default function ReadingPane({
             {meta?.concept_ids?.length > 0 && (
                 <div className="mb-10">
                     <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">
-                        📌 Key Concepts
+                        Key Concepts
                     </h3>
                     <div className="flex flex-wrap gap-2.5">
                         {meta.concept_ids.map((concept, i) => (
@@ -405,11 +405,11 @@ export default function ReadingPane({
                 >
                     {isCompleted ? (
                         <>
-                            <span className="text-xl">✅</span> Section Completed
+                            <span className="text-xl">Done</span> Section Completed
                         </>
                     ) : (
                         <>
-                            <span className="text-xl">📚</span> Mark as Complete
+                            <span className="text-xl">Read</span> Mark as Complete
                         </>
                     )}
                 </button>

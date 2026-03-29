@@ -10,8 +10,9 @@
 /* ===== GLOBAL STYLES ===== */
 body {
   @apply bg-slate-50 text-slate-800 antialiased selection:bg-[#9E1B32]/20;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Aptos', 'IBM Plex Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   letter-spacing: -0.015em;
+  text-rendering: optimizeLegibility;
 }
 
 /* ===== ADVANCED GLASSMORPHISM & STITCH AESTHETIC ===== */
@@ -23,7 +24,11 @@ body {
 .glass-panel {
   @apply bg-white/70 backdrop-blur-2xl border border-white/70 rounded-2xl;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(15, 23, 42, 0.08);
-  /* inner top highlight for 3D depth */
+}
+
+.premium-surface {
+  @apply border border-white/80 bg-white/82 backdrop-blur-xl;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
 }
 
 .glass-dark {

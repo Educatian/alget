@@ -1,369 +1,397 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ArrowRight, BookOpen, LockKeyhole, Settings, Sparkles } from 'lucide-react'
 import { StaticsIllustration, BioInspiredIllustration, InstDesignIllustration } from '../components/CourseIllustrations'
 import SettingsModal from '../components/SettingsModal'
-import { Settings } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 import '../index.css'
 
-export default function MainApp({ user, onLogout }) {
-  const navigate = useNavigate()
-
-  const [unlockedMode, setUnlockedMode] = useState(null)
-  const [selectedMode, setSelectedMode] = useState('engineering')
-  const [passcode, setPasscode] = useState('')
-  const [error, setError] = useState('')
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
-  const [unlocking, setUnlocking] = useState(false)
-
-  const engineeringCourses = [
+const engineeringCourses = [
     {
-      id: 'dynamics',
-      title: 'ME 201: Engineering Dynamics',
-      icon: <StaticsIllustration />,
-      description: 'Foundational U of Alabama curriculum. Study forces and motion, focusing on particle and rigid body kinematics and kinetics.',
-      topics: ['Kinematics', 'Kinetics', 'Work & Energy', 'Impulse & Momentum'],
-      chapters: 10,
-      sections: 45,
-      duration: '15 weeks',
-      level: 'Core Requirement',
-      gradient: 'from-slate-700 to-slate-900',
-      badge: null
+        id: 'dynamics',
+        title: 'ME 201: Engineering Dynamics',
+        icon: <StaticsIllustration />,
+        description: 'Foundational curriculum for motion, force relationships, energy, and momentum with adaptive reading and practice support.',
+        topics: ['Kinematics', 'Kinetics', 'Work & Energy', 'Impulse & Momentum'],
+        chapters: 10,
+        sections: 45,
+        duration: '15 weeks',
+        level: 'Core Requirement',
+        gradient: 'from-slate-700 to-slate-900',
+        badge: null
     },
     {
-      id: 'bio-inspired',
-      title: 'Bio-Inspired Design',
-      icon: <BioInspiredIllustration />,
-      description: 'Specialized modular sequence. Learn how nature engineers solutions through deep-ocean sponges, mangroves, and gecko adhesion.',
-      topics: ['Biomimicry', 'Natural Trusses', 'Filtration', 'Adhesion'],
-      chapters: 3,
-      sections: 12,
-      duration: 'Self-Paced',
-      level: 'Specialized Track',
-      gradient: 'from-[#4A148C] to-[#004D40]',
-      badge: 'Premium'
+        id: 'bio-inspired',
+        title: 'Bio-Inspired Design',
+        icon: <BioInspiredIllustration />,
+        description: 'Applied biomimicry sequence connecting natural mechanisms to engineering concepts, generation labs, and design reasoning.',
+        topics: ['Biomimicry', 'Natural Structures', 'Filtration', 'Adhesion'],
+        chapters: 7,
+        sections: 21,
+        duration: 'Studio-paced',
+        level: 'Advanced Track',
+        gradient: 'from-[#4A148C] to-[#004D40]',
+        badge: 'Lab-enabled'
     }
-  ]
+]
 
-  const educationCourses = [
+const educationCourses = [
     {
-      id: 'inst-design',
-      title: 'Foundation of Instructional Design',
-      icon: <InstDesignIllustration />,
-      description: 'Core instructional design principles at the University of Alabama. Explore learning theories, curriculum development, and pedagogical strategies.',
-      topics: ['Learning Theories', 'ADDIE Model', 'Assessment', 'Pedagogy'],
-      chapters: 8,
-      sections: 32,
-      duration: '12 weeks',
-      level: 'Core Requirement',
-      gradient: 'from-blue-700 to-blue-900',
-      badge: 'New'
+        id: 'inst-design',
+        title: 'Foundation of Instructional Design',
+        icon: <InstDesignIllustration />,
+        description: 'Instructional design theory, pedagogy, assessment, and learner-centered strategy within an adaptive textbook workflow.',
+        topics: ['Learning Theories', 'ADDIE', 'Assessment', 'Pedagogy'],
+        chapters: 8,
+        sections: 32,
+        duration: '12 weeks',
+        level: 'Core Requirement',
+        gradient: 'from-blue-700 to-blue-900',
+        badge: 'Research-ready'
     }
-  ]
+]
 
-  const handleCourseSelect = (courseId) => {
-    navigate(`/diagnostic/${courseId}`)
-  }
-
-  const handleUnlock = async (e) => {
-    e.preventDefault()
-    setUnlocking(true)
-    setError('')
-
-    try {
-      const response = await fetch(`${API_BASE}/access/validate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          scope: selectedMode,
-          passcode
-        })
-      })
-
-      if (!response.ok) {
-        throw new Error(`Access validation failed: ${response.status}`)
-      }
-
-      const data = await response.json()
-      if (data.valid) {
-        setUnlockedMode(selectedMode)
-        setPasscode('')
-      } else {
-        setError('Invalid access code')
-        setPasscode('')
-      }
-    } catch (err) {
-      console.error(err)
-      setError('Unable to validate access right now')
-    } finally {
-      setUnlocking(false)
+const capabilityCards = [
+    {
+        title: 'Adaptive support rail',
+        description: 'Open explain, reframe, practice, and ask flows without losing section context.'
+    },
+    {
+        title: 'Cloud-synced progression',
+        description: 'Completion state can persist across devices instead of staying trapped on one browser.'
+    },
+    {
+        title: 'Researcher analytics',
+        description: 'Mastery, social momentum, and help-seeking signals can be reviewed in one dashboard.'
     }
-  }
+]
 
-  return (
-    <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 font-sans selection:bg-[#9E1B32]/20">
-      <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+export default function MainApp({ user, onLogout }) {
+    const navigate = useNavigate()
 
-      {/* Header */}
-      <header className="glass-panel border-b-0 rounded-none rounded-b-3xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] sticky top-0 z-50 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 bg-white/20">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4 group cursor-pointer" onClick={() => setUnlockedMode(null)}>
-              <div className="w-11 h-11 bg-linear-to-br from-[#9E1B32] to-[#7A1527] rounded-xl flex items-center justify-center shadow-lg shadow-red-900/20">
-                <span className="text-white text-xl font-extrabold tracking-tight">AL</span>
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-slate-900 tracking-tight">ALGET</h1>
-                <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-0.5">Intelligent Platform</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-6">
-              <div className="hidden sm:flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600 font-medium text-sm">
-                  {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
+    const [unlockedMode, setUnlockedMode] = useState(null)
+    const [selectedMode, setSelectedMode] = useState('engineering')
+    const [passcode, setPasscode] = useState('')
+    const [error, setError] = useState('')
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+    const [unlocking, setUnlocking] = useState(false)
+
+    const handleCourseSelect = (courseId) => {
+        navigate(`/diagnostic/${courseId}`)
+    }
+
+    const handleUnlock = async (event) => {
+        event.preventDefault()
+        setUnlocking(true)
+        setError('')
+
+        try {
+            const response = await fetch(`${API_BASE}/access/validate`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    scope: selectedMode,
+                    passcode
+                })
+            })
+
+            if (!response.ok) {
+                throw new Error(`Access validation failed: ${response.status}`)
+            }
+
+            const data = await response.json()
+            if (!data.valid) {
+                setError('Invalid access code')
+                setPasscode('')
+                return
+            }
+
+            setUnlockedMode(selectedMode)
+            setPasscode('')
+        } catch (err) {
+            console.error(err)
+            setError('Unable to validate access right now')
+        } finally {
+            setUnlocking(false)
+        }
+    }
+
+    const visibleCourses = unlockedMode === 'engineering' ? engineeringCourses : educationCourses
+
+    return (
+        <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(158,27,50,0.08),_transparent_30%),linear-gradient(to_bottom,_#f8fafc,_#eef2f7)] font-sans selection:bg-[#9E1B32]/20">
+            <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+
+            <header className="sticky top-0 z-50 border-b border-white/70 bg-white/72 backdrop-blur-2xl">
+                <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+                    <div className="flex items-center gap-4 cursor-pointer" onClick={() => setUnlockedMode(null)}>
+                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-xl font-bold text-white shadow-lg shadow-red-900/20">
+                            AL
+                        </div>
+                        <div>
+                            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-slate-400">Program Workspace</p>
+                            <h1 className="text-xl font-bold tracking-tight text-slate-900">ALGET Pathways</h1>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                        <div className="hidden items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 shadow-sm sm:flex">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-sm font-medium text-slate-600">
+                                {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
+                            </div>
+                            <span className="text-sm font-medium text-slate-600">{user?.email}</span>
+                        </div>
+                        <button
+                            onClick={() => setIsSettingsOpen(true)}
+                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white/80 text-slate-400 transition-all hover:bg-indigo-50 hover:text-indigo-600"
+                            title="API Settings"
+                        >
+                            <Settings className="h-5 w-5" />
+                        </button>
+                        <button
+                            onClick={() => navigate('/analytics')}
+                            className="rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-white"
+                        >
+                            Researcher Dashboard
+                        </button>
+                        <button
+                            onClick={onLogout}
+                            className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+                        >
+                            Sign Out
+                        </button>
+                    </div>
                 </div>
-                <span className="text-sm font-medium text-slate-600">{user?.email}</span>
-              </div>
-              <button
-                onClick={() => setIsSettingsOpen(true)}
-                className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-indigo-600 bg-white/50 hover:bg-indigo-50 rounded-lg transition-all"
-                title="API Settings"
-              >
-                <Settings className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => navigate('/analytics')}
-                className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-slate-700 bg-white/50 hover:bg-slate-200/50 rounded-lg transition-all"
-                title="Researcher Dashboard"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </button>
-              <button
-                onClick={onLogout}
-                className="text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg"
-              >
-                Sign out
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
+            </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-        {!unlockedMode ? (
-          /* -------- MODE SELECTION / PASSCODE VIEW -------- */
-          <div className="max-w-md mx-auto mt-20">
-            <div className="glass-panel p-8 text-center border border-white/60 bg-white/40 shadow-xl">
-              <div className="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-100 shadow-sm text-3xl">
-                🔒
-              </div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-2">Module Access</h2>
-              <p className="text-slate-500 mb-8 font-medium">Select your learning track and enter the required passcode to continue.</p>
+            <main className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+                {!unlockedMode ? (
+                    <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                        <div>
+                            <div className="inline-flex items-center gap-2 rounded-full border border-[#9E1B32]/10 bg-white/85 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-[#9E1B32] shadow-sm">
+                                <Sparkles className="h-3.5 w-3.5" />
+                                Controlled entry point
+                            </div>
+                            <h2 className="mt-6 max-w-2xl text-5xl font-black tracking-tight text-slate-950 md:text-6xl">
+                                Enter the right
+                                <span className="block bg-gradient-to-r from-[#9E1B32] via-[#c41e3a] to-[#2563eb] bg-clip-text text-transparent">
+                                    learning pathway
+                                </span>
+                            </h2>
+                            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+                                Select the cohort mode, validate access server-side, and launch into adaptive content designed for engineering or education contexts.
+                            </p>
 
-              <form onSubmit={handleUnlock} className="space-y-5 text-left">
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-2">Select Track</label>
-                  <select
-                    value={selectedMode}
-                    onChange={(e) => setSelectedMode(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/20 outline-none text-slate-700 bg-white font-medium"
-                  >
-                    <option value="engineering">Engineering Mode</option>
-                    <option value="education">Education Module</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-slate-700 mb-2">Passcode</label>
-                  <input
-                    type="password"
-                    value={passcode}
-                    onChange={(e) => setPasscode(e.target.value)}
-                    placeholder="Enter access code"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/20 outline-none text-slate-900 bg-white"
-                  />
-                  <p className="text-xs text-slate-400 mt-2">Your course coordinator or research lead can provide the current access code.</p>
-                </div>
+                            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                                <div className="rounded-2xl border border-white/70 bg-white/80 p-4 shadow-sm">
+                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Modes</p>
+                                    <p className="mt-2 text-2xl font-bold text-slate-900">2</p>
+                                    <p className="mt-1 text-sm text-slate-500">Engineering and education entry surfaces</p>
+                                </div>
+                                <div className="rounded-2xl border border-white/70 bg-white/80 p-4 shadow-sm">
+                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Access</p>
+                                    <p className="mt-2 text-2xl font-bold text-slate-900">Server</p>
+                                    <p className="mt-1 text-sm text-slate-500">Codes validated outside the client bundle</p>
+                                </div>
+                                <div className="rounded-2xl border border-white/70 bg-white/80 p-4 shadow-sm">
+                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Outcome</p>
+                                    <p className="mt-2 text-2xl font-bold text-slate-900">Adaptive</p>
+                                    <p className="mt-1 text-sm text-slate-500">Reading, practice, and support in one flow</p>
+                                </div>
+                            </div>
+                        </div>
 
-                {error && (
-                  <div className="text-red-500 text-sm font-medium text-center bg-red-50 py-2 rounded-lg">
-                    {error}
-                  </div>
+                        <div className="rounded-[2.5rem] border border-white/70 bg-white/82 p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+                            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#9E1B32]/8 text-[#9E1B32]">
+                                <LockKeyhole className="h-7 w-7" />
+                            </div>
+                            <h3 className="text-2xl font-bold tracking-tight text-slate-900">Module Access</h3>
+                            <p className="mt-2 text-sm leading-6 text-slate-500">
+                                Select the cohort track and enter the access code provided by your instructor or research lead.
+                            </p>
+
+                            <form onSubmit={handleUnlock} className="mt-8 space-y-5">
+                                <div>
+                                    <label className="mb-2 block text-sm font-bold text-slate-700">Select track</label>
+                                    <select
+                                        value={selectedMode}
+                                        onChange={(event) => setSelectedMode(event.target.value)}
+                                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-700 outline-none transition-all focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/10"
+                                    >
+                                        <option value="engineering">Engineering Mode</option>
+                                        <option value="education">Education Module</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label className="mb-2 block text-sm font-bold text-slate-700">Passcode</label>
+                                    <input
+                                        type="password"
+                                        value={passcode}
+                                        onChange={(event) => setPasscode(event.target.value)}
+                                        placeholder="Enter access code"
+                                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition-all focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/10"
+                                    />
+                                    <p className="mt-2 text-xs text-slate-400">Access is validated on the server instead of inside the client UI.</p>
+                                </div>
+
+                                {error && (
+                                    <div className="rounded-2xl bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
+                                        {error}
+                                    </div>
+                                )}
+
+                                <button
+                                    type="submit"
+                                    disabled={unlocking}
+                                    className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/15 transition-all hover:-translate-y-0.5 hover:bg-slate-800 disabled:opacity-60"
+                                >
+                                    {unlocking ? 'Checking access...' : 'Unlock pathway'}
+                                    <ArrowRight className="h-4 w-4" />
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                ) : (
+                    <>
+                        <section className="rounded-[2.5rem] border border-white/70 bg-white/76 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)] backdrop-blur-xl">
+                            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                                <div>
+                                    <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#9E1B32]">
+                                        {unlockedMode === 'engineering' ? 'Engineering workspace' : 'Education workspace'}
+                                    </p>
+                                    <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-950">
+                                        {unlockedMode === 'engineering' ? 'Engineering Pathways' : 'Education Pathways'}
+                                    </h2>
+                                    <p className="mt-3 max-w-3xl text-[15px] leading-7 text-slate-600">
+                                        Choose a pathway to open diagnostics, reading, practice, generation, and learner-model tracking in one connected flow.
+                                    </p>
+                                </div>
+                                <div className="flex flex-wrap items-center gap-3">
+                                    <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-600">
+                                        {visibleCourses.length} available pathways
+                                    </div>
+                                    <button
+                                        onClick={() => {
+                                            setUnlockedMode(null)
+                                            setPasscode('')
+                                        }}
+                                        className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
+                                    >
+                                        Change track
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+
+                        {unlockedMode === 'engineering' && (
+                            <section
+                                onClick={() => navigate('/lab')}
+                                className="group relative mt-10 cursor-pointer overflow-hidden rounded-[2.5rem] border border-purple-200/50 bg-white/78 p-8 shadow-[0_24px_60px_rgba(76,29,149,0.12)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(76,29,149,0.16)]"
+                            >
+                                <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-purple-50 via-white to-sky-50"></div>
+                                <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                                    <div className="max-w-3xl">
+                                        <div className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-purple-700">
+                                            Preview lab
+                                        </div>
+                                        <h3 className="mt-4 text-3xl font-black tracking-tight text-slate-950">Generative Bio-Design Lab</h3>
+                                        <p className="mt-3 text-[15px] leading-7 text-slate-600">
+                                            Open a studio-like surface for bio-inspired ideation, engineering translation, simulation generation, and concept exploration.
+                                        </p>
+                                    </div>
+                                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-purple-200 bg-white text-purple-600 shadow-sm transition-transform group-hover:translate-x-1">
+                                        <ArrowRight className="h-6 w-6" />
+                                    </div>
+                                </div>
+                            </section>
+                        )}
+
+                        <section className="mt-10 grid gap-8 lg:grid-cols-2">
+                            {visibleCourses.map((course) => (
+                                <button
+                                    key={course.id}
+                                    type="button"
+                                    onClick={() => handleCourseSelect(course.id)}
+                                    className="group overflow-hidden rounded-[2.5rem] border border-white/70 bg-white/82 text-left shadow-[0_20px_60px_rgba(15,23,42,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.1)]"
+                                >
+                                    <div className={`relative overflow-hidden bg-linear-to-br ${course.gradient} p-8`}>
+                                        <div className="absolute right-[-10%] top-[-20%] h-40 w-40 rounded-full bg-white/18 blur-3xl"></div>
+                                        <div className="relative z-10 flex items-start justify-between gap-5">
+                                            <div>
+                                                <div className="mb-5 drop-shadow-md">{course.icon}</div>
+                                                <h3 className="text-2xl font-bold tracking-tight text-white">{course.title}</h3>
+                                                <div className="mt-3 flex flex-wrap gap-2">
+                                                    <span className="rounded-full border border-white/15 bg-white/18 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-white">
+                                                        {course.level}
+                                                    </span>
+                                                    {course.badge && (
+                                                        <span className="rounded-full border border-white/15 bg-black/20 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-white">
+                                                            {course.badge}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="rounded-2xl border border-white/15 bg-black/15 px-4 py-3 text-right text-sm font-medium text-white/95">
+                                                <p>{course.chapters} chapters</p>
+                                                <p className="mt-1">{course.sections} sections</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="p-8">
+                                        <p className="text-[15px] leading-7 text-slate-600">{course.description}</p>
+
+                                        <div className="mt-6 flex flex-wrap gap-2">
+                                            {course.topics.map((topic) => (
+                                                <span
+                                                    key={topic}
+                                                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-medium text-slate-700"
+                                                >
+                                                    {topic}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-5">
+                                            <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
+                                                <BookOpen className="h-4 w-4" />
+                                                <span>{course.duration}</span>
+                                            </div>
+                                            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#9E1B32] transition-transform group-hover:translate-x-1">
+                                                Start pathway
+                                                <ArrowRight className="h-4 w-4" />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </button>
+                            ))}
+                        </section>
+
+                        <section className="mt-10 rounded-[2.5rem] border border-white/70 bg-white/76 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)] backdrop-blur-xl">
+                            <div className="max-w-2xl">
+                                <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#9E1B32]">Platform capabilities</p>
+                                <h3 className="mt-3 text-2xl font-black tracking-tight text-slate-950">What becomes available inside each pathway</h3>
+                            </div>
+                            <div className="mt-8 grid gap-6 md:grid-cols-3">
+                                {capabilityCards.map((card) => (
+                                    <div key={card.title} className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+                                        <h4 className="text-lg font-bold tracking-tight text-slate-900">{card.title}</h4>
+                                        <p className="mt-3 text-sm leading-7 text-slate-600">{card.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    </>
                 )}
+            </main>
 
-                <button
-                  type="submit"
-                  disabled={unlocking}
-                  className="w-full bg-[#9E1B32] hover:bg-[#7A1527] text-white font-bold py-3.5 rounded-xl transition-colors shadow-md shadow-red-900/10 mt-2 disabled:opacity-60"
-                >
-                  {unlocking ? 'Checking access...' : 'Unlock Module'}
-                </button>
-              </form>
-            </div>
-          </div>
-        ) : (
-          /* -------- DASHBOARD / COURSES VIEW -------- */
-          <>
-            <div className="mb-10 text-center lg:text-left flex items-center justify-between">
-              <div>
-                <h2 className="text-4xl font-extrabold text-slate-900 mb-3 tracking-tight">
-                  {unlockedMode === 'engineering' ? 'Engineering Pathways' : 'Education Pathways'}
-                </h2>
-                <p className="text-slate-600 text-lg max-w-2xl font-medium">
-                  Select a module to access structured, AI-guided content.
-                </p>
-              </div>
-              <button
-                onClick={() => { setUnlockedMode(null); setPasscode(''); }}
-                className="hidden lg:flex px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-sm font-bold transition-colors"
-              >
-                ← Change Track
-              </button>
-            </div>
-
-            {unlockedMode === 'engineering' && (
-              <div
-                onClick={() => navigate('/lab')}
-                className="mb-16 relative overflow-hidden glass-panel p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between cursor-pointer group hover:-translate-y-2 hover:shadow-[0_24px_50px_rgba(147,51,234,0.15)] border border-purple-200/50 transition-all duration-500 ease-out"
-              >
-                <div className="absolute inset-0 bg-linear-to-r from-purple-50/80 via-white to-blue-50/80 pointer-events-none"></div>
-                <div className="absolute -top-40 -left-20 w-[40rem] h-[40rem] bg-purple-400/10 rounded-full blur-[80px] pointer-events-none group-hover:bg-purple-400/20 transition-colors duration-500 animate-float-slow"></div>
-
-                <div className="relative z-10 w-full mb-6 md:mb-0">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl shadow-sm border border-purple-200">
-                      🔬
-                    </div>
-                    <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Generative Bio-Design Lab</h2>
-                    <span className="bg-linear-to-r from-purple-600 to-indigo-600 text-white text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-widest shadow-sm">Preview</span>
-                  </div>
-                  <p className="text-slate-600 text-lg max-w-2xl font-medium leading-relaxed">
-                    Explore bio-inspired engineering designs, brainstorm with AI, and generate interactive physical simulations in real-time.
-                  </p>
+            <footer className="mt-auto border-t border-slate-200/70 bg-white/80">
+                <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm font-medium text-slate-500 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+                    <span>University of Alabama · College of Engineering and Education</span>
+                    <span>ALGET pathways for adaptive reading, generative learning, and learner-model visibility</span>
                 </div>
-                <div className="relative z-10 hidden md:flex items-center justify-center w-14 h-14 bg-white border border-slate-200 shadow-sm group-hover:bg-purple-50 group-hover:border-purple-200 rounded-full text-slate-400 group-hover:text-purple-600 transition-all duration-300">
-                  <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-            )}
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-              {(unlockedMode === 'engineering' ? engineeringCourses : educationCourses).map((course) => (
-                <div
-                  key={course.id}
-                  onClick={() => handleCourseSelect(course.id)}
-                  className="group glass-panel overflow-hidden hover:border-indigo-200/50 hover:shadow-[0_24px_50px_rgba(15,23,42,0.12)] hover:-translate-y-2 transition-all duration-500 cursor-pointer flex flex-col relative"
-                >
-                  <div className={`bg-linear-to-br ${course.gradient} p-8 relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500`}>
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-10 -mt-10 blur-2xl pointer-events-none group-hover:bg-white/30 transition-colors max-w-none"></div>
-                    <div className="flex items-start justify-between relative z-10">
-                      <div>
-                        <div className="mb-5 drop-shadow-md">{course.icon}</div>
-                        <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{course.title}</h3>
-                        <div className="flex gap-2 items-center flex-wrap">
-                          <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-lg text-white font-semibold text-xs uppercase tracking-wider border border-white/10 shadow-sm">
-                            {course.level}
-                          </span>
-                          {course.badge && (
-                            <span className="inline-block px-3 py-1 bg-teal-500/80 backdrop-blur-md rounded-lg text-white font-bold text-xs uppercase tracking-wider border border-teal-300/30 shadow-sm">
-                              {course.badge}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="text-right text-white/95 font-medium text-sm space-y-1.5 bg-black/20 backdrop-blur-md px-4 py-3.5 rounded-xl border border-white/20 shadow-inner">
-                        <div className="flex items-center gap-2 justify-end">
-                          <svg className="w-4.5 h-4.5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                          {course.chapters} Chapters
-                        </div>
-                        <div className="flex items-center gap-2 justify-end">
-                          <svg className="w-4.5 h-4.5 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
-                          {course.sections} Sections
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-8 flex-1 flex flex-col justify-between">
-                    <div>
-                      <p className="text-slate-600 mb-6 leading-relaxed text-[1.05rem]">
-                        {course.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-8">
-                        {course.topics.map((topic) => (
-                          <span key={topic} className="px-3.5 py-1.5 bg-slate-100 text-slate-700 text-sm font-medium rounded-lg border border-slate-200/60">
-                            {topic}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between pt-5 border-t border-slate-100">
-                      <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
-                        <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <span>{course.duration}</span>
-                      </div>
-                      <span className="text-[#9E1B32] font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                        Start Pathway
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="glass-panel p-8 lg:p-10 mb-8 border border-white/60 bg-white/40">
-              <h3 className="text-xl font-bold text-slate-900 mb-8 tracking-tight">Platform Capabilities</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div className="flex flex-col gap-4">
-                  <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 border border-blue-100 shadow-sm">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-800 mb-2">Structured Pedagogy</h4>
-                    <p className="text-slate-600 leading-relaxed font-medium">Research-backed curriculum mapped to your field.</p>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-4">
-                  <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100 shadow-sm">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-800 mb-2">Socratic Diagnostics</h4>
-                    <p className="text-slate-600 leading-relaxed font-medium">Advanced AI agents orchestrate guided hints instead of direct answers.</p>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-4">
-                  <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center shrink-0 border border-purple-100 shadow-sm">
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-800 mb-2">Multi-Agent Verification</h4>
-                    <p className="text-slate-600 leading-relaxed font-medium">Complex workflows evaluate edge cases with specialized persona analysis.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 mt-auto">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm font-medium text-slate-500 gap-4">
-            <span className="flex items-center gap-2">
-              <span className="text-red-700">UA</span> College of Engineering & Education
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Orchestrator ALGET Online
-            </span>
-          </div>
+            </footer>
         </div>
-      </footer>
-    </div>
-  )
+    )
 }

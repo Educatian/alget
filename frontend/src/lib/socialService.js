@@ -23,6 +23,10 @@ function sanitizeSectionId(sectionId = '') {
     return sectionId.replace(/[^a-zA-Z0-9_-]/g, '-')
 }
 
+function buildPresenceKey(identity, sectionId) {
+    return `${identity.userKey}-${sanitizeSectionId(sectionId)}`
+}
+
 function flattenPresence(channel, selfKey) {
     const state = channel?.presenceState?.() || {}
     return Object.entries(state).flatMap(([key, entries]) =>
@@ -101,7 +105,7 @@ export async function createSocialPresenceChannel({
     }
 
     const identity = getSocialIdentity(user)
-    const selfKey = `${identity.userKey}-${sanitizeSectionId(sectionId)}`
+    const selfKey = buildPresenceKey(identity, sectionId)
     const channel = supabase.channel(`social:${sanitizeSectionId(sectionId)}`, {
         config: {
             presence: {
@@ -109,6 +113,7 @@ export async function createSocialPresenceChannel({
             }
         }
     })
+    channel.__presenceKey = selfKey
 
     channel
         .on('presence', { event: 'sync' }, () => {
@@ -122,16 +127,21 @@ export async function createSocialPresenceChannel({
         onStatusChange?.(status)
 
         if (status === 'SUBSCRIBED') {
-            await channel.track({
+            const snapshot = {
                 alias: identity.alias,
                 colorToken: identity.colorToken,
+                presenceKey: selfKey,
+                userId: user?.id || null,
                 sectionId,
                 sectionTitle,
                 course,
                 heading,
                 focusConcept,
                 joinedAt: new Date().toISOString()
-            })
+            }
+
+            await channel.track(snapshot)
+            await persistPresenceSnapshot(snapshot)
         }
     })
 
@@ -145,10 +155,14 @@ export async function updatePresenceSnapshot(channel, snapshot) {
     if (!channel?.track) return
 
     try {
-        await channel.track({
+        const nextSnapshot = {
             ...snapshot,
+            presenceKey: channel.__presenceKey,
             updatedAt: new Date().toISOString()
-        })
+        }
+
+        await channel.track(nextSnapshot)
+        await persistPresenceSnapshot(nextSnapshot)
     } catch (error) {
         console.warn('[Social] Presence update failed:', error)
     }
@@ -157,9 +171,63 @@ export async function updatePresenceSnapshot(channel, snapshot) {
 export async function disconnectSocialPresence(channel) {
     if (!channel) return
     try {
+        await clearPresenceSnapshot(channel.__presenceKey)
         await supabase.removeChannel(channel)
     } catch (error) {
         console.warn('[Social] Failed to remove presence channel:', error)
+    }
+}
+
+export async function persistPresenceSnapshot(snapshot) {
+    if (!snapshot?.presenceKey || !snapshot?.sectionId || !snapshot?.alias) {
+        return false
+    }
+
+    try {
+        const { error } = await supabase
+            .from('social_presence')
+            .upsert({
+                presence_key: snapshot.presenceKey,
+                user_id: snapshot.userId || null,
+                alias: snapshot.alias,
+                color_token: snapshot.colorToken || null,
+                course: snapshot.course || null,
+                section_id: snapshot.sectionId,
+                section_title: snapshot.sectionTitle || null,
+                heading: snapshot.heading || null,
+                concept_id: snapshot.focusConcept || null,
+                joined_at: snapshot.joinedAt || snapshot.updatedAt || new Date().toISOString(),
+                last_seen_at: new Date().toISOString()
+            }, { onConflict: 'presence_key' })
+
+        if (error) {
+            console.warn('[Social] Presence persist failed:', error)
+            return false
+        }
+
+        return true
+    } catch (error) {
+        console.warn('[Social] Presence persist error:', error)
+        return false
+    }
+}
+
+export async function clearPresenceSnapshot(presenceKey) {
+    if (!presenceKey) {
+        return
+    }
+
+    try {
+        const { error } = await supabase
+            .from('social_presence')
+            .delete()
+            .eq('presence_key', presenceKey)
+
+        if (error) {
+            console.warn('[Social] Presence clear failed:', error)
+        }
+    } catch (error) {
+        console.warn('[Social] Presence clear error:', error)
     }
 }
 
@@ -212,6 +280,27 @@ export async function fetchSocialSignals(sectionId) {
         return data || []
     } catch (error) {
         console.warn('[Social] Fetch signals error:', error)
+        return []
+    }
+}
+
+export async function fetchLivePresenceSnapshots(windowMinutes = 5) {
+    const since = new Date(Date.now() - windowMinutes * 60 * 1000).toISOString()
+
+    try {
+        const { data, error } = await supabase
+            .from('social_presence')
+            .select('presence_key, user_id, alias, course, section_id, heading, concept_id, last_seen_at')
+            .gte('last_seen_at', since)
+
+        if (error) {
+            console.warn('[Social] Fetch presence snapshots failed:', error)
+            return []
+        }
+
+        return data || []
+    } catch (error) {
+        console.warn('[Social] Fetch presence snapshots error:', error)
         return []
     }
 }

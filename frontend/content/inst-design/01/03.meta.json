@@ -1,8 +1,17 @@
 {
     "chapter_title": "Introduction to Instructional Design",
     "title": "Module 3: Constructivism & Active Learning",
+    "description": "Use constructivist theory, the Zone of Proximal Development, and scaffolding principles to design more active and meaning-rich learning experiences.",
     "learning_objectives": [
-        "Describe the foundational principles of constructivism.",
-        "Apply active learning strategies to instructional design constraints."
-    ]
+        "Describe how constructivism changes instructional design decisions.",
+        "Explain the role of the Zone of Proximal Development in digital learning support.",
+        "Audit a learning activity for active meaning-making and timely scaffolding."
+    ],
+    "concept_ids": [
+        "constructivism",
+        "zone_of_proximal_development",
+        "scaffolding",
+        "active_learning"
+    ],
+    "estimated_time_minutes": 12
 }
