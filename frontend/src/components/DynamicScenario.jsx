@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Sparkles, Loader2, ArrowRight } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 
-export default function DynamicScenario({ topic, userContext }) {
+export default function DynamicScenario({ topic, context, userContext, course = 'bio-inspired' }) {
     const [scenario, setScenario] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
+    const resolvedContext = context || userContext || 'General application'
 
     // Only load if they click or it can auto-load. We will add a "Generate tailored example" button to avoid unwanted generation.
     const handleGenerate = async () => {
@@ -19,8 +20,8 @@ export default function DynamicScenario({ topic, userContext }) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     topic: topic,
-                    context: userContext || "General application",
-                    course: "inst-design",
+                    context: resolvedContext,
+                    course,
                     api_key: apiKey
                 })
             })

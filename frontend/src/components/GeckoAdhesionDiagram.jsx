@@ -7,7 +7,6 @@ export const GeckoAdhesionDiagram = () => {
     // Distance 0 = touching (max force)
 
     // Calculate visualization parameters based on distance
-    const setaeY = 150 + (100 - distance) * 0.4;
     const forceOpacity = 1 - (distance / 100);
     const forceRadius = 10 * forceOpacity + 2;
 

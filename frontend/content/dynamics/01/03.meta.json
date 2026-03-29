@@ -3,6 +3,7 @@
     "section": "03",
     "title": "Relative Motion",
     "course": "dynamics",
+    "description": "Use reference frames correctly, compute relative velocity in one and two dimensions, and connect frame choice to real navigation problems.",
     "learning_objectives": [
         "Calculate relative velocity between two moving objects",
         "Apply the Galilean transformation for velocities",
@@ -29,5 +30,5 @@
         "direction",
         "sign"
     ],
-    "estimated_time_minutes": 45
+    "estimated_time_minutes": 15
 }

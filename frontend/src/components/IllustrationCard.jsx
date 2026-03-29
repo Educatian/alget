@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import API_BASE from '../lib/apiConfig';
 
 export default function IllustrationCard({ data }) {
-    if (!data) return null;
-
     const [imageUrl, setImageUrl] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    if (!data) return null;
 
     const handleGenerateImage = async () => {
         setLoading(true);

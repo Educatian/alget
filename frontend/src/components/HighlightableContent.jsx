@@ -185,7 +185,7 @@ export default function HighlightableContent({
                 onHover: setHoveredHighlight
             })
         })
-    }, [highlights, popularHighlights, children, deleteHighlight])
+    }, [highlights, peerHighlights, popularHighlights, children, deleteHighlight])
 
     // Ref to persist the selected text even after browser selection clears
     const selectedTextRef = useRef(null)

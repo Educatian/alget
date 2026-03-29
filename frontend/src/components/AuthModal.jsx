@@ -19,11 +19,11 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
 
         try {
             if (mode === 'signin') {
-                const { data, error } = await signIn(email, password)
+                const { data: signInData, error } = await signIn(email, password)
                 if (error) throw error
-                onSuccess(data.user)
+                onSuccess(signInData.user)
             } else if (mode === 'signup') {
-                const { data, error } = await signUp(email, password)
+                const { error } = await signUp(email, password)
                 if (error) throw error
                 setMessage('Check your email for confirmation link!')
             } else if (mode === 'forgot') {

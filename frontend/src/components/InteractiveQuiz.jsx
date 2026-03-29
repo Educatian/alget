@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService';
 
-export default function InteractiveQuiz({ question, options, explanation }) {
+export default function InteractiveQuiz({ question, options, explanation, conceptId, defaultConceptId, sectionId }) {
     const [selectedOption, setSelectedOption] = useState(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [feedbackSaved, setFeedbackSaved] = useState(false);
 
     // Parse options if passed as a JSON string from MDX
     let parsedOptions = [];
@@ -26,11 +28,30 @@ export default function InteractiveQuiz({ question, options, explanation }) {
     const handleSubmit = () => {
         if (selectedOption === null) return;
         setIsSubmitted(true);
+
+        const resolvedConceptId = conceptId || defaultConceptId || null;
+        const wasCorrect = Boolean(parsedOptions[selectedOption]?.isCorrect);
+
+        if (sectionId) {
+            recordAdaptiveSignal(sectionId, wasCorrect ? 'inline_quiz_correct' : 'inline_quiz_incorrect', {
+                conceptId: resolvedConceptId,
+                question
+            });
+        }
+
+        if (resolvedConceptId) {
+            updateMastery({ [resolvedConceptId]: 1.0 }, wasCorrect)
+                .then(() => setFeedbackSaved(true))
+                .catch((error) => {
+                    console.error('InteractiveQuiz: failed to update mastery', error);
+                });
+        }
     };
 
     const handleRetry = () => {
         setSelectedOption(null);
         setIsSubmitted(false);
+        setFeedbackSaved(false);
     };
 
     const getOptionStyle = (idx, isCorrect) => {
@@ -124,6 +145,11 @@ export default function InteractiveQuiz({ question, options, explanation }) {
                                 </p>
                             </div>
                         </div>
+                        {feedbackSaved && (
+                            <p className="text-xs font-medium text-slate-500">
+                                This response has been folded into your learner model.
+                            </p>
+                        )}
                         {!isCorrectChoice && (
                             <button
                                 onClick={handleRetry}

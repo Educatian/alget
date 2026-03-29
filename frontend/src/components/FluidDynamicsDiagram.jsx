@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export const FluidDynamicsDiagram = () => {
     const [surfaceType, setSurfaceType] = useState('smooth'); // 'smooth' or 'riblets'

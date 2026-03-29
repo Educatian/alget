@@ -4,12 +4,6 @@ export const CognitivismDiagram = () => {
     const [processStage, setProcessStage] = useState('sensory'); // sensory, working, longTerm
 
     const sequence = ['sensory', 'working', 'longTerm'];
-    const labels = {
-        'sensory': 'Sensory Register',
-        'working': 'Working Memory',
-        'longTerm': 'Long-Term Memory'
-    };
-
     const handleNextStage = () => {
         const currentIndex = sequence.indexOf(processStage);
         setProcessStage(sequence[(currentIndex + 1) % sequence.length]);

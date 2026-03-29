@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fuseTelemetry } from '../lib/knowledgeService';
+import { fuseTelemetry, recordAdaptiveSignal } from '../lib/knowledgeService';
 import { logInteraction } from '../lib/loggingService';
 
 export default function AffectiveReaction({ sectionId, conceptIds = [] }) {
@@ -17,6 +17,7 @@ export default function AffectiveReaction({ sectionId, conceptIds = [] }) {
 
         setSelected(reaction.id);
         logInteraction('affective_reaction', reaction.id, sectionId);
+        recordAdaptiveSignal(sectionId, reaction.id, { conceptId: conceptIds?.[0] || null });
 
         // Attempt to dispatch to BKT Telemetry Fusion if we know the concepts
         if (conceptIds && conceptIds.length > 0) {

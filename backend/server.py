@@ -8,11 +8,14 @@ FastAPI server providing:
 - Assist API (Rail)
 """
 
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel
-from typing import List, Optional
+from pydantic import BaseModel, Field
+from typing import Any, List, Literal, Optional
+import json
 import sys
 import os
 
@@ -73,11 +76,25 @@ from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
 from knowledge_tracing import BayesianKnowledgeTracing
 
+@asynccontextmanager
+async def app_lifespan(_app: FastAPI):
+    """Initialize long-lived backend services on application startup."""
+    print("[INFO] Application startup: Indexing Bio-Inspired curriculum for RAG...")
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    content_dir = os.path.join(base_dir, "frontend", "content", "bio-inspired")
+    if os.path.exists(content_dir):
+        rag_service.load_curriculum(content_dir)
+    else:
+        print(f"[ERROR] Curriculum directory not found: {content_dir}")
+    yield
+
+
 # Initialize FastAPI
 app = FastAPI(
     title="UA Intelligent Textbook API",
     description="Backend for AI-powered engineering learning",
-    version="2.0.0"
+    version="2.0.0",
+    lifespan=app_lifespan,
 )
 
 # CORS for React frontend
@@ -94,18 +111,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-@app.on_event("startup")
-async def startup_event():
-    """Initialize systems on backend startup."""
-    print("[INFO] Application startup: Indexing Bio-Inspired curriculum for RAG...")
-    # Get absolute path to frontend/content/bio-inspired
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    content_dir = os.path.join(base_dir, "frontend", "content", "bio-inspired")
-    if os.path.exists(content_dir):
-        rag_service.load_curriculum(content_dir)
-    else:
-        print(f"[ERROR] Curriculum directory not found: {content_dir}")
 
 # ============================================================================
 # DATA MODELS
@@ -124,6 +129,8 @@ class OrchestrateRequest(BaseModel):
     current_content: str = ""
     history: list = []
     is_highlight: bool = False
+    grade_level: str = "Undergraduate"
+    interest: str = "Bio-Inspired Design"
     api_key: str = ""
 
 class ModuleInfo(BaseModel):
@@ -160,6 +167,11 @@ class StuckEventRequest(BaseModel):
     reason: str
     timestamp: str
 
+
+class AccessValidationRequest(BaseModel):
+    scope: Literal["engineering", "education", "researcher"]
+    passcode: str
+
 class CurriculumGenerateRequest(BaseModel):
     biology_context: str
     engineering_application: str
@@ -172,6 +184,589 @@ class AssessmentRequest(BaseModel):
     learning_objectives: list[str] = []
     concept_ids: list[str] = []
     api_key: str = ""
+
+
+class BiologyContextResponse(BaseModel):
+    primary_mechanism: str = ""
+    explanation: str = ""
+    organism_examples: list[str] = []
+    key_terms: list[str] = []
+    error: Optional[str] = None
+    raw_response: Optional[str] = None
+
+
+class EngineeringApplicationResponse(BaseModel):
+    engineering_principle: str = ""
+    application_areas: list[str] = []
+    proposed_solution: str = ""
+    challenges: list[str] = []
+    application_idea: str = ""
+    feasibility_analysis: str = ""
+    error: Optional[str] = None
+
+
+class ValidationCritiqueResponse(BaseModel):
+    is_valid: bool = False
+    score: int = 0
+    critique: str = ""
+    suggestions: list[str] = []
+    biological_fidelity: str = ""
+    engineering_feasibility: str = ""
+    error: Optional[str] = None
+
+
+class TutorSummaryResponse(BaseModel):
+    synthesis: str = ""
+    encouragement: str = ""
+    next_steps: list[str] = []
+    key_takeaways: list[str] = []
+    error: Optional[str] = None
+
+
+class ActivityBrainstormResponse(BaseModel):
+    activity_title: str = ""
+    lateral_thinking_prompt: str = ""
+    guiding_questions: list[str] = []
+    example_idea: str = ""
+    exercise_name: str = ""
+    constraints: list[str] = []
+    error: Optional[str] = None
+
+
+class ScaffoldingResponse(BaseModel):
+    misconception_identified: str = ""
+    encouraging_remark: str = ""
+    guiding_questions: list[str] = []
+    error: Optional[str] = None
+
+
+class EvaluationResponse(BaseModel):
+    score: int = 0
+    janine_feedback: str = ""
+    strengths: list[str] = []
+    areas_for_improvement: list[str] = []
+    error: Optional[str] = None
+
+
+class IllustrationResponse(BaseModel):
+    illustration_title: str = ""
+    conceptual_design: str = ""
+    image_prompt: str = ""
+    ui_elements: list[str] = []
+    error: Optional[str] = None
+
+
+class SimulationResponse(BaseModel):
+    description: str = ""
+    concepts_shown: list[str] = []
+    html_code: str = ""
+    error: Optional[str] = None
+
+
+class OrchestratorResponse(BaseModel):
+    intent: Literal["learn", "evaluate", "brainstorm", "illustrate", "simulate", "help", "error"]
+    query: str = ""
+    summary: TutorSummaryResponse | str = ""
+    error: Optional[str] = None
+    biology_context: Optional[BiologyContextResponse] = None
+    engineering_application: Optional[EngineeringApplicationResponse] = None
+    validation_critique: Optional[ValidationCritiqueResponse] = None
+    activity_brainstorm: Optional[ActivityBrainstormResponse] = None
+    scaffolding: Optional[ScaffoldingResponse] = None
+    evaluation: Optional[EvaluationResponse] = None
+    illustration: Optional[IllustrationResponse] = None
+    simulation: Optional[SimulationResponse] = None
+    iterations: int = 0
+
+
+class AdaptiveMasteryState(BaseModel):
+    concept_id: str
+    p_known: float = 0.0
+    mastery_score: Optional[float] = None
+    attempts_count: int = 0
+    correct_count: int = 0
+    confidence_level: str = ""
+    p_slip: float = 0.1
+    p_transit: float = 0.1
+
+
+class AdaptiveTelemetrySummary(BaseModel):
+    hint_requests: int = 0
+    stuck_events: int = 0
+    consecutive_wrong: int = 0
+    idle_events: int = 0
+    practice_attempts: int = 0
+    correct_attempts: int = 0
+    chat_turns: int = 0
+    affect_confused: int = 0
+    affect_insight: int = 0
+    affect_engaged: int = 0
+    affect_disengaged: int = 0
+    representation_requests: int = 0
+    explain_requests: int = 0
+
+
+class AdaptiveRecommendationRequest(BaseModel):
+    section_id: str
+    section_title: str = ""
+    concept_ids: list[str] = Field(default_factory=list)
+    current_heading: str = ""
+    stuck_reason: Optional[str] = None
+    mastery: list[AdaptiveMasteryState] = Field(default_factory=list)
+    telemetry: AdaptiveTelemetrySummary = Field(default_factory=AdaptiveTelemetrySummary)
+
+
+class LearnerStateSummary(BaseModel):
+    average_mastery: float = 0.0
+    lowest_mastery_concept: Optional[str] = None
+    readiness: Literal["support", "practice", "advance"] = "support"
+    frustration_index: int = 0
+    confidence_signal: str = ""
+
+
+class AdaptiveRecommendationCard(BaseModel):
+    action: Literal["explain", "represent", "practice", "advance", "ask"]
+    title: str
+    rationale: str
+    evidence: list[str] = Field(default_factory=list)
+    focus_concepts: list[str] = Field(default_factory=list)
+    coach_prompt: str = ""
+
+
+class AdaptiveRecommendationResponse(BaseModel):
+    section_id: str
+    learner_state: LearnerStateSummary
+    primary_recommendation: AdaptiveRecommendationCard
+    secondary_recommendations: list[AdaptiveRecommendationCard] = Field(default_factory=list)
+
+
+def _ensure_str(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value.strip()
+    return str(value).strip()
+
+
+def _ensure_str_list(value: Any) -> list[str]:
+    if value is None:
+        return []
+    if isinstance(value, list):
+        return [_ensure_str(item) for item in value if _ensure_str(item)]
+    coerced = _ensure_str(value)
+    return [coerced] if coerced else []
+
+
+def _coerce_dict(value: Any) -> dict[str, Any]:
+    if isinstance(value, dict):
+        return value
+    if isinstance(value, str):
+        candidate = value.strip()
+        if candidate.startswith("{") and candidate.endswith("}"):
+            try:
+                parsed = json.loads(candidate)
+                if isinstance(parsed, dict):
+                    return parsed
+            except json.JSONDecodeError:
+                pass
+    return {}
+
+
+def _normalize_biology_context(value: Any) -> BiologyContextResponse:
+    source = _coerce_dict(value)
+    if source:
+        return BiologyContextResponse(
+            primary_mechanism=_ensure_str(source.get("primary_mechanism")),
+            explanation=_ensure_str(source.get("explanation")),
+            organism_examples=_ensure_str_list(source.get("organism_examples")),
+            key_terms=_ensure_str_list(source.get("key_terms")),
+            error=_ensure_str(source.get("error")) or None,
+            raw_response=_ensure_str(source.get("raw_response")) or None,
+        )
+
+    fallback = _ensure_str(value)
+    return BiologyContextResponse(explanation=fallback) if fallback else BiologyContextResponse()
+
+
+def _normalize_engineering_application(value: Any) -> EngineeringApplicationResponse:
+    source = _coerce_dict(value)
+    principle = _ensure_str(source.get("engineering_principle") or source.get("application_idea"))
+    proposed_solution = _ensure_str(source.get("proposed_solution") or source.get("feasibility_analysis"))
+    application_idea = _ensure_str(source.get("application_idea")) or principle or proposed_solution
+    feasibility_analysis = _ensure_str(source.get("feasibility_analysis")) or proposed_solution
+
+    return EngineeringApplicationResponse(
+        engineering_principle=principle,
+        application_areas=_ensure_str_list(source.get("application_areas")),
+        proposed_solution=proposed_solution,
+        challenges=_ensure_str_list(source.get("challenges")),
+        application_idea=application_idea,
+        feasibility_analysis=feasibility_analysis,
+        error=_ensure_str(source.get("error")) or None,
+    )
+
+
+def _normalize_validation_critique(value: Any) -> ValidationCritiqueResponse:
+    source = _coerce_dict(value)
+    return ValidationCritiqueResponse(
+        is_valid=bool(source.get("is_valid", False)),
+        score=int(source.get("score", 0) or 0),
+        critique=_ensure_str(source.get("critique")),
+        suggestions=_ensure_str_list(source.get("suggestions")),
+        biological_fidelity=_ensure_str(source.get("biological_fidelity")),
+        engineering_feasibility=_ensure_str(source.get("engineering_feasibility")),
+        error=_ensure_str(source.get("error")) or None,
+    )
+
+
+def _normalize_tutor_summary(value: Any) -> TutorSummaryResponse | str:
+    if isinstance(value, str):
+        return _ensure_str(value)
+
+    source = _coerce_dict(value)
+    next_steps = _ensure_str_list(source.get("next_steps"))
+    key_takeaways = _ensure_str_list(source.get("key_takeaways")) or next_steps
+    return TutorSummaryResponse(
+        synthesis=_ensure_str(source.get("synthesis")),
+        encouragement=_ensure_str(source.get("encouragement")),
+        next_steps=next_steps,
+        key_takeaways=key_takeaways,
+        error=_ensure_str(source.get("error")) or None,
+    )
+
+
+def _normalize_activity_brainstorm(value: Any) -> ActivityBrainstormResponse:
+    source = _coerce_dict(value)
+    guiding_questions = _ensure_str_list(source.get("guiding_questions") or source.get("constraints"))
+    title = _ensure_str(source.get("activity_title") or source.get("exercise_name"))
+    return ActivityBrainstormResponse(
+        activity_title=title,
+        lateral_thinking_prompt=_ensure_str(source.get("lateral_thinking_prompt")),
+        guiding_questions=guiding_questions,
+        example_idea=_ensure_str(source.get("example_idea")),
+        exercise_name=title,
+        constraints=guiding_questions,
+        error=_ensure_str(source.get("error")) or None,
+    )
+
+
+def _normalize_scaffolding(value: Any) -> ScaffoldingResponse:
+    source = _coerce_dict(value)
+    if source:
+        return ScaffoldingResponse(
+            misconception_identified=_ensure_str(source.get("misconception_identified")),
+            encouraging_remark=_ensure_str(source.get("encouraging_remark") or source.get("scaffolding")),
+            guiding_questions=_ensure_str_list(source.get("guiding_questions")),
+            error=_ensure_str(source.get("error")) or None,
+        )
+
+    fallback = _ensure_str(value)
+    return ScaffoldingResponse(encouraging_remark=fallback) if fallback else ScaffoldingResponse()
+
+
+def _normalize_evaluation(value: Any) -> EvaluationResponse:
+    source = _coerce_dict(value)
+    return EvaluationResponse(
+        score=int(source.get("score", 0) or 0),
+        janine_feedback=_ensure_str(source.get("janine_feedback")),
+        strengths=_ensure_str_list(source.get("strengths")),
+        areas_for_improvement=_ensure_str_list(source.get("areas_for_improvement")),
+        error=_ensure_str(source.get("error")) or None,
+    )
+
+
+def _normalize_illustration(value: Any) -> IllustrationResponse:
+    source = _coerce_dict(value)
+    return IllustrationResponse(
+        illustration_title=_ensure_str(source.get("illustration_title")),
+        conceptual_design=_ensure_str(source.get("conceptual_design")),
+        image_prompt=_ensure_str(source.get("image_prompt")),
+        ui_elements=_ensure_str_list(source.get("ui_elements")),
+        error=_ensure_str(source.get("error")) or None,
+    )
+
+
+def _normalize_simulation(value: Any) -> SimulationResponse:
+    source = _coerce_dict(value)
+    return SimulationResponse(
+        description=_ensure_str(source.get("description")),
+        concepts_shown=_ensure_str_list(source.get("concepts_shown")),
+        html_code=_ensure_str(source.get("html_code")),
+        error=_ensure_str(source.get("error")) or None,
+    )
+
+
+def normalize_orchestrator_response(value: dict[str, Any]) -> OrchestratorResponse:
+    intent = _ensure_str(value.get("intent")).lower() or "error"
+    if intent not in {"learn", "evaluate", "brainstorm", "illustrate", "simulate", "help", "error"}:
+        intent = "error"
+
+    response = OrchestratorResponse(
+        intent=intent,
+        query=_ensure_str(value.get("query")),
+        summary=_normalize_tutor_summary(value.get("summary")),
+        error=_ensure_str(value.get("error")) or None,
+        iterations=int(value.get("iterations", 0) or 0),
+    )
+
+    if intent in {"learn", "brainstorm"}:
+        response.biology_context = _normalize_biology_context(value.get("biology_context"))
+    if intent == "learn":
+        response.engineering_application = _normalize_engineering_application(value.get("engineering_application"))
+        response.validation_critique = _normalize_validation_critique(value.get("validation_critique"))
+        response.activity_brainstorm = _normalize_activity_brainstorm(value.get("activity_brainstorm"))
+    elif intent == "brainstorm":
+        response.activity_brainstorm = _normalize_activity_brainstorm(value.get("activity_brainstorm"))
+    elif intent == "help":
+        response.scaffolding = _normalize_scaffolding(value.get("scaffolding"))
+    elif intent == "evaluate":
+        response.evaluation = _normalize_evaluation(value.get("evaluation"))
+    elif intent == "illustrate":
+        response.illustration = _normalize_illustration(value.get("illustration"))
+    elif intent == "simulate":
+        response.simulation = _normalize_simulation(value.get("simulation"))
+
+    if intent == "error" and not response.error:
+        response.error = _ensure_str(value.get("summary")) or "Unknown orchestration error."
+
+    return response
+
+
+def _normalize_ratio(value: Any, fallback: float = 0.0) -> float:
+    try:
+        numeric = float(value)
+    except (TypeError, ValueError):
+        return fallback
+    return max(0.0, min(1.0, numeric))
+
+
+def _humanize_concept(concept_id: Optional[str]) -> str:
+    if not concept_id:
+        return "this concept"
+    return concept_id.replace("_", " ")
+
+
+def _build_recommendation_card(
+    action: Literal["explain", "represent", "practice", "advance", "ask"],
+    title: str,
+    rationale: str,
+    evidence: list[str],
+    focus_concepts: list[str],
+    coach_prompt: str = "",
+) -> AdaptiveRecommendationCard:
+    return AdaptiveRecommendationCard(
+        action=action,
+        title=title,
+        rationale=rationale,
+        evidence=[item for item in evidence if item][:4],
+        focus_concepts=[item for item in focus_concepts if item][:3],
+        coach_prompt=coach_prompt,
+    )
+
+
+def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> AdaptiveRecommendationResponse:
+    telemetry = request.telemetry
+    mastery_states = request.mastery
+
+    concept_scores: list[tuple[str, float]] = []
+    for state in mastery_states:
+        concept_scores.append(
+            (
+                state.concept_id,
+                _normalize_ratio(
+                    state.mastery_score if state.mastery_score is not None else state.p_known,
+                    fallback=0.45,
+                ),
+            )
+        )
+
+    if concept_scores:
+        average_mastery = sum(score for _, score in concept_scores) / len(concept_scores)
+        lowest_concept, lowest_score = min(concept_scores, key=lambda item: item[1])
+    else:
+        average_mastery = 0.45 if request.concept_ids else 0.5
+        lowest_concept = request.concept_ids[0] if request.concept_ids else None
+        lowest_score = average_mastery
+
+    practice_attempts = max(0, telemetry.practice_attempts)
+    correct_attempts = max(0, min(telemetry.correct_attempts, practice_attempts))
+    correct_ratio = (correct_attempts / practice_attempts) if practice_attempts else 0.0
+
+    frustration_index = (
+        telemetry.stuck_events * 3
+        + telemetry.consecutive_wrong * 2
+        + telemetry.hint_requests
+        + telemetry.affect_confused * 2
+        + telemetry.affect_disengaged * 2
+        + telemetry.idle_events
+    )
+    positive_momentum = (
+        correct_attempts * 2
+        + telemetry.affect_insight * 2
+        + telemetry.affect_engaged
+    )
+
+    readiness: Literal["support", "practice", "advance"] = "support"
+    if average_mastery >= 0.8 and frustration_index <= 1 and (correct_ratio >= 0.75 or positive_momentum >= 3):
+        readiness = "advance"
+    elif average_mastery >= 0.45 and frustration_index <= 4:
+        readiness = "practice"
+
+    confidence_signal = "Needs support"
+    if readiness == "advance":
+        confidence_signal = "Ready to advance"
+    elif readiness == "practice":
+        confidence_signal = "Ready for guided practice"
+
+    focus_concepts = [concept for concept in request.concept_ids if concept][:3]
+    if lowest_concept and lowest_concept not in focus_concepts:
+        focus_concepts.insert(0, lowest_concept)
+    focus_concepts = focus_concepts[:3]
+
+    evidence: list[str] = []
+    if lowest_concept:
+        evidence.append(
+            f"Lowest mastery is {_humanize_concept(lowest_concept)} at {lowest_score:.0%}."
+        )
+    evidence.append(f"Average mastery across this section is {average_mastery:.0%}.")
+    if practice_attempts:
+        evidence.append(
+            f"Recent practice accuracy is {correct_attempts}/{practice_attempts} ({correct_ratio:.0%})."
+        )
+    if telemetry.hint_requests:
+        evidence.append(f"Hint requests in this section: {telemetry.hint_requests}.")
+    if telemetry.affect_confused:
+        evidence.append("Learner reported confusion in this section.")
+    if telemetry.affect_insight:
+        evidence.append("Learner reported an insight moment recently.")
+    if request.stuck_reason:
+        evidence.append(f"Current stuck signal: {request.stuck_reason}.")
+
+    stuck_reason = _ensure_str(request.stuck_reason).lower()
+    primary_action: Literal["explain", "represent", "practice", "advance", "ask"]
+    title = ""
+    rationale = ""
+
+    if "unit" in stuck_reason:
+        primary_action = "explain"
+        title = "Repair the unit logic before moving on"
+        rationale = "A unit mismatch usually means the underlying setup needs a quick reset before more practice."
+    elif request.stuck_reason and "idle" in stuck_reason:
+        primary_action = "represent"
+        title = "Restart with a different view of the idea"
+        rationale = "A lighter representation can reduce overload and help the learner re-enter the problem."
+    elif frustration_index >= 6:
+        if average_mastery < 0.55 or telemetry.affect_confused or telemetry.hint_requests >= 2:
+            primary_action = "explain"
+            title = "Step back and simplify the core idea"
+            rationale = "The recent signals suggest the learner needs clearer conceptual grounding before another attempt."
+        else:
+            primary_action = "represent"
+            title = "Reframe the concept in a new representation"
+            rationale = "The learner is engaging, but a new mental model is more useful than repeating the same explanation."
+    elif average_mastery < 0.4:
+        primary_action = "explain"
+        title = "Rebuild the concept before more practice"
+        rationale = "Mastery is still low, so direct explanation will create a stronger base for later application."
+    elif average_mastery < 0.7:
+        if correct_ratio < 0.6 or telemetry.consecutive_wrong:
+            primary_action = "represent"
+            title = "See the idea from another angle"
+            rationale = "A new visual or analogy is likely to unlock the next practice attempt more effectively than repetition."
+        else:
+            primary_action = "practice"
+            title = "Lock in the idea with one more attempt"
+            rationale = "The learner has partial mastery and is ready to reinforce it through targeted practice."
+    elif readiness == "advance":
+        primary_action = "advance"
+        title = "Keep moving while this concept is stable"
+        rationale = "The learner is showing high mastery with low friction, so momentum is worth preserving."
+    else:
+        primary_action = "practice"
+        title = "Consolidate with a final check"
+        rationale = "A short application task will confirm the concept is durable and not just familiar."
+
+    coach_prompt = (
+        f"I'm working on {_humanize_concept(lowest_concept)} in {request.section_title or request.section_id}. "
+        "Can you coach me with one diagnostic question first?"
+    )
+
+    primary = _build_recommendation_card(
+        action=primary_action,
+        title=title,
+        rationale=rationale,
+        evidence=evidence,
+        focus_concepts=focus_concepts,
+        coach_prompt=coach_prompt,
+    )
+
+    secondary_candidates: list[AdaptiveRecommendationCard] = []
+    fallback_actions = {
+        "explain": [
+            ("represent", "Try a visual or analogy", "A second representation can reduce abstraction if the text explanation still feels heavy."),
+            ("practice", "Return to one focused attempt", "After the explanation lands, a single targeted problem helps transfer the idea."),
+            ("ask", "Ask BigAL for a diagnostic hint", "A short coaching exchange can pinpoint exactly where the reasoning is breaking."),
+        ],
+        "represent": [
+            ("explain", "Pair the new view with a simpler explanation", "Combining a representation with plain-language coaching often closes the gap quickly."),
+            ("practice", "Test the new model right away", "A quick attempt checks whether the new representation is usable, not just interesting."),
+            ("ask", "Ask BigAL to compare two models", "Dialog can help the learner connect the new representation back to the formal concept."),
+        ],
+        "practice": [
+            ("explain", "Review the fragile step first", "A brief explanation can prevent avoidable repetition if the learner is still uncertain."),
+            ("ask", "Ask BigAL for a single scaffold", "A targeted prompt keeps practice productive without giving away the answer."),
+        ],
+        "advance": [
+            ("practice", "Do one stretch problem before advancing", "A harder application can confirm the concept is robust enough to transfer forward."),
+            ("ask", "Ask for a deeper extension", "BigAL can connect the concept to a richer engineering use case before the learner moves on."),
+        ],
+        "ask": [
+            ("explain", "Start with a direct explanation", "If the learner cannot name the issue yet, a clean explanation is the safest starting point."),
+            ("represent", "Switch to a new view", "A diagram or analogy may surface the misconception faster than free-form chat."),
+        ],
+    }
+
+    for action, secondary_title, secondary_rationale in fallback_actions.get(primary_action, []):
+        secondary_candidates.append(
+            _build_recommendation_card(
+                action=action,
+                title=secondary_title,
+                rationale=secondary_rationale,
+                evidence=evidence,
+                focus_concepts=focus_concepts,
+                coach_prompt=coach_prompt,
+            )
+        )
+
+    return AdaptiveRecommendationResponse(
+        section_id=request.section_id,
+        learner_state=LearnerStateSummary(
+            average_mastery=round(average_mastery, 3),
+            lowest_mastery_concept=lowest_concept,
+            readiness=readiness,
+            frustration_index=frustration_index,
+            confidence_signal=confidence_signal,
+        ),
+        primary_recommendation=primary,
+        secondary_recommendations=secondary_candidates[:3],
+    )
+
+
+def validate_access_passcode(scope: Literal["engineering", "education", "researcher"], passcode: str) -> bool:
+    env_key_by_scope = {
+        "engineering": "ENGINEERING_ACCESS_CODE",
+        "education": "EDUCATION_ACCESS_CODE",
+        "researcher": "RESEARCHER_ACCESS_CODE",
+    }
+    fallback_by_scope = {
+        "engineering": "eng123",
+        "education": "edu123",
+        "researcher": "immersivebama",
+    }
+
+    expected_value = os.environ.get(env_key_by_scope[scope], fallback_by_scope[scope]).strip()
+    candidate = passcode.strip()
+    return bool(expected_value) and candidate == expected_value
 
 # ============================================================================
 # LEGACY ENDPOINTS (Module-based generation)
@@ -316,7 +911,7 @@ async def generate_content(request: GenerateRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Generation error: {str(e)}")
 
-@app.post("/api/orchestrate")
+@app.post("/api/orchestrate", response_model=OrchestratorResponse)
 async def orchestrate_query(request: OrchestrateRequest):
     """Analyze student query and delegate to specialist agents based on intent."""
     try:
@@ -328,9 +923,12 @@ async def orchestrate_query(request: OrchestrateRequest):
             course=request.course,
             current_content=request.current_content,
             history=request.history,
-            is_highlight=request.is_highlight
+            is_highlight=request.is_highlight,
+            grade_level=request.grade_level,
+            interest=request.interest,
         )
-        return result
+        normalized = normalize_orchestrator_response(result)
+        return normalized.model_dump(exclude_none=True)
     except Exception as e:
         import traceback
         traceback.print_exc()
@@ -426,6 +1024,22 @@ async def fuse_telemetry(request: TelemetryFusionRequest):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Telemetry fusion error: {str(e)}")
+
+
+@app.post("/api/access/validate")
+async def validate_access(request: AccessValidationRequest):
+    """Validate track or dashboard access without exposing passcodes in the client bundle."""
+    is_valid = validate_access_passcode(request.scope, request.passcode)
+    return {"valid": is_valid, "scope": request.scope}
+
+
+@app.post("/api/adaptive_recommendation", response_model=AdaptiveRecommendationResponse)
+async def adaptive_recommendation(request: AdaptiveRecommendationRequest):
+    """Recommend the next best learning action from mastery and recent telemetry."""
+    try:
+        return build_adaptive_recommendation(request)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Adaptive recommendation error: {str(e)}")
 
 class MasteryGraphRequest(BaseModel):
     # This could take user_id and fetch from a real DB.

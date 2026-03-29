@@ -1,5 +1,18 @@
 {
     "title": "Module 5: Adult Learning Theory (Andragogy)",
     "description": "Contrasting Pedagogy (teaching children) with Andragogy (teaching adults), focusing on self-direction, prior experience, and problem-centered learning.",
-    "order": 5
+    "order": 5,
+    "chapter_title": "Motivation and Learner-Centered Design",
+    "learning_objectives": [
+        "Differentiate pedagogy from andragogy in course architecture.",
+        "Use Knowles' assumptions to audit adult-learning experiences.",
+        "Design more problem-centered and self-directed learning pathways."
+    ],
+    "concept_ids": [
+        "andragogy",
+        "adult_learning",
+        "self_directed_learning",
+        "problem_centered_learning"
+    ],
+    "estimated_time_minutes": 12
 }

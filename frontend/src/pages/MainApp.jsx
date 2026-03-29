@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { StaticsIllustration, BioInspiredIllustration, InstDesignIllustration } from '../components/CourseIllustrations'
 import SettingsModal from '../components/SettingsModal'
 import { Settings } from 'lucide-react'
+import API_BASE from '../lib/apiConfig'
 import '../index.css'
 
 export default function MainApp({ user, onLogout }) {
@@ -13,6 +14,7 @@ export default function MainApp({ user, onLogout }) {
   const [passcode, setPasscode] = useState('')
   const [error, setError] = useState('')
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const [unlocking, setUnlocking] = useState(false)
 
   const engineeringCourses = [
     {
@@ -63,17 +65,38 @@ export default function MainApp({ user, onLogout }) {
     navigate(`/diagnostic/${courseId}`)
   }
 
-  const handleUnlock = (e) => {
+  const handleUnlock = async (e) => {
     e.preventDefault()
-    // Simple passcode check for testing (e.g. 'eng123' and 'edu123')
-    if (selectedMode === 'engineering' && passcode === 'eng123') {
-      setUnlockedMode('engineering')
-      setError('')
-    } else if (selectedMode === 'education' && passcode === 'edu123') {
-      setUnlockedMode('education')
-      setError('')
-    } else {
-      setError('Invalid passcode. Try eng123 or edu123')
+    setUnlocking(true)
+    setError('')
+
+    try {
+      const response = await fetch(`${API_BASE}/access/validate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          scope: selectedMode,
+          passcode
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`Access validation failed: ${response.status}`)
+      }
+
+      const data = await response.json()
+      if (data.valid) {
+        setUnlockedMode(selectedMode)
+        setPasscode('')
+      } else {
+        setError('Invalid access code')
+        setPasscode('')
+      }
+    } catch (err) {
+      console.error(err)
+      setError('Unable to validate access right now')
+    } finally {
+      setUnlocking(false)
     }
   }
 
@@ -158,10 +181,10 @@ export default function MainApp({ user, onLogout }) {
                     type="password"
                     value={passcode}
                     onChange={(e) => setPasscode(e.target.value)}
-                    placeholder="Enter passcode"
+                    placeholder="Enter access code"
                     className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/20 outline-none text-slate-900 bg-white"
                   />
-                  <p className="text-xs text-slate-400 mt-2">Hint: Use <strong>eng123</strong> or <strong>edu123</strong> for testing</p>
+                  <p className="text-xs text-slate-400 mt-2">Your course coordinator or research lead can provide the current access code.</p>
                 </div>
 
                 {error && (
@@ -172,9 +195,10 @@ export default function MainApp({ user, onLogout }) {
 
                 <button
                   type="submit"
-                  className="w-full bg-[#9E1B32] hover:bg-[#7A1527] text-white font-bold py-3.5 rounded-xl transition-colors shadow-md shadow-red-900/10 mt-2"
+                  disabled={unlocking}
+                  className="w-full bg-[#9E1B32] hover:bg-[#7A1527] text-white font-bold py-3.5 rounded-xl transition-colors shadow-md shadow-red-900/10 mt-2 disabled:opacity-60"
                 >
-                  Unlock Module
+                  {unlocking ? 'Checking access...' : 'Unlock Module'}
                 </button>
               </form>
             </div>

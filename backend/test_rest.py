@@ -1,23 +1,29 @@
-﻿import urllib.request
-import json
 import os
+import urllib.request
+
+import pytest
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
-url = os.getenv('SUPABASE_URL') + '/rest/v1/mastery'
-key = os.getenv('SUPABASE_KEY')
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
-print("URL:", url);
 
-req = urllib.request.Request(url, headers={
-    'apikey': key,
-    'Authorization': f'Bearer {key}',
-    'Content-Type': 'application/json'
-})
+@pytest.mark.skipif(
+    not SUPABASE_URL or not SUPABASE_KEY,
+    reason="SUPABASE_URL and SUPABASE_KEY are required for REST smoke tests.",
+)
+def test_supabase_mastery_rest_endpoint_reachable():
+    req = urllib.request.Request(
+        f"{SUPABASE_URL}/rest/v1/mastery",
+        headers={
+            "apikey": SUPABASE_KEY,
+            "Authorization": f"Bearer {SUPABASE_KEY}",
+            "Content-Type": "application/json",
+        },
+    )
 
-try:
     with urllib.request.urlopen(req) as response:
-        print(response.read().decode())
-except Exception as e:
-    print('Failed:', str(e))
+        assert response.status < 400

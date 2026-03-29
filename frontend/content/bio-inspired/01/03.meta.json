@@ -1,6 +1,7 @@
 {
     "title": "Directional Adhesion",
     "chapter_title": "Structural Biomimicry",
+    "description": "Understand how gecko-inspired microstructures create strong shear grip, easy peel release, and new classes of reversible dry adhesives.",
     "learning_objectives": [
         "Understand the physics of intermolecular forces (van der Waals) in biological systems.",
         "Examine surface area manipulation in setal structures.",
@@ -11,5 +12,6 @@
         "gecko",
         "van_der_waals",
         "spatial_geometry"
-    ]
+    ],
+    "estimated_time_minutes": 12
 }

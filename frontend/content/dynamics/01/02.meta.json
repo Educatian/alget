@@ -3,6 +3,7 @@
     "section": "02",
     "title": "Rigid Body Mechanics in Motion",
     "course": "dynamics",
+    "description": "Model translation and rotation together, interpret torque, and connect moment-arm geometry to engineering design decisions.",
     "learning_objectives": [
         "Calculate torque at rotational joints",
         "Understand moment arms and angular velocity",
@@ -14,5 +15,6 @@
         "angular_velocity",
         "kinematics",
         "joints"
-    ]
+    ],
+    "estimated_time_minutes": 14
 }

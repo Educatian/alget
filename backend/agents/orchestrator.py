@@ -44,7 +44,16 @@ class OrchestratorAgent:
         self.illustration_agent = IllustrationAgent(api_key)
         self.scaffolding_agent = ScaffoldingAgent(api_key)
 
-    def orchestrate(self, query: str, course: str = "bio-inspired", current_content: str = "", history: list = None, is_highlight: bool = False) -> dict:
+    def orchestrate(
+        self,
+        query: str,
+        course: str = "bio-inspired",
+        current_content: str = "",
+        history: list = None,
+        is_highlight: bool = False,
+        grade_level: str = "Undergraduate",
+        interest: str = "Bio-Inspired Design",
+    ) -> dict:
         """
         Main orchestration method:
         1. Analyzes intent.
@@ -53,10 +62,6 @@ class OrchestratorAgent:
         """
         if history is None:
             history = []
-        
-        # Default parameters for sub-agents
-        grade_level = "Undergraduate"
-        interest = "Bio-Inspired Design"
         
         if not self.client:
             return {

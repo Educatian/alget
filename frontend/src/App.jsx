@@ -1,16 +1,31 @@
-import { useState, useEffect } from 'react'
+import { Suspense, lazy, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { supabase } from './lib/supabase'
 import { initSession, endSession } from './lib/loggingService'
-import LandingPage from './pages/LandingPage'
-import MainApp from './pages/MainApp'
-import BookLayout from './pages/BookLayout'
-import DiagnosticAssessment from './pages/DiagnosticAssessment'
-import GenerativeLab from './pages/GenerativeLab'
-import AnalyticsDashboard from './pages/AnalyticsDashboard'
 import GlobalClickLogger from './components/GlobalClickLogger'
 import API_BASE from './lib/apiConfig'
 import './index.css'
+
+const LandingPage = lazy(() => import('./pages/LandingPage'))
+const MainApp = lazy(() => import('./pages/MainApp'))
+const BookLayout = lazy(() => import('./pages/BookLayout'))
+const DiagnosticAssessment = lazy(() => import('./pages/DiagnosticAssessment'))
+const GenerativeLab = lazy(() => import('./pages/GenerativeLab'))
+const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'))
+
+function RouteFallback() {
+  return (
+    <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 flex items-center justify-center px-4">
+      <div className="text-center">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[#9E1B32] shadow-lg shadow-red-900/10 ring-1 ring-slate-200">
+          <span className="animate-pulse text-2xl font-bold">AL</span>
+        </div>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Preparing workspace</p>
+        <p className="mt-2 text-slate-600">Loading the next learning surface...</p>
+      </div>
+    </div>
+  )
+}
 
 export default function App() {
   const [user, setUser] = useState(null)
@@ -35,14 +50,15 @@ export default function App() {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       const newUser = session?.user ?? null
 
-      // Initialize or end logging session based on auth state
-      if (newUser && !user) {
-        initSession(newUser)
-      } else if (!newUser && user) {
-        endSession()
-      }
+      setUser((previousUser) => {
+        if (newUser && !previousUser) {
+          initSession(newUser)
+        } else if (!newUser && previousUser) {
+          endSession()
+        }
 
-      setUser(newUser)
+        return newUser
+      })
     })
 
     return () => subscription.unsubscribe()
@@ -70,72 +86,70 @@ export default function App() {
   return (
     <BrowserRouter>
       <GlobalClickLogger>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <LandingPage onLogin={handleLogin} user={user} onLogout={handleLogout} />
-            }
-          />
-          <Route
-            path="/learn"
-            element={
-              user ? (
-                <MainApp user={user} onLogout={handleLogout} />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
-          {/* Diagnostic Assessment Route */}
-          <Route
-            path="/diagnostic/:course"
-            element={
-              user ? (
-                <DiagnosticAssessment />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
-          {/* Book Layout Routes */}
-          <Route
-            path="/book/:course"
-            element={
-              user ? (
-                <BookLayout user={user} onLogout={handleLogout} />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
-          <Route
-            path="/book/:course/:chapter/:section"
-            element={
-              user ? (
-                <BookLayout user={user} onLogout={handleLogout} />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
-          {/* Generative Lab Route */}
-          <Route
-            path="/lab"
-            element={
-              user ? (
-                <GenerativeLab />
-              ) : (
-                <Navigate to="/" replace />
-              )
-            }
-          />
-          {/* Analytics Route */}
-          <Route
-            path="/analytics"
-            element={<AnalyticsDashboard user={user} />}
-          />
-        </Routes>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <LandingPage onLogin={handleLogin} user={user} onLogout={handleLogout} />
+              }
+            />
+            <Route
+              path="/learn"
+              element={
+                user ? (
+                  <MainApp user={user} onLogout={handleLogout} />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+            <Route
+              path="/diagnostic/:course"
+              element={
+                user ? (
+                  <DiagnosticAssessment />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+            <Route
+              path="/book/:course"
+              element={
+                user ? (
+                  <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+            <Route
+              path="/book/:course/:chapter/:section"
+              element={
+                user ? (
+                  <BookLayout key={user?.id || 'guest-book'} user={user} onLogout={handleLogout} />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+            <Route
+              path="/lab"
+              element={
+                user ? (
+                  <GenerativeLab />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+            <Route
+              path="/analytics"
+              element={<AnalyticsDashboard user={user} />}
+            />
+          </Routes>
+        </Suspense>
       </GlobalClickLogger>
     </BrowserRouter>
   )

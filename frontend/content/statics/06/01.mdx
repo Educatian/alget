@@ -1,41 +1,108 @@
 # 6.1 Introduction to Trusses
 
-In engineering statics, a **truss** is a structure composed of slender members joined together at their end points. Trusses are commonly used in constructing bridges, roof supports, and aerospace structures due to their high strength-to-weight ratio.
+A **truss** is a structure made from slender members connected at joints so that loads travel primarily as axial tension or compression. This makes trusses one of the most material-efficient structural systems in engineering. Bridges, roof systems, cranes, transmission towers, and aerospace frameworks all rely on the same basic idea:
 
-### Key Assumptions
-To simplify the mathematical analysis of a truss, we make two primary assumptions:
-1. **All loadings are applied at the joints.** The weight of the members is often neglected as it is small compared to the applied forces. If a weight is to be considered, it is generally applied as a force at the structural joints.
-2. **The members are joined together by smooth pins.** Because of these assumptions, each truss member acts as a **two-force member**, meaning the force within the member is directed along the axis of the member (either in tension or compression).
+**use geometry to carry load with as little material as possible**
 
----
+## Why Trusses Are So Efficient
 
-<div className="my-8 p-6 bg-gradient-to-br from-purple-50 to-indigo-50 border-l-4 border-purple-600 rounded-r-xl shadow-sm">
-  <div className="flex items-center gap-3 mb-3">
-    <span className="text-2xl">🌿</span>
-    <h3 className="text-xl font-bold text-slate-800 m-0">Bio-Inspired Link: Nature's Trusses</h3>
-  </div>
-  <p className="text-slate-700 leading-relaxed font-medium mb-4">
-    Human engineers didn't invent the truss. Nature has been optimizing structural frameworks for millions of years to achieve maximum strength with minimal material. For instance, the **Venus Flower Basket** (*Euplectella aspergillum*), a deep-sea glass sponge, features a complex, hierarchical silica skeleton that perfectly mirrors a reinforced truss structure to withstand deep ocean currents. 
-  </p>
-  <p className="text-slate-700 leading-relaxed font-medium mb-4">
-    By studying the diagonal bracing and grid-like architecture of this sponge, engineers are developing new, highly resilient structures for civil and aerospace applications. Do you want to see how this translates directly into a real-world building?
-  </p>
-  <a href="/book/bio-inspired/03/01" className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-colors no-underline shadow-md shadow-purple-900/20">
-    Explore the Bio-Inspired Design Module <span className="text-xl">→</span>
-  </a>
-</div>
+Trusses work well because they convert complicated external loading into simpler internal member forces.
 
----
+- Long spans become possible without using a solid beam everywhere.
+- Members can stay slender because they mostly carry axial load.
+- Triangular layouts help preserve shape and resist collapse.
 
-### The Method of Joints
+This is why a truss often feels "lighter than it looks" while still carrying substantial load.
 
-The **Method of Joints** allows us to determine the internal forces in the various members of a truss. Since the entire truss is in equilibrium, each individual joint must also be in equilibrium.
+## The Core Assumptions
 
-#### Procedure for Analysis:
-1. **Draw a Free-Body Diagram (FBD)** of the entire truss.
-2. **Determine the external support reactions** by applying the equations of global equilibrium ($\Sigma F_x = 0$, $\Sigma F_y = 0$, $\Sigma M = 0$).
-3. **Select a joint** with at least one known force and at most two unknown forces.
-4. Apply the scalar equations of equilibrium ($\Sigma F_x = 0$ and $\Sigma F_y = 0$) to solve for the unknowns at that joint.
-5. Proceed to the next joint and repeat the process.
+Classical truss analysis depends on two simplifying assumptions:
 
-**Remember:** Assume all unknown member forces are in **tension** (pulling away from the joint). If your calculated answer is negative, it means the member is actually in **compression** (pushing into the joint).
+1. **Loads are applied at the joints.**
+2. **Members are connected by smooth pins.**
+
+Under these assumptions, each member behaves as a **two-force member**. That means the internal force in the member acts along the member axis only.
+
+So each member is typically in one of two states:
+
+- **Tension:** the member is being pulled
+- **Compression:** the member is being pushed
+
+That is a big simplification. Instead of worrying about bending in every bar, we can focus on axial force paths.
+
+## Why Triangles Matter
+
+A four-sided frame can distort into a parallelogram unless extra bracing is added. A triangle is different. Once the side lengths are fixed, the shape is geometrically stable.
+
+That is why trusses are built from repeated triangular units:
+
+- triangles lock geometry
+- diagonal members redirect load
+- long spans can be stabilized without filling the whole region with material
+
+This is also why truss thinking appears so often in nature.
+
+## Bio-Inspired Link: Nature's Trusses
+
+Human engineers did not invent lightweight lattice structures. Nature has been using them for millions of years.
+
+The **Venus Flower Basket** sponge builds a silica skeleton with diagonal bracing and repeating lattice patterns that strongly resemble an engineered truss. The geometry helps the sponge survive deep-ocean currents while using remarkably little material.
+
+That same logic appears in:
+
+- trabecular bone
+- leaf venation
+- lattice-like exoskeleton regions
+
+The lesson is consistent: efficient structures do not just use strong material, they use **well-routed force paths**.
+
+## The Method of Joints
+
+Once the overall support reactions are known, we can solve a truss joint by joint.
+
+### Procedure
+
+1. Draw a free-body diagram of the entire truss.
+2. Compute the support reactions using global equilibrium.
+3. Pick a joint with no more than two unknown member forces.
+4. Apply:
+
+$$
+\Sigma F_x = 0, \qquad \Sigma F_y = 0
+$$
+
+5. Move to the next solvable joint.
+
+A useful convention is to assume every unknown member force is in tension. If a solved value comes out negative, that member is actually in compression.
+
+## Engineering Intuition
+
+When you solve a truss, you are really asking:
+
+- Which members are carrying the load?
+- Which members are stabilizing geometry?
+- Which members might buckle because they are in compression?
+
+This is why truss analysis is not just algebra. It is an early form of structural design judgment.
+
+<dynamic-scenario topic="Roof Truss Design" context="A civil engineering student must compare two roof-truss layouts for a small gymnasium and explain which members are likely to go into compression when a heavy snow load is applied." />
+
+## Check Your Understanding
+
+<interactive-quiz
+  question="Why is a truss member often modeled as a two-force member in introductory statics?"
+  conceptId="statics_truss_basics"
+  options='[{"text":"Because the load is assumed to enter only at the joints and the joints are idealized as pins, so the member force acts along the member axis.","isCorrect":true},{"text":"Because truss members can never experience either tension or compression.","isCorrect":false},{"text":"Because all trusses are made from weightless cables rather than solid bars.","isCorrect":false}]'
+  explanation="Correct. Under the standard assumptions, each member carries only an axial force aligned with its own axis, which is why tension-compression reasoning works so well."
+/>
+
+<interactive-quiz
+  question="A student solves a member force in a truss and gets a negative value after assuming tension. What does that result mean?"
+  conceptId="statics_method_of_joints"
+  options='[{"text":"The member is actually in compression, opposite the original tension assumption.","isCorrect":true},{"text":"The equilibrium equations are invalid for trusses with diagonal members.","isCorrect":false},{"text":"The member carries no force because negative structural forces are impossible.","isCorrect":false}]'
+  explanation="Correct. The negative sign does not mean the math failed. It means the real member force acts opposite to the assumed pulling direction, so the member is in compression."
+/>
+
+## Looking Ahead
+
+As trusses become larger, solving every joint one by one can become inefficient. The next step is to learn how to isolate only the part of the structure you care about and solve strategically.
