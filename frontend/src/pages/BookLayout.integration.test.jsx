@@ -9,6 +9,9 @@ vi.mock('../hooks/useCourseProgress', () => ({
         completedSections: [],
         markCompleted: vi.fn(),
         isCompleted: () => false,
+        markRecentSection: vi.fn(),
+        toggleBookmark: vi.fn(),
+        isBookmarked: () => false,
         progressStats: {
             totalCompleted: 2,
             syncStatus: 'synced',

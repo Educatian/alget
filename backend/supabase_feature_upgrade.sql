@@ -3,7 +3,7 @@
 -- Execute this in Supabase SQL Editor
 -- ============================================================================
 
--- 1. HIGHLIGHTS TABLE (하이라이트 영속성)
+-- 1. HIGHLIGHTS TABLE (HIGHLIGHT PERSISTENCE)
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS highlights (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -22,7 +22,7 @@ CREATE INDEX IF NOT EXISTS idx_highlights_user ON highlights(user_id);
 CREATE INDEX IF NOT EXISTS idx_highlights_section ON highlights(section_id);
 CREATE INDEX IF NOT EXISTS idx_highlights_text ON highlights(text_content);
 
--- RLS Policies
+-- RLS policies
 ALTER TABLE highlights ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "Users can manage own highlights" ON highlights;
@@ -33,10 +33,11 @@ DROP POLICY IF EXISTS "Authenticated users can read all highlights" ON highlight
 CREATE POLICY "Authenticated users can read all highlights" ON highlights
     FOR SELECT TO authenticated USING (true);
 
--- 2. POPULAR HIGHLIGHTS VIEW (협업 하이라이트)
+-- 2. POPULAR HIGHLIGHTS VIEW (COLLABORATIVE HIGHLIGHT AGGREGATION)
 -- ============================================================================
+DROP VIEW IF EXISTS popular_highlights;
 CREATE OR REPLACE VIEW popular_highlights AS
-SELECT 
+SELECT
     section_id,
     text_content,
     MIN(start_offset) AS start_offset,
@@ -49,7 +50,7 @@ HAVING COUNT(DISTINCT user_id) >= 2;
 
 GRANT SELECT ON popular_highlights TO authenticated;
 
--- 3. CHAT HISTORY TABLE (대화 기록)
+-- 3. CHAT HISTORY TABLE (CONVERSATION HISTORY)
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS chat_history (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -71,4 +72,4 @@ CREATE POLICY "Users can manage own chat history" ON chat_history
     FOR ALL USING (auth.uid() = user_id);
 
 -- Success message
-SELECT 'All tables created successfully!' as status;
+SELECT 'All tables created successfully!' AS status;

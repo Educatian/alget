@@ -26,17 +26,89 @@ function formatCourseLabel(course) {
 
 function SurfaceFallback({ label, compact = false }) {
     return (
-        <div className={`rounded-[2rem] border border-white/70 bg-white/75 shadow-[0_12px_30px_rgba(15,23,42,0.04)] ${compact ? 'p-4' : 'p-6'}`}>
-            <p className="text-sm font-semibold text-slate-500">{label}</p>
-            <div className={`mt-4 animate-pulse rounded-2xl bg-slate-100 ${compact ? 'h-24' : 'h-40'}`} />
+        <div className={`editorial-surface ${compact ? 'p-4' : 'p-6'}`}>
+            <p className="text-sm font-semibold text-[var(--ath-muted)]">{label}</p>
+            <div className={`mt-4 animate-pulse rounded-2xl bg-[var(--ath-panel-muted)] ${compact ? 'h-24' : 'h-40'}`} />
         </div>
     )
+}
+
+function tokenizeReviewIntent(railContext) {
+    const stopWords = new Set([
+        'this', 'that', 'from', 'with', 'into', 'your', 'their', 'there', 'about', 'which', 'what',
+        'when', 'where', 'have', 'been', 'will', 'would', 'could', 'should', 'section', 'review',
+        'concept', 'question', 'incorrect', 'answer', 'practice', 'multiple', 'choice', 'short',
+        'response', 'missed', 'before', 'next'
+    ])
+
+    const parts = []
+
+    if (railContext?.conceptId) {
+        const conceptPhrase = String(railContext.conceptId).replace(/_/g, ' ')
+        parts.push(conceptPhrase)
+        parts.push(...conceptPhrase.split(/\s+/))
+    }
+
+    if (railContext?.question) {
+        parts.push(...String(railContext.question).split(/[^a-zA-Z0-9]+/))
+    }
+
+    return Array.from(
+        new Set(
+            parts
+                .map((part) => String(part || '').trim().toLowerCase())
+                .filter((part) => part.length >= 4 && !stopWords.has(part))
+        )
+    )
+}
+
+function findBestReviewAnchor(container, railContext) {
+    if (!container) return null
+
+    const anchors = Array.from(container.querySelectorAll('[data-reading-anchor]'))
+    if (anchors.length === 0) return null
+
+    const tokens = tokenizeReviewIntent(railContext)
+
+    let bestMatch = null
+    let bestScore = 0
+
+    anchors.forEach((anchor) => {
+        const text = String(anchor.getAttribute('data-reading-anchor') || '').toLowerCase()
+        if (!text) return
+
+        let score = 0
+        tokens.forEach((token) => {
+            if (text.includes(token)) {
+                score += 2
+            }
+        })
+
+        if (anchor.getAttribute('data-reading-kind') === 'heading' && score > 0) {
+            score += 1
+        }
+
+        if (score > bestScore) {
+            bestScore = score
+            bestMatch = anchor
+        }
+    })
+
+    return bestMatch || container.querySelector('[data-reading-kind="heading"]') || anchors[0]
 }
 
 export default function BookLayout({ user, onLogout }) {
     const { course = 'statics', chapter = '01', section = '01' } = useParams()
     const navigate = useNavigate()
-    const { completedSections, markCompleted, isCompleted, progressStats } = useCourseProgress(user)
+    const {
+        completedSections,
+        markCompleted,
+        isCompleted,
+        progressStats,
+        markRecentSection,
+        toggleBookmark,
+        isBookmarked
+    } = useCourseProgress(user)
     const sectionPath = `${course}/${chapter}/${section}`
 
     const [toc, setToc] = useState(null)
@@ -77,6 +149,7 @@ export default function BookLayout({ user, onLogout }) {
         : null
     const sectionPosition = Math.max(currentSectionIndex + 1, 1)
     const completedCount = progressStats?.totalCompleted || 0
+    const currentBookmarked = isBookmarked(course, chapter, section)
     const socialState = useSocialPresence({
         user,
         sectionId: sectionPath,
@@ -127,6 +200,52 @@ export default function BookLayout({ user, onLogout }) {
         }
     }, [sectionPath])
 
+    useEffect(() => {
+        if (!sectionData?.meta) {
+            return
+        }
+
+        markRecentSection(course, chapter, section, {
+            title: sectionData.meta.title || sectionData.title,
+            chapterTitle: sectionData.meta.chapter_title || '',
+            description: sectionData.meta.description || '',
+            estimatedTimeMinutes: sectionData.meta.estimated_time_minutes || null
+        })
+    }, [chapter, course, markRecentSection, section, sectionData])
+
+    useEffect(() => {
+        if (!railOpen || !railContext || railContext.sectionId !== sectionPath) {
+            return
+        }
+
+        if (railContext.type !== 'review' && railContext.type !== 'stuck') {
+            return
+        }
+
+        const container = mainScrollRef.current
+        if (!container) {
+            return
+        }
+
+        const timeoutId = window.setTimeout(() => {
+            const target = findBestReviewAnchor(container, railContext)
+
+            if (!target) {
+                container.scrollTo({ top: 0, behavior: 'smooth' })
+                return
+            }
+
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            target.classList.add('review-anchor-flash')
+
+            window.setTimeout(() => {
+                target.classList.remove('review-anchor-flash')
+            }, 1800)
+        }, 180)
+
+        return () => window.clearTimeout(timeoutId)
+    }, [railContext, railOpen, sectionData, sectionPath])
+
     const handleNavigate = useCallback((nextChapter, nextSection, direction = 'forward') => {
         setTransitionDirection(direction)
         setStuckEvent(null)
@@ -134,6 +253,15 @@ export default function BookLayout({ user, onLogout }) {
         setRailOpen(false)
         navigate(`/book/${course}/${nextChapter}/${nextSection}`)
     }, [course, navigate])
+
+    const handleBookmarkToggle = useCallback(() => {
+        toggleBookmark(course, chapter, section, {
+            title: sectionData?.meta?.title || sectionData?.title || '',
+            chapterTitle: sectionData?.meta?.chapter_title || '',
+            description: sectionData?.meta?.description || '',
+            estimatedTimeMinutes: sectionData?.meta?.estimated_time_minutes || null
+        })
+    }, [chapter, course, section, sectionData, toggleBookmark])
 
     const handleStuckEvent = (event) => {
         setStuckEvent(event)
@@ -151,6 +279,34 @@ export default function BookLayout({ user, onLogout }) {
         })
         void socialState.recordHelpOpen()
     }
+
+    const handleNeedsReview = useCallback((event = {}) => {
+        const reviewReason = event.reason || 'Review requested from this section'
+        const nextContext = {
+            type: 'review',
+            sectionId: sectionPath,
+            problemId: event.problemId || null,
+            reason: reviewReason,
+            preferredTab: event.preferredTab || 'explain',
+            conceptId: event.conceptId || null,
+            question: event.question || ''
+        }
+
+        setStuckEvent({
+            problemId: event.problemId || null,
+            reason: reviewReason
+        })
+        setRailContext(nextContext)
+        setRailOpen(true)
+
+        logStuckEvent(event.problemId || 'review', reviewReason, 0, sectionPath)
+        recordAdaptiveSignal(sectionPath, 'review_request', {
+            source: event.source || 'manual',
+            conceptId: event.conceptId || null,
+            question: event.question || ''
+        })
+        void socialState.recordHelpOpen()
+    }, [sectionPath, socialState])
 
     const toggleRail = () => {
         if (!railOpen) {
@@ -185,38 +341,38 @@ export default function BookLayout({ user, onLogout }) {
     }, [handleNavigate, nextSection, previousSection])
 
     return (
-        <div className="h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,_rgba(158,27,50,0.08),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(37,99,235,0.08),_transparent_28%),linear-gradient(to_bottom,_#f8fafc,_#eef2f7)] flex flex-col font-sans selection:bg-[#9E1B32]/20">
+        <div className="editorial-shell flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
             {isSettingsOpen && (
                 <Suspense fallback={<div className="fixed inset-0 z-[100] bg-slate-950/10 backdrop-blur-sm" />}>
                     <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
                 </Suspense>
             )}
 
-            <header className="sticky top-0 z-50 border-b border-white/70 bg-white/70 px-6 py-4 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur-3xl">
+            <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] px-6 py-4 backdrop-blur-3xl">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                     <div className="flex min-w-0 items-center gap-4 cursor-pointer" onClick={() => navigate('/')}>
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-xl font-bold text-white shadow-lg shadow-red-900/20 ring-1 ring-white/20">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-xl font-bold text-white shadow-[0_16px_32px_rgba(9,56,72,0.18)]">
                             AL
                         </div>
                         <div className="min-w-0">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-slate-400">Alabama Generative Intelligent Textbook</p>
-                            <h1 className="truncate text-lg font-bold tracking-tight text-slate-900">Learning Workspace</h1>
-                            <p className="truncate text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-                                {formatCourseLabel(course)} · Chapter {chapter} · Section {section}
+                            <p className="editorial-kicker">Alabama Generative Intelligent Textbook</p>
+                            <h1 className="truncate text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">Learning Workspace</h1>
+                            <p className="truncate text-xs font-medium uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
+                                {formatCourseLabel(course)} / Chapter {chapter} / Section {section}
                             </p>
                         </div>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2">
-                        <div className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm">
+                        <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
                             <span className="text-slate-400">Section</span>{' '}
                             <span className="text-slate-900">{sectionPosition}/{flatSections.length || 1}</span>
                         </div>
-                        <div className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm">
+                        <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
                             <span className="text-slate-400">Completed</span>{' '}
                             <span className="text-slate-900">{completedCount}</span>
                         </div>
-                        <div className="rounded-full border border-slate-200 bg-white/80 px-3 py-1.5 text-xs font-semibold text-slate-600 shadow-sm">
+                        <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
                             <span className={`mr-2 inline-block h-2 w-2 rounded-full ${progressStats?.syncStatus === 'synced' ? 'bg-emerald-500' : 'bg-amber-400'}`}></span>
                             {progressStats?.syncStatus === 'synced' ? 'Cloud sync on' : 'Saving progress'}
                         </div>
@@ -225,10 +381,10 @@ export default function BookLayout({ user, onLogout }) {
 
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                     <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold text-slate-800">
+                        <p className="truncate text-sm font-semibold text-[var(--ath-text)]">
                             {sectionData?.meta?.title || sectionData?.title || 'Loading section...'}
                         </p>
-                        <p className="truncate text-xs text-slate-500">
+                        <p className="truncate text-xs text-[var(--ath-muted)]">
                             {sectionData?.meta?.description || sectionData?.meta?.chapter_title || 'Guided reading, practice, social presence, and adaptive support.'}
                         </p>
                     </div>
@@ -238,7 +394,7 @@ export default function BookLayout({ user, onLogout }) {
                             <Popover.Trigger asChild>
                                 <button
                                     type="button"
-                                    className="hidden xl:flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-2.5 py-1.5 shadow-sm transition-all hover:bg-white hover:shadow-md"
+                                    className="hidden xl:flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-2.5 py-1.5 shadow-sm transition-all hover:bg-[var(--ath-panel)] hover:shadow-md"
                                     aria-label="Open social presence"
                                 >
                                     <span className={`inline-flex h-2.5 w-2.5 rounded-full ${socialState.connected ? 'bg-emerald-500' : 'bg-slate-300'}`}></span>
@@ -258,7 +414,7 @@ export default function BookLayout({ user, onLogout }) {
                                             </span>
                                         )}
                                     </div>
-                                    <span className="text-sm font-semibold text-slate-600">
+                                    <span className="text-sm font-semibold text-[var(--ath-muted)]">
                                         {socialState.peers.length > 0 ? `${socialState.peers.length} here now` : 'Live'}
                                     </span>
                                 </button>
@@ -268,7 +424,7 @@ export default function BookLayout({ user, onLogout }) {
                                     side="bottom"
                                     align="end"
                                     sideOffset={12}
-                                    className="z-[90] w-[26rem] rounded-3xl border border-white/70 bg-white/95 p-0 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-2xl"
+                                    className="z-[90] w-[26rem] rounded-3xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.96)] p-0 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-2xl"
                                 >
                                     <Suspense fallback={<SurfaceFallback label="Loading social presence..." compact />}>
                                         <SocialPresencePanel
@@ -287,20 +443,30 @@ export default function BookLayout({ user, onLogout }) {
                         </Popover.Root>
 
                         <button
+                            onClick={handleBookmarkToggle}
+                            className={`rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 ${currentBookmarked
+                                ? 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
+                                : 'bg-[var(--ath-panel)] text-[var(--ath-secondary)] hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]'
+                                }`}
+                        >
+                            {currentBookmarked ? 'Saved' : 'Save for later'}
+                        </button>
+
+                        <button
                             onClick={toggleRail}
                             className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${railOpen
-                                ? 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                                : 'bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-100'
+                                ? 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[rgba(200,226,236,0.45)]'
+                                : 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
                                 }`}
                         >
                             {railOpen ? 'Close Help' : 'Get Help'}
                         </button>
 
-                        <div className="h-8 w-px bg-slate-200"></div>
+                        <div className="h-8 w-px bg-[var(--ath-line)]"></div>
 
                         <button
                             onClick={() => setIsSettingsOpen(true)}
-                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white/50 text-slate-400 shadow-sm transition-all hover:bg-indigo-50 hover:text-indigo-600"
+                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
                             title="API Settings"
                         >
                             <Settings className="h-4 w-4" />
@@ -308,7 +474,7 @@ export default function BookLayout({ user, onLogout }) {
 
                         <button
                             onClick={() => navigate('/analytics')}
-                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-400 transition-all hover:bg-slate-100 hover:text-slate-700"
+                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"
                             title="Research Console"
                         >
                             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -316,16 +482,16 @@ export default function BookLayout({ user, onLogout }) {
                             </svg>
                         </button>
 
-                        <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white/75 px-3 py-1.5 shadow-sm">
-                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-sm font-medium text-slate-600">
+                        <div className="flex items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.75)] px-3 py-1.5 shadow-sm">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-panel-muted)] text-sm font-medium text-[var(--ath-muted)]">
                                 {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
                             </div>
-                            <span className="hidden text-sm font-medium text-slate-600 sm:block">{user?.email}</span>
+                            <span className="hidden text-sm font-medium text-[var(--ath-muted)] sm:block">{user?.email}</span>
                         </div>
 
                         <button
                             onClick={onLogout}
-                            className="rounded-lg px-3 md:px-4 py-1.5 text-sm font-semibold text-slate-500 transition-all duration-200 hover:bg-slate-200/50 hover:text-slate-900"
+                            className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[var(--ath-secondary)] transition-all duration-200 hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)] md:px-4"
                         >
                             Sign Out
                         </button>
@@ -334,7 +500,7 @@ export default function BookLayout({ user, onLogout }) {
             </header>
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
-                <aside className="min-h-0 w-72 shrink-0 overflow-y-auto border-r border-white/70 bg-white/45 shadow-[10px_0_30px_rgba(15,23,42,0.03)] backdrop-blur-3xl">
+                <aside className="min-h-0 w-72 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
                     <BookToc
                         toc={toc}
                         currentCourse={course}
@@ -365,6 +531,9 @@ export default function BookLayout({ user, onLogout }) {
                                         loading={loading}
                                         onStuckEvent={handleStuckEvent}
                                         onHeadingChange={setActiveHeading}
+                                        onNeedsReview={handleNeedsReview}
+                                        isBookmarked={currentBookmarked}
+                                        toggleBookmark={handleBookmarkToggle}
                                         isCompleted={isCompleted(course, chapter, section)}
                                         markCompleted={() => {
                                             const alreadyCompleted = isCompleted(course, chapter, section)
@@ -383,14 +552,14 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => handleNavigate(previousSection.chapter, previousSection.section, 'backward')}
-                            className="pointer-events-auto absolute left-3 top-1/2 z-30 hidden -translate-y-1/2 items-center gap-3 rounded-full border border-white/80 bg-white/90 px-3 py-3 text-slate-600 shadow-lg shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:-translate-x-1 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9E1B32]/40 lg:flex lg:opacity-0 lg:group-hover/nav:opacity-100"
+                            className="pointer-events-auto absolute left-3 top-1/2 z-30 hidden -translate-y-1/2 items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.92)] px-3 py-3 text-[var(--ath-muted)] shadow-lg shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:-translate-x-1 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] lg:flex lg:opacity-0 lg:group-hover/nav:opacity-100"
                             aria-label={`Go to previous section: ${previousSection.title}`}
                             title={`${previousSection.chapter}.${previousSection.section} ${previousSection.title}`}
                         >
                             <ChevronLeft className="h-5 w-5 shrink-0" />
                             <span className="hidden max-w-[10rem] text-left lg:block">
-                                <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">Previous</span>
-                                <span className="block text-sm font-semibold leading-tight text-slate-700">
+                                <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--ath-secondary)]">Previous</span>
+                                <span className="block text-sm font-semibold leading-tight text-[var(--ath-muted)]">
                                     {previousSection.chapter}.{previousSection.section} {previousSection.title}
                                 </span>
                             </span>
@@ -401,13 +570,13 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => handleNavigate(nextSection.chapter, nextSection.section, 'forward')}
-                            className="pointer-events-auto absolute right-3 top-1/2 z-30 hidden -translate-y-1/2 items-center gap-3 rounded-full border border-white/80 bg-white/90 px-3 py-3 text-slate-600 shadow-lg shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:translate-x-1 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9E1B32]/40 lg:flex lg:opacity-0 lg:group-hover/nav:opacity-100"
+                            className="pointer-events-auto absolute right-3 top-1/2 z-30 hidden -translate-y-1/2 items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.92)] px-3 py-3 text-[var(--ath-muted)] shadow-lg shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:translate-x-1 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] lg:flex lg:opacity-0 lg:group-hover/nav:opacity-100"
                             aria-label={`Go to next section: ${nextSection.title}`}
                             title={`${nextSection.chapter}.${nextSection.section} ${nextSection.title}`}
                         >
                             <span className="hidden max-w-[10rem] text-right lg:block">
-                                <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">Next</span>
-                                <span className="block text-sm font-semibold leading-tight text-slate-700">
+                                <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--ath-secondary)]">Next</span>
+                                <span className="block text-sm font-semibold leading-tight text-[var(--ath-muted)]">
                                     {nextSection.chapter}.{nextSection.section} {nextSection.title}
                                 </span>
                             </span>
@@ -415,11 +584,11 @@ export default function BookLayout({ user, onLogout }) {
                         </button>
                     )}
 
-                    <div className="pointer-events-none absolute bottom-4 left-1/2 z-20 hidden -translate-x-1/2 rounded-full border border-white/80 bg-white/80 px-4 py-2 text-xs font-semibold text-slate-500 shadow-md backdrop-blur-xl lg:block">
-                        <span className="text-slate-700">{sectionPosition}</span>
-                        <span className="mx-1 text-slate-300">/</span>
+                    <div className="pointer-events-none absolute bottom-4 left-1/2 z-20 hidden -translate-x-1/2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] px-4 py-2 text-xs font-semibold text-[var(--ath-secondary)] shadow-md backdrop-blur-xl lg:block">
+                        <span className="text-[var(--ath-text)]">{sectionPosition}</span>
+                        <span className="mx-1 text-[var(--ath-line-strong)]">/</span>
                         <span>{flatSections.length || 1}</span>
-                        <span className="ml-2 uppercase tracking-[0.18em] text-slate-400">Arrow Keys Enabled</span>
+                        <span className="ml-2 uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Arrow Keys Enabled</span>
                     </div>
                 </div>
 
@@ -430,7 +599,7 @@ export default function BookLayout({ user, onLogout }) {
                 >
                     {railOpen && (
                         <div className="sticky top-4 h-[calc(100dvh-7.5rem)] min-h-[34rem]">
-                            <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/80 bg-white/78 shadow-[-20px_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-3xl">
+                            <div className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.86)] shadow-[-20px_20px_60px_rgba(15,23,42,0.08)] backdrop-blur-3xl">
                                 <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
                                     <IntelRail
                                         context={railContext?.sectionId === sectionPath ? railContext : null}
@@ -439,7 +608,7 @@ export default function BookLayout({ user, onLogout }) {
                                             sectionId: sectionPath,
                                             sectionTitle: sectionData?.meta?.title || sectionData?.title || '',
                                             conceptIds: sectionData?.meta?.concept_ids || [],
-                                            currentHeading: sectionData?.meta?.title || '',
+                                            currentHeading: activeHeading,
                                             pageContent: sectionData?.raw || ''
                                         }}
                                         onClose={() => setRailOpen(false)}
@@ -452,7 +621,7 @@ export default function BookLayout({ user, onLogout }) {
 
                 {railOpen && (
                     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 px-4 pb-4 xl:hidden">
-                        <div className="pointer-events-auto mx-auto h-[min(72vh,42rem)] max-w-xl overflow-hidden rounded-[2rem] border border-white/80 bg-white/88 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-3xl">
+                        <div className="pointer-events-auto mx-auto h-[min(72vh,42rem)] max-w-xl overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.9)] shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-3xl">
                             <Suspense fallback={<div className="p-4"><SurfaceFallback label="Loading adaptive support..." compact /></div>}>
                                 <IntelRail
                                     context={railContext?.sectionId === sectionPath ? railContext : null}
@@ -461,7 +630,7 @@ export default function BookLayout({ user, onLogout }) {
                                         sectionId: sectionPath,
                                         sectionTitle: sectionData?.meta?.title || sectionData?.title || '',
                                         conceptIds: sectionData?.meta?.concept_ids || [],
-                                        currentHeading: sectionData?.meta?.title || '',
+                                        currentHeading: activeHeading,
                                         pageContent: sectionData?.raw || ''
                                     }}
                                     onClose={() => setRailOpen(false)}

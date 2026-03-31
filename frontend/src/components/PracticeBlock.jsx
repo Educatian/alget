@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import API_BASE from '../lib/apiConfig'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
+import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
 
 const STUCK_RULES = {
     IDLE_TIMEOUT_MS: 90000,
@@ -8,7 +9,18 @@ const STUCK_RULES = {
     HINT_CLICK_COUNT: 2
 }
 
-export default function PracticeBlock({ practice, onStuckEvent, sectionId }) {
+function buildReviewPayload(problem, reason, preferredTab = 'explain') {
+    return {
+        source: 'practice',
+        preferredTab,
+        conceptId: problem?.concept_id || null,
+        problemId: problem?.id || null,
+        question: problem?.statement || problem?.stem || '',
+        reason
+    }
+}
+
+export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, sectionId }) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [answers, setAnswers] = useState({})
     const [gradeResults, setGradeResults] = useState({})
@@ -16,22 +28,18 @@ export default function PracticeBlock({ practice, onStuckEvent, sectionId }) {
     const [consecutiveWrong, setConsecutiveWrong] = useState(0)
     const [hintCount, setHintCount] = useState(0)
     const [showHint, setShowHint] = useState(false)
+    const [confidenceByProblem, setConfidenceByProblem] = useState({})
+    const [misconceptionByProblem, setMisconceptionByProblem] = useState({})
 
-    // Timer for idle detection
     const idleTimerRef = useRef(null)
-    const lastInputRef = useRef(Date.now())
-
     const problems = practice?.problems || []
     const currentProblem = problems[currentIndex]
 
-    // Reset idle timer on input
     useEffect(() => {
         const resetIdleTimer = () => {
-            lastInputRef.current = Date.now()
             if (idleTimerRef.current) clearTimeout(idleTimerRef.current)
 
             idleTimerRef.current = setTimeout(() => {
-                // 90 seconds idle - trigger stuck event
                 onStuckEvent?.({
                     problemId: currentProblem?.id,
                     reason: 'Idle for 90 seconds without answering'
@@ -56,14 +64,14 @@ export default function PracticeBlock({ practice, onStuckEvent, sectionId }) {
         setConsecutiveWrong(0)
     }, [currentProblem?.id])
 
-    // Handle answer submission
     const handleSubmit = async (problemId) => {
         const answer = answers[problemId]
         if (!answer?.value) return
 
         setLoading(true)
+
         try {
-            const res = await fetch(`${API_BASE}/grade/${problemId}`, {
+            const response = await fetch(`${API_BASE}/grade/${problemId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -71,37 +79,68 @@ export default function PracticeBlock({ practice, onStuckEvent, sectionId }) {
                     unit: answer.unit || ''
                 })
             })
-            const result = await res.json()
+            const result = await response.json()
+            const confidenceValue = Number(confidenceByProblem[problemId] || 3)
+            const misconceptionType = result.unit_error
+                ? 'unit_error'
+                : misconceptionByProblem[problemId] || 'unknown'
 
-            setGradeResults(prev => ({ ...prev, [problemId]: result }))
+            setGradeResults((previous) => ({ ...previous, [problemId]: result }))
             recordAdaptiveSignal(
                 sectionId,
                 result.is_correct ? 'practice_correct' : 'practice_incorrect',
                 {
                     problemId,
-                    conceptId: currentProblem?.concept_id || null
+                    conceptId: currentProblem?.concept_id || null,
+                    confidence: confidenceValue
                 }
             )
+            recordAdaptiveSignal(sectionId, 'confidence_report', {
+                problemId,
+                conceptId: currentProblem?.concept_id || null,
+                value: confidenceValue
+            })
+            if (!result.is_correct) {
+                recordAdaptiveSignal(sectionId, 'misconception_report', {
+                    problemId,
+                    conceptId: currentProblem?.concept_id || null,
+                    type: misconceptionType
+                })
+            }
 
             if (currentProblem?.concept_id) {
                 await updateMastery({ [currentProblem.concept_id]: 1.0 }, result.is_correct)
+                updateLearnerModel({
+                    sectionId,
+                    conceptId: currentProblem.concept_id,
+                    isCorrect: result.is_correct,
+                    confidence: confidenceValue,
+                    misconceptionType,
+                    source: 'practice',
+                    transferTag: currentProblem?.difficulty === 'hard' ? 'far' : 'near'
+                })
+                resolveInterventionOutcome({
+                    sectionId,
+                    conceptId: currentProblem.concept_id,
+                    isCorrect: result.is_correct,
+                    source: 'practice',
+                    confidence: confidenceValue,
+                    misconceptionType
+                })
             }
 
-            // Track consecutive wrong answers
             if (!result.is_correct) {
-                const newCount = consecutiveWrong + 1
-                setConsecutiveWrong(newCount)
+                const nextCount = consecutiveWrong + 1
+                setConsecutiveWrong(nextCount)
 
-                // Check if stuck (2 consecutive wrong)
-                if (newCount >= STUCK_RULES.CONSECUTIVE_WRONG) {
+                if (nextCount >= STUCK_RULES.CONSECUTIVE_WRONG) {
                     onStuckEvent?.({
                         problemId,
-                        reason: `${newCount} consecutive incorrect answers`
+                        reason: `${nextCount} consecutive incorrect answers`
                     })
                     setConsecutiveWrong(0)
                 }
 
-                // Check unit errors
                 if (result.unit_error) {
                     onStuckEvent?.({
                         problemId,
@@ -111,36 +150,34 @@ export default function PracticeBlock({ practice, onStuckEvent, sectionId }) {
             } else {
                 setConsecutiveWrong(0)
             }
-        } catch (err) {
-            console.error('Grading error:', err)
+        } catch (error) {
+            console.error('Grading error:', error)
         } finally {
             setLoading(false)
         }
     }
 
-    // Handle hint request
     const handleHintRequest = () => {
-        const newCount = hintCount + 1
-        setHintCount(newCount)
+        const nextCount = hintCount + 1
+        setHintCount(nextCount)
         setShowHint(true)
         recordAdaptiveSignal(sectionId, 'hint_request', {
             problemId: currentProblem?.id,
             conceptId: currentProblem?.concept_id || null
         })
 
-        // Dispatch an event to open ChatWidget for Socratic hinting
         const event = new CustomEvent('open-chat', {
-            detail: { message: `I'm struggling with this problem: "${currentProblem?.statement || currentProblem?.stem}". Can you give me a specific Socratic hint to guide me without giving away the answer?` }
-        });
-        window.dispatchEvent(event);
+            detail: {
+                message: `I'm struggling with this problem: "${currentProblem?.statement || currentProblem?.stem}". Can you give me a specific Socratic hint without revealing the full answer?`
+            }
+        })
+        window.dispatchEvent(event)
 
-        // Record Soft Evidence: Hint Request (Increases slip/transit)
-        if (currentProblem && currentProblem.concept_id) {
-            fuseTelemetry(currentProblem.concept_id, 'hint_request', 1.0).catch(console.error);
+        if (currentProblem?.concept_id) {
+            fuseTelemetry(currentProblem.concept_id, 'hint_request', 1.0).catch(console.error)
         }
 
-        // Check if stuck (2 consecutive hints)
-        if (newCount >= STUCK_RULES.HINT_CLICK_COUNT) {
+        if (nextCount >= STUCK_RULES.HINT_CLICK_COUNT) {
             onStuckEvent?.({
                 problemId: currentProblem?.id,
                 reason: 'Requested multiple hints'
@@ -149,185 +186,254 @@ export default function PracticeBlock({ practice, onStuckEvent, sectionId }) {
         }
     }
 
-    // Update answer value
     const updateAnswer = (problemId, field, value) => {
-        setAnswers(prev => ({
-            ...prev,
+        setAnswers((previous) => ({
+            ...previous,
             [problemId]: {
-                ...prev[problemId],
+                ...previous[problemId],
                 [field]: value
             }
         }))
     }
 
+    const updateConfidence = (problemId, value) => {
+        setConfidenceByProblem((previous) => ({
+            ...previous,
+            [problemId]: Number(value)
+        }))
+    }
+
+    const updateMisconception = (problemId, value) => {
+        setMisconceptionByProblem((previous) => ({
+            ...previous,
+            [problemId]: value
+        }))
+
+        if (currentProblem?.concept_id && value && value !== 'unknown') {
+            recordAdaptiveSignal(sectionId, 'misconception_report', {
+                problemId,
+                conceptId: currentProblem.concept_id,
+                type: value
+            })
+            annotateMisconceptionSignal({
+                sectionId,
+                conceptId: currentProblem.concept_id,
+                misconceptionType: value,
+                source: 'practice_reflection'
+            })
+        }
+    }
+
     if (problems.length === 0) {
         return (
-            <div className="bg-gray-50 rounded-xl p-6 text-center">
-                <div className="text-4xl mb-3">✏️</div>
-                <h3 className="text-lg font-semibold text-gray-700 mb-2">Practice Problems</h3>
-                <p className="text-gray-500">No practice problems available for this section yet.</p>
+            <div className="rounded-[1.8rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.74)] p-8 text-center shadow-sm">
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--ath-panel)] text-lg font-semibold text-[var(--ath-primary)]">
+                    PR
+                </div>
+                <h3 className="text-xl font-semibold text-[var(--ath-text)]">Practice will appear here</h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">
+                    No section-specific practice problems are available yet.
+                </p>
             </div>
         )
     }
 
     const totalAnswered = Object.keys(gradeResults).length
-    const correctCount = Object.values(gradeResults).filter(r => r.is_correct).length
+    const correctCount = Object.values(gradeResults).filter((result) => result.is_correct).length
+    const currentResult = gradeResults[currentProblem?.id]
 
     return (
         <div className="space-y-6">
-            {/* Header */}
-            <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                    <span className="text-2xl">✏️</span>
-                    Practice
-                </h2>
-                <div className="text-sm text-gray-500">
-                    {totalAnswered}/{problems.length} completed • {correctCount} correct
+            <div className="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <p className="editorial-kicker">Practice</p>
+                    <h2 className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">Work through the section problems</h2>
+                </div>
+                <div className="editorial-chip">
+                    {totalAnswered}/{problems.length} completed / {correctCount} correct
                 </div>
             </div>
 
-            {/* Progress Bar */}
-            <div className="bg-gray-200 rounded-full h-2 overflow-hidden">
+            <div className="h-2 overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
                 <div
-                    className="bg-linear-to-r from-[#9E1B32] to-[#7A1527] h-full transition-all duration-300"
-                    style={{ width: `${(totalAnswered / problems.length) * 100}%` }}
+                    className="h-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)] transition-all duration-300"
+                    style={{ width: `${(totalAnswered / Math.max(problems.length, 1)) * 100}%` }}
                 />
             </div>
 
-            {/* Current Problem */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-medium text-gray-500">
-                        Problem {currentIndex + 1} of {problems.length}
-                    </span>
+            <div className="rounded-[1.9rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] p-6 shadow-sm">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                    <span className="editorial-kicker">Problem {currentIndex + 1} of {problems.length}</span>
                     {currentProblem?.difficulty && (
-                        <span className={`px-2 py-1 rounded-full text-xs font-bold uppercase ${currentProblem.difficulty === 'easy'
-                            ? 'bg-emerald-100 text-emerald-700'
-                            : currentProblem.difficulty === 'medium'
-                                ? 'bg-amber-100 text-amber-700'
-                                : 'bg-red-100 text-red-700'
-                            }`}>
+                        <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] ${
+                            currentProblem.difficulty === 'easy'
+                                ? 'bg-emerald-50 text-emerald-700'
+                                : currentProblem.difficulty === 'medium'
+                                    ? 'bg-amber-50 text-amber-700'
+                                    : 'bg-[rgba(255,218,214,0.72)] text-[#8c1d1d]'
+                        }`}>
                             {currentProblem.difficulty}
                         </span>
                     )}
                 </div>
 
+                <p className="mt-5 text-lg font-medium leading-8 text-[var(--ath-text)]">
+                    {currentProblem?.stem || currentProblem?.statement}
+                </p>
 
-                {/* Problem Statement */}
-                <p className="text-gray-800 font-medium mb-6">{currentProblem?.stem || currentProblem?.statement}</p>
-
-                {/* Given Values */}
                 {currentProblem?.givens && (
-                    <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                        <h4 className="text-sm font-semibold text-gray-500 mb-2">Given:</h4>
-                        <ul className="space-y-1">
-                            {Object.entries(currentProblem.givens).map(([key, val]) => (
-                                <li key={key} className="text-sm text-gray-700">
-                                    <code className="bg-gray-200 px-1 rounded">{key}</code> = {val}
+                    <div className="mt-5 rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                        <p className="editorial-label">Given values</p>
+                        <ul className="mt-3 space-y-2">
+                            {Object.entries(currentProblem.givens).map(([key, value]) => (
+                                <li key={key} className="text-sm text-[var(--ath-muted)]">
+                                    <code className="rounded bg-white/75 px-2 py-1 text-[var(--ath-text)]">{key}</code> = {value}
                                 </li>
                             ))}
                         </ul>
                     </div>
                 )}
 
-                {/* Answer Input */}
-                {!gradeResults[currentProblem?.id] ? (
-                    <div className="space-y-4">
-                        <div className="flex gap-3">
+                {!currentResult ? (
+                    <div className="mt-6 space-y-4">
+                        <div className="flex flex-col gap-3 md:flex-row">
                             <input
                                 type="text"
                                 placeholder="Enter your answer"
                                 value={answers[currentProblem?.id]?.value || ''}
-                                onChange={(e) => updateAnswer(currentProblem?.id, 'value', e.target.value)}
-                                className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#9E1B32] focus:outline-none"
+                                onChange={(event) => updateAnswer(currentProblem?.id, 'value', event.target.value)}
+                                className="editorial-input flex-1"
                             />
                             {currentProblem?.requires_unit && (
                                 <input
                                     type="text"
                                     placeholder="Unit"
                                     value={answers[currentProblem?.id]?.unit || ''}
-                                    onChange={(e) => updateAnswer(currentProblem?.id, 'unit', e.target.value)}
-                                    className="w-24 px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#9E1B32] focus:outline-none"
+                                    onChange={(event) => updateAnswer(currentProblem?.id, 'unit', event.target.value)}
+                                    className="editorial-input w-full md:w-28"
                                 />
                             )}
                         </div>
 
-                        <div className="flex gap-3">
+                        <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                            <p className="editorial-label">How confident are you before you submit?</p>
+                            <div className="mt-3 flex flex-wrap gap-2">
+                                {[1, 2, 3, 4, 5].map((value) => {
+                                    const isActive = Number(confidenceByProblem[currentProblem?.id] || 3) === value
+                                    return (
+                                        <button
+                                            key={value}
+                                            type="button"
+                                            onClick={() => updateConfidence(currentProblem?.id, value)}
+                                            className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
+                                                isActive
+                                                    ? 'bg-[var(--ath-primary)] text-white'
+                                                    : 'border border-[var(--ath-line)] bg-white/80 text-[var(--ath-secondary)]'
+                                            }`}
+                                        >
+                                            {value}
+                                        </button>
+                                    )
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="flex flex-wrap gap-3">
                             <button
                                 onClick={() => handleSubmit(currentProblem?.id)}
                                 disabled={loading || !answers[currentProblem?.id]?.value}
-                                className="flex-1 py-3 bg-[#9E1B32] text-white rounded-xl font-medium hover:bg-[#7A1527] transition-colors disabled:opacity-50"
+                                className="editorial-button flex-1 px-5 py-3 text-sm disabled:opacity-50"
                             >
-                                {loading ? '⏳ Checking...' : '✓ Submit Answer'}
+                                {loading ? 'Checking answer...' : 'Submit answer'}
                             </button>
-
                             <button
                                 onClick={handleHintRequest}
-                                className="px-4 py-3 border-2 border-amber-300 text-amber-600 rounded-xl font-medium hover:bg-amber-50 transition-colors"
+                                className="editorial-button-secondary px-5 py-3 text-sm"
                             >
-                                💡 Hint
+                                Get a hint
                             </button>
                         </div>
 
-                        {/* Hint Display */}
                         {showHint && currentProblem?.hint && (
-                            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                                <p className="text-sm text-amber-800">
-                                    <strong>Hint:</strong> {currentProblem.hint}
+                            <div className="rounded-[1.2rem] border border-[rgba(199,137,67,0.18)] bg-[rgba(255,221,187,0.38)] p-4">
+                                <p className="text-sm leading-7 text-[var(--ath-text)]">
+                                    <span className="font-semibold">Hint:</span> {currentProblem.hint}
                                 </p>
                             </div>
                         )}
                     </div>
                 ) : (
-                    /* Result Display */
-                    <div className={`rounded-xl p-4 ${gradeResults[currentProblem?.id].is_correct
-                        ? 'bg-emerald-50 border border-emerald-200'
-                        : 'bg-red-50 border border-red-200'
-                        }`}>
-                        <div className="flex items-center gap-2 mb-2">
-                            <span className="text-2xl">
-                                {gradeResults[currentProblem?.id].is_correct ? '✓' : '✗'}
-                            </span>
-                            <span className={`font-bold ${gradeResults[currentProblem?.id].is_correct
-                                ? 'text-emerald-700'
-                                : 'text-red-700'
-                                }`}>
-                                {gradeResults[currentProblem?.id].is_correct ? 'Correct!' : 'Incorrect'}
-                            </span>
+                    <div className={`mt-6 rounded-[1.3rem] p-5 ${
+                        currentResult.is_correct
+                            ? 'border border-emerald-200 bg-emerald-50/70'
+                            : 'border border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.72)]'
+                    }`}>
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                            <p className={`text-sm font-semibold ${currentResult.is_correct ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
+                                {currentResult.is_correct ? 'Correct answer' : 'Not quite yet'}
+                            </p>
+                            {!currentResult.is_correct && (
+                                <button
+                                    type="button"
+                                    onClick={() => onNeedsReview?.(
+                                        buildReviewPayload(
+                                            currentProblem,
+                                            currentResult.unit_error ? 'Practice review: unit conversion issue' : 'Practice review: incorrect answer',
+                                            currentResult.unit_error ? 'represent' : 'explain'
+                                        )
+                                    )}
+                                    className="editorial-button px-4 py-2 text-sm"
+                                >
+                                    Open targeted review
+                                </button>
+                            )}
                         </div>
 
-                        {gradeResults[currentProblem?.id].explanation && (
-                            <p className="text-sm text-gray-600">
-                                {gradeResults[currentProblem?.id].explanation}
+                        {currentResult.explanation && (
+                            <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">{currentResult.explanation}</p>
+                        )}
+
+                        {!currentResult.is_correct && currentResult.expected && (
+                            <p className="mt-3 text-sm text-[var(--ath-muted)]">
+                                Expected target: <code className="rounded bg-white/80 px-2 py-1 text-[var(--ath-text)]">{currentResult.expected}</code>
                             </p>
                         )}
 
-                        {!gradeResults[currentProblem?.id].is_correct && (
-                            <p className="text-sm text-gray-500 mt-2">
-                                Expected: <code className="bg-gray-200 px-1 rounded">
-                                    {gradeResults[currentProblem?.id].expected}
-                                </code>
-                            </p>
+                        {!currentResult.is_correct && (
+                            <div className="mt-4 rounded-[1rem] border border-[var(--ath-line)] bg-white/70 p-4">
+                                <p className="editorial-label">What kind of miss was this?</p>
+                                <select
+                                    value={misconceptionByProblem[currentProblem?.id] || (currentResult.unit_error ? 'unit_error' : 'unknown')}
+                                    onChange={(event) => updateMisconception(currentProblem?.id, event.target.value)}
+                                    className="editorial-input mt-3"
+                                >
+                                    <option value="unknown">Not sure yet</option>
+                                    <option value="unit_error">Unit error</option>
+                                    <option value="sign_error">Sign or direction error</option>
+                                    <option value="formula_selection">Wrong formula or relation</option>
+                                    <option value="concept_mixup">Concept mix-up</option>
+                                    <option value="algebraic_slip">Algebra or arithmetic slip</option>
+                                </select>
+                            </div>
                         )}
                     </div>
                 )}
             </div>
 
-            {/* Navigation */}
-            <div className="flex justify-between">
+            <div className="flex items-center justify-between">
                 <button
                     onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
                     disabled={currentIndex === 0}
-                    className="px-4 py-2 text-gray-600 hover:text-gray-800 disabled:opacity-50"
+                    className="text-sm font-semibold text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-text)] disabled:opacity-50"
                 >
-                    ← Previous
+                    Previous
                 </button>
                 <button
                     onClick={() => setCurrentIndex(Math.min(problems.length - 1, currentIndex + 1))}
                     disabled={currentIndex === problems.length - 1}
-                    className="px-4 py-2 text-gray-600 hover:text-gray-800 disabled:opacity-50"
+                    className="text-sm font-semibold text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-text)] disabled:opacity-50"
                 >
-                    Next →
+                    Next
                 </button>
             </div>
         </div>

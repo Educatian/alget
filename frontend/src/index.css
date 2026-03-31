@@ -1,92 +1,308 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,700;1,6..72,400;1,6..72,600&display=swap');
 @import "tailwindcss";
 
-/* ===== UA BRANDING COLORS ===== */
 :root {
-  --crimson: #9E1B32;
-  --crimson-dark: #7A1527;
-  --crimson-light: #C41E3A;
+  --ath-background: #f6f4ef;
+  --ath-surface: rgba(255, 255, 255, 0.76);
+  --ath-surface-strong: rgba(255, 255, 255, 0.92);
+  --ath-panel: #fbfaf7;
+  --ath-panel-muted: #f0ede6;
+  --ath-line: rgba(83, 96, 102, 0.16);
+  --ath-line-strong: rgba(31, 45, 51, 0.22);
+  --ath-primary: #0f5167;
+  --ath-primary-deep: #093848;
+  --ath-primary-soft: #c8e2ec;
+  --ath-secondary: #6d7b82;
+  --ath-text: #1b252a;
+  --ath-muted: #5c676d;
+  --ath-accent: #c78943;
+  --ath-shadow: 0 22px 60px rgba(27, 37, 42, 0.08);
+  --ath-shadow-soft: 0 12px 34px rgba(27, 37, 42, 0.05);
 }
 
-/* ===== GLOBAL STYLES ===== */
 body {
-  @apply bg-slate-50 text-slate-800 antialiased selection:bg-[#9E1B32]/20;
-  font-family: 'Aptos', 'IBM Plex Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-  letter-spacing: -0.015em;
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(15, 81, 103, 0.10), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(199, 137, 67, 0.08), transparent 26%),
+    linear-gradient(180deg, #f9f8f4 0%, #f2efe8 100%);
+  color: var(--ath-text);
+  font-family: 'Newsreader', Georgia, serif;
+  letter-spacing: -0.01em;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  selection-background-color: rgba(200, 226, 236, 0.72);
 }
 
-/* ===== ADVANCED GLASSMORPHISM & STITCH AESTHETIC ===== */
+::selection {
+  background: rgba(200, 226, 236, 0.72);
+  color: var(--ath-text);
+}
+
+button,
+input,
+select,
+textarea,
+.font-sans,
+.inter,
+.label-font {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-headline,
+.newsreader,
+.serif-text {
+  font-family: 'Newsreader', Georgia, serif;
+  letter-spacing: -0.03em;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass,
+.glass-panel,
+.premium-surface,
+.editorial-surface,
+.editorial-panel {
+  border: 1px solid var(--ath-line);
+  background: var(--ath-surface);
+  backdrop-filter: blur(22px);
+  box-shadow: var(--ath-shadow-soft);
+}
+
 .glass {
-  @apply bg-white/60 backdrop-blur-3xl border border-white/80 rounded-2xl;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 32px rgba(0, 0, 0, 0.06);
+  border-radius: 1.5rem;
 }
 
-.glass-panel {
-  @apply bg-white/70 backdrop-blur-2xl border border-white/70 rounded-2xl;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 12px 40px rgba(15, 23, 42, 0.08);
+.glass-panel,
+.premium-surface,
+.editorial-surface,
+.editorial-panel {
+  border-radius: 2rem;
 }
 
-.premium-surface {
-  @apply border border-white/80 bg-white/82 backdrop-blur-xl;
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
+.editorial-shell {
+  background:
+    radial-gradient(circle at top left, rgba(15, 81, 103, 0.08), transparent 30%),
+    radial-gradient(circle at top right, rgba(199, 137, 67, 0.07), transparent 26%),
+    linear-gradient(180deg, #f8f6f1 0%, #f2efe8 100%);
 }
 
-.glass-dark {
-  @apply bg-slate-900/70 backdrop-blur-2xl border border-slate-700/60 rounded-2xl;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 16px 40px rgba(0, 0, 0, 0.5);
+.editorial-kicker {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ath-primary);
 }
 
-/* ===== STITCH UTILITY CLASSES ===== */
-.glow-orb {
-  @apply absolute rounded-full mix-blend-multiply filter blur-[80px] opacity-60 pointer-events-none;
+.editorial-label {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7d878c;
+}
+
+.editorial-title {
+  color: var(--ath-text);
+  font-family: 'Newsreader', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+
+.editorial-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(83, 96, 102, 0.22), transparent);
+}
+
+.editorial-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 81, 103, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--ath-primary);
+  padding: 0.5rem 0.9rem;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.editorial-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--ath-panel-muted);
+  color: var(--ath-muted);
+  padding: 0.4rem 0.85rem;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.editorial-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(15, 81, 103, 0.12);
+  background: linear-gradient(135deg, var(--ath-primary) 0%, var(--ath-primary-deep) 100%);
+  color: white;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-weight: 700;
+  box-shadow: 0 16px 30px rgba(9, 56, 72, 0.18);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+.editorial-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 20px 34px rgba(9, 56, 72, 0.2);
+}
+
+.editorial-button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--ath-line);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--ath-text);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-weight: 700;
+  transition: background 0.22s ease, transform 0.22s ease;
+}
+
+.editorial-button-secondary:hover {
+  background: var(--ath-surface-strong);
+  transform: translateY(-1px);
+}
+
+.editorial-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--ath-line);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ath-text);
+  padding: 0.9rem 1rem;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.editorial-input:focus {
+  outline: none;
+  border-color: rgba(15, 81, 103, 0.35);
+  box-shadow: 0 0 0 4px rgba(200, 226, 236, 0.45);
+}
+
+.glow-orb,
+.glow-orb-dark {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.55;
 }
 
 .glow-orb-dark {
-  @apply absolute rounded-full mix-blend-screen filter blur-[100px] opacity-40 pointer-events-none;
+  filter: blur(100px);
+  opacity: 0.36;
 }
 
-/* ===== CRIMSON BUTTON ===== */
 .btn-crimson {
-  @apply relative overflow-hidden bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white font-semibold py-3 px-6 rounded-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 ease-out;
-  box-shadow: 0 8px 20px -6px rgba(158, 27, 50, 0.5);
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.95rem;
+  background: linear-gradient(135deg, var(--ath-primary) 0%, var(--ath-primary-deep) 100%);
+  color: white;
+  box-shadow: 0 16px 30px rgba(9, 56, 72, 0.18);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
 }
 
 .btn-crimson:hover {
-  box-shadow: 0 12px 25px -6px rgba(158, 27, 50, 0.6);
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 20px 36px rgba(9, 56, 72, 0.2);
 }
 
 .btn-crimson::after {
   content: '';
-  @apply absolute inset-0 bg-white/20 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent);
+  opacity: 0;
+  transition: opacity 0.22s ease;
 }
 
-/* ===== CONTENT CARD ===== */
+.btn-crimson:hover::after {
+  opacity: 1;
+}
+
 .content-card {
-  @apply bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-[#9E1B32]/30 transition-all duration-300;
+  border: 1px solid var(--ath-line);
+  border-radius: 1.6rem;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: var(--ath-shadow-soft);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
-/* ===== STEPPER ===== */
+.content-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--ath-shadow);
+  border-color: rgba(15, 81, 103, 0.16);
+}
+
 .step-circle {
-  @apply w-12 h-12 rounded-full flex items-center justify-center font-semibold text-lg transition-all duration-300;
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: transform 0.22s ease;
 }
 
 .step-circle.active {
-  @apply bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white shadow-lg shadow-red-900/30;
+  background: linear-gradient(135deg, var(--ath-primary), var(--ath-primary-deep));
+  color: white;
 }
 
 .step-circle.completed {
-  @apply bg-emerald-500 text-white;
+  background: #2f7d63;
+  color: white;
 }
 
 .step-circle.inactive {
-  @apply bg-gray-100 text-gray-400 border-2 border-gray-200;
+  background: var(--ath-panel-muted);
+  color: #8a9498;
+  border: 1px solid rgba(83, 96, 102, 0.12);
 }
 
-/* ===== ANIMATION ===== */
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.97);
   }
 
   to {
@@ -114,7 +330,6 @@ body {
 }
 
 @keyframes gradient-x {
-
   0%,
   100% {
     background-position: 0% 50%;
@@ -142,7 +357,7 @@ body {
 @keyframes section-slide-forward {
   from {
     opacity: 0;
-    transform: translateX(28px) scale(0.99);
+    transform: translateX(24px) scale(0.99);
   }
 
   to {
@@ -154,7 +369,7 @@ body {
 @keyframes section-slide-backward {
   from {
     opacity: 0;
-    transform: translateX(-28px) scale(0.99);
+    transform: translateX(-24px) scale(0.99);
   }
 
   to {
@@ -163,8 +378,25 @@ body {
   }
 }
 
+@keyframes review-anchor-flash {
+  0% {
+    background: rgba(200, 226, 236, 0.88);
+    box-shadow: 0 0 0 0 rgba(15, 81, 103, 0.18);
+  }
+
+  50% {
+    background: rgba(200, 226, 236, 0.52);
+    box-shadow: 0 0 0 10px rgba(15, 81, 103, 0.08);
+  }
+
+  100% {
+    background: transparent;
+    box-shadow: 0 0 0 0 rgba(15, 81, 103, 0);
+  }
+}
+
 .animate-fade-in {
-  animation: fade-in 0.2s ease-out;
+  animation: fade-in 0.22s ease-out;
 }
 
 .animate-float {
@@ -192,162 +424,113 @@ body {
   animation: section-slide-backward 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ===== TEXTBOOK STYLING ===== */
-
-/* Base text for prose */
-.prose {
-  @apply text-slate-700;
+.review-anchor-flash {
+  border-radius: 1rem;
+  animation: review-anchor-flash 1.8s ease-out;
+  scroll-margin-top: 8rem;
 }
 
-/* Premium Tables */
+.prose {
+  color: var(--ath-text);
+}
+
+.prose p,
+.prose li {
+  color: var(--ath-text);
+  line-height: 1.95;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--ath-text);
+  font-family: 'Newsreader', Georgia, serif;
+}
+
+.prose a {
+  color: var(--ath-primary);
+}
+
 .prose table {
-  @apply w-full border-collapse my-8 text-sm bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  border: 1px solid var(--ath-line);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--ath-shadow-soft);
 }
 
 .prose thead {
-  @apply bg-slate-50 border-b border-slate-200;
+  background: #eef2f3;
+  border-bottom: 1px solid var(--ath-line);
 }
 
 .prose th {
-  @apply text-slate-800 font-bold py-4 px-5 text-left tracking-wide;
-}
-
-.prose tbody tr {
-  @apply border-b border-slate-100 transition-colors duration-150;
-}
-
-.prose tbody tr:last-child {
-  @apply border-0;
-}
-
-.prose tbody tr:nth-child(even) {
-  @apply bg-slate-50/50;
-}
-
-.prose tbody tr:hover {
-  @apply bg-[#9E1B32]/5;
+  color: var(--ath-text);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1rem 1.2rem;
+  text-align: left;
 }
 
 .prose td {
-  @apply py-3.5 px-5 text-slate-600;
+  color: var(--ath-muted);
+  padding: 0.95rem 1.2rem;
 }
 
-/* Math/Equation Blocks */
+.prose tbody tr {
+  border-bottom: 1px solid rgba(83, 96, 102, 0.08);
+}
+
+.prose tbody tr:last-child {
+  border-bottom: none;
+}
+
+.prose tbody tr:nth-child(even) {
+  background: rgba(240, 237, 230, 0.4);
+}
+
 .prose .katex-display {
-  @apply my-8 py-5 px-6 bg-linear-to-br from-slate-50 to-white rounded-2xl border border-slate-200/80 shadow-sm overflow-x-auto;
+  margin: 2rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--ath-line);
+  border-radius: 1.4rem;
+  background: linear-gradient(180deg, #fbfaf7 0%, #f2efe8 100%);
+  padding: 1.4rem 1.6rem;
+  box-shadow: var(--ath-shadow-soft);
 }
 
-.prose .katex {
-  font-size: 1.15em;
-}
-
-/* Blockquotes - Enhanced with Glassmorphism */
 .prose blockquote {
-  @apply relative overflow-hidden border-l-[3px] border-[#9E1B32] bg-linear-to-r from-red-50/50 to-transparent py-5 px-6 my-8 rounded-r-2xl;
-  font-style: normal;
+  margin: 2rem 0;
+  border-left: 3px solid var(--ath-primary);
+  border-radius: 0 1.25rem 1.25rem 0;
+  background: linear-gradient(90deg, rgba(200, 226, 236, 0.34), rgba(255, 255, 255, 0.1));
+  padding: 1.3rem 1.5rem;
 }
 
 .prose blockquote p {
-  @apply text-slate-700 font-medium m-0 leading-relaxed text-lg;
+  margin: 0;
+  color: #304248;
+  font-size: 1.08rem;
+  font-style: italic;
 }
 
-/* Code Blocks - Modern IDE style */
 .prose pre {
-  @apply bg-slate-900 text-slate-100 rounded-2xl p-6 my-8 overflow-x-auto shadow-2xl shadow-slate-900/20 border border-slate-800;
-  font-family: 'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
-  font-size: 0.9em;
+  margin: 2rem 0;
+  overflow-x: auto;
+  border: 1px solid rgba(16, 24, 40, 0.55);
+  border-radius: 1.4rem;
+  background: #10212a;
+  color: #edf3f5;
+  padding: 1.4rem 1.5rem;
+  font-family: 'JetBrains Mono', 'Menlo', 'Monaco', monospace;
+  font-size: 0.92rem;
   line-height: 1.6;
-}
-
-.prose code:not(pre code) {
-  @apply bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded font-medium text-sm;
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
-}
-
-/* Horizontal Rules - Elegant */
-.prose hr {
-  @apply my-10 border-0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #9E1B32, transparent);
-}
-
-/* Lists - Enhanced */
-.prose ul {
-  @apply space-y-3 my-6 pl-2;
-}
-
-.prose ul li {
-  @apply relative pl-2 leading-relaxed;
-}
-
-.prose ul li::marker {
-  color: #9E1B32;
-}
-
-.prose ol {
-  @apply space-y-3 my-6 pl-5;
-}
-
-.prose ol li::marker {
-  color: #9E1B32;
-  font-weight: 700;
-}
-
-/* Strong/Bold Emphasis */
-.prose strong {
-  @apply text-slate-900 font-bold bg-amber-50/50 px-1 rounded-sm;
-}
-
-/* Headers - Premium */
-.prose h1 {
-  @apply text-4xl font-extrabold text-slate-900 mt-16 mb-8 tracking-tight;
-}
-
-.prose h2 {
-  @apply text-2xl font-bold text-slate-900 mt-14 mb-6 pb-4 border-b border-slate-200 tracking-tight;
-}
-
-.prose h3 {
-  @apply text-xl font-bold text-slate-800 mt-10 mb-4 tracking-tight;
-}
-
-.prose h4 {
-  @apply text-[1.1rem] font-bold text-[#9E1B32] mt-8 mb-3 tracking-wide uppercase;
-}
-
-/* Paragraph Spacing */
-.prose p {
-  @apply leading-[1.8] text-slate-700 my-5 text-[1.05rem];
-}
-
-/* Links */
-.prose a {
-  @apply text-[#9E1B32] font-semibold underline decoration-[#9E1B32]/30 decoration-2 underline-offset-4 hover:decoration-[#9E1B32] transition-colors duration-200;
-}
-
-/* Special Callout Boxes */
-.prose blockquote:has(strong:first-child) {
-  @apply bg-linear-to-r from-blue-50 to-transparent border-l-blue-500;
-}
-
-/* Emoji Callouts */
-.prose p:has(> :first-child:is(img[alt*="💡"], img[alt*="⚠️"], img[alt*="📌"], img[alt*="🎯"], img[alt*="🧠"])) {
-  @apply bg-amber-50/80 border border-amber-200 rounded-xl p-4 my-4;
-}
-
-/* Details/Summary for expandable content */
-.prose details {
-  @apply bg-gray-50 rounded-xl border border-gray-200 my-4 overflow-hidden;
-}
-
-.prose details summary {
-  @apply cursor-pointer px-4 py-3 font-medium text-gray-700 hover:bg-gray-100 transition-colors;
-}
-
-.prose details[open] summary {
-  @apply border-b border-gray-200;
-}
-
-.prose details>*:not(summary) {
-  @apply px-4 py-3;
+  box-shadow: 0 18px 40px rgba(16, 33, 42, 0.22);
 }

@@ -2,10 +2,11 @@ import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey)
 
 // Gracefully handle missing Supabase credentials (local dev without .env)
 let supabase
-if (supabaseUrl && supabaseAnonKey) {
+if (isSupabaseConfigured) {
     supabase = createClient(supabaseUrl, supabaseAnonKey)
 } else {
     console.warn('[ALGET] Supabase credentials missing. Running in offline/demo mode.')
@@ -44,10 +45,12 @@ if (supabaseUrl && supabaseAnonKey) {
                 neq: () => chain,
                 order: () => chain,
                 upsert: () => chain,
+                update: () => chain,
                 delete: () => chain,
                 in: () => chain,
                 limit: () => chain,
                 single: () => chain,
+                maybeSingle: () => chain,
                 then: (resolve) => resolve(noOpResult)
             };
             return chain;

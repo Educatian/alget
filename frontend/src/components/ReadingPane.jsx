@@ -9,9 +9,9 @@ const KnowledgeGraph = lazy(() => import('./KnowledgeGraph'))
 
 function PanelFallback({ label }) {
     return (
-        <div className="rounded-[1.75rem] border border-slate-200 bg-white/75 p-6 shadow-sm">
-            <p className="text-sm font-semibold text-slate-500">{label}</p>
-            <div className="mt-4 h-24 animate-pulse rounded-2xl bg-slate-100" />
+        <div className="rounded-[1.75rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.78)] p-6 shadow-sm">
+            <p className="text-sm font-semibold text-[var(--ath-muted)]">{label}</p>
+            <div className="mt-4 h-24 animate-pulse rounded-2xl bg-[var(--ath-panel-muted)]" />
         </div>
     )
 }
@@ -21,6 +21,9 @@ export default function ReadingPane({
     loading,
     onStuckEvent,
     onAskAi,
+    onNeedsReview,
+    isBookmarked,
+    toggleBookmark,
     isCompleted,
     markCompleted,
     onHeadingChange
@@ -29,7 +32,6 @@ export default function ReadingPane({
     const [showIllustration, setShowIllustration] = useState(false)
     const [showGraph, setShowGraph] = useState(false)
 
-    // Section ID computation
     const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null
 
     const handleToggleSimulation = () => {
@@ -46,34 +48,26 @@ export default function ReadingPane({
 
     if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center h-full min-h-[60vh] animate-fade-in relative overflow-hidden text-center px-4">
-                {/* Background glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#9E1B32]/10 rounded-full blur-2xl"></div>
-
+            <div className="relative flex min-h-[60vh] flex-col items-center justify-center overflow-hidden px-4 text-center animate-fade-in">
+                <div className="glow-orb h-64 w-64 bg-[rgba(15,81,103,0.14)]"></div>
                 <div className="relative z-10">
-                    {/* Animated Engine Icon */}
-                    <div className="w-20 h-20 mx-auto mb-8 bg-white/50 backdrop-blur-md border border-white/60 shadow-xl rounded-2xl flex items-center justify-center relative shadow-indigo-900/10 drop-shadow-xl overflow-hidden">
-                        <span className="text-4xl relative z-10 origin-center animate-[spin_4s_linear_infinite]">AL</span>
-                        <div className="absolute inset-0 bg-linear-to-tr from-[#9E1B32]/10 to-indigo-500/10 animate-pulse"></div>
+                    <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-[1.75rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.72)] shadow-[0_20px_40px_rgba(15,23,42,0.1)]">
+                        <span className="text-4xl font-semibold text-[var(--ath-primary)]">AL</span>
                     </div>
 
-                    <h2 className="text-2xl font-bold text-slate-800 mb-3 tracking-tight">
-                        Waking up the AI Engine...
-                    </h2>
-
-                    <p className="text-slate-500 max-w-sm mx-auto mb-8 text-[15px] leading-relaxed font-medium">
-                        Since this is your first visit in a while, our backend is spinning up. This usually takes about <span className="text-indigo-600 font-semibold">30 to 60 seconds</span>.
+                    <p className="editorial-kicker">Reading Surface</p>
+                    <h2 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Warming the learning engine</h2>
+                    <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-[var(--ath-muted)]">
+                        Since this is your first visit in a while, the backend is spinning up. This usually takes about 30 to 60 seconds.
                     </p>
 
-                    {/* Progress indicator */}
-                    <div className="w-64 mx-auto space-y-2">
-                        <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden shadow-inner">
-                            <div className="h-full bg-linear-to-r from-indigo-500 via-[#9E1B32] to-[#ff4d6d] w-1/2 rounded-full animate-[progress-indeterminate_2s_ease-in-out_infinite] shadow-[0_0_10px_rgba(158,27,50,0.5)]"></div>
+                    <div className="mx-auto mt-8 w-64 space-y-2">
+                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
+                            <div className="h-full w-1/2 animate-[progress-indeterminate_2s_ease-in-out_infinite] rounded-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382,var(--ath-accent))]"></div>
                         </div>
-                        <div className="flex justify-between text-xs font-semibold uppercase tracking-widest text-slate-400 px-1">
+                        <div className="flex justify-between px-1 text-xs font-semibold uppercase tracking-widest text-[var(--ath-secondary)]">
                             <span>Initializing</span>
-                            <span className="text-[#9E1B32] animate-pulse">Running</span>
+                            <span>Running</span>
                         </div>
                     </div>
                 </div>
@@ -83,11 +77,11 @@ export default function ReadingPane({
 
     if (!sectionData) {
         return (
-            <div className="flex items-center justify-center h-full">
+            <div className="flex h-full items-center justify-center">
                 <div className="text-center">
-                    <div className="mb-4 text-5xl font-bold text-slate-300">AL</div>
-                    <h2 className="text-xl font-semibold text-gray-700 mb-2">Section Not Found</h2>
-                    <p className="text-gray-500">Select a section from the table of contents.</p>
+                    <div className="mb-4 text-5xl font-semibold text-[var(--ath-secondary)]">AL</div>
+                    <h2 className="text-2xl font-semibold text-[var(--ath-text)]">Section Not Found</h2>
+                    <p className="mt-2 text-[var(--ath-muted)]">Select a section from the table of contents.</p>
                 </div>
             </div>
         )
@@ -96,30 +90,48 @@ export default function ReadingPane({
     const { meta, content, simulation, illustration, practice } = sectionData
 
     return (
-        <div className="max-w-3xl mx-auto px-8 py-8">
-            {/* Section Header */}
-            <header className="mb-8">
-                <div className="text-sm text-[#9E1B32] font-medium mb-2 flex items-center justify-between">
-                    <span>Chapter {meta?.chapter} • Section {meta?.section}</span>
+        <div className="mx-auto max-w-3xl px-8 py-10">
+            <header className="mb-10">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                    <p className="editorial-kicker">
+                        Chapter {meta?.chapter} / Section {meta?.section}
+                    </p>
                     {meta?.estimated_time_minutes && (
-                        <span className="text-slate-500 font-semibold bg-slate-100 px-3 py-1 rounded-full text-xs flex items-center gap-1.5 shadow-inner">
-                            ⏱️ {meta.estimated_time_minutes} min read
-                        </span>
+                        <span className="editorial-chip">{meta.estimated_time_minutes} min read</span>
                     )}
                 </div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-4 flex items-center justify-between">
-                    <span>{meta?.title || 'Section Title'}</span>
-                    <button
-                        onClick={() => setShowGraph(!showGraph)}
-                        className={`text-sm px-4 py-2 rounded-lg font-bold border transition-colors ${showGraph ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
-                    >
-                        {showGraph ? 'Hide Brain Network' : 'View Brain Network'}
-                    </button>
-                </h1>
 
-                {/* Knowledge Graph Overlay */}
+                <div className="editorial-divider mb-5"></div>
+
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                        <h1 className="editorial-title text-4xl leading-tight text-[var(--ath-text)]">
+                            {meta?.title || 'Section Title'}
+                        </h1>
+                        {meta?.description && (
+                            <p className="mt-4 max-w-3xl text-lg italic leading-8 text-[var(--ath-muted)]">
+                                {meta.description}
+                            </p>
+                        )}
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                        <button
+                            onClick={toggleBookmark}
+                            className={`px-4 py-2 text-sm ${isBookmarked ? 'editorial-button' : 'editorial-button-secondary'}`}
+                        >
+                            {isBookmarked ? 'Saved for review' : 'Save for later'}
+                        </button>
+                        <button
+                            onClick={() => setShowGraph(!showGraph)}
+                            className="editorial-button-secondary px-4 py-2 text-sm"
+                        >
+                            {showGraph ? 'Hide Brain Network' : 'View Brain Network'}
+                        </button>
+                    </div>
+                </div>
+
                 {showGraph && (
-                    <div className="mb-8 animate-fade-in origin-top">
+                    <div className="mt-8 animate-fade-in origin-top">
                         <Suspense fallback={<PanelFallback label="Loading brain network..." />}>
                             <KnowledgeGraph
                                 course={meta?.course || 'inst-design'}
@@ -130,17 +142,14 @@ export default function ReadingPane({
                     </div>
                 )}
 
-                {/* Learning Objectives */}
                 {meta?.learning_objectives?.length > 0 && (
-                    <div className="bg-linear-to-r from-blue-50 to-indigo-50/30 border-l-4 border-blue-500 rounded-r-xl p-5 shadow-inner">
-                        <h3 className="text-sm font-bold text-blue-900 mb-2.5 uppercase tracking-wider">
-                            Learning Objectives
-                        </h3>
-                        <ul className="space-y-2">
+                    <div className="mt-8 rounded-[1.8rem] border-l-4 border-[var(--ath-primary)] bg-[linear-gradient(90deg,rgba(200,226,236,0.42),rgba(255,255,255,0.72))] p-6 shadow-sm">
+                        <p className="editorial-kicker">Learning Objectives</p>
+                        <ul className="mt-4 space-y-3">
                             {meta.learning_objectives.map((obj, i) => (
-                                <li key={i} className="text-[1.05rem] text-blue-800/90 flex items-start gap-3 font-medium">
-                                    <span className="text-blue-500 mt-0.5 opacity-80">•</span>
-                                    <span className="leading-relaxed">{obj}</span>
+                                <li key={i} className="flex items-start gap-3 text-[1.02rem] leading-7 text-[var(--ath-text)]">
+                                    <span className="mt-1 text-[var(--ath-primary)]">•</span>
+                                    <span>{obj}</span>
                                 </li>
                             ))}
                         </ul>
@@ -148,7 +157,6 @@ export default function ReadingPane({
                 )}
             </header>
 
-            {/* Main Content (Narrative) with LaTeX Support */}
             <Suspense fallback={<PanelFallback label="Loading reading narrative..." />}>
                 <ReadingNarrative
                     content={content}
@@ -163,32 +171,30 @@ export default function ReadingPane({
                 />
             </Suspense>
 
-            {/* Embedded Blocks (Simulation/Illustration) */}
             {(simulation || illustration) && (
-                <div className="space-y-4 mb-8">
-                    {/* Simulation Block */}
+                <div className="mb-8 mt-10 space-y-4">
                     {simulation && (
                         <div className="content-card overflow-hidden">
                             <button
                                 onClick={handleToggleSimulation}
-                                className="w-full flex items-center justify-between px-5 py-4 bg-linear-to-r from-slate-50 to-white hover:bg-slate-50 transition-colors"
+                                className="flex w-full items-center justify-between bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(240,237,230,0.72))] px-5 py-4 transition-colors"
                             >
-                                <span className="flex items-center gap-3 font-bold text-slate-800">
-                                    <span className="text-xl">SIM</span>
+                                <span className="flex items-center gap-3 text-left font-semibold text-[var(--ath-text)]">
+                                    <span className="editorial-label text-[var(--ath-primary)]">SIM</span>
                                     Interactive Simulation
                                 </span>
-                                <span className={`text-slate-400 transition-transform duration-300 ${showSimulation ? 'rotate-180' : ''}`}>
+                                <span className={`text-[var(--ath-secondary)] transition-transform duration-300 ${showSimulation ? 'rotate-180' : ''}`}>
                                     ▼
                                 </span>
                             </button>
 
                             {showSimulation && (
-                                <div className="p-5 border-t border-slate-100 bg-linear-to-b from-slate-50/50 to-white animate-fade-in">
-                                    <p className="text-sm font-medium text-slate-500 mb-4">{simulation.description}</p>
-                                    <div className="rounded-xl overflow-hidden border border-slate-200 shadow-inner bg-white">
+                                <div className="animate-fade-in border-t border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] p-5">
+                                    <p className="mb-4 text-sm leading-6 text-[var(--ath-muted)]">{simulation.description}</p>
+                                    <div className="overflow-hidden rounded-[1.2rem] border border-[var(--ath-line)] bg-white shadow-inner">
                                         <iframe
                                             srcDoc={simulation.html_code}
-                                            className="w-full h-[450px]"
+                                            className="h-[450px] w-full"
                                             sandbox="allow-scripts"
                                             title="Interactive Simulation"
                                         />
@@ -198,31 +204,30 @@ export default function ReadingPane({
                         </div>
                     )}
 
-                    {/* Illustration Block */}
                     {illustration && (
                         <div className="content-card overflow-hidden">
                             <button
                                 onClick={handleToggleIllustration}
-                                className="w-full flex items-center justify-between px-5 py-4 bg-linear-to-r from-slate-50 to-white hover:bg-slate-50 transition-colors"
+                                className="flex w-full items-center justify-between bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(240,237,230,0.72))] px-5 py-4 transition-colors"
                             >
-                                <span className="flex items-center gap-3 font-bold text-slate-800">
-                                    <span className="text-xl">VIS</span>
+                                <span className="flex items-center gap-3 text-left font-semibold text-[var(--ath-text)]">
+                                    <span className="editorial-label text-[var(--ath-primary)]">VIS</span>
                                     Concept Illustration
                                 </span>
-                                <span className={`text-slate-400 transition-transform duration-300 ${showIllustration ? 'rotate-180' : ''}`}>
+                                <span className={`text-[var(--ath-secondary)] transition-transform duration-300 ${showIllustration ? 'rotate-180' : ''}`}>
                                     ▼
                                 </span>
                             </button>
 
                             {showIllustration && (
-                                <div className="p-5 border-t border-slate-100 bg-white animate-fade-in">
-                                    <div className="bg-slate-50 rounded-xl p-8 border border-slate-100 text-center shadow-inner">
-                                        <p className="text-slate-700 font-medium text-lg leading-relaxed">{illustration.description}</p>
+                                <div className="animate-fade-in border-t border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] p-5">
+                                    <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-8 text-center shadow-inner">
+                                        <p className="text-lg leading-relaxed text-[var(--ath-text)]">{illustration.description}</p>
                                         {illustration.image_url && (
                                             <img
                                                 src={illustration.image_url}
                                                 alt={illustration.description}
-                                                className="mt-6 mx-auto max-w-full rounded-xl shadow-lg ring-1 ring-black/5"
+                                                className="mx-auto mt-6 max-w-full rounded-xl shadow-lg ring-1 ring-black/5"
                                             />
                                         )}
                                     </div>
@@ -233,17 +238,14 @@ export default function ReadingPane({
                 </div>
             )}
 
-            {/* Concept Tags */}
             {meta?.concept_ids?.length > 0 && (
                 <div className="mb-10">
-                    <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">
-                        Key Concepts
-                    </h3>
-                    <div className="flex flex-wrap gap-2.5">
+                    <p className="editorial-kicker">Key Concepts</p>
+                    <div className="mt-4 flex flex-wrap gap-2.5">
                         {meta.concept_ids.map((concept, i) => (
                             <span
                                 key={i}
-                                className="px-4 py-1.5 bg-white text-slate-700 text-sm font-semibold rounded-full border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all cursor-default"
+                                className="editorial-chip"
                             >
                                 {concept.replace(/_/g, ' ')}
                             </span>
@@ -252,7 +254,6 @@ export default function ReadingPane({
                 </div>
             )}
 
-            {/* Affective Telemetry */}
             <Suspense fallback={<PanelFallback label="Loading reflection tools..." />}>
                 <AffectiveReaction
                     sectionId={sectionId}
@@ -260,51 +261,41 @@ export default function ReadingPane({
                 />
             </Suspense>
 
-            {/* Divider */}
-            <hr className="border-gray-200 my-8" />
+            <div className="editorial-divider my-10"></div>
 
-            {/* Knowledge Check (Formative Assessment) */}
             <Suspense fallback={<PanelFallback label="Loading knowledge check..." />}>
                 <KnowledgeCheck
                     bioContext={content}
                     engContext={meta?.description}
+                    sectionId={sectionId}
                     sectionTitle={meta?.title}
                     learningObjectives={meta?.learning_objectives}
                     conceptIds={meta?.concept_ids}
+                    onNeedsReview={onNeedsReview}
                 />
             </Suspense>
 
-            {/* Divider */}
-            <hr className="border-gray-200 my-8" />
+            <div className="editorial-divider my-10"></div>
 
-            {/* Practice Block */}
             <Suspense fallback={<PanelFallback label="Loading practice..." />}>
                 <PracticeBlock
                     practice={practice}
                     sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}
                     onStuckEvent={onStuckEvent}
+                    onNeedsReview={onNeedsReview}
                 />
             </Suspense>
 
-            {/* Mark as read button */}
-            <div className="mt-12 mb-8 flex justify-center">
+            <div className="mb-8 mt-12 flex justify-center">
                 <button
                     onClick={markCompleted}
                     disabled={isCompleted}
-                    className={`px-8 py-3.5 rounded-xl text-lg font-bold flex items-center gap-3 transition-all ${isCompleted
-                        ? 'bg-emerald-100 text-emerald-700 cursor-default ring-1 ring-emerald-200'
-                        : 'bg-linear-to-r from-[#9E1B32] to-[#c72240] text-white hover:from-[#7A1527] hover:to-[#9E1B32] shadow-lg shadow-red-900/20 hover:shadow-xl hover:-translate-y-0.5'
+                    className={`flex items-center gap-3 rounded-[1rem] px-8 py-3.5 text-lg font-semibold transition-all ${isCompleted
+                        ? 'cursor-default border border-emerald-200 bg-emerald-100 text-emerald-700'
+                        : 'editorial-button'
                         }`}
                 >
-                    {isCompleted ? (
-                        <>
-                            <span className="text-xl">Done</span> Section Completed
-                        </>
-                    ) : (
-                        <>
-                            <span className="text-xl">Read</span> Mark as Complete
-                        </>
-                    )}
+                    {isCompleted ? 'Section Completed' : 'Mark as Complete'}
                 </button>
             </div>
         </div>

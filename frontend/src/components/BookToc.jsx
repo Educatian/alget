@@ -51,59 +51,57 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
 
     return (
         <div className="p-4">
-            <div className="mb-4 rounded-3xl border border-white/70 bg-white/70 p-4 shadow-[0_10px_30px_rgba(15,23,42,0.04)]">
-                <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-slate-400">Course Navigation</p>
-                <h2 className="mt-2 text-lg font-bold tracking-tight text-slate-900">
+            <div className="rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.64)] p-5 shadow-sm">
+                <p className="editorial-kicker">Course Navigation</p>
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">
                     {toc?.title || 'Table of Contents'}
                 </h2>
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                    <div className="rounded-2xl bg-slate-50 px-3 py-3">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Chapters</p>
-                        <p className="mt-1 text-xl font-bold text-slate-900">{summary.chapterCount}</p>
+                <div className="mt-5 grid grid-cols-2 gap-3">
+                    <div className="rounded-[1.4rem] bg-[var(--ath-panel)] px-3 py-3">
+                        <p className="editorial-label">Chapters</p>
+                        <p className="mt-2 text-2xl font-semibold text-[var(--ath-text)]">{summary.chapterCount}</p>
                     </div>
-                    <div className="rounded-2xl bg-slate-50 px-3 py-3">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Sections</p>
-                        <p className="mt-1 text-xl font-bold text-slate-900">{summary.sectionCount}</p>
+                    <div className="rounded-[1.4rem] bg-[var(--ath-panel)] px-3 py-3">
+                        <p className="editorial-label">Sections</p>
+                        <p className="mt-2 text-2xl font-semibold text-[var(--ath-text)]">{summary.sectionCount}</p>
                     </div>
                 </div>
             </div>
 
-            <div className="mb-4">
+            <div className="mt-4">
                 <input
                     type="text"
                     placeholder="Search chapters or sections"
                     value={searchQuery}
                     onChange={(event) => setSearchQuery(event.target.value)}
-                    className="w-full rounded-2xl border border-slate-200 bg-white/85 px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/10"
+                    className="editorial-input text-sm"
                 />
             </div>
 
             {!toc && (
-                <div className="rounded-2xl border border-dashed border-slate-200 bg-white/60 px-4 py-8 text-center text-sm text-slate-400">
+                <div className="mt-4 rounded-[1.6rem] border border-dashed border-[var(--ath-line)] bg-[rgba(255,255,255,0.56)] px-4 py-8 text-center text-sm text-[var(--ath-secondary)]">
                     Loading course structure...
                 </div>
             )}
 
-            <nav className="space-y-2">
+            <nav className="mt-4 space-y-2">
                 {filteredChapters.map((chapter) => (
-                    <div key={chapter.id} className="overflow-hidden rounded-2xl border border-white/70 bg-white/65 shadow-[0_8px_20px_rgba(15,23,42,0.03)]">
+                    <div key={chapter.id} className="overflow-hidden rounded-[1.6rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.62)] shadow-sm">
                         <button
                             onClick={() => toggleChapter(chapter.id)}
-                            className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors hover:bg-slate-50/90"
+                            className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors hover:bg-[rgba(255,255,255,0.62)]"
                         >
                             <div className="min-w-0">
-                                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">
-                                    Chapter {chapter.id}
-                                </p>
-                                <p className="truncate text-sm font-semibold text-slate-800">{chapter.title}</p>
+                                <p className="editorial-label">Chapter {chapter.id}</p>
+                                <p className="truncate text-base font-semibold text-[var(--ath-text)]">{chapter.title}</p>
                             </div>
-                            <span className={`text-slate-400 transition-transform ${expandedChapters.includes(chapter.id) ? 'rotate-90' : ''}`}>
+                            <span className={`text-[var(--ath-secondary)] transition-transform ${expandedChapters.includes(chapter.id) ? 'rotate-90' : ''}`}>
                                 ▶
                             </span>
                         </button>
 
                         {expandedChapters.includes(chapter.id) && (
-                            <ul className="space-y-1 border-t border-slate-100 px-2 py-2">
+                            <ul className="space-y-1 border-t border-[var(--ath-line)] px-2 py-2">
                                 {chapter.sections?.map((section) => {
                                     const isActive = currentChapter === chapter.id && currentSection === section.id
                                     const isDone = completedSections?.includes(`${currentCourse}/${chapter.id}/${section.id}`)
@@ -112,16 +110,16 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
                                         <li key={section.id}>
                                             <button
                                                 onClick={() => onNavigate(chapter.id, section.id)}
-                                                className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm transition-all ${isActive
-                                                    ? 'bg-[#9E1B32] text-white shadow-md shadow-red-900/20'
-                                                    : 'text-slate-600 hover:bg-slate-100/80'
+                                                className={`flex w-full items-center justify-between rounded-[1rem] px-3 py-2.5 text-left text-sm transition-all ${isActive
+                                                    ? 'bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] text-white shadow-[0_16px_30px_rgba(9,56,72,0.18)]'
+                                                    : 'text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]'
                                                     }`}
                                             >
                                                 <span className="line-clamp-2">
                                                     {chapter.id}.{section.id} {section.title}
                                                 </span>
                                                 {isDone && (
-                                                    <span className={`ml-2 shrink-0 text-xs font-bold ${isActive ? 'text-white' : 'text-emerald-500'}`}>
+                                                    <span className={`ml-2 shrink-0 text-xs font-bold ${isActive ? 'text-white' : 'text-emerald-600'}`}>
                                                         Done
                                                     </span>
                                                 )}
@@ -136,7 +134,7 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
             </nav>
 
             {filteredChapters.length === 0 && searchQuery && (
-                <div className="rounded-2xl border border-dashed border-slate-200 bg-white/60 px-4 py-8 text-center text-sm text-slate-400">
+                <div className="mt-4 rounded-[1.6rem] border border-dashed border-[var(--ath-line)] bg-[rgba(255,255,255,0.56)] px-4 py-8 text-center text-sm text-[var(--ath-secondary)]">
                     No sections matched "{searchQuery}".
                 </div>
             )}

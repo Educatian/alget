@@ -1,49 +1,92 @@
-import { useState } from 'react'
-import { signIn, signUp, resetPassword } from '../lib/supabase'
+import { useMemo, useState } from 'react'
+import { isSupabaseConfigured, resetPassword, signIn, signUp } from '../lib/supabase'
+
+const DEMO_USER = {
+    email: 'demo@alget.local',
+    id: '00000000-0000-0000-0000-000000000000',
+    isDemo: true
+}
 
 export default function AuthModal({ isOpen, onClose, onSuccess }) {
-    const [mode, setMode] = useState('signin') // signin, signup, forgot
+    const [mode, setMode] = useState('signin')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
 
+    const copy = useMemo(() => ({
+        signin: {
+            title: 'Welcome Back',
+            subtitle: 'Sign in to continue learning',
+            action: 'Sign In'
+        },
+        signup: {
+            title: 'Create Your Workspace',
+            subtitle: 'Start with a learner account or continue in demo mode',
+            action: 'Create Account'
+        },
+        forgot: {
+            title: 'Reset Password',
+            subtitle: 'We will send a password reset link to your inbox',
+            action: 'Send Reset Link'
+        }
+    }), [])
+
     if (!isOpen) return null
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const switchMode = (nextMode) => {
+        setMode(nextMode)
+        setError('')
+        setMessage('')
+    }
+
+    const enterDemoMode = () => {
+        onSuccess?.(DEMO_USER)
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
         setLoading(true)
         setError('')
         setMessage('')
 
         try {
-            if (mode === 'signin') {
-                const { data: signInData, error } = await signIn(email, password)
-                if (error) throw error
-                onSuccess(signInData.user)
-            } else if (mode === 'signup') {
-                const { error } = await signUp(email, password)
-                if (error) throw error
-                setMessage('Check your email for confirmation link!')
-            } else if (mode === 'forgot') {
-                const { error } = await resetPassword(email)
-                if (error) throw error
-                setMessage('Password reset email sent!')
+            if (!isSupabaseConfigured && mode !== 'forgot') {
+                setMessage('Supabase is not configured locally. Use demo mode below to continue testing the product flow.')
+                return
             }
+
+            if (mode === 'signin') {
+                const { data, error: signInError } = await signIn(email, password)
+                if (signInError) throw signInError
+                onSuccess?.(data.user)
+                return
+            }
+
+            if (mode === 'signup') {
+                const { error: signUpError } = await signUp(email, password)
+                if (signUpError) throw signUpError
+                setMessage('Check your email for a confirmation link before signing in.')
+                return
+            }
+
+            const { error: resetError } = await resetPassword(email)
+            if (resetError) throw resetError
+            setMessage('Password reset email sent. Return here after you update your password.')
         } catch (err) {
-            const errorMsg = err.message || 'An error occurred'
-            // Provide more helpful error messages
-            if (errorMsg.includes('Invalid login credentials')) {
-                setError('Invalid email or password. Please try again or sign up.')
-            } else if (errorMsg.includes('User already registered')) {
-                setError('This email is already registered. Try signing in instead.')
-            } else if (errorMsg.includes('Email not confirmed')) {
-                setError('Please check your email and confirm your account first.')
-            } else if (err.status === 422) {
-                setError('Please enter a valid email address.')
+            const errorMessage = err?.message || 'An unexpected authentication error occurred.'
+
+            if (errorMessage.includes('Invalid login credentials')) {
+                setError('That email and password do not match. Try again or continue in demo mode.')
+            } else if (errorMessage.includes('User already registered')) {
+                setError('This email is already registered. Sign in instead of creating a new account.')
+            } else if (errorMessage.includes('Email not confirmed')) {
+                setError('Please confirm your email first, then return here to sign in.')
+            } else if (errorMessage.includes('Supabase not configured')) {
+                setError('Cloud auth is unavailable in this local setup. Use demo mode to keep testing.')
             } else {
-                setError(errorMsg)
+                setError(errorMessage)
             }
         } finally {
             setLoading(false)
@@ -51,127 +94,151 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
     }
 
     return (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative animate-fade-in">
-                {/* Close Button */}
-                <button
-                    onClick={onClose}
-                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl"
-                >
-                    ×
-                </button>
-
-                {/* Header */}
-                <div className="text-center mb-6">
-                    <div className="text-4xl mb-2">⚙️</div>
-                    <h2 className="text-2xl font-bold text-gray-900">
-                        {mode === 'signin' && 'Welcome Back'}
-                        {mode === 'signup' && 'Create Account'}
-                        {mode === 'forgot' && 'Reset Password'}
-                    </h2>
-                    <p className="text-gray-500 text-sm mt-1">
-                        {mode === 'signin' && 'Sign in to continue learning'}
-                        {mode === 'signup' && 'Start your engineering journey'}
-                        {mode === 'forgot' && "We'll send you a reset link"}
-                    </p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.42)] px-4 backdrop-blur-md">
+            <div className="w-full max-w-lg overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.95)] shadow-[0_32px_80px_rgba(15,23,42,0.22)]">
+                <div className="border-b border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(248,246,241,0.98),rgba(240,237,230,0.84))] px-8 py-7">
+                    <div className="flex items-start justify-between gap-4">
+                        <div>
+                            <p className="editorial-kicker">The Scholarly Editorial</p>
+                            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">{copy[mode].title}</h2>
+                            <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">{copy[mode].subtitle}</p>
+                        </div>
+                        <button
+                            onClick={onClose}
+                            className="rounded-full border border-[var(--ath-line)] bg-white/70 px-3 py-1.5 text-sm font-semibold text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-text)]"
+                            aria-label="Close sign in dialog"
+                        >
+                            Close
+                        </button>
+                    </div>
                 </div>
 
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="your@email.com"
-                            className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/20 outline-none text-gray-900 bg-white"
-                            required
-                        />
-                    </div>
+                <div className="px-8 py-7">
+                    {!isSupabaseConfigured && (
+                        <div className="mb-5 rounded-[1.3rem] border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] px-4 py-4 text-sm leading-7 text-[var(--ath-primary-deep)]">
+                            Local demo mode is active. Cloud authentication is not configured in this environment, so the fastest path is to continue with a sample learner.
+                        </div>
+                    )}
 
-                    {mode !== 'forgot' && (
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                            <label className="editorial-label mb-2 block">Email</label>
                             <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="••••••••"
-                                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/20 outline-none text-gray-900 bg-white"
+                                type="email"
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
+                                placeholder="your@email.com"
+                                className="editorial-input"
                                 required
-                                minLength={6}
                             />
                         </div>
-                    )}
 
-                    {error && (
-                        <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm">
-                            {error}
-                        </div>
-                    )}
-
-                    {message && (
-                        <div className="bg-emerald-50 text-emerald-600 px-4 py-3 rounded-lg text-sm">
-                            {message}
-                        </div>
-                    )}
-
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full bg-gradient-to-r from-[#9E1B32] to-[#7A1527] text-white font-semibold py-3 rounded-xl hover:shadow-lg transition-all disabled:opacity-50"
-                    >
-                        {loading ? 'Loading...' : (
-                            mode === 'signin' ? 'Sign In' :
-                                mode === 'signup' ? 'Create Account' :
-                                    'Send Reset Link'
+                        {mode !== 'forgot' && (
+                            <div>
+                                <div className="mb-2 flex items-center justify-between gap-3">
+                                    <label className="editorial-label">Password</label>
+                                    {mode === 'signin' && (
+                                        <button
+                                            type="button"
+                                            onClick={() => switchMode('forgot')}
+                                            className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-primary)]"
+                                        >
+                                            Forgot password
+                                        </button>
+                                    )}
+                                </div>
+                                <input
+                                    type="password"
+                                    value={password}
+                                    onChange={(event) => setPassword(event.target.value)}
+                                    placeholder="Minimum 6 characters"
+                                    className="editorial-input"
+                                    minLength={6}
+                                    required
+                                />
+                            </div>
                         )}
-                    </button>
-                </form>
 
-                {/* Mode Switcher */}
-                <div className="mt-6 text-center text-sm">
-                    {mode === 'signin' && (
-                        <div>
-                            <span className="text-gray-500">Don't have an account? </span>
-                            <button
-                                onClick={() => setMode('signup')}
-                                className="text-[#9E1B32] font-semibold hover:underline"
-                            >
-                                Sign Up
-                            </button>
-                        </div>
-                    )}
-                    {mode === 'signup' && (
-                        <div>
-                            <span className="text-gray-500">Already have an account? </span>
-                            <button
-                                onClick={() => setMode('signin')}
-                                className="text-[#9E1B32] font-semibold hover:underline"
-                            >
-                                Sign In
-                            </button>
-                        </div>
-                    )}
-                    {mode === 'forgot' && (
+                        {error && (
+                            <div className="rounded-[1.2rem] border border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.72)] px-4 py-3 text-sm font-medium text-[#8c1d1d]">
+                                {error}
+                            </div>
+                        )}
+
+                        {message && (
+                            <div className="rounded-[1.2rem] border border-emerald-200 bg-emerald-50/70 px-4 py-3 text-sm font-medium text-emerald-700">
+                                {message}
+                            </div>
+                        )}
+
                         <button
-                            onClick={() => setMode('signin')}
-                            className="text-[#9E1B32] font-semibold hover:underline"
+                            type="submit"
+                            disabled={loading}
+                            className="editorial-button w-full px-5 py-3.5 text-sm disabled:opacity-60"
                         >
-                            ← Back to Sign In
+                            {loading ? 'Working...' : copy[mode].action}
                         </button>
-                    )}
-                </div>
+                    </form>
 
-                {/* Dev Bypass */}
-                <div className="mt-4 pt-4 border-t border-gray-100 text-center">
-                    <button
-                        onClick={() => onSuccess({ email: 'dev@test.com', id: '00000000-0000-0000-0000-000000000000' })}
-                        className="text-xs text-gray-400 hover:text-gray-600"
-                    >
-                        Skip for Testing →
-                    </button>
+                    <div className="mt-6 rounded-[1.4rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                        <p className="editorial-label">Testing and demo</p>
+                        <div className="mt-3 flex flex-wrap gap-3">
+                            <button
+                                type="button"
+                                onClick={enterDemoMode}
+                                className="editorial-button-secondary px-4 py-2 text-sm"
+                            >
+                                Continue in Demo Mode
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setEmail('demo@alget.local')
+                                    setPassword('demo1234')
+                                    switchMode('signin')
+                                }}
+                                className="editorial-button-secondary px-4 py-2 text-sm"
+                            >
+                                Fill Sample Credentials
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="mt-6 text-center text-sm">
+                        {mode === 'signin' && (
+                            <p className="text-[var(--ath-muted)]">
+                                Need an account?{' '}
+                                <button
+                                    type="button"
+                                    onClick={() => switchMode('signup')}
+                                    className="font-semibold text-[var(--ath-primary)]"
+                                >
+                                    Sign Up
+                                </button>
+                            </p>
+                        )}
+                        {mode === 'signup' && (
+                            <p className="text-[var(--ath-muted)]">
+                                Already have an account?{' '}
+                                <button
+                                    type="button"
+                                    onClick={() => switchMode('signin')}
+                                    className="font-semibold text-[var(--ath-primary)]"
+                                >
+                                    Sign In
+                                </button>
+                            </p>
+                        )}
+                        {mode === 'forgot' && (
+                            <button
+                                type="button"
+                                onClick={() => switchMode('signin')}
+                                className="font-semibold text-[var(--ath-primary)]"
+                            >
+                                Back to Sign In
+                            </button>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
