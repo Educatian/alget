@@ -1,5 +1,6 @@
 import API_BASE from './apiConfig';
 import { supabase } from './supabase';
+import { buildLearnerProfileSnapshot, startInterventionTrace } from './researchService';
 
 const ADAPTIVE_SIGNAL_KEY = 'alget_adaptive_signals_v1';
 const ADAPTIVE_SIGNAL_WINDOW_MS = 1000 * 60 * 90;
@@ -18,7 +19,13 @@ const emptyTelemetrySummary = () => ({
     affect_engaged: 0,
     affect_disengaged: 0,
     representation_requests: 0,
-    explain_requests: 0
+    explain_requests: 0,
+    confidence_samples: 0,
+    confidence_total: 0,
+    confidence_average: 0,
+    misconception_counts: {},
+    intervention_accepts: 0,
+    intervention_declines: 0
 });
 
 function readAdaptiveSignals() {
@@ -116,12 +123,30 @@ export function summarizeAdaptiveSignals(sectionId) {
             case 'explanation_request':
                 summary.explain_requests += 1;
                 break;
+            case 'confidence_report':
+                summary.confidence_samples += 1;
+                summary.confidence_total += Number(signal.payload?.value || 0);
+                break;
+            case 'misconception_report': {
+                const type = String(signal.payload?.type || 'unknown');
+                summary.misconception_counts[type] = (summary.misconception_counts[type] || 0) + 1;
+                break;
+            }
+            case 'intervention_accept':
+                summary.intervention_accepts += 1;
+                break;
+            case 'intervention_decline':
+                summary.intervention_declines += 1;
+                break;
             default:
                 break;
         }
     });
 
     summary.consecutive_wrong = trailingWrong;
+    summary.confidence_average = summary.confidence_samples
+        ? Number((summary.confidence_total / summary.confidence_samples).toFixed(3))
+        : 0;
     return summary;
 }
 
@@ -326,7 +351,8 @@ export const getAdaptiveRecommendation = async ({
     sectionTitle = '',
     conceptIds = [],
     currentHeading = '',
-    stuckReason = null
+    stuckReason = null,
+    context = {}
 }) => {
     try {
         let mastery = [];
@@ -354,6 +380,14 @@ export const getAdaptiveRecommendation = async ({
             }
         }
 
+        const telemetry = summarizeAdaptiveSignals(sectionId)
+        const learnerProfile = buildLearnerProfileSnapshot({
+            sectionId,
+            conceptIds,
+            mastery,
+            telemetry
+        })
+
         const response = await fetch(`${API_BASE}/adaptive_recommendation`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -364,7 +398,8 @@ export const getAdaptiveRecommendation = async ({
                 current_heading: currentHeading,
                 stuck_reason: stuckReason,
                 mastery,
-                telemetry: summarizeAdaptiveSignals(sectionId)
+                telemetry,
+                learner_profile: learnerProfile
             })
         });
 
@@ -372,7 +407,21 @@ export const getAdaptiveRecommendation = async ({
             throw new Error(`Adaptive recommendation failed: ${response.status}`);
         }
 
-        return await response.json();
+        const data = await response.json();
+        const trace = startInterventionTrace({
+            sectionId,
+            sectionTitle,
+            recommendation: data,
+            learnerState: data?.learner_state || null,
+            learnerProfile,
+            context
+        })
+
+        return {
+            ...data,
+            learner_profile: learnerProfile,
+            client_trace_id: trace.trace_id
+        };
     } catch (error) {
         console.error('Error getting adaptive recommendation:', error);
         return null;

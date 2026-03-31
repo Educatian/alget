@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Activity, ArrowRight, Brain, Flame, Users } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 import { safeSessionStorageGet, safeSessionStorageRemove, safeSessionStorageSet } from '../lib/browserStorage'
+import { fetchResearchDashboardSnapshot, getResearchDashboardSnapshot } from '../lib/researchService'
 import { supabase } from '../lib/supabase'
 import '../index.css'
 
@@ -106,10 +107,87 @@ export default function AnalyticsDashboard() {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const [masteryData, setMasteryData] = useState([])
-    const [socialMetrics, setSocialMetrics] = useState(EMPTY_SOCIAL)
+    const [socialSignals, setSocialSignals] = useState([])
+    const [socialPresenceRows, setSocialPresenceRows] = useState([])
+    const [progressRows, setProgressRows] = useState([])
+    const [conceptQuery, setConceptQuery] = useState('')
+    const [masteryBand, setMasteryBand] = useState('all')
+    const [courseFilter, setCourseFilter] = useState('all')
+    const [signalFilter, setSignalFilter] = useState('all')
+    const [researchSnapshot, setResearchSnapshot] = useState(() => getResearchDashboardSnapshot())
+
+    const filteredMasteryData = useMemo(() => {
+        return masteryData.filter((row) => {
+            const matchesQuery = !conceptQuery || String(row.concept_id || '').toLowerCase().includes(conceptQuery.toLowerCase())
+
+            const score = row.mastery_score || 0
+            const matchesBand =
+                masteryBand === 'all' ||
+                (masteryBand === 'support' && score < 0.5) ||
+                (masteryBand === 'emerging' && score >= 0.5 && score < 0.8) ||
+                (masteryBand === 'strong' && score >= 0.8)
+
+            return matchesQuery && matchesBand
+        })
+    }, [conceptQuery, masteryBand, masteryData])
+
+    const filteredSocialSignals = useMemo(() => {
+        return socialSignals.filter((row) => {
+            const matchesCourse = courseFilter === 'all' || row.course === courseFilter
+            const matchesSignal = signalFilter === 'all' || row.signal_type === signalFilter
+            const matchesQuery =
+                !conceptQuery ||
+                String(row.section_id || '').toLowerCase().includes(conceptQuery.toLowerCase()) ||
+                String(row.signal_value || '').toLowerCase().includes(conceptQuery.toLowerCase())
+
+            return matchesCourse && matchesSignal && matchesQuery
+        })
+    }, [conceptQuery, courseFilter, signalFilter, socialSignals])
+
+    const filteredSocialPresenceRows = useMemo(() => {
+        return socialPresenceRows.filter((row) => {
+            const matchesCourse = courseFilter === 'all' || row.course === courseFilter
+            const matchesQuery = !conceptQuery || String(row.section_id || '').toLowerCase().includes(conceptQuery.toLowerCase())
+            return matchesCourse && matchesQuery
+        })
+    }, [conceptQuery, courseFilter, socialPresenceRows])
+
+    const filteredProgressRows = useMemo(() => {
+        return progressRows.filter((row) => {
+            const matchesCourse = courseFilter === 'all' || row.course === courseFilter
+            const matchesQuery = !conceptQuery || String(row.section_id || '').toLowerCase().includes(conceptQuery.toLowerCase())
+            return matchesCourse && matchesQuery
+        })
+    }, [conceptQuery, courseFilter, progressRows])
+
+    const socialMetrics = useMemo(() => {
+        if (
+            filteredSocialSignals.length === 0 &&
+            filteredSocialPresenceRows.length === 0 &&
+            filteredProgressRows.length === 0
+        ) {
+            return EMPTY_SOCIAL
+        }
+
+        return summarizeSocialData(filteredSocialSignals, filteredSocialPresenceRows, filteredProgressRows)
+    }, [filteredProgressRows, filteredSocialPresenceRows, filteredSocialSignals])
+
+    const availableCourses = useMemo(() => {
+        return Array.from(
+            new Set([
+                ...socialSignals.map((row) => row.course),
+                ...socialPresenceRows.map((row) => row.course),
+                ...progressRows.map((row) => row.course)
+            ].filter(Boolean))
+        ).sort()
+    }, [progressRows, socialPresenceRows, socialSignals])
+
+    const availableSignals = useMemo(() => {
+        return Array.from(new Set(socialSignals.map((row) => row.signal_type).filter(Boolean))).sort()
+    }, [socialSignals])
 
     const masteryOverview = useMemo(() => {
-        if (masteryData.length === 0) {
+        if (filteredMasteryData.length === 0) {
             return {
                 average: 0,
                 highMastery: 0,
@@ -117,19 +195,19 @@ export default function AnalyticsDashboard() {
             }
         }
 
-        const average = masteryData.reduce((sum, row) => sum + (row.mastery_score || 0), 0) / masteryData.length
-        const highMastery = masteryData.filter((row) => (row.mastery_score || 0) >= 0.8).length
-        const supportNeeded = masteryData.filter((row) => (row.mastery_score || 0) < 0.5).length
+        const average = filteredMasteryData.reduce((sum, row) => sum + (row.mastery_score || 0), 0) / filteredMasteryData.length
+        const highMastery = filteredMasteryData.filter((row) => (row.mastery_score || 0) >= 0.8).length
+        const supportNeeded = filteredMasteryData.filter((row) => (row.mastery_score || 0) < 0.5).length
 
         return {
             average: Math.round(average * 100),
             highMastery,
             supportNeeded
         }
-    }, [masteryData])
+    }, [filteredMasteryData])
 
     const struggleConcepts = useMemo(() => {
-        return masteryData
+        return filteredMasteryData
             .filter((row) => (row.mastery_score || 0) < 0.6)
             .sort((left, right) => {
                 const leftScore = left.mastery_score || 0
@@ -140,7 +218,7 @@ export default function AnalyticsDashboard() {
                 return (right.attempts_count || 0) - (left.attempts_count || 0)
             })
             .slice(0, 6)
-    }, [masteryData])
+    }, [filteredMasteryData])
 
     const handleAuthenticate = async (event) => {
         event.preventDefault()
@@ -219,18 +297,15 @@ export default function AnalyticsDashboard() {
                 socialPresencePromise,
                 progressPromise
             ])
+            const nextResearchSnapshot = await fetchResearchDashboardSnapshot()
 
             if (masteryResponse?.data) {
                 setMasteryData(masteryResponse.data)
             }
-
-            setSocialMetrics(
-                summarizeSocialData(
-                    socialSignalsResponse?.data || [],
-                    socialPresenceResponse?.data || [],
-                    progressResponse?.data || []
-                )
-            )
+            setSocialSignals(socialSignalsResponse?.data || [])
+            setSocialPresenceRows(socialPresenceResponse?.data || [])
+            setProgressRows(progressResponse?.data || [])
+            setResearchSnapshot(nextResearchSnapshot)
         } catch (err) {
             console.error('Error fetching analytics:', err)
         } finally {
@@ -246,14 +321,15 @@ export default function AnalyticsDashboard() {
 
     if (!isAuthenticated) {
         return (
-            <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(158,27,50,0.08),_transparent_28%),linear-gradient(to_bottom,_#f8fafc,_#eef2f7)] flex items-center justify-center p-4">
-                <div className="w-full max-w-md rounded-[2.2rem] border border-white/80 bg-white/82 p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+            <div className="editorial-shell flex min-h-screen items-center justify-center p-4">
+                <div className="editorial-surface w-full max-w-md p-8">
                     <div className="mb-8 text-center">
-                        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white shadow-lg shadow-red-900/20">
+                        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] text-white shadow-[0_18px_36px_rgba(9,56,72,0.2)]">
                             <Brain className="h-8 w-8" />
                         </div>
-                        <h1 className="text-2xl font-black tracking-tight text-slate-900">Research Console</h1>
-                        <p className="mt-2 text-sm leading-6 text-slate-500">
+                        <p className="editorial-kicker">Research Console</p>
+                        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-[var(--ath-text)]">Scholarly analytics</h1>
+                        <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
                             Access Alabama Generative Intelligent Textbook mastery, social pulse, progression, and cohort-level learning signals.
                         </p>
                     </div>
@@ -264,14 +340,14 @@ export default function AnalyticsDashboard() {
                             value={passcode}
                             onChange={(event) => setPasscode(event.target.value)}
                             placeholder="Enter researcher access code"
-                            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-center tracking-[0.18em] text-slate-900 outline-none transition-all focus:border-[#9E1B32] focus:ring-2 focus:ring-[#9E1B32]/10"
+                            className="editorial-input text-center tracking-[0.18em]"
                             autoFocus
                         />
-                        {error && <p className="text-center text-sm font-medium text-red-500">{error}</p>}
+                        {error && <p className="text-center text-sm font-medium text-[#8c1d1d]">{error}</p>}
                         <button
                             type="submit"
                             disabled={loading}
-                            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-slate-900/15 transition-all hover:-translate-y-0.5 hover:bg-slate-800 disabled:opacity-60"
+                            className="editorial-button w-full px-5 py-3.5 text-sm disabled:opacity-60"
                         >
                             {loading ? 'Checking access...' : 'Unlock dashboard'}
                             <ArrowRight className="h-4 w-4" />
@@ -280,7 +356,7 @@ export default function AnalyticsDashboard() {
 
                     <button
                         onClick={() => navigate('/')}
-                        className="mt-4 w-full text-sm font-medium text-slate-400 transition-colors hover:text-slate-600"
+                        className="mt-4 w-full text-sm font-medium text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-primary)]"
                     >
                         Back to home
                     </button>
@@ -290,19 +366,16 @@ export default function AnalyticsDashboard() {
     }
 
     return (
-        <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(158,27,50,0.08),_transparent_28%),radial-gradient(circle_at_bottom_right,_rgba(37,99,235,0.08),_transparent_26%),linear-gradient(to_bottom,_#f8fafc,_#eef2f7)] p-6 lg:p-10">
+        <div className="editorial-shell min-h-screen p-6 lg:p-10">
             <div className="mx-auto max-w-7xl space-y-8">
-                <header className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+                <header className="editorial-surface p-8">
                     <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                         <div>
-                            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#9E1B32]">Alabama Generative Intelligent Textbook</p>
-                            <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
-                                Research console and
-                                <span className="block bg-gradient-to-r from-[#9E1B32] via-[#c41e3a] to-[#2563eb] bg-clip-text text-transparent">
-                                    social learning pulse
-                                </span>
+                            <p className="editorial-kicker">Alabama Generative Intelligent Textbook</p>
+                            <h1 className="editorial-title mt-3 text-4xl md:text-5xl">
+                                Research console and social learning pulse
                             </h1>
-                            <p className="mt-4 max-w-3xl text-[15px] leading-7 text-slate-600">
+                            <p className="mt-4 max-w-3xl text-[15px] leading-7 text-[var(--ath-muted)]">
                                 Review student knowledge state, live presence, completion momentum, help-seeking behavior, and section-level activity from a single dashboard.
                             </p>
                         </div>
@@ -310,7 +383,7 @@ export default function AnalyticsDashboard() {
                         <div className="flex flex-wrap gap-3">
                             <button
                                 onClick={() => fetchDashboardData()}
-                                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
+                                className="editorial-button-secondary rounded-full px-4 py-2 text-sm"
                             >
                                 {loading ? 'Refreshing...' : 'Refresh'}
                             </button>
@@ -319,13 +392,13 @@ export default function AnalyticsDashboard() {
                                     safeSessionStorageRemove('alget_researcher_access')
                                     setIsAuthenticated(false)
                                 }}
-                                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
+                                className="editorial-button-secondary rounded-full px-4 py-2 text-sm"
                             >
                                 Lock
                             </button>
                             <button
                                 onClick={() => navigate('/')}
-                                className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+                                className="editorial-button rounded-full px-4 py-2 text-sm"
                             >
                                 Exit dashboard
                             </button>
@@ -334,75 +407,159 @@ export default function AnalyticsDashboard() {
                 </header>
 
                 <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-                    <div className="rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-sm">
+                    <div className="editorial-surface p-6">
                         <div className="flex items-center justify-between">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Average mastery</p>
-                            <Brain className="h-5 w-5 text-[#9E1B32]" />
+                            <p className="editorial-label">Average mastery</p>
+                            <Brain className="h-5 w-5 text-[var(--ath-primary)]" />
                         </div>
-                        <p className="mt-4 text-4xl font-black text-slate-950">{masteryOverview.average}%</p>
-                        <p className="mt-2 text-sm text-slate-500">{masteryOverview.highMastery} high-mastery concepts tracked for this learner.</p>
+                        <p className="mt-4 text-4xl font-semibold text-[var(--ath-text)]">{masteryOverview.average}%</p>
+                        <p className="mt-2 text-sm text-[var(--ath-muted)]">{masteryOverview.highMastery} high-mastery concepts tracked for this learner.</p>
                     </div>
 
-                    <div className="rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-sm">
+                    <div className="editorial-surface p-6">
                         <div className="flex items-center justify-between">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Active readers now</p>
+                            <p className="editorial-label">Active readers now</p>
                             <Users className="h-5 w-5 text-emerald-600" />
                         </div>
-                        <p className="mt-4 text-4xl font-black text-slate-950">{socialMetrics.activeReaders}</p>
-                        <p className="mt-2 text-sm text-slate-500">{socialMetrics.liveSections} sections currently show live presence.</p>
+                        <p className="mt-4 text-4xl font-semibold text-[var(--ath-text)]">{socialMetrics.activeReaders}</p>
+                        <p className="mt-2 text-sm text-[var(--ath-muted)]">{socialMetrics.liveSections} sections currently show live presence.</p>
                     </div>
 
-                    <div className="rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-sm">
+                    <div className="editorial-surface p-6">
                         <div className="flex items-center justify-between">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Completion momentum</p>
+                            <p className="editorial-label">Completion momentum</p>
                             <Flame className="h-5 w-5 text-amber-500" />
                         </div>
-                        <p className="mt-4 text-4xl font-black text-slate-950">{socialMetrics.completionsToday}</p>
-                        <p className="mt-2 text-sm text-slate-500">Sections completed in the last 24 hours.</p>
+                        <p className="mt-4 text-4xl font-semibold text-[var(--ath-text)]">{socialMetrics.completionsToday}</p>
+                        <p className="mt-2 text-sm text-[var(--ath-muted)]">Sections completed in the last 24 hours.</p>
                     </div>
 
-                    <div className="rounded-[2rem] border border-white/80 bg-white/82 p-6 shadow-sm">
+                    <div className="editorial-surface p-6">
                         <div className="flex items-center justify-between">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Help-open events</p>
+                            <p className="editorial-label">Help-open events</p>
                             <Activity className="h-5 w-5 text-sky-500" />
                         </div>
-                        <p className="mt-4 text-4xl font-black text-slate-950">{socialMetrics.helpOpensToday}</p>
-                        <p className="mt-2 text-sm text-slate-500">Support rail openings recorded across live sections today.</p>
+                        <p className="mt-4 text-4xl font-semibold text-[var(--ath-text)]">{socialMetrics.helpOpensToday}</p>
+                        <p className="mt-2 text-sm text-[var(--ath-muted)]">Support rail openings recorded across live sections today.</p>
+                    </div>
+                </section>
+
+                <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+                    <div className="editorial-surface p-6">
+                        <p className="editorial-label">Forgetting risk</p>
+                        <p className="mt-4 text-4xl font-semibold text-[var(--ath-text)]">
+                            {Math.round((researchSnapshot.learnerMetrics.averageForgettingRisk || 0) * 100)}%
+                        </p>
+                        <p className="mt-2 text-sm text-[var(--ath-muted)]">Average retrieval fragility across the research learner-state model.</p>
+                    </div>
+                    <div className="editorial-surface p-6">
+                        <p className="editorial-label">Predicted next success</p>
+                        <p className="mt-4 text-4xl font-semibold text-[var(--ath-text)]">
+                            {Math.round((researchSnapshot.learnerMetrics.averagePredictedNextCorrect || 0) * 100)}%
+                        </p>
+                        <p className="mt-2 text-sm text-[var(--ath-muted)]">Forecasted correctness on the next targeted attempt.</p>
+                    </div>
+                    <div className="editorial-surface p-6">
+                        <p className="editorial-label">Predicted retention</p>
+                        <p className="mt-4 text-4xl font-semibold text-[var(--ath-text)]">
+                            {Math.round((researchSnapshot.learnerMetrics.averagePredictedRetention || 0) * 100)}%
+                        </p>
+                        <p className="mt-2 text-sm text-[var(--ath-muted)]">Expected durability after support and spaced recall.</p>
+                    </div>
+                    <div className="editorial-surface p-6">
+                        <p className="editorial-label">Content audit mean</p>
+                        <p className="mt-4 text-4xl font-semibold text-[var(--ath-text)]">
+                            {researchSnapshot.contentMetrics.averageAudit || 0}
+                        </p>
+                        <p className="mt-2 text-sm text-[var(--ath-muted)]">
+                            Approval rate {Math.round((researchSnapshot.contentMetrics.approvalRate || 0) * 100)}% / blocked audits {researchSnapshot.contentMetrics.blockedCount || 0}.
+                        </p>
+                    </div>
+                </section>
+
+                <section className="editorial-surface p-6">
+                    <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
+                        <div>
+                            <p className="editorial-kicker">Practical filters</p>
+                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Narrow the learning signals</h2>
+                            <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">
+                                Search concepts or section ids, focus the mastery band, and isolate course or signal activity without leaving the dashboard.
+                            </p>
+                        </div>
+                        <div className="flex flex-wrap gap-3">
+                            <input
+                                type="text"
+                                value={conceptQuery}
+                                onChange={(event) => setConceptQuery(event.target.value)}
+                                placeholder="Search concept or section..."
+                                className="editorial-input min-w-[16rem]"
+                            />
+                            <select
+                                value={masteryBand}
+                                onChange={(event) => setMasteryBand(event.target.value)}
+                                className="editorial-input min-w-[11rem]"
+                            >
+                                <option value="all">All mastery bands</option>
+                                <option value="support">Support needed</option>
+                                <option value="emerging">Emerging</option>
+                                <option value="strong">Strong</option>
+                            </select>
+                            <select
+                                value={courseFilter}
+                                onChange={(event) => setCourseFilter(event.target.value)}
+                                className="editorial-input min-w-[11rem]"
+                            >
+                                <option value="all">All courses</option>
+                                {availableCourses.map((course) => (
+                                    <option key={course} value={course}>{formatConceptLabel(course)}</option>
+                                ))}
+                            </select>
+                            <select
+                                value={signalFilter}
+                                onChange={(event) => setSignalFilter(event.target.value)}
+                                className="editorial-input min-w-[11rem]"
+                            >
+                                <option value="all">All signals</option>
+                                {availableSignals.map((signal) => (
+                                    <option key={signal} value={signal}>{formatSignalLabel(signal)}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
                 </section>
 
                 <section className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
-                    <div className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+                    <div className="editorial-surface p-8">
                         <div className="flex items-center justify-between gap-4">
                             <div>
-                                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Learner model</p>
-                                <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Concept mastery distribution</h2>
+                                <p className="editorial-kicker">Learner model</p>
+                                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Concept mastery distribution</h2>
                             </div>
-                            <div className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-600">
+                            <div className="editorial-chip">
                                 {masteryOverview.supportNeeded} concepts need support
                             </div>
                         </div>
 
-                        {loading && masteryData.length === 0 ? (
+                        {loading && filteredMasteryData.length === 0 ? (
                             <div className="py-20 text-center text-slate-500">Loading analytics...</div>
-                        ) : masteryData.length === 0 ? (
+                        ) : filteredMasteryData.length === 0 ? (
                             <div className="py-16 text-center">
                                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
                                     <Brain className="h-8 w-8" />
                                 </div>
-                                <h3 className="mt-5 text-xl font-bold text-slate-800">No mastery data yet</h3>
+                                <h3 className="mt-5 text-xl font-bold text-slate-800">No concepts match these filters</h3>
                                 <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500">
-                                    Learner-model records will appear after diagnostics, knowledge checks, and practice attempts are completed.
+                                    Try broadening the concept search or mastery band. Learner-model records appear after diagnostics, knowledge checks, and practice attempts.
                                 </p>
                             </div>
                         ) : (
                             <div className="mt-8 grid gap-5 md:grid-cols-2">
-                                {masteryData.map((concept, index) => (
-                                    <div key={`${concept.concept_id}-${index}`} className="group relative overflow-hidden rounded-[1.8rem] border border-slate-100 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
+                                {filteredMasteryData.map((concept, index) => (
+                                <div key={`${concept.concept_id}-${index}`} className="group relative overflow-hidden rounded-[1.8rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.78)] p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
                                         <div className={`absolute -right-10 -top-10 h-28 w-28 rounded-full blur-3xl opacity-20 ${concept.mastery_score >= 0.8 ? 'bg-emerald-500' : concept.mastery_score >= 0.5 ? 'bg-amber-400' : 'bg-[#9E1B32]'}`}></div>
                                         <div className="relative">
                                             <div className="mb-4 flex items-start justify-between gap-4">
-                                                <h3 className="text-lg font-bold uppercase tracking-[0.08em] text-slate-900">
+                                                <h3 className="text-lg font-semibold uppercase tracking-[0.08em] text-[var(--ath-text)]">
                                                     {formatConceptLabel(concept.concept_id)}
                                                 </h3>
                                                 <span className={`rounded-full px-2.5 py-1 text-xs font-bold ${concept.mastery_score >= 0.8 ? 'bg-emerald-50 text-emerald-700' : concept.mastery_score >= 0.5 ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-700'}`}>
@@ -417,14 +574,14 @@ export default function AnalyticsDashboard() {
                                                 ></div>
                                             </div>
 
-                                            <div className="grid grid-cols-2 gap-4 border-t border-slate-100 pt-4 text-sm">
+                                            <div className="grid grid-cols-2 gap-4 border-t border-[var(--ath-line)] pt-4 text-sm">
                                                 <div>
-                                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Confidence</p>
-                                                    <p className="mt-1 font-semibold capitalize text-slate-700">{concept.confidence_level}</p>
+                                                    <p className="editorial-label">Confidence</p>
+                                                    <p className="mt-1 font-semibold capitalize text-[var(--ath-muted)]">{concept.confidence_level}</p>
                                                 </div>
                                                 <div>
-                                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Accuracy</p>
-                                                    <p className="mt-1 font-semibold text-slate-700">{concept.correct_count} / {concept.attempts_count}</p>
+                                                    <p className="editorial-label">Accuracy</p>
+                                                    <p className="mt-1 font-semibold text-[var(--ath-muted)]">{concept.correct_count} / {concept.attempts_count}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -435,63 +592,63 @@ export default function AnalyticsDashboard() {
                     </div>
 
                     <div className="space-y-8">
-                        <div className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Social pulse</p>
-                            <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Cohort activity snapshot</h2>
+                        <div className="editorial-surface p-8">
+                            <p className="editorial-kicker">Social pulse</p>
+                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Cohort activity snapshot</h2>
                             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                                <div className="rounded-2xl bg-slate-50 p-4">
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Average concurrency</p>
-                                    <p className="mt-2 text-3xl font-black text-slate-950">{socialMetrics.averageConcurrency}</p>
+                                <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
+                                    <p className="editorial-label">Average concurrency</p>
+                                    <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">{socialMetrics.averageConcurrency}</p>
                                 </div>
-                                <div className="rounded-2xl bg-slate-50 p-4">
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Reactions today</p>
-                                    <p className="mt-2 text-3xl font-black text-slate-950">{socialMetrics.reactionsToday}</p>
+                                <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
+                                    <p className="editorial-label">Reactions today</p>
+                                    <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">{socialMetrics.reactionsToday}</p>
                                 </div>
                             </div>
 
                             <div className="mt-6">
-                                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Top reactions</p>
+                                <p className="editorial-label">Top reactions</p>
                                 <div className="mt-3 space-y-3">
                                     {socialMetrics.topReactions.length === 0 ? (
-                                        <p className="text-sm text-slate-500">No social reactions captured yet.</p>
+                                        <p className="text-sm text-[var(--ath-muted)]">No social reactions captured yet.</p>
                                     ) : socialMetrics.topReactions.map(([reaction, count]) => (
-                                        <div key={reaction} className="flex items-center justify-between rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3">
-                                            <span className="text-sm font-semibold text-slate-700 capitalize">{formatSignalLabel(reaction)}</span>
-                                            <span className="text-sm font-bold text-slate-900">{count}</span>
+                                        <div key={reaction} className="flex items-center justify-between rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-3">
+                                            <span className="text-sm font-semibold capitalize text-[var(--ath-muted)]">{formatSignalLabel(reaction)}</span>
+                                            <span className="text-sm font-bold text-[var(--ath-text)]">{count}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-                            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Pathway progress</p>
-                            <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Completion by course</h2>
+                        <div className="editorial-surface p-8">
+                            <p className="editorial-kicker">Pathway progress</p>
+                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Completion by course</h2>
                             <div className="mt-5 space-y-4">
                                 {socialMetrics.progressByCourse.length === 0 ? (
-                                    <p className="text-sm text-slate-500">Cloud progress will appear here after synced completions are recorded.</p>
+                                    <p className="text-sm text-[var(--ath-muted)]">Cloud progress will appear here after synced completions are recorded.</p>
                                 ) : socialMetrics.progressByCourse.map(([course, count]) => (
                                     <div key={course}>
-                                        <div className="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700">
+                                        <div className="mb-2 flex items-center justify-between text-sm font-semibold text-[var(--ath-muted)]">
                                             <span className="capitalize">{formatConceptLabel(course)}</span>
                                             <span>{count}</span>
                                         </div>
-                                        <div className="h-2 overflow-hidden rounded-full bg-slate-100">
-                                            <div className="h-full rounded-full bg-linear-to-r from-[#9E1B32] to-[#2563eb]" style={{ width: `${Math.min(100, count * 10)}%` }}></div>
+                                        <div className="h-2 overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
+                                            <div className="h-full rounded-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)]" style={{ width: `${Math.min(100, count * 10)}%` }}></div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
 
                             <div className="mt-8">
-                                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Most active sections</p>
+                                <p className="editorial-label">Most active sections</p>
                                 <div className="mt-3 space-y-3">
                                     {socialMetrics.topSections.length === 0 ? (
-                                        <p className="text-sm text-slate-500">Section activity will appear once reading and reactions accumulate.</p>
+                                        <p className="text-sm text-[var(--ath-muted)]">Section activity will appear once reading and reactions accumulate.</p>
                                     ) : socialMetrics.topSections.map(([sectionId, count]) => (
-                                        <div key={sectionId} className="flex items-center justify-between rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3">
-                                            <span className="text-sm font-semibold text-slate-700">{sectionId}</span>
-                                            <span className="text-sm font-bold text-slate-900">{count}</span>
+                                        <div key={sectionId} className="flex items-center justify-between rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-3">
+                                            <span className="text-sm font-semibold text-[var(--ath-muted)]">{sectionId}</span>
+                                            <span className="text-sm font-bold text-[var(--ath-text)]">{count}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -501,17 +658,17 @@ export default function AnalyticsDashboard() {
                 </section>
 
                 <section className="grid gap-8 lg:grid-cols-3">
-                    <div className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Intervention queue</p>
-                        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Concepts needing attention</h2>
+                    <div className="editorial-surface p-8">
+                        <p className="editorial-kicker">Intervention queue</p>
+                        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Concepts needing attention</h2>
                         <div className="mt-6 space-y-4">
                             {struggleConcepts.length === 0 ? (
-                                <p className="text-sm text-slate-500">No high-priority support concepts are flagged right now.</p>
+                                <p className="text-sm text-[var(--ath-muted)]">No high-priority support concepts are flagged right now.</p>
                             ) : struggleConcepts.map((concept) => (
                                 <div key={concept.concept_id} className="rounded-[1.6rem] border border-red-100 bg-red-50/55 p-4">
                                     <div className="flex items-start justify-between gap-3">
                                         <div>
-                                            <p className="text-sm font-bold uppercase tracking-[0.08em] text-slate-900">
+                                            <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--ath-text)]">
                                                 {formatConceptLabel(concept.concept_id)}
                                             </p>
                                             <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-red-500">
@@ -522,7 +679,7 @@ export default function AnalyticsDashboard() {
                                             {Math.round((concept.mastery_score || 0) * 100)}%
                                         </span>
                                     </div>
-                                    <p className="mt-3 text-sm text-slate-600">
+                                    <p className="mt-3 text-sm text-[var(--ath-muted)]">
                                         {concept.correct_count || 0} correct across {concept.attempts_count || 0} attempts.
                                     </p>
                                 </div>
@@ -530,22 +687,22 @@ export default function AnalyticsDashboard() {
                         </div>
                     </div>
 
-                    <div className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Live section concurrency</p>
-                        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Where peers are clustering now</h2>
+                    <div className="editorial-surface p-8">
+                        <p className="editorial-kicker">Live section concurrency</p>
+                        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Where peers are clustering now</h2>
                         <div className="mt-6 space-y-3">
                             {socialMetrics.liveSectionConcurrency.length === 0 ? (
-                                <p className="text-sm text-slate-500">Live section clustering appears once active readers are present.</p>
+                                <p className="text-sm text-[var(--ath-muted)]">Live section clustering appears once active readers are present.</p>
                             ) : socialMetrics.liveSectionConcurrency.map((entry) => (
-                                <div key={entry.sectionId} className="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3">
+                                <div key={entry.sectionId} className="rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-3">
                                     <div className="flex items-center justify-between gap-3">
                                         <div>
-                                            <p className="text-sm font-semibold text-slate-800">{entry.sectionId}</p>
-                                            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                                            <p className="text-sm font-semibold text-[var(--ath-text)]">{entry.sectionId}</p>
+                                            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
                                                 {formatConceptLabel(entry.course)}
                                             </p>
                                         </div>
-                                        <span className="rounded-full bg-white px-3 py-1 text-sm font-bold text-slate-900">
+                                        <span className="rounded-full bg-[var(--ath-panel)] px-3 py-1 text-sm font-bold text-[var(--ath-text)]">
                                             {entry.count}
                                         </span>
                                     </div>
@@ -554,26 +711,105 @@ export default function AnalyticsDashboard() {
                         </div>
                     </div>
 
-                    <div className="rounded-[2.5rem] border border-white/80 bg-white/82 p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400">Signal mix today</p>
-                        <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950">Help, reaction, and completion balance</h2>
+                    <div className="editorial-surface p-8">
+                        <p className="editorial-kicker">Signal mix today</p>
+                        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Help, reaction, and completion balance</h2>
                         <div className="mt-6 space-y-4">
                             {socialMetrics.signalMix.length === 0 ? (
-                                <p className="text-sm text-slate-500">Signal mix appears after social and completion activity is recorded.</p>
+                                <p className="text-sm text-[var(--ath-muted)]">Signal mix appears after social and completion activity is recorded.</p>
                             ) : socialMetrics.signalMix.map(([signal, count]) => (
                                 <div key={signal}>
-                                    <div className="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700">
+                                    <div className="mb-2 flex items-center justify-between text-sm font-semibold text-[var(--ath-muted)]">
                                         <span className="capitalize">{formatSignalLabel(signal)}</span>
                                         <span>{count}</span>
                                     </div>
-                                    <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+                                    <div className="h-2 overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
                                         <div
-                                            className="h-full rounded-full bg-linear-to-r from-[#9E1B32] to-[#2563eb]"
+                                            className="h-full rounded-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)]"
                                             style={{ width: `${Math.min(100, count * 12)}%` }}
                                         ></div>
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
+                    <div className="editorial-surface p-8">
+                        <p className="editorial-kicker">Intervention traces</p>
+                        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Why the system recommended what it did</h2>
+                        <div className="mt-6 space-y-4">
+                            {researchSnapshot.traces.length === 0 ? (
+                                <p className="text-sm text-[var(--ath-muted)]">Recommendation traces will appear after the support rail is used.</p>
+                            ) : researchSnapshot.traces.map((trace) => (
+                                <div key={trace.trace_id} className="rounded-[1.5rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.74)] p-5">
+                                    <div className="flex flex-wrap items-start justify-between gap-3">
+                                        <div>
+                                            <p className="text-sm font-semibold text-[var(--ath-text)]">
+                                                {trace.section_title || trace.section_id}
+                                            </p>
+                                            <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
+                                                {trace.recommendation?.primary_recommendation?.action || 'support'} / {trace.status}
+                                            </p>
+                                        </div>
+                                        <span className="editorial-chip">
+                                            {Math.round(((trace.recommendation?.reasoning?.confidence || 0) * 100))}% confidence
+                                        </span>
+                                    </div>
+                                    <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">
+                                        {trace.recommendation?.primary_recommendation?.rationale || 'No rationale recorded.'}
+                                    </p>
+                                    <div className="mt-4 flex flex-wrap gap-2">
+                                        {(trace.recommendation?.reasoning?.reason_codes || []).map((code) => (
+                                            <span key={code} className="editorial-chip">{formatConceptLabel(code)}</span>
+                                        ))}
+                                    </div>
+                                    {(trace.recommendation?.reasoning?.recommended_because || []).length > 0 && (
+                                        <div className="mt-4 space-y-2">
+                                            {trace.recommendation.reasoning.recommended_because.map((item, index) => (
+                                                <p key={`${trace.trace_id}-${index}`} className="text-xs leading-6 text-[var(--ath-muted)]">{item}</p>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="space-y-8">
+                        <div className="editorial-surface p-8">
+                            <p className="editorial-kicker">Evaluation frame</p>
+                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Pre, post, and retention</h2>
+                            <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                                <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
+                                    <p className="editorial-label">Pre</p>
+                                    <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">{researchSnapshot.evaluationMetrics.preAverage}%</p>
+                                </div>
+                                <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
+                                    <p className="editorial-label">Post</p>
+                                    <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">{researchSnapshot.evaluationMetrics.postAverage}%</p>
+                                </div>
+                                <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
+                                    <p className="editorial-label">Retention</p>
+                                    <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">{researchSnapshot.evaluationMetrics.retentionAverage}%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="editorial-surface p-8">
+                            <p className="editorial-kicker">Misconception mix</p>
+                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Dominant learner friction</h2>
+                            <div className="mt-6 space-y-3">
+                                {researchSnapshot.learnerMetrics.dominantMisconceptions.length === 0 ? (
+                                    <p className="text-sm text-[var(--ath-muted)]">Misconception labels appear after learners categorize misses.</p>
+                                ) : researchSnapshot.learnerMetrics.dominantMisconceptions.map((item) => (
+                                    <div key={item.type} className="flex items-center justify-between rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-3">
+                                        <span className="text-sm font-semibold text-[var(--ath-muted)]">{formatConceptLabel(item.type)}</span>
+                                        <span className="text-sm font-bold text-[var(--ath-text)]">{item.count}</span>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>

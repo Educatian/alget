@@ -42,6 +42,33 @@ function renderLazyMarkdownModule(LazyComponent, props = {}) {
     )
 }
 
+function extractNodeText(node) {
+    if (typeof node === 'string' || typeof node === 'number') {
+        return String(node)
+    }
+
+    if (Array.isArray(node)) {
+        return node.map(extractNodeText).join(' ')
+    }
+
+    if (node && typeof node === 'object' && 'props' in node) {
+        return extractNodeText(node.props?.children)
+    }
+
+    return ''
+}
+
+function createAnchorId(prefix, value) {
+    const slug = String(value || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-')
+        .slice(0, 80)
+
+    return `${prefix}-${slug || 'section'}`
+}
+
 export default function ReadingNarrative({
     content,
     sectionId,
@@ -58,6 +85,57 @@ export default function ReadingNarrative({
     const usesRawHtml = /<([a-z][a-z0-9-]*)(\s|>)/i.test(narrativeSource)
 
     const markdownComponents = useMemo(() => ({
+        h1: ({ children, ...props }) => {
+            const text = extractNodeText(children)
+            return (
+                <h1
+                    id={createAnchorId('heading', text)}
+                    data-reading-anchor={text.toLowerCase()}
+                    data-reading-kind="heading"
+                    {...props}
+                >
+                    {children}
+                </h1>
+            )
+        },
+        h2: ({ children, ...props }) => {
+            const text = extractNodeText(children)
+            return (
+                <h2
+                    id={createAnchorId('heading', text)}
+                    data-reading-anchor={text.toLowerCase()}
+                    data-reading-kind="heading"
+                    {...props}
+                >
+                    {children}
+                </h2>
+            )
+        },
+        h3: ({ children, ...props }) => {
+            const text = extractNodeText(children)
+            return (
+                <h3
+                    id={createAnchorId('heading', text)}
+                    data-reading-anchor={text.toLowerCase()}
+                    data-reading-kind="heading"
+                    {...props}
+                >
+                    {children}
+                </h3>
+            )
+        },
+        p: ({ children, ...props }) => {
+            const text = extractNodeText(children)
+            return (
+                <p
+                    data-reading-anchor={text.toLowerCase()}
+                    data-reading-kind="paragraph"
+                    {...props}
+                >
+                    {children}
+                </p>
+            )
+        },
         'dynamic-scenario': (props) => (
             <Suspense fallback={<MarkdownBlockFallback />}>
                 <DynamicScenario

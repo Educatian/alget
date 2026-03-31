@@ -1,82 +1,186 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage';
-import { supabase } from '../lib/supabase';
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
+import { supabase } from '../lib/supabase'
 
-function getStorageKey(userId) {
-    return `alget_progress_${userId || 'guest'}`;
+function getScopedKey(prefix, userId) {
+    return `${prefix}_${userId || 'guest'}`
+}
+
+function getProgressKey(userId) {
+    return getScopedKey('alget_progress', userId)
+}
+
+function getRecentKey(userId) {
+    return getScopedKey('alget_recent', userId)
+}
+
+function getBookmarkKey(userId) {
+    return getScopedKey('alget_bookmarks', userId)
 }
 
 function normalizeSectionId(course, chapter, section) {
-    return `${course}/${chapter}/${section}`;
+    return `${course}/${chapter}/${section}`
 }
 
 function parseSectionId(sectionId) {
-    const [course = '', chapter = '', section = ''] = String(sectionId || '').split('/');
-    return { course, chapter, section };
+    const [course = '', chapter = '', section = ''] = String(sectionId || '').split('/')
+    return { course, chapter, section }
 }
 
 function dedupeSections(sectionIds = []) {
-    return Array.from(new Set(sectionIds.filter(Boolean)));
+    return Array.from(new Set(sectionIds.filter(Boolean)))
 }
 
-function loadCompletedSections(userId) {
+function readJsonStorage(key, fallbackValue) {
     if (typeof window === 'undefined') {
-        return [];
+        return fallbackValue
     }
 
-    const saved = safeLocalStorageGet(getStorageKey(userId));
-
+    const saved = safeLocalStorageGet(key)
     if (!saved) {
-        return [];
+        return fallbackValue
     }
 
     try {
-        const parsed = JSON.parse(saved);
-        return Array.isArray(parsed) ? dedupeSections(parsed) : [];
+        return JSON.parse(saved)
     } catch {
-        return [];
+        return fallbackValue
     }
 }
 
-function persistCompletedSections(userId, sectionIds) {
+function persistJsonStorage(key, value) {
     if (typeof window === 'undefined') {
-        return;
+        return
     }
 
-    safeLocalStorageSet(getStorageKey(userId), JSON.stringify(dedupeSections(sectionIds)));
+    safeLocalStorageSet(key, JSON.stringify(value))
+}
+
+function normalizeBookmark(entry) {
+    if (!entry) return null
+
+    const sectionId = entry.sectionId || normalizeSectionId(entry.course, entry.chapter, entry.section)
+    if (!sectionId) return null
+
+    const parsed = parseSectionId(sectionId)
+
+    return {
+        sectionId,
+        course: entry.course || parsed.course,
+        chapter: entry.chapter || parsed.chapter,
+        section: entry.section || parsed.section,
+        title: entry.title || '',
+        chapterTitle: entry.chapterTitle || '',
+        description: entry.description || '',
+        estimatedTimeMinutes: entry.estimatedTimeMinutes || null,
+        savedAt: entry.savedAt || entry.updatedAt || new Date().toISOString()
+    }
+}
+
+function dedupeBookmarks(bookmarks = []) {
+    const merged = new Map()
+
+    bookmarks.forEach((bookmark) => {
+        const normalized = normalizeBookmark(bookmark)
+        if (!normalized?.sectionId) return
+
+        const previous = merged.get(normalized.sectionId)
+        if (!previous || new Date(normalized.savedAt).getTime() >= new Date(previous.savedAt).getTime()) {
+            merged.set(normalized.sectionId, normalized)
+        }
+    })
+
+    return Array.from(merged.values()).sort(
+        (left, right) => new Date(right.savedAt).getTime() - new Date(left.savedAt).getTime()
+    )
+}
+
+function normalizeRecent(entry) {
+    if (!entry) return null
+
+    const sectionId = entry.sectionId || normalizeSectionId(entry.course, entry.chapter, entry.section)
+    if (!sectionId) return null
+
+    const parsed = parseSectionId(sectionId)
+
+    return {
+        sectionId,
+        course: entry.course || parsed.course,
+        chapter: entry.chapter || parsed.chapter,
+        section: entry.section || parsed.section,
+        title: entry.title || '',
+        chapterTitle: entry.chapterTitle || '',
+        description: entry.description || '',
+        estimatedTimeMinutes: entry.estimatedTimeMinutes || null,
+        updatedAt: entry.updatedAt || entry.savedAt || new Date().toISOString()
+    }
+}
+
+function pickLatestRecent(entries = []) {
+    return entries
+        .map(normalizeRecent)
+        .filter(Boolean)
+        .sort((left, right) => new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime())[0] || null
+}
+
+function loadCompletedSections(userId) {
+    const parsed = readJsonStorage(getProgressKey(userId), [])
+    return Array.isArray(parsed) ? dedupeSections(parsed) : []
+}
+
+function persistCompletedSections(userId, sectionIds) {
+    persistJsonStorage(getProgressKey(userId), dedupeSections(sectionIds))
+}
+
+function loadRecentSection(userId) {
+    return normalizeRecent(readJsonStorage(getRecentKey(userId), null))
+}
+
+function persistRecentSection(userId, entry) {
+    if (!entry) return
+    persistJsonStorage(getRecentKey(userId), normalizeRecent(entry))
+}
+
+function loadBookmarks(userId) {
+    const parsed = readJsonStorage(getBookmarkKey(userId), [])
+    return Array.isArray(parsed) ? dedupeBookmarks(parsed) : []
+}
+
+function persistBookmarks(userId, bookmarks) {
+    persistJsonStorage(getBookmarkKey(userId), dedupeBookmarks(bookmarks))
 }
 
 async function fetchCloudProgress(userId) {
     if (!userId) {
-        return [];
+        return []
     }
 
     try {
         const { data, error } = await supabase
             .from('course_progress')
             .select('section_id')
-            .eq('user_id', userId);
+            .eq('user_id', userId)
 
         if (error) {
-            console.warn('[Progress] Could not fetch cloud progress:', error);
-            return [];
+            console.warn('[Progress] Could not fetch cloud progress:', error)
+            return []
         }
 
-        return dedupeSections((data || []).map((row) => row.section_id));
+        return dedupeSections((data || []).map((row) => row.section_id))
     } catch (error) {
-        console.warn('[Progress] Cloud progress fetch failed:', error);
-        return [];
+        console.warn('[Progress] Cloud progress fetch failed:', error)
+        return []
     }
 }
 
 async function syncProgressRows(userId, sectionIds) {
     if (!userId || sectionIds.length === 0) {
-        return;
+        return
     }
 
     try {
         const rows = sectionIds.map((sectionId) => {
-            const parsed = parseSectionId(sectionId);
+            const parsed = parseSectionId(sectionId)
             return {
                 user_id: userId,
                 section_id: sectionId,
@@ -85,114 +189,194 @@ async function syncProgressRows(userId, sectionIds) {
                 section: parsed.section,
                 completed_at: new Date().toISOString(),
                 last_synced_at: new Date().toISOString()
-            };
-        });
+            }
+        })
 
         const { error } = await supabase
             .from('course_progress')
-            .upsert(rows, { onConflict: 'user_id,section_id' });
+            .upsert(rows, { onConflict: 'user_id,section_id' })
 
         if (error) {
-            console.warn('[Progress] Could not sync cloud progress:', error);
+            console.warn('[Progress] Could not sync cloud progress:', error)
         }
     } catch (error) {
-        console.warn('[Progress] Cloud progress sync failed:', error);
+        console.warn('[Progress] Cloud progress sync failed:', error)
     }
 }
 
 export function useCourseProgress(user) {
-    const userId = user?.id || null;
-    const [completedSections, setCompletedSections] = useState(() => loadCompletedSections(userId));
-    const [syncStatus, setSyncStatus] = useState('idle');
+    const userId = user?.id || null
+    const [completedSections, setCompletedSections] = useState(() => loadCompletedSections(userId))
+    const [recentSection, setRecentSection] = useState(() => loadRecentSection(userId))
+    const [bookmarks, setBookmarks] = useState(() => loadBookmarks(userId))
+    const [syncStatus, setSyncStatus] = useState('idle')
 
     useEffect(() => {
-        let cancelled = false;
+        let cancelled = false
 
         const initializeProgress = async () => {
-            const guestProgress = loadCompletedSections(null);
-            const userLocalProgress = loadCompletedSections(userId);
-            const localMerged = dedupeSections([...guestProgress, ...userLocalProgress]);
+            const guestProgress = loadCompletedSections(null)
+            const userLocalProgress = loadCompletedSections(userId)
+            const mergedLocalProgress = dedupeSections([...guestProgress, ...userLocalProgress])
 
-            setCompletedSections(localMerged);
-            persistCompletedSections(userId, localMerged);
+            const mergedRecent = pickLatestRecent([
+                loadRecentSection(null),
+                loadRecentSection(userId)
+            ])
+
+            const mergedBookmarks = dedupeBookmarks([
+                ...loadBookmarks(null),
+                ...loadBookmarks(userId)
+            ])
+
+            setCompletedSections(mergedLocalProgress)
+            setRecentSection(mergedRecent)
+            setBookmarks(mergedBookmarks)
+
+            persistCompletedSections(userId, mergedLocalProgress)
+            if (mergedRecent) {
+                persistRecentSection(userId, mergedRecent)
+            }
+            persistBookmarks(userId, mergedBookmarks)
 
             if (!userId) {
-                setSyncStatus('local');
-                return;
+                setSyncStatus('local')
+                return
             }
 
-            setSyncStatus('syncing');
-            const cloudProgress = await fetchCloudProgress(userId);
+            setSyncStatus('syncing')
+            const cloudProgress = await fetchCloudProgress(userId)
             if (cancelled) {
-                return;
+                return
             }
 
-            const merged = dedupeSections([...cloudProgress, ...localMerged]);
-            setCompletedSections(merged);
-            persistCompletedSections(userId, merged);
+            const mergedProgress = dedupeSections([...cloudProgress, ...mergedLocalProgress])
+            setCompletedSections(mergedProgress)
+            persistCompletedSections(userId, mergedProgress)
 
-            const missingInCloud = merged.filter((sectionId) => !cloudProgress.includes(sectionId));
+            const missingInCloud = mergedProgress.filter((sectionId) => !cloudProgress.includes(sectionId))
             if (missingInCloud.length > 0) {
-                await syncProgressRows(userId, missingInCloud);
+                await syncProgressRows(userId, missingInCloud)
             }
 
             if (!cancelled) {
-                setSyncStatus('synced');
+                setSyncStatus('synced')
             }
-        };
+        }
 
-        void initializeProgress();
+        void initializeProgress()
 
         return () => {
-            cancelled = true;
-        };
-    }, [userId]);
+            cancelled = true
+        }
+    }, [userId])
 
     const markCompleted = useCallback((course, chapter, section) => {
-        const sectionId = normalizeSectionId(course, chapter, section);
+        const sectionId = normalizeSectionId(course, chapter, section)
 
         setCompletedSections((previous) => {
             if (previous.includes(sectionId)) {
-                return previous;
+                return previous
             }
 
-            const next = dedupeSections([...previous, sectionId]);
-            persistCompletedSections(userId, next);
+            const next = dedupeSections([...previous, sectionId])
+            persistCompletedSections(userId, next)
 
             if (userId) {
-                setSyncStatus('syncing');
+                setSyncStatus('syncing')
                 void syncProgressRows(userId, [sectionId]).finally(() => {
-                    setSyncStatus('synced');
-                });
+                    setSyncStatus('synced')
+                })
             }
 
-            return next;
-        });
-    }, [userId]);
+            return next
+        })
+    }, [userId])
+
+    const markRecentSection = useCallback((course, chapter, section, metadata = {}) => {
+        const nextRecent = normalizeRecent({
+            course,
+            chapter,
+            section,
+            title: metadata.title,
+            chapterTitle: metadata.chapterTitle,
+            description: metadata.description,
+            estimatedTimeMinutes: metadata.estimatedTimeMinutes,
+            updatedAt: new Date().toISOString()
+        })
+
+        if (!nextRecent) return
+
+        setRecentSection(nextRecent)
+        persistRecentSection(userId, nextRecent)
+    }, [userId])
+
+    const toggleBookmark = useCallback((course, chapter, section, metadata = {}) => {
+        const sectionId = normalizeSectionId(course, chapter, section)
+
+        setBookmarks((previous) => {
+            const exists = previous.some((bookmark) => bookmark.sectionId === sectionId)
+            const next = exists
+                ? previous.filter((bookmark) => bookmark.sectionId !== sectionId)
+                : dedupeBookmarks([
+                    {
+                        sectionId,
+                        course,
+                        chapter,
+                        section,
+                        title: metadata.title,
+                        chapterTitle: metadata.chapterTitle,
+                        description: metadata.description,
+                        estimatedTimeMinutes: metadata.estimatedTimeMinutes,
+                        savedAt: new Date().toISOString()
+                    },
+                    ...previous
+                ])
+
+            persistBookmarks(userId, next)
+            return next
+        })
+    }, [userId])
 
     const isCompleted = useCallback((course, chapter, section) => {
-        const sectionId = normalizeSectionId(course, chapter, section);
-        return completedSections.includes(sectionId);
-    }, [completedSections]);
+        const sectionId = normalizeSectionId(course, chapter, section)
+        return completedSections.includes(sectionId)
+    }, [completedSections])
+
+    const isBookmarked = useCallback((course, chapter, section) => {
+        const sectionId = normalizeSectionId(course, chapter, section)
+        return bookmarks.some((bookmark) => bookmark.sectionId === sectionId)
+    }, [bookmarks])
 
     const progressStats = useMemo(() => {
-        const total = completedSections.length;
+        const total = completedSections.length
         const courseBreakdown = completedSections.reduce((accumulator, sectionId) => {
-            const { course } = parseSectionId(sectionId);
+            const { course } = parseSectionId(sectionId)
             if (!course) {
-                return accumulator;
+                return accumulator
             }
 
-            accumulator[course] = (accumulator[course] || 0) + 1;
-            return accumulator;
-        }, {});
+            accumulator[course] = (accumulator[course] || 0) + 1
+            return accumulator
+        }, {})
 
         return {
             totalCompleted: total,
             syncStatus,
-            courseBreakdown
-        };
-    }, [completedSections, syncStatus]);
+            courseBreakdown,
+            totalBookmarks: bookmarks.length
+        }
+    }, [bookmarks.length, completedSections, syncStatus])
 
-    return { completedSections, markCompleted, isCompleted, progressStats };
+    return {
+        completedSections,
+        markCompleted,
+        isCompleted,
+        progressStats,
+        recentSection,
+        markRecentSection,
+        bookmarks,
+        toggleBookmark,
+        isBookmarked
+    }
 }

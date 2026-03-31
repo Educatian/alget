@@ -55,4 +55,26 @@ describe('useCourseProgress', () => {
 
         expect(result.current.completedSections.filter((item) => item === 'dynamics/01/01')).toHaveLength(1)
     })
+
+    it('tracks the latest section and bookmarks for the workspace shell', async () => {
+        const { result } = renderHook(() => useCourseProgress({ id: 'user-1' }))
+
+        await waitFor(() => {
+            expect(result.current.progressStats.syncStatus).toBe('synced')
+        })
+
+        act(() => {
+            result.current.markRecentSection('inst-design', '02', '03', {
+                title: 'Assessment alignment',
+                chapterTitle: 'Learning Theory'
+            })
+            result.current.toggleBookmark('inst-design', '02', '03', {
+                title: 'Assessment alignment'
+            })
+        })
+
+        expect(result.current.recentSection?.sectionId).toBe('inst-design/02/03')
+        expect(result.current.bookmarks[0]?.sectionId).toBe('inst-design/02/03')
+        expect(result.current.isBookmarked('inst-design', '02', '03')).toBe(true)
+    })
 })

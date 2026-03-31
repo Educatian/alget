@@ -62,3 +62,33 @@ def test_adaptive_recommendation_allows_advancing_when_mastery_is_stable():
 
     assert response.learner_state.readiness == "advance"
     assert response.primary_recommendation.action == "advance"
+    assert response.reasoning.action_scores["advance"] >= response.reasoning.action_scores["explain"]
+
+
+def test_adaptive_recommendation_prefers_representation_for_idle_reentry():
+    response = build_adaptive_recommendation(
+        AdaptiveRecommendationRequest(
+            section_id="bio-inspired/03/02",
+            section_title="Lotus Effect",
+            concept_ids=["surface_energy"],
+            stuck_reason="idle for 95 seconds",
+            mastery=[
+                AdaptiveMasteryState(
+                    concept_id="surface_energy",
+                    p_known=0.57,
+                    attempts_count=4,
+                    correct_count=2,
+                )
+            ],
+            telemetry=AdaptiveTelemetrySummary(
+                idle_events=1,
+                practice_attempts=2,
+                correct_attempts=1,
+                affect_engaged=1,
+            ),
+        )
+    )
+
+    assert response.primary_recommendation.action == "represent"
+    assert response.reasoning.policy_strategy == "heuristic_bandit_v2"
+    assert response.reasoning.action_scores["represent"] >= response.reasoning.action_scores["practice"]

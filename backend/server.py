@@ -18,6 +18,7 @@ from typing import Any, List, Literal, Optional
 import json
 import sys
 import os
+import math
 
 # Load .env file (do NOT override existing env vars — Render sets them at the OS level)
 from dotenv import load_dotenv
@@ -304,6 +305,35 @@ class AdaptiveTelemetrySummary(BaseModel):
     affect_disengaged: int = 0
     representation_requests: int = 0
     explain_requests: int = 0
+    confidence_samples: int = 0
+    confidence_total: float = 0.0
+    confidence_average: float = 0.0
+    misconception_counts: dict[str, int] = Field(default_factory=dict)
+    intervention_accepts: int = 0
+    intervention_declines: int = 0
+
+
+class AdaptiveMisconceptionSignal(BaseModel):
+    type: str
+    count: int = 0
+
+
+class AdaptiveLearnerProfile(BaseModel):
+    average_confidence: float = 0.5
+    confidence_samples: int = 0
+    calibration_drift: float = 0.0
+    forgetting_risk: float = 0.5
+    transfer_readiness: float = 0.0
+    predicted_next_correct: float = 0.0
+    predicted_retention: float = 0.0
+    stability_index: float = 0.0
+    misconception_pressure: float = 0.0
+    misconception_patterns: list[AdaptiveMisconceptionSignal] = Field(default_factory=list)
+    recent_interventions: int = 0
+    retrieval_gap_days: float = 0.0
+    concept_states: list[dict[str, Any]] = Field(default_factory=list)
+    mastery_snapshot: list[dict[str, Any]] = Field(default_factory=list)
+    telemetry_snapshot: dict[str, Any] = Field(default_factory=dict)
 
 
 class AdaptiveRecommendationRequest(BaseModel):
@@ -314,6 +344,7 @@ class AdaptiveRecommendationRequest(BaseModel):
     stuck_reason: Optional[str] = None
     mastery: list[AdaptiveMasteryState] = Field(default_factory=list)
     telemetry: AdaptiveTelemetrySummary = Field(default_factory=AdaptiveTelemetrySummary)
+    learner_profile: AdaptiveLearnerProfile = Field(default_factory=AdaptiveLearnerProfile)
 
 
 class LearnerStateSummary(BaseModel):
@@ -322,6 +353,10 @@ class LearnerStateSummary(BaseModel):
     readiness: Literal["support", "practice", "advance"] = "support"
     frustration_index: int = 0
     confidence_signal: str = ""
+    forgetting_risk: float = 0.0
+    calibration_drift: float = 0.0
+    transfer_readiness: float = 0.0
+    dominant_misconception: Optional[str] = None
 
 
 class AdaptiveRecommendationCard(BaseModel):
@@ -333,11 +368,23 @@ class AdaptiveRecommendationCard(BaseModel):
     coach_prompt: str = ""
 
 
+class AdaptiveRecommendationReasoning(BaseModel):
+    confidence: float = 0.0
+    policy_strategy: str = "heuristic_bandit_v2"
+    reason_codes: list[str] = Field(default_factory=list)
+    recommended_because: list[str] = Field(default_factory=list)
+    not_recommended_because: list[str] = Field(default_factory=list)
+    evidence_snapshot: dict[str, Any] = Field(default_factory=dict)
+    action_scores: dict[str, float] = Field(default_factory=dict)
+    predicted_outcomes: dict[str, dict[str, float]] = Field(default_factory=dict)
+
+
 class AdaptiveRecommendationResponse(BaseModel):
     section_id: str
     learner_state: LearnerStateSummary
     primary_recommendation: AdaptiveRecommendationCard
     secondary_recommendations: list[AdaptiveRecommendationCard] = Field(default_factory=list)
+    reasoning: AdaptiveRecommendationReasoning
 
 
 def _ensure_str(value: Any) -> str:
@@ -540,6 +587,10 @@ def _normalize_ratio(value: Any, fallback: float = 0.0) -> float:
     return max(0.0, min(1.0, numeric))
 
 
+def clamp(value: float, minimum: float = 0.0, maximum: float = 1.0) -> float:
+    return max(minimum, min(maximum, value))
+
+
 def _humanize_concept(concept_id: Optional[str]) -> str:
     if not concept_id:
         return "this concept"
@@ -564,9 +615,60 @@ def _build_recommendation_card(
     )
 
 
+def _normalize_signal(value: float, ceiling: float) -> float:
+    if ceiling <= 0:
+        return 0.0
+    return clamp(value / ceiling, 0.0, 1.0)
+
+
+def _top_misconception_pressure(patterns: list[AdaptiveMisconceptionSignal]) -> float:
+    if not patterns:
+        return 0.0
+    top_count = max(pattern.count for pattern in patterns)
+    return clamp(top_count / 4.0, 0.0, 1.0)
+
+
+def _estimate_action_outcomes(
+    action_scores: dict[str, float],
+    average_mastery: float,
+    correct_ratio: float,
+    friction_signal: float,
+    forgetting_risk: float,
+    transfer_readiness: float,
+) -> dict[str, dict[str, float]]:
+    outcomes: dict[str, dict[str, float]] = {}
+    for action, score in action_scores.items():
+        success_rate = clamp(
+            0.18
+            + average_mastery * 0.24
+            + correct_ratio * 0.12
+            + score * 0.34
+            - friction_signal * 0.11
+            - forgetting_risk * 0.06,
+            0.05,
+            0.97,
+        )
+        retention_lift = clamp(
+            0.1
+            + score * 0.28
+            + (1 - forgetting_risk) * 0.26
+            + transfer_readiness * 0.18
+            + (0.06 if action in {"practice", "represent"} else 0.0)
+            + (0.04 if action == "explain" else 0.0),
+            0.03,
+            0.96,
+        )
+        outcomes[action] = {
+            "success_rate": round(success_rate, 3),
+            "retention_lift": round(retention_lift, 3),
+        }
+    return outcomes
+
+
 def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> AdaptiveRecommendationResponse:
     telemetry = request.telemetry
     mastery_states = request.mastery
+    learner_profile = request.learner_profile
 
     concept_scores: list[tuple[str, float]] = []
     for state in mastery_states:
@@ -600,11 +702,40 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
         + telemetry.affect_disengaged * 2
         + telemetry.idle_events
     )
+    frustration_index += int(round(_normalize_ratio(learner_profile.forgetting_risk, 0.5) * 2))
+    frustration_index += int(round(_normalize_ratio(learner_profile.calibration_drift, 0.0) * 2))
     positive_momentum = (
         correct_attempts * 2
         + telemetry.affect_insight * 2
         + telemetry.affect_engaged
     )
+    if learner_profile.transfer_readiness >= 0.7:
+        positive_momentum += 1
+
+    uncertainty_signal = clamp(
+        sum(1 / math.sqrt(max(1, state.attempts_count + 1)) for state in mastery_states) / max(1, len(mastery_states)),
+        0.0,
+        1.0,
+    )
+    friction_signal = _normalize_signal(frustration_index, 10)
+    mastery_gap = clamp(1 - average_mastery, 0.0, 1.0)
+    accuracy_gap = clamp(1 - correct_ratio, 0.0, 1.0) if practice_attempts else mastery_gap
+    forgetting_risk = _normalize_ratio(learner_profile.forgetting_risk, 0.5)
+    calibration_drift = _normalize_ratio(learner_profile.calibration_drift, 0.0)
+    transfer_readiness = _normalize_ratio(learner_profile.transfer_readiness, 0.0)
+    stability_index = _normalize_ratio(learner_profile.stability_index, 0.0)
+    predicted_next_correct = _normalize_ratio(learner_profile.predicted_next_correct, average_mastery)
+    predicted_retention = _normalize_ratio(learner_profile.predicted_retention, average_mastery)
+    misconception_pressure = clamp(
+        max(_top_misconception_pressure(learner_profile.misconception_patterns), _normalize_ratio(learner_profile.misconception_pressure, 0.0)),
+        0.0,
+        1.0,
+    )
+    engagement_signal = clamp((positive_momentum + telemetry.chat_turns * 0.5) / 6, 0.0, 1.0)
+    support_fatigue = _normalize_signal(learner_profile.recent_interventions, 6)
+    chat_signal = _normalize_signal(telemetry.chat_turns + telemetry.explain_requests + telemetry.representation_requests, 5)
+    unit_signal = 1.0 if "unit" in _ensure_str(request.stuck_reason).lower() else 0.0
+    idle_signal = 1.0 if "idle" in _ensure_str(request.stuck_reason).lower() else 0.0
 
     readiness: Literal["support", "practice", "advance"] = "support"
     if average_mastery >= 0.8 and frustration_index <= 1 and (correct_ratio >= 0.75 or positive_momentum >= 3):
@@ -617,6 +748,8 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
         confidence_signal = "Ready to advance"
     elif readiness == "practice":
         confidence_signal = "Ready for guided practice"
+    elif learner_profile.calibration_drift >= 0.35:
+        confidence_signal = "Confidence is unstable"
 
     focus_concepts = [concept for concept in request.concept_ids if concept][:3]
     if lowest_concept and lowest_concept not in focus_concepts:
@@ -641,50 +774,164 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
         evidence.append("Learner reported an insight moment recently.")
     if request.stuck_reason:
         evidence.append(f"Current stuck signal: {request.stuck_reason}.")
+    if learner_profile.forgetting_risk >= 0.55:
+        evidence.append(f"Forgetting risk is elevated at {learner_profile.forgetting_risk:.0%}.")
+    if learner_profile.calibration_drift >= 0.3:
+        evidence.append(f"Confidence calibration drift is {learner_profile.calibration_drift:.0%}.")
+    if learner_profile.misconception_patterns:
+        top_pattern = learner_profile.misconception_patterns[0]
+        evidence.append(
+            f"Most common misconception tag is {_humanize_concept(top_pattern.type)} ({top_pattern.count}x)."
+        )
+    if predicted_next_correct:
+        evidence.append(f"Predicted next-attempt success is {predicted_next_correct:.0%}.")
+    if predicted_retention:
+        evidence.append(f"Predicted retention after support is {predicted_retention:.0%}.")
+    if stability_index:
+        evidence.append(f"Stability index is {stability_index:.0%}.")
 
     stuck_reason = _ensure_str(request.stuck_reason).lower()
-    primary_action: Literal["explain", "represent", "practice", "advance", "ask"]
-    title = ""
-    rationale = ""
+    action_scores = {
+        "explain": (
+            0.52 * mastery_gap
+            + 0.28 * friction_signal
+            + 0.2 * unit_signal
+            + 0.16 * calibration_drift
+            + 0.18 * misconception_pressure
+            + 0.1 * forgetting_risk
+            - 0.16 * transfer_readiness
+            - 0.08 * engagement_signal
+        ),
+        "represent": (
+            0.24 * friction_signal
+            + 0.2 * accuracy_gap
+            + 0.18 * misconception_pressure
+            + 0.18 * uncertainty_signal
+            + 0.16 * idle_signal
+            + 0.08 * support_fatigue
+            + 0.06 * engagement_signal
+            - 0.08 * unit_signal
+        ),
+        "practice": (
+            0.32 * average_mastery
+            + 0.2 * predicted_next_correct
+            + 0.16 * correct_ratio
+            + 0.12 * (1 - friction_signal)
+            + 0.12 * stability_index
+            + 0.08 * (1 - forgetting_risk)
+            - 0.18 * accuracy_gap
+            - 0.1 * misconception_pressure
+        ),
+        "advance": (
+            0.42 * average_mastery
+            + 0.18 * correct_ratio
+            + 0.16 * transfer_readiness
+            + 0.14 * engagement_signal
+            + 0.08 * predicted_retention
+            - 0.24 * friction_signal
+            - 0.2 * forgetting_risk
+            - 0.16 * calibration_drift
+            - 0.1 * misconception_pressure
+        ),
+        "ask": (
+            0.18 * friction_signal
+            + 0.18 * calibration_drift
+            + 0.16 * misconception_pressure
+            + 0.14 * uncertainty_signal
+            + 0.14 * chat_signal
+            + 0.1 * support_fatigue
+            + 0.06 * (0 if request.stuck_reason else 1)
+        ),
+    }
 
-    if "unit" in stuck_reason:
-        primary_action = "explain"
-        title = "Repair the unit logic before moving on"
-        rationale = "A unit mismatch usually means the underlying setup needs a quick reset before more practice."
-    elif request.stuck_reason and "idle" in stuck_reason:
-        primary_action = "represent"
-        title = "Restart with a different view of the idea"
-        rationale = "A lighter representation can reduce overload and help the learner re-enter the problem."
-    elif frustration_index >= 6:
-        if average_mastery < 0.55 or telemetry.affect_confused or telemetry.hint_requests >= 2:
-            primary_action = "explain"
-            title = "Step back and simplify the core idea"
-            rationale = "The recent signals suggest the learner needs clearer conceptual grounding before another attempt."
-        else:
-            primary_action = "represent"
-            title = "Reframe the concept in a new representation"
-            rationale = "The learner is engaging, but a new mental model is more useful than repeating the same explanation."
-    elif average_mastery < 0.4:
-        primary_action = "explain"
-        title = "Rebuild the concept before more practice"
-        rationale = "Mastery is still low, so direct explanation will create a stronger base for later application."
-    elif average_mastery < 0.7:
-        if correct_ratio < 0.6 or telemetry.consecutive_wrong:
-            primary_action = "represent"
-            title = "See the idea from another angle"
-            rationale = "A new visual or analogy is likely to unlock the next practice attempt more effectively than repetition."
-        else:
-            primary_action = "practice"
-            title = "Lock in the idea with one more attempt"
-            rationale = "The learner has partial mastery and is ready to reinforce it through targeted practice."
-    elif readiness == "advance":
+    exploration_bonus = {
+        "explain": 0.02 * unit_signal,
+        "represent": 0.06 * uncertainty_signal + 0.04 * idle_signal,
+        "practice": 0.03 * (1 - uncertainty_signal),
+        "advance": 0.02 * transfer_readiness,
+        "ask": 0.08 * uncertainty_signal + 0.03 * support_fatigue,
+    }
+    action_scores = {
+        action: round(clamp(score + exploration_bonus.get(action, 0.0), 0.02, 0.99), 3)
+        for action, score in action_scores.items()
+    }
+    ranked_actions = sorted(action_scores.items(), key=lambda item: item[1], reverse=True)
+    if readiness == "advance" and action_scores["advance"] >= ranked_actions[0][1] - 0.06:
         primary_action = "advance"
-        title = "Keep moving while this concept is stable"
-        rationale = "The learner is showing high mastery with low friction, so momentum is worth preserving."
+        ranked_actions = sorted(action_scores.items(), key=lambda item: (item[0] != "advance", -item[1]))
     else:
-        primary_action = "practice"
-        title = "Consolidate with a final check"
-        rationale = "A short application task will confirm the concept is durable and not just familiar."
+        primary_action = ranked_actions[0][0]
+    second_best_score = ranked_actions[1][1] if len(ranked_actions) > 1 else ranked_actions[0][1]
+    predicted_outcomes = _estimate_action_outcomes(
+        action_scores,
+        average_mastery=average_mastery,
+        correct_ratio=correct_ratio,
+        friction_signal=friction_signal,
+        forgetting_risk=forgetting_risk,
+        transfer_readiness=transfer_readiness,
+    )
+
+    if primary_action == "explain":
+        title = "Repair the conceptual footing before the next attempt"
+        rationale = "The learner profile shows that direct clarification is the safest path before more application."
+    elif primary_action == "represent":
+        title = "Shift the representation before repeating the step"
+        rationale = "A new frame is more likely to unlock progress than repeating the same explanation or retry."
+    elif primary_action == "practice":
+        title = "Reinforce the idea with one targeted attempt"
+        rationale = "Signals suggest the concept is close to stable and should now be consolidated through practice."
+    elif primary_action == "advance":
+        title = "Preserve momentum and move the learner forward"
+        rationale = "Mastery and transfer signals are stable enough that extra support would create drag."
+    else:
+        title = "Use a diagnostic coaching turn"
+        rationale = "The learner state is mixed enough that one targeted question is the best way to disambiguate the next move."
+
+    reason_codes: list[str] = []
+    recommended_because: list[str] = []
+    not_recommended_because: list[str] = []
+
+    if unit_signal:
+        reason_codes.append("unit_mismatch")
+        recommended_because.append("A unit mismatch is present, which strongly favors direct conceptual repair.")
+    if idle_signal:
+        reason_codes.append("idle_reengagement")
+        recommended_because.append("The learner paused long enough that a lighter re-entry move is justified.")
+    if mastery_gap >= 0.45:
+        reason_codes.append("low_mastery")
+        recommended_because.append("Average mastery is still below the stability band for fluent application.")
+    if friction_signal >= 0.55:
+        reason_codes.append("high_friction")
+        recommended_because.append("Recent stuck and wrong-answer signals indicate substantial friction in this section.")
+    if forgetting_risk >= 0.6:
+        reason_codes.append("retrieval_risk")
+        recommended_because.append("Forgetting risk is elevated, so the engine favors retrieval-supportive actions.")
+    if calibration_drift >= 0.3:
+        reason_codes.append("calibration_gap")
+        recommended_because.append("Confidence and correctness are diverging, which makes unsupported advancement risky.")
+    if misconception_pressure >= 0.35:
+        reason_codes.append("misconception_pattern")
+        recommended_because.append("Misconception tags are clustering around the same idea, so the engine is correcting the frame instead of repeating the task.")
+    if transfer_readiness >= 0.7 and primary_action in {"practice", "advance"}:
+        reason_codes.append("transfer_ready")
+        recommended_because.append("Transfer readiness is strong enough that application-oriented moves are likely to pay off.")
+    if not reason_codes:
+        reason_codes.append("balanced_profile")
+        recommended_because.append("No single risk dominated, so the action was chosen by the best overall score across mastery, friction, and transfer.")
+
+    for alt_action, alt_score in ranked_actions[1:3]:
+        if alt_action == "advance" and (friction_signal >= 0.35 or calibration_drift >= 0.25):
+            not_recommended_because.append("Advance was not first because friction or calibration instability makes a forward jump too risky right now.")
+        elif alt_action == "practice" and (accuracy_gap >= 0.35 or telemetry.consecutive_wrong >= 2):
+            not_recommended_because.append("Practice was not first because recent error patterns suggest the learner needs support before another attempt.")
+        elif alt_action == "represent" and unit_signal:
+            not_recommended_because.append("A representation shift was not first because a unit error is better repaired through direct explanation.")
+        elif alt_action == "ask" and primary_action != "ask":
+            not_recommended_because.append("Free-form chat was held back because a more structured intervention has stronger evidence than open-ended coaching.")
+        else:
+            not_recommended_because.append(
+                f"{alt_action.title()} scored lower ({alt_score:.0%}) than {primary_action} ({action_scores[primary_action]:.0%}) for this learner state."
+            )
 
     coach_prompt = (
         f"I'm working on {_humanize_concept(lowest_concept)} in {request.section_title or request.section_id}. "
@@ -738,6 +985,28 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
             )
         )
 
+    signal_coverage = clamp(
+        (
+            len(mastery_states)
+            + (1 if practice_attempts else 0)
+            + (1 if telemetry.stuck_events else 0)
+            + (1 if learner_profile.confidence_samples else 0)
+        ) / 6,
+        0.0,
+        1.0,
+    )
+    confidence = round(
+        clamp(
+            0.38
+            + (ranked_actions[0][1] - second_best_score) * 0.95
+            + signal_coverage * 0.18
+            - uncertainty_signal * 0.08,
+            0.2,
+            0.96,
+        ),
+        3,
+    )
+
     return AdaptiveRecommendationResponse(
         section_id=request.section_id,
         learner_state=LearnerStateSummary(
@@ -746,9 +1015,38 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
             readiness=readiness,
             frustration_index=frustration_index,
             confidence_signal=confidence_signal,
+            forgetting_risk=round(forgetting_risk, 3),
+            calibration_drift=round(calibration_drift, 3),
+            transfer_readiness=round(transfer_readiness, 3),
+            dominant_misconception=learner_profile.misconception_patterns[0].type if learner_profile.misconception_patterns else None,
         ),
         primary_recommendation=primary,
         secondary_recommendations=secondary_candidates[:3],
+        reasoning=AdaptiveRecommendationReasoning(
+            confidence=confidence,
+            reason_codes=reason_codes[:5],
+            recommended_because=recommended_because[:4],
+            not_recommended_because=not_recommended_because[:4],
+            evidence_snapshot={
+                "average_mastery": round(average_mastery, 3),
+                "lowest_concept": lowest_concept,
+                "lowest_score": round(lowest_score, 3) if lowest_concept else None,
+                "practice_accuracy": round(correct_ratio, 3),
+                "frustration_index": frustration_index,
+                "forgetting_risk": round(forgetting_risk, 3),
+                "calibration_drift": round(calibration_drift, 3),
+                "transfer_readiness": round(transfer_readiness, 3),
+                "confidence_average": round(_normalize_ratio(learner_profile.average_confidence, 0.5), 3),
+                "dominant_misconception": learner_profile.misconception_patterns[0].type if learner_profile.misconception_patterns else None,
+                "predicted_next_correct": round(predicted_next_correct, 3),
+                "predicted_retention": round(predicted_retention, 3),
+                "stability_index": round(stability_index, 3),
+                "misconception_pressure": round(misconception_pressure, 3),
+                "uncertainty_signal": round(uncertainty_signal, 3),
+            },
+            action_scores=action_scores,
+            predicted_outcomes=predicted_outcomes,
+        ),
     )
 
 

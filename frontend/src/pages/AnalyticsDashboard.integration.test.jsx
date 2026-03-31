@@ -7,6 +7,8 @@ vi.mock('../lib/browserStorage', () => ({
     safeSessionStorageGet: vi.fn(() => 'granted'),
     safeSessionStorageSet: vi.fn(),
     safeSessionStorageRemove: vi.fn(),
+    safeLocalStorageGet: vi.fn(() => null),
+    safeLocalStorageSet: vi.fn(),
 }))
 
 const masteryRows = [
@@ -59,6 +61,7 @@ vi.mock('../lib/supabase', () => {
     }
 
     return {
+        isSupabaseConfigured: true,
         supabase: {
             auth: {
                 getSession: async () => ({ data: { session: { user: { id: 'researcher-1' } } } }),

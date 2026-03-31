@@ -58,6 +58,7 @@ CREATE POLICY "Users can manage own sessions" ON user_sessions
 
 -- 4. HELPER VIEW FOR SEQUENTIAL ANALYSIS
 -- ============================================================================
+DROP VIEW IF EXISTS session_event_sequence;
 CREATE OR REPLACE VIEW session_event_sequence AS
 SELECT 
     s.id AS session_id,

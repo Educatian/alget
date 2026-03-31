@@ -1,8 +1,8 @@
 -- ALGET Supabase Schema
--- OpenStax-Style Intelligent Textbook Database
+-- OpenStax-style intelligent textbook database
 
 -- =============================================================================
--- CONCEPTS TABLE (잠금 데이터 - LLM이 수정 불가)
+-- CONCEPTS TABLE (REFERENCE DATA - NOT EDITED BY THE LLM)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS concepts (
     id TEXT PRIMARY KEY,
@@ -10,30 +10,30 @@ CREATE TABLE IF NOT EXISTS concepts (
     definition TEXT,
     formula TEXT,
     formula_latex TEXT,
-    misconception_triggers TEXT[],  -- 흔한 오개념 패턴
+    misconception_triggers TEXT[],  -- Common misconception patterns
     related_concepts TEXT[],
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Statics 기본 개념 삽입
+-- Seed core statics concepts
 INSERT INTO concepts (id, name, definition, formula, formula_latex, misconception_triggers, related_concepts) VALUES
-    ('equilibrium', 'Equilibrium', 'A state where the net force on a body is zero', 'ΣF = 0', '\\sum \\vec{F} = 0', 
-     ARRAY['confusing equilibrium with rest', 'forgetting reaction forces'], 
+    ('equilibrium', 'Equilibrium', 'A state where the net force on a body is zero', 'Sigma F = 0', '\\sum \\vec{F} = 0',
+     ARRAY['confusing equilibrium with rest', 'forgetting reaction forces'],
      ARRAY['sum_of_forces', 'fbd']),
-    ('sum_of_forces', 'Sum of Forces', 'Vector addition of all forces acting on a body', 'ΣFx = 0, ΣFy = 0', '\\sum F_x = 0, \\sum F_y = 0',
+    ('sum_of_forces', 'Sum of Forces', 'Vector addition of all forces acting on a body', 'Sigma Fx = 0, Sigma Fy = 0', '\\sum F_x = 0, \\sum F_y = 0',
      ARRAY['not breaking into components', 'wrong sign convention'],
      ARRAY['equilibrium', 'tension']),
     ('fbd', 'Free Body Diagram', 'A diagram showing all external forces on an isolated body', NULL, NULL,
      ARRAY['missing forces', 'including internal forces', 'wrong direction'],
      ARRAY['equilibrium', 'tension']),
     ('tension', 'Tension', 'A pulling force transmitted through a string, cable, or rope', 'T', 'T',
-     ARRAY['confusing tension direction', 'assuming tension = weight always'],
+     ARRAY['confusing tension direction', 'assuming tension equals weight in every case'],
      ARRAY['equilibrium', 'sum_of_forces'])
 ON CONFLICT (id) DO NOTHING;
 
 -- =============================================================================
--- SECTIONS TABLE (교재 섹션 메타데이터)
+-- SECTIONS TABLE (TEXTBOOK SECTION METADATA)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS sections (
     id SERIAL PRIMARY KEY,
@@ -50,16 +50,16 @@ CREATE TABLE IF NOT EXISTS sections (
     UNIQUE(course, chapter, section)
 );
 
--- Statics 1.1 섹션 삽입
+-- Seed statics section 1.1
 INSERT INTO sections (course, chapter, section, title, description, concept_ids, learning_objectives, estimated_time_minutes) VALUES
-    ('statics', 1, 1, 'Equilibrium Conditions', 'Introduction to equilibrium for particles', 
+    ('statics', 1, 1, 'Equilibrium Conditions', 'Introduction to equilibrium for particles',
      ARRAY['equilibrium', 'sum_of_forces', 'fbd', 'tension'],
-     ARRAY['Define equilibrium for a particle', 'Apply ΣF = 0 to solve for unknown forces', 'Construct and interpret free body diagrams'],
+     ARRAY['Define equilibrium for a particle', 'Apply Sigma F = 0 to solve for unknown forces', 'Construct and interpret free body diagrams'],
      25)
 ON CONFLICT (course, chapter, section) DO NOTHING;
 
 -- =============================================================================
--- PROBLEMS TABLE (문제 정의)
+-- PROBLEMS TABLE (PROBLEM DEFINITIONS)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS problems (
     id TEXT PRIMARY KEY,
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS problems (
     problem_type TEXT NOT NULL DEFAULT 'numeric',  -- numeric, multiple_choice, free_response
     difficulty TEXT DEFAULT 'medium',  -- easy, medium, challenging
     statement TEXT NOT NULL,
-    givens_schema JSONB,  -- {"mass": "50 kg", "angle": "45°"}
+    givens_schema JSONB,  -- Example: {"mass": "50 kg", "angle": "45 degrees"}
     solver_id TEXT,  -- Reference to solver function
     solver_params JSONB,  -- Parameters to pass to solver
     expected_value FLOAT,
@@ -76,22 +76,22 @@ CREATE TABLE IF NOT EXISTS problems (
     require_unit BOOLEAN DEFAULT TRUE,
     hint TEXT,
     explanation TEXT,
-    q_matrix JSONB,  -- {"concept_id": weight} mappings for multi-dimensional grading
+    q_matrix JSONB,  -- {"concept_id": weight} mappings for multidimensional grading
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 샘플 문제 삽입
+-- Seed sample problems
 INSERT INTO problems (id, section_id, problem_type, difficulty, statement, givens_schema, solver_id, solver_params, expected_value, expected_unit, tolerance, require_unit, hint) VALUES
-    ('p001', 1, 'numeric', 'medium', 
-     'A 50 kg object is suspended by a single cable at an angle of 45° from horizontal. Calculate the tension in the cable.',
-     '{"mass": "50 kg", "angle": "45°", "g": "9.81 m/s²"}'::jsonb,
+    ('p001', 1, 'numeric', 'medium',
+     'A 50 kg object is suspended by a single cable at an angle of 45 degrees from horizontal. Calculate the tension in the cable.',
+     '{"mass": "50 kg", "angle": "45 degrees", "g": "9.81 m/s^2"}'::jsonb,
      'statics_tension_inclined',
      '{"mass": 50, "angle_deg": 45}'::jsonb,
      693.67, 'N', 0.02, TRUE,
-     'Use ΣFy = 0. The vertical component of tension (T·sin(45°)) must equal the weight (mg).'),
+     'Use Sigma Fy = 0. The vertical component of tension, T*sin(45 degrees), must equal the weight mg.'),
     ('p002', 1, 'numeric', 'easy',
      'A 25 kg lamp hangs vertically from a single cable. What is the tension in the cable?',
-     '{"mass": "25 kg", "g": "9.81 m/s²"}'::jsonb,
+     '{"mass": "25 kg", "g": "9.81 m/s^2"}'::jsonb,
      'statics_tension_vertical',
      '{"mass": 25}'::jsonb,
      245.25, 'N', 0.01, TRUE,
@@ -99,7 +99,7 @@ INSERT INTO problems (id, section_id, problem_type, difficulty, statement, given
 ON CONFLICT (id) DO NOTHING;
 
 -- =============================================================================
--- PROBLEM_STEPS TABLE (단계별 풀이)
+-- PROBLEM_STEPS TABLE (STEP-BY-STEP SOLUTION STRUCTURE)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS problem_steps (
     id SERIAL PRIMARY KEY,
@@ -109,25 +109,25 @@ CREATE TABLE IF NOT EXISTS problem_steps (
     description TEXT NOT NULL,
     expected_value FLOAT,
     expected_unit TEXT,
-    partial_credit_rule JSONB,  -- {"weight": 0.3, "accept_if_close": true}
+    partial_credit_rule JSONB,  -- Example: {"weight": 0.3, "accept_if_close": true}
     UNIQUE(problem_id, step_index)
 );
 
--- p001 단계 삽입
+-- Seed problem steps for p001 and p002
 INSERT INTO problem_steps (problem_id, step_index, step_type, description, expected_value, expected_unit) VALUES
     ('p001', 1, 'calculation', 'Calculate the weight W = mg', 490.5, 'N'),
-    ('p001', 2, 'calculation', 'Apply ΣFy = 0 and solve for T', 693.67, 'N'),
+    ('p001', 2, 'calculation', 'Apply Sigma Fy = 0 and solve for T', 693.67, 'N'),
     ('p002', 1, 'calculation', 'Calculate T = mg', 245.25, 'N')
 ON CONFLICT (problem_id, step_index) DO NOTHING;
 
 -- =============================================================================
--- ATTEMPTS TABLE (학생 답안 기록)
+-- ATTEMPTS TABLE (STUDENT ANSWER RECORDS)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS attempts (
     id SERIAL PRIMARY KEY,
     user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
     problem_id TEXT REFERENCES problems(id),
-    step_index INT,  -- NULL if answering final answer
+    step_index INT,  -- NULL when answering the final answer only
     answer TEXT NOT NULL,
     answer_numeric FLOAT,  -- Parsed numeric value
     unit TEXT,
@@ -139,25 +139,25 @@ CREATE TABLE IF NOT EXISTS attempts (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 인덱스 생성
+-- Attempt indexes
 CREATE INDEX IF NOT EXISTS idx_attempts_user ON attempts(user_id);
 CREATE INDEX IF NOT EXISTS idx_attempts_problem ON attempts(problem_id);
 CREATE INDEX IF NOT EXISTS idx_attempts_created ON attempts(created_at);
 
 -- =============================================================================
--- STUCK_EVENTS TABLE (막힘 이벤트)
+-- STUCK_EVENTS TABLE (LEARNER STRUGGLE SIGNALS)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS stuck_events (
     id SERIAL PRIMARY KEY,
     user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
     section_id INT REFERENCES sections(id),
     problem_id TEXT REFERENCES problems(id),
-    reason TEXT NOT NULL,  -- 'consecutive_wrong', 'idle_timeout', 'unit_error', 'hint_requests'
+    reason TEXT NOT NULL,  -- consecutive_wrong, idle_timeout, unit_error, hint_requests
     consecutive_wrong_count INT,
     idle_duration_seconds INT,
     context JSONB,  -- Additional context data
     rail_opened BOOLEAN DEFAULT FALSE,
-    rail_action_taken TEXT,  -- 'explain', 'represent', 'practice', 'none'
+    rail_action_taken TEXT,  -- explain, represent, practice, none
     resolved BOOLEAN DEFAULT FALSE,
     resolved_at TIMESTAMPTZ,
     created_at TIMESTAMPTZ DEFAULT NOW()
@@ -168,27 +168,27 @@ CREATE INDEX IF NOT EXISTS idx_stuck_section ON stuck_events(section_id);
 CREATE INDEX IF NOT EXISTS idx_stuck_created ON stuck_events(created_at);
 
 -- =============================================================================
--- MASTERY TABLE (개념 숙달도)
+-- MASTERY TABLE (CONCEPT MASTERY STATE)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS mastery (
     user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
     concept_id TEXT REFERENCES concepts(id),
     mastery_score FLOAT DEFAULT 0.0,  -- 0.0 to 1.0 (legacy or aggregate)
-    p_known FLOAT DEFAULT 0.1,        -- BKT: Probability student knows the concept
-    p_guess FLOAT DEFAULT 0.2,        -- BKT: Probability of correct answer without knowing
-    p_slip FLOAT DEFAULT 0.1,         -- BKT: Probability of mistake despite knowing
-    p_transit FLOAT DEFAULT 0.1,      -- BKT: Probability of learning after attempt
+    p_known FLOAT DEFAULT 0.1,        -- BKT: probability the student knows the concept
+    p_guess FLOAT DEFAULT 0.2,        -- BKT: probability of a correct answer without knowing
+    p_slip FLOAT DEFAULT 0.1,         -- BKT: probability of an error despite knowing
+    p_transit FLOAT DEFAULT 0.1,      -- BKT: probability of learning after an attempt
     attempts_count INT DEFAULT 0,
     correct_count INT DEFAULT 0,
     last_practiced_at TIMESTAMPTZ,
-    misconception_flags TEXT[],  -- Detected misconceptions
+    misconception_flags TEXT[],       -- Detected misconceptions
     confidence_level TEXT DEFAULT 'low',  -- low, medium, high
     updated_at TIMESTAMPTZ DEFAULT NOW(),
     PRIMARY KEY (user_id, concept_id)
 );
 
 -- =============================================================================
--- LEARNING_SESSIONS TABLE (학습 세션)
+-- LEARNING_SESSIONS TABLE (LEARNING SESSION LOG)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS learning_sessions (
     id SERIAL PRIMARY KEY,
@@ -211,35 +211,56 @@ CREATE INDEX IF NOT EXISTS idx_sessions_section ON learning_sessions(section_id)
 -- ROW LEVEL SECURITY (RLS)
 -- =============================================================================
 
--- Enable RLS
 ALTER TABLE attempts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE stuck_events ENABLE ROW LEVEL SECURITY;
 ALTER TABLE mastery ENABLE ROW LEVEL SECURITY;
 ALTER TABLE learning_sessions ENABLE ROW LEVEL SECURITY;
 
--- Users can only access their own data
+-- Users can access only their own learner data
+DROP POLICY IF EXISTS "Users can view own attempts" ON attempts;
 CREATE POLICY "Users can view own attempts" ON attempts
     FOR SELECT USING (auth.uid() = user_id);
+
+DROP POLICY IF EXISTS "Users can insert own attempts" ON attempts;
 CREATE POLICY "Users can insert own attempts" ON attempts
     FOR INSERT WITH CHECK (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can view own stuck_events" ON stuck_events;
 CREATE POLICY "Users can view own stuck_events" ON stuck_events
     FOR SELECT USING (auth.uid() = user_id);
+
+DROP POLICY IF EXISTS "Users can insert own stuck_events" ON stuck_events;
 CREATE POLICY "Users can insert own stuck_events" ON stuck_events
     FOR INSERT WITH CHECK (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can view own mastery" ON mastery;
 CREATE POLICY "Users can view own mastery" ON mastery
     FOR SELECT USING (auth.uid() = user_id OR auth.uid() IS NULL);
+
+DROP POLICY IF EXISTS "Users can update own mastery" ON mastery;
 CREATE POLICY "Users can update own mastery" ON mastery
     FOR ALL USING (auth.uid() = user_id OR auth.uid() IS NULL);
 
+DROP POLICY IF EXISTS "Users can manage own sessions" ON learning_sessions;
 CREATE POLICY "Users can manage own sessions" ON learning_sessions
     FOR ALL USING (auth.uid() = user_id);
 
 -- Public read access for reference data
+ALTER TABLE concepts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE sections ENABLE ROW LEVEL SECURITY;
+ALTER TABLE problems ENABLE ROW LEVEL SECURITY;
+ALTER TABLE problem_steps ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public read concepts" ON concepts;
 CREATE POLICY "Public read concepts" ON concepts FOR SELECT TO authenticated USING (true);
+
+DROP POLICY IF EXISTS "Public read sections" ON sections;
 CREATE POLICY "Public read sections" ON sections FOR SELECT TO authenticated USING (true);
+
+DROP POLICY IF EXISTS "Public read problems" ON problems;
 CREATE POLICY "Public read problems" ON problems FOR SELECT TO authenticated USING (true);
+
+DROP POLICY IF EXISTS "Public read problem_steps" ON problem_steps;
 CREATE POLICY "Public read problem_steps" ON problem_steps FOR SELECT TO authenticated USING (true);
 
 -- =============================================================================
@@ -247,8 +268,9 @@ CREATE POLICY "Public read problem_steps" ON problem_steps FOR SELECT TO authent
 -- =============================================================================
 
 -- User progress per section
+DROP VIEW IF EXISTS user_section_progress;
 CREATE OR REPLACE VIEW user_section_progress AS
-SELECT 
+SELECT
     s.user_id,
     sec.id AS section_id,
     sec.course,
@@ -269,8 +291,9 @@ LEFT JOIN stuck_events se ON se.user_id = s.user_id AND se.section_id = sec.id
 GROUP BY s.user_id, sec.id, sec.course, sec.chapter, sec.section, sec.title;
 
 -- Concept mastery summary
+DROP VIEW IF EXISTS concept_mastery_summary;
 CREATE OR REPLACE VIEW concept_mastery_summary AS
-SELECT 
+SELECT
     c.id AS concept_id,
     c.name,
     m.user_id,
@@ -284,41 +307,40 @@ FROM concepts c
 LEFT JOIN mastery m ON c.id = m.concept_id;
 
 -- =============================================================================
--- HIGHLIGHTS TABLE (협업 하이라이팅)
+-- HIGHLIGHTS TABLE (COLLABORATIVE HIGHLIGHTING)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS highlights (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
-    section_id TEXT NOT NULL,           -- "statics/01/01"
-    start_offset INT NOT NULL,          -- 시작 위치 (텍스트 오프셋)
-    end_offset INT NOT NULL,            -- 끝 위치
-    text_content TEXT NOT NULL,         -- 하이라이트된 텍스트 (검증 및 표시용)
-    color TEXT DEFAULT 'yellow',        -- 하이라이트 색상
-    note TEXT,                          -- 사용자 메모 (선택)
+    section_id TEXT NOT NULL,           -- Example: "statics/01/01"
+    start_offset INT NOT NULL,          -- Start position in the source text
+    end_offset INT NOT NULL,            -- End position in the source text
+    text_content TEXT NOT NULL,         -- Highlighted text for display and verification
+    color TEXT DEFAULT 'yellow',        -- Highlight color
+    note TEXT,                          -- Optional learner note
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 인덱스 생성
 CREATE INDEX IF NOT EXISTS idx_highlights_user ON highlights(user_id);
 CREATE INDEX IF NOT EXISTS idx_highlights_section ON highlights(section_id);
 CREATE INDEX IF NOT EXISTS idx_highlights_text ON highlights(text_content);
 
--- RLS 정책
 ALTER TABLE highlights ENABLE ROW LEVEL SECURITY;
 
--- 사용자는 자신의 하이라이트만 수정/삭제 가능
+DROP POLICY IF EXISTS "Users can manage own highlights" ON highlights;
 CREATE POLICY "Users can manage own highlights" ON highlights
     FOR ALL USING (auth.uid() = user_id);
 
--- 모든 인증된 사용자는 모든 하이라이트를 읽을 수 있음 (협업 기능을 위해)
+DROP POLICY IF EXISTS "Authenticated users can read all highlights" ON highlights;
 CREATE POLICY "Authenticated users can read all highlights" ON highlights
     FOR SELECT TO authenticated USING (true);
 
 -- =============================================================================
--- POPULAR HIGHLIGHTS VIEW (인기 하이라이트 집계)
+-- POPULAR HIGHLIGHTS VIEW (AGGREGATED SOCIAL HIGHLIGHTS)
 -- =============================================================================
+DROP VIEW IF EXISTS popular_highlights;
 CREATE OR REPLACE VIEW popular_highlights AS
-SELECT 
+SELECT
     section_id,
     text_content,
     MIN(start_offset) AS start_offset,
@@ -327,7 +349,6 @@ SELECT
     ARRAY_AGG(DISTINCT user_id) AS user_ids
 FROM highlights
 GROUP BY section_id, text_content
-HAVING COUNT(DISTINCT user_id) >= 2;  -- 2명 이상이 하이라이트한 것만
+HAVING COUNT(DISTINCT user_id) >= 2;  -- At least two learners highlighted the same text
 
--- Grant access to view
 GRANT SELECT ON popular_highlights TO authenticated;

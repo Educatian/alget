@@ -255,6 +255,41 @@ export function logInteraction(elementId, actionType, sectionId) {
 }
 
 /**
+ * Log recommendation rationale snapshots for research analysis.
+ */
+export function logRecommendationDecision(sectionId, eventData = {}) {
+    return logEvent('recommendation_decision', 'adaptive_engine', eventData, sectionId)
+}
+
+/**
+ * Log intervention trace lifecycle updates.
+ */
+export function logInterventionTrace(sectionId, eventData = {}) {
+    return logEvent('intervention_trace', eventData.trace_id || 'trace', eventData, sectionId)
+}
+
+/**
+ * Log learner-model updates that go beyond mastery-only signals.
+ */
+export function logLearnerModelUpdate(sectionId, eventData = {}) {
+    return logEvent('learner_model_update', eventData.concept_id || 'learner_model', eventData, sectionId)
+}
+
+/**
+ * Log evaluation outcomes such as pre/post/retention assessments.
+ */
+export function logEvaluationArtifact(sectionId, eventData = {}) {
+    return logEvent('evaluation_artifact', eventData.phase || 'evaluation', eventData, sectionId)
+}
+
+/**
+ * Log support-content quality audits.
+ */
+export function logContentAudit(sectionId, eventData = {}) {
+    return logEvent('content_audit', eventData.support_type || 'support', eventData, sectionId)
+}
+
+/**
  * Flush events to database
  */
 async function flushEvents() {
