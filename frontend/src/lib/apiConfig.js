@@ -1,10 +1,12 @@
 /**
- * API Configuration - Central API base URL for all frontend components
+ * Central API base URL for frontend requests.
+ *
+ * In local development, prefer the Vite proxy so the app talks to the
+ * local FastAPI server on http://localhost:8000 via /api.
+ * In production, fall back to the deployed API unless explicitly overridden.
  */
 
-// Use environment variable or default to Render URL in production
-const API_BASE = import.meta.env.VITE_API_BASE || 'https://alget.onrender.com/api'
+const API_BASE = import.meta.env.VITE_API_BASE
+  || (import.meta.env.DEV ? '/api' : 'https://alget.onrender.com/api')
 
-// For local development, use '/api' which hits the Vite proxy
-// For production, use the full Render URL
 export default API_BASE
