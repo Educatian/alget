@@ -1,6 +1,6 @@
 # Kinematics of Rigid Bodies
 
-> **"A rigid body can both translate and rotate—and often does both simultaneously."**
+> **"A rigid body can move as one object while different points on it move with different velocities."**
 
 ---
 
@@ -12,67 +12,167 @@
 
 ## Learning Objectives
 
-1. **Describe** rigid body types of motion
-2. **Relate** angular and linear quantities
-3. **Apply** velocity/acceleration equations for rotation
-4. **Analyze** relative motion on a rigid body
+1. **Describe** translation, fixed-axis rotation, and general plane motion
+2. **Relate** angular motion to the linear motion of points on a body
+3. **Apply** velocity and acceleration relations for rigid-body kinematics
+4. **Interpret** relative motion between two points on the same body
 
 ---
 
-## Types of Rigid Body Motion
+## Why Rigid-Body Kinematics Feels Different
 
-| Type | Description |
-|------|-------------|
-| **Translation** | All points move with same velocity |
-| **Rotation about fixed axis** | All points circle around the axis |
-| **General plane motion** | Translation + rotation combined |
+Particle kinematics asks how one point moves. Rigid-body kinematics asks how an entire shape moves while keeping the distance between all of its points fixed.
 
----
+That difference matters in engineering:
 
-## Angular Kinematics (Fixed Axis)
+- the hub and rim of a wheel do not have the same speed
+- the tip of a robot arm moves faster than a point near the motor
+- a door handle has a much larger linear speed than a point near the hinge
+
+So even if a rigid body is "one object," different points on it can have different velocities and accelerations.
+
+## Three Motion Types
+
+| Type | Description | Key idea |
+| --- | --- | --- |
+| Translation | All points move with the same velocity and acceleration | Orientation does not change |
+| Rotation about a fixed axis | All points move in circles about the axis | Angular quantities control the motion |
+| General plane motion | Translation and rotation happen together | One point can be used as a reference for others |
+
+### Translation
+
+If a rigid body translates without rotating, all points share the same velocity and acceleration vectors.
+
+### Rotation about a fixed axis
+
+Every point traces a circle centered on the axis. Points farther from the axis move faster linearly for the same angular speed.
+
+### General plane motion
+
+This is the most common real case: a wheel rolling, a connecting rod swinging, or a tool arm sweeping through space while the base moves.
+
+<kinematics-diagram />
+
+## Angular Position, Velocity, and Acceleration
 
 $$
-\omega = \frac{d\theta}{dt}, \quad \alpha = \frac{d\omega}{dt}
+\omega = \frac{d\theta}{dt}, \qquad \alpha = \frac{d\omega}{dt}
 $$
 
-For constant $\alpha$:
+For constant angular acceleration:
+
 $$
 \omega = \omega_0 + \alpha t
 $$
+
 $$
 \theta = \theta_0 + \omega_0 t + \frac{1}{2}\alpha t^2
 $$
 
----
+These look just like particle kinematics with $x, v, a$, but now the rotational variables are $\theta, \omega, \alpha$.
 
-## Relating Linear and Angular
+## Relating Angular and Linear Motion
 
-For a point at distance $r$ from axis:
+For a point at distance $r$ from the axis:
 
 $$
-\boxed{v = r\omega, \quad a_t = r\alpha, \quad a_n = r\omega^2}
+\boxed{v = r\omega}
 $$
 
----
+$$
+\boxed{a_t = r\alpha}
+$$
 
-## Relative Motion on Rigid Body
+$$
+\boxed{a_n = r\omega^2}
+$$
+
+Interpretation:
+
+- $v$ is tangent to the circular path
+- $a_t$ changes the speed
+- $a_n$ points inward and changes the direction of velocity
+
+Students often remember the formulas but forget the geometry. Tangential and normal directions are different and should not be combined carelessly.
+
+<dynamic-scenario
+  topic="Inspection Robot on a Rotating Arm"
+  context="A manufacturing engineer mounts a vision sensor near the end of a rotating inspection arm. The sensor begins missing defects at high speed, and the engineer must decide whether the problem is mostly caused by tangential speed, centripetal acceleration, or both."
+  course="dynamics"
+/>
+
+## Relative Motion on a Rigid Body
+
+If A and B are points on the same rigid body,
 
 $$
 \vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A}
 $$
 
-where $\vec{r}_{B/A}$ is the position of B relative to A.
+This equation says:
 
----
+- start with the known velocity of point A
+- add the rotational contribution caused by the body's angular velocity
+- the position vector from A to B determines the direction and magnitude of that extra term
+
+For acceleration, a similar idea appears, but with both tangential and normal rotational effects.
+
+## Worked Example
+
+### Example 3.1: Point on a Rotating Disk
+
+**Problem:** A disk rotates at $\omega = 12$ rad/s and has angular acceleration $\alpha = 4$ rad/s$^2$. Find the speed, tangential acceleration, and normal acceleration of a point 0.25 m from the center.
+
+### Step A: Linear speed
+
+$$
+v = r\omega = 0.25(12) = 3.0 \text{ m/s}
+$$
+
+### Step B: Tangential acceleration
+
+$$
+a_t = r\alpha = 0.25(4) = 1.0 \text{ m/s}^2
+$$
+
+### Step C: Normal acceleration
+
+$$
+a_n = r\omega^2 = 0.25(12^2) = 36.0 \text{ m/s}^2
+$$
+
+The normal acceleration is much larger here because it scales with $\omega^2$ rather than $\alpha$.
+
+## Common Misreads
+
+- assuming all points on a rigid body have the same speed
+- confusing angular velocity with tangential velocity
+- forgetting that $a_n$ depends on $\omega^2$, not $\alpha$
+- using $v = r\omega$ for a point that is not measured from the correct axis
+
+## Check Your Understanding
+
+<interactive-quiz
+  question="If two points lie on the same spinning disk, which point has the larger linear speed?"
+  conceptId="angular_velocity"
+  options='[{"text":"The point farther from the axis","isCorrect":true},{"text":"The point closer to the axis","isCorrect":false},{"text":"They always have the same linear speed","isCorrect":false}]'
+  explanation="Correct. Both points share the same angular velocity, but linear speed is v = r omega, so the point with the larger radius moves faster."
+/>
+
+<interactive-quiz
+  question="Which term is responsible for changing the direction of velocity in circular motion?"
+  conceptId="rotation_about_fixed_axis"
+  options='[{"text":"Tangential acceleration only","isCorrect":false},{"text":"Normal acceleration only","isCorrect":true},{"text":"Angular displacement only","isCorrect":false}]'
+  explanation="Exactly. Normal acceleration points toward the center of curvature and changes the direction of velocity, while tangential acceleration changes the speed."
+/>
 
 ## Summary
 
-- Rigid bodies can translate, rotate, or do both
-- $v = r\omega$, $a_t = r\alpha$, $a_n = r\omega^2$
-- For general motion: $v_B = v_A + \omega \times r_{B/A}$
-
----
+- Rigid-body motion can be translational, rotational, or combined.
+- Angular variables describe how the body rotates; linear variables describe how specific points move.
+- The relation $v = r\omega$ is geometric and depends on the correct radius.
+- Relative-motion equations let you connect the motion of different points on the same body.
 
 ## What's Next?
 
-In **Section 3.2: Equations of Motion**, we'll apply Newton's laws to rotating rigid bodies.
+In **Section 3.2**, we connect rigid-body motion to force and moment balances so that motion and loading can be solved together.

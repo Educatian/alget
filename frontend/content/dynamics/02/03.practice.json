@@ -1,34 +1,93 @@
 {
-    "problems": [
+  "problems": [
+    {
+      "id": "momentum_numeric_basic",
+      "type": "numeric",
+      "stem": "A 4 kg ball moves at 8 m/s. Find its momentum.",
+      "final_answer": {
+        "value": 32,
+        "unit": "kg*m/s",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "impulse_numeric_basic",
+      "type": "numeric",
+      "stem": "A 60 N average force acts for 0.5 s. Find the impulse.",
+      "final_answer": {
+        "value": 30,
+        "unit": "N*s",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "collision_stick_numeric",
+      "type": "numeric",
+      "stem": "A 5 kg object moving at 10 m/s sticks to a 5 kg stationary object. Find the final velocity.",
+      "final_answer": {
+        "value": 5,
+        "unit": "m/s",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "impulse_momentum_steps",
+      "type": "step_based",
+      "stem": "A 2 kg puck moving right at 3 m/s experiences a net impulse of 10 N*s to the right. Find the final velocity.",
+      "steps": [
         {
-            "id": "momentum_basic",
-            "type": "numeric",
-            "stem": "A 4 kg ball moves at 8 m/s. Find its momentum.",
-            "final_answer": {
-                "value": 32,
-                "unit": "kg·m/s",
-                "tolerance": 0.1
-            }
+          "step_id": 1,
+          "description": "Compute the initial momentum m v_1.",
+          "expected_value": 6,
+          "unit": "kg*m/s",
+          "tolerance": 0.1
         },
         {
-            "id": "impulse_calc",
-            "type": "numeric",
-            "stem": "A 60 N force acts for 0.5 s. Find the impulse.",
-            "final_answer": {
-                "value": 30,
-                "unit": "N·s",
-                "tolerance": 0.1
-            }
+          "step_id": 2,
+          "description": "Add the impulse to find final momentum.",
+          "expected_value": 16,
+          "unit": "kg*m/s",
+          "tolerance": 0.1
         },
         {
-            "id": "collision_inelastic",
-            "type": "numeric",
-            "stem": "A 5 kg object at 10 m/s collides and sticks with a 5 kg stationary object. Find final velocity.",
-            "final_answer": {
-                "value": 5,
-                "unit": "m/s",
-                "tolerance": 0.1
-            }
+          "step_id": 3,
+          "description": "Divide by mass to find the final velocity.",
+          "expected_value": 8,
+          "unit": "m/s",
+          "tolerance": 0.1
         }
-    ]
+      ],
+      "final_answer": {
+        "value": 8,
+        "unit": "m/s",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "collision_type_concept",
+      "type": "multiple_choice",
+      "stem": "In which collision type do the two bodies definitely leave with the same final velocity?",
+      "options": [
+        "Elastic",
+        "Inelastic",
+        "Perfectly inelastic",
+        "Glancing"
+      ],
+      "correct_index": 2,
+      "explanation": "If the objects stick together, the collision is perfectly inelastic and both bodies share one final velocity after impact."
+    },
+    {
+      "id": "system_boundary_concept",
+      "type": "multiple_choice",
+      "stem": "Why is conservation of momentum easiest to use when external impulse is negligible?",
+      "options": [
+        "Because mass becomes zero.",
+        "Because the total system momentum then changes only through internal interactions that cancel within the system.",
+        "Because kinetic energy is automatically conserved too.",
+        "Because impulse applies only to isolated systems."
+      ],
+      "correct_index": 1,
+      "explanation": "Correct. Internal collision forces come in equal and opposite pairs, so when external impulse is negligible the system's total momentum remains constant."
+    }
+  ]
 }

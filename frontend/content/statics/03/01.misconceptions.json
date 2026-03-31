@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0301",
+  "misconceptions": [
+    {
+      "id": "count_test_is_everything",
+      "pattern": "structural_classification_error",
+      "description": "Assuming m = 2j - 3 guarantees a good truss with no further checks",
+      "trigger": "learner treats the member-count test as sufficient without inspecting geometry",
+      "feedback": "The count test is important, but geometry and support layout still matter. A structure can satisfy the count and still be unstable if the arrangement is poor.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "all_members_carry_bending",
+      "pattern": "member_model_error",
+      "description": "Forgetting the two-force-member assumption in ideal truss analysis",
+      "trigger": "learner discusses every truss member as if it carries full beam bending in the ideal statics model",
+      "feedback": "In the ideal truss model, members are treated as two-force members that carry axial tension or compression only.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "zero_force_members_useless",
+      "pattern": "design_reasoning_error",
+      "description": "Assuming zero-force members are always unnecessary",
+      "trigger": "learner wants to remove any member that is zero under one load case",
+      "feedback": "A zero-force member under one case may still stabilize the structure, support a different load case, or improve performance during construction.",
+      "rail_action": "practice"
+    }
+  ]
+}

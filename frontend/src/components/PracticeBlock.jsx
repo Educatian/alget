@@ -230,7 +230,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                 <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--ath-panel)] text-lg font-semibold text-[var(--ath-primary)]">
                     PR
                 </div>
-                <h3 className="text-xl font-semibold text-[var(--ath-text)]">Practice will appear here</h3>
+                <h3 className="text-xl font-semibold text-[var(--ath-text)]">Practice Will Appear Here</h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">
                     No section-specific practice problems are available yet.
                 </p>
@@ -247,7 +247,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
             <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                     <p className="editorial-kicker">Practice</p>
-                    <h2 className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">Work through the section problems</h2>
+                    <h2 className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">Work Through the Section Problems</h2>
                 </div>
                 <div className="editorial-chip">
                     {totalAnswered}/{problems.length} completed / {correctCount} correct
@@ -283,7 +283,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
 
                 {currentProblem?.givens && (
                     <div className="mt-5 rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
-                        <p className="editorial-label">Given values</p>
+                        <p className="editorial-label">Given Values</p>
                         <ul className="mt-3 space-y-2">
                             {Object.entries(currentProblem.givens).map(([key, value]) => (
                                 <li key={key} className="text-sm text-[var(--ath-muted)]">
@@ -344,13 +344,13 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                                 disabled={loading || !answers[currentProblem?.id]?.value}
                                 className="editorial-button flex-1 px-5 py-3 text-sm disabled:opacity-50"
                             >
-                                {loading ? 'Checking answer...' : 'Submit answer'}
+                                {loading ? 'Checking Answer...' : 'Submit Answer'}
                             </button>
                             <button
                                 onClick={handleHintRequest}
                                 className="editorial-button-secondary px-5 py-3 text-sm"
                             >
-                                Get a hint
+                                Get a Hint
                             </button>
                         </div>
 
@@ -370,7 +370,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                     }`}>
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <p className={`text-sm font-semibold ${currentResult.is_correct ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
-                                {currentResult.is_correct ? 'Correct answer' : 'Not quite yet'}
+                                {currentResult.is_correct ? 'Correct Answer' : 'Not Quite Yet'}
                             </p>
                             {!currentResult.is_correct && (
                                 <button
@@ -384,7 +384,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                                     )}
                                     className="editorial-button px-4 py-2 text-sm"
                                 >
-                                    Open targeted review
+                                    Open Targeted Review
                                 </button>
                             )}
                         </div>
@@ -401,7 +401,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
 
                         {!currentResult.is_correct && (
                             <div className="mt-4 rounded-[1rem] border border-[var(--ath-line)] bg-white/70 p-4">
-                                <p className="editorial-label">What kind of miss was this?</p>
+                                <p className="editorial-label">What Kind of Miss Was This?</p>
                                 <select
                                     value={misconceptionByProblem[currentProblem?.id] || (currentResult.unit_error ? 'unit_error' : 'unknown')}
                                     onChange={(event) => updateMisconception(currentProblem?.id, event.target.value)}

@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0701",
+  "misconceptions": [
+    {
+      "id": "self_healing_means_unbreakable",
+      "pattern": "performance_exaggeration_error",
+      "description": "Assuming self-healing materials cannot fail",
+      "trigger": "learner describes self-healing as total damage immunity",
+      "feedback": "Self-healing usually mitigates certain classes of damage. It does not make a structure indestructible or eliminate all failure modes.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "repair_has_no_cost",
+      "pattern": "tradeoff_error",
+      "description": "Ignoring the cost, weight, and manufacturing penalties of healing systems",
+      "trigger": "learner recommends self-healing materials without discussing complexity",
+      "feedback": "Healing mechanisms add cost and design constraints. Their value depends on lifecycle benefits relative to those penalties.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "healing_replaces_inspection",
+      "pattern": "maintenance_error",
+      "description": "Thinking repair capability eliminates the need for monitoring or maintenance",
+      "trigger": "learner assumes self-healing makes inspection unnecessary",
+      "feedback": "Self-healing can reduce some maintenance burden, but designers still need monitoring, failure criteria, and inspection strategies.",
+      "rail_action": "practice"
+    }
+  ]
+}

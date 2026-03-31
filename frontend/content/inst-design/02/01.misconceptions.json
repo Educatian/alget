@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0201",
+  "misconceptions": [
+    {
+      "id": "training_always_solution",
+      "pattern": "analysis_error",
+      "description": "Assuming every performance problem should be solved with training",
+      "trigger": "learner proposes instruction before diagnosing environmental or motivational causes",
+      "feedback": "A good analysis phase checks whether the gap is really a knowledge or skill problem. If the root cause is tools, incentives, or workflow, training may not help.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "objectives_after_content",
+      "pattern": "sequence_error",
+      "description": "Treating objectives as a formality written after the course content exists",
+      "trigger": "learner says objectives can be added at the end without changing design decisions",
+      "feedback": "Objectives should shape the design from the beginning. They align assessment, activities, and content with the target performance.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "learner_analysis_equals_demographics_only",
+      "pattern": "scope_error",
+      "description": "Reducing learner analysis to age, role, or job title only",
+      "trigger": "learner ignores prior knowledge, motivation, or constraints in analysis",
+      "feedback": "Learner analysis is broader than demographics. It includes prior knowledge, language needs, motivation, context, access constraints, and likely barriers to learning.",
+      "rail_action": "practice"
+    }
+  ]
+}

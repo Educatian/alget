@@ -1,181 +1,143 @@
 # Method of Joints
 
-> **"Analyze one joint at a time, and the whole truss reveals itself."**
+> **Analyze one joint at a time, and the member-force pattern begins to reveal itself.**
 
 ---
 
 ## Learning Objectives
 
-By the end of this section, you will be able to:
+By the end of this section, you should be able to:
 
-1. **Apply** the method of joints to analyze trusses
-2. **Draw** FBDs for individual joints
-3. **Solve** for member forces systematically
-4. **Determine** if members are in tension or compression
-
----
-
-## The Basic Idea
-
-The **method of joints** treats each joint as a particle in equilibrium:
-
-$$
-\sum F_x = 0, \quad \sum F_y = 0
-$$
-
-Each joint provides **2 equations**, so we can solve for up to **2 unknowns** per joint.
-
-> 💡 **Strategy**: Start at a joint with only 2 unknown member forces (often at a support), then work through the truss joint by joint.
+- apply the method of joints to a planar truss,
+- draw free-body diagrams for individual joints,
+- solve member forces using joint equilibrium,
+- and interpret signs as tension or compression.
 
 ---
 
-## Problem-Solving Procedure
+## Why the Method Works
 
-### Step 1: Find Support Reactions
-Analyze the entire truss as a rigid body to find reactions at supports.
+Once support reactions are known, each truss joint can be treated as a **particle in equilibrium**.
 
-### Step 2: Select Starting Joint
-Choose a joint with **at most 2 unknown forces**.
+That gives us two scalar equations in 2D:
 
-### Step 3: Draw Joint FBD
-Isolate the joint. Draw all forces:
-- Known external forces/reactions
-- Unknown member forces (assume tension: pointing away from joint)
-
-### Step 4: Apply Equilibrium
 $$
-\sum F_x = 0, \quad \sum F_y = 0
+\sum F_x = 0,\qquad \sum F_y = 0
 $$
 
-### Step 5: Interpret Results
-- **Positive result**: Force is tension (T) as assumed
-- **Negative result**: Force is compression (C) (reverse direction)
+Because each joint gives only two independent equations, the method is most efficient when you start at a joint with at most two unknown member forces.
 
-### Step 6: Move to Next Joint
-Use the forces just found as known values at adjacent joints.
+This is why analysis order matters. The method is not random. It depends on selecting solvable joints in sequence.
 
 ---
 
-## Sign Convention
+## Standard Procedure
 
-When drawing the FBD of a joint:
+Use this workflow every time:
 
-| Assumption | Arrow Direction | Meaning |
-|------------|-----------------|---------|
-| Tension | **Away from** joint | Member pulling on joint |
-| Compression | **Toward** joint | Member pushing on joint |
+1. Solve the support reactions from whole-structure equilibrium.
+2. Pick a joint with no more than two unknown member forces.
+3. Draw the joint free-body diagram.
+4. Assume unknown member forces act in tension, pointing away from the joint.
+5. Apply $\sum F_x = 0$ and $\sum F_y = 0$.
+6. Interpret negative results as compression.
+7. Move to the next joint using newly solved member forces.
 
-> 🔑 **Standard Practice**: Always assume tension initially. If the answer is negative, the member is in compression.
+This procedure is repetitive by design. The reliability comes from disciplined sequencing.
+
+---
+
+## Why We Assume Tension First
+
+At the start, you usually do not know whether a member is in tension or compression. So the standard convention is:
+
+- draw every unknown member force as if it pulls away from the joint,
+- solve the equations,
+- then read the sign.
+
+Interpretation:
+
+- positive result -> tension, consistent with the assumption
+- negative result -> compression, opposite of the assumed direction
+
+This keeps the setup consistent across joints and avoids guessing directions manually.
 
 ---
 
 ## Worked Example
 
-### Example 3.1: Simple Truss Analysis
+Suppose a symmetric triangular truss carries a 10 kN downward load at the apex.
 
-**Problem:** Find all member forces in the truss shown.
+After solving the support reactions, a logical place to start is one of the support joints, because it usually contains:
 
-```
-              10 kN
-                ↓
-                C
-               ╱╲
-              ╱  ╲
-             ╱    ╲
-            A──────B
-            △      ○
-            
-    AC = BC = 5 m, AB = 8 m
-    Angle at A and B = 51.3°
-```
+- one known support reaction,
+- and only two unknown member forces.
 
-**Solution:**
+At the chosen joint:
 
-*Step 1: Support Reactions*
+- resolve the inclined member into horizontal and vertical components,
+- use vertical equilibrium to solve one member,
+- then use horizontal equilibrium to solve the second.
 
-By symmetry:
-$$
-A_y = B_y = 5 \text{ kN}
-$$
-$$
-A_x = 0
-$$
+This is the essential pattern of the method of joints:
 
-*Step 2: Analyze Joint A*
-
-```
-        F_AC
-         ↗
-        ╱ 51.3°
-       A●───────→ F_AB
-       ↑
-       5 kN
-```
-
-**ΣFy = 0:**
-$$
-5 + F_{AC} \sin(51.3°) = 0
-$$
-$$
-F_{AC} = -\frac{5}{0.78} = -6.41 \text{ kN}
-$$
-
-Negative → **Compression: FAC = 6.41 kN (C)**
-
-**ΣFx = 0:**
-$$
-F_{AB} + F_{AC} \cos(51.3°) = 0
-$$
-$$
-F_{AB} = -(-6.41)(0.625) = 4.01 \text{ kN}
-$$
-
-Positive → **Tension: FAB = 4.01 kN (T)**
-
-*Step 3: By Symmetry*
-
-$$
-F_{BC} = 6.41 \text{ kN (C)}
-$$
-
-**Final Results:**
-
-| Member | Force | Type |
-|--------|-------|------|
-| AC | 6.41 kN | Compression |
-| BC | 6.41 kN | Compression |
-| AB | 4.01 kN | Tension |
+- one joint,
+- two equations,
+- two unknowns,
+- then advance through the structure.
 
 ---
 
-## Tips for Efficiency
+## Efficiency Tips
 
-1. **Exploit symmetry** when possible
-2. **Identify zero-force members** first
-3. **Choose smart starting joints** (supports often have few unknowns)
-4. **Check your work** at the final joint (should satisfy equilibrium)
+The method becomes much faster if you look for these shortcuts first:
 
----
+- symmetry in loading and geometry,
+- zero-force members,
+- joints with many known forces,
+- and repeated member angles that simplify trig.
 
-## Summary
+You should also choose the next joint strategically. A joint with three unknowns is not ready yet, even if it is nearby.
 
-### Method of Joints Procedure
-
-1. Find support reactions
-2. Start at joint with ≤2 unknowns
-3. Apply $\sum F_x = 0$, $\sum F_y = 0$
-4. Interpret signs (+ = T, − = C)
-5. Move to adjacent joint
-
-### Key Takeaways
-
-- ✅ Each joint is a **particle in equilibrium**
-- ✅ Two equations per joint → solve 2 unknowns
-- ✅ Assume **tension** initially, negative means compression
-- ✅ Proceed **systematically** through the truss
+<dynamic-scenario topic="Method of Joints" context="A structural intern must determine whether the diagonal in a lightweight roof truss is in tension or compression before choosing between a cable-like member and a buckling-sensitive compression member."></dynamic-scenario>
 
 ---
 
-## What's Next?
+## Common Errors
 
-In **Section 3.3: Method of Sections**, we'll learn how to cut through a truss to find specific member forces directly—without analyzing every joint.
+Most mistakes in the method of joints come from one of these:
+
+- starting at a joint with too many unknowns,
+- forgetting to include support reactions,
+- mixing up member angles,
+- or interpreting a negative sign incorrectly.
+
+A useful check is to ask at every joint:
+
+- Do I have at most two unknowns?
+- Are my components aligned with the correct axes?
+- Does the final sign make physical sense in the member layout?
+
+---
+
+## Design Interpretation
+
+The method of joints does more than solve homework problems. It tells you which members are:
+
+- likely carrying the main tensile path,
+- likely vulnerable in compression,
+- and potentially oversized or lightly loaded.
+
+That is useful design information. Once the force pattern is known, engineers can size areas, check buckling, and refine geometry.
+
+It also improves communication between analysis and design teams. When one diagonal consistently appears in compression while another remains in tension, member selection becomes much more disciplined. Slender ties, stocky compression members, and connection details can then be matched to the actual force path instead of being chosen by rough intuition.
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="Why is it standard practice to begin the method of joints at a joint with no more than two unknown member forces?"
+  options='[{"text":"Because each joint in a planar truss gives only two equilibrium equations.","isCorrect":true},{"text":"Because truss joints can never have more than two connected members.","isCorrect":false},{"text":"Because support reactions are never needed for truss analysis.","isCorrect":false}]'
+  explanation="Correct. A planar joint gives two scalar equilibrium equations, so more than two unknown member forces cannot be solved directly at that stage."
+/>

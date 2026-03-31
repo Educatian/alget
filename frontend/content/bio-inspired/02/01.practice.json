@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_drag_reduction_riblets",
+      "type": "multiple_choice",
+      "concept_id": "drag_reduction",
+      "stem": "What is the main engineering purpose of shark-skin-inspired riblets?",
+      "options": [
+        "To increase random turbulence so the surface feels rougher",
+        "To organize near-wall flow in ways that reduce drag",
+        "To add mass so the structure vibrates less",
+        "To replace the need for aerodynamic shaping entirely"
+      ],
+      "correct_index": 1,
+      "explanation": "Riblets influence the boundary layer and can reduce drag by changing how near-surface flow develops."
+    },
+    {
+      "id": "bio_boundary_layer_logic",
+      "type": "multiple_choice",
+      "concept_id": "fluid_dynamics",
+      "stem": "Why is the boundary layer so important in biomimetic flow design?",
+      "options": [
+        "Because all fluid motion happens far away from the surface",
+        "Because small geometric changes near the surface can strongly affect drag and separation",
+        "Because viscosity never matters inside the boundary layer",
+        "Because biomimicry avoids all surface-flow interactions"
+      ],
+      "correct_index": 1,
+      "explanation": "Near-surface flow is especially sensitive to geometry, which is why biological microtextures can have large aerodynamic or hydrodynamic effects."
+    },
+    {
+      "id": "bio_shark_skin_transfer",
+      "type": "multiple_choice",
+      "concept_id": "shark_skin",
+      "stem": "Which transfer from shark skin to engineering is most accurate?",
+      "options": [
+        "Copy the exact animal skin chemistry and ignore the geometry",
+        "Use micro-scale surface patterning to guide flow and reduce losses",
+        "Increase surface roughness uniformly in every possible direction",
+        "Eliminate the boundary layer entirely"
+      ],
+      "correct_index": 1,
+      "explanation": "The engineering abstraction is about surface geometry and flow control, not literal biological tissue."
+    },
+    {
+      "id": "bio_vortex_shedding_design",
+      "type": "multiple_choice",
+      "concept_id": "vortex_shedding",
+      "stem": "If a designer wants to reduce unsteady flow losses around a surface, which question is most relevant?",
+      "options": [
+        "How does the surface influence the formation and release of vortices?",
+        "How bright can the surface coating be made?",
+        "How many logos can fit on the component?",
+        "How can the fluid be prevented from touching the surface?"
+      ],
+      "correct_index": 0,
+      "explanation": "Vortex formation and shedding strongly affect drag, noise, and flow stability, so surface features must be designed with those behaviors in mind."
+    }
+  ]
+}

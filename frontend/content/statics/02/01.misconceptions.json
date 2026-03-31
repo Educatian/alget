@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0201",
+  "misconceptions": [
+    {
+      "id": "use_nonperpendicular_distance",
+      "pattern": "geometry_error",
+      "description": "Using a nonperpendicular distance for the moment arm",
+      "trigger": "learner multiplies force by a slanted or convenient distance",
+      "feedback": "Moment magnitude in 2D uses the perpendicular distance from the reference point to the line of action of the force.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ignore_moment_sign",
+      "pattern": "sign_error",
+      "description": "Ignoring clockwise versus counterclockwise sign",
+      "trigger": "learner reports only a positive magnitude without rotational sense",
+      "feedback": "Moments have direction. Use a consistent sign convention such as counterclockwise positive and clockwise negative.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "varignon_means_add_magnitudes",
+      "pattern": "formula_selection",
+      "description": "Adding component moments without considering sign",
+      "trigger": "learner applies Varignon's theorem using only magnitudes",
+      "feedback": "When using components, each component moment must be added algebraically with the correct sign based on rotational sense.",
+      "rail_action": "practice"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Impulse and Momentum
 
-> **"Momentum—mass in motion—is the quantity that truly describes a body's dynamic state."**
+> **"When forces act for a very short time, momentum often tells the story more cleanly than acceleration."**
 
 ---
 
@@ -13,11 +13,22 @@
 ## Learning Objectives
 
 1. **Define** linear momentum and impulse
-2. **Apply** the impulse-momentum theorem
-3. **Use** conservation of momentum for collisions
-4. **Distinguish** elastic and inelastic collisions
+2. **Apply** the impulse-momentum theorem over a time interval
+3. **Use** conservation of momentum for isolated systems
+4. **Distinguish** elastic, inelastic, and perfectly inelastic collisions
 
 ---
+
+## Why Momentum Becomes Essential
+
+Force-based analysis works well when the force history is simple. But impacts, collisions, and short bursts of loading are often too brief to model point by point. In those cases, what matters most is the total effect of force over time.
+
+That is where momentum methods shine:
+
+- a bat striking a ball
+- a crash absorber reducing peak force by lengthening impact time
+- a docking cart coupling to another cart
+- a robotic gripper delivering a short impulse to reposition a part
 
 ## Linear Momentum
 
@@ -26,20 +37,28 @@ $$
 $$
 
 | Property | Value |
-|----------|-------|
-| Units | kg·m/s or N·s |
+| --- | --- |
+| Units | kg*m/s or N*s |
 | Vector? | Yes |
+| Depends on direction? | Yes |
 
----
+Momentum is not the same as kinetic energy. A heavy slow object and a light fast object may have comparable momentum but very different kinetic energies.
 
 ## Impulse
 
-Impulse is the integral of force over time:
+Impulse is the time-accumulated effect of force:
+
 $$
-\boxed{\vec{J} = \int \vec{F} \, dt = \vec{F}_{avg} \cdot \Delta t}
+\boxed{\vec{J} = \int_{t_1}^{t_2} \vec{F}\,dt}
 $$
 
----
+If the force can be approximated by an average value over the interval,
+
+$$
+\boxed{\vec{J} = \vec{F}_{avg}\Delta t}
+$$
+
+Graphically, impulse is the area under the force-time curve.
 
 ## Impulse-Momentum Theorem
 
@@ -47,65 +66,127 @@ $$
 \boxed{\vec{J} = \Delta \vec{p} = m\vec{v}_2 - m\vec{v}_1}
 $$
 
-> 💡 **Meaning**: The impulse applied equals the change in momentum.
+This theorem is especially useful when:
 
----
+- the force varies strongly with time
+- the contact duration is short
+- only initial and final velocities matter
+
+<dynamic-scenario
+  topic="Crash Cushion Design"
+  context="A transportation engineer is comparing two highway crash cushions that stop the same maintenance cart. One stops the cart in 0.08 s, and the other in 0.20 s. The design team wants to reduce the average impact force without changing the vehicle mass or entry speed."
+  course="dynamics"
+/>
+
+## System Thinking in Momentum Problems
+
+Before writing equations, identify the system boundary.
+
+### Single-particle system
+
+Use impulse-momentum directly for one body when the external force history is known.
+
+### Multi-particle system
+
+Use conservation of momentum when the net external impulse is negligible compared with the internal collision forces.
+
+This is the part many students miss: momentum is conserved for a **system**, not automatically for every individual body.
 
 ## Conservation of Momentum
 
-For a system with **no external net force**:
+If the external net impulse on the system is zero or negligible,
+
 $$
 \boxed{\vec{p}_{total,1} = \vec{p}_{total,2}}
 $$
+
+For two particles in one dimension:
 
 $$
 m_A v_{A1} + m_B v_{B1} = m_A v_{A2} + m_B v_{B2}
 $$
 
----
+Direction must be handled with signs. A leftward velocity is not "just slower." It is a negative velocity under a right-positive sign convention.
 
 ## Collision Types
 
-| Type | Momentum | Kinetic Energy |
-|------|----------|----------------|
-| **Elastic** | Conserved | Conserved |
-| **Inelastic** | Conserved | Not conserved |
-| **Perfectly Inelastic** | Conserved | Max loss (objects stick) |
+| Type | Momentum | Kinetic energy |
+| --- | --- | --- |
+| Elastic | Conserved | Conserved |
+| Inelastic | Conserved | Not conserved |
+| Perfectly inelastic | Conserved | Not conserved, bodies stick |
 
----
+The easiest mistake here is to remember only that "momentum is conserved" and forget that kinetic energy is **not** generally conserved except in elastic collisions.
 
 ## Worked Example
 
-### Example 2.4: Collision of Two Carts
+### Example 2.3: Two Carts Stick Together
 
-**Problem:** Cart A (2 kg) moves at 5 m/s right. Cart B (3 kg) is at rest. They collide and stick together. Find final velocity.
+**Problem:** Cart A (2 kg) moves at 5 m/s to the right. Cart B (3 kg) is at rest. They collide and stick together. Find the final velocity.
 
-**Solution:**
+### Step A: Define the system
 
-Conservation of momentum:
-$$
-m_A v_A + m_B v_B = (m_A + m_B) v_f
-$$
+Choose the two-cart system together. During the short collision, we neglect external impulse compared with the large internal collision forces.
 
-$$
-(2)(5) + (3)(0) = (2 + 3) v_f
-$$
+### Step B: Write momentum conservation
 
 $$
-v_f = \frac{10}{5} = \boxed{2 \text{ m/s}}
+m_A v_{A1} + m_B v_{B1} = (m_A + m_B)v_f
 $$
 
----
+### Step C: Substitute values
+
+$$
+(2)(5) + (3)(0) = 5v_f
+$$
+
+$$
+10 = 5v_f
+$$
+
+$$
+v_f = 2 \text{ m/s}
+$$
+
+The combined carts move to the right at 2 m/s.
+
+### Step D: Interpret the result
+
+The final speed is smaller than the original 5 m/s because the moving cart shares momentum with the previously stationary cart.
+
+## A Fast Diagnostic for Collision Problems
+
+Ask these three questions:
+
+1. What bodies belong in the system?
+2. Is external impulse negligible during the event?
+3. Is kinetic energy also conserved, or only momentum?
+
+Those three questions separate most correct setups from most incorrect ones.
+
+## Check Your Understanding
+
+<interactive-quiz
+  question="Two skaters push off from rest on frictionless ice. Why must their momenta be equal in magnitude and opposite in direction?"
+  conceptId="momentum"
+  options='[{"text":"Because they have equal masses.","isCorrect":false},{"text":"Because the system starts with zero total momentum and the push is an internal interaction.","isCorrect":true},{"text":"Because momentum is always zero after a collision.","isCorrect":false}]'
+  explanation="Correct. The skater pair begins with zero total momentum, and the push between them is internal to the system, so the total momentum must remain zero."
+/>
+
+<interactive-quiz
+  question="In a perfectly inelastic collision, which quantity is always conserved for an isolated system?"
+  conceptId="collision"
+  options='[{"text":"Momentum only","isCorrect":true},{"text":"Kinetic energy only","isCorrect":false},{"text":"Both momentum and kinetic energy","isCorrect":false},{"text":"Neither","isCorrect":false}]'
+  explanation="Exactly. Momentum is conserved in isolated collisions, but kinetic energy decreases in a perfectly inelastic collision because some mechanical energy is transformed into deformation, heat, or sound."
+/>
 
 ## Summary
 
-- Momentum: $p = mv$ (vector)
-- Impulse: $J = F \cdot \Delta t = \Delta p$
-- Conservation: If no external force, total p is constant
-- Collisions: Momentum always conserved; KE only in elastic
-
----
+- Momentum tracks the dynamic state of a body through mass and velocity.
+- Impulse is the accumulated effect of force over time.
+- Conservation of momentum is a system statement and depends on negligible external impulse.
+- Collision problems become much easier when you classify the collision type before solving.
 
 ## What's Next?
 
-In **Chapter 3: Rigid Body Dynamics**, we'll extend these concepts to rotating bodies.
+In **Chapter 3**, we extend these ideas from particles to rigid bodies that can both translate and rotate.

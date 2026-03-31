@@ -1,7 +1,6 @@
 # Work and Energy
 
-> **"Energy cannot be created or destroyed—only transformed."**  
-> — First Law of Thermodynamics
+> **"Energy methods compress long force histories into one clean before-and-after statement."**
 
 ---
 
@@ -13,32 +12,52 @@
 
 ## Learning Objectives
 
-1. **Calculate** work done by forces
-2. **Apply** the work-energy theorem
+1. **Calculate** work done by constant and variable forces
+2. **Apply** the work-energy theorem to particle motion
 3. **Distinguish** conservative and non-conservative forces
-4. **Use** energy conservation to solve problems
+4. **Use** energy accounting when force-by-force acceleration analysis is cumbersome
 
 ---
+
+## Why Engineers Switch to Energy
+
+Newton's second law is local. It tells you what acceleration is happening at an instant. Energy methods are cumulative. They tell you how the system state changes between two positions.
+
+That is powerful when:
+
+- the motion path is known but time is not important
+- several forces act over a distance
+- you care about final speed more than intermediate acceleration
+- springs, gravity, and friction all interact in one system
+
+In those cases, work and energy often reduce a multi-step force analysis to one well-structured equation.
 
 ## Work Done by a Force
 
 $$
-\boxed{W = \int \vec{F} \cdot d\vec{r} = \int F \cos\theta \, ds}
+\boxed{W = \int \vec{F} \cdot d\vec{r}}
 $$
 
-For constant force:
+For a constant force acting at angle $\theta$ to the displacement:
+
 $$
-W = F \cdot d \cdot \cos\theta
+\boxed{W = Fd\cos \theta}
 $$
 
-| Force Type | Work Formula |
-|------------|--------------|
-| Constant force | $W = Fd\cos\theta$ |
-| Spring | $W = \frac{1}{2}k(x_1^2 - x_2^2)$ |
-| Gravity | $W = -mg\Delta h$ |
-| Friction | $W = -\mu N \cdot d$ (always negative) |
+The sign of work matters:
 
----
+- positive work adds kinetic energy
+- negative work removes kinetic energy
+- zero work means the force does not change the body's speed through that displacement
+
+## Common Work Models
+
+| Force type | Useful expression | Sign intuition |
+| --- | --- | --- |
+| Constant force | $W = Fd\cos \theta$ | Positive if force helps motion |
+| Gravity | $W_g = -mg\Delta h$ | Negative when moving upward |
+| Spring | $W_s = \frac{1}{2}k(x_1^2 - x_2^2)$ | Depends on compression change |
+| Kinetic friction | $W_f = -f_k d = -\mu_k N d$ | Always resists sliding |
 
 ## Kinetic Energy
 
@@ -46,91 +65,169 @@ $$
 \boxed{T = \frac{1}{2}mv^2}
 $$
 
----
+Kinetic energy depends on speed, not direction. A car moving east at 20 m/s and one moving west at 20 m/s have the same kinetic energy.
 
-## Work-Energy Theorem
+## The Work-Energy Theorem
 
 $$
-\boxed{W_{net} = \Delta T = T_2 - T_1 = \frac{1}{2}mv_2^2 - \frac{1}{2}mv_1^2}
+\boxed{W_{net} = \Delta T = T_2 - T_1}
 $$
 
-> 💡 **Power**: The net work equals the change in kinetic energy!
+Expanded for a particle:
 
----
-
-## Conservative vs Non-Conservative Forces
-
-| Type | Examples | Work |
-|------|----------|------|
-| **Conservative** | Gravity, springs | Path-independent |
-| **Non-conservative** | Friction, drag | Path-dependent |
-
-For conservative forces, we define **potential energy**:
 $$
-W_c = -\Delta V = -(V_2 - V_1)
+W_{net} = \frac{1}{2}mv_2^2 - \frac{1}{2}mv_1^2
 $$
 
----
+This is the energy version of cause and effect:
 
-## Energy Conservation
+- forces do work
+- net work changes kinetic energy
+- changed kinetic energy changes speed
+
+<dynamic-scenario
+  topic="Battery Range on an Electric Scooter"
+  context="A mobility engineer is comparing two electric scooters on the same downhill route. One has lower rolling resistance, while the other has regenerative braking. The engineer wants to know how much of the route's potential energy becomes wheel speed and how much is dissipated or recovered."
+  course="dynamics"
+/>
+
+## Conservative and Non-Conservative Forces
+
+### Conservative forces
+
+These are forces whose work depends only on the start and end states, not the exact path.
+
+Examples:
+
+- gravity
+- ideal spring force
+
+For these forces, we introduce potential energy $V$ and write:
+
+$$
+W_c = -\Delta V
+$$
+
+### Non-conservative forces
+
+These depend on the actual path or on energy dissipation mechanisms.
+
+Examples:
+
+- kinetic friction
+- drag
+- active propulsion losses
+
+For these, it is often clearer to keep them as explicit work terms such as $W_{nc}$.
+
+## Two Useful Energy Forms
 
 When only conservative forces act:
+
 $$
 \boxed{T_1 + V_1 = T_2 + V_2}
 $$
 
-With non-conservative work:
+When non-conservative work is present:
+
 $$
-T_1 + V_1 + W_{nc} = T_2 + V_2
+\boxed{T_1 + V_1 + W_{nc} = T_2 + V_2}
 $$
 
----
+This second equation is usually the safer default in engineering problems because real systems often include friction, damping, or external actuators.
 
 ## Worked Example
 
-### Example 2.3: Block Sliding Down with Friction
+### Example 2.2: Block Sliding Down an Incline with Friction
 
-**Problem:** A 5 kg block slides 3 m down a 30° incline with $\mu_k = 0.2$. Starting from rest, find final speed.
+**Problem:** A 5 kg block slides 3 m down a $30^\circ$ incline with $\mu_k = 0.2$. Starting from rest, find the final speed.
 
-**Solution:**
+### Step A: Define the initial and final states
 
-*Energy approach:*
-$$
-T_1 + V_1 + W_{friction} = T_2 + V_2
-$$
-
-$$
-0 + mgh - \mu_k N \cdot d = \frac{1}{2}mv_2^2 + 0
-$$
-
-where:
-- $h = 3\sin 30° = 1.5$ m
-- $N = mg\cos 30° = 42.5$ N
-- $W_f = -0.2 \times 42.5 \times 3 = -25.5$ J
+- Initial kinetic energy: $T_1 = 0$ because the block starts from rest
+- Final potential energy can be taken as zero at the bottom
+- Initial height change:
 
 $$
-(5)(9.81)(1.5) - 25.5 = \frac{1}{2}(5)v_2^2
+h = 3\sin 30^\circ = 1.5 \text{ m}
+$$
+
+### Step B: Compute the gravitational potential drop
+
+$$
+V_1 - V_2 = mgh = 5(9.81)(1.5) = 73.6 \text{ J}
+$$
+
+### Step C: Compute friction work
+
+First find the normal force:
+
+$$
+N = mg\cos 30^\circ = 42.5 \text{ N}
+$$
+
+Then the friction force:
+
+$$
+f_k = \mu_k N = 0.2(42.5) = 8.50 \text{ N}
+$$
+
+Work of friction:
+
+$$
+W_f = -f_k d = -(8.50)(3) = -25.5 \text{ J}
+$$
+
+### Step D: Write the energy equation
+
+$$
+T_1 + V_1 + W_f = T_2 + V_2
 $$
 
 $$
-73.6 - 25.5 = 2.5 v_2^2
+0 + 73.6 - 25.5 = \frac{1}{2}(5)v_2^2 + 0
 $$
 
 $$
-v_2 = \sqrt{19.24} = \boxed{4.39 \text{ m/s}}
+48.1 = 2.5v_2^2
 $$
 
----
+$$
+v_2 = \sqrt{19.24} = 4.39 \text{ m/s}
+$$
+
+The speed is lower than the frictionless case because some of the gravitational energy was dissipated by friction.
+
+## What Students Usually Miss
+
+- They forget that friction work is negative.
+- They mix up height change and path length.
+- They use $mgh$ with the full incline length instead of the vertical drop.
+- They assume "energy is conserved" even when friction is present, rather than writing the more general balance with $W_{nc}$.
+
+## Check Your Understanding
+
+<interactive-quiz
+  question="A force acts perpendicular to the displacement of a particle. What is the work done by that force?"
+  conceptId="work_energy"
+  options='[{"text":"Positive because the force is nonzero.","isCorrect":false},{"text":"Negative because the angle is 90 degrees.","isCorrect":false},{"text":"Zero because the dot product is zero.","isCorrect":true},{"text":"It cannot be determined without the mass.","isCorrect":false}]'
+  explanation="Correct. Work depends on the component of force along the displacement. A force perpendicular to motion contributes no work."
+/>
+
+<interactive-quiz
+  question="Why is friction treated as negative work in a sliding problem?"
+  conceptId="conservation_of_energy"
+  options='[{"text":"Because friction always points downward.","isCorrect":false},{"text":"Because friction removes mechanical energy from the moving body over the displacement.","isCorrect":true},{"text":"Because friction has no units.","isCorrect":false}]'
+  explanation="Exactly. Kinetic friction acts opposite the relative motion, so its dot product with displacement is negative and it reduces the body's mechanical energy."
+/>
 
 ## Summary
 
-- Work = Force × Distance × cos(θ)
-- $W_{net} = \Delta T$ (Work-Energy Theorem)
-- Conservative forces allow energy conservation
-- Friction work is always negative (removes energy)
-
----
+- Work is the energy transfer caused by a force acting through a displacement.
+- Net work changes kinetic energy.
+- Conservative forces can be converted into potential-energy terms.
+- Friction and other dissipative effects should remain explicit unless you are modeling a truly conservative system.
 
 ## What's Next?
 
-In **Section 2.3: Impulse-Momentum**, we'll use momentum methods for collision and impact problems.
+In **Section 2.3: Impulse and Momentum**, we move from force-through-distance to force-through-time and study collisions, impacts, and short-duration loads.

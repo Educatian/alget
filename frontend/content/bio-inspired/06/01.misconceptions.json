@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0601",
+  "misconceptions": [
+    {
+      "id": "termite_mound_shape_only",
+      "pattern": "form_over_function_error",
+      "description": "Assuming biomimetic architecture is mainly about copying outer form",
+      "trigger": "learner focuses on mound appearance without discussing airflow and thermal behavior",
+      "feedback": "The valuable principle is the coupled system of airflow, vent layout, thermal mass, and environmental response, not just the outer silhouette.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "passive_means_no_control",
+      "pattern": "systems_error",
+      "description": "Thinking passive systems do not require deliberate engineering",
+      "trigger": "learner treats passive cooling as uncontrolled natural ventilation",
+      "feedback": "Passive does not mean accidental. Successful passive cooling depends on carefully designed geometry, materials, and environmental fit.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "thermal_mass_always_cools",
+      "pattern": "context_error",
+      "description": "Assuming thermal mass is universally beneficial in every climate and use case",
+      "trigger": "learner recommends thermal mass without considering local conditions or cycling",
+      "feedback": "Thermal mass helps only when the timing of heat storage and release matches the climate and operating pattern. Context matters.",
+      "rail_action": "practice"
+    }
+  ]
+}

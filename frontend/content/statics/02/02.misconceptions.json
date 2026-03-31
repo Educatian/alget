@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0202",
+  "misconceptions": [
+    {
+      "id": "couple_has_net_force",
+      "pattern": "resultant_force_error",
+      "description": "Thinking a couple produces a nonzero resultant force",
+      "trigger": "learner adds the two equal and opposite forces as if they reinforce each other",
+      "feedback": "A couple contains two equal and opposite forces, so the net force is zero. The remaining mechanical effect is a moment only.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "wrong_distance_in_mfd",
+      "pattern": "geometry_error",
+      "description": "Using the wrong distance in the couple-moment formula",
+      "trigger": "learner uses a diagonal or arbitrary point distance instead of perpendicular separation",
+      "feedback": "In M = Fd for a couple, d must be the perpendicular distance between the lines of action of the two forces.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "force_is_free_vector",
+      "pattern": "equivalence_error",
+      "description": "Assuming a force can be moved anywhere without adding a couple",
+      "trigger": "learner relocates a force and claims the system is unchanged",
+      "feedback": "A couple is a free vector, but a force is not. Moving a force to a different line of action requires an added couple to preserve equivalence.",
+      "rail_action": "practice"
+    }
+  ]
+}

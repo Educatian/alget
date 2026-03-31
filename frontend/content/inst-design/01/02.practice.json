@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "clt_intrinsic_load",
+      "type": "multiple_choice",
+      "concept_id": "intrinsic_load",
+      "stem": "What is the best description of intrinsic cognitive load?",
+      "options": [
+        "The load caused by poor interface or unnecessary distractions",
+        "The unavoidable complexity built into the material itself",
+        "The motivation learners feel when content is engaging",
+        "The load caused only by long-term memory retrieval"
+      ],
+      "correct_index": 1,
+      "explanation": "Intrinsic load comes from the complexity of the content itself, especially how many interrelated elements must be handled at once."
+    },
+    {
+      "id": "clt_extraneous_load",
+      "type": "multiple_choice",
+      "concept_id": "extraneous_load",
+      "stem": "A diagram appears on one slide, but the explanation is buried on another page. Which load problem is this most likely to create?",
+      "options": [
+        "Intrinsic load",
+        "Germane load",
+        "Extraneous load",
+        "Automaticity"
+      ],
+      "correct_index": 2,
+      "explanation": "This is the split-attention effect, a classic source of extraneous load created by bad presentation rather than the content itself."
+    },
+    {
+      "id": "clt_germane_load",
+      "type": "multiple_choice",
+      "concept_id": "germane_load",
+      "stem": "Which design move is most likely to increase germane load rather than extraneous load?",
+      "options": [
+        "Adding decorative animation unrelated to the topic",
+        "Asking learners to compare two worked examples and explain the pattern",
+        "Making learners search across five tabs for key definitions",
+        "Narrating on top of dense, identical on-screen text"
+      ],
+      "correct_index": 1,
+      "explanation": "Germane load supports schema construction. Asking learners to compare and explain patterns pushes useful cognitive processing."
+    },
+    {
+      "id": "schema_theory_transfer",
+      "type": "multiple_choice",
+      "concept_id": "schema_theory",
+      "stem": "Why are schemas important in instructional design?",
+      "options": [
+        "They eliminate the need for prior knowledge",
+        "They help learners organize new information into reusable mental structures",
+        "They guarantee motivation without any feedback",
+        "They replace the need for sequencing and scaffolding"
+      ],
+      "correct_index": 1,
+      "explanation": "Schemas are organized mental structures that help learners interpret, store, and retrieve knowledge efficiently."
+    }
+  ]
+}

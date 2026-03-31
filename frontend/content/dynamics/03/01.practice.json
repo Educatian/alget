@@ -1,24 +1,83 @@
 {
-    "problems": [
+  "problems": [
+    {
+      "id": "angular_velocity_conversion",
+      "type": "numeric",
+      "stem": "A disk rotates at 300 rpm. Find the angular velocity in rad/s.",
+      "final_answer": {
+        "value": 31.42,
+        "unit": "rad/s",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "rim_speed_numeric",
+      "type": "numeric",
+      "stem": "A wheel of radius 0.5 m rotates at 10 rad/s. Find the speed of a point on the rim.",
+      "final_answer": {
+        "value": 5,
+        "unit": "m/s",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "tangential_acceleration_numeric",
+      "type": "numeric",
+      "stem": "A gear with radius 0.2 m has angular acceleration 8 rad/s^2. Find the tangential acceleration of a point on the rim.",
+      "final_answer": {
+        "value": 1.6,
+        "unit": "m/s^2",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "normal_acceleration_numeric",
+      "type": "numeric",
+      "stem": "A point lies 0.3 m from the center of a rotating plate spinning at 6 rad/s. Find its normal acceleration.",
+      "final_answer": {
+        "value": 10.8,
+        "unit": "m/s^2",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "radius_speed_concept",
+      "type": "multiple_choice",
+      "stem": "Two points lie on the same rigid body rotating about a fixed axis. Which point has the larger linear speed?",
+      "options": [
+        "The point farther from the axis",
+        "The point closer to the axis",
+        "They have equal linear speeds",
+        "The answer depends only on mass"
+      ],
+      "correct_index": 0,
+      "explanation": "Both points share the same angular velocity, but linear speed is v = r omega, so the point with the larger radius has the larger linear speed."
+    },
+    {
+      "id": "rigid_body_kinematics_steps",
+      "type": "step_based",
+      "stem": "A point on a rotating link is 0.4 m from the pivot. At a certain instant the link has omega = 5 rad/s and alpha = 3 rad/s^2. Find the point's linear speed and its tangential acceleration.",
+      "steps": [
         {
-            "id": "angular_velocity",
-            "type": "numeric",
-            "stem": "A disk rotates at 300 rpm. Find the angular velocity in rad/s.",
-            "final_answer": {
-                "value": 31.42,
-                "unit": "rad/s",
-                "tolerance": 0.1
-            }
+          "step_id": 1,
+          "description": "Use v = r omega.",
+          "expected_value": 2,
+          "unit": "m/s",
+          "tolerance": 0.1
         },
         {
-            "id": "linear_speed",
-            "type": "numeric",
-            "stem": "A wheel of radius 0.5 m rotates at 10 rad/s. Find the speed of a point on the rim.",
-            "final_answer": {
-                "value": 5,
-                "unit": "m/s",
-                "tolerance": 0.1
-            }
+          "step_id": 2,
+          "description": "Use a_t = r alpha.",
+          "expected_value": 1.2,
+          "unit": "m/s^2",
+          "tolerance": 0.1
         }
-    ]
+      ],
+      "final_answer": {
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0.1
+      }
+    }
+  ]
 }

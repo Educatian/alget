@@ -1,0 +1,37 @@
+{
+  "section_id": "dynamics_0202",
+  "misconceptions": [
+    {
+      "id": "friction_positive_work",
+      "pattern": "work_sign_error",
+      "description": "Treating friction work as positive in a sliding problem",
+      "trigger": "learner adds friction work to the energy budget when friction opposes the displacement",
+      "feedback": "Use the dot product idea. If friction points opposite the displacement, it removes mechanical energy and its work is negative.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "height_vs_path",
+      "pattern": "geometry_error",
+      "description": "Using the path length instead of the vertical height change in gravitational potential energy",
+      "trigger": "learner substitutes the incline length directly into mgh",
+      "feedback": "Gravitational potential energy depends on vertical height change, not on the distance traveled along the path. Find the vertical drop first, then use mgh.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "energy_conserved_with_friction",
+      "pattern": "model_selection_error",
+      "description": "Using pure energy conservation even when non-conservative work is present",
+      "trigger": "learner writes T1 + V1 = T2 + V2 despite friction or drag in the problem",
+      "feedback": "When dissipative forces are present, keep them as explicit work terms. The safer equation is T1 + V1 + W_nc = T2 + V2.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "perpendicular_force_work",
+      "pattern": "concept_error",
+      "description": "Assuming any nonzero force must do nonzero work",
+      "trigger": "learner assigns work to a force perpendicular to the displacement",
+      "feedback": "Only the force component along the displacement does work. A force perpendicular to the motion does zero work because the dot product is zero.",
+      "rail_action": "explain"
+    }
+  ]
+}

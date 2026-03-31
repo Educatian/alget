@@ -1,34 +1,93 @@
 {
-    "problems": [
+  "problems": [
+    {
+      "id": "work_zero_concept",
+      "type": "multiple_choice",
+      "stem": "A force acts exactly perpendicular to the displacement of a particle. How much work does that force do?",
+      "options": [
+        "Positive work",
+        "Negative work",
+        "Zero work",
+        "The work cannot be found without mass"
+      ],
+      "correct_index": 2,
+      "explanation": "Work depends on the force component along the displacement. A perpendicular force has zero dot product with the displacement and therefore does zero work."
+    },
+    {
+      "id": "kinetic_energy_numeric",
+      "type": "numeric",
+      "stem": "A 6 kg cart moves at 4 m/s. Find its kinetic energy.",
+      "final_answer": {
+        "value": 48,
+        "unit": "J",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "friction_work_numeric",
+      "type": "numeric",
+      "stem": "A 10 N kinetic-friction force acts over 5 m opposite the motion. Find the work done by friction.",
+      "final_answer": {
+        "value": -50,
+        "unit": "J",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "work_energy_speed",
+      "type": "numeric",
+      "stem": "A 3 kg particle starts from rest and receives 24 J of net work. Find its final speed.",
+      "final_answer": {
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "incline_energy_steps",
+      "type": "step_based",
+      "stem": "A 4 kg block slides down a rough incline and drops 2 m vertically while friction does -12 J of work. Starting from rest, find the final speed.",
+      "steps": [
         {
-            "id": "work_basic",
-            "type": "numeric",
-            "stem": "A 50 N force pushes a box 4 m at 60° to the horizontal. Find the work done.",
-            "final_answer": {
-                "value": 100,
-                "unit": "J",
-                "tolerance": 1
-            }
+          "step_id": 1,
+          "description": "Compute the gravitational potential-energy drop mgh.",
+          "expected_value": 78.48,
+          "unit": "J",
+          "tolerance": 0.2
         },
         {
-            "id": "kinetic_energy",
-            "type": "numeric",
-            "stem": "A 10 kg object moves at 6 m/s. Find its kinetic energy.",
-            "final_answer": {
-                "value": 180,
-                "unit": "J",
-                "tolerance": 1
-            }
+          "step_id": 2,
+          "description": "Add the non-conservative work to get the final kinetic energy.",
+          "expected_value": 66.48,
+          "unit": "J",
+          "tolerance": 0.2
         },
         {
-            "id": "work_energy_theorem",
-            "type": "numeric",
-            "stem": "A 2 kg ball drops 5 m from rest. Find its speed at the bottom (use g = 10 m/s²).",
-            "final_answer": {
-                "value": 10,
-                "unit": "m/s",
-                "tolerance": 0.1
-            }
+          "step_id": 3,
+          "description": "Solve 1/2 m v^2 = 66.48 for v.",
+          "expected_value": 5.76,
+          "unit": "m/s",
+          "tolerance": 0.1
         }
-    ]
+      ],
+      "final_answer": {
+        "value": 5.76,
+        "unit": "m/s",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "conservative_force_concept",
+      "type": "multiple_choice",
+      "stem": "Which force below is conservative in the idealized mechanical model used in this course?",
+      "options": [
+        "Kinetic friction",
+        "Dry drag",
+        "Gravity",
+        "Rolling resistance"
+      ],
+      "correct_index": 2,
+      "explanation": "Gravity is conservative because its work depends only on the change in position, not on the path taken between the two states."
+    }
+  ]
 }

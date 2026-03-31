@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0202",
+  "misconceptions": [
+    {
+      "id": "development_equals_coding_only",
+      "pattern": "scope_error",
+      "description": "Treating development as software programming only",
+      "trigger": "learner excludes writing, storyboarding, media production, or assessment authoring from development work",
+      "feedback": "Development includes any activity that turns the design blueprint into usable instructional assets, including text, media, interactions, assessment items, and prototypes.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "implementation_is_just_publish_button",
+      "pattern": "oversimplification",
+      "description": "Reducing implementation to uploading the course",
+      "trigger": "learner ignores facilitator preparation, delivery logistics, or LMS setup",
+      "feedback": "Implementation is broader than publishing. It includes rollout conditions, facilitator readiness, communication, access, and platform reliability.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "prototype_means_finished_design",
+      "pattern": "iteration_error",
+      "description": "Assuming a prototype should already behave like the final polished course",
+      "trigger": "learner rejects rough prototypes because they are incomplete",
+      "feedback": "A prototype is valuable because it is unfinished. It helps teams surface design issues early before full production cost is committed.",
+      "rail_action": "practice"
+    }
+  ]
+}

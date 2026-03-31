@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "constructivism_meaning_making",
+      "type": "multiple_choice",
+      "concept_id": "constructivism",
+      "stem": "Which statement best reflects a constructivist view of learning?",
+      "options": [
+        "Learning is the passive transfer of facts from expert to novice.",
+        "Learning happens when reinforcement schedules are perfectly timed.",
+        "Learning happens as learners connect new ideas to prior knowledge and revise their mental models.",
+        "Learning is strongest when all ambiguity is removed before instruction begins."
+      ],
+      "correct_index": 2,
+      "explanation": "Constructivism emphasizes active meaning-making by connecting new experiences to prior schemas."
+    },
+    {
+      "id": "zpd_identification",
+      "type": "multiple_choice",
+      "concept_id": "zone_of_proximal_development",
+      "stem": "What is the Zone of Proximal Development (ZPD)?",
+      "options": [
+        "Tasks a learner can already do automatically alone",
+        "Tasks a learner cannot do, even with expert help",
+        "Tasks a learner can complete with guidance or collaboration but not yet independently",
+        "Any task that includes a quiz at the end"
+      ],
+      "correct_index": 2,
+      "explanation": "The ZPD is the sweet spot where guided support makes progress possible without overwhelming the learner."
+    },
+    {
+      "id": "scaffolding_function",
+      "type": "multiple_choice",
+      "concept_id": "scaffolding",
+      "stem": "What is the main purpose of scaffolding in a constructivist learning environment?",
+      "options": [
+        "To permanently simplify the task so the learner never struggles",
+        "To provide temporary support that helps the learner operate within the ZPD",
+        "To replace learner thinking with instructor explanations",
+        "To punish incorrect reasoning before peer discussion begins"
+      ],
+      "correct_index": 1,
+      "explanation": "Scaffolding is temporary support designed to help learners perform tasks they cannot yet complete independently."
+    },
+    {
+      "id": "active_learning_design",
+      "type": "multiple_choice",
+      "concept_id": "active_learning",
+      "stem": "Which course design is most aligned with active learning?",
+      "options": [
+        "A lecture deck followed by no learner action until the final exam",
+        "A case-based sequence where learners predict, discuss, test, and revise ideas",
+        "A memorization-only worksheet with no explanation or reflection",
+        "A module that hides objectives so learners stay surprised"
+      ],
+      "correct_index": 1,
+      "explanation": "Active learning requires learners to do something cognitively meaningful with the content, not just receive it."
+    }
+  ]
+}

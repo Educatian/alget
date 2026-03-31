@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0101",
+  "misconceptions": [
+    {
+      "id": "porous_means_weak",
+      "pattern": "geometry_strength_error",
+      "description": "Assuming porous structures are automatically weak",
+      "trigger": "learner equates empty space with structural failure",
+      "feedback": "Cellular solids can remain mechanically efficient because geometry channels loads through walls, ribs, and repeating cells rather than relying only on bulk mass.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "less_material_means_no_tradeoff",
+      "pattern": "optimization_error",
+      "description": "Assuming weight reduction has no mechanical cost",
+      "trigger": "learner removes material without discussing stiffness, buckling, or fatigue limits",
+      "feedback": "Biomimetic lightweighting is a trade study. Removing material lowers mass, but it can also reduce stiffness, durability, or impact tolerance if the geometry is not tuned carefully.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "copy_nature_exactly",
+      "pattern": "biomimicry_transfer_error",
+      "description": "Treating biomimicry as literal copying of natural form",
+      "trigger": "learner proposes copying honeycomb visually without abstracting the structural principle",
+      "feedback": "Engineering biomimicry usually abstracts a principle such as load distribution or material efficiency rather than copying nature at full scale without modification.",
+      "rail_action": "practice"
+    }
+  ]
+}

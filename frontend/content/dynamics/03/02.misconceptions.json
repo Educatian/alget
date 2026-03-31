@@ -1,0 +1,37 @@
+{
+  "section_id": "dynamics_0302",
+  "misconceptions": [
+    {
+      "id": "force_used_as_moment",
+      "pattern": "torque_error",
+      "description": "Using force directly where a moment is required",
+      "trigger": "learner substitutes F into sum M = I alpha without multiplying by a moment arm",
+      "feedback": "Rotation responds to moment, not force alone. Compute the turning effect first with M = F r_perp before using the rotational equation.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "wrong_inertia_axis",
+      "pattern": "reference_axis_error",
+      "description": "Using a centroidal inertia about the wrong axis",
+      "trigger": "learner inserts a tabulated I_G value for a displaced axis problem",
+      "feedback": "Tabulated mass moments of inertia are often given about the centroidal axis. If the actual axis is elsewhere, shift it with the parallel-axis theorem.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "translation_rotation_blend",
+      "pattern": "equation_selection",
+      "description": "Mixing translational acceleration and angular acceleration in the same equation without a kinematic link",
+      "trigger": "learner writes sum F = I alpha or sum M = m a_G",
+      "feedback": "Keep the roles separate first: forces govern center-of-mass translation, moments govern rotation. Link a_G and alpha only when a geometric or rolling constraint is provided.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "parallel_axis_sign",
+      "pattern": "formula_error",
+      "description": "Subtracting md^2 instead of adding it in the parallel-axis theorem",
+      "trigger": "learner computes I = I_G - m d^2",
+      "feedback": "Moving the axis away from the center of mass increases the moment of inertia. The correct relation is I = I_G + m d^2.",
+      "rail_action": "explain"
+    }
+  ]
+}

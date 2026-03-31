@@ -1,0 +1,37 @@
+{
+  "section_id": "dynamics_0203",
+  "misconceptions": [
+    {
+      "id": "momentum_scalar_only",
+      "pattern": "vector_error",
+      "description": "Treating momentum as a magnitude-only quantity",
+      "trigger": "learner ignores sign or direction in a one-dimensional collision",
+      "feedback": "Momentum is a vector. In one-dimensional problems, the sign convention carries that direction information. Leftward and rightward velocities cannot be added as if they were all positive.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ke_always_conserved",
+      "pattern": "collision_model_error",
+      "description": "Assuming kinetic energy is conserved in every collision",
+      "trigger": "learner uses both momentum and kinetic-energy conservation in an inelastic collision",
+      "feedback": "Momentum is conserved in isolated collisions, but kinetic energy is conserved only in elastic collisions. In a perfectly inelastic collision, the bodies stick and kinetic energy decreases.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "external_impulse_ignored",
+      "pattern": "system_boundary_error",
+      "description": "Using momentum conservation without checking the external impulse assumption",
+      "trigger": "learner applies conservation of momentum to a system with significant external forces over the interval",
+      "feedback": "Conservation of momentum is a system statement that requires negligible external impulse. Start by defining the system and checking whether the collision interval is short enough for external effects to be ignored.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "impulse_equals_force_only",
+      "pattern": "time_integration_error",
+      "description": "Confusing impulse with force alone",
+      "trigger": "learner omits the time interval or the area-under-curve idea",
+      "feedback": "Impulse measures the accumulated effect of force over time. Use J = integral(F dt), or J = F_avg delta t when an average force is appropriate.",
+      "rail_action": "explain"
+    }
+  ]
+}

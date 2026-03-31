@@ -1,24 +1,60 @@
 {
-    "problems": [
-        {
-            "id": "sections_method",
-            "type": "numeric",
-            "stem": "A truss is cut through 3 members. The vertical equilibrium of the left section requires the vertical component of a diagonal member to balance a 500 N reaction. If the diagonal makes 45° with horizontal, find the total force in that diagonal member.",
-            "hints": [
-                "Vertical component = F × sin(45°)",
-                "F × sin(45°) = 500 N"
-            ],
-            "final_answer": {
-                "value": 707.1,
-                "unit": "N",
-                "tolerance": 5
-            }
-        },
-        {
-            "id": "moment_about_point",
-            "type": "conceptual",
-            "stem": "When using the method of sections, why is it advantageous to take moments about a point where two unknown forces intersect?",
-            "expected_answer": "Taking moments about this point eliminates both unknown forces from the moment equation, leaving only one unknown that can be solved directly."
-        }
-    ]
+  "problems": [
+    {
+      "id": "statics_sections_best_use",
+      "type": "multiple_choice",
+      "concept_id": "method_of_sections",
+      "stem": "When is the method of sections usually preferable to the method of joints?",
+      "options": [
+        "When you need every member force in the truss",
+        "When you need only one or a few specific member forces",
+        "When support reactions are unknown",
+        "When the truss has no joints"
+      ],
+      "correct_index": 1,
+      "explanation": "The method of sections is most efficient when you want selected member forces without solving the entire truss."
+    },
+    {
+      "id": "statics_sections_cut_limit",
+      "type": "multiple_choice",
+      "concept_id": "cutting_plane",
+      "stem": "Why is a cut through more than three unknown members usually avoided in a planar truss section analysis?",
+      "options": [
+        "Because a rigid-body section still gives only three independent equilibrium equations in 2D",
+        "Because trusses cannot be cut through diagonal members",
+        "Because the method of sections ignores moments",
+        "Because all cut members must be zero-force members"
+      ],
+      "correct_index": 0,
+      "explanation": "A planar rigid-body section gives three usable equilibrium equations, so more than three unknown cut-member forces generally makes the section unsolvable directly."
+    },
+    {
+      "id": "statics_sections_moment_point",
+      "type": "multiple_choice",
+      "concept_id": "internal_forces",
+      "stem": "What is the main purpose of choosing a smart moment center in the method of sections?",
+      "options": [
+        "To remove known loads from the problem",
+        "To eliminate selected unknown cut-member forces from the moment equation",
+        "To avoid drawing the free-body diagram",
+        "To convert the truss into a particle"
+      ],
+      "correct_index": 1,
+      "explanation": "A strategically chosen moment center can make one target force solvable directly by eliminating others."
+    },
+    {
+      "id": "statics_sections_support_reactions",
+      "type": "multiple_choice",
+      "concept_id": "method_of_sections",
+      "stem": "What should usually be solved before applying the method of sections to a truss?",
+      "options": [
+        "The color code of all members",
+        "Support reactions for the whole truss",
+        "Buckling of every compression member",
+        "Only the zero-force members"
+      ],
+      "correct_index": 1,
+      "explanation": "Support reactions are external loads on the cut section, so they usually need to be known first."
+    }
+  ]
 }

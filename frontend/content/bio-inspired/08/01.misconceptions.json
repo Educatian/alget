@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0801",
+  "misconceptions": [
+    {
+      "id": "swarm_means_chaos",
+      "pattern": "emergence_error",
+      "description": "Assuming decentralized systems are automatically disorganized",
+      "trigger": "learner describes swarm systems as uncontrolled chaos",
+      "feedback": "Swarm systems can produce coherent behavior because local rules and feedback signals generate organized emergent patterns.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "stigmergy_is_direct_chat",
+      "pattern": "communication_error",
+      "description": "Confusing stigmergy with explicit peer-to-peer messaging",
+      "trigger": "learner explains stigmergy as direct command exchange",
+      "feedback": "Stigmergy is indirect coordination through environmental modification or shared traces, not necessarily direct conversation between agents.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "more_agents_equals_better_always",
+      "pattern": "scalability_error",
+      "description": "Assuming adding more agents always improves system quality",
+      "trigger": "learner recommends larger swarms without considering sensing, interference, or control limits",
+      "feedback": "Scaling a swarm changes communication load, interference, and task efficiency. More agents can help, but only when the local rules and environment support that scale.",
+      "rail_action": "practice"
+    }
+  ]
+}

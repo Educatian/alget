@@ -1,59 +1,64 @@
 {
-    "problems": [
-        {
-            "id": "p001",
-            "type": "numeric",
-            "difficulty": "medium",
-            "statement": "A 50 kg object is suspended by a single cable at an angle of 45° from horizontal. Calculate the tension in the cable.",
-            "givens": {
-                "mass": "50 kg",
-                "angle": "45°",
-                "g": "9.81 m/s²"
-            },
-            "solver_id": "statics_tension_inclined",
-            "expected_value": 693.67,
-            "expected_unit": "N",
-            "tolerance": 0.02,
-            "require_unit": true,
-            "hint": "Use ΣFy = 0. The vertical component of tension (T·sin(45°)) must equal the weight (mg).",
-            "steps": [
-                {
-                    "step_index": 1,
-                    "description": "Calculate the weight W = mg",
-                    "expected_value": 490.5,
-                    "expected_unit": "N"
-                },
-                {
-                    "step_index": 2,
-                    "description": "Apply ΣFy = 0: T·sin(45°) = W",
-                    "expected_value": 693.67,
-                    "expected_unit": "N"
-                }
-            ]
-        },
-        {
-            "id": "p002",
-            "type": "numeric",
-            "difficulty": "easy",
-            "statement": "A 25 kg lamp hangs vertically from a single cable. What is the tension in the cable?",
-            "givens": {
-                "mass": "25 kg",
-                "g": "9.81 m/s²"
-            },
-            "solver_id": "statics_tension_vertical",
-            "expected_value": 245.25,
-            "expected_unit": "N",
-            "tolerance": 0.01,
-            "require_unit": true,
-            "hint": "For a vertically hanging object, the tension equals the weight.",
-            "steps": [
-                {
-                    "step_index": 1,
-                    "description": "Calculate T = mg",
-                    "expected_value": 245.25,
-                    "expected_unit": "N"
-                }
-            ]
-        }
-    ]
+  "problems": [
+    {
+      "id": "statics_eq_vertical_tension",
+      "type": "numeric",
+      "difficulty": "easy",
+      "statement": "A 25 kg lamp hangs vertically from a single cable. What is the tension in the cable?",
+      "givens": {
+        "mass": "25 kg",
+        "g": "9.81 m/s^2"
+      },
+      "expected_value": 245.25,
+      "expected_unit": "N",
+      "tolerance": 0.05,
+      "require_unit": true,
+      "hint": "For a vertically hanging object in equilibrium, tension equals weight."
+    },
+    {
+      "id": "statics_eq_inclined_tension",
+      "type": "numeric",
+      "difficulty": "medium",
+      "statement": "A 50 kg object is suspended by a cable at 45 degrees from the horizontal. Calculate the tension in the cable.",
+      "givens": {
+        "mass": "50 kg",
+        "angle": "45 deg",
+        "g": "9.81 m/s^2"
+      },
+      "expected_value": 693.67,
+      "expected_unit": "N",
+      "tolerance": 0.1,
+      "require_unit": true,
+      "hint": "Use vertical equilibrium: only the vertical component of the cable tension supports the weight."
+    },
+    {
+      "id": "statics_eq_component_rule",
+      "type": "multiple_choice",
+      "difficulty": "easy",
+      "stem": "For a particle in 2D equilibrium, which equations must both be satisfied?",
+      "options": [
+        "Only sum M = 0",
+        "sum Fx = 0 and sum Fy = 0",
+        "T = W in every problem",
+        "Only the largest force matters"
+      ],
+      "correct_index": 1,
+      "explanation": "In planar particle equilibrium, the net force must be zero in both coordinate directions."
+    },
+    {
+      "id": "statics_eq_second_vertical",
+      "type": "numeric",
+      "difficulty": "easy",
+      "statement": "A 12 kg sign hangs at rest from a vertical cable. Calculate the cable tension.",
+      "givens": {
+        "mass": "12 kg",
+        "g": "9.81 m/s^2"
+      },
+      "expected_value": 117.72,
+      "expected_unit": "N",
+      "tolerance": 0.05,
+      "require_unit": true,
+      "hint": "For a hanging body at rest, cable tension balances the weight."
+    }
+  ]
 }

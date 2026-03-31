@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0302",
+  "misconceptions": [
+    {
+      "id": "start_any_joint",
+      "pattern": "solution_strategy_error",
+      "description": "Thinking the method of joints can begin at any joint regardless of unknown count",
+      "trigger": "learner starts at a joint with three or more unknown member forces",
+      "feedback": "In planar trusses, each joint gives only two equilibrium equations, so you should begin with a joint having no more than two unknown member forces.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "negative_force_means_wrong_math",
+      "pattern": "sign_interpretation_error",
+      "description": "Treating a negative member force as a mistake instead of a compression result",
+      "trigger": "learner discards a negative answer as invalid",
+      "feedback": "If you assumed tension first, a negative value usually means the member is actually in compression.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "skip_support_reactions",
+      "pattern": "setup_error",
+      "description": "Trying to solve joints before determining support reactions",
+      "trigger": "learner omits support reactions from the starting joint analysis",
+      "feedback": "Support reactions are external forces on the truss and must usually be found first so the initial joint equations are solvable.",
+      "rail_action": "practice"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0401",
+  "misconceptions": [
+    {
+      "id": "motivation_equals_fun_only",
+      "pattern": "engagement_error",
+      "description": "Treating motivation as entertainment alone",
+      "trigger": "learner focuses only on making the course flashy or amusing",
+      "feedback": "Motivation is broader than fun. ARCS includes attention, relevance, confidence, and satisfaction, all of which shape sustained engagement.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "extrinsic_rewards_always_good",
+      "pattern": "motivation_error",
+      "description": "Assuming more external rewards always increase motivation",
+      "trigger": "learner recommends rewards without considering intrinsic interest or autonomy",
+      "feedback": "External rewards can help in some contexts, but overuse can crowd out intrinsic motivation if learners begin to work only for the incentive.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "confidence_means_easy",
+      "pattern": "difficulty_error",
+      "description": "Assuming confidence is built by making tasks trivial",
+      "trigger": "learner equates confidence design with removing challenge altogether",
+      "feedback": "Confidence comes from achievable challenge, clear expectations, and meaningful progress, not from eliminating effort completely.",
+      "rail_action": "practice"
+    }
+  ]
+}

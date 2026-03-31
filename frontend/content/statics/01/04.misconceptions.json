@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0104",
+  "misconceptions": [
+    {
+      "id": "static_friction_always_mu_n",
+      "pattern": "formula_selection",
+      "description": "Assuming static friction always equals μsN",
+      "trigger": "learner writes Fs = μsN before checking impending motion",
+      "feedback": "Static friction is variable and adjusts up to its maximum value. Fs = μsN is only valid at impending motion.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "friction_direction_from_force",
+      "pattern": "direction_error",
+      "description": "Choosing friction direction based only on the applied force instead of impending relative motion",
+      "trigger": "learner points friction in the wrong direction on a surface or incline",
+      "feedback": "Friction opposes the actual or impending relative motion at the contact surface, not just whichever applied force looks largest.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "normal_always_equals_weight",
+      "pattern": "concept_mixup",
+      "description": "Assuming the normal force always equals the full weight",
+      "trigger": "learner sets N = mg on an incline without resolving components",
+      "feedback": "The normal force equals the component of weight perpendicular to the surface only when the geometry supports that relation.",
+      "rail_action": "practice"
+    }
+  ]
+}

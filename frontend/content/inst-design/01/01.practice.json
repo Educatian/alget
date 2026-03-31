@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "id_foundations_addie_role",
+      "type": "multiple_choice",
+      "concept_id": "instructional_design",
+      "stem": "Which description best captures the role of instructional design?",
+      "options": [
+        "Presenting information as clearly as possible without changing learner behavior",
+        "Systematically analyzing performance gaps and designing learning experiences to close them",
+        "Creating slides and videos after the learning objectives are already fixed by someone else",
+        "Selecting the newest technology so the course feels modern"
+      ],
+      "correct_index": 1,
+      "explanation": "Instructional design is the systematic process of analyzing learner needs and designing experiences that improve performance, not just packaging information."
+    },
+    {
+      "id": "id_foundations_behaviorism",
+      "type": "multiple_choice",
+      "concept_id": "behaviorism",
+      "stem": "A flashcard app gives points and celebratory sounds when a learner chooses the correct definition. Which learning theory is most directly guiding that design choice?",
+      "options": [
+        "Constructivism",
+        "Behaviorism",
+        "Cognitivism",
+        "Humanism"
+      ],
+      "correct_index": 1,
+      "explanation": "Behaviorism emphasizes stimulus, response, and reinforcement. Immediate rewards after correct actions are classic behaviorist design."
+    },
+    {
+      "id": "id_foundations_cognitivism",
+      "type": "multiple_choice",
+      "concept_id": "cognitivism",
+      "stem": "Why would a cognitivist designer break a complex procedure into smaller, sequenced steps?",
+      "options": [
+        "To increase punishment when learners fail",
+        "To maximize social conflict between peers",
+        "To manage working-memory limits and support encoding into long-term memory",
+        "To avoid defining explicit learning objectives"
+      ],
+      "correct_index": 2,
+      "explanation": "Cognitivism focuses on internal information processing. Sequencing and chunking help learners process information without overload."
+    },
+    {
+      "id": "id_foundations_constructivism",
+      "type": "multiple_choice",
+      "concept_id": "constructivism",
+      "stem": "Which instructional activity best reflects a constructivist approach?",
+      "options": [
+        "A timed memorization drill with points for speed",
+        "A lecture with no learner response until the final exam",
+        "A messy case study that learners investigate, discuss, and explain using prior experience",
+        "A one-page checklist that tells learners exactly what sentence to repeat"
+      ],
+      "correct_index": 2,
+      "explanation": "Constructivism emphasizes meaning-making through experience, interpretation, discussion, and schema revision."
+    }
+  ]
+}

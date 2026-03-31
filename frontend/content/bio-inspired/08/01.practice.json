@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_swarm_no_central_commander",
+      "type": "multiple_choice",
+      "concept_id": "swarm_intelligence",
+      "stem": "What is the defining architectural strength of swarm intelligence?",
+      "options": [
+        "Every agent waits for a central commander before acting",
+        "Useful global behavior can emerge from simple local rules",
+        "The system works only when every agent has full information",
+        "A queen node is always required for control"
+      ],
+      "correct_index": 1,
+      "explanation": "Swarm systems rely on local interaction rules that scale into coordinated collective behavior."
+    },
+    {
+      "id": "bio_stigmergy_logic",
+      "type": "multiple_choice",
+      "concept_id": "stigmergy",
+      "stem": "What is stigmergy?",
+      "options": [
+        "Direct voice communication between every pair of agents",
+        "Indirect coordination through changes in the environment",
+        "A centralized scheduling algorithm run by one master node",
+        "A method for forcing all agents into one exact path"
+      ],
+      "correct_index": 1,
+      "explanation": "Stigmergy describes coordination mediated by environmental traces such as pheromone-like markers or other shared signals."
+    },
+    {
+      "id": "bio_local_rules_reynolds",
+      "type": "multiple_choice",
+      "concept_id": "local_rules",
+      "stem": "In Reynolds-style flocking logic, which set best captures the classic local rules?",
+      "options": [
+        "Separation, alignment, and cohesion",
+        "Compression, combustion, and rotation",
+        "Navigation, taxation, and encryption",
+        "Authority, punishment, and hierarchy"
+      ],
+      "correct_index": 0,
+      "explanation": "The classic boids model is built around separation, alignment, and cohesion."
+    },
+    {
+      "id": "bio_autonomous_robotics_tradeoff",
+      "type": "multiple_choice",
+      "concept_id": "autonomous_robotics",
+      "stem": "Why might engineers choose many cheap robots over one powerful centralized robot in a disaster zone?",
+      "options": [
+        "Because distributed systems can remain functional even when many units fail",
+        "Because swarms require no sensing at all",
+        "Because centralized systems are always impossible to build",
+        "Because local rules prevent any communication between robots"
+      ],
+      "correct_index": 0,
+      "explanation": "Distributed swarms can be more robust because failure of some units does not collapse the whole mission."
+    }
+  ]
+}

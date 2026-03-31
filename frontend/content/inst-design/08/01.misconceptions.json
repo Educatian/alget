@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0801",
+  "misconceptions": [
+    {
+      "id": "ai_solves_pedagogy_automatically",
+      "pattern": "technology_solutionism",
+      "description": "Assuming AI automatically fixes weak instructional design",
+      "trigger": "learner treats advanced technology as a substitute for objectives, evaluation, and pedagogy",
+      "feedback": "AI can amplify good design, but it cannot rescue weak objectives, poor content structure, or missing evaluation by itself.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "bloom_sigma_means_replace_teachers",
+      "pattern": "interpretation_error",
+      "description": "Reading Bloom's 2 Sigma Problem as proof that humans should be removed",
+      "trigger": "learner concludes that one-to-one gains mean teachers are no longer needed",
+      "feedback": "Bloom's result highlights the value of personalized support. It does not imply that human teaching, mentoring, and judgment are obsolete.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "personalization_needs_no_audit",
+      "pattern": "evaluation_error",
+      "description": "Assuming adaptive AI feedback does not need validation or logging",
+      "trigger": "learner argues that personalized systems can be trusted without evidence or traceability",
+      "feedback": "Adaptive systems need logging, evaluation, and quality checks precisely because they personalize instruction and can fail in subtle ways.",
+      "rail_action": "practice"
+    }
+  ]
+}

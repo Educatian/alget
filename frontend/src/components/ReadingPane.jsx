@@ -56,7 +56,7 @@ export default function ReadingPane({
                     </div>
 
                     <p className="editorial-kicker">Reading Surface</p>
-                    <h2 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Warming the learning engine</h2>
+                    <h2 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Warming the Learning Engine</h2>
                     <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-[var(--ath-muted)]">
                         Since this is your first visit in a while, the backend is spinning up. This usually takes about 30 to 60 seconds.
                     </p>
@@ -119,7 +119,7 @@ export default function ReadingPane({
                             onClick={toggleBookmark}
                             className={`px-4 py-2 text-sm ${isBookmarked ? 'editorial-button' : 'editorial-button-secondary'}`}
                         >
-                            {isBookmarked ? 'Saved for review' : 'Save for later'}
+                            {isBookmarked ? 'Saved for Review' : 'Save for Later'}
                         </button>
                         <button
                             onClick={() => setShowGraph(!showGraph)}
@@ -132,7 +132,7 @@ export default function ReadingPane({
 
                 {showGraph && (
                     <div className="mt-8 animate-fade-in origin-top">
-                        <Suspense fallback={<PanelFallback label="Loading brain network..." />}>
+                        <Suspense fallback={<PanelFallback label="Loading Brain Network..." />}>
                             <KnowledgeGraph
                                 course={meta?.course || 'inst-design'}
                                 currentSectionId={sectionId}
@@ -157,7 +157,7 @@ export default function ReadingPane({
                 )}
             </header>
 
-            <Suspense fallback={<PanelFallback label="Loading reading narrative..." />}>
+            <Suspense fallback={<PanelFallback label="Loading Reading Narrative..." />}>
                 <ReadingNarrative
                     content={content}
                     sectionId={sectionId}
@@ -254,7 +254,7 @@ export default function ReadingPane({
                 </div>
             )}
 
-            <Suspense fallback={<PanelFallback label="Loading reflection tools..." />}>
+            <Suspense fallback={<PanelFallback label="Loading Reflection Tools..." />}>
                 <AffectiveReaction
                     sectionId={sectionId}
                     conceptIds={meta?.concept_ids}
@@ -263,7 +263,7 @@ export default function ReadingPane({
 
             <div className="editorial-divider my-10"></div>
 
-            <Suspense fallback={<PanelFallback label="Loading knowledge check..." />}>
+            <Suspense fallback={<PanelFallback label="Loading Knowledge Check..." />}>
                 <KnowledgeCheck
                     bioContext={content}
                     engContext={meta?.description}
@@ -277,7 +277,7 @@ export default function ReadingPane({
 
             <div className="editorial-divider my-10"></div>
 
-            <Suspense fallback={<PanelFallback label="Loading practice..." />}>
+            <Suspense fallback={<PanelFallback label="Loading Practice..." />}>
                 <PracticeBlock
                     practice={practice}
                     sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}

@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "social_learning_premise",
+      "type": "multiple_choice",
+      "concept_id": "social_learning",
+      "stem": "Which statement best captures the core premise of social constructivism?",
+      "options": [
+        "Learning is strongest when people work entirely alone",
+        "Knowledge is built through interaction, dialogue, modeling, and negotiated meaning",
+        "Learning happens only through formal lectures",
+        "Collaboration matters only after mastery is complete"
+      ],
+      "correct_index": 1,
+      "explanation": "Social constructivism emphasizes that people develop understanding through interaction, language, modeling, and shared problem solving."
+    },
+    {
+      "id": "zpd_peer_support",
+      "type": "multiple_choice",
+      "concept_id": "peer_scaffolding",
+      "stem": "Why can a slightly more knowledgeable peer be so useful in the ZPD?",
+      "options": [
+        "Because peers eliminate the need for content objectives",
+        "Because they can provide support that is close to the learner's current level of understanding",
+        "Because peers always know more than instructors",
+        "Because collaboration automatically removes all anxiety"
+      ],
+      "correct_index": 1,
+      "explanation": "Peer scaffolding can be powerful because the support is often well calibrated to the learner's current state."
+    },
+    {
+      "id": "community_of_practice",
+      "type": "multiple_choice",
+      "concept_id": "communities_of_practice",
+      "stem": "What makes a community of practice educationally powerful?",
+      "options": [
+        "It separates novices from experts at all times",
+        "It lets learners observe, participate, and gradually take on more authentic roles in a shared practice",
+        "It removes the need for feedback or reflection",
+        "It guarantees equal contribution from every member"
+      ],
+      "correct_index": 1,
+      "explanation": "Communities of practice support learning through legitimate participation, observation, and increasing responsibility in real or realistic work."
+    },
+    {
+      "id": "collaboration_design_quality",
+      "type": "multiple_choice",
+      "concept_id": "collaborative_learning",
+      "stem": "Which design move is most likely to make collaborative learning productive rather than chaotic?",
+      "options": [
+        "Telling learners to 'work together' without roles, prompts, or outputs",
+        "Providing a shared problem, clear roles, and an artifact learners must produce together",
+        "Removing all disagreement from the task",
+        "Grading only attendance and not the quality of the interaction"
+      ],
+      "correct_index": 1,
+      "explanation": "Effective collaboration usually needs structure: a meaningful task, roles, prompts, and visible output."
+    }
+  ]
+}

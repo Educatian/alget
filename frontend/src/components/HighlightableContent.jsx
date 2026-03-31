@@ -4,6 +4,16 @@ import { logHighlightCreate } from '../lib/loggingService'
 import API_BASE from '../lib/apiConfig'
 import { MessageSquarePlus, Sparkles, Highlighter, X } from 'lucide-react'
 
+function getInitials(alias = '') {
+    return alias
+        .split(' ')
+        .filter(Boolean)
+        .map((part) => part[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase() || 'R'
+}
+
 /**
  * Highlightable content wrapper with selection popup, notes, and collaborative highlights
  */
@@ -11,7 +21,8 @@ export default function HighlightableContent({
     children,
     sectionId,
     userId,
-    onAskBigAL
+    onAskBigAL,
+    presenceSummary = null
 }) {
     const containerRef = useRef(null)
     const [selectionState, setSelectionState] = useState(null)
@@ -28,6 +39,13 @@ export default function HighlightableContent({
         updateHighlightNote,
         deleteHighlight,
     } = useTextSelection({ sectionId, userId })
+
+    const livePeerCount = presenceSummary?.peers?.length || 0
+    const sameHeadingCount = presenceSummary?.sameHeadingPeers?.length || 0
+    const sameConceptCount = presenceSummary?.sameConceptPeers?.length || 0
+    const underlinePassageCount = popularHighlights.length
+    const underlineReaderCount = popularHighlights.reduce((sum, item) => sum + (item.highlight_count || 0), 0)
+    const activeHeading = presenceSummary?.activeHeading || ''
 
     // Apply highlights to DOM after content renders
     useEffect(() => {
@@ -46,6 +64,11 @@ export default function HighlightableContent({
                 parent.normalize()
             }
         })
+
+        const existingBadges = container.querySelectorAll('[data-collab-badge]')
+        existingBadges.forEach((badge) => badge.remove())
+        const existingLiveBadges = container.querySelectorAll('[data-live-presence-badge]')
+        existingLiveBadges.forEach((badge) => badge.remove())
 
         // Helper function to apply highlight
         const applyHighlight = (text, options) => {
@@ -92,7 +115,7 @@ export default function HighlightableContent({
                     mark.setAttribute('data-highlight', type)
                     if (highlightId) mark.setAttribute('data-highlight-id', String(highlightId))
                     if (note) mark.setAttribute('data-note', note)
-                    mark.title = title || (note ? `📝 ${note}` : '')
+                    mark.title = title || note || ''
                     mark.textContent = match
 
                     // Click handler
@@ -106,7 +129,19 @@ export default function HighlightableContent({
 
                     // Hover for notes
                     if (onHover) {
-                        mark.addEventListener('mouseenter', () => onHover({ id: highlightId, note, text, isPeer: type === 'peer' }))
+                        mark.addEventListener('mouseenter', () => {
+                            const rect = mark.getBoundingClientRect()
+                            onHover({
+                                id: highlightId,
+                                note,
+                                text,
+                                isPeer: type === 'peer',
+                                isPopular: type === 'popular',
+                                label: type === 'popular' && count ? `${count} readers highlighted this passage` : null,
+                                x: rect.left + rect.width / 2,
+                                y: rect.top - 10
+                            })
+                        })
                         mark.addEventListener('mouseleave', () => onHover(null))
                     }
 
@@ -115,8 +150,8 @@ export default function HighlightableContent({
                     // Add count badge for popular highlights
                     if (count && count >= 2) {
                         const badge = document.createElement('span')
-                        badge.className = 'absolute -top-2 -right-2 bg-blue-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center'
-                        badge.textContent = count
+                        badge.className = 'absolute -top-1.5 -right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full border border-white/90 bg-[rgba(15,81,103,0.82)] px-1 text-[9px] font-bold text-white shadow-sm'
+                        badge.textContent = count > 9 ? '9+' : String(count)
                         wrapper.appendChild(badge)
                     }
 
@@ -124,6 +159,41 @@ export default function HighlightableContent({
                     if (after) fragment.appendChild(document.createTextNode(after))
 
                     textNode.parentNode.replaceChild(fragment, textNode)
+
+                    if (type === 'popular' && count) {
+                        const hostBlock = wrapper.closest('p, li, blockquote')
+                        if (hostBlock) {
+                            hostBlock.classList.add('relative')
+                            const existingBadge = hostBlock.querySelector('[data-collab-badge]')
+                            if (existingBadge) {
+                                const currentCount = Number(existingBadge.getAttribute('data-reader-count') || '0')
+                                const nextCount = currentCount + count
+                                existingBadge.setAttribute('data-reader-count', String(nextCount))
+                                existingBadge.textContent = nextCount > 9 ? '9+' : String(nextCount)
+                                existingBadge.setAttribute('title', `${nextCount} readers highlighted this passage`)
+                            } else {
+                                const badge = document.createElement('button')
+                                badge.type = 'button'
+                                badge.className = 'absolute -left-8 top-1.5 hidden h-5 min-w-5 items-center justify-center rounded-full border border-[rgba(15,81,103,0.12)] bg-[rgba(255,255,255,0.92)] px-1.5 text-[10px] font-bold text-[var(--ath-primary)] shadow-sm md:flex'
+                                badge.setAttribute('data-collab-badge', 'popular')
+                                badge.setAttribute('data-reader-count', String(count))
+                                badge.setAttribute('title', `${count} readers highlighted this passage`)
+                                badge.textContent = count > 9 ? '9+' : String(count)
+                                badge.addEventListener('mouseenter', () => {
+                                    const rect = badge.getBoundingClientRect()
+                                    setHoveredHighlight({
+                                        x: rect.left + rect.width / 2,
+                                        y: rect.top - 10,
+                                        label: `${count} readers highlighted this passage`,
+                                        note: null,
+                                        isPopular: true
+                                    })
+                                })
+                                badge.addEventListener('mouseleave', () => setHoveredHighlight(null))
+                                hostBlock.appendChild(badge)
+                            }
+                        }
+                    }
                 }
             })
         }
@@ -134,7 +204,7 @@ export default function HighlightableContent({
                 const isAI = ph.user_id && ph.user_id.startsWith('ai_peer');
                 applyHighlight(ph.text_content, {
                     className: `bg-green-100/70 border-b-2 border-green-300 rounded px-0.5 cursor-help`,
-                    title: ph.note ? `${isAI ? '🤖 AI Peer' : '🧑‍🎓 Peer'} Note` : 'Peer Highlight',
+                    title: ph.note ? `${isAI ? 'AI peer note' : 'Peer note'}` : 'Peer highlight',
                     type: 'peer',
                     highlightId: ph.id,
                     note: ph.note,
@@ -147,12 +217,13 @@ export default function HighlightableContent({
         // Apply popular highlights (blue underline)
         popularHighlights.forEach(ph => {
             applyHighlight(ph.text_content, {
-                className: 'bg-blue-50 border-b-2 border-blue-400 rounded px-0.5 cursor-help',
-                title: `👥 ${ph.highlight_count} people highlighted this`,
+                className: 'bg-[rgba(200,226,236,0.22)] border-b-2 border-[rgba(15,81,103,0.55)] rounded px-0.5 cursor-help transition-colors hover:bg-[rgba(200,226,236,0.35)]',
+                title: `${ph.highlight_count} readers highlighted this passage`,
                 type: 'popular',
                 count: ph.highlight_count,
                 highlightId: null,
-                onClick: null
+                onClick: null,
+                onHover: setHoveredHighlight
             })
         })
 
@@ -160,7 +231,7 @@ export default function HighlightableContent({
         highlights.forEach(h => {
             applyHighlight(h.text_content, {
                 className: `bg-yellow-200 rounded px-0.5 cursor-pointer hover:bg-yellow-300 transition-colors ${h.note ? 'border-b-2 border-yellow-500' : ''}`,
-                title: h.note ? `📝 ${h.note}\n(Click to edit)` : 'Click to remove or add note',
+                title: h.note ? `${h.note} (click to edit)` : 'Click to remove or add a note',
                 type: 'user',
                 highlightId: h.id,
                 note: h.note,
@@ -172,7 +243,7 @@ export default function HighlightableContent({
                         setShowNoteInput(true)
                     } else {
                         // Show options
-                        const action = confirm('Press OK to delete highlight, or Cancel to add a note')
+                        const action = confirm('Press OK to delete this highlight, or Cancel to add a note.')
                         if (action) {
                             deleteHighlight(id)
                         } else {
@@ -185,7 +256,56 @@ export default function HighlightableContent({
                 onHover: setHoveredHighlight
             })
         })
-    }, [highlights, peerHighlights, popularHighlights, children, deleteHighlight])
+
+        if (sameHeadingCount > 0) {
+            const headings = Array.from(container.querySelectorAll('h1, h2, h3, h4'))
+            const normalizedActiveHeading = activeHeading.trim().toLowerCase()
+            const liveHost = headings.find((headingNode) => (
+                normalizedActiveHeading &&
+                headingNode.textContent?.trim().toLowerCase() === normalizedActiveHeading
+            )) || headings[0] || container.querySelector('p')
+
+            if (liveHost) {
+                const badge = document.createElement('button')
+                badge.type = 'button'
+                badge.className = 'ml-3 inline-flex translate-y-[-0.1rem] items-center gap-2 rounded-full border border-[rgba(15,81,103,0.12)] bg-[rgba(255,255,255,0.82)] px-2.5 py-1 align-middle text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-primary)] shadow-sm backdrop-blur-xl'
+                badge.setAttribute('data-live-presence-badge', 'heading')
+
+                const pulse = document.createElement('span')
+                pulse.className = 'inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse'
+                badge.appendChild(pulse)
+
+                const stack = document.createElement('span')
+                stack.className = 'flex items-center gap-1'
+                presenceSummary.sameHeadingPeers.slice(0, 3).forEach((peer) => {
+                    const avatar = document.createElement('span')
+                    avatar.className = `inline-block h-2.5 w-2.5 rounded-full border border-white/80 bg-linear-to-br ${peer.colorToken || 'from-slate-500 to-slate-400'} shadow-sm`
+                    stack.appendChild(avatar)
+                })
+                badge.appendChild(stack)
+
+                const label = document.createElement('span')
+                label.textContent = sameHeadingCount === 1 ? '1 here' : `${sameHeadingCount} here`
+                badge.appendChild(label)
+
+                badge.addEventListener('mouseenter', () => {
+                    const rect = badge.getBoundingClientRect()
+                    const aliasPreview = presenceSummary.sameHeadingPeers.slice(0, 3).map((peer) => peer.alias).join(', ')
+                    const remainder = sameHeadingCount > 3 ? ` +${sameHeadingCount - 3} more` : ''
+                    setHoveredHighlight({
+                        x: rect.left + rect.width / 2,
+                        y: rect.top - 10,
+                        label: `${sameHeadingCount} reader${sameHeadingCount === 1 ? '' : 's'} in this passage`,
+                        note: `${aliasPreview}${remainder}`,
+                        isPopular: true
+                    })
+                })
+                badge.addEventListener('mouseleave', () => setHoveredHighlight(null))
+
+                liveHost.appendChild(badge)
+            }
+        }
+    }, [activeHeading, children, deleteHighlight, highlights, peerHighlights, popularHighlights, presenceSummary, sameHeadingCount])
 
     // Ref to persist the selected text even after browser selection clears
     const selectedTextRef = useRef(null)
@@ -305,7 +425,7 @@ export default function HighlightableContent({
     // Export highlights as Markdown
     const exportNotes = () => {
         if (highlights.length === 0) {
-            alert('No highlights to export!')
+            alert('No highlights to export yet.')
             return
         }
 
@@ -313,7 +433,7 @@ export default function HighlightableContent({
             `# Highlights from ${sectionId}`,
             `*Exported on ${new Date().toLocaleDateString()}*\n`,
             ...highlights.map((h, i) =>
-                `## Highlight ${i + 1}\n> ${h.text_content}\n${h.note ? `\n📝 **Note:** ${h.note}\n` : ''}`
+                `## Highlight ${i + 1}\n> ${h.text_content}\n${h.note ? `\n**Note:** ${h.note}\n` : ''}`
             )
         ].join('\n')
 
@@ -328,6 +448,58 @@ export default function HighlightableContent({
 
     return (
         <div ref={containerRef} className="relative select-text">
+            {(livePeerCount > 0 || underlinePassageCount > 0 || presenceSummary?.connected) && (
+                <div className="pointer-events-none sticky top-4 z-30 mb-4 flex justify-end px-4">
+                    <div className="pointer-events-auto inline-flex max-w-full items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] px-3 py-2 shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+                        <div className="flex -space-x-2">
+                            {livePeerCount > 0 ? presenceSummary.peers.slice(0, 3).map((peer) => (
+                                <span
+                                    key={peer.key}
+                                    className={`flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-linear-to-br ${peer.colorToken || 'from-slate-500 to-slate-400'} text-[10px] font-bold text-white shadow-sm`}
+                                    title={peer.alias}
+                                >
+                                    {getInitials(peer.alias)}
+                                </span>
+                            )) : (
+                                <span className={`flex h-7 w-7 items-center justify-center rounded-full border-2 border-white text-[10px] font-bold shadow-sm ${presenceSummary?.connected ? 'bg-[var(--ath-primary)] text-white' : 'bg-slate-100 text-slate-500'}`}>
+                                    {presenceSummary?.connected ? 'L' : '0'}
+                                </span>
+                            )}
+                        </div>
+
+                        <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
+                                <span>{livePeerCount > 0 ? `${livePeerCount} live` : 'live ready'}</span>
+                                {sameHeadingCount > 0 && <span>{sameHeadingCount} in this passage</span>}
+                                {sameConceptCount > 0 && <span>{sameConceptCount} on this concept</span>}
+                            </div>
+                            <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-[var(--ath-muted)]">
+                                <span className="inline-flex items-center gap-1">
+                                    <span className="inline-block h-[2px] w-4 rounded-full bg-[var(--ath-primary)]" />
+                                    {underlinePassageCount > 0
+                                        ? `${underlineReaderCount} shared underlines across ${underlinePassageCount} passages`
+                                        : 'No shared underlines yet'}
+                                </span>
+                                {sameHeadingCount > 0 && (
+                                    <span className="inline-flex items-center gap-1.5">
+                                        <span className="flex items-center gap-1">
+                                            {presenceSummary.sameHeadingPeers.slice(0, 3).map((peer) => (
+                                                <span
+                                                    key={peer.key}
+                                                    className={`inline-block h-2 w-2 rounded-full bg-linear-to-br ${peer.colorToken || 'from-slate-500 to-slate-400'}`}
+                                                    title={peer.alias}
+                                                />
+                                            ))}
+                                        </span>
+                                        Reading this heading now
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {children}
 
             {/* Selection Popup */}
@@ -421,9 +593,22 @@ export default function HighlightableContent({
             )}
 
             {/* Note Tooltip on Hover */}
-            {hoveredHighlight?.note && (
-                <div className="fixed z-50 bg-yellow-50 border border-yellow-300 rounded-lg shadow-lg p-3 max-w-xs text-sm">
-                    <p className="text-gray-700">{hoveredHighlight.note}</p>
+            {(hoveredHighlight?.note || hoveredHighlight?.label) && (
+                <div
+                    className="pointer-events-none fixed z-50 max-w-xs rounded-xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.96)] p-3 text-sm shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-xl"
+                    style={{
+                        left: hoveredHighlight?.x ? Math.max(12, hoveredHighlight.x - 120) : 12,
+                        top: hoveredHighlight?.y ? Math.max(12, hoveredHighlight.y - 56) : 12
+                    }}
+                >
+                    {hoveredHighlight?.label && (
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--ath-primary)]">
+                            {hoveredHighlight.label}
+                        </p>
+                    )}
+                    {hoveredHighlight?.note && (
+                        <p className={`text-[var(--ath-muted)] ${hoveredHighlight?.label ? 'mt-2' : ''}`}>{hoveredHighlight.note}</p>
+                    )}
                 </div>
             )}
 
@@ -435,12 +620,12 @@ export default function HighlightableContent({
                             onClick={exportNotes}
                             className="bg-white text-gray-700 px-3 py-2 rounded-lg shadow-md text-xs border border-gray-200 hover:bg-gray-50 flex items-center gap-1"
                         >
-                            📥 Export ({highlights.length})
+                            Export ({highlights.length})
                         </button>
                     )}
                     {popularHighlights.length > 0 && (
                         <div className="bg-blue-50 text-blue-700 px-3 py-2 rounded-lg shadow-md text-xs border border-blue-200">
-                            👥 {popularHighlights.length} popular
+                            {popularHighlights.length} popular
                         </div>
                     )}
                 </div>

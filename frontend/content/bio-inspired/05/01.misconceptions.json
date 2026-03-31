@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0501",
+  "misconceptions": [
+    {
+      "id": "all_color_is_pigment",
+      "pattern": "optics_mechanism_error",
+      "description": "Assuming all visible color comes from chemical pigment",
+      "trigger": "learner explains Morpho coloration only through dye chemistry",
+      "feedback": "Many biological colors are structural. Their appearance depends on geometry, interference, scattering, and wavelength-selective reflection.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "copy_blue_paint_only",
+      "pattern": "biomimicry_transfer_error",
+      "description": "Copying the visible hue instead of the optical architecture",
+      "trigger": "learner proposes matching only the final color without discussing microstructure",
+      "feedback": "The biomimetic principle is in the light-manipulating structure. Matching the visual color alone misses the mechanism.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "smaller_feature_universally_better",
+      "pattern": "scale_error",
+      "description": "Assuming finer nanostructures always improve optical performance",
+      "trigger": "learner treats smaller scale as automatically optimal",
+      "feedback": "Optical performance depends on how feature size relates to wavelength and viewing conditions. The best scale depends on the design goal.",
+      "rail_action": "practice"
+    }
+  ]
+}

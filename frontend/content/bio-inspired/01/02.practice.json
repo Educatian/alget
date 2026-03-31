@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_hierarchical_multiscale",
+      "type": "multiple_choice",
+      "concept_id": "hierarchical_structures",
+      "stem": "What makes a biological material 'hierarchical' in the engineering sense?",
+      "options": [
+        "It only operates at the atomic scale",
+        "Its performance emerges from coordinated structure across multiple scales",
+        "It contains no interfaces between layers",
+        "It is always softer than synthetic materials"
+      ],
+      "correct_index": 1,
+      "explanation": "Hierarchical materials derive performance from organized structure at several scales, from microstructure up to visible form."
+    },
+    {
+      "id": "bio_nacre_toughness",
+      "type": "multiple_choice",
+      "concept_id": "nacre",
+      "stem": "Why is nacre often used as a reference model for tough composites?",
+      "options": [
+        "Because it is a perfectly homogeneous crystal",
+        "Because layered platelets and interfaces help deflect and slow cracks",
+        "Because it depends only on high density",
+        "Because it prevents any deformation from occurring"
+      ],
+      "correct_index": 1,
+      "explanation": "Nacre's layered architecture and interfaces make crack growth more difficult, increasing toughness."
+    },
+    {
+      "id": "bio_collagen_scales",
+      "type": "multiple_choice",
+      "concept_id": "collagen",
+      "stem": "A collagen-inspired composite would most likely emphasize which design feature?",
+      "options": [
+        "Single-scale uniformity with no orientation control",
+        "Multiscale fiber organization and load sharing",
+        "Purely decorative surface patterning",
+        "Maximum brittleness for easier fracture"
+      ],
+      "correct_index": 1,
+      "explanation": "Collagen systems organize fibers across scales so that loads can be distributed and redirected rather than concentrated."
+    },
+    {
+      "id": "bio_multiscale_engineering_transfer",
+      "type": "multiple_choice",
+      "concept_id": "multiscale",
+      "stem": "Which engineering decision best reflects multiscale biomimetic thinking?",
+      "options": [
+        "Optimizing only the outer shape while ignoring internal interfaces",
+        "Designing microstructure, mesostructure, and macro-form to work together",
+        "Choosing the hardest possible material and ignoring assembly",
+        "Replacing all interfaces with a fully uniform block"
+      ],
+      "correct_index": 1,
+      "explanation": "Multiscale design treats performance as the product of coordinated structure across several levels, not one level alone."
+    }
+  ]
+}

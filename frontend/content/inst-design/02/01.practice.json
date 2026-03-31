@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "analysis_root_cause",
+      "type": "multiple_choice",
+      "concept_id": "analysis_phase",
+      "stem": "A manager says, 'Our employees keep making safety mistakes, so build a training course immediately.' What should a strong instructional designer do first?",
+      "options": [
+        "Start storyboarding the module",
+        "Run a performance analysis to determine whether the problem is actually caused by a skill gap",
+        "Choose a quiz platform",
+        "Write assessment items before defining the gap"
+      ],
+      "correct_index": 1,
+      "explanation": "The analysis phase begins by diagnosing the actual problem. Training is not the right answer if the issue is environmental, motivational, or operational."
+    },
+    {
+      "id": "design_objectives_alignment",
+      "type": "multiple_choice",
+      "concept_id": "instructional_objectives",
+      "stem": "Why are explicit learning objectives so important during the design phase?",
+      "options": [
+        "They make the course look more professional but do not affect assessment",
+        "They align content, activities, and assessment around a clearly defined target performance",
+        "They replace the need for learner analysis",
+        "They are mainly useful after the course has already launched"
+      ],
+      "correct_index": 1,
+      "explanation": "Objectives function like design constraints. They tell you what evidence of learning matters and keep instruction aligned."
+    },
+    {
+      "id": "learner_analysis_case",
+      "type": "multiple_choice",
+      "concept_id": "learner_analysis",
+      "stem": "Which question belongs most directly to learner analysis?",
+      "options": [
+        "What will the final LMS theme colors be?",
+        "What prior knowledge, constraints, and motivations does the audience bring?",
+        "Which microphone will be used for narration?",
+        "How many quiz items should be printed on paper?"
+      ],
+      "correct_index": 1,
+      "explanation": "Learner analysis focuses on the audience: what they already know, what they need, and what conditions affect their success."
+    },
+    {
+      "id": "task_analysis_function",
+      "type": "multiple_choice",
+      "concept_id": "task_analysis",
+      "stem": "What is the main purpose of task analysis in instructional design?",
+      "options": [
+        "To decompose the target performance into the knowledge, decisions, and actions learners must master",
+        "To choose background music for the course",
+        "To estimate the price of each video file",
+        "To replace all SME input with analytics"
+      ],
+      "correct_index": 0,
+      "explanation": "Task analysis breaks expert performance into teachable parts so instruction can target the real components of the work."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0102",
+  "misconceptions": [
+    {
+      "id": "hierarchical_means_complicated_only",
+      "pattern": "surface_interpretation_error",
+      "description": "Treating hierarchy as visual complexity rather than functional organization",
+      "trigger": "learner describes hierarchical materials only as 'complex looking'",
+      "feedback": "Hierarchy matters because each scale contributes a function such as crack control, stiffness distribution, or energy dissipation. It is not just a decorative pattern.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "strongest_material_single_scale",
+      "pattern": "material_selection_error",
+      "description": "Assuming one very strong layer is always better than a layered system",
+      "trigger": "learner ignores interface design and focuses only on peak material strength",
+      "feedback": "Many biomimetic systems gain toughness from interfaces and controlled failure paths, not from maximizing the strength of one uniform phase.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "nacre_is_hardness_only",
+      "pattern": "toughness_confusion",
+      "description": "Confusing toughness with hardness",
+      "trigger": "learner explains nacre only in terms of hardness",
+      "feedback": "Nacre is important because it resists crack propagation through layered architecture and interface mechanics. Toughness is about resisting fracture, not just resisting indentation.",
+      "rail_action": "practice"
+    }
+  ]
+}

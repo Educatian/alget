@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0203",
+  "misconceptions": [
+    {
+      "id": "force_balance_enough",
+      "pattern": "rigid_body_error",
+      "description": "Assuming rigid-body equilibrium only requires force balance",
+      "trigger": "learner sets sum Fx and sum Fy to zero but omits the moment equation",
+      "feedback": "A rigid body can rotate even when the net force is zero. In 2D statics, you need sum Fx = 0, sum Fy = 0, and sum M = 0.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "fixed_support_no_moment",
+      "pattern": "support_model_error",
+      "description": "Forgetting that a fixed support resists rotation",
+      "trigger": "learner models a cantilever support with force reactions only",
+      "feedback": "A fixed support in 2D provides two force components and a reaction moment. Omitting the reaction moment makes the support model incomplete.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "moment_arm_wrong_distance",
+      "pattern": "geometry_error",
+      "description": "Using a nonperpendicular distance in the moment term",
+      "trigger": "learner multiplies force by an arbitrary slanted distance",
+      "feedback": "Moments use the perpendicular distance from the reference point to the line of action of the force, not just any measured length.",
+      "rail_action": "practice"
+    }
+  ]
+}

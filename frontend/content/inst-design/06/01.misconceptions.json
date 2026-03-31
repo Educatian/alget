@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0601",
+  "misconceptions": [
+    {
+      "id": "group_work_equals_learning",
+      "pattern": "collaboration_error",
+      "description": "Assuming any group activity automatically produces deep learning",
+      "trigger": "learner equates mere group formation with effective collaborative learning",
+      "feedback": "Collaboration is not automatically effective. It becomes instructionally powerful when the task, roles, outputs, and support structures are intentionally designed.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "zpd_only_teacher_support",
+      "pattern": "support_scope_error",
+      "description": "Treating the ZPD as something only instructors can scaffold",
+      "trigger": "learner excludes peers, tools, or systems from the support structure",
+      "feedback": "The ZPD can be supported by instructors, peers, tools, and intelligent systems. What matters is calibrated assistance, not only teacher presence.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "social_learning_means_no_individual_accountability",
+      "pattern": "design_error",
+      "description": "Assuming collaborative learning should ignore individual responsibility",
+      "trigger": "learner argues that only the group product matters",
+      "feedback": "Good collaborative learning balances shared work with individual accountability, reflection, and evidence of participation.",
+      "rail_action": "practice"
+    }
+  ]
+}

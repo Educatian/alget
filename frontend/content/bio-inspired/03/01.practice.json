@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_owl_silent_flight",
+      "type": "multiple_choice",
+      "concept_id": "wing_serrations",
+      "stem": "What is the main function of owl-inspired trailing-edge serrations on a drone blade?",
+      "options": [
+        "To increase motor power output",
+        "To soften and redistribute vortex formation at the trailing edge",
+        "To completely remove drag from the blade",
+        "To make the blade heavier so it vibrates less"
+      ],
+      "correct_index": 1,
+      "explanation": "Trailing-edge serrations alter how vortices form and mix, which can reduce noise generation."
+    },
+    {
+      "id": "bio_aeroacoustics_focus",
+      "type": "multiple_choice",
+      "concept_id": "aeroacoustics",
+      "stem": "Aeroacoustics focuses on which relationship?",
+      "options": [
+        "The relationship between aerodynamic flow structures and sound generation",
+        "The relationship between battery chemistry and rotor torque",
+        "The relationship between wing color and lift",
+        "The relationship between payload mass and GPS accuracy"
+      ],
+      "correct_index": 0,
+      "explanation": "Aeroacoustics studies how aerodynamic forces and unsteady flow structures generate noise."
+    },
+    {
+      "id": "bio_microturbulence_breakdown",
+      "type": "multiple_choice",
+      "concept_id": "turbulence",
+      "stem": "Why can micro-serrations make drone noise less noticeable to humans?",
+      "options": [
+        "Because they convert all turbulence into laminar flow instantly",
+        "Because they can break larger coherent structures into smaller and less synchronized disturbances",
+        "Because they prevent the rotor from spinning above idle speed",
+        "Because they eliminate pressure differences across the blade"
+      ],
+      "correct_index": 1,
+      "explanation": "Smaller, less synchronized structures can reduce strong coherent noise signatures and shift the acoustic profile."
+    },
+    {
+      "id": "bio_propeller_transfer",
+      "type": "multiple_choice",
+      "concept_id": "drone_propellers",
+      "stem": "Which engineering decision best reflects owl-wing biomimicry?",
+      "options": [
+        "Add literal feathers to the propeller",
+        "Modify edge geometry to control flow and acoustic output",
+        "Increase blade thickness everywhere without analysis",
+        "Ignore vortex behavior and focus only on paint color"
+      ],
+      "correct_index": 1,
+      "explanation": "Biomimicry abstracts the geometric principle behind the biological effect rather than copying the organism literally."
+    }
+  ]
+}

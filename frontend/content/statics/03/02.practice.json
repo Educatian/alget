@@ -1,18 +1,60 @@
 {
-    "problems": [
-        {
-            "id": "joint_equilibrium",
-            "type": "numeric",
-            "stem": "At joint A of a truss, two members meet at angles of 30° and 60° from horizontal. A vertical reaction of 100 N acts upward. If both members are in tension, find the force in the member at 60°.",
-            "hints": [
-                "Use ΣFy = 0 with both vertical components",
-                "Consider both member forces contribute to equilibrium"
-            ],
-            "final_answer": {
-                "value": 115.5,
-                "unit": "N",
-                "tolerance": 5
-            }
-        }
-    ]
+  "problems": [
+    {
+      "id": "statics_joints_starting_joint",
+      "type": "multiple_choice",
+      "concept_id": "method_of_joints",
+      "stem": "Which joint is the best starting point for the method of joints?",
+      "options": [
+        "A joint with four unknown member forces",
+        "A joint with two or fewer unknown member forces",
+        "Any joint chosen at random",
+        "Only the center joint of the truss"
+      ],
+      "correct_index": 1,
+      "explanation": "Each joint in a planar truss gives two equilibrium equations, so you want no more than two unknown member forces."
+    },
+    {
+      "id": "statics_joint_sign_interpretation",
+      "type": "multiple_choice",
+      "concept_id": "joint_equilibrium",
+      "stem": "A member force was assumed to be in tension, but the solved value is negative. What does that mean?",
+      "options": [
+        "The member force is zero",
+        "The truss is unstable",
+        "The member is actually in compression",
+        "The equations of equilibrium do not apply"
+      ],
+      "correct_index": 2,
+      "explanation": "With the standard tension-first convention, a negative result means the actual force direction is opposite to the assumed tensile direction, so the member is in compression."
+    },
+    {
+      "id": "statics_joint_equations",
+      "type": "multiple_choice",
+      "concept_id": "joint_equilibrium",
+      "stem": "Which equilibrium equations are applied directly at an ideal truss joint in 2D?",
+      "options": [
+        "sum M = 0 only",
+        "sum Fx = 0 and sum Fy = 0",
+        "sum Fx = 0, sum Fy = 0, and sum M = 0 for the joint as a rigid body",
+        "Bernoulli's equation"
+      ],
+      "correct_index": 1,
+      "explanation": "An ideal joint is treated as a particle, so the direct equations are sum Fx = 0 and sum Fy = 0."
+    },
+    {
+      "id": "statics_member_force_reasoning",
+      "type": "multiple_choice",
+      "concept_id": "member_force",
+      "stem": "Why must support reactions usually be found before joint-by-joint analysis?",
+      "options": [
+        "Because member forces cannot exist without support reactions being exactly zero",
+        "Because the support reactions are external known loads needed in the first joint free-body diagrams",
+        "Because the method of joints replaces all supports with rollers",
+        "Because support reactions are used only for drawing diagrams, not equations"
+      ],
+      "correct_index": 1,
+      "explanation": "Support reactions act as known external forces on the first solvable joints, so they must usually be determined first."
+    }
+  ]
 }
