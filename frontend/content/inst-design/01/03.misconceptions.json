@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0103",
+  "misconceptions": [
+    {
+      "id": "constructivism_means_no_structure",
+      "pattern": "design_error",
+      "description": "Assuming constructivist learning means the designer should remove all structure",
+      "trigger": "learner claims constructivist environments should be completely open and unguided",
+      "feedback": "Constructivist learning still needs structure. The difference is that the structure supports exploration, discussion, and revision rather than one-way transmission.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "zpd_equals_difficulty_only",
+      "pattern": "concept_error",
+      "description": "Reducing the ZPD to anything that feels hard",
+      "trigger": "learner identifies impossible tasks or trivial tasks as being in the ZPD",
+      "feedback": "The ZPD is not just 'hard work.' It is the range where a learner can succeed with support but not yet alone.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "scaffolding_is_permanent",
+      "pattern": "support_error",
+      "description": "Treating scaffolding as support that should never be removed",
+      "trigger": "learner argues that supports should remain unchanged even after mastery improves",
+      "feedback": "Scaffolding is temporary. As the learner gains independence, the supports should fade so the learner takes over more of the cognitive work.",
+      "rail_action": "practice"
+    }
+  ]
+}

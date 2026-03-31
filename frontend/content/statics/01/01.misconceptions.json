@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0101",
+  "misconceptions": [
+    {
+      "id": "equilibrium_means_no_forces",
+      "pattern": "concept_mixup",
+      "description": "Assuming equilibrium means there are no forces acting at all",
+      "trigger": "learner says a body in equilibrium has zero forces on it",
+      "feedback": "Equilibrium means the vector sum of forces is zero. Individual forces can still be large as long as they balance each other.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "tension_equals_weight_always",
+      "pattern": "formula_selection",
+      "description": "Assuming cable tension always equals weight even for inclined cables",
+      "trigger": "learner sets T = mg without resolving components for an angled cable",
+      "feedback": "For an inclined cable, only the vertical component of tension balances weight. The full tension is usually larger than mg.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "sign_error_force_balance",
+      "pattern": "sign_error",
+      "description": "Losing track of positive and negative directions in force sums",
+      "trigger": "learner adds all force magnitudes as positive values",
+      "feedback": "Equilibrium equations are algebraic sums. Forces opposite the positive axis must carry negative signs.",
+      "rail_action": "practice"
+    }
+  ]
+}

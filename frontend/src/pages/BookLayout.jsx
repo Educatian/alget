@@ -394,7 +394,7 @@ export default function BookLayout({ user, onLogout }) {
                             <Popover.Trigger asChild>
                                 <button
                                     type="button"
-                                    className="hidden xl:flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-2.5 py-1.5 shadow-sm transition-all hover:bg-[var(--ath-panel)] hover:shadow-md"
+                                    className="hidden md:flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-2.5 py-1.5 shadow-sm transition-all hover:bg-[var(--ath-panel)] hover:shadow-md"
                                     aria-label="Open social presence"
                                 >
                                     <span className={`inline-flex h-2.5 w-2.5 rounded-full ${socialState.connected ? 'bg-emerald-500' : 'bg-slate-300'}`}></span>
@@ -522,6 +522,13 @@ export default function BookLayout({ user, onLogout }) {
                                     sectionId={sectionPath}
                                     userId={user?.id}
                                     onAskBigAL={(text) => setHighlightQuestion(text)}
+                                    presenceSummary={{
+                                        connected: socialState.connected,
+                                        peers: socialState.peers,
+                                        sameHeadingPeers: socialState.sameHeadingPeers,
+                                        sameConceptPeers: socialState.sameConceptPeers,
+                                        activeHeading
+                                    }}
                                 >
                                     <ReadingPane
                                         course={course}

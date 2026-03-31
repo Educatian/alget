@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_stack_effect_core",
+      "type": "multiple_choice",
+      "concept_id": "stack_effect",
+      "stem": "What is the stack effect in termite-inspired ventilation design?",
+      "options": [
+        "Heat-driven air movement caused by density differences between warmer and cooler air",
+        "A method for increasing concrete weight in foundations",
+        "A purely electrical cooling mechanism",
+        "A strategy for eliminating all airflow through a structure"
+      ],
+      "correct_index": 0,
+      "explanation": "The stack effect relies on buoyancy: warmer air rises and can drive passive ventilation if the geometry supports it."
+    },
+    {
+      "id": "bio_thermal_mass_role",
+      "type": "multiple_choice",
+      "concept_id": "thermal_mass",
+      "stem": "Why is thermal mass valuable in passive cooling systems?",
+      "options": [
+        "It stores and releases heat gradually, smoothing temperature swings",
+        "It makes buildings transparent to airflow",
+        "It eliminates the need for any design ventilation strategy",
+        "It works only in freezing climates"
+      ],
+      "correct_index": 0,
+      "explanation": "Thermal mass can buffer temperature variation by absorbing and releasing heat over time."
+    },
+    {
+      "id": "bio_passive_cooling_transfer",
+      "type": "multiple_choice",
+      "concept_id": "passive_cooling",
+      "stem": "Which design move is most biomimetic for passive cooling?",
+      "options": [
+        "Rely on oversized mechanical cooling first and ignore airflow paths",
+        "Coordinate vent geometry, thermal storage, and natural airflow paths",
+        "Seal the structure completely to stop heat exchange",
+        "Increase internal heat sources to improve circulation"
+      ],
+      "correct_index": 1,
+      "explanation": "Termite-inspired passive cooling depends on coordinated airflow paths, geometry, and heat buffering rather than one isolated feature."
+    },
+    {
+      "id": "bio_architecture_environment_fit",
+      "type": "multiple_choice",
+      "concept_id": "biomimetic_architecture",
+      "stem": "What is the best first question when translating termite-mound logic into a building?",
+      "options": [
+        "How can the building copy the mound's shape exactly?",
+        "How do local climate, airflow, and heat loads compare to the biological context?",
+        "How can windows be removed completely?",
+        "How can all temperature variation be ignored?"
+      ],
+      "correct_index": 1,
+      "explanation": "Biomimetic transfer works best when designers adapt the principle to the environmental context rather than copying form without analysis."
+    }
+  ]
+}

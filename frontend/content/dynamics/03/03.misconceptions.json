@@ -1,0 +1,37 @@
+{
+  "section_id": "dynamics_0303",
+  "misconceptions": [
+    {
+      "id": "missing_rotational_ke",
+      "pattern": "energy_term_omission",
+      "description": "Leaving out the rotational kinetic-energy term in a rigid-body energy balance",
+      "trigger": "learner uses T = 1/2 m v^2 only for a rolling or spinning body",
+      "feedback": "A rigid body can store kinetic energy in both translation and rotation. Use T = 1/2 m v_G^2 + 1/2 I_G omega^2 unless the motion is purely translational.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "rolling_constraint_unused",
+      "pattern": "constraint_error",
+      "description": "Failing to connect v and omega in a rolling-without-slipping problem",
+      "trigger": "learner leaves v and omega unrelated in the final energy equation",
+      "feedback": "Rolling without slipping provides the kinematic relation v = r omega. Use it to rewrite the energy equation in one unknown.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "wrong_inertia_model_shape",
+      "pattern": "shape_model_error",
+      "description": "Using the wrong moment of inertia formula for the body's geometry",
+      "trigger": "learner uses disk inertia for a hoop or hoop inertia for a disk",
+      "feedback": "Shape matters. Check whether the body is modeled as a hoop, disk, rod, or another geometry before substituting the inertia expression.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "double_counting_energy",
+      "pattern": "energy_accounting_error",
+      "description": "Adding extra kinetic-energy terms after already substituting the rolling constraint",
+      "trigger": "learner rewrites T in one variable and then appends an additional rotational or translational term",
+      "feedback": "Once you rewrite both kinetic-energy terms using the rolling relation, the expression already contains the full energy budget. Do not add another duplicate term.",
+      "rail_action": "explain"
+    }
+  ]
+}

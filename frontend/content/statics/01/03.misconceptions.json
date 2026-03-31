@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0103",
+  "misconceptions": [
+    {
+      "id": "two_force_not_collinear",
+      "pattern": "concept_mixup",
+      "description": "Thinking a two-force member can be in equilibrium with non-collinear end forces",
+      "trigger": "learner draws two-force-member reactions in different directions",
+      "feedback": "For a two-force member in equilibrium, the forces must be equal, opposite, and collinear.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "three_force_no_concurrency",
+      "pattern": "force_identification",
+      "description": "Forgetting the concurrency condition for nonparallel three-force members",
+      "trigger": "learner draws three unrelated force lines on a member in equilibrium",
+      "feedback": "A three-force member in equilibrium must have three coplanar forces that are either concurrent or parallel.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "special_member_shortcut_everywhere",
+      "pattern": "formula_selection",
+      "description": "Applying two-force-member shortcuts to members with extra loads or moments",
+      "trigger": "learner uses the shortcut on a member that has an intermediate load or applied moment",
+      "feedback": "Special-member shortcuts only apply when the loading conditions match the definition. Extra loads or moments break the simplification.",
+      "rail_action": "practice"
+    }
+  ]
+}

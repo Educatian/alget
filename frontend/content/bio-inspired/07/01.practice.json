@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_self_healing_capsules",
+      "type": "multiple_choice",
+      "concept_id": "self_healing_materials",
+      "stem": "How does a capsule-based self-healing material typically work?",
+      "options": [
+        "It permanently prevents all cracks from forming",
+        "It stores healing agents that are released when damage ruptures the capsules",
+        "It relies only on surface repainting by the user",
+        "It repairs only if external welding is applied"
+      ],
+      "correct_index": 1,
+      "explanation": "Many self-healing materials use embedded capsules or channels that release a repair agent when damage occurs."
+    },
+    {
+      "id": "bio_fatigue_failure_value",
+      "type": "multiple_choice",
+      "concept_id": "fatigue_failure",
+      "stem": "Why are self-healing approaches attractive in fatigue-prone systems?",
+      "options": [
+        "Because repeated micro-damage can accumulate before visible failure",
+        "Because fatigue never involves crack growth",
+        "Because fatigue problems disappear when structures are painted",
+        "Because healing materials remove all need for inspection"
+      ],
+      "correct_index": 0,
+      "explanation": "Fatigue often starts with small damage that grows over time, so early repair mechanisms can be valuable."
+    },
+    {
+      "id": "bio_microvascular_logic",
+      "type": "multiple_choice",
+      "concept_id": "microvascular_repair",
+      "stem": "What is an advantage of microvascular repair networks over one-time healing capsules?",
+      "options": [
+        "They can potentially supply repair agents multiple times",
+        "They eliminate all manufacturing complexity",
+        "They make the material completely homogeneous",
+        "They work only in purely decorative parts"
+      ],
+      "correct_index": 0,
+      "explanation": "Microvascular systems can support repeated or more distributed repair, unlike single-use capsules."
+    },
+    {
+      "id": "bio_resilience_tradeoff",
+      "type": "multiple_choice",
+      "concept_id": "resilient_design",
+      "stem": "What is the best engineering interpretation of resilient design in this context?",
+      "options": [
+        "Designing only for maximum initial strength",
+        "Designing systems that can tolerate damage and recover useful function",
+        "Eliminating all maintenance forever",
+        "Assuming repair mechanisms have no cost"
+      ],
+      "correct_index": 1,
+      "explanation": "Resilient design considers recovery and continued function, not just initial peak performance."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "andragogy_self_concept",
+      "type": "multiple_choice",
+      "concept_id": "andragogy",
+      "stem": "What is a core assumption of adult learning in andragogy?",
+      "options": [
+        "Adults prefer complete dependence on the instructor",
+        "Adults want autonomy and value efficient, meaningful control over their learning",
+        "Adults learn best only through rote repetition",
+        "Adults should be taught exactly like children to ensure consistency"
+      ],
+      "correct_index": 1,
+      "explanation": "Knowles emphasized adult autonomy, relevance, and self-direction rather than passive dependence."
+    },
+    {
+      "id": "adult_prior_experience",
+      "type": "multiple_choice",
+      "concept_id": "adult_learning",
+      "stem": "Why is prior experience especially important in adult learning design?",
+      "options": [
+        "Because adults arrive with no misconceptions",
+        "Because adult learners bring existing schemas, stories, habits, and constraints that instruction should build on",
+        "Because adult learning never requires reflection",
+        "Because prior experience replaces the need for instruction"
+      ],
+      "correct_index": 1,
+      "explanation": "Adult learners bring rich prior experience that can support learning, but it can also introduce misconceptions that design must address."
+    },
+    {
+      "id": "problem_centered_design",
+      "type": "multiple_choice",
+      "concept_id": "problem_centered_learning",
+      "stem": "Which design choice is most aligned with problem-centered adult learning?",
+      "options": [
+        "A long abstract theory lecture with no workplace examples",
+        "A realistic case that mirrors decisions learners must make in their actual roles",
+        "A quiz that hides the purpose of the module until the end",
+        "A sequence that prevents learners from seeing why the topic matters"
+      ],
+      "correct_index": 1,
+      "explanation": "Adults often engage best when instruction is tied directly to practical problems they recognize as relevant."
+    },
+    {
+      "id": "self_directed_learning_case",
+      "type": "multiple_choice",
+      "concept_id": "self_directed_learning",
+      "stem": "Which feature best supports self-directed learning for adults?",
+      "options": [
+        "A fixed path with no choice, no pretest, and no optional review",
+        "A design that lets learners skip mastered material and choose relevant pathways",
+        "A course that removes all feedback to preserve independence",
+        "A design that avoids workplace application in order to stay neutral"
+      ],
+      "correct_index": 1,
+      "explanation": "Self-directed learning is supported when adults can exercise meaningful control over pace, sequence, and relevance."
+    }
+  ]
+}

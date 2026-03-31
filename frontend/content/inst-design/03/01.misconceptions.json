@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0301",
+  "misconceptions": [
+    {
+      "id": "more_media_always_better",
+      "pattern": "media_design_error",
+      "description": "Assuming more media automatically improves learning",
+      "trigger": "learner treats extra audio, visuals, and effects as automatically beneficial",
+      "feedback": "Multimedia helps only when it supports cognition. Unnecessary media can create extraneous processing and overload the learner.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "text_and_narration_duplicate_good",
+      "pattern": "redundancy_error",
+      "description": "Assuming identical narration and full on-screen text always reinforce one another",
+      "trigger": "learner recommends duplicating narrated content word-for-word on the screen",
+      "feedback": "Redundant presentation can overload the visual channel. Designers should think carefully about how text, narration, and graphics interact rather than simply duplicating content.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "principles_as_rules_without_context",
+      "pattern": "oversimplification",
+      "description": "Treating Mayer's principles as fixed commands rather than context-sensitive design heuristics",
+      "trigger": "learner applies a principle without considering audience, task, or media conditions",
+      "feedback": "Mayer's principles are evidence-based heuristics, not magic rules. Designers still need to interpret them in context.",
+      "rail_action": "practice"
+    }
+  ]
+}

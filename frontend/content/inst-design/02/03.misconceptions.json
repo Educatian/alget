@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0203",
+  "misconceptions": [
+    {
+      "id": "reaction_equals_effectiveness",
+      "pattern": "evidence_error",
+      "description": "Assuming positive learner reactions prove instructional success",
+      "trigger": "learner treats high satisfaction scores as sufficient evidence of impact",
+      "feedback": "Reaction data is useful, but it is only one level of evidence. Strong evaluation also examines learning, behavior change, and organizational results.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "evaluation_only_at_end",
+      "pattern": "process_error",
+      "description": "Treating evaluation as something that happens only after launch",
+      "trigger": "learner ignores formative evaluation during design and development",
+      "feedback": "Evaluation should be continuous. Formative evaluation helps catch problems early, while summative evaluation judges final effectiveness later.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "kirkpatrick_levels_mixed",
+      "pattern": "classification_error",
+      "description": "Confusing reaction, learning, behavior, and results data",
+      "trigger": "learner labels quizzes as Level 1 or on-the-job performance as Level 2",
+      "feedback": "The Kirkpatrick levels answer different questions. Reaction measures impressions, learning measures acquisition, behavior measures transfer, and results measures organizational outcomes.",
+      "rail_action": "practice"
+    }
+  ]
+}

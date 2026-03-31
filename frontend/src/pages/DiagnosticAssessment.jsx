@@ -5,6 +5,44 @@ import API_BASE from '../lib/apiConfig'
 import { getEvaluationStatus, recordEvaluationResult } from '../lib/researchService'
 import '../index.css'
 
+function titleize(value = '') {
+    return value
+        .split('-')
+        .filter(Boolean)
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' ')
+}
+
+function getPhaseMeta(phase) {
+    if (phase === 'post') {
+        return {
+            title: 'Post-Test',
+            subtitle: 'Immediate Learning Check',
+            button: 'Return to Reading',
+            resultTitle: 'Post-Test Results',
+            summaryLabel: 'Immediate Learning Signal'
+        }
+    }
+
+    if (phase === 'retention') {
+        return {
+            title: 'Retention Check',
+            subtitle: 'Delayed Retention Probe',
+            button: 'Resume Review',
+            resultTitle: 'Retention Results',
+            summaryLabel: 'Delayed Retention Signal'
+        }
+    }
+
+    return {
+        title: 'Diagnostic',
+        subtitle: 'Prerequisite Assessment',
+        button: 'Start Learning',
+        resultTitle: 'Pre-Test Results',
+        summaryLabel: 'Recommended Starting Point'
+    }
+}
+
 export default function DiagnosticAssessment() {
     const { course } = useParams()
     const navigate = useNavigate()
@@ -20,6 +58,8 @@ export default function DiagnosticAssessment() {
     const [errorMsg, setErrorMsg] = useState(null)
 
     const evaluationStatus = getEvaluationStatus(course)
+    const phaseMeta = getPhaseMeta(phase)
+    const courseLabel = titleize(course || 'statics')
 
     useEffect(() => {
         const fetchQuestions = async () => {
@@ -146,10 +186,16 @@ export default function DiagnosticAssessment() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-[#fafafa] flex items-center justify-center">
-                <div className="text-center">
-                    <p className="text-gray-600 mb-4 animate-pulse">Loading diagnostic questions...</p>
-                    <div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <div className="editorial-shell min-h-screen px-6 py-12 md:px-10">
+                <div className="mx-auto flex max-w-3xl items-center justify-center">
+                    <div className="editorial-panel w-full max-w-2xl p-10 text-center">
+                        <p className="editorial-kicker">Diagnostic Session</p>
+                        <h1 className="editorial-title mt-4 text-4xl">Preparing your pathway</h1>
+                        <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[var(--ath-muted)]">
+                            We are assembling a short concept probe for {courseLabel} so the next reading path starts at the right level.
+                        </p>
+                        <div className="mx-auto mt-8 h-12 w-12 animate-spin rounded-full border-4 border-[var(--ath-panel-muted)] border-t-[var(--ath-primary)]" />
+                    </div>
                 </div>
             </div>
         )
@@ -157,224 +203,257 @@ export default function DiagnosticAssessment() {
 
     if (errorMsg || questions.length === 0) {
         return (
-            <div className="min-h-screen bg-[#fafafa] flex items-center justify-center">
-                <div className="bg-white rounded-xl border border-gray-200 p-8 max-w-md text-center">
-                    <p className="text-red-500 font-medium mb-4">{errorMsg || 'No questions found for this course.'}</p>
-                    <button
-                        className="px-6 py-2.5 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
-                        onClick={handleSkip}
-                    >
-                        Skip Assessment
-                    </button>
+            <div className="editorial-shell min-h-screen px-6 py-12 md:px-10">
+                <div className="mx-auto flex max-w-3xl items-center justify-center">
+                    <div className="editorial-panel w-full max-w-xl p-10 text-center">
+                        <p className="editorial-kicker">Diagnostic Session</p>
+                        <h1 className="editorial-title mt-4 text-3xl">The assessment could not load</h1>
+                        <p className="mt-4 text-sm leading-7 text-[var(--ath-muted)]">
+                            {errorMsg || 'No questions were found for this course.'}
+                        </p>
+                        <div className="mt-8 flex justify-center">
+                            <button className="editorial-button px-6 py-3 text-sm" onClick={handleSkip}>
+                                Continue to the course
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
     }
 
     if (showResults && results) {
-        const phaseLabel = phase === 'pre' ? 'Pre-test' : phase === 'post' ? 'Post-test' : 'Retention Check'
+        const toneClasses =
+            results.percentage >= 70
+                ? 'border-emerald-200 bg-emerald-50/70 text-emerald-800'
+                : results.percentage >= 40
+                    ? 'border-amber-200 bg-amber-50/80 text-amber-800'
+                    : 'border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.72)] text-[#8c1d1d]'
 
         return (
-            <div className="min-h-screen bg-[#fafafa]">
-                <header className="bg-white border-b border-gray-200">
-                    <div className="max-w-3xl mx-auto px-8 py-4">
-                        <h1 className="text-lg font-semibold text-gray-900">{phaseLabel} Results</h1>
-                    </div>
-                </header>
-
-                <main className="max-w-3xl mx-auto px-8 py-12">
-                    <div className="bg-white rounded-xl border border-gray-200 p-8 mb-8">
-                        <div className="text-center mb-8">
-                            <div className={`inline-flex items-center justify-center w-24 h-24 rounded-full mb-4 ${results.percentage >= 70 ? 'bg-emerald-100' :
-                                results.percentage >= 40 ? 'bg-amber-100' : 'bg-red-100'
-                                }`}>
-                                <span className={`text-3xl font-bold ${results.percentage >= 70 ? 'text-emerald-600' :
-                                    results.percentage >= 40 ? 'text-amber-600' : 'text-red-600'
-                                    }`}>
-                                    {results.percentage}%
-                                </span>
+            <div className="editorial-shell min-h-screen px-6 py-12 md:px-10">
+                <div className="mx-auto max-w-4xl">
+                    <div className="editorial-panel p-6 md:p-8">
+                        <div className="flex flex-wrap items-start justify-between gap-4">
+                            <div>
+                                <p className="editorial-kicker">{courseLabel} {phaseMeta.resultTitle}</p>
+                                <h1 className="editorial-title mt-3 text-4xl md:text-5xl">Assessment results</h1>
+                                <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ath-muted)]">
+                                    This score now feeds the adaptive pathway, concept mastery updates, and the next suggested reading entry point.
+                                </p>
                             </div>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-2">{results.level} Level</h2>
-                            <p className="text-gray-600">
-                                You answered {results.score} of {totalQuestions} questions correctly
-                            </p>
+                            <button onClick={handleSkip} className="editorial-button-secondary px-4 py-2 text-sm">
+                                Enter course
+                            </button>
                         </div>
 
-                        {results.gaps.length > 0 && (
-                            <div className="mb-6">
-                                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
-                                    Areas to Focus On
-                                </h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {results.gaps.map((gap) => (
-                                        <span key={gap} className="px-3 py-1.5 bg-red-50 text-red-700 rounded-full text-sm">
-                                            {gap.charAt(0).toUpperCase() + gap.slice(1)}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
+                        <div className="editorial-divider my-8" />
 
-                        {results.masteredConcepts.length > 0 && (
-                            <div className="mb-6">
-                                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
-                                    Strong Areas
-                                </h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {results.masteredConcepts.map((concept) => (
-                                        <span key={concept} className="px-3 py-1.5 bg-emerald-50 text-emerald-700 rounded-full text-sm">
-                                            {concept.charAt(0).toUpperCase() + concept.slice(1)}
-                                        </span>
-                                    ))}
+                        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+                            <section className="rounded-[1.7rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] p-7 shadow-sm">
+                                <div className="flex flex-wrap items-center justify-between gap-4">
+                                    <div>
+                                        <p className="editorial-label">Performance Snapshot</p>
+                                        <h2 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">{results.level} Level</h2>
+                                        <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">
+                                            You answered {results.score} of {totalQuestions} questions correctly.
+                                        </p>
+                                    </div>
+                                    <div className={`flex h-28 w-28 items-center justify-center rounded-full border text-3xl font-semibold ${toneClasses}`}>
+                                        {results.percentage}%
+                                    </div>
                                 </div>
-                            </div>
-                        )}
 
-                        <div className="bg-blue-50 rounded-lg p-4 mb-6">
-                            <h3 className="font-medium text-blue-900 mb-1">
-                                {phase === 'pre' ? 'Recommended Starting Point' : phase === 'post' ? 'Immediate Learning Signal' : 'Delayed Retention Signal'}
-                            </h3>
-                            <p className="text-blue-700 text-sm">
-                                {phase === 'pre'
-                                    ? `Based on your results, we recommend starting at Section ${results.recommendedStart.replace('/', '.')}.`
-                                    : phase === 'post'
-                                        ? `Your post-learning score is ${results.percentage}%. This is the immediate learning-effect checkpoint before the retention window.`
-                                        : `This delayed probe estimates what remained stable after time away. Review the gaps below before your next practice block.`}
-                            </p>
+                                <div className="mt-8 grid gap-5 md:grid-cols-2">
+                                    <div>
+                                        <p className="editorial-label">Areas To Focus On</p>
+                                        <div className="mt-3 flex flex-wrap gap-2">
+                                            {results.gaps.length > 0 ? results.gaps.map((gap) => (
+                                                <span key={gap} className="editorial-chip border border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.55)] text-[#8c1d1d]">
+                                                    {titleize(gap)}
+                                                </span>
+                                            )) : (
+                                                <span className="editorial-chip border border-emerald-200 bg-emerald-50 text-emerald-700">
+                                                    No major prerequisite gaps
+                                                </span>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <p className="editorial-label">Strong Areas</p>
+                                        <div className="mt-3 flex flex-wrap gap-2">
+                                            {results.masteredConcepts.length > 0 ? results.masteredConcepts.map((concept) => (
+                                                <span key={concept} className="editorial-chip border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)]">
+                                                    {titleize(concept)}
+                                                </span>
+                                            )) : (
+                                                <span className="editorial-chip">More evidence needed</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <aside className="rounded-[1.7rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-7 shadow-sm">
+                                <p className="editorial-label">{phaseMeta.summaryLabel}</p>
+                                <h3 className="mt-3 text-2xl font-semibold text-[var(--ath-text)]">
+                                    {phase === 'pre' ? `Begin at Section ${results.recommendedStart.replace('/', '.')}` : phaseMeta.title}
+                                </h3>
+                                <p className="mt-4 text-sm leading-7 text-[var(--ath-muted)]">
+                                    {phase === 'pre'
+                                        ? 'The pathway will start from the first section linked to your current gaps so the review feels targeted instead of repetitive.'
+                                        : phase === 'post'
+                                            ? 'This result captures immediate learning after the current pathway. Use it to compare against the retention checkpoint.'
+                                            : 'This delayed probe estimates what stayed stable after time away and what needs another pass before the next block.'}
+                                </p>
+
+                                <div className="mt-6 rounded-[1.2rem] border border-[var(--ath-line)] bg-white/75 p-4">
+                                    <p className="editorial-label">Recommended Sections</p>
+                                    <div className="mt-3 flex flex-wrap gap-2">
+                                        {(results.recommendedSections?.length ? results.recommendedSections : [results.recommendedStart]).map((section) => (
+                                            <span key={section} className="editorial-chip">
+                                                {section.replace('/', '.')}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="mt-6 space-y-3">
+                                    <button onClick={handleStartLearning} className="editorial-button w-full px-6 py-3 text-sm">
+                                        {phaseMeta.button}
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            setShowResults(false)
+                                            setCurrentQuestion(0)
+                                            setAnswers({})
+                                        }}
+                                        className="editorial-button-secondary w-full px-6 py-3 text-sm"
+                                    >
+                                        Retake assessment
+                                    </button>
+                                </div>
+                            </aside>
                         </div>
 
-                        <button
-                            onClick={handleStartLearning}
-                            className="w-full py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
-                        >
-                            {phase === 'pre' ? 'Start Learning →' : phase === 'post' ? 'Return to Reading →' : 'Resume Review →'}
-                        </button>
+                        <div className="mt-8 text-center text-sm text-[var(--ath-muted)]">
+                            {phase === 'pre' && !evaluationStatus.byPhase.post && (
+                                <button
+                                    onClick={() => navigate(`/diagnostic/${course}?phase=post`)}
+                                    className="font-semibold text-[var(--ath-primary)] hover:underline"
+                                >
+                                    Take the post-test after the pathway
+                                </button>
+                            )}
+                            {phase === 'post' && <p>A retention probe will be due 7 days after this attempt.</p>}
+                        </div>
                     </div>
-
-                    <div className="space-y-3 text-center text-gray-500 text-sm">
-                        {phase === 'pre' && !evaluationStatus.byPhase.post && (
-                            <button
-                                onClick={() => navigate(`/diagnostic/${course}?phase=post`)}
-                                className="text-indigo-600 hover:underline"
-                            >
-                                Take the post-test after the pathway
-                            </button>
-                        )}
-                        {phase === 'post' && (
-                            <p>A retention probe will be due 7 days after this attempt.</p>
-                        )}
-                        <p>
-                            Want to try again?{' '}
-                            <button
-                                onClick={() => { setShowResults(false); setCurrentQuestion(0); setAnswers({}); }}
-                                className="text-indigo-600 hover:underline"
-                            >
-                                Retake Assessment
-                            </button>
-                        </p>
-                    </div>
-                </main>
-            </div>
-        )
-    }
-
-    if (questions.length === 0) {
-        return (
-            <div className="min-h-screen bg-[#fafafa] flex items-center justify-center">
-                <div className="text-gray-500 text-lg">Loading assessment...</div>
+                </div>
             </div>
         )
     }
 
     const currentQ = questions[currentQuestion]
+    const progress = Math.round(((currentQuestion + 1) / totalQuestions) * 100)
 
     return (
-        <div className="min-h-screen bg-[#fafafa]">
-            <header className="bg-white border-b border-gray-200">
-                <div className="max-w-3xl mx-auto px-8 py-4">
-                    <div className="flex justify-between items-center">
+        <div className="editorial-shell min-h-screen px-6 py-10 md:px-10">
+            <div className="mx-auto max-w-4xl">
+                <header className="editorial-panel p-6 md:p-8">
+                    <div className="flex flex-wrap items-start justify-between gap-4">
                         <div>
-                            <h1 className="text-lg font-semibold text-gray-900">
-                                {course.charAt(0).toUpperCase() + course.slice(1)} {phase === 'pre' ? 'Diagnostic' : phase === 'post' ? 'Post-test' : 'Retention Check'}
-                            </h1>
-                            <p className="text-sm text-gray-500">
-                                {phase === 'pre' ? 'Prerequisite Assessment' : phase === 'post' ? 'Immediate Learning Check' : 'Delayed Retention Probe'}
+                            <p className="editorial-kicker">{courseLabel} {phaseMeta.title}</p>
+                            <h1 className="editorial-title mt-3 text-4xl md:text-5xl">Knowledge calibration</h1>
+                            <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ath-muted)]">
+                                A short entry assessment to locate gaps, confirm strong concepts, and set a more precise starting point in the text.
                             </p>
                         </div>
-                        <button
-                            onClick={handleSkip}
-                            className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
-                        >
-                            Skip Assessment →
+                        <button onClick={handleSkip} className="editorial-button-secondary px-4 py-2 text-sm">
+                            Skip assessment
                         </button>
                     </div>
-                </div>
-            </header>
 
-            <main className="max-w-3xl mx-auto px-8 py-12">
-                <div className="mb-8">
-                    <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm text-gray-600">
-                            Question {currentQuestion + 1} of {totalQuestions}
-                        </span>
-                        <span className="text-sm text-gray-500">
-                            {Math.round(((currentQuestion + 1) / totalQuestions) * 100)}% Complete
-                        </span>
+                    <div className="mt-8 flex flex-wrap items-center gap-3">
+                        <span className="editorial-pill">{phaseMeta.subtitle}</span>
+                        <span className="editorial-chip">Question {currentQuestion + 1} of {totalQuestions}</span>
+                        <span className="editorial-chip">{progress}% complete</span>
                     </div>
-                    <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+
+                    <div className="mt-5 h-1.5 w-full overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
                         <div
-                            className="h-full bg-indigo-600 transition-all duration-300"
-                            style={{ width: `${((currentQuestion + 1) / totalQuestions) * 100}%` }}
+                            className="h-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)] transition-all duration-300"
+                            style={{ width: `${progress}%` }}
                         />
                     </div>
-                </div>
+                </header>
 
-                <div className="bg-white rounded-xl border border-gray-200 p-8 mb-6">
-                    <div className="mb-6">
-                        <span className="inline-block px-2.5 py-0.5 bg-gray-100 text-gray-600 text-xs font-medium rounded mb-4">
-                            {currentQ.concept.toUpperCase()}
-                        </span>
-                        <h2 className="text-xl font-medium text-gray-900">
+                <main className="mt-8 grid gap-6 lg:grid-cols-[1fr_16rem]">
+                    <section className="editorial-panel p-7 md:p-8">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                            <span className="editorial-kicker">Concept Probe</span>
+                            <span className="editorial-chip">{titleize(currentQ.concept || 'core concept')}</span>
+                        </div>
+
+                        <h2 className="mt-5 text-2xl font-semibold leading-relaxed text-[var(--ath-text)] md:text-[2rem]">
                             {currentQ.stem}
                         </h2>
-                    </div>
 
-                    <div className="space-y-3">
-                        {currentQ.options.map((option, idx) => (
-                            <button
-                                key={idx}
-                                onClick={() => handleAnswer(idx)}
-                                className={`w-full text-left px-4 py-3 rounded-lg border-2 transition-all ${answers[currentQuestion] === idx
-                                    ? 'border-indigo-600 bg-indigo-50'
-                                    : 'border-gray-200 hover:border-gray-300'
-                                    }`}
-                            >
-                                <span className={`font-medium ${answers[currentQuestion] === idx ? 'text-indigo-700' : 'text-gray-700'
-                                    }`}>
-                                    {String.fromCharCode(65 + idx)}. {option}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                        <div className="mt-8 space-y-3">
+                            {currentQ.options.map((option, idx) => {
+                                const isSelected = answers[currentQuestion] === idx
+                                return (
+                                    <button
+                                        key={idx}
+                                        onClick={() => handleAnswer(idx)}
+                                        className={`flex w-full items-start gap-4 rounded-[1.3rem] border px-5 py-4 text-left transition-all ${
+                                            isSelected
+                                                ? 'border-[rgba(15,81,103,0.22)] bg-[rgba(200,226,236,0.35)] shadow-sm'
+                                                : 'border-[var(--ath-line)] bg-white/82 hover:bg-[var(--ath-panel)]'
+                                        }`}
+                                    >
+                                        <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-xs font-bold ${
+                                            isSelected
+                                                ? 'border-[var(--ath-primary)] bg-[var(--ath-primary)] text-white'
+                                                : 'border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)]'
+                                        }`}>
+                                            {String.fromCharCode(65 + idx)}
+                                        </span>
+                                        <span className={`pt-0.5 text-sm leading-7 ${isSelected ? 'text-[var(--ath-text)]' : 'text-[var(--ath-muted)]'}`}>
+                                            {option}
+                                        </span>
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    </section>
 
-                <div className="flex justify-between items-center">
+                    <aside className="rounded-[1.7rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5 shadow-sm">
+                        <p className="editorial-label">Assessment Notes</p>
+                        <div className="mt-4 space-y-4 text-sm leading-7 text-[var(--ath-muted)]">
+                            <p>This probe samples prerequisites, so the goal is placement quality rather than a perfect score.</p>
+                            <p>Wrong answers are used to choose where the course should begin, not to lock the pathway.</p>
+                        </div>
+                    </aside>
+                </main>
+
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
                     <button
                         onClick={handlePrevious}
                         disabled={currentQuestion === 0}
-                        className="px-4 py-2 text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="editorial-button-secondary px-5 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                        ← Previous
+                        Previous
                     </button>
                     <button
                         onClick={handleNext}
                         disabled={answers[currentQuestion] === undefined}
-                        className="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="editorial-button px-6 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                        {currentQuestion === totalQuestions - 1 ? 'See Results' : 'Next →'}
+                        {currentQuestion === totalQuestions - 1 ? 'See results' : 'Next question'}
                     </button>
                 </div>
-            </main>
+            </div>
         </div>
     )
 }

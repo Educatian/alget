@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0102",
+  "misconceptions": [
+    {
+      "id": "forget_weight_on_fbd",
+      "pattern": "concept_mixup",
+      "description": "Leaving weight off the free body diagram",
+      "trigger": "learner draws support or tension forces but omits gravity on a massive object",
+      "feedback": "Any object with mass has weight. If the body is isolated, weight must appear on the free body diagram unless the problem explicitly neglects it.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "tension_points_toward_object",
+      "pattern": "direction_error",
+      "description": "Drawing tension toward the object instead of away along the cable",
+      "trigger": "learner points cable tension into the body",
+      "feedback": "An ideal cable can only pull, not push. Tension on the isolated body acts along the cable and away from the body.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "internal_forces_on_fbd",
+      "pattern": "force_identification",
+      "description": "Adding internal forces that should not appear on the isolated body",
+      "trigger": "learner includes forces from parts that are inside the chosen system boundary",
+      "feedback": "A free body diagram should show only external forces acting on the isolated body or subsystem.",
+      "rail_action": "practice"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0501",
+  "misconceptions": [
+    {
+      "id": "adults_need_no_structure",
+      "pattern": "andragogy_error",
+      "description": "Assuming adult learners want total freedom with no design guidance",
+      "trigger": "learner argues that adult learning should remove structure entirely",
+      "feedback": "Adults value autonomy, but strong adult learning still needs structure, relevance, and clear performance pathways.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "prior_experience_always_helpful",
+      "pattern": "experience_error",
+      "description": "Treating prior experience as automatically accurate and helpful",
+      "trigger": "learner ignores the possibility that adults also bring misconceptions or outdated habits",
+      "feedback": "Prior experience is valuable, but it can also carry biases and misconceptions. Good design surfaces and works with that experience rather than assuming it is all correct.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "andragogy_means_no_theory",
+      "pattern": "oversimplification",
+      "description": "Assuming adults only want practical tips and never need conceptual framing",
+      "trigger": "learner removes explanatory models entirely in favor of only immediate tips",
+      "feedback": "Adults often want practical relevance, but theory still matters when it helps them make better decisions in new situations.",
+      "rail_action": "practice"
+    }
+  ]
+}

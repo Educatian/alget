@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "statics_truss_intro_determinacy",
+      "type": "multiple_choice",
+      "concept_id": "statics_truss_basics",
+      "stem": "Why are triangular units used so heavily in truss structures?",
+      "options": [
+        "Because triangles are geometrically stable when member lengths are fixed",
+        "Because triangles eliminate all internal member forces",
+        "Because triangles guarantee every member is in tension only",
+        "Because trusses cannot include diagonal members"
+      ],
+      "correct_index": 0,
+      "explanation": "Triangles resist shape change without changing member lengths, which is why they are the fundamental stable unit in trusses."
+    },
+    {
+      "id": "statics_truss_intro_two_force",
+      "type": "multiple_choice",
+      "concept_id": "statics_truss_basics",
+      "stem": "Under the ideal truss assumptions, how does a typical member carry load?",
+      "options": [
+        "Through axial tension or compression only",
+        "Through pure bending only",
+        "Through torsion only",
+        "Through no internal force at all"
+      ],
+      "correct_index": 0,
+      "explanation": "Ideal truss members are treated as two-force members, so the internal force acts along the member axis as tension or compression."
+    },
+    {
+      "id": "statics_truss_intro_joint_method",
+      "type": "multiple_choice",
+      "concept_id": "statics_method_of_joints",
+      "stem": "Why should the method of joints usually start at a joint with two or fewer unknown member forces?",
+      "options": [
+        "Because each planar joint provides only two equilibrium equations",
+        "Because joints with three members are always unstable",
+        "Because support reactions are never needed",
+        "Because trusses cannot be analyzed from the supports"
+      ],
+      "correct_index": 0,
+      "explanation": "Each planar joint gives sum Fx = 0 and sum Fy = 0, so more than two unknown member forces cannot be solved directly at that step."
+    },
+    {
+      "id": "statics_truss_intro_sign",
+      "type": "multiple_choice",
+      "concept_id": "statics_method_of_joints",
+      "stem": "A member force is assumed to be tensile during a method-of-joints solution, but the computed value is negative. What does that mean?",
+      "options": [
+        "The truss is impossible to solve",
+        "The member is actually in compression",
+        "The member force is zero",
+        "The support reactions must be recomputed"
+      ],
+      "correct_index": 1,
+      "explanation": "A negative result means the actual force direction is opposite the assumed tensile direction, so the member is in compression."
+    }
+  ]
+}

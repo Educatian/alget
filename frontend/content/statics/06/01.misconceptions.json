@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0601",
+  "misconceptions": [
+    {
+      "id": "truss_means_any_frame",
+      "pattern": "concept_mixup",
+      "description": "Treating any frame of bars as an ideal truss",
+      "trigger": "learner labels a structure as a truss without considering joint loading and pin assumptions",
+      "feedback": "A truss in introductory statics is idealized as straight members connected by pins with loads applied at joints, so not every bar framework qualifies under the same assumptions.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "triangles_only_visual_choice",
+      "pattern": "force_identification",
+      "description": "Thinking triangular layouts are just a stylistic choice",
+      "trigger": "learner treats the triangle pattern as decorative rather than structural",
+      "feedback": "Triangles matter because they preserve geometry under load and help route axial forces efficiently through the structure.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "negative_member_force_invalid",
+      "pattern": "sign_error",
+      "description": "Interpreting a negative member-force result as a math failure",
+      "trigger": "learner rejects a negative method-of-joints result",
+      "feedback": "With a tension-first convention, a negative member-force result usually means the member is actually in compression.",
+      "rail_action": "practice"
+    }
+  ]
+}

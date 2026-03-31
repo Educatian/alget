@@ -1,28 +1,54 @@
 {
-    "problems": [
-        {
-            "id": "beam_reaction",
-            "type": "numeric",
-            "stem": "An 8 m simply supported beam has a pin at A and roller at B. A 2000 N load acts 2 m from A. Find the reaction at B.",
-            "hints": [
-                "Take moments about A to find B directly",
-                "ΣMA = 0: By(8) - 2000(2) = 0"
-            ],
-            "final_answer": {
-                "value": 500,
-                "unit": "N",
-                "tolerance": 5
-            }
-        },
-        {
-            "id": "cantilever_moment",
-            "type": "numeric",
-            "stem": "A 5 m cantilever has a 1500 N load at the free end. Find the moment reaction at the fixed support.",
-            "final_answer": {
-                "value": 7500,
-                "unit": "N·m",
-                "tolerance": 10
-            }
-        }
-    ]
+  "problems": [
+    {
+      "id": "statics_rigid_body_support_count",
+      "type": "multiple_choice",
+      "concept_id": "support_reactions",
+      "stem": "Which 2D support provides three reaction unknowns?",
+      "options": [
+        "Roller",
+        "Cable",
+        "Pin",
+        "Fixed support"
+      ],
+      "correct_index": 3,
+      "explanation": "A fixed support provides horizontal and vertical reactions plus a reaction moment."
+    },
+    {
+      "id": "statics_beam_center_load",
+      "type": "numeric",
+      "concept_id": "beam_equilibrium",
+      "stem": "A simply supported 6 m beam carries a 1000 N point load at midspan. Find the vertical reaction at each support.",
+      "final_answer": {
+        "value": 500,
+        "unit": "N",
+        "tolerance": 0.5
+      }
+    },
+    {
+      "id": "statics_cantilever_moment",
+      "type": "numeric",
+      "concept_id": "rigid_body_equilibrium",
+      "stem": "A 4 m cantilever carries a 2000 N downward load at the free end. Find the reaction moment at the fixed support.",
+      "final_answer": {
+        "value": 8000,
+        "unit": "N m",
+        "tolerance": 1
+      }
+    },
+    {
+      "id": "statics_choose_moment_point",
+      "type": "multiple_choice",
+      "concept_id": "rigid_body_equilibrium",
+      "stem": "Why is it often smart to take moments about a support point with unknown reactions?",
+      "options": [
+        "Because moment equations work only at supports",
+        "Because unknown reactions through that point create zero moment arm and drop out",
+        "Because support points always have zero load",
+        "Because it avoids the need for force equilibrium equations"
+      ],
+      "correct_index": 1,
+      "explanation": "Choosing a point where unknown reaction lines pass through can eliminate those unknowns from the moment equation."
+    }
+  ]
 }

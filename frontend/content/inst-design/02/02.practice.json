@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "development_phase_scope",
+      "type": "multiple_choice",
+      "concept_id": "development_phase",
+      "stem": "Which activity belongs most directly to the development phase?",
+      "options": [
+        "Diagnosing whether the problem is really a training issue",
+        "Producing the assets, scripts, media, and interaction components specified by the design blueprint",
+        "Collecting long-term transfer evidence after rollout",
+        "Defining high-level business goals before audience analysis"
+      ],
+      "correct_index": 1,
+      "explanation": "Development is where the blueprint becomes real through assets, scripts, interfaces, assessments, and prototypes."
+    },
+    {
+      "id": "implementation_phase_focus",
+      "type": "multiple_choice",
+      "concept_id": "implementation_phase",
+      "stem": "What is a key concern of the implementation phase?",
+      "options": [
+        "Whether delivery logistics, facilitator readiness, and platform setup support actual use",
+        "Whether the objective verbs use Bloom's taxonomy correctly",
+        "Whether the learner analysis should be skipped to save time",
+        "Whether no revisions should ever be made after launch"
+      ],
+      "correct_index": 0,
+      "explanation": "Implementation is about delivery readiness: facilitators, platform setup, deployment logistics, and the conditions under which learners will actually use the instruction."
+    },
+    {
+      "id": "sam_iteration_logic",
+      "type": "multiple_choice",
+      "concept_id": "storyboarding",
+      "stem": "Why do agile instructional design models such as SAM emphasize rapid prototyping?",
+      "options": [
+        "Because prototypes replace the need for evaluation",
+        "Because early rough versions reveal problems while they are still inexpensive to fix",
+        "Because final production quality should be ignored",
+        "Because SMEs are usually unnecessary once a prototype exists"
+      ],
+      "correct_index": 1,
+      "explanation": "Rapid prototyping exposes design flaws early, which reduces the cost of revision and increases responsiveness to learner feedback."
+    },
+    {
+      "id": "qa_in_id",
+      "type": "multiple_choice",
+      "concept_id": "instructional_assets",
+      "stem": "Why is QA in the development phase both technical and pedagogical?",
+      "options": [
+        "Because only software bugs matter once the script is approved",
+        "Because the course must work technically and also make sense for real learners",
+        "Because instructional design has nothing to do with learner understanding",
+        "Because QA only checks file naming conventions"
+      ],
+      "correct_index": 1,
+      "explanation": "A course can fail through broken interactions, confusing language, poor accessibility, or flawed pedagogy. Development QA must check both technical and instructional integrity."
+    }
+  ]
+}

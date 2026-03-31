@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0701",
+  "misconceptions": [
+    {
+      "id": "udl_is_special_ed_addon",
+      "pattern": "scope_error",
+      "description": "Treating UDL as a retrofit only for students with formal accommodations",
+      "trigger": "learner frames UDL as something added only after a complaint",
+      "feedback": "UDL is proactive design for learner variability. It is meant to reduce barriers from the beginning, not just retrofit them later.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "accessibility_is_technical_only",
+      "pattern": "discipline_split_error",
+      "description": "Separating accessibility from pedagogy as if it were only a compliance issue",
+      "trigger": "learner treats accessibility checks as unrelated to learning design",
+      "feedback": "Accessibility and pedagogy are intertwined. If learners cannot perceive, navigate, or respond in the environment, the instruction itself becomes unusable.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "multiple_options_mean_lower_rigor",
+      "pattern": "rigor_error",
+      "description": "Assuming flexible representation or expression weakens academic standards",
+      "trigger": "learner argues that offering multiple pathways automatically lowers rigor",
+      "feedback": "UDL changes the path, not the standard. Learners can be held to the same objective while being allowed more than one valid route to access or express understanding.",
+      "rail_action": "practice"
+    }
+  ]
+}

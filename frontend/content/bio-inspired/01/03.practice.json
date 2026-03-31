@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_directional_adhesion_shear",
+      "type": "multiple_choice",
+      "concept_id": "directional_adhesion",
+      "stem": "Why do gecko-inspired adhesives often grip strongly in shear but release more easily during peeling?",
+      "options": [
+        "Because adhesion disappears whenever the surface is tilted",
+        "Because the microstructures are oriented to create direction-dependent contact behavior",
+        "Because the adhesive works only on wet surfaces",
+        "Because van der Waals forces act only during vertical loading"
+      ],
+      "correct_index": 1,
+      "explanation": "Directional microstructures create different contact mechanics depending on how the load is applied."
+    },
+    {
+      "id": "bio_vdw_area",
+      "type": "multiple_choice",
+      "concept_id": "van_der_waals",
+      "stem": "How do gecko setae make weak intermolecular forces useful at the macro scale?",
+      "options": [
+        "By replacing van der Waals forces with magnetic attraction",
+        "By dramatically increasing effective contact area through many fine structures",
+        "By using liquid glue stored inside each seta",
+        "By relying entirely on suction"
+      ],
+      "correct_index": 1,
+      "explanation": "Each contact is tiny, but many micro-contacts together create meaningful adhesion."
+    },
+    {
+      "id": "bio_dry_adhesive_use_case",
+      "type": "multiple_choice",
+      "concept_id": "gecko",
+      "stem": "Which design goal is most aligned with gecko-inspired dry adhesives?",
+      "options": [
+        "Single-use permanent bonding in structural concrete",
+        "Reusable attachment with controlled release",
+        "Maximum stickiness regardless of contamination or surface roughness",
+        "Eliminating all dependence on surface geometry"
+      ],
+      "correct_index": 1,
+      "explanation": "Dry adhesives are especially valuable when reversible, residue-free attachment is needed."
+    },
+    {
+      "id": "bio_spatial_geometry_contact",
+      "type": "multiple_choice",
+      "concept_id": "spatial_geometry",
+      "stem": "A team wants better reversible adhesion on a robot gripper. Which variable should they most likely adjust first?",
+      "options": [
+        "Only the color of the pad",
+        "The geometry and orientation of micro-scale contact features",
+        "The battery voltage of the robot arm",
+        "The length of the user manual"
+      ],
+      "correct_index": 1,
+      "explanation": "For biomimetic dry adhesion, contact geometry strongly shapes how load, release, and surface conformity behave."
+    }
+  ]
+}

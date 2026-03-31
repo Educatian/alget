@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0301",
+  "misconceptions": [
+    {
+      "id": "serrations_are_mufflers",
+      "pattern": "mechanism_error",
+      "description": "Treating serrations like a motor muffler",
+      "trigger": "learner explains quieter flight only through motor noise reduction",
+      "feedback": "The key mechanism is aerodynamic. Serrations influence how flow separates and how vortices form near the blade edge, which changes sound generation.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "more_serrations_always_better",
+      "pattern": "optimization_error",
+      "description": "Assuming more edge complexity always improves acoustics",
+      "trigger": "learner proposes extreme serration density without discussing drag or performance tradeoffs",
+      "feedback": "Acoustic performance depends on spacing, scale, stiffness, and flow regime. Too much geometric complexity can introduce new aerodynamic penalties.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "copy_feather_surface_only",
+      "pattern": "biomimicry_transfer_error",
+      "description": "Copying owl appearance rather than fluid-dynamic function",
+      "trigger": "learner focuses on visual similarity instead of vortex-control behavior",
+      "feedback": "Biomimetic transfer should focus on how edge geometry changes turbulence and pressure fluctuations, not on literal visual resemblance to feathers.",
+      "rail_action": "practice"
+    }
+  ]
+}

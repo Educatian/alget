@@ -55,7 +55,7 @@ export default function SocialPresencePanel({
                             </h3>
                         </div>
                         <span className={`ml-auto rounded-full px-3 py-1 text-xs font-semibold ${connected ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-500'}`}>
-                            {connected ? 'Live presence on' : 'Live presence offline'}
+                            {connected ? 'Live Presence On' : 'Live Presence Offline'}
                         </span>
                     </div>
 
@@ -80,7 +80,7 @@ export default function SocialPresencePanel({
                         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                             <div className="mb-2 flex items-center gap-2 text-slate-500">
                                 <Radio className="h-4 w-4" />
-                                <span className="text-xs font-bold uppercase tracking-[0.18em]">Same section</span>
+                                <span className="text-xs font-bold uppercase tracking-[0.18em]">Same Section</span>
                             </div>
                             <p className="text-2xl font-bold text-slate-900">{livePeerCount}</p>
                             <p className="mt-1 text-sm text-slate-600">Live peers are active in this section.</p>
@@ -89,7 +89,7 @@ export default function SocialPresencePanel({
                         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                             <div className="mb-2 flex items-center gap-2 text-slate-500">
                                 <Activity className="h-4 w-4" />
-                                <span className="text-xs font-bold uppercase tracking-[0.18em]">Same part</span>
+                                <span className="text-xs font-bold uppercase tracking-[0.18em]">Same Passage</span>
                             </div>
                             <p className="text-2xl font-bold text-slate-900">{sameHeadingCount}</p>
                             <p className="mt-1 text-sm text-slate-600">Peers are in this same reading zone.</p>
@@ -98,7 +98,7 @@ export default function SocialPresencePanel({
                         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                             <div className="mb-2 flex items-center gap-2 text-slate-500">
                                 <HeartHandshake className="h-4 w-4" />
-                                <span className="text-xs font-bold uppercase tracking-[0.18em]">Same concept</span>
+                                <span className="text-xs font-bold uppercase tracking-[0.18em]">Same Concept</span>
                             </div>
                             <p className="text-2xl font-bold text-slate-900">{sameConceptCount}</p>
                             <p className="mt-1 text-sm text-slate-600">Peers are focused on this concept cluster.</p>
@@ -109,22 +109,22 @@ export default function SocialPresencePanel({
                 <div className="w-full rounded-3xl border border-slate-200 bg-linear-to-br from-slate-50 to-white p-4 lg:max-w-sm">
                     <div className="mb-3 flex items-center gap-2">
                         <Flame className="h-4 w-4 text-[#9E1B32]" />
-                        <p className="text-sm font-bold text-slate-900">Quick social pulse</p>
+                        <p className="text-sm font-bold text-slate-900">Quick Social Pulse</p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
                         <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100">
-                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Completed today</p>
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Completed Today</p>
                             <p className="mt-2 text-xl font-bold text-slate-900">{signalSummary.completionsToday}</p>
                         </div>
                         <div className="rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100">
-                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Opened help today</p>
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Opened Help Today</p>
                             <p className="mt-2 text-xl font-bold text-slate-900">{signalSummary.helpOpensToday}</p>
                         </div>
                     </div>
 
                     <div className="mt-4 space-y-2">
-                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">React to this part</p>
+                        <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">React to This Part</p>
                         {SOCIAL_REACTIONS.map((reaction) => (
                             <button
                                 key={reaction.id}
@@ -142,7 +142,7 @@ export default function SocialPresencePanel({
 
                     {liveFeed.length > 0 && (
                         <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-3">
-                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Live feed</p>
+                            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Live Feed</p>
                             <ul className="mt-2 space-y-2">
                                 {liveFeed.slice(0, 3).map((entry, index) => (
                                     <li key={`${entry.alias}-${entry.kind}-${entry.createdAt || index}`} className="text-sm text-slate-600">

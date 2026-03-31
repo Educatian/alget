@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "multimedia_dual_channel",
+      "type": "multiple_choice",
+      "concept_id": "dual_channel_processing",
+      "stem": "Which statement best matches Mayer's dual-channel assumption?",
+      "options": [
+        "The brain processes all information through one shared channel",
+        "Visual and auditory information are processed through separate channels",
+        "Only text can support deep learning",
+        "Pictures always reduce cognitive load"
+      ],
+      "correct_index": 1,
+      "explanation": "Mayer's theory assumes separate visual and auditory channels, each with limited capacity."
+    },
+    {
+      "id": "multimedia_modality",
+      "type": "multiple_choice",
+      "concept_id": "modality_effect",
+      "stem": "Why can spoken narration paired with graphics sometimes outperform graphics plus dense on-screen text?",
+      "options": [
+        "Because narration uses the auditory channel and can reduce overload in the visual channel",
+        "Because learners never read text carefully",
+        "Because text is always an inferior medium",
+        "Because images automatically teach all concepts"
+      ],
+      "correct_index": 0,
+      "explanation": "The modality effect matters because distributing processing across channels can reduce overload when designed well."
+    },
+    {
+      "id": "mayer_coherence_principle",
+      "type": "multiple_choice",
+      "concept_id": "multimedia_learning",
+      "stem": "Which design choice best applies the coherence principle?",
+      "options": [
+        "Adding dramatic music and decorative animations unrelated to the lesson",
+        "Removing seductive but irrelevant media elements that do not support the learning goal",
+        "Presenting every possible detail so nothing is omitted",
+        "Duplicating narration as full paragraphs on the screen"
+      ],
+      "correct_index": 1,
+      "explanation": "The coherence principle recommends removing unnecessary material that consumes attention without supporting the objective."
+    },
+    {
+      "id": "multimedia_overload_case",
+      "type": "multiple_choice",
+      "concept_id": "cognitive_overload",
+      "stem": "A simulation includes narration, identical on-screen paragraphs, three flashing callouts, and background music. What is the most likely instructional problem?",
+      "options": [
+        "The content is too constructivist",
+        "The design is likely generating cognitive overload through extraneous processing",
+        "The design has too little engagement",
+        "The problem is only that there is no grading rubric"
+      ],
+      "correct_index": 1,
+      "explanation": "Too many simultaneous media elements can overload working memory and reduce learning rather than increase it."
+    }
+  ]
+}

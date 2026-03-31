@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0401",
+  "misconceptions": [
+    {
+      "id": "dry_means_no_physics",
+      "pattern": "mechanism_error",
+      "description": "Assuming dry adhesion works without meaningful interface physics",
+      "trigger": "learner treats dry adhesion as if it simply sticks by magic",
+      "feedback": "Dry adhesion still depends on real contact mechanics, compliance, and intermolecular interactions. The absence of liquid glue does not mean the interface is simple.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "nano_patterning_always_solves_it",
+      "pattern": "scale_optimism_error",
+      "description": "Assuming smaller patterns automatically guarantee better adhesion",
+      "trigger": "learner claims nanostructures always improve attachment regardless of context",
+      "feedback": "Pattern scale must match the target surfaces, materials, loading direction, and durability requirements. Smaller is not automatically better.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "reversible_equals_weak",
+      "pattern": "performance_tradeoff_error",
+      "description": "Thinking reversible attachment cannot also be strong",
+      "trigger": "learner assumes a reusable adhesive must have poor load capacity",
+      "feedback": "A well-designed dry adhesive can be strong in one loading mode and still release cleanly in another. Directionality and contact design are critical.",
+      "rail_action": "practice"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Work-Energy for Rigid Bodies
 
-> **"For a rigid body: total kinetic energy = translational + rotational."**
+> **"A rolling or spinning body stores energy in both translation and rotation, and you lose accuracy if you forget either one."**
 
 ---
 
@@ -12,80 +12,183 @@
 
 ## Learning Objectives
 
-1. **Calculate** rotational kinetic energy
-2. **Apply** work-energy to rotating systems
-3. **Analyze** rolling motion using energy
-4. **Combine** translational and rotational energy
+1. **Calculate** total kinetic energy for rigid bodies in plane motion
+2. **Apply** work-energy balances to rotational and rolling systems
+3. **Use** rolling constraints without double counting energy
+4. **Interpret** how inertia changes the final speed of a rigid body
 
 ---
 
-## Kinetic Energy of a Rigid Body
+## Why Rigid-Body Energy Needs More Care
+
+In particle dynamics, kinetic energy is just $\frac{1}{2}mv^2$. In rigid-body motion, a body can translate and rotate at the same time. That means one energy term is no longer enough.
+
+Examples:
+
+- a wheel rolling downhill
+- a flywheel storing energy in a drivetrain
+- a yo-yo translating downward while spinning faster
+- a robotic arm link sweeping while its center of mass moves
+
+If you omit the rotational term, you generally predict a speed that is too high.
+
+## Total Kinetic Energy of a Rigid Body
+
+For general plane motion:
 
 $$
 \boxed{T = \frac{1}{2}mv_G^2 + \frac{1}{2}I_G\omega^2}
 $$
 
-- First term: translational KE
-- Second term: rotational KE
+The two pieces mean:
 
----
+- $\frac{1}{2}mv_G^2$: translational kinetic energy of the center of mass
+- $\frac{1}{2}I_G\omega^2$: rotational kinetic energy about the center of mass
+
+This split is one of the central ideas of rigid-body dynamics.
 
 ## Rolling Without Slipping
 
-For a wheel rolling without slipping:
+For a rolling body,
 
 $$
 \boxed{v_G = r\omega}
 $$
 
-Combined kinetic energy:
-$$
-T = \frac{1}{2}mv_G^2 + \frac{1}{2}I_G\omega^2 = \frac{1}{2}(I_G + mr^2)\omega^2
-$$
+This is a kinematic constraint, not a second energy term. It lets you rewrite the total kinetic energy in one variable, either $v_G$ or $\omega$.
 
----
-
-## Work-Energy Principle
+For example:
 
 $$
-T_1 + V_1 + W_{nc} = T_2 + V_2
+T = \frac{1}{2}mv_G^2 + \frac{1}{2}I_G\omega^2
 $$
 
-where $T$ now includes both translational and rotational parts.
+with $\omega = \frac{v_G}{r}$ becomes
 
----
+$$
+T = \frac{1}{2}mv_G^2 + \frac{1}{2}I_G\left(\frac{v_G}{r}\right)^2
+$$
+
+That is why rolling bodies usually move more slowly than sliding particles descending the same height: some of the potential-energy drop becomes rotational kinetic energy.
+
+<dynamic-scenario
+  topic="Wheel Selection for a Delivery Robot"
+  context="A robotics team must choose between solid aluminum wheels and lighter polymer wheels for a delivery robot descending a loading dock ramp. They care about downhill stability and want to predict how wheel inertia changes the bottom speed."
+  course="dynamics"
+/>
+
+## Work-Energy Balance
+
+The same structure from particle dynamics still works:
+
+$$
+\boxed{T_1 + V_1 + W_{nc} = T_2 + V_2}
+$$
+
+The only difference is that $T$ now includes both translational and rotational pieces.
 
 ## Worked Example
 
-**Problem:** A solid disk (m = 5 kg, r = 0.2 m) rolls down a 2 m high ramp from rest. Find its speed at the bottom.
+### Example 3.3: Solid Disk Rolling Down a Ramp
 
-**Solution:**
+**Problem:** A solid disk with mass 5 kg and radius 0.2 m rolls down from a vertical height of 2 m. Find its speed at the bottom.
 
-Energy conservation:
-$$
-mgh = \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2
-$$
+### Step A: Write the initial and final energies
 
-For a disk: $I = \frac{1}{2}mr^2$, and $v = r\omega$:
+- Initial kinetic energy: $T_1 = 0$
+- Initial potential energy: $V_1 = mgh$
+- Final potential energy: $V_2 = 0$
 
-$$
-mgh = \frac{1}{2}mv^2 + \frac{1}{2}(\frac{1}{2}mr^2)(\frac{v}{r})^2 = \frac{3}{4}mv^2
-$$
+If rolling without slipping and energy loss is neglected:
 
 $$
-v = \sqrt{\frac{4gh}{3}} = \sqrt{\frac{4(9.81)(2)}{3}} = \boxed{5.11 \text{ m/s}}
+mgh = \frac{1}{2}mv^2 + \frac{1}{2}I_G\omega^2
 $$
 
----
+### Step B: Insert the disk inertia
+
+For a solid disk,
+
+$$
+I_G = \frac{1}{2}mr^2
+$$
+
+Using $v = r\omega$:
+
+$$
+mgh = \frac{1}{2}mv^2 + \frac{1}{2}\left(\frac{1}{2}mr^2\right)\left(\frac{v}{r}\right)^2
+$$
+
+$$
+mgh = \frac{1}{2}mv^2 + \frac{1}{4}mv^2 = \frac{3}{4}mv^2
+$$
+
+### Step C: Solve for speed
+
+$$
+v = \sqrt{\frac{4gh}{3}}
+$$
+
+Substitute $g = 9.81$ m/s$^2$ and $h = 2$ m:
+
+$$
+v = \sqrt{\frac{4(9.81)(2)}{3}} = 5.11 \text{ m/s}
+$$
+
+The disk reaches the bottom more slowly than a frictionless sliding block would, because part of the gravitational energy becomes rotation.
+
+## Compare Against a Sliding Particle
+
+If the same object slid without rotation, the speed would come from
+
+$$
+mgh = \frac{1}{2}mv^2
+$$
+
+which gives
+
+$$
+v = \sqrt{2gh} = 6.26 \text{ m/s}
+$$
+
+That comparison is pedagogically useful. It makes the rotational energy cost visible.
+
+## Common Mistakes
+
+- forgetting the rotational kinetic-energy term
+- using the wrong inertia formula for the shape
+- treating $v = r\omega$ as optional in rolling problems
+- double counting the same motion by adding extra terms after already substituting the rolling constraint
+
+## Check Your Understanding
+
+<interactive-quiz
+  question="Why does a rolling rigid body usually reach the bottom of a ramp with less translational speed than a sliding particle descending the same height?"
+  conceptId="rolling_motion"
+  options='[{"text":"Because gravity is weaker for rigid bodies.","isCorrect":false},{"text":"Because some of the potential-energy drop is converted into rotational kinetic energy.","isCorrect":true},{"text":"Because mass cancels only for particles.","isCorrect":false}]'
+  explanation="Correct. In rolling motion, the body stores energy in both translation and rotation, so not all of the potential-energy drop becomes translational speed."
+/>
+
+<interactive-quiz
+  question="For rolling without slipping, what is the role of v = r omega in an energy solution?"
+  conceptId="energy_conservation_rigid"
+  options='[{"text":"It adds a new force equation.","isCorrect":false},{"text":"It links translation and rotation so the energy equation can be written in one variable.","isCorrect":true},{"text":"It replaces the moment equation in every rigid-body problem.","isCorrect":false}]'
+  explanation="Exactly. The rolling constraint is a kinematic relation. It helps express the translational and rotational kinetic-energy terms consistently."
+/>
 
 ## Summary
 
-- Total KE = $\frac{1}{2}mv_G^2 + \frac{1}{2}I_G\omega^2$
-- Rolling: $v = r\omega$ (constraint)
-- Apply work-energy just like particles, but include rotation
+- Rigid bodies store kinetic energy in translation and rotation.
+- Rolling constraints connect linear and angular motion.
+- Energy balances often solve rigid-body speed problems faster than force-moment equations.
+- The body's inertia model strongly influences the final answer.
 
----
+## Course Wrap-Up
 
-## Congratulations!
+You now have the three major problem-solving lenses for introductory dynamics:
 
-You've completed the Dynamics course! 🎉
+- force and acceleration
+- work and energy
+- impulse and momentum
+
+Together they let you choose the representation that best fits the physics of the problem rather than forcing every problem into one method.

@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_cellular_solids_core_logic",
+      "type": "multiple_choice",
+      "concept_id": "cellular_solids",
+      "stem": "Why are honeycomb and cancellous bone often used as models for lightweight engineering structures?",
+      "options": [
+        "Because they maximize mass while minimizing stiffness",
+        "Because they achieve strong load support with relatively little material",
+        "Because they eliminate internal stress concentrations completely",
+        "Because natural cellular structures are always solid rather than porous"
+      ],
+      "correct_index": 1,
+      "explanation": "Cellular solids distribute load through geometry, allowing high stiffness and useful strength with much less material than a fully solid part."
+    },
+    {
+      "id": "bio_porosity_tradeoff",
+      "type": "multiple_choice",
+      "concept_id": "porosity",
+      "stem": "Increasing porosity in a cellular material usually creates which tradeoff?",
+      "options": [
+        "Lower mass but also lower absolute load-bearing capacity",
+        "Higher mass and higher density",
+        "No change in mechanical behavior because only chemistry matters",
+        "Guaranteed improvement in every performance metric"
+      ],
+      "correct_index": 0,
+      "explanation": "Higher porosity usually reduces mass, but the designer must watch how much stiffness, strength, and fatigue resistance are sacrificed."
+    },
+    {
+      "id": "bio_strength_to_weight_application",
+      "type": "multiple_choice",
+      "concept_id": "strength_to_weight",
+      "stem": "Which application benefits most directly from a high strength-to-weight ratio inspired by cellular solids?",
+      "options": [
+        "A desktop paperweight",
+        "An aircraft interior support bracket",
+        "A concrete parking barrier designed to stay stationary",
+        "A decorative glass sculpture with no structural function"
+      ],
+      "correct_index": 1,
+      "explanation": "Aircraft and other mobility systems strongly benefit when structure remains strong but mass is reduced."
+    },
+    {
+      "id": "bio_cellular_design_choice",
+      "type": "multiple_choice",
+      "concept_id": "cellular_solids",
+      "stem": "A designer wants to reduce material use without losing too much stiffness. What is the most biomimetic move?",
+      "options": [
+        "Replace the structure with a completely hollow shell and ignore load paths",
+        "Introduce a cellular internal lattice aligned to expected loads",
+        "Increase density uniformly across the entire part",
+        "Remove all internal structure because natural materials are random"
+      ],
+      "correct_index": 1,
+      "explanation": "Biomimetic cellular design keeps internal architecture where loads need support rather than distributing material uniformly."
+    }
+  ]
+}

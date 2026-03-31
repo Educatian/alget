@@ -197,31 +197,34 @@ export default function KnowledgeCheck({
 
     if (status === 'idle') {
         return (
-            <div className="mt-12 rounded-[1.9rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(200,226,236,0.22),rgba(255,255,255,0.85))] p-8 text-center shadow-sm">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[rgba(15,81,103,0.08)] text-3xl text-[var(--ath-primary)]">
-                    KC
+            <div className="mt-12 overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(200,226,236,0.18),rgba(255,255,255,0.88))] shadow-[0_24px_60px_rgba(15,23,42,0.06)]">
+                <div className="h-1 w-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)]" />
+                <div className="p-8 text-center md:p-10">
+                    <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-[rgba(15,81,103,0.12)] bg-white/75 px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary)]">
+                        Knowledge Check
+                    </div>
+                    <h3 className="text-3xl font-semibold text-[var(--ath-text)]">Stress-Test Your Understanding</h3>
+                    <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[var(--ath-muted)]">
+                        Generate a short adaptive quiz for this section. Missed questions can now feed directly into the support rail for targeted review.
+                    </p>
+                    <button
+                        onClick={handleStart}
+                        className="editorial-button mt-7 px-6 py-3 text-sm"
+                    >
+                        Generate Quiz
+                    </button>
                 </div>
-                <p className="editorial-kicker">Knowledge Check</p>
-                <h3 className="mt-3 text-2xl font-semibold text-[var(--ath-text)]">Stress-test your understanding</h3>
-                <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-[var(--ath-muted)]">
-                    Generate a short adaptive quiz for this section. Missed questions can now feed directly into the support rail for targeted review.
-                </p>
-                <button
-                    onClick={handleStart}
-                    className="editorial-button mt-6 px-6 py-3 text-sm"
-                >
-                    Generate quiz
-                </button>
             </div>
         )
     }
 
     if (status === 'loading') {
         return (
-            <div className="mt-12 rounded-[1.9rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] p-10 text-center shadow-sm">
-                <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-[var(--ath-panel-muted)] border-t-[var(--ath-primary)]" />
-                <h3 className="text-lg font-semibold text-[var(--ath-text)]">Synthesizing questions</h3>
-                <p className="mt-2 text-sm text-[var(--ath-muted)]">
+            <div className="mt-12 rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.84)] p-10 text-center shadow-[0_24px_60px_rgba(15,23,42,0.05)]">
+                <p className="editorial-kicker">Knowledge Check</p>
+                <div className="mx-auto my-5 h-12 w-12 animate-spin rounded-full border-4 border-[var(--ath-panel-muted)] border-t-[var(--ath-primary)]" />
+                <h3 className="text-2xl font-semibold text-[var(--ath-text)]">Synthesizing Questions</h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">
                     BigAL is drafting section-specific checks from the reading and learning objectives.
                 </p>
             </div>
@@ -230,10 +233,11 @@ export default function KnowledgeCheck({
 
     if (status === 'error') {
         return (
-            <div className="mt-12 rounded-[1.9rem] border border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.72)] p-8 text-center">
-                <p className="text-sm font-medium text-[#8c1d1d]">We could not generate the assessment right now.</p>
-                <button onClick={() => setStatus('idle')} className="mt-4 text-sm font-semibold text-[var(--ath-primary)]">
-                    Try again
+            <div className="mt-12 rounded-[2rem] border border-[rgba(186,26,26,0.12)] bg-[rgba(255,248,247,0.92)] p-8 text-center shadow-sm">
+                <p className="editorial-kicker text-[#8c1d1d]">Knowledge Check</p>
+                <p className="mt-4 text-sm font-medium text-[#8c1d1d]">We could not generate the assessment right now.</p>
+                <button onClick={() => setStatus('idle')} className="mt-5 text-sm font-semibold text-[var(--ath-primary)]">
+                    Try Again
                 </button>
             </div>
         )
@@ -244,9 +248,10 @@ export default function KnowledgeCheck({
         const missedConcepts = results.filter((result) => !result.isCorrect)
 
         return (
-            <div className="mt-12 rounded-[1.9rem] border border-emerald-200 bg-emerald-50/70 p-8 text-center shadow-sm">
-                <h3 className="text-2xl font-semibold text-[var(--ath-text)]">Assessment complete</h3>
-                <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">
+            <div className="mt-12 rounded-[2rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(232,245,239,0.85))] p-8 text-center shadow-[0_24px_60px_rgba(15,23,42,0.05)]">
+                <p className="editorial-kicker">Knowledge Check Complete</p>
+                <h3 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Assessment Complete</h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">
                     You answered {score} of {questions.length} items correctly. Mastery was updated for each concept touched in this section.
                 </p>
 
@@ -270,7 +275,7 @@ export default function KnowledgeCheck({
                         )}
                         className="editorial-button mt-6 px-5 py-3 text-sm"
                     >
-                        Review missed concepts
+                        Review Missed Concepts
                     </button>
                 )}
             </div>
@@ -289,7 +294,7 @@ export default function KnowledgeCheck({
             <div className="p-6 md:p-8">
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <span className="editorial-kicker">
-                        Question {currentQuestionIndex + 1} of {questions.length} / {currentQuestion?.type === 'summary' ? 'Short response' : 'Multiple choice'}
+                        Question {currentQuestionIndex + 1} of {questions.length} / {currentQuestion?.type === 'summary' ? 'Short Response' : 'Multiple Choice'}
                     </span>
                     <span className="editorial-chip">Concept {currentQuestion?.concept_id || 'n/a'}</span>
                 </div>
@@ -298,7 +303,7 @@ export default function KnowledgeCheck({
                     {currentQuestion?.question}
                 </h3>
 
-                <div className="mt-6 rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                <div className="mt-6 rounded-[1.25rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
                     <p className="editorial-label">How confident are you in this answer?</p>
                     <div className="mt-3 flex flex-wrap gap-2">
                         {[1, 2, 3, 4, 5].map((value) => (
@@ -344,9 +349,9 @@ export default function KnowledgeCheck({
                                     type="button"
                                     disabled={isAnswered}
                                     onClick={() => handleOptionClick(option.id)}
-                                    className={`flex w-full items-center gap-3 rounded-[1.2rem] border px-4 py-4 text-left transition-all ${optionClasses}`}
+                                    className={`flex w-full items-center gap-3 rounded-[1.25rem] border px-4 py-4 text-left transition-all ${optionClasses}`}
                                 >
-                                    <span className="w-7 shrink-0 text-sm font-bold text-[var(--ath-secondary)]">{option.id}.</span>
+                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] text-xs font-bold text-[var(--ath-secondary)]">{option.id}</span>
                                     <span className="flex-1 text-sm leading-7">{option.text}</span>
                                 </button>
                             )
@@ -355,7 +360,7 @@ export default function KnowledgeCheck({
                         {isAnswered && (
                             <div className="mt-5 rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
                                 <p className={`text-sm font-semibold ${selectedOptionId === currentQuestion.correct_option_id ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
-                                    {selectedOptionId === currentQuestion.correct_option_id ? 'Correct' : 'Needs another pass'}
+                                    {selectedOptionId === currentQuestion.correct_option_id ? 'Correct' : 'Needs Another Pass'}
                                 </p>
                                 <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">{currentQuestion.explanation}</p>
 
@@ -396,14 +401,14 @@ export default function KnowledgeCheck({
                                             onClick={() => triggerReview(currentQuestion, 'missed multiple-choice concept')}
                                             className="editorial-button px-4 py-2 text-sm"
                                         >
-                                            Review this concept
+                                            Review This Concept
                                         </button>
                                         <button
                                             type="button"
                                             onClick={handleNextQuestion}
                                             className="editorial-button-secondary px-4 py-2 text-sm"
                                         >
-                                            Keep going
+                                            Keep Going
                                         </button>
                                         </div>
                                     </div>
@@ -428,7 +433,7 @@ export default function KnowledgeCheck({
                                     disabled={isGrading || !summaryText.trim()}
                                     className="editorial-button px-5 py-3 text-sm disabled:opacity-50"
                                 >
-                                    {isGrading ? 'Evaluating...' : 'Submit response'}
+                                    {isGrading ? 'Evaluating...' : 'Submit Response'}
                                 </button>
                             </div>
                         )}
@@ -437,7 +442,7 @@ export default function KnowledgeCheck({
                             <div className="rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
                                 <div className="flex flex-wrap items-start justify-between gap-3">
                                     <p className={`text-sm font-semibold ${summaryFeedback.is_passing ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
-                                        {summaryFeedback.is_passing ? 'Passing response' : 'Needs more specificity'}
+                                        {summaryFeedback.is_passing ? 'Passing Response' : 'Needs More Specificity'}
                                     </p>
                                     <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--ath-secondary)]">
                                         <span>Content {Math.round((summaryFeedback.content_score || 0) * 100)}%</span>
@@ -449,7 +454,7 @@ export default function KnowledgeCheck({
 
                                 {currentQuestion.rubric && (
                                     <div className="mt-4 rounded-[1rem] border border-[var(--ath-line)] bg-white/75 p-4">
-                                        <p className="editorial-label">Target rubric</p>
+                                        <p className="editorial-label">Target Rubric</p>
                                         <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">{currentQuestion.rubric}</p>
                                     </div>
                                 )}
@@ -490,7 +495,7 @@ export default function KnowledgeCheck({
                                             onClick={() => triggerReview(currentQuestion, 'short-response review')}
                                             className="editorial-button px-4 py-2 text-sm"
                                         >
-                                            Review before the next question
+                                            Review Before the Next Question
                                         </button>
                                     </div>
                                 )}
@@ -505,7 +510,7 @@ export default function KnowledgeCheck({
                             onClick={handleNextQuestion}
                             className="editorial-button px-5 py-3 text-sm"
                         >
-                            {currentQuestionIndex < questions.length - 1 ? 'Next question' : 'Finish assessment'}
+                            {currentQuestionIndex < questions.length - 1 ? 'Next Question' : 'Finish Assessment'}
                         </button>
                     </div>
                 )}

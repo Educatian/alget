@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_dry_adhesion_core",
+      "type": "multiple_choice",
+      "concept_id": "dry_adhesion",
+      "stem": "What makes dry adhesion different from many conventional glue systems?",
+      "options": [
+        "It depends on controlled surface contact rather than wet chemical bonding alone",
+        "It works only underwater",
+        "It requires permanent curing before use",
+        "It ignores micro-scale geometry"
+      ],
+      "correct_index": 0,
+      "explanation": "Dry adhesion relies heavily on contact mechanics and surface architecture rather than only on liquid or curing-based chemistry."
+    },
+    {
+      "id": "bio_nanotech_contact_split",
+      "type": "multiple_choice",
+      "concept_id": "nanotech_adhesion",
+      "stem": "Why is nano- or micro-scale patterning valuable in dry adhesive engineering?",
+      "options": [
+        "It increases effective contact opportunities across a surface",
+        "It guarantees adhesion on every contaminated surface",
+        "It removes the need to consider load direction",
+        "It replaces all intermolecular forces with magnetic fields"
+      ],
+      "correct_index": 0,
+      "explanation": "Fine-scale patterning can create many controlled contact points, improving attachment and release behavior."
+    },
+    {
+      "id": "bio_reversible_attachment",
+      "type": "multiple_choice",
+      "concept_id": "reversible_adhesion",
+      "stem": "Which application is best suited to dry, reversible adhesion?",
+      "options": [
+        "Temporary climbing robot footpads",
+        "Permanent bridge foundation anchoring",
+        "Molten metal joining in high-temperature furnaces",
+        "One-time concrete curing"
+      ],
+      "correct_index": 0,
+      "explanation": "Dry adhesion is especially attractive for systems that need repeated attachment and clean release."
+    },
+    {
+      "id": "bio_surface_engineering_transfer",
+      "type": "multiple_choice",
+      "concept_id": "surface_engineering",
+      "stem": "A biomimetic adhesive team should focus first on which engineering variable?",
+      "options": [
+        "Contact geometry and compliance at the interface",
+        "Logo placement on the device casing",
+        "Only overall package weight",
+        "Ignoring the target surface roughness"
+      ],
+      "correct_index": 0,
+      "explanation": "Interface geometry and compliance strongly shape how a dry adhesive actually behaves during attachment and release."
+    }
+  ]
+}

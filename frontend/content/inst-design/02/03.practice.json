@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "formative_vs_summative",
+      "type": "multiple_choice",
+      "concept_id": "formative_evaluation",
+      "stem": "What is the main purpose of formative evaluation?",
+      "options": [
+        "To judge final impact only after the course is complete",
+        "To catch design problems during development so revisions can still be made",
+        "To replace learner testing with SME opinion only",
+        "To measure ROI after six months of implementation"
+      ],
+      "correct_index": 1,
+      "explanation": "Formative evaluation happens during design and development so teams can improve the instruction before launch."
+    },
+    {
+      "id": "kirkpatrick_learning",
+      "type": "multiple_choice",
+      "concept_id": "kirkpatrick_model",
+      "stem": "Which Kirkpatrick level asks whether learners actually acquired knowledge or skill?",
+      "options": [
+        "Level 1: Reaction",
+        "Level 2: Learning",
+        "Level 3: Behavior",
+        "Level 4: Results"
+      ],
+      "correct_index": 1,
+      "explanation": "Level 2 focuses on whether learning occurred, typically through tests, demonstrations, or performance evidence."
+    },
+    {
+      "id": "reaction_not_learning",
+      "type": "multiple_choice",
+      "concept_id": "evaluation_phase",
+      "stem": "Why is a high post-course satisfaction score not enough to prove instructional effectiveness?",
+      "options": [
+        "Because reaction data can be positive even when real learning or transfer is weak",
+        "Because satisfaction surveys are illegal in most settings",
+        "Because reaction data always measures ROI directly",
+        "Because only psychometricians can collect learner feedback"
+      ],
+      "correct_index": 0,
+      "explanation": "Learners may enjoy a course without learning much. Reaction data is useful, but it does not prove performance improvement by itself."
+    },
+    {
+      "id": "evaluation_evidence_choice",
+      "type": "multiple_choice",
+      "concept_id": "evidence_collection",
+      "stem": "Which evidence source best aligns with Level 3 behavior evaluation?",
+      "options": [
+        "A smile-sheet rating gathered immediately after class",
+        "A pre/post knowledge quiz taken in the LMS",
+        "Observation of whether employees changed their on-the-job behavior after training",
+        "A brand-style review of the course visuals"
+      ],
+      "correct_index": 2,
+      "explanation": "Level 3 asks whether the learner changed behavior in practice, not just whether they liked the course or passed a quiz."
+    }
+  ]
+}

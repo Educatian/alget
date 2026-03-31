@@ -1,0 +1,37 @@
+{
+  "section_id": "dynamics_0301",
+  "misconceptions": [
+    {
+      "id": "same_speed_all_points",
+      "pattern": "rigid_body_concept_error",
+      "description": "Assuming all points on a rotating rigid body have the same linear speed",
+      "trigger": "learner states or computes equal linear speeds for points at different radii",
+      "feedback": "Points on the same rigid body share angular velocity, not linear speed. Use v = r omega, so the point farther from the axis moves faster linearly.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "normal_vs_tangential_acceleration",
+      "pattern": "component_mixup",
+      "description": "Confusing tangential and normal acceleration roles",
+      "trigger": "learner uses a_t = r omega^2 or a_n = r alpha",
+      "feedback": "Tangential acceleration changes speed and uses alpha: a_t = r alpha. Normal acceleration changes direction and uses omega squared: a_n = r omega^2.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "wrong_radius_reference",
+      "pattern": "geometry_error",
+      "description": "Using the wrong distance from the axis when applying v = r omega",
+      "trigger": "learner measures r from an arbitrary point rather than the rotation axis",
+      "feedback": "The radius in rigid-body kinematics is the perpendicular distance from the point to the rotation axis. Check the geometry before substituting into v = r omega.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "angular_linear_same_quantity",
+      "pattern": "unit_confusion",
+      "description": "Mixing angular and linear quantities as if they had the same meaning",
+      "trigger": "learner adds omega directly to v or compares them without converting",
+      "feedback": "Angular velocity and linear velocity are different physical quantities with different units. Use the geometry relation v = r omega when converting between them.",
+      "rail_action": "explain"
+    }
+  ]
+}

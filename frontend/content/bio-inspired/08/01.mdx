@@ -39,6 +39,17 @@ Instead of one massive, \$100-million Predator drone acting as an intelligence c
 *   **Robustness:** They require no central server. If 5,000 drones are shot down or malfunction, the remaining 5,000 instantly recompute their local neighbor vectors, dynamically close ranks (Cohesion), and continue the mission uninterrupted.
 *   **Scalability:** Because the computational logic only requires processing the position of the 3 or 4 drones immediately adjacent (not the entire network), you can scale the swarm infinitely from 10 drones to 10 million drones without increasing the processing power required on any single chip.
 
+### Design Heuristics for Real Swarms
+
+Engineers rarely deploy swarm logic without guardrails. In practice, they ask:
+
+- how local each sensing decision can remain before coordination breaks down,
+- what communication failures the swarm must survive,
+- how much redundancy is needed before individual agent loss becomes acceptable,
+- and when human supervisors should override purely local behavior.
+
+Those questions keep swarm intelligence from becoming a vague metaphor. They turn it into an actionable systems-engineering method.
+
 <dynamic-scenario topic="Swarm Logistics" context="A disaster response coordinator debating whether to use one massive, highly complex robotic rover to search a collapsed skyscraper, or 5,000 cheap robotic cockroaches running a stigmergic search algorithm."></dynamic-scenario>
 
 ---

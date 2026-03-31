@@ -1,6 +1,6 @@
 # Equations of Motion for Rigid Bodies
 
-> **"For rigid bodies: forces govern translation, moments govern rotation."**
+> **"A rigid body problem is two problems at once: translation of the mass center and rotation about it."**
 
 ---
 
@@ -12,14 +12,23 @@
 
 ## Learning Objectives
 
-1. **Apply** $\sum F = ma_G$ for center of mass
-2. **Apply** $\sum M_G = I_G \alpha$ for rotation
-3. **Solve** planar rigid body dynamics problems
-4. **Use** mass moment of inertia
+1. **Apply** $\sum F = ma_G$ to the center of mass
+2. **Apply** $\sum M_G = I_G \alpha$ to planar rotation
+3. **Use** mass moment of inertia correctly
+4. **Recognize** when the reference point changes the algebra but not the physics
 
 ---
 
-## The Equations of Motion
+## From Particle Dynamics to Rigid-Body Dynamics
+
+For a particle, all the mass is treated as concentrated at one point. For a rigid body, mass is distributed across space, so forces can do two things:
+
+- translate the center of mass
+- rotate the body about its center of mass or another point
+
+That is why rigid-body dynamics needs both force equations and a moment equation.
+
+## Governing Equations in Plane Motion
 
 For a rigid body in plane motion:
 
@@ -36,55 +45,142 @@ $$
 $$
 
 where:
-- $G$ = center of mass
-- $I_G$ = mass moment of inertia about G
-- $\alpha$ = angular acceleration
 
----
+- $G$ is the center of mass
+- $I_G$ is the mass moment of inertia about $G$
+- $\alpha$ is angular acceleration
 
-## Mass Moment of Inertia
+These equations are powerful because they separate translation and rotation cleanly.
+
+## What Mass Moment of Inertia Really Means
+
+Mass moment of inertia tells you how difficult it is to angularly accelerate a body about an axis.
+
+Two bodies can have the same mass but different rotational response if their mass is distributed differently.
 
 | Shape | $I_G$ |
-|-------|-------|
-| Slender rod (about center) | $\frac{1}{12}mL^2$ |
-| Thin disk/cylinder | $\frac{1}{2}mr^2$ |
+| --- | --- |
+| Slender rod about center | $\frac{1}{12}mL^2$ |
+| Thin disk or cylinder | $\frac{1}{2}mr^2$ |
 | Solid sphere | $\frac{2}{5}mr^2$ |
 
-**Parallel Axis Theorem:**
+Bodies with more mass farther from the axis have larger inertia and therefore smaller angular acceleration for the same applied moment.
+
+<torque-diagram />
+
+## The Parallel-Axis Theorem
+
+If the rotation axis is not through the center of mass,
+
 $$
-I = I_G + md^2
+\boxed{I = I_G + md^2}
 $$
 
----
+This is one of the most common sources of mistakes in rigid-body dynamics. Students often remember a tabulated $I_G$ value and forget to shift it to the actual rotation axis.
+
+## A Reliable Solution Strategy
+
+### 1. Draw the rigid-body free body diagram
+
+Include all applied forces, reactions, and known distances.
+
+### 2. Mark the center of mass
+
+If the center of mass location is not explicit, infer it from the geometry.
+
+### 3. Write force equations for translation
+
+These determine the acceleration of the center of mass.
+
+### 4. Write a moment equation
+
+Use a point that makes the rotational balance easiest to evaluate. If you use the center of mass, the standard equation is $\sum M_G = I_G \alpha$.
+
+### 5. Connect translation and rotation when needed
+
+Rolling constraints or kinematic relations may couple $a_G$ and $\alpha$.
+
+<dynamic-scenario
+  topic="Startup Torque for a Conveyor Drum"
+  context="A factory retrofit adds a heavier steel drum to a packaging conveyor. The motor torque remains the same, and the controls engineer must predict whether startup acceleration will still meet the required throughput target."
+  course="dynamics"
+/>
 
 ## Worked Example
 
-**Problem:** A 10 kg disk (r = 0.3 m) has a tangential force of 20 N at its rim. Find angular acceleration.
+### Example 3.2: Disk with a Tangential Force
 
-**Solution:**
+**Problem:** A 10 kg disk of radius 0.3 m has a tangential force of 20 N applied at its rim. Find the angular acceleration.
 
-$$
-I_G = \frac{1}{2}mr^2 = \frac{1}{2}(10)(0.3)^2 = 0.45 \text{ kg·m}^2
-$$
+### Step A: Compute the inertia
 
-$$
-\sum M_G = F \cdot r = 20 \times 0.3 = 6 \text{ N·m}
-$$
+For a disk about its center:
 
 $$
-\alpha = \frac{\sum M_G}{I_G} = \frac{6}{0.45} = \boxed{13.3 \text{ rad/s}^2}
+I_G = \frac{1}{2}mr^2 = \frac{1}{2}(10)(0.3)^2 = 0.45 \text{ kg*m}^2
 $$
 
----
+### Step B: Compute the applied moment
+
+Because the force is tangential,
+
+$$
+\sum M_G = Fr = 20(0.3) = 6 \text{ N*m}
+$$
+
+### Step C: Apply the rotational equation
+
+$$
+\sum M_G = I_G \alpha
+$$
+
+$$
+6 = 0.45\alpha
+$$
+
+$$
+\alpha = 13.3 \text{ rad/s}^2
+$$
+
+The disk's angular acceleration is determined by both the applied moment and the body's rotational inertia.
+
+## A More Subtle Interpretation
+
+If the same 20 N force acted on a larger-radius but much heavier disk, the larger moment arm might help, but the increased inertia could dominate. That tradeoff is why motor sizing, flywheel design, and rotating-machine startup analysis all depend on the same structure:
+
+- applied torque creates angular acceleration
+- inertia resists angular acceleration
+
+## Common Mistakes
+
+- using force instead of moment in the rotational equation
+- forgetting the moment arm
+- using a tabulated inertia about the wrong axis
+- mixing translational acceleration of the center of mass with angular acceleration of the body
+
+## Check Your Understanding
+
+<interactive-quiz
+  question="Why can two rigid bodies with the same mass respond differently to the same applied moment?"
+  conceptId="mass_moment_of_inertia"
+  options='[{"text":"Because only the shape matters, not the mass distribution.","isCorrect":false},{"text":"Because mass moment of inertia depends on how the mass is distributed relative to the axis.","isCorrect":true},{"text":"Because moments do not affect angular acceleration.","isCorrect":false}]'
+  explanation="Correct. Rotational response depends on the mass distribution. More mass located farther from the axis increases the mass moment of inertia and reduces angular acceleration for the same moment."
+/>
+
+<interactive-quiz
+  question="When should the parallel-axis theorem be used?"
+  conceptId="rotational_equation"
+  options='[{"text":"Whenever the axis of interest is not through the center of mass.","isCorrect":true},{"text":"Only when the body is translating.","isCorrect":false},{"text":"Only for springs and pulleys.","isCorrect":false}]'
+  explanation="Exactly. Many handbook inertia formulas are given about the centroidal axis. If the actual rotation axis is displaced, you must shift the inertia with I = I_G + md^2."
+/>
 
 ## Summary
 
-- Translation: $\sum F = ma_G$
-- Rotation: $\sum M_G = I_G \alpha$
-- Use parallel axis theorem when rotating about non-CG point
-
----
+- Rigid-body dynamics combines translation of the center of mass with rotation about it.
+- The force equations predict translational acceleration; the moment equation predicts angular acceleration.
+- Mass moment of inertia is the rotational analog of mass in particle dynamics.
+- The reference axis matters, which is why the parallel-axis theorem appears so often.
 
 ## What's Next?
 
-In **Section 3.3: Work-Energy for Rigid Bodies**, we'll extend energy methods to rotating systems.
+In **Section 3.3**, we move to rigid-body work and energy, where translational and rotational kinetic energy appear together in one balance.

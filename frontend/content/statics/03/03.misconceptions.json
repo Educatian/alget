@@ -1,0 +1,29 @@
+{
+  "section_id": "statics_0303",
+  "misconceptions": [
+    {
+      "id": "cut_any_number_of_members",
+      "pattern": "section_planning_error",
+      "description": "Assuming any cut is acceptable regardless of unknown count",
+      "trigger": "learner cuts through many unknown members and still expects a direct solution",
+      "feedback": "In planar truss section analysis, you usually want no more than three unknown cut-member forces because the isolated section gives three independent equilibrium equations.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "moment_point_random",
+      "pattern": "strategy_error",
+      "description": "Choosing moment centers without considering which unknowns can be eliminated",
+      "trigger": "learner takes moments about a point that leaves all unknown cut-member forces in the equation",
+      "feedback": "A good moment center is chosen to eliminate as many unwanted unknowns as possible, often at the intersection of two cut-member lines of action.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "sections_replaces_reactions",
+      "pattern": "setup_error",
+      "description": "Thinking the method of sections avoids solving support reactions",
+      "trigger": "learner begins with a cut before accounting for support loads",
+      "feedback": "Support reactions usually must be found first because they act on the cut section as external forces.",
+      "rail_action": "practice"
+    }
+  ]
+}

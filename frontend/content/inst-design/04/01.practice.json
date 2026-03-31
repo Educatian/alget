@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "arcs_attention",
+      "type": "multiple_choice",
+      "concept_id": "arcs_model",
+      "stem": "In Keller's ARCS model, which component is primarily about capturing curiosity at the start of instruction?",
+      "options": [
+        "Attention",
+        "Relevance",
+        "Confidence",
+        "Satisfaction"
+      ],
+      "correct_index": 0,
+      "explanation": "Attention is the entry point of the ARCS model and focuses on arousing curiosity or interest."
+    },
+    {
+      "id": "arcs_relevance_case",
+      "type": "multiple_choice",
+      "concept_id": "engagement_design",
+      "stem": "Which design choice most directly improves relevance?",
+      "options": [
+        "Opening with a surprising but unrelated joke",
+        "Showing how the lesson connects to the learner's real job tasks and goals",
+        "Increasing the number of badges awarded",
+        "Reducing every task to drill-only repetition"
+      ],
+      "correct_index": 1,
+      "explanation": "Relevance grows when learners can see why the material matters in their own context."
+    },
+    {
+      "id": "arcs_confidence",
+      "type": "multiple_choice",
+      "concept_id": "learner_motivation",
+      "stem": "What design move most directly supports confidence in ARCS?",
+      "options": [
+        "Giving learners impossible tasks immediately",
+        "Providing clear expectations and progressive success experiences",
+        "Removing all feedback so learners rely on instinct",
+        "Using only external rewards"
+      ],
+      "correct_index": 1,
+      "explanation": "Confidence grows when learners understand the target and experience achievable success along the way."
+    },
+    {
+      "id": "overjustification_effect",
+      "type": "multiple_choice",
+      "concept_id": "intrinsic_motivation",
+      "stem": "Why can excessive external rewards sometimes weaken intrinsic motivation?",
+      "options": [
+        "Because rewards are never useful in any learning context",
+        "Because the activity can become framed as something done only for the reward",
+        "Because learners stop caring about feedback altogether",
+        "Because extrinsic motivation always produces deep transfer"
+      ],
+      "correct_index": 1,
+      "explanation": "The overjustification effect occurs when an activity once valued for its own sake is reinterpreted as something done merely for reward."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0103",
+  "misconceptions": [
+    {
+      "id": "gecko_uses_suction",
+      "pattern": "mechanism_error",
+      "description": "Assuming gecko adhesion is mainly suction based",
+      "trigger": "learner explains attachment using vacuum or suction cup logic",
+      "feedback": "Gecko-inspired dry adhesion is primarily explained through contact splitting and van der Waals interactions, not suction.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "more_sticky_every_direction",
+      "pattern": "directionality_error",
+      "description": "Ignoring the directional nature of the adhesive",
+      "trigger": "learner assumes grip and release behave the same in every loading direction",
+      "feedback": "Directional adhesion works because geometry changes the contact response depending on whether the load is shear-dominant, normal, or peeling.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "copy_hair_shape_only",
+      "pattern": "biomimicry_transfer_error",
+      "description": "Thinking biomimicry means copying visible hairs without modeling contact mechanics",
+      "trigger": "learner proposes a gecko-inspired surface based on appearance alone",
+      "feedback": "What matters is not only that the structure looks hair-like, but that spacing, angle, compliance, and contact splitting create the intended adhesion behavior.",
+      "rail_action": "practice"
+    }
+  ]
+}

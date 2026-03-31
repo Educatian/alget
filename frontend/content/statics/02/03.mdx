@@ -1,185 +1,191 @@
 # Equilibrium of Rigid Bodies
 
-> **"For a rigid body in equilibrium, both forces AND moments must balance."**
+> **A rigid body is in equilibrium only when both forces and moments balance.**
 
 ---
 
 ## Learning Objectives
 
-By the end of this section, you will be able to:
+By the end of this section, you should be able to:
 
-1. **Apply** equilibrium equations for rigid bodies
-2. **Write** three equilibrium equations: ΣFx=0, ΣFy=0, ΣM=0
-3. **Solve** statically determinate problems
-4. **Identify** support reactions
+- apply the planar equilibrium equations for rigid bodies,
+- identify support reactions for common support types,
+- choose useful moment points,
+- and solve statically determinate beam and frame problems.
 
 ---
 
-## From Particles to Rigid Bodies
+## From Particle Equilibrium to Rigid-Body Equilibrium
 
-For a **particle**, we only needed force equilibrium:
+For a particle, force balance is enough:
 
 $$
 \sum \vec{F} = 0
 $$
 
-For a **rigid body**, we also need moment equilibrium:
+But a rigid body can rotate, so force balance alone is not sufficient. A rigid body in 2D must satisfy:
 
 $$
-\sum \vec{M}_O = 0
+\sum F_x = 0,\qquad \sum F_y = 0,\qquad \sum M_O = 0
 $$
 
-Together, these give us **6 equations in 3D** (3 force, 3 moment) or **3 equations in 2D**:
+These three equations capture two ideas:
 
-$$
-\boxed{
-\begin{aligned}
-\sum F_x &= 0 \\
-\sum F_y &= 0 \\
-\sum M_O &= 0
-\end{aligned}
-}
-$$
+- the body must not translate in $x$ or $y$,
+- and it must not have a net turning tendency.
+
+If a problem has more than three unknown reactions in 2D, equilibrium alone will not be enough.
 
 ---
 
 ## Support Reactions
 
-Different supports provide different reactions:
+Before writing equations, identify what each support can provide.
 
-| Support Type | Reactions Provided | Diagram |
-|--------------|-------------------|---------|
-| **Pin/Hinge** | $R_x$, $R_y$ (2 forces) | △ |
-| **Roller** | $R$ perpendicular to surface (1 force) | ○ |
-| **Fixed (Cantilever)** | $R_x$, $R_y$, $M$ (2 forces + 1 moment) | ▌ |
-| **Cable** | $T$ along cable (1 force, tension only) | ─ |
+- **Pin support:** horizontal and vertical reaction components
+- **Roller support:** one reaction normal to the surface
+- **Fixed support:** horizontal reaction, vertical reaction, and a reaction moment
+- **Cable:** tension only, directed along the cable
 
-> 💡 **Rule**: Count unknowns. For a 2D problem, you need exactly 3 unknowns for static determinacy.
+This is why support identification matters so much. The support model determines the unknowns before the algebra even starts.
 
 ---
 
-## Problem-Solving Strategy
+## A Reliable Problem-Solving Strategy
 
-### Step 1: Draw the FBD
-Show all external forces including support reactions.
+Use the same sequence every time:
 
-### Step 2: Establish Coordinate System
-Usually: x horizontal (→+), y vertical (↑+), moments CCW (+).
+1. Draw the free-body diagram.
+2. Replace supports with reaction forces and moments.
+3. Choose a coordinate system and sign convention.
+4. Write the three equilibrium equations.
+5. Pick a smart moment point to eliminate as many unknowns as possible.
+6. Solve and check whether the reactions make physical sense.
 
-### Step 3: Write Equilibrium Equations
-
-$$
-\sum F_x = 0, \quad \sum F_y = 0, \quad \sum M_A = 0
-$$
-
-Choose the moment point wisely—picking a point where unknown forces act eliminates those unknowns from the moment equation.
-
-### Step 4: Solve the System
-Usually 3 equations with 3 unknowns.
+Students often rush to equations before completing the free-body diagram. That usually causes sign mistakes or missing reactions.
 
 ---
 
-## Worked Examples
+## Choosing a Good Moment Point
 
-### Example 2.6: Simply Supported Beam
+Moment equations become easier when the chosen point removes unknowns.
 
-**Problem:** A 6 m beam is supported by a pin at A and a roller at B. A 1000 N load acts at the center. Find the reactions.
+Good choices often include:
 
-```
-        1000 N
-          ↓
-    A─────C─────B
-    △     3m    ○
-    ├─────┼─────┤
-       3m    3m
-```
+- a pin support where two unknown reactions act,
+- a point where several lines of action intersect,
+- or a reference point that simplifies geometry.
 
-**Solution:**
+This is not a shortcut. It is one of the main skills in rigid-body equilibrium.
 
-*Step 1: FBD*
-- At A: $A_x$ (→), $A_y$ (↑)
-- At B: $B_y$ (↑)
-- Load: 1000 N (↓) at C
+---
 
-*Step 2: Equilibrium Equations*
+## Worked Example 1: Simply Supported Beam
 
-**ΣFx = 0:**
+A 6 m beam is pinned at A and on a roller at B. A 1000 N load acts at midspan.
+
+By symmetry, we expect the vertical reactions to match, but we still verify with equilibrium:
+
 $$
-A_x = 0
+\sum M_A = 0:\quad B_y(6) - 1000(3) = 0
 $$
 
-**ΣMA = 0** (taking moments about A):
-$$
-B_y(6) - 1000(3) = 0
-$$
 $$
 B_y = 500 \text{ N}
 $$
 
-**ΣFy = 0:**
+Then,
+
 $$
-A_y + B_y - 1000 = 0
+\sum F_y = 0:\quad A_y + 500 - 1000 = 0
 $$
+
 $$
 A_y = 500 \text{ N}
 $$
 
-**Results:**
+Finally,
+
 $$
-\boxed{A_x = 0, \quad A_y = 500 \text{ N}, \quad B_y = 500 \text{ N}}
+\sum F_x = 0 \Rightarrow A_x = 0
 $$
 
----
+So the reactions are:
 
-### Example 2.7: Cantilever Beam
-
-**Problem:** A 4 m cantilever beam has a fixed support at A and a 2000 N load at the free end B. Find the reactions at A.
-
-```
-    ▌═════════●
-    A    4m    B
-              ↓ 2000 N
-```
-
-**Solution:**
-
-*Step 1: FBD at A*
-- $A_x$ (horizontal reaction)
-- $A_y$ (vertical reaction)  
-- $M_A$ (moment reaction)
-
-*Step 2: Equilibrium*
-
-**ΣFx = 0:** $A_x = 0$
-
-**ΣFy = 0:** $A_y - 2000 = 0 \Rightarrow A_y = 2000$ N
-
-**ΣMA = 0:** $M_A - 2000(4) = 0 \Rightarrow M_A = 8000$ N·m
-
-**Results:**
 $$
-\boxed{A_x = 0, \quad A_y = 2000 \text{ N}, \quad M_A = 8000 \text{ N·m (CCW)}}
+\boxed{A_x = 0,\; A_y = 500\text{ N},\; B_y = 500\text{ N}}
 $$
 
 ---
 
-## Summary
+## Worked Example 2: Cantilever Beam
 
-### Key Equations
+A 4 m cantilever carries a 2000 N downward load at the free end.
+
+At the fixed support A, the unknowns are:
+
+- $A_x$
+- $A_y$
+- $M_A$
+
+From equilibrium:
 
 $$
-\sum F_x = 0, \quad \sum F_y = 0, \quad \sum M_O = 0
+\sum F_x = 0 \Rightarrow A_x = 0
 $$
 
-### Key Takeaways
+$$
+\sum F_y = 0 \Rightarrow A_y - 2000 = 0 \Rightarrow A_y = 2000 \text{ N}
+$$
 
-- ✅ Rigid bodies require **3 equilibrium equations** in 2D
-- ✅ Choose moment point to **eliminate unknowns**
-- ✅ Identify support types to determine **reaction forces**
-- ✅ Check: Do your answers make physical sense?
+$$
+\sum M_A = 0 \Rightarrow M_A - 2000(4) = 0
+$$
+
+$$
+M_A = 8000 \text{ N m}
+$$
+
+This example shows why fixed supports create a reaction moment and why rigid-body equilibrium is richer than particle equilibrium.
+
+<dynamic-scenario topic="Rigid Body Equilibrium" context="A product engineer is checking whether a wall-mounted robotic arm bracket will overload its anchor bolts when a payload is extended outward from the wall."></dynamic-scenario>
 
 ---
 
-## What's Next?
+## Common Failure Modes
 
-In **Chapter 3: Structural Analysis**, we'll analyze trusses and frames—structures made of multiple connected members.
+When rigid-body equilibrium problems go wrong, it is usually because of one of these issues:
+
+- forgetting the reaction moment at a fixed support,
+- using the wrong sign convention for moments,
+- missing a reaction component at a pin,
+- or writing moment arms using nonperpendicular distances.
+
+A useful self-check is to ask:
+
+- Are all support reactions included?
+- Did I use perpendicular distances in moment calculations?
+- Does the final answer agree with the likely direction of support action?
+
+---
+
+## Design Intuition
+
+Rigid-body equilibrium is the gateway to structural analysis. Beams, brackets, frames, machines, and support systems all rely on this logic.
+
+If you can model the forces and moments correctly, then you can:
+
+- determine support loads,
+- size connections,
+- locate dangerous load paths,
+- and decide whether a system is statically determinate or needs additional methods.
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="Why can a beam with zero net horizontal and vertical force still fail to be in equilibrium?"
+  options='[{"text":"Because moments may still produce a net tendency to rotate the beam.","isCorrect":true},{"text":"Because force balance automatically guarantees moment balance.","isCorrect":false},{"text":"Because beams cannot be analyzed with free-body diagrams.","isCorrect":false}]'
+  explanation="Correct. A rigid body can have balanced forces but still rotate if the net moment is not zero."
+/>

@@ -1,0 +1,29 @@
+{
+  "section_id": "bio_inspired_0201",
+  "misconceptions": [
+    {
+      "id": "rougher_always_better",
+      "pattern": "surface_flow_error",
+      "description": "Assuming any rough surface automatically reduces drag",
+      "trigger": "learner treats texture as universally beneficial without discussing scale or orientation",
+      "feedback": "Biomimetic drag reduction depends on geometry, scale, and flow conditions. Some textures reduce drag, while others increase losses if they disrupt the boundary layer poorly.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "copy_skin_material_not_pattern",
+      "pattern": "biomimicry_transfer_error",
+      "description": "Focusing on biological material instead of hydrodynamic geometry",
+      "trigger": "learner proposes copying shark skin chemistry rather than the denticle-inspired pattern",
+      "feedback": "In engineering transfer, the useful abstraction is usually the flow-shaping geometry and how it modifies the boundary layer, not the biological material itself.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "drag_only_macro_shape",
+      "pattern": "scale_error",
+      "description": "Assuming only large-scale shape matters in fluid drag",
+      "trigger": "learner ignores micro-scale surface effects near the wall",
+      "feedback": "Macro-shape matters, but micro-scale surface features can also influence drag by reshaping near-wall flow and vortex behavior.",
+      "rail_action": "practice"
+    }
+  ]
+}

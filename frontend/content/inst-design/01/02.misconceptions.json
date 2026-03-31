@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0102",
+  "misconceptions": [
+    {
+      "id": "all_load_is_bad",
+      "pattern": "concept_error",
+      "description": "Assuming all cognitive load should be reduced",
+      "trigger": "learner argues that every type of cognitive demand is harmful",
+      "feedback": "Extraneous load should be minimized, but germane load is productive because it supports schema building. The goal is not zero effort; it is useful effort.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "intrinsic_equals_bad_design",
+      "pattern": "source_confusion",
+      "description": "Blaming the interface for the inherent complexity of the content",
+      "trigger": "learner treats all difficulty as an interface problem",
+      "feedback": "Intrinsic load comes from the subject itself. Designers manage it through sequencing and scaffolding, but they do not eliminate the complexity by layout alone.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "schema_is_just_memory",
+      "pattern": "oversimplification",
+      "description": "Reducing schemas to isolated facts rather than structured meaning",
+      "trigger": "learner describes schema theory as simple memorization only",
+      "feedback": "Schemas are not just stored facts. They are organized structures that let learners interpret, connect, and transfer knowledge more efficiently.",
+      "rail_action": "practice"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bloom_sigma_problem",
+      "type": "multiple_choice",
+      "concept_id": "future_learning_ecosystems",
+      "stem": "Why is Bloom's 2 Sigma Problem so influential in discussions of learning technology?",
+      "options": [
+        "It showed that tutoring performs slightly worse than classroom teaching",
+        "It highlighted the massive gap between one-to-one mastery-oriented tutoring and traditional instruction",
+        "It proved that all technology is better than all human teaching",
+        "It established that only AI can support learning"
+      ],
+      "correct_index": 1,
+      "explanation": "Bloom's finding matters because it showed how large the gains from high-quality tutoring can be compared with standard classroom instruction."
+    },
+    {
+      "id": "ai_tutor_strength",
+      "type": "multiple_choice",
+      "concept_id": "ai_tutors",
+      "stem": "What is one major promise of AI tutors in instructional design?",
+      "options": [
+        "They permanently eliminate the need for human teachers",
+        "They can personalize hints, feedback, and pacing at a scale humans alone cannot match",
+        "They guarantee learning regardless of content quality",
+        "They remove the need for evaluation or ethics"
+      ],
+      "correct_index": 1,
+      "explanation": "AI tutors are promising because they can personalize support at scale, but they still depend on sound pedagogy, evaluation, and guardrails."
+    },
+    {
+      "id": "llm_risk_design",
+      "type": "multiple_choice",
+      "concept_id": "large_language_models",
+      "stem": "What is a major design risk when using large language models for learning support?",
+      "options": [
+        "They always refuse to answer",
+        "They can generate fluent but incorrect or pedagogically weak guidance if not bounded and evaluated",
+        "They make accessibility irrelevant",
+        "They eliminate the need for content models"
+      ],
+      "correct_index": 1,
+      "explanation": "LLMs can sound convincing while being wrong or instructionally misaligned, so evaluation and guardrails are essential."
+    },
+    {
+      "id": "human_ai_orchestration",
+      "type": "multiple_choice",
+      "concept_id": "human_ai_orchestration",
+      "stem": "Which statement best reflects a strong human-AI orchestration model for learning?",
+      "options": [
+        "Let the AI control all pedagogy without human review",
+        "Use AI for scalable support while keeping humans responsible for standards, oversight, and escalation",
+        "Remove all adaptive logging so the AI feels more natural",
+        "Avoid any evaluation because personalization is automatically beneficial"
+      ],
+      "correct_index": 1,
+      "explanation": "Strong orchestration uses AI where it scales well, while humans retain responsibility for quality, ethics, and high-stakes judgment."
+    }
+  ]
+}

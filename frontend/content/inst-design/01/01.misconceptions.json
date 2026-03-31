@@ -1,0 +1,29 @@
+{
+  "section_id": "inst_design_0101",
+  "misconceptions": [
+    {
+      "id": "id_equals_content_packaging",
+      "pattern": "scope_error",
+      "description": "Treating instructional design as content formatting only",
+      "trigger": "learner describes ID as slide creation or media production without analysis or evaluation",
+      "feedback": "Instructional design is broader than content packaging. It includes diagnosing learner needs, defining objectives, designing assessments, and evaluating whether the intervention solved the performance gap.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "single_theory_best",
+      "pattern": "theory_selection_error",
+      "description": "Assuming one learning theory is universally correct",
+      "trigger": "learner claims behaviorism, cognitivism, or constructivism should always be used in every context",
+      "feedback": "Strong instructional design is pragmatic. Different theories support different goals: behaviorism for fluency and habits, cognitivism for processing and load management, constructivism for meaning-making and transfer.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "addie_is_strict_waterfall_only",
+      "pattern": "framework_error",
+      "description": "Interpreting ADDIE as a rigid one-pass sequence in every modern context",
+      "trigger": "learner says ADDIE cannot be iterative or adapted",
+      "feedback": "ADDIE is often used today as a flexible systems framework rather than a rigid waterfall. Teams frequently iterate within and across phases.",
+      "rail_action": "practice"
+    }
+  ]
+}

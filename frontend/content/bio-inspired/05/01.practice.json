@@ -1,0 +1,60 @@
+{
+  "problems": [
+    {
+      "id": "bio_structural_color_core",
+      "type": "multiple_choice",
+      "concept_id": "structural_color",
+      "stem": "What distinguishes structural color from pigment-based color?",
+      "options": [
+        "Structural color is produced by geometry interacting with light rather than chemical dyes alone",
+        "Structural color is always painted on after manufacturing",
+        "Structural color works only in darkness",
+        "Structural color eliminates all wavelength dependence"
+      ],
+      "correct_index": 0,
+      "explanation": "Structural color emerges from how micro- and nano-scale architecture manipulates light."
+    },
+    {
+      "id": "bio_morpho_interference",
+      "type": "multiple_choice",
+      "concept_id": "morpho_butterfly",
+      "stem": "Why is the Morpho butterfly a classic biomimetic optics example?",
+      "options": [
+        "Its color comes mainly from thick surface paint",
+        "Its wing architecture creates strong optical effects through layered microstructure",
+        "Its color is unrelated to surface structure",
+        "It reflects every wavelength equally"
+      ],
+      "correct_index": 1,
+      "explanation": "Morpho coloration is widely studied because geometric structure, not only pigment, creates the visible effect."
+    },
+    {
+      "id": "bio_optical_design_transfer",
+      "type": "multiple_choice",
+      "concept_id": "optical_interference",
+      "stem": "Which engineering application best fits structural-color principles?",
+      "options": [
+        "Anti-counterfeit surfaces that change appearance through microstructure",
+        "A steel beam designed only for compressive load",
+        "A hydraulic seal selected only for friction",
+        "A battery chosen only for energy density"
+      ],
+      "correct_index": 0,
+      "explanation": "Structural-color principles are especially useful for optical sensing, signaling, and anti-counterfeit design."
+    },
+    {
+      "id": "bio_nanostructure_signal",
+      "type": "multiple_choice",
+      "concept_id": "nanostructure_optics",
+      "stem": "What should a designer control first when engineering a structural-color surface?",
+      "options": [
+        "The geometric spacing and arrangement of the optical microstructure",
+        "Only the product brand name",
+        "Only the total mass of the part",
+        "The electrical voltage of the package"
+      ],
+      "correct_index": 0,
+      "explanation": "Optical behavior depends strongly on structural scale and spacing relative to wavelengths of light."
+    }
+  ]
+}

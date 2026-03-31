@@ -1,57 +1,93 @@
 {
-    "problems": [
+  "problems": [
+    {
+      "id": "newton_concept_sign",
+      "type": "multiple_choice",
+      "stem": "A cart moves to the right while slowing down on a horizontal track. If right is positive, what must be true about its acceleration?",
+      "options": [
+        "It is positive because the cart is moving right.",
+        "It is negative because acceleration opposes the motion.",
+        "It is zero because the cart is still moving.",
+        "Its sign depends only on the cart's mass."
+      ],
+      "correct_index": 1,
+      "explanation": "Velocity describes direction of motion. Acceleration describes how velocity is changing. If the cart is moving right but slowing down, acceleration points left and is negative."
+    },
+    {
+      "id": "newton_basic_numeric",
+      "type": "numeric",
+      "stem": "A 5 kg object experiences a net horizontal force of 20 N. Find its acceleration.",
+      "final_answer": {
+        "value": 4,
+        "unit": "m/s^2",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "newton_incline_numeric",
+      "type": "numeric",
+      "stem": "A 15 kg block slides down a frictionless 40 degree incline. Find its acceleration.",
+      "final_answer": {
+        "value": 6.31,
+        "unit": "m/s^2",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "newton_friction_steps",
+      "type": "step_based",
+      "stem": "A 20 kg crate is pushed with an 80 N horizontal force on a floor with mu_k = 0.3. Find the acceleration.",
+      "steps": [
         {
-            "id": "newton_basic",
-            "type": "numeric",
-            "stem": "A 5 kg object experiences a net force of 20 N. Find its acceleration.",
-            "final_answer": {
-                "value": 4,
-                "unit": "m/s²",
-                "tolerance": 0.1
-            }
+          "step_id": 1,
+          "description": "Find the normal force N = mg.",
+          "expected_value": 196.2,
+          "unit": "N",
+          "tolerance": 1
         },
         {
-            "id": "newton_incline",
-            "type": "numeric",
-            "stem": "A 15 kg block slides down a frictionless 40° incline. Find the acceleration.",
-            "final_answer": {
-                "value": 6.31,
-                "unit": "m/s²",
-                "tolerance": 0.1
-            }
+          "step_id": 2,
+          "description": "Find the kinetic friction force f_k = mu_k N.",
+          "expected_value": 58.9,
+          "unit": "N",
+          "tolerance": 1
         },
         {
-            "id": "newton_friction",
-            "type": "step_based",
-            "stem": "A 20 kg crate is pushed with 80 N horizontal force on a floor with μk = 0.3. Find acceleration.",
-            "steps": [
-                {
-                    "step_id": 1,
-                    "description": "Find normal force N = mg",
-                    "expected_value": 196.2,
-                    "unit": "N",
-                    "tolerance": 1
-                },
-                {
-                    "step_id": 2,
-                    "description": "Find friction f = μkN",
-                    "expected_value": 58.9,
-                    "unit": "N",
-                    "tolerance": 1
-                },
-                {
-                    "step_id": 3,
-                    "description": "Find net force and acceleration",
-                    "expected_value": 1.06,
-                    "unit": "m/s²",
-                    "tolerance": 0.1
-                }
-            ],
-            "final_answer": {
-                "value": 1.06,
-                "unit": "m/s²",
-                "tolerance": 0.1
-            }
+          "step_id": 3,
+          "description": "Find the net horizontal force and divide by mass.",
+          "expected_value": 1.06,
+          "unit": "m/s^2",
+          "tolerance": 0.1
         }
-    ]
+      ],
+      "final_answer": {
+        "value": 1.06,
+        "unit": "m/s^2",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "newton_tension_numeric",
+      "type": "numeric",
+      "stem": "A 12 kg sled is pulled horizontally by a 36 N rope on frictionless ice. Find the acceleration.",
+      "final_answer": {
+        "value": 3,
+        "unit": "m/s^2",
+        "tolerance": 0.1
+      }
+    },
+    {
+      "id": "newton_two_force_balance",
+      "type": "multiple_choice",
+      "stem": "Which statement best explains why the normal-force equation for a sliding block on an incline is often written as sum F_perp = 0?",
+      "options": [
+        "Because Newton's second law does not apply perpendicular to the surface.",
+        "Because the block usually has no acceleration through the surface.",
+        "Because the normal force is always equal to the weight.",
+        "Because friction acts only perpendicular to the surface."
+      ],
+      "correct_index": 1,
+      "explanation": "Even in dynamics, acceleration can be zero in one direction. For a block constrained to remain on the surface, the perpendicular acceleration is often zero, which makes the normal-force equation much simpler."
+    }
+  ]
 }
