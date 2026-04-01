@@ -1,5 +1,24 @@
 import { useMemo, useState } from 'react'
 
+const KNOWN_CHAPTER_TITLES = {
+    'bio-inspired': {
+        '01': 'Structural Biomimicry',
+        '02': 'Locomotion & Kinematics',
+        '03': 'Thermoregulation',
+        '04': 'Dry Adhesion and Contact Mechanics',
+        '05': 'Structural Color and Optical Surfaces',
+        '06': 'Thermal Regulation and Environmental Control',
+        '07': 'Resilience and Material Repair',
+        '08': 'Swarm Intelligence and Distributed Systems'
+    }
+}
+
+function resolveChapterTitle(currentCourse, chapter) {
+    const explicitTitle = chapter?.title?.trim?.()
+    if (explicitTitle) return explicitTitle
+    return KNOWN_CHAPTER_TITLES[currentCourse]?.[chapter?.id] || `Chapter ${chapter?.id || ''}`.trim()
+}
+
 function getCourseSummary(chapters = []) {
     const sectionCount = chapters.reduce((count, chapter) => count + (chapter.sections?.length || 0), 0)
     return {
@@ -30,7 +49,8 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
         const query = searchQuery.toLowerCase()
         return chapters
             .map((chapter) => {
-                const matchesChapter = chapter.title.toLowerCase().includes(query)
+                const chapterTitle = resolveChapterTitle(currentCourse, chapter)
+                const matchesChapter = chapterTitle.toLowerCase().includes(query)
                 const filteredSections = matchesChapter
                     ? chapter.sections || []
                     : (chapter.sections || []).filter((section) => section.title.toLowerCase().includes(query))
@@ -41,11 +61,12 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
 
                 return {
                     ...chapter,
+                    title: chapterTitle,
                     sections: filteredSections
                 }
             })
             .filter(Boolean)
-    }, [searchQuery, toc?.chapters])
+    }, [currentCourse, searchQuery, toc?.chapters])
 
     const summary = getCourseSummary(toc?.chapters || [])
 

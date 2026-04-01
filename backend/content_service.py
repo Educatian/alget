@@ -11,6 +11,19 @@ from typing import Optional
 # Content directory (relative to backend)
 CONTENT_DIR = Path(__file__).parent.parent / "frontend" / "content"
 
+KNOWN_CHAPTER_TITLES = {
+    "bio-inspired": {
+        "01": "Structural Biomimicry",
+        "02": "Locomotion & Kinematics",
+        "03": "Thermoregulation",
+        "04": "Dry Adhesion and Contact Mechanics",
+        "05": "Structural Color and Optical Surfaces",
+        "06": "Thermal Regulation and Environmental Control",
+        "07": "Resilience and Material Repair",
+        "08": "Swarm Intelligence and Distributed Systems"
+    }
+}
+
 
 def get_content_path(course: str, chapter: str, section: str) -> Path:
     """Get the path to content files for a section."""
@@ -106,6 +119,7 @@ def generate_toc(course: str) -> dict:
         }
     
     chapters = []
+    course_chapter_titles = KNOWN_CHAPTER_TITLES.get(course, {})
     
     # Scan chapter directories (01, 02, etc.)
     for chapter_dir in sorted(course_path.iterdir()):
@@ -114,7 +128,7 @@ def generate_toc(course: str) -> dict:
         
         chapter_id = chapter_dir.name
         sections = []
-        chapter_title = f"Chapter {chapter_id}"
+        chapter_title = course_chapter_titles.get(chapter_id, f"Chapter {chapter_id}")
         chapter_icon = "📘"
         
         # Scan section files
@@ -131,7 +145,7 @@ def generate_toc(course: str) -> dict:
                     
                     # Use first section's meta for chapter info if available
                     if section_id == "01":
-                        chapter_title = meta.get("chapter_title", chapter_title)
+                        chapter_title = meta.get("chapter_title") or course_chapter_titles.get(chapter_id, chapter_title)
         
         if sections:
             chapters.append({
