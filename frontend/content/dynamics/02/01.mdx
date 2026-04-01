@@ -92,6 +92,17 @@ Typical pattern:
 
 A negative acceleration is still useful. It tells you that your assumed positive direction was opposite the true acceleration.
 
+## Assumption Callout: What This Model Is Quietly Assuming
+
+Most particle-dynamics problems in this section rely on several background assumptions:
+
+- the body is modeled as a particle, so rotational effects are ignored,
+- mass is constant,
+- the reference frame is inertial,
+- and laws such as $f_k = \mu_k N$ are treated as adequate engineering approximations.
+
+Those assumptions are often appropriate, but not universal. If the body tumbles, deforms, experiences strong drag, or has speed-dependent contact behavior, the plain particle model can stop being sufficient.
+
 <dynamic-scenario
   topic="Autonomous Delivery Cart on a Loading Ramp"
   context="An engineer is tuning the traction control for an autonomous delivery cart that must descend a loading ramp without slipping into the warehouse door. The motor is off, the wheels are free-rolling, and the only forces along the ramp are gravity and kinetic friction."
@@ -182,6 +193,49 @@ Before moving on, ask:
 - Would the answer change if the block were moving upward? Yes. Friction would reverse direction.
 
 That short sense check catches many setup mistakes before they become algebra mistakes.
+
+## Engineering Trade-Off: Force Detail Versus Analysis Speed
+
+Force-based analysis gives excellent local insight, but it becomes more demanding as realism increases.
+
+An engineer may need to decide whether to include:
+
+- rolling resistance separately from sliding friction,
+- aerodynamic drag,
+- wheel or pulley inertia,
+- or compliance in the support structure.
+
+Each added effect improves fidelity, but it also increases setup complexity and parameter uncertainty. In early-stage design, a lean Newton's-law model may be the right tool for bounding acceleration and traction. In final verification, the same system may need a richer model or experimental correlation.
+
+## Sensitivity Analysis: How Much Does Friction Matter?
+
+For the same 10 kg block on a $30^\circ$ incline, the acceleration can be written compactly as:
+
+$$
+a = g(\sin 30^\circ - \mu_k \cos 30^\circ)
+$$
+
+That form makes the parameter sensitivity visible immediately.
+
+| $\mu_k$ | Predicted Acceleration |
+| ---: | ---: |
+| 0.10 | 4.06 m/s² |
+| 0.20 | 3.21 m/s² |
+| 0.30 | 2.36 m/s² |
+| 0.40 | 1.51 m/s² |
+
+This is not just algebra. A change of 0.1 in friction coefficient shifts the predicted acceleration by roughly 0.85 m/s² in this example. For a docking ramp, stop gate, or product-handling line, that difference can be operationally significant.
+
+## Assumption Breakdown Case: When Constant Friction Stops Being Trustworthy
+
+The simple incline model assumes kinetic friction can be represented by a constant $\mu_k$. That assumption starts to weaken when:
+
+- speed changes the contact behavior,
+- surface heating changes the interface,
+- contamination or moisture alters the traction law,
+- or deformation makes rolling resistance more relevant than sliding friction.
+
+At that point, the model may still be useful as a first estimate, but it stops being a high-confidence predictor of exact stopping distance or controller response. That is usually where engineers transition from closed-form analysis to test-backed parameter identification.
 
 ## Check Your Understanding
 

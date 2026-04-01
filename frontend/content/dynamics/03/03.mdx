@@ -153,6 +153,76 @@ $$
 
 That comparison is pedagogically useful. It makes the rotational energy cost visible.
 
+## Quantitative Comparison Across Shapes
+
+The same drop height does not produce the same final speed for every rolling body. Shape matters because inertia distribution matters.
+
+For rolling without slipping from the same height $h$, the speed can be written in the form:
+
+$$
+v = \sqrt{\frac{2gh}{1 + I_G/(mr^2)}}
+$$
+
+Using $h = 2$ m:
+
+| Rolling Body | $I_G/(mr^2)$ | Final Speed |
+| --- | ---: | ---: |
+| Hoop | 1.0 | $4.43$ m/s |
+| Solid disk | 0.5 | $5.11$ m/s |
+| Solid sphere | 0.4 | $5.29$ m/s |
+
+This is an important engineering comparison. A body with more inertia concentrated away from the axis stores more of the gravitational energy in rotation and therefore reaches a lower translational speed.
+
+## Comparative Test Mindset
+
+If an engineer were selecting a wheel for a delivery robot, a simple comparison test might ask:
+
+- Which geometry gives the most stable downhill speed?
+- Which reaches the target speed with the least motor demand on level ground?
+- Which shape is more forgiving when the surface is slightly rough or when rolling losses increase?
+
+That is where rigid-body energy becomes more than a classroom formula. It supports direct comparison among competing geometries before a prototype is even built.
+
+## Sensitivity Analysis: Effect of Energy Losses
+
+The ideal rolling examples above ignore non-conservative losses. Real wheels do not.
+
+For the same 5 kg solid disk descending from a 2 m height:
+
+$$
+mgh - E_{loss} = \frac{3}{4}mv^2
+$$
+
+If bearing drag, tire deformation, or surface losses consume part of the available energy, the predicted speed changes as follows:
+
+| Energy Loss | Final Speed |
+| ---: | ---: |
+| 0 J | 5.11 m/s |
+| 5 J | 4.98 m/s |
+| 10 J | 4.84 m/s |
+| 20 J | 4.54 m/s |
+
+This sensitivity view is often more useful than a single ideal answer. It shows how tolerant the design is to wheel quality, maintenance condition, or manufacturing variability.
+
+## Assumption Breakdown Case: Rolling Without Slipping
+
+One of the most important hidden assumptions in this section is that rolling without slipping actually holds.
+
+That assumption can fail when:
+
+- the available static friction is too low,
+- a torque spike exceeds the traction limit,
+- the surface becomes wet, dusty, or compliant,
+- or braking loads exceed the contact's ability to transmit shear.
+
+Once slipping begins, the clean relation $v = r\omega$ no longer acts as a reliable kinematic constraint. Then:
+
+- static friction may be replaced by kinetic friction,
+- part of the energy is dissipated as heat,
+- and the simple rolling-energy solution can overpredict retained useful motion.
+
+This is a genuine design boundary. A wheel concept that looks excellent under ideal rolling assumptions may behave very differently once traction margins shrink.
+
 ## Common Mistakes
 
 - forgetting the rotational kinetic-energy term

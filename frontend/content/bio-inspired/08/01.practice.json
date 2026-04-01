@@ -55,6 +55,34 @@
       ],
       "correct_index": 0,
       "explanation": "Distributed swarms can be more robust because failure of some units does not collapse the whole mission."
+    },
+    {
+      "id": "bio_swarm_analogical_transfer",
+      "type": "multiple_choice",
+      "concept_id": "analogical_transfer",
+      "stem": "What is the best example of analogical transfer from swarm biology into engineering?",
+      "options": [
+        "Painting robots to look like ants so they appear coordinated",
+        "Translating local signaling and task allocation principles into distributed control rules",
+        "Forcing one controller to issue every motion command while calling the system a swarm",
+        "Copying insect body shape even when the task is warehouse routing"
+      ],
+      "correct_index": 1,
+      "explanation": "The engineering value comes from abstracting principles such as local signaling, redundancy, and distributed task allocation, not from copying biological appearance."
+    },
+    {
+      "id": "bio_fixation_avoidance",
+      "type": "multiple_choice",
+      "concept_id": "design_fixation",
+      "stem": "Which move best avoids fixation during biologically inspired ideation?",
+      "options": [
+        "Lock onto the first organism that seems relevant and keep its form throughout development",
+        "Compare multiple biological strategies and restate each as functions, rules, and constraints",
+        "Use only one biological analogy so the team stays consistent",
+        "Reject engineering metrics until after a biological form is chosen"
+      ],
+      "correct_index": 1,
+      "explanation": "Fixation drops when teams compare several analogies and translate them into functions and constraints instead of overcommitting to one literal source."
     }
   ]
 }

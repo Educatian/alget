@@ -24,6 +24,22 @@
       "trigger": "learner recommends larger swarms without considering sensing, interference, or control limits",
       "feedback": "Scaling a swarm changes communication load, interference, and task efficiency. More agents can help, but only when the local rules and environment support that scale.",
       "rail_action": "practice"
+    },
+    {
+      "id": "copy_the_animal_not_the_rule",
+      "pattern": "analogy_error",
+      "description": "Treating swarm inspiration as copying the biological organism rather than the coordination rule",
+      "trigger": "learner focuses on insect appearance or species identity without describing transferable local control logic",
+      "feedback": "In swarm engineering, the transferable asset is usually the rule set, signal structure, or allocation mechanism, not the organism's literal shape.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "first_analogy_is_best",
+      "pattern": "fixation_error",
+      "description": "Locking onto the first biological analogy and ignoring alternatives",
+      "trigger": "learner commits to one swarm metaphor before comparing other biological strategies or system constraints",
+      "feedback": "Good biologically inspired design often compares several analogies, then filters them by function, scale, robustness, and implementation cost to avoid fixation.",
+      "rail_action": "practice"
     }
   ]
 }

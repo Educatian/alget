@@ -136,6 +136,18 @@ $$
 
 This second equation is usually the safer default in engineering problems because real systems often include friction, damping, or external actuators.
 
+## Assumption Callout: What Energy Methods Hide
+
+Energy methods are powerful because they compress motion into a before-and-after statement. That efficiency also means they often hide the detailed time history.
+
+When you use work and energy, you are usually assuming that:
+
+- the start and end states are the main quantities of interest,
+- the chosen work terms capture the dominant energy transfers,
+- and neglected losses are small enough not to change the design decision materially.
+
+That is why energy methods are excellent for speed, height, compression, and stopping-distance estimates, but less informative when you care about peak force, transient acceleration, or exact timing.
+
 ## Worked Example
 
 ### Example 2.2: Block Sliding Down an Incline with Friction
@@ -204,6 +216,71 @@ The speed is lower than the frictionless case because some of the gravitational 
 - They mix up height change and path length.
 - They use $mgh$ with the full incline length instead of the vertical drop.
 - They assume "energy is conserved" even when friction is present, rather than writing the more general balance with $W_{nc}$.
+
+## Engineering Trade-Off: Detailed Force History Versus State-to-State Clarity
+
+Work-energy methods often outperform force-balance methods when the path is known and the final state matters most. But that convenience comes with a modeling trade-off.
+
+Energy analysis is strong when you need:
+
+- final speed,
+- required spring compression,
+- climb or descent capability,
+- or total dissipation over a travel distance.
+
+It is weaker when you need:
+
+- peak actuator load,
+- contact force history,
+- instantaneous acceleration,
+- or control-oriented timing.
+
+In practice, engineers often use both views together: energy to check feasibility quickly, and force-time analysis to refine the loads that control design.
+
+## Comparative Example: Same Ramp, Two Design Choices
+
+Suppose two 12 kg delivery carts descend the same 4 m ramp segment with a 1.2 m vertical drop.
+
+- **Cart A:** conventional wheels, effective non-conservative loss of 18 J
+- **Cart B:** improved bearings and lower rolling resistance, effective non-conservative loss of 8 J
+
+Using the energy balance,
+
+$$
+T_1 + V_1 + W_{nc} = T_2 + V_2
+$$
+
+and assuming both start from rest:
+
+$$
+mgh + W_{nc} = \frac{1}{2}mv^2
+$$
+
+### Cart A
+
+$$
+(12)(9.81)(1.2) - 18 = \frac{1}{2}(12)v_A^2
+$$
+
+$$
+141.3 - 18 = 6v_A^2
+$$
+
+$$
+v_A = 4.53 \text{ m/s}
+$$
+
+### Cart B
+
+$$
+(12)(9.81)(1.2) - 8 = 6v_B^2
+$$
+
+$$
+v_B = 4.71 \text{ m/s}
+$$
+
+The difference is small in equation count but meaningful in design interpretation. Lower dissipation improves speed efficiency, but it may also increase stopping demand downstream. Energy methods make that trade-off visible very quickly.
 
 ## Check Your Understanding
 

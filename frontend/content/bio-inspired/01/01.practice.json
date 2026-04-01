@@ -55,6 +55,34 @@
       ],
       "correct_index": 1,
       "explanation": "Biomimetic cellular design keeps internal architecture where loads need support rather than distributing material uniformly."
+    },
+    {
+      "id": "bio_function_first_search",
+      "type": "multiple_choice",
+      "concept_id": "function_based_search",
+      "stem": "What is the strongest first step in a function-based biomimicry workflow?",
+      "options": [
+        "Search for organisms with the most visually interesting shape",
+        "State the engineering function and constraints before searching biology",
+        "Pick a favorite species and force the design problem to match it",
+        "Copy a natural structure at the same scale and material"
+      ],
+      "correct_index": 1,
+      "explanation": "Function-based search starts from what the design must do under real constraints, then looks for biological strategies that achieve something similar."
+    },
+    {
+      "id": "bio_principle_not_shape",
+      "type": "multiple_choice",
+      "concept_id": "analogical_transfer",
+      "stem": "A team says, \"Let's make the product look like a honeycomb because bees are efficient.\" What is the best correction?",
+      "options": [
+        "Good idea, because biomimicry is mainly about visual resemblance",
+        "The team should first identify the transferable principle, such as load distribution or material efficiency",
+        "Any biological image is acceptable as long as the structure is lightweight",
+        "The only useful biomimetic transfer is copying the exact cell dimensions"
+      ],
+      "correct_index": 1,
+      "explanation": "Useful biomimetic transfer abstracts a functional principle and then re-expresses it in engineering terms, rather than copying surface appearance."
     }
   ]
 }

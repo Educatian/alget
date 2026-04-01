@@ -69,6 +69,37 @@ Those questions correspond to:
 
 Later in the course, these derivatives will become the bridge between geometry, forces, energy, and momentum.
 
+## Modeling Assumptions at the Start of Dynamics
+
+The first dynamics models in a course are deliberately simple. Most of them assume:
+
+- the body can be treated as a particle unless rotation is the main issue,
+- mass remains constant,
+- the reference frame is approximately inertial,
+- and effects such as drag, structural flexibility, and control delay are small enough to ignore.
+
+Those assumptions are not weaknesses. They are what make first-order prediction possible. But they should always be visible in the engineer's mind, because every omitted effect can become important when speeds rise, tolerances tighten, or comfort and control matter.
+
+## Engineering Trade-Off: Simplicity Versus Fidelity
+
+One of the recurring choices in dynamics is how much detail to include.
+
+A simpler model is:
+
+- faster to build,
+- easier to debug,
+- and often sufficient for early design screening.
+
+A richer model may capture:
+
+- aerodynamic drag,
+- actuator lag,
+- structural compliance,
+- ride comfort,
+- or sensor uncertainty.
+
+The trade-off is that every added effect raises modeling cost and data requirements. Strong engineering judgment means choosing the **simplest model that is still trustworthy for the decision being made**.
+
 ## Common Beginner Mistakes
 
 - Confusing **velocity** with **acceleration**

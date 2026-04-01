@@ -24,6 +24,22 @@
       "trigger": "learner recommends thermal mass without considering local conditions or cycling",
       "feedback": "Thermal mass helps only when the timing of heat storage and release matches the climate and operating pattern. Context matters.",
       "rail_action": "practice"
+    },
+    {
+      "id": "asknature_is_picture_search",
+      "pattern": "search_representation_error",
+      "description": "Treating biological databases as image inspiration boards rather than functional knowledge sources",
+      "trigger": "learner searches by organism appearance without identifying function, mechanism, or operating context",
+      "feedback": "AskNature-style search is strongest when designers encode a problem as functions, mechanisms, and constraints rather than browsing for visually appealing organisms.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "same_mechanism_every_climate",
+      "pattern": "transfer_context_error",
+      "description": "Assuming a passive strategy transfers unchanged across climates and occupancy patterns",
+      "trigger": "learner recommends the same termite-inspired airflow concept without rechecking local heat loads or daily cycles",
+      "feedback": "Biomimetic transfer requires re-matching the mechanism to new climatic, geometric, and operational conditions. The principle may survive even when the implementation changes.",
+      "rail_action": "practice"
     }
   ]
 }
