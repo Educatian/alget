@@ -55,6 +55,34 @@
       ],
       "correct_index": 1,
       "explanation": "Biomimetic transfer works best when designers adapt the principle to the environmental context rather than copying form without analysis."
+    },
+    {
+      "id": "bio_problem_to_biology_translation",
+      "type": "multiple_choice",
+      "concept_id": "problem_translation",
+      "stem": "Which problem statement is best prepared for a biology search?",
+      "options": [
+        "Find a building that looks like a termite mound",
+        "Find strategies for exchanging heat and moving air with low external energy input",
+        "Find a way to eliminate all temperature variation under any weather condition",
+        "Find a natural shape that makes architecture feel organic"
+      ],
+      "correct_index": 1,
+      "explanation": "Search improves when the design problem is translated into functions such as moving air, buffering heat, and responding to environmental variation."
+    },
+    {
+      "id": "bio_asknature_entry_logic",
+      "type": "multiple_choice",
+      "concept_id": "asknature_indexing",
+      "stem": "What would belong in an AskNature-style entry for termite-inspired cooling?",
+      "options": [
+        "Only photos of termite mounds from multiple angles",
+        "Function, mechanism, operating conditions, and relevant constraints",
+        "The exact mound color and surrounding vegetation only",
+        "A requirement that buildings reproduce the mound geometry exactly"
+      ],
+      "correct_index": 1,
+      "explanation": "A useful biology entry captures what the system does, how it works, and under what conditions it performs well enough to support transfer."
     }
   ]
 }

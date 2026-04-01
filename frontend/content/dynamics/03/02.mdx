@@ -100,6 +100,26 @@ Use a point that makes the rotational balance easiest to evaluate. If you use th
 
 Rolling constraints or kinematic relations may couple $a_G$ and $\alpha$.
 
+## Assumption Callout: When the Rigid-Body Model Is Reasonable
+
+These equations assume the body remains rigid while it moves. That means the distances between material points do not change enough to matter for the analysis.
+
+This is often acceptable for:
+
+- steel drums,
+- machine links,
+- flywheels,
+- and many packaged mechanical components.
+
+It becomes less reliable when:
+
+- shafts twist appreciably,
+- members flex under load,
+- joints have significant play,
+- or vibration changes the motion itself.
+
+In those situations, rigid-body dynamics may still be useful as a first estimate, but it no longer captures the whole physics.
+
 <dynamic-scenario
   topic="Startup Torque for a Conveyor Drum"
   context="A factory retrofit adds a heavier steel drum to a packaging conveyor. The motor torque remains the same, and the controls engineer must predict whether startup acceleration will still meet the required throughput target."
@@ -150,6 +170,19 @@ If the same 20 N force acted on a larger-radius but much heavier disk, the large
 
 - applied torque creates angular acceleration
 - inertia resists angular acceleration
+
+## Engineering Trade-Off: Torque Capacity Versus Rotational Inertia
+
+Rotating systems are full of competing goals. Increasing radius, thickness, or added hardware may improve durability, thermal capacity, or energy storage, but those same choices often increase inertia and slow the transient response.
+
+That is why design teams constantly balance:
+
+- fast startup versus smooth, stable rotation,
+- lightweight response versus energy-storage capacity,
+- smaller motors versus acceptable acceleration time,
+- and compact packaging versus favorable inertia distribution.
+
+Rigid-body dynamics matters because it turns those trade-offs into quantitative arguments instead of intuition alone.
 
 ## Common Mistakes
 

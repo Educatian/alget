@@ -132,6 +132,20 @@ That is useful design information. Once the force pattern is known, engineers ca
 
 It also improves communication between analysis and design teams. When one diagonal consistently appears in compression while another remains in tension, member selection becomes much more disciplined. Slender ties, stocky compression members, and connection details can then be matched to the actual force path instead of being chosen by rough intuition.
 
+## Where the Method Becomes Less Efficient
+
+The method of joints is reliable, but it is not always the fastest tool.
+
+It becomes less attractive when:
+
+- the target member lies deep inside a large truss,
+- several joints near the support already contain many unknowns,
+- or the main design question concerns only one or two critical members.
+
+In those cases, the method of sections may reach the answer much faster.
+
+This is also where engineering judgment matters. A member found to be in compression is not just "negative force." It may become a buckling problem, a slenderness problem, or a connection-stiffness problem. So the analytical sign is often the beginning of design thinking, not the end of it.
+
 ---
 
 ### Check Your Understanding

@@ -39,6 +39,33 @@ Instead of one massive, \$100-million Predator drone acting as an intelligence c
 *   **Robustness:** They require no central server. If 5,000 drones are shot down or malfunction, the remaining 5,000 instantly recompute their local neighbor vectors, dynamically close ranks (Cohesion), and continue the mission uninterrupted.
 *   **Scalability:** Because the computational logic only requires processing the position of the 3 or 4 drones immediately adjacent (not the entire network), you can scale the swarm infinitely from 10 drones to 10 million drones without increasing the processing power required on any single chip.
 
+### From Biological Strategy to Algorithm
+
+This section aligns closely with the book's emphasis on computational methods for biologically inspired design. Swarm intelligence is one of the clearest examples where biomimicry is not about copying shape at all. It is about translating a biological strategy into a formal rule set.
+
+The transfer looks like this:
+
+- **Biological observation:** ants and flocks achieve global coordination through local interaction.
+- **Abstract principle:** global order can emerge from decentralized local rules.
+- **Computational representation:** define state variables, neighborhood rules, and update logic.
+- **Engineering implementation:** run those rules on robots, drones, or distributed software agents.
+
+This is why swarm biomimicry sits naturally at the intersection of biology, AI, and engineering design.
+
+## Supporting Analogical Transfer Without Fixation
+
+Another theme from the book is that bio-inspired design can fail when designers fixate on the source organism and copy surface details instead of the transferable principle.
+
+For swarm systems, fixation sounds like:
+
+- "Make the robots behave exactly like ants."
+
+Better analogical transfer sounds like:
+
+- "What local information, update timing, and coordination rule gave the ants a robust search behavior, and how should those be simplified for underwater drones or emergency mapping?"
+
+That distinction matters. The engineering system may use radio packets instead of pheromones, or occupancy maps instead of body contact, while still preserving the deeper strategy of decentralized coordination.
+
 ### Design Heuristics for Real Swarms
 
 Engineers rarely deploy swarm logic without guardrails. In practice, they ask:
@@ -49,6 +76,24 @@ Engineers rarely deploy swarm logic without guardrails. In practice, they ask:
 - and when human supervisors should override purely local behavior.
 
 Those questions keep swarm intelligence from becoming a vague metaphor. They turn it into an actionable systems-engineering method.
+
+## A Simple Computational Design Checklist
+
+Before claiming a swarm is truly bio-inspired, an engineer should be able to answer:
+
+1. What local variable does each agent sense?
+2. What update rule turns that sensing into action?
+3. What global behavior is expected to emerge?
+4. What failure mode appears if communication, density, or sensing quality changes?
+
+| Design Workflow Lens | Swarm-Intelligence Example |
+| --- | --- |
+| Engineering Problem | Coordinate many agents without fragile central control |
+| Biological Strategy | Local sensing, stigmergy, and distributed task allocation |
+| Transfer Rule | Encode simple update rules that scale into robust collective behavior |
+| Validation Check | Stress-test density, communication loss, sensing error, and mission recovery |
+
+This checklist reflects the spirit of the book: biologically inspired design becomes far more useful when the analogy is explicit enough to support simulation, comparison, and iteration.
 
 <dynamic-scenario topic="Swarm Logistics" context="A disaster response coordinator debating whether to use one massive, highly complex robotic rover to search a collapsed skyscraper, or 5,000 cheap robotic cockroaches running a stigmergic search algorithm."></dynamic-scenario>
 

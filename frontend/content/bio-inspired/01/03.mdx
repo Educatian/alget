@@ -57,6 +57,42 @@ Applications include:
 
 The design target is not "maximum stickiness." It is **controllable attachment**.
 
+## Quantitative Design Constraints
+
+This is where the engineering problem becomes more demanding than the biological description.
+
+A reversible dry adhesive must usually satisfy several constraints at once:
+
+- provide enough **shear capacity** to support the load with a safety margin,
+- keep **peel release force** low enough for reliable detachment,
+- maintain performance over many attachment cycles,
+- and tolerate real surfaces that are rough, dusty, curved, or chemically variable.
+
+That means the correct design question is not "How sticky is it?" but rather:
+
+**How much controllable force can the surface generate under the exact preload, roughness, contamination, and release conditions of the application?**
+
+Engineers often evaluate this with measures such as:
+
+- peak shear stress,
+- peel force per unit width,
+- attachment reliability over repeated cycles,
+- and performance loss after fouling or abrasion.
+
+## Where Directional Adhesives Struggle
+
+Gecko-inspired surfaces are powerful, but they are not universal.
+
+Common limitations include:
+
+- **surface roughness:** microscale features may fail to make enough real contact on rough substrates,
+- **contamination:** dust, oil, and moisture can reduce usable adhesion,
+- **preload sensitivity:** many dry adhesives need a controlled normal load before shear adhesion fully develops,
+- **manufacturing tolerance:** small changes in pillar geometry can change force capacity substantially,
+- and **durability limits:** repeated loading can blunt, wear, or permanently deform the active microstructure.
+
+These constraints matter in product design. A climbing robot for polished glass and a reusable gripper for textured composites may need very different adhesive architectures, even if both are inspired by the same biological mechanism.
+
 <dynamic-scenario topic="Gecko-Inspired Adhesion" context="A robotics team needs a wall-climbing inspection robot that can grip a turbine blade securely while moving, then detach without leaving residue or damaging the surface coating." />
 
 ## What Designers Learn from the Gecko
@@ -65,6 +101,7 @@ The design target is not "maximum stickiness." It is **controllable attachment**
 - Use micro-geometry to tune engagement and release.
 - Design for the load case you care about. Some systems need strong shear grip more than universal stickiness.
 - Make detachment part of the design objective, not an afterthought.
+- Treat contamination, roughness, and cycle life as first-class design constraints rather than late-stage test failures.
 
 ## Check Your Understanding
 

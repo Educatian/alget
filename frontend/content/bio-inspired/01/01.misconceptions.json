@@ -24,6 +24,22 @@
       "trigger": "learner proposes copying honeycomb visually without abstracting the structural principle",
       "feedback": "Engineering biomimicry usually abstracts a principle such as load distribution or material efficiency rather than copying nature at full scale without modification.",
       "rail_action": "practice"
+    },
+    {
+      "id": "search_by_organism_first",
+      "pattern": "search_strategy_error",
+      "description": "Starting with an organism rather than the engineering function",
+      "trigger": "learner begins ideation by picking an animal or plant before defining what the design must accomplish",
+      "feedback": "A stronger biologically inspired workflow starts with function and constraints, then searches biology for strategies that solve an equivalent problem.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "visual_similarity_proves_transfer",
+      "pattern": "analogy_error",
+      "description": "Assuming visual similarity is enough to justify biomimetic transfer",
+      "trigger": "learner argues for a concept mainly because it looks biologically inspired",
+      "feedback": "A good biomimetic analogy is justified by shared function, mechanism, and constraints, not by appearance alone.",
+      "rail_action": "practice"
     }
   ]
 }

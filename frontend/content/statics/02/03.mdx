@@ -180,6 +180,31 @@ If you can model the forces and moments correctly, then you can:
 - locate dangerous load paths,
 - and decide whether a system is statically determinate or needs additional methods.
 
+## Design Interpretation
+
+In practice, rigid-body equilibrium is often the first screen for whether a concept is even worth detailing further.
+
+For example, if a bracket layout produces a very large reaction moment at one support, that may signal:
+
+- a need to move the load path closer to the wall,
+- a need to spread load through two supports instead of one,
+- or a need to redesign the connection rather than simply thicken the member.
+
+This is why reaction calculations matter beyond homework. They tell you where anchors, welds, bolts, and bearing surfaces are likely to become critical.
+
+## Common Modeling Traps
+
+Even when the equations are correct, engineers can still misuse the model.
+
+Watch for these traps:
+
+- assuming a support behaves like a pin when it actually has partial fixity,
+- ignoring the eccentricity of a real load path,
+- treating a distributed load as a point load without checking where the resultant acts,
+- and trusting symmetry when the geometry or loading is only approximately symmetric.
+
+Equilibrium is a powerful first model, but it remains a model. Better design decisions come from knowing both what the model captures and what it leaves out.
+
 ---
 
 ### Check Your Understanding
