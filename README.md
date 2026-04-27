@@ -2,6 +2,10 @@
 
 > **A research-grade generative intelligent textbook (GIT) for university engineering and instructional-design education, built around a multi-agent tutoring architecture, Bayesian knowledge tracing, and a dual-panel Cognitive Walkthrough study design.**
 
+<p align="center">
+  <img src="screenshots/01_landing.png" alt="ALGET landing page" width="100%">
+</p>
+
 ALGET pairs canonical engineering and instructional-design content with a learning environment that responds to each learner — pace, confusions, strong concepts, weak ones — while staying grounded in source material through a debate loop of specialist agents and a peer-review validator. It is the reference implementation for the system paper currently being prepared (`paper_draft.md`).
 
 ```
@@ -21,18 +25,19 @@ ALGET pairs canonical engineering and instructional-design content with a learni
 
 1. [What ALGET is](#1-what-alget-is)
 2. [Five courses](#2-five-courses)
-3. [Architecture](#3-architecture)
-4. [Multi-agent system](#4-multi-agent-system)
-5. [Generative features](#5-generative-features)
-6. [Knowledge tracing](#6-knowledge-tracing)
-7. [Research design](#7-research-design)
-8. [Quick start](#8-quick-start)
-9. [Project structure](#9-project-structure)
-10. [Documentation](#10-documentation)
-11. [Deployment](#11-deployment)
-12. [Tech stack](#12-tech-stack)
-13. [Citation](#13-citation)
-14. [License & acknowledgments](#14-license--acknowledgments)
+3. [A tour of the surfaces](#3-a-tour-of-the-surfaces)
+4. [Architecture](#4-architecture)
+5. [Multi-agent system](#5-multi-agent-system)
+6. [Generative features](#6-generative-features)
+7. [Knowledge tracing](#7-knowledge-tracing)
+8. [Research design](#8-research-design)
+9. [Quick start](#9-quick-start)
+10. [Project structure](#10-project-structure)
+11. [Documentation](#11-documentation)
+12. [Deployment](#12-deployment)
+13. [Tech stack](#13-tech-stack)
+14. [Citation](#14-citation)
+15. [License & acknowledgments](#15-license--acknowledgments)
 
 ---
 
@@ -71,9 +76,64 @@ frontend/content/<course>/<chapter>/<section>/
 
 ---
 
-## 3. Architecture
+## 3. A tour of the surfaces
 
-### 3.1 API surface (FastAPI)
+Real screenshots captured from the running app via Playwright (1280×800 @ 2× DPR, see `capture_screenshots.py` + `capture_highlight.py`).
+
+<table>
+<tr>
+<td width="33%" align="center">
+  <a href="screenshots/02_course_chooser.png"><img src="screenshots/02_course_chooser.png" alt="Course chooser at /learn"></a>
+  <br><sub><b>Course chooser</b> — <code>/learn</code><br>five tracks behind access codes</sub>
+</td>
+<td width="33%" align="center">
+  <a href="screenshots/03_book_reader.png"><img src="screenshots/03_book_reader.png" alt="Reader at /book/bio-inspired/01/03"></a>
+  <br><sub><b>Reader</b> — <code>/book/&lt;course&gt;/&lt;ch&gt;/&lt;sec&gt;</code><br>narrative + inline checks + objectives</sub>
+</td>
+<td width="33%" align="center">
+  <a href="screenshots/04_intel_rail_open.png"><img src="screenshots/04_intel_rail_open.png" alt="Reader with BigAL Support Rail open"></a>
+  <br><sub><b>Intel Rail</b><br>Explain · Reframe · Practice · Ask</sub>
+</td>
+</tr>
+<tr>
+<td width="33%" align="center">
+  <a href="screenshots/05_chat_widget.png"><img src="screenshots/05_chat_widget.png" alt="BigAL floating tutor chat"></a>
+  <br><sub><b>BigAL chat</b><br>floating tutor; Socratic by design</sub>
+</td>
+<td width="33%" align="center">
+  <a href="screenshots/09_highlight_popover.png"><img src="screenshots/09_highlight_popover.png" alt="Highlight popover with Highlight, Add Note, Ask AI"></a>
+  <br><sub><b>Selection popover</b><br>Highlight · Add Note · Ask AI</sub>
+</td>
+<td width="33%" align="center">
+  <a href="screenshots/06_student_dashboard.png"><img src="screenshots/06_student_dashboard.png" alt="Student dashboard"></a>
+  <br><sub><b>Student dashboard</b> — <code>/dashboard</code><br>weakest concepts · misconceptions · live map</sub>
+</td>
+</tr>
+<tr>
+<td width="33%" align="center">
+  <a href="screenshots/07_instructor_dashboard.png"><img src="screenshots/07_instructor_dashboard.png" alt="Instructor cohort heatmap"></a>
+  <br><sub><b>Instructor dashboard</b> — <code>/instructor</code><br>cohort heatmap · at-risk · hot-spots</sub>
+</td>
+<td width="33%" align="center">
+  <a href="screenshots/08_analytics.png"><img src="screenshots/08_analytics.png" alt="Research console"></a>
+  <br><sub><b>Research console</b> — <code>/analytics</code><br>RCT-grade telemetry · 8 metrics</sub>
+</td>
+<td width="33%" align="center">
+  <a href="screenshots/01_landing.png"><img src="screenshots/01_landing.png" alt="Landing page"></a>
+  <br><sub><b>Landing</b> — <code>/</code><br>access entry; demo mode available</sub>
+</td>
+</tr>
+</table>
+
+> Want a deeper walkthrough? See **[INSTRUCTOR_GUIDE.html](INSTRUCTOR_GUIDE.html)** (13 sections) and **[LEARNER_GUIDE.html](LEARNER_GUIDE.html)** (11 sections) — both ship with these same screenshots and editorial typography.
+
+---
+
+## 4. Architecture
+
+### 4.1 API surface (FastAPI)
+
+
 
 | Route | Method | Role |
 |---|---|---|
@@ -89,7 +149,7 @@ frontend/content/<course>/<chapter>/<section>/
 | `/api/access/validate` | POST | Scope-gated unlock (engineering / education / researcher) |
 | `/api/chat`, `/api/log-events` | POST | BigAL chat + telemetry beacon |
 
-### 3.2 Frontend routes (React Router 7)
+### 4.2 Frontend routes (React Router 7)
 
 | Route | Component | Gate |
 |---|---|---|
@@ -103,7 +163,7 @@ frontend/content/<course>/<chapter>/<section>/
 | `/lab` | GenerativeLab (CurriculumAgent module gen) | researcher |
 | `/analytics` | AnalyticsDashboard (research console) | researcher |
 
-### 3.3 Data model — `backend/supabase_*.sql`
+### 4.3 Data model — `backend/supabase_*.sql`
 
 Six SQL schemas, all RLS-gated:
 
@@ -118,7 +178,7 @@ The four-way join `experiment_assignments × intervention_traces × recommendati
 
 ---
 
-## 4. Multi-agent system
+## 5. Multi-agent system
 
 15 specialist agents live in `backend/agents/`. The **OrchestratorAgent** classifies intent and routes through the relevant subset.
 
@@ -159,7 +219,7 @@ Pydantic schema gates (`backend/agents/schema_gate.py`) validate every agent out
 
 ---
 
-## 5. Generative features
+## 6. Generative features
 
 ALGET is *generative*, not just *adaptive*. Five learner-facing generative surfaces:
 
@@ -173,7 +233,7 @@ A pilot Remotion-rendered video clip — **Directional Adhesion: How Geckos Stic
 
 ---
 
-## 6. Knowledge tracing
+## 7. Knowledge tracing
 
 `backend/knowledge_tracing.py` (~120 lines):
 
@@ -185,11 +245,11 @@ Mastery is mirrored from in-memory state into `learner_concept_state(mastery_pro
 
 ---
 
-## 7. Research design
+## 8. Research design
 
 ALGET is also a **research instrument**.
 
-### 7.1 Dual-panel Cognitive Walkthrough
+### 8.1 Dual-panel Cognitive Walkthrough
 
 `CW_Research/` and `CW_Research_BioEngineering/` are parallel between-subjects evaluations:
 
@@ -198,26 +258,26 @@ ALGET is also a **research instrument**.
 
 This dual structure separates **pedagogical validity** from **domain rigor** — a system can pass one and fail the other.
 
-### 7.2 RCT-grade telemetry
+### 8.2 RCT-grade telemetry
 
 The Supabase research views (`rct_intervention_outcomes`, `rct_evaluation_gains`, `rct_user_telemetry_profile`) join interventions, decisions, and pre/post/retention evaluations so off-policy evaluation, learning-gain causal inference, and forgetting-rate estimation are direct SQL.
 
-### 7.3 System paper
+### 8.3 System paper
 
 `paper_draft.md` (in progress). Frames the **Tripartite Research Problem** — biomimicry epistemology × multi-agent pedagogy × intelligent textbook — and reports the dual-panel CW results.
 
 ---
 
-## 8. Quick start
+## 9. Quick start
 
-### 8.1 Prerequisites
+### 9.1 Prerequisites
 
 - Python 3.11+
 - Node 20+ (or 22)
 - A Gemini API key (`GOOGLE_API_KEY` or `GEMINI_API_KEY`)
 - A Supabase project URL + anon key (or run in offline / demo mode)
 
-### 8.2 Backend
+### 9.2 Backend
 
 ```bash
 cd backend
@@ -233,7 +293,7 @@ API at `http://127.0.0.1:8000/api/...`. Contract tests:
 cd backend && python -m pytest test_orchestrate_contract.py test_e2e_orchestrate.py
 ```
 
-### 8.3 Frontend
+### 9.3 Frontend
 
 ```bash
 cd frontend
@@ -253,7 +313,7 @@ VITE_API_BASE=http://127.0.0.1:8000/api    # only needed if the Vite proxy is no
 
 If Supabase env vars are absent, the app runs in **offline / demo mode** (a stub user; no persistence). See `frontend/src/lib/supabase.js`.
 
-### 8.4 Database
+### 9.4 Database
 
 In Supabase SQL Editor, run files in order:
 
@@ -267,13 +327,13 @@ backend/supabase_social_features.sql
 
 Or `backend/supabase_all_in_one.sql` for a single-shot deploy.
 
-### 8.5 Demo flow
+### 9.5 Demo flow
 
 1. Open `http://127.0.0.1:5173/` → click **Sign in to start** → **Continue in Demo Mode**.
 2. Pick a course at `/learn` (use the access code your instructor shares, or configure `INSTRUCTOR_ACCESS_CODE` etc. in backend env vars for local development).
 3. Take the diagnostic, then walk a section.
 
-### 8.6 Capture screenshots (for guides)
+### 9.6 Capture screenshots (for guides)
 
 ```bash
 pip install playwright && python -m playwright install chromium
@@ -284,7 +344,7 @@ python swap_screenshots.py      # rewrite SVG mockups → <img> in *.html
 
 ---
 
-## 9. Project structure
+## 10. Project structure
 
 ```
 alget/
@@ -380,7 +440,7 @@ alget/
 
 ---
 
-## 10. Documentation
+## 11. Documentation
 
 | Document | Audience | What it covers |
 |---|---|---|
@@ -400,27 +460,27 @@ alget/
 
 ---
 
-## 11. Deployment
+## 12. Deployment
 
-### 11.1 Backend — Render
+### 12.1 Backend — Render
 
 `render.yaml` → `gunicorn server:app -w 1 -k uvicorn.workers.UvicornWorker --timeout 120`. Single worker is intentional: free tier memory ceiling + in-memory RAG index consistency. Required env vars: `GEMINI_API_KEY`, optional access codes (see `DEPLOYMENT_ENV.md`).
 
-### 11.2 Frontend — Vercel
+### 12.2 Frontend — Vercel
 
 `vercel.json` provides SPA fallback + (legacy) `/api/*` rewrite. Production build calls Render directly via `apiConfig.js` → `https://alget.onrender.com/api` to bypass Vercel's 15-s timeout (commit `fd82b97`).
 
-### 11.3 Cold-start mitigation
+### 12.3 Cold-start mitigation
 
 `App.jsx:36-37` pings `/book/inst-design/toc` on mount to wake the Render free-tier worker before the user clicks anything. Cold-start latency: ~10–30 s when the in-memory RAG index re-builds.
 
-### 11.4 Database — Supabase
+### 12.4 Database — Supabase
 
 PostgreSQL 13 + Realtime. RLS active on every table. `learner_concept_state` is mirrored from BKT on every grade call (commit `c3ec51c`).
 
 ---
 
-## 12. Tech stack
+## 13. Tech stack
 
 **Frontend** — React 19.2 · React Router 7.11 · Vite 7.2 · Tailwind v4 (`@tailwindcss/vite`) · `react-markdown 10.1` + `remark-math` + `rehype-katex` + KaTeX 0.16 · `@supabase/supabase-js 2.89` · Radix UI (popover, tooltip) · `lucide-react` · `@remotion/player` 4.0 · Vitest 3.2 + Testing Library + jsdom.
 
@@ -432,7 +492,7 @@ PostgreSQL 13 + Realtime. RLS active on every table. `learner_concept_state` is 
 
 ---
 
-## 13. Citation
+## 14. Citation
 
 ```bibtex
 @misc{alget2026,
@@ -446,7 +506,7 @@ PostgreSQL 13 + Realtime. RLS active on every table. `learner_concept_state` is 
 
 ---
 
-## 14. License & acknowledgments
+## 15. License & acknowledgments
 
 License: see `LICENSE` (TBD; current default treatment is research / non-commercial use until the system paper is published).
 
