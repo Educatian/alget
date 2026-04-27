@@ -3,8 +3,9 @@
 > **A research-grade generative intelligent textbook (GIT) for university engineering and instructional-design education, built around a multi-agent tutoring architecture, Bayesian knowledge tracing, and a dual-panel Cognitive Walkthrough study design.**
 
 <p align="center">
-  <img src="screenshots/01_landing.png" alt="ALGET landing page" width="100%">
+  <img src="assets/hero.png" alt="ALGET — System Architecture: Adaptive Learning through Guided Engineering & Technology" width="100%">
 </p>
+<p align="center"><em>System architecture at a glance — an open textbook on the desk feeds five course slabs (Statics · Dynamics · Bio-Inspired · Instructional Design · AI Ethics), which feed a multi-agent knowledge graph above. The crimson trace is one learner's active path.</em></p>
 
 ALGET pairs canonical engineering and instructional-design content with a learning environment that responds to each learner — pace, confusions, strong concepts, weak ones — while staying grounded in source material through a debate loop of specialist agents and a peer-review validator. It is the reference implementation for the system paper currently being prepared (`paper_draft.md`).
 
