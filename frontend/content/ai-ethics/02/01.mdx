@@ -1,0 +1,118 @@
+## Why "Bias" Is the Wrong Single Word for the Wrong Single Problem
+
+When a deployed AI system performs systematically worse for one group than another, journalists, regulators, and engineers all call it "bias." The word is not wrong, but it is too compressed to be diagnostic. Bias in an AI system can come from at least six different places, each with a different fix and a different responsible party. Treating "bias" as one problem produces one-size-fits-all "debiasing" interventions that often address the wrong layer and leave the actual harm intact.
+
+This module disentangles the standard taxonomy used by Suresh and Guttag, by Barocas, Hardt, and Narayanan in *Fairness and Machine Learning*, and by NIST's AI Risk Management Framework. Once you can name the *kind* of bias a system has, you can pick the right intervention.
+
+---
+
+## Bias Source 1: Historical Bias
+
+The data may accurately reflect a world that is already unjust. A hiring model trained on resumes from a decade in which mostly men were hired will accurately predict that the company hires men. The model is not lying; the world it was trained on was discriminatory, and the model faithfully reproduced that pattern.
+
+**Sign:** the model performs as designed, but its outputs entrench an existing social inequity.
+
+**Wrong fixes:** more data of the same kind; "debiasing" the predictions while leaving the target intact.
+
+**Right fixes:** change the target variable away from the contaminated proxy; redesign the loss to penalize harms; ask whether the model should be deployed at all.
+
+The Amazon hiring model that downranked the word "women's" from resumes (e.g., "women's chess club captain") is the canonical example. The data was historically accurate. The accurate prediction was the harm.
+
+---
+
+## Bias Source 2: Representation (Sampling) Bias
+
+The training distribution does not match the deployment distribution. A facial-recognition model trained mostly on light-skinned faces performs worse on dark-skinned faces. A speech model trained on US-accented English performs worse on second-language English. A medical imaging model trained at three urban hospitals performs worse on the patient population of a fourth rural hospital.
+
+**Sign:** error rates differ systematically across subgroups present at deployment time.
+
+**Wrong fixes:** add more data overall.
+
+**Right fixes:** stratified resampling that balances subgroup representation; data collection from underrepresented groups; subgroup-disaggregated evaluation reports (Buolamwini and Gebru's *Gender Shades* methodology).
+
+---
+
+## Bias Source 3: Measurement Bias
+
+Two different groups have the same underlying state but the *measurement* of that state differs across them. Healthcare cost-prediction models that used **annual healthcare expenditure** as a proxy for **healthcare need** systematically underestimated the need of Black patients, because the same need was historically met with less spending. Obermeyer et al. (2019, *Science*) traced this in a widely deployed risk algorithm.
+
+**Sign:** the proxy is correlated with what you want to predict, but the correlation differs across groups.
+
+**Wrong fixes:** trust the proxy; add more proxies of the same family.
+
+**Right fixes:** define what you actually want to measure; check the proxy against direct measurements in subgroups; sometimes change the target.
+
+---
+
+## Bias Source 4: Aggregation Bias
+
+A single model is used across subpopulations that the model does not handle equally well. The "one model for everyone" assumption fails when groups have different optimal decision boundaries. A diabetes risk model trained on a mixed population may underperform on every subgroup compared to per-subgroup models.
+
+**Sign:** the model has lower accuracy on every subgroup than a per-subgroup model would.
+
+**Wrong fixes:** ignore subgroup structure; report only aggregate accuracy.
+
+**Right fixes:** subgroup-specific models, mixture-of-experts architectures, or hierarchical Bayesian models that share strength across groups while respecting their differences.
+
+---
+
+## Bias Source 5: Evaluation Bias
+
+The benchmark used to validate the model is not representative of the deployment population. A model that scores well on ImageNet is not validated for medical imagery. A reading-level model that scores well on standardized test passages is not validated on clinical notes. The evaluation procedure itself encodes assumptions.
+
+**Sign:** lab metrics look great, deployment performance is materially worse.
+
+**Wrong fixes:** more eyes on the same benchmark.
+
+**Right fixes:** representative test sets, subgroup-disaggregated metrics, deployment-context evaluation, ongoing monitoring.
+
+---
+
+## Bias Source 6: Deployment (Feedback Loop) Bias
+
+The act of deploying the model changes the world it operates in, which then feeds back into the next training round. Predictive policing systems that send more patrols to neighborhoods predicted to be high-crime then record more crime there, which trains the next model to predict more crime there. The feedback loop manufactures the data it needs to confirm itself.
+
+**Sign:** small initial differences in predictions amplify over time without corresponding changes in the underlying world.
+
+**Wrong fixes:** retrain on more data — that is the trap.
+
+**Right fixes:** counterfactual evaluation, randomized exploration to break the loop, deployment-time fairness constraints, periodic re-grounding against external truth.
+
+<concept-diagram type="bias-source-taxonomy"></concept-diagram>
+
+---
+
+## Diagnostic Workflow
+
+When a system is reported as "biased," walk the six sources in order:
+
+1. Is the **training data** itself the record of an unjust world? (Historical)
+2. Does the **distribution** of the training data fail to represent deployment subgroups? (Representation)
+3. Is the **proxy** for what you want to measure unequal across groups? (Measurement)
+4. Are subgroups being **lumped** under one model that fits none of them well? (Aggregation)
+5. Is the **benchmark** used to validate the model unrepresentative? (Evaluation)
+6. Is the system's own deployment **manufacturing** the data that confirms it? (Deployment / feedback)
+
+Most real cases involve more than one. A complete diagnosis names which sources are present, in what proportion, and which can actually be fixed at the engineering layer versus which require a non-engineering response (changing the target, declining to deploy, changing the institution).
+
+---
+
+## What "Debiasing" Cannot Fix
+
+A widely circulated belief is that "post-processing" the model's predictions can eliminate bias. It cannot in general. Post-processing can change which group bears which kind of error, but it cannot create information the model never had, and it cannot rewrite the target variable.
+
+If the bias is **historical**, post-processing reshuffles the harm. If the bias is **measurement**, post-processing applies a transform to a measurement that was never measuring the right thing. If the bias is **deployment feedback**, post-processing each output does not break the loop.
+
+The only intervention that is robust across all six sources is **examining whether the system should be built or deployed at all** — what Bender, Gebru, McMillan-Major, and Mitchell call the "stochastic parrot" question: do we know what this model is reproducing, and is that worth reproducing?
+
+<dynamic-scenario topic="Algorithmic Bias Sources" context="A school district deploys an AI grading model on student essays. After a year, parents in some neighborhoods report that the model gives their children systematically lower scores than human graders did. Walk the six bias-source diagnostic to identify which sources are most likely contributing and what engineering and non-engineering responses would address each."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="A facial-recognition model performs significantly worse on dark-skinned faces. Which bias source is most likely the primary contributor, and which intervention is best matched to it?"
+  options='[{"text":"Aggregation bias; fix it by training one larger global model.","isCorrect":false},{"text":"Representation bias; fix it by stratified resampling, targeted data collection from underrepresented groups, and subgroup-disaggregated evaluation (Gender Shades methodology).","isCorrect":true},{"text":"Deployment feedback bias; fix it with post-processing.","isCorrect":false}]'
+  explanation="Correct. Differential subgroup error driven by skewed training distribution is representation bias. The Buolamwini and Gebru Gender Shades work made this diagnostic the canonical reference."
+/>

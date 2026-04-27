@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "ethics_aggregation_blindspot",
+      "type": "multiple_choice",
+      "concept_id": "consequentialism",
+      "stem": "Which framework most strongly resists deploying a model that helps 95% of users a little while harming 5% catastrophically?",
+      "options": [
+        "Consequentialism alone, because aggregate utility is positive.",
+        "Deontology (rights violation) and care ethics (failure to attend to the vulnerable) both push back where consequentialist aggregation alone would permit.",
+        "Virtue ethics, because deployment is a habit.",
+        "None; all four agree on aggregation."
+      ],
+      "correct_index": 1,
+      "explanation": "Aggregation hides distribution. Deontology and care ethics each resist sacrificing individuals or vulnerable subgroups for aggregate gain.",
+      "misconception_id": "consequentialism_alone_suffices"
+    },
+    {
+      "id": "ethics_virtue_question",
+      "type": "multiple_choice",
+      "concept_id": "virtue_ethics",
+      "stem": "What diagnostic question is most characteristic of virtue ethics applied to AI?",
+      "options": [
+        "Does it maximize aggregate utility?",
+        "Does it respect rights?",
+        "What habits and dispositions does this system cultivate in its users over months and years?",
+        "Is it legal?"
+      ],
+      "correct_index": 2,
+      "explanation": "Virtue ethics evaluates technologies by their effect on user character and habits over time, not by per-action outcomes or rule compliance.",
+      "misconception_id": "virtue_ethics_is_just_kindness"
+    },
+    {
+      "id": "ethics_care_focus",
+      "type": "multiple_choice",
+      "concept_id": "care_ethics",
+      "stem": "Care ethics is most distinctive in foregrounding which feature of a deployment context?",
+      "options": [
+        "Aggregate efficiency.",
+        "Power asymmetry, dependency, and the relationships in which vulnerable users are embedded.",
+        "Statutory compliance.",
+        "Brand reputation."
+      ],
+      "correct_index": 1,
+      "explanation": "Care ethics centers the vulnerable and their relationships, where the other three frameworks treat power asymmetry as background.",
+      "misconception_id": "care_is_paternalism"
+    },
+    {
+      "id": "ethics_triangulation_value",
+      "type": "multiple_choice",
+      "concept_id": "ethical_triangulation",
+      "stem": "Why should AI ethics decisions triangulate across multiple frameworks rather than commit to one?",
+      "options": [
+        "Because each framework is objectively true on different days.",
+        "Because each framework has characteristic blind spots; convergence across frameworks signals a defensible decision while disagreement reveals the live ethical choice the team must make and document.",
+        "Because law requires it.",
+        "Because triangulation always produces consensus."
+      ],
+      "correct_index": 1,
+      "explanation": "Triangulation exposes blind spots and locates the actual decision. Convergence is permission to proceed; disagreement is the live choice that must be argued, not hidden.",
+      "misconception_id": "one_framework_settles_everything"
+    }
+  ]
+}

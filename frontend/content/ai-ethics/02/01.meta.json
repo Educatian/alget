@@ -1,0 +1,22 @@
+{
+    "chapter_title": "Bias and Fairness",
+    "title": "Module 1: Algorithmic Bias and Where It Comes From",
+    "description": "Disentangle the six sources of algorithmic bias (historical, representation, measurement, aggregation, evaluation, deployment feedback) and match each to its appropriate intervention.",
+    "learning_objectives": [
+        "Name and distinguish six sources of algorithmic bias.",
+        "Diagnose which bias sources are present in a real-world AI failure case.",
+        "Match each bias source to an appropriate engineering or non-engineering intervention.",
+        "Recognize when post-processing 'debiasing' cannot fix the underlying problem."
+    ],
+    "concept_ids": [
+        "algorithmic_bias",
+        "historical_bias",
+        "representation_bias",
+        "measurement_bias",
+        "aggregation_bias",
+        "evaluation_bias",
+        "deployment_feedback_bias"
+    ],
+    "estimated_time_minutes": 14,
+    "order": 1
+}

@@ -11,6 +11,9 @@ except ImportError:
 
 import logging
 
+from .config import get as get_config
+from .schema_gate import EVALUATOR_FALLBACK, EvaluatorOutput, gate
+
 logger = logging.getLogger(__name__)
 
 class EvaluatorAgent:
@@ -42,11 +45,12 @@ class EvaluatorAgent:
         prompt = self._build_evaluation_prompt(student_design, biological_context, history)
         
         try:
+            cfg = get_config("evaluator")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.7,
+                    temperature=cfg.temperature,
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",
@@ -77,16 +81,14 @@ class EvaluatorAgent:
             
             try:
                 result_json = json.loads(response.text)
-                return result_json
             except json.JSONDecodeError:
-                # Fallback if the response isn't strictly JSON despite the schema
-                return {
-                    "error": "Failed to parse JSON response.",
-                    "raw_response": response.text
-                }
-                
+                return {**EVALUATOR_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result_json, EvaluatorOutput, EVALUATOR_FALLBACK, "EvaluatorAgent")
+
         except Exception as e:
-            return {"error": f"Error from Evaluator Agent: {str(e)}"}
+            logger.exception("Evaluator Agent failed")
+            return {**EVALUATOR_FALLBACK, "_schema_error": "exception", "error": str(e)}
             
     def _build_evaluation_prompt(self, student_design: str, biological_context: str, history: list = None) -> str:
         history_text = ""

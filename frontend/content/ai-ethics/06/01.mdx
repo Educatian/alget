@@ -1,0 +1,97 @@
+## Why Education Is a Special Case for AI Ethics
+
+Educational technology produces some of the most ethically charged AI deployments in any domain. Three reasons make education distinct.
+
+First, **the decision subjects are often minors**. Children and adolescents have a legal and moral status — limited capacity to consent, special privacy protections, vulnerability to persuasion — that other deployment contexts do not share at scale.
+
+Second, **schools and universities are coercive contexts**. A student who refuses to use the LMS does not get a fair grade. A child who refuses the screening test does not get the supports. The ordinary opt-out logic of consumer products fails here. Refusing the AI tool means refusing the institution.
+
+Third, **education shapes life trajectories**. A misclassification in a hiring screen affects one job. A misclassification in an early-grade reading risk model can route a child into a lower track for years, with measurable downstream effects on income, health, and civic participation.
+
+These distinctions create a body of education-specific AI ethics anchored on three legal frameworks (FERPA, COPPA, IDEA) and an evolving set of professional norms (AERA, NEPC, EDUCAUSE, the OECD's *AI and the Future of Skills*). Reiser and Dempsey's 5th edition of *Trends and Issues in Instructional Design and Technology* dedicates new chapters to AI ethics in education for this reason.
+
+This module covers the three legal frameworks, the four ethics-of-education-AI concerns they only partly address, and the workflow an instructional designer should run before deploying any AI in a learner-facing context.
+
+---
+
+## Legal Framework 1: FERPA
+
+The **Family Educational Rights and Privacy Act** (1974, US) governs **educational records** and parental/student rights regarding them. For AI ethics, the salient FERPA implications are:
+
+- **Personally identifiable information (PII) in educational records cannot be disclosed without consent.** A vendor that ingests student records for AI training is constrained by the institution's FERPA exposure, not the vendor's preferred terms of service.
+- **The "school official" exception** allows certain third parties to access records under direct institutional control with a legitimate educational interest. AI vendors operating under this exception inherit FERPA obligations.
+- **Parents have rights until age 18; the rights transfer to the student in higher education.** AI consent flows must distinguish these stakeholders.
+
+FERPA does not by itself define what is ethical use of educational data. It defines what is legal. A FERPA-compliant deployment can still violate norms about surveillance, equity, or autonomy.
+
+---
+
+## Legal Framework 2: COPPA
+
+The **Children's Online Privacy Protection Act** (1998, US) governs commercial collection of personal information from children under 13. Salient implications:
+
+- **Verifiable parental consent is required** before collecting PII from under-13 users in commercial services.
+- **Schools can act as agents for parents** in the educational context under specific conditions, but the conditions are narrow and frequently misunderstood.
+- **Behavioral and biometric data are increasingly treated as PII** under FTC enforcement.
+
+COPPA's coverage stops at 13, but the ethical concerns it raises (capacity to consent, special vulnerability) extend further. Adolescents from 13 to 18 occupy a regulatory gap where the legal floor is lower than the ethical ceiling.
+
+---
+
+## Legal Framework 3: IDEA and Algorithmic Disability Decisions
+
+The **Individuals with Disabilities Education Act** governs special education in the US. As AI tools increasingly inform decisions about identification of disabilities, eligibility for services, and IEP design, IDEA's procedural-due-process requirements (notice, parental participation, evaluation by qualified personnel, right to appeal) apply.
+
+A frequent ethics failure in this area: an AI early-warning system flags a child for "tier 2 intervention" without producing the documentation and parental notification IDEA would have required for a comparable human-driven decision. The AI route appears to bypass procedural due process, which is itself the violation.
+
+---
+
+## Ethics Concerns the Law Only Partly Addresses
+
+Four concerns extend beyond what FERPA, COPPA, or IDEA cover.
+
+### Surveillance and Autonomy
+
+Online proctoring, classroom-cam analytics, and engagement-tracking tools transform classrooms into instrumented environments. Even when these tools are FERPA-compliant, they may violate autonomy norms. A student who cannot study without being recorded is in a different educational relationship than one who can. The line between formative monitoring and pervasive surveillance is contested, but the burden of justification belongs to the deploying institution.
+
+### Equity and the Distribution of AI Benefits
+
+AI tutors, grading aids, and adaptive systems are not equally available across schools. When the wealthier school deploys a strong AI tutor and the under-resourced school cannot, the technology widens rather than narrows the achievement gap. The ethical question is not "is the tool good?" but "who has access to the tool, and what happens to those who do not?" UNESCO's 2021 Recommendation on the Ethics of AI explicitly raises this concern in education.
+
+### Dark Patterns and Persuasive Design
+
+Engagement-optimization in learner-facing AI can shade into manipulation: streaks, badges, notification cadences, and recommendation defaults that exploit limited self-regulation in younger learners. The educational frame allows persuasion that consumer-facing products would not. The ethics question: what kinds of persuasion are pedagogically justified, and which exploit developmental vulnerability?
+
+### Algorithmic Authority and Teacher De-skilling
+
+When a system tells the teacher what to do — which students to focus on, which interventions to apply, what the lesson plan should be — the system's recommendations carry a kind of authority that quietly displaces teacher judgment. Over time the teacher's professional skill atrophies, and the institution becomes dependent on the vendor. This concern is structural rather than individual, and it is not visible in any single deployment.
+
+<concept-diagram type="education-ai-ethics-frame"></concept-diagram>
+
+---
+
+## A Pre-Deployment Workflow for Educational AI
+
+Before deploying any AI system in a learner-facing context, work this checklist:
+
+1. **Whose records are involved? Whose consent is required?** Map FERPA, COPPA, IDEA exposure for every data flow. Treat vendor-side data movement as institutional exposure.
+2. **What decisions does the system make or inform?** For each decision, would a human-driven equivalent require notice, parental participation, or due process? If yes, the AI route requires the same.
+3. **What is the equity profile of access?** Who is using the tool, and who is not? What happens to learners who cannot or will not use it?
+4. **What is the surveillance footprint?** What is recorded, who can see it, how long is it retained, and what cannot be opted out of?
+5. **Where does the persuasion sit?** What engagement mechanisms are deployed, and would they be acceptable on consumer-facing children's products?
+6. **What is the teacher-authority impact?** How does the system change what teachers do, and is the change reversible if the vendor relationship ends?
+7. **What is the audit trail?** Can the institution explain a specific decision to a parent or student a year from now? If not, the deployment is below the procedural-due-process floor.
+
+The workflow is intentionally heavy. Educational AI is high-stakes by definition because the subjects are minors, the context is coercive, and the trajectories are durable.
+
+<dynamic-scenario topic="AI in Education Ethics" context="A school district is offered a free AI 'engagement analytics' platform that uses webcam emotion detection to flag students who appear inattentive. The vendor is FERPA-aligned via the school-official exception. Walk the pre-deployment workflow and identify which of the seven steps surfaces the deepest ethical concern."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="A vendor offers an AI early-warning system that flags students for tier-2 intervention based on a behavioral risk score. The vendor says the system is FERPA-compliant. What is the most defensible additional concern under IDEA?"
+  options='[{"text":"FERPA compliance covers all educational AI concerns; no additional review is needed.","isCorrect":false},{"text":"Algorithmic flagging that informs special-education-adjacent decisions must still satisfy IDEA procedural due process: notice, parental participation, evaluation by qualified personnel, and right to appeal. FERPA compliance does not substitute for IDEA compliance.","isCorrect":true},{"text":"The system only needs vendor terms of service.","isCorrect":false}]'
+  explanation="Correct. IDEA imposes procedural-due-process requirements on decisions affecting identification or services. AI-route decisions inherit those requirements; FERPA compliance does not substitute for IDEA compliance."
+/>

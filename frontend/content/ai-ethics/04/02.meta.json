@@ -1,0 +1,21 @@
+{
+    "chapter_title": "Privacy, Consent, and Data Governance",
+    "title": "Module 2: Consent in Algorithmic Contexts",
+    "description": "Apply the four conditions of informed consent (disclosure, comprehension, voluntariness, competence) to AI deployments, recognize dark patterns that defeat consent, and design defensible consent flows that meet GDPR and DSA standards.",
+    "learning_objectives": [
+        "State the four conditions of informed consent and identify where each breaks under typical AI deployment conditions.",
+        "Recognize at least four dark patterns (asymmetric prominence, confirmshaming, roach motel, forced action) and the regulations that prohibit them.",
+        "Identify three contexts where consent alone cannot carry the ethical weight (public goods, asymmetric power, vulnerable users).",
+        "Design a defensible consent flow using layered notice, just-in-time disclosure, symmetric controls, real withdrawal, and surrogate/granular consent."
+    ],
+    "concept_ids": [
+        "informed_consent",
+        "dark_patterns",
+        "consent_flow_design",
+        "voluntariness",
+        "withdrawal_rights",
+        "surrogate_consent"
+    ],
+    "estimated_time_minutes": 12,
+    "order": 2
+}

@@ -11,6 +11,9 @@ except ImportError:
 
 import logging
 
+from .config import get as get_config
+from .schema_gate import ENGINEERING_FALLBACK, EngineeringOutput, gate
+
 logger = logging.getLogger(__name__)
 
 class EngineeringAgent:
@@ -40,13 +43,14 @@ class EngineeringAgent:
         logger.info(f"Analyzing engineering translation for query: {query}")
         
         prompt = self._build_engineering_prompt(query, interest, bio_context_str, history)
-        
+
         try:
+            cfg = get_config("engineering")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.7,
+                    temperature=cfg.temperature,
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",
@@ -77,15 +81,14 @@ class EngineeringAgent:
             
             try:
                 result_json = json.loads(response.text)
-                return result_json
             except json.JSONDecodeError:
-                return {
-                    "error": "Failed to parse JSON response.",
-                    "raw_response": response.text
-                }
-                
+                return {**ENGINEERING_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result_json, EngineeringOutput, ENGINEERING_FALLBACK, "EngineeringAgent")
+
         except Exception as e:
-            return {"error": f"Error from Engineering Agent: {str(e)}"}
+            logger.exception("Engineering Agent failed")
+            return {**ENGINEERING_FALLBACK, "_schema_error": "exception", "error": str(e)}
             
     def _build_engineering_prompt(self, query: str, interest: str, bio_context_str: str, history: list = None) -> str:
         history_text = ""
@@ -135,13 +138,14 @@ class EngineeringAgent:
         logger.info(f"Revising engineering application based on validation critique...")
         
         prompt = self._build_revision_prompt(query, interest, bio_context_str, previous_eng_str, validation_critique_str, history)
-        
+
         try:
+            cfg = get_config("engineering_revise")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.7,
+                    temperature=cfg.temperature,
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",

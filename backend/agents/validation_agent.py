@@ -11,6 +11,9 @@ except ImportError:
 
 import logging
 
+from .config import get as get_config
+from .schema_gate import VALIDATION_FALLBACK, ValidationOutput, gate
+
 logger = logging.getLogger(__name__)
 
 class ValidationAgent:
@@ -46,11 +49,12 @@ class ValidationAgent:
         prompt = self._build_validation_prompt(bio_context, eng_context, history)
         
         try:
+            cfg = get_config("validation")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.3, # Low temperature for more analytical/strict validation
+                    temperature=cfg.temperature,  # see agents/config.py
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",
@@ -88,15 +92,14 @@ class ValidationAgent:
             
             try:
                 result_json = json.loads(response.text)
-                return result_json
             except json.JSONDecodeError:
-                return {
-                    "error": "Failed to parse JSON response.",
-                    "raw_response": response.text
-                }
-                
+                return {**VALIDATION_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result_json, ValidationOutput, VALIDATION_FALLBACK, "ValidationAgent")
+
         except Exception as e:
-            return {"error": f"Error from Validation Agent: {str(e)}"}
+            logger.exception("Validation Agent failed")
+            return {**VALIDATION_FALLBACK, "_schema_error": "exception", "error": str(e)}
             
     def _build_validation_prompt(self, bio_context: str, eng_context: str, history: list = None) -> str:
         history_text = ""

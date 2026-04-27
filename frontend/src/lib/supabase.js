@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey)
+export const supabaseConfig = { url: supabaseUrl, anonKey: supabaseAnonKey }
 
 // Gracefully handle missing Supabase credentials (local dev without .env)
 let supabase

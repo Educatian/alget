@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import API_BASE from '../lib/apiConfig'
 
@@ -50,6 +51,15 @@ export default function KnowledgeGraph({
     const [error, setError] = useState(null)
     const [hoveredNode, setHoveredNode] = useState(null)
     const serializedCurrentConcepts = JSON.stringify(currentConceptIds)
+    const navigate = useNavigate()
+
+    const handleNodeClick = (node) => {
+        // node.section_id is the slug "course/chapter/section" emitted by
+        // build_mastery_graph_payload. Treat the brain network as a
+        // navigation surface: clicking a concept jumps to its section.
+        if (!node?.section_id) return
+        navigate(`/book/${node.section_id}`)
+    }
 
     useEffect(() => {
         let isCancelled = false
@@ -170,7 +180,7 @@ export default function KnowledgeGraph({
                 <div>
                     <h3 className="text-white font-bold text-lg">Brain Network</h3>
                     <p className="text-slate-400 text-sm max-w-2xl">
-                        This map is now connected to the current course, section, and concept focus. Blue nodes mark the concept cluster you are reading now.
+                        This map is now connected to the current course, section, and concept focus. Blue nodes mark the concept cluster you are reading now. Click any node to jump to that section.
                     </p>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-slate-400">
@@ -250,7 +260,17 @@ export default function KnowledgeGraph({
                                 transform={`translate(${node.x},${node.y})`}
                                 onMouseEnter={() => setHoveredNode(node.id)}
                                 onMouseLeave={() => setHoveredNode(null)}
-                                className="cursor-pointer transition-transform duration-300 hover:scale-105"
+                                onClick={() => handleNodeClick(node)}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter' || event.key === ' ') {
+                                        event.preventDefault()
+                                        handleNodeClick(node)
+                                    }
+                                }}
+                                role="button"
+                                tabIndex={0}
+                                aria-label={`Open section: ${node.section_title || node.label}`}
+                                className="cursor-pointer transition-transform duration-300 hover:scale-105 focus:outline-none focus:[&_circle]:stroke-indigo-300"
                             >
                                 <circle
                                     r={radius}

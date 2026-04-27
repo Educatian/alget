@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Activity, ArrowRight, Brain, Flame, Users } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 import { safeSessionStorageGet, safeSessionStorageRemove, safeSessionStorageSet } from '../lib/browserStorage'
-import { fetchResearchDashboardSnapshot, getResearchDashboardSnapshot } from '../lib/researchService'
+import { fetchResearchDashboardSnapshot, fetchRctSnapshot, getResearchDashboardSnapshot } from '../lib/researchService'
 import { supabase } from '../lib/supabase'
 import '../index.css'
 
@@ -115,6 +115,7 @@ export default function AnalyticsDashboard() {
     const [courseFilter, setCourseFilter] = useState('all')
     const [signalFilter, setSignalFilter] = useState('all')
     const [researchSnapshot, setResearchSnapshot] = useState(() => getResearchDashboardSnapshot())
+    const [rctSnapshot, setRctSnapshot] = useState({ interventionOutcomes: [], evaluationGains: [], telemetryProfile: [] })
 
     const filteredMasteryData = useMemo(() => {
         return masteryData.filter((row) => {
@@ -298,6 +299,7 @@ export default function AnalyticsDashboard() {
                 progressPromise
             ])
             const nextResearchSnapshot = await fetchResearchDashboardSnapshot()
+            const nextRctSnapshot = await fetchRctSnapshot()
 
             if (masteryResponse?.data) {
                 setMasteryData(masteryResponse.data)
@@ -306,6 +308,7 @@ export default function AnalyticsDashboard() {
             setSocialPresenceRows(socialPresenceResponse?.data || [])
             setProgressRows(progressResponse?.data || [])
             setResearchSnapshot(nextResearchSnapshot)
+            setRctSnapshot(nextRctSnapshot)
         } catch (err) {
             console.error('Error fetching analytics:', err)
         } finally {
@@ -807,6 +810,68 @@ export default function AnalyticsDashboard() {
                                     <div key={item.type} className="flex items-center justify-between rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-3">
                                         <span className="text-sm font-semibold text-[var(--ath-muted)]">{formatConceptLabel(item.type)}</span>
                                         <span className="text-sm font-bold text-[var(--ath-text)]">{item.count}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="editorial-section">
+                    <header className="editorial-section-header">
+                        <p className="editorial-kicker">RCT analysis</p>
+                        <h1 className="editorial-section-title">Intervention effects & learning gains</h1>
+                        <p className="editorial-section-lead">Joins recommendation_decisions × intervention_traces × evaluation_runs from the rct_* SQL views. Empty until subjects complete pre/post evaluations.</p>
+                    </header>
+                    <div className="grid gap-6 lg:grid-cols-2">
+                        <div className="editorial-surface p-8">
+                            <p className="editorial-kicker">Intervention outcomes by action</p>
+                            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Accept rate × resolution</h2>
+                            <div className="mt-6 space-y-3">
+                                {rctSnapshot.interventionOutcomes.length === 0 ? (
+                                    <p className="text-sm text-[var(--ath-muted)]">No closed intervention traces yet.</p>
+                                ) : rctSnapshot.interventionOutcomes.map((row) => {
+                                    const total = Number(row.total_closed || 0)
+                                    const accepted = Number(row.accepted_count || 0)
+                                    const positive = Number(row.resolved_positive || 0)
+                                    const acceptRate = total > 0 ? Math.round((accepted / total) * 100) : 0
+                                    const resolveRate = total > 0 ? Math.round((positive / total) * 100) : 0
+                                    return (
+                                        <div key={row.chosen_action} className="rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-3">
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-sm font-semibold text-[var(--ath-text)]">{row.chosen_action}</span>
+                                                <span className="text-xs uppercase tracking-wider text-[var(--ath-muted)]">n = {total}</span>
+                                            </div>
+                                            <div className="mt-2 grid grid-cols-2 gap-3 text-xs text-[var(--ath-muted)]">
+                                                <span>Accepted {acceptRate}%</span>
+                                                <span>Correct after support {resolveRate}%</span>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="editorial-surface p-8">
+                            <p className="editorial-kicker">Pre / post / retention</p>
+                            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Learning gains per learner</h2>
+                            <div className="mt-6 space-y-3">
+                                {rctSnapshot.evaluationGains.length === 0 ? (
+                                    <p className="text-sm text-[var(--ath-muted)]">Gains appear after at least one learner completes both a pre and post evaluation.</p>
+                                ) : rctSnapshot.evaluationGains.slice(0, 8).map((row) => (
+                                    <div key={`${row.user_id}:${row.course_id}`} className="rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-3">
+                                        <div className="flex items-center justify-between text-sm">
+                                            <span className="font-semibold text-[var(--ath-text)]">{row.course_id}</span>
+                                            <span className="text-xs uppercase tracking-wider text-[var(--ath-muted)]">user {String(row.user_id || '').slice(0, 8)}</span>
+                                        </div>
+                                        <div className="mt-2 grid grid-cols-3 gap-2 text-xs text-[var(--ath-muted)]">
+                                            <span>Pre {row.pre_score ?? '—'}</span>
+                                            <span>Post {row.post_score ?? '—'}</span>
+                                            <span>Retention {row.retention_score ?? '—'}</span>
+                                        </div>
+                                        {row.post_pre_gain !== null && row.post_pre_gain !== undefined ? (
+                                            <p className="mt-1 text-xs font-semibold text-[var(--ath-text)]">Δ post-pre: {Number(row.post_pre_gain).toFixed(1)} pts</p>
+                                        ) : null}
                                     </div>
                                 ))}
                             </div>

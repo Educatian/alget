@@ -1,4 +1,5 @@
 import json
+import logging
 
 try:
     from google import genai
@@ -6,6 +7,11 @@ try:
     GENAI_AVAILABLE = True
 except ImportError:
     GENAI_AVAILABLE = False
+
+from .config import get as get_config
+from .schema_gate import SCAFFOLDING_FALLBACK, ScaffoldingOutput, gate
+
+logger = logging.getLogger(__name__)
 
 
 class ScaffoldingAgent:
@@ -38,11 +44,12 @@ class ScaffoldingAgent:
         prompt = self._build_scaffolding_prompt(query, history)
         
         try:
+            cfg = get_config("scaffolding")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.7,
+                    temperature=cfg.temperature,
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",
@@ -68,15 +75,14 @@ class ScaffoldingAgent:
             
             try:
                 result_json = json.loads(response.text)
-                return result_json
             except json.JSONDecodeError:
-                return {
-                    "error": "Failed to parse JSON response.",
-                    "raw_response": response.text
-                }
-                
+                return {**SCAFFOLDING_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result_json, ScaffoldingOutput, SCAFFOLDING_FALLBACK, "ScaffoldingAgent")
+
         except Exception as e:
-            return {"error": f"Error from Scaffolding Agent: {str(e)}"}
+            logger.exception("Scaffolding Agent failed")
+            return {**SCAFFOLDING_FALLBACK, "_schema_error": "exception", "error": str(e)}
             
     def _build_scaffolding_prompt(self, query: str, history: list = None) -> str:
         history_text = ""

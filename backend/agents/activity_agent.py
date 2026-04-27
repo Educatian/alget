@@ -11,6 +11,9 @@ except ImportError:
 
 import logging
 
+from .config import get as get_config
+from .schema_gate import ACTIVITY_FALLBACK, ActivityOutput, gate
+
 logger = logging.getLogger(__name__)
 
 class ActivityAgent:
@@ -41,11 +44,12 @@ class ActivityAgent:
         prompt = self._build_activity_prompt(biological_context, engineering_interest, history)
         
         try:
+            cfg = get_config("activity")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.8,
+                    temperature=cfg.temperature,
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",
@@ -75,15 +79,14 @@ class ActivityAgent:
             
             try:
                 result_json = json.loads(response.text)
-                return result_json
             except json.JSONDecodeError:
-                return {
-                    "error": "Failed to parse JSON response.",
-                    "raw_response": response.text
-                }
-                
+                return {**ACTIVITY_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result_json, ActivityOutput, ACTIVITY_FALLBACK, "ActivityAgent")
+
         except Exception as e:
-            return {"error": f"Error from Activity Agent: {str(e)}"}
+            logger.exception("Activity Agent failed")
+            return {**ACTIVITY_FALLBACK, "_schema_error": "exception", "error": str(e)}
             
     def _build_activity_prompt(self, biological_context: str, engineering_interest: str, history: list = None) -> str:
         history_text = ""

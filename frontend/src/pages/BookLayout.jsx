@@ -3,6 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom'
 import * as Popover from '@radix-ui/react-popover'
 import { ChevronLeft, ChevronRight, Settings } from 'lucide-react'
 import BookToc from '../components/BookToc'
+import RetentionBanner from '../components/RetentionBanner'
+import OnboardingTour from '../components/OnboardingTour'
+import ThemeToggle from '../components/ThemeToggle'
 import { logPageView, logStuckEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
 import { useCourseProgress } from '../hooks/useCourseProgress'
@@ -348,6 +351,9 @@ export default function BookLayout({ user, onLogout }) {
                 </Suspense>
             )}
 
+            <OnboardingTour />
+            <RetentionBanner course={course} />
+
             <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] px-6 py-4 backdrop-blur-3xl">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                     <div className="flex min-w-0 items-center gap-4 cursor-pointer" onClick={() => navigate('/')}>
@@ -464,6 +470,8 @@ export default function BookLayout({ user, onLogout }) {
 
                         <div className="h-8 w-px bg-[var(--ath-line)]"></div>
 
+                        <ThemeToggle />
+
                         <button
                             onClick={() => setIsSettingsOpen(true)}
                             className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
@@ -473,9 +481,20 @@ export default function BookLayout({ user, onLogout }) {
                         </button>
 
                         <button
+                            onClick={() => navigate('/dashboard')}
+                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"
+                            title="My mastery dashboard"
+                            aria-label="Open my mastery dashboard"
+                        >
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                        </button>
+                        <button
                             onClick={() => navigate('/analytics')}
                             className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"
                             title="Research Console"
+                            aria-label="Open research console"
                         >
                             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />

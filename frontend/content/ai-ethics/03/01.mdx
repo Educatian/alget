@@ -1,0 +1,85 @@
+## Why Explainability Stopped Being a Side Issue
+
+For most of computing history, the question "why did the system make this decision?" had a tractable answer: read the code. Modern machine-learned systems made that question difficult. A neural network with 70 billion parameters does not have a "reason" in any sense a human can audit. The decision lives in distributed weights, and no individual weight contains the explanation.
+
+That technical fact collides with three deepening commitments. The **GDPR Article 22** suggests a right not to be subject to fully automated decisions with significant effects, and Recital 71 references the ability to obtain meaningful information about the logic involved. The **EU AI Act** (2024) classifies certain high-risk systems and requires technical documentation, transparency, and human oversight. **NIST's AI Risk Management Framework** lists explainability and interpretability among the trustworthy-AI characteristics.
+
+This module covers the technical concepts (interpretability vs. explainability, post-hoc methods, glass-box vs. black-box), the legal scaffolding (GDPR, EU AI Act, FCRA), and what counts as a defensible explanation in practice.
+
+---
+
+## Interpretability vs. Explainability
+
+The two terms are often used interchangeably but mean different things in the literature.
+
+**Interpretability** is a property of the model: the degree to which a human can understand the cause of a decision by inspecting the model itself. Linear models, decision trees, and small rule lists are intrinsically interpretable. Deep neural networks generally are not.
+
+**Explainability** is a property of the *explanation surface* offered around the model: the degree to which a human can understand the model's behavior through generated rationale, feature attributions, counterfactuals, or example-based justification. A black-box model can be explainable without being interpretable.
+
+This distinction matters for design. Interpretable models are auditable by their structure. Explainable systems are auditable by their explanation layer — and the quality of the explanation itself becomes the artifact under review.
+
+---
+
+## Glass-Box, Black-Box, and Why It's Not a Binary
+
+A useful taxonomy from Rudin (2019, *Nature Machine Intelligence*):
+
+**Inherently interpretable models** (glass-box): linear regression, GAMs, small decision trees, RuleFit, EBMs. A human reading the model can usually reconstruct the decision.
+
+**Black-box models with post-hoc explanations**: deep networks, large ensembles, LLMs. The model is not directly readable; an explanation method (LIME, SHAP, integrated gradients, counterfactuals) is layered on top.
+
+Rudin's central argument: **for high-stakes decisions, prefer inherently interpretable models when their accuracy is competitive**. Many published comparisons that justify black-box use overstate the accuracy gap and ignore the cost of unauditable explanations.
+
+---
+
+## Post-Hoc Explanation Methods and Their Limits
+
+Three families of post-hoc explanation are widely used.
+
+**Feature attribution** (LIME, SHAP, integrated gradients) tells you which input features most influenced a particular output. Useful for sanity-checking ("did the model focus on race?"), but the explanation is local and can be unstable: small input changes can flip which features appear important.
+
+**Counterfactual explanations** answer "what minimal change to the input would have flipped the decision?" Aligns well with how humans naturally reason about causation. But counterfactuals are not unique — multiple minimal changes can flip the same decision, and which one to surface is itself a design choice.
+
+**Example-based explanations** retrieve similar training examples ("the model treated you like these other cases"). Intuitive but easily misleading if the retrieved examples do not actually drive the decision.
+
+A key warning: **post-hoc methods can be wrong**. They approximate the model's behavior locally; they do not reveal the model's mechanism. An explanation that satisfies a stakeholder is not the same as an explanation that is accurate.
+
+<concept-diagram type="explainability-stack"></concept-diagram>
+
+---
+
+## What Counts as a Meaningful Explanation
+
+Wachter, Mittelstadt, and Russell (2018) argued that a meaningful explanation under GDPR should be **counterfactual and actionable**: it should tell the decision subject what would have produced a different decision, and that lever should be one the subject can act on. "You were denied because of your zip code" is legally fraught (the zip code is a proxy for protected attributes). "You were denied because your debt-to-income ratio is 43%; below 38% would change the outcome" is actionable.
+
+Three properties characterize a defensible explanation:
+
+- **Faithful**: the explanation accurately reflects the model's actual decision process, not a comforting paraphrase.
+- **Actionable**: the decision subject can do something with the explanation.
+- **Contextually appropriate**: the level of detail matches the stakeholder (regulator, decision subject, internal auditor) and the stakes.
+
+A faithful explanation that the decision subject cannot act on is a transparency floor, not a meaningful explanation. An actionable explanation that misrepresents the model is dangerous.
+
+---
+
+## Legal Scaffolding: GDPR, EU AI Act, FCRA
+
+**GDPR Article 22** restricts decisions based solely on automated processing where they produce legal or similarly significant effects. Recital 71 references meaningful information about the logic. The exact scope of this "right to explanation" is contested, but the regulatory direction is clear: opacity is not a defense.
+
+**EU AI Act** (2024) imposes transparency obligations on providers of high-risk AI systems and on providers of general-purpose AI. Documentation, instructions for use, and human oversight are required at the system-design layer.
+
+**Fair Credit Reporting Act (FCRA)** in the US requires "adverse action notices" with specific reasons when credit is denied. AI-driven credit decisions inherit this obligation; vague reasons are not compliant.
+
+These frameworks differ in scope but converge on a common commitment: **opaque high-stakes automation is not regulatorily defensible**. Engineers and instructional designers building such systems must produce explanation infrastructure as part of the build, not as an afterthought.
+
+<dynamic-scenario topic="Right to Explanation" context="A lender deploys a black-box credit-scoring model. A denied applicant requests an explanation. The vendor provides 'top features by SHAP value' which include zip code. Walk through whether this explanation is faithful, actionable, contextually appropriate, and legally defensible under FCRA."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="A counterfactual explanation says 'your loan was denied because your debt-to-income is 43%; below 38% would change the decision.' Why is this generally considered more defensible than 'top SHAP features were zip code, age, and income'?"
+  options='[{"text":"It is shorter.","isCorrect":false},{"text":"It is faithful, actionable (the subject can target a specific change), and avoids surfacing protected-attribute proxies (zip code) as the operative reason. SHAP features can be unfaithful, unactionable, and may surface protected proxies.","isCorrect":true},{"text":"SHAP is always wrong.","isCorrect":false}]'
+  explanation="Correct. Wachter et al. argue counterfactual, actionable explanations meet the spirit of the right to explanation; raw feature attributions often fail on actionability and can surface protected-attribute proxies inappropriately."
+/>

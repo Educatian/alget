@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "ai_ethics_distinctive",
+      "type": "multiple_choice",
+      "concept_id": "ai_ethics_foundations",
+      "stem": "Which combination of factors most distinguishes AI ethics from general engineering ethics?",
+      "options": [
+        "AI is just more complicated than other software.",
+        "Scale, encoded decisions in technical choices, multiple invisible stakeholders, and the shift toward generative/autonomous behavior — so ethics cannot be added as a final review step.",
+        "AI is fully regulated by law, so ethics is settled.",
+        "AI systems are slow."
+      ],
+      "correct_index": 1,
+      "explanation": "The combination of scale, encoded ethical decisions, invisible stakeholders, and generative/autonomous behavior is what makes AI ethics a distinct subject.",
+      "misconception_id": "ai_ethics_is_just_general_ethics"
+    },
+    {
+      "id": "ai_ethics_stakeholders",
+      "type": "multiple_choice",
+      "concept_id": "ai_stakeholders",
+      "stem": "A bank deploys an AI loan-decision model trained on past customer data. Who are the stakeholders an ethics review must consider?",
+      "options": [
+        "Only the customers who interact with the deployed system.",
+        "The decision-maker (bank), the decision subjects (loan applicants), the data subjects (past customers whose data trained the model), and bystanders (e.g., neighborhoods systematically denied credit).",
+        "Only the bank, since they own the system.",
+        "Only the regulators."
+      ],
+      "correct_index": 1,
+      "explanation": "AI systems typically affect four stakeholder groups: decision-maker, decision subject, data subject, and bystanders. A user-only frame misses three of the four.",
+      "misconception_id": "user_only_stakeholder_frame"
+    },
+    {
+      "id": "ai_ethics_encoded_decisions",
+      "type": "multiple_choice",
+      "concept_id": "encoded_decisions",
+      "stem": "When does an ethical decision happen in a typical AI project?",
+      "options": [
+        "Only at the deployment phase, when humans review the output.",
+        "Only when laws require an ethics review.",
+        "At every technical choice that encodes value judgments — selecting the target variable, choosing the training distribution, setting deployment thresholds — not just at a 'review' phase at the end.",
+        "Never, because AI systems are objective."
+      ],
+      "correct_index": 2,
+      "explanation": "Technical choices like target variable, data distribution, and threshold are themselves ethical decisions. The model encodes the policy.",
+      "misconception_id": "ethics_is_a_review_phase"
+    },
+    {
+      "id": "ai_ethics_law_vs_ethics",
+      "type": "multiple_choice",
+      "concept_id": "ethics_vs_law",
+      "stem": "What is the most accurate relationship between AI ethics and AI law?",
+      "options": [
+        "Ethics and law are identical; if it is legal it is ethical.",
+        "Law encodes some ethical commitments (GDPR, FERPA, EU AI Act) into binding language, but many ethical questions about fairness, power, and long-term effects remain unsettled in law and still require engineering judgment.",
+        "Ethics is purely subjective and law is purely objective.",
+        "Law is irrelevant to AI ethics."
+      ],
+      "correct_index": 1,
+      "explanation": "Law operationalizes some ethical norms but leaves many open. Compliance is necessary, not sufficient.",
+      "misconception_id": "legal_implies_ethical"
+    }
+  ]
+}

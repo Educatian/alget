@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "online_moore_balance",
+      "type": "multiple_choice",
+      "concept_id": "moore_three_interactions",
+      "stem": "An online course consists entirely of recorded videos plus end-of-module multiple-choice quizzes. Which Moore interactions are present?",
+      "options": [
+        "All three interaction types are present.",
+        "Only learner-content interaction; learner-instructor and learner-learner interactions are missing or incidental.",
+        "Only learner-instructor interaction.",
+        "Only learner-learner interaction."
+      ],
+      "correct_index": 1,
+      "explanation": "Recorded videos plus auto-graded quizzes are pure learner-content. Strong online courses deliberately add the other two interaction types.",
+      "misconception_id": "video_plus_quiz_is_complete"
+    },
+    {
+      "id": "online_coi_phases",
+      "type": "multiple_choice",
+      "concept_id": "cognitive_presence",
+      "stem": "A discussion forum produces lots of messages but the conversation never moves past sharing examples and articles. Which phase of cognitive presence is the course failing to reach?",
+      "options": [
+        "Triggering event.",
+        "Exploration.",
+        "Integration and resolution; the discourse is stuck at exploration and never synthesizes or commits to a defensible answer.",
+        "All four phases are equally present."
+      ],
+      "correct_index": 2,
+      "explanation": "The four-phase cognitive presence sequence requires moving past exploration into integration and resolution. Stalling at exploration is one of the most common online-learning defects.",
+      "misconception_id": "exploration_alone_is_deep_learning"
+    },
+    {
+      "id": "online_async_vs_sync",
+      "type": "multiple_choice",
+      "concept_id": "online_learning_design",
+      "stem": "Which scenario most justifies a synchronous (real-time) session over an asynchronous one?",
+      "options": [
+        "Letting learners read a complex paper at their own pace.",
+        "A real-time discourse session where learners must respond to each other's reasoning as it unfolds, with the instructor surfacing tensions in the moment.",
+        "Recording a one-way 90-minute lecture for later viewing.",
+        "Releasing a multiple-choice quiz."
+      ],
+      "correct_index": 1,
+      "explanation": "Synchronous time is most valuable for live discourse and immediate feedback that asynchronous mode cannot reproduce. One-way lectures or self-paced reading should be asynchronous.",
+      "misconception_id": "sync_is_for_lectures"
+    },
+    {
+      "id": "online_teaching_presence",
+      "type": "multiple_choice",
+      "concept_id": "teaching_presence",
+      "stem": "Teaching presence in the Community of Inquiry framework is best described as:",
+      "options": [
+        "The instructor showing their face on camera.",
+        "The design and direction of the educational experience: course architecture, facilitation of discourse, and direct instruction.",
+        "Posting more content than learners can read.",
+        "Being available 24/7 to answer questions."
+      ],
+      "correct_index": 1,
+      "explanation": "Teaching presence is the design-and-facilitation function. Camera presence is one expression of it but not the construct.",
+      "misconception_id": "teaching_presence_is_camera_time"
+    }
+  ]
+}

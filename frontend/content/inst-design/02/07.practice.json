@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "assessment_validity_inference",
+      "type": "multiple_choice",
+      "concept_id": "validity",
+      "stem": "Validity is most accurately described as a property of:",
+      "options": [
+        "The test items themselves, regardless of how scores are used.",
+        "The inferences made from the scores about what the learner knows or can do.",
+        "The number of items on the test.",
+        "Whether the test was administered online."
+      ],
+      "correct_index": 1,
+      "explanation": "Validity is a property of inferences, not items. The same test can support a valid inference in one context and an invalid inference in another.",
+      "misconception_id": "validity_is_property_of_items"
+    },
+    {
+      "id": "assessment_distractor_quality",
+      "type": "multiple_choice",
+      "concept_id": "item_construction",
+      "stem": "What distinguishes a strong multiple-choice distractor from a weak one?",
+      "options": [
+        "It is grammatically longer than the other options.",
+        "It represents a plausible misconception that real learners hold, so picking it diagnoses a specific error.",
+        "It is selected randomly from a word list.",
+        "It is marked with subtle clues so test-wise learners can avoid it."
+      ],
+      "correct_index": 1,
+      "explanation": "Strong distractors are misconception-targeted. A distractor nobody believes contributes nothing diagnostically.",
+      "misconception_id": "distractors_are_filler"
+    },
+    {
+      "id": "assessment_alignment_audit",
+      "type": "multiple_choice",
+      "concept_id": "constructive_alignment_audit",
+      "stem": "An objective uses the verb 'design.' The assessment is a 4-option MC item asking which existing design is correct. What is the alignment defect?",
+      "options": [
+        "There is no defect; recognition is the same as design.",
+        "The assessment operates at Remember/Understand while the objective claims Create. Either rebuild the assessment to require designing, or lower the objective.",
+        "MC items are never valid.",
+        "The objective should be rewritten to use 'understand'."
+      ],
+      "correct_index": 1,
+      "explanation": "Constructive alignment requires the assessment to operate at the objective's cognitive level. MC recognition cannot validate a Create-level objective.",
+      "misconception_id": "any_item_validates_any_objective"
+    },
+    {
+      "id": "assessment_reliability_relationship",
+      "type": "multiple_choice",
+      "concept_id": "reliability",
+      "stem": "Which statement about validity and reliability is correct?",
+      "options": [
+        "Validity and reliability are independent and either can exist without the other.",
+        "A test can be reliable without being valid (consistently measuring the wrong thing) but cannot be valid without being reliable.",
+        "Reliability automatically guarantees validity.",
+        "Validity guarantees reliability automatically."
+      ],
+      "correct_index": 1,
+      "explanation": "Reliability is necessary but not sufficient for validity. A consistent measurement of the wrong construct is reliable but invalid.",
+      "misconception_id": "reliability_implies_validity"
+    }
+  ]
+}

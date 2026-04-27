@@ -21,6 +21,14 @@ KNOWN_CHAPTER_TITLES = {
         "06": "Thermal Regulation and Environmental Control",
         "07": "Resilience and Material Repair",
         "08": "Swarm Intelligence and Distributed Systems"
+    },
+    "ai-ethics": {
+        "01": "Foundations of AI Ethics",
+        "02": "Bias and Fairness",
+        "03": "Transparency and Accountability",
+        "04": "Privacy, Consent, and Data Governance",
+        "05": "Safety, Alignment, and Governance",
+        "06": "AI in Education Ethics"
     }
 }
 
@@ -153,6 +161,18 @@ def generate_toc(course: str) -> dict:
                 "title": chapter_title,
                 "icon": chapter_icon,
                 "sections": sections
+            })
+        elif chapter_id in course_chapter_titles:
+            # Surface KNOWN_CHAPTER_TITLES entries that have no .meta.json yet
+            # as placeholders so the frontend can render "coming soon" instead
+            # of silently hiding the planned chapter. No-op for currently-populated
+            # chapters; future-proof for staged content rollouts.
+            chapters.append({
+                "id": chapter_id,
+                "title": chapter_title,
+                "icon": chapter_icon,
+                "sections": [],
+                "placeholder": True,
             })
     
     return {

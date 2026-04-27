@@ -1,0 +1,19 @@
+{
+    "chapter_title": "ID Process Models",
+    "title": "Module 5: Writing Learning Objectives (Bloom + ABCD)",
+    "description": "Translate vague stakeholder wishes into testable performances using Bloom's revised taxonomy for cognitive level and Mager's ABCD format for performance specificity.",
+    "learning_objectives": [
+        "Use Bloom's revised taxonomy to name the cognitive demand of a planned learning task.",
+        "Convert a goal into an ABCD-format objective with audience, behavior, condition, and degree.",
+        "Audit objectives, assessments, and activities for constructive alignment."
+    ],
+    "concept_ids": [
+        "learning_objectives",
+        "blooms_revised_taxonomy",
+        "mager_abcd",
+        "constructive_alignment",
+        "performance_objective"
+    ],
+    "estimated_time_minutes": 12,
+    "order": 5
+}

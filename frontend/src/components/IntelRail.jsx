@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import API_BASE from '../lib/apiConfig'
 import { getAdaptiveRecommendation, recordAdaptiveSignal } from '../lib/knowledgeService'
 import {
@@ -37,10 +37,10 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
     const [supportAudit, setSupportAudit] = useState(null)
     const [activeTraceId, setActiveTraceId] = useState(null)
 
-    const [messages, setMessages] = useState([])
+    // Free-form chat lives in the floating ChatWidget. Rail keeps only the
+    // launcher input here (Ask tab), so we no longer track messages or
+    // chat-loading state in this component.
     const [inputValue, setInputValue] = useState('')
-    const [chatLoading, setChatLoading] = useState(false)
-    const messagesEndRef = useRef(null)
 
     const resolvedSectionId = context?.sectionId || sectionInfo?.sectionId || 'general'
     const resolvedSectionTitle = sectionInfo?.sectionTitle || resolvedSectionId
@@ -48,10 +48,6 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
     const resolvedHeading = sectionInfo?.currentHeading || resolvedSectionTitle
     const resolvedStuckReason = context?.reason || stuckEvent?.reason || null
     const preferredTab = context?.preferredTab || null
-
-    useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }, [messages])
 
     useEffect(() => {
         if (!preferredTab) return
@@ -105,7 +101,8 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         resolvedHeading,
         resolvedSectionId,
         resolvedSectionTitle,
-        resolvedStuckReason
+        resolvedStuckReason,
+        context,
     ])
 
     const requestExplanation = async () => {
@@ -195,69 +192,10 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         }
     }
 
-    const sendMessage = async () => {
-        if (!inputValue.trim() || chatLoading) return
-
-        const userMessage = inputValue.trim()
-        setInputValue('')
-        setMessages((previous) => [...previous, { role: 'user', content: userMessage }])
-        setChatLoading(true)
-        recordAdaptiveSignal(resolvedSectionId, 'chat_engagement', {
-            messageLength: userMessage.length
-        })
-        if (activeTraceId) {
-            appendInterventionTrace(activeTraceId, {
-                type: 'support_requested',
-                status: 'engaged',
-                detail: { support_type: 'ask', message_length: userMessage.length }
-            })
-        }
-
-        try {
-            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || ''
-            const res = await fetch(`${API_BASE}/assist/chat`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message: userMessage,
-                    section_id: resolvedSectionId,
-                    page_content: sectionInfo?.pageContent || '',
-                    section_title: resolvedSectionTitle,
-                    history: messages.slice(-6),
-                    api_key: apiKey
-                })
-            })
-            const data = await res.json()
-            setMessages((previous) => [...previous, { role: 'assistant', content: data.response }])
-            setSupportAudit(
-                evaluateSupportContent({
-                    sectionId: resolvedSectionId,
-                    supportType: 'ask',
-                    content: data.response,
-                    focusConcepts: recommendation?.primary_recommendation?.focus_concepts || [],
-                    traceId: activeTraceId
-                })
-            )
-        } catch (error) {
-            console.error(error)
-            setMessages((previous) => [
-                ...previous,
-                {
-                    role: 'assistant',
-                    content: 'Sorry, I encountered an error. Please try again.'
-                }
-            ])
-        } finally {
-            setChatLoading(false)
-        }
-    }
-
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter' && !event.shiftKey) {
-            event.preventDefault()
-            sendMessage()
-        }
-    }
+    // sendMessage / handleKeyDown removed when the Ask tab became a launcher
+    // for the floating ChatWidget. The ChatWidget now owns chat state, history
+    // persistence, and the /api/orchestrate call path. Rail dispatches an
+    // 'open-chat' CustomEvent which ChatWidget listens for.
 
     const handleRecommendationAction = (action, coachPrompt = '') => {
         recordAdaptiveSignal(resolvedSectionId, action === 'advance' ? 'intervention_decline' : 'intervention_accept', {
@@ -562,59 +500,59 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 )}
 
                 {activeTab === 'ask' && (
-                    <div className="-m-4 flex h-full flex-col">
-                        <div className="flex-1 space-y-3 overflow-y-auto p-4">
-                            {messages.length === 0 && (
-                                <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4 text-sm leading-6 text-[var(--ath-muted)]">
-                                    Ask about the exact step that feels unstable. Short, diagnostic questions usually work best here.
-                                </div>
-                            )}
-
-                            {messages.map((message, index) => (
-                                <div
-                                    key={`${message.role}-${index}`}
-                                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                                >
-                                    <div
-                                        className={`max-w-[85%] rounded-[1rem] px-3 py-2 text-sm leading-6 ${message.role === 'user'
-                                            ? 'bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] text-white'
-                                            : 'bg-[var(--ath-panel)] text-[var(--ath-text)]'
-                                            }`}
-                                    >
-                                        {message.content}
-                                    </div>
-                                </div>
-                            ))}
-
-                            {chatLoading && (
-                                <div className="flex justify-start">
-                                    <div className="rounded-[1rem] bg-[var(--ath-panel)] px-3 py-2 text-sm text-[var(--ath-secondary)]">
-                                        Thinking...
-                                    </div>
-                                </div>
-                            )}
-                            <div ref={messagesEndRef} />
+                    <div className="space-y-4">
+                        <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4 text-sm leading-6 text-[var(--ath-muted)]">
+                            Sustained questions live in the floating tutor chat so the conversation persists across sections and surfaces. The rail keeps short, structured supports (Explain, Reframe, Practice).
                         </div>
-
-                        <div className="border-t border-[var(--ath-line)] bg-[rgba(255,255,255,0.86)] p-3">
-                            <div className="flex gap-2">
-                                <input
-                                    type="text"
-                                    value={inputValue}
-                                    onChange={(event) => setInputValue(event.target.value)}
-                                    onKeyDown={handleKeyDown}
-                                    placeholder="Ask BigAL about the next step..."
-                                    className="editorial-input flex-1 text-sm"
-                                />
-                                <button
-                                    onClick={sendMessage}
-                                    disabled={!inputValue.trim() || chatLoading}
-                                    className="editorial-button px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
-                                >
-                                    Send
-                                </button>
-                            </div>
+                        <div className="flex gap-2">
+                            <input
+                                type="text"
+                                value={inputValue}
+                                onChange={(event) => setInputValue(event.target.value)}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter' && !event.shiftKey) {
+                                        event.preventDefault()
+                                        const msg = inputValue.trim()
+                                        if (!msg) return
+                                        if (activeTraceId) {
+                                            appendInterventionTrace(activeTraceId, {
+                                                type: 'support_requested',
+                                                status: 'engaged',
+                                                detail: { support_type: 'ask', message_length: msg.length, surface: 'rail-launcher' }
+                                            })
+                                        }
+                                        recordAdaptiveSignal(resolvedSectionId, 'chat_engagement', { messageLength: msg.length })
+                                        window.dispatchEvent(new CustomEvent('open-chat', { detail: { message: msg } }))
+                                        setInputValue('')
+                                    }
+                                }}
+                                placeholder="Type your question, press Enter to launch the tutor chat..."
+                                className="editorial-input flex-1 text-sm"
+                            />
+                            <button
+                                onClick={() => {
+                                    const msg = inputValue.trim()
+                                    if (activeTraceId) {
+                                        appendInterventionTrace(activeTraceId, {
+                                            type: 'support_requested',
+                                            status: 'engaged',
+                                            detail: { support_type: 'ask', message_length: msg.length, surface: 'rail-launcher' }
+                                        })
+                                    }
+                                    if (msg) {
+                                        recordAdaptiveSignal(resolvedSectionId, 'chat_engagement', { messageLength: msg.length })
+                                    }
+                                    window.dispatchEvent(new CustomEvent('open-chat', { detail: { message: msg || undefined } }))
+                                    setInputValue('')
+                                }}
+                                className="editorial-button px-4 py-2 text-sm"
+                            >
+                                Open chat
+                            </button>
                         </div>
+                        <p className="text-xs text-[var(--ath-secondary)]">
+                            One conversation surface, one history. The floating chat icon at the bottom-right opens the same thread.
+                        </p>
                     </div>
                 )}
 

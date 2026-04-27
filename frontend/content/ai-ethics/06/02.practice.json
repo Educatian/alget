@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "edu_monitor_vs_surveil",
+      "type": "multiple_choice",
+      "concept_id": "educational_surveillance",
+      "stem": "Which set of properties distinguishes educational surveillance from formative monitoring?",
+      "options": [
+        "Cost, color scheme, vendor reputation.",
+        "Aggregation depth (combined streams beyond purpose), asymmetry of access (institution sees, learner does not), and inability to opt out without leaving the institution.",
+        "Number of users.",
+        "Whether AI is used."
+      ],
+      "correct_index": 1,
+      "explanation": "These three properties capture the line. Defensible educational AI chooses bounded scope, learner-visible records, and real opt-out for non-essential streams.",
+      "misconception_id": "all_recording_is_monitoring"
+    },
+    {
+      "id": "edu_engagement_motivation",
+      "type": "multiple_choice",
+      "concept_id": "self_determination_theory",
+      "stem": "A learning platform's engagement metrics rise 40% after adding streaks and manufactured peer presence. What does self-determination theory (Deci & Ryan) predict about autonomous motivation?",
+      "options": [
+        "Autonomous motivation rises in proportion to engagement.",
+        "Engagement rising does not imply autonomous motivation rising. Manufactured social pressure and variable-ratio rewards cultivate compliance and dependence; SDT predicts weaker autonomous motivation and worse persistence once manipulative mechanics are removed.",
+        "No effect either way.",
+        "Engagement is the same as motivation by definition."
+      ],
+      "correct_index": 1,
+      "explanation": "SDT distinguishes autonomous motivation (volitional engagement aligned with values) from controlled motivation (compliance under pressure). Engagement metrics conflate them.",
+      "misconception_id": "engagement_is_motivation"
+    },
+    {
+      "id": "edu_dark_pattern_recognize",
+      "type": "multiple_choice",
+      "concept_id": "engagement_dark_patterns",
+      "stem": "Which engagement mechanism most directly imports slot-machine reinforcement schedules into educational AI?",
+      "options": [
+        "Daily quiz at fixed time.",
+        "Variable-ratio reward schedules: streaks, surprise rewards, unpredictable badge drops. They extend session length and shorten between-session intervals while exploiting limited self-regulation in younger learners.",
+        "Static progress bar.",
+        "Read-only transcript."
+      ],
+      "correct_index": 1,
+      "explanation": "Variable-ratio reinforcement is the slot-machine pattern. Its deployment on minors is hard to justify pedagogically; learning impact is far less clear than session-length impact.",
+      "misconception_id": "gamification_is_always_pedagogy"
+    },
+    {
+      "id": "edu_autonomy_design",
+      "type": "multiple_choice",
+      "concept_id": "learner_autonomy",
+      "stem": "Which design move most directly respects learner autonomy under SDT?",
+      "options": [
+        "Hide the system's data collection from learners.",
+        "Make the system's records about the learner visible to the learner; provide granular control over notifications and recommendations; offer real exit ramps that do not penalize the learner.",
+        "Increase the streak penalty.",
+        "Add more leaderboards."
+      ],
+      "correct_index": 1,
+      "explanation": "Autonomy under SDT requires volition. Learner-visible records, granular control, and real exit ramps make volition real rather than nominal.",
+      "misconception_id": "autonomy_is_no_design"
+    }
+  ]
+}

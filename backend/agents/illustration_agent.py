@@ -9,6 +9,9 @@ except ImportError:
 
 import logging
 
+from .config import get as get_config
+from .schema_gate import ILLUSTRATION_FALLBACK, IllustrationOutput, gate
+
 logger = logging.getLogger(__name__)
 
 class IllustrationAgent:
@@ -70,22 +73,22 @@ class IllustrationAgent:
         """
         
         try:
+            cfg = get_config("illustration")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.7,
+                    temperature=cfg.temperature,
                     response_mime_type="application/json"
                 )
             )
             
-            result = json.loads(response.text)
-            return result
+            try:
+                result = json.loads(response.text)
+            except json.JSONDecodeError:
+                return {**ILLUSTRATION_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result, IllustrationOutput, ILLUSTRATION_FALLBACK, "IllustrationAgent")
         except Exception as e:
             logger.error(f"Illustration Agent Error: {e}")
-            return {
-                "illustration_title": "Generation Error",
-                "conceptual_design": f"An error occurred while conceptualizing the illustration: {str(e)}",
-                "image_prompt": "",
-                "ui_elements": []
-            }
+            return {**ILLUSTRATION_FALLBACK, "_schema_error": "exception", "error": str(e)}

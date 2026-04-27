@@ -1,0 +1,21 @@
+{
+    "chapter_title": "Internal Forces in Beams",
+    "title": "Module 1: Internal Forces and Shear-Moment Diagrams",
+    "description": "Use the section-and-replace logic to find internal normal force, shear, and bending moment at any beam cross section, and build shear and moment diagrams using the load-shear-moment slope relations.",
+    "learning_objectives": [
+        "Apply section-and-replace logic to compute internal N, V, and M at any cross section of a beam.",
+        "Use a consistent sign convention so left-side and right-side free bodies tell the same physical story.",
+        "Construct shear and moment diagrams using dV/dx = -w and dM/dx = V, including jumps at point loads and couples.",
+        "Locate the position and value of maximum bending moment by finding where V crosses zero."
+    ],
+    "concept_ids": [
+        "internal_forces",
+        "shear_force",
+        "bending_moment",
+        "shear_moment_diagram",
+        "section_method",
+        "beam_loading"
+    ],
+    "estimated_time_minutes": 14,
+    "order": 1
+}

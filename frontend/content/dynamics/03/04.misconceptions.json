@@ -1,0 +1,37 @@
+{
+  "section_id": "dynamics_0304",
+  "misconceptions": [
+    {
+      "id": "always_conserve_linear_momentum",
+      "pattern": "conservation_overreach",
+      "description": "Conserving linear momentum during impacts even when impulsive constraint reactions are present",
+      "trigger": "learner conserves linear momentum across a pinned-rod impact",
+      "feedback": "Pinned constraints exert impulsive reactions during impact. Linear momentum is NOT conserved. Angular momentum about the pin IS conserved because the reaction has zero moment about itself.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "moi_does_not_change",
+      "pattern": "static_inertia_assumption",
+      "description": "Assuming a body's moment of inertia about a fixed axis cannot change",
+      "trigger": "learner says ω cannot change without external torque",
+      "feedback": "Configuration change (pulling arms in, deploying solar panels) changes I_G. With angular momentum conserved, ω must adjust to keep I_G ω constant. This is the skater spin-up effect.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "use_com_velocity_in_restitution",
+      "pattern": "wrong_velocity_in_eqn",
+      "description": "Using center-of-mass velocity in the coefficient-of-restitution equation for an eccentric impact",
+      "trigger": "learner writes e = (v_G,B' - v_G,A') / (v_G,A - v_G,B) for rotating bodies",
+      "feedback": "Restitution operates at the contact point. For rotating bodies the contact-point velocity equals v_G + ω × r_G→contact. Using v_G alone misses the rotational contribution at the contact.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "always_use_centroidal_inertia",
+      "pattern": "axis_confusion",
+      "description": "Using centroidal moment of inertia I_G when the angular momentum is taken about a fixed point",
+      "trigger": "learner writes ∫M_O dt = I_G (ω₂ - ω₁) for a pinned body",
+      "feedback": "Angular momentum about a fixed pin uses I_O = I_G + Md² by the parallel-axis theorem. Using only I_G underestimates the rotational resistance.",
+      "rail_action": "ask"
+    }
+  ]
+}

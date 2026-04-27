@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "privacy_anonymization_limit",
+      "type": "multiple_choice",
+      "concept_id": "re_identification",
+      "stem": "Why is removing names and SSNs typically insufficient to anonymize a behavioral dataset?",
+      "options": [
+        "Because names and SSNs are not personal data.",
+        "Because remaining quasi-identifiers (zip, birth date, gender, behavioral patterns) can link to auxiliary data and re-identify records. Sweeney showed 87% of US residents are uniquely identified by zip+DOB+gender.",
+        "Because the dataset is too small.",
+        "Because deep learning ignores identifiers."
+      ],
+      "correct_index": 1,
+      "explanation": "Quasi-identifiers compose into unique fingerprints. Re-identification is well-documented; field removal alone does not anonymize.",
+      "misconception_id": "field_removal_anonymizes"
+    },
+    {
+      "id": "privacy_membership_inference",
+      "type": "multiple_choice",
+      "concept_id": "membership_inference",
+      "stem": "What is a membership inference attack?",
+      "options": [
+        "Stealing a model's weights.",
+        "Determining whether a particular individual's record was in the training set, given access to the trained model. For some datasets, just being in the training set is itself a privacy harm.",
+        "Inferring a person's name from their face.",
+        "Reverse-engineering the loss function."
+      ],
+      "correct_index": 1,
+      "explanation": "Shokri et al. (2017) demonstrated that trained models leak membership information. For sensitive datasets (rare diseases, abuse-victim registries), training-set inclusion is itself harmful.",
+      "misconception_id": "models_dont_leak"
+    },
+    {
+      "id": "privacy_dp_purpose",
+      "type": "multiple_choice",
+      "concept_id": "differential_privacy",
+      "stem": "What does differential privacy formally guarantee?",
+      "options": [
+        "Perfect anonymity with no utility loss.",
+        "That the output of an analysis or trained model changes only marginally if any one individual's record is added or removed, bounded by a privacy parameter ε. Smaller ε = stronger privacy at higher utility cost.",
+        "That data is encrypted.",
+        "That data is deleted after use."
+      ],
+      "correct_index": 1,
+      "explanation": "Differential privacy bounds per-individual leakage. It is the strongest formal privacy guarantee available, with a quantified utility-privacy trade-off.",
+      "misconception_id": "dp_is_perfect"
+    },
+    {
+      "id": "privacy_aggregation_threat",
+      "type": "multiple_choice",
+      "concept_id": "data_minimization",
+      "stem": "What is the surveillance-by-aggregation threat, and which GDPR principles most directly counter it?",
+      "options": [
+        "A type of brute-force attack; countered by encryption.",
+        "Combining multiple individually mundane data streams (location, communication, biometrics, behavior) yields profiles that reveal far more than any single stream. Countered by data minimization, purpose limitation, and retention limits.",
+        "An attack only on advertising systems.",
+        "Not a real threat."
+      ],
+      "correct_index": 1,
+      "explanation": "Aggregation transforms benign-seeming data into invasive profiles. GDPR's data minimization, purpose limitation, and retention limits are designed to bound exactly this risk.",
+      "misconception_id": "single_record_view"
+    }
+  ]
+}

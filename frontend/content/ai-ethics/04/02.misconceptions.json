@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0402",
+  "misconceptions": [
+    {
+      "id": "click_is_consent",
+      "pattern": "consent_collapse",
+      "description": "Treating a click on 'I Agree' as informed consent",
+      "trigger": "learner cites clickthrough rate as evidence of consent",
+      "feedback": "Informed consent requires disclosure, comprehension, voluntariness, and competence. A click satisfies disclosure on a technicality and almost nothing else.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "any_design_is_neutral",
+      "pattern": "interface_neutrality_assumption",
+      "description": "Treating consent-flow UI as neutral terrain that does not shape choice",
+      "trigger": "learner argues that 'Accept All' being big and 'Reject All' being buried is just visual hierarchy",
+      "feedback": "Asymmetric prominence is a documented dark pattern that defeats voluntariness. Symmetric controls are required by DSA and GDPR enforcement.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "consent_solves_everything",
+      "pattern": "consent_overreach",
+      "description": "Believing well-collected individual consent settles the ethics of any deployment",
+      "trigger": "learner cites unanimous user consent as proof of ethical deployment",
+      "feedback": "Public goods, deeply asymmetric power, and vulnerable users all need supplementary protections (democratic deliberation, due process, surrogate consent). Consent is one layer.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "consent_is_one_time",
+      "pattern": "static_consent",
+      "description": "Treating consent as a one-time event that does not require ongoing revocability",
+      "trigger": "learner ignores withdrawal flows or makes deletion deliberately hard",
+      "feedback": "Voluntariness extends across time. Real, easy withdrawal is required for consent to remain meaningful. CCPA and GDPR codify this.",
+      "rail_action": "ask"
+    }
+  ]
+}

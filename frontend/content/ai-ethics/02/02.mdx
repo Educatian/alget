@@ -1,0 +1,110 @@
+## Why "Fair" Is a Family of Definitions, Not One
+
+When a stakeholder asks for a "fair" model, they have not yet specified what they mean. The fairness literature contains at least twenty formally defined fairness criteria, and the central technical result of the field — proved by Chouldechova (2017) and by Kleinberg, Mullainathan, and Raghavan (2016) — is that **the most natural fairness definitions are mutually incompatible**. You cannot satisfy them all simultaneously except in trivial cases.
+
+This is uncomfortable. It means a request for "a fair model" is under-specified and that the engineer must surface the trade-off rather than silently choose one definition and hide the rest.
+
+This module covers the three most-used fairness criteria, the formal impossibility result that links them, and the practical workflow for choosing among them.
+
+---
+
+## The Three Workhorse Definitions
+
+Consider a binary classifier predicting whether a person should receive a beneficial outcome (a loan approved, a job interview, a low-risk diagnosis). Let A be a protected group attribute (e.g., race, gender). The three most-cited group-level fairness criteria are:
+
+**Demographic parity** (also called statistical parity). Selection rate is the same across groups:
+
+$$P(\hat{Y} = 1 \mid A = a) = P(\hat{Y} = 1 \mid A = b)$$
+
+Plain reading: the model approves the same fraction of each group.
+
+**Equalized odds**. The error rates (false positive rate and false negative rate) are the same across groups:
+
+$$P(\hat{Y} = 1 \mid Y = 0, A = a) = P(\hat{Y} = 1 \mid Y = 0, A = b)$$
+$$P(\hat{Y} = 0 \mid Y = 1, A = a) = P(\hat{Y} = 0 \mid Y = 1, A = b)$$
+
+Plain reading: among people who actually qualify, the model misses them at the same rate; among people who do not qualify, the model wrongly approves them at the same rate.
+
+**Calibration within groups**. A predicted score s means the same thing across groups:
+
+$$P(Y = 1 \mid \hat{S} = s, A = a) = P(Y = 1 \mid \hat{S} = s, A = b)$$
+
+Plain reading: when the model says "70% chance," roughly 70% of those people qualify, regardless of group.
+
+Each definition formalizes a different ethical intuition. Demographic parity asks for **proportional outcomes**. Equalized odds asks for **proportional errors**. Calibration asks for **trust the score equally**.
+
+---
+
+## The Impossibility Result
+
+When the **base rate** of qualification differs across groups (i.e., the proportion of people who actually qualify is not equal across A = a and A = b), no model can satisfy demographic parity, equalized odds, and calibration simultaneously, except by being a trivial classifier.
+
+Chouldechova showed this in the COMPAS context: a recidivism risk model can be calibrated within race groups (a given score predicts the same recidivism rate across groups) **or** equalize false-positive rates across groups (the model is wrong upward at the same rate across groups), but not both, because base rates of recidivism differ in the historical data used.
+
+This is not a bug to fix with better engineering. It is a mathematical fact about the relationship among the criteria when base rates differ. **You must choose which property to give up.** Engineers who pretend the choice has not been made have made it.
+
+---
+
+## Trade-off Frame: What Are You Willing to Give Up?
+
+Each fairness criterion has a downside when other criteria are not enforced.
+
+**Demographic parity** ignores ground-truth qualification. If 60% of group A qualifies and 30% of group B does, demographic parity may force selecting unqualified members of group B and rejecting qualified members of group A. The trade-off: equality of outcomes at the cost of accuracy on individuals.
+
+**Equalized odds** is sensitive to ground truth Y. When ground truth is itself biased (historical bias from the previous module), equalizing errors against a contaminated label perpetuates the original injustice. The trade-off: depends on how trustworthy the labels are.
+
+**Calibration within groups** preserves predictive validity but allows error rates to differ across groups when base rates differ. The trade-off: equally trustworthy scores at the cost of unequal exposure to false-positive harm.
+
+Choosing among these requires a **stakeholder-specific judgment**: which kind of harm is worse for the deployment context? In hiring, false negatives (qualified people screened out) typically harm the candidate; demographic parity tends to be the louder demand. In criminal risk, false positives (incorrectly classified as high-risk) cause concrete harm; equalized false-positive rates becomes the louder demand.
+
+The technical fact does not give you the ethical answer. The technical fact tells you which question you are answering when you pick a criterion.
+
+<concept-diagram type="fairness-impossibility-trilemma"></concept-diagram>
+
+---
+
+## Individual vs. Group Fairness
+
+The three definitions above are **group fairness**. A different family asks about **individual fairness**: similar individuals should receive similar treatment, regardless of group membership (Dwork et al., 2012). Formally:
+
+$$d(\hat{Y}(x), \hat{Y}(x')) \leq L \cdot d(x, x')$$
+
+for some distance metric d on input space and a Lipschitz constant L. Individuals close in input space should have close outcomes.
+
+Individual fairness is intuitively appealing but defers the entire problem to the choice of distance metric d. Choosing d that excludes A from "similarity" makes group fairness implications visible; choosing d that includes A bakes group structure back in. The choice of d is itself an ethical decision.
+
+In practice, defensible designs often blend a group-fairness criterion (to address structural inequities) with individual fairness within group (to prevent arbitrary individual treatment).
+
+---
+
+## Counterfactual Fairness
+
+Kusner, Loftus, Russell, and Silva (2017) proposed a different family: a decision is **counterfactually fair** if it would have been the same in a counterfactual world where the protected attribute A took a different value, holding everything else causally upstream constant.
+
+This requires a causal model of the data-generating process — itself a strong assumption. When the causal model is defensible, counterfactual fairness aligns the decision with the intuition "would this person have been treated differently if their race/gender/age were different?" When the causal model is contested, counterfactual fairness becomes a debate over the model rather than the decision.
+
+---
+
+## Practical Workflow
+
+When stakeholders request "a fair model," walk this checklist:
+
+1. **Surface the under-specification.** State explicitly that "fair" is a family of definitions, and pick at least two candidate criteria.
+2. **Examine base rates.** Compute the actual base-rate gap across groups in the data. If base rates differ, the impossibility result applies and a choice is unavoidable.
+3. **Match criterion to harm.** Identify which kind of error (false positive vs false negative) causes the larger concrete harm in the deployment context.
+4. **Document the choice.** Write the chosen criterion, the criteria that will not be satisfied, and the deployment context's reasoning. This is the audit trail that survives turnover.
+5. **Monitor.** Subgroup-disaggregated metrics in production. Drift in base rates, error rates, or score distributions should trigger re-evaluation.
+
+The goal is not to "achieve fairness." The goal is to **make a defensible, documented, stakeholder-aligned choice among incompatible definitions**, and to monitor the choice's consequences over time.
+
+<dynamic-scenario topic="Fairness Trade-offs" context="A team is building a college-admissions support model. Historical data shows different graduation rates by race, partly because of historical disinvestment in some schools and partly because of differential support during college. Stakeholders ask for 'a fair model.' Walk the checklist: which fairness criterion best fits this context, what trade-off is the team accepting, and what monitoring should be in place?"></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="A risk-assessment model is calibrated within race groups (a given score predicts the same outcome rate across groups). When base rates of the outcome differ across groups, what is the most accurate statement about the false-positive rates across groups?"
+  options='[{"text":"They will also be equal automatically; calibration implies equalized odds.","isCorrect":false},{"text":"They cannot be equalized simultaneously with calibration when base rates differ — this is the Chouldechova / Kleinberg-Mullainathan-Raghavan impossibility result. The team must choose which property to give up.","isCorrect":true},{"text":"There is no relationship between the two.","isCorrect":false}]'
+  explanation="Correct. The impossibility theorem says that with unequal base rates, calibration and equalized error rates cannot both be satisfied. This is a mathematical fact, not an engineering deficit."
+/>

@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "edu_ferpa_scope",
+      "type": "multiple_choice",
+      "concept_id": "ferpa",
+      "stem": "An AI vendor ingests student records under the FERPA 'school official' exception. Which statement is most accurate?",
+      "options": [
+        "The vendor's terms of service supersede FERPA obligations.",
+        "The vendor inherits FERPA obligations because it operates as a school official under direct institutional control with a legitimate educational interest. The institution's FERPA exposure governs the deployment.",
+        "FERPA does not apply to AI vendors.",
+        "The vendor can use the data freely for product improvement."
+      ],
+      "correct_index": 1,
+      "explanation": "The school-official exception transfers FERPA obligations to the vendor; the institution's exposure is the relevant constraint. Vendor-side terms cannot override that.",
+      "misconception_id": "vendor_terms_supersede_ferpa"
+    },
+    {
+      "id": "edu_idea_due_process",
+      "type": "multiple_choice",
+      "concept_id": "idea_act",
+      "stem": "An AI early-warning system flags students for special-education-adjacent intervention without producing the procedural notice and parental participation that a human-driven equivalent would require. Which framework does this most clearly violate?",
+      "options": [
+        "Only FERPA, because data was used.",
+        "IDEA's procedural-due-process requirements (notice, parental participation, evaluation by qualified personnel, right to appeal). FERPA compliance does not substitute for IDEA compliance.",
+        "No framework; AI decisions are exempt.",
+        "COPPA, regardless of the student's age."
+      ],
+      "correct_index": 1,
+      "explanation": "Algorithmic decisions affecting special-education identification or services inherit IDEA procedural obligations. The AI route is not a workaround.",
+      "misconception_id": "ferpa_covers_everything"
+    },
+    {
+      "id": "edu_equity_question",
+      "type": "multiple_choice",
+      "concept_id": "ai_equity_in_education",
+      "stem": "When evaluating an educational AI tool, which question is most aligned with the equity concern UNESCO and others raise?",
+      "options": [
+        "Is the tool's average accuracy high?",
+        "Who has access to the tool and who does not, and what happens to learners and schools that cannot deploy it? An adoption gap can widen, not narrow, the achievement gap.",
+        "Is the tool free?",
+        "Does the tool have a privacy policy?"
+      ],
+      "correct_index": 1,
+      "explanation": "Equity in educational AI is about distribution of benefit and harm across schools and learners, not the tool's average performance.",
+      "misconception_id": "average_quality_is_equity"
+    },
+    {
+      "id": "edu_coppa_age",
+      "type": "multiple_choice",
+      "concept_id": "coppa",
+      "stem": "What is the most accurate description of COPPA's age coverage in relation to ethical AI in education?",
+      "options": [
+        "COPPA covers all minors up to 18 with strict requirements.",
+        "COPPA strictly applies to commercial collection from children under 13. Adolescents 13-18 occupy a regulatory gap where the legal floor is lower than the ethical ceiling, and additional design protections are warranted.",
+        "COPPA does not apply in educational settings.",
+        "COPPA only covers physical mail, not digital data."
+      ],
+      "correct_index": 1,
+      "explanation": "COPPA stops at 13, but the developmental vulnerabilities it addresses do not. Designers should treat 13-18 as an ethical zone above the COPPA floor.",
+      "misconception_id": "coppa_covers_all_minors"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+    "chapter_title": "Assessment Design",
+    "title": "Module 7: Assessment Design — Validity, Reliability, and Item Construction",
+    "description": "Design defensible assessments by aligning to objectives, ensuring validity and reliability, writing diagnostic distractors, and using calibrated rubrics for open-ended performance.",
+    "learning_objectives": [
+        "Distinguish content, construct, and face validity, and explain what inference each one supports.",
+        "Identify common threats to assessment reliability and apply mitigations.",
+        "Audit an assessment for constructive alignment with its objective at the correct Bloom level.",
+        "Construct multiple-choice items whose distractors map to specific misconceptions, and design analytic rubrics for open-ended responses."
+    ],
+    "concept_ids": [
+        "assessment_design",
+        "validity",
+        "reliability",
+        "constructive_alignment_audit",
+        "item_construction",
+        "rubric_design"
+    ],
+    "estimated_time_minutes": 13,
+    "order": 7
+}

@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0301",
+  "misconceptions": [
+    {
+      "id": "interp_explain_same",
+      "pattern": "term_collapse",
+      "description": "Treating interpretability and explainability as synonyms",
+      "trigger": "learner uses the two terms interchangeably without distinction",
+      "feedback": "Interpretability is a property of the model (auditable by structure). Explainability is a property of an explanation surface around a possibly opaque model. The two can be present independently.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "shap_is_always_meaningful",
+      "pattern": "tool_legitimization",
+      "description": "Treating SHAP or LIME outputs as automatically constituting a meaningful explanation",
+      "trigger": "learner provides raw feature attributions to a denied applicant as the legal explanation",
+      "feedback": "Meaningful explanations are faithful, actionable, and contextually appropriate. Raw feature attributions can fail on actionability and may inappropriately surface protected-attribute proxies.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "post_hoc_is_truth",
+      "pattern": "approximation_collapse",
+      "description": "Believing post-hoc explanation methods reveal the model's actual mechanism",
+      "trigger": "learner cites SHAP output as proof of why the model made a decision",
+      "feedback": "Post-hoc methods approximate model behavior locally. They can be wrong. A satisfying explanation is not necessarily a faithful explanation.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "blackbox_always_more_accurate",
+      "pattern": "accuracy_assumption",
+      "description": "Assuming black-box models are always more accurate than interpretable alternatives",
+      "trigger": "learner argues 'we need a black box for accuracy' without testing interpretable baselines",
+      "feedback": "Rudin (2019) argues that for high-stakes decisions, inherently interpretable models are often competitive in accuracy and dominate on auditability. Test before assuming.",
+      "rail_action": "ask"
+    }
+  ]
+}

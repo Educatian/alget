@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "consent_four_conditions",
+      "type": "multiple_choice",
+      "concept_id": "informed_consent",
+      "stem": "Informed consent (Belmont Report) requires four conditions. Which set?",
+      "options": [
+        "Speed, brevity, color, animation.",
+        "Disclosure, comprehension, voluntariness, competence.",
+        "Acceptance, refusal, indifference, abstention.",
+        "Login, opt-in, cookie, terms."
+      ],
+      "correct_index": 1,
+      "explanation": "The Belmont Report's four conditions are the canonical framework. AI deployments break each one in characteristic ways.",
+      "misconception_id": "click_is_consent"
+    },
+    {
+      "id": "consent_asymmetric_prominence",
+      "type": "multiple_choice",
+      "concept_id": "dark_patterns",
+      "stem": "An interface presents 'Accept All' as a large bright button and 'Reject All' as a three-click trail through nested settings. What dark pattern is this and how does the EU treat it?",
+      "options": [
+        "Misdirection; legal in the EU.",
+        "Asymmetric prominence — defeats voluntariness by making refusal materially costlier than acceptance. Explicitly prohibited by the EU Digital Services Act and targeted by GDPR enforcement and FTC Section 5 actions.",
+        "Roach motel; only applies to email.",
+        "It is not a dark pattern."
+      ],
+      "correct_index": 1,
+      "explanation": "Asymmetric prominence is one of the best-documented dark patterns. Symmetric controls are required for defensible consent under DSA and GDPR.",
+      "misconception_id": "any_design_is_neutral"
+    },
+    {
+      "id": "consent_inappropriate_carry",
+      "type": "multiple_choice",
+      "concept_id": "informed_consent",
+      "stem": "Which scenario most clearly shows that consent alone cannot carry the ethical weight, even when perfectly collected?",
+      "options": [
+        "A user clicks 'Accept' on a coffee-shop wifi terms page.",
+        "Predictive-policing deployment that affects entire neighborhoods, where individual consent does not address the distributional and democratic question of whether the deployment is appropriate at all.",
+        "A user opts into a newsletter.",
+        "A user accepts cookies."
+      ],
+      "correct_index": 1,
+      "explanation": "Public goods and population-level decisions need democratic deliberation, not aggregated individual clicks. Consent is one layer of many in such cases.",
+      "misconception_id": "consent_solves_everything"
+    },
+    {
+      "id": "consent_withdrawal",
+      "type": "multiple_choice",
+      "concept_id": "withdrawal_rights",
+      "stem": "Why is a real, easy withdrawal mechanism (account deletion that actually deletes data, including from training sets where feasible) part of a defensible consent flow?",
+      "options": [
+        "Because GDPR is unrelated.",
+        "Because consent is meaningful only if it is revocable; without effective withdrawal, the original consent is materially weakened. CCPA and GDPR explicitly establish rights to deletion and erasure.",
+        "Because it makes the system faster.",
+        "Because deletion is purely cosmetic."
+      ],
+      "correct_index": 1,
+      "explanation": "Revocable consent is the only kind that satisfies voluntariness over time. CCPA right to deletion and GDPR right to erasure operationalize this; current generative architectures still struggle to comply cleanly.",
+      "misconception_id": "consent_is_one_time"
+    }
+  ]
+}

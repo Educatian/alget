@@ -379,12 +379,19 @@ class AdaptiveRecommendationReasoning(BaseModel):
     predicted_outcomes: dict[str, dict[str, float]] = Field(default_factory=dict)
 
 
+class PrerequisiteHint(BaseModel):
+    concept_id: str
+    suggested_section_slug: str
+    reason: str
+
+
 class AdaptiveRecommendationResponse(BaseModel):
     section_id: str
     learner_state: LearnerStateSummary
     primary_recommendation: AdaptiveRecommendationCard
     secondary_recommendations: list[AdaptiveRecommendationCard] = Field(default_factory=list)
     reasoning: AdaptiveRecommendationReasoning
+    needs_prerequisite: Optional[PrerequisiteHint] = None
 
 
 def _ensure_str(value: Any) -> str:
@@ -663,6 +670,57 @@ def _estimate_action_outcomes(
             "retention_lift": round(retention_lift, 3),
         }
     return outcomes
+
+
+_CONCEPT_ORIGIN_CACHE: Optional[dict[str, str]] = None
+
+
+def _find_concept_origin(concept_id: str) -> Optional[str]:
+    """Return the first section slug 'course/chapter/section' that lists the
+    given concept_id in its meta.json concept_ids array. Cached after first scan.
+    """
+    global _CONCEPT_ORIGIN_CACHE
+    if _CONCEPT_ORIGIN_CACHE is None:
+        _CONCEPT_ORIGIN_CACHE = {}
+        base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        content_root = os.path.join(base, "frontend", "content")
+        if os.path.isdir(content_root):
+            for course_name in sorted(os.listdir(content_root)):
+                course_dir = os.path.join(content_root, course_name)
+                if not os.path.isdir(course_dir):
+                    continue
+                for chapter_name in sorted(os.listdir(course_dir)):
+                    chapter_dir = os.path.join(course_dir, chapter_name)
+                    if not os.path.isdir(chapter_dir):
+                        continue
+                    for filename in sorted(os.listdir(chapter_dir)):
+                        if not filename.endswith(".meta.json"):
+                            continue
+                        section_id = filename.replace(".meta.json", "")
+                        meta_path = os.path.join(chapter_dir, filename)
+                        try:
+                            with open(meta_path, "r", encoding="utf-8") as fh:
+                                meta = json.load(fh)
+                        except Exception:
+                            continue
+                        slug = f"{course_name}/{chapter_name}/{section_id}"
+                        for cid in meta.get("concept_ids") or []:
+                            cid_str = _ensure_str(cid)
+                            if cid_str and cid_str not in _CONCEPT_ORIGIN_CACHE:
+                                _CONCEPT_ORIGIN_CACHE[cid_str] = slug
+    return _CONCEPT_ORIGIN_CACHE.get(_ensure_str(concept_id))
+
+
+@app.get("/api/concept/{concept_id}/origin")
+async def concept_origin(concept_id: str):
+    """Return the section slug where the concept first appears.
+
+    Used by StudentDashboard / IntelRail to route to a remediation section.
+    """
+    slug = _find_concept_origin(concept_id)
+    if not slug:
+        return {"concept_id": concept_id, "section_slug": None}
+    return {"concept_id": concept_id, "section_slug": slug}
 
 
 def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> AdaptiveRecommendationResponse:
@@ -1007,6 +1065,24 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
         3,
     )
 
+    # Prerequisite remediation hint: when the lowest-mastery concept is well
+    # below threshold (<0.4), suggest revisiting an earlier section that
+    # introduced it. The frontend can act on this by routing the learner
+    # back to the prerequisite section before showing more new content.
+    needs_prereq: Optional[PrerequisiteHint] = None
+    if lowest_concept and lowest_score is not None and lowest_score < 0.4:
+        origin = _find_concept_origin(lowest_concept)
+        if origin:
+            needs_prereq = PrerequisiteHint(
+                concept_id=lowest_concept,
+                suggested_section_slug=origin,
+                reason=(
+                    f"Mastery on '{lowest_concept}' is {round(lowest_score * 100)}%. "
+                    f"Reviewing the section where this concept was introduced "
+                    f"is likely more efficient than continuing forward."
+                ),
+            )
+
     return AdaptiveRecommendationResponse(
         section_id=request.section_id,
         learner_state=LearnerStateSummary(
@@ -1022,6 +1098,7 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
         ),
         primary_recommendation=primary,
         secondary_recommendations=secondary_candidates[:3],
+        needs_prerequisite=needs_prereq,
         reasoning=AdaptiveRecommendationReasoning(
             confidence=confidence,
             reason_codes=reason_codes[:5],
@@ -1840,9 +1917,23 @@ from fastapi import BackgroundTasks
 
 @app.post("/api/assist/peer_note")
 async def schedule_peer_note(request: PeerNoteRequest, background_tasks: BackgroundTasks):
-    """Endpoint called by frontend to trigger the stealth AI peer note generation."""
-    background_tasks.add_task(generate_and_insert_peer_note_task, request)
-    return {"status": "scheduled", "message": "Peer note formulation is running in the background."}
+    """DISABLED: Stealth AI-as-peer injection.
+
+    The original implementation generated an AI comment after a 3-4 minute
+    delay and inserted it into the highlights table under a fixed user_id
+    'ai_peer_system_001', visually indistinguishable from a real peer's note.
+    This is deceptive social presence and violates ethical-AI disclosure
+    norms (no fake humans without explicit labeling). Disabled 2026-04-26
+    pending a redesign that (a) labels AI contributions in-UI and (b) is
+    opt-in per learner.
+
+    The background task body is preserved below for audit but no longer
+    scheduled.
+    """
+    return {
+        "status": "disabled",
+        "reason": "stealth_peer_disabled_pending_disclosure_redesign",
+    }
 
 
 class ChatRequest(BaseModel):
@@ -1851,32 +1942,62 @@ class ChatRequest(BaseModel):
     page_content: str = ""  # Current page MDX for RAG
     section_title: str = ""  # Current section title
     history: List[dict] = []
+    api_key: str = ""  # optional client-provided override; ignored unless > 20 chars
+
+
+def _course_persona_for_chat(section_id: str) -> tuple[str, str]:
+    """Return (persona_name, domain_phrase) inferred from section_id slug.
+
+    section_id is shaped like "course/chapter/section". Bio-inspired keeps the
+    BigAL elephant persona because that course is UA-specific. Other courses
+    get a generic, course-aware tutor persona to avoid the brand bleed flagged
+    in the LXD audit.
+    """
+    course = (section_id or "").split("/", 1)[0].strip().lower()
+    if course == "bio-inspired":
+        return ("BigAL", "Bio-Inspired Design at the University of Alabama")
+    if course == "inst-design":
+        return ("Tutor", "Instructional Design and Educational Technology")
+    if course == "ai-ethics":
+        return ("Tutor", "AI Ethics, Governance, and Responsible Deployment")
+    if course == "statics":
+        return ("Tutor", "Engineering Statics")
+    if course == "dynamics":
+        return ("Tutor", "Engineering Dynamics")
+    return ("Tutor", "the current learning section")
 
 
 @app.post("/api/assist/chat")
 async def chat_with_assistant(request: ChatRequest):
-    """Chat with the AI learning assistant - RAG-enhanced with page content."""
-    print(f"[BIGAL] Received chat request: {request.message[:50]}...")
-    print(f"[BIGAL] Section: {request.section_id}, Page content length: {len(request.page_content)} chars")
-    
-    try:
-        # Build conversation history for context
-        history_text = ""
-        for msg in request.history[-6:]:  # Last 6 messages
-            role = "Student" if msg.get("role") == "user" else "Assistant"
-            history_text += f"{role}: {msg.get('content', '')}\n"
-        
-        # Truncate page content to fit context window (max 6000 chars)
-        page_context = request.page_content[:6000] if request.page_content else ""
-        
-        # Check if this is the first message (no history)
-        is_first_message = len(request.history) == 0
-        
-        prompt = f"""You are BigAL, a friendly elephant tutor at the University of Alabama.
+    """Chat with the AI learning assistant - RAG-enhanced with page content.
+
+    DEPRECATED 2026-04-26: Both UI surfaces (ChatWidget floating bubble and
+    IntelRail Ask launcher) now route through /api/orchestrate, which gives
+    a single conversation thread, single history, and single persona path.
+    This endpoint is kept for backward compatibility with any external
+    integrations and for the no-API-key fallback message. Prefer /api/orchestrate
+    for new clients.
+    """
+    print(f"[CHAT] Received chat request: {request.message[:50]}...")
+    print(f"[CHAT] Section: {request.section_id}, Page content length: {len(request.page_content)} chars")
+
+    persona_name, domain_phrase = _course_persona_for_chat(request.section_id)
+
+    # Build conversation history for context
+    history_text = ""
+    for msg in request.history[-6:]:  # Last 6 messages
+        role = "Student" if msg.get("role") == "user" else "Assistant"
+        history_text += f"{role}: {msg.get('content', '')}\n"
+
+    # Truncate page content to fit context window
+    page_context = (request.page_content or "")[:4000]
+    is_first_message = len(request.history) == 0
+
+    prompt = f"""You are {persona_name}, a supportive tutor for {domain_phrase}.
 
 REFERENCE MATERIAL (from current page):
 ---
-{page_context[:4000] if page_context else "No specific page content available."}
+{page_context if page_context else "No specific page content available."}
 ---
 
 Conversation so far:
@@ -1885,36 +2006,58 @@ Conversation so far:
 Student: {request.message}
 
 RESPONSE GUIDELINES:
-{"- Since this is your FIRST message, briefly greet them (one short sentence like 'Hey! Great question.')" if is_first_message else "- DO NOT introduce yourself again or repeat greetings - just continue the conversation naturally"}
-- Keep responses SHORT: 1-3 sentences max
-- Sound like a helpful friend, not a formal tutor
-- Use casual language: "Hmm, what if you try...", "Right! So basically...", "Good thinking!"
-- Ask ONE follow-up question to keep the dialogue going
-- Reference page content naturally ("Like in Example 1.2...", "Remember the formula...")
-- Skip "Roll Tide" unless it fits naturally
-- NO long explanations - be punchy and conversational
+{"- Since this is your FIRST message, briefly greet them (one short sentence)." if is_first_message else "- DO NOT introduce yourself again or repeat greetings - just continue the conversation naturally."}
+- Keep responses SHORT: 1-3 sentences max.
+- Be helpful and conversational, not formal.
+- Ask ONE follow-up question to keep the dialogue going.
+- Reference the page material naturally when relevant.
+- NO long explanations — be punchy.
 
-BigAL:"""
+{persona_name}:"""
 
-        # Configure Gemini API
-        _key = get_api_key()
-        if not _key:
-            print("[BIGAL ERROR] No API key configured!")
-            return {"response": "BigAL is not configured yet. Please set up the API key."}
-        
-        print("[BIGAL] Calling Gemini API with RAG context...")
+    # Configure Gemini API — accept request-provided key, fall back to env vars
+    _key = get_api_key(request)
+    if not _key:
+        print("[CHAT ERROR] No API key configured!")
+        return {
+            "response": (
+                "The tutor is not configured yet on this server. "
+                "Set GEMINI_API_KEY on the backend or provide a key in the client."
+            ),
+            "error": "no_api_key",
+        }
+
+    try:
+        print("[CHAT] Calling Gemini API with RAG context...")
         client = genai.Client(api_key=_key)
         response = client.models.generate_content(
             model='gemini-2.0-flash',
             contents=prompt,
             config=genai_types.GenerateContentConfig(temperature=0.7)
         )
-        
-        print(f"[BIGAL] Response received: {response.text[:100]}...")
+        print(f"[CHAT] Response received: {response.text[:100]}...")
         return {"response": response.text}
-    
-    except Exception as e:
-        return {"response": "I'm having trouble connecting right now. Please try again in a moment."}
+    except Exception as exc:
+        # Surface the failure class so the UI can distinguish auth vs network vs
+        # model errors instead of always blaming the network.
+        msg = str(exc)
+        if "API_KEY_INVALID" in msg or "API key not valid" in msg or "API Key not found" in msg:
+            print(f"[CHAT ERROR] Auth failure: {msg[:200]}")
+            return {
+                "response": "The tutor's credentials are not valid. The administrator needs to update the API key.",
+                "error": "auth_failed",
+            }
+        if "RESOURCE_EXHAUSTED" in msg or "quota" in msg.lower() or "rate" in msg.lower():
+            print(f"[CHAT ERROR] Quota/rate limit: {msg[:200]}")
+            return {
+                "response": "The tutor is briefly over its usage quota. Please try again in a minute.",
+                "error": "rate_limited",
+            }
+        print(f"[CHAT ERROR] Unexpected exception: {msg[:300]}")
+        return {
+            "response": "I'm having trouble connecting right now. Please try again in a moment.",
+            "error": "upstream_failure",
+        }
 
 @app.get("/api/debug_env")
 async def debug_env():
@@ -2036,6 +2179,177 @@ Requirements:
             
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Image generation error: {str(e)}")
+
+
+# ============================================================================
+# EVENT LOG SINK (sendBeacon receiver for page-unload telemetry flush)
+# ============================================================================
+
+
+class LogEventsRequest(BaseModel):
+    events: List[dict]
+    supabase_url: str
+    supabase_anon_key: str
+    access_token: Optional[str] = None
+
+
+@app.post("/api/log-events")
+async def log_events_proxy(request: LogEventsRequest):
+    if not request.events:
+        return {"status": "noop", "inserted": 0}
+
+    import httpx
+
+    auth_token = request.access_token or request.supabase_anon_key
+    headers = {
+        "apikey": request.supabase_anon_key,
+        "Authorization": f"Bearer {auth_token}",
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal",
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            res = await client.post(
+                f"{request.supabase_url}/rest/v1/event_logs",
+                headers=headers,
+                json=request.events,
+            )
+        if res.status_code >= 400:
+            print(f"[LOG_EVENTS] Supabase REST {res.status_code}: {res.text[:200]}")
+            raise HTTPException(status_code=res.status_code, detail="event_logs insert failed")
+    except HTTPException:
+        raise
+    except Exception as exc:
+        print(f"[LOG_EVENTS] proxy error: {exc}")
+        raise HTTPException(status_code=502, detail=str(exc))
+
+    return {"status": "ok", "inserted": len(request.events)}
+
+
+# ============================================================================
+# GENERATIVE-TIER ENDPOINTS (Practice / Explanation with optional Critique gate)
+# ============================================================================
+
+
+class PracticeGenerateRequest(BaseModel):
+    section_id: str
+    concept_id: str
+    section_content: str = ""
+    learner_state: dict = Field(default_factory=dict)
+    bloom_level: str = "apply"
+    history: list = Field(default_factory=list)
+    api_key: str = ""
+    run_critique: bool = True
+
+
+@app.post("/api/practice/generate")
+async def practice_generate(request: PracticeGenerateRequest):
+    """Generate one targeted practice item, optionally vetted by CritiqueAgent.
+
+    Pipeline: PracticeGenerationAgent → (optional CritiqueAgent gate). If the
+    critique fails, regenerate once with the critique notes folded into the
+    learner_state and pick the higher-scoring of the two. The whole flow is
+    schema-gated so a generative failure produces a structured no-op.
+    """
+    try:
+        api_key = get_api_key(request)
+        # Direct instantiation (was previously building the entire 15-agent
+        # OrchestratorAgent per request, ~15x wasted constructor cost).
+        from agents.practice_generation_agent import PracticeGenerationAgent
+        from agents.critique_agent import CritiqueAgent
+        practice_agent = PracticeGenerationAgent(api_key=api_key)
+        critic = CritiqueAgent(api_key=api_key) if request.run_critique else None
+
+        item = practice_agent.generate_item(
+            section_content=request.section_content,
+            concept_id=request.concept_id,
+            learner_state=request.learner_state,
+            bloom_level=request.bloom_level,
+            history=request.history,
+        )
+
+        critique = None
+        if critic and not item.get("_schema_error"):
+            ground_truth = []
+            try:
+                rag_contexts = rag_service.retrieve_context(
+                    f"{request.concept_id} {request.bloom_level}", top_k=2
+                )
+                ground_truth = [str(ctx.get("content", ""))[:1000] for ctx in (rag_contexts or [])]
+            except Exception:
+                ground_truth = [request.section_content[:2000]] if request.section_content else []
+
+            critique = critic.review(
+                agent_name="PracticeGenerationAgent",
+                output_payload=item,
+                ground_truth_excerpts=ground_truth,
+            )
+
+            if not critique.get("passes") and not critique.get("_schema_error"):
+                hint_state = dict(request.learner_state or {})
+                hint_state["critique_notes"] = critique.get("issues", [])
+                second_item = practice_agent.generate_item(
+                    section_content=request.section_content,
+                    concept_id=request.concept_id,
+                    learner_state=hint_state,
+                    bloom_level=request.bloom_level,
+                    history=request.history,
+                )
+                second_critique = critic.review(
+                    agent_name="PracticeGenerationAgent",
+                    output_payload=second_item,
+                    ground_truth_excerpts=ground_truth,
+                )
+                if second_critique.get("score", 0) > critique.get("score", 0):
+                    item = second_item
+                    critique = second_critique
+
+        return {"item": item, "critique": critique, "section_id": request.section_id}
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Practice generation error: {exc}")
+
+
+class ExplanationRequest(BaseModel):
+    section_id: str
+    concept_id: str
+    section_content: str = ""
+    learner_state: dict = Field(default_factory=dict)
+    target_length: str = "short"
+    history: list = Field(default_factory=list)
+    api_key: str = ""
+    run_critique: bool = False
+
+
+@app.post("/api/explain")
+async def explain(request: ExplanationRequest):
+    """Generate a short, course-aware explanation; optional Critique gate."""
+    try:
+        api_key = get_api_key(request)
+        from agents.explanation_agent import ExplanationAgent
+        from agents.critique_agent import CritiqueAgent
+        explanation_agent = ExplanationAgent(api_key=api_key)
+        critic = CritiqueAgent(api_key=api_key) if request.run_critique else None
+
+        result = explanation_agent.explain(
+            concept_id=request.concept_id,
+            section_content=request.section_content,
+            learner_state=request.learner_state,
+            target_length=request.target_length,
+            history=request.history,
+        )
+
+        critique = None
+        if critic and not result.get("_schema_error"):
+            critique = critic.review(
+                agent_name="ExplanationAgent",
+                output_payload=result,
+                ground_truth_excerpts=[request.section_content[:2000]] if request.section_content else [],
+            )
+
+        return {"explanation": result, "critique": critique, "section_id": request.section_id}
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Explanation error: {exc}")
 
 
 # ============================================================================

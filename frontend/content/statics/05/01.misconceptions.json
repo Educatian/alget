@@ -1,0 +1,37 @@
+{
+  "section_id": "statics_0501",
+  "misconceptions": [
+    {
+      "id": "no_parallel_axis_correction",
+      "pattern": "missing_transfer_term",
+      "description": "Forgetting the Ad² parallel-axis correction when transferring moment of inertia between axes",
+      "trigger": "learner sums centroidal I values without adding the Ad² transfer term",
+      "feedback": "I = I_c + Ad² always. Each piece's centroidal I is about its own centroid; transferring to a common axis requires the Ad² correction.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "any_axis_same_i",
+      "pattern": "axis_invariance_assumption",
+      "description": "Believing moment of inertia is the same about any parallel axis",
+      "trigger": "learner uses I_c for an off-center axis without correction",
+      "feedback": "Parallel axes differ by Ad². The centroidal axis uniquely minimizes I; every other parallel axis is larger.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "two_inertias_same",
+      "pattern": "symbol_collapse",
+      "description": "Confusing area moment of inertia with mass moment of inertia because both are labeled I",
+      "trigger": "learner uses bh³/12 in a τ = Iα equation",
+      "feedback": "Read the units. Area moment of inertia is m⁴ (statics, bending). Mass moment of inertia is kg·m² (dynamics, rotation). Different quantities; different applications.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "uniform_substitute_for_triangular",
+      "pattern": "load_shape_collapse",
+      "description": "Replacing a triangular distributed load with a uniform-load equivalent at the midpoint",
+      "trigger": "learner places a triangular load's equivalent force at L/2",
+      "feedback": "Equivalent force magnitude is the area under the load curve; equivalent location is the centroid of that area. Triangle: F = w₀L/2 at x = 2L/3 from the zero end, not at midspan.",
+      "rail_action": "ask"
+    }
+  ]
+}

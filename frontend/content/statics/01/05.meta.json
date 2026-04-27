@@ -1,0 +1,21 @@
+{
+    "chapter_title": "Force Vectors",
+    "title": "Module 5: Force Vectors — 2D, 3D, Dot and Cross Products",
+    "description": "Build the vector toolbox that every later statics topic depends on: 2D resolution, 3D unit vectors via position vectors, the dot product for projection and angles, and the cross product for moments.",
+    "learning_objectives": [
+        "Resolve a 2D force into x and y components without quadrant errors.",
+        "Build a 3D force vector from a position vector along its line of action using direction cosines or unit vectors.",
+        "Use the dot product to compute angles between vectors and projections along a line.",
+        "Use the cross product to compute the moment of a force about a point and to test collinearity."
+    ],
+    "concept_ids": [
+        "force_vector",
+        "force_components",
+        "unit_vector",
+        "direction_cosines",
+        "dot_product",
+        "cross_product"
+    ],
+    "estimated_time_minutes": 13,
+    "order": 5
+}

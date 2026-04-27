@@ -2,6 +2,10 @@ import { Suspense, lazy, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { supabase } from './lib/supabase'
 import { initSession, endSession } from './lib/loggingService'
+import { replayPendingResearchPersists } from './lib/researchService'
+import { safeSessionStorageGet } from './lib/browserStorage'
+import { ToastProvider } from './lib/toast.jsx'
+import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
 import AppErrorBoundary from './components/AppErrorBoundary'
 import API_BASE from './lib/apiConfig'
@@ -13,6 +17,8 @@ const BookLayout = lazy(() => import('./pages/BookLayout'))
 const DiagnosticAssessment = lazy(() => import('./pages/DiagnosticAssessment'))
 const GenerativeLab = lazy(() => import('./pages/GenerativeLab'))
 const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'))
+const StudentDashboard = lazy(() => import('./pages/StudentDashboard'))
+const InstructorDashboard = lazy(() => import('./pages/InstructorDashboard'))
 
 function RouteFallback() {
   return (
@@ -43,7 +49,9 @@ export default function App() {
 
       // Initialize logging session when user is authenticated
       if (session?.user) {
-        initSession(session.user)
+        initSession(session.user).then(() => {
+          replayPendingResearchPersists().catch(() => {})
+        })
       }
     })
 
@@ -86,9 +94,11 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <AppErrorBoundary>
-        <GlobalClickLogger>
-          <Suspense fallback={<RouteFallback />}>
+      <ThemeProvider>
+        <ToastProvider>
+          <AppErrorBoundary>
+            <GlobalClickLogger>
+              <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route
                 path="/"
@@ -140,7 +150,40 @@ export default function App() {
                 path="/lab"
                 element={
                   user ? (
-                    <GenerativeLab />
+                    safeSessionStorageGet('alget_researcher_access') === 'granted' ? (
+                      <GenerativeLab />
+                    ) : (
+                      // Generative Lab spawns new MDX modules via CurriculumAgent
+                      // without the engineering_text_fidelity_rubric review pass.
+                      // Gating behind researcher access until a content-provenance
+                      // review workflow exists. Researchers unlock via /analytics.
+                      <Navigate to="/analytics?return=lab" replace />
+                    )
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  user ? (
+                    <StudentDashboard user={user} />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
+                }
+              />
+              <Route
+                path="/instructor"
+                element={
+                  user ? (
+                    safeSessionStorageGet('alget_instructor_access') === 'granted' ||
+                    safeSessionStorageGet('alget_researcher_access') === 'granted' ? (
+                      <InstructorDashboard user={user} />
+                    ) : (
+                      <Navigate to="/analytics?return=instructor" replace />
+                    )
                   ) : (
                     <Navigate to="/" replace />
                   )
@@ -151,9 +194,11 @@ export default function App() {
                 element={<AnalyticsDashboard user={user} />}
               />
             </Routes>
-          </Suspense>
-        </GlobalClickLogger>
-      </AppErrorBoundary>
+              </Suspense>
+            </GlobalClickLogger>
+          </AppErrorBoundary>
+        </ToastProvider>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }

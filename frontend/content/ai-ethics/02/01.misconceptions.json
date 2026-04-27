@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0201",
+  "misconceptions": [
+    {
+      "id": "all_bias_is_historical",
+      "pattern": "single_source_collapse",
+      "description": "Treating all algorithmic bias as historical bias and ignoring representation, measurement, aggregation, evaluation, and feedback-loop sources",
+      "trigger": "learner says 'the data is biased because the world is biased' as a complete diagnosis",
+      "feedback": "Historical bias is one of six sources. Different sources demand different interventions. A diagnosis that names only history will misroute the fix.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "proxy_is_neutral",
+      "pattern": "proxy_blindness",
+      "description": "Assuming a proxy variable measures what it is named to measure equally across groups",
+      "trigger": "learner uses a proxy without checking subgroup correlation with the actual target",
+      "feedback": "Measurement bias appears when the same underlying state produces different proxy values across groups. Always check that the proxy's correlation with the target holds in each subgroup, not just overall.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "more_data_always_helps",
+      "pattern": "data_volume_solution",
+      "description": "Believing additional data always reduces bias regardless of bias source",
+      "trigger": "learner proposes 'collect more data' as the universal fix",
+      "feedback": "More data of the same kind does not fix historical, measurement, or feedback-loop bias. It often deepens them. Diagnose the source first; the right intervention may involve changing target, breaking the loop, or declining to deploy.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "debiasing_is_universal",
+      "pattern": "intervention_overreach",
+      "description": "Believing post-processing 'debiasing' can fix any bias source",
+      "trigger": "learner proposes post-hoc score adjustment as the answer to every bias case",
+      "feedback": "Post-processing reshuffles errors. It cannot create missing information, rewrite the target variable, or break a feedback loop. Some biases are not engineering-fixable.",
+      "rail_action": "ask"
+    }
+  ]
+}

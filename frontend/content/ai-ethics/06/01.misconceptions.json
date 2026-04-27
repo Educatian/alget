@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0601",
+  "misconceptions": [
+    {
+      "id": "vendor_terms_supersede_ferpa",
+      "pattern": "contract_overrides_law",
+      "description": "Believing vendor terms of service can supersede FERPA obligations",
+      "trigger": "learner accepts a vendor TOS as the operative privacy standard for student records",
+      "feedback": "FERPA obligations attach to the institution and to vendors operating as school officials. Vendor-side terms cannot lower the floor; the institution's exposure governs.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ferpa_covers_everything",
+      "pattern": "single_framework_collapse",
+      "description": "Treating FERPA compliance as covering all educational AI ethics concerns",
+      "trigger": "learner cites FERPA compliance as proof of ethical use",
+      "feedback": "FERPA is one framework. IDEA imposes procedural due process for special-education-adjacent decisions; COPPA covers under-13 commercial collection; broader ethics concerns (surveillance, equity, persuasion, teacher authority) extend beyond all three.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "average_quality_is_equity",
+      "pattern": "equity_blindspot",
+      "description": "Treating tool average accuracy as evidence of equitable deployment",
+      "trigger": "learner answers 'is this tool equitable?' by reporting overall accuracy",
+      "feedback": "Equity is about who has access and how distribution of benefits and harms varies across schools and learners. Average accuracy says nothing about distribution.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "coppa_covers_all_minors",
+      "pattern": "age_coverage_error",
+      "description": "Believing COPPA covers all learners under 18",
+      "trigger": "learner cites COPPA protections for adolescent users without checking age",
+      "feedback": "COPPA strictly applies under 13. Ages 13-18 are a regulatory gap where designers should still apply ethical caution informed by developmental vulnerability, even though COPPA itself does not require it.",
+      "rail_action": "ask"
+    }
+  ]
+}

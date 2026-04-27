@@ -3,6 +3,7 @@ import { useTextSelection } from '../hooks/useTextSelection'
 import { logHighlightCreate } from '../lib/loggingService'
 import API_BASE from '../lib/apiConfig'
 import { MessageSquarePlus, Sparkles, Highlighter, X } from 'lucide-react'
+import HighlightDiscussion from './HighlightDiscussion'
 
 function getInitials(alias = '') {
     return alias
@@ -30,6 +31,17 @@ export default function HighlightableContent({
     const [showNoteInput, setShowNoteInput] = useState(false)
     const [editingNoteId, setEditingNoteId] = useState(null)
     const [hoveredHighlight, setHoveredHighlight] = useState(null)
+    const [discussionHighlightId, setDiscussionHighlightId] = useState(null)
+
+    // Esc-to-close on the discussion modal (a11y).
+    useEffect(() => {
+        if (!discussionHighlightId) return
+        const onKeyDown = (event) => {
+            if (event.key === 'Escape') setDiscussionHighlightId(null)
+        }
+        window.addEventListener('keydown', onKeyDown)
+        return () => window.removeEventListener('keydown', onKeyDown)
+    }, [discussionHighlightId])
 
     const {
         highlights,
@@ -242,15 +254,15 @@ export default function HighlightableContent({
                         setNoteInput(currentNote)
                         setShowNoteInput(true)
                     } else {
-                        // Show options
-                        const action = confirm('Press OK to delete this highlight, or Cancel to add a note.')
-                        if (action) {
-                            deleteHighlight(id)
-                        } else {
-                            setEditingNoteId(id)
-                            setNoteInput('')
-                            setShowNoteInput(true)
-                        }
+                        // Open the note editor by default — adding a note is
+                        // the lower-stakes action and matches what most learners
+                        // want when they click their own un-noted highlight.
+                        // Deletion is now an explicit button inside the editor
+                        // (see the note-input popover below). The earlier
+                        // OK/Cancel-as-delete-vs-note flow was confusing.
+                        setEditingNoteId(id)
+                        setNoteInput('')
+                        setShowNoteInput(true)
                     }
                 },
                 onHover: setHoveredHighlight
@@ -379,26 +391,11 @@ export default function HighlightableContent({
             await saveHighlight(text, color, noteInput)
             logHighlightCreate(text.length, !!noteInput, sectionId)
 
-            // Hybrid AI Peer Logic: If user leaves a note, schedule an AI response
-            if (noteInput) {
-                try {
-                    const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
-                    fetch(`${API_BASE}/assist/peer_note`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            text: text,
-                            user_note: noteInput,
-                            section_id: sectionId,
-                            supabase_url: import.meta.env.VITE_SUPABASE_URL,
-                            supabase_anon_key: import.meta.env.VITE_SUPABASE_ANON_KEY,
-                            api_key: apiKey
-                        })
-                    }).catch(err => console.warn('Failed to schedule peer note:', err));
-                } catch (e) {
-                    console.warn('Stealth peer dispatch failed', e)
-                }
-            }
+            // Stealth AI-as-peer dispatch removed 2026-04-26.
+            // The previous behavior posted an AI-generated comment under a
+            // fake user_id so it looked like a real peer. That violated
+            // ethical-AI disclosure. If reintroduced later, gate behind an
+            // explicit opt-in and label every AI contribution in the UI.
 
             clearSelection()
         }
@@ -593,9 +590,9 @@ export default function HighlightableContent({
             )}
 
             {/* Note Tooltip on Hover */}
-            {(hoveredHighlight?.note || hoveredHighlight?.label) && (
+            {(hoveredHighlight?.note || hoveredHighlight?.label || hoveredHighlight?.id) && (
                 <div
-                    className="pointer-events-none fixed z-50 max-w-xs rounded-xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.96)] p-3 text-sm shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-xl"
+                    className="fixed z-50 max-w-xs rounded-xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.96)] p-3 text-sm shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-xl"
                     style={{
                         left: hoveredHighlight?.x ? Math.max(12, hoveredHighlight.x - 120) : 12,
                         top: hoveredHighlight?.y ? Math.max(12, hoveredHighlight.y - 56) : 12
@@ -609,6 +606,35 @@ export default function HighlightableContent({
                     {hoveredHighlight?.note && (
                         <p className={`text-[var(--ath-muted)] ${hoveredHighlight?.label ? 'mt-2' : ''}`}>{hoveredHighlight.note}</p>
                     )}
+                    {hoveredHighlight?.id && (
+                        <button
+                            type="button"
+                            onClick={() => setDiscussionHighlightId(hoveredHighlight.id)}
+                            className="mt-2 inline-flex items-center gap-1 rounded-full bg-[var(--ath-primary)] px-2.5 py-1 text-[11px] font-semibold text-white"
+                        >
+                            💬 Discuss this highlight
+                        </button>
+                    )}
+                </div>
+            )}
+
+            {/* Discussion modal: per-highlight reactions + replies (R1) */}
+            {discussionHighlightId && (
+                <div
+                    className="fixed inset-0 z-[150] flex items-center justify-center bg-slate-900/40 p-6 backdrop-blur-sm"
+                    onClick={(event) => {
+                        if (event.target === event.currentTarget) {
+                            setDiscussionHighlightId(null)
+                        }
+                    }}
+                >
+                    <div className="w-full max-w-lg" onClick={(event) => event.stopPropagation()}>
+                        <HighlightDiscussion
+                            highlightId={discussionHighlightId}
+                            user={{ id: userId }}
+                            onClose={() => setDiscussionHighlightId(null)}
+                        />
+                    </div>
                 </div>
             )}
 

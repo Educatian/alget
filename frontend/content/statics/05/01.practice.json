@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "moi_rectangle_base",
+      "type": "multiple_choice",
+      "concept_id": "parallel_axis_theorem",
+      "stem": "A rectangle has width b and height h. Its centroidal area moment of inertia is bh³/12. What is its moment of inertia about the base?",
+      "options": [
+        "bh³/12 (same as centroidal).",
+        "bh³/3 (centroidal value plus the parallel-axis correction A × d² = bh × (h/2)² = bh³/4).",
+        "bh³/2.",
+        "bh³/24."
+      ],
+      "correct_index": 1,
+      "explanation": "Parallel-axis theorem: I_base = I_c + A × d² = bh³/12 + bh × (h/2)² = bh³/12 + bh³/4 = bh³/3.",
+      "misconception_id": "no_parallel_axis_correction"
+    },
+    {
+      "id": "moi_centroid_minimum",
+      "type": "multiple_choice",
+      "concept_id": "moment_of_inertia",
+      "stem": "Among all axes parallel to a given direction, which axis through the body has the minimum moment of inertia?",
+      "options": [
+        "Any axis at the boundary.",
+        "The centroidal axis. The parallel-axis theorem I = I_c + Ad² makes the Ad² term non-negative, so I_c is the minimum.",
+        "The axis farthest from the centroid.",
+        "All parallel axes give the same I."
+      ],
+      "correct_index": 1,
+      "explanation": "Ad² is non-negative, so any non-centroidal parallel axis adds to I_c. The centroidal axis is uniquely the minimum.",
+      "misconception_id": "any_axis_same_i"
+    },
+    {
+      "id": "moi_units_distinction",
+      "type": "multiple_choice",
+      "concept_id": "moment_of_inertia",
+      "stem": "Which units distinguish the area moment of inertia from the mass moment of inertia?",
+      "options": [
+        "Both have units of m⁴.",
+        "Area moment of inertia: m⁴ (geometric, used in statics for bending). Mass moment of inertia: kg·m² (dynamics, used in τ = Iα). Reading the units prevents confusing the two.",
+        "Both have units of kg·m².",
+        "Neither has units."
+      ],
+      "correct_index": 1,
+      "explanation": "Different physical quantities sharing the symbol I. Units disambiguate them.",
+      "misconception_id": "two_inertias_same"
+    },
+    {
+      "id": "moi_distributed_to_point",
+      "type": "multiple_choice",
+      "concept_id": "distributed_load",
+      "stem": "A triangular distributed load ramps from 0 at one end to w₀ at the other end of a beam of length L. The equivalent concentrated force is:",
+      "options": [
+        "w₀L at the midpoint.",
+        "w₀L/2 (the area under the triangle) acting at 2L/3 from the zero end (the centroid of a triangle with apex at the zero end).",
+        "w₀L at 2L/3.",
+        "w₀L/2 at the midpoint."
+      ],
+      "correct_index": 1,
+      "explanation": "The equivalent force magnitude equals the area under the load curve; its location is the centroid of that area. For a triangle: F = w₀L/2 at x = 2L/3.",
+      "misconception_id": "uniform_substitute_for_triangular"
+    }
+  ]
+}

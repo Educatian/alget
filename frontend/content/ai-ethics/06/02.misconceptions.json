@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0602",
+  "misconceptions": [
+    {
+      "id": "all_recording_is_monitoring",
+      "pattern": "surveillance_minimization",
+      "description": "Treating any data recording as 'just monitoring' regardless of aggregation depth, learner visibility, or opt-out reality",
+      "trigger": "learner labels webcam emotion detection as 'engagement monitoring'",
+      "feedback": "Aggregation depth, asymmetry of access, and inability to opt out distinguish surveillance from monitoring. Bounded, learner-visible, opt-out-real records are monitoring; combined-stream, learner-blind, mandatory records are surveillance.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "engagement_is_motivation",
+      "pattern": "metric_conflation",
+      "description": "Treating engagement metrics as evidence of autonomous motivation",
+      "trigger": "learner cites session-length increase as proof of motivated learning",
+      "feedback": "SDT distinguishes autonomous motivation from controlled motivation. Manufactured engagement produces controlled motivation that collapses without the manipulative cue.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "gamification_is_always_pedagogy",
+      "pattern": "design_pattern_legitimization",
+      "description": "Treating gamification mechanics as automatically pedagogical",
+      "trigger": "learner adds streaks and badges and labels the change 'gamification for learning'",
+      "feedback": "Variable-ratio reinforcement borrows from slot-machine design. Some gamification supports learning; some exploits limited self-regulation. The distinction requires explicit pedagogical justification, not default deployment.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "autonomy_is_no_design",
+      "pattern": "autonomy_misframe",
+      "description": "Equating respect for learner autonomy with design abstinence ('do nothing')",
+      "trigger": "learner argues autonomy means refusing to scaffold or recommend at all",
+      "feedback": "Autonomy means volitional control. Design supports autonomy by surfacing what the system does, giving granular control, and making exit real. Active design is consistent with autonomy; manipulative or hidden design is not.",
+      "rail_action": "ask"
+    }
+  ]
+}

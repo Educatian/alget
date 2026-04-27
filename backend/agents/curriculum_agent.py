@@ -10,6 +10,7 @@ try:
 except ImportError:
     GENAI_AVAILABLE = False
 
+from .config import get as get_config
 
 logger = logging.getLogger(__name__)
 
@@ -45,11 +46,12 @@ class CurriculumAgent:
         prompt = self._build_curriculum_prompt(bio_context, eng_context)
         
         try:
+            cfg = get_config("curriculum")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.4, # Balanced for structure and engaging narrative
+                    temperature=cfg.temperature,  # see agents/config.py
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",

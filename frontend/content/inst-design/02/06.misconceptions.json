@@ -1,0 +1,37 @@
+{
+  "section_id": "inst_design_0206",
+  "misconceptions": [
+    {
+      "id": "objective_is_optional",
+      "pattern": "skipped_event",
+      "description": "Treating event 2 (Inform Learners of the Objective) as redundant because the syllabus 'already says it'",
+      "trigger": "learner argues that explicit objectives at lesson start are unnecessary",
+      "feedback": "Stating the objective at the lesson level lets the learner mobilize the right strategies and self-monitor. Buried syllabus text does not perform this function.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "recall_is_warmup_trivia",
+      "pattern": "purpose_confusion",
+      "description": "Treating event 3 (Stimulate Recall) as a fun warm-up disconnected from the new content",
+      "trigger": "learner inserts unrelated trivia at the start of a lesson",
+      "feedback": "Recall must target the schemas the new content will attach to. If the prior knowledge is not relevant, the event has no information-processing payoff.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "paraphrase_counts_as_practice",
+      "pattern": "performance_confusion",
+      "description": "Believing paraphrasing or clicking 'I understand' satisfies event 6 (Elicit Performance)",
+      "trigger": "learner equates metacognitive talk with the objective's behavior",
+      "feedback": "Performance means attempting the actual verb the objective specifies. If the objective is 'compute,' the learner must compute; if 'critique,' the learner must critique.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "passing_score_means_durable_learning",
+      "pattern": "transfer_blind_spot",
+      "description": "Assuming a high in-session assessment score implies durable retention and transfer",
+      "trigger": "learner declares a lesson successful based on immediate post-test only",
+      "feedback": "Without event 9 (Enhance Retention and Transfer) — spaced retrieval, varied practice, explicit transfer prompts — schemas decay within days. In-session scores are necessary but not sufficient.",
+      "rail_action": "ask"
+    }
+  ]
+}

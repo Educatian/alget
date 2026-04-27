@@ -1,0 +1,93 @@
+## Why "We Anonymized the Data" Is Almost Never the End of the Privacy Story
+
+For decades, the standard answer to a privacy question was "we removed the names and the social-security numbers." That answer worked when datasets were small, isolated, and queried by humans with manual tools. It does not work for AI systems trained on large, joinable, behavior-rich data, queried at scale by models that learn statistical regularities humans cannot see.
+
+The privacy landscape under AI has at least four distinct threats, each with its own technical countermeasure and each with its own legal framing. Treating them as one threat (and "anonymization" as the one fix) is the most common privacy failure in AI deployments.
+
+This module covers re-identification, inference attacks, training-data leakage, and the basic toolbox of countermeasures (differential privacy, federated learning, encrypted computation), grounded in the GDPR, the FTC privacy framework, and the NIST Privacy Framework.
+
+---
+
+## Threat 1: Re-Identification
+
+Removing direct identifiers (name, SSN) does not anonymize a dataset that contains many other features. Latanya Sweeney showed in the late 1990s that 87% of US residents could be uniquely identified by zip code, birth date, and gender alone. Modern datasets contain dozens of joinable features.
+
+**Mechanism.** An attacker has auxiliary data (a voter roll, a movie-rental dataset, a hospital release) and links it to the supposedly anonymous dataset using shared features. Once linked, the previously de-identified records become identified.
+
+**Famous cases.** The Netflix Prize re-identification (Narayanan and Shmatikov, 2008). The AOL search-log release (2006). The MA Group Insurance Commission release that exposed the Massachusetts governor's medical records.
+
+**Countermeasure.** *k*-anonymity (each record indistinguishable from at least k-1 others on quasi-identifiers) and its successors *l*-diversity and *t*-closeness. These reduce but do not eliminate re-identification risk; for high-dimensional behavioral data they often fail.
+
+---
+
+## Threat 2: Inference Attacks Against the Model
+
+Even if the training data is never released, the **trained model itself** can leak information about training subjects.
+
+**Membership inference attacks** (Shokri et al., 2017): given access to a trained model, an attacker can determine whether a particular individual's record was in the training set. For some medical or rare-disease datasets, just being known to be in the training set is itself a privacy harm.
+
+**Attribute inference attacks**: given a model and partial information about a person, infer attributes the person did not disclose. A recommender model can leak political affiliation. A health-risk model can leak diagnosis.
+
+**Model inversion attacks** (Fredrikson et al., 2015): reconstruct training inputs from model parameters. Demonstrated for face recognition and for genomic data.
+
+**Countermeasure.** *Differential privacy* (Dwork et al., 2006) adds calibrated noise to training so that the trained model's behavior changes only marginally if any one individual is removed from the dataset. The privacy parameter ε quantifies the leakage; smaller ε is stronger privacy at the cost of model utility.
+
+---
+
+## Threat 3: Training-Data Leakage in Generative Models
+
+Large generative models present a distinct threat: they can be **prompted to reproduce training data verbatim**. Carlini et al. (2021, 2023) showed that GPT-2 and Stable Diffusion both leak training data, including PII, when probed adversarially.
+
+**Mechanism.** Memorization in over-parameterized models is not a bug; it is part of how they fit rare patterns. The training distribution includes specific phone numbers, copyrighted text, faces, and medical records that the model can be coaxed to emit.
+
+**Countermeasure.** Training-data curation, differential privacy at training, output filtering at inference. None is a complete fix; the field is still working on this. The legal scaffolding (CCPA right to deletion, GDPR right to erasure) creates obligations that current generative model architectures cannot cleanly satisfy.
+
+---
+
+## Threat 4: Surveillance-by-Aggregation
+
+A single data point is not invasive. A million data points across years is. AI systems are uniquely positioned to combine streams (location, communication metadata, biometrics, behavioral patterns) that individually are mundane and collectively reveal far more than any individual stream.
+
+This is the threat behind Cambridge Analytica, behind FTC enforcement actions on advertising data brokers, and behind the EU's Digital Services Act surveillance-advertising restrictions. The harm is not the breach of any single record; it is the **profile that can be assembled** when many records are joined.
+
+**Countermeasure.** Data minimization (collect only what the use case requires), purpose limitation (use data only for the disclosed purpose), and retention limits (delete when the purpose is served). These are GDPR principles, not just AI-specific norms; AI deployments inherit them.
+
+<concept-diagram type="privacy-threat-taxonomy"></concept-diagram>
+
+---
+
+## Tools: A Quick Map
+
+**Differential privacy** is the strongest formal privacy guarantee available. It bounds the leakage from a single individual's record. Used in production by Apple (telemetry), the US Census Bureau (2020 decennial), and increasingly in ML training (DP-SGD).
+
+**Federated learning** keeps raw data on user devices and aggregates gradients. Reduces server-side data exposure but does not by itself eliminate inference attacks; usually combined with DP.
+
+**Encrypted computation** (homomorphic encryption, secure multi-party computation) lets parties compute on data without decrypting it. Mature for specific use cases (privacy-preserving analytics, federated training).
+
+**Synthetic data** generates statistically similar data that does not refer to real individuals. Useful for testing and some training, but synthetic data can still leak when the generator overfits.
+
+None of these tools is a drop-in fix. Each has utility costs and threat-model assumptions. Choosing among them is part of the privacy-engineering job, not a checkbox.
+
+---
+
+## Legal Floor: GDPR, CCPA, FTC
+
+**GDPR** (EU, 2018) defines data minimization, purpose limitation, lawful basis, and rights to access / rectification / erasure. It treats inferred data the same as collected data — which has direct AI implications.
+
+**CCPA / CPRA** (California, 2020 / 2023) gives consumers rights to know, delete, and opt out of sale of personal information. Increasingly relevant for AI training data.
+
+**FTC** has used Section 5 (unfair and deceptive practices) to enforce against companies whose AI deployments produced privacy harms (Rite Aid facial recognition, Everalbum face data).
+
+These do not exhaust the ethics. A GDPR-compliant deployment that produces surveillance-grade profiles can still be ethically wrong. Compliance is necessary; not sufficient.
+
+<dynamic-scenario topic="AI Privacy" context="A health-system vendor proposes to share 'de-identified' patient data with a research lab for AI training. The dataset includes diagnoses, dates, and zip codes. Walk through which of the four privacy threats this proposal exposes patients to, what countermeasures would mitigate each, and what GDPR or HIPAA obligations apply."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="Why is removing names and SSNs typically insufficient for anonymizing a behavioral dataset used in AI training?"
+  options='[{"text":"Because names and SSNs are not personal data.","isCorrect":false},{"text":"Because remaining quasi-identifiers (zip code, birth date, gender, behavioral signatures) can be linked to auxiliary datasets to re-identify records, and the trained model itself can leak training subjects via membership inference, attribute inference, or memorized verbatim outputs.","isCorrect":true},{"text":"Because SSNs are public.","isCorrect":false}]'
+  explanation="Correct. Re-identification, membership inference, and training-data leakage all operate after direct identifiers are removed. Anonymization is a high bar that simple field removal does not clear."
+/>

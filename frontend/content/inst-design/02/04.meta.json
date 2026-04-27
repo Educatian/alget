@@ -1,0 +1,20 @@
+{
+    "chapter_title": "ID Process Models",
+    "title": "Module 4: Beyond ADDIE — Comparing ID Process Models",
+    "description": "Compare Dick and Carey, the Kemp model, Smith and Ragan, SAM, and Agile/Lean ID, then learn when to choose each.",
+    "learning_objectives": [
+        "Distinguish at least four ID process models by their distinguishing emphasis.",
+        "Match a project's risk, uncertainty, and audience to an appropriate model choice.",
+        "Explain why mature designers combine an alignment model with a delivery model."
+    ],
+    "concept_ids": [
+        "id_models",
+        "dick_and_carey_model",
+        "kemp_model",
+        "smith_and_ragan_model",
+        "successive_approximation_model",
+        "agile_id"
+    ],
+    "estimated_time_minutes": 12,
+    "order": 4
+}

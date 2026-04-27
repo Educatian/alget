@@ -1,0 +1,93 @@
+## What Educational AI Inherits From Persuasive-Tech Design
+
+The same dark patterns that consumer-tech regulators are now prosecuting in the EU under the Digital Services Act show up regularly in educational AI products: streaks, badges, notification cadences, engagement-optimized recommendations, and surveillance dashboards branded as analytics. The educational frame allows persuasion that consumer products would not. The premise is that the persuasion is for the learner's benefit, so the safeguards that apply to manipulating adults can be relaxed when manipulating children "for their own good."
+
+That premise is wrong twice. It overestimates how well designers can predict what is good for any given learner, and it underestimates how durable the habits cultivated by design are. This module covers educational surveillance, the dark patterns specific to learner-facing AI, learner autonomy as an ethical anchor, and what a defensible design looks like — drawing on Selwyn's *Distrusting Educational Technology*, Williamson's work on data-fication of education, the National Academies *Governance of Artificial Intelligence* report, and ongoing FTC enforcement against deceptive ed-tech.
+
+---
+
+## Educational Surveillance: From Formative Monitoring to Pervasive Recording
+
+A formative-assessment system that records which problems a student got wrong is monitoring. A platform that records keystroke timing, eye-gaze, webcam-detected emotion, and conversation-window time on every page is surveillance. The line between them is contested but real.
+
+Three properties distinguish surveillance from monitoring:
+
+**Aggregation depth.** Monitoring tracks specific learning-relevant signals. Surveillance combines streams (behavior + biometric + social + temporal) into profiles that exceed any single signal's purpose.
+
+**Asymmetry of access.** In monitoring, the student can usually see what is recorded. In surveillance, the dashboard is for the institution; the student is rarely shown their own profile.
+
+**Inability to opt out.** Monitoring tied to a specific assignment is bounded. Surveillance that runs whenever the student is logged in cannot be declined without leaving the institution.
+
+Online proctoring platforms operationalize all three properties. Some have been challenged in court (Cleveland State University, 2022) for Fourth Amendment violations of student privacy. The FTC's 2023 enforcement against Edmodo for COPPA and FTC Act violations marks a regulatory turn.
+
+A defensible educational AI deployment chooses **monitoring rather than surveillance**: bounded scope, learner-visible records, real opt-out for non-essential streams.
+
+---
+
+## Dark Patterns Specific to Learner-Facing AI
+
+Several engagement-optimization patterns are widely deployed in educational AI and are ethically distinct from their consumer counterparts because the audience includes minors.
+
+**Variable-ratio reward schedules.** Streaks, surprise rewards, and unpredictable badge drops mimic the reinforcement schedules that make slot machines effective. They are well-documented to extend session length and shorten between-session intervals; their effect on actual learning is far less clear, and they exploit the limited self-regulation of younger learners.
+
+**Loss-aversion design.** Streak-loss anxiety, loss of leaderboard position, public progress shaming. Loss aversion is a robust cognitive bias; deploying it on minors who are still developing emotional self-regulation is hard to justify pedagogically.
+
+**Manufactured social pressure.** Live "X classmates are working right now" notifications, false peer presence, AI-generated peer comments. We previously catalogued ALGET's own AI peer-note injection as an example; it is not unique to this codebase. The Norwegian Consumer Council's *Deceived by Design* documents many.
+
+**Engagement-optimized content recommendations.** Optimizing time-on-platform inside an educational tool drifts toward content patterns that hold attention regardless of learning value, by Goodhart's law (see the safety module).
+
+**Dark consent flows.** Bundled consent for product improvement, behavioral profiling, and required functionality, with no granular control. The educational context inherits this from consumer SaaS even though learners and their parents have weaker bargaining position.
+
+Each of these is **legal in most jurisdictions today**. Each is **ethically contested**. The EU Digital Services Act has begun to constrain some of them; US enforcement is uneven.
+
+<concept-diagram type="learner-autonomy-vs-engagement"></concept-diagram>
+
+---
+
+## Learner Autonomy as Ethical Anchor
+
+Self-determination theory (Deci and Ryan) frames human motivation around three needs: **autonomy** (volition over one's actions), **competence** (effective interaction with environment), and **relatedness** (connection with others). Educational AI that cultivates these supports learning. Educational AI that undermines them — particularly autonomy — produces compliance without development.
+
+A common misframe: "engagement" is treated as evidence of motivation, and motivation is treated as evidence of learning. Self-determination theory rejects this. Engagement that comes from manufactured loss aversion or variable-ratio reward is not the same as autonomous motivation, and the longitudinal evidence on the difference is unkind to the engagement-optimized products.
+
+The autonomy criterion does practical design work. It rules out:
+
+- Persuasion mechanics that exploit limited self-regulation
+- Surveillance that the learner cannot inspect or decline
+- Recommendation systems whose objective is platform-time rather than learning
+- Consent flows that the learner cannot meaningfully exercise
+
+It also rules in:
+
+- Learner-visible records of what the system tracks
+- Granular control over notifications and recommendations
+- Pacing controls and self-directed pathways
+- Real exit ramps that do not penalize the learner
+
+---
+
+## A Pre-Deployment Workflow for Educational AI
+
+Combining this module with the FERPA/COPPA/IDEA module from earlier:
+
+1. **Map data flows.** What is collected, by whom, retained how long, and accessible to which roles?
+2. **Test for monitoring vs surveillance.** Aggregation depth, learner visibility, opt-out reality.
+3. **Audit engagement mechanics.** Are variable-ratio rewards, loss aversion, manufactured social pressure used? On minors?
+4. **Check learner autonomy.** Do learners have visibility into and control over what the system does about them?
+5. **Verify legal floor.** FERPA, COPPA, IDEA, GDPR (if applicable), DSA dark-pattern restrictions.
+6. **Verify procedural due process.** Algorithmic decisions affecting placement, services, or credentialing must satisfy IDEA-class oversight.
+7. **Document the audit trail.** A specific decision must be explainable to a parent or learner a year later.
+
+Educational AI is high-stakes. The workflow is intentionally heavy because the subjects are minors, the context is coercive, and the trajectories are durable.
+
+<dynamic-scenario topic="Educational AI Autonomy" context="A learning platform for high-school students introduces daily streaks, leaderboards visible to classmates, and AI-generated peer comments under highlights. Engagement metrics improve 40%. Walk the autonomy-anchored audit: which dark patterns are present, what does self-determination theory predict about long-term motivation, and what redesigns would preserve learning value while removing the manipulative mechanics?"></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="A platform shows manufactured 'X classmates are working right now' notifications and AI-generated peer comments to drive engagement. Engagement metrics improve, but self-determination theory predicts what longer-term effect on learner motivation?"
+  options='[{"text":"Stronger autonomous motivation, since engagement is up.","isCorrect":false},{"text":"Engagement up does not imply autonomous motivation up; manufactured social pressure and AI-as-peer cultivate compliance and dependence rather than autonomy. The longitudinal SDT evidence predicts weaker autonomous motivation and worse persistence once the manipulative mechanics are removed.","isCorrect":true},{"text":"No effect on motivation either way.","isCorrect":false}]'
+  explanation="Correct. Engagement is not a proxy for autonomous motivation in SDT. Manufactured pressure produces compliance, which collapses without the manufactured cue."
+/>

@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0502",
+  "misconceptions": [
+    {
+      "id": "rmf_is_optional_paperwork",
+      "pattern": "voluntary_dismissal",
+      "description": "Treating NIST AI RMF as optional paperwork because it is not legally binding",
+      "trigger": "learner skips RMF practices because they are voluntary",
+      "feedback": "RMF voluntariness changes its enforcement, not its operational value. RMF artifacts substantially overlap EU AI Act high-risk obligations and produce auditable evidence required by procurement and enterprise customers.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "eu_act_doesnt_reach_us_companies",
+      "pattern": "jurisdiction_blindness",
+      "description": "Assuming the EU AI Act only applies to companies headquartered in the EU",
+      "trigger": "learner claims a US-based deployment is exempt",
+      "feedback": "Brussels effect: any AI system whose output is used in the EU falls in scope. Headquarters location does not determine applicability. GDPR set this precedent; the AI Act follows it.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "frameworks_are_redundant",
+      "pattern": "framework_collapse",
+      "description": "Believing the three governance frameworks are redundant and one suffices",
+      "trigger": "learner cites only one framework and dismisses the others",
+      "feedback": "They differ in scope (system vs organization vs society), enforceability (binding vs voluntary vs normative), and emphasis (UNESCO adds sustainability/equity/literacy). Treat one as primary and the others as cross-checks.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "iso_replaces_law",
+      "pattern": "standard_overreach",
+      "description": "Believing ISO 42001 certification replaces compliance with binding regulation",
+      "trigger": "learner cites ISO 42001 as the only compliance evidence",
+      "feedback": "ISO 42001 is an auditable management system that helps demonstrate alignment but does not replace EU AI Act obligations or NIST RMF practices. It is the bridge, not the destination.",
+      "rail_action": "ask"
+    }
+  ]
+}

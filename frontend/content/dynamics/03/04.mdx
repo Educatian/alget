@@ -1,0 +1,130 @@
+## Why Rigid Body Impulse-Momentum Completes the Kinetics Trio
+
+For particles, dynamics offers three equivalent kinetics frameworks: Newton's second law (force-acceleration), work-energy (energy bookkeeping), and impulse-momentum (time-integrated force). Each one shines for a different class of problem. The rigid-body extension of impulse-momentum is the missing leg of the triangle for rotating and translating bodies — and is the only convenient tool for problems involving **collisions, impacts, and short-duration forces** in rigid-body dynamics.
+
+Hibbeler's chapter 19, Beer/Johnston's chapter 17, and Meriam's chapter 6/7 cover this material. This module assembles the linear and angular impulse-momentum principles for rigid bodies, the principles of conservation, and a worked workflow for impact problems.
+
+---
+
+## Linear Impulse-Momentum: From Particle to Rigid Body
+
+For a particle, $\int_{t_1}^{t_2} \vec{F}\,dt = m\vec{v}_2 - m\vec{v}_1$. For a rigid body, the same equation holds **for the center of mass**:
+
+$$\int_{t_1}^{t_2} \sum \vec{F}\,dt = m\vec{v}_{G,2} - m\vec{v}_{G,1}$$
+
+where $\vec{v}_G$ is the velocity of the center of mass G. The linear impulse from external forces equals the change in linear momentum of the center of mass. Internal forces between rigid-body particles cancel by Newton's third law.
+
+This is the same principle as for a particle, applied to the center-of-mass motion. The rigid-body extension is the next equation.
+
+---
+
+## Angular Impulse-Momentum About the Center of Mass
+
+A rigid body's angular momentum about its center of mass G is
+
+$$\vec{H}_G = I_G \vec{\omega}$$
+
+where $I_G$ is the centroidal mass moment of inertia and $\vec{\omega}$ is the angular velocity. The principle:
+
+$$\int_{t_1}^{t_2} \sum \vec{M}_G\,dt = I_G \vec{\omega}_2 - I_G \vec{\omega}_1$$
+
+The angular impulse from external moments **about the center of mass** equals the change in angular momentum about the center of mass. Internal moments cancel.
+
+For planar motion this reduces to scalar form: $\sum \int M_G\,dt = I_G(\omega_2 - \omega_1)$.
+
+---
+
+## Angular Impulse-Momentum About a Fixed Point
+
+When a rigid body rotates about a fixed point O (e.g., a pinned wheel, a pendulum), the principle has a cleaner form using the moment of inertia about O:
+
+$$\int_{t_1}^{t_2} \sum \vec{M}_O\,dt = I_O \vec{\omega}_2 - I_O \vec{\omega}_1$$
+
+where $I_O = I_G + md^2$ by the parallel-axis theorem and d is the distance from G to O. This works specifically when O is fixed; for moving reference points, use the centroidal form above.
+
+---
+
+## Conservation Laws
+
+When the system has no external linear impulse, **linear momentum is conserved**:
+
+$$m\vec{v}_{G,1} = m\vec{v}_{G,2}$$
+
+When the system has no external angular impulse about a chosen point, **angular momentum is conserved about that point**:
+
+$$\vec{H}_{O,1} = \vec{H}_{O,2}$$
+
+These two principles handle the entire family of impact and short-duration-force problems where impulsive forces dominate and ordinary forces (gravity, friction over a long arm) contribute negligibly during the impact interval.
+
+The classic example: a spinning ice skater pulls in their arms. No external angular impulse acts; angular momentum about the vertical axis is conserved; pulling arms in reduces $I_G$, so $\omega$ must increase to keep $I_G \omega$ constant. The same logic explains the rotational dynamics of pirouettes, satellites changing configuration, and gymnasts on the high bar.
+
+<concept-diagram type="rigid-body-impulse-momentum"></concept-diagram>
+
+---
+
+## Eccentric Impact
+
+When two rigid bodies collide along a line that does not pass through both centers of mass, the impact is **eccentric**. The impact line is the line of action of the impulsive contact force. Two principles structure the analysis:
+
+**Conservation of momentum along the impact line.** No external impulse along the line during impact (gravity acts perpendicular over the brief duration); linear momentum components along the impact line for the system are conserved.
+
+**Coefficient of restitution along the impact line.**
+
+$$e = \frac{(v'_{B,n} - v'_{A,n})}{(v_{A,n} - v_{B,n})}$$
+
+where the primes denote post-impact, the n subscript denotes the impact-line component, and e is the coefficient of restitution (e = 1 perfectly elastic, e = 0 perfectly plastic). For real materials, e is typically 0.4-0.9.
+
+**Velocities perpendicular to the impact line** are unchanged by an idealized impact (no friction during the impulsive interaction, by assumption).
+
+For each body, the velocity of the **contact point** (not the center of mass) enters the restitution equation, because that is where the impact force acts. For a rotating body, the contact-point velocity equals the center-of-mass velocity plus the rotation contribution $\vec{\omega} \times \vec{r}_{G\to{\rm contact}}$.
+
+This last point is the most common error in eccentric impact problems: students use the center-of-mass velocity in the restitution equation instead of the contact-point velocity.
+
+---
+
+## Worked Example: Pinned Rod Struck by a Ball
+
+A uniform rod of mass M and length L is pinned at its top end. A ball of mass m moving horizontally with speed v strikes the rod at distance d below the pin. What is the rod's angular velocity immediately after impact, assuming a perfectly plastic collision?
+
+Step 1: Identify conserved quantity. The pin exerts an impulsive reaction during impact. Linear momentum is **not** conserved (the pin reaction has horizontal component). Angular momentum **about the pin** is conserved (the pin's reaction has zero moment about itself).
+
+Step 2: Initial angular momentum about the pin.
+
+$$H_{O,1} = m v d$$
+
+(only the ball contributes; the rod is at rest).
+
+Step 3: After perfectly plastic impact, the ball sticks to the rod at the strike point. The combined system rotates about the pin with angular velocity $\omega'$. Moment of inertia about the pin:
+
+$$I_O = I_{O,{\rm rod}} + m d^2 = \frac{1}{3}ML^2 + md^2$$
+
+Step 4: Final angular momentum.
+
+$$H_{O,2} = I_O \omega' = \left(\frac{1}{3}ML^2 + md^2\right)\omega'$$
+
+Step 5: Conservation gives
+
+$$\omega' = \frac{m v d}{\frac{1}{3}ML^2 + md^2}$$
+
+This problem in F = ma form would require integrating impulsive forces over an indefinite short interval. Impulse-momentum gives the answer in five lines.
+
+---
+
+## Common Errors and Their Diagnoses
+
+- **Using F=ma for impulsive forces.** Impulsive forces produce finite impulses over zero (idealized) time intervals. F itself is unbounded; only the impulse $\int F\,dt$ is meaningful. Use impulse-momentum, not Newton's second law in instantaneous form.
+- **Forgetting that the pin reaction is impulsive.** When a rigid body has a pinned constraint and is struck, the pin exerts an impulsive reaction. Linear momentum is not conserved; angular momentum about the pin is.
+- **Using center-of-mass velocity in the restitution equation.** Restitution operates on the velocities of the contact points, not the centers of mass. For rotating bodies, contact-point velocity includes the $\omega \times r$ term.
+- **Choosing the moment-of-inertia axis incorrectly.** When using angular impulse-momentum about a fixed point O, use $I_O$, not $I_G$. The parallel-axis theorem connects them.
+
+<dynamic-scenario topic="Rigid Body Impulse-Momentum" context="A bullet of mass m and speed v embeds in the end of a uniform rod of mass M and length L pinned at the other end. The student must compute the rod's angular velocity immediately after impact, justifying the choice of conservation principle, the choice of moment-of-inertia axis, and the treatment of the pin reaction."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="A uniform rod pinned at its top is struck horizontally at a point below the pin by a ball that sticks to the rod. Which conservation principle applies, and which does not?"
+  options='[{"text":"Both linear and angular momentum are conserved.","isCorrect":false},{"text":"Angular momentum about the pin is conserved (the pin reaction has zero moment about itself). Linear momentum is NOT conserved because the pin exerts an impulsive horizontal reaction during impact.","isCorrect":true},{"text":"Neither is conserved.","isCorrect":false}]'
+  explanation="Correct. The impulsive pin reaction breaks linear-momentum conservation. Angular momentum about the pin is unaffected because the reaction has zero moment about itself, making this the correct conservation principle to invoke."
+/>

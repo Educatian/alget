@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { generateAssessment, updateMastery, gradeSummary, recordAdaptiveSignal } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
+import ConfidenceFeedback from './ConfidenceFeedback'
+import RubricFeedback from './RubricFeedback'
 
 function buildReviewPayload(question, sectionTitle, sourceReason) {
     return {
@@ -452,12 +454,13 @@ export default function KnowledgeCheck({
 
                                 <p className="mt-3 text-sm leading-7 text-[var(--ath-muted)]">{summaryFeedback.feedback}</p>
 
-                                {currentQuestion.rubric && (
-                                    <div className="mt-4 rounded-[1rem] border border-[var(--ath-line)] bg-white/75 p-4">
-                                        <p className="editorial-label">Target Rubric</p>
-                                        <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">{currentQuestion.rubric}</p>
-                                    </div>
-                                )}
+                                <RubricFeedback
+                                    rubric={currentQuestion.rubric}
+                                    subScores={summaryFeedback.sub_scores}
+                                    contentScore={summaryFeedback.content_score}
+                                    wordingScore={summaryFeedback.wording_score}
+                                    feedback={null}
+                                />
 
                                 {!summaryFeedback.is_passing && (
                                     <div className="mt-4 space-y-3">

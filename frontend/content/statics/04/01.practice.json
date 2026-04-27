@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "internal_max_moment_location",
+      "type": "multiple_choice",
+      "concept_id": "shear_moment_diagram",
+      "stem": "On a simply supported beam with a single mid-span point load P, where does maximum bending moment occur, and what is its value?",
+      "options": [
+        "At the supports, M_max = PL/2.",
+        "At midspan, M_max = PL/4 (where shear V crosses zero).",
+        "At a quarter span, M_max = PL/8.",
+        "Maximum moment is zero throughout."
+      ],
+      "correct_index": 1,
+      "explanation": "Because dM/dx = V, maximum M occurs where V crosses zero — at midspan for this load case. The value is M_max = PL/4.",
+      "misconception_id": "max_moment_at_supports"
+    },
+    {
+      "id": "internal_load_shear_relation",
+      "type": "multiple_choice",
+      "concept_id": "beam_loading",
+      "stem": "What is the relationship between distributed load w(x) and shear V(x) along a beam?",
+      "options": [
+        "dV/dx = +w (positive slope equals load).",
+        "dV/dx = -w (slope of V equals negative of distributed load, w positive downward).",
+        "V = w (they are equal at every point).",
+        "There is no relationship."
+      ],
+      "correct_index": 1,
+      "explanation": "With w taken positive downward, dV/dx = -w. This is the workhorse relation for sketching shear diagrams from loading.",
+      "misconception_id": "load_equals_shear"
+    },
+    {
+      "id": "internal_section_consistency",
+      "type": "multiple_choice",
+      "concept_id": "section_method",
+      "stem": "When computing internal forces at a cross section, why must the answer agree whether you analyze the left or the right portion of the beam?",
+      "options": [
+        "Because of Newton's third law: the internal forces on the two cut faces are equal and opposite.",
+        "It does not have to agree; left and right portions can give different answers.",
+        "Because the beam is symmetric.",
+        "Because the support reactions are zero."
+      ],
+      "correct_index": 0,
+      "explanation": "Newton's third law guarantees that internal force-pairs on the two faces of a cut are equal and opposite. With consistent sign convention, both free bodies yield the same N, V, M values.",
+      "misconception_id": "left_right_asymmetric"
+    },
+    {
+      "id": "internal_point_load_jump",
+      "type": "multiple_choice",
+      "concept_id": "shear_force",
+      "stem": "What does a concentrated transverse point load P (downward) produce in the shear diagram at the load's location?",
+      "options": [
+        "A smooth slope only.",
+        "A vertical step (discontinuity) of magnitude P, with V dropping by P as you cross the load location moving rightward.",
+        "A jump in the moment diagram, not the shear.",
+        "Nothing; V is unaffected."
+      ],
+      "correct_index": 1,
+      "explanation": "Concentrated transverse loads produce step discontinuities in V. A point couple (moment) produces a step in M. Continuous w gives smooth slopes only.",
+      "misconception_id": "shear_is_continuous_under_point_load"
+    }
+  ]
+}

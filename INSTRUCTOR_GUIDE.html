@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ALGET — Instructor Guide</title>
+<style>
+  :root{
+    --primary-deep:#093848;--primary:#214b59;--secondary:#538b9e;
+    --accent:#9E1B32;--accent-warm:#c78943;--text:#093848;
+    --muted:#5d7783;--line:rgba(15,81,103,0.15);
+    --panel:#f6f4ef;--surface:#ffffff;--bg:#fbfaf6;
+    --ok:#2f7d52;--warn:#c78943;--bad:#9E1B32;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:ui-serif,Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  a{color:var(--primary);text-decoration:none;border-bottom:1px solid rgba(33,75,89,0.25)}
+  a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  code,pre{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:0.92em;color:var(--primary-deep)}
+  code{background:var(--panel);padding:0.08em 0.35em;border-radius:4px}
+
+  .layout{display:grid;grid-template-columns:280px 1fr;gap:0;max-width:1240px;margin:0 auto}
+  @media (max-width:980px){.layout{grid-template-columns:1fr}}
+
+  aside.toc{
+    position:sticky;top:0;align-self:start;
+    height:100vh;overflow-y:auto;
+    padding:48px 28px 48px 36px;
+    border-right:1px solid var(--line);
+    font-family:ui-sans-serif,Inter,system-ui,-apple-system,sans-serif;
+    font-size:14px;
+  }
+  @media (max-width:980px){aside.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}}
+  aside.toc .brand{
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-weight:700;font-size:13px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--primary-deep);margin-bottom:8px;
+  }
+  aside.toc .brand .pill{
+    display:inline-block;background:var(--primary-deep);color:#fff;
+    padding:2px 8px;border-radius:999px;font-size:11px;letter-spacing:0.1em;margin-right:6px;
+  }
+  aside.toc h3{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin:24px 0 8px}
+  aside.toc ol{list-style:none;padding:0;margin:0;counter-reset:section}
+  aside.toc li{margin:0;padding:0}
+  aside.toc li a{
+    display:block;padding:6px 10px;margin:1px -10px;border-radius:6px;
+    color:var(--primary);border:none;line-height:1.4;
+  }
+  aside.toc li a:hover{background:var(--panel);color:var(--primary-deep)}
+  aside.toc li a .num{display:inline-block;color:var(--muted);margin-right:8px;font-variant-numeric:tabular-nums;min-width:1.4em}
+
+  main{padding:64px 56px 96px;max-width:840px}
+  @media (max-width:980px){main{padding:32px 24px 64px}}
+
+  .kicker{
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-size:12px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--secondary);margin:0;
+  }
+  .doc-title{
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-size:48px;line-height:1.05;font-weight:700;letter-spacing:-0.01em;
+    color:var(--primary-deep);margin:8px 0 12px;
+  }
+  .lead{font-size:19px;line-height:1.55;color:var(--primary);margin:0 0 8px;font-style:italic}
+  .meta{font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:13px;color:var(--muted);margin:18px 0 0}
+  .meta span+span{margin-left:18px}
+  hr{border:none;border-top:1px solid var(--line);margin:40px 0}
+
+  h1{font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:32px;font-weight:700;letter-spacing:-0.005em;color:var(--primary-deep);margin:48px 0 12px;scroll-margin-top:24px}
+  h2{font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:24px;font-weight:600;color:var(--primary-deep);margin:36px 0 10px;scroll-margin-top:24px}
+  h3{font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:18px;font-weight:600;color:var(--primary);margin:28px 0 8px;scroll-margin-top:24px}
+  p{margin:0 0 14px}
+  ul,ol{padding-left:1.4em;margin:0 0 16px}
+  li{margin:6px 0}
+
+  blockquote{
+    margin:18px 0;padding:14px 18px;
+    background:var(--panel);border-left:3px solid var(--accent-warm);border-radius:0 8px 8px 0;
+    font-style:italic;color:var(--primary);
+  }
+
+  table{
+    width:100%;border-collapse:collapse;margin:18px 0;
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:14px;
+  }
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:var(--panel);color:var(--primary-deep);font-weight:600;font-size:13px;letter-spacing:0.04em}
+  tr:hover td{background:rgba(83,139,158,0.05)}
+
+  figure{
+    margin:28px 0;border:1px solid var(--line);border-radius:14px;
+    background:var(--surface);overflow:hidden;
+    box-shadow:0 1px 0 rgba(15,81,103,0.04),0 8px 24px rgba(15,81,103,0.06);
+  }
+  figcaption{
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-size:13px;color:var(--muted);padding:10px 16px;
+    border-top:1px solid var(--line);background:var(--panel);
+  }
+  figcaption b{color:var(--primary);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;font-size:12px}
+  figure svg,figure img{display:block;width:100%;height:auto}
+
+  .callout{
+    border:1px solid var(--line);border-radius:12px;padding:16px 20px;
+    margin:20px 0;background:var(--surface);
+  }
+  .callout.warn{border-color:rgba(199,137,67,0.35);background:rgba(247,233,210,0.55)}
+  .callout.danger{border-color:rgba(158,27,50,0.3);background:rgba(247,219,225,0.45)}
+  .callout .label{
+    display:inline-block;font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    padding:2px 8px;border-radius:4px;margin-right:8px;font-weight:600;
+  }
+  .callout .label.note{background:var(--primary-deep);color:#fff}
+  .callout.warn .label{background:var(--accent-warm);color:#fff}
+  .callout.danger .label{background:var(--accent);color:#fff}
+
+  .placeholder-banner{
+    margin:18px 0;padding:10px 16px;border:1px dashed var(--accent-warm);
+    background:rgba(247,233,210,0.45);border-radius:8px;
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:13px;color:var(--primary);
+  }
+
+  @media print{
+    aside.toc{display:none}
+    .layout{display:block;max-width:none}
+    main{padding:0}
+    figure{break-inside:avoid;box-shadow:none}
+    h1,h2{break-after:avoid}
+    a{color:inherit;border-bottom:none}
+    body{font-size:11pt}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<aside class="toc">
+  <div class="brand"><span class="pill">ALGET</span>Instructor</div>
+  <h3>Sections</h3>
+  <ol>
+    <li><a href="#s1"><span class="num">1.</span>Position the System Correctly</a></li>
+    <li><a href="#s2"><span class="num">2.</span>The Five Surfaces</a></li>
+    <li><a href="#s3"><span class="num">3.</span>Reading the Cohort Dashboard</a></li>
+    <li><a href="#s4"><span class="num">4.</span>When to Intervene</a></li>
+    <li><a href="#s5"><span class="num">5.</span>Generative Features</a></li>
+    <li><a href="#s6"><span class="num">6.</span>Privacy &amp; Compliance</a></li>
+    <li><a href="#s7"><span class="num">7.</span>Pedagogical Alignment</a></li>
+    <li><a href="#s8"><span class="num">8.</span>When the System Is Wrong</a></li>
+    <li><a href="#s9"><span class="num">9.</span>Research Participation</a></li>
+    <li><a href="#s10"><span class="num">10.</span>Asking Questions Yourself</a></li>
+    <li><a href="#s11"><span class="num">11.</span>The Onboarding Tour</a></li>
+    <li><a href="#s12"><span class="num">12.</span>Running a Class</a></li>
+    <li><a href="#s13"><span class="num">13.</span>Quick Reference</a></li>
+    <li><a href="#refs"><span class="num">+</span>References</a></li>
+  </ol>
+</aside>
+
+<main>
+<p class="kicker">ALGET handbook · Version 2026.04</p>
+<h1 class="doc-title">Instructor Guide</h1>
+<p class="lead">A practical handbook for instructors using ALGET as a teaching partner. The system is a generative intelligent textbook with research-grade telemetry; it works <em>alongside</em> you, not <em>instead</em> of you.</p>
+<p class="meta"><span>~30 min read</span><span>13 sections</span><span>Updated 2026-04-27</span></p>
+<hr>
+
+<p class="placeholder-banner"><b>Figures.</b> Real screenshots captured from the running app at <code>localhost:5173</code> via Playwright (1280×800, 2× DPR). Conceptual diagrams (Figure 1.1, Figure 5.2) remain as SVG since they describe architecture rather than a UI surface.</p>
+
+<h1 id="s1">1. Position the System Correctly</h1>
+<p>ALGET is not an instructor replacement and is not designed to be one. Three roles, three lanes:</p>
+<ul>
+  <li><b>The textbook narrative</b> does the explanation. It is canonical-text-grounded across five courses (Statics, Dynamics, Bio-Inspired Design, Foundations of Instructional Design, AI &amp; Ethics) and authored against Hibbeler / Beer / Smith&amp;Ragan / Gagné / NIST AI RMF / EU AI Act-class references.</li>
+  <li><b>The AI tutor</b> does the in-the-moment scaffold — Socratic guidance, on-demand explanations, generated practice items, simulations and illustrations. It is <em>not</em> allowed to give final answers to assessment items; the system gates that explicitly.</li>
+  <li><b>You</b> do the things only a teacher can do: judgment about who needs which intervention, evaluation of work that does not fit a clean rubric, the sustained relationship that motivates continued effort, and any decision that affects placement, credentialing, or services.</li>
+</ul>
+<p>A common failure mode in AI-augmented education is the <em>deference cascade</em> — students defer to the tutor, the tutor defers to whatever the model returned, and the human teacher becomes a logistics manager. The architecture below is designed to keep you in the loop <em>as the teacher</em>, with the system handling the cognitive load that doesn't require your judgment.</p>
+
+<figure>
+<svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three lanes diagram: textbook, AI tutor, instructor">
+  <rect width="760" height="260" fill="#fbfaf6"/>
+  <g font-family="Inter,system-ui,sans-serif" font-size="13" fill="#093848">
+    <g transform="translate(40,40)">
+      <rect width="200" height="180" rx="14" fill="#fff" stroke="#214b59" stroke-width="1.4"/>
+      <text x="100" y="32" text-anchor="middle" font-size="12" letter-spacing="2" fill="#538b9e">TEXTBOOK</text>
+      <text x="100" y="62" text-anchor="middle" font-size="20" font-weight="700">Narrative</text>
+      <line x1="20" y1="78" x2="180" y2="78" stroke="#093848" stroke-opacity="0.12"/>
+      <text x="20" y="102" font-size="13">Canonical content</text>
+      <text x="20" y="124" font-size="13">RAG-grounded</text>
+      <text x="20" y="146" font-size="13">5 courses · 60+ sections</text>
+    </g>
+    <g transform="translate(280,40)">
+      <rect width="200" height="180" rx="14" fill="#fff" stroke="#c78943" stroke-width="1.4"/>
+      <text x="100" y="32" text-anchor="middle" font-size="12" letter-spacing="2" fill="#c78943">AI TUTOR</text>
+      <text x="100" y="62" text-anchor="middle" font-size="20" font-weight="700">Scaffold</text>
+      <line x1="20" y1="78" x2="180" y2="78" stroke="#093848" stroke-opacity="0.12"/>
+      <text x="20" y="102" font-size="13">Socratic guidance</text>
+      <text x="20" y="124" font-size="13">Generated practice</text>
+      <text x="20" y="146" font-size="13">Never gives final answers</text>
+    </g>
+    <g transform="translate(520,40)">
+      <rect width="200" height="180" rx="14" fill="#fff" stroke="#9E1B32" stroke-width="1.6"/>
+      <text x="100" y="32" text-anchor="middle" font-size="12" letter-spacing="2" fill="#9E1B32">INSTRUCTOR</text>
+      <text x="100" y="62" text-anchor="middle" font-size="20" font-weight="700">Judgment</text>
+      <line x1="20" y1="78" x2="180" y2="78" stroke="#093848" stroke-opacity="0.12"/>
+      <text x="20" y="102" font-size="13">Who needs what</text>
+      <text x="20" y="124" font-size="13">Rubric-free evaluation</text>
+      <text x="20" y="146" font-size="13">The teaching relationship</text>
+    </g>
+  </g>
+</svg>
+<figcaption><b>Figure 1.1</b> &nbsp; The three lanes. The crimson lane is yours; do not let the system silently absorb it.</figcaption>
+</figure>
+
+<h1 id="s2">2. The Five Surfaces You'll Use</h1>
+
+<h2>2.1 The course catalog <code>/learn</code></h2>
+<p>Where students enter. You can see which courses they have unlocked. Access codes for <code>engineering</code>, <code>education</code>, and <code>researcher</code> scopes are configured on the backend (see <code>DEPLOYMENT_ENV.md</code>). For class deployment, share the appropriate code with the cohort.</p>
+
+<h2>2.2 The textbook reader <code>/book/&lt;course&gt;/&lt;chapter&gt;/&lt;section&gt;</code></h2>
+<p>Direct link to a section. You can preview anything students can. Use this to validate a section before assigning it; if you spot a defect, flag it through the audit pipeline (Section 8).</p>
+
+<figure>
+<img src="screenshots/04_intel_rail_open.png" alt="Reader at /book/<course>/<chapter>/<section>" loading="lazy">
+<figcaption><b>Figure 2.2</b> &nbsp; Reader at <code>/book/&lt;course&gt;/&lt;ch&gt;/&lt;sec&gt;</code>: TOC, narrative + inline checks, intelligence rail, floating tutor (BigAL).</figcaption>
+</figure>
+
+<h2>2.3 The student dashboard <code>/dashboard</code></h2>
+<p>What an individual learner sees about their own mastery. Open one in another browser profile to see what a struggling student is looking at right now. This builds empathy with their experience and helps you point to specific data when you check in.</p>
+
+<h2>2.4 The instructor dashboard <code>/instructor</code></h2>
+<p>Cohort heatmap. Three panels:</p>
+<ul>
+  <li><b>Cohort intervention success</b> — what fraction of closed interventions resolved positively. A sustained drop signals either content drift or a class-wide gap.</li>
+  <li><b>Learners needing attention</b> — anonymized IDs with mastery below 50%. Cross-reference with your roster to identify who to check in with.</li>
+  <li><b>Concept hot-spots</b> — concepts where 3+ learners are below 60%. These are your re-teach candidates for the next session.</li>
+</ul>
+<p>Access is gated by the <code>alget_instructor_access</code> session flag. Unlock at <code>/analytics</code> with the instructor passcode.</p>
+
+<figure>
+<img src="screenshots/07_instructor_dashboard.png" alt="Instructor dashboard at /instructor" loading="lazy">
+<figcaption><b>Figure 2.4</b> &nbsp; Instructor dashboard at <code>/instructor</code>: success metric (left), at-risk learner list (middle), concept hot-spots (right), assignment funnel (bottom).</figcaption>
+</figure>
+
+<h2>2.5 The researcher dashboard <code>/analytics</code></h2>
+<p>For when ALGET is part of an active study. RCT-grade joins of <code>interaction_events × recommendation_decisions × intervention_traces × evaluation_runs(pre/post/retention)</code>. If the cohort is part of the dual-panel Cognitive Walkthrough study (<code>CW_Research/</code>, <code>CW_Research_BioEngineering/</code>), this is where to find the artifact for write-up.</p>
+
+<figure>
+<img src="screenshots/08_analytics.png" alt="Research console with mastery, presence, momentum, and prediction metrics" loading="lazy">
+<figcaption><b>Figure 2.5</b> &nbsp; Research console at <code>/analytics</code>: average mastery, active readers, completion momentum, help-open events, forgetting risk, predicted next success, predicted retention, and content-audit mean.</figcaption>
+</figure>
+
+<h1 id="s3">3. Reading the Cohort Dashboard</h1>
+<p>Three signals to develop intuition for:</p>
+
+<h2>3.1 Hot-spot stability</h2>
+<p>A concept that's hot today but cool by Thursday is normal — students are working through it. A concept that stays hot for two weeks despite multiple attempts is a content defect or a missing prerequisite. Investigate the section's MDX; check if <code>&lt;inline-check&gt;</code> density is appropriate; check whether <code>practice.json</code> items map to misconceptions properly.</p>
+
+<h2>3.2 Learner divergence</h2>
+<p>If 80% of your cohort is doing fine and 20% is below 50%, that's a stratification problem, not a content problem. Different intervention: targeted office-hours invitations, supplementary practice assignments, or a re-diagnostic check (the system supports both pre and retention diagnostics; mid-course re-diagnosis is on the roadmap).</p>
+
+<h2>3.3 Intervention acceptance vs. resolution</h2>
+<p>If learners are accepting interventions (clicking Explain, Reframe, Practice) at high rates but not resolving them positively, the supports aren't landing. Two causes are common:</p>
+<ul>
+  <li>The supports are too long or too dense for the moment they appear in. Check the IntelRail's <em>Reframe</em> tab — the visual representation may be missing for the relevant concept.</li>
+  <li>The misconception bank is incomplete; the system can't target the actual confusion. Check <code>*.misconceptions.json</code> for that section.</li>
+</ul>
+
+<h1 id="s4">4. When to Intervene vs. Let the Learner Self-Regulate</h1>
+<p>A trap: instructors who watch the dashboard often reach in for individual learners more aggressively than the data warrants. Self-Determination Theory predicts this: well-meaning intervention that overrides learner autonomy reduces autonomous motivation over time even if it raises short-term performance.</p>
+<p>A workable heuristic:</p>
+<table>
+  <thead><tr><th>Signal</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td>Single-session struggle, learner is using rail + chat</td><td>Don't intervene. Productive struggle is the design.</td></tr>
+    <tr><td>Two consecutive sessions stalled at the same concept, low engagement</td><td>Quick check-in: "I noticed you've been on chapter 3 for a while; want to pair on it?"</td></tr>
+    <tr><td>Stuck pattern across multiple concepts, declining session length</td><td>Direct outreach. The system isn't the right tool here.</td></tr>
+    <tr><td>Affect signals (frustration, disengagement) but mastery is fine</td><td>Lower-pressure check-in; the issue is motivational, not cognitive.</td></tr>
+  </tbody>
+</table>
+<p>The system logs <em>intent</em> and <em>outcome</em>; it doesn't log <em>feeling</em>. Your judgment about a student's emotional state is data the dashboard can't surface.</p>
+
+<h1 id="s5">5. Generative Features You Should Know About</h1>
+<p>ALGET is a <em>generative</em> intelligent textbook, not just an adaptive one. Five places this affects you:</p>
+
+<h2>5.1 Explain / Reframe / Practice generated on demand</h2>
+<p>Through the rail, the system composes new explanations and new practice items per learner. You don't pre-author these; the multi-agent pipeline (PracticeGenerationAgent + CritiqueAgent) does. Quality gate: the CritiqueAgent reviews the upstream generation against RAG-grounded source material before reaching the learner. You can audit any generative output via the <code>content_audits</code> table or via the AnalyticsDashboard's content panel.</p>
+
+<h2>5.2 Multi-agent debate for bio-inspired</h2>
+<p>Bio-inspired specifically runs Biology → Engineering → ValidationAgent → Tutor with up to two revision passes if the validator scores below 7/10. Validation failures are logged. If you teach bio-inspired, watch the validation_critique field in the orchestrator response — sustained low scores indicate prompt drift.</p>
+
+<figure>
+<svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Multi-agent debate loop diagram">
+  <rect width="760" height="200" fill="#fbfaf6"/>
+  <g font-family="Inter,sans-serif" font-size="13" fill="#093848">
+    <g><rect x="20" y="60" width="120" height="60" rx="10" fill="#fff" stroke="#214b59"/><text x="80" y="86" text-anchor="middle" font-size="11" fill="#538b9e">AGENT</text><text x="80" y="106" text-anchor="middle" font-weight="700">Biology</text></g>
+    <path d="M140 90 L180 90" stroke="#214b59" marker-end="url(#a)"/>
+    <g><rect x="180" y="60" width="120" height="60" rx="10" fill="#fff" stroke="#214b59"/><text x="240" y="86" text-anchor="middle" font-size="11" fill="#538b9e">AGENT</text><text x="240" y="106" text-anchor="middle" font-weight="700">Engineering</text></g>
+    <path d="M300 90 L340 90" stroke="#214b59" marker-end="url(#a)"/>
+    <g><rect x="340" y="60" width="120" height="60" rx="10" fill="#fff" stroke="#9E1B32" stroke-width="1.5"/><text x="400" y="86" text-anchor="middle" font-size="11" fill="#9E1B32">PEER REVIEW</text><text x="400" y="106" text-anchor="middle" font-weight="700">Validation</text></g>
+    <path d="M460 90 L500 90" stroke="#214b59" marker-end="url(#a)"/>
+    <g><rect x="500" y="60" width="120" height="60" rx="10" fill="#fff" stroke="#214b59"/><text x="560" y="86" text-anchor="middle" font-size="11" fill="#538b9e">AGENT</text><text x="560" y="106" text-anchor="middle" font-weight="700">Tutor</text></g>
+    <path d="M620 90 L660 90" stroke="#214b59" marker-end="url(#a)"/>
+    <text x="700" y="94" text-anchor="middle" font-weight="700">Learner</text>
+    <!-- revision loop -->
+    <path d="M400 60 C 400 20, 240 20, 240 60" fill="none" stroke="#9E1B32" stroke-dasharray="4 3"/>
+    <text x="320" y="22" text-anchor="middle" font-size="11" fill="#9E1B32">if score &lt; 7/10 → revise (≤ 2×)</text>
+  </g>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#214b59"/></marker></defs>
+</svg>
+<figcaption><b>Figure 5.2</b> &nbsp; Bio-inspired debate loop. The validator's score gates whether the engineering agent revises before the learner sees the answer.</figcaption>
+</figure>
+
+<h2>5.3 Generative Lab <code>/lab</code></h2>
+<p>For instructors and researchers only (gated). Uses CurriculumAgent to generate a complete new module (narrative + practice + misconceptions) from a biology + engineering context you supply. <b>Treat output as a draft.</b> Review against the engineering text fidelity rubric (<code>backend/engineering_text_fidelity_rubric.md</code>) before exposing to learners.</p>
+
+<h2>5.4 Simulations and illustrations</h2>
+<p>Through the floating chat, students can request inline simulations and conceptual illustrations. The SimulationAgent generates self-contained HTML/p5.js; it's validated by the Validation Agent for bio-inspired and by the schema-gated rendering pipeline for other courses. Inappropriate simulations should be flagged via <code>evaluateSupportContent</code> (which already runs automatically) or your own content-audit notes.</p>
+
+<h2>5.5 Coming: NotebookLM-narrated short lecture clips</h2>
+<p>See <code>NOTEBOOKLM_REMOTION_INTEGRATION.md</code> for the architecture. Phase 1 pilot is one bio-inspired clip — <em>Directional Adhesion</em> — embedded in <code>bio-inspired/01/03</code> via Remotion Player. Once production, instructors will be able to request a 60–90 second video lecture for any HIGH-tier topic (see <code>REMOTION_ANIMATION_MAP.md</code>).</p>
+
+<h1 id="s6">6. Privacy, Compliance, Ethics</h1>
+
+<h2>6.1 FERPA</h2>
+<p>The system collects educational records (mastery, attempt outcomes, chat history, highlights). All storage is in your institution's Supabase project with row-level security. Vendor data movement is constrained by FERPA's school-official exception; review the institution's data-processing agreement before granting any third-party access.</p>
+
+<h2>6.2 COPPA</h2>
+<p>If your cohort includes any learners under 13, the system requires verifiable parental consent and additional design protections. ALGET can be configured for schools-as-agents-of-parents under the COPPA exception, but the conditions are narrow. Talk to your institution's legal/IRB before exposing the platform to under-13 users.</p>
+
+<h2>6.3 IDEA</h2>
+<div class="callout warn">
+  <span class="label">Caution</span>ALGET produces algorithmic risk signals (stuck events, low mastery flags). If those signals inform decisions about identification, eligibility, or special-education services, IDEA's procedural-due-process requirements apply: notice, parental participation, evaluation by qualified personnel, right to appeal. <b>Do not use raw AI flags as a decision; use them as a prompt to investigate with the standard process.</b>
+</div>
+
+<h2>6.4 Disabled features</h2>
+<div class="callout danger">
+  <span class="label">Do not re-enable</span>Earlier ALGET versions injected "AI peer notes" — AI-generated comments under fake student IDs to simulate social presence. This was removed after the LXD audit (<code>server.py:/api/assist/peer_note</code> is now disabled). Any social-presence augmentation must be explicitly labeled as AI per ethical-AI disclosure norms.
+</div>
+
+<h2>6.5 Surveillance vs. monitoring</h2>
+<p>The system records click-level telemetry. The LXD audit distinguishes monitoring (bounded, learner-visible, opt-out-real) from surveillance (combined, learner-invisible, mandatory). ALGET aims for monitoring. Webcam emotion detection, keystroke biometrics, or any other surveillance-class signals are explicitly off.</p>
+
+<h1 id="s7">7. Pedagogical Alignment Checklist</h1>
+<p>When you assign a section, run this in 90 seconds:</p>
+<ul>
+  <li><b>Objective fit.</b> Does the section's <code>learning_objectives</code> (in <code>meta.json</code>) match what you want students to walk away with?</li>
+  <li><b>Bloom level.</b> Does the practice exercise the level the objective claims? An <em>evaluate</em>-verb objective with multiple-choice recall items is a defect.</li>
+  <li><b>Misconception coverage.</b> Does <code>misconceptions.json</code> cover the 2–3 most common errors your past students have made? If not, add them through the misconception bank workflow (planned content authoring tool; for now, edit the JSON directly).</li>
+  <li><b>Inline check density.</b> Sections you assign for first reading should have at least 3 <code>&lt;inline-check&gt;</code> items. New sections may not yet — flag for content authoring.</li>
+  <li><b>Time budget.</b> <code>estimated_time_minutes</code> is a planning hint. If your students take materially longer, consider reading the section yourself with a timer and report back through the audit channel.</li>
+</ul>
+
+<h1 id="s8">8. When the System Is Wrong</h1>
+<p>Three categories of defect, three responses:</p>
+
+<h2>8.1 Content defect</h2>
+<p>A section's narrative says something wrong. Open <code>frontend/content/&lt;course&gt;/&lt;chapter&gt;/&lt;section&gt;.mdx</code>, fix it, commit with a clear message. ALGET ships content as code; it's auditable and version-controlled.</p>
+
+<h2>8.2 Generative defect</h2>
+<p>The tutor produced a wrong answer or inappropriate distractor. The CritiqueAgent should have caught it. If it didn't, the case is research-grade evidence. Capture the section_id, the generative agent name, the input, and the output. File against <code>evaluator_disagreements</code> in the research notes; the next critique-prompt iteration will incorporate the case.</p>
+
+<h2>8.3 Pedagogical mismatch</h2>
+<p>The system's recommendation doesn't fit your teaching strategy. The adaptive engine is opinionated; sometimes it's wrong for your context. Override at the cohort level by adjusting the access code's scope, by editing <code>content_priority_plan.md</code>, or by direct conversation with the development team if you're part of the pilot.</p>
+
+<h1 id="s9">9. Research Participation</h1>
+<p>If your cohort is enrolled in ALGET's research study (the dual Cognitive Walkthrough described in <code>paper_draft.md</code>), three additional commitments:</p>
+<ul>
+  <li><b>Pre-test, post-test, retention.</b> Don't skip these. The pre-post-retention triangle is the central study measurement.</li>
+  <li><b>Telemetry consent.</b> Verify the cohort has informed consent on the institution's IRB-approved form. If a learner opts out, their telemetry should be excluded; flag the user_id.</li>
+  <li><b>Data export.</b> At study end, export the relevant slice through <code>researchService.fetchResearchDashboardSnapshot</code> or by direct SQL on the research views (<code>rct_intervention_outcomes</code>, <code>rct_evaluation_gains</code>, <code>rct_user_telemetry_profile</code>).</li>
+</ul>
+
+<h1 id="s10">10. Asking the System Questions Yourself</h1>
+<p>You can use the floating ChatWidget like a learner does. Two specifically instructor-relevant prompts:</p>
+<blockquote>"Summarize where the cohort is stuck this week." The chat will read recent telemetry and produce a paragraph; not as accurate as the dashboard but useful for stand-up notes.</blockquote>
+<blockquote>"Give me three discussion-prompt ideas for next class on &lt;concept&gt;." The Tutor (in your domain map) will compose three with rationale.</blockquote>
+<p>Your prompts go through the same multi-agent pipeline learners' do. Use this to test what the system is actually capable of in your hands.</p>
+
+<h1 id="s11">11. The Onboarding Tour</h1>
+<p>A 5-step in-app tour (<code>OnboardingTour</code>) shows on a learner's first visit to any <code>/book/*</code> page. It introduces the reading pane, the rail, the chat, and the brain network. Encourage learners to take it. They can replay it from Settings.</p>
+<p>If you want a <em>custom</em> class-specific intro, add a new MDX file at <code>frontend/content/&lt;course&gt;/00/01.mdx</code> with your welcome message and learning-norms. The TOC builder will pick it up automatically.</p>
+
+<h1 id="s12">12. Running a Class for the First Time</h1>
+<p>Suggested two-week ramp:</p>
+
+<h2>Week 0</h2>
+<ul>
+  <li>Read this guide.</li>
+  <li>Open <code>LEARNER_GUIDE.html</code> and confirm it matches your expectations.</li>
+  <li>Run through one full section as a student. Take the diagnostic.</li>
+  <li>Verify your access codes work with the deployed instance.</li>
+</ul>
+
+<h2>Week 1</h2>
+<ul>
+  <li>Cohort onboarding session: 30 minutes. Show the OnboardingTour live; demo the rail and the chat. Set expectations: "the tutor won't give you answers; that's by design."</li>
+  <li>Assign first diagnostic + first section.</li>
+  <li>End-of-week: open <code>/instructor</code>. Are 70%+ of learners under way? If not, what are the holdouts?</li>
+</ul>
+
+<h2>Week 2</h2>
+<ul>
+  <li>First retention check is due (7 days after pre-test for those who finished a section).</li>
+  <li>First check-in conversations with bottom-quartile learners.</li>
+  <li>First content-defect report if any has surfaced.</li>
+</ul>
+<p>By week 3 you'll have a feel for the cohort's rhythm and the dashboard's signals. From there, the platform becomes background infrastructure and your attention shifts to the parts only you can do.</p>
+
+<h1 id="s13">13. Quick Reference</h1>
+<table>
+  <thead><tr><th>Task</th><th>Where</th></tr></thead>
+  <tbody>
+    <tr><td>See cohort heatmap</td><td><code>/instructor</code></td></tr>
+    <tr><td>Audit a section before assigning</td><td><code>/book/&lt;course&gt;/&lt;chapter&gt;/&lt;section&gt;</code></td></tr>
+    <tr><td>Generate a new module from a Lab context</td><td><code>/lab</code> (gated)</td></tr>
+    <tr><td>Export research data</td><td><code>/analytics</code> (researcher gated)</td></tr>
+    <tr><td>Reset onboarding for a learner</td><td>Settings → Replay tour, or call <code>resetOnboardingTour()</code> from console</td></tr>
+    <tr><td>Validate generative output</td><td>Review <code>content_audits</code> rows for the relevant section_id</td></tr>
+    <tr><td>Update access codes</td><td>Backend env vars; see <code>DEPLOYMENT_ENV.md</code></td></tr>
+    <tr><td>Flag a content defect</td><td>Edit <code>frontend/content/&lt;course&gt;/&lt;chapter&gt;/&lt;section&gt;.mdx</code> and commit</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<p>The system is opinionated. Some of those opinions you'll agree with — keeping the tutor from giving answers, gating the Generative Lab to instructors, requiring informed consent for telemetry. Some you'll disagree with — the lack of a built-in gradebook, the deferral of mobile/offline, the conservative approach to social features. Tell the development team what's missing for your context. The architecture is built to absorb feedback; that's why it's research-grade.</p>
+<p><b>Good teaching uses tools. ALGET is a tool. Your judgment is still the teaching.</b></p>
+
+<h2 id="refs">References</h2>
+<ul>
+  <li><em>Self-Determination Theory</em>: Deci, E. L., &amp; Ryan, R. M. (2000).</li>
+  <li><em>Universal Design for Learning Guidelines</em> (CAST, 2018).</li>
+  <li>Reiser &amp; Dempsey (eds.), <em>Trends and Issues in Instructional Design and Technology</em>, 5th ed., Routledge, 2024.</li>
+  <li>ALGET internal: <code>LEARNER_GUIDE.html</code>, <code>MULTI_AGENT_GENERATIVE_DESIGN.md</code>, <code>REMOTION_ANIMATION_MAP.md</code>, <code>NOTEBOOKLM_REMOTION_INTEGRATION.md</code>, <code>engineering_text_fidelity_rubric.md</code>, <code>paper_draft.md</code>.</li>
+</ul>
+
+</main>
+</div>
+</body>
+</html>

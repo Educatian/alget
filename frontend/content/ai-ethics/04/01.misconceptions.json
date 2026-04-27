@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0401",
+  "misconceptions": [
+    {
+      "id": "field_removal_anonymizes",
+      "pattern": "weak_anonymization",
+      "description": "Believing removing names and SSNs is sufficient to anonymize a behavioral dataset",
+      "trigger": "learner says 'we removed PII, the dataset is anonymous'",
+      "feedback": "Quasi-identifiers (zip, DOB, gender, behavioral patterns) can link to auxiliary data and re-identify records. Sweeney's 87% result is the canonical demonstration.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "models_dont_leak",
+      "pattern": "model_as_safe",
+      "description": "Assuming trained models cannot leak training data after the data is locked away",
+      "trigger": "learner releases a model trained on sensitive data without privacy auditing",
+      "feedback": "Models leak via membership inference, attribute inference, and verbatim memorization. Releasing a model is closer to releasing a lossy view of the training data than to releasing nothing.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "dp_is_perfect",
+      "pattern": "guarantee_overstatement",
+      "description": "Believing differential privacy provides perfect anonymity with no utility cost",
+      "trigger": "learner cites DP as a one-size-fits-all privacy fix",
+      "feedback": "DP bounds per-individual leakage by a parameter ε. Smaller ε means stronger privacy and lower utility. Choosing ε is itself a policy decision, not a technical default.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "single_record_view",
+      "pattern": "aggregation_blindness",
+      "description": "Evaluating privacy harm one record at a time without considering aggregation",
+      "trigger": "learner argues 'each data point is mundane, so the system is not invasive'",
+      "feedback": "Joining mundane streams produces invasive profiles. Surveillance-by-aggregation is the threat that data minimization, purpose limitation, and retention limits are designed to bound.",
+      "rail_action": "ask"
+    }
+  ]
+}
