@@ -1,9 +1,9 @@
-# ALGET — Adaptive Learning + Generative Engineering Textbook
+# ALGET — Alabama Generative Intelligent Textbook
 
 > **A research-grade generative intelligent textbook (GIT) for university engineering and instructional-design education, built around a multi-agent tutoring architecture, Bayesian knowledge tracing, and a dual-panel Cognitive Walkthrough study design.**
 
 <p align="center">
-  <img src="assets/hero.png" alt="ALGET — System Architecture: Adaptive Learning through Guided Engineering & Technology" width="100%">
+  <img src="assets/hero.png" alt="ALGET — Alabama Generative Intelligent Textbook system architecture" width="100%">
 </p>
 <p align="center"><em>System architecture at a glance — an open textbook on the desk feeds five course slabs (Statics · Dynamics · Bio-Inspired · Instructional Design · AI Ethics), which feed a multi-agent knowledge graph above. The crimson trace is one learner's active path.</em></p>
 
