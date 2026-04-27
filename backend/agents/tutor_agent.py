@@ -11,6 +11,9 @@ except ImportError:
 
 import logging
 
+from .config import get as get_config
+from .schema_gate import TUTOR_FALLBACK, TutorOutput, gate
+
 logger = logging.getLogger(__name__)
 
 class TutorAgent:
@@ -39,13 +42,14 @@ class TutorAgent:
         logger.info(f"Synthesizing insights for query: {query}")
         
         prompt = self._build_tutor_prompt(query, grade_level, bio_context_str, eng_context_str, val_context_str, history)
-        
+
         try:
+            cfg = get_config("tutor_synthesize")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.7,
+                    temperature=cfg.temperature,
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",
@@ -71,15 +75,14 @@ class TutorAgent:
             
             try:
                 result_json = json.loads(response.text)
-                return result_json
             except json.JSONDecodeError:
-                return {
-                    "error": "Failed to parse JSON response.",
-                    "raw_response": response.text
-                }
-                
+                return {**TUTOR_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result_json, TutorOutput, TUTOR_FALLBACK, "TutorAgent")
+
         except Exception as e:
-            return {"error": f"Error from Tutor Agent: {str(e)}"}
+            logger.exception("Tutor Agent failed")
+            return {**TUTOR_FALLBACK, "_schema_error": "exception", "error": str(e)}
             
     def _build_tutor_prompt(self, query: str, grade_level: str, bio_context_str: str, eng_context_str: str, val_context_str: str, history: list = None) -> str:
         history_text = ""
@@ -134,7 +137,11 @@ class TutorAgent:
                 history_text += f"{role}: {msg.get('content', '')}\n"
 
         # Determine domain persona based on course
-        domain = "Instructional Design and Educational Technology" if course == "inst-design" else course.replace('-', ' ').title()
+        domain_map = {
+            "inst-design": "Instructional Design and Educational Technology",
+            "ai-ethics": "AI Ethics, Governance, and Responsible Deployment",
+        }
+        domain = domain_map.get(course, course.replace('-', ' ').title())
         
         prompt = f"""
         You are a highly knowledgeable Tutor Agent specializing in {domain}.
@@ -157,11 +164,12 @@ class TutorAgent:
         """
         
         try:
+            cfg = get_config("tutor_general")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.7,
+                    temperature=cfg.temperature,
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",
@@ -187,12 +195,11 @@ class TutorAgent:
             
             try:
                 result_json = json.loads(response.text)
-                return result_json
             except json.JSONDecodeError:
-                return {
-                    "error": "Failed to parse JSON response.",
-                    "raw_response": response.text
-                }
-                
+                return {**TUTOR_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result_json, TutorOutput, TUTOR_FALLBACK, "TutorAgent")
+
         except Exception as e:
-            return {"error": f"Error from Tutor Agent: {str(e)}"}
+            logger.exception("Tutor Agent failed")
+            return {**TUTOR_FALLBACK, "_schema_error": "exception", "error": str(e)}

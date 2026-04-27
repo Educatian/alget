@@ -1,0 +1,20 @@
+{
+    "chapter_title": "Foundations of AI Ethics",
+    "title": "Module 2: Applying Ethics Frameworks to AI",
+    "description": "Triangulate AI deployment decisions across consequentialism, deontology, virtue ethics, and care ethics; recognize where the frameworks converge (permission to proceed) and where they diverge (the live decision).",
+    "learning_objectives": [
+        "Apply each of four ethical frameworks (consequentialist, deontological, virtue, care) to a deployment decision.",
+        "Identify each framework's diagnostic question, strengths, and characteristic blind spots.",
+        "Distinguish convergence (defensible) from disagreement (where the live ethical choice lives).",
+        "Reject the move of hiding a contested decision behind any single framework's verdict."
+    ],
+    "concept_ids": [
+        "consequentialism",
+        "deontology",
+        "virtue_ethics",
+        "care_ethics",
+        "ethical_triangulation"
+    ],
+    "estimated_time_minutes": 13,
+    "order": 2
+}

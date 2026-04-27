@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "objectives_strongest",
+      "type": "multiple_choice",
+      "concept_id": "mager_abcd",
+      "stem": "Which of the following is the most useful learning objective for guiding assessment design?",
+      "options": [
+        "Learners will understand network security.",
+        "Given a captured packet trace and an intrusion-detection rulebook, the security analyst will identify all suspicious flows with at least 90% precision and recall.",
+        "Learners will appreciate the importance of cybersecurity.",
+        "Learners will be familiar with packet analysis."
+      ],
+      "correct_index": 1,
+      "explanation": "Audience (security analyst), behavior (identify suspicious flows), condition (given trace and rulebook), and degree (>=90% precision and recall) are all explicit. The others rely on unmeasurable verbs.",
+      "misconception_id": "vague_verbs_are_objectives"
+    },
+    {
+      "id": "objectives_bloom_match",
+      "type": "multiple_choice",
+      "concept_id": "blooms_revised_taxonomy",
+      "stem": "An objective uses the verb 'evaluate' but the planned assessment asks the learner only to recall a definition. What is the defect?",
+      "options": [
+        "There is no defect; recall always supports evaluation.",
+        "The assessment does not match the cognitive level of the objective; it tests Remember while the objective claims Evaluate.",
+        "The objective should be lowered to Remember.",
+        "Bloom's taxonomy does not apply to assessment alignment."
+      ],
+      "correct_index": 1,
+      "explanation": "Constructive alignment requires the assessment to test the same cognitive level the objective claims. A recall item cannot validate an Evaluate objective.",
+      "misconception_id": "any_test_proves_any_objective"
+    },
+    {
+      "id": "objectives_stacking",
+      "type": "multiple_choice",
+      "concept_id": "performance_objective",
+      "stem": "An objective reads: 'The learner will analyze and evaluate a case study and design an intervention plan.' Why is this problematic?",
+      "options": [
+        "It uses too many words.",
+        "It stacks three different performances at three different cognitive levels, hiding what success means and what to assess.",
+        "It is fine as written.",
+        "It uses Bloom verbs, which are not allowed in objectives."
+      ],
+      "correct_index": 1,
+      "explanation": "Stacked objectives obscure the assessment target. Split into three: one Analyze, one Evaluate, one Create.",
+      "misconception_id": "stacking_is_efficient"
+    },
+    {
+      "id": "objectives_constructive_alignment",
+      "type": "multiple_choice",
+      "concept_id": "constructive_alignment",
+      "stem": "What is the central commitment of constructive alignment?",
+      "options": [
+        "All objectives must come from a textbook.",
+        "Objectives, assessment items, and practice activities must agree on what the learner is being asked to do, at the same cognitive level.",
+        "Only summative tests count as alignment evidence.",
+        "Activities should be harder than assessments."
+      ],
+      "correct_index": 1,
+      "explanation": "Constructive alignment (Biggs) is the principle that objectives, assessment, and activities must converge on the same performance.",
+      "misconception_id": "alignment_is_a_paperwork_step"
+    }
+  ]
+}

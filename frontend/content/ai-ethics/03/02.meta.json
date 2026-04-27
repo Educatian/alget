@@ -1,0 +1,21 @@
+{
+    "chapter_title": "Transparency and Accountability",
+    "title": "Module 2: Accountability and Liability",
+    "description": "Address the responsibility gap by distributing accountability across developer, deployer, operator, and user; recognize when human-in-the-loop is structural fig leaf; and apply engineering practices (audit trails, model cards, versioning, incident response) that make accountability real.",
+    "learning_objectives": [
+        "Explain the responsibility gap and why it cannot be closed by attributing responsibility to the AI system itself.",
+        "Distribute accountability across four roles (developer, deployer, operator, user) with role-specific failure ownership.",
+        "Distinguish meaningful human oversight from rubber-stamping using the capacity-time-authority-information test.",
+        "Identify five engineering practices (audit trails, model cards, versioning, incident response, whistleblower channels) that operationalize accountability."
+    ],
+    "concept_ids": [
+        "responsibility_gap",
+        "accountability_distribution",
+        "human_in_the_loop",
+        "model_cards",
+        "audit_trails",
+        "incident_response"
+    ],
+    "estimated_time_minutes": 13,
+    "order": 2
+}

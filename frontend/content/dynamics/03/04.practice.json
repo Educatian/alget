@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "rbim_pin_conservation",
+      "type": "multiple_choice",
+      "concept_id": "conservation_of_angular_momentum",
+      "stem": "A uniform rod pinned at its top is struck horizontally below the pin by a sticky ball. Which conservation principle applies?",
+      "options": [
+        "Both linear and angular momentum are conserved.",
+        "Angular momentum about the pin is conserved (pin reaction has zero moment about itself). Linear momentum is NOT conserved because the pin exerts an impulsive horizontal reaction.",
+        "Only kinetic energy is conserved.",
+        "Neither is conserved."
+      ],
+      "correct_index": 1,
+      "explanation": "The impulsive pin reaction breaks linear-momentum conservation. Angular momentum about the pin is preserved because the reaction's moment about the pin is zero.",
+      "misconception_id": "always_conserve_linear_momentum"
+    },
+    {
+      "id": "rbim_skater",
+      "type": "multiple_choice",
+      "concept_id": "angular_impulse_momentum",
+      "stem": "An ice skater spinning on a near-frictionless surface pulls in their arms. What happens and why?",
+      "options": [
+        "Angular velocity decreases as work is done against centrifugal force.",
+        "Angular velocity increases. With no external angular impulse about the spin axis, angular momentum I_G ω is conserved. Pulling arms in reduces I_G, so ω must increase.",
+        "Linear momentum is conserved instead.",
+        "Nothing changes."
+      ],
+      "correct_index": 1,
+      "explanation": "Conservation of angular momentum: I_G ω is fixed. Reducing I_G forces ω to increase. The same logic explains pirouettes and gymnastic skills.",
+      "misconception_id": "moi_does_not_change"
+    },
+    {
+      "id": "rbim_contact_point",
+      "type": "multiple_choice",
+      "concept_id": "coefficient_of_restitution",
+      "stem": "When applying the coefficient of restitution to an eccentric impact between two rigid bodies, which velocities go into the equation?",
+      "options": [
+        "Center-of-mass velocities of each body.",
+        "Velocities of the contact points (which for a rotating body equal v_G + ω × r from G to contact), along the impact line. Center-of-mass velocity is not the contact-point velocity for rotating bodies.",
+        "Average of the two centers' velocities.",
+        "Impact line is irrelevant."
+      ],
+      "correct_index": 1,
+      "explanation": "Restitution operates at the contact. For rotating bodies, contact-point velocity includes the ω × r term. Using center-of-mass velocity is one of the most common errors in eccentric impact.",
+      "misconception_id": "use_com_velocity_in_restitution"
+    },
+    {
+      "id": "rbim_axis_choice",
+      "type": "multiple_choice",
+      "concept_id": "rigid_body_impulse_momentum",
+      "stem": "A pinned rod has angular impulse applied. Which moment of inertia should appear in ∫M dt = I(ω₂ - ω₁)?",
+      "options": [
+        "Always I_G (about the centroid).",
+        "I_O (about the fixed pin), connected to I_G by the parallel-axis theorem I_O = I_G + Md². Using I_G for moments about a fixed pin understates the rotational resistance.",
+        "Either; they are equal.",
+        "Neither; angular momentum has no moment of inertia."
+      ],
+      "correct_index": 1,
+      "explanation": "Angular momentum about a fixed pin uses I_O. I_G ω is the centroidal angular momentum; the additional Md²ω contribution comes from translation of G about the pin and is captured by the parallel-axis theorem.",
+      "misconception_id": "always_use_centroidal_inertia"
+    }
+  ]
+}

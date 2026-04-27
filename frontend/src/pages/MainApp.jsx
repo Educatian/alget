@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowRight, BookOpen, Bookmark, LockKeyhole, Settings, Sparkles } from 'lucide-react'
 import { StaticsIllustration, BioInspiredIllustration, InstDesignIllustration } from '../components/CourseIllustrations'
 import SettingsModal from '../components/SettingsModal'
+import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
 import { getEvaluationStatus } from '../lib/researchService'
@@ -50,6 +51,19 @@ const educationCourses = [
         level: 'Core Requirement',
         gradient: 'from-[#355868] to-[#0d2730]',
         badge: 'Research-ready'
+    },
+    {
+        id: 'ai-ethics',
+        title: 'AI and Ethics',
+        icon: <InstDesignIllustration />,
+        description: 'Responsible AI design and deployment: bias and fairness, transparency, accountability, privacy, governance frameworks, and AI in education.',
+        topics: ['Bias & Fairness', 'Accountability', 'Privacy', 'AI in Education'],
+        chapters: 6,
+        sections: 12,
+        duration: '8 weeks',
+        level: 'Cross-disciplinary',
+        gradient: 'from-[#3a4a6b] to-[#0d2730]',
+        badge: 'New'
     }
 ]
 
@@ -161,6 +175,8 @@ export default function MainApp({ user, onLogout }) {
                             </div>
                             <span className="text-sm font-medium text-[var(--ath-muted)]">{user?.email}</span>
                         </div>
+                        <ThemeToggle className="h-10 w-10 rounded-xl" />
+
                         <button
                             onClick={() => setIsSettingsOpen(true)}
                             className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.76)] text-[var(--ath-muted)] transition-all hover:bg-[var(--ath-panel)] hover:text-[var(--ath-primary)]"
@@ -169,8 +185,16 @@ export default function MainApp({ user, onLogout }) {
                             <Settings className="h-5 w-5" />
                         </button>
                         <button
+                            onClick={() => navigate('/dashboard')}
+                            className="editorial-button-secondary px-4 py-2 text-sm"
+                            title="Your mastery dashboard"
+                        >
+                            My Dashboard
+                        </button>
+                        <button
                             onClick={() => navigate('/analytics')}
                             className="editorial-button-secondary px-4 py-2 text-sm"
+                            title="Research/Instructor console (gated)"
                         >
                             Research Console
                         </button>

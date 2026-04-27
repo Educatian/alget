@@ -1,0 +1,37 @@
+{
+  "section_id": "inst_design_0205",
+  "misconceptions": [
+    {
+      "id": "vague_verbs_are_objectives",
+      "pattern": "unmeasurable_verb",
+      "description": "Using verbs like understand, appreciate, be familiar with, or be aware of as if they specify a testable performance",
+      "trigger": "learner writes 'learners will understand X' as a complete objective",
+      "feedback": "Replace unmeasurable verbs with Bloom-aligned action verbs (explain, classify, compute, defend, design, critique). If you cannot test it, you cannot teach to it.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "any_test_proves_any_objective",
+      "pattern": "alignment_drift",
+      "description": "Believing that any assessment item can validate any objective regardless of cognitive level",
+      "trigger": "learner pairs a recall question with an Evaluate-level objective",
+      "feedback": "Constructive alignment requires the assessment to operate at the same Bloom level as the objective. A recall item cannot validate an Evaluate or Create objective.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "stacking_is_efficient",
+      "pattern": "compound_objective",
+      "description": "Combining multiple performances at multiple cognitive levels into a single objective for brevity",
+      "trigger": "learner writes 'analyze and evaluate and design' in one objective",
+      "feedback": "Each Bloom level deserves its own objective so that assessment, practice, and feedback can be designed precisely. Split stacked objectives into separate, single-verb objectives.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "alignment_is_a_paperwork_step",
+      "pattern": "compliance_framing",
+      "description": "Treating constructive alignment as an end-of-project documentation task rather than a design discipline",
+      "trigger": "learner says 'we'll align after we build it'",
+      "feedback": "Alignment is the design move that prevents wasted work. Misaligned objectives, activities, and assessments mean parts of the course are teaching or testing the wrong thing entirely.",
+      "rail_action": "ask"
+    }
+  ]
+}

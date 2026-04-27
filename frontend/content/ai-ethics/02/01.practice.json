@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "bias_face_recog_source",
+      "type": "multiple_choice",
+      "concept_id": "representation_bias",
+      "stem": "A facial-recognition model trained mostly on light-skinned faces performs worse on dark-skinned faces. Which bias source is the primary contributor?",
+      "options": [
+        "Historical bias (the world has fewer dark-skinned people).",
+        "Representation bias — the training distribution does not match the deployment distribution across subgroups.",
+        "Aggregation bias — one model is being used for too many tasks.",
+        "There is no bias; the model is correct on average."
+      ],
+      "correct_index": 1,
+      "explanation": "Differential subgroup error driven by skewed training distribution is representation bias. The Gender Shades work (Buolamwini and Gebru) is the canonical example.",
+      "misconception_id": "all_bias_is_historical"
+    },
+    {
+      "id": "bias_proxy_problem",
+      "type": "multiple_choice",
+      "concept_id": "measurement_bias",
+      "stem": "A healthcare risk model uses 'annual healthcare expenditure' as a proxy for 'healthcare need' and underestimates the need of one demographic group. What kind of bias is this?",
+      "options": [
+        "Representation bias.",
+        "Measurement bias — the proxy correlates with the target differently across groups, because the same need was historically met with less spending in some groups.",
+        "Aggregation bias.",
+        "Deployment feedback bias."
+      ],
+      "correct_index": 1,
+      "explanation": "When the same underlying state produces different observed values across groups, the proxy is measurement-biased. Obermeyer et al. (Science 2019) is the canonical case.",
+      "misconception_id": "proxy_is_neutral"
+    },
+    {
+      "id": "bias_predictive_policing",
+      "type": "multiple_choice",
+      "concept_id": "deployment_feedback_bias",
+      "stem": "A predictive-policing system sends more patrols to neighborhoods predicted to be high-crime, which records more crime there, which trains the next model to predict more crime there. What kind of bias is this and what is the right intervention?",
+      "options": [
+        "Historical bias; collect more data.",
+        "Representation bias; resample.",
+        "Deployment / feedback-loop bias. The system's own deployment manufactures the data that confirms it. Right intervention: counterfactual evaluation, randomized exploration to break the loop, periodic re-grounding against external truth.",
+        "No bias at all."
+      ],
+      "correct_index": 2,
+      "explanation": "Self-confirming feedback loops are deployment-time bias. Retraining on more of the loop's own output is the trap; breaking the loop is the fix.",
+      "misconception_id": "more_data_always_helps"
+    },
+    {
+      "id": "bias_debiasing_limit",
+      "type": "multiple_choice",
+      "concept_id": "algorithmic_bias",
+      "stem": "Which statement most accurately describes the limits of post-processing 'debiasing' techniques?",
+      "options": [
+        "Post-processing can eliminate any bias regardless of source.",
+        "Post-processing can change which group bears which kind of error but cannot create information the model never had, rewrite the target variable, or break a deployment feedback loop. Some biases require non-engineering responses (target change, declining to deploy).",
+        "Post-processing is the same as data resampling.",
+        "Bias cannot be reduced at all."
+      ],
+      "correct_index": 1,
+      "explanation": "Post-processing reshuffles errors but cannot fix bias rooted in target choice, missing information, or feedback loops. The honest answer is that some interventions live outside engineering.",
+      "misconception_id": "debiasing_is_universal"
+    }
+  ]
+}

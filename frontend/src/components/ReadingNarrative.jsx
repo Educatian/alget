@@ -11,6 +11,10 @@ import { logInteraction, logEvent, logTimeOnTask } from '../lib/loggingService'
 const DynamicScenario = lazy(() => import('./DynamicScenario'))
 const ConceptDiagrams = lazy(() => import('./ConceptDiagrams'))
 const InteractiveQuiz = lazy(() => import('./InteractiveQuiz'))
+const InlineCheck = lazy(() => import('./InlineCheck'))
+const RevealedWorkedExample = lazy(() => import('./RevealedWorkedExample'))
+const Glossary = lazy(() => import('./Glossary'))
+const RemotionClip = lazy(() => import('./RemotionClip'))
 
 const TorqueDiagram = lazy(() => import('./TorqueDiagram').then((module) => ({ default: module.TorqueDiagram })))
 const MicroTurbulenceDiagram = lazy(() => import('./AeroacousticsDiagram').then((module) => ({ default: module.MicroTurbulenceDiagram })))
@@ -155,6 +159,20 @@ export default function ReadingNarrative({
                 />
             </Suspense>
         ),
+        'inline-check': ({ options, question, conceptid, ...props }) => (
+            <Suspense fallback={<MarkdownBlockFallback />}>
+                <InlineCheck
+                    options={options}
+                    question={question}
+                    sectionId={sectionId}
+                    conceptId={conceptid || conceptIds?.[0] || null}
+                    {...props}
+                />
+            </Suspense>
+        ),
+        'worked-example': (props) => renderLazyMarkdownModule(RevealedWorkedExample, { ...props, sectionId }),
+        glossary: (props) => renderLazyMarkdownModule(Glossary, props),
+        'remotion-clip': (props) => renderLazyMarkdownModule(RemotionClip, props),
         'torque-diagram': (props) => renderLazyMarkdownModule(TorqueDiagram, props),
         'kinematics-diagram': (props) => renderLazyMarkdownModule(KinematicsDiagram, props),
         'micro-turbulence-diagram': (props) => renderLazyMarkdownModule(MicroTurbulenceDiagram, props),

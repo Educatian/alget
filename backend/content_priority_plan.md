@@ -2,12 +2,14 @@
 
 This table converts the raw audit into an execution order. Priority is based on severity, breadth of learner impact, and how strongly a gap weakens the adaptive-learning loop.
 
-| Priority | Scope | Sections | Main deficits | Why this band goes first | Planned action |
-| --- | --- | --- | --- | --- | --- |
-| Tier 1 | `dynamics` | `02/01`, `02/02`, `02/03`, `03/01`, `03/02`, `03/03` | Very short narrative, thin practice banks, no misconception banks, no inline quiz, no scenario | These sections are the most severe content failures and sit in the core quantitative pathway where the tutor needs strong evidence for remediation | Expand narrative, add scenario and inline quizzes, increase practice to 5+ items, add misconception banks |
-| Tier 2 | `bio-inspired` | All sections, with immediate focus on `03/01`, `02/01`, `08/01` | No practice banks, no misconception banks, occasional shallow structure | The narrative voice is strong, but the course is not yet teachable as an adaptive textbook because learners cannot practice or surface misconceptions | Add section-level practice and misconception banks, then reinforce scanability in the shallow sections |
-| Tier 3 | `inst-design` | All sections, with immediate focus on `07/01`, `01/03`, `08/01` | No practice banks, no misconception banks | This course already has scenarios and quizzes, so its biggest weakness is the missing assessment layer rather than narrative clarity | Add robust practice banks and misconception banks across the course |
-| Tier 4 | `statics` | `01/01` to `03/03`, then `06/01` | Practice is sparse, misconception banks are missing, inline quiz/scenario coverage is weak in many sections | Statics is closer to usable, so the highest leverage comes from strengthening diagnosis and remediation rather than rewriting everything | Add misconception banks, expand light practice sets, then add more embedded checks and scenario anchors |
+> **Status (post-audit refresh):** All four courses now report severity 0 across every section, with practice and misconception banks present. The remaining work is depth (item count, narrative density, scenario coverage), not absence. The original tiering below has been rescoped.
+
+| Priority | Scope | Sections | Current state | Recommended depth pass |
+| --- | --- | --- | --- | --- |
+| Tier 1 | `dynamics` | `01/03`, `02/03`, `03/01` | Practice 3-6, misconception banks present | Bring practice to 8+ items; add 1 transfer scenario per section |
+| Tier 2 | `bio-inspired` | `02/01`, `03/01`, `04/01`, `05/01`, `07/01` | Practice 4, misconception banks present | Expand practice from 4 → 6 with 1 misconception-targeted distractor each |
+| Tier 3 | `inst-design` | All 12 sections | Practice 4 + misconception bank in every section (severity 0) | Optional expansion 4 → 6 per section to match dynamics median; not a gating issue |
+| Tier 4 | `statics` | `01/03`, `06/01` | Practice 3-4, misconception banks present | Add 2 items to thin sections; reinforce scenario anchors in `06/01` |
 
 ## Execution Notes
 

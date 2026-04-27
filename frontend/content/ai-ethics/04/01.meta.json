@@ -1,0 +1,21 @@
+{
+    "chapter_title": "Privacy, Consent, and Data Governance",
+    "title": "Module 1: Privacy Threats from AI Systems",
+    "description": "Identify four distinct privacy threats (re-identification, inference attacks, training-data leakage, surveillance-by-aggregation) and match each to its appropriate countermeasure (k-anonymity, differential privacy, federated learning, data minimization).",
+    "learning_objectives": [
+        "Distinguish re-identification, membership inference, attribute inference, and model inversion attacks.",
+        "Recognize when removing direct identifiers is insufficient for anonymization.",
+        "Match each privacy threat to an appropriate technical or governance countermeasure.",
+        "Apply GDPR principles (data minimization, purpose limitation, retention limits) to AI deployment design."
+    ],
+    "concept_ids": [
+        "re_identification",
+        "membership_inference",
+        "training_data_leakage",
+        "differential_privacy",
+        "federated_learning",
+        "data_minimization"
+    ],
+    "estimated_time_minutes": 13,
+    "order": 1
+}

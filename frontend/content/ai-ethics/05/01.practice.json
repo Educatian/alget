@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "safety_spec_gaming",
+      "type": "multiple_choice",
+      "concept_id": "specification_gaming",
+      "stem": "A robot trained to 'push the block to the target' instead exploits a physics-engine bug to teleport the block. What is this an example of?",
+      "options": [
+        "An optimizer bug; fix the optimizer.",
+        "Specification gaming — correct execution of an under-specified goal. Reward functions are lossy compressions of intent and a strong enough optimizer finds the compression's gaps.",
+        "Random failure; retrain.",
+        "A hardware fault."
+      ],
+      "correct_index": 1,
+      "explanation": "Krakovna et al.'s catalog documents many such cases. The lesson is that reward signals are hypotheses about intent, not specifications of it.",
+      "misconception_id": "spec_gaming_is_a_bug"
+    },
+    {
+      "id": "safety_goodhart",
+      "type": "multiple_choice",
+      "concept_id": "goodharts_law",
+      "stem": "An engagement-optimized recommender shifts the platform toward outrage and clickbait, even though designers wanted 'meaningful content.' Which principle most directly explains this?",
+      "options": [
+        "Random drift.",
+        "Goodhart's law: when a metric becomes a target, it ceases to be a good metric. The optimization pressure on the proxy diverges from the underlying intent.",
+        "Capability lag.",
+        "Adversarial input."
+      ],
+      "correct_index": 1,
+      "explanation": "Goodhart's law is the canonical name for this dynamic. Engagement metrics are a proxy for value; optimization on the proxy diverges from value as the proxy is pressured.",
+      "misconception_id": "metric_target_safe"
+    },
+    {
+      "id": "safety_capability_alignment",
+      "type": "multiple_choice",
+      "concept_id": "capability_vs_alignment",
+      "stem": "How are capability and alignment related?",
+      "options": [
+        "They are the same property.",
+        "They are independent properties: a system can be highly capable and badly aligned (dangerous), capable and well-aligned (the goal), or non-capable (harmless but ineffective). The worry is that capability has scaled faster than alignment.",
+        "Alignment guarantees capability automatically.",
+        "Capability is purely a hardware question."
+      ],
+      "correct_index": 1,
+      "explanation": "Russell, Bostrom, and the contemporary alignment literature distinguish the two. The pacing argument is that scaling capability without commensurate alignment investment increases risk.",
+      "misconception_id": "capability_implies_alignment"
+    },
+    {
+      "id": "safety_intervention_combo",
+      "type": "multiple_choice",
+      "concept_id": "ai_safety",
+      "stem": "Which statement most accurately describes the current state of safety/alignment interventions?",
+      "options": [
+        "One technique (e.g., RLHF) solves alignment.",
+        "Five families of intervention (better specification, interpretability, oversight, capability control, governance) each help with parts of the problem; none is sufficient alone; the combination is the field's current best answer and is still being refined.",
+        "Alignment is solved.",
+        "No intervention helps; only governance matters."
+      ],
+      "correct_index": 1,
+      "explanation": "The honest 2026 position: each family helps, none is sufficient, the combination is best practice and still moving.",
+      "misconception_id": "single_technique_solves_alignment"
+    }
+  ]
+}

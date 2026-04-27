@@ -15,13 +15,18 @@ const LEARNER_MODEL_KEY = 'alget_research_learner_model_v1'
 const INTERVENTION_TRACE_KEY = 'alget_research_traces_v1'
 const EVALUATION_KEY = 'alget_research_evaluations_v1'
 const CONTENT_AUDIT_KEY = 'alget_research_content_audits_v1'
+const RETRY_QUEUE_KEY = 'alget_research_retry_queue_v1'
 
 const MAX_TRACES = 160
 const MAX_EVALUATIONS = 80
 const MAX_AUDITS = 120
+const MAX_RETRY_ITEMS = 200
+const MAX_RETRY_ATTEMPTS = 3
 const RESEARCH_POLICY_VERSION = 'research-v1'
 const RESEARCH_PROMPT_VERSION = 'research-support-v1'
 const traceSyncQueue = new Map()
+const inflightOperations = new Set()
+let unloadHandlersInstalled = false
 const EMPTY_RESEARCH_SNAPSHOT = {
     traces: [],
     evaluations: [],
@@ -52,7 +57,7 @@ const EMPTY_RESEARCH_SNAPSHOT = {
     },
 }
 
-function generateId(prefix = 'research') {
+function generateId() {
     if (globalThis.crypto?.randomUUID) {
         return globalThis.crypto.randomUUID()
     }
@@ -177,7 +182,27 @@ async function getCurrentUserId() {
     }
 }
 
-function queueTracePersistence(traceId, operation) {
+function getRetryQueue() {
+    return readJson(RETRY_QUEUE_KEY, [])
+}
+
+function saveRetryQueue(items) {
+    writeJson(RETRY_QUEUE_KEY, items.slice(-MAX_RETRY_ITEMS))
+}
+
+function pushRetryItem(item) {
+    const queue = getRetryQueue()
+    queue.push({ ...item, queued_at: new Date().toISOString(), attempts: (item.attempts || 0) + 1 })
+    saveRetryQueue(queue)
+}
+
+function trackInflight(promise) {
+    inflightOperations.add(promise)
+    promise.finally(() => inflightOperations.delete(promise))
+    return promise
+}
+
+function queueTracePersistence(traceId, operation, retryDescriptor = null) {
     if (!traceId || !isSupabaseConfigured) return
 
     const previous = traceSyncQueue.get(traceId) || Promise.resolve()
@@ -186,6 +211,9 @@ function queueTracePersistence(traceId, operation) {
         .then(operation)
         .catch((error) => {
             console.warn(`[Research] Trace persistence failed for ${traceId}:`, error)
+            if (retryDescriptor) {
+                pushRetryItem({ kind: retryDescriptor.kind, payload: retryDescriptor.payload })
+            }
         })
         .finally(() => {
             if (traceSyncQueue.get(traceId) === next) {
@@ -194,16 +222,84 @@ function queueTracePersistence(traceId, operation) {
         })
 
     traceSyncQueue.set(traceId, next)
+    trackInflight(next)
+    installUnloadHandlers()
 }
 
-function persistInBackground(label, operation) {
+function persistInBackground(label, operation, retryDescriptor = null) {
     if (!isSupabaseConfigured) return
 
-    Promise.resolve()
+    const promise = Promise.resolve()
         .then(operation)
         .catch((error) => {
             console.warn(`[Research] ${label} persistence failed:`, error)
+            if (retryDescriptor) {
+                pushRetryItem({ kind: retryDescriptor.kind, payload: retryDescriptor.payload })
+            }
         })
+    trackInflight(promise)
+    installUnloadHandlers()
+}
+
+function installUnloadHandlers() {
+    if (unloadHandlersInstalled || typeof window === 'undefined') return
+    unloadHandlersInstalled = true
+
+    const drainOnHide = () => {
+        if (document.hidden && inflightOperations.size > 0) {
+            // Best-effort wait so in-flight upserts have a chance to complete
+            // before the tab is fully suspended. Browsers grant a short window
+            // (~5s) for this; we don't await here to avoid blocking unload.
+            Promise.race([
+                Promise.allSettled([...inflightOperations]),
+                new Promise((resolve) => setTimeout(resolve, 1500)),
+            ]).catch(() => undefined)
+        }
+    }
+
+    window.addEventListener('visibilitychange', drainOnHide)
+    window.addEventListener('pagehide', drainOnHide)
+}
+
+export async function replayPendingResearchPersists() {
+    if (!isSupabaseConfigured) return { replayed: 0, dropped: 0 }
+
+    const queue = getRetryQueue()
+    if (queue.length === 0) return { replayed: 0, dropped: 0 }
+
+    const remaining = []
+    let replayed = 0
+    let dropped = 0
+
+    for (const item of queue) {
+        if ((item.attempts || 0) >= MAX_RETRY_ATTEMPTS) {
+            dropped += 1
+            continue
+        }
+        try {
+            await dispatchRetryItem(item)
+            replayed += 1
+        } catch (error) {
+            console.warn('[Research] Replay failed; will retry next session:', error)
+            remaining.push({ ...item, attempts: (item.attempts || 0) + 1 })
+        }
+    }
+
+    saveRetryQueue(remaining)
+    return { replayed, dropped, deferred: remaining.length }
+}
+
+async function dispatchRetryItem(item) {
+    switch (item.kind) {
+        case 'learner_concept_state': {
+            const { conceptId, state } = item.payload
+            return persistLearnerConceptState(conceptId, state)
+        }
+        case 'evaluation_run':
+            return persistEvaluation(item.payload)
+        default:
+            console.warn(`[Research] Unknown retry kind ignored: ${item.kind}`)
+    }
 }
 
 function normalizeAction(value) {
@@ -254,7 +350,20 @@ async function persistLearnerConceptState(conceptId, state) {
             onConflict: 'user_id,concept_id'
         })
 
-    if (error) throw error
+    if (!error) return
+
+    // 23503 = foreign key violation (concept_id not in concepts table).
+    // Until the concepts catalog is fully seeded, this should be a soft warning
+    // rather than a hard failure that loses BKT updates. The retry queue will
+    // re-attempt on next session in case the catalog is updated.
+    if (error.code === '23503') {
+        console.warn(`[Research] concept_id "${conceptId}" not in concepts catalog; learner state held for retry.`)
+        const fkError = new Error(`FK_MISS:${conceptId}`)
+        fkError.code = '23503'
+        throw fkError
+    }
+
+    throw error
 }
 
 async function persistRecommendationTraceStart(trace) {
@@ -393,7 +502,7 @@ async function persistEvaluation(evaluation) {
 }
 
 async function persistSupportAudit(audit, content, focusConcepts = []) {
-    const feedbackId = generateId('feedback')
+    const feedbackId = generateId()
     const { error: feedbackError } = await supabase
         .from('generated_feedback')
         .insert({
@@ -637,7 +746,11 @@ export function updateLearnerModel({
         metadata
     })
 
-    persistInBackground('learner_concept_state', () => persistLearnerConceptState(conceptId, finalized))
+    persistInBackground(
+        'learner_concept_state',
+        () => persistLearnerConceptState(conceptId, finalized),
+        { kind: 'learner_concept_state', payload: { conceptId, state: finalized } }
+    )
 
     return finalized
 }
@@ -657,7 +770,11 @@ export function incrementConceptInterventionCount(conceptId) {
     )
     store.concepts[conceptId] = finalized
     saveLearnerModelStore(store)
-    persistInBackground('learner_concept_state', () => persistLearnerConceptState(conceptId, finalized))
+    persistInBackground(
+        'learner_concept_state',
+        () => persistLearnerConceptState(conceptId, finalized),
+        { kind: 'learner_concept_state', payload: { conceptId, state: finalized } }
+    )
     return finalized
 }
 
@@ -691,7 +808,11 @@ export function annotateMisconceptionSignal({ sectionId, conceptId, misconceptio
         predicted_next_correct: finalized.predicted_next_correct,
         predicted_retention: finalized.predicted_retention
     })
-    persistInBackground('learner_concept_state', () => persistLearnerConceptState(conceptId, finalized))
+    persistInBackground(
+        'learner_concept_state',
+        () => persistLearnerConceptState(conceptId, finalized),
+        { kind: 'learner_concept_state', payload: { conceptId, state: finalized } }
+    )
     return finalized
 }
 
@@ -776,7 +897,7 @@ export function startInterventionTrace({
     learnerProfile,
     context = {}
 }) {
-    const traceId = generateId('trace')
+    const traceId = generateId()
     const traces = getTraceStore()
     const nowIso = new Date().toISOString()
     const trace = {
@@ -975,7 +1096,7 @@ export function evaluateSupportContent({
     const validatorPass = releaseStatus === 'approved'
 
     const audit = {
-        audit_id: generateId('audit'),
+        audit_id: generateId(),
         section_id: sectionId,
         trace_id: traceId,
         support_type: supportType,
@@ -1023,7 +1144,7 @@ export function recordEvaluationResult({
         : null
 
     const evaluation = {
-        evaluation_id: generateId('evaluation'),
+        evaluation_id: generateId(),
         course,
         phase,
         score,
@@ -1041,7 +1162,11 @@ export function recordEvaluationResult({
     const next = [...records, evaluation]
     saveEvaluationStore(next)
     logEvaluationArtifact(sectionId || course, evaluation)
-    persistInBackground('evaluation_run', () => persistEvaluation(evaluation))
+    persistInBackground(
+        'evaluation_run',
+        () => persistEvaluation(evaluation),
+        { kind: 'evaluation_run', payload: evaluation }
+    )
     return evaluation
 }
 
@@ -1309,4 +1434,27 @@ function averageByPhase(records, phase) {
     const matches = records.filter((record) => record.phase === phase)
     if (matches.length === 0) return 0
     return Number((matches.reduce((sum, record) => sum + (record.percentage || 0), 0) / matches.length).toFixed(1))
+}
+
+export async function fetchRctSnapshot() {
+    if (!isSupabaseConfigured) {
+        return { interventionOutcomes: [], evaluationGains: [], telemetryProfile: [] }
+    }
+
+    try {
+        const [outcomes, gains, telemetry] = await Promise.all([
+            supabase.from('rct_intervention_outcomes').select('*'),
+            supabase.from('rct_evaluation_gains').select('*'),
+            supabase.from('rct_user_telemetry_profile').select('*').limit(50),
+        ])
+
+        return {
+            interventionOutcomes: outcomes?.data || [],
+            evaluationGains: gains?.data || [],
+            telemetryProfile: telemetry?.data || [],
+        }
+    } catch (error) {
+        console.warn('[Research] RCT snapshot fetch failed:', error)
+        return { interventionOutcomes: [], evaluationGains: [], telemetryProfile: [] }
+    }
 }

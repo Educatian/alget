@@ -2,8 +2,9 @@
  * ALGET Logging Service
  * Research-grade behavioral logging with sequential analysis support
  */
-import { supabase } from './supabase'
+import { supabase, supabaseConfig, isSupabaseConfigured } from './supabase'
 import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
+import API_BASE from './apiConfig'
 
 // Session state
 let sessionId = null
@@ -14,6 +15,7 @@ let flushTimer = null
 let lastScrollDepth = 0
 let lastClickTarget = null
 let lastClickTime = 0
+let cachedAccessToken = null
 
 // Config
 const FLUSH_INTERVAL_MS = 5000
@@ -111,6 +113,17 @@ export async function initSession(user) {
         } catch (err) {
             console.warn('Guest login failed. All FK DB requests will fail.', err);
             userId = '00000000-0000-0000-0000-000000000000';
+        }
+    }
+
+    // Cache access token for unload-time sendBeacon (which can't await)
+    if (isSupabaseConfigured) {
+        try {
+            const { data: { session: authSession } } = await supabase.auth.getSession()
+            cachedAccessToken = authSession?.access_token || null
+        } catch (err) {
+            console.warn('[Logging] Could not cache access token:', err)
+            cachedAccessToken = null
         }
     }
 
@@ -350,10 +363,21 @@ export async function endSession() {
  * Handle page unload
  */
 function handleUnload() {
-    // Synchronous flush using sendBeacon
-    if (eventQueue.length > 0 && userId) {
-        const payload = JSON.stringify(eventQueue)
-        navigator.sendBeacon?.('/api/log-events', payload)
+    if (eventQueue.length === 0 || !userId || !navigator.sendBeacon) return
+    if (!isSupabaseConfigured || !supabaseConfig.url || !supabaseConfig.anonKey) return
+
+    const payload = JSON.stringify({
+        events: eventQueue,
+        supabase_url: supabaseConfig.url,
+        supabase_anon_key: supabaseConfig.anonKey,
+        access_token: cachedAccessToken,
+    })
+
+    try {
+        const blob = new Blob([payload], { type: 'application/json' })
+        navigator.sendBeacon(`${API_BASE}/log-events`, blob)
+    } catch (err) {
+        console.warn('[Logging] sendBeacon failed:', err)
     }
 }
 

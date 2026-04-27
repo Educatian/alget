@@ -1,0 +1,37 @@
+{
+  "section_id": "statics_0105",
+  "misconceptions": [
+    {
+      "id": "scalar_addition_of_vectors",
+      "pattern": "vector_to_scalar_collapse",
+      "description": "Adding force magnitudes as if they were scalars without resolving into components",
+      "trigger": "learner reports the resultant of two non-collinear forces as the sum of their magnitudes",
+      "feedback": "Forces have direction. Add them by components or by the parallelogram rule. Magnitudes only sum when the forces are collinear and in the same direction.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "unit_vector_from_endpoint",
+      "pattern": "vector_origin_error",
+      "description": "Building the unit vector along a line by normalizing one endpoint's position vector instead of the line's position vector",
+      "trigger": "learner divides one endpoint coordinates by their magnitude to obtain a 'unit vector along the line'",
+      "feedback": "The unit vector along a line from A to B uses r_AB = B - A, not A or B alone. The line is the difference of the two position vectors.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "projection_equals_magnitude",
+      "pattern": "dot_product_misuse",
+      "description": "Treating the projection of a force onto an axis as the full force magnitude regardless of angle",
+      "trigger": "learner reports F·u = |F| even when F and u are not parallel",
+      "feedback": "F · u = |F||u|cosθ. Only when F is parallel to u (θ = 0) does the projection equal |F|. At other angles the projection is smaller.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "cross_product_commutative",
+      "pattern": "operator_property_confusion",
+      "description": "Treating the cross product as commutative like the dot product",
+      "trigger": "learner writes M = F × r instead of M = r × F (or vice versa) without noting the sign change",
+      "feedback": "The cross product is anti-commutative: A × B = -B × A. For moments use M = r × F where r runs from the moment point to any point on F's line of action.",
+      "rail_action": "ask"
+    }
+  ]
+}

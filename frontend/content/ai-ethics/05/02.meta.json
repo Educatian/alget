@@ -1,0 +1,21 @@
+{
+    "chapter_title": "Safety, Alignment, and Governance",
+    "title": "Module 2: Governance Frameworks — NIST AI RMF, EU AI Act, UNESCO",
+    "description": "Compare the three dominant AI governance frameworks (NIST AI RMF, EU AI Act, UNESCO Recommendation) and ISO/IEC 42001, identify where they overlap and disagree, and apply a practitioner workflow that uses each in combination.",
+    "learning_objectives": [
+        "State the four core functions of the NIST AI RMF (Govern, Map, Measure, Manage) and apply them to a deployment.",
+        "Categorize an AI system under the EU AI Act risk tiers (prohibited, high-risk, limited-risk, minimal-risk, GPAI).",
+        "Identify three principles where UNESCO's Recommendation extends beyond the technical scope of NIST and the EU Act (sustainability, equity, AI literacy).",
+        "Apply a practitioner workflow that picks a primary framework and uses the others as cross-checks."
+    ],
+    "concept_ids": [
+        "nist_ai_rmf",
+        "eu_ai_act",
+        "unesco_ai_ethics",
+        "iso_42001",
+        "ai_governance",
+        "risk_tiered_regulation"
+    ],
+    "estimated_time_minutes": 14,
+    "order": 2
+}

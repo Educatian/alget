@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "explain_interp_vs_explain",
+      "type": "multiple_choice",
+      "concept_id": "interpretability",
+      "stem": "Which statement most accurately distinguishes interpretability from explainability?",
+      "options": [
+        "They are synonyms.",
+        "Interpretability is a property of the model itself (auditable by structure); explainability is a property of an explanation surface layered around a possibly opaque model.",
+        "Interpretability applies only to deep networks.",
+        "Explainability is a legal term, interpretability is technical."
+      ],
+      "correct_index": 1,
+      "explanation": "Interpretable models can be read directly. Explainable systems offer a generated rationale that may sit on top of an opaque model. The two properties can be present independently.",
+      "misconception_id": "interp_explain_same"
+    },
+    {
+      "id": "explain_counterfactual_value",
+      "type": "multiple_choice",
+      "concept_id": "counterfactual_explanation",
+      "stem": "Why are counterfactual explanations often considered more meaningful for decision subjects than raw feature attributions?",
+      "options": [
+        "Because they are always shorter.",
+        "Because they are actionable: they tell the subject what minimal change would have flipped the decision, giving them a lever they can act on. Raw feature attributions often fail on actionability and can surface protected-attribute proxies.",
+        "Because SHAP is always wrong.",
+        "Because counterfactual explanations are required by GDPR specifically."
+      ],
+      "correct_index": 1,
+      "explanation": "Wachter, Mittelstadt, and Russell argue counterfactuals satisfy the spirit of meaningful explanation: faithful, actionable, and avoiding inappropriate surfacing of proxies.",
+      "misconception_id": "shap_is_always_meaningful"
+    },
+    {
+      "id": "explain_post_hoc_limit",
+      "type": "multiple_choice",
+      "concept_id": "post_hoc_explanation",
+      "stem": "What is the most important caution about post-hoc explanation methods like LIME or SHAP?",
+      "options": [
+        "They are always accurate by construction.",
+        "They approximate the model's behavior locally; an explanation that satisfies a stakeholder is not the same as an explanation that faithfully describes the model's mechanism. Post-hoc methods can be wrong.",
+        "They only work on linear models.",
+        "They are illegal under GDPR."
+      ],
+      "correct_index": 1,
+      "explanation": "Post-hoc explanations approximate, not reveal. Faithful and satisfying are different properties; both matter and they can come apart.",
+      "misconception_id": "post_hoc_is_truth"
+    },
+    {
+      "id": "explain_high_stakes_choice",
+      "type": "multiple_choice",
+      "concept_id": "interpretability",
+      "stem": "Cynthia Rudin's central argument about high-stakes decisions is best summarized as:",
+      "options": [
+        "Always use the largest model possible.",
+        "Prefer inherently interpretable models for high-stakes decisions when their accuracy is competitive; many published comparisons overstate the accuracy gap and ignore the cost of unauditable explanations.",
+        "Black-box models are always more accurate.",
+        "Interpretability does not matter outside research."
+      ],
+      "correct_index": 1,
+      "explanation": "Rudin (Nature Machine Intelligence, 2019) argues for interpretable-first design in high-stakes settings, against the assumption that accuracy requires opacity.",
+      "misconception_id": "blackbox_always_more_accurate"
+    }
+  ]
+}

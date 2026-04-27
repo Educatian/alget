@@ -1,0 +1,90 @@
+## Why "Who Is Responsible?" Is Hard for AI Systems
+
+Traditional liability law assumes a chain of agency that an investigator can walk: the engineer who wrote the code, the manager who approved it, the operator who deployed it. AI systems disrupt that chain in three ways. The system **learns** from data the engineer did not write. The system **generalizes** to inputs no one specified. The system **acts** in environments where the operator did not anticipate every state. When such a system causes harm, the liability question fragments — and the fragmentation is often exploited.
+
+This module covers the **responsibility-gap problem**, the four candidate locations of accountability (developer, deployer, operator, user), the legal frameworks that try to close the gap (EU AI Act, FTC enforcement, product-liability doctrine), and the engineering practices that make accountability tractable rather than illusory.
+
+---
+
+## The Responsibility Gap
+
+Andreas Matthias (2004) named the *responsibility gap*: when an autonomous system causes harm, traditional concepts of responsibility (intent, foresight, control) do not cleanly attach to any single human. The engineer cannot foresee all model behaviors. The deployer cannot inspect all weights. The user cannot understand the decision. Each party has plausible deniability, and the harm has no responsible party — which is morally untenable.
+
+The gap is not closed by saying "the AI is responsible." Machines are not moral agents under any major ethical framework. The gap is closed by **distributing responsibility across the human chain so that no link can hide behind another link's opacity**.
+
+---
+
+## Four Candidate Locations of Accountability
+
+For any AI deployment, accountability typically distributes across four roles:
+
+**The developer / provider** builds the model. They are responsible for the training data choices, the architecture, the documented limitations, and the test coverage that supports safe deployment. The EU AI Act calls this party the "provider" and assigns most documentation and conformity-assessment obligations here.
+
+**The deployer** integrates the model into a product or service. They are responsible for the deployment context (which decisions the model makes, which thresholds, which fallbacks), monitoring, and downstream effects. The EU AI Act assigns oversight duties here.
+
+**The operator** runs the deployed system day to day. They are responsible for following documented procedures, escalating anomalies, and not bypassing safety controls.
+
+**The user / decision-maker** acts on the system's output. When a human-in-the-loop is part of the design, the user is responsible for the final decision, not for the model's internal mechanism. But "human-in-the-loop" can be a fig leaf if the user has no real ability to override.
+
+A defensible accountability structure names which party owns which class of failure, in advance, in writing.
+
+---
+
+## When Human-in-the-Loop Becomes a Fig Leaf
+
+A common pattern: a high-stakes AI system is deployed with a human reviewer formally responsible for the final decision. The reviewer sees thousands of cases per week, has 30 seconds per case, and overrides the model 2% of the time. Under any reasonable definition the human is **rubber-stamping**, but the legal documentation says "human-in-the-loop."
+
+Marya Schraut and others have argued that for human oversight to be meaningful, the human must have:
+
+- **Capacity** to understand the recommendation (interpretable inputs, training).
+- **Time** sufficient to deliberate at the stakes of the decision.
+- **Authority** to override without penalty.
+- **Information** beyond the recommendation itself (counterfactuals, similar cases, confidence).
+
+When any of these is absent, the human-in-the-loop is structurally unable to discharge accountability, and the design is effectively automated. The EU AI Act's Article 14 (human oversight) operationalizes some of these requirements.
+
+<concept-diagram type="accountability-distribution"></concept-diagram>
+
+---
+
+## Product-Liability Doctrine and AI
+
+Three classical doctrines apply, with strain.
+
+**Strict product liability** holds the manufacturer liable for defects in a product even without negligence. The strain: is a model "defective" because it produced a wrong output, or only because the development process was negligent? Courts are still working this out.
+
+**Negligence** requires a breach of the standard of care expected of a reasonable practitioner. The strain: there is no settled professional standard for AI engineering yet, so what counts as "reasonable" is contested.
+
+**Failure to warn** holds manufacturers liable for not disclosing known risks. AI providers increasingly publish *model cards* (Mitchell et al., 2019) and *datasheets* (Gebru et al., 2018) partly to discharge this duty.
+
+The EU AI Act's high-risk category, the FTC's enforcement actions on biased systems, and class-action litigation around recommender harms are converging on a regime where **documented risk awareness, transparent limitations, and traceable decisions** are the minimum standard for defensibility.
+
+---
+
+## Engineering Practices That Make Accountability Real
+
+Five practices distinguish accountable AI systems from systems that merely claim accountability.
+
+**Audit trails.** Every consequential decision is logged with the model version, the input, the score, the threshold, and the human override (if any). The trail must survive turnover and lawsuits.
+
+**Model cards and datasheets.** Each model ships with documented intended use, known limitations, training-data summaries, and performance disaggregated by relevant subgroups. Mitchell et al. (2019) and Gebru et al. (2018) define the canonical formats.
+
+**Versioning.** Each deployed model has a stable identifier. When a decision is questioned a year later, the team can reproduce the exact behavior. Without versioning, accountability is theoretical.
+
+**Incident response.** A documented procedure for when the system fails, including who is notified, who has authority to roll back, and what compensations are owed to affected users.
+
+**Whistleblower channels.** Engineers and researchers who detect problems must have a path that does not end in retaliation. The Susan Fowler / Frances Haugen / Timnit Gebru cases all illustrate what happens when this channel is broken.
+
+These practices are not optional in regulated jurisdictions and increasingly not optional in unregulated ones, because the institutional cost of unaccountable failure is rising.
+
+<dynamic-scenario topic="AI Accountability" context="An autonomous-driving system causes a fatal collision. The investigation finds the engineer warned about an edge case six months earlier but the deployer shipped without addressing it; the operator was supervising but had no authority to override; the user was relying on the documentation. Distribute accountability across the four roles and identify which engineering practices would have surfaced the failure earlier."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="A high-volume AI hiring screen is deployed with a human reviewer who sees 1000 applications per week, has 20 seconds per case, and overrides the model 1% of the time. The vendor says 'a human is in the loop.' What is the most defensible critique?"
+  options='[{"text":"The system is fully accountable because a human is involved.","isCorrect":false},{"text":"Human oversight requires capacity, time, authority, and information sufficient for the stakes. With 20 seconds per case and a 1% override rate, the reviewer cannot meaningfully discharge accountability — the design is effectively automated and accountability is illusory.","isCorrect":true},{"text":"Override rate is irrelevant to accountability.","isCorrect":false}]'
+  explanation="Correct. EU AI Act Art. 14 and the human-oversight literature agree: human-in-the-loop is meaningful only when the human has real capacity to deliberate and override. Insufficient time and low override rates indicate rubber-stamping, not oversight."
+/>

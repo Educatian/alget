@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "curvilinear_constant_speed_circle",
+      "type": "multiple_choice",
+      "concept_id": "centripetal_acceleration",
+      "stem": "A particle moves at constant speed v = 20 m/s along a circular path of radius ρ = 50 m. What is its acceleration?",
+      "options": [
+        "Zero, because speed is constant.",
+        "a = v²/ρ = 400/50 = 8 m/s² directed toward the center of curvature. Speed constant ⇒ a_t = 0; direction changing on a curve ⇒ a_n ≠ 0.",
+        "a = v/ρ = 0.4 m/s² in the tangential direction.",
+        "a = vρ = 1000 m/s²."
+      ],
+      "correct_index": 1,
+      "explanation": "Constant speed means tangential acceleration is zero. Normal (centripetal) acceleration is v²/ρ and always points to the center of curvature.",
+      "misconception_id": "constant_speed_means_zero_acceleration"
+    },
+    {
+      "id": "curvilinear_coord_choice",
+      "type": "multiple_choice",
+      "concept_id": "curvilinear_motion",
+      "stem": "When are n-t coordinates the right choice over polar?",
+      "options": [
+        "Always; n-t works in every case.",
+        "When the path is known and the question is about position along the path. For motion measured by distance and angle from a fixed origin, polar is usually simpler.",
+        "Only on circular paths.",
+        "Only in 3D."
+      ],
+      "correct_index": 1,
+      "explanation": "Match the coordinate system to the geometry. n-t for path-defined motion; polar for origin-anchored motion.",
+      "misconception_id": "any_coords_always_work"
+    },
+    {
+      "id": "curvilinear_polar_cross_terms",
+      "type": "multiple_choice",
+      "concept_id": "polar_coordinates",
+      "stem": "In polar coordinates, why does the radial acceleration include a -rθ̇² term even when r̈ = 0?",
+      "options": [
+        "It does not; if r̈ = 0 the radial acceleration is zero.",
+        "Because the unit vectors û_r and û_θ rotate as the particle moves; differentiating the rotating unit vectors generates additional terms. -rθ̇² is the centripetal-like contribution from this rotation.",
+        "Because Cartesian coordinates are wrong.",
+        "Because the particle has mass."
+      ],
+      "correct_index": 1,
+      "explanation": "Rotating basis vectors are the source of polar-coordinate cross terms. They are not optional.",
+      "misconception_id": "missing_polar_cross_terms"
+    },
+    {
+      "id": "curvilinear_normal_direction",
+      "type": "multiple_choice",
+      "concept_id": "normal_tangential_coordinates",
+      "stem": "On a curved path, in which direction does the normal unit vector û_n point?",
+      "options": [
+        "Always upward.",
+        "Toward the center of curvature of the path (always toward the inside of the turn). This is the same direction the centripetal acceleration acts.",
+        "Tangent to the path.",
+        "Away from the center of curvature."
+      ],
+      "correct_index": 1,
+      "explanation": "û_n points toward the center of curvature. On a circular path, this is radially inward. Mistakenly pointing û_n outward flips the sign of the centripetal force equation.",
+      "misconception_id": "normal_points_outward"
+    }
+  ]
+}

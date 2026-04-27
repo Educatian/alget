@@ -1,0 +1,37 @@
+{
+  "section_id": "dynamics_0104",
+  "misconceptions": [
+    {
+      "id": "constant_speed_means_zero_acceleration",
+      "pattern": "speed_collapses_velocity",
+      "description": "Believing that constant speed implies zero acceleration on a curved path",
+      "trigger": "learner reports zero acceleration for circular motion at constant speed",
+      "feedback": "Speed is the magnitude of velocity. Direction is also part of velocity. Constant speed on a curve means a_t = 0 but a_n = v²/ρ ≠ 0.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "any_coords_always_work",
+      "pattern": "coordinate_indifference",
+      "description": "Believing the choice of coordinate system does not matter for problem tractability",
+      "trigger": "learner uses Cartesian for satellite tracking or polar for a bead on a wire",
+      "feedback": "Pick coordinates to match the geometry. n-t for path-defined motion; polar for origin-anchored motion. Wrong choice multiplies algebraic effort and error rate.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "missing_polar_cross_terms",
+      "pattern": "rotating_basis_blindness",
+      "description": "Computing polar acceleration as just (r̈, θ̈) without the rotating-basis cross terms",
+      "trigger": "learner writes a_r = r̈ and a_θ = θ̈ in a polar problem",
+      "feedback": "Polar basis vectors rotate. The full decomposition is a_r = r̈ - rθ̇² and a_θ = rθ̈ + 2ṙθ̇. The cross terms are not optional.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "normal_points_outward",
+      "pattern": "direction_inversion",
+      "description": "Drawing the normal unit vector û_n away from the center of curvature instead of toward it",
+      "trigger": "learner sets û_n outward on a curved path",
+      "feedback": "û_n always points toward the center of curvature (inside of the turn). Outward direction flips the sign of the centripetal force equation.",
+      "rail_action": "ask"
+    }
+  ]
+}

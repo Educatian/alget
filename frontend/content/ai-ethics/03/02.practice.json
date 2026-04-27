@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "accountability_responsibility_gap",
+      "type": "multiple_choice",
+      "concept_id": "responsibility_gap",
+      "stem": "How is the AI 'responsibility gap' (Matthias 2004) most defensibly closed?",
+      "options": [
+        "By attributing moral responsibility to the AI system itself.",
+        "By distributing responsibility across the human chain (developer, deployer, operator, user) so no link can hide behind another link's opacity, with role-specific failure ownership documented in advance.",
+        "By eliminating all autonomous systems.",
+        "By assigning all responsibility to the user."
+      ],
+      "correct_index": 1,
+      "explanation": "Machines are not moral agents under any major framework. The gap is closed by structured human accountability, not by anthropomorphizing the system.",
+      "misconception_id": "ai_is_morally_responsible"
+    },
+    {
+      "id": "accountability_hitl_test",
+      "type": "multiple_choice",
+      "concept_id": "human_in_the_loop",
+      "stem": "Under the capacity-time-authority-information test, when is human-in-the-loop oversight meaningful?",
+      "options": [
+        "Whenever a human is formally part of the workflow.",
+        "When the human reviewer has capacity to understand, time sufficient for the stakes, authority to override without penalty, and information beyond the bare recommendation.",
+        "When the override rate is exactly 5%.",
+        "Only when the model is interpretable."
+      ],
+      "correct_index": 1,
+      "explanation": "EU AI Act Art. 14 and the oversight literature agree on these four conditions. Without them, the human-in-the-loop is structural fig leaf.",
+      "misconception_id": "any_human_satisfies_oversight"
+    },
+    {
+      "id": "accountability_engineering_real",
+      "type": "multiple_choice",
+      "concept_id": "audit_trails",
+      "stem": "Which engineering practice is most directly tied to making accountability survive turnover and lawsuits?",
+      "options": [
+        "Faster model retraining.",
+        "Audit trails that log every consequential decision with model version, input, score, threshold, and human override, retained long enough to be reviewable a year later.",
+        "Larger models.",
+        "More frequent A/B tests."
+      ],
+      "correct_index": 1,
+      "explanation": "Audit trails are the artifact accountability lives in. Without them, post-hoc accountability claims are unverifiable.",
+      "misconception_id": "logs_are_optional"
+    },
+    {
+      "id": "accountability_documentation",
+      "type": "multiple_choice",
+      "concept_id": "model_cards",
+      "stem": "What is the purpose of model cards (Mitchell et al. 2019) and datasheets for datasets (Gebru et al. 2018) in an accountability framework?",
+      "options": [
+        "Marketing material for the model.",
+        "Documented disclosure of intended use, known limitations, training-data summaries, and performance disaggregated by subgroup — discharging the failure-to-warn duty and supporting downstream deployer review.",
+        "Replacement for testing.",
+        "Optional academic exercises."
+      ],
+      "correct_index": 1,
+      "explanation": "Model cards and datasheets operationalize the failure-to-warn doctrine and let deployers make informed decisions about fit-for-purpose.",
+      "misconception_id": "model_cards_are_marketing"
+    }
+  ]
+}

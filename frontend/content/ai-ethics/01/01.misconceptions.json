@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0101",
+  "misconceptions": [
+    {
+      "id": "ai_ethics_is_just_general_ethics",
+      "pattern": "no_distinct_subject",
+      "description": "Treating AI ethics as a routine extension of generic engineering ethics with no distinctive features",
+      "trigger": "learner argues 'ethics is ethics, AI doesn't change anything'",
+      "feedback": "Scale, encoded technical decisions, invisible stakeholders, and generative/autonomous behavior together change the structure of the ethical question. AI ethics is its own subject for substantive reasons, not branding ones.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "user_only_stakeholder_frame",
+      "pattern": "missing_stakeholders",
+      "description": "Considering only the immediate user when reasoning about AI system impacts",
+      "trigger": "learner asks 'is the user happy?' as the sole ethics question",
+      "feedback": "AI systems typically affect at least four stakeholder groups: decision-maker, decision subject, data subject, bystanders. User-only framing misses three of the four.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "ethics_is_a_review_phase",
+      "pattern": "phase_separation",
+      "description": "Treating ethics as a separate review step applied after the technical work is done",
+      "trigger": "learner says 'we will do the ethics review at the end'",
+      "feedback": "Target variables, training distributions, and deployment thresholds are themselves ethical choices made during technical work. End-of-project review cannot undo decisions encoded in weights.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "legal_implies_ethical",
+      "pattern": "law_collapses_ethics",
+      "description": "Equating compliance with ethics — assuming if a system is legal it is also ethical",
+      "trigger": "learner says 'we are GDPR compliant, so we are ethical'",
+      "feedback": "Compliance is necessary but not sufficient. Many ethical questions about fairness, power, autonomy, and long-term effects are not yet in any law and still require engineering judgment.",
+      "rail_action": "ask"
+    }
+  ]
+}

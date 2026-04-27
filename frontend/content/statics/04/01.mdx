@@ -1,0 +1,107 @@
+## From External Equilibrium to What Happens Inside
+
+Up to this chapter, statics has asked the same question: are the external forces on a body in equilibrium? Trusses extended that question to forces in slender two-force members. Real engineering structures — beams, frames, shafts — carry distributed loading, point loads, and moments along their length, and the question that matters becomes different. **At any cross section, what internal forces hold the two halves of the body together?**
+
+That is the subject of internal-force analysis. Hibbeler dedicates a full chapter (Ch. 7), Beer and Johnston dedicate Ch. 7, and Meriam dedicates Ch. 5 to this topic, because every later mechanics course — Mechanics of Materials, Structural Analysis, Machine Design — depends on the ability to draw shear and moment diagrams from a beam's loading.
+
+This module covers the three skills that make this analysis defensible: **the section-and-replace logic, sign conventions, and shear/moment diagrams as the most useful summary of an entire beam**.
+
+---
+
+## The Section-and-Replace Logic
+
+To find internal forces at a cross section, you imaginarily cut the body at that section, isolate one side as a free body, and replace the action of the cut-away portion with three quantities: a **normal (axial) force N**, a **shear force V**, and a **bending moment M**. (In 3D you also have torsion T and two transverse shears, but planar analysis covers most undergraduate problems.)
+
+Step 1: solve the global equilibrium of the entire beam to find the support reactions.
+
+Step 2: choose any cross section x. Cut the beam at x.
+
+Step 3: draw the free-body diagram of one side (typically the left side, by convention). Include the support reactions, all distributed and point loads on that side, and the unknown internal triplet (N, V, M) at the cut.
+
+Step 4: apply equilibrium equations to the chosen segment:
+
+$$\sum F_x = 0, \quad \sum F_y = 0, \quad \sum M_{\text{cut}} = 0$$
+
+This yields N(x), V(x), M(x) at that section. Repeat for any other section, or write the expressions as functions of x within each loading region.
+
+The "section both sides should give the same answer" check is real — choosing the right side instead of the left should produce the same N, V, M with the corresponding sign convention.
+
+---
+
+## Sign Conventions That Match the Diagrams
+
+Inconsistent sign conventions are the leading cause of student errors here. The standard textbook convention treats internal forces and moments as positive when they correspond to:
+
+- **Positive shear V**: the left portion pushes upward on the right portion (or equivalently, the right portion pushes downward on the left portion). Visually, positive V tends to rotate a small segment clockwise.
+- **Positive bending moment M**: produces concave-up bending (the top fiber compresses, the bottom fiber elongates). Visually, positive M makes the segment "smile" (sad face = negative M).
+- **Positive normal force N**: tension in the member.
+
+Under this convention the internal forces drawn on a left-side free body and on a right-side free body are mirror-image arrows that tell the same physical story. Mixing conventions partway through a problem is a guaranteed sign error.
+
+---
+
+## Building Shear and Moment Diagrams
+
+Drawing V(x) and M(x) over the full beam length gives engineers two of the most useful summaries in mechanics. Three relations make them easy to construct.
+
+**Relation 1 (load to shear):**
+
+$$\frac{dV}{dx} = -w(x)$$
+
+where w(x) is the distributed load (positive downward). The slope of the shear diagram equals the negative of the local distributed load.
+
+**Relation 2 (shear to moment):**
+
+$$\frac{dM}{dx} = V(x)$$
+
+The slope of the moment diagram equals the shear at that point. Where V = 0, M is at a local extremum — exactly where the maximum bending stress concentrates.
+
+**Relation 3 (jumps at point loads and couples):**
+
+A concentrated transverse force P creates a step in V of magnitude $-P$ (downward force ⇒ shear drops). A concentrated couple $M_0$ creates a step in M of magnitude $\pm M_0$ depending on its sense.
+
+These three relations let you sketch shear and moment diagrams without writing piecewise equations every time. You can also work backwards: integrate w to get V (with the support reaction as the integration constant), then integrate V to get M.
+
+<concept-diagram type="shear-moment-diagram"></concept-diagram>
+
+---
+
+## Worked Example: Simply Supported Beam with a Point Load
+
+Consider a simply supported beam of length L with a point load P at the midpoint.
+
+Step 1: Reactions. By symmetry, $A_y = B_y = P/2$.
+
+Step 2: Section in 0 < x < L/2. The left side has only $A_y$ and the unknowns at the cut. Equilibrium:
+
+$$V(x) = A_y = P/2, \quad M(x) = A_y \cdot x = (P/2)x$$
+
+Step 3: Section in L/2 < x < L. The left side now also includes the point load P. Equilibrium:
+
+$$V(x) = A_y - P = -P/2, \quad M(x) = A_y x - P(x - L/2) = (P/2)(L - x)$$
+
+Step 4: Diagrams. V is +P/2 then drops by P at midspan to -P/2. M rises linearly from 0 to PL/4 at midspan, then falls linearly back to 0. Maximum moment $M_{\max} = PL/4$ occurs at the load. That maximum is what a beam designer needs to size the cross section.
+
+This computation has been done a million times. What matters is that **the workflow is mechanical** once you trust the section-and-replace logic and the load-shear-moment slope relations.
+
+---
+
+## Common Errors and Their Diagnoses
+
+- **Forgetting to solve reactions first.** Sectioning a beam without first finding the supports leads to under-determined free-body equations.
+- **Mixing left-side and right-side conventions.** Pick a side and stay with it. The internal arrows on the left FBD point opposite to the same arrows on the right FBD by Newton's third law.
+- **Treating positive shear as "force on the cut" instead of using a consistent sign rule.** The convention above (positive V rotates segment clockwise) keeps signs consistent with derived shear-moment diagram slope rules.
+- **Missing the step in V at a point load.** A concentrated transverse force always produces a discontinuity in V. The diagram has a vertical jump there.
+- **Looking for $M_{\max}$ everywhere instead of where V = 0.** $dM/dx = V$, so M is extremized where V crosses zero (or at a discontinuity from a point couple).
+
+<dynamic-scenario topic="Internal Forces and Beam Diagrams" context="A simply supported beam carries a uniform distributed load w over its full length L. The student must compute the reactions, write V(x) and M(x), and locate the position and value of M_max."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="On a simply supported beam, where does the maximum bending moment usually occur for a single mid-span point load P?"
+  options='[{"text":"At the supports, where V is maximum.","isCorrect":false},{"text":"At the midspan, where the shear V crosses zero (M_max = PL/4).","isCorrect":true},{"text":"At a quarter span, regardless of load placement.","isCorrect":false}]'
+  explanation="Correct. dM/dx = V, so M is extremized where V crosses zero. For a single mid-span point load on a simply supported beam, V crosses zero at midspan and M_max = PL/4 occurs there."
+/>

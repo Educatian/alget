@@ -1,0 +1,117 @@
+## Why Three Frameworks Now Dominate AI Governance
+
+In 2026, three governance frameworks are the references AI practitioners cannot avoid: the **NIST AI Risk Management Framework** (US, voluntary, 2023), the **EU AI Act** (binding regulation, in force 2024), and the **UNESCO Recommendation on the Ethics of AI** (international standard, 2021, endorsed by all 194 member states). They differ in scope, enforceability, and tone, but together they define the operational floor that any production AI system has to meet.
+
+This module covers each framework's core structure, where they overlap, where they disagree, and how a practitioner uses them in combination. **ISO/IEC 42001** (AI management systems standard) is briefly noted as the implementation bridge.
+
+---
+
+## NIST AI Risk Management Framework
+
+NIST released the AI RMF in January 2023 as a **voluntary, flexible** framework intended to adapt across industries. It does not impose penalties; it provides guidance and a shared vocabulary.
+
+The framework is built on four core functions:
+
+**Govern.** Establish a culture of risk management. Roles, responsibilities, accountability, and oversight processes. This is the institutional foundation.
+
+**Map.** Categorize the AI system's context, intended purpose, stakeholders, and the risks specific to deployment. Map is where engineering and ethics intersect: you cannot manage risks you have not articulated.
+
+**Measure.** Quantify and qualify the identified risks. Performance metrics, fairness metrics, robustness checks, drift indicators. The act of measuring forces specificity.
+
+**Manage.** Treat the measured risks. Mitigation, transfer, acceptance, or avoidance. Document the choices.
+
+The companion **AI RMF Playbook** offers concrete actions for each function. NIST also released a **Generative AI Profile** in 2024 that adapts the framework to LLMs and diffusion models.
+
+The strength of NIST is **internalization**: it shapes how organizations think and structure their AI work. The weakness is **enforceability**: voluntary adoption produces uneven uptake, and organizations can claim alignment without auditable evidence.
+
+---
+
+## The EU AI Act
+
+The EU AI Act is the world's first comprehensive AI law. It entered into force August 2024 and is being phased in through 2027 by category. Unlike NIST, it is binding and carries fines up to 7% of global turnover.
+
+The Act's structure is **risk-tiered**:
+
+**Prohibited AI** (Article 5). Systems that pose unacceptable risk: social scoring, real-time biometric surveillance in public (with narrow law-enforcement exceptions), emotion recognition in workplaces and schools (with narrow exceptions), exploitative manipulation of vulnerable groups.
+
+**High-risk AI** (Annex III). Systems used in employment, education, critical infrastructure, law enforcement, migration, and others. Subject to strict obligations: risk management system, data governance, technical documentation, transparency, human oversight, accuracy/robustness, post-market monitoring, conformity assessment.
+
+**General-purpose AI (GPAI) models** (Articles 51-55). Foundation models with specific obligations on documentation, copyright compliance, and (for systemic-risk models) safety testing and incident reporting.
+
+**Limited-risk AI**. Transparency obligations: disclosure when content is AI-generated, when interacting with a chatbot, when deepfakes are used.
+
+**Minimal-risk AI**. Most consumer applications. Voluntary codes of conduct.
+
+The Act is enforced by national authorities and the new **AI Office**. Penalties range from €7.5M (or 1% turnover) for incorrect information up to €35M (or 7%) for prohibited-AI violations.
+
+For practitioners outside the EU, the Act has extraterritorial reach: any AI system whose output is used in the EU is in scope. This is the *Brussels effect* observers have already documented for GDPR.
+
+<concept-diagram type="ai-act-risk-tiers"></concept-diagram>
+
+---
+
+## UNESCO Recommendation on the Ethics of AI
+
+UNESCO adopted the Recommendation in November 2021, endorsed by all 194 member states. It is non-binding but normatively powerful. Its centerpiece is a set of principles broader than the technical risk tiers of the EU Act and the operational functions of the NIST RMF.
+
+Core principles include:
+
+- Proportionality and do-no-harm
+- Safety and security
+- Fairness and non-discrimination
+- Sustainability (including environmental cost of AI)
+- Right to privacy
+- Human oversight and determination
+- Transparency and explainability
+- Responsibility and accountability
+- Awareness and literacy
+- Multi-stakeholder governance
+
+UNESCO's distinctive contributions are **environmental sustainability**, **gender equality**, and the **emphasis on AI literacy as a public good**. It also explicitly addresses Global South concerns about technology transfer and capacity building, which the NIST and EU frameworks largely do not.
+
+The Recommendation is not enforceable, but member states agreed to develop national implementations. The Recommendation also frames a **Readiness Assessment Methodology** that countries use to evaluate their AI ecosystem.
+
+---
+
+## ISO/IEC 42001: The Management System Bridge
+
+ISO/IEC 42001 (2023) is the first international standard for an **AI management system**. It is to AI what ISO 27001 is to information security: a certifiable, audited management system that organizations can implement to demonstrate alignment with both NIST RMF and EU AI Act expectations.
+
+For an enterprise that needs to operationalize compliance across jurisdictions, ISO 42001 is becoming the practical bridge. It does not replace either NIST or the EU Act; it provides a single management system that satisfies both.
+
+---
+
+## Where the Frameworks Overlap and Disagree
+
+**Overlap**. All three converge on transparency, accountability, human oversight, fairness, and risk management. An AI system that satisfies any one substantially is unlikely to badly violate another.
+
+**Disagreement on enforceability**. EU AI Act is binding with fines; NIST is voluntary; UNESCO is normative. Multinational deployments need to pick the strictest applicable bar.
+
+**Disagreement on scope**. NIST is risk-management focused. EU Act adds market-access rules. UNESCO adds environmental and equity dimensions. A team optimizing only for EU Act compliance can miss UNESCO's sustainability principle.
+
+**Disagreement on subject**. EU Act regulates the **system in deployment**. NIST RMF guides the **organization producing the system**. UNESCO frames the **society that hosts the system**. All three are needed.
+
+---
+
+## A Practitioner Workflow
+
+When designing an AI deployment that will be reviewed by any of these frameworks:
+
+1. **Categorize under EU AI Act** (prohibited / high-risk / limited-risk / minimal). This determines the legal floor.
+2. **Apply NIST AI RMF Govern-Map-Measure-Manage** as the internal management approach. This satisfies most EU Act high-risk obligations and produces auditable artifacts.
+3. **Cross-check against UNESCO principles**, especially environmental cost and equitable access. This catches ethical gaps the technical frameworks miss.
+4. **If the organization needs certifiable compliance, adopt ISO 42001** as the management system.
+
+The combination is overdetermined for most teams. Pick the framework that aligns with your jurisdiction and stakeholder expectations as the primary, and use the others as cross-checks.
+
+<dynamic-scenario topic="AI Governance Frameworks" context="A US-based AI startup wants to sell its workplace performance-prediction system into the EU market. Walk the practitioner workflow: which EU AI Act tier does it fall under, what NIST RMF actions are required, what UNESCO principles are most likely to surface ethical concerns the technical frameworks miss, and where does ISO 42001 fit?"></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="An AI system used to evaluate students for educational placement is deployed by a US company with EU users. Under the EU AI Act, what is the most likely classification and what does that mean operationally?"
+  options='[{"text":"Minimal-risk; no obligations.","isCorrect":false},{"text":"High-risk under Annex III (educational evaluation), triggering risk management, data governance, technical documentation, transparency, human oversight, accuracy/robustness, post-market monitoring, and conformity assessment obligations.","isCorrect":true},{"text":"Prohibited; cannot be deployed at all.","isCorrect":false}]'
+  explanation="Correct. Educational evaluation systems sit in Annex III high-risk. The Brussels effect means the obligations apply even to a US company whose output is used in the EU."
+/>

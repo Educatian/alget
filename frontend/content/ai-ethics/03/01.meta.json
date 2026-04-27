@@ -1,0 +1,21 @@
+{
+    "chapter_title": "Transparency and Accountability",
+    "title": "Module 1: Black Boxes, Interpretability, and the Right to Explanation",
+    "description": "Distinguish interpretability from explainability, evaluate post-hoc explanation methods, and meet the legal-and-ethical floor for meaningful explanations under GDPR, EU AI Act, and FCRA.",
+    "learning_objectives": [
+        "Distinguish interpretability (property of the model) from explainability (property of the explanation surface).",
+        "Compare feature attribution, counterfactual, and example-based explanation methods and their limits.",
+        "State three properties of a meaningful explanation (faithful, actionable, contextually appropriate) and apply them to a real case.",
+        "Identify the relevant regulatory framework (GDPR Art. 22, EU AI Act, FCRA) for a given deployment context."
+    ],
+    "concept_ids": [
+        "interpretability",
+        "explainability",
+        "post_hoc_explanation",
+        "counterfactual_explanation",
+        "right_to_explanation",
+        "gdpr_article_22"
+    ],
+    "estimated_time_minutes": 13,
+    "order": 1
+}

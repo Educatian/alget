@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0302",
+  "misconceptions": [
+    {
+      "id": "ai_is_morally_responsible",
+      "pattern": "anthropomorphic_responsibility",
+      "description": "Attributing moral responsibility to the AI system itself rather than to the humans whose decisions deployed it",
+      "trigger": "learner says 'the AI made the wrong choice, the company is not at fault'",
+      "feedback": "Machines are not moral agents under any major ethical framework. Responsibility distributes across developer, deployer, operator, and user.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "any_human_satisfies_oversight",
+      "pattern": "fig_leaf_oversight",
+      "description": "Treating any nominal human reviewer as satisfying the human-oversight requirement",
+      "trigger": "learner cites 'a human is in the loop' without testing capacity, time, authority, information",
+      "feedback": "Meaningful oversight requires all four (capacity, time, authority, information) at the stakes of the decision. Structural rubber-stamping is not oversight.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "logs_are_optional",
+      "pattern": "deferred_accountability",
+      "description": "Treating audit trails as optional infrastructure that can be added later",
+      "trigger": "learner ships a high-stakes system without per-decision logging",
+      "feedback": "Without audit trails, post-hoc accountability is unverifiable. Logs must be designed in from the start and retained at the relevant timescale.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "model_cards_are_marketing",
+      "pattern": "documentation_as_optional",
+      "description": "Treating model cards and datasheets as marketing rather than as accountability artifacts",
+      "trigger": "learner produces a polished feature list under the heading 'model card'",
+      "feedback": "Model cards (Mitchell et al. 2019) document intended use, known limitations, and disaggregated performance. They discharge the failure-to-warn duty and support deployer fit-for-purpose decisions.",
+      "rail_action": "ask"
+    }
+  ]
+}

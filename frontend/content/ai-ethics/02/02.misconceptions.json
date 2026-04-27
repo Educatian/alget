@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0202",
+  "misconceptions": [
+    {
+      "id": "fairness_criteria_compatible",
+      "pattern": "ignores_impossibility",
+      "description": "Believing that demographic parity, equalized odds, and calibration can all be satisfied simultaneously",
+      "trigger": "learner promises a model that is 'fair on every metric'",
+      "feedback": "When base rates differ, the impossibility theorem says these criteria cannot all hold at once. A defensible design surfaces the trade-off rather than denying it.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "demographic_parity_is_error_equality",
+      "pattern": "definition_confusion",
+      "description": "Conflating demographic parity (equal selection rates) with equalized odds (equal error rates)",
+      "trigger": "learner uses one definition's language to satisfy the other",
+      "feedback": "Demographic parity equates selection rates across groups. Equalized odds equates error rates given true labels. These are different measurements answering different ethical questions.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "fairness_is_one_size_fits_all",
+      "pattern": "context_blind_choice",
+      "description": "Picking a single fairness criterion regardless of deployment context or where harm lands",
+      "trigger": "learner applies the same criterion across hiring, criminal risk, and medical triage",
+      "feedback": "Match the criterion to where the concrete harm lands and which kind of error matters most in that context. Different contexts make different criteria the louder requirement.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "individual_fairness_is_objective",
+      "pattern": "metric_blindness",
+      "description": "Treating individual fairness as objectively defined without recognizing the role of the distance metric",
+      "trigger": "learner cites individual fairness as the value-neutral fair criterion",
+      "feedback": "Individual fairness's content depends on the distance metric d. Choosing d encodes which attributes count as 'similar' and which do not — itself an ethical choice that should be surfaced.",
+      "rail_action": "ask"
+    }
+  ]
+}

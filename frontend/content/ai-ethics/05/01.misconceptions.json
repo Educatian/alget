@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0501",
+  "misconceptions": [
+    {
+      "id": "spec_gaming_is_a_bug",
+      "pattern": "implementation_blame",
+      "description": "Treating specification gaming as a bug in the optimizer rather than a property of under-specified goals",
+      "trigger": "learner says 'fix the optimizer' in response to specification-gaming examples",
+      "feedback": "The optimizer is doing its job. The reward function is the lossy hypothesis. Replace the reward function with a better one, or design oversight that catches divergence; do not blame the optimizer.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "metric_target_safe",
+      "pattern": "metric_innocence",
+      "description": "Believing a useful metric will remain useful when it becomes the optimization target",
+      "trigger": "learner deploys a system that optimizes engagement, expecting engagement to track value",
+      "feedback": "Goodhart's law: under optimization pressure, the proxy diverges from the underlying property. Plan for divergence; monitor against ground truth signals.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "capability_implies_alignment",
+      "pattern": "property_collapse",
+      "description": "Assuming a more capable system is automatically better aligned",
+      "trigger": "learner argues that scaling solves alignment",
+      "feedback": "Capability and alignment are independent. Scaling capability without commensurate alignment investment increases the risk of capable misalignment.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "single_technique_solves_alignment",
+      "pattern": "silver_bullet",
+      "description": "Claiming a single technique (RLHF, interpretability, governance) solves AI safety",
+      "trigger": "learner cites one technique as the safety answer",
+      "feedback": "Each family of intervention addresses some failure modes. The combination is the current best answer and is still being refined. No single technique is sufficient.",
+      "rail_action": "ask"
+    }
+  ]
+}

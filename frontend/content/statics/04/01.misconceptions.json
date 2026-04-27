@@ -1,0 +1,37 @@
+{
+  "section_id": "statics_0401",
+  "misconceptions": [
+    {
+      "id": "max_moment_at_supports",
+      "pattern": "extremum_location_error",
+      "description": "Assuming maximum bending moment occurs at the supports because reactions are large there",
+      "trigger": "learner reports M_max at a support of a simply supported beam",
+      "feedback": "M is extremized where V crosses zero (dM/dx = V). For a simply supported beam, M is zero at pin/roller supports and largest somewhere in the span.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "load_equals_shear",
+      "pattern": "rate_vs_value_confusion",
+      "description": "Treating distributed load w(x) as if it equals shear V(x) rather than its slope",
+      "trigger": "learner sets V(x) = w(x) when computing reactions or shear",
+      "feedback": "The relationship is dV/dx = -w, not V = w. Distributed load w is the rate at which shear changes along the beam, not the shear itself.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "left_right_asymmetric",
+      "pattern": "convention_inconsistency",
+      "description": "Believing left-side and right-side analyses can yield different internal forces at the same cut",
+      "trigger": "learner gets different M values from left and right and believes both are correct",
+      "feedback": "Newton's third law guarantees equal-and-opposite force pairs on the two cut faces. With consistent sign convention applied to both, you get the same N, V, M. Disagreement means a sign-convention error.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "shear_is_continuous_under_point_load",
+      "pattern": "discontinuity_blindspot",
+      "description": "Assuming the shear diagram remains continuous across a point load",
+      "trigger": "learner draws V(x) as a smooth function passing through a point-load location",
+      "feedback": "Point loads cause step discontinuities in V; point couples cause steps in M; only continuous distributed loading gives smooth diagrams.",
+      "rail_action": "ask"
+    }
+  ]
+}

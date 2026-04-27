@@ -56,18 +56,28 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         loadHistory()
     }, [userId, context?.sectionId, historyLoaded])
 
-    // Listen for global open-chat events
+    // Listen for global open-chat events.
+    // Detail shape: { message?: string, autoSend?: boolean (default true) }
+    //   - no message  → just open the widget
+    //   - message + autoSend=false → open and prefill input (user can edit)
+    //   - message + autoSend=true (default) → open and send immediately,
+    //     so the rail launcher feels like one continuous chat thread
+    const handleOpenChatEvent = useEffectEvent((detail) => {
+        const { message, autoSend = true } = detail || {}
+        setIsOpen(true)
+        if (!message) return
+        if (autoSend) {
+            void sendMessageWithText(message)
+        } else {
+            setInputValue(message)
+        }
+    })
+
     useEffect(() => {
-        const handleOpenChat = (e) => {
-            const { message } = e.detail || {};
-            if (message) {
-                setInputValue(message);
-                setIsOpen(true);
-            }
-        };
-        window.addEventListener('open-chat', handleOpenChat);
-        return () => window.removeEventListener('open-chat', handleOpenChat);
-    }, []);
+        const handler = (event) => handleOpenChatEvent(event.detail)
+        window.addEventListener('open-chat', handler)
+        return () => window.removeEventListener('open-chat', handler)
+    }, [])
 
     // Save chat history to Supabase
     const saveHistory = async (newMessages) => {

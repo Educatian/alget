@@ -10,6 +10,8 @@ except ImportError:
     import google.generativeai as legacy_genai
     genai = None
 
+from .config import get as get_config
+
 class QuestionOption(BaseModel):
     id: str = Field(description="Option ID (e.g., A, B, C, D)")
     text: str = Field(description="The text of the option")
@@ -77,6 +79,7 @@ class AssessmentAgent:
         """
 
         try:
+            cfg = get_config("assessment_generate")
             if genai:
                 response = self.client.models.generate_content(
                     model=self.model_id,
@@ -84,7 +87,7 @@ class AssessmentAgent:
                     config=types.GenerateContentConfig(
                         response_mime_type="application/json",
                         response_schema=KnowledgeCheckForm,
-                        temperature=0.7,
+                        temperature=cfg.temperature,
                     ),
                 )
                 return json.loads(response.text)
@@ -94,7 +97,7 @@ class AssessmentAgent:
                     prompt,
                     generation_config=legacy_genai.GenerationConfig(
                         response_mime_type="application/json",
-                        temperature=0.7,
+                        temperature=cfg.temperature,
                     )
                 )
                 return json.loads(response.text)
@@ -127,6 +130,7 @@ class AssessmentAgent:
         """
         
         try:
+            cfg = get_config("assessment_grade")
             if genai:
                 response = self.client.models.generate_content(
                     model=self.model_id,
@@ -134,7 +138,7 @@ class AssessmentAgent:
                     config=types.GenerateContentConfig(
                         response_mime_type="application/json",
                         response_schema=SummaryGradingFeedback,
-                        temperature=0.3,
+                        temperature=cfg.temperature,
                     ),
                 )
                 return json.loads(response.text)
@@ -143,7 +147,7 @@ class AssessmentAgent:
                     prompt,
                     generation_config=legacy_genai.GenerationConfig(
                         response_mime_type="application/json",
-                        temperature=0.3,
+                        temperature=cfg.temperature,
                     )
                 )
                 return json.loads(response.text)

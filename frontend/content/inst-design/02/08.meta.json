@@ -1,0 +1,20 @@
+{
+    "chapter_title": "Online &amp; Distance Learning",
+    "title": "Module 8: Online &amp; Distance Learning Design",
+    "description": "Design defensible online courses using Moore's three types of interaction and the Community of Inquiry model, and choose modes (asynchronous, synchronous, hybrid) deliberately.",
+    "learning_objectives": [
+        "Allocate Moore's three interaction types (learner-content, learner-instructor, learner-learner) intentionally across an online course.",
+        "Apply the Community of Inquiry model (cognitive, social, teaching presence) to diagnose deep-learning gaps.",
+        "Match mode (asynchronous, synchronous, hybrid) to objective rather than treating mode as a default."
+    ],
+    "concept_ids": [
+        "online_learning_design",
+        "moore_three_interactions",
+        "community_of_inquiry",
+        "cognitive_presence",
+        "social_presence",
+        "teaching_presence"
+    ],
+    "estimated_time_minutes": 13,
+    "order": 8
+}

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ALGET — Learner Guide</title>
+<style>
+  :root{
+    --primary-deep:#093848;--primary:#214b59;--secondary:#538b9e;
+    --accent:#9E1B32;--accent-warm:#c78943;--text:#093848;
+    --muted:#5d7783;--line:rgba(15,81,103,0.15);
+    --panel:#f6f4ef;--surface:#ffffff;--bg:#fbfaf6;
+    --ok:#2f7d52;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:ui-serif,Georgia,"Iowan Old Style","Times New Roman",serif;
+    font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  a{color:var(--primary);text-decoration:none;border-bottom:1px solid rgba(33,75,89,0.25)}
+  a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  code,pre{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:0.92em;color:var(--primary-deep)}
+  code{background:var(--panel);padding:0.08em 0.35em;border-radius:4px}
+
+  .layout{display:grid;grid-template-columns:280px 1fr;gap:0;max-width:1240px;margin:0 auto}
+  @media (max-width:980px){.layout{grid-template-columns:1fr}}
+
+  aside.toc{
+    position:sticky;top:0;align-self:start;
+    height:100vh;overflow-y:auto;
+    padding:48px 28px 48px 36px;
+    border-right:1px solid var(--line);
+    font-family:ui-sans-serif,Inter,system-ui,-apple-system,sans-serif;
+    font-size:14px;
+  }
+  @media (max-width:980px){aside.toc{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}}
+  aside.toc .brand{
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-weight:700;font-size:13px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--primary-deep);margin-bottom:8px;
+  }
+  aside.toc .brand .pill{
+    display:inline-block;background:var(--primary-deep);color:#fff;
+    padding:2px 8px;border-radius:999px;font-size:11px;letter-spacing:0.1em;margin-right:6px;
+  }
+  aside.toc h3{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin:24px 0 8px}
+  aside.toc ol{list-style:none;padding:0;margin:0}
+  aside.toc li{margin:0;padding:0}
+  aside.toc li a{
+    display:block;padding:6px 10px;margin:1px -10px;border-radius:6px;
+    color:var(--primary);border:none;line-height:1.4;
+  }
+  aside.toc li a:hover{background:var(--panel);color:var(--primary-deep)}
+  aside.toc li a .num{display:inline-block;color:var(--muted);margin-right:8px;font-variant-numeric:tabular-nums;min-width:1.4em}
+
+  main{padding:64px 56px 96px;max-width:840px}
+  @media (max-width:980px){main{padding:32px 24px 64px}}
+
+  .kicker{
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-size:12px;letter-spacing:0.22em;text-transform:uppercase;
+    color:var(--secondary);margin:0;
+  }
+  .doc-title{
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-size:48px;line-height:1.05;font-weight:700;letter-spacing:-0.01em;
+    color:var(--primary-deep);margin:8px 0 12px;
+  }
+  .lead{font-size:19px;line-height:1.55;color:var(--primary);margin:0 0 8px;font-style:italic}
+  .meta{font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:13px;color:var(--muted);margin:18px 0 0}
+  .meta span+span{margin-left:18px}
+  hr{border:none;border-top:1px solid var(--line);margin:40px 0}
+
+  h1{font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:32px;font-weight:700;letter-spacing:-0.005em;color:var(--primary-deep);margin:48px 0 12px;scroll-margin-top:24px}
+  h2{font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:24px;font-weight:600;color:var(--primary-deep);margin:36px 0 10px;scroll-margin-top:24px}
+  h3{font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:18px;font-weight:600;color:var(--primary);margin:28px 0 8px;scroll-margin-top:24px}
+  p{margin:0 0 14px}
+  ul,ol{padding-left:1.4em;margin:0 0 16px}
+  li{margin:6px 0}
+
+  blockquote{
+    margin:18px 0;padding:14px 18px;
+    background:var(--panel);border-left:3px solid var(--accent-warm);border-radius:0 8px 8px 0;
+    font-style:italic;color:var(--primary);
+  }
+
+  table{
+    width:100%;border-collapse:collapse;margin:18px 0;
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:14px;
+  }
+  th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:var(--panel);color:var(--primary-deep);font-weight:600;font-size:13px;letter-spacing:0.04em}
+
+  figure{
+    margin:28px 0;border:1px solid var(--line);border-radius:14px;
+    background:var(--surface);overflow:hidden;
+    box-shadow:0 1px 0 rgba(15,81,103,0.04),0 8px 24px rgba(15,81,103,0.06);
+  }
+  figcaption{
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-size:13px;color:var(--muted);padding:10px 16px;
+    border-top:1px solid var(--line);background:var(--panel);
+  }
+  figcaption b{color:var(--primary);font-weight:600;letter-spacing:0.04em;text-transform:uppercase;font-size:12px}
+  figure svg,figure img{display:block;width:100%;height:auto}
+
+  .callout{
+    border:1px solid var(--line);border-radius:12px;padding:16px 20px;
+    margin:20px 0;background:var(--surface);
+  }
+  .callout.tip{border-color:rgba(47,125,82,0.35);background:rgba(220,236,228,0.55)}
+  .callout.warn{border-color:rgba(199,137,67,0.35);background:rgba(247,233,210,0.55)}
+  .callout .label{
+    display:inline-block;font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    padding:2px 8px;border-radius:4px;margin-right:8px;font-weight:600;
+  }
+  .callout.tip .label{background:#2f7d52;color:#fff}
+  .callout.warn .label{background:var(--accent-warm);color:#fff}
+
+  .habits{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
+  .habit{
+    border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:#fff;
+  }
+  .habit .num{
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;
+    color:var(--accent);font-size:11px;letter-spacing:0.18em;font-weight:700;
+  }
+  .habit h4{font-family:ui-sans-serif,Inter,system-ui,sans-serif;margin:6px 0 8px;font-size:15px;color:var(--primary-deep)}
+  .habit p{font-size:14px;line-height:1.55;margin:0;color:var(--primary)}
+
+  .placeholder-banner{
+    margin:18px 0;padding:10px 16px;border:1px dashed var(--accent-warm);
+    background:rgba(247,233,210,0.45);border-radius:8px;
+    font-family:ui-sans-serif,Inter,system-ui,sans-serif;font-size:13px;color:var(--primary);
+  }
+
+  @media print{
+    aside.toc{display:none}
+    .layout{display:block;max-width:none}
+    main{padding:0}
+    figure{break-inside:avoid;box-shadow:none}
+    h1,h2{break-after:avoid}
+    .habits{display:block}
+    a{color:inherit;border-bottom:none}
+    body{font-size:11pt}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<aside class="toc">
+  <div class="brand"><span class="pill">ALGET</span>Learner</div>
+  <h3>Sections</h3>
+  <ol>
+    <li><a href="#s1"><span class="num">1.</span>What ALGET Is</a></li>
+    <li><a href="#s2"><span class="num">2.</span>The Map of the App</a></li>
+    <li><a href="#s3"><span class="num">3.</span>Six Habits for Learning Well</a></li>
+    <li><a href="#s4"><span class="num">4.</span>The Intelligence Rail</a></li>
+    <li><a href="#s5"><span class="num">5.</span>The Floating Tutor Chat</a></li>
+    <li><a href="#s6"><span class="num">6.</span>Diagnostics &amp; Retention</a></li>
+    <li><a href="#s6_5"><span class="num">6.5</span>Generative Features</a></li>
+    <li><a href="#s7"><span class="num">7.</span>Highlights &amp; Annotations</a></li>
+    <li><a href="#s8"><span class="num">8.</span>Privacy &amp; Your Data</a></li>
+    <li><a href="#s9"><span class="num">9.</span>When the Tutor Isn't Enough</a></li>
+    <li><a href="#s10"><span class="num">10.</span>FAQ</a></li>
+    <li><a href="#refs"><span class="num">+</span>References</a></li>
+  </ol>
+</aside>
+
+<main>
+<p class="kicker">ALGET handbook · Version 2026.04</p>
+<h1 class="doc-title">Learner Guide</h1>
+<p class="lead">Welcome. This is the book you'll spend the next several weeks with. The book is more than text — it watches how you read, how you practice, and how confidently you answer, and it adjusts. This guide is your map for using it well.</p>
+<p class="meta"><span>~25 min read</span><span>11 sections</span><span>Updated 2026-04-27</span></p>
+<hr>
+
+<p class="placeholder-banner"><b>Figures.</b> Captured directly from the running app (Vite dev + FastAPI) on a 1280×800 viewport at 2× DPR. They show the actual surfaces you'll use, not mockups.</p>
+
+<h1 id="s1">1. What ALGET Is</h1>
+<p>ALGET is an <b>adaptive textbook with an AI tutor</b>. It pairs canonical engineering and instructional-design content with a learning environment that responds to <em>you</em> — your pace, your confusions, your strong concepts, your weak ones. Five courses live inside it: Engineering Statics, Engineering Dynamics, Bio-Inspired Design, Foundations of Instructional Design, and AI &amp; Ethics.</p>
+<p>Three commitments shape the experience:</p>
+<div class="callout tip">
+<span class="label">Commitments</span>
+<b>You are not the average learner.</b> Universal Design for Learning calls this <em>learner variability</em>. The system was built around the assumption that you read at your own pace, you understand differently from your classmate, and you sometimes need a different path through the same content. None of those facts is a problem — they're the design condition.<br><br>
+<b>Learning is active.</b> The reading you do here is built around retrieval practice, not passive consumption. Embedded check-ins, practice problems, and reflection prompts appear throughout each section. They're not interruptions. They're how durable understanding gets built (Roediger &amp; Karpicke, 2006; Dunlosky et al., 2013).<br><br>
+<b>You decide what counts as success.</b> The system tracks your mastery, but the meaning of that mastery is yours. The tutor will not give you final answers; it will help you find them. The pace is yours.
+</div>
+
+<h1 id="s2">2. The Map: How the App Is Laid Out</h1>
+<p>When you log in you'll see the <b>course chooser</b>. Pick the track you're working in. Each course has chapters; each chapter has modules (sections). A typical session looks like this:</p>
+<ol>
+  <li>Open a section → read the narrative, pause at embedded prompts.</li>
+  <li>When something stalls, open the <b>right-side rail</b> (the "intelligence rail").</li>
+  <li>When you have a longer question, open the <b>floating tutor chat</b> at the bottom-right.</li>
+  <li>Try the practice questions.</li>
+  <li>Move on, or, when the system suggests it, take a short retention quiz on something from a week ago.</li>
+</ol>
+
+<figure>
+<img src="screenshots/02_course_chooser.png" alt="Course chooser at /learn" loading="lazy">
+<figcaption><b>Figure 2.1</b> &nbsp; Course chooser at <code>/learn</code>. Locked tiles unlock with the access code your instructor shares.</figcaption>
+</figure>
+
+<p>There are three workspaces you'll move between:</p>
+<ul>
+  <li><b>The reading pane.</b> The center column. The textbook itself, with embedded diagrams, interactive quizzes, dynamic scenarios, and worked-example sketches.</li>
+  <li><b>The intelligence rail.</b> Slides in from the right. Four short modes — Explain, Reframe, Practice, and Ask — that give you a different way into the same idea when one path is stuck.</li>
+  <li><b>The tutor chat.</b> A floating bubble in the bottom-right corner. For longer conversations, follow-up questions, or "I just want to talk through this with someone."</li>
+</ul>
+<p>A small <b>mastery graph</b> ("brain network") sits above each section showing which concepts you've already touched and how confidently. Click any node to jump to that section.</p>
+
+<figure>
+<img src="screenshots/06_student_dashboard.png" alt="Student dashboard with mastery panels" loading="lazy">
+<figcaption><b>Figure 2.2</b> &nbsp; Mastery graph. Click any node to jump to that section.</figcaption>
+</figure>
+
+<h1 id="s3">3. How to Learn Well Here (Six Habits)</h1>
+<p>Your future self will thank you for these. Each is grounded in a learning-science finding the system was built around.</p>
+<div class="habits">
+  <div class="habit"><span class="num">3.1 · COMPREHENSION</span><h4>Read at the speed of comprehension, not the speed of skim</h4><p>When the embedded check-in shows up, do it. Even if you're sure you know the answer. The act of retrieving it makes it stick. (Karpicke, 2012)</p></div>
+  <div class="habit"><span class="num">3.2 · DESIRABLE DIFFICULTY</span><h4>Get something wrong on purpose</h4><p>Before you read the answer, commit to one. The brief moment of being wrong is when your model of the topic actually updates. (Bjork &amp; Bjork, 2011)</p></div>
+  <div class="habit"><span class="num">3.3 · SELF-EXPLANATION</span><h4>Stop and explain it to no one</h4><p>After a non-trivial paragraph, look away from the screen and say what you just read in your own words. If you can't, re-read. (Chi et al., 1989)</p></div>
+  <div class="habit"><span class="num">3.4 · PRACTICE</span><h4>Don't just read — practice</h4><p>The practice questions are the assessment <em>and</em> the learning. Some look easy. Do them anyway; the practice is where the schema consolidates.</p></div>
+  <div class="habit"><span class="num">3.5 · SPACED RETRIEVAL</span><h4>Trust the schedule</h4><p>The retention banner appears about a week after you study a concept. Five minutes there roughly doubles three-month recall. (Cepeda et al., 2008)</p></div>
+  <div class="habit"><span class="num">3.6 · ASKING</span><h4>Ask the tutor; don't beg the tutor</h4><p>If you ask "what's the answer to question 3?" you'll get a question back. Try: <em>"I think the answer is X because Y, but I'm not sure about the Y step."</em></p></div>
+</div>
+
+<h1 id="s4">4. The Intelligence Rail (Explain / Reframe / Practice / Ask)</h1>
+<p>The rail opens automatically when the system detects you're stuck (two consecutive incorrect attempts on practice, or a long pause on a problem). You can also open it any time from the side handle. Four tabs:</p>
+
+<figure>
+<img src="screenshots/04_intel_rail_open.png" alt="Reader with the BigAL Support Rail open" loading="lazy">
+<figcaption><b>Figure 4.1</b> &nbsp; The Intel Rail at the right of the reading pane. The system opens it for you when you stall; you can also open it manually.</figcaption>
+</figure>
+
+<ul>
+  <li><b>Explain.</b> A short, plain-language re-expression of the concept you're stuck on. Shorter than the textbook; written for <em>just-in-time</em> clarity.</li>
+  <li><b>Reframe.</b> The same concept seen from another angle — a diagram, a graph, a real-world scenario, a different worked example. Universal Design for Learning's <em>multiple means of representation</em> in practice.</li>
+  <li><b>Practice.</b> A targeted micro-problem that drills the specific subskill you're shaky on. The system picks it adaptively from the practice bank.</li>
+  <li><b>Ask.</b> A free-form question to the tutor. Hitting Enter here launches the floating tutor chat with your question.</li>
+</ul>
+<div class="callout tip"><span class="label">Tip</span>Choose deliberately: when you're truly confused, <em>Explain</em> first; when the explanation didn't land, <em>Reframe</em>; when you can almost do it, <em>Practice</em>; when you just need to talk it through, <em>Ask</em>.</div>
+
+<h1 id="s5">5. The Floating Tutor Chat</h1>
+<p>This is the conversational AI surface. Different courses give you different domain personas (BigAL for Bio-Inspired Design; a domain tutor for Statics, Dynamics, Instructional Design, and AI Ethics). The chat persists per section: open the same section tomorrow and your previous conversation is still there.</p>
+
+<figure>
+<img src="screenshots/05_chat_widget.png" alt="BigAL floating tutor chat" loading="lazy">
+<figcaption><b>Figure 5.1</b> &nbsp; BigAL chat. The tutor coaches with questions instead of giving the answer; commit to a guess, then sharpen it.</figcaption>
+</figure>
+
+<div class="callout warn">
+<span class="label">Note</span>The tutor will sometimes refuse to answer directly — for evaluation requests in non-bio courses, for example, the system declines because the evaluator persona only has authority in bio-inspired design. That's a feature; ask the question another way.
+</div>
+<p><b>Be specific.</b> "I don't get this" is hard to coach. "I followed the equation up to step 4 but I can't see why we substitute the constraint there" gets you a precise scaffold.</p>
+
+<h1 id="s6">6. Diagnostic and Retention Quizzes</h1>
+<p>When you start a course, you'll be asked to take a <b>diagnostic</b> — a short pre-test that calibrates where you should begin. Take it seriously and don't guess; the system is using your answers to choose your starting section. If the diagnostic suggests you start three sections in, that's not skipping content — it's because you already have those concepts.</p>
+<p>Later, the system schedules <b>retention quizzes</b>. About a week after you finish a section, you'll see a banner offering a 5-minute retention check. The data from these checks tells the system whether your mastery is durable or fading; the data is also what helps the field of educational research understand what works. Taking them is high-leverage for both you and the broader project.</p>
+<p>A <b>post-test</b> appears at the end of the course. The combination of pre, post, and retention is what produces a defensible measure of how much you actually learned. That measurement also benefits future cohorts.</p>
+
+<figure>
+<svg viewBox="0 0 760 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Retention banner">
+  <rect width="760" height="110" fill="#fbfaf6"/>
+  <rect x="32" y="20" width="696" height="70" rx="14" fill="#fff7e8" stroke="#c78943" stroke-opacity="0.5"/>
+  <text x="52" y="46" font-family="Inter,sans-serif" font-size="11" letter-spacing="2" fill="#c78943">RETENTION CHECK READY</text>
+  <text x="52" y="68" font-family="ui-serif,Georgia,serif" font-size="14" fill="#093848">A 5-minute review of <tspan font-weight="700">bio-inspired</tspan> is due. Spaced retrieval is the cheapest way to keep what you learned last week.</text>
+  <rect x="558" y="40" width="100" height="32" rx="8" fill="#c78943"/>
+  <text x="608" y="61" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#fff" font-weight="700">Take check</text>
+  <text x="690" y="61" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" fill="#c78943">Later</text>
+</svg>
+<figcaption><b>Figure 6.1</b> &nbsp; The retention banner. It's dismissible, but it returns next session until you take the check.</figcaption>
+</figure>
+
+<h1 id="s6_5">6.5 Generative Features You Can Use</h1>
+<p>ALGET is not only an adaptive textbook — it is a <b>generative intelligent textbook (GIT)</b>. The system can produce new learning material <em>on demand</em>, tuned to the concept you're working on, instead of asking you to dig through a fixed bank of content. Five generative surfaces are available to you as a learner:</p>
+
+<h2>6.5.1 On-demand explanations and reframes</h2>
+<p>Click <em>Explain</em> in the rail and the system generates a fresh, plain-language explanation of the current concept, written for your level and constrained by the section's source material (RAG-grounded). Click <em>Reframe</em> and you get the same idea expressed in a different modality — a diagram, a real-world scenario, or an analogy. These are not pre-canned: the explanation is composed at the moment you ask for it, based on what the textbook said, what your mastery looks like, and what previous attempts have shown about your confusions.</p>
+
+<h2>6.5.2 On-demand practice tailored to your gap</h2>
+<p>Click <em>Practice</em> in the rail. The system generates a micro-problem targeted at the specific subskill the adaptive engine thinks is weakest right now. If you keep getting "vector decomposition" wrong, the next generated problem will probe that subskill specifically — not a random pull from the bank.</p>
+
+<h2>6.5.3 On-demand simulations and illustrations</h2>
+<p>For courses that support it (especially Bio-Inspired Design and Engineering Statics/Dynamics), the floating tutor chat can be asked to <b>generate an interactive simulation</b> of the concept. The system writes a self-contained HTML/p5.js sketch, validates the underlying physics through the Validation Agent, and renders it inline. It can also generate <b>conceptual illustrations</b> with annotated UI elements when you ask "draw me X" or "show me what Y looks like".</p>
+
+<h2>6.5.4 Multi-agent grounded answers</h2>
+<p>When you ask a substantive question through the floating chat, your message routes through a multi-agent pipeline. For Bio-Inspired Design specifically, the answer is generated through a Biology → Engineering → Validation → Tutor sequence in which the Validation Agent acts as an internal peer reviewer of the proposed answer. The agents iterate up to two times if the validation fails. This is what makes the response more grounded than a single LLM call would be — the textbook itself disagrees with itself when you ask a question, and shows you the reconciliation.</p>
+
+<h2>6.5.5 Generative Lab (instructor / researcher access)</h2>
+<p>Beyond the rail and chat, there is a <b>Generative Lab</b> at <code>/lab</code> for instructors and researchers. From here, the <b>Curriculum Agent</b> can produce a complete new module — narrative, practice problems, misconceptions — from a biology + engineering context you supply. This is how the textbook continues to grow. As a learner you may see new modules appear that were not present last term; the lab is how that happens.</p>
+
+<h3>Why generative matters for <em>you</em></h3>
+<p>A static textbook can be very good and still be wrong for <em>you</em> on a specific day. The same concept lands differently when you've just got a worked example fresh in your head than when you're meeting it for the first time. Generative authoring lets the textbook adapt its expression — not only its routing — to your moment of learning. Use the rail and the chat liberally; that's where the textbook turns into a tutor that writes for your situation rather than the average reader.</p>
+<div class="callout warn"><span class="label">Caveat</span>Generative answers can drift from the source. The system invests heavily in grounding (RAG, validation loops, schema gates), but it is not perfect. Cross-check anything load-bearing against the textbook narrative or with your instructor.</div>
+
+<h1 id="s7">7. Highlights, Notes, and Annotations</h1>
+<p>Select any text in the reading pane to highlight it (color-pick from the popover). Add a note if you want to. Highlights persist across sessions and across devices. They are private to you by default; cohort-shared highlights are clearly labeled when present.</p>
+
+<figure>
+<img src="screenshots/09_highlight_popover.png" alt="Selection popover with Highlight, Add Note, and Ask AI buttons over selected text in the reading pane" loading="lazy">
+<figcaption><b>Figure 7.1</b> &nbsp; Selection popover in the reading pane. Three actions on a selection: <b>Highlight</b> (save the passage), <b>Add Note</b> (annotate it), <b>Ask AI</b> (route the passage straight into a tutor question).</figcaption>
+</figure>
+<div class="callout tip"><span class="label">Habit</span>Use highlights for <em>what you didn't know</em> (a concept name, a formula, a definition you want to come back to), not for what you already understood. The point of a highlight is to mark what you'll re-read; if you highlight everything, you'll re-read nothing.</div>
+
+<h1 id="s8">8. Privacy and Your Data</h1>
+<p>ALGET collects three kinds of data about your reading:</p>
+<ul>
+  <li><b>Behavioral telemetry</b> — clicks, scroll depth, time on page, which sections you opened, which problems you tried. No raw answer text, just attempt outcomes.</li>
+  <li><b>Mastery signals</b> — your evolving estimate of how confidently you know each concept, derived from your problems and your retention checks.</li>
+  <li><b>Conversational logs</b> — your chat with the tutor. Stored to your account so you can pick up where you left off.</li>
+</ul>
+<p>This data is used to (a) personalize your learning path, (b) help your instructor support the cohort, and (c) when you're enrolled in the research study, contribute to broader research on how people learn with AI tutoring. You can request deletion of all of the above at any time.</p>
+<p>What ALGET does <b>not</b> do:</p>
+<ul>
+  <li>It does not generate fake peer comments to manufacture social pressure (this was disabled after an LXD audit).</li>
+  <li>It does not stream your camera or microphone.</li>
+  <li>It does not share your individual data with vendors outside the agreed processors.</li>
+</ul>
+<p>If you have specific questions, ask your instructor; the privacy posture is documented in <code>DEPLOYMENT_ENV.md</code> and in the institution's data agreement.</p>
+
+<h1 id="s9">9. When the Tutor Isn't Enough</h1>
+<p>The tutor is good at: clarifying concepts, walking through the structure of a problem, surfacing your misconceptions, generating practice variations, suggesting study strategies.</p>
+<p>The tutor is not good at: replacing a teacher's professional judgment, evaluating something deeply outside its course (it'll decline rather than fake it), being your only social contact in the course, or telling you when you're done.</p>
+<p><b>When to talk to a human:</b></p>
+<ul>
+  <li>You feel discouraged for more than a session or two.</li>
+  <li>The tutor's explanation contradicts something your instructor said.</li>
+  <li>You want feedback on a creative artifact, a paper, or a design that doesn't fit a clean rubric.</li>
+  <li>Something about the course logistics doesn't make sense.</li>
+</ul>
+<p>The instructor remains the authority. The tutor is a coach; the instructor is the teacher.</p>
+
+<h1 id="s10">10. FAQ</h1>
+<table>
+  <thead><tr><th>Question</th><th>Answer</th></tr></thead>
+  <tbody>
+    <tr><td><b>My answer was right but the system marked it wrong.</b></td><td>Likely a unit or precision mismatch (relative-tolerance is 1% by default). Re-check the unit or click <em>Ask</em> to have the tutor walk you through the grading. If you're sure it's a real bug, your instructor can flag it.</td></tr>
+    <tr><td><b>The tutor said something that's wrong.</b></td><td>Tutors can hallucinate. The system has internal validation loops (a Biology→Engineering→Validation debate for bio-inspired specifically) that catch most cases, but not all. Cross-check important claims against the textbook reading itself, and tell your instructor.</td></tr>
+    <tr><td><b>I want to skip a chapter.</b></td><td>You can navigate freely. The system uses a Bayesian model of your mastery to recommend an order, but it doesn't lock you out. If you're confident in a topic, take the practice problems; if you score well, the system updates and won't push you back.</td></tr>
+    <tr><td><b>The retention banner showed up but I can't take it now.</b></td><td>It will reappear; durability of memory is what's being checked, so a few-day delay is fine.</td></tr>
+    <tr><td><b>Can I work offline?</b></td><td>Not currently. A service-worker-based offline mode is on the roadmap (P2-3 in our planning).</td></tr>
+    <tr><td><b>Where do I learn what each tab in the rail does?</b></td><td>This guide, Section 4. Or run the in-app tour from the Help menu.</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<p>Every feature here was designed with one question in mind: <em>Will this help the learner build durable, transferable understanding, or will it produce compliance that disappears the day after the test?</em> When something in the app feels like it's optimizing for the wrong thing — engagement at the expense of learning, completion at the expense of understanding — tell your instructor. The system is research-instrumented exactly so that this kind of feedback can produce real change.</p>
+<p><b>Good luck.</b> Read slowly, practice often, talk to the tutor like a study partner, and trust the schedule.</p>
+
+<h2 id="refs">References (selected)</h2>
+<ul>
+  <li>Bjork, R. A., &amp; Bjork, E. L. (2011). Making things hard on yourself, but in a good way: Creating desirable difficulties to enhance learning.</li>
+  <li>Cepeda, N. J., Vul, E., Rohrer, D., Wixted, J. T., &amp; Pashler, H. (2008). Spacing effects in learning: A temporal ridgeline of optimal retention.</li>
+  <li>Chi, M. T. H., Bassok, M., Lewis, M. W., Reimann, P., &amp; Glaser, R. (1989). Self-explanations: How students study and use examples in learning to solve problems.</li>
+  <li>Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., &amp; Willingham, D. T. (2013). Improving students' learning with effective learning techniques.</li>
+  <li>Karpicke, J. D. (2012). Retrieval-based learning: Active retrieval promotes meaningful learning.</li>
+  <li>Roediger, H. L., &amp; Karpicke, J. D. (2006). The power of testing memory: Basic research and implications for educational practice.</li>
+  <li>CAST. (2018). <em>Universal Design for Learning Guidelines version 2.2</em>.</li>
+</ul>
+
+</main>
+</div>
+</body>
+</html>

@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '../lib/supabase'
+import { useToast } from '../lib/toastContext'
 
 /**
  * Hook to handle text selection, highlighting, and notes
  */
 export function useTextSelection({ sectionId, userId }) {
+    const toast = useToast()
     const [selection, setSelection] = useState(null)
     const [highlights, setHighlights] = useState([])
     const [popularHighlights, setPopularHighlights] = useState([])
@@ -129,6 +131,7 @@ export function useTextSelection({ sectionId, userId }) {
 
                 if (error) {
                     console.warn('Highlight saved locally only (DB error):', error.message)
+                    toast.warning('Highlight saved offline only — will sync when connection returns.')
                 } else if (data) {
                     // Replace local highlight with DB version
                     setHighlights(prev => prev.map(h =>
@@ -137,11 +140,12 @@ export function useTextSelection({ sectionId, userId }) {
                 }
             } catch (err) {
                 console.warn('Highlight saved locally only:', err)
+                toast.warning('Highlight saved offline only — will sync when connection returns.')
             }
         }
 
         return localHighlight
-    }, [userId, sectionId])
+    }, [userId, sectionId, toast])
 
     // Update highlight note
     const updateHighlightNote = useCallback(async (highlightId, note) => {
@@ -160,9 +164,10 @@ export function useTextSelection({ sectionId, userId }) {
                     .eq('user_id', userId)
             } catch (err) {
                 console.warn('Could not update note in database:', err)
+                toast.error('Could not save note. Try again in a moment.')
             }
         }
-    }, [userId])
+    }, [userId, toast])
 
     // Delete highlight
     const deleteHighlight = useCallback(async (highlightId) => {
@@ -179,9 +184,10 @@ export function useTextSelection({ sectionId, userId }) {
                     .eq('user_id', userId)
             } catch (err) {
                 console.warn('Could not delete from database:', err)
+                toast.error('Could not delete highlight. It will retry on next session.')
             }
         }
-    }, [userId])
+    }, [userId, toast])
 
     return {
         selection,

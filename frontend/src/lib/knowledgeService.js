@@ -218,8 +218,9 @@ export const gradeSummary = async (question, studentAnswer, rubric) => {
  * Updates the user's mastery score in Supabase for a set of concepts using the BKT Engine on the backend.
  * Expects a q_matrix like {"concept1": 1.0, "concept2": 0.5}
  */
-export const updateMastery = async (qMatrix, isCorrect) => {
+export const updateMastery = async (qMatrix, isCorrect, options = {}) => {
     try {
+        const { hintUsed = false } = options
         const { data: { session } } = await supabase.auth.getSession();
         let userId = session?.user?.id;
 
@@ -245,13 +246,21 @@ export const updateMastery = async (qMatrix, isCorrect) => {
             currentStates[cid] = record ? record.p_known : 0.1; // Default prior
         });
 
+        // Hint penalty: damp the Q-matrix weights so a hint-assisted correct
+        // answer updates p_known by less than an unaided correct answer.
+        // Empirically picking 0.6 as the damping factor (Carnegie Learning's
+        // hint-aware BKT typically uses 0.5-0.7).
+        const adjustedQMatrix = hintUsed
+            ? Object.fromEntries(Object.entries(qMatrix).map(([cid, w]) => [cid, Number(w) * 0.6]))
+            : qMatrix
+
         // 2. Call Python backend BKT engine
         const response = await fetch(`${API_BASE}/grade`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 current_states: currentStates,
-                q_matrix: qMatrix,
+                q_matrix: adjustedQMatrix,
                 is_correct: isCorrect
             })
         });
@@ -288,6 +297,26 @@ export const updateMastery = async (qMatrix, isCorrect) => {
             .upsert(upsertData, { onConflict: 'user_id,concept_id' });
 
         if (upsertError) throw upsertError;
+
+        // Mirror the authoritative BKT mastery into the research table so the
+        // research dashboard and adaptive engine see the same value as the
+        // legacy mastery table. Only touches mastery_prob + updated_at; other
+        // rich fields populated by researchService.updateLearnerModel are
+        // preserved by Supabase upsert merge semantics.
+        const researchUpsert = Object.entries(new_states).map(([cid, newPKnown]) => ({
+            user_id: userId,
+            concept_id: cid,
+            mastery_prob: newPKnown,
+            updated_at: new Date().toISOString(),
+        }));
+
+        const { error: researchUpsertError } = await supabase
+            .from('learner_concept_state')
+            .upsert(researchUpsert, { onConflict: 'user_id,concept_id' });
+
+        if (researchUpsertError) {
+            console.warn('[Mastery] BKT mirror to learner_concept_state failed:', researchUpsertError);
+        }
 
         return new_states;
 

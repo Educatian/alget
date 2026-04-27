@@ -11,6 +11,9 @@ except ImportError:
 
 import logging
 
+from .config import get as get_config
+from .schema_gate import BIOLOGY_FALLBACK, BiologyOutput, gate
+
 logger = logging.getLogger(__name__)
 
 class BiologyAgent:
@@ -43,11 +46,12 @@ class BiologyAgent:
         
         try:
             # We use structured output to get distinct sections for the UI
+            cfg = get_config("biology")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.7,
+                    temperature=cfg.temperature,
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",
@@ -78,15 +82,14 @@ class BiologyAgent:
             
             try:
                 result_json = json.loads(response.text)
-                return result_json
             except json.JSONDecodeError:
-                return {
-                    "error": "Failed to parse JSON response.",
-                    "raw_response": response.text
-                }
-                
+                return {**BIOLOGY_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result_json, BiologyOutput, BIOLOGY_FALLBACK, "BiologyAgent")
+
         except Exception as e:
-            return {"error": f"Error from Biology Agent: {str(e)}"}
+            logger.exception("Biology Agent failed")
+            return {**BIOLOGY_FALLBACK, "_schema_error": "exception", "error": str(e)}
             
     def _build_biology_prompt(self, query: str, grade_level: str, history: list = None, background_knowledge: str = "") -> str:
         history_text = ""

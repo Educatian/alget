@@ -1,0 +1,103 @@
+## Why Coordinates Choose Themselves
+
+Most undergraduate dynamics begins with rectilinear motion in Cartesian coordinates. Real motion in machines, vehicles, and orbital mechanics is rarely rectilinear and rarely well-described in xy. The choice of coordinate system is part of the analysis: pick well and the equations simplify; pick poorly and even simple problems become algebraically painful.
+
+Two coordinate systems handle most curvilinear motion problems an undergraduate will see: **normal-tangential (n-t) coordinates** for motion along a known path, and **polar (cylindrical) coordinates** for motion measured from a fixed origin. Hibbeler covers both in chapter 12; Beer and Johnston cover them in chapter 11; Meriam in chapter 2.
+
+This module covers when to choose each, the velocity and acceleration decompositions in each, and the workflow that prevents the most common errors.
+
+---
+
+## When n-t Coordinates Are the Right Choice
+
+Use n-t coordinates when **the path is known and the position of the particle along the path is what you are asked about**. Examples: a bead on a wire, a car on a curved track, a roller coaster, a satellite in a known trajectory whose only unknown is its current arc length.
+
+In n-t coordinates, you fix a unit vector $\hat{u}_t$ tangent to the path (in the direction of motion) and a unit vector $\hat{u}_n$ normal to the path, pointing toward the *center of curvature* (always toward the inside of the turn).
+
+The velocity has only a tangential component:
+
+$$\vec{v} = v\,\hat{u}_t$$
+
+where $v = ds/dt$ is the speed (a scalar).
+
+The acceleration decomposes into two physical components:
+
+$$\vec{a} = a_t\,\hat{u}_t + a_n\,\hat{u}_n$$
+
+with **tangential acceleration** $a_t = dv/dt$ (changes the speed) and **normal acceleration** $a_n = v^2/\rho$ (changes the direction), where $\rho$ is the local radius of curvature of the path.
+
+Two physical insights live in this decomposition. First, tangential acceleration is exactly the rate of change of speed; if speed is constant, $a_t = 0$ and only direction-changing acceleration remains. Second, normal acceleration is always nonzero on a curved path and always points toward the center of curvature — this is the centripetal direction. The faster you go around a tighter curve, the larger $a_n$ must be.
+
+---
+
+## When Polar Coordinates Are the Right Choice
+
+Use polar coordinates when **the motion is most naturally described by distance and angle from a fixed origin**. Examples: a satellite orbiting Earth, a rotating arm pinned at one end, a projectile tracked from a radar station, a planet in heliocentric motion. The unit vectors are $\hat{u}_r$ (radially outward from the origin) and $\hat{u}_\theta$ (perpendicular, in the direction of increasing $\theta$).
+
+In polar coordinates the position vector is simply
+
+$$\vec{r} = r\,\hat{u}_r$$
+
+The velocity has two components:
+
+$$\vec{v} = \dot{r}\,\hat{u}_r + r\dot{\theta}\,\hat{u}_\theta$$
+
+where $\dot{r}$ is the radial speed and $r\dot{\theta}$ is the transverse speed. Note the $r$ factor — the transverse component is not $\dot{\theta}$ alone; it scales with how far out the particle is.
+
+The acceleration decomposes into four terms — and this is where most students make errors:
+
+$$\vec{a} = (\ddot{r} - r\dot{\theta}^2)\,\hat{u}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\,\hat{u}_\theta$$
+
+The radial acceleration $\ddot{r} - r\dot{\theta}^2$ contains a centripetal-like term $-r\dot{\theta}^2$ that is present even when $\ddot{r} = 0$. The transverse acceleration $r\ddot{\theta} + 2\dot{r}\dot{\theta}$ contains a Coriolis-like term $2\dot{r}\dot{\theta}$ that is present even when $\ddot{\theta} = 0$.
+
+These cross terms exist because $\hat{u}_r$ and $\hat{u}_\theta$ themselves rotate as the particle moves. Differentiating the rotating unit vectors generates the extra terms. This is the central conceptual point: in non-inertial-feeling coordinate systems, the time derivatives of basis vectors do not vanish.
+
+<concept-diagram type="curvilinear-coordinate-comparison"></concept-diagram>
+
+---
+
+## Cylindrical Coordinates: Polar + Vertical
+
+For 3D motion that has cylindrical symmetry (a helix, a particle on a screw, motion of a particle in a vertical pipe with rotation), use **cylindrical coordinates**: polar $(r, \theta)$ in the horizontal plane plus z vertically.
+
+$$\vec{r} = r\,\hat{u}_r + z\,\hat{u}_z, \quad \vec{v} = \dot{r}\,\hat{u}_r + r\dot{\theta}\,\hat{u}_\theta + \dot{z}\,\hat{u}_z$$
+
+$$\vec{a} = (\ddot{r} - r\dot{\theta}^2)\,\hat{u}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\,\hat{u}_\theta + \ddot{z}\,\hat{u}_z$$
+
+The vertical component is a clean Cartesian-style derivative because $\hat{u}_z$ does not rotate. The horizontal components inherit the polar cross terms.
+
+---
+
+## Worked Example: A Car on a Banked Curve
+
+A car travels at constant speed $v = 30$ m/s around a horizontal curve of radius $\rho = 200$ m.
+
+n-t analysis:
+- Tangential acceleration: $a_t = dv/dt = 0$ (constant speed).
+- Normal acceleration: $a_n = v^2/\rho = (30)^2/200 = 4.5$ m/s², directed toward the center of curvature.
+
+The centripetal force required to produce this acceleration is $F_n = m a_n$, supplied by friction (or by friction + banking-normal-force component on a banked road). The dynamics step that follows ($\sum F = m\vec{a}$ in the n direction) gives you the friction or banking angle requirement.
+
+This problem in xy-coordinates would require parameterizing position by time and differentiating. In n-t the answer is two lines.
+
+---
+
+## Common Errors and Their Diagnoses
+
+- **Forgetting the rotating-unit-vector cross terms** in polar acceleration. The full $a_r = \ddot{r} - r\dot{\theta}^2$ and $a_\theta = r\ddot{\theta} + 2\dot{r}\dot{\theta}$ are not optional.
+- **Using n-t for non-path-defined motion.** If the path is not known, you cannot identify the tangent direction, and n-t is the wrong tool.
+- **Treating $r\dot{\theta}$ as $\dot{\theta}$ alone** in transverse velocity. The factor of $r$ scales the angular rate by the lever arm.
+- **Confusing $\hat{u}_n$ direction.** It always points toward the center of curvature, never away. On a circular path, $\hat{u}_n$ points radially inward.
+- **Mixing coordinate systems mid-problem.** Pick one and convert at the end if needed.
+
+<dynamic-scenario topic="Curvilinear Motion" context="A radar at the origin tracks a small drone whose distance r and bearing θ both change with time: r(t) and θ(t) are given functions. The student must find the drone's velocity and acceleration vectors in polar coordinates, paying particular attention to the cross terms r̈ - rθ̇² and rθ̈ + 2ṙθ̇."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="A particle moves at constant speed v = 20 m/s along a circular path of radius ρ = 50 m. What is the magnitude and direction of its acceleration?"
+  options='[{"text":"Zero, because speed is constant.","isCorrect":false},{"text":"a = v²/ρ = 400/50 = 8 m/s², directed toward the center of curvature (centripetal). Tangential acceleration is zero because speed is constant; normal acceleration is non-zero because direction is changing.","isCorrect":true},{"text":"a = v/ρ = 0.4 m/s².","isCorrect":false}]'
+  explanation="Correct. Constant speed means a_t = 0. But the direction is still changing on a curved path, so a_n = v²/ρ ≠ 0 and points toward the center of curvature."
+/>

@@ -1,0 +1,123 @@
+## Why Distributed Quantities Need Their Own Toolkit
+
+Up to this chapter, statics has lived in the world of point forces and rigid-body equilibrium. Real engineering geometry is not concentrated at points. The weight of a beam is distributed along its length. The pressure on a dam is distributed across its face. The mass of a rotating shaft is distributed across its cross section. To analyze these systems, you replace the distribution with a **single equivalent point** that captures its first moment (centroid) or its second moment (moment of inertia).
+
+This module covers the four computations every undergraduate statics student should be able to do: locating a centroid, locating a center of mass, computing an area moment of inertia, and applying the parallel-axis theorem. Beer and Johnston devote two chapters (5 and 9) to this material; Hibbeler devotes Ch. 9. Their structure is the structure of this module.
+
+---
+
+## Centroid: The First-Moment Average of Geometry
+
+The **centroid** of an area is the geometric average of every point in the region, weighted by area. For an area A in the xy-plane,
+
+$$\bar{x} = \frac{1}{A}\int_A x\,dA, \quad \bar{y} = \frac{1}{A}\int_A y\,dA$$
+
+For composite shapes (rectangle + triangle + circle, with cutouts), use the **composite-bodies method**: list the constituent shapes, their individual centroids, and their individual areas (negative for cutouts), then weight-average.
+
+$$\bar{x} = \frac{\sum_i A_i \bar{x}_i}{\sum_i A_i}, \quad \bar{y} = \frac{\sum_i A_i \bar{y}_i}{\sum_i A_i}$$
+
+The centroid is a property of geometry only. It does not depend on the material's density.
+
+---
+
+## Center of Mass and Center of Gravity
+
+The **center of mass** weights position by mass, not area:
+
+$$\bar{x}_{\rm cm} = \frac{\int x\,dm}{\int dm} = \frac{\int x\,\rho\,dV}{\int \rho\,dV}$$
+
+For a body with uniform density, the center of mass coincides with the centroid of the volume. For a body with variable density (composite materials, gradient layers), the two differ — and you must use the mass-weighted form.
+
+The **center of gravity** further weights by the local gravitational field. On Earth's surface, gravity is essentially uniform, so center of gravity coincides with center of mass. For systems extending across significant gravitational gradients (orbital structures), the two diverge.
+
+For static equilibrium of beams, plates, and machine parts, the center of mass is the point at which the body's weight can be replaced by a single concentrated force without changing equilibrium.
+
+---
+
+## Distributed Loads: Replace by Equivalent Point Load
+
+A distributed load w(x) along a beam can be replaced by an equivalent concentrated force whose magnitude is the area under the load curve, applied at the centroid of that area:
+
+$$F_{\rm eq} = \int_0^L w(x)\,dx, \quad x_{\rm eq} = \frac{\int_0^L x\,w(x)\,dx}{F_{\rm eq}}$$
+
+For a uniform distributed load $w_0$ over length L, $F_{\rm eq} = w_0 L$ at the midpoint. For a triangular load that ramps from 0 to $w_0$ over length L, $F_{\rm eq} = w_0 L / 2$ at $x = 2L/3$ from the zero end.
+
+This replacement is the bridge between "the beam carries 5 kN/m" and the equilibrium equations you can actually solve.
+
+---
+
+## Area Moment of Inertia: The Second Moment
+
+The **area moment of inertia** about an axis is the integral of squared distance to that axis, weighted by area:
+
+$$I_x = \int_A y^2\,dA, \quad I_y = \int_A x^2\,dA$$
+
+This is sometimes called the *second moment of area* to avoid confusion with the *mass moment of inertia* (rotational inertia in dynamics). For a rectangle of width b and height h about its base,
+
+$$I_{\rm base} = \frac{bh^3}{3}$$
+
+About its centroidal axis,
+
+$$I_{\rm c} = \frac{bh^3}{12}$$
+
+The area moment of inertia is the geometric quantity that determines how a beam resists bending. Higher $I$ means stiffer beam, lower stress for the same load. This is why I-beams have most of their material far from the neutral axis: they maximize $I$ for a given amount of material.
+
+<concept-diagram type="moment-of-inertia-shapes"></concept-diagram>
+
+---
+
+## Parallel-Axis Theorem
+
+A central tool: the moment of inertia about any axis equals the moment of inertia about the **parallel centroidal axis** plus a correction:
+
+$$I = I_{\rm c} + A d^2$$
+
+where d is the distance between the two parallel axes. This is the *parallel-axis theorem* (sometimes called the Steiner theorem for masses).
+
+Two consequences. First, the centroidal axis is always the axis of *minimum* I (the $Ad^2$ term is non-negative). Second, the theorem makes composite-shape problems tractable: compute each piece's centroidal I, then transfer to a common axis with $Ad^2$, and sum.
+
+For composite shapes (I-beam built from three rectangles, or a circle with a hole) the workflow is:
+
+1. Pick a common reference axis.
+2. For each piece, compute centroidal $I_i$ from the standard tables.
+3. Compute the offset $d_i$ from each piece's centroid to the reference axis.
+4. Sum $I_{\rm total} = \sum_i (I_i + A_i d_i^2)$, with cutouts entering as negative $A_i$.
+
+This is the workflow. It does not change with shape; only the table values change.
+
+---
+
+## Mass Moment of Inertia: The Dynamics Bridge
+
+In dynamics, the **mass moment of inertia** plays the role mass plays in linear dynamics:
+
+$$I_{\rm mass} = \int r^2\,dm$$
+
+It governs how torque produces angular acceleration ($\tau = I\alpha$). Physically, it is the body's resistance to changes in rotational motion. Like its area cousin, it has a parallel-axis theorem:
+
+$$I = I_{\rm cm} + Md^2$$
+
+For a slender rod of length L and mass M about its centroid, $I_{\rm cm} = ML^2/12$. About one end, $I_{\rm end} = ML^2/3$. The factor-of-four difference between the two reflects the parallel-axis correction.
+
+For undergraduate statics, the area moment of inertia is the working concept. The mass moment of inertia returns in dynamics chapters on rigid-body rotation.
+
+---
+
+## Common Errors and Their Diagnoses
+
+- **Confusing area moment with mass moment.** Both have the symbol $I$ in different contexts. Read the units: area moment is m⁴, mass moment is kg·m².
+- **Forgetting the parallel-axis correction.** When summing composite pieces, the centroidal $I_i$ is about each piece's own centroid; you must add $A_i d_i^2$ to bring it to the common axis.
+- **Reversing the sign convention on cutouts.** A circle removed from a rectangle enters with negative area (and zero $I$ from the cutout's centroidal contribution, plus negative $A d^2$). Forgetting this overestimates I.
+- **Using the centroid as the center of mass for non-uniform density.** The two coincide only for uniform density. For composite materials, weight by mass.
+
+<dynamic-scenario topic="Centroids and Moments of Inertia" context="An I-beam has flange dimensions 100 mm × 10 mm (top), 100 mm × 10 mm (bottom), and a web 10 mm × 80 mm. Compute the centroidal moment of inertia about the horizontal axis using the composite-bodies method and the parallel-axis theorem. Compare with a solid 100 mm × 100 mm square of the same total area to show why I-beams resist bending more efficiently."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="A rectangle of width b and height h has its centroidal moment of inertia about the horizontal centroidal axis equal to bh³/12. About the base, the moment of inertia is:"
+  options='[{"text":"bh³/12 (same as centroidal).","isCorrect":false},{"text":"bh³/3 (parallel-axis correction: bh³/12 + bh × (h/2)² = bh³/12 + bh³/4 = bh³/3).","isCorrect":true},{"text":"bh³/4.","isCorrect":false}]'
+  explanation="Correct. The parallel-axis theorem gives I_base = I_c + A d² = bh³/12 + bh × (h/2)² = bh³/3. The centroidal axis always minimizes I."
+/>

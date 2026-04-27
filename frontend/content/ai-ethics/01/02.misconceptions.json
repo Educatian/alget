@@ -1,0 +1,37 @@
+{
+  "section_id": "ai_ethics_0102",
+  "misconceptions": [
+    {
+      "id": "consequentialism_alone_suffices",
+      "pattern": "single_framework",
+      "description": "Believing aggregate utility is the only criterion for an AI deployment decision",
+      "trigger": "learner argues 'net benefit is positive, ship it'",
+      "feedback": "Aggregate metrics hide distribution. Deontology and care ethics resist sacrificing concentrated harm for aggregate gain. Triangulate.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "virtue_ethics_is_just_kindness",
+      "pattern": "framework_caricature",
+      "description": "Reducing virtue ethics to vague niceness rather than the systematic question of cultivated habits",
+      "trigger": "learner equates virtue ethics with 'be nice'",
+      "feedback": "Virtue ethics asks which habits and dispositions the technology cultivates in its users over time. It is the framework most equipped to name deskilling, manipulation, and erosion of judgment.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "care_is_paternalism",
+      "pattern": "framework_misframe",
+      "description": "Equating care ethics with paternalistic 'deciding for' the vulnerable",
+      "trigger": "learner dismisses care ethics as patronizing",
+      "feedback": "Care ethics attends to vulnerability and relationships without overriding agency. The risk of paternalism is real and the framework names it explicitly; it is not the framework's content.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "one_framework_settles_everything",
+      "pattern": "framework_loyalty",
+      "description": "Committing to one ethical framework and treating other frameworks' verdicts as noise",
+      "trigger": "learner cites only their preferred framework when frameworks disagree",
+      "feedback": "Frameworks have blind spots. Convergence across frameworks is what makes a decision defensible; disagreement is the live decision and should be documented, not hidden.",
+      "rail_action": "ask"
+    }
+  ]
+}

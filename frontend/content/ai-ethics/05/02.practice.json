@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "gov_nist_functions",
+      "type": "multiple_choice",
+      "concept_id": "nist_ai_rmf",
+      "stem": "What are the four core functions of the NIST AI Risk Management Framework?",
+      "options": [
+        "Predict, Test, Ship, Monitor.",
+        "Govern, Map, Measure, Manage.",
+        "Train, Tune, Validate, Verify.",
+        "Encrypt, Audit, Log, Restrict."
+      ],
+      "correct_index": 1,
+      "explanation": "Govern (institutional foundation), Map (identify risks), Measure (quantify them), Manage (treat them) is the canonical structure.",
+      "misconception_id": "rmf_is_optional_paperwork"
+    },
+    {
+      "id": "gov_eu_act_education",
+      "type": "multiple_choice",
+      "concept_id": "eu_ai_act",
+      "stem": "An AI system that evaluates students for educational placement, deployed by a US company with EU users, falls under which EU AI Act tier?",
+      "options": [
+        "Minimal-risk; no obligations.",
+        "High-risk under Annex III (educational evaluation). Triggers risk management, data governance, documentation, transparency, human oversight, accuracy/robustness, post-market monitoring, and conformity assessment.",
+        "Prohibited; cannot be deployed.",
+        "Outside EU AI Act scope because the company is US-based."
+      ],
+      "correct_index": 1,
+      "explanation": "Annex III lists educational evaluation as high-risk. The Brussels effect applies extraterritorially: any system whose output is used in the EU is in scope.",
+      "misconception_id": "eu_act_doesnt_reach_us_companies"
+    },
+    {
+      "id": "gov_unesco_distinct",
+      "type": "multiple_choice",
+      "concept_id": "unesco_ai_ethics",
+      "stem": "Which principle is most distinctive to the UNESCO Recommendation on the Ethics of AI compared to the NIST RMF and EU AI Act?",
+      "options": [
+        "Transparency.",
+        "Sustainability (including environmental cost of AI), gender equality, and AI literacy as a public good with explicit Global South capacity-building emphasis.",
+        "Risk management.",
+        "Human oversight."
+      ],
+      "correct_index": 1,
+      "explanation": "Transparency, accountability, and human oversight appear in all three frameworks. UNESCO's distinctive contributions are environmental sustainability, equity, and AI literacy as global public goods.",
+      "misconception_id": "frameworks_are_redundant"
+    },
+    {
+      "id": "gov_iso_42001_role",
+      "type": "multiple_choice",
+      "concept_id": "iso_42001",
+      "stem": "What is the practical role of ISO/IEC 42001 alongside NIST AI RMF and EU AI Act?",
+      "options": [
+        "It replaces both.",
+        "It provides a certifiable, audited AI management system that organizations can implement to demonstrate alignment with both NIST and EU expectations — the bridge between voluntary guidance, binding regulation, and operational practice.",
+        "It only applies in Asia.",
+        "It is purely academic."
+      ],
+      "correct_index": 1,
+      "explanation": "ISO 42001 is to AI what ISO 27001 is to information security: an auditable management system that operationalizes broader frameworks for enterprise compliance.",
+      "misconception_id": "iso_replaces_law"
+    }
+  ]
+}

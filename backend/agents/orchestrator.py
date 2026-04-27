@@ -9,11 +9,15 @@ from .activity_agent import ActivityAgent
 from .simulation_agent import SimulationAgent
 from .illustration_agent import IllustrationAgent
 from .scaffolding_agent import ScaffoldingAgent
+from .practice_generation_agent import PracticeGenerationAgent
+from .explanation_agent import ExplanationAgent
+from .critique_agent import CritiqueAgent
 
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from rag_service import rag_service
+from agents.config import get as get_config
 
 import logging
 logger = logging.getLogger(__name__)
@@ -43,6 +47,13 @@ class OrchestratorAgent:
         self.simulation_agent = SimulationAgent(api_key)
         self.illustration_agent = IllustrationAgent(api_key)
         self.scaffolding_agent = ScaffoldingAgent(api_key)
+        # Generative-tier agents (next iteration). They run alongside the
+        # existing twelve and are exposed through dedicated endpoints
+        # (/api/practice/generate, /api/explain) plus an optional Critique
+        # quality-gate.
+        self.practice_generation_agent = PracticeGenerationAgent(api_key)
+        self.explanation_agent = ExplanationAgent(api_key)
+        self.critique_agent = CritiqueAgent(api_key)
 
     def orchestrate(
         self,
@@ -118,6 +129,21 @@ class OrchestratorAgent:
         current_bio_context = current_content # Temporary backwards compatibility
 
         if intent == "evaluate":
+            # EvaluatorAgent embodies a Janine Benyus / biomimicry persona.
+            # Routing student designs from Statics, Dynamics, or Instructional
+            # Design through that persona produces feedback from a domain she
+            # has no authority over (Merrill expert-novice violation). Gate
+            # the evaluator until course-specific evaluators exist.
+            if course != "bio-inspired":
+                return {
+                    "intent": "learn",
+                    "query": query,
+                    "summary": (
+                        f"Design evaluation is currently only available for the "
+                        f"bio-inspired course. For {course}, ask a clarifying "
+                        f"question and the tutor will work through your reasoning with you."
+                    ),
+                }
             evaluation = self.evaluator_agent.evaluate_design(query, current_bio_context, history=history)
             return {
                 "intent": intent,
@@ -221,12 +247,24 @@ class OrchestratorAgent:
             # --- DEBATE LOOP ---
             max_revisions = 2
             revision_count = 0
-            
-            # Check if validation failed (Score < 7 or is_valid is False)
-            while revision_count < max_revisions and (
-                isinstance(validation_response_dict, dict) and 
-                (not validation_response_dict.get("is_valid", True) or validation_response_dict.get("score", 10) < 7)
-            ):
+
+            # Check if validation failed (Score < 7 or is_valid is False).
+            # Short-circuit when the validation output carries a `_schema_error`:
+            # that means the agent itself failed (auth, JSON parse, Gemini error)
+            # and produced a deterministic fallback. Retrying engineering against
+            # a fallback validation just burns more failed Gemini calls.
+            def _validation_says_revise(val: dict) -> bool:
+                if not isinstance(val, dict):
+                    return False
+                if val.get("_schema_error"):
+                    return False
+                if not val.get("is_valid", True):
+                    return True
+                if val.get("score", 10) < 7:
+                    return True
+                return False
+
+            while revision_count < max_revisions and _validation_says_revise(validation_response_dict):
                 logger.info(f"Validation failed. Initiating Debate Loop (Revision {revision_count + 1})...")
                 
                 # Extract critique to pass back
@@ -302,10 +340,11 @@ class OrchestratorAgent:
         Student Query: "{query}"
         """
         try:
+            cfg = get_config("intent_classifier")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
-                config=types.GenerateContentConfig(temperature=0.0)
+                config=types.GenerateContentConfig(temperature=cfg.temperature)
             )
             intent = response.text.strip().lower()
             if intent not in ["learn", "evaluate", "brainstorm", "illustrate", "simulate", "help"]:

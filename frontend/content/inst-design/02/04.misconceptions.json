@@ -1,0 +1,37 @@
+{
+  "section_id": "inst_design_0204",
+  "misconceptions": [
+    {
+      "id": "addie_is_the_only_model",
+      "pattern": "model_monoculture",
+      "description": "Treating ADDIE as the only legitimate ID model and forcing every project through its five letters",
+      "trigger": "learner argues that any deviation from ADDIE is unprofessional",
+      "feedback": "ADDIE is one useful coordination layer, not the only valid model. Mature designers select among Dick and Carey, Kemp, Smith and Ragan, SAM, and Agile based on project risk and audience.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "non_linear_means_unsystematic",
+      "pattern": "process_rigor_error",
+      "description": "Assuming non-linear models like Kemp or Agile are less rigorous than linear models",
+      "trigger": "learner equates step-order with quality assurance",
+      "feedback": "Rigor lives in the alignment between objectives, assessment, and strategy — not in the order in which elements are visited. Non-linear models can be fully rigorous.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "sam_replaces_all_analysis",
+      "pattern": "phase_skipping_error",
+      "description": "Believing SAM and Agile eliminate the need for any analysis",
+      "trigger": "learner says 'just prototype, skip analysis'",
+      "feedback": "SAM and Agile compress and distribute analysis across iterations; they do not remove it. Each prototype is itself an analysis instrument.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "one_model_must_win",
+      "pattern": "false_dichotomy",
+      "description": "Assuming a project must commit to exactly one ID model",
+      "trigger": "learner asks which single model is 'best'",
+      "feedback": "Real design work usually layers two models: an alignment model for evidence and accountability, and a delivery model for execution speed. Both can run in parallel.",
+      "rail_action": "ask"
+    }
+  ]
+}

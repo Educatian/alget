@@ -1,0 +1,37 @@
+{
+  "section_id": "inst_design_0207",
+  "misconceptions": [
+    {
+      "id": "validity_is_property_of_items",
+      "pattern": "validity_locus_error",
+      "description": "Treating validity as a fixed property of test items rather than of the inferences drawn from scores",
+      "trigger": "learner says 'this is a valid test' without specifying what inference it supports",
+      "feedback": "Validity is always about inferences. The same test items can support a valid inference in one context and an invalid one in another. State the inference first.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "distractors_are_filler",
+      "pattern": "filler_distractor",
+      "description": "Writing wrong-answer options as arbitrary fillers rather than misconception probes",
+      "trigger": "learner generates distractors that no real student would believe",
+      "feedback": "Each distractor should map to a real misconception. If a distractor is not chosen by anyone, it carries no diagnostic information; rewrite or remove it.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "any_item_validates_any_objective",
+      "pattern": "alignment_drift",
+      "description": "Assuming any item type can validate any objective regardless of cognitive level",
+      "trigger": "learner pairs an MC recognition item with a Create-level objective",
+      "feedback": "The item must operate at the same Bloom level as the objective's verb. Recognition cannot validate Create. Rebuild one or the other.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "reliability_implies_validity",
+      "pattern": "necessary_vs_sufficient",
+      "description": "Believing high reliability automatically guarantees validity",
+      "trigger": "learner argues that since the test is consistent, it must be valid",
+      "feedback": "Reliability is necessary, not sufficient. A test can consistently measure the wrong construct (reliable but invalid). Validity requires both consistency and the right inference.",
+      "rail_action": "ask"
+    }
+  ]
+}

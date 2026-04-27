@@ -1,0 +1,126 @@
+## Why Assessment Design Is Not the End of ID
+
+A common misconception treats assessment as the last step of instructional design — the place where you finally write the test after everything else is built. That ordering is exactly backwards. In a well-designed course, **assessment is the first concrete deliverable after the objective is written**, because the assessment is the operational definition of "did the learner reach the objective?" If you cannot describe the assessment, you have not actually decided what the objective means.
+
+This is the **backward design** principle (Wiggins and McTighe): start with the desired result, then the evidence that would prove it, then the learning experiences that would generate that evidence. Assessment is the evidence step, and it constrains everything that follows.
+
+This module focuses on the design moves that separate weak assessments from defensible ones: **alignment, validity, reliability, item construction, and rubric design**.
+
+---
+
+## Validity: Is the Assessment Measuring the Right Thing?
+
+Validity is the most important property of an assessment. It is not a property of the test itself; it is a property of the **inferences** you make from the test scores. A test of arithmetic has good validity if scores let you confidently infer arithmetic skill. The same test has poor validity if you try to infer reasoning ability from it.
+
+Three forms of validity matter most for instructional designers.
+
+**Content validity** asks whether the assessment items proportionally represent the objectives and content. A 30-item exam where 25 items test one of seven objectives has weak content validity — it lets one chapter dominate the inference about overall mastery.
+
+**Construct validity** asks whether the items measure the underlying skill rather than something incidental. An algebra item that requires reading a 200-word word problem partly measures reading comprehension. If the objective was algebraic manipulation, that incidental construct contaminates the inference.
+
+**Face validity** asks whether the assessment looks credible to learners and stakeholders. It is the weakest form, but it matters for buy-in. A test that looks unrelated to the course will be distrusted regardless of its psychometric quality.
+
+The validity question is always the same: **what inference about the learner does the score support, and is that inference defensible?**
+
+---
+
+## Reliability: Would the Same Learner Get the Same Result?
+
+Reliability is consistency. If the learner's underlying skill has not changed, the assessment should produce roughly the same score on different occasions, with different items drawn from the same domain, and across different graders.
+
+Three threats damage reliability.
+
+**Item-pool inadequacy.** A 4-item test of "reasoning about feedback loops" will swing wildly based on which 4 items happened to appear. Larger, more representative pools stabilize the score.
+
+**Subjective scoring drift.** Open-ended responses scored without a rubric vary across graders and even across the same grader's mood and time of day. Rubrics with explicit criteria reduce this variance.
+
+**Construct-irrelevant variance.** Cognitive load from test format, time pressure unrelated to the skill, or interface friction in digital assessment all add noise. Designers should remove every irrelevant friction the format introduces.
+
+A test can be reliable without being valid (consistently measuring the wrong thing), but it cannot be valid without being reliable. Reliability is necessary, not sufficient.
+
+---
+
+## Alignment: The Three-Way Check
+
+Constructive alignment (introduced in the previous module on Bloom and ABCD) returns here as a concrete audit. For each objective, ask:
+
+- Does at least one assessment item operate at the **same Bloom level** as the objective's verb?
+- Does the **content** sampled match the objective's stated domain?
+- Does the **condition** of the assessment match the objective's stated condition?
+
+A common defect: the objective says "given a redacted patient chart, the nurse will compute the medication dose," but the assessment shows pre-computed values and asks the learner to pick the correct one from four choices. That assessment tests recognition, not computation. The objective and the assessment disagree about the cognitive demand.
+
+The only fix is to rebuild one or the other until they match. There is no shortcut.
+
+<concept-diagram type="constructive-alignment-audit"></concept-diagram>
+
+---
+
+## Item Construction: Multiple-Choice Done Well
+
+Multiple-choice items can probe many cognitive levels — including evaluation and application — when written carefully. Most weak MC items fail in one of three ways.
+
+**The stem leaks the answer.** Grammar cues, length cues, or "all of the above" patterns let test-wise learners answer without understanding the content.
+
+**Distractors are arbitrary.** Wrong options should each represent a **plausible misconception** a real learner might hold. A distractor that nobody would believe contributes nothing diagnostically; you might as well delete it.
+
+**The cognitive level is wrong for the objective.** As above: a recognition stem cannot validate an Apply or Evaluate objective.
+
+A high-quality MC item is built by writing the misconception bank first, then designing one distractor per high-frequency misconception. When a learner picks distractor B, you should be able to name *which* misconception they are operating under. ALGET's `*.misconceptions.json` files are designed exactly for this purpose; the linkage is by `misconception_id` field.
+
+---
+
+## Rubric Design for Open-Ended Items
+
+Open-ended items (essays, short answers, project artifacts, code, designs) are powerful because they can test higher-order objectives multiple-choice cannot reach. But they only produce reliable scores when paired with a **rubric**.
+
+Two rubric types dominate.
+
+**Analytic rubrics** decompose the performance into separately scored dimensions — for example, conceptual accuracy, evidence use, clarity, and structure. Each dimension has a defined level scale (e.g., 0-3 with descriptors). Analytic rubrics are reliable and produce useful diagnostic feedback, but they cost more to build and apply.
+
+**Holistic rubrics** assign a single score based on overall quality criteria. They are faster to apply but produce less actionable feedback. They are best for low-stakes formative use.
+
+Three rubric design rules:
+
+- **Anchor each level with concrete descriptors**, not adjectives. "Provides at least two cited mechanisms with appropriate hedging" beats "shows good understanding."
+- **Test the rubric on real student samples before deploying it.** If two graders disagree on more than ~15% of items, the rubric is too vague.
+- **Show the rubric to learners before they perform.** A hidden rubric is a research instrument, not a learning tool.
+
+---
+
+## Formative vs. Summative: Different Tools for Different Decisions
+
+This distinction was introduced in the ADDIE evaluation module, but it has direct consequences for assessment design.
+
+**Formative assessments** support learning in progress. They should be frequent, low-stakes, and tightly tied to feedback that lets the learner revise. Item quality matters less than item frequency — many quick checks beat one perfect quiz.
+
+**Summative assessments** report whether mastery has been reached. They should be infrequent, defensible, and aligned to the full objective set. Item quality matters far more than frequency, because the inference is high-stakes.
+
+Designers who confuse the two tend to over-build formative assessments (drowning learners in graded items) and under-build summative ones (relying on a single mid-course exam to judge mastery of an entire course).
+
+---
+
+## A Quick Audit Checklist
+
+Before any assessment ships, run this checklist:
+
+- For each objective, is there at least one item at the matching Bloom level?
+- For each item, can you name the misconception each distractor targets?
+- Is the rubric (where applicable) calibrated against real samples?
+- Is the item pool large enough to avoid topic-luck variance?
+- Does any incidental construct (reading speed, interface complexity) contaminate the score?
+- Is the assessment defensible to a reviewer who has never seen the course?
+
+If any answer is "no," the assessment is not ready.
+
+<dynamic-scenario topic="Assessment Design" context="A team launched a 60-minute end-of-module exam where 22 of the 25 items target a single objective and the other 6 objectives appear once each. Learners pass at 80% but cannot perform 5 of the 7 objectives in the field. Diagnose the validity defect."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="An objective uses the verb 'design' but the assessment is a 4-option multiple-choice item asking the learner to identify which existing design is correct. What is the most defensible diagnosis?"
+  options='[{"text":"The assessment is fine; recognition implies design ability.","isCorrect":false},{"text":"The assessment is misaligned: it operates at Remember/Understand level while the objective claims Create. Either rebuild the assessment as a design task or lower the objective.","isCorrect":true},{"text":"Multiple-choice is never valid for any objective.","isCorrect":false}]'
+  explanation="Correct. An MC recognition item cannot validate a Create-level objective. Constructive alignment requires rebuilding one or the other so the cognitive demands match."
+/>

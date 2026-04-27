@@ -1,0 +1,37 @@
+{
+  "section_id": "inst_design_0208",
+  "misconceptions": [
+    {
+      "id": "video_plus_quiz_is_complete",
+      "pattern": "interaction_blindspot",
+      "description": "Believing that recorded videos plus end-of-module quizzes constitute a complete online course",
+      "trigger": "learner equates 'has videos and quizzes' with 'has all needed interactions'",
+      "feedback": "Videos and auto-graded quizzes only support learner-content interaction. Defensible online design also includes deliberate learner-instructor and learner-learner interaction.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "exploration_alone_is_deep_learning",
+      "pattern": "presence_truncation",
+      "description": "Treating exploratory forum discussion as evidence of deep learning",
+      "trigger": "learner cites high post counts as proof of cognitive presence",
+      "feedback": "Cognitive presence requires moving past exploration into integration and resolution. High-volume forums that never synthesize are stalled at the exploration phase.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "sync_is_for_lectures",
+      "pattern": "mode_misuse",
+      "description": "Using synchronous time to deliver one-way lectures that could be asynchronous",
+      "trigger": "learner schedules webinars as 90-minute one-way broadcasts",
+      "feedback": "Synchronous time is most valuable for real-time discourse and immediate feedback. One-way content delivery should almost always be asynchronous so learners can pace and rewatch.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "teaching_presence_is_camera_time",
+      "pattern": "construct_substitution",
+      "description": "Equating teaching presence with on-camera instructor visibility",
+      "trigger": "learner argues that any course where the instructor appears on camera has strong teaching presence",
+      "feedback": "Teaching presence is the design and direction of the experience — architecture, facilitation, direct instruction. Camera time is one expression, not the construct itself.",
+      "rail_action": "ask"
+    }
+  ]
+}

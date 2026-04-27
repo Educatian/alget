@@ -1,0 +1,22 @@
+{
+    "chapter_title": "Safety, Alignment, and Governance",
+    "title": "Module 1: AI Safety and Alignment Foundations",
+    "description": "Distinguish near-term safety from long-term alignment, recognize specification gaming and reward hacking, and identify five classes of intervention (better specification, interpretability, oversight, capability control, governance).",
+    "learning_objectives": [
+        "Explain why goals expressed in code, reward functions, or natural language are lossy compressions of intent.",
+        "Identify specification gaming, reward hacking, Goodhart's law, and recommender feedback loops as expressions of the same underlying problem.",
+        "Distinguish capability from alignment and recognize why the two properties scale independently.",
+        "Match each safety/alignment intervention class to the failure mode it addresses, and explain why no single class is sufficient."
+    ],
+    "concept_ids": [
+        "ai_safety",
+        "ai_alignment",
+        "specification_gaming",
+        "reward_hacking",
+        "goodharts_law",
+        "distributional_shift",
+        "capability_vs_alignment"
+    ],
+    "estimated_time_minutes": 14,
+    "order": 1
+}

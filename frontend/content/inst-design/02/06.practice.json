@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "gagne_event_match_objective",
+      "type": "multiple_choice",
+      "concept_id": "gagne_nine_events",
+      "stem": "A lesson begins with thirty minutes of new content with no statement of what learners are expected to do at the end. Which Gagné event is missing?",
+      "options": [
+        "Event 1: Gain Attention",
+        "Event 2: Inform Learners of the Objective",
+        "Event 4: Present the Content",
+        "Event 8: Assess Performance"
+      ],
+      "correct_index": 1,
+      "explanation": "Without an explicit objective, learners cannot mobilize the right strategies or self-monitor. This is the missing event 2.",
+      "misconception_id": "objective_is_optional"
+    },
+    {
+      "id": "gagne_recall_purpose",
+      "type": "multiple_choice",
+      "concept_id": "information_processing_model",
+      "stem": "What is the cognitive purpose of Event 3 — Stimulate Recall of Prior Learning?",
+      "options": [
+        "To create warm-up trivia so learners are entertained.",
+        "To deliberately retrieve schemas from long-term memory so the new content has somewhere to attach in working memory.",
+        "To delay the start of the lesson.",
+        "To replace the need for assessment."
+      ],
+      "correct_index": 1,
+      "explanation": "Stimulating recall is a deliberate retrieval move. Without active prior knowledge, the new content has no schema to attach to.",
+      "misconception_id": "recall_is_warmup_trivia"
+    },
+    {
+      "id": "gagne_practice_vs_paraphrase",
+      "type": "multiple_choice",
+      "concept_id": "lesson_architecture",
+      "stem": "An online lesson asks learners to click 'I understand' and paraphrase the rule. Why is this not Event 6 — Elicit Performance?",
+      "options": [
+        "It is fine; paraphrasing is performance.",
+        "Performance means attempting the actual behavior the objective specifies, not paraphrasing or acknowledging.",
+        "Event 6 only applies to physical skills.",
+        "Paraphrase is the same as practice in cognitive learning."
+      ],
+      "correct_index": 1,
+      "explanation": "Eliciting performance means attempting the objective's verb. Paraphrasing or clicking 'I understand' is metacognitive talk, not the performance.",
+      "misconception_id": "paraphrase_counts_as_practice"
+    },
+    {
+      "id": "gagne_transfer_signature",
+      "type": "multiple_choice",
+      "concept_id": "retention_and_transfer",
+      "stem": "Learners score 90% on the in-lesson assessment but cannot apply the skill the following week. Which Gagné event is most likely missing or weak?",
+      "options": [
+        "Event 1: Gain Attention",
+        "Event 4: Present the Content",
+        "Event 9: Enhance Retention and Transfer",
+        "Event 2: Inform Learners of the Objective"
+      ],
+      "correct_index": 2,
+      "explanation": "High in-session score with poor downstream transfer is the classic signature of a missing or weak Event 9.",
+      "misconception_id": "passing_score_means_durable_learning"
+    }
+  ]
+}

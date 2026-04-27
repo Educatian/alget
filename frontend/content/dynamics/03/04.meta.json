@@ -1,0 +1,20 @@
+{
+    "chapter_title": "Planar Rigid Body Dynamics",
+    "title": "Module 4: Rigid Body Impulse and Angular Momentum",
+    "description": "Apply linear and angular impulse-momentum principles to rigid bodies, use conservation of angular momentum about a fixed point, and analyze eccentric impact with the coefficient of restitution at the contact point.",
+    "learning_objectives": [
+        "Apply linear impulse-momentum to the center of mass of a rigid body.",
+        "Apply angular impulse-momentum about the center of mass and about a fixed point, choosing the correct moment of inertia.",
+        "Identify when linear or angular momentum is conserved during an impact, recognizing impulsive constraint reactions.",
+        "Solve eccentric-impact problems using contact-point velocities and the coefficient of restitution along the impact line."
+    ],
+    "concept_ids": [
+        "rigid_body_impulse_momentum",
+        "angular_impulse_momentum",
+        "conservation_of_angular_momentum",
+        "eccentric_impact",
+        "coefficient_of_restitution"
+    ],
+    "estimated_time_minutes": 14,
+    "order": 4
+}

@@ -11,6 +11,9 @@ except ImportError:
 
 import logging
 
+from .config import get as get_config
+from .schema_gate import SIMULATION_FALLBACK, SimulationOutput, gate
+
 logger = logging.getLogger(__name__)
 
 class SimulationAgent:
@@ -44,12 +47,13 @@ class SimulationAgent:
         prompt = self._build_simulation_prompt(bio_context, eng_context, validation_context, history)
         
         try:
+            cfg = get_config("simulation")
             response = self.client.models.generate_content(
-                model='gemini-2.0-flash',
+                model=cfg.model,
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    temperature=0.7, 
-                    max_output_tokens=4096,
+                    temperature=cfg.temperature,
+                    max_output_tokens=cfg.max_output_tokens,
                     response_mime_type="application/json",
                     response_schema={
                         "type": "OBJECT",
@@ -75,16 +79,14 @@ class SimulationAgent:
             
             try:
                 result_json = json.loads(response.text)
-                return result_json
             except json.JSONDecodeError:
-                return {
-                    "error": "Failed to parse JSON response.",
-                    "html_code": "<p>JSON Error during simulation generation.</p>",
-                    "raw_response": response.text
-                }
-                
+                return {**SIMULATION_FALLBACK, "_schema_error": "json_decode", "raw_response": response.text}
+
+            return gate(result_json, SimulationOutput, SIMULATION_FALLBACK, "SimulationAgent")
+
         except Exception as e:
-            return {"error": f"Error from Simulation Agent: {str(e)}", "html_code": f"<p>Error: {str(e)}</p>"}
+            logger.exception("Simulation Agent failed")
+            return {**SIMULATION_FALLBACK, "_schema_error": "exception", "error": str(e)}
             
     def _build_simulation_prompt(self, bio_context: str, eng_context: str, validation_context: str, history: list = None) -> str:
         history_text = ""

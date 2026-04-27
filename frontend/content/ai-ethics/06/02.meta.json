@@ -1,0 +1,20 @@
+{
+    "chapter_title": "AI in Education Ethics",
+    "title": "Module 2: Surveillance, Dark Patterns, and Learner Autonomy",
+    "description": "Distinguish monitoring from surveillance, identify dark patterns specific to learner-facing AI (variable-ratio rewards, loss aversion, manufactured peer presence), and use self-determination theory to anchor a learner-autonomy-respecting design.",
+    "learning_objectives": [
+        "State three properties (aggregation depth, asymmetry of access, inability to opt out) that distinguish surveillance from monitoring.",
+        "Recognize five dark patterns specific to learner-facing AI and the developmental concerns they exploit.",
+        "Apply self-determination theory's autonomy-competence-relatedness frame to evaluate an educational AI deployment.",
+        "Run a seven-step pre-deployment audit that combines legal floor, monitoring vs. surveillance, engagement mechanics, autonomy, and procedural due process."
+    ],
+    "concept_ids": [
+        "educational_surveillance",
+        "learner_autonomy",
+        "self_determination_theory",
+        "engagement_dark_patterns",
+        "manufactured_social_presence"
+    ],
+    "estimated_time_minutes": 13,
+    "order": 2
+}

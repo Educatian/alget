@@ -1,0 +1,143 @@
+## Why Force Vectors Are the Operating System of Statics
+
+Every later topic in statics — equilibrium, moments, structural analysis, friction — runs on top of one prerequisite skill: representing and combining forces as vectors. Beer, Johnston, Mazurek, Cornwell, and Self give force vectors their own chapter ("Statics of Particles") before any equilibrium discussion. Hibbeler does the same in his Chapter 2. The ordering is deliberate. Treating a force as a number with a direction attached, instead of as a properly added vector, is the single most common source of avoidable errors in the entire course.
+
+This module covers the four force-vector skills you will use in every later problem: **2D resolution, 3D resolution with direction cosines and unit vectors, the dot product, and the cross product**.
+
+---
+
+## Forces Are Vectors, Not Scalars
+
+A force has both a magnitude and a direction. Two 100 N forces along the same line add to 200 N. Two 100 N forces at 90° add to ≈ 141 N. Two 100 N forces at 180° add to zero. Adding magnitudes alone discards the direction information that decides the result.
+
+Vectors are added head-to-tail (the parallelogram rule). For more than two forces, build a polygon. The closed polygon corresponds to a system in equilibrium — a fact that becomes the geometric heart of the next module.
+
+A vector is also unchanged by translation along its line of action when applied to a particle. This is the **principle of transmissibility** for particles. (For rigid bodies a similar principle holds, with the qualification that the line of action must be preserved.)
+
+---
+
+## Resolving a 2D Force into Components
+
+Most planar problems decompose forces into x and y components. If a force F has magnitude F and acts at angle θ measured counter-clockwise from the +x axis:
+
+$$F_x = F \cos\theta, \quad F_y = F \sin\theta$$
+
+The reverse computation reassembles components:
+
+$$F = \sqrt{F_x^2 + F_y^2}, \quad \theta = \tan^{-1}\!\left(\frac{F_y}{F_x}\right)$$
+
+The arctangent must be interpreted with quadrant awareness. A vector with $F_x = -3$, $F_y = -4$ has the same arctangent magnitude as $F_x = 3$, $F_y = 4$, but the angles differ by 180°. Use the signs of both components to place the angle in the correct quadrant.
+
+Component arithmetic is the safer route for adding more than two forces:
+
+$$\vec{R} = \sum_i \vec{F}_i, \quad R_x = \sum_i F_{ix}, \quad R_y = \sum_i F_{iy}$$
+
+You sum the components, then re-assemble. This avoids compounded angle errors.
+
+---
+
+## 3D Forces: Direction Cosines and Unit Vectors
+
+In 3D, a force is given by its magnitude and a direction. The direction is specified either by direction cosines or by a position vector along the line of action.
+
+If a force F makes angles $\alpha$, $\beta$, $\gamma$ with the +x, +y, +z axes:
+
+$$F_x = F \cos\alpha, \quad F_y = F \cos\beta, \quad F_z = F \cos\gamma$$
+
+with the constraint $\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1$. The three direction cosines are the components of the **unit vector** $\hat{u}$ along F.
+
+When the force acts along a known line — say from point A to point B — the unit vector is built from the position vector:
+
+$$\vec{r}_{AB} = (x_B - x_A)\hat{i} + (y_B - y_A)\hat{j} + (z_B - z_A)\hat{k}$$
+
+$$\hat{u}_{AB} = \frac{\vec{r}_{AB}}{|\vec{r}_{AB}|}, \qquad \vec{F} = F \,\hat{u}_{AB}$$
+
+This is the Hibbeler workflow: write the line, build the unit vector, multiply by magnitude. It avoids the trap of guessing direction cosines from a 3D figure.
+
+---
+
+## The Dot Product: Projection and Angle Between Vectors
+
+The dot product of two vectors is a scalar:
+
+$$\vec{A} \cdot \vec{B} = A_x B_x + A_y B_y + A_z B_z = AB\cos\theta$$
+
+It does two jobs in statics.
+
+**Angle between two lines.** Solving for the angle:
+
+$$\cos\theta = \frac{\vec{A} \cdot \vec{B}}{AB}$$
+
+This is how you get the angle between two members at a joint, or between a force and a surface, without trigonometric guesswork.
+
+**Projection of a vector onto a line.** The component of force $\vec{F}$ along a unit vector $\hat{u}$ is:
+
+$$F_\| = \vec{F} \cdot \hat{u}$$
+
+When you need the force component parallel to a member's axis, this is the operation. The parallel component contributes axial loading; the perpendicular complement (computed by Pythagoras or by vector subtraction) contributes shear or bending.
+
+The dot product is commutative ($\vec{A} \cdot \vec{B} = \vec{B} \cdot \vec{A}$) and produces zero when two vectors are perpendicular.
+
+---
+
+## The Cross Product: Moments and Perpendicular Direction
+
+The cross product produces a vector:
+
+$$\vec{A} \times \vec{B} = (A_y B_z - A_z B_y)\hat{i} - (A_x B_z - A_z B_x)\hat{j} + (A_x B_y - A_y B_x)\hat{k}$$
+
+with magnitude $AB\sin\theta$ and direction given by the right-hand rule.
+
+In statics, the cross product is the cleanest way to compute the **moment of a force about a point**:
+
+$$\vec{M}_O = \vec{r} \times \vec{F}$$
+
+where $\vec{r}$ is any position vector from the point O to any point on F's line of action. This will become Chapter 2's foundation.
+
+The cross product is **anti-commutative**: $\vec{A} \times \vec{B} = -\vec{B} \times \vec{A}$. Confusing the order is the most common cross-product error and produces sign flips in moment calculations.
+
+It is also **zero** when two vectors are parallel — a useful collinearity check.
+
+<concept-diagram type="3d-force-resolution"></concept-diagram>
+
+---
+
+## Worked Example: From a 3D Geometry to Resolved Components
+
+A cable in a 3D anchor system pulls from point A(2, 0, 3) m toward point B(5, 4, 0) m with tension 250 N. Resolve the force.
+
+Step 1: Position vector A to B.
+$$\vec{r}_{AB} = (5-2)\hat{i} + (4-0)\hat{j} + (0-3)\hat{k} = 3\hat{i} + 4\hat{j} - 3\hat{k} \text{ m}$$
+
+Step 2: Magnitude.
+$$|\vec{r}_{AB}| = \sqrt{9 + 16 + 9} = \sqrt{34} \approx 5.831 \text{ m}$$
+
+Step 3: Unit vector.
+$$\hat{u}_{AB} = \frac{3}{5.831}\hat{i} + \frac{4}{5.831}\hat{j} - \frac{3}{5.831}\hat{k} \approx 0.514\hat{i} + 0.686\hat{j} - 0.514\hat{k}$$
+
+Step 4: Force vector.
+$$\vec{F} = 250 \,\hat{u}_{AB} \approx 128.6\hat{i} + 171.5\hat{j} - 128.6\hat{k} \text{ N}$$
+
+That is the only correct workflow. Estimating angles by eye from a 3D drawing produces 5-15° errors that propagate through every subsequent equilibrium equation.
+
+---
+
+## Common Errors and Their Diagnoses
+
+- **Adding magnitudes instead of components.** A 200 N + 100 N force pair almost never produces a 300 N resultant. Always resolve, then sum.
+- **Quadrant errors in $\tan^{-1}$.** Use both component signs, or use `atan2` if you are computing numerically.
+- **Direction cosines that do not sum in squares to 1.** That is a corruption signal — recompute the unit vector from the position vector.
+- **Applying $\vec{r} \times \vec{F}$ with the wrong $\vec{r}$.** $\vec{r}$ must run *from* the moment point *to* any point on F's line of action, not the other way around.
+- **Treating dot and cross products interchangeably.** Dot is scalar; cross is vector. The two answer different questions.
+
+<dynamic-scenario topic="3D Force Vectors" context="A radio tower is held by three guy cables anchored at ground points A, B, C and meeting at the tower top T(0, 0, 30) m. Cable tensions are unknown. The student is asked to write each cable's force vector in component form before applying equilibrium."></dynamic-scenario>
+
+---
+
+### Check Your Understanding
+
+<interactive-quiz
+  question="Two forces act at a point: F₁ = 80 N along the +x axis, and F₂ = 60 N at 90° above the +x axis (along +y). What is the magnitude of the resultant?"
+  options='[{"text":"140 N (sum of magnitudes).","isCorrect":false},{"text":"100 N (Pythagorean of components: √(80² + 60²) = 100).","isCorrect":true},{"text":"20 N (difference of magnitudes).","isCorrect":false}]'
+  explanation="Correct. Perpendicular forces combine as the Pythagorean of their magnitudes: √(80² + 60²) = √10000 = 100 N. Adding magnitudes (140) is the classic scalar mistake."
+/>
