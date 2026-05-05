@@ -315,6 +315,7 @@ export function summarizeSocialSignals(signals, heading) {
     let completionsToday = 0
     let helpOpensToday = 0
     let reactionTotal = 0
+    const confusionByHeading = {}
 
     signals.forEach((signal) => {
         if (signal.signal_type === 'completion') {
@@ -330,15 +331,38 @@ export function summarizeSocialSignals(signals, heading) {
             if (matchesHeading && signal.signal_value in reactionCounts) {
                 reactionCounts[signal.signal_value] += 1
             }
+            if (signal.signal_value === 'need_example' || signal.signal_value === 'stuck_too') {
+                const key = signal.heading || 'this section'
+                confusionByHeading[key] = (confusionByHeading[key] || 0) + 1
+            }
             reactionTotal += 1
         }
     })
+
+    const topConfusion = Object.entries(confusionByHeading)
+        .sort((left, right) => right[1] - left[1])[0] || null
+
+    const supportChoices = [
+        { id: 'opened_support', label: 'Opened BigAL support', count: helpOpensToday },
+        { id: 'need_example', label: 'Asked for an example', count: reactionCounts.need_example || 0 },
+        { id: 'stuck_too', label: 'Marked stuck too', count: reactionCounts.stuck_too || 0 },
+        { id: 'clicked', label: 'Marked this clicked', count: reactionCounts.clicked || 0 }
+    ]
+
+    const mostSelectedSupport = supportChoices
+        .filter((choice) => choice.count > 0)
+        .sort((left, right) => right.count - left.count)[0] || null
 
     return {
         completionsToday,
         helpOpensToday,
         reactionTotal,
-        reactionCounts
+        reactionCounts,
+        topConfusion: topConfusion
+            ? { heading: topConfusion[0], count: topConfusion[1] }
+            : null,
+        mostSelectedSupport,
+        supportChoices
     }
 }
 

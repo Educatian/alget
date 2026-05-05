@@ -1,6 +1,7 @@
 import { Suspense, lazy, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { logInteraction } from '../lib/loggingService'
+import PeerPulse from './PeerPulse'
 
 const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
 const PracticeBlock = lazy(() => import('./PracticeBlock'))
@@ -63,7 +64,8 @@ export default function ReadingPane({
     previousSection,
     nextSection,
     recentSection,
-    onNavigate
+    onNavigate,
+    peerPulse
 }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
@@ -189,7 +191,7 @@ export default function ReadingPane({
                         <ul className="mt-4 space-y-3">
                             {meta.learning_objectives.map((obj, i) => (
                                 <li key={i} className="flex items-start gap-3 text-[1.02rem] leading-7 text-[var(--ath-text)]">
-                                    <span className="mt-1 text-[var(--ath-primary)]">•</span>
+                                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[var(--ath-primary)]" aria-hidden="true" />
                                     <span>{obj}</span>
                                 </li>
                             ))}
@@ -249,6 +251,17 @@ export default function ReadingPane({
                     </div>
                 </div>
             </header>
+
+            {peerPulse && (
+                <PeerPulse
+                    connected={peerPulse.connected}
+                    peers={peerPulse.peers}
+                    sameHeadingPeers={peerPulse.sameHeadingPeers}
+                    sameConceptPeers={peerPulse.sameConceptPeers}
+                    signalSummary={peerPulse.signalSummary}
+                    onReaction={peerPulse.onReaction}
+                />
+            )}
 
             <Suspense fallback={<PanelFallback label="Loading Reading Narrative..." />}>
                 <ReadingNarrative
