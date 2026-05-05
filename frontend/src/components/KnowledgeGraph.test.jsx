@@ -20,7 +20,7 @@ describe('KnowledgeGraph action explanation', () => {
         vi.restoreAllMocks()
     })
 
-    it('explains concept status as a work-product action map', async () => {
+    it('shows compact concept status signals', async () => {
         globalThis.fetch = vi.fn(async () => ({
             ok: true,
             json: async () => ({
@@ -72,14 +72,12 @@ describe('KnowledgeGraph action explanation', () => {
         )
 
         expect(await screen.findByText('Brain Network')).toBeInTheDocument()
-        expect(screen.getByText('What this shows')).toBeInTheDocument()
-        expect(screen.getByText(/Node color is not a grade/i)).toBeInTheDocument()
-        expect(screen.getByText('Next action')).toBeInTheDocument()
-        expect(screen.getByText(/Work Product Studio/i)).toBeInTheDocument()
-        expect(screen.getByText('Current focus')).toBeInTheDocument()
+        expect(screen.getByText('3 concepts')).toBeInTheDocument()
+        expect(screen.getByText('Click a node to jump')).toBeInTheDocument()
+        expect(screen.getByText('Focus')).toBeInTheDocument()
         expect(screen.getAllByText('Developing').length).toBeGreaterThan(0)
         expect(screen.getAllByText('Stable').length).toBeGreaterThan(0)
-        expect(screen.getByText('Evidence needed')).toBeInTheDocument()
+        expect(screen.getByText('Needs evidence')).toBeInTheDocument()
         expect(container.querySelector('.knowledge-graph-mount')).toBeTruthy()
     })
 })

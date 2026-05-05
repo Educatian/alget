@@ -1953,7 +1953,21 @@ def build_mastery_graph_payload(
     links: list[dict[str, str]] = []
     previous_section_last_node_id: Optional[str] = None
 
-    for chapter_index, chapter in enumerate(toc.get("chapters", []), start=1):
+    # Scope the graph to the current chapter when a section is provided.
+    # Without this, large supplement courses (64 sections × ~5 concepts)
+    # dump 200+ nodes into the SVG and the brain network becomes unreadable.
+    chapters = toc.get("chapters", [])
+    focus_chapter_id: Optional[str] = None
+    if current_section_id:
+        parts = current_section_id.split("/")
+        if len(parts) >= 2:
+            focus_chapter_id = parts[1]
+    if focus_chapter_id:
+        scoped = [c for c in chapters if _ensure_str(c.get("id")) == focus_chapter_id]
+        if scoped:
+            chapters = scoped
+
+    for chapter_index, chapter in enumerate(chapters, start=1):
         chapter_id = _ensure_str(chapter.get("id"))
         chapter_title = _ensure_str(chapter.get("title")) or f"Chapter {chapter_id}"
 

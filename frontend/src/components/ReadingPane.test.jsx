@@ -73,9 +73,8 @@ describe('ReadingPane continuity cues', () => {
             />,
         )
 
-        expect(screen.getByText('Returning Learner Check-In')).toBeInTheDocument()
-        expect(screen.getByText(/Last visited 01\.01 Prior Section/i)).toBeInTheDocument()
-        fireEvent.click(screen.getByRole('button', { name: /Resume Last Section/i }))
+        expect(screen.getByText(/course deliverable with claim/i)).toBeInTheDocument()
+        fireEvent.click(screen.getByRole('button', { name: /Resume 01\.01/i }))
         expect(onNavigate).toHaveBeenCalledWith('01', '01', 'backward')
         expect(await screen.findByText('Reading narrative loaded')).toBeInTheDocument()
     })
@@ -95,8 +94,9 @@ describe('ReadingPane continuity cues', () => {
             />,
         )
 
-        expect(screen.getByText('Next move: evidence, judgment, revision.')).toBeInTheDocument()
-        expect(screen.getByText('Next: judge AI + revise')).toBeInTheDocument()
+        expect(screen.getByText('Read')).toBeInTheDocument()
+        expect(screen.getByText('Judge AI')).toBeInTheDocument()
+        expect(screen.getByText('Revise')).toBeInTheDocument()
     })
 
     it('does not duplicate the objective block when the MDX already has learning targets', () => {
