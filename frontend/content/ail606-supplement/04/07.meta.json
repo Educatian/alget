@@ -1,9 +1,9 @@
 {
   "chapter_title": "Design Draft and Theory-to-Prototype Alignment",
   "title": "README and Repository Disclosure",
-  "description": "Artifact-specific exemplar for AIL 606 connecting readme and repository disclosure to usability test script, social annotation signals, and adaptive learner-model evidence.",
+  "description": "AIL 606 textbook section connecting readme and repository disclosure to prototype README traceability matrix connecting theory to screen changes, social annotation signals, and adaptive learner-model evidence.",
   "learning_objectives": [
-    "Analyze a usability test script as evidence of learner judgment in AIL 606.",
+    "Analyze a prototype README traceability matrix connecting theory to screen changes as evidence of learner judgment in AIL 606.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."

@@ -342,14 +342,22 @@ export function summarizeSocialSignals(signals, heading) {
     const topConfusion = Object.entries(confusionByHeading)
         .sort((left, right) => right[1] - left[1])[0] || null
 
-    const supportChoices = [
+    const sectionSupportChoices = [
         { id: 'opened_support', label: 'Opened BigAL support', count: helpOpensToday },
+        { id: 'completion', label: 'Completed the section', count: completionsToday }
+    ]
+
+    const passageReactionChoices = [
         { id: 'need_example', label: 'Asked for an example', count: reactionCounts.need_example || 0 },
         { id: 'stuck_too', label: 'Marked stuck too', count: reactionCounts.stuck_too || 0 },
         { id: 'clicked', label: 'Marked this clicked', count: reactionCounts.clicked || 0 }
     ]
 
-    const mostSelectedSupport = supportChoices
+    const mostSelectedSupport = sectionSupportChoices
+        .filter((choice) => choice.count > 0)
+        .sort((left, right) => right.count - left.count)[0] || null
+
+    const mostSelectedPassageReaction = passageReactionChoices
         .filter((choice) => choice.count > 0)
         .sort((left, right) => right.count - left.count)[0] || null
 
@@ -362,7 +370,10 @@ export function summarizeSocialSignals(signals, heading) {
             ? { heading: topConfusion[0], count: topConfusion[1] }
             : null,
         mostSelectedSupport,
-        supportChoices
+        mostSelectedPassageReaction,
+        sectionSupportChoices,
+        passageReactionChoices,
+        supportChoices: passageReactionChoices
     }
 }
 

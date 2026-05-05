@@ -1,9 +1,9 @@
 {
   "chapter_title": "Design Draft and Theory-to-Prototype Alignment",
   "title": "AI-Assisted Authoring With Codex",
-  "description": "Artifact-specific exemplar for AIL 606 connecting ai-assisted authoring with codex to cognitive load diagnostic table, social annotation signals, and adaptive learner-model evidence.",
+  "description": "AIL 606 textbook section connecting ai-assisted authoring with codex to AI-USE disclosure excerpt tied to one bounded design-support decision, social annotation signals, and adaptive learner-model evidence.",
   "learning_objectives": [
-    "Analyze a cognitive load diagnostic table as evidence of learner judgment in AIL 606.",
+    "Analyze an AI-USE disclosure excerpt tied to one bounded design-support decision as evidence of learner judgment in AIL 606.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."

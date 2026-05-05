@@ -219,6 +219,13 @@ def clean_phrase(value: str) -> str:
     return cleaned
 
 
+def article_for(value: str) -> str:
+    first_word = clean_phrase(value).split(" ", 1)[0].lower()
+    if first_word.startswith(("a", "e", "i", "o", "u")):
+        return "an"
+    return "a"
+
+
 def section_context_sentence(profile: dict, title: str, module_title: str, artifact: str) -> str:
     short = profile["short"]
     if short == "AIL 606":
@@ -285,6 +292,126 @@ def decision_rule(profile: dict, artifact: str, anchors: list[str]) -> str:
     )
 
 
+def pick_variant(options: list[str], chapter: int, section: int) -> str:
+    return options[(chapter + section) % len(options)]
+
+
+def trace_bridge(profile: dict, title: str, artifact: str, chapter: int, section: int) -> str:
+    short = profile["short"]
+    if short == "AIL 606":
+        options = [
+            f"A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the {artifact} should make that chain readable.",
+            f"In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind {title} so the next revision is based on evidence, not taste.",
+            f"The textbook is doing more than presenting a principle here. It is asking you to leave a design trace that shows how {title} changed what you noticed in the {artifact}.",
+        ]
+    elif short == "CAT 531":
+        options = [
+            f"For a teacher, the important record is not simply that a technology was selected. The {artifact} should show how classroom purpose, student risk, and evidence shaped the decision.",
+            f"Professional judgment becomes visible when a teacher can explain what was tried, what constraint mattered, and why the {artifact} changed after evidence was reviewed.",
+            f"This section turns {title} into a defensible teaching decision. The goal is to make the reasoning public enough that a colleague could inspect and improve it.",
+        ]
+    else:
+        options = [
+            f"A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The {artifact} is where that trust is built.",
+            f"In CAT 100, completion is not the same as digital fluency. The section asks you to show how {title} changes the choices you make in the {artifact}.",
+            f"The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.",
+        ]
+    return pick_variant(options, chapter, section)
+
+
+def lens_guidance(profile: dict, anchors: list[str], chapter: int, section: int) -> str:
+    options = [
+        f"Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.",
+        f"The anchors should do work in your artifact. If {anchors[0]} or {anchors[1]} does not change a decision, it is only a citation rather than evidence of judgment.",
+        f"Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.",
+    ]
+    return pick_variant(options, chapter, section)
+
+
+def worked_example_setup(artifact: str, chapter: int, section: int) -> str:
+    options = [
+        f"Start with a thin claim that many students write on a first pass:",
+        f"A first draft often hides the real decision behind a vague improvement claim:",
+        f"The weak version below sounds plausible, but it does not yet give a reader enough evidence:",
+    ]
+    return f"{pick_variant(options, chapter, section)}\n\n> I made the {artifact} clearer."
+
+
+def worked_example_takeaway(artifact: str, anchor: str, chapter: int, section: int) -> str:
+    options = [
+        f"The stronger version treats the {artifact} as evidence. It names what changed, links the change to **{anchor}**, and leaves a reader able to audit the decision.",
+        f"Notice the shift: the artifact is no longer just polished. The revision points to **{anchor}**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.",
+        f"The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **{anchor}**, and the exact revision that followed.",
+    ]
+    return pick_variant(options, chapter, section)
+
+
+def submission_check_intro(artifact: str, chapter: int, section: int) -> str:
+    options = [
+        f"Before submitting the {artifact}, slow down and check whether the trace can answer three questions:",
+        f"Use the following check when the artifact looks finished but the reasoning may still be hidden:",
+        f"A strong submission should survive three quick tests:",
+    ]
+    return pick_variant(options, chapter, section)
+
+
+def common_misreadings(profile: dict, artifact: str, chapter: int, section: int) -> tuple[str, str]:
+    short = profile["short"]
+    if short == "AIL 606":
+        first = [
+            f"A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.",
+            f"Another misreading is to let the tool optimize the surface of the {artifact} while the designer never explains the learning demand.",
+            f"Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.",
+        ]
+        second = [
+            f"In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.",
+            f"The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.",
+            f"Treat the artifact as a record of design judgment, not only as a deliverable.",
+        ]
+    elif short == "CAT 531":
+        first = [
+            f"A common mistake is to defend a technology because it is engaging. Engagement matters, but it does not replace evidence about learning, access, or risk.",
+            f"Another misreading is to write a general teaching reflection after the artifact is finished instead of documenting the decision while it is being revised.",
+            f"Teachers can also over-trust a platform recommendation and under-document the classroom constraint that should govern the choice.",
+        ]
+        second = [
+            f"In this course, quality means the technology choice can be inspected as a professional judgment.",
+            f"The artifact should show how student need, evidence, and policy boundaries shaped the revision.",
+            f"A colleague should be able to see why the tool belongs in this learning activity and where its limits remain.",
+        ]
+    else:
+        first = [
+            f"A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.",
+            f"Students sometimes accept an AI suggestion because it sounds better, without checking whether it protects the claim, audience, or evidence.",
+            f"Another misreading is to write about the tool instead of showing what the tool helped you revise.",
+        ]
+        second = [
+            f"In this course, quality means another reader can verify what changed and why.",
+            f"The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.",
+            f"Your trace should make the judgment visible enough that a reviewer can trust the digital product.",
+        ]
+    return pick_variant(first, chapter, section), pick_variant(second, chapter + 1, section)
+
+
+def research_trace(profile: dict, title: str, artifact: str, chapter: int, section: int) -> str:
+    if profile["short"] == "AIL 606":
+        options = [
+            f"For research use, this section is strongest when the {artifact} records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.",
+            f"The learner model can separate page completion from design learning when the trace links {title}, evidence source, support action, and revision quality.",
+        ]
+    elif profile["short"] == "CAT 531":
+        options = [
+            f"For research use, this section is strongest when the {artifact} captures instructional purpose, equity or privacy boundary, support request, revision rationale, and confidence change.",
+            f"The learner model can separate tool enthusiasm from professional judgment when the trace records evidence source, risk, support action, and revision quality.",
+        ]
+    else:
+        options = [
+            f"For research use, this section is strongest when the {artifact} records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.",
+            f"The learner model can separate digital activity completion from digital fluency when the trace links claim, evidence, tool boundary, revision, and remaining limitation.",
+        ]
+    return pick_variant(options, chapter, section)
+
+
 def write_section(course: str, chapter: int, section: int) -> None:
     profile = COURSES[course]
     meta = load_meta(course, chapter, section)
@@ -310,6 +437,13 @@ def write_section(course: str, chapter: int, section: int) -> None:
     rule = decision_rule(profile, artifact_phrase, anchor_names)
     context_sentence = section_context_sentence(profile, title, module_title, artifact_phrase)
     prompt_move = clean_phrase(move["heading"].lower())
+    bridge = trace_bridge(profile, title, artifact_phrase, chapter, section)
+    lenses = lens_guidance(profile, anchor_names, chapter, section)
+    weak_example = worked_example_setup(artifact_phrase, chapter, section)
+    example_takeaway = worked_example_takeaway(artifact_phrase, anchor_names[1], chapter, section)
+    check_intro = submission_check_intro(artifact_phrase, chapter, section)
+    misreading_one, misreading_two = common_misreadings(profile, artifact_phrase, chapter, section)
+    trace_note = research_trace(profile, title, artifact_phrase, chapter, section)
 
     body = dedent(f"""\
 # {title}
@@ -330,7 +464,7 @@ The section is not asking you to memorize a definition and move on. It is asking
 
 {example}
 
-This is the difference between a completed activity and a textbook-quality learning trace. A completed activity tells the instructor that something was submitted. A learning trace shows the reasoning that produced the submission. In an intelligent textbook, that distinction matters because the system can only adapt well when the learner's decision is visible.
+{bridge}
 
 ## Core Concept
 
@@ -342,25 +476,23 @@ Three course anchors shape the reasoning here:
 - **{anchor_names[1]}** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
 - **{anchor_names[2]}** helps you check whether the artifact works for varied learners, audiences, or use contexts.
 
-Do not treat these anchors as citations to paste into a reflection. Treat them as lenses. A lens is useful only if it changes what you notice and what you revise.
+{lenses}
 
 ## Worked Example
 
-Start with a weak artifact claim:
-
-> I made the {artifact_phrase} clearer.
+{weak_example}
 
 That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
 
 > I revised the {artifact_phrase} so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **{anchor_names[1]}**, and I can point to the exact part of the artifact that changed.
 
-The improved version does three things. First, it names the artifact as a tool for communication, not just a finished product. Second, it identifies the course idea that shaped the revision. Third, it leaves a trail that another person can audit.
+{example_takeaway}
 
 ## Decision Rule
 
 {rule}
 
-Use this three-step check before you submit:
+{check_intro}
 
 1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
 2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
@@ -370,9 +502,9 @@ If you cannot answer all three questions, the artifact may be complete, but it i
 
 ## Common Misreadings
 
-One common mistake is to equate polish with quality. A polished artifact can still hide weak reasoning. Another mistake is to let AI or software produce the artifact without making the learner's judgment visible. A third mistake is to write a reflection after the fact that describes the final product but not the decision process.
+{misreading_one}
 
-In this course, quality means that the decision can be traced. The artifact should make it possible to see what you believed at first, what evidence challenged or refined that belief, what support you requested, what you accepted, what you rejected, and what limitation remains.
+{misreading_two}
 
 ## Artifact Studio
 
@@ -401,13 +533,32 @@ Before moving on, answer the embedded check. The point is not whether you rememb
 
 ## Research Trace
 
-This section contributes to the learner model only when the trace includes the artifact claim, evidence source, annotation type, requested support action, accepted suggestion, rejected or modified suggestion, confidence before and after revision, and instructor artifact-quality score. Those signals help separate genuine learning progress from simple page completion.
+{trace_note}
 
 ## References
 
 {refs}
     """)
     (CONTENT_ROOT / course / f"{chapter:02d}" / f"{section:02d}.mdx").write_text(body, encoding="utf-8")
+
+
+def update_meta(course: str, chapter: int, section: int) -> None:
+    profile = COURSES[course]
+    meta = load_meta(course, chapter, section)
+    title = meta["title"]
+    artifact = clean_phrase(select_artifact(profile, title, chapter, section))
+    meta["description"] = (
+        f"{profile['short']} textbook section connecting {title.lower()} to {artifact}, "
+        "social annotation signals, and adaptive learner-model evidence."
+    )
+    meta["learning_objectives"] = [
+        f"Analyze {article_for(artifact)} {artifact} as evidence of learner judgment in {profile['short']}.",
+        "Distinguish artifact polish from evidence-based revision.",
+        "Document a bounded AI/software support move with accepted and rejected suggestions.",
+        "Identify annotation, artifact, support, and calibration signals for intelligent textbook research.",
+    ]
+    meta_path = CONTENT_ROOT / course / f"{chapter:02d}" / f"{section:02d}.meta.json"
+    meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
 
 
 def build_item(course: str, idx: int, construct: str, correct_index: int) -> dict:
@@ -478,6 +629,7 @@ def main() -> None:
     for course in COURSES:
         for chapter in range(1, 9):
             for section in range(1, 9):
+                update_meta(course, chapter, section)
                 write_section(course, chapter, section)
     write_item_bank()
     print("Upgraded 192 sections, 192 artifact packets, and 36 measurement items.")

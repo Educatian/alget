@@ -1,9 +1,9 @@
 {
   "chapter_title": "Instructor Implementation Toolkit",
   "title": "Course Readiness Checklist",
-  "description": "Artifact-specific exemplar for AIL 606 connecting course readiness checklist to cognitive load diagnostic table, social annotation signals, and adaptive learner-model evidence.",
+  "description": "AIL 606 textbook section connecting course readiness checklist to moderated usability test script with observation-to-revision trace, social annotation signals, and adaptive learner-model evidence.",
   "learning_objectives": [
-    "Analyze a cognitive load diagnostic table as evidence of learner judgment in AIL 606.",
+    "Analyze a moderated usability test script with observation-to-revision trace as evidence of learner judgment in AIL 606.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."

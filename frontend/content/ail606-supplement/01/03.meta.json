@@ -1,9 +1,9 @@
 {
   "chapter_title": "Foundations of Interactive Multimedia Learning",
   "title": "Cognitive Load Diagnosis",
-  "description": "Artifact-specific exemplar for AIL 606 connecting cognitive load diagnosis to cognitive load diagnostic table, social annotation signals, and adaptive learner-model evidence.",
+  "description": "AIL 606 textbook section connecting cognitive load diagnosis to cognitive load diagnosis table with intrinsic/extraneous/germane load evidence, social annotation signals, and adaptive learner-model evidence.",
   "learning_objectives": [
-    "Analyze a cognitive load diagnostic table as evidence of learner judgment in AIL 606.",
+    "Analyze a cognitive load diagnosis table with intrinsic/extraneous/germane load evidence as evidence of learner judgment in AIL 606.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."

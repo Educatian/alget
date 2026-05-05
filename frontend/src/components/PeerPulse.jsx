@@ -5,7 +5,7 @@ function countLabel(count, label) {
 }
 
 function getTopReaction(signalSummary = {}) {
-    const choices = signalSummary.supportChoices || []
+    const choices = signalSummary.passageReactionChoices || signalSummary.supportChoices || []
     return choices
         .filter((choice) => choice.count > 0)
         .sort((left, right) => right.count - left.count)[0] || null
@@ -17,11 +17,13 @@ export default function PeerPulse({
     sameHeadingPeers = [],
     sameConceptPeers = [],
     signalSummary = {},
+    activeHeading = '',
     onReaction,
 }) {
     const topReaction = getTopReaction(signalSummary)
     const topConfusion = signalSummary.topConfusion
     const livePeerCount = peers.length
+    const canReactToPassage = Boolean(activeHeading)
 
     return (
         <section className="my-8 rounded-[1.8rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.78)] p-5 shadow-sm">
@@ -44,6 +46,7 @@ export default function PeerPulse({
                     <button
                         type="button"
                         onClick={() => onReaction?.('need_example')}
+                        disabled={!canReactToPassage}
                         className="editorial-button-secondary px-3 py-2 text-xs"
                     >
                         Need example
@@ -51,6 +54,7 @@ export default function PeerPulse({
                     <button
                         type="button"
                         onClick={() => onReaction?.('stuck_too')}
+                        disabled={!canReactToPassage}
                         className="editorial-button-secondary px-3 py-2 text-xs"
                     >
                         Stuck too
@@ -70,7 +74,9 @@ export default function PeerPulse({
                             ? `${countLabel(sameHeadingPeers.length, 'reader')} on this passage`
                             : sameConceptPeers.length > 0
                                 ? `${countLabel(sameConceptPeers.length, 'reader')} on this concept`
-                                : 'No live peers in this passage yet'}
+                                : canReactToPassage
+                                    ? `You are reading "${activeHeading}"`
+                                    : 'Start reading to activate passage signals'}
                     </p>
                 </div>
 
@@ -101,7 +107,7 @@ export default function PeerPulse({
                     </p>
                     <p className="mt-1 text-xs leading-5 text-[var(--ath-muted)]">
                         {signalSummary.helpOpensToday > 0
-                            ? `${countLabel(signalSummary.helpOpensToday, 'reader')} opened BigAL support today`
+                            ? `${countLabel(signalSummary.helpOpensToday, 'reader')} opened BigAL support in this section today`
                             : 'Support choices will appear as readers interact'}
                     </p>
                 </div>

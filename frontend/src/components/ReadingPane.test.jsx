@@ -1,6 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import ReadingPane from './ReadingPane'
+
+afterEach(() => cleanup())
 
 vi.mock('../lib/loggingService', () => ({
     logInteraction: vi.fn(),
@@ -95,5 +97,26 @@ describe('ReadingPane continuity cues', () => {
 
         expect(screen.getByText(/annotating one evidence claim, judging AI feedback/i)).toBeInTheDocument()
         expect(screen.getByText('Next: judge AI + revise')).toBeInTheDocument()
+    })
+
+    it('does not duplicate the objective block when the MDX already has learning targets', () => {
+        render(
+            <ReadingPane
+                sectionData={{
+                    ...sectionData,
+                    content: '# Current Section\n\n## Learning Targets\n\n- Build a work product trace.',
+                }}
+                loading={false}
+                isBookmarked={false}
+                toggleBookmark={vi.fn()}
+                isCompleted={false}
+                markCompleted={vi.fn()}
+                previousSection={null}
+                nextSection={null}
+                recentSection={null}
+            />,
+        )
+
+        expect(screen.queryByText('Learning Objectives')).not.toBeInTheDocument()
     })
 })
