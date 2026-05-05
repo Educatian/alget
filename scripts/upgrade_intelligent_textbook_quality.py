@@ -127,6 +127,7 @@ def packet_path(course: str, chapter: int, section: int, title: str) -> Path:
 def write_packet(course: str, chapter: int, section: int, title: str, module_title: str, artifact: str, profile: dict) -> str:
     path = packet_path(course, chapter, section, title)
     anchor_names = [anchor for anchor, _ in profile["anchors"]]
+    artifact_phrase = clean_phrase(artifact)
     packet = dedent(f"""\
     # {profile['short']} Artifact Studio Packet: {title}
 
@@ -134,7 +135,7 @@ def write_packet(course: str, chapter: int, section: int, title: str, module_tit
     This packet turns **{title}** into a concrete artifact studio task. The goal is not to make a polished submission on the first pass. The goal is to make the learner's judgment visible enough that ALGET can adapt support, an instructor can review the decision, and a researcher can code the trace.
 
     ## Artifact
-    **{artifact}**
+    **{artifact_phrase}**
 
     ## Course Context
     Module: **{module_title}**  
@@ -154,7 +155,7 @@ def write_packet(course: str, chapter: int, section: int, title: str, module_tit
     ## Worked Mini-Example
     Weak trace: "I used AI and made it clearer."
 
-    Strong trace: "I asked for three alternatives for the {artifact}. I accepted the alternative that made the audience constraint explicit, rejected the alternative that removed the evidence source, and revised the artifact so the reader can see how {anchor_names[0]} shaped the final decision. The remaining limitation is that the trace has not yet been tested with a second reader."
+    Strong trace: "I asked for three alternatives for the {artifact_phrase}. I accepted the alternative that made the audience constraint explicit, rejected the alternative that removed the evidence source, and revised the artifact so the reader can see how {anchor_names[0]} shaped the final decision. The remaining limitation is that the trace has not yet been tested with a second reader."
 
     ## Instructor Rubric
     Score each row 0, 1, or 2.
@@ -201,11 +202,95 @@ def html_attr(value: str) -> str:
     return value.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+def sentence_join(items: list[str]) -> str:
+    cleaned = [str(item).strip().rstrip(".") for item in items if str(item).strip()]
+    if not cleaned:
+        return ""
+    if len(cleaned) == 1:
+        return cleaned[0]
+    if len(cleaned) == 2:
+        return f"{cleaned[0]} and {cleaned[1]}"
+    return f"{', '.join(cleaned[:-1])}, and {cleaned[-1]}"
+
+
+def clean_phrase(value: str) -> str:
+    cleaned = re.sub(r"\ba ([AEIOUaeiou])", r"an \1", value)
+    cleaned = re.sub(r"\bA ([AEIOUaeiou])", r"An \1", cleaned)
+    return cleaned
+
+
+def section_context_sentence(profile: dict, title: str, module_title: str, artifact: str) -> str:
+    short = profile["short"]
+    if short == "AIL 606":
+        return (
+            f"This module treats {title} as a design problem: the learner must connect theory, media choices, "
+            f"and prototype evidence before deciding whether the {artifact} is ready for revision."
+        )
+    if short == "CAT 531":
+        return (
+            f"This module treats {title} as a professional judgment problem: the learner must connect pedagogy, "
+            f"classroom constraints, and ethics before defending the {artifact}."
+        )
+    return (
+        f"This module treats {title} as a practical digital fluency problem: the learner must connect audience, "
+        f"evidence, and tool use before publishing or submitting the {artifact}."
+    )
+
+
+def learner_role(profile: dict) -> str:
+    short = profile["short"]
+    if short == "AIL 606":
+        return "a learning designer"
+    if short == "CAT 531":
+        return "a teacher making a defensible technology decision"
+    return "a student building practical digital evidence"
+
+
+def course_example(profile: dict, title: str, artifact: str, anchors: list[str]) -> str:
+    short = profile["short"]
+    if short == "AIL 606":
+        return (
+            f"Imagine a designer reviewing a prototype screen for {title}. The screen may look clean, "
+            f"but the design decision is not yet defensible until the designer can explain which learner action "
+            f"the screen supports, which source of cognitive demand it reduces, and how the {artifact} records that reasoning."
+        )
+    if short == "CAT 531":
+        return (
+            f"Imagine a teacher choosing whether to use a classroom technology for {title}. The important question is "
+            f"not whether the tool is exciting; it is whether the teacher can name the instructional purpose, the equity "
+            f"risk, the student-data boundary, and the evidence that makes the {artifact} a professional judgment rather than a preference."
+        )
+    return (
+        f"Imagine a student preparing a digital artifact for {title}. The artifact should be useful outside this course: "
+        f"a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. "
+        f"The {artifact} is the place where that verification becomes visible."
+    )
+
+
+def decision_rule(profile: dict, artifact: str, anchors: list[str]) -> str:
+    short = profile["short"]
+    if short == "AIL 606":
+        return (
+            f"Use the learning goal first, the media choice second, and the software feature last. "
+            f"A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe."
+        )
+    if short == "CAT 531":
+        return (
+            f"Use the classroom value conflict first, the technology affordance second, and the policy boundary third. "
+            f"A tool choice is justified only when it protects students while improving a specific learning activity."
+        )
+    return (
+        f"Use the audience first, the evidence second, and the tool third. "
+        f"A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change."
+    )
+
+
 def write_section(course: str, chapter: int, section: int) -> None:
     profile = COURSES[course]
     meta = load_meta(course, chapter, section)
     title = meta["title"]
     module_title = meta["chapter_title"]
+    learning_objectives = meta.get("learning_objectives") or []
     artifact = select_artifact(profile, title, chapter, section)
     move = SECTION_MOVES[(chapter * 3 + section) % len(SECTION_MOVES)]
     download = write_packet(course, chapter, section, title, module_title, artifact, profile)
@@ -213,70 +298,114 @@ def write_section(course: str, chapter: int, section: int) -> None:
     refs = "\n".join(f"- {name}. {url}" for name, url in profile["anchors"])
     anchor_names = [anchor for anchor, _ in profile["anchors"]]
     options, correct_index = option_json(move["correct"], chapter + section)
-    concept_id = f"{course.replace('-', '_')}_{slugify(title).replace('-', '_')}"
+    concept_ids = meta.get("concept_ids") or []
+    concept_id = concept_ids[1] if len(concept_ids) > 1 else concept_ids[0] if concept_ids else f"{course.replace('-', '_')}_{slugify(title).replace('-', '_')}"
+    objectives_block = "\n".join(f"- {clean_phrase(objective)}" for objective in learning_objectives[:4])
+    if not objectives_block:
+        objectives_block = f"- Explain how {title} changes the learner's artifact decision."
+    objective_sentence = clean_phrase(sentence_join(learning_objectives[:2]) or f"explain and apply {title.lower()}")
+    role = learner_role(profile)
+    artifact_phrase = clean_phrase(artifact)
+    example = course_example(profile, title, artifact_phrase, anchor_names)
+    rule = decision_rule(profile, artifact_phrase, anchor_names)
+    context_sentence = section_context_sentence(profile, title, module_title, artifact_phrase)
+    prompt_move = clean_phrase(move["heading"].lower())
 
     body = dedent(f"""\
-    # {title}
+# {title}
 
-    ![{title} artifact studio visual]({image})
+![{title} textbook visual]({image})
 
-    ## {move['heading']}
+## Why This Section Matters
 
-    **{profile['short']} context.** {title} belongs to **{module_title}**, where learners work on {profile['field']}. The section uses a concrete artifact instead of a generic reflection prompt: **{artifact}**.
+{title} sits inside **{module_title}**. In this part of {profile['short']}, you are learning to work as {role}: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. {context_sentence}
 
-    {move['frame']}
+The section is not asking you to memorize a definition and move on. It is asking you to connect an idea to a decision that can be inspected. By the end of the page, you should be able to {objective_sentence}. The visible evidence for that learning is a **{artifact_phrase}**.
 
-    The learner's first task is to decide what the artifact claims. The claim must name an audience, a constraint, and a reason the artifact matters. For this section, the relevant constraints come from **{anchor_names[0]}**, **{anchor_names[1]}**, and **{anchor_names[2]}**. A polished artifact that does not expose those constraints is not yet high-quality intelligent textbook evidence.
+## Learning Targets
 
-    ## Artifact Studio
+{objectives_block}
 
-    Open the studio packet: [download the {artifact} packet]({download}).
+## Opening Case
 
-    <artifact-studio artifact="{html_attr(artifact)}" course="{profile['short']}" section="{chapter:02d}.{section:02d}" />
+{example}
 
-    The packet asks for a before/after artifact and a seven-part trace. This is the core quality upgrade. It gives ALGET something to adapt from: not just whether the learner clicked through the reading, but what evidence they used, what support they requested, what they accepted, what they rejected, and where they still lack confidence.
+This is the difference between a completed activity and a textbook-quality learning trace. A completed activity tells the instructor that something was submitted. A learning trace shows the reasoning that produced the submission. In an intelligent textbook, that distinction matters because the system can only adapt well when the learner's decision is visible.
 
-    A strong submission includes one visible decision that another person can audit. For example, the learner might revise a label, prompt, chart title, policy statement, transcript annotation, storyboard frame, or README entry. The revision is strong only if the evidence source is specific enough to explain why the change happened.
+## Core Concept
 
-    ## Intelligent Textbook Comparison
+The core idea in this section is that **{title}** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
 
-    Existing intelligent textbooks already offer adaptive pathways, embedded checks, or social annotation. This section must therefore do something more specific: it must connect a course artifact to adaptive support. Compared with a static textbook, the page asks for action. Compared with a generic quiz engine, it keeps the artifact trace. Compared with a social annotation tool, it can use the annotation type and quote location to select the next support action.
+Three course anchors shape the reasoning here:
 
-    ## Adaptive Support Rule
+- **{anchor_names[0]}** helps you decide what counts as a meaningful learning or performance demand.
+- **{anchor_names[1]}** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
+- **{anchor_names[2]}** helps you check whether the artifact works for varied learners, audiences, or use contexts.
 
-    ALGET should use the following decision rule for this section:
+Do not treat these anchors as citations to paste into a reflection. Treat them as lenses. A lens is useful only if it changes what you notice and what you revise.
 
-    - If the annotation is a **question**, offer a focused explanation tied to **{anchor_names[0]}**.
-    - If the annotation is **confusion**, offer a worked contrast between a weak and strong {artifact}.
-    - If the annotation is an **insight**, ask the learner to transfer the decision to a new audience.
-    - If the annotation is a **connection**, ask for evidence that the connection changed the artifact.
+## Worked Example
 
-    ## Before and After
+Start with a weak artifact claim:
 
-    **Weak before trace:** "I improved the {artifact} and made it clearer."
+> I made the {artifact_phrase} clearer.
 
-    **Stronger after trace:** "I revised the {artifact} after checking {anchor_names[1]}. I accepted a support suggestion that clarified the audience constraint, rejected a suggestion that removed the evidence source, and left a limitation note about where the artifact still needs review."
+That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
 
-    <dynamic-scenario prompt="A learner submits a {artifact} for {profile['short']} {chapter:02d}.{section:02d}. The annotation thread shows a {move['heading'].lower()} issue connected to {anchor_names[1]}. Recommend the first adaptive support action and the evidence that would show whether it worked." />
+> I revised the {artifact_phrase} so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **{anchor_names[1]}**, and I can point to the exact part of the artifact that changed.
 
-    ## Research Trace
+The improved version does three things. First, it names the artifact as a tool for communication, not just a finished product. Second, it identifies the course idea that shaped the revision. Third, it leaves a trail that another person can audit.
 
-    This section should persist the following research signals:
+## Decision Rule
 
-    - artifact claim
-    - evidence source type
-    - annotation type and quote hash
-    - requested support action
-    - accepted suggestion
-    - rejected or modified suggestion
-    - confidence before and after revision
-    - instructor artifact-quality score
+{rule}
 
-    <interactive-quiz question="{move['quiz']}" options='{options}' correct-index="{correct_index}" conceptid="{concept_id}" />
+Use this three-step check before you submit:
 
-    ## References
+1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
+2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
+3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
 
-    {refs}
+If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+
+## Common Misreadings
+
+One common mistake is to equate polish with quality. A polished artifact can still hide weak reasoning. Another mistake is to let AI or software produce the artifact without making the learner's judgment visible. A third mistake is to write a reflection after the fact that describes the final product but not the decision process.
+
+In this course, quality means that the decision can be traced. The artifact should make it possible to see what you believed at first, what evidence challenged or refined that belief, what support you requested, what you accepted, what you rejected, and what limitation remains.
+
+## Artifact Studio
+
+Open the studio packet: [download the {artifact_phrase} packet]({download}).
+
+<artifact-studio artifact="{html_attr(artifact_phrase)}" course="{profile['short']}" section="{chapter:02d}.{section:02d}" />
+
+Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
+
+## Adaptive Support
+
+ALGET uses your annotations and artifact trace to choose support:
+
+- If your annotation is a **question**, ask for a concise explanation tied to **{anchor_names[0]}**.
+- If your annotation is **confusion**, compare a weak and strong version of the {artifact_phrase}.
+- If your annotation is an **insight**, transfer the same decision rule to a new audience or setting.
+- If your annotation is a **connection**, show where the connection changes the artifact.
+
+<dynamic-scenario prompt="A learner submits the {artifact_phrase} for {profile['short']} {chapter:02d}.{section:02d}. The annotation thread shows {prompt_move} issue connected to {anchor_names[1]}. Recommend the first adaptive support action and the evidence that would show whether it worked." />
+
+## Check Your Understanding
+
+Before moving on, answer the embedded check. The point is not whether you remember the heading; it is whether you can distinguish surface completion from an auditable learning decision.
+
+<interactive-quiz question="{move['quiz']}" options='{options}' correct-index="{correct_index}" conceptid="{concept_id}" />
+
+## Research Trace
+
+This section contributes to the learner model only when the trace includes the artifact claim, evidence source, annotation type, requested support action, accepted suggestion, rejected or modified suggestion, confidence before and after revision, and instructor artifact-quality score. Those signals help separate genuine learning progress from simple page completion.
+
+## References
+
+{refs}
     """)
     (CONTENT_ROOT / course / f"{chapter:02d}" / f"{section:02d}.mdx").write_text(body, encoding="utf-8")
 
