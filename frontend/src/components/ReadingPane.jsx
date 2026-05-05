@@ -1,4 +1,5 @@
 import { Suspense, lazy, useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 import { logInteraction } from '../lib/loggingService'
 
 const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
@@ -275,9 +276,10 @@ export default function ReadingPane({
                                     <span className="editorial-label text-[var(--ath-primary)]">SIM</span>
                                     Interactive Simulation
                                 </span>
-                                <span className={`text-[var(--ath-secondary)] transition-transform duration-300 ${showSimulation ? 'rotate-180' : ''}`}>
-                                    ▼
-                                </span>
+                                <ChevronDown
+                                    className={`h-4 w-4 shrink-0 text-[var(--ath-secondary)] transition-transform duration-300 ${showSimulation ? 'rotate-180' : ''}`}
+                                    aria-hidden="true"
+                                />
                             </button>
 
                             {showSimulation && (
@@ -306,9 +308,10 @@ export default function ReadingPane({
                                     <span className="editorial-label text-[var(--ath-primary)]">VIS</span>
                                     Concept Illustration
                                 </span>
-                                <span className={`text-[var(--ath-secondary)] transition-transform duration-300 ${showIllustration ? 'rotate-180' : ''}`}>
-                                    ▼
-                                </span>
+                                <ChevronDown
+                                    className={`h-4 w-4 shrink-0 text-[var(--ath-secondary)] transition-transform duration-300 ${showIllustration ? 'rotate-180' : ''}`}
+                                    aria-hidden="true"
+                                />
                             </button>
 
                             {showIllustration && (
