@@ -1,9 +1,9 @@
 {
   "chapter_title": "AI Conversations as a Teacher",
   "title": "Teacher Persona Setup",
-  "description": "Artifact-specific exemplar for CAT 100 connecting teacher persona setup to presentation storyboard, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 100 textbook section connecting teacher persona setup to GitHub Pages file tree with accessibility, privacy, and publishing checks, social annotation signals, and adaptive learner-model evidence.",
   "learning_objectives": [
-    "Analyze a presentation storyboard as evidence of learner judgment in CAT 100.",
+    "Analyze a GitHub Pages file tree with accessibility, privacy, and publishing checks as evidence of learner judgment in CAT 100.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."

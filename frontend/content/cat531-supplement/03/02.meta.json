@@ -1,9 +1,9 @@
 {
   "chapter_title": "AI in Education",
   "title": "Generative AI and Student Work",
-  "description": "Artifact-specific exemplar for CAT 531 connecting generative ai and student work to school AI policy memo, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 531 textbook section connecting generative ai and student work to TeachGen@i prompt transcript with teacher edits and rejected suggestions, social annotation signals, and adaptive learner-model evidence.",
   "learning_objectives": [
-    "Analyze a school AI policy memo as evidence of learner judgment in CAT 531.",
+    "Analyze a TeachGen@i prompt transcript with teacher edits and rejected suggestions as evidence of learner judgment in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."

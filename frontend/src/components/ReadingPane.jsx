@@ -128,6 +128,7 @@ export default function ReadingPane({
 
     const { meta, content, simulation, illustration, practice } = sectionData
     const workProduct = inferWorkProduct(meta)
+    const contentHasLearningTargets = /(^|\n)##\s+Learning Targets\b/.test(content || '')
     const canResumeRecent = recentSection?.sectionId
         && recentSection.sectionId !== sectionId
         && recentSection.course === meta?.course
@@ -185,7 +186,7 @@ export default function ReadingPane({
                     </div>
                 )}
 
-                {meta?.learning_objectives?.length > 0 && (
+                {meta?.learning_objectives?.length > 0 && !contentHasLearningTargets && (
                     <div className="mt-8 rounded-[1.8rem] border-l-4 border-[var(--ath-primary)] bg-[linear-gradient(90deg,rgba(200,226,236,0.42),rgba(255,255,255,0.72))] p-6 shadow-sm">
                         <p className="editorial-kicker">Learning Objectives</p>
                         <ul className="mt-4 space-y-3">
@@ -252,17 +253,6 @@ export default function ReadingPane({
                 </div>
             </header>
 
-            {peerPulse && (
-                <PeerPulse
-                    connected={peerPulse.connected}
-                    peers={peerPulse.peers}
-                    sameHeadingPeers={peerPulse.sameHeadingPeers}
-                    sameConceptPeers={peerPulse.sameConceptPeers}
-                    signalSummary={peerPulse.signalSummary}
-                    onReaction={peerPulse.onReaction}
-                />
-            )}
-
             <Suspense fallback={<PanelFallback label="Loading Reading Narrative..." />}>
                 <ReadingNarrative
                     content={content}
@@ -276,6 +266,18 @@ export default function ReadingPane({
                     }}
                 />
             </Suspense>
+
+            {peerPulse && (
+                <PeerPulse
+                    connected={peerPulse.connected}
+                    peers={peerPulse.peers}
+                    sameHeadingPeers={peerPulse.sameHeadingPeers}
+                    sameConceptPeers={peerPulse.sameConceptPeers}
+                    signalSummary={peerPulse.signalSummary}
+                    activeHeading={peerPulse.activeHeading}
+                    onReaction={peerPulse.onReaction}
+                />
+            )}
 
             {(simulation || illustration) && (
                 <div className="mb-8 mt-10 space-y-4">

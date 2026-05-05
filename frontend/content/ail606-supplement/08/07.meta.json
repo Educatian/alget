@@ -1,9 +1,9 @@
 {
   "chapter_title": "Instructor Implementation Toolkit",
   "title": "Blackboard-to-ALGET Alignment",
-  "description": "Artifact-specific exemplar for AIL 606 connecting blackboard-to-alget alignment to storyboard frame sequence, social annotation signals, and adaptive learner-model evidence.",
+  "description": "AIL 606 textbook section connecting blackboard-to-alget alignment to cognitive load diagnosis table with intrinsic/extraneous/germane load evidence, social annotation signals, and adaptive learner-model evidence.",
   "learning_objectives": [
-    "Analyze a storyboard frame sequence as evidence of learner judgment in AIL 606.",
+    "Analyze a cognitive load diagnosis table with intrinsic/extraneous/germane load evidence as evidence of learner judgment in AIL 606.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."

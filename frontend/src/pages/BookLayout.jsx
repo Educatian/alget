@@ -125,7 +125,7 @@ export default function BookLayout({ user, onLogout }) {
     const [highlightQuestion, setHighlightQuestion] = useState(null)
     const [isSettingsOpen, setIsSettingsOpen] = useState(false)
     const [transitionDirection, setTransitionDirection] = useState('forward')
-    const [activeHeading, setActiveHeading] = useState('Introduction')
+    const [activeHeading, setActiveHeading] = useState('')
     const chatWidgetRef = useRef(null)
     const mainScrollRef = useRef(null)
     const loading = loadedSectionPath !== sectionPath
@@ -586,6 +586,7 @@ export default function BookLayout({ user, onLogout }) {
                                             sameHeadingPeers: socialState.sameHeadingPeers,
                                             sameConceptPeers: socialState.sameConceptPeers,
                                             signalSummary: socialState.signalSummary,
+                                            activeHeading,
                                             onReaction: socialState.sendReaction
                                         }}
                                     />

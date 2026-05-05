@@ -1,9 +1,9 @@
 {
   "chapter_title": "AI in Education",
   "title": "What AI Changes in Schools",
-  "description": "Artifact-specific exemplar for CAT 531 connecting what ai changes in schools to Ethobot transcript annotation, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 531 textbook section connecting what ai changes in schools to Ethobot transcript annotation showing where ethical reasoning changed, social annotation signals, and adaptive learner-model evidence.",
   "learning_objectives": [
-    "Analyze a Ethobot transcript annotation as evidence of learner judgment in CAT 531.",
+    "Analyze an Ethobot transcript annotation showing where ethical reasoning changed as evidence of learner judgment in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."

@@ -108,7 +108,7 @@ export default function ReadingNarrative({
     onAskAi,
     onHeadingChange,
 }) {
-    const [activeHeading, setActiveHeading] = useState('Introduction')
+    const [activeHeading, setActiveHeading] = useState('')
     const startTimeRef = useRef(0)
     const narrativeSource = normalizeMarkdownSource(content || sectionDescription || '*No content available*')
     const usesMath = /\$[^$\n]+\$|\\\(|\\\[/.test(narrativeSource)
