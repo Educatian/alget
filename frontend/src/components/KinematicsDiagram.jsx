@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Pause, Play } from 'lucide-react';
 
 export const KinematicsDiagram = () => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -54,7 +55,17 @@ export const KinematicsDiagram = () => {
                     className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md flex items-center gap-2
                         ${isPlaying ? 'bg-red-50 text-red-600 border border-red-200 hover:bg-red-100' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}
                 >
-                    {isPlaying ? '⏸ Stop System' : '▶ Simulate Motion'}
+                    {isPlaying ? (
+                        <>
+                            <Pause className="h-4 w-4" aria-hidden="true" />
+                            Stop System
+                        </>
+                    ) : (
+                        <>
+                            <Play className="h-4 w-4" aria-hidden="true" />
+                            Simulate Motion
+                        </>
+                    )}
                 </button>
             </div>
 

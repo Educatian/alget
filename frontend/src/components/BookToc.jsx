@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { ChevronRight } from 'lucide-react'
 
 const KNOWN_CHAPTER_TITLES = {
     'bio-inspired': {
@@ -116,9 +117,10 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
                                 <p className="editorial-label">Chapter {chapter.id}</p>
                                 <p className="truncate text-base font-semibold text-[var(--ath-text)]">{chapter.title}</p>
                             </div>
-                            <span className={`text-[var(--ath-secondary)] transition-transform ${expandedChapters.includes(chapter.id) ? 'rotate-90' : ''}`}>
-                                ▶
-                            </span>
+                            <ChevronRight
+                                className={`h-4 w-4 shrink-0 text-[var(--ath-secondary)] transition-transform ${expandedChapters.includes(chapter.id) ? 'rotate-90' : ''}`}
+                                aria-hidden="true"
+                            />
                         </button>
 
                         {expandedChapters.includes(chapter.id) && (
