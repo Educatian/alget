@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Foundations of Interactive Multimedia Learning",
+  "title": "Choosing a Software Case",
+  "description": "Artifact-specific exemplar for AIL 606 connecting choosing a software case to capstone defense evidence board, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a capstone defense evidence board as evidence of learner judgment in AIL 606.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "ail606_supplement_foundations_of_interactive_multimedia_learning",
+    "ail606_supplement_choosing_a_software_case",
+    "ail606_supplement_evidence_based_revision",
+    "ail606_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 6,
+  "top_tier_hardened": true
+}

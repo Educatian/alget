@@ -6,6 +6,7 @@ const PracticeBlock = lazy(() => import('./PracticeBlock'))
 const KnowledgeCheck = lazy(() => import('./KnowledgeCheck'))
 const AffectiveReaction = lazy(() => import('./AffectiveReaction'))
 const KnowledgeGraph = lazy(() => import('./KnowledgeGraph'))
+const PerusallLayer = lazy(() => import('./PerusallLayer'))
 
 function PanelFallback({ label }) {
     return (
@@ -14,6 +15,37 @@ function PanelFallback({ label }) {
             <div className="mt-4 h-24 animate-pulse rounded-2xl bg-[var(--ath-panel-muted)]" />
         </div>
     )
+}
+
+function inferWorkProduct(meta = {}) {
+    const course = String(meta.course || '').toLowerCase()
+    const title = String(meta.title || '')
+
+    if (course.includes('ail606')) {
+        return 'AI-supported lesson redesign or classroom AI-use policy'
+    }
+    if (course.includes('cat531')) {
+        return 'data story, analysis memo, or visualization interpretation'
+    }
+    if (course.includes('cat100')) {
+        return 'resume, portfolio, or career evidence packet'
+    }
+    if (title.toLowerCase().includes('bio')) {
+        return 'bio-inspired design rationale with evidence and trade-off judgment'
+    }
+    return 'course deliverable with claim, evidence, critique judgment, and revision trace'
+}
+
+function formatRecentTimestamp(value) {
+    if (!value) return 'recently'
+    const date = new Date(value)
+    if (Number.isNaN(date.getTime())) return 'recently'
+    return date.toLocaleString([], {
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+    })
 }
 
 export default function ReadingPane({
@@ -26,7 +58,11 @@ export default function ReadingPane({
     toggleBookmark,
     isCompleted,
     markCompleted,
-    onHeadingChange
+    onHeadingChange,
+    previousSection,
+    nextSection,
+    recentSection,
+    onNavigate
 }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
@@ -88,6 +124,10 @@ export default function ReadingPane({
     }
 
     const { meta, content, simulation, illustration, practice } = sectionData
+    const workProduct = inferWorkProduct(meta)
+    const canResumeRecent = recentSection?.sectionId
+        && recentSection.sectionId !== sectionId
+        && recentSection.course === meta?.course
 
     return (
         <div className="mx-auto max-w-3xl px-8 py-10">
@@ -155,6 +195,58 @@ export default function ReadingPane({
                         </ul>
                     </div>
                 )}
+
+                <div className="mt-8 rounded-[1.8rem] border border-[var(--ath-line)] bg-white p-5 shadow-sm">
+                    <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                        <div>
+                            <p className="editorial-kicker">Work Product Pathway</p>
+                            <h2 className="mt-2 text-xl font-semibold tracking-tight text-[var(--ath-text)]">{workProduct}</h2>
+                            <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
+                                This section is organized as a checkpoint toward a concrete deliverable: read, annotate evidence, draft, judge AI feedback, revise, and log the trace.
+                            </p>
+                        </div>
+                        <div className={`rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] ${isCompleted
+                            ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+                            : 'border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)]'
+                            }`}>
+                            {isCompleted ? 'Checkpoint done' : 'Checkpoint open'}
+                        </div>
+                    </div>
+                    <div className="mt-5 grid gap-2 sm:grid-cols-5">
+                        {['Read', 'Annotate', 'Draft', 'Judge AI', 'Revise'].map((step, index) => (
+                            <div key={step} className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2 text-center">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Step {index + 1}</p>
+                                <p className="mt-1 text-sm font-semibold text-[var(--ath-text)]">{step}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="mt-4 rounded-[1.4rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                        <div>
+                            <p className="editorial-kicker">Returning Learner Check-In</p>
+                            <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
+                                {canResumeRecent
+                                    ? `Last visited ${recentSection.chapter}.${recentSection.section} ${recentSection.title || 'previous section'} on ${formatRecentTimestamp(recentSection.updatedAt)}.`
+                                    : isCompleted
+                                        ? 'This checkpoint is complete. Use the next section when you are ready to extend the work product.'
+                                        : 'Resume here by checking the pathway, annotating one evidence claim, judging AI feedback, and revising the Work Product Studio trace.'}
+                            </p>
+                        </div>
+                        {canResumeRecent ? (
+                            <button
+                                type="button"
+                                onClick={() => onNavigate?.(recentSection.chapter, recentSection.section, 'backward')}
+                                className="editorial-button-secondary shrink-0 px-4 py-2 text-sm"
+                            >
+                                Resume Last Section
+                            </button>
+                        ) : (
+                            <span className="editorial-chip shrink-0">{isCompleted ? 'Ready for transfer' : 'Next: judge AI + revise'}</span>
+                        )}
+                    </div>
+                </div>
             </header>
 
             <Suspense fallback={<PanelFallback label="Loading Reading Narrative..." />}>
@@ -261,6 +353,15 @@ export default function ReadingPane({
                 />
             </Suspense>
 
+            <Suspense fallback={<PanelFallback label="Loading Social Annotation..." />}>
+                <PerusallLayer
+                    key={sectionId}
+                    sectionId={sectionId}
+                    sectionTitle={meta?.title || ''}
+                    conceptIds={meta?.concept_ids || []}
+                />
+            </Suspense>
+
             <div className="editorial-divider my-10"></div>
 
             <Suspense fallback={<PanelFallback label="Loading Knowledge Check..." />}>
@@ -296,6 +397,33 @@ export default function ReadingPane({
                         }`}
                 >
                     {isCompleted ? 'Section Completed' : 'Mark as Complete'}
+                </button>
+            </div>
+
+            <div className="mb-4 grid gap-3 border-t border-[var(--ath-line)] pt-6 md:grid-cols-2">
+                <button
+                    type="button"
+                    disabled={!previousSection}
+                    onClick={() => previousSection && onNavigate?.(previousSection.chapter, previousSection.section, 'backward')}
+                    className={`rounded-2xl border px-4 py-3 text-left transition-colors ${previousSection
+                        ? 'border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
+                        : 'cursor-not-allowed border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-muted)] opacity-60'
+                        }`}
+                >
+                    <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Previous</span>
+                    <span className="mt-1 block text-sm font-semibold">{previousSection ? `${previousSection.chapter}.${previousSection.section} ${previousSection.title}` : 'Start of course'}</span>
+                </button>
+                <button
+                    type="button"
+                    disabled={!nextSection}
+                    onClick={() => nextSection && onNavigate?.(nextSection.chapter, nextSection.section, 'forward')}
+                    className={`rounded-2xl border px-4 py-3 text-right transition-colors ${nextSection
+                        ? 'border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
+                        : 'cursor-not-allowed border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-muted)] opacity-60'
+                        }`}
+                >
+                    <span className="block text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Next</span>
+                    <span className="mt-1 block text-sm font-semibold">{nextSection ? `${nextSection.chapter}.${nextSection.section} ${nextSection.title}` : 'End of course'}</span>
                 </button>
             </div>
         </div>

@@ -1,0 +1,20 @@
+{
+  "chapter_title": "AI-Enhanced Presentation Development",
+  "title": "Self-Recording With AI Coaching",
+  "description": "Artifact-specific exemplar for CAT 100 connecting self-recording with ai coaching to GitHub Pages file tree, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a GitHub Pages file tree as evidence of learner judgment in CAT 100.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat100_supplement_ai_enhanced_presentation_development",
+    "cat100_supplement_self_recording_with_ai_coaching",
+    "cat100_supplement_evidence_based_revision",
+    "cat100_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 5,
+  "top_tier_hardened": true
+}

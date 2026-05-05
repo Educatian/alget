@@ -13,15 +13,6 @@ export default defineConfig({
           }
 
           if (
-            id.includes('remark-math') ||
-            id.includes('rehype-katex') ||
-            id.includes(`${'node_modules'}\\katex`) ||
-            id.includes(`${'node_modules'}/katex`)
-          ) {
-            return 'markdown-math'
-          }
-
-          if (
             id.includes('rehype-raw') ||
             id.includes('parse5') ||
             id.includes('hast-util-raw')
@@ -38,6 +29,10 @@ export default defineConfig({
             id.includes('hast') ||
             id.includes('unist') ||
             id.includes('unified') ||
+            id.includes('remark-math') ||
+            id.includes('rehype-katex') ||
+            id.includes(`${'node_modules'}\\katex`) ||
+            id.includes(`${'node_modules'}/katex`) ||
             id.includes('vfile')
           ) {
             return 'markdown-stack'
@@ -50,7 +45,8 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
-    setupFiles: './src/test/setupTests.js'
+    setupFiles: './src/test/setupTests.js',
+    exclude: ['**/node_modules/**', '**/dist/**', 'e2e/**']
   },
   server: {
     port: 5173,

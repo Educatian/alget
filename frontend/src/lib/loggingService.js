@@ -158,11 +158,124 @@ export function logEvent(eventType, eventTarget, eventData = {}, sectionId = nul
     eventQueue.push(event)
 
     // Immediate flush for important events
-    if (['problem_attempt', 'session_end'].includes(eventType)) {
+    if (['problem_attempt', 'session_end', 'artifact_studio_trace'].includes(eventType)) {
         flushEvents()
     }
 
     return event
+}
+
+function toInteractionEvent(event) {
+    return {
+        user_id: event.user_id,
+        session_id: event.session_id,
+        section_id: event.section_id,
+        item_id: event.event_data?.problem_id || event.event_target || null,
+        event_type: event.event_type,
+        event_ts: event.client_ts,
+        client_seq: event.sequence_num,
+        payload: {
+            target: event.event_target,
+            data: event.event_data || {},
+            source_table: 'event_logs'
+        }
+    }
+}
+
+function toArtifactRevisionScore(event) {
+    if (event.event_type !== 'artifact_studio_trace') {
+        return null
+    }
+
+    const scores = event.event_data?.revision_scores
+    if (!scores?.overall_revision_quality) {
+        return null
+    }
+
+    const [courseId = null] = String(event.section_id || '').split('/')
+    return {
+        user_id: event.user_id,
+        section_id: event.section_id,
+        course_id: event.event_data?.course || courseId,
+        artifact_type: event.event_data?.artifact || null,
+        studio_mode: event.event_data?.studio_mode || null,
+        judgment: event.event_data?.judgment || null,
+        trace_score: Number(event.event_data?.trace_score || 0),
+        trace_denominator: Number(event.event_data?.trace_denominator || 8),
+        claim_clarity: Number(scores.claim_clarity || 0),
+        evidence_alignment: Number(scores.evidence_alignment || 0),
+        revision_depth: Number(scores.revision_depth || 0),
+        judgment_quality: Number(scores.judgment_quality || 0),
+        transfer_readiness: Number(scores.transfer_readiness || 0),
+        specificity_delta: Number(scores.specificity_delta || 0),
+        overall_revision_quality: Number(scores.overall_revision_quality || 0),
+        diagnostics: {
+            submission_id: event.event_data?.submission_id || null,
+            artifact_definition_id: event.event_data?.artifact_definition_id || null,
+            artifact_family: event.event_data?.artifact_family || null,
+            artifact_submission_spec_version: event.event_data?.artifact_submission_spec_version || null,
+            artifact_required_files: event.event_data?.artifact_required_files || null,
+            artifact_accepted_formats: event.event_data?.artifact_accepted_formats || null,
+            artifact_naming_pattern: event.event_data?.artifact_naming_pattern || null,
+            artifact_required_sections: event.event_data?.artifact_required_sections || null,
+            source_text_metrics: event.event_data?.source_text_metrics || null,
+            raw_submission_privacy: event.event_data?.raw_submission_privacy || null,
+            scorer_validation: event.event_data?.revision_score_validation || null,
+            trace_validation: event.event_data?.server_validation || null,
+            rubric: event.event_data?.rubric || null,
+            support_move: event.event_data?.recommended_support_move || null,
+        },
+        privacy_policy: 'score-derived-only-v1',
+        scorer_version: event.event_data?.revision_score_validation?.policy_version || 'artifact-revision-scorer-v1',
+    }
+}
+
+async function validateArtifactStudioEvent(event) {
+    if (event.event_type !== 'artifact_studio_trace') {
+        return event
+    }
+
+    try {
+        const response = await fetch(`${API_BASE}/research/artifact-trace/validate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(event.event_data || {}),
+        })
+
+        if (!response.ok) {
+            throw new Error(`artifact_validator_http_${response.status}`)
+        }
+
+        const validation = await response.json()
+        return {
+            ...event,
+            event_data: {
+                ...event.event_data,
+                trace_score: validation.computed_trace_score,
+                artifact_quality_score: validation.computed_artifact_quality_score,
+                recommended_support_move: validation.recommended_support_move,
+                rubric: validation.normalized_rubric,
+                server_validation: validation,
+            },
+        }
+    } catch (error) {
+        console.warn('[Logging] Artifact trace server validation failed:', error)
+        return {
+            ...event,
+            event_data: {
+                ...event.event_data,
+                server_validation: {
+                    validator_pass: false,
+                    validation_errors: ['artifact_trace_validator_unavailable'],
+                    policy_version: 'artifact-trace-validator-v1',
+                },
+            },
+        }
+    }
+}
+
+async function validateResearchEvents(events) {
+    return Promise.all(events.map(validateArtifactStudioEvent))
 }
 
 /**
@@ -313,8 +426,9 @@ async function flushEvents() {
     // If the backend allows anonymous inserts, they will go through. 
     // If RLS blocks it, we catch the error below.
 
-    const eventsToSend = [...eventQueue]
+    const queuedEvents = [...eventQueue]
     eventQueue = []
+    const eventsToSend = await validateResearchEvents(queuedEvents)
 
     try {
         const { error } = await supabase.from('event_logs').insert(eventsToSend)
@@ -322,6 +436,30 @@ async function flushEvents() {
             // Put events back in queue for retry
             eventQueue = [...eventsToSend, ...eventQueue]
             console.warn('[Logging] Flush failed, will retry:', error)
+            return
+        }
+
+        const canonicalRows = eventsToSend.map(toInteractionEvent)
+        const { error: canonicalError } = await supabase
+            .from('interaction_events')
+            .insert(canonicalRows)
+
+        if (canonicalError) {
+            console.warn('[Logging] Canonical interaction_events mirror failed:', canonicalError)
+        }
+
+        const artifactRevisionScoreRows = eventsToSend
+            .map(toArtifactRevisionScore)
+            .filter(Boolean)
+
+        if (artifactRevisionScoreRows.length > 0) {
+            const { error: artifactScoreError } = await supabase
+                .from('artifact_revision_scores')
+                .insert(artifactRevisionScoreRows)
+
+            if (artifactScoreError) {
+                console.warn('[Logging] Artifact revision score persistence failed:', artifactScoreError)
+            }
         }
     } catch (err) {
         eventQueue = [...eventsToSend, ...eventQueue]

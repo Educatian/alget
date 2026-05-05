@@ -29,7 +29,48 @@ KNOWN_CHAPTER_TITLES = {
         "04": "Privacy, Consent, and Data Governance",
         "05": "Safety, Alignment, and Governance",
         "06": "AI in Education Ethics"
+    },
+    "ail606-supplement": {
+        "01": "Foundations of Interactive Multimedia Learning",
+        "02": "Learning Experience Design and Software Technology",
+        "03": "Multimedia Storyboarding and AI Asset Generation",
+        "04": "Design Draft and Theory-to-Prototype Alignment",
+        "05": "Usability Testing and Learning Evidence",
+        "06": "Refined Prototype and Capstone Defense",
+        "07": "Research Translation for Learning Design",
+        "08": "Instructor Implementation Toolkit"
+    },
+    "cat531-supplement": {
+        "01": "Foundations of CBI and Design Tensions",
+        "02": "Teaching in Tech-Rich Classrooms With TeachGen@i",
+        "03": "AI in Education",
+        "04": "AI Ethics and Ethobot 3.2",
+        "05": "Educational Technology Evaluation",
+        "06": "Final Project and Professional Vision",
+        "07": "Field-Based Transfer and Coaching",
+        "08": "Instructor Toolkit for CAT 531"
+    },
+    "cat100-supplement": {
+        "01": "Digital Citizenship and AI Readiness",
+        "02": "Resume, Branding, and AI Brainstorming",
+        "03": "Data Storytelling With Excel",
+        "04": "AI Conversations as a Teacher",
+        "05": "AI-Enhanced Presentation Development",
+        "06": "GitHub Pages Personal Website",
+        "07": "Productivity and Workflow Automation",
+        "08": "Course Completion and Transfer"
     }
+}
+
+KNOWN_COURSE_TITLES = {
+    "statics": "Engineering Statics",
+    "dynamics": "ME 201: Engineering Dynamics",
+    "bio-inspired": "Bio-Inspired Design",
+    "inst-design": "Foundations of Instructional Design",
+    "ai-ethics": "AI and Ethics",
+    "ail606-supplement": "AIL 606: Software Technology Supplement",
+    "cat531-supplement": "CAT 531: Technology and Teaching Supplement",
+    "cat100-supplement": "CAT 100: Computer Concepts and Applications Supplement",
 }
 
 
@@ -177,7 +218,7 @@ def generate_toc(course: str) -> dict:
     
     return {
         "course": course,
-        "title": course.title(),
+        "title": KNOWN_COURSE_TITLES.get(course, course.title()),
         "chapters": chapters
     }
 

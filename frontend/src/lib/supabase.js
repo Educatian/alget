@@ -1,7 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || ''
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || ''
+const e2eAuthBypass = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
+const supabaseUrl = e2eAuthBypass ? '' : (import.meta.env.VITE_SUPABASE_URL || '')
+const supabaseAnonKey = e2eAuthBypass ? '' : (import.meta.env.VITE_SUPABASE_ANON_KEY || '')
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey)
 export const supabaseConfig = { url: supabaseUrl, anonKey: supabaseAnonKey }
 

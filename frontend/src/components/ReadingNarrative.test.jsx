@@ -1,0 +1,62 @@
+import { cleanup, render, screen } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import ReadingNarrative from './ReadingNarrative'
+
+vi.mock('../lib/loggingService', () => ({
+    logEvent: vi.fn(),
+    logInteraction: vi.fn(),
+    logTimeOnTask: vi.fn(),
+}))
+
+describe('ReadingNarrative markdown extension contract', () => {
+    beforeEach(() => {
+        globalThis.IntersectionObserver = vi.fn(() => ({
+            observe: vi.fn(),
+            disconnect: vi.fn(),
+        }))
+    })
+
+    afterEach(() => {
+        cleanup()
+        vi.restoreAllMocks()
+    })
+
+    it('renders artifact-studio markdown blocks with their artifact, course, section, and runtime sectionId', async () => {
+        render(
+            <ReadingNarrative
+                sectionId="cat531-supplement/08/06"
+                course="cat531-supplement"
+                conceptIds={['ai_policy']}
+                content={`
+# Transfer Task
+
+<artifact-studio artifact="Design Tension Studio map naming a classroom value conflict and negotiated decision" course="CAT 531" section="08.06" />
+`}
+            />,
+        )
+
+        expect(await screen.findByText('Work Product Studio')).toBeInTheDocument()
+        expect(screen.getByText('Design Tension Studio map naming a classroom value conflict and negotiated decision')).toBeInTheDocument()
+        expect(screen.getByText('CAT 531 08.06')).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: /Log Trace 0\/8/i })).toBeInTheDocument()
+    })
+
+    it('normalizes generated MDX where the first heading is flush but the remaining body is indented', async () => {
+        render(
+            <ReadingNarrative
+                sectionId="ail606-supplement/01/01"
+                course="ail606-supplement"
+                conceptIds={['cognitive_load']}
+                content={`# Cognitive Architecture
+
+    ## Artifact Studio
+
+    <artifact-studio artifact="cognitive load diagnosis table with intrinsic/extraneous/germane load evidence" course="AIL 606" section="01.01" />
+`}
+            />,
+        )
+
+        expect(await screen.findByText('Work Product Studio')).toBeInTheDocument()
+        expect(screen.getByText('AIL 606 01.01')).toBeInTheDocument()
+    })
+})

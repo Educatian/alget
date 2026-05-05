@@ -33,8 +33,8 @@ export default function GenerativeIllustration() {
                 {/* Subdued Background Grid Arcs */}
                 <g opacity="0.15">
                     <circle cx="200" cy="200" r="180" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="4 4" className="animate-[spin_60s_linear_infinite]" />
-                    <circle cx="50" cy="250" r="120" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="3 3" className="animate-[spin_40s_linear_infinite_reverse]" transform-origin="50 250" />
-                    <circle cx="350" cy="50" r="100" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 4" className="animate-[spin_50s_linear_infinite]" transform-origin="350 50" />
+                    <circle cx="50" cy="250" r="120" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="3 3" className="animate-[spin_40s_linear_infinite_reverse]" style={{ transformOrigin: '50px 250px' }} />
+                    <circle cx="350" cy="50" r="100" fill="none" stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 4" className="animate-[spin_50s_linear_infinite]" style={{ transformOrigin: '350px 50px' }} />
                 </g>
 
                 {/* Dashed Figure-8 / Orbital Paths */}
@@ -75,7 +75,7 @@ export default function GenerativeIllustration() {
 
                 {/* Floating Abstract Documents */}
                 {/* Top Left Document */}
-                <g className="animate-[float_5s_ease-in-out_infinite]" transform-origin="150 100">
+                <g className="animate-[float_5s_ease-in-out_infinite]" style={{ transformOrigin: '150px 100px' }}>
                     <g transform="translate(130, 80) rotate(-15)">
                         <rect x="-25" y="-30" width="50" height="60" rx="3" fill="#ffffff" filter="url(#glow-light)" opacity="0.9" />
                         <rect x="-25" y="-30" width="50" height="60" rx="3" fill="#f8fafc" />
@@ -86,7 +86,7 @@ export default function GenerativeIllustration() {
                 </g>
 
                 {/* Right Document */}
-                <g className="animate-[float_6s_ease-in-out_infinite_reverse]" transform-origin="280 200">
+                <g className="animate-[float_6s_ease-in-out_infinite_reverse]" style={{ transformOrigin: '280px 200px' }}>
                     <g transform="translate(270, 210) rotate(20)">
                         <rect x="-25" y="-35" width="50" height="70" rx="3" fill="#ffffff" filter="url(#glow-light)" opacity="0.9" />
                         <rect x="-25" y="-35" width="50" height="70" rx="3" fill="#f8fafc" />

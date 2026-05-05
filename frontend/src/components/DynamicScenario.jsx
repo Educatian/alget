@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { Sparkles, Loader2, ArrowRight } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 
-export default function DynamicScenario({ topic, context, userContext, course = 'bio-inspired' }) {
+export default function DynamicScenario({ topic, prompt, context, userContext, course = 'bio-inspired' }) {
     const [scenario, setScenario] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-    const resolvedContext = context || userContext || 'General application'
+    const resolvedTopic = topic || prompt || 'Applied learning scenario'
+    const resolvedContext = context || userContext || prompt || 'General application'
 
     // Only load if they click or it can auto-load. We will add a "Generate tailored example" button to avoid unwanted generation.
     const handleGenerate = async () => {
@@ -19,7 +20,7 @@ export default function DynamicScenario({ topic, context, userContext, course = 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    topic: topic,
+                    topic: resolvedTopic,
                     context: resolvedContext,
                     course,
                     api_key: apiKey
@@ -44,7 +45,7 @@ export default function DynamicScenario({ topic, context, userContext, course = 
                     <Sparkles className="w-5 h-5 text-indigo-600" />
                 </div>
                 <div className="flex-1">
-                    <h4 className="text-sm font-semibold text-indigo-900 uppercase tracking-wide mb-1">Tailored Case Study: {topic}</h4>
+                    <h4 className="text-sm font-semibold text-indigo-900 uppercase tracking-wide mb-1">Tailored Case Study: {resolvedTopic}</h4>
                     <p className="text-indigo-800/80 text-sm mb-3">See how this theory applies exactly to your context.</p>
                     <button
                         onClick={handleGenerate}
@@ -80,7 +81,7 @@ export default function DynamicScenario({ topic, context, userContext, course = 
             <div className="bg-linear-to-r from-indigo-50 to-white px-5 py-3 border-b border-indigo-100 flex items-center justify-between">
                 <span className="text-sm font-bold text-indigo-900 flex items-center gap-2">
                     <Sparkles className="w-4 h-4 text-indigo-500" />
-                    Case Study: {topic}
+                    Case Study: {resolvedTopic}
                 </span>
                 <span className="text-xs font-medium text-indigo-500 bg-indigo-100 px-2.5 py-1 rounded-full">AI Generated</span>
             </div>

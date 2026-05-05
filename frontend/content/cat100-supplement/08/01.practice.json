@@ -1,0 +1,64 @@
+{
+  "problems": [
+    {
+      "id": "cat100_supplement_8_1_capstone_artifact_review_artifact_signal",
+      "type": "multiple_choice",
+      "concept_id": "cat100_supplement_capstone_artifact_review",
+      "stem": "Which evidence trace would best support an intelligent-textbook claim for this Excel pivot-table finding?",
+      "options": [
+        "The artifact is visually polished and complete.",
+        "The learner identifies a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
+        "The learner uses AI for every step so the artifact is consistent.",
+        "The learner writes a generic reflection after submitting."
+      ],
+      "correct_index": 1,
+      "explanation": "Top-tier evidence requires visible learner judgment and a traceable revision decision.",
+      "misconception_id": "cat100_supplement_8_1_capstone_artifact_review_polish_as_evidence"
+    },
+    {
+      "id": "cat100_supplement_8_1_capstone_artifact_review_annotation_signal",
+      "type": "multiple_choice",
+      "concept_id": "cat100_supplement_evidence_based_revision",
+      "stem": "Which annotation would be most useful for adaptive support?",
+      "options": [
+        "This is interesting.",
+        "I am confused about which constraint should override the AI suggestion in this artifact.",
+        "I agree.",
+        "The page is long."
+      ],
+      "correct_index": 1,
+      "explanation": "A useful annotation reveals a support need tied to a concept, constraint, or decision.",
+      "misconception_id": "cat100_supplement_8_1_capstone_artifact_review_annotation_without_signal"
+    },
+    {
+      "id": "cat100_supplement_8_1_capstone_artifact_review_ai_boundary",
+      "type": "multiple_choice",
+      "concept_id": "cat100_supplement_ai_supported_learning",
+      "stem": "What is the strongest AI-use boundary for this section?",
+      "options": [
+        "Ask AI to complete the artifact and submit it.",
+        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
+        "Avoid AI even when the assignment asks for critique.",
+        "Use AI only to make the artifact sound more polished."
+      ],
+      "correct_index": 1,
+      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
+      "misconception_id": "cat100_supplement_8_1_capstone_artifact_review_ai_as_authority"
+    },
+    {
+      "id": "cat100_supplement_8_1_capstone_artifact_review_calibration",
+      "type": "multiple_choice",
+      "concept_id": "cat100_supplement_evidence_based_revision",
+      "stem": "Which learner-model signal should ALGET preserve?",
+      "options": [
+        "Only the final artifact file.",
+        "Confidence, annotation type, support request, practice result, and revision quality.",
+        "Only the time of day.",
+        "Only the number of words in the note."
+      ],
+      "correct_index": 1,
+      "explanation": "Adaptive claims require multiple interpretable signals, not only completion.",
+      "misconception_id": "cat100_supplement_8_1_capstone_artifact_review_completion_only_model"
+    }
+  ]
+}

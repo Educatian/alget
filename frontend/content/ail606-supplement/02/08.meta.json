@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Learning Experience Design and Software Technology",
+  "title": "Module 2 Design Memo",
+  "description": "Artifact-specific exemplar for AIL 606 connecting module 2 design memo to cognitive load diagnostic table, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a cognitive load diagnostic table as evidence of learner judgment in AIL 606.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "ail606_supplement_learning_experience_design_and_software_technology",
+    "ail606_supplement_module_2_design_memo",
+    "ail606_supplement_evidence_based_revision",
+    "ail606_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 8,
+  "top_tier_hardened": true
+}

@@ -108,6 +108,7 @@ export default function BookLayout({ user, onLogout }) {
         markCompleted,
         isCompleted,
         progressStats,
+        recentSection,
         markRecentSection,
         toggleBookmark,
         isBookmarked
@@ -568,6 +569,10 @@ export default function BookLayout({ user, onLogout }) {
                                                 void socialState.recordCompletion()
                                             }
                                         }}
+                                        previousSection={previousSection}
+                                        nextSection={nextSection}
+                                        recentSection={recentSection}
+                                        onNavigate={handleNavigate}
                                     />
                                 </HighlightableContent>
                             </Suspense>

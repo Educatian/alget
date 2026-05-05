@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Design Draft and Theory-to-Prototype Alignment",
+  "title": "Cognitive Load Analysis in the Draft",
+  "description": "Artifact-specific exemplar for AIL 606 connecting cognitive load analysis in the draft to AI-USE.md disclosure excerpt, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a AI-USE.md disclosure excerpt as evidence of learner judgment in AIL 606.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "ail606_supplement_design_draft_and_theory_to_prototype_alignment",
+    "ail606_supplement_cognitive_load_analysis_in_the_draft",
+    "ail606_supplement_evidence_based_revision",
+    "ail606_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 4,
+  "top_tier_hardened": true
+}

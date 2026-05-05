@@ -25,7 +25,17 @@ const emptyTelemetrySummary = () => ({
     confidence_average: 0,
     misconception_counts: {},
     intervention_accepts: 0,
-    intervention_declines: 0
+    intervention_declines: 0,
+    annotation_questions: 0,
+    annotation_confusions: 0,
+    annotation_insights: 0,
+    annotation_connections: 0,
+    annotation_helpful_reactions: 0,
+    artifact_trace_count: 0,
+    artifact_quality_total: 0,
+    artifact_quality_average: 0,
+    artifact_trace_completeness_total: 0,
+    artifact_trace_completeness: 0
 });
 
 function readAdaptiveSignals() {
@@ -138,6 +148,27 @@ export function summarizeAdaptiveSignals(sectionId) {
             case 'intervention_decline':
                 summary.intervention_declines += 1;
                 break;
+            case 'annotation_create':
+                if (signal.payload?.annotationType === 'question') {
+                    summary.annotation_questions += 1;
+                } else if (signal.payload?.annotationType === 'confusion') {
+                    summary.annotation_confusions += 1;
+                } else if (signal.payload?.annotationType === 'insight') {
+                    summary.annotation_insights += 1;
+                } else if (signal.payload?.annotationType === 'connection') {
+                    summary.annotation_connections += 1;
+                }
+                break;
+            case 'annotation_reaction':
+                if (signal.payload?.reactionType === 'helpful') {
+                    summary.annotation_helpful_reactions += 1;
+                }
+                break;
+            case 'artifact_studio_trace':
+                summary.artifact_trace_count += 1;
+                summary.artifact_quality_total += Number(signal.payload?.artifactQualityScore || 0);
+                summary.artifact_trace_completeness_total += Number(signal.payload?.traceCompleteness || 0);
+                break;
             default:
                 break;
         }
@@ -146,6 +177,12 @@ export function summarizeAdaptiveSignals(sectionId) {
     summary.consecutive_wrong = trailingWrong;
     summary.confidence_average = summary.confidence_samples
         ? Number((summary.confidence_total / summary.confidence_samples).toFixed(3))
+        : 0;
+    summary.artifact_quality_average = summary.artifact_trace_count
+        ? Number((summary.artifact_quality_total / summary.artifact_trace_count).toFixed(3))
+        : 0;
+    summary.artifact_trace_completeness = summary.artifact_trace_count
+        ? Number((summary.artifact_trace_completeness_total / summary.artifact_trace_count).toFixed(3))
         : 0;
     return summary;
 }

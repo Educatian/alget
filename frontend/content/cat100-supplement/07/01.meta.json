@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Productivity and Workflow Automation",
+  "title": "File Organization for Coursework",
+  "description": "Artifact-specific exemplar for CAT 100 connecting file organization for coursework to resume before-after revision, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a resume before-after revision as evidence of learner judgment in CAT 100.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat100_supplement_productivity_and_workflow_automation",
+    "cat100_supplement_file_organization_for_coursework",
+    "cat100_supplement_evidence_based_revision",
+    "cat100_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 1,
+  "top_tier_hardened": true
+}

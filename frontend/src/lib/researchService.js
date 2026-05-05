@@ -3,6 +3,7 @@ import {
     safeLocalStorageSet
 } from './browserStorage'
 import { isSupabaseConfigured, supabase } from './supabase'
+import API_BASE from './apiConfig'
 import {
     logContentAudit,
     logEvaluationArtifact,
@@ -297,6 +298,8 @@ async function dispatchRetryItem(item) {
         }
         case 'evaluation_run':
             return persistEvaluation(item.payload)
+        case 'evaluation_responses':
+            return persistEvaluationResponses(item.payload.evaluationId, item.payload.items || [])
         default:
             console.warn(`[Research] Unknown retry kind ignored: ${item.kind}`)
     }
@@ -474,29 +477,139 @@ async function persistEvaluation(evaluation) {
     const userId = await getCurrentUserId()
     if (!userId || !evaluation) return
 
+    const validatedEvaluation = await validateEvaluationWithBackend(evaluation)
+
     const row = {
-        id: evaluation.evaluation_id,
         user_id: userId,
-        course_id: evaluation.course,
-        phase: evaluation.phase,
-        form_key: evaluation.section_id || evaluation.recommended_start || evaluation.course,
-        started_at: evaluation.created_at,
-        completed_at: evaluation.created_at,
-        score_raw: evaluation.score,
-        score_pct: evaluation.percentage,
-        delayed_days: evaluation.phase === 'retention' ? 7 : null,
+        course_id: validatedEvaluation.course,
+        phase: validatedEvaluation.phase,
+        form_key: validatedEvaluation.section_id || validatedEvaluation.recommended_start || validatedEvaluation.course,
+        started_at: validatedEvaluation.created_at,
+        completed_at: validatedEvaluation.created_at,
+        score_raw: validatedEvaluation.score,
+        score_pct: validatedEvaluation.percentage,
+        delayed_days: validatedEvaluation.phase === 'retention' ? 7 : null,
         notes: {
-            section_id: evaluation.section_id,
-            recommended_start: evaluation.recommended_start,
-            gaps: evaluation.gaps,
-            mastered_concepts: evaluation.mastered_concepts,
-            total_questions: evaluation.total_questions
+            client_evaluation_id: validatedEvaluation.evaluation_id,
+            section_id: validatedEvaluation.section_id,
+            recommended_start: validatedEvaluation.recommended_start,
+            gaps: validatedEvaluation.gaps,
+            mastered_concepts: validatedEvaluation.mastered_concepts,
+            total_questions: validatedEvaluation.total_questions,
+            server_validation: validatedEvaluation.server_validation || null
         }
     }
 
-    const { error } = await supabase
+    const { data, error } = await supabase
         .from('evaluation_runs')
         .upsert(row, { onConflict: 'user_id,course_id,phase' })
+        .select('id')
+        .single()
+
+    if (error) throw error
+
+    if (validatedEvaluation.item_responses?.length) {
+        await persistEvaluationResponses(data?.id || validatedEvaluation.evaluation_id, validatedEvaluation.item_responses)
+    }
+}
+
+async function validateEvaluationWithBackend(evaluation) {
+    try {
+        const response = await fetch(`${API_BASE}/research/evaluation/validate`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                course: evaluation.course,
+                phase: evaluation.phase,
+                score: evaluation.score,
+                percentage: evaluation.percentage,
+                total_questions: evaluation.total_questions,
+                item_responses: evaluation.item_responses || [],
+            }),
+        })
+
+        if (!response.ok) {
+            throw new Error(`validator_http_${response.status}`)
+        }
+
+        const validation = await response.json()
+        if (!validation.validator_pass) {
+            const error = new Error(`Research evaluation validation failed: ${(validation.validation_errors || []).join(', ')}`)
+            error.validation = validation
+            throw error
+        }
+
+        return {
+            ...evaluation,
+            score: validation.computed_score,
+            percentage: validation.computed_percentage,
+            item_responses: validation.normalized_item_responses || evaluation.item_responses || [],
+            server_validation: validation,
+        }
+    } catch (error) {
+        console.warn('[Research] Server-side evaluation validation unavailable or failed:', error)
+        throw error
+    }
+}
+
+function normalizeEvaluationResponseItem(item, index) {
+    const itemId = item?.item_id || item?.itemId || item?.id || `item_${String(index + 1).padStart(2, '0')}`
+    const confidence = item?.confidence === undefined || item?.confidence === null
+        ? null
+        : normalizeConfidence(item.confidence)
+    const latencyMs = item?.latency_ms ?? item?.latencyMs ?? item?.time_spent_ms ?? item?.timeSpentMs ?? null
+    const isCorrect = item?.is_correct ?? item?.isCorrect ?? item?.correct
+
+    return {
+        item_id: String(itemId),
+        concept_id: item?.concept_id || item?.conceptId || null,
+        is_correct: Boolean(isCorrect),
+        confidence,
+        latency_ms: Number.isFinite(Number(latencyMs)) ? Math.max(0, Math.round(Number(latencyMs))) : null,
+        misconception_label: item?.misconception_label || item?.misconceptionLabel || item?.misconception_type || null,
+        response_payload: {
+            response_hash: item?.response_hash || item?.responseHash || null,
+            selected_option: item?.selected_option || item?.selectedOption || item?.choice || null,
+            rubric_score: item?.rubric_score ?? item?.rubricScore ?? null,
+            source: item?.source || 'recordEvaluationResult',
+            raw: item?.response_payload || item?.payload || {}
+        }
+    }
+}
+
+async function persistEvaluationResponses(evaluationId, itemResponses = []) {
+    if (!evaluationId || !Array.isArray(itemResponses) || itemResponses.length === 0) return
+
+    const rows = itemResponses
+        .map((item, index) => normalizeEvaluationResponseItem(item, index))
+        .filter((row) => row.item_id)
+        .map((row) => ({
+            evaluation_id: evaluationId,
+            ...row
+        }))
+
+    if (rows.length === 0) return
+
+    const { error } = await supabase
+        .from('evaluation_responses')
+        .upsert(rows, { onConflict: 'evaluation_id,item_id' })
+
+    if (error?.code === '23503') {
+        const safeRows = rows.map((row) => ({
+            ...row,
+            concept_id: null,
+            response_payload: {
+                ...row.response_payload,
+                original_concept_id: row.concept_id
+            }
+        }))
+        const { error: safeError } = await supabase
+            .from('evaluation_responses')
+            .upsert(safeRows, { onConflict: 'evaluation_id,item_id' })
+
+        if (!safeError) return
+        throw safeError
+    }
 
     if (error) throw error
 }
@@ -1135,7 +1248,8 @@ export function recordEvaluationResult({
     recommendedStart = null,
     gaps = [],
     masteredConcepts = [],
-    totalQuestions = 0
+    totalQuestions = 0,
+    itemResponses = []
 }) {
     const now = new Date()
     const nowIso = now.toISOString()
@@ -1154,6 +1268,9 @@ export function recordEvaluationResult({
         recommended_start: recommendedStart,
         gaps,
         mastered_concepts: masteredConcepts,
+        item_responses: Array.isArray(itemResponses)
+            ? itemResponses.map((item, index) => normalizeEvaluationResponseItem(item, index))
+            : [],
         created_at: nowIso,
         retention_due_at: dueAt
     }
@@ -1189,6 +1306,55 @@ export function getEvaluationStatus(course) {
             post: !byPhase.post && Boolean(byPhase.pre),
             retention: Boolean(byPhase.post?.retention_due_at) && Date.parse(byPhase.post.retention_due_at) <= Date.now() && !byPhase.retention
         }
+    }
+}
+
+function summarizeArtifactRevisionScores(rows = []) {
+    const normalizedRows = rows
+        .map((row) => ({
+            id: row.id,
+            section_id: row.section_id,
+            course_id: row.course_id,
+            artifact_type: row.artifact_type,
+            studio_mode: row.studio_mode,
+            judgment: row.judgment,
+            score_count: Number(row.score_count || row.scored_traces || 1),
+            learner_count: Number(row.learner_count || 0),
+            trace_score: Number(row.trace_score || 0),
+            trace_denominator: Number(row.trace_denominator || 8),
+            claim_clarity: Number(row.claim_clarity || row.avg_claim_clarity || 0),
+            evidence_alignment: Number(row.evidence_alignment || row.avg_evidence_alignment || row.average_evidence_alignment || 0),
+            revision_depth: Number(row.revision_depth || row.avg_revision_depth || row.average_revision_depth || 0),
+            judgment_quality: Number(row.judgment_quality || row.avg_judgment_quality || row.average_judgment_quality || 0),
+            transfer_readiness: Number(row.transfer_readiness || row.avg_transfer_readiness || 0),
+            specificity_delta: Number(row.specificity_delta || row.avg_specificity_delta || 0),
+            overall_revision_quality: Number(row.overall_revision_quality || row.avg_overall_revision_quality || row.average_overall_revision_quality || 0),
+            weak_evidence_count: Number(row.weak_evidence_count || 0),
+            shallow_revision_count: Number(row.shallow_revision_count || 0),
+            judgment_risk_count: Number(row.judgment_risk_count || 0),
+            transfer_ready_count: Number(row.transfer_ready_count || 0),
+            created_at: row.created_at || row.latest_score_at
+        }))
+        .sort((left, right) => Date.parse(right.created_at || 0) - Date.parse(left.created_at || 0))
+
+    const totalScores = normalizedRows.reduce((sum, row) => sum + Math.max(0, row.score_count || 0), 0)
+    const average = (field) => totalScores
+        ? Number((normalizedRows.reduce((sum, row) => sum + Number(row[field] || 0) * Math.max(0, row.score_count || 0), 0) / totalScores).toFixed(3))
+        : 0
+
+    return {
+        totalScores,
+        learnerCount: normalizedRows.reduce((sum, row) => sum + (row.learner_count || 0), 0),
+        averageOverallRevisionQuality: average('overall_revision_quality'),
+        averageEvidenceAlignment: average('evidence_alignment'),
+        averageRevisionDepth: average('revision_depth'),
+        averageJudgmentQuality: average('judgment_quality'),
+        weakEvidenceCount: normalizedRows.reduce((sum, row) => sum + (row.weak_evidence_count || (row.evidence_alignment < 0.5 ? row.score_count : 0)), 0),
+        shallowRevisionCount: normalizedRows.reduce((sum, row) => sum + (row.shallow_revision_count || (row.revision_depth < 0.5 ? row.score_count : 0)), 0),
+        judgmentRiskCount: normalizedRows.reduce((sum, row) => sum + (row.judgment_risk_count || (row.judgment_quality < 0.5 ? row.score_count : 0)), 0),
+        transferReadyCount: normalizedRows.reduce((sum, row) => sum + (row.transfer_ready_count || (row.transfer_readiness >= 0.7 ? row.score_count : 0)), 0),
+        sectionRows: normalizedRows,
+        recentScores: normalizedRows.slice(0, 8)
     }
 }
 
@@ -1253,7 +1419,8 @@ export function getResearchDashboardSnapshot() {
         learnerMetrics,
         interventionMetrics,
         evaluationMetrics,
-        contentMetrics
+        contentMetrics,
+        artifactMetrics: summarizeArtifactRevisionScores([])
     }
 }
 
@@ -1262,6 +1429,7 @@ function buildSnapshotFromRemote({
     traces = [],
     evaluations = [],
     audits = [],
+    artifactRevisionScores = [],
 }) {
     const learnerMetrics = {
         averageForgettingRisk: conceptStates.length
@@ -1329,7 +1497,8 @@ function buildSnapshotFromRemote({
         learnerMetrics,
         interventionMetrics,
         evaluationMetrics,
-        contentMetrics
+        contentMetrics,
+        artifactMetrics: summarizeArtifactRevisionScores(artifactRevisionScores)
     }
 }
 
@@ -1376,7 +1545,8 @@ export async function fetchResearchDashboardSnapshot() {
             traceResponse,
             decisionResponse,
             evaluationResponse,
-            auditResponse
+            auditResponse,
+            artifactRevisionResponse
         ] = await Promise.all([
             supabase
                 .from('learner_concept_state')
@@ -1397,7 +1567,12 @@ export async function fetchResearchDashboardSnapshot() {
             supabase
                 .from('content_audits')
                 .select('id, auto_score, approved, rubric_breakdown, created_at')
-                .order('created_at', { ascending: false })
+                .order('created_at', { ascending: false }),
+            supabase
+                .from('artifact_revision_cohort_summary')
+                .select('course_id, section_id, studio_mode, artifact_type, score_count, learner_count, avg_claim_clarity, avg_evidence_alignment, avg_revision_depth, avg_judgment_quality, avg_transfer_readiness, avg_specificity_delta, avg_overall_revision_quality, weak_evidence_count, shallow_revision_count, judgment_risk_count, transfer_ready_count, latest_score_at')
+                .order('latest_score_at', { ascending: false })
+                .limit(200)
         ])
 
         const conceptStates = learnerStateResponse?.data || []
@@ -1422,7 +1597,8 @@ export async function fetchResearchDashboardSnapshot() {
             conceptStates,
             traces,
             evaluations,
-            audits
+            audits,
+            artifactRevisionScores: artifactRevisionResponse?.data || []
         })
     } catch (error) {
         console.warn('[Research] Falling back to local dashboard snapshot:', error)
@@ -1438,23 +1614,25 @@ function averageByPhase(records, phase) {
 
 export async function fetchRctSnapshot() {
     if (!isSupabaseConfigured) {
-        return { interventionOutcomes: [], evaluationGains: [], telemetryProfile: [] }
+        return { interventionOutcomes: [], evaluationGains: [], telemetryProfile: [], itemDiagnostics: [] }
     }
 
     try {
-        const [outcomes, gains, telemetry] = await Promise.all([
+        const [outcomes, gains, telemetry, itemDiagnostics] = await Promise.all([
             supabase.from('rct_intervention_outcomes').select('*'),
             supabase.from('rct_evaluation_gains').select('*'),
             supabase.from('rct_user_telemetry_profile').select('*').limit(50),
+            supabase.from('rct_evaluation_item_diagnostics').select('*').limit(200),
         ])
 
         return {
             interventionOutcomes: outcomes?.data || [],
             evaluationGains: gains?.data || [],
             telemetryProfile: telemetry?.data || [],
+            itemDiagnostics: itemDiagnostics?.data || [],
         }
     } catch (error) {
         console.warn('[Research] RCT snapshot fetch failed:', error)
-        return { interventionOutcomes: [], evaluationGains: [], telemetryProfile: [] }
+        return { interventionOutcomes: [], evaluationGains: [], telemetryProfile: [], itemDiagnostics: [] }
     }
 }

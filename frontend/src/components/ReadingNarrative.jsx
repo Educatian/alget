@@ -15,6 +15,7 @@ const InlineCheck = lazy(() => import('./InlineCheck'))
 const RevealedWorkedExample = lazy(() => import('./RevealedWorkedExample'))
 const Glossary = lazy(() => import('./Glossary'))
 const RemotionClip = lazy(() => import('./RemotionClip'))
+const ArtifactStudio = lazy(() => import('./ArtifactStudio'))
 
 const TorqueDiagram = lazy(() => import('./TorqueDiagram').then((module) => ({ default: module.TorqueDiagram })))
 const MicroTurbulenceDiagram = lazy(() => import('./AeroacousticsDiagram').then((module) => ({ default: module.MicroTurbulenceDiagram })))
@@ -73,6 +74,31 @@ function createAnchorId(prefix, value) {
     return `${prefix}-${slug || 'section'}`
 }
 
+function normalizeMarkdownSource(source) {
+    const lines = String(source || '').replace(/\r\n/g, '\n').split('\n')
+    const nonEmptyLines = lines.filter((line) => line.trim().length > 0)
+    const getIndent = (line) => line.match(/^\s*/)?.[0]?.length || 0
+    const commonIndent = nonEmptyLines.reduce((current, line) => {
+        const indent = getIndent(line)
+        return Math.min(current, indent)
+    }, Number.POSITIVE_INFINITY)
+
+    if (Number.isFinite(commonIndent) && commonIndent > 0) {
+        return lines.map((line) => line.slice(Math.min(commonIndent, getIndent(line)))).join('\n').trim()
+    }
+
+    const indentedLines = nonEmptyLines
+        .map(getIndent)
+        .filter((indent) => indent > 0)
+
+    if (indentedLines.length >= Math.max(2, nonEmptyLines.length * 0.5)) {
+        const dominantIndent = Math.min(...indentedLines)
+        return lines.map((line) => line.slice(Math.min(dominantIndent, getIndent(line)))).join('\n').trim()
+    }
+
+    return lines.join('\n').trim()
+}
+
 export default function ReadingNarrative({
     content,
     sectionId,
@@ -84,7 +110,7 @@ export default function ReadingNarrative({
 }) {
     const [activeHeading, setActiveHeading] = useState('Introduction')
     const startTimeRef = useRef(0)
-    const narrativeSource = content || sectionDescription || '*No content available*'
+    const narrativeSource = normalizeMarkdownSource(content || sectionDescription || '*No content available*')
     const usesMath = /\$[^$\n]+\$|\\\(|\\\[/.test(narrativeSource)
     const usesRawHtml = /<([a-z][a-z0-9-]*)(\s|>)/i.test(narrativeSource)
 
@@ -130,6 +156,14 @@ export default function ReadingNarrative({
         },
         p: ({ children, ...props }) => {
             const text = extractNodeText(children)
+            const hasBlockChild = Array.isArray(children)
+                ? children.some((child) => child && typeof child === 'object' && child.type)
+                : Boolean(children && typeof children === 'object' && children.type)
+
+            if (hasBlockChild && !text.trim()) {
+                return <>{children}</>
+            }
+
             return (
                 <p
                     data-reading-anchor={text.toLowerCase()}
@@ -140,11 +174,26 @@ export default function ReadingNarrative({
                 </p>
             )
         },
+        pre: ({ children, ...props }) => (
+            <pre tabIndex={0} {...props}>
+                {children}
+            </pre>
+        ),
         'dynamic-scenario': (props) => (
             <Suspense fallback={<MarkdownBlockFallback />}>
                 <DynamicScenario
                     {...props}
                     course={course || 'bio-inspired'}
+                />
+            </Suspense>
+        ),
+        'artifact-studio': (props) => (
+            <Suspense fallback={<MarkdownBlockFallback />}>
+                <ArtifactStudio
+                    {...props}
+                    sectionId={sectionId}
+                    conceptIds={conceptIds || []}
+                    sectionTitle={sectionDescription || ''}
                 />
             </Suspense>
         ),
@@ -190,7 +239,7 @@ export default function ReadingNarrative({
         'formative-summative-diagram': (props) => renderLazyMarkdownModule(FormativeSummativeDiagram, props),
         'rubric-design-diagram': (props) => renderLazyMarkdownModule(RubricDesignDiagram, props),
         'feedback-models-diagram': (props) => renderLazyMarkdownModule(FeedbackModelsDiagram, props),
-    }), [conceptIds, course, sectionId])
+    }), [conceptIds, course, sectionDescription, sectionId])
 
     const remarkPlugins = useMemo(
         () => (usesMath ? [remarkGfm, remarkMath] : [remarkGfm]),

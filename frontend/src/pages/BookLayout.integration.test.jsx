@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import BookLayout from './BookLayout'
 
@@ -34,6 +34,7 @@ vi.mock('../hooks/useSocialPresence', () => ({
 }))
 
 vi.mock('../lib/loggingService', () => ({
+    logEvent: vi.fn(),
     logPageView: vi.fn(),
     logStuckEvent: vi.fn(),
 }))
@@ -71,17 +72,21 @@ vi.mock('../components/ChatWidget', () => ({
 describe('BookLayout integration', () => {
     beforeEach(() => {
         globalThis.fetch = vi.fn((url) => {
+            const path = String(url)
+            const courseMatch = path.match(/\/book\/([^/]+)/)
+            const course = courseMatch?.[1] || 'inst-design'
+
             if (String(url).includes('/toc')) {
                 return Promise.resolve({
                     ok: true,
                     json: async () => ({
-                        title: 'Instructional Design',
+                        title: course,
                         chapters: [
                             {
                                 id: '01',
-                                title: 'Introduction to Instructional Design',
+                                title: 'Module 1',
                                 sections: [
-                                    { id: '01', title: 'Module 1: What is Instructional Design?' },
+                                    { id: '01', title: `${course} Section 01` },
                                 ],
                             },
                         ],
@@ -93,14 +98,14 @@ describe('BookLayout integration', () => {
                 ok: true,
                 json: async () => ({
                     meta: {
-                        course: 'inst-design',
+                        course,
                         chapter: '01',
                         section: '01',
-                        title: 'Module 1: What is Instructional Design?',
-                        description: 'Foundational concepts for instructional design.',
-                        concept_ids: ['instructional_design'],
+                        title: `${course} Section 01`,
+                        description: 'Foundational concepts for route smoke testing.',
+                        concept_ids: ['artifact_trace'],
                     },
-                    title: 'Module 1: What is Instructional Design?',
+                    title: `${course} Section 01`,
                     raw: 'Section body',
                 }),
             })
@@ -108,6 +113,7 @@ describe('BookLayout integration', () => {
     })
 
     afterEach(() => {
+        cleanup()
         vi.restoreAllMocks()
     })
 
@@ -122,7 +128,25 @@ describe('BookLayout integration', () => {
 
         expect(screen.getByText('Alabama Generative Intelligent Textbook')).toBeInTheDocument()
         expect(screen.getByText('Learning Workspace')).toBeInTheDocument()
-        expect(await screen.findByTestId('reading-pane')).toHaveTextContent('Module 1: What is Instructional Design?')
+        expect(await screen.findByTestId('reading-pane')).toHaveTextContent('inst-design Section 01')
         expect(screen.getByText('Cloud sync on')).toBeInTheDocument()
+    })
+
+    it.each([
+        ['ail606-supplement'],
+        ['cat531-supplement'],
+        ['cat100-supplement'],
+    ])('smoke-renders the Summer 2026 supplement route for %s', async (course) => {
+        render(
+            <MemoryRouter initialEntries={[`/book/${course}/01/01`]}>
+                <Routes>
+                    <Route path="/book/:course/:chapter/:section" element={<BookLayout user={{ id: 'user-1', email: 'tester@ua.edu' }} onLogout={vi.fn()} />} />
+                </Routes>
+            </MemoryRouter>,
+        )
+
+        expect(await screen.findByTestId('reading-pane')).toHaveTextContent(`${course} Section 01`)
+        expect(globalThis.fetch).toHaveBeenCalledWith(expect.stringContaining(`/book/${course}/toc`))
+        expect(globalThis.fetch).toHaveBeenCalledWith(expect.stringContaining(`/book/${course}/01/01`))
     })
 })

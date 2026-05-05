@@ -41,6 +41,13 @@ function buildLayout(nodes) {
     }
 }
 
+function describeNodeStatus(node) {
+    if (node.is_current) return 'current focus'
+    if (node.status === 'mastered') return 'stable'
+    if (node.status === 'emerging') return 'developing'
+    return 'not enough evidence'
+}
+
 export default function KnowledgeGraph({
     course = 'inst-design',
     currentSectionId = null,
@@ -175,18 +182,34 @@ export default function KnowledgeGraph({
     )
 
     return (
-        <div className="bg-slate-950 rounded-3xl p-6 shadow-2xl overflow-hidden relative border border-slate-800">
+        <div className="knowledge-graph-mount bg-slate-950 rounded-3xl p-6 shadow-2xl overflow-hidden relative border border-slate-800">
             <div className="mb-5 flex items-start justify-between gap-4">
                 <div>
                     <h3 className="text-white font-bold text-lg">Brain Network</h3>
                     <p className="text-slate-400 text-sm max-w-2xl">
-                        This map is now connected to the current course, section, and concept focus. Blue nodes mark the concept cluster you are reading now. Click any node to jump to that section.
+                        This is an action map for the current work product. Use amber and slate nodes to decide what evidence to annotate next, then return to the Work Product Studio and revise the artifact trace.
                     </p>
                 </div>
-                <div className="flex items-center gap-3 text-xs text-slate-400">
-                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-indigo-500" />Current</span>
-                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-amber-400" />Emerging</span>
-                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />Mastered</span>
+                <div className="flex flex-wrap items-center justify-end gap-3 text-xs text-slate-400">
+                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-indigo-500" />Current focus</span>
+                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-amber-400" />Developing</span>
+                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />Stable</span>
+                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-slate-400" />Evidence needed</span>
+                </div>
+            </div>
+
+            <div className="mb-5 grid gap-3 rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-sm text-slate-300 md:grid-cols-[1fr_1fr]">
+                <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-200">What this shows</p>
+                    <p className="mt-2 leading-6">
+                        Node color is not a grade. It is a signal about how much usable evidence the system has for the concept in this section, including reading, annotation, practice, and artifact traces.
+                    </p>
+                </div>
+                <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-200">Next action</p>
+                    <p className="mt-2 leading-6">
+                        Click a developing or evidence-needed node, annotate one source-backed claim, then revise the current work product with a short rationale for accepting, modifying, or rejecting AI feedback.
+                    </p>
                 </div>
             </div>
 
@@ -313,7 +336,7 @@ export default function KnowledgeGraph({
                                             {node.section_title || 'Current section'}
                                         </text>
                                         <text x="12" y="32" fill="#94a3b8" fontSize="11">
-                                            Mastery {Number(node.p_known || 0).toFixed(2)}
+                                            {describeNodeStatus(node)} / mastery {Number(node.p_known || 0).toFixed(2)}
                                         </text>
                                     </g>
                                 )}

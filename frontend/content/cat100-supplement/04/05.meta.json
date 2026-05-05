@@ -1,0 +1,20 @@
+{
+  "chapter_title": "AI Conversations as a Teacher",
+  "title": "Tone, Bias, and Audience",
+  "description": "Artifact-specific exemplar for CAT 100 connecting tone, bias, and audience to Excel pivot-table finding, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a Excel pivot-table finding as evidence of learner judgment in CAT 100.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat100_supplement_ai_conversations_as_a_teacher",
+    "cat100_supplement_tone_bias_and_audience",
+    "cat100_supplement_evidence_based_revision",
+    "cat100_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 5,
+  "top_tier_hardened": true
+}

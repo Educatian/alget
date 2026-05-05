@@ -1,6 +1,6 @@
 # Content Sufficiency Audit
 
-- Sections scanned: **64**
+- Sections scanned: **256**
 - High-priority gaps (severity >= 8): **0**
 
 ## Course Summary
@@ -8,81 +8,310 @@
 | Course | Sections | Missing practice | Missing misconceptions | Thin sections | High priority |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | ai-ethics | 12 | 0 | 0 | 0 | 0 |
+| ail606-supplement | 64 | 0 | 0 | 46 | 0 |
 | bio-inspired | 10 | 0 | 0 | 0 | 0 |
+| cat100-supplement | 64 | 0 | 0 | 35 | 0 |
+| cat531-supplement | 64 | 0 | 0 | 32 | 0 |
 | dynamics | 11 | 0 | 0 | 0 | 0 |
 | inst-design | 17 | 0 | 0 | 0 | 0 |
 | statics | 14 | 0 | 0 | 0 | 0 |
 
 ## Highest Priority Sections
 
-### ai-ethics 01.02  (severity 1)
-- Words: 1215, headings: 8, practice: 4, misconceptions: yes
-- Few list-based cues (0) reduce scanability.
+### ail606-supplement 01.03  (severity 3)
+- Words: 736, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 736 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 02.01  (severity 1)
-- Words: 1274, headings: 10, practice: 4, misconceptions: yes
-- Few list-based cues (0) reduce scanability.
+### ail606-supplement 01.04  (severity 3)
+- Words: 737, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 737 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 02.02  (severity 1)
-- Words: 1371, headings: 8, practice: 4, misconceptions: yes
-- Few list-based cues (0) reduce scanability.
+### ail606-supplement 01.05  (severity 3)
+- Words: 748, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 748 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 04.01  (severity 1)
-- Words: 1199, headings: 8, practice: 4, misconceptions: yes
-- Few list-based cues (0) reduce scanability.
+### ail606-supplement 01.06  (severity 3)
+- Words: 748, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 748 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 04.02  (severity 1)
-- Words: 1137, headings: 7, practice: 4, misconceptions: yes
-- Few list-based cues (0) reduce scanability.
+### ail606-supplement 01.07  (severity 3)
+- Words: 741, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 741 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 05.01  (severity 1)
-- Words: 1193, headings: 7, practice: 4, misconceptions: yes
-- Few list-based cues (0) reduce scanability.
+### ail606-supplement 01.08  (severity 3)
+- Words: 744, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 744 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 01.01  (severity 0)
-- Words: 1333, headings: 8, practice: 4, misconceptions: yes
+### ail606-supplement 02.03  (severity 3)
+- Words: 740, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 740 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 03.01  (severity 0)
-- Words: 1098, headings: 7, practice: 4, misconceptions: yes
+### ail606-supplement 02.04  (severity 3)
+- Words: 740, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 740 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 03.02  (severity 0)
-- Words: 1184, headings: 7, practice: 4, misconceptions: yes
+### ail606-supplement 02.05  (severity 3)
+- Words: 747, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 747 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 05.02  (severity 0)
-- Words: 1237, headings: 8, practice: 4, misconceptions: yes
+### ail606-supplement 02.07  (severity 3)
+- Words: 737, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 737 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 06.01  (severity 0)
-- Words: 1359, headings: 11, practice: 4, misconceptions: yes
+### ail606-supplement 02.08  (severity 3)
+- Words: 735, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 735 words.
+- Structure is shallow with only 0 headings.
 
-### ai-ethics 06.02  (severity 0)
-- Words: 1172, headings: 6, practice: 4, misconceptions: yes
+### ail606-supplement 03.01  (severity 3)
+- Words: 742, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 742 words.
+- Structure is shallow with only 0 headings.
 
-### bio-inspired 01.01  (severity 0)
-- Words: 1487, headings: 8, practice: 6, misconceptions: yes
+### ail606-supplement 03.02  (severity 3)
+- Words: 743, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 743 words.
+- Structure is shallow with only 0 headings.
 
-### bio-inspired 01.02  (severity 0)
-- Words: 818, headings: 11, practice: 4, misconceptions: yes
+### ail606-supplement 03.03  (severity 3)
+- Words: 749, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 749 words.
+- Structure is shallow with only 0 headings.
 
-### bio-inspired 01.03  (severity 0)
-- Words: 1014, headings: 10, practice: 4, misconceptions: yes
+### ail606-supplement 03.04  (severity 3)
+- Words: 749, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 749 words.
+- Structure is shallow with only 0 headings.
 
-### bio-inspired 02.01  (severity 0)
-- Words: 1407, headings: 5, practice: 4, misconceptions: yes
+### ail606-supplement 03.05  (severity 3)
+- Words: 742, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 742 words.
+- Structure is shallow with only 0 headings.
 
-### bio-inspired 03.01  (severity 0)
-- Words: 1203, headings: 7, practice: 4, misconceptions: yes
+### ail606-supplement 03.08  (severity 3)
+- Words: 742, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 742 words.
+- Structure is shallow with only 0 headings.
 
-### bio-inspired 04.01  (severity 0)
-- Words: 1736, headings: 12, practice: 4, misconceptions: yes
+### ail606-supplement 04.01  (severity 3)
+- Words: 741, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 741 words.
+- Structure is shallow with only 0 headings.
 
-### bio-inspired 05.01  (severity 0)
-- Words: 979, headings: 6, practice: 4, misconceptions: yes
+### ail606-supplement 04.02  (severity 3)
+- Words: 736, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 736 words.
+- Structure is shallow with only 0 headings.
 
-### bio-inspired 06.01  (severity 0)
-- Words: 1109, headings: 9, practice: 6, misconceptions: yes
+### ail606-supplement 04.05  (severity 3)
+- Words: 743, headings: 0, practice: 4, misconceptions: yes
+- Body is somewhat thin at 743 words.
+- Structure is shallow with only 0 headings.
 
 ## Full Section Checklist
 
+- `ail606-supplement/01/03`: severity 3 | words 736 | practice 4 | Body is somewhat thin at 736 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/01/04`: severity 3 | words 737 | practice 4 | Body is somewhat thin at 737 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/01/05`: severity 3 | words 748 | practice 4 | Body is somewhat thin at 748 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/01/06`: severity 3 | words 748 | practice 4 | Body is somewhat thin at 748 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/01/07`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/01/08`: severity 3 | words 744 | practice 4 | Body is somewhat thin at 744 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/02/03`: severity 3 | words 740 | practice 4 | Body is somewhat thin at 740 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/02/04`: severity 3 | words 740 | practice 4 | Body is somewhat thin at 740 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/02/05`: severity 3 | words 747 | practice 4 | Body is somewhat thin at 747 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/02/07`: severity 3 | words 737 | practice 4 | Body is somewhat thin at 737 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/02/08`: severity 3 | words 735 | practice 4 | Body is somewhat thin at 735 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/03/01`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/03/02`: severity 3 | words 743 | practice 4 | Body is somewhat thin at 743 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/03/03`: severity 3 | words 749 | practice 4 | Body is somewhat thin at 749 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/03/04`: severity 3 | words 749 | practice 4 | Body is somewhat thin at 749 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/03/05`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/03/08`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/04/01`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/04/02`: severity 3 | words 736 | practice 4 | Body is somewhat thin at 736 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/04/05`: severity 3 | words 743 | practice 4 | Body is somewhat thin at 743 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/04/07`: severity 3 | words 739 | practice 4 | Body is somewhat thin at 739 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/05/02`: severity 3 | words 748 | practice 4 | Body is somewhat thin at 748 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/05/03`: severity 3 | words 739 | practice 4 | Body is somewhat thin at 739 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/05/04`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/05/05`: severity 3 | words 738 | practice 4 | Body is somewhat thin at 738 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/05/06`: severity 3 | words 748 | practice 4 | Body is somewhat thin at 748 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/05/07`: severity 3 | words 724 | practice 4 | Body is somewhat thin at 724 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/05/08`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/06/03`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/06/04`: severity 3 | words 734 | practice 4 | Body is somewhat thin at 734 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/06/05`: severity 3 | words 727 | practice 4 | Body is somewhat thin at 727 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/06/06`: severity 3 | words 743 | practice 4 | Body is somewhat thin at 743 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/06/07`: severity 3 | words 729 | practice 4 | Body is somewhat thin at 729 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/06/08`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/07/01`: severity 3 | words 746 | practice 4 | Body is somewhat thin at 746 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/07/02`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/07/03`: severity 3 | words 748 | practice 4 | Body is somewhat thin at 748 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/07/05`: severity 3 | words 729 | practice 4 | Body is somewhat thin at 729 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/07/08`: severity 3 | words 736 | practice 4 | Body is somewhat thin at 736 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/08/01`: severity 3 | words 739 | practice 4 | Body is somewhat thin at 739 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/08/02`: severity 3 | words 737 | practice 4 | Body is somewhat thin at 737 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/08/03`: severity 3 | words 725 | practice 4 | Body is somewhat thin at 725 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/08/05`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/08/06`: severity 3 | words 727 | practice 4 | Body is somewhat thin at 727 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/08/07`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/08/08`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/01/02`: severity 3 | words 745 | practice 4 | Body is somewhat thin at 745 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/01/03`: severity 3 | words 735 | practice 4 | Body is somewhat thin at 735 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/01/04`: severity 3 | words 745 | practice 4 | Body is somewhat thin at 745 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/01/06`: severity 3 | words 730 | practice 4 | Body is somewhat thin at 730 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/02/03`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/02/04`: severity 3 | words 747 | practice 4 | Body is somewhat thin at 747 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/02/05`: severity 3 | words 748 | practice 4 | Body is somewhat thin at 748 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/02/08`: severity 3 | words 740 | practice 4 | Body is somewhat thin at 740 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/03/01`: severity 3 | words 744 | practice 4 | Body is somewhat thin at 744 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/03/02`: severity 3 | words 749 | practice 4 | Body is somewhat thin at 749 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/03/04`: severity 3 | words 739 | practice 4 | Body is somewhat thin at 739 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/04/01`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/04/02`: severity 3 | words 740 | practice 4 | Body is somewhat thin at 740 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/04/03`: severity 3 | words 743 | practice 4 | Body is somewhat thin at 743 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/04/06`: severity 3 | words 740 | practice 4 | Body is somewhat thin at 740 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/04/07`: severity 3 | words 740 | practice 4 | Body is somewhat thin at 740 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/05/02`: severity 3 | words 739 | practice 4 | Body is somewhat thin at 739 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/05/03`: severity 3 | words 744 | practice 4 | Body is somewhat thin at 744 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/05/04`: severity 3 | words 737 | practice 4 | Body is somewhat thin at 737 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/05/06`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/05/07`: severity 3 | words 746 | practice 4 | Body is somewhat thin at 746 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/05/08`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/06/01`: severity 3 | words 747 | practice 4 | Body is somewhat thin at 747 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/06/03`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/06/04`: severity 3 | words 746 | practice 4 | Body is somewhat thin at 746 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/06/05`: severity 3 | words 742 | practice 4 | Body is somewhat thin at 742 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/06/07`: severity 3 | words 729 | practice 4 | Body is somewhat thin at 729 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/07/03`: severity 3 | words 748 | practice 4 | Body is somewhat thin at 748 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/07/04`: severity 3 | words 739 | practice 4 | Body is somewhat thin at 739 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/07/05`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/07/06`: severity 3 | words 732 | practice 4 | Body is somewhat thin at 732 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/08/02`: severity 3 | words 739 | practice 4 | Body is somewhat thin at 739 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/08/03`: severity 3 | words 749 | practice 4 | Body is somewhat thin at 749 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/08/05`: severity 3 | words 734 | practice 4 | Body is somewhat thin at 734 words., Structure is shallow with only 0 headings.
+- `cat100-supplement/08/08`: severity 3 | words 748 | practice 4 | Body is somewhat thin at 748 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/01/03`: severity 3 | words 725 | practice 4 | Body is somewhat thin at 725 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/01/04`: severity 3 | words 747 | practice 4 | Body is somewhat thin at 747 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/01/06`: severity 3 | words 744 | practice 4 | Body is somewhat thin at 744 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/02/03`: severity 3 | words 746 | practice 4 | Body is somewhat thin at 746 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/02/08`: severity 3 | words 737 | practice 4 | Body is somewhat thin at 737 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/03/01`: severity 3 | words 732 | practice 4 | Body is somewhat thin at 732 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/03/02`: severity 3 | words 749 | practice 4 | Body is somewhat thin at 749 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/03/04`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/03/07`: severity 3 | words 736 | practice 4 | Body is somewhat thin at 736 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/03/08`: severity 3 | words 746 | practice 4 | Body is somewhat thin at 746 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/04/01`: severity 3 | words 749 | practice 4 | Body is somewhat thin at 749 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/04/02`: severity 3 | words 749 | practice 4 | Body is somewhat thin at 749 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/04/03`: severity 3 | words 747 | practice 4 | Body is somewhat thin at 747 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/04/05`: severity 3 | words 725 | practice 4 | Body is somewhat thin at 725 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/04/07`: severity 3 | words 728 | practice 4 | Body is somewhat thin at 728 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/05/02`: severity 3 | words 746 | practice 4 | Body is somewhat thin at 746 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/05/03`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/05/05`: severity 3 | words 736 | practice 4 | Body is somewhat thin at 736 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/05/06`: severity 3 | words 731 | practice 4 | Body is somewhat thin at 731 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/05/07`: severity 3 | words 746 | practice 4 | Body is somewhat thin at 746 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/05/08`: severity 3 | words 744 | practice 4 | Body is somewhat thin at 744 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/06/01`: severity 3 | words 741 | practice 4 | Body is somewhat thin at 741 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/06/04`: severity 3 | words 724 | practice 4 | Body is somewhat thin at 724 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/06/07`: severity 3 | words 743 | practice 4 | Body is somewhat thin at 743 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/07/03`: severity 3 | words 738 | practice 4 | Body is somewhat thin at 738 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/07/04`: severity 3 | words 748 | practice 4 | Body is somewhat thin at 748 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/07/05`: severity 3 | words 743 | practice 4 | Body is somewhat thin at 743 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/07/08`: severity 3 | words 738 | practice 4 | Body is somewhat thin at 738 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/08/02`: severity 3 | words 738 | practice 4 | Body is somewhat thin at 738 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/08/03`: severity 3 | words 732 | practice 4 | Body is somewhat thin at 732 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/08/05`: severity 3 | words 743 | practice 4 | Body is somewhat thin at 743 words., Structure is shallow with only 0 headings.
+- `cat531-supplement/08/08`: severity 3 | words 733 | practice 4 | Body is somewhat thin at 733 words., Structure is shallow with only 0 headings.
+- `ail606-supplement/01/01`: severity 2 | words 760 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/01/02`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/02/01`: severity 2 | words 750 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/02/02`: severity 2 | words 763 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/02/06`: severity 2 | words 756 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/03/06`: severity 2 | words 750 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/03/07`: severity 2 | words 756 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/04/03`: severity 2 | words 758 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/04/04`: severity 2 | words 767 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/04/06`: severity 2 | words 755 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/04/08`: severity 2 | words 755 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/05/01`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/06/01`: severity 2 | words 751 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/06/02`: severity 2 | words 772 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/07/04`: severity 2 | words 758 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/07/06`: severity 2 | words 751 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/07/07`: severity 2 | words 767 | practice 4 | Structure is shallow with only 0 headings.
+- `ail606-supplement/08/04`: severity 2 | words 765 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/01/01`: severity 2 | words 787 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/01/05`: severity 2 | words 761 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/01/07`: severity 2 | words 768 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/01/08`: severity 2 | words 778 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/02/01`: severity 2 | words 771 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/02/02`: severity 2 | words 754 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/02/06`: severity 2 | words 772 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/02/07`: severity 2 | words 780 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/03/03`: severity 2 | words 760 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/03/05`: severity 2 | words 779 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/03/06`: severity 2 | words 782 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/03/07`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/03/08`: severity 2 | words 751 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/04/04`: severity 2 | words 777 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/04/05`: severity 2 | words 775 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/04/08`: severity 2 | words 761 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/05/01`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/05/05`: severity 2 | words 758 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/06/02`: severity 2 | words 781 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/06/06`: severity 2 | words 760 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/06/08`: severity 2 | words 767 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/07/01`: severity 2 | words 767 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/07/02`: severity 2 | words 777 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/07/07`: severity 2 | words 776 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/07/08`: severity 2 | words 764 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/08/01`: severity 2 | words 769 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/08/04`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/08/06`: severity 2 | words 757 | practice 4 | Structure is shallow with only 0 headings.
+- `cat100-supplement/08/07`: severity 2 | words 772 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/01/01`: severity 2 | words 772 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/01/02`: severity 2 | words 763 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/01/05`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/01/07`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/01/08`: severity 2 | words 761 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/02/01`: severity 2 | words 763 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/02/02`: severity 2 | words 760 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/02/04`: severity 2 | words 751 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/02/05`: severity 2 | words 754 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/02/06`: severity 2 | words 774 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/02/07`: severity 2 | words 760 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/03/03`: severity 2 | words 760 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/03/05`: severity 2 | words 755 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/03/06`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/04/04`: severity 2 | words 777 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/04/06`: severity 2 | words 763 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/04/08`: severity 2 | words 758 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/05/01`: severity 2 | words 755 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/05/04`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/06/02`: severity 2 | words 776 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/06/03`: severity 2 | words 752 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/06/05`: severity 2 | words 751 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/06/06`: severity 2 | words 752 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/06/08`: severity 2 | words 757 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/07/01`: severity 2 | words 753 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/07/02`: severity 2 | words 760 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/07/06`: severity 2 | words 751 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/07/07`: severity 2 | words 766 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/08/01`: severity 2 | words 757 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/08/04`: severity 2 | words 762 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/08/06`: severity 2 | words 752 | practice 4 | Structure is shallow with only 0 headings.
+- `cat531-supplement/08/07`: severity 2 | words 755 | practice 4 | Structure is shallow with only 0 headings.
 - `ai-ethics/01/02`: severity 1 | words 1215 | practice 4 | Few list-based cues (0) reduce scanability.
 - `ai-ethics/02/01`: severity 1 | words 1274 | practice 4 | Few list-based cues (0) reduce scanability.
 - `ai-ethics/02/02`: severity 1 | words 1371 | practice 4 | Few list-based cues (0) reduce scanability.
@@ -97,7 +326,7 @@
 - `ai-ethics/06/02`: severity 0 | words 1172 | practice 4 | No major issues detected.
 - `bio-inspired/01/01`: severity 0 | words 1487 | practice 6 | No major issues detected.
 - `bio-inspired/01/02`: severity 0 | words 818 | practice 4 | No major issues detected.
-- `bio-inspired/01/03`: severity 0 | words 1014 | practice 4 | No major issues detected.
+- `bio-inspired/01/03`: severity 0 | words 1021 | practice 4 | No major issues detected.
 - `bio-inspired/02/01`: severity 0 | words 1407 | practice 4 | No major issues detected.
 - `bio-inspired/03/01`: severity 0 | words 1203 | practice 4 | No major issues detected.
 - `bio-inspired/04/01`: severity 0 | words 1736 | practice 4 | No major issues detected.

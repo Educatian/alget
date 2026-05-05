@@ -1,0 +1,20 @@
+{
+  "chapter_title": "AI Ethics and Ethobot 3.2",
+  "title": "Moving From Debate to Policy",
+  "description": "Artifact-specific exemplar for CAT 531 connecting moving from debate to policy to Ethobot transcript annotation, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a Ethobot transcript annotation as evidence of learner judgment in CAT 531.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat531_supplement_ai_ethics_and_ethobot_3_2",
+    "cat531_supplement_moving_from_debate_to_policy",
+    "cat531_supplement_evidence_based_revision",
+    "cat531_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 6,
+  "top_tier_hardened": true
+}

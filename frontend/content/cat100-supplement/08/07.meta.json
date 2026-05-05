@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Course Completion and Transfer",
+  "title": "Final Submission Checklist",
+  "description": "Artifact-specific exemplar for CAT 100 connecting final submission checklist to Excel pivot-table finding, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a Excel pivot-table finding as evidence of learner judgment in CAT 100.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat100_supplement_course_completion_and_transfer",
+    "cat100_supplement_final_submission_checklist",
+    "cat100_supplement_evidence_based_revision",
+    "cat100_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 7,
+  "top_tier_hardened": true
+}

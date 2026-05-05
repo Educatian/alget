@@ -1,0 +1,75 @@
+[
+  {
+    "model": "rule_only_accuracy",
+    "n_predictions": 6144,
+    "brier": 0.1219,
+    "ece": 0.0793,
+    "auc": 0.8953,
+    "mean_prob": 0.6186,
+    "mean_truth": 0.6979
+  },
+  {
+    "model": "bkt_only",
+    "n_predictions": 6144,
+    "brier": 0.1573,
+    "ece": 0.142,
+    "auc": 0.8485,
+    "mean_prob": 0.5559,
+    "mean_truth": 0.6979,
+    "config": {
+      "p_known_initial": 0.1,
+      "p_guess": 0.2,
+      "p_slip": 0.1,
+      "p_transit": 0.1,
+      "telemetry_intensity": 0
+    }
+  },
+  {
+    "model": "telemetry_fused_bkt",
+    "n_predictions": 6144,
+    "brier": 0.1628,
+    "ece": 0.1,
+    "auc": 0.8302,
+    "mean_prob": 0.6164,
+    "mean_truth": 0.6979,
+    "config": {
+      "p_known_initial": 0.1,
+      "p_guess": 0.2,
+      "p_slip": 0.1,
+      "p_transit": 0.1,
+      "telemetry_intensity": 1.0
+    }
+  },
+  {
+    "model": "tuned_bkt",
+    "n_predictions": 6144,
+    "brier": 0.1048,
+    "ece": 0.0213,
+    "auc": 0.9185,
+    "mean_prob": 0.7146,
+    "mean_truth": 0.6979,
+    "config": {
+      "p_known_initial": 0.65,
+      "p_guess": 0.25,
+      "p_slip": 0.06,
+      "p_transit": 0.14,
+      "telemetry_intensity": 0
+    }
+  },
+  {
+    "model": "tuned_telemetry_fused_bkt",
+    "n_predictions": 6144,
+    "brier": 0.1053,
+    "ece": 0.0154,
+    "auc": 0.9174,
+    "mean_prob": 0.6936,
+    "mean_truth": 0.6979,
+    "config": {
+      "p_known_initial": 0.5,
+      "p_guess": 0.18,
+      "p_slip": 0.12,
+      "p_transit": 0.06,
+      "telemetry_intensity": 0.35
+    }
+  }
+]

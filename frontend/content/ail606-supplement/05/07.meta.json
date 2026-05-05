@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Usability Testing and Learning Evidence",
+  "title": "Prioritizing Iterations",
+  "description": "Artifact-specific exemplar for AIL 606 connecting prioritizing iterations to prototype README traceability matrix, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a prototype README traceability matrix as evidence of learner judgment in AIL 606.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "ail606_supplement_usability_testing_and_learning_evidence",
+    "ail606_supplement_prioritizing_iterations",
+    "ail606_supplement_evidence_based_revision",
+    "ail606_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 7,
+  "top_tier_hardened": true
+}

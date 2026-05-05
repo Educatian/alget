@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Foundations of CBI and Design Tensions",
+  "title": "Module 1 Reflection Studio",
+  "description": "Artifact-specific exemplar for CAT 531 connecting module 1 reflection studio to TeachGen@i prompt transcript, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a TeachGen@i prompt transcript as evidence of learner judgment in CAT 531.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat531_supplement_foundations_of_cbi_and_design_tensions",
+    "cat531_supplement_module_1_reflection_studio",
+    "cat531_supplement_evidence_based_revision",
+    "cat531_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 8,
+  "top_tier_hardened": true
+}

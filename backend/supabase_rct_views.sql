@@ -8,7 +8,8 @@
 -- 1. Intervention outcome by chosen action.
 --    For each closed intervention, surface accept rate and reward by the
 --    recommended action (explain / represent / practice / ask / advance).
-create or replace view rct_intervention_outcomes as
+create or replace view rct_intervention_outcomes
+with (security_invoker = true) as
 select
   rd.chosen_action,
   count(*)                                                       as total_closed,
@@ -26,7 +27,8 @@ group by rd.chosen_action;
 
 -- 2. Per-user pre/post/retention learning gain.
 --    NULL columns mean the user has not yet completed that phase.
-create or replace view rct_evaluation_gains as
+create or replace view rct_evaluation_gains
+with (security_invoker = true) as
 select
   user_id,
   course_id,
@@ -44,7 +46,8 @@ group by user_id, course_id;
 
 -- 3. Telemetry profile per user (volume of each event_type from
 --    interaction_events). Useful for behavioral clustering / outlier checks.
-create or replace view rct_user_telemetry_profile as
+create or replace view rct_user_telemetry_profile
+with (security_invoker = true) as
 select
   user_id,
   count(*)                                                   as total_events,
@@ -59,8 +62,33 @@ select
 from interaction_events
 group by user_id;
 
--- Views inherit RLS from their underlying tables, but we expose them to
--- authenticated researchers via grants to PostgREST's anon/authenticated roles.
-grant select on rct_intervention_outcomes to anon, authenticated;
-grant select on rct_evaluation_gains to anon, authenticated;
-grant select on rct_user_telemetry_profile to anon, authenticated;
+-- 4. Item-level evaluation response quality.
+--    Gives researchers item difficulty and latency without exposing raw
+--    response text; the underlying evaluation_run RLS keeps rows user-scoped.
+create or replace view rct_evaluation_item_diagnostics
+with (security_invoker = true) as
+select
+  runs.course_id,
+  runs.phase,
+  responses.item_id,
+  responses.concept_id,
+  count(*) as response_count,
+  avg(case when responses.is_correct then 1.0 else 0.0 end) as pct_correct,
+  avg(responses.confidence) as avg_confidence,
+  avg(responses.latency_ms) as avg_latency_ms,
+  count(*) filter (where responses.misconception_label is not null) as misconception_count
+from evaluation_responses responses
+join evaluation_runs runs on runs.id = responses.evaluation_id
+group by runs.course_id, runs.phase, responses.item_id, responses.concept_id;
+
+-- Security-invoker views preserve table RLS; only authenticated clients receive
+-- dashboard access. Keep anon revoked so public API keys cannot read aggregates.
+revoke all on rct_intervention_outcomes from anon;
+revoke all on rct_evaluation_gains from anon;
+revoke all on rct_user_telemetry_profile from anon;
+revoke all on rct_evaluation_item_diagnostics from anon;
+
+grant select on rct_intervention_outcomes to authenticated;
+grant select on rct_evaluation_gains to authenticated;
+grant select on rct_user_telemetry_profile to authenticated;
+grant select on rct_evaluation_item_diagnostics to authenticated;

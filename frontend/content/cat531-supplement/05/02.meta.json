@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Educational Technology Evaluation",
+  "title": "Evidence Claims and Vendor Claims",
+  "description": "Artifact-specific exemplar for CAT 531 connecting evidence claims and vendor claims to field-placement transfer note, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a field-placement transfer note as evidence of learner judgment in CAT 531.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat531_supplement_educational_technology_evaluation",
+    "cat531_supplement_evidence_claims_and_vendor_claims",
+    "cat531_supplement_evidence_based_revision",
+    "cat531_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 2,
+  "top_tier_hardened": true
+}
