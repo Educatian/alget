@@ -95,8 +95,8 @@ export default function OnboardingTour() {
     }
 
     return (
-        <div className="fixed inset-0 z-[200] flex items-end justify-center bg-slate-900/40 p-6 backdrop-blur-sm md:items-center">
-            <div className="w-full max-w-md rounded-2xl border border-[var(--ath-line)] bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-[200] flex items-end justify-center bg-[rgba(5,6,8,0.52)] p-6 backdrop-blur-sm md:items-center">
+            <div className="w-full max-w-md rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-6 shadow-xl">
                 <div className="flex items-center justify-between">
                     <p className="editorial-kicker">Tour · {step + 1} of {totalSteps}</p>
                     <button

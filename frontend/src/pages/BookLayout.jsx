@@ -117,6 +117,7 @@ export default function BookLayout({ user, onLogout }) {
     const sectionPath = `${course}/${chapter}/${section}`
 
     const [toc, setToc] = useState(null)
+    const [tocError, setTocError] = useState(null)
     const [sectionData, setSectionData] = useState(null)
     const [loadedSectionPath, setLoadedSectionPath] = useState('')
     const [railOpen, setRailOpen] = useState(false)
@@ -164,12 +165,35 @@ export default function BookLayout({ user, onLogout }) {
         focusConcept: sectionData?.meta?.concept_ids?.[0] || null
     })
 
+    const [tocReloadKey, setTocReloadKey] = useState(0)
+    const retryToc = useCallback(() => {
+        setTocError(null)
+        setTocReloadKey((value) => value + 1)
+    }, [])
+
     useEffect(() => {
+        let cancelled = false
+
         fetch(`${API_BASE}/book/${course}/toc`)
-            .then((res) => res.json())
-            .then(setToc)
-            .catch(console.error)
-    }, [course])
+            .then((res) => {
+                if (!res.ok) throw new Error(`TOC ${res.status}`)
+                return res.json()
+            })
+            .then((data) => {
+                if (cancelled) return
+                setToc(data)
+                setTocError(null)
+            })
+            .catch((error) => {
+                if (cancelled) return
+                console.error(error)
+                setTocError(error?.message || 'Could not load chapter list')
+            })
+
+        return () => {
+            cancelled = true
+        }
+    }, [course, tocReloadKey])
 
     useEffect(() => {
         let cancelled = false
@@ -326,6 +350,13 @@ export default function BookLayout({ user, onLogout }) {
             const activeTag = document.activeElement?.tagName
             const isEditable = document.activeElement?.isContentEditable
 
+            // Escape closes the help rail even when focus is in an input/button
+            if (event.key === 'Escape' && railOpen) {
+                event.preventDefault()
+                setRailOpen(false)
+                return
+            }
+
             if (isEditable || ['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(activeTag)) {
                 return
             }
@@ -343,7 +374,7 @@ export default function BookLayout({ user, onLogout }) {
 
         window.addEventListener('keydown', handleKeyNavigation)
         return () => window.removeEventListener('keydown', handleKeyNavigation)
-    }, [handleNavigate, nextSection, previousSection])
+    }, [handleNavigate, nextSection, previousSection, railOpen])
 
     return (
         <div className="editorial-shell flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
@@ -358,7 +389,12 @@ export default function BookLayout({ user, onLogout }) {
 
             <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] px-6 py-4 backdrop-blur-3xl">
                 <div className="flex flex-wrap items-center justify-between gap-4">
-                    <div className="flex min-w-0 items-center gap-4 cursor-pointer" onClick={() => navigate('/')}>
+                    <button
+                        type="button"
+                        onClick={() => navigate('/')}
+                        aria-label="Go to ALGET home"
+                        className="flex min-w-0 items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                    >
                         <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-xl font-bold text-white shadow-[0_16px_32px_rgba(9,56,72,0.18)]">
                             AL
                         </div>
@@ -369,16 +405,16 @@ export default function BookLayout({ user, onLogout }) {
                                 {formatCourseLabel(course)} / Chapter {chapter} / Section {section}
                             </p>
                         </div>
-                    </div>
+                    </button>
 
                     <div className="flex flex-wrap items-center gap-2">
                         <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
-                            <span className="text-slate-400">Section</span>{' '}
-                            <span className="text-slate-900">{sectionPosition}/{flatSections.length || 1}</span>
+                            <span className="text-[var(--ath-secondary)]">Section</span>{' '}
+                            <span className="text-[var(--ath-text)]">{sectionPosition}/{flatSections.length || 1}</span>
                         </div>
                         <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
-                            <span className="text-slate-400">Completed</span>{' '}
-                            <span className="text-slate-900">{completedCount}</span>
+                            <span className="text-[var(--ath-secondary)]">Completed</span>{' '}
+                            <span className="text-[var(--ath-text)]">{completedCount}</span>
                         </div>
                         <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
                             <span className={`mr-2 inline-block h-2 w-2 rounded-full ${progressStats?.syncStatus === 'synced' ? 'bg-emerald-500' : 'bg-amber-400'}`}></span>
@@ -522,20 +558,36 @@ export default function BookLayout({ user, onLogout }) {
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
                 <aside className="min-h-0 w-72 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
-                    <ChapterPassport
-                        toc={toc}
-                        currentCourse={course}
-                        currentChapter={chapter}
-                        completedSections={completedSections}
-                    />
-                    <BookToc
-                        toc={toc}
-                        currentCourse={course}
-                        currentChapter={chapter}
-                        currentSection={section}
-                        onNavigate={handleNavigate}
-                        completedSections={completedSections}
-                    />
+                    {tocError ? (
+                        <div className="m-4 rounded-2xl border border-[rgba(220,38,38,0.25)] bg-[rgba(254,242,242,0.85)] p-4 text-sm">
+                            <p className="font-semibold text-[var(--ath-text)]">Couldn't load chapter list</p>
+                            <p className="mt-1 text-xs text-[var(--ath-muted)]">{tocError}</p>
+                            <button
+                                type="button"
+                                onClick={retryToc}
+                                className="mt-3 rounded-lg border border-[var(--ath-line)] bg-white px-3 py-1.5 text-xs font-semibold text-[var(--ath-primary)] shadow-sm hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                            >
+                                Retry
+                            </button>
+                        </div>
+                    ) : (
+                        <>
+                            <ChapterPassport
+                                toc={toc}
+                                currentCourse={course}
+                                currentChapter={chapter}
+                                completedSections={completedSections}
+                            />
+                            <BookToc
+                                toc={toc}
+                                currentCourse={course}
+                                currentChapter={chapter}
+                                currentSection={section}
+                                onNavigate={handleNavigate}
+                                completedSections={completedSections}
+                            />
+                        </>
+                    )}
                 </aside>
 
                 <div className="group/nav relative min-h-0 flex-1 overflow-hidden">
@@ -544,7 +596,7 @@ export default function BookLayout({ user, onLogout }) {
                             key={sectionPath}
                             className={`min-h-full ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
                         >
-                            <Suspense fallback={<div className="mx-auto max-w-3xl px-8 py-12"><SurfaceFallback label="Loading reading surface..." /></div>}>
+                            <Suspense fallback={<div className="mx-auto max-w-4xl px-8 py-12 xl:max-w-5xl"><SurfaceFallback label="Loading reading surface..." /></div>}>
                                 <HighlightableContent
                                     sectionId={sectionPath}
                                     userId={user?.id}

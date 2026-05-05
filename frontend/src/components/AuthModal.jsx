@@ -95,8 +95,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.42)] px-4 backdrop-blur-md">
-            <div className="w-full max-w-lg overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.95)] shadow-[0_32px_80px_rgba(15,23,42,0.22)]">
-                <div className="border-b border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(248,246,241,0.98),rgba(240,237,230,0.84))] px-8 py-7">
+            <div className="w-full max-w-lg overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_32px_80px_rgba(15,23,42,0.22)]">
+                <div className="border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-8 py-7">
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <p className="editorial-kicker">The Scholarly Editorial</p>
@@ -105,7 +105,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                         </div>
                         <button
                             onClick={onClose}
-                            className="rounded-full border border-[var(--ath-line)] bg-white/70 px-3 py-1.5 text-sm font-semibold text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-text)]"
+                            className="rounded-full border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3 py-1.5 text-sm font-semibold text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-text)]"
                             aria-label="Close sign in dialog"
                         >
                             Close
@@ -115,7 +115,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
 
                 <div className="px-8 py-7">
                     {!isSupabaseConfigured && (
-                        <div className="mb-5 rounded-[1.3rem] border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] px-4 py-4 text-sm leading-7 text-[var(--ath-primary-deep)]">
+                        <div className="mb-5 rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-4 py-4 text-sm leading-7 text-[var(--ath-primary-deep)]">
                             Local demo mode is active. Cloud authentication is not configured in this environment, so the fastest path is to continue with a sample learner.
                         </div>
                     )}
@@ -160,13 +160,13 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                         )}
 
                         {error && (
-                            <div className="rounded-[1.2rem] border border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.72)] px-4 py-3 text-sm font-medium text-[#8c1d1d]">
+                            <div className="rounded-[1.2rem] border border-[color-mix(in_srgb,var(--ath-danger)_32%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] px-4 py-3 text-sm font-medium text-[var(--ath-danger)]">
                                 {error}
                             </div>
                         )}
 
                         {message && (
-                            <div className="rounded-[1.2rem] border border-emerald-200 bg-emerald-50/70 px-4 py-3 text-sm font-medium text-emerald-700">
+                            <div className="rounded-[1.2rem] border border-[color-mix(in_srgb,var(--ath-primary)_28%,transparent)] bg-[color-mix(in_srgb,var(--ath-primary)_10%,var(--ath-panel))] px-4 py-3 text-sm font-medium text-[var(--ath-primary-deep)]">
                                 {message}
                             </div>
                         )}

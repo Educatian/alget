@@ -218,17 +218,17 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label={isOpen ? 'Close BigAL tutor chat' : 'Open BigAL tutor chat'}
                 data-onboarding="chat-widget-button"
-                className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-[0_8px_30px_rgba(158,27,50,0.4)] flex items-center justify-center transition-all duration-300 z-50 hover:scale-110 active:scale-95 ${isOpen
-                    ? 'bg-slate-800 hover:bg-slate-900 shadow-[0_8px_30px_rgba(0,0,0,0.3)]'
-                    : 'bg-linear-to-br from-[#9E1B32] to-[#C41E3A] hover:shadow-[0_12px_40px_rgba(196,30,58,0.6)]'
+                className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-[0_8px_30px_color-mix(in_srgb,var(--ath-primary)_34%,transparent)] transition-all duration-300 hover:scale-110 active:scale-95 ${isOpen
+                    ? 'bg-[var(--ath-panel-muted)] hover:bg-[var(--ath-panel)]'
+                    : 'bg-[var(--ath-primary)] hover:shadow-[0_12px_40px_color-mix(in_srgb,var(--ath-primary)_42%,transparent)]'
                     }`}
             >
                 {isOpen ? (
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-6 w-6 text-[var(--ath-background)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 ) : (
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-6 w-6 text-[var(--ath-background)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
                 )}
@@ -236,17 +236,16 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="fixed bottom-24 right-6 w-[420px] h-[600px] glass-panel border border-white/60 shadow-[0_24px_60px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden z-50 animate-fade-in origin-bottom-right">
+                <div className="glass-panel fixed bottom-24 right-6 z-50 flex h-[600px] w-[420px] origin-bottom-right animate-fade-in flex-col overflow-hidden border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
                     {/* Header */}
-                    <div className="bg-linear-to-r from-slate-900 to-slate-800 px-6 py-5 flex items-center justify-between shadow-md relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-40 h-40 bg-[#9E1B32]/30 rounded-full -mr-16 -mt-16 blur-[40px] pointer-events-none animate-float-slow"></div>
+                    <div className="relative flex items-center justify-between overflow-hidden bg-[var(--ath-panel-muted)] px-6 py-5 shadow-md">
                         <div className="flex items-center gap-4 relative z-10">
-                            <div className="w-10 h-10 rounded-full bg-linear-to-br from-[#9E1B32] to-[#7A1527] flex items-center justify-center text-xl shadow-inner border border-white/10">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-primary)] text-xl text-[var(--ath-background)] shadow-inner">
                                 🐘
                             </div>
                             <div>
-                                <h3 className="text-white font-bold text-lg tracking-tight leading-tight">BigAL Tutor</h3>
-                                <p className="text-slate-300 text-xs font-medium tracking-wide">
+                                <h3 className="text-lg font-bold leading-tight tracking-tight text-[var(--ath-text)]">BigAL Tutor</h3>
+                                <p className="text-xs font-medium tracking-wide text-[var(--ath-muted)]">
                                     {context?.course === 'inst-design' ? 'Instructional Design' : 'Bio-Inspired Engineering'}
                                 </p>
                             </div>
@@ -255,7 +254,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             {messages.length > 0 && (
                                 <button
                                     onClick={clearHistory}
-                                    className="text-white/50 hover:text-white/80 text-xs"
+                                    className="text-xs text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
                                     title="Clear history"
                                 >
                                     🗑️
@@ -264,7 +263,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             <button
                                 onClick={() => setIsOpen(false)}
                                 aria-label="Close BigAL tutor chat"
-                                className="text-white/70 hover:text-white p-1"
+                                className="p-1 text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -274,14 +273,14 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     </div>
 
                     {/* Messages */}
-                    <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50/50 scroll-smooth">
+                    <div className="flex-1 space-y-6 overflow-y-auto bg-[var(--ath-panel-muted)] p-6 scroll-smooth">
                         {messages.length === 0 && (
                             <div className="h-full flex flex-col items-center justify-center text-center px-6 animate-fade-in">
-                                <div className="w-16 h-16 mb-4 rounded-2xl bg-white shadow-sm flex items-center justify-center ring-1 ring-slate-100">
+                                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--ath-surface-strong)] shadow-sm ring-1 ring-[var(--ath-line)]">
                                     <span className="text-3xl">✨</span>
                                 </div>
-                                <h4 className="text-slate-800 font-bold text-lg mb-2">How can I help you today?</h4>
-                                <p className="text-slate-500 text-sm leading-relaxed">
+                                <h4 className="mb-2 text-lg font-bold text-[var(--ath-text)]">How can I help you today?</h4>
+                                <p className="text-sm leading-relaxed text-[var(--ath-muted)]">
                                     {context?.course === 'inst-design' ? 'Ask me about creating effective learning experiences.' : 'Ask me about bridging biological mechanisms into engineering design.'}
                                 </p>
                             </div>
@@ -290,7 +289,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             if (msg.role === 'user') {
                                 return (
                                     <div key={idx} className="flex justify-end animate-fade-in">
-                                        <div className="max-w-[85%] px-4 py-2.5 rounded-2xl text-[0.95rem] bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white rounded-br-sm shadow-md shadow-red-900/10 leading-relaxed font-medium">
+                                        <div className="max-w-[85%] rounded-2xl rounded-br-sm bg-[var(--ath-primary)] px-4 py-2.5 text-[0.95rem] font-medium leading-relaxed text-[var(--ath-background)] shadow-md">
                                             {msg.content}
                                         </div>
                                     </div>
@@ -301,7 +300,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
                                 return (
                                     <div key={idx} className="flex justify-start animate-fade-in">
-                                        <div className="max-w-[92%] px-4 py-3 rounded-2xl text-[0.95rem] bg-white text-slate-800 shadow-sm border border-slate-200/60 rounded-bl-sm leading-relaxed">
+                                        <div className="max-w-[92%] rounded-2xl rounded-bl-sm border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-4 py-3 text-[0.95rem] leading-relaxed text-[var(--ath-text)] shadow-sm">
                                             {data.intent === 'learn' && <LearnIntentCard data={data} />}
                                             {data.intent === 'evaluate' && <EvaluateIntentCard data={data} />}
                                              {data.intent === 'brainstorm' && <BrainstormIntentCard data={data} />}
@@ -319,11 +318,11 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                         })}
                         {loading && (
                             <div className="flex justify-start animate-fade-in">
-                                <div className="bg-white px-5 py-3.5 rounded-2xl rounded-bl-sm shadow-sm border border-slate-200/60">
+                                <div className="rounded-2xl rounded-bl-sm border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-5 py-3.5 shadow-sm">
                                     <div className="flex gap-1.5 items-center h-2">
-                                        <span className="w-2 h-2 bg-[#9E1B32]/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                                        <span className="w-2 h-2 bg-[#9E1B32]/60 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                                        <span className="w-2 h-2 bg-[#9E1B32] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                                        <span className="h-2 w-2 animate-bounce rounded-full bg-[color-mix(in_srgb,var(--ath-primary)_40%,transparent)]" style={{ animationDelay: '0ms' }}></span>
+                                        <span className="h-2 w-2 animate-bounce rounded-full bg-[color-mix(in_srgb,var(--ath-primary)_65%,transparent)]" style={{ animationDelay: '150ms' }}></span>
+                                        <span className="h-2 w-2 animate-bounce rounded-full bg-[var(--ath-primary)]" style={{ animationDelay: '300ms' }}></span>
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +331,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     </div>
 
                     {/* Input */}
-                    <div className="p-4 bg-white/60 backdrop-blur-3xl border-t border-white/80 shadow-[0_-10px_30px_rgba(0,0,0,0.03)] z-10">
+                    <div className="z-10 border-t border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-4 shadow-[0_-10px_30px_rgba(0,0,0,0.08)] backdrop-blur-3xl">
                         <div className="flex gap-3 relative">
                             <input
                                 type="text"
@@ -340,13 +339,13 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 onChange={(e) => setInputValue(e.target.value)}
                                 onKeyPress={handleKeyPress}
                                 placeholder="Type your question..."
-                                className="flex-1 pl-5 pr-12 py-3 bg-white/80 border border-white focus:bg-white rounded-full text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#9E1B32]/40 shadow-inner transition-all placeholder:text-slate-400"
+                                className="flex-1 rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] py-3 pl-5 pr-12 text-sm font-medium text-[var(--ath-text)] shadow-inner transition-all placeholder:text-[var(--ath-secondary)] focus:bg-[var(--ath-surface-strong)] focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--ath-primary)_34%,transparent)]"
                             />
                             <button
                                 onClick={sendMessage}
                                 aria-label="Send message to BigAL"
                                 disabled={!inputValue.trim() || loading}
-                                className="absolute right-1.5 top-1.5 bottom-1.5 w-9 h-9 bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white rounded-full flex items-center justify-center hover:shadow-md hover:shadow-red-900/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                                className="absolute bottom-1.5 right-1.5 top-1.5 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ath-primary)] text-[var(--ath-background)] transition-all hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 <svg className="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

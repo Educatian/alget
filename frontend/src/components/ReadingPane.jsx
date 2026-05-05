@@ -134,7 +134,7 @@ export default function ReadingPane({
         && recentSection.course === meta?.course
 
     return (
-        <div className="mx-auto max-w-3xl px-8 py-10">
+        <div className="mx-auto max-w-4xl px-8 py-10 xl:max-w-5xl">
             <header className="mb-10">
                 <div className="mb-3 flex items-center justify-between gap-3">
                     <p className="editorial-kicker">
@@ -153,7 +153,7 @@ export default function ReadingPane({
                             {meta?.title || 'Section Title'}
                         </h1>
                         {meta?.description && (
-                            <p className="mt-4 max-w-3xl text-lg italic leading-8 text-[var(--ath-muted)]">
+                            <p className="mt-4 max-w-4xl text-lg italic leading-8 text-[var(--ath-muted)]">
                                 {meta.description}
                             </p>
                         )}
