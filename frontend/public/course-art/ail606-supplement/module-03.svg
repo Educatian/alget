@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">AIL 606 Module 3: Multimedia Storyboarding and AI Asset Generation</title>
+  <desc id="desc">Conceptual learning visual for Multimedia Storyboarding and AI Asset Generation, showing purpose, constraint, evidence, and revision.</desc>
+  <rect width="1200" height="675" fill="#fbfaf7"/>
+  <rect x="54" y="52" width="1092" height="571" rx="36" fill="#ffffff" stroke="#e4dfd4" stroke-width="3"/>
+  <circle cx="1050" cy="122" r="86" fill="#C99700" opacity="0.18"/>
+  <circle cx="146" cy="556" r="110" fill="#9E1B32" opacity="0.12"/>
+  <text x="92" y="116" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#113946">AIL 606 Module 3</text>
+  <text x="92" y="160" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#9E1B32">Multimedia Storyboarding and AI Asset Generation</text>
+  <g transform="translate(122 235)">
+    <rect x="0" y="0" width="210" height="118" rx="24" fill="#9E1B32" opacity="0.94"/>
+    <text x="105" y="52" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#fff">Purpose</text>
+    <text x="105" y="84" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" fill="#fff">name the target</text>
+    <path d="M230 59 H345" stroke="#113946" stroke-width="8" stroke-linecap="round"/>
+    <path d="M345 59 l-22 -15 v30 z" fill="#113946"/>
+    <rect x="370" y="0" width="210" height="118" rx="24" fill="#C99700" opacity="0.96"/>
+    <text x="475" y="52" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#2d2100">Constraint</text>
+    <text x="475" y="84" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" fill="#2d2100">make limits visible</text>
+    <path d="M600 59 H715" stroke="#113946" stroke-width="8" stroke-linecap="round"/>
+    <path d="M715 59 l-22 -15 v30 z" fill="#113946"/>
+    <rect x="740" y="0" width="210" height="118" rx="24" fill="#113946" opacity="0.94"/>
+    <text x="845" y="52" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#fff">Evidence</text>
+    <text x="845" y="84" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" fill="#fff">test the claim</text>
+  </g>
+  <g transform="translate(274 430)">
+    <path d="M0 0 C170 100 430 100 600 0" fill="none" stroke="#9E1B32" stroke-width="10" stroke-linecap="round"/>
+    <path d="M600 0 l-32 -8 16 30 z" fill="#9E1B32"/>
+    <rect x="194" y="34" width="240" height="96" rx="28" fill="#f7efe0" stroke="#C99700" stroke-width="3"/>
+    <text x="314" y="75" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#113946">Revision</text>
+    <text x="314" y="104" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" fill="#113946">document what changed</text>
+  </g>
+  <text x="92" y="594" font-family="Inter, Arial, sans-serif" font-size="18" fill="#5c6670">ALGET Summer 2026 supplement visual anchor. Replace with imagegen2 raster asset when final artwork is generated.</text>
+</svg>

@@ -1,0 +1,260 @@
+{
+  "overall_status": "PASS",
+  "gates": [
+    {
+      "name": "supplement_section_count",
+      "passed": true,
+      "detail": "192 sections found; expected 192"
+    },
+    {
+      "name": "public_link_integrity",
+      "passed": true,
+      "detail": "0 missing MDX public links"
+    },
+    {
+      "name": "dynamic_scenario_contract",
+      "passed": true,
+      "detail": "192 prompt-based dynamic scenarios found and component now accepts prompt"
+    },
+    {
+      "name": "artifact_studio_interface",
+      "passed": true,
+      "detail": "192 artifact-studio blocks found"
+    },
+    {
+      "name": "artifact_studio_markdown_contract",
+      "passed": true,
+      "detail": "0 artifact-studio blocks missing artifact/course/section attrs"
+    },
+    {
+      "name": "imagegen2_manifest_integrity",
+      "passed": true,
+      "detail": "0 missing recommended outputs"
+    },
+    {
+      "name": "artifact_packet_depth",
+      "passed": true,
+      "detail": "0 packets under 250 words"
+    },
+    {
+      "name": "template_uniformity",
+      "passed": true,
+      "detail": "template marker max count = 0"
+    },
+    {
+      "name": "citation_grounding",
+      "passed": true,
+      "detail": "192 sections have explicit references/URLs"
+    },
+    {
+      "name": "measure_depth",
+      "passed": true,
+      "detail": "36 items; correct-index distribution {'1': 9, '2': 9, '3': 9, '0': 9}"
+    },
+    {
+      "name": "assignment_reproducibility",
+      "passed": true,
+      "detail": "deterministic assignment function present"
+    },
+    {
+      "name": "primary_model_specification",
+      "passed": true,
+      "detail": "analysis plan separates ITT from mediator models"
+    },
+    {
+      "name": "reproducibility_smoke",
+      "passed": true,
+      "detail": "overall smoke status = True"
+    },
+    {
+      "name": "real_artifact_validation_pipeline",
+      "passed": true,
+      "detail": "missing=[]; raw_exports=True; submission_lineage=True; runtime_spec=True; no_real_data_guard=True"
+    },
+    {
+      "name": "intelligent_textbook_benchmark",
+      "passed": true,
+      "detail": "6 comparators; 9 source anchors"
+    },
+    {
+      "name": "perusall_reading_narrative_integration",
+      "passed": true,
+      "detail": "mount=True; schema terms=5; focused tests=3"
+    },
+    {
+      "name": "supplement_route_smoke_coverage",
+      "passed": true,
+      "detail": "three supplement route smoke tests present = True"
+    },
+    {
+      "name": "browser_route_smoke_coverage",
+      "passed": true,
+      "detail": "Playwright route/browser smoke suite present = True"
+    },
+    {
+      "name": "accessibility_gate",
+      "passed": true,
+      "detail": "axe serious/critical WCAG route gate present = True"
+    },
+    {
+      "name": "full_learner_workflow_gate",
+      "passed": true,
+      "detail": "annotation to artifact scoring to adaptive rationale E2E gate present = True"
+    },
+    {
+      "name": "e2e_auth_offline_mode",
+      "passed": true,
+      "detail": "E2E auth bypass and Supabase offline mode present = True"
+    },
+    {
+      "name": "generated_mdx_indent_normalization",
+      "passed": true,
+      "detail": "generated MDX indentation normalization protects artifact-studio rendering = True"
+    },
+    {
+      "name": "diagnostic_item_response_loop",
+      "passed": true,
+      "detail": "diagnostic=True; persistence=True"
+    },
+    {
+      "name": "artifact_quality_trace_loop",
+      "passed": true,
+      "detail": "rubric=True; rationale=True"
+    },
+    {
+      "name": "trusted_research_validation_loop",
+      "passed": true,
+      "detail": "server=True; frontend=True"
+    },
+    {
+      "name": "annotation_artifact_recommender_loop",
+      "passed": true,
+      "detail": "annotation/artifact signals drive adaptive telemetry = True"
+    },
+    {
+      "name": "artifact_revision_scorer_loop",
+      "passed": true,
+      "detail": "semantic scorer + score-derived persistence = True"
+    },
+    {
+      "name": "brain_graph_action_explanation",
+      "passed": true,
+      "detail": "brain graph explains status and next artifact action = True"
+    },
+    {
+      "name": "returning_learner_checkin",
+      "passed": true,
+      "detail": "recent-section continuity and AI judgment cue present = True"
+    },
+    {
+      "name": "artifact_cohort_dashboard",
+      "passed": true,
+      "detail": "instructor aggregate artifact revision dashboard = True"
+    }
+  ],
+  "content": {
+    "sections": 192,
+    "template_marker_counts": {},
+    "dynamic_prompt_count": 192,
+    "artifact_studio_count": 192,
+    "artifact_contract_violations": [],
+    "reference_sections": 192,
+    "missing_links": []
+  },
+  "artifacts": {
+    "artifact_packets": 192,
+    "deep_exemplar_pngs": 192,
+    "short_packets_under_250_words": [],
+    "short_packet_count": 0
+  },
+  "manifest": {
+    "manifest_entries": 24,
+    "missing_recommended_outputs": [],
+    "imagegen2_assets": 4
+  },
+  "measures": {
+    "items": 36,
+    "items_by_course": {
+      "ail606-supplement": 12,
+      "cat531-supplement": 12,
+      "cat100-supplement": 12
+    },
+    "correct_index_distribution": {
+      "1": 9,
+      "2": 9,
+      "3": 9,
+      "0": 9
+    }
+  },
+  "reproducibility": {
+    "analysis_plan_excludes_mediators_from_primary": true,
+    "assignment_function_present": true,
+    "smoke_passed": true,
+    "model_variants": [
+      "bkt_only",
+      "rule_only_accuracy",
+      "telemetry_fused_bkt",
+      "tuned_bkt",
+      "tuned_telemetry_fused_bkt"
+    ]
+  },
+  "real_artifact_validation": {
+    "missing_files": [],
+    "exports_raw_tables": true,
+    "exports_submission_lineage": true,
+    "runtime_submission_spec": true,
+    "states_no_synthetic_evidence": true,
+    "has_rating_anchors": true,
+    "computes_real_validity_metrics": true,
+    "fails_without_real_data": true,
+    "requires_submission_lineage": true
+  },
+  "intelligent_textbook_benchmark": {
+    "benchmark_present": true,
+    "comparators_present": [
+      "zyBooks",
+      "ALEKS",
+      "Knewton Alta",
+      "SmartBook",
+      "Perusall",
+      "Inquire Biology"
+    ],
+    "novelty_score_present": true,
+    "source_anchor_count": 9
+  },
+  "perusall_reading_integration": {
+    "reading_pane_lazy_mount": true,
+    "perusall_tables_present": [
+      "section_annotations",
+      "annotation_reactions",
+      "quote_hash",
+      "visibility",
+      "annotation_network_edges"
+    ],
+    "perusall_local_fallback": true,
+    "focused_frontend_tests": [
+      "frontend\\src\\components\\PerusallLayer.test.jsx",
+      "frontend\\src\\components\\ArtifactStudio.test.jsx",
+      "frontend\\src\\components\\ReadingNarrative.test.jsx"
+    ],
+    "supplement_route_smoke_tests": true,
+    "browser_route_smoke_suite": true,
+    "accessibility_gate": true,
+    "full_learner_workflow_gate": true,
+    "e2e_auth_offline_mode": true,
+    "generated_mdx_indent_normalization": true
+  },
+  "evidence_loop": {
+    "diagnostic_constructs_item_responses": true,
+    "research_service_persists_item_responses": true,
+    "artifact_quality_rubric": true,
+    "support_rationale_visible": true,
+    "trusted_research_validators": true,
+    "frontend_uses_research_validators": true,
+    "annotation_artifact_recommender_signals": true,
+    "artifact_revision_scorer_loop": true,
+    "brain_graph_action_explanation": true,
+    "returning_learner_checkin": true,
+    "artifact_cohort_dashboard": true
+  }
+}

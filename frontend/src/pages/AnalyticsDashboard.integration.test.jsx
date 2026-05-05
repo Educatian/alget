@@ -43,6 +43,29 @@ const progressRows = [
     { course: 'inst-design', section_id: 'inst-design/02/01', completed_at: '2026-03-29T10:20:00Z' },
 ]
 
+const artifactRevisionRows = [
+    {
+        course_id: 'inst-design',
+        section_id: 'inst-design/01/01',
+        studio_mode: 'traceability',
+        artifact_type: 'AI critique log',
+        score_count: 4,
+        learner_count: 3,
+        avg_claim_clarity: 0.72,
+        avg_evidence_alignment: 0.46,
+        avg_revision_depth: 0.42,
+        avg_judgment_quality: 0.58,
+        avg_transfer_readiness: 0.63,
+        avg_specificity_delta: 0.44,
+        avg_overall_revision_quality: 0.52,
+        weak_evidence_count: 2,
+        shallow_revision_count: 2,
+        judgment_risk_count: 1,
+        transfer_ready_count: 1,
+        latest_score_at: '2026-03-29T10:30:00Z',
+    },
+]
+
 vi.mock('../lib/supabase', () => {
     const buildChain = (table) => {
         const dataByTable = {
@@ -50,12 +73,24 @@ vi.mock('../lib/supabase', () => {
             social_signals: socialSignalRows,
             social_presence: socialPresenceRows,
             course_progress: progressRows,
+            learner_concept_state: [],
+            intervention_traces: [],
+            recommendation_decisions: [],
+            evaluation_runs: [],
+            content_audits: [],
+            artifact_revision_cohort_summary: artifactRevisionRows,
+            rct_intervention_outcomes: [],
+            rct_evaluation_gains: [],
+            rct_user_telemetry_profile: [],
+            rct_evaluation_item_diagnostics: [],
         }
         const chain = {
             select: () => chain,
             eq: () => chain,
-            order: async () => ({ data: dataByTable[table] || [], error: null }),
+            order: () => chain,
             gte: async () => ({ data: dataByTable[table] || [], error: null }),
+            limit: async () => ({ data: dataByTable[table] || [], error: null }),
+            then: (resolve) => resolve({ data: dataByTable[table] || [], error: null }),
         }
         return chain
     }
@@ -92,5 +127,7 @@ describe('AnalyticsDashboard integration', () => {
         expect(screen.getByText('Where peers are clustering now')).toBeInTheDocument()
         expect(screen.getAllByText('inst-design/01/01').length).toBeGreaterThan(0)
         expect(screen.getByText('Help, reaction, and completion balance')).toBeInTheDocument()
+        expect(screen.getByText('Artifact revision cohort dashboard')).toBeInTheDocument()
+        expect(screen.getByText('Weak evidence alignment')).toBeInTheDocument()
     })
 })

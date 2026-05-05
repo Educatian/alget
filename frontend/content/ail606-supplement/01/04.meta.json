@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Foundations of Interactive Multimedia Learning",
+  "title": "Worked Examples and Fading",
+  "description": "Artifact-specific exemplar for AIL 606 connecting worked examples and fading to usability test script, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a usability test script as evidence of learner judgment in AIL 606.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "ail606_supplement_foundations_of_interactive_multimedia_learning",
+    "ail606_supplement_worked_examples_and_fading",
+    "ail606_supplement_evidence_based_revision",
+    "ail606_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 4,
+  "top_tier_hardened": true
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "command": "python backend/content_audit.py",
+    "exit_code": 0,
+    "passed": true,
+    "output_tail": "Wrote content audit report to C:\\Users\\jewoo\\Desktop\\_projects\\alget\\backend\\content_audit_report.md\n"
+  },
+  {
+    "command": "python backend/content_quality_audit.py",
+    "exit_code": 0,
+    "passed": true,
+    "output_tail": "Wrote C:\\Users\\jewoo\\Desktop\\_projects\\alget\\backend\\content_quality_audit_report.md\n{\n  \"sections\": 192,\n  \"mean_score\": 14.66,\n  \"below_8\": 0,\n  \"hardened_like\": 192\n}\n"
+  },
+  {
+    "command": "python backend/knowledge_model_validation.py --output-dir research/model_validation --seed 42",
+    "exit_code": 0,
+    "passed": true,
+    "output_tail": "n_prob\": 0.5559,\n    \"mean_truth\": 0.6979,\n    \"config\": {\n      \"p_known_initial\": 0.1,\n      \"p_guess\": 0.2,\n      \"p_slip\": 0.1,\n      \"p_transit\": 0.1,\n      \"telemetry_intensity\": 0\n    }\n  },\n  {\n    \"model\": \"telemetry_fused_bkt\",\n    \"n_predictions\": 6144,\n    \"brier\": 0.1628,\n    \"ece\": 0.1,\n    \"auc\": 0.8302,\n    \"mean_prob\": 0.6164,\n    \"mean_truth\": 0.6979,\n    \"config\": {\n      \"p_known_initial\": 0.1,\n      \"p_guess\": 0.2,\n      \"p_slip\": 0.1,\n      \"p_transit\": 0.1,\n      \"telemetry_intensity\": 1.0\n    }\n  },\n  {\n    \"model\": \"tuned_bkt\",\n    \"n_predictions\": 6144,\n    \"brier\": 0.1048,\n    \"ece\": 0.0213,\n    \"auc\": 0.9185,\n    \"mean_prob\": 0.7146,\n    \"mean_truth\": 0.6979,\n    \"config\": {\n      \"p_known_initial\": 0.65,\n      \"p_guess\": 0.25,\n      \"p_slip\": 0.06,\n      \"p_transit\": 0.14,\n      \"telemetry_intensity\": 0\n    }\n  },\n  {\n    \"model\": \"tuned_telemetry_fused_bkt\",\n    \"n_predictions\": 6144,\n    \"brier\": 0.1053,\n    \"ece\": 0.0154,\n    \"auc\": 0.9174,\n    \"mean_prob\": 0.6936,\n    \"mean_truth\": 0.6979,\n    \"config\": {\n      \"p_known_initial\": 0.5,\n      \"p_guess\": 0.18,\n      \"p_slip\": 0.12,\n      \"p_transit\": 0.06,\n      \"telemetry_intensity\": 0.35\n    }\n  }\n]\n"
+  },
+  {
+    "command": "readiness assertions",
+    "exit_code": 0,
+    "passed": true,
+    "readiness": {
+      "content_quality_below_threshold_zero": true,
+      "all_supplement_sections_hardened": true,
+      "deep_exemplar_pngs": 192,
+      "artifact_packets": 192,
+      "learner_model_variants": [
+        "rule_only_accuracy",
+        "bkt_only",
+        "telemetry_fused_bkt",
+        "tuned_bkt",
+        "tuned_telemetry_fused_bkt"
+      ]
+    }
+  }
+]

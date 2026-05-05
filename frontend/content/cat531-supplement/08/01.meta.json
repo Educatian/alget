@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Instructor Toolkit for CAT 531",
+  "title": "Facilitator Notes for DTS",
+  "description": "Artifact-specific exemplar for CAT 531 connecting facilitator notes for dts to TeachGen@i prompt transcript, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a TeachGen@i prompt transcript as evidence of learner judgment in CAT 531.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat531_supplement_instructor_toolkit_for_cat_531",
+    "cat531_supplement_facilitator_notes_for_dts",
+    "cat531_supplement_evidence_based_revision",
+    "cat531_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 1,
+  "top_tier_hardened": true
+}

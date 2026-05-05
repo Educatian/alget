@@ -1,0 +1,799 @@
+{
+  "instrument": "ALGET Summer 2026 Pre/Post/Retention Item Bank",
+  "version": "2026-05-05-quality-upgrade",
+  "description": "Thirty-six course-balanced items with varied answer positions, rationales, difficulty tags, and parallel-form metadata.",
+  "items": [
+    {
+      "id": "ail606_novelty_01",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_01",
+      "construct": "artifact-centered learning",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for artifact-centered learning?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It separates the total treatment effect from post-treatment mechanism variables.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 1,
+      "rationale": "It separates the total treatment effect from post-treatment mechanism variables.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_02",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_02",
+      "construct": "annotation-informed adaptivity",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for annotation-informed adaptivity?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It records item-level responses, confidence, latency, and misconception labels.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 2,
+      "rationale": "It records item-level responses, confidence, latency, and misconception labels.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_03",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_03",
+      "construct": "research trace reproducibility",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for research trace reproducibility?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace.",
+        "It uses annotation type and quote location to select a bounded support action."
+      ],
+      "correct_index": 3,
+      "rationale": "It uses annotation type and quote location to select a bounded support action.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_04",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_04",
+      "construct": "learner-model calibration",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for learner-model calibration?",
+      "options": [
+        "It links a learner decision to a named evidence source and a visible revision.",
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 0,
+      "rationale": "It links a learner decision to a named evidence source and a visible revision.",
+      "distractor_rationales": {
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_05",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_05",
+      "construct": "ethical AI support",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for ethical AI support?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It separates the total treatment effect from post-treatment mechanism variables.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 1,
+      "rationale": "It separates the total treatment effect from post-treatment mechanism variables.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_06",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_06",
+      "construct": "transfer and retention",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for transfer and retention?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It records item-level responses, confidence, latency, and misconception labels.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 2,
+      "rationale": "It records item-level responses, confidence, latency, and misconception labels.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_07",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_07",
+      "construct": "instructor evidence review",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for instructor evidence review?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace.",
+        "It uses annotation type and quote location to select a bounded support action."
+      ],
+      "correct_index": 3,
+      "rationale": "It uses annotation type and quote location to select a bounded support action.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_08",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_08",
+      "construct": "interface novelty",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for interface novelty?",
+      "options": [
+        "It links a learner decision to a named evidence source and a visible revision.",
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 0,
+      "rationale": "It links a learner decision to a named evidence source and a visible revision.",
+      "distractor_rationales": {
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_09",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_09",
+      "construct": "measurement validity",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for measurement validity?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It separates the total treatment effect from post-treatment mechanism variables.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 1,
+      "rationale": "It separates the total treatment effect from post-treatment mechanism variables.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_10",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_10",
+      "construct": "social learning quality",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for social learning quality?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It records item-level responses, confidence, latency, and misconception labels.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 2,
+      "rationale": "It records item-level responses, confidence, latency, and misconception labels.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_11",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_11",
+      "construct": "accessibility and inclusion",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for accessibility and inclusion?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace.",
+        "It uses annotation type and quote location to select a bounded support action."
+      ],
+      "correct_index": 3,
+      "rationale": "It uses annotation type and quote location to select a bounded support action.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "ail606_novelty_12",
+      "course_id": "ail606-supplement",
+      "concept_id": "ail606_supplement_intelligent_textbook_quality_12",
+      "construct": "course-specific artifact judgment",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In AIL 606, which response best supports a defensible intelligent-textbook quality claim for course-specific artifact judgment?",
+      "options": [
+        "It links a learner decision to a named evidence source and a visible revision.",
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 0,
+      "rationale": "It links a learner decision to a named evidence source and a visible revision.",
+      "distractor_rationales": {
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_01",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_01",
+      "construct": "artifact-centered learning",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for artifact-centered learning?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It separates the total treatment effect from post-treatment mechanism variables.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 1,
+      "rationale": "It separates the total treatment effect from post-treatment mechanism variables.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_02",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_02",
+      "construct": "annotation-informed adaptivity",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for annotation-informed adaptivity?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It records item-level responses, confidence, latency, and misconception labels.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 2,
+      "rationale": "It records item-level responses, confidence, latency, and misconception labels.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_03",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_03",
+      "construct": "research trace reproducibility",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for research trace reproducibility?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace.",
+        "It uses annotation type and quote location to select a bounded support action."
+      ],
+      "correct_index": 3,
+      "rationale": "It uses annotation type and quote location to select a bounded support action.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_04",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_04",
+      "construct": "learner-model calibration",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for learner-model calibration?",
+      "options": [
+        "It links a learner decision to a named evidence source and a visible revision.",
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 0,
+      "rationale": "It links a learner decision to a named evidence source and a visible revision.",
+      "distractor_rationales": {
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_05",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_05",
+      "construct": "ethical AI support",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for ethical AI support?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It separates the total treatment effect from post-treatment mechanism variables.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 1,
+      "rationale": "It separates the total treatment effect from post-treatment mechanism variables.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_06",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_06",
+      "construct": "transfer and retention",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for transfer and retention?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It records item-level responses, confidence, latency, and misconception labels.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 2,
+      "rationale": "It records item-level responses, confidence, latency, and misconception labels.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_07",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_07",
+      "construct": "instructor evidence review",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for instructor evidence review?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace.",
+        "It uses annotation type and quote location to select a bounded support action."
+      ],
+      "correct_index": 3,
+      "rationale": "It uses annotation type and quote location to select a bounded support action.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_08",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_08",
+      "construct": "interface novelty",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for interface novelty?",
+      "options": [
+        "It links a learner decision to a named evidence source and a visible revision.",
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 0,
+      "rationale": "It links a learner decision to a named evidence source and a visible revision.",
+      "distractor_rationales": {
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_09",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_09",
+      "construct": "measurement validity",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for measurement validity?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It separates the total treatment effect from post-treatment mechanism variables.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 1,
+      "rationale": "It separates the total treatment effect from post-treatment mechanism variables.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_10",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_10",
+      "construct": "social learning quality",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for social learning quality?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It records item-level responses, confidence, latency, and misconception labels.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 2,
+      "rationale": "It records item-level responses, confidence, latency, and misconception labels.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_11",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_11",
+      "construct": "accessibility and inclusion",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for accessibility and inclusion?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace.",
+        "It uses annotation type and quote location to select a bounded support action."
+      ],
+      "correct_index": 3,
+      "rationale": "It uses annotation type and quote location to select a bounded support action.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat531_novelty_12",
+      "course_id": "cat531-supplement",
+      "concept_id": "cat531_supplement_intelligent_textbook_quality_12",
+      "construct": "course-specific artifact judgment",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In CAT 531, which response best supports a defensible intelligent-textbook quality claim for course-specific artifact judgment?",
+      "options": [
+        "It links a learner decision to a named evidence source and a visible revision.",
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 0,
+      "rationale": "It links a learner decision to a named evidence source and a visible revision.",
+      "distractor_rationales": {
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_01",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_01",
+      "construct": "artifact-centered learning",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for artifact-centered learning?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It separates the total treatment effect from post-treatment mechanism variables.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 1,
+      "rationale": "It separates the total treatment effect from post-treatment mechanism variables.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_02",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_02",
+      "construct": "annotation-informed adaptivity",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for annotation-informed adaptivity?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It records item-level responses, confidence, latency, and misconception labels.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 2,
+      "rationale": "It records item-level responses, confidence, latency, and misconception labels.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_03",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_03",
+      "construct": "research trace reproducibility",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for research trace reproducibility?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace.",
+        "It uses annotation type and quote location to select a bounded support action."
+      ],
+      "correct_index": 3,
+      "rationale": "It uses annotation type and quote location to select a bounded support action.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_04",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_04",
+      "construct": "learner-model calibration",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for learner-model calibration?",
+      "options": [
+        "It links a learner decision to a named evidence source and a visible revision.",
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 0,
+      "rationale": "It links a learner decision to a named evidence source and a visible revision.",
+      "distractor_rationales": {
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_05",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_05",
+      "construct": "ethical AI support",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for ethical AI support?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It separates the total treatment effect from post-treatment mechanism variables.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 1,
+      "rationale": "It separates the total treatment effect from post-treatment mechanism variables.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_06",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_06",
+      "construct": "transfer and retention",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for transfer and retention?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It records item-level responses, confidence, latency, and misconception labels.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 2,
+      "rationale": "It records item-level responses, confidence, latency, and misconception labels.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_07",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_07",
+      "construct": "instructor evidence review",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for instructor evidence review?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace.",
+        "It uses annotation type and quote location to select a bounded support action."
+      ],
+      "correct_index": 3,
+      "rationale": "It uses annotation type and quote location to select a bounded support action.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_08",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_08",
+      "construct": "interface novelty",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for interface novelty?",
+      "options": [
+        "It links a learner decision to a named evidence source and a visible revision.",
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 0,
+      "rationale": "It links a learner decision to a named evidence source and a visible revision.",
+      "distractor_rationales": {
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_09",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_09",
+      "construct": "measurement validity",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for measurement validity?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It separates the total treatment effect from post-treatment mechanism variables.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 1,
+      "rationale": "It separates the total treatment effect from post-treatment mechanism variables.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_10",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_10",
+      "construct": "social learning quality",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "medium",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for social learning quality?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It records item-level responses, confidence, latency, and misconception labels.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 2,
+      "rationale": "It records item-level responses, confidence, latency, and misconception labels.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_11",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_11",
+      "construct": "accessibility and inclusion",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "high",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for accessibility and inclusion?",
+      "options": [
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace.",
+        "It uses annotation type and quote location to select a bounded support action."
+      ],
+      "correct_index": 3,
+      "rationale": "It uses annotation type and quote location to select a bounded support action.",
+      "distractor_rationales": {
+        "0": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    },
+    {
+      "id": "cat100_novelty_12",
+      "course_id": "cat100-supplement",
+      "concept_id": "cat100_supplement_intelligent_textbook_quality_12",
+      "construct": "course-specific artifact judgment",
+      "form": "pre_post_retention_parallel",
+      "difficulty": "low",
+      "stem": "In CAT 100, which response best supports a defensible intelligent-textbook quality claim for course-specific artifact judgment?",
+      "options": [
+        "It links a learner decision to a named evidence source and a visible revision.",
+        "It makes the final artifact look more polished without explaining the decision.",
+        "It lets the AI system complete the whole artifact for the learner.",
+        "It reports only a final percentage score with no item-level trace."
+      ],
+      "correct_index": 0,
+      "rationale": "It links a learner decision to a named evidence source and a visible revision.",
+      "distractor_rationales": {
+        "1": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "2": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing.",
+        "3": "Distractor targets surface polish, automation, summary-only scoring, or non-adaptive sequencing."
+      }
+    }
+  ]
+}

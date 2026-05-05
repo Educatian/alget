@@ -129,6 +129,26 @@ export default function DiagnosticAssessment() {
             }
         })
 
+        const itemResponses = questions.map((question, index) => {
+            const selectedOption = answers[index]
+            const correctIndex = question.correct
+            return {
+                item_id: question.id || `${course}_${phase}_${index + 1}`,
+                concept_id: question.concept,
+                is_correct: selectedOption === correctIndex,
+                selected_option: selectedOption,
+                correct_index: correctIndex,
+                response_payload: {
+                    stem: question.question,
+                    selected_option_text: question.options?.[selectedOption] || null,
+                    correct_option_text: question.options?.[correctIndex] || null,
+                    prereq_for: question.prereqFor || [],
+                    phase,
+                    source: 'DiagnosticAssessment',
+                },
+            }
+        })
+
         const { data: { session } } = await supabase.auth.getSession()
         if (session?.user?.id) {
             const recordsToUpsert = Object.entries(conceptUpdates).map(([conceptId, p_known]) => ({
@@ -170,7 +190,8 @@ export default function DiagnosticAssessment() {
             recommendedStart,
             gaps: analysisResults.gaps,
             masteredConcepts: analysisResults.masteredConcepts,
-            totalQuestions
+            totalQuestions,
+            itemResponses
         })
 
         setResults(analysisResults)

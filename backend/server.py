@@ -19,6 +19,7 @@ import json
 import sys
 import os
 import math
+import re
 
 # Load .env file (do NOT override existing env vars — Render sets them at the OS level)
 from dotenv import load_dotenv
@@ -311,6 +312,14 @@ class AdaptiveTelemetrySummary(BaseModel):
     misconception_counts: dict[str, int] = Field(default_factory=dict)
     intervention_accepts: int = 0
     intervention_declines: int = 0
+    annotation_questions: int = 0
+    annotation_confusions: int = 0
+    annotation_insights: int = 0
+    annotation_connections: int = 0
+    annotation_helpful_reactions: int = 0
+    artifact_trace_count: int = 0
+    artifact_quality_average: float = 0.0
+    artifact_trace_completeness: float = 0.0
 
 
 class AdaptiveMisconceptionSignal(BaseModel):
@@ -392,6 +401,61 @@ class AdaptiveRecommendationResponse(BaseModel):
     secondary_recommendations: list[AdaptiveRecommendationCard] = Field(default_factory=list)
     reasoning: AdaptiveRecommendationReasoning
     needs_prerequisite: Optional[PrerequisiteHint] = None
+
+
+class ResearchEvaluationItem(BaseModel):
+    item_id: str
+    concept_id: Optional[str] = None
+    is_correct: bool = False
+    selected_option: Optional[int] = None
+    correct_index: Optional[int] = None
+    confidence: Optional[float] = None
+    latency_ms: Optional[int] = None
+    response_payload: dict[str, Any] = Field(default_factory=dict)
+
+
+class ResearchEvaluationValidationRequest(BaseModel):
+    course: str
+    phase: Literal["pre", "post", "retention"]
+    score: int
+    percentage: float
+    total_questions: int
+    item_responses: list[ResearchEvaluationItem] = Field(default_factory=list)
+
+
+class ArtifactTraceValidationRequest(BaseModel):
+    course: str = ""
+    section: str = ""
+    artifact: str = ""
+    support_move: str = "explain"
+    recommended_support_move: Optional[str] = None
+    initial_draft_length: int = 0
+    claim_length: int = 0
+    evidence_length: int = 0
+    accepted_length: int = 0
+    rejected_length: int = 0
+    judgment_rationale_length: int = 0
+    revised_draft_length: int = 0
+    transfer_length: int = 0
+    trace_score: int = 0
+    trace_denominator: int = 8
+    artifact_quality_score: float = 0.0
+    rubric: dict[str, Any] = Field(default_factory=dict)
+    confidence: int = 1
+
+
+class ArtifactRevisionScoreRequest(BaseModel):
+    course: str = ""
+    section: str = ""
+    artifact: str = ""
+    studio_mode: str = ""
+    initial_draft: str = ""
+    revised_draft: str = ""
+    claim: str = ""
+    evidence: str = ""
+    judgment: Literal["accept", "modify", "reject", "defer"] = "modify"
+    judgment_rationale: str = ""
+    transfer: str = ""
 
 
 def _ensure_str(value: Any) -> str:
@@ -792,11 +856,25 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
     engagement_signal = clamp((positive_momentum + telemetry.chat_turns * 0.5) / 6, 0.0, 1.0)
     support_fatigue = _normalize_signal(learner_profile.recent_interventions, 6)
     chat_signal = _normalize_signal(telemetry.chat_turns + telemetry.explain_requests + telemetry.representation_requests, 5)
+    annotation_friction = clamp(
+        _normalize_signal(telemetry.annotation_questions + telemetry.annotation_confusions * 2, 6)
+        + min(0.2, telemetry.annotation_helpful_reactions * 0.03),
+        0.0,
+        1.0,
+    )
+    annotation_momentum = clamp(
+        _normalize_signal(telemetry.annotation_insights + telemetry.annotation_connections, 5),
+        0.0,
+        1.0,
+    )
+    artifact_quality = _normalize_ratio(telemetry.artifact_quality_average, 0.0)
+    artifact_completeness = _normalize_ratio(telemetry.artifact_trace_completeness, 0.0)
+    artifact_gap = clamp(1 - max(artifact_quality, artifact_completeness * 0.6), 0.0, 1.0) if telemetry.artifact_trace_count else 0.0
     unit_signal = 1.0 if "unit" in _ensure_str(request.stuck_reason).lower() else 0.0
     idle_signal = 1.0 if "idle" in _ensure_str(request.stuck_reason).lower() else 0.0
 
     readiness: Literal["support", "practice", "advance"] = "support"
-    if average_mastery >= 0.8 and frustration_index <= 1 and (correct_ratio >= 0.75 or positive_momentum >= 3):
+    if average_mastery >= 0.8 and frustration_index <= 1 and artifact_gap <= 0.25 and (correct_ratio >= 0.75 or positive_momentum >= 3):
         readiness = "advance"
     elif average_mastery >= 0.45 and frustration_index <= 4:
         readiness = "practice"
@@ -830,6 +908,18 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
         evidence.append("Learner reported confusion in this section.")
     if telemetry.affect_insight:
         evidence.append("Learner reported an insight moment recently.")
+    if telemetry.annotation_questions or telemetry.annotation_confusions:
+        evidence.append(
+            f"Annotation friction is visible: {telemetry.annotation_questions} questions and {telemetry.annotation_confusions} confusion notes."
+        )
+    if telemetry.annotation_insights or telemetry.annotation_connections:
+        evidence.append(
+            f"Annotation momentum is visible: {telemetry.annotation_insights} insights and {telemetry.annotation_connections} connections."
+        )
+    if telemetry.artifact_trace_count:
+        evidence.append(
+            f"Artifact trace quality is {artifact_quality:.0%} with trace completeness {artifact_completeness:.0%}."
+        )
     if request.stuck_reason:
         evidence.append(f"Current stuck signal: {request.stuck_reason}.")
     if learner_profile.forgetting_risk >= 0.55:
@@ -857,6 +947,8 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
             + 0.16 * calibration_drift
             + 0.18 * misconception_pressure
             + 0.1 * forgetting_risk
+            + 0.14 * annotation_friction
+            + 0.12 * artifact_gap
             - 0.16 * transfer_readiness
             - 0.08 * engagement_signal
         ),
@@ -866,6 +958,8 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
             + 0.18 * misconception_pressure
             + 0.18 * uncertainty_signal
             + 0.16 * idle_signal
+            + 0.14 * annotation_friction
+            + 0.08 * artifact_gap
             + 0.08 * support_fatigue
             + 0.06 * engagement_signal
             - 0.08 * unit_signal
@@ -877,6 +971,8 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
             + 0.12 * (1 - friction_signal)
             + 0.12 * stability_index
             + 0.08 * (1 - forgetting_risk)
+            + 0.1 * annotation_momentum
+            + 0.12 * artifact_quality
             - 0.18 * accuracy_gap
             - 0.1 * misconception_pressure
         ),
@@ -886,10 +982,13 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
             + 0.16 * transfer_readiness
             + 0.14 * engagement_signal
             + 0.08 * predicted_retention
+            + 0.08 * annotation_momentum
+            + 0.1 * artifact_quality
             - 0.24 * friction_signal
             - 0.2 * forgetting_risk
             - 0.16 * calibration_drift
             - 0.1 * misconception_pressure
+            - 0.18 * artifact_gap
         ),
         "ask": (
             0.18 * friction_signal
@@ -897,6 +996,8 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
             + 0.16 * misconception_pressure
             + 0.14 * uncertainty_signal
             + 0.14 * chat_signal
+            + 0.18 * annotation_friction
+            + 0.1 * artifact_gap
             + 0.1 * support_fatigue
             + 0.06 * (0 if request.stuck_reason else 1)
         ),
@@ -970,6 +1071,15 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
     if misconception_pressure >= 0.35:
         reason_codes.append("misconception_pattern")
         recommended_because.append("Misconception tags are clustering around the same idea, so the engine is correcting the frame instead of repeating the task.")
+    if annotation_friction >= 0.35:
+        reason_codes.append("annotation_friction")
+        recommended_because.append("Peer/self annotations contain question or confusion signals, so support is being selected from reading evidence, not only quiz data.")
+    if artifact_gap >= 0.35:
+        reason_codes.append("artifact_quality_gap")
+        recommended_because.append("Artifact trace quality or completeness is still weak, so the engine is holding back unsupported advancement.")
+    if annotation_momentum >= 0.35 and artifact_quality >= 0.65:
+        reason_codes.append("artifact_annotation_momentum")
+        recommended_because.append("Annotation and artifact traces show enough momentum to favor practice or advancement.")
     if transfer_readiness >= 0.7 and primary_action in {"practice", "advance"}:
         reason_codes.append("transfer_ready")
         recommended_because.append("Transfer readiness is strong enough that application-oriented moves are likely to pay off.")
@@ -1120,6 +1230,11 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
                 "stability_index": round(stability_index, 3),
                 "misconception_pressure": round(misconception_pressure, 3),
                 "uncertainty_signal": round(uncertainty_signal, 3),
+                "annotation_friction": round(annotation_friction, 3),
+                "annotation_momentum": round(annotation_momentum, 3),
+                "artifact_quality": round(artifact_quality, 3),
+                "artifact_trace_completeness": round(artifact_completeness, 3),
+                "artifact_gap": round(artifact_gap, 3),
             },
             action_scores=action_scores,
             predicted_outcomes=predicted_outcomes,
@@ -1142,6 +1257,270 @@ def validate_access_passcode(scope: Literal["engineering", "education", "researc
     expected_value = os.environ.get(env_key_by_scope[scope], fallback_by_scope[scope]).strip()
     candidate = passcode.strip()
     return bool(expected_value) and candidate == expected_value
+
+
+ARTIFACT_RUBRIC_KEYS = [
+    "claim_visibility",
+    "evidence_specificity",
+    "support_boundary",
+    "revision_quality",
+    "rejection_rationale",
+    "transfer_constraint",
+]
+
+
+def _clamp_int(value: Any, low: int, high: int) -> int:
+    try:
+        numeric = int(value)
+    except (TypeError, ValueError):
+        numeric = low
+    return max(low, min(high, numeric))
+
+
+def _research_support_move(trace_score: int) -> str:
+    if trace_score <= 3:
+        return "explain"
+    if trace_score <= 6:
+        return "compare"
+    return "audit"
+
+
+def validate_research_evaluation_payload(request: ResearchEvaluationValidationRequest) -> dict[str, Any]:
+    total_questions = max(0, int(request.total_questions or len(request.item_responses)))
+    normalized_items: list[dict[str, Any]] = []
+    validation_errors: list[str] = []
+    seen_item_ids: set[str] = set()
+
+    for index, item in enumerate(request.item_responses, start=1):
+        item_id = _ensure_str(item.item_id) or f"item_{index:02d}"
+        if item_id in seen_item_ids:
+            validation_errors.append(f"duplicate_item_id:{item_id}")
+        seen_item_ids.add(item_id)
+
+        selected_option = item.selected_option
+        correct_index = item.correct_index
+        if selected_option is not None and not 0 <= int(selected_option) <= 8:
+            validation_errors.append(f"selected_option_out_of_range:{item_id}")
+        if correct_index is not None and not 0 <= int(correct_index) <= 8:
+            validation_errors.append(f"correct_index_out_of_range:{item_id}")
+
+        confidence = item.confidence
+        if confidence is not None:
+            confidence = clamp(float(confidence), 0.0, 1.0) if float(confidence) <= 1 else clamp(float(confidence) / 5, 0.0, 1.0)
+
+        normalized_items.append({
+            "item_id": item_id,
+            "concept_id": _ensure_str(item.concept_id) or None,
+            "is_correct": bool(item.is_correct),
+            "confidence": confidence,
+            "latency_ms": max(0, int(item.latency_ms)) if item.latency_ms is not None else None,
+            "response_payload": {
+                **(item.response_payload or {}),
+                "selected_option": selected_option,
+                "correct_index": correct_index,
+                "server_validated": True,
+            },
+        })
+
+    computed_score = sum(1 for item in normalized_items if item["is_correct"])
+    denominator = total_questions or len(normalized_items) or 1
+    computed_percentage = round((computed_score / denominator) * 100, 2)
+    if len(normalized_items) != total_questions:
+        validation_errors.append("item_count_mismatch")
+    if abs(computed_score - int(request.score)) > 0:
+        validation_errors.append("score_mismatch")
+    if abs(computed_percentage - float(request.percentage)) > 1.0:
+        validation_errors.append("percentage_mismatch")
+
+    return {
+        "validator_pass": not validation_errors,
+        "validation_errors": validation_errors,
+        "computed_score": computed_score,
+        "computed_percentage": computed_percentage,
+        "item_count": len(normalized_items),
+        "normalized_item_responses": normalized_items,
+        "policy_version": "research-evaluation-validator-v1",
+    }
+
+
+def validate_artifact_trace_payload(request: ArtifactTraceValidationRequest) -> dict[str, Any]:
+    lengths = [
+        max(0, request.initial_draft_length),
+        max(0, request.claim_length),
+        max(0, request.evidence_length),
+        max(0, request.accepted_length),
+        max(0, request.rejected_length),
+        max(0, request.judgment_rationale_length),
+        max(0, request.revised_draft_length),
+        max(0, request.transfer_length),
+    ]
+    computed_trace_score = sum(1 for length in lengths if length >= 12)
+    normalized_rubric = {
+        key: _clamp_int(request.rubric.get(key), 0, 2)
+        for key in ARTIFACT_RUBRIC_KEYS
+    }
+    computed_quality = round(sum(normalized_rubric.values()) / (len(ARTIFACT_RUBRIC_KEYS) * 2), 3)
+    recommended_support_move = _research_support_move(computed_trace_score)
+    validation_errors: list[str] = []
+
+    if not _ensure_str(request.course):
+        validation_errors.append("missing_course")
+    if not _ensure_str(request.section):
+        validation_errors.append("missing_section")
+    if not _ensure_str(request.artifact):
+        validation_errors.append("missing_artifact")
+    if computed_trace_score != request.trace_score:
+        validation_errors.append("trace_score_mismatch")
+    if abs(computed_quality - float(request.artifact_quality_score or 0)) > 0.01:
+        validation_errors.append("artifact_quality_score_mismatch")
+    if request.recommended_support_move and request.recommended_support_move != recommended_support_move:
+        validation_errors.append("recommended_support_mismatch")
+    if request.support_move not in {"explain", "compare", "audit"}:
+        validation_errors.append("unsupported_support_move")
+
+    return {
+        "validator_pass": not validation_errors,
+        "validation_errors": validation_errors,
+        "computed_trace_score": computed_trace_score,
+        "computed_artifact_quality_score": computed_quality,
+        "recommended_support_move": recommended_support_move,
+        "normalized_rubric": normalized_rubric,
+        "policy_version": "artifact-trace-validator-v1",
+    }
+
+
+def _text_tokens(value: str) -> set[str]:
+    stop_words = {
+        "the", "and", "for", "with", "that", "this", "from", "into", "because", "about",
+        "what", "which", "when", "where", "their", "there", "would", "could", "should",
+        "student", "learner", "artifact", "work", "product"
+    }
+    return {
+        token
+        for token in re.findall(r"[a-zA-Z][a-zA-Z0-9_-]{2,}", _ensure_str(value).lower())
+        if token not in stop_words
+    }
+
+
+def _bounded_ratio(numerator: float, denominator: float = 1.0) -> float:
+    if denominator <= 0:
+        return 0.0
+    return round(clamp(numerator / denominator, 0.0, 1.0), 3)
+
+
+def score_artifact_revision_payload(request: ArtifactRevisionScoreRequest) -> dict[str, Any]:
+    initial = _ensure_str(request.initial_draft)
+    revised = _ensure_str(request.revised_draft)
+    claim = _ensure_str(request.claim)
+    evidence = _ensure_str(request.evidence)
+    rationale = _ensure_str(request.judgment_rationale)
+    transfer = _ensure_str(request.transfer)
+
+    initial_tokens = _text_tokens(initial)
+    revised_tokens = _text_tokens(revised)
+    claim_tokens = _text_tokens(claim)
+    evidence_tokens = _text_tokens(evidence)
+    rationale_tokens = _text_tokens(rationale)
+    transfer_tokens = _text_tokens(transfer)
+
+    added_tokens = revised_tokens - initial_tokens
+    shared_with_claim = len(revised_tokens & claim_tokens)
+    shared_with_evidence = len(revised_tokens & evidence_tokens)
+    shared_with_rationale = len(revised_tokens & rationale_tokens)
+    shared_with_transfer = len(revised_tokens & transfer_tokens)
+
+    revision_delta_chars = len(revised) - len(initial)
+    revision_depth = clamp(
+        _bounded_ratio(len(added_tokens), 12) * 0.65
+        + (0.2 if abs(revision_delta_chars) >= 40 else 0.0)
+        + (0.15 if len(revised_tokens) >= max(10, len(initial_tokens)) else 0.0),
+        0.0,
+        1.0,
+    )
+    claim_clarity = clamp(
+        _bounded_ratio(len(claim_tokens), 10) * 0.55
+        + _bounded_ratio(shared_with_claim, max(3, len(claim_tokens))) * 0.45,
+        0.0,
+        1.0,
+    )
+    evidence_alignment = clamp(
+        _bounded_ratio(len(evidence_tokens), 12) * 0.35
+        + _bounded_ratio(shared_with_evidence, max(3, len(evidence_tokens))) * 0.65,
+        0.0,
+        1.0,
+    )
+    judgment_quality = clamp(
+        _bounded_ratio(len(rationale_tokens), 12) * 0.55
+        + _bounded_ratio(shared_with_rationale, max(2, len(rationale_tokens))) * 0.25
+        + (0.2 if request.judgment in {"modify", "reject"} and len(rationale_tokens) >= 6 else 0.1),
+        0.0,
+        1.0,
+    )
+    transfer_readiness = clamp(
+        _bounded_ratio(len(transfer_tokens), 10) * 0.55
+        + _bounded_ratio(shared_with_transfer, max(2, len(transfer_tokens))) * 0.25
+        + (0.2 if any(word in transfer.lower() for word in ["audience", "context", "setting", "course", "role", "dataset"]) else 0.0),
+        0.0,
+        1.0,
+    )
+    specificity_delta = clamp(
+        _bounded_ratio(len(added_tokens & (claim_tokens | evidence_tokens | rationale_tokens | transfer_tokens)), 8) * 0.7
+        + _bounded_ratio(max(0, revision_delta_chars), 180) * 0.3,
+        0.0,
+        1.0,
+    )
+    overall = round(
+        0.2 * claim_clarity
+        + 0.22 * evidence_alignment
+        + 0.18 * revision_depth
+        + 0.16 * judgment_quality
+        + 0.12 * transfer_readiness
+        + 0.12 * specificity_delta,
+        3,
+    )
+
+    validation_errors: list[str] = []
+    if not _ensure_str(request.course):
+        validation_errors.append("missing_course")
+    if not _ensure_str(request.section):
+        validation_errors.append("missing_section")
+    if len(initial) < 12:
+        validation_errors.append("initial_draft_too_short")
+    if len(revised) < 12:
+        validation_errors.append("revised_draft_too_short")
+    if len(evidence) < 12:
+        validation_errors.append("evidence_too_short")
+    if len(rationale) < 12:
+        validation_errors.append("judgment_rationale_too_short")
+
+    return {
+        "validator_pass": not validation_errors,
+        "validation_errors": validation_errors,
+        "scores": {
+            "claim_clarity": round(claim_clarity, 3),
+            "evidence_alignment": round(evidence_alignment, 3),
+            "revision_depth": round(revision_depth, 3),
+            "judgment_quality": round(judgment_quality, 3),
+            "transfer_readiness": round(transfer_readiness, 3),
+            "specificity_delta": round(specificity_delta, 3),
+            "overall_revision_quality": overall,
+        },
+        "diagnostics": {
+            "initial_token_count": len(initial_tokens),
+            "revised_token_count": len(revised_tokens),
+            "added_token_count": len(added_tokens),
+            "revision_delta_chars": revision_delta_chars,
+            "claim_overlap": shared_with_claim,
+            "evidence_overlap": shared_with_evidence,
+            "rationale_overlap": shared_with_rationale,
+            "transfer_overlap": shared_with_transfer,
+        },
+        "privacy": {
+            "raw_text_persisted": False,
+            "policy": "score-derived-only-v1",
+        },
+        "policy_version": "artifact-revision-scorer-v1",
+    }
 
 # ============================================================================
 # LEGACY ENDPOINTS (Module-based generation)
@@ -1415,6 +1794,25 @@ async def adaptive_recommendation(request: AdaptiveRecommendationRequest):
         return build_adaptive_recommendation(request)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Adaptive recommendation error: {str(e)}")
+
+
+@app.post("/api/research/evaluation/validate")
+async def validate_research_evaluation(request: ResearchEvaluationValidationRequest):
+    """Validate diagnostic/pre-post item traces before they enter research tables."""
+    return validate_research_evaluation_payload(request)
+
+
+@app.post("/api/research/artifact-trace/validate")
+async def validate_artifact_trace(request: ArtifactTraceValidationRequest):
+    """Validate ArtifactStudio traces before they enter research telemetry."""
+    return validate_artifact_trace_payload(request)
+
+
+@app.post("/api/research/artifact-revision/score")
+async def score_artifact_revision(request: ArtifactRevisionScoreRequest):
+    """Score before/after artifact revision without persisting raw artifact text."""
+    return score_artifact_revision_payload(request)
+
 
 class MasteryGraphRequest(BaseModel):
     mastery_data: dict

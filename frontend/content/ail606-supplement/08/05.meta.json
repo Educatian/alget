@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Instructor Implementation Toolkit",
+  "title": "Accessibility Review Workflow",
+  "description": "Artifact-specific exemplar for AIL 606 connecting accessibility review workflow to capstone defense evidence board, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a capstone defense evidence board as evidence of learner judgment in AIL 606.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "ail606_supplement_instructor_implementation_toolkit",
+    "ail606_supplement_accessibility_review_workflow",
+    "ail606_supplement_evidence_based_revision",
+    "ail606_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 5,
+  "top_tier_hardened": true
+}

@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Research Translation for Learning Design",
+  "title": "Publication-Ready Artifact Packaging",
+  "description": "Artifact-specific exemplar for AIL 606 connecting publication-ready artifact packaging to capstone defense evidence board, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a capstone defense evidence board as evidence of learner judgment in AIL 606.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "ail606_supplement_research_translation_for_learning_design",
+    "ail606_supplement_publication_ready_artifact_packaging",
+    "ail606_supplement_evidence_based_revision",
+    "ail606_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 6,
+  "top_tier_hardened": true
+}

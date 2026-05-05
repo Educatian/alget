@@ -1,0 +1,37 @@
+{
+  "section_id": "ail606_supplement_3_4_narration_and_modality_decisions",
+  "misconceptions": [
+    {
+      "id": "ail606_supplement_3_4_narration_and_modality_decisions_polish_as_evidence",
+      "pattern": "artifact_polish_as_evidence",
+      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
+      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
+      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_3_4_narration_and_modality_decisions_annotation_without_signal",
+      "pattern": "low_information_annotation",
+      "description": "Writing social annotations that do not expose a concept, constraint, confusion, or connection",
+      "trigger": "annotation is generic agreement or interest",
+      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_3_4_narration_and_modality_decisions_ai_as_authority",
+      "pattern": "ai_output_as_authority",
+      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
+      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
+      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "ail606_supplement_3_4_narration_and_modality_decisions_completion_only_model",
+      "pattern": "completion_only_learner_model",
+      "description": "Assuming completion alone is enough for adaptive learner modeling",
+      "trigger": "learner or system records only a finished artifact",
+      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "rail_action": "practice"
+    }
+  ]
+}

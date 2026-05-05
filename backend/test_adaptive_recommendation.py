@@ -92,3 +92,36 @@ def test_adaptive_recommendation_prefers_representation_for_idle_reentry():
     assert response.primary_recommendation.action == "represent"
     assert response.reasoning.policy_strategy == "heuristic_bandit_v2"
     assert response.reasoning.action_scores["represent"] >= response.reasoning.action_scores["practice"]
+
+
+def test_adaptive_recommendation_uses_annotation_and_artifact_evidence():
+    response = build_adaptive_recommendation(
+        AdaptiveRecommendationRequest(
+            section_id="cat100-supplement/01/06",
+            section_title="Critique AI Suggestions Against Evidence",
+            concept_ids=["artifact_evidence"],
+            mastery=[
+                AdaptiveMasteryState(
+                    concept_id="artifact_evidence",
+                    p_known=0.7,
+                    attempts_count=4,
+                    correct_count=3,
+                )
+            ],
+            telemetry=AdaptiveTelemetrySummary(
+                practice_attempts=3,
+                correct_attempts=2,
+                annotation_questions=2,
+                annotation_confusions=2,
+                annotation_helpful_reactions=3,
+                artifact_trace_count=1,
+                artifact_quality_average=0.25,
+                artifact_trace_completeness=0.4,
+            ),
+        )
+    )
+
+    assert "annotation_friction" in response.reasoning.evidence_snapshot
+    assert "artifact_gap" in response.reasoning.evidence_snapshot
+    assert any(code in response.reasoning.reason_codes for code in ["annotation_friction", "artifact_quality_gap"])
+    assert response.primary_recommendation.action != "advance"

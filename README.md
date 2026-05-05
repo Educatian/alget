@@ -169,13 +169,13 @@ Real screenshots captured from the running app via Playwright (1280×800 @ 2× D
 Six SQL schemas, all RLS-gated:
 
 - `supabase_schema.sql` — users, courses, sections, concepts, assessment_items, misconceptions
-- `supabase_research_schema.sql` — **the research backbone**: `learner_concept_state`, `interaction_events`, `recommendation_decisions`, `intervention_traces`, `evaluation_runs(phase=pre/post/retention)`, `experiment_assignments`, `model_registry`, `content_audits`, `human_ratings`
+- `supabase_research_schema.sql` — **the research backbone**: `learner_concept_state`, canonical `interaction_events`, `recommendation_decisions`, `intervention_traces`, `evaluation_runs(phase=pre/post/retention)`, item-level `evaluation_responses`, `experiment_assignments`, `model_registry`, `content_audits`, `human_ratings`
 - `supabase_learning_features.sql` — course_progress, bookmarks, practice_history
 - `supabase_logging.sql` — event_logging, user_sessions, grading_log
 - `supabase_social_features.sql` — social_presence, collaboration_groups, highlight_reactions, highlight_replies, kindred-readers view
 - `supabase_all_in_one.sql` — single bundled deploy file
 
-The four-way join `experiment_assignments × intervention_traces × recommendation_decisions × evaluation_runs` is what makes RCT, off-policy evaluation, and forgetting-rate estimation tractable directly from production data.
+The four-way join `experiment_assignments × interaction_events × intervention_traces/recommendation_decisions × evaluation_runs/evaluation_responses` is what makes RCT, off-policy evaluation, item diagnostics, and forgetting-rate estimation tractable directly from production data.
 
 ---
 
@@ -261,7 +261,7 @@ This dual structure separates **pedagogical validity** from **domain rigor** —
 
 ### 8.2 RCT-grade telemetry
 
-The Supabase research views (`rct_intervention_outcomes`, `rct_evaluation_gains`, `rct_user_telemetry_profile`) join interventions, decisions, and pre/post/retention evaluations so off-policy evaluation, learning-gain causal inference, and forgetting-rate estimation are direct SQL.
+The Supabase research views (`rct_intervention_outcomes`, `rct_evaluation_gains`, `rct_user_telemetry_profile`, `rct_evaluation_item_diagnostics`) join interventions, decisions, canonical interaction events, and pre/post/retention item responses so off-policy evaluation, learning-gain causal inference, item diagnostics, and forgetting-rate estimation are direct SQL.
 
 ### 8.3 System paper
 

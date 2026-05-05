@@ -221,6 +221,19 @@ export default function AnalyticsDashboard() {
             .slice(0, 6)
     }, [filteredMasteryData])
 
+    const artifactMetrics = researchSnapshot.artifactMetrics || {
+        totalScores: 0,
+        averageOverallRevisionQuality: 0,
+        averageEvidenceAlignment: 0,
+        averageRevisionDepth: 0,
+        averageJudgmentQuality: 0,
+        weakEvidenceCount: 0,
+        shallowRevisionCount: 0,
+        judgmentRiskCount: 0,
+        transferReadyCount: 0,
+        recentScores: []
+    }
+
     const handleAuthenticate = async (event) => {
         event.preventDefault()
         setLoading(true)
@@ -734,6 +747,96 @@ export default function AnalyticsDashboard() {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="editorial-surface p-8">
+                    <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+                        <div>
+                            <p className="editorial-kicker">Work product evidence</p>
+                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Artifact revision cohort dashboard</h2>
+                            <p className="mt-2 max-w-3xl text-sm leading-7 text-[var(--ath-muted)]">
+                                De-identified score-derived traces show whether learners are improving claims, aligning evidence, making deeper revisions, and judging AI feedback responsibly.
+                            </p>
+                        </div>
+                        <div className="editorial-chip">{artifactMetrics.totalScores || 0} scored traces</div>
+                    </div>
+
+                    <div className="mt-6 grid gap-4 md:grid-cols-4">
+                        <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
+                            <p className="editorial-label">Overall quality</p>
+                            <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">
+                                {Math.round((artifactMetrics.averageOverallRevisionQuality || 0) * 100)}%
+                            </p>
+                        </div>
+                        <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
+                            <p className="editorial-label">Evidence alignment</p>
+                            <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">
+                                {Math.round((artifactMetrics.averageEvidenceAlignment || 0) * 100)}%
+                            </p>
+                        </div>
+                        <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
+                            <p className="editorial-label">Revision depth</p>
+                            <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">
+                                {Math.round((artifactMetrics.averageRevisionDepth || 0) * 100)}%
+                            </p>
+                        </div>
+                        <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
+                            <p className="editorial-label">Judgment quality</p>
+                            <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">
+                                {Math.round((artifactMetrics.averageJudgmentQuality || 0) * 100)}%
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="mt-6 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+                        <div className="rounded-[1.6rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.72)] p-5">
+                            <p className="editorial-label">Instructor triage</p>
+                            <div className="mt-4 space-y-3 text-sm text-[var(--ath-muted)]">
+                                <div className="flex items-center justify-between">
+                                    <span>Weak evidence alignment</span>
+                                    <span className="font-bold text-[var(--ath-text)]">{artifactMetrics.weakEvidenceCount || 0}</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span>Shallow revision risk</span>
+                                    <span className="font-bold text-[var(--ath-text)]">{artifactMetrics.shallowRevisionCount || 0}</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span>AI judgment risk</span>
+                                    <span className="font-bold text-[var(--ath-text)]">{artifactMetrics.judgmentRiskCount || 0}</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span>Transfer-ready traces</span>
+                                    <span className="font-bold text-[var(--ath-text)]">{artifactMetrics.transferReadyCount || 0}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="rounded-[1.6rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.72)] p-5">
+                            <p className="editorial-label">Recent scored traces</p>
+                            <div className="mt-4 space-y-3">
+                                {artifactMetrics.recentScores.length === 0 ? (
+                                    <p className="text-sm text-[var(--ath-muted)]">Scored work-product revisions will appear after learners log Work Product Studio traces.</p>
+                                ) : artifactMetrics.recentScores.map((score) => (
+                                    <div key={score.id || `${score.section_id}-${score.created_at}`} className="rounded-2xl border border-[var(--ath-line)] bg-white/70 px-4 py-3">
+                                        <div className="flex items-center justify-between gap-3">
+                                            <div>
+                                                <p className="text-sm font-semibold text-[var(--ath-text)]">{score.section_id}</p>
+                                                <p className="mt-1 text-xs uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
+                                                    {score.studio_mode || 'work product'} / {score.judgment || 'judgment pending'}
+                                                </p>
+                                            </div>
+                                            <span className="editorial-chip">{Math.round((score.overall_revision_quality || 0) * 100)}%</span>
+                                        </div>
+                                        <div className="mt-3 grid gap-2 text-xs text-[var(--ath-muted)] sm:grid-cols-3">
+                                            <span>Evidence {Math.round((score.evidence_alignment || 0) * 100)}%</span>
+                                            <span>Revision {Math.round((score.revision_depth || 0) * 100)}%</span>
+                                            <span>Judgment {Math.round((score.judgment_quality || 0) * 100)}%</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>

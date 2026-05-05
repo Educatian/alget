@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Educational Technology Evaluation",
+  "title": "Usability, Accessibility, and Equity",
+  "description": "Artifact-specific exemplar for CAT 531 connecting usability, accessibility, and equity to DTS tension map, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a DTS tension map as evidence of learner judgment in CAT 531.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat531_supplement_educational_technology_evaluation",
+    "cat531_supplement_usability_accessibility_and_equity",
+    "cat531_supplement_evidence_based_revision",
+    "cat531_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 3,
+  "top_tier_hardened": true
+}

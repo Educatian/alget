@@ -13,9 +13,9 @@
   --ath-primary: #0f5167;
   --ath-primary-deep: #093848;
   --ath-primary-soft: #c8e2ec;
-  --ath-secondary: #6d7b82;
+  --ath-secondary: #526168;
   --ath-text: #1b252a;
-  --ath-muted: #5c676d;
+  --ath-muted: #46545b;
   --ath-accent: #c78943;
   --ath-shadow: 0 22px 60px rgba(27, 37, 42, 0.08);
   --ath-shadow-soft: 0 12px 34px rgba(27, 37, 42, 0.05);
@@ -140,7 +140,7 @@ h6,
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #7d878c;
+  color: var(--ath-secondary);
 }
 
 .editorial-title {

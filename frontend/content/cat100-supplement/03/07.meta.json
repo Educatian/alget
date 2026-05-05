@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Data Storytelling With Excel",
+  "title": "Narrating a Data Finding",
+  "description": "Artifact-specific exemplar for CAT 100 connecting narrating a data finding to GitHub Pages file tree, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a GitHub Pages file tree as evidence of learner judgment in CAT 100.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat100_supplement_data_storytelling_with_excel",
+    "cat100_supplement_narrating_a_data_finding",
+    "cat100_supplement_evidence_based_revision",
+    "cat100_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 7,
+  "top_tier_hardened": true
+}

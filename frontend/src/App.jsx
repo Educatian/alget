@@ -20,6 +20,10 @@ const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard'))
 const StudentDashboard = lazy(() => import('./pages/StudentDashboard'))
 const InstructorDashboard = lazy(() => import('./pages/InstructorDashboard'))
 
+const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
+  ? { id: 'e2e-user', email: 'e2e@alget.test' }
+  : null
+
 function RouteFallback() {
   return (
     <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 flex items-center justify-center px-4">
@@ -35,12 +39,16 @@ function RouteFallback() {
 }
 
 export default function App() {
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(E2E_USER)
+  const [loading, setLoading] = useState(!E2E_USER)
 
   useEffect(() => {
     // Wake up backend immediately (Render free tier sleeps after inactivity)
     fetch(`${API_BASE}/book/inst-design/toc`, { method: 'GET' }).catch(() => {})
+
+    if (E2E_USER) {
+      return undefined
+    }
 
     // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {

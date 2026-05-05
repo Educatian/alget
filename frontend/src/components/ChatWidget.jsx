@@ -216,6 +216,8 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
             {/* Floating Bubble Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? 'Close BigAL tutor chat' : 'Open BigAL tutor chat'}
+                data-onboarding="chat-widget-button"
                 className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-[0_8px_30px_rgba(158,27,50,0.4)] flex items-center justify-center transition-all duration-300 z-50 hover:scale-110 active:scale-95 ${isOpen
                     ? 'bg-slate-800 hover:bg-slate-900 shadow-[0_8px_30px_rgba(0,0,0,0.3)]'
                     : 'bg-linear-to-br from-[#9E1B32] to-[#C41E3A] hover:shadow-[0_12px_40px_rgba(196,30,58,0.6)]'
@@ -261,6 +263,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             )}
                             <button
                                 onClick={() => setIsOpen(false)}
+                                aria-label="Close BigAL tutor chat"
                                 className="text-white/70 hover:text-white p-1"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -341,6 +344,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             />
                             <button
                                 onClick={sendMessage}
+                                aria-label="Send message to BigAL"
                                 disabled={!inputValue.trim() || loading}
                                 className="absolute right-1.5 top-1.5 bottom-1.5 w-9 h-9 bg-linear-to-br from-[#9E1B32] to-[#7A1527] text-white rounded-full flex items-center justify-center hover:shadow-md hover:shadow-red-900/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                             >

@@ -111,6 +111,7 @@ export default function OnboardingTour() {
                 <div
                     className="mt-3 h-1 w-full overflow-hidden rounded-full bg-[var(--ath-line)]"
                     role="progressbar"
+                    aria-label="Onboarding tour progress"
                     aria-valuenow={step + 1}
                     aria-valuemin={1}
                     aria-valuemax={totalSteps}
@@ -145,4 +146,3 @@ export default function OnboardingTour() {
         </div>
     )
 }
-

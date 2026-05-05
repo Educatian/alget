@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Data Storytelling With Excel",
+  "title": "Charts That Answer Questions",
+  "description": "Artifact-specific exemplar for CAT 100 connecting charts that answer questions to AI critique log, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a AI critique log as evidence of learner judgment in CAT 100.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "cat100_supplement_data_storytelling_with_excel",
+    "cat100_supplement_charts_that_answer_questions",
+    "cat100_supplement_evidence_based_revision",
+    "cat100_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 3,
+  "top_tier_hardened": true
+}

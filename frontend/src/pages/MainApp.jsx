@@ -64,6 +64,45 @@ const educationCourses = [
         level: 'Cross-disciplinary',
         gradient: 'from-[#3a4a6b] to-[#0d2730]',
         badge: 'New'
+    },
+    {
+        id: 'ail606-supplement',
+        title: 'AIL 606: Software Technology Supplement',
+        icon: <InstDesignIllustration />,
+        description: 'Summer 2026 supplemental pathway for multimedia learning, LXD, AI-assisted authoring, usability testing, and capstone prototype defense.',
+        topics: ['LXD', 'Multimedia Learning', 'Prototype Testing', 'AI Disclosure'],
+        chapters: 8,
+        sections: 64,
+        duration: '5-week intensive',
+        level: 'Graduate Supplement',
+        gradient: 'from-[#6f1d2b] to-[#0d2730]',
+        badge: 'Summer 2026'
+    },
+    {
+        id: 'cat531-supplement',
+        title: 'CAT 531: Technology and Teaching Supplement',
+        icon: <InstDesignIllustration />,
+        description: 'Pre-service teacher pathway connecting DTS, TeachGen@i, Ethobot, AI policy reasoning, edtech evaluation, and final professional vision.',
+        topics: ['DTS', 'TeachGen@i', 'Ethobot', 'EdTech Evaluation'],
+        chapters: 8,
+        sections: 64,
+        duration: '5-week intensive',
+        level: 'Teacher Education',
+        gradient: 'from-[#7a2534] to-[#214b59]',
+        badge: 'Rebuilt'
+    },
+    {
+        id: 'cat100-supplement',
+        title: 'CAT 100: Computer Concepts Supplement',
+        icon: <InstDesignIllustration />,
+        description: 'Undergraduate support pathway for digital citizenship, AI-assisted resume revision, Excel data stories, presentations, and GitHub Pages portfolios.',
+        topics: ['Digital Skills', 'Excel', 'AI Critique', 'GitHub Pages'],
+        chapters: 8,
+        sections: 64,
+        duration: '5-week intensive',
+        level: 'Undergraduate',
+        gradient: 'from-[#245b6a] to-[#3b2431]',
+        badge: 'Expanded'
     }
 ]
 

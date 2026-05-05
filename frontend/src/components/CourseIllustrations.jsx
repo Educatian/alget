@@ -101,10 +101,10 @@ export const InstDesignIllustration = ({ className = "w-16 h-16" }) => (
             <path d="M 47 50 L 53 50 M 50 47 L 50 53" stroke="#bfdbfe" strokeWidth="1.5" />
 
             {/* Floating abstract document pages */}
-            <g className="animate-[float_4s_ease-in-out_infinite]" transform-origin="30 25">
+            <g className="animate-[float_4s_ease-in-out_infinite]" style={{ transformOrigin: '30px 25px' }}>
                 <rect x="25" y="20" width="12" height="15" rx="1" fill="#ffffff" filter="url(#edu-glow)" opacity="0.8" transform="rotate(-15 30 25)" />
             </g>
-            <g className="animate-[float_5s_ease-in-out_infinite_reverse]" transform-origin="70 75">
+            <g className="animate-[float_5s_ease-in-out_infinite_reverse]" style={{ transformOrigin: '70px 75px' }}>
                 <rect x="65" y="65" width="10" height="12" rx="1" fill="#eff6ff" filter="url(#edu-glow)" opacity="0.8" transform="rotate(20 70 75)" />
             </g>
         </svg>

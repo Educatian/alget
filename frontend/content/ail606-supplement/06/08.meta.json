@@ -1,0 +1,20 @@
+{
+  "chapter_title": "Refined Prototype and Capstone Defense",
+  "title": "Module 6 Completion Studio",
+  "description": "Artifact-specific exemplar for AIL 606 connecting module 6 completion studio to AI-USE.md disclosure excerpt, social annotation signals, and adaptive learner-model evidence.",
+  "learning_objectives": [
+    "Analyze a AI-USE.md disclosure excerpt as evidence of learner judgment in AIL 606.",
+    "Distinguish artifact polish from evidence-based revision.",
+    "Document a bounded AI/software support move with accepted and rejected suggestions.",
+    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+  ],
+  "concept_ids": [
+    "ail606_supplement_refined_prototype_and_capstone_defense",
+    "ail606_supplement_module_6_completion_studio",
+    "ail606_supplement_evidence_based_revision",
+    "ail606_supplement_ai_supported_learning"
+  ],
+  "estimated_time_minutes": 14,
+  "order": 8,
+  "top_tier_hardened": true
+}
