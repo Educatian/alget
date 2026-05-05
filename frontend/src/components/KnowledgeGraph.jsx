@@ -14,25 +14,27 @@ function humanizeLabel(value) {
 }
 
 function buildLayout(nodes) {
-    const chapterSpacing = 260
-    const sectionSpacing = 150
-    const conceptSpacing = 92
-    const leftPadding = 140
-    const topPadding = 110
+    // Layout: one row per section (top→bottom), concepts within a section
+    // spread left→right. The backend now scopes nodes to the current
+    // chapter, so we stop trying to spread across multiple chapters.
+    const sectionSpacing = 110
+    const conceptSpacing = 190
+    const leftPadding = 160
+    const topPadding = 90
 
     const positionedNodes = nodes.map((node) => ({
         ...node,
-        x: leftPadding + ((node.chapter_order || 1) - 1) * chapterSpacing + ((node.section_order || 1) - 1) * 24,
-        y: topPadding + ((node.section_order || 1) - 1) * sectionSpacing + ((node.concept_order || 1) - 1) * conceptSpacing,
+        x: leftPadding + ((node.concept_order || 1) - 1) * conceptSpacing,
+        y: topPadding + ((node.section_order || 1) - 1) * sectionSpacing,
     }))
 
     const width = Math.max(
-        900,
-        leftPadding + (Math.max(...positionedNodes.map((node) => node.x), 0)) + 220,
+        720,
+        (Math.max(...positionedNodes.map((node) => node.x), 0)) + 220,
     )
     const height = Math.max(
-        520,
-        topPadding + (Math.max(...positionedNodes.map((node) => node.y), 0)) + 140,
+        360,
+        (Math.max(...positionedNodes.map((node) => node.y), 0)) + 90,
     )
 
     return {
@@ -180,36 +182,30 @@ export default function KnowledgeGraph({
         ).values(),
     )
 
+    const nodeCount = graphData.nodes.length
+    const focusedChapterTitle = graphData.nodes[0]?.chapter_title || ''
+
     return (
         <div className="knowledge-graph-mount bg-slate-950 rounded-3xl p-6 shadow-2xl overflow-hidden relative border border-slate-800">
-            <div className="mb-5 flex items-start justify-between gap-4">
-                <div>
-                    <h3 className="text-white font-bold text-lg">Brain Network</h3>
-                    <p className="text-slate-400 text-sm max-w-2xl">
-                        This is an action map for the current work product. Use amber and slate nodes to decide what evidence to annotate next, then return to the Work Product Studio and revise the artifact trace.
-                    </p>
+            <div className="mb-4 flex flex-wrap items-center gap-3">
+                <h3 className="mr-auto text-white font-bold text-base">
+                    Brain Network
+                    {focusedChapterTitle && (
+                        <span className="ml-2 text-xs font-medium text-slate-400">· {focusedChapterTitle}</span>
+                    )}
+                </h3>
+                <span className="rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                    {nodeCount} concept{nodeCount === 1 ? '' : 's'}
+                </span>
+                <div className="flex items-center gap-2.5 text-[11px] text-slate-400">
+                    <span className="inline-flex items-center gap-1.5" title="Current focus"><span className="h-2 w-2 rounded-full bg-indigo-500" />Focus</span>
+                    <span className="inline-flex items-center gap-1.5" title="Developing"><span className="h-2 w-2 rounded-full bg-amber-400" />Developing</span>
+                    <span className="inline-flex items-center gap-1.5" title="Stable"><span className="h-2 w-2 rounded-full bg-emerald-500" />Stable</span>
+                    <span className="inline-flex items-center gap-1.5" title="Evidence needed"><span className="h-2 w-2 rounded-full bg-slate-400" />Needs evidence</span>
                 </div>
-                <div className="flex flex-wrap items-center justify-end gap-3 text-xs text-slate-400">
-                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-indigo-500" />Current focus</span>
-                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-amber-400" />Developing</span>
-                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />Stable</span>
-                    <span className="inline-flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-slate-400" />Evidence needed</span>
-                </div>
-            </div>
-
-            <div className="mb-5 grid gap-3 rounded-2xl border border-slate-800 bg-slate-900/70 p-4 text-sm text-slate-300 md:grid-cols-[1fr_1fr]">
-                <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-indigo-200">What this shows</p>
-                    <p className="mt-2 leading-6">
-                        Node color is not a grade. It is a signal about how much usable evidence the system has for the concept in this section, including reading, annotation, practice, and artifact traces.
-                    </p>
-                </div>
-                <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-200">Next action</p>
-                    <p className="mt-2 leading-6">
-                        Click a developing or evidence-needed node, annotate one source-backed claim, then revise the current work product with a short rationale for accepting, modifying, or rejecting AI feedback.
-                    </p>
-                </div>
+                <span className="hidden text-[11px] text-slate-500 sm:inline" title="Click a node to jump · color = how much usable evidence the system has, not a grade">
+                    Click a node to jump
+                </span>
             </div>
 
             <div className="relative w-full overflow-x-auto rounded-2xl border border-slate-800 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.12),transparent_35%),linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98))]">

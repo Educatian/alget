@@ -87,29 +87,14 @@ export default function ReadingPane({
 
     if (loading) {
         return (
-            <div className="relative flex min-h-[60vh] flex-col items-center justify-center overflow-hidden px-4 text-center animate-fade-in">
-                <div className="glow-orb h-64 w-64 bg-[rgba(15,81,103,0.14)]"></div>
-                <div className="relative z-10">
-                    <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-[1.75rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.72)] shadow-[0_20px_40px_rgba(15,23,42,0.1)]">
-                        <span className="text-4xl font-semibold text-[var(--ath-primary)]">AL</span>
-                    </div>
-
-                    <p className="editorial-kicker">Reading Surface</p>
-                    <h2 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Opening the Textbook</h2>
-                    <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-[var(--ath-muted)]">
-                        First load can take a moment.
-                    </p>
-
-                    <div className="mx-auto mt-8 w-64 space-y-2">
-                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
-                            <div className="h-full w-1/2 animate-[progress-indeterminate_2s_ease-in-out_infinite] rounded-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382,var(--ath-accent))]"></div>
-                        </div>
-                        <div className="flex justify-between px-1 text-xs font-semibold uppercase tracking-widest text-[var(--ath-secondary)]">
-                            <span>Initializing</span>
-                            <span>Running</span>
-                        </div>
-                    </div>
+            <div className="flex min-h-[40vh] flex-col items-center justify-center px-4 text-center animate-fade-in">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.72)]">
+                    <span className="text-lg font-semibold text-[var(--ath-primary)]">AL</span>
                 </div>
+                <div className="mt-5 h-1 w-48 overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
+                    <div className="h-full w-1/2 animate-[progress-indeterminate_2s_ease-in-out_infinite] rounded-full bg-[var(--ath-primary)]"></div>
+                </div>
+                <p className="mt-4 text-xs font-medium uppercase tracking-[0.2em] text-[var(--ath-secondary)]">Loading section</p>
             </div>
         )
     }
@@ -200,56 +185,40 @@ export default function ReadingPane({
                     </div>
                 )}
 
-                <div className="mt-8 rounded-[1.8rem] border border-[var(--ath-line)] bg-white p-5 shadow-sm">
-                    <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                        <div>
-                            <p className="editorial-kicker">Work Product Pathway</p>
-                            <h2 className="mt-2 text-xl font-semibold tracking-tight text-[var(--ath-text)]">{workProduct}</h2>
-                            <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
-                                Read, annotate, draft, judge AI, revise.
-                            </p>
-                        </div>
-                        <div className={`rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] ${isCompleted
-                            ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-                            : 'border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)]'
+                <div className="mt-8 rounded-2xl border border-[var(--ath-line)] bg-white p-4 shadow-sm">
+                    <div className="flex flex-wrap items-center gap-3">
+                        <p
+                            className="mr-auto min-w-0 truncate text-sm font-semibold text-[var(--ath-text)]"
+                            title={workProduct}
+                        >
+                            {workProduct}
+                        </p>
+                        <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-[0.18em] ${isCompleted
+                            ? 'bg-emerald-50 text-emerald-700'
+                            : 'bg-[var(--ath-panel)] text-[var(--ath-secondary)]'
                             }`}>
-                            {isCompleted ? 'Checkpoint done' : 'Checkpoint open'}
-                        </div>
-                    </div>
-                    <div className="mt-5 grid gap-2 sm:grid-cols-5">
-                        {['Read', 'Annotate', 'Draft', 'Judge AI', 'Revise'].map((step, index) => (
-                            <div key={step} className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2 text-center">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Step {index + 1}</p>
-                                <p className="mt-1 text-sm font-semibold text-[var(--ath-text)]">{step}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="mt-4 rounded-[1.4rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
-                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                        <div>
-                            <p className="editorial-kicker">Returning Learner Check-In</p>
-                            <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
-                                {canResumeRecent
-                                    ? `Last visited ${recentSection.chapter}.${recentSection.section} ${recentSection.title || 'previous section'} on ${formatRecentTimestamp(recentSection.updatedAt)}.`
-                                    : isCompleted
-                                        ? 'Complete. Ready for the next move.'
-                                        : 'Next move: evidence, judgment, revision.'}
-                            </p>
-                        </div>
-                        {canResumeRecent ? (
+                            {isCompleted ? 'Done' : 'Open'}
+                        </span>
+                        {canResumeRecent && (
                             <button
                                 type="button"
                                 onClick={() => onNavigate?.(recentSection.chapter, recentSection.section, 'backward')}
-                                className="editorial-button-secondary shrink-0 px-4 py-2 text-sm"
+                                title={`Resume ${recentSection.chapter}.${recentSection.section} ${recentSection.title || ''} · ${formatRecentTimestamp(recentSection.updatedAt)}`}
+                                className="text-xs font-semibold text-[var(--ath-primary)] underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                             >
-                                Resume Last Section
+                                ↶ Resume {recentSection.chapter}.{recentSection.section}
                             </button>
-                        ) : (
-                            <span className="editorial-chip shrink-0">{isCompleted ? 'Ready for transfer' : 'Next: judge AI + revise'}</span>
                         )}
                     </div>
+                    <ol className="mt-3 flex items-center gap-2 text-[11px] font-semibold text-[var(--ath-secondary)]">
+                        {['Read', 'Annotate', 'Draft', 'Judge AI', 'Revise'].map((step, index) => (
+                            <li key={step} className="flex min-w-0 flex-1 items-center gap-1.5">
+                                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--ath-panel)] text-[10px] font-bold text-[var(--ath-text)]">{index + 1}</span>
+                                <span className="truncate">{step}</span>
+                                {index < 4 && <span aria-hidden className="ml-1 hidden h-px flex-1 bg-[var(--ath-line)] sm:block" />}
+                            </li>
+                        ))}
+                    </ol>
                 </div>
             </header>
 
