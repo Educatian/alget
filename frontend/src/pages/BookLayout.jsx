@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import * as Popover from '@radix-ui/react-popover'
 import { ChevronLeft, ChevronRight, Settings } from 'lucide-react'
 import BookToc from '../components/BookToc'
+import ChapterPassport from '../components/ChapterPassport'
 import RetentionBanner from '../components/RetentionBanner'
 import OnboardingTour from '../components/OnboardingTour'
 import ThemeToggle from '../components/ThemeToggle'
@@ -521,6 +522,12 @@ export default function BookLayout({ user, onLogout }) {
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
                 <aside className="min-h-0 w-72 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
+                    <ChapterPassport
+                        toc={toc}
+                        currentCourse={course}
+                        currentChapter={chapter}
+                        completedSections={completedSections}
+                    />
                     <BookToc
                         toc={toc}
                         currentCourse={course}
@@ -573,6 +580,14 @@ export default function BookLayout({ user, onLogout }) {
                                         nextSection={nextSection}
                                         recentSection={recentSection}
                                         onNavigate={handleNavigate}
+                                        peerPulse={{
+                                            connected: socialState.connected,
+                                            peers: socialState.peers,
+                                            sameHeadingPeers: socialState.sameHeadingPeers,
+                                            sameConceptPeers: socialState.sameConceptPeers,
+                                            signalSummary: socialState.signalSummary,
+                                            onReaction: socialState.sendReaction
+                                        }}
                                     />
                                 </HighlightableContent>
                             </Suspense>
