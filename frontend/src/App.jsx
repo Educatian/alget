@@ -26,13 +26,13 @@ const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
 
 function RouteFallback() {
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 flex items-center justify-center px-4">
+    <div className="editorial-shell flex min-h-screen items-center justify-center px-4">
       <div className="text-center">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[#9E1B32] shadow-lg shadow-red-900/10 ring-1 ring-slate-200">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-primary)] text-[var(--ath-background)] shadow-lg">
           <span className="animate-pulse text-2xl font-bold">AL</span>
         </div>
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">Preparing workspace</p>
-        <p className="mt-2 text-slate-600">Loading Alabama Generative Intelligent Textbook...</p>
+        <p className="editorial-kicker">Preparing workspace</p>
+        <p className="mt-2 text-[var(--ath-muted)]">Loading Alabama Generative Intelligent Textbook...</p>
       </div>
     </div>
   )
@@ -94,8 +94,8 @@ export default function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+      <div className="editorial-shell flex min-h-screen items-center justify-center">
+        <div className="text-xl font-semibold text-[var(--ath-text)]">Loading...</div>
       </div>
     )
   }

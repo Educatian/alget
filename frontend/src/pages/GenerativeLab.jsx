@@ -126,7 +126,12 @@ export default function GenerativeLab() {
             <header className="bg-white/70 backdrop-blur-2xl border-b border-white/60 shadow-[0_4px_30px_rgb(0,0,0,0.03)] sticky top-0 z-50 transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4 group cursor-pointer" onClick={() => navigate('/')}>
+                        <button
+                            type="button"
+                            onClick={() => navigate('/')}
+                            aria-label="Back to ALGET home"
+                            className="group flex items-center gap-4 rounded-xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9E1B32]/40"
+                        >
                             <div className="w-11 h-11 bg-linear-to-br from-[#9E1B32] to-[#7A1527] rounded-xl flex items-center justify-center shadow-lg shadow-red-900/20">
                                 <span className="text-white text-xl font-extrabold tracking-tight">AL</span>
                             </div>
@@ -134,7 +139,7 @@ export default function GenerativeLab() {
                                 <h1 className="text-xl font-bold text-slate-900 tracking-tight">Generative Bio-Design Lab</h1>
                                 <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-0.5">ALGET Intelligent Platform</p>
                             </div>
-                        </div>
+                        </button>
                         <button
                             onClick={() => navigate('/')}
                             className="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-lg"

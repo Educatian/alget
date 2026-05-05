@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Brain, GraduationCap, Layers3, Microscope, ShieldCheck, Sparkles } from 'lucide-react'
 import AuthModal from '../components/AuthModal'
 import GenerativeIllustration from '../components/GenerativeIllustration'
+import ThemeToggle from '../components/ThemeToggle'
 
 const platformSignals = [
     { value: 'Adaptive', label: 'instructional pathway orchestration' },
@@ -65,7 +66,12 @@ export default function LandingPage({ onLogin, user, onLogout }) {
 
             <nav className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.82)] backdrop-blur-2xl">
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-                    <div className="flex cursor-pointer items-center gap-4" onClick={() => navigate('/')}>
+                    <button
+                        type="button"
+                        onClick={() => navigate('/')}
+                        aria-label="Go to ALGET home"
+                        className="flex items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                    >
                         <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-lg font-bold text-white shadow-[0_16px_32px_rgba(9,56,72,0.18)]">
                             AL
                         </div>
@@ -73,9 +79,10 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                             <p className="editorial-kicker">The Scholarly Editorial</p>
                             <p className="mt-1 text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">ALGET</p>
                         </div>
-                    </div>
+                    </button>
 
                     <div className="flex items-center gap-3">
+                        <ThemeToggle />
                         {user ? (
                             <>
                                 <span className="hidden text-sm font-medium text-[var(--ath-muted)] sm:inline-block">{user.email}</span>
@@ -249,9 +256,9 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                 <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 text-sm font-medium text-[var(--ath-muted)] lg:flex-row lg:items-center lg:justify-between lg:px-8">
                     <div className="flex items-center gap-2">
                         <GraduationCap className="h-4 w-4" />
-                        <span>Adaptive Design of e-Learning Lab / University of Alabama</span>
+                        <span>Sponsored by the Office of Sponsored Programs (OSP) at The University of Alabama</span>
                     </div>
-                    <span>Adaptive reading, generative learning, and learner-model visibility for engineering and education pathways</span>
+                    <span>Adaptive reading, generative learning, and learner-model visibility for pathway-based course experiences</span>
                 </div>
             </footer>
 

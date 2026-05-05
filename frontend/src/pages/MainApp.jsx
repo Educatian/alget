@@ -1,13 +1,36 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, BookOpen, Bookmark, LockKeyhole, Settings, Sparkles } from 'lucide-react'
-import { StaticsIllustration, BioInspiredIllustration, InstDesignIllustration } from '../components/CourseIllustrations'
+import {
+    ArrowRight,
+    Atom,
+    BookOpen,
+    Bookmark,
+    Code2,
+    FileSpreadsheet,
+    GraduationCap,
+    LockKeyhole,
+    Scale,
+    School,
+    Settings,
+    Sparkles
+} from 'lucide-react'
+import { BioInspiredIllustration, StaticsIllustration } from '../components/CourseIllustrations'
 import SettingsModal from '../components/SettingsModal'
 import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
 import { getEvaluationStatus } from '../lib/researchService'
 import '../index.css'
+
+function CourseMark(props) {
+    const IconComponent = props.Icon
+
+    return (
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.14),0_12px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm">
+            <IconComponent className="h-8 w-8" strokeWidth={1.8} />
+        </div>
+    )
+}
 
 const engineeringCourses = [
     {
@@ -20,20 +43,20 @@ const engineeringCourses = [
         sections: 14,
         duration: '15 weeks',
         level: 'Core Requirement',
-        gradient: 'from-[#38424d] to-[#0d2730]',
+        gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Core'
     },
     {
         id: 'dynamics',
         title: 'ME 201: Engineering Dynamics',
-        icon: <StaticsIllustration />,
+        icon: <CourseMark Icon={Atom} />,
         description: 'Foundational curriculum for motion, force relationships, energy, and momentum with adaptive reading and practice support.',
         topics: ['Kinematics', 'Kinetics', 'Work & Energy', 'Impulse & Momentum'],
         chapters: 10,
         sections: 45,
         duration: '15 weeks',
         level: 'Core Requirement',
-        gradient: 'from-slate-700 to-slate-900',
+        gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: null
     },
     {
@@ -46,7 +69,7 @@ const engineeringCourses = [
         sections: 21,
         duration: 'Studio-paced',
         level: 'Advanced Track',
-        gradient: 'from-[#214b59] to-[#0d2730]',
+        gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Lab-enabled'
     }
 ]
@@ -55,66 +78,66 @@ const educationCourses = [
     {
         id: 'inst-design',
         title: 'Foundation of Instructional Design',
-        icon: <InstDesignIllustration />,
+        icon: <CourseMark Icon={GraduationCap} />,
         description: 'Instructional design theory, pedagogy, assessment, and learner-centered strategy within an adaptive textbook workflow.',
         topics: ['Learning Theories', 'ADDIE', 'Assessment', 'Pedagogy'],
         chapters: 8,
         sections: 32,
         duration: '12 weeks',
         level: 'Core Requirement',
-        gradient: 'from-[#355868] to-[#0d2730]',
+        gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Research-ready'
     },
     {
         id: 'ai-ethics',
         title: 'AI and Ethics',
-        icon: <InstDesignIllustration />,
+        icon: <CourseMark Icon={Scale} />,
         description: 'Responsible AI design and deployment: bias and fairness, transparency, accountability, privacy, governance frameworks, and AI in education.',
         topics: ['Bias & Fairness', 'Accountability', 'Privacy', 'AI in Education'],
         chapters: 6,
         sections: 12,
         duration: '8 weeks',
         level: 'Cross-disciplinary',
-        gradient: 'from-[#3a4a6b] to-[#0d2730]',
+        gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'New'
     },
     {
         id: 'ail606-supplement',
         title: 'AIL 606: Software Technology Supplement',
-        icon: <InstDesignIllustration />,
+        icon: <CourseMark Icon={Code2} />,
         description: 'Summer 2026 supplemental pathway for multimedia learning, LXD, AI-assisted authoring, usability testing, and capstone prototype defense.',
         topics: ['LXD', 'Multimedia Learning', 'Prototype Testing', 'AI Disclosure'],
         chapters: 8,
         sections: 64,
         duration: '5-week intensive',
         level: 'Graduate Supplement',
-        gradient: 'from-[#6f1d2b] to-[#0d2730]',
+        gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Summer 2026'
     },
     {
         id: 'cat531-supplement',
         title: 'CAT 531: Technology and Teaching Supplement',
-        icon: <InstDesignIllustration />,
+        icon: <CourseMark Icon={School} />,
         description: 'Pre-service teacher pathway connecting DTS, TeachGen@i, Ethobot, AI policy reasoning, edtech evaluation, and final professional vision.',
         topics: ['DTS', 'TeachGen@i', 'Ethobot', 'EdTech Evaluation'],
         chapters: 8,
         sections: 64,
         duration: '5-week intensive',
         level: 'Teacher Education',
-        gradient: 'from-[#7a2534] to-[#214b59]',
+        gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Rebuilt'
     },
     {
         id: 'cat100-supplement',
         title: 'CAT 100: Computer Concepts Supplement',
-        icon: <InstDesignIllustration />,
+        icon: <CourseMark Icon={FileSpreadsheet} />,
         description: 'Undergraduate support pathway for digital citizenship, AI-assisted resume revision, Excel data stories, presentations, and GitHub Pages portfolios.',
         topics: ['Digital Skills', 'Excel', 'AI Critique', 'GitHub Pages'],
         chapters: 8,
         sections: 64,
         duration: '5-week intensive',
         level: 'Undergraduate',
-        gradient: 'from-[#245b6a] to-[#3b2431]',
+        gradient: 'from-[var(--ath-primary-deep)] to-[#0d1115]',
         badge: 'Expanded'
     }
 ]
@@ -205,12 +228,17 @@ export default function MainApp({ user, onLogout }) {
     }
 
     return (
-        <div className="editorial-shell min-h-screen selection:bg-[rgba(200,226,236,0.35)]">
+        <div className="editorial-shell min-h-screen">
             <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
 
             <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] backdrop-blur-2xl">
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-                    <div className="flex cursor-pointer items-center gap-4" onClick={() => setUnlockedMode(null)}>
+                    <button
+                        type="button"
+                        onClick={() => setUnlockedMode(null)}
+                        aria-label="Back to pathway selection"
+                        className="flex items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                    >
                         <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-xl font-bold text-white shadow-[0_16px_32px_rgba(9,56,72,0.18)]">
                             AL
                         </div>
@@ -218,10 +246,10 @@ export default function MainApp({ user, onLogout }) {
                             <p className="editorial-kicker">The Scholarly Editorial</p>
                             <h1 className="mt-1 text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">Pathways Workspace</h1>
                         </div>
-                    </div>
+                    </button>
 
                     <div className="flex items-center gap-3">
-                        <div className="hidden items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.76)] px-3 py-1.5 shadow-sm sm:flex">
+                        <div className="hidden items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3 py-1.5 shadow-sm sm:flex">
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-panel-muted)] text-sm font-medium text-[var(--ath-muted)]">
                                 {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
                             </div>
@@ -231,7 +259,7 @@ export default function MainApp({ user, onLogout }) {
 
                         <button
                             onClick={() => setIsSettingsOpen(true)}
-                            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.76)] text-[var(--ath-muted)] transition-all hover:bg-[var(--ath-panel)] hover:text-[var(--ath-primary)]"
+                            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] text-[var(--ath-muted)] transition-all hover:bg-[var(--ath-panel)] hover:text-[var(--ath-primary)]"
                             title="API Settings"
                         >
                             <Settings className="h-5 w-5" />
@@ -333,7 +361,7 @@ export default function MainApp({ user, onLogout }) {
                                 </div>
 
                                 {error && (
-                                    <div className="rounded-2xl border border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.72)] px-4 py-3 text-sm font-medium text-[#8c1d1d]">
+                                    <div className="rounded-2xl border border-[color-mix(in_srgb,var(--ath-danger)_32%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] px-4 py-3 text-sm font-medium text-[var(--ath-danger)]">
                                         {error}
                                     </div>
                                 )}
@@ -611,7 +639,7 @@ export default function MainApp({ user, onLogout }) {
 
             <footer className="mt-auto border-t border-[var(--ath-line)] bg-[rgba(255,255,255,0.52)]">
                 <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm font-medium text-[var(--ath-muted)] lg:flex-row lg:items-center lg:justify-between lg:px-8">
-                    <span>University of Alabama / College of Engineering and Education</span>
+                    <span>Sponsored by the Office of Sponsored Programs (OSP) at The University of Alabama</span>
                     <span>Adaptive reading, generative learning, and learner-model visibility across pathway-based course experiences</span>
                 </div>
             </footer>

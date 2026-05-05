@@ -24,23 +24,23 @@ export default function SettingsModal({ isOpen, onClose }) {
     if (!isOpen) return null
 
     return (
-        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden" onClick={e => e.stopPropagation()}>
-                <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                        <Key className="w-5 h-5 text-indigo-600" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(5,6,8,0.52)] p-4 backdrop-blur-sm">
+            <div className="w-full max-w-md overflow-hidden rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-2xl" onClick={e => e.stopPropagation()}>
+                <div className="flex items-center justify-between border-b border-[var(--ath-line)] px-6 py-4">
+                    <h3 className="flex items-center gap-2 text-lg font-semibold text-[var(--ath-text)]">
+                        <Key className="h-5 w-5 text-[var(--ath-primary)]" />
                         API Settings
                     </h3>
-                    <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
-                        <X className="w-5 h-5" />
+                    <button type="button" onClick={onClose} className="text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-text)]">
+                        <X className="h-5 w-5" />
                     </button>
                 </div>
 
                 <div className="p-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="mb-2 block text-sm font-medium text-[var(--ath-text)]">
                         Google Gemini API Key
                     </label>
-                    <p className="text-xs text-gray-500 mb-4 leading-relaxed">
+                    <p className="mb-4 text-xs leading-relaxed text-[var(--ath-muted)]">
                         Enter your Gemini API key to enable AI features like Socratic tutoring, dynamic scenario generation, and image generation. This key is saved locally in your browser.
                     </p>
 
@@ -50,30 +50,30 @@ export default function SettingsModal({ isOpen, onClose }) {
                             value={apiKey}
                             onChange={(e) => setApiKey(e.target.value)}
                             placeholder="AIzaSy..."
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-hidden transition-all text-sm font-mono"
+                            className="w-full rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-2 font-mono text-sm text-[var(--ath-text)] outline-hidden transition-all focus:border-[var(--ath-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--ath-primary)_30%,transparent)]"
                         />
                         <button
                             type="button"
                             onClick={() => setShowKey(!showKey)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--ath-secondary)] hover:text-[var(--ath-text)]"
                         >
                             {showKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
                     </div>
                 </div>
 
-                <div className="px-6 py-4 bg-gray-50 flex items-center justify-end gap-3">
+                <div className="flex items-center justify-end gap-3 bg-[var(--ath-panel-muted)] px-6 py-4">
                     <button
                         type="button"
                         onClick={onClose}
-                        className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                        className="px-4 py-2 text-sm font-medium text-[var(--ath-muted)] transition-colors hover:text-[var(--ath-text)]"
                     >
                         Cancel
                     </button>
                     <button
                         type="button"
                         onClick={handleSave}
-                        className="px-4 py-2 text-sm font-medium bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2"
+                        className="flex items-center gap-2 rounded-lg bg-[var(--ath-primary)] px-4 py-2 text-sm font-medium text-[var(--ath-background)] transition-colors hover:brightness-105"
                     >
                         {saved ? (
                             <>
