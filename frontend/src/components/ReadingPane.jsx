@@ -7,7 +7,6 @@ const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
 const PracticeBlock = lazy(() => import('./PracticeBlock'))
 const KnowledgeCheck = lazy(() => import('./KnowledgeCheck'))
 const AffectiveReaction = lazy(() => import('./AffectiveReaction'))
-const KnowledgeGraph = lazy(() => import('./KnowledgeGraph'))
 const PerusallLayer = lazy(() => import('./PerusallLayer'))
 
 function PanelFallback({ label }) {
@@ -69,7 +68,6 @@ export default function ReadingPane({
 }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
-    const [showGraph, setShowGraph] = useState(false)
 
     const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null
 
@@ -150,26 +148,8 @@ export default function ReadingPane({
                         >
                             {isBookmarked ? 'Saved for Review' : 'Save for Later'}
                         </button>
-                        <button
-                            onClick={() => setShowGraph(!showGraph)}
-                            className="editorial-button-secondary px-4 py-2 text-sm"
-                        >
-                            {showGraph ? 'Hide Brain Network' : 'View Brain Network'}
-                        </button>
                     </div>
                 </div>
-
-                {showGraph && (
-                    <div className="mt-8 animate-fade-in origin-top">
-                        <Suspense fallback={<PanelFallback label="Loading Brain Network..." />}>
-                            <KnowledgeGraph
-                                course={meta?.course || 'inst-design'}
-                                currentSectionId={sectionId}
-                                currentConceptIds={meta?.concept_ids || []}
-                            />
-                        </Suspense>
-                    </div>
-                )}
 
                 {meta?.learning_objectives?.length > 0 && !contentHasLearningTargets && (
                     <div className="mt-8 rounded-[1.8rem] border-l-4 border-[var(--ath-primary)] bg-[linear-gradient(90deg,rgba(200,226,236,0.42),rgba(255,255,255,0.72))] p-6 shadow-sm">
