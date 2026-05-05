@@ -502,7 +502,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 {activeTab === 'ask' && (
                     <div className="space-y-4">
                         <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4 text-sm leading-6 text-[var(--ath-muted)]">
-                            Sustained questions live in the floating tutor chat so the conversation persists across sections and surfaces. The rail keeps short, structured supports (Explain, Reframe, Practice).
+                            Short supports stay here. Longer questions move to chat.
                         </div>
                         <div className="flex gap-2">
                             <input
@@ -551,7 +551,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                             </button>
                         </div>
                         <p className="text-xs text-[var(--ath-secondary)]">
-                            One conversation surface, one history. The floating chat icon at the bottom-right opens the same thread.
+                            Same thread, same history.
                         </p>
                     </div>
                 )}

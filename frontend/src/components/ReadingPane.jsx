@@ -95,9 +95,9 @@ export default function ReadingPane({
                     </div>
 
                     <p className="editorial-kicker">Reading Surface</p>
-                    <h2 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Warming the Learning Engine</h2>
+                    <h2 className="mt-3 text-3xl font-semibold text-[var(--ath-text)]">Opening the Textbook</h2>
                     <p className="mx-auto mt-3 max-w-md text-[15px] leading-7 text-[var(--ath-muted)]">
-                        Since this is your first visit in a while, the backend is spinning up. This usually takes about 30 to 60 seconds.
+                        First load can take a moment.
                     </p>
 
                     <div className="mx-auto mt-8 w-64 space-y-2">
@@ -206,7 +206,7 @@ export default function ReadingPane({
                             <p className="editorial-kicker">Work Product Pathway</p>
                             <h2 className="mt-2 text-xl font-semibold tracking-tight text-[var(--ath-text)]">{workProduct}</h2>
                             <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
-                                This section is organized as a checkpoint toward a concrete deliverable: read, annotate evidence, draft, judge AI feedback, revise, and log the trace.
+                                Read, annotate, draft, judge AI, revise.
                             </p>
                         </div>
                         <div className={`rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em] ${isCompleted
@@ -234,8 +234,8 @@ export default function ReadingPane({
                                 {canResumeRecent
                                     ? `Last visited ${recentSection.chapter}.${recentSection.section} ${recentSection.title || 'previous section'} on ${formatRecentTimestamp(recentSection.updatedAt)}.`
                                     : isCompleted
-                                        ? 'This checkpoint is complete. Use the next section when you are ready to extend the work product.'
-                                        : 'Resume here by checking the pathway, annotating one evidence claim, judging AI feedback, and revising the Work Product Studio trace.'}
+                                        ? 'Complete. Ready for the next move.'
+                                        : 'Next move: evidence, judgment, revision.'}
                             </p>
                         </div>
                         {canResumeRecent ? (
