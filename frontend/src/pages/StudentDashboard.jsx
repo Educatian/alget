@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import API_BASE from '../lib/apiConfig'
 import { supabase } from '../lib/supabase'
 import { getResearchDashboardSnapshot, getEvaluationStatus } from '../lib/researchService'
+import { ALL_COURSE_IDS } from '../lib/courseCatalog'
 import CohortLiveMap from '../components/CohortLiveMap'
 import KindredReaders from '../components/KindredReaders'
 
@@ -42,9 +43,8 @@ export default function StudentDashboard({ user }) {
                     setSnapshot(getResearchDashboardSnapshot())
                 }
 
-                const courses = ['bio-inspired', 'dynamics', 'statics', 'inst-design', 'ai-ethics']
                 const dueChecks = []
-                courses.forEach((course) => {
+                ALL_COURSE_IDS.forEach((course) => {
                     const status = getEvaluationStatus(course)
                     if (status?.pending?.retention) {
                         dueChecks.push({ course, dueAt: status.byPhase.post?.retention_due_at })
