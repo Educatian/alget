@@ -598,6 +598,114 @@ h6,
   box-shadow: 0 18px 40px rgba(16, 33, 42, 0.22);
 }
 
+.reading-narrative {
+  max-width: min(82ch, 100%);
+  margin-right: auto;
+  margin-left: auto;
+  color: var(--ath-text);
+  font-size: 1.05rem;
+}
+
+.reading-narrative .markdown-content-wrapper {
+  display: flow-root;
+}
+
+.reading-narrative h1,
+.reading-narrative h2,
+.reading-narrative h3,
+.reading-narrative h4 {
+  clear: both;
+  color: var(--ath-text);
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: 0;
+  scroll-margin-top: 8rem;
+}
+
+.reading-narrative h1 {
+  margin: 0 0 1.65rem;
+  font-size: clamp(2.15rem, 4vw, 3.6rem);
+}
+
+.reading-narrative h2 {
+  margin: 3.2rem 0 1.05rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--ath-line);
+  font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+}
+
+.reading-narrative h3 {
+  margin: 2.25rem 0 0.75rem;
+  font-size: clamp(1.28rem, 2vw, 1.55rem);
+}
+
+.reading-narrative h4 {
+  margin: 1.8rem 0 0.6rem;
+  font-family: 'IBM Plex Sans', 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ath-secondary);
+}
+
+.reading-narrative p {
+  margin: 0.95rem 0;
+  color: var(--ath-text);
+  font-size: 1.04rem;
+  line-height: 1.9;
+}
+
+.reading-narrative ul,
+.reading-narrative ol {
+  margin: 1.05rem 0 1.45rem;
+  padding-left: 1.35rem;
+}
+
+.reading-narrative li {
+  margin: 0.45rem 0;
+  padding-left: 0.15rem;
+  line-height: 1.75;
+}
+
+.reading-narrative strong {
+  color: var(--ath-primary-deep);
+  font-weight: 750;
+}
+
+.reading-narrative img {
+  display: block;
+  width: min(100%, 58rem);
+  max-height: 34rem;
+  object-fit: cover;
+  margin: 1.4rem auto 2.25rem;
+  border: 1px solid var(--ath-line);
+  border-radius: 1.5rem;
+  box-shadow: var(--ath-shadow-soft);
+}
+
+.reading-narrative hr {
+  margin: 3rem 0;
+  border: 0;
+  border-top: 1px solid var(--ath-line);
+}
+
+@media (max-width: 720px) {
+  .reading-narrative {
+    font-size: 1rem;
+  }
+
+  .reading-narrative h2 {
+    margin-top: 2.35rem;
+  }
+
+  .reading-narrative p {
+    font-size: 1rem;
+    line-height: 1.82;
+  }
+}
+
 /* Carbon-inspired theme finishing pass.
    These overrides pull legacy hard-coded white/slate surfaces into the
    light/night token system without rewriting every Tailwind utility. */

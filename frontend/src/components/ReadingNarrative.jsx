@@ -110,7 +110,8 @@ export default function ReadingNarrative({
 }) {
     const [activeHeading, setActiveHeading] = useState('')
     const startTimeRef = useRef(0)
-    const narrativeSource = normalizeMarkdownSource(content || sectionDescription || '*No content available*')
+    const normalizedSource = normalizeMarkdownSource(content || sectionDescription || '*No content available*')
+    const narrativeSource = normalizedSource.replace(/^#\s+.+(?:\n+|$)/, '')
     const usesMath = /\$[^$\n]+\$|\\\(|\\\[/.test(narrativeSource)
     const usesRawHtml = /<([a-z][a-z0-9-]*)(\s|>)/i.test(narrativeSource)
 
@@ -291,7 +292,7 @@ export default function ReadingNarrative({
 
     return (
         <article
-            className="prose prose-lg mb-8 max-w-none prose-headings:text-gray-900 prose-headings:font-semibold prose-p:text-gray-600 prose-p:leading-relaxed prose-strong:text-[#9E1B32] prose-strong:font-semibold prose-em:text-gray-700 prose-ul:text-gray-600 prose-li:my-1 prose-blockquote:border-l-[#9E1B32] prose-blockquote:bg-gray-50 prose-blockquote:px-4 prose-blockquote:py-2 prose-blockquote:rounded-r-lg prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-table:border-collapse prose-th:border prose-th:border-gray-300 prose-th:bg-gray-100 prose-th:px-3 prose-th:py-2 prose-td:border prose-td:border-gray-300 prose-td:px-3 prose-td:py-2"
+            className="prose reading-narrative mb-8"
             style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px' }}
         >
             <TextAnnotator

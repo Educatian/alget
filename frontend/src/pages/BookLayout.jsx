@@ -1,7 +1,7 @@
 import { Suspense, lazy, useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import * as Popover from '@radix-ui/react-popover'
-import { ChevronLeft, ChevronRight, Settings } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Network, Settings } from 'lucide-react'
 import BookToc from '../components/BookToc'
 import ChapterPassport from '../components/ChapterPassport'
 import RetentionBanner from '../components/RetentionBanner'
@@ -20,6 +20,7 @@ const ChatWidget = lazy(() => import('../components/ChatWidget'))
 const HighlightableContent = lazy(() => import('../components/HighlightableContent'))
 const SettingsModal = lazy(() => import('../components/SettingsModal'))
 const SocialPresencePanel = lazy(() => import('../components/SocialPresencePanel'))
+const KnowledgeGraph = lazy(() => import('../components/KnowledgeGraph'))
 
 function formatCourseLabel(course) {
     return course
@@ -518,6 +519,37 @@ export default function BookLayout({ user, onLogout }) {
                             <Settings className="h-4 w-4" />
                         </button>
 
+                        <Popover.Root>
+                            <Popover.Trigger asChild>
+                                <button
+                                    type="button"
+                                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
+                                    title="Brain Network"
+                                    aria-label="Open chapter brain network"
+                                >
+                                    <Network className="h-4 w-4" />
+                                </button>
+                            </Popover.Trigger>
+                            <Popover.Portal>
+                                <Popover.Content
+                                    side="bottom"
+                                    align="end"
+                                    sideOffset={12}
+                                    className="z-[90] w-[min(48rem,calc(100vw-2rem))] max-h-[calc(100vh-6rem)] overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 p-0 shadow-[0_24px_80px_rgba(2,6,23,0.45)]"
+                                >
+                                    <div className="max-h-[calc(100vh-6rem)] overflow-y-auto">
+                                        <Suspense fallback={<div className="p-6 text-sm text-slate-400">Loading brain network...</div>}>
+                                            <KnowledgeGraph
+                                                course={course}
+                                                currentSectionId={sectionPath}
+                                                currentConceptIds={sectionData?.meta?.concept_ids || []}
+                                            />
+                                        </Suspense>
+                                    </div>
+                                </Popover.Content>
+                            </Popover.Portal>
+                        </Popover.Root>
+
                         <button
                             onClick={() => navigate('/dashboard')}
                             className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"
@@ -651,17 +683,11 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => handleNavigate(previousSection.chapter, previousSection.section, 'backward')}
-                            className="pointer-events-auto absolute left-3 top-1/2 z-30 hidden -translate-y-1/2 items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.92)] px-3 py-3 text-[var(--ath-muted)] shadow-lg shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:-translate-x-1 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] lg:flex lg:opacity-0 lg:group-hover/nav:opacity-100"
+                            className="pointer-events-auto absolute left-4 top-1/2 z-30 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.9)] text-[var(--ath-muted)] shadow-md shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:-translate-x-0.5 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] 2xl:flex 2xl:opacity-0 2xl:group-hover/nav:opacity-100"
                             aria-label={`Go to previous section: ${previousSection.title}`}
                             title={`${previousSection.chapter}.${previousSection.section} ${previousSection.title}`}
                         >
                             <ChevronLeft className="h-5 w-5 shrink-0" />
-                            <span className="hidden max-w-[10rem] text-left lg:block">
-                                <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--ath-secondary)]">Previous</span>
-                                <span className="block text-sm font-semibold leading-tight text-[var(--ath-muted)]">
-                                    {previousSection.chapter}.{previousSection.section} {previousSection.title}
-                                </span>
-                            </span>
                         </button>
                     )}
 
@@ -669,25 +695,23 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => handleNavigate(nextSection.chapter, nextSection.section, 'forward')}
-                            className="pointer-events-auto absolute right-3 top-1/2 z-30 hidden -translate-y-1/2 items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.92)] px-3 py-3 text-[var(--ath-muted)] shadow-lg shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:translate-x-1 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] lg:flex lg:opacity-0 lg:group-hover/nav:opacity-100"
+                            className="pointer-events-auto absolute right-4 top-1/2 z-30 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.9)] text-[var(--ath-muted)] shadow-md shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:translate-x-0.5 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] 2xl:flex 2xl:opacity-0 2xl:group-hover/nav:opacity-100"
                             aria-label={`Go to next section: ${nextSection.title}`}
                             title={`${nextSection.chapter}.${nextSection.section} ${nextSection.title}`}
                         >
-                            <span className="hidden max-w-[10rem] text-right lg:block">
-                                <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--ath-secondary)]">Next</span>
-                                <span className="block text-sm font-semibold leading-tight text-[var(--ath-muted)]">
-                                    {nextSection.chapter}.{nextSection.section} {nextSection.title}
-                                </span>
-                            </span>
                             <ChevronRight className="h-5 w-5 shrink-0" />
                         </button>
                     )}
 
-                    <div className="pointer-events-none absolute bottom-4 left-1/2 z-20 hidden -translate-x-1/2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] px-4 py-2 text-xs font-semibold text-[var(--ath-secondary)] shadow-md backdrop-blur-xl lg:block">
+                    <div
+                        className="pointer-events-none absolute bottom-4 left-1/2 z-20 hidden -translate-x-1/2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] px-3 py-2 text-xs font-semibold text-[var(--ath-secondary)] opacity-0 shadow-md backdrop-blur-xl transition-opacity 2xl:block 2xl:group-hover/nav:opacity-100"
+                        aria-hidden="true"
+                    >
+                        <ChevronLeft className="mr-1 inline h-3.5 w-3.5 align-[-2px]" />
                         <span className="text-[var(--ath-text)]">{sectionPosition}</span>
                         <span className="mx-1 text-[var(--ath-line-strong)]">/</span>
                         <span>{flatSections.length || 1}</span>
-                        <span className="ml-2 uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Arrow Keys Enabled</span>
+                        <ChevronRight className="ml-1 inline h-3.5 w-3.5 align-[-2px]" />
                     </div>
                 </div>
 
