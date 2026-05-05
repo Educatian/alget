@@ -75,7 +75,7 @@ export default function KnowledgeCheck({
         const nextResults = [...results, { isCorrect, conceptId: currentQuestion.concept_id, type: 'mcq' }]
         setResults(nextResults)
 
-        updateMastery({ [currentQuestion.concept_id]: 1.0 }, isCorrect).catch(console.error)
+        updateMastery({ [currentQuestion.concept_id]: 1.0 }, isCorrect, { sectionId }).catch(console.error)
         recordAdaptiveSignal(sectionId || sectionTitle || 'knowledge-check', 'confidence_report', {
             conceptId: currentQuestion.concept_id,
             value: confidence
@@ -122,9 +122,9 @@ export default function KnowledgeCheck({
             setResults([...results, { isCorrect: data.is_passing, conceptId: currentQuestion.concept_id, type: 'summary' }])
 
             if (data.sub_scores && Object.keys(data.sub_scores).length > 0) {
-                updateMastery(data.sub_scores, data.is_passing).catch(console.error)
+                updateMastery(data.sub_scores, data.is_passing, { sectionId }).catch(console.error)
             } else {
-                updateMastery({ [currentQuestion.concept_id]: 1.0 }, data.is_passing).catch(console.error)
+                updateMastery({ [currentQuestion.concept_id]: 1.0 }, data.is_passing, { sectionId }).catch(console.error)
             }
             recordAdaptiveSignal(sectionId || sectionTitle || 'knowledge-check', 'confidence_report', {
                 conceptId: currentQuestion.concept_id,

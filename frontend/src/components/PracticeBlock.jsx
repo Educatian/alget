@@ -112,7 +112,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                 await updateMastery(
                     { [currentProblem.concept_id]: 1.0 },
                     result.is_correct,
-                    { hintUsed: hintCount > 0 }
+                    { hintUsed: hintCount > 0, sectionId }
                 )
                 updateLearnerModel({
                     sectionId,
