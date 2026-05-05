@@ -6,31 +6,31 @@ import GenerativeIllustration from '../components/GenerativeIllustration'
 import ThemeToggle from '../components/ThemeToggle'
 
 const platformSignals = [
-    { value: 'Adaptive', label: 'instructional pathway orchestration' },
-    { value: 'Live', label: 'social presence and peer momentum' },
-    { value: 'Measured', label: 'open learner model analytics' }
+    { value: 'Adaptive', label: 'pathway-aware reading' },
+    { value: 'Live', label: 'quiet peer signals' },
+    { value: 'Measured', label: 'visible learner models' }
 ]
 
 const featureCards = [
     {
         icon: Brain,
         title: 'Adaptive tutoring surfaces',
-        description: 'Every reading flow, support rail, and practice action can shift based on mastery, friction, and confidence signals.'
+        description: 'Reading, support, and practice respond to mastery and friction signals.'
     },
     {
         icon: Microscope,
         title: 'Interactive concept work',
-        description: 'Learners move between explanation, simulation, generation, and knowledge checks without leaving the textbook context.'
+        description: 'Explanation, simulation, generation, and checks stay in the textbook.'
     },
     {
         icon: Layers3,
         title: 'Research-grade instrumentation',
-        description: 'The platform captures learning telemetry, progression, help-seeking, and cohort-level dynamics for researcher review.'
+        description: 'Progress, support, and cohort patterns remain inspectable.'
     },
     {
         icon: ShieldCheck,
         title: 'Institution-ready control',
-        description: 'Server-side access validation, cohort modes, and cloud-synced progress support more reliable deployment workflows.'
+        description: 'Cohort access, synced progress, and deployment controls are built in.'
     }
 ]
 
@@ -38,17 +38,17 @@ const workflowSteps = [
     {
         step: '01',
         title: 'Enter the right learning mode',
-        description: 'Unlock engineering or education pathways with server-validated access, then land in the modules that fit the cohort.'
+        description: 'Engineering and education pathways open by cohort.'
     },
     {
         step: '02',
         title: 'Read, ask, and practice in one place',
-        description: 'Text, diagrams, quick checks, adaptive help, and lab-like generation stay connected to the current section context.'
+        description: 'Text, diagrams, checks, help, and generation stay with the section.'
     },
     {
         step: '03',
         title: 'Review the learner model',
-        description: 'Researchers and instructors can see mastery, completion momentum, social activity, and emerging points of struggle.'
+        description: 'Mastery, momentum, and friction become visible.'
     }
 ]
 
@@ -126,7 +126,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         </h1>
 
                         <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--ath-muted)]">
-                            ALGET combines adaptive reading, AI tutoring, social presence, and learner-model analytics in one institutional product surface for engineering and education pathways.
+                            Adaptive reading, tutor support, peer signals, and learner-model visibility for university pathways.
                         </p>
 
                         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -171,7 +171,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                             <div className="mb-4 flex items-center justify-between rounded-[1.4rem] border border-white/10 bg-white/6 px-4 py-3">
                                 <div>
                                     <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/55">Active surface</p>
-                                    <p className="mt-1 text-sm font-semibold text-white">Adaptive textbook plus social presence</p>
+                                    <p className="mt-1 text-sm font-semibold text-white">Adaptive textbook, quietly social</p>
                                 </div>
                                 <div className="rounded-full bg-[rgba(200,226,236,0.15)] px-3 py-1 text-xs font-semibold text-[var(--ath-primary-soft)]">
                                     Live
@@ -183,11 +183,11 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                             <div className="mt-4 grid gap-3 sm:grid-cols-2">
                                 <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
                                     <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">Learning rail</p>
-                                    <p className="mt-2 text-sm leading-6 text-white/82">Explain, reframe, practice, and ask in the same section context.</p>
+                                    <p className="mt-2 text-sm leading-6 text-white/82">Explain, reframe, practice, ask.</p>
                                 </div>
                                 <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
                                     <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">Research mode</p>
-                                    <p className="mt-2 text-sm leading-6 text-white/82">Trace mastery, progression, help-seeking, and cohort activity from one dashboard.</p>
+                                    <p className="mt-2 text-sm leading-6 text-white/82">Mastery, progress, support, cohort activity.</p>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +199,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         <div className="max-w-2xl">
                             <p className="editorial-kicker">Core product capabilities</p>
                             <h2 className="editorial-title mt-3 text-3xl md:text-4xl">
-                                Designed for institutions that need rigor, usability, and visibility
+                                Institutional by design
                             </h2>
                         </div>
 
@@ -228,10 +228,10 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         <div>
                             <p className="editorial-kicker">Workflow</p>
                             <h2 className="editorial-title mt-3 text-3xl md:text-4xl">
-                                A textbook that behaves more like a learning operating system
+                                A textbook with memory
                             </h2>
                             <p className="mt-4 max-w-xl text-[15px] leading-7 text-[var(--ath-muted)]">
-                                The product is designed to support students, instructors, and researchers within a single coherent interface instead of splitting them into disconnected tools.
+                                One surface for reading, support, evidence, and review.
                             </p>
                         </div>
 
@@ -258,7 +258,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         <GraduationCap className="h-4 w-4" />
                         <span>Sponsored by the Office of Sponsored Programs (OSP) at The University of Alabama</span>
                     </div>
-                    <span>Adaptive reading, generative learning, and learner-model visibility for pathway-based course experiences</span>
+                    <span>Adaptive reading, generative learning, learner-model visibility</span>
                 </div>
             </footer>
 

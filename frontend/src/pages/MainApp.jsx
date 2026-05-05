@@ -145,15 +145,15 @@ const educationCourses = [
 const capabilityCards = [
     {
         title: 'Adaptive support rail',
-        description: 'Open explain, reframe, practice, and ask flows without losing section context.'
+        description: 'Explain, reframe, practice, ask.'
     },
     {
         title: 'Cloud-synced progression',
-        description: 'Completion state can persist across devices instead of staying trapped on one browser.'
+        description: 'Progress follows the learner.'
     },
     {
         title: 'Researcher analytics',
-        description: 'Mastery, social momentum, and help-seeking signals can be reviewed in one dashboard.'
+        description: 'Mastery, momentum, and support signals.'
     }
 ]
 
@@ -389,7 +389,7 @@ export default function MainApp({ user, onLogout }) {
                                         {unlockedMode === 'engineering' ? 'Engineering Pathways' : 'Education Pathways'}
                                     </h2>
                                     <p className="mt-3 max-w-3xl text-[15px] leading-7 text-[var(--ath-muted)]">
-                                        Choose a pathway to open diagnostics, reading, practice, generation, and learner-model tracking in one connected flow.
+                                        Diagnostics, reading, practice, generation, and progress in one path.
                                     </p>
                                 </div>
                                 <div className="flex flex-wrap items-center gap-3">
@@ -420,7 +420,7 @@ export default function MainApp({ user, onLogout }) {
                                         </div>
                                         <h3 className="mt-4 text-4xl font-semibold tracking-tight text-white">Generative Bio-Design Lab</h3>
                                         <p className="mt-3 text-[15px] leading-7 text-white/75">
-                                            Open a studio-like surface for bio-inspired ideation, engineering translation, simulation generation, and concept exploration.
+                                            Bio-inspired ideation, engineering translation, simulations, concepts.
                                         </p>
                                     </div>
                                     <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/15 bg-white/10 text-[var(--ath-primary-soft)] shadow-sm transition-transform group-hover:translate-x-1">
@@ -445,7 +445,7 @@ export default function MainApp({ user, onLogout }) {
                                                     Continue where you left off
                                                 </h3>
                                                 <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ath-muted)]">
-                                                    {visibleRecentSection.description || 'Jump back into your last reading surface, with help tools and practice ready in the same place.'}
+                                                    {visibleRecentSection.description || 'Return to the last section with support and practice ready.'}
                                                 </p>
                                             </div>
                                             <div className="rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
@@ -622,7 +622,7 @@ export default function MainApp({ user, onLogout }) {
                         <section className="editorial-surface mt-10 p-8">
                             <div className="max-w-2xl">
                                 <p className="editorial-kicker">Platform capabilities</p>
-                                <h3 className="editorial-title mt-3 text-3xl">What becomes available inside each pathway</h3>
+                                <h3 className="editorial-title mt-3 text-3xl">Inside each pathway</h3>
                             </div>
                             <div className="mt-8 grid gap-6 md:grid-cols-3">
                                 {capabilityCards.map((card) => (
@@ -640,7 +640,7 @@ export default function MainApp({ user, onLogout }) {
             <footer className="mt-auto border-t border-[var(--ath-line)] bg-[rgba(255,255,255,0.52)]">
                 <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm font-medium text-[var(--ath-muted)] lg:flex-row lg:items-center lg:justify-between lg:px-8">
                     <span>Sponsored by the Office of Sponsored Programs (OSP) at The University of Alabama</span>
-                    <span>Adaptive reading, generative learning, and learner-model visibility across pathway-based course experiences</span>
+                    <span>Adaptive reading, generative learning, learner-model visibility</span>
                 </div>
             </footer>
         </div>

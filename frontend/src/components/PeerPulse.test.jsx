@@ -42,7 +42,7 @@ describe('PeerPulse', () => {
 
         expect(screen.getByText('Peer Pulse')).toBeInTheDocument()
         expect(screen.getByText('1')).toBeInTheDocument()
-        expect(screen.getByText(/3 reader signal near "Worked Example"/)).toBeInTheDocument()
+        expect(screen.getByText(/Worked Example \(3\)/)).toBeInTheDocument()
         expect(screen.getByText(/Asked for an example \(3\)/)).toBeInTheDocument()
         expect(screen.getByText('4 completions today')).toBeInTheDocument()
 

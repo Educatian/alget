@@ -34,11 +34,10 @@ export default function PeerPulse({
                         <p className="editorial-kicker">Peer Pulse</p>
                     </div>
                     <h2 className="mt-2 text-xl font-semibold tracking-tight text-[var(--ath-text)]">
-                        What readers are noticing here
+                        Class signals
                     </h2>
                     <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--ath-muted)]">
-                        A lightweight class signal, not a chat room. Use it to see where other readers pause,
-                        request support, or finish the section.
+                        Anonymous reading patterns from this section.
                     </p>
                 </div>
 
@@ -66,7 +65,7 @@ export default function PeerPulse({
                 <div className="rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
                     <div className="flex items-center gap-2 text-[var(--ath-secondary)]">
                         <Users className="h-4 w-4" />
-                        <span className="editorial-label">Reading Now</span>
+                        <span className="editorial-label">Here Now</span>
                     </div>
                     <p className="mt-2 text-2xl font-semibold text-[var(--ath-text)]">{livePeerCount}</p>
                     <p className="mt-1 text-xs leading-5 text-[var(--ath-muted)]">
@@ -75,40 +74,40 @@ export default function PeerPulse({
                             : sameConceptPeers.length > 0
                                 ? `${countLabel(sameConceptPeers.length, 'reader')} on this concept`
                                 : canReactToPassage
-                                    ? `You are reading "${activeHeading}"`
-                                    : 'Start reading to activate passage signals'}
+                                    ? `Current passage: ${activeHeading}`
+                                    : 'Signals appear as reading starts'}
                     </p>
                 </div>
 
                 <div className="rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
                     <div className="flex items-center gap-2 text-[var(--ath-secondary)]">
                         <HelpCircle className="h-4 w-4" />
-                        <span className="editorial-label">Common Pause</span>
+                        <span className="editorial-label">Pause Point</span>
                     </div>
                     <p className="mt-2 text-sm font-semibold leading-6 text-[var(--ath-text)]">
                         {topConfusion
-                            ? `${topConfusion.count} reader signal near "${topConfusion.heading}"`
-                            : 'No confusion cluster yet'}
+                            ? `${topConfusion.heading} (${topConfusion.count})`
+                            : 'No pattern yet'}
                     </p>
                     <p className="mt-1 text-xs leading-5 text-[var(--ath-muted)]">
-                        Signals come from "Need example" and "Stuck too" reactions.
+                        Where readers tend to slow down.
                     </p>
                 </div>
 
                 <div className="rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
                     <div className="flex items-center gap-2 text-[var(--ath-secondary)]">
                         <Flame className="h-4 w-4" />
-                        <span className="editorial-label">Top Support</span>
+                        <span className="editorial-label">Helpful Next</span>
                     </div>
                     <p className="mt-2 text-sm font-semibold leading-6 text-[var(--ath-text)]">
                         {topReaction
                             ? `${topReaction.label} (${topReaction.count})`
-                            : 'No support pattern yet'}
+                            : 'No pattern yet'}
                     </p>
                     <p className="mt-1 text-xs leading-5 text-[var(--ath-muted)]">
                         {signalSummary.helpOpensToday > 0
-                            ? `${countLabel(signalSummary.helpOpensToday, 'reader')} opened BigAL support in this section today`
-                            : 'Support choices will appear as readers interact'}
+                            ? `${countLabel(signalSummary.helpOpensToday, 'support open')} today`
+                            : 'Support trends appear over time'}
                     </p>
                 </div>
             </div>

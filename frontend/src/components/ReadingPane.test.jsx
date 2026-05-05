@@ -95,7 +95,7 @@ describe('ReadingPane continuity cues', () => {
             />,
         )
 
-        expect(screen.getByText(/annotating one evidence claim, judging AI feedback/i)).toBeInTheDocument()
+        expect(screen.getByText('Next move: evidence, judgment, revision.')).toBeInTheDocument()
         expect(screen.getByText('Next: judge AI + revise')).toBeInTheDocument()
     })
 
