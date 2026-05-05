@@ -11,6 +11,19 @@ import '../index.css'
 
 const engineeringCourses = [
     {
+        id: 'statics',
+        title: 'Engineering Statics',
+        icon: <StaticsIllustration />,
+        description: 'Core mechanics pathway for equilibrium, free-body diagrams, moments, friction, trusses, centroids, and distributed loads.',
+        topics: ['Equilibrium', 'FBDs', 'Moments', 'Trusses'],
+        chapters: 6,
+        sections: 14,
+        duration: '15 weeks',
+        level: 'Core Requirement',
+        gradient: 'from-[#38424d] to-[#0d2730]',
+        badge: 'Core'
+    },
+    {
         id: 'dynamics',
         title: 'ME 201: Engineering Dynamics',
         icon: <StaticsIllustration />,
@@ -294,8 +307,9 @@ export default function MainApp({ user, onLogout }) {
 
                             <form onSubmit={handleUnlock} className="mt-8 space-y-5">
                                 <div>
-                                    <label className="editorial-label mb-2 block">Select track</label>
+                                    <label htmlFor="pathway-track" className="editorial-label mb-2 block">Select track</label>
                                     <select
+                                        id="pathway-track"
                                         value={selectedMode}
                                         onChange={(event) => setSelectedMode(event.target.value)}
                                         className="editorial-input"
@@ -306,8 +320,9 @@ export default function MainApp({ user, onLogout }) {
                                 </div>
 
                                 <div>
-                                    <label className="editorial-label mb-2 block">Passcode</label>
+                                    <label htmlFor="pathway-passcode" className="editorial-label mb-2 block">Passcode</label>
                                     <input
+                                        id="pathway-passcode"
                                         type="password"
                                         value={passcode}
                                         onChange={(event) => setPasscode(event.target.value)}

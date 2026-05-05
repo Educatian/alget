@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getEvaluationStatus } from '../lib/researchService'
 import { logEvent } from '../lib/loggingService'
+import { ALL_COURSE_IDS } from '../lib/courseCatalog'
 
 /**
  * RetentionBanner — surfaces a spaced-retrieval check when a course's
@@ -18,7 +19,7 @@ export default function RetentionBanner({ course = null }) {
     const [dismissed, setDismissed] = useState(false)
 
     const dueCourses = useMemo(() => {
-        const courses = course ? [course] : ['bio-inspired', 'dynamics', 'statics', 'inst-design', 'ai-ethics']
+        const courses = course ? [course] : ALL_COURSE_IDS
         return courses
             .map((c) => {
                 const status = getEvaluationStatus(c)
