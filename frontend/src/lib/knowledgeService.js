@@ -3,6 +3,7 @@ import { supabase } from './supabase';
 import { buildLearnerProfileSnapshot, startInterventionTrace } from './researchService';
 
 const ADAPTIVE_SIGNAL_KEY = 'alget_adaptive_signals_v1';
+const LOCAL_MASTERY_KEY = 'alget_local_mastery_v1';
 const ADAPTIVE_SIGNAL_WINDOW_MS = 1000 * 60 * 90;
 const MAX_ADAPTIVE_SIGNALS = 250;
 
@@ -59,6 +60,105 @@ function writeAdaptiveSignals(signals) {
     } catch (error) {
         console.warn('Could not persist adaptive signals:', error);
     }
+}
+
+function readLocalMasteryRecords() {
+    if (typeof window === 'undefined') return {};
+
+    try {
+        const raw = window.localStorage.getItem(LOCAL_MASTERY_KEY);
+        const parsed = raw ? JSON.parse(raw) : {};
+        return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+    } catch (error) {
+        console.warn('Could not read local mastery:', error);
+        return {};
+    }
+}
+
+function writeLocalMasteryRecords(records) {
+    if (typeof window === 'undefined') return;
+
+    try {
+        window.localStorage.setItem(LOCAL_MASTERY_KEY, JSON.stringify(records));
+    } catch (error) {
+        console.warn('Could not persist local mastery:', error);
+    }
+}
+
+export function getLocalMasteryMap(conceptIds = null) {
+    const records = readLocalMasteryRecords();
+    const allowed = Array.isArray(conceptIds) && conceptIds.length > 0 ? new Set(conceptIds) : null;
+
+    return Object.fromEntries(
+        Object.entries(records)
+            .filter(([conceptId]) => !allowed || allowed.has(conceptId))
+            .map(([conceptId, record]) => [
+                conceptId,
+                Number(record?.p_known ?? record?.mastery_score ?? 0.1)
+            ])
+    );
+}
+
+export function persistLocalMasteryStates(conceptUpdates, options = {}) {
+    const updates = Object.entries(conceptUpdates || {})
+        .filter(([conceptId, pKnown]) => conceptId && Number.isFinite(Number(pKnown)));
+
+    if (updates.length === 0) return {};
+
+    const now = new Date().toISOString();
+    const records = readLocalMasteryRecords();
+
+    updates.forEach(([conceptId, pKnown]) => {
+        const previous = records[conceptId] || {};
+        const normalizedPKnown = Math.max(0, Math.min(1, Number(pKnown)));
+        records[conceptId] = {
+            ...previous,
+            concept_id: conceptId,
+            p_known: normalizedPKnown,
+            mastery_score: normalizedPKnown,
+            course_id: options.courseId || previous.course_id || options.sectionId?.split('/')?.[0] || null,
+            section_id: options.sectionId || previous.section_id || null,
+            source: options.source || previous.source || 'mastery_update',
+            updated_at: now
+        };
+    });
+
+    writeLocalMasteryRecords(records);
+    return getLocalMasteryMap(updates.map(([conceptId]) => conceptId));
+}
+
+export async function recordCalibrationMastery(conceptUpdates, options = {}) {
+    persistLocalMasteryStates(conceptUpdates, {
+        ...options,
+        source: options.source || 'diagnostic_calibration'
+    });
+
+    try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session?.user?.id) return conceptUpdates;
+
+        const recordsToUpsert = Object.entries(conceptUpdates || {}).map(([conceptId, p_known]) => ({
+            user_id: session.user.id,
+            concept_id: conceptId,
+            p_known,
+            mastery_score: p_known,
+            updated_at: new Date().toISOString()
+        }));
+
+        if (recordsToUpsert.length === 0) return conceptUpdates;
+
+        const { error } = await supabase
+            .from('mastery')
+            .upsert(recordsToUpsert, { onConflict: 'user_id,concept_id' });
+
+        if (error) {
+            console.warn('[Mastery] Diagnostic Supabase update failed; local mastery was kept:', error);
+        }
+    } catch (error) {
+        console.warn('[Mastery] Diagnostic calibration saved locally only:', error);
+    }
+
+    return conceptUpdates;
 }
 
 export function recordAdaptiveSignal(sectionId, type, payload = {}) {
@@ -257,30 +357,34 @@ export const gradeSummary = async (question, studentAnswer, rubric) => {
  */
 export const updateMastery = async (qMatrix, isCorrect, options = {}) => {
     try {
-        const { hintUsed = false } = options
+        const { hintUsed = false, sectionId = null, courseId = null } = options
         const { data: { session } } = await supabase.auth.getSession();
         let userId = session?.user?.id;
 
-        if (!userId) {
-            console.warn('No active user session for mastery update.');
-            return null;
-        }
-
         // 1. Fetch current states for all concepts in the Q-Matrix
         const conceptIds = Object.keys(qMatrix);
-        const { data: existingRecords, error: fetchError } = await supabase
-            .from('mastery')
-            .select('*')
-            .eq('user_id', userId)
-            .in('concept_id', conceptIds);
+        const localMastery = getLocalMasteryMap(conceptIds);
+        let existingRecords = [];
 
-        if (fetchError) throw fetchError;
+        if (userId) {
+            const { data, error: fetchError } = await supabase
+                .from('mastery')
+                .select('*')
+                .eq('user_id', userId)
+                .in('concept_id', conceptIds);
+
+            if (fetchError) {
+                console.warn('[Mastery] Supabase fetch failed; using local mastery:', fetchError);
+            } else {
+                existingRecords = data || [];
+            }
+        }
 
         // Build current state dictionary
         let currentStates = {};
         conceptIds.forEach(cid => {
             const record = existingRecords?.find(r => r.concept_id === cid);
-            currentStates[cid] = record ? record.p_known : 0.1; // Default prior
+            currentStates[cid] = record ? record.p_known : (localMastery[cid] ?? 0.1); // Default prior
         });
 
         // Hint penalty: damp the Q-matrix weights so a hint-assisted correct
@@ -304,6 +408,15 @@ export const updateMastery = async (qMatrix, isCorrect, options = {}) => {
 
         if (!response.ok) throw new Error('BKT grading failed');
         const { new_states } = await response.json();
+        persistLocalMasteryStates(new_states, {
+            sectionId,
+            courseId,
+            source: 'bkt_update'
+        });
+
+        if (!userId) {
+            return new_states;
+        }
 
         // 3. Upsert the new values back to Supabase
         const upsertData = Object.entries(new_states).map(([cid, newPKnown]) => {
@@ -333,7 +446,10 @@ export const updateMastery = async (qMatrix, isCorrect, options = {}) => {
             .from('mastery')
             .upsert(upsertData, { onConflict: 'user_id,concept_id' });
 
-        if (upsertError) throw upsertError;
+        if (upsertError) {
+            console.warn('[Mastery] Supabase upsert failed; local mastery was kept:', upsertError);
+            return new_states;
+        }
 
         // Mirror the authoritative BKT mastery into the research table so the
         // research dashboard and adaptive engine see the same value as the
@@ -359,7 +475,19 @@ export const updateMastery = async (qMatrix, isCorrect, options = {}) => {
 
     } catch (error) {
         console.error('Error updating mastery with BKT:', error);
-        return null;
+        const fallbackStates = Object.fromEntries(
+            Object.keys(qMatrix || {}).map((conceptId) => {
+                const current = getLocalMasteryMap([conceptId])[conceptId] ?? 0.1;
+                const delta = isCorrect ? 0.18 : -0.12;
+                return [conceptId, Math.max(0.05, Math.min(0.95, current + delta))];
+            })
+        );
+        persistLocalMasteryStates(fallbackStates, {
+            sectionId: options.sectionId,
+            courseId: options.courseId,
+            source: 'bkt_fallback'
+        });
+        return Object.keys(fallbackStates).length > 0 ? fallbackStates : null;
     }
 };
 

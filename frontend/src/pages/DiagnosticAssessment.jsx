@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { supabase } from '../lib/supabase'
 import API_BASE from '../lib/apiConfig'
+import { recordCalibrationMastery } from '../lib/knowledgeService'
 import { getEvaluationStatus, recordEvaluationResult } from '../lib/researchService'
 import '../index.css'
 
@@ -139,7 +139,7 @@ export default function DiagnosticAssessment() {
                 selected_option: selectedOption,
                 correct_index: correctIndex,
                 response_payload: {
-                    stem: question.question,
+                    stem: question.stem,
                     selected_option_text: question.options?.[selectedOption] || null,
                     correct_option_text: question.options?.[correctIndex] || null,
                     prereq_for: question.prereqFor || [],
@@ -149,27 +149,14 @@ export default function DiagnosticAssessment() {
             }
         })
 
-        const { data: { session } } = await supabase.auth.getSession()
-        if (session?.user?.id) {
-            const recordsToUpsert = Object.entries(conceptUpdates).map(([conceptId, p_known]) => ({
-                user_id: session.user.id,
-                concept_id: conceptId,
-                p_known
-            }))
-
-            if (recordsToUpsert.length > 0) {
-                const { error } = await supabase
-                    .from('mastery')
-                    .upsert(recordsToUpsert, { onConflict: 'user_id, concept_id' })
-
-                if (error) {
-                    console.error("Failed to update mastery from diagnostic. Supabase might need 'concepts' table updated with the new keys:", error)
-                }
-            }
-        }
-
         const gapSections = [...new Set(gaps.flatMap((gap) => gap.sections))]
         const recommendedStart = gapSections.length > 0 ? gapSections.sort()[0] : '01/01'
+
+        await recordCalibrationMastery(conceptUpdates, {
+            courseId: course || 'statics',
+            sectionId: `${course || 'statics'}/${recommendedStart}`,
+            phase
+        })
 
         const analysisResults = {
             score,

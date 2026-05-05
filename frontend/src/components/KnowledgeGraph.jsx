@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import API_BASE from '../lib/apiConfig'
+import { getLocalMasteryMap } from '../lib/knowledgeService'
 
 function humanizeLabel(value) {
     if (!value) return 'Untitled concept'
@@ -80,7 +81,7 @@ export default function KnowledgeGraph({
                 const { data: { session } } = await supabase.auth.getSession()
                 const userId = session?.user?.id
 
-                const masteryMap = {}
+                const masteryMap = { ...getLocalMasteryMap() }
                 if (userId) {
                     const { data: masteryRecords, error: masteryError } = await supabase
                         .from('mastery')
@@ -88,10 +89,8 @@ export default function KnowledgeGraph({
                         .eq('user_id', userId)
 
                     if (masteryError) {
-                        throw masteryError
-                    }
-
-                    if (masteryRecords) {
+                        console.warn('[KnowledgeGraph] Supabase mastery fetch failed; using local mastery:', masteryError)
+                    } else if (masteryRecords) {
                         masteryRecords.forEach((record) => {
                             masteryMap[record.concept_id] = record.mastery_score ?? record.p_known ?? 0.1
                         })

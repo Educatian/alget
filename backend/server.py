@@ -20,6 +20,9 @@ import sys
 import os
 import math
 import re
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Load .env file (do NOT override existing env vars — Render sets them at the OS level)
 from dotenv import load_dotenv
@@ -1568,6 +1571,101 @@ async def get_module_details(grade_level: str, module: str):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+def _collect_course_meta_sections(course_id: str) -> list[dict[str, Any]]:
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    course_dir = os.path.join(base_dir, "frontend", "content", course_id)
+    sections: list[dict[str, Any]] = []
+
+    if not os.path.isdir(course_dir):
+        return sections
+
+    for root, _dirs, files in os.walk(course_dir):
+        for filename in files:
+            if not filename.endswith(".meta.json"):
+                continue
+
+            meta_path = os.path.join(root, filename)
+            rel_path = os.path.relpath(meta_path, course_dir)
+            parts = rel_path.split(os.sep)
+            if len(parts) < 2:
+                continue
+
+            chapter_id = parts[-2]
+            section_id = filename.replace(".meta.json", "")
+
+            try:
+                with open(meta_path, "r", encoding="utf-8") as handle:
+                    meta = json.load(handle)
+            except Exception as exc:
+                logger.warning(f"Skipping diagnostic meta {meta_path}: {exc}")
+                continue
+
+            order = meta.get("order")
+            if not isinstance(order, int):
+                order = len(sections) + 1
+
+            sections.append(
+                {
+                    "chapter_id": chapter_id,
+                    "section_id": section_id,
+                    "chapter_title": meta.get("chapter_title") or f"Chapter {chapter_id}",
+                    "title": meta.get("title") or f"Section {chapter_id}.{section_id}",
+                    "description": meta.get("description") or "",
+                    "learning_objectives": meta.get("learning_objectives") or [],
+                    "concept_ids": meta.get("concept_ids") or [],
+                    "order": order,
+                }
+            )
+
+    return sorted(sections, key=lambda item: (item["chapter_id"], item["order"], item["section_id"]))
+
+
+def _humanize_diagnostic_label(value: str) -> str:
+    return re.sub(r"\s+", " ", value.replace("_", " ").replace("-", " ")).strip()
+
+
+def _build_dynamic_diagnostic_questions(course_id: str, max_questions: int = 12) -> list[dict[str, Any]]:
+    questions: list[dict[str, Any]] = []
+    seen_concepts: set[str] = set()
+
+    for section in _collect_course_meta_sections(course_id):
+        concept_ids = [concept for concept in section.get("concept_ids", []) if concept]
+        objectives = section.get("learning_objectives") or []
+        objective = objectives[0] if objectives else section.get("description") or section.get("title")
+
+        for concept_index, concept_id in enumerate(concept_ids):
+            if concept_id in seen_concepts:
+                continue
+
+            seen_concepts.add(concept_id)
+            concept_label = _humanize_diagnostic_label(concept_id)
+            section_title = section.get("title") or f"Section {section['chapter_id']}.{section['section_id']}"
+
+            questions.append(
+                {
+                    "id": f"{course_id}_{section['chapter_id']}_{section['section_id']}_{concept_index + 1}",
+                    "concept": concept_id,
+                    "stem": (
+                        f"In {section_title}, which response best demonstrates usable understanding of "
+                        f"{concept_label}?"
+                    ),
+                    "options": [
+                        f"Connect the idea to evidence, constraints, and a justified revision decision: {objective}",
+                        "Report that the artifact looks polished without explaining what evidence changed.",
+                        "Accept an AI or peer suggestion because it is fluent, even if the rationale is unclear.",
+                        "List the topic vocabulary without applying it to the learner's artifact or decision.",
+                    ],
+                    "correct": 0,
+                    "prereqFor": [f"{section['chapter_id']}/{section['section_id']}"],
+                }
+            )
+
+            if len(questions) >= max_questions:
+                return questions
+
+    return questions
+
+
 @app.get("/api/diagnostic/questions/{course_id}")
 async def get_diagnostic_questions(course_id: str):
     """
@@ -1638,8 +1736,11 @@ async def get_diagnostic_questions(course_id: str):
             ]
         }
         
-        # Default to statics if course not found
-        questions = question_banks.get(course_id, question_banks["statics"])
+        questions = question_banks.get(course_id)
+        if not questions:
+            questions = _build_dynamic_diagnostic_questions(course_id)
+        if not questions:
+            questions = question_banks["statics"]
         return {"questions": questions}
         
     except Exception as e:

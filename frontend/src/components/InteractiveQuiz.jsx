@@ -41,7 +41,7 @@ export default function InteractiveQuiz({ question, options, explanation, concep
         }
 
         if (resolvedConceptId) {
-            updateMastery({ [resolvedConceptId]: 1.0 }, wasCorrect)
+            updateMastery({ [resolvedConceptId]: 1.0 }, wasCorrect, { sectionId })
                 .then(() => setFeedbackSaved(true))
                 .catch((error) => {
                     console.error('InteractiveQuiz: failed to update mastery', error);
