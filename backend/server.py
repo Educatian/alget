@@ -2051,14 +2051,16 @@ async def generate_scenario(request: ScenarioRequest):
         client = genai.Client(api_key=api_key)
 
         prompt = f"""
-        You are an expert instructional designer. Generate a tailored case study for the following theory/topic and context.
+        You are an expert instructional designer. Generate an interactive, scan-friendly learning scenario for the following theory/topic and context.
         Topic: {request.topic}
         Context/Constraint: {request.context}
         
         CRITICAL RULES:
         1. Base your explanation strictly on the widely accepted definition of {request.topic}.
         2. Do not hallucinate or invent new theories.
-        3. Formulate a relatable, practical scenario applying this theory in the requested context.
+        3. Do not write a long paragraph. Use compact fragments, concrete roles, choices, and feedback.
+        4. Make the learner decide what to do next. The scenario should feel like a playable case, not an essay.
+        5. Keep every field brief: no field should exceed two short sentences, and array items should be one sentence.
         """
         
         response = client.models.generate_content(
@@ -2070,16 +2072,67 @@ async def generate_scenario(request: ScenarioRequest):
                 response_schema={
                     "type": "OBJECT",
                     "properties": {
-                        "scenario_text": {
+                        "setting": {
                             "type": "STRING",
-                            "description": "A vivid, practical case study scenario applying the theory."
+                            "description": "Where the case takes place in one concrete sentence."
                         },
-                        "theoretical_mapping": {
+                        "learner_role": {
                             "type": "STRING",
-                            "description": "How the scenario maps to the key tenets of the theory."
+                            "description": "The role the learner plays in the case."
+                        },
+                        "friction": {
+                            "type": "STRING",
+                            "description": "The main problem, tension, or misconception the learner must notice."
+                        },
+                        "decision_point": {
+                            "type": "STRING",
+                            "description": "A direct prompt asking what the learner should do next."
+                        },
+                        "variables": {
+                            "type": "ARRAY",
+                            "items": { "type": "STRING" },
+                            "description": "Three to five observable variables, constraints, or evidence cues the learner should inspect."
+                        },
+                        "choices": {
+                            "type": "ARRAY",
+                            "items": {
+                                "type": "OBJECT",
+                                "properties": {
+                                    "label": { "type": "STRING" },
+                                    "action": { "type": "STRING" },
+                                    "tradeoff": { "type": "STRING" },
+                                    "feedback": { "type": "STRING" }
+                                },
+                                "required": ["label", "action", "tradeoff", "feedback"]
+                            },
+                            "description": "Exactly three plausible learner choices with concise tradeoffs and feedback."
+                        },
+                        "success_criteria": {
+                            "type": "ARRAY",
+                            "items": { "type": "STRING" },
+                            "description": "Two to four criteria for judging whether the chosen action works."
+                        },
+                        "theory_moves": {
+                            "type": "ARRAY",
+                            "items": { "type": "STRING" },
+                            "description": "Three concise links between the case and the theory."
+                        },
+                        "reflection_prompt": {
+                            "type": "STRING",
+                            "description": "One short question that asks the learner to justify a decision."
                         }
                     },
-                    "required": ["scenario_text", "theoretical_mapping"]
+                    "required": [
+                        "setting",
+                        "learner_role",
+                        "friction",
+                        "decision_point",
+                        "variables",
+                        "choices",
+                        "success_criteria",
+                        "theory_moves",
+                        "reflection_prompt"
+                    ]
                 }
             )
         )
@@ -2087,8 +2140,17 @@ async def generate_scenario(request: ScenarioRequest):
         data = json.loads(response.text)
         
         return {
-            "scenario_text": data.get("scenario_text", ""),
-            "theoretical_mapping": data.get("theoretical_mapping", "")
+            "setting": data.get("setting", ""),
+            "learner_role": data.get("learner_role", ""),
+            "friction": data.get("friction", ""),
+            "decision_point": data.get("decision_point", ""),
+            "variables": data.get("variables", []),
+            "choices": data.get("choices", []),
+            "success_criteria": data.get("success_criteria", []),
+            "theory_moves": data.get("theory_moves", []),
+            "reflection_prompt": data.get("reflection_prompt", ""),
+            "scenario_text": data.get("setting", ""),
+            "theoretical_mapping": " ".join(data.get("theory_moves", []))
         }
     except HTTPException:
         raise
