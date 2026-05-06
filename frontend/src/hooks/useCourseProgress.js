@@ -282,6 +282,19 @@ export function useCourseProgress(user) {
             const next = dedupeSections([...previous, sectionId])
             persistCompletedSections(userId, next)
 
+            // Streak + celebration: only fire on a NEW completion (not a
+            // repeat). Use dynamic import so the hook stays usable in
+            // environments without window/localStorage. Dispatch a window
+            // event so chrome (BookLayout header chip, toast) can react.
+            if (typeof window !== 'undefined') {
+                import('../lib/streak').then(({ bumpStreak }) => {
+                    const result = bumpStreak()
+                    window.dispatchEvent(new CustomEvent('alget-section-completed', {
+                        detail: { sectionId, course, chapter, section, streak: result },
+                    }))
+                }).catch(() => {})
+            }
+
             if (userId) {
                 setSyncStatus('syncing')
                 void syncProgressRows(userId, [sectionId]).finally(() => {
