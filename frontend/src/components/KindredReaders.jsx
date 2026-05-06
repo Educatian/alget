@@ -1,7 +1,24 @@
 import { useEffect, useState } from 'react'
+import { Hand } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import { logEvent } from '../lib/loggingService'
+import { useToast } from '../lib/toastContext'
+import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
 import { SkeletonGroup } from './Skeleton'
+
+const WAVES_KEY = 'alget_kindred_waves_sent'
+
+function readSentWaves() {
+    try {
+        return JSON.parse(safeLocalStorageGet(WAVES_KEY, '{}') || '{}')
+    } catch {
+        return {}
+    }
+}
+
+function writeSentWaves(map) {
+    safeLocalStorageSet(WAVES_KEY, JSON.stringify(map))
+}
 
 /**
  * KindredReaders - peers whose highlight pattern overlaps with the
@@ -23,8 +40,40 @@ export default function KindredReaders({ user, limit = 5 }) {
     const [aliases, setAliases] = useState({})
     const [expanded, setExpanded] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [sentWaves, setSentWaves] = useState(() => readSentWaves())
+    const toast = useToast()
 
     const userId = user?.id
+
+    const handleWave = (peerId, sectionsList) => {
+        if (sentWaves[peerId]) {
+            toast.info('Already waved 👋', { duration: 1800 })
+            return
+        }
+        // Anonymous "wave" — no body text, no identity disclosure, no reply
+        // surface. Per the LXD audit this stays a one-shot signal that the
+        // recipient can read in aggregate without feeling pressured.
+        const next = { ...sentWaves, [peerId]: new Date().toISOString() }
+        writeSentWaves(next)
+        setSentWaves(next)
+        logEvent('kindred_wave_sent', null, {
+            peer_alias_visible: false,
+            shared_section_count: sectionsList?.length || 0,
+        })
+        // Best-effort write to social_signals so a future server-side
+        // surface can aggregate received waves; failures stay local.
+        if (userId && peerId) {
+            supabase.from('social_signals').insert({
+                signal_type: 'kindred_wave',
+                signal_value: 'received',
+                user_id: peerId,
+                section_id: (sectionsList && sectionsList[0]) || null,
+            }).then(() => {}, (err) => {
+                console.warn('[KindredReaders] wave sync failed:', err?.message || err)
+            })
+        }
+        toast.success('👋 Wave sent — anonymous + no reply expected', { duration: 2400 })
+    }
 
     useEffect(() => {
         let cancelled = false
@@ -115,22 +164,37 @@ export default function KindredReaders({ user, limit = 5 }) {
                             key={row.peer_user_id}
                             className="rounded-xl border border-[var(--ath-line)] bg-white/80 px-3 py-2 transition-colors hover:border-[var(--ath-primary-soft)] hover:bg-white"
                         >
-                            <button
-                                type="button"
-                                onClick={() => handleExpand(row.peer_user_id)}
-                                aria-expanded={expanded === row.peer_user_id}
-                                className="flex w-full items-center justify-between text-left"
-                            >
-                                <div className="flex items-center gap-2">
-                                    <span
-                                        className={`h-2 w-2 rounded-full bg-gradient-to-br ${peer.color_token || 'from-slate-400 to-slate-500'}`}
-                                    />
-                                    <span className="text-sm font-semibold text-[var(--ath-text)]">{alias}</span>
-                                </div>
-                                <span className="text-xs text-[var(--ath-muted)]">
-                                    {row.total_overlap} shared / {sections.length} section{sections.length === 1 ? '' : 's'}
-                                </span>
-                            </button>
+                            <div className="flex items-center justify-between gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => handleExpand(row.peer_user_id)}
+                                    aria-expanded={expanded === row.peer_user_id}
+                                    className="flex flex-1 items-center justify-between text-left"
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <span
+                                            className={`h-2 w-2 rounded-full bg-gradient-to-br ${peer.color_token || 'from-slate-400 to-slate-500'}`}
+                                        />
+                                        <span className="text-sm font-semibold text-[var(--ath-text)]">{alias}</span>
+                                    </div>
+                                    <span className="text-xs text-[var(--ath-muted)]">
+                                        {row.total_overlap} shared · {sections.length} section{sections.length === 1 ? '' : 's'}
+                                    </span>
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleWave(row.peer_user_id, sections)}
+                                    title={sentWaves[row.peer_user_id] ? 'Already waved' : 'Anonymous wave — no body, no reply'}
+                                    aria-label={sentWaves[row.peer_user_id] ? 'Already waved' : `Wave at ${alias}`}
+                                    className={`ml-1 flex h-7 w-7 items-center justify-center rounded-full border text-sm transition-colors ${
+                                        sentWaves[row.peer_user_id]
+                                            ? 'border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)]'
+                                            : 'border-[var(--ath-primary-soft)] bg-[var(--ath-primary-soft)] text-[var(--ath-primary)] hover:bg-[var(--ath-panel)]'
+                                    }`}
+                                >
+                                    <Hand className="h-3.5 w-3.5" />
+                                </button>
+                            </div>
                             {expanded === row.peer_user_id && sections.length > 0 && (
                                 <div className="mt-2 grid grid-cols-2 gap-1 text-xs text-[var(--ath-muted)]">
                                     {sections.slice(0, 6).map((s) => (

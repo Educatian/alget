@@ -6,12 +6,15 @@ import {
     Bookmark,
     ChevronLeft,
     ChevronRight,
+    Flame,
     Home,
     LogOut,
     Network,
     PanelRightClose,
     PanelRightOpen
 } from 'lucide-react'
+import { getStreak } from '../lib/streak'
+import { useToast } from '../lib/toastContext'
 import BookToc from '../components/BookToc'
 import ChapterPassport from '../components/ChapterPassport'
 import RetentionBanner from '../components/RetentionBanner'
@@ -179,6 +182,25 @@ export default function BookLayout({ user, onLogout }) {
         setTocError(null)
         setTocReloadKey((value) => value + 1)
     }, [])
+
+    const [streak, setStreak] = useState(() => getStreak())
+    const toast = useToast()
+    useEffect(() => {
+        const handler = (event) => {
+            const detail = event.detail || {}
+            const next = detail.streak || getStreak()
+            setStreak(next)
+            const advanced = next.advanced
+            const message = advanced && next.count > 1
+                ? `✓ Section complete · ${next.count}-day streak 🔥`
+                : advanced
+                    ? '✓ Section complete · streak started'
+                    : '✓ Section complete'
+            toast.success(message, { duration: 2600 })
+        }
+        window.addEventListener('alget-section-completed', handler)
+        return () => window.removeEventListener('alget-section-completed', handler)
+    }, [toast])
 
     useEffect(() => {
         let cancelled = false
@@ -423,6 +445,15 @@ export default function BookLayout({ user, onLogout }) {
                             <span className={`mr-2 inline-block h-2 w-2 rounded-full ${progressStats?.syncStatus === 'synced' ? 'bg-emerald-500' : 'bg-amber-400'}`}></span>
                             {progressStats?.syncStatus === 'synced' ? 'Cloud sync on' : 'Saving progress'}
                         </div>
+                        {streak.count > 0 && (
+                            <div
+                                className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700"
+                                title={streak.isToday ? `${streak.count}-day completion streak — done for today` : `${streak.count}-day streak — complete a section today to keep it`}
+                            >
+                                <Flame className="h-3.5 w-3.5" />
+                                {streak.count}
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -470,8 +501,8 @@ export default function BookLayout({ user, onLogout }) {
                                 <Popover.Content
                                     side="bottom"
                                     align="end"
-                                    sideOffset={12}
-                                    className="z-[90] w-[26rem] rounded-3xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.96)] p-0 shadow-[0_24px_80px_rgba(15,23,42,0.18)] backdrop-blur-2xl"
+                                    sideOffset={8}
+                                    className="z-[90] w-72 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.96)] p-0 shadow-[0_18px_48px_rgba(15,23,42,0.16)] backdrop-blur-2xl"
                                 >
                                     <Suspense fallback={<SurfaceFallback label="Loading social presence..." compact />}>
                                         <SocialPresencePanel
