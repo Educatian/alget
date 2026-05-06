@@ -551,7 +551,7 @@ export default function AnalyticsDashboard() {
                             <div className="py-20 text-center text-slate-500">Loading analytics...</div>
                         ) : filteredMasteryData.length === 0 ? (
                             <div className="py-16 text-center">
-                                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100 text-slate-400">
+                                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--ath-panel-muted)] text-[var(--ath-secondary)]">
                                     <Brain className="h-8 w-8" />
                                 </div>
                                 <h3 className="mt-5 text-xl font-bold text-slate-800">No concepts match these filters</h3>

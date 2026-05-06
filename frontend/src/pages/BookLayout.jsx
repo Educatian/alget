@@ -465,7 +465,7 @@ export default function BookLayout({ user, onLogout }) {
                                             </span>
                                         ))}
                                         {socialState.peers.length === 0 && (
-                                            <span className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-slate-100 text-[10px] font-bold text-slate-500 shadow-sm">
+                                            <span className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[var(--ath-surface-strong)] bg-[var(--ath-panel-muted)] text-[10px] font-bold text-[var(--ath-secondary)] shadow-sm">
                                                 0
                                             </span>
                                         )}
