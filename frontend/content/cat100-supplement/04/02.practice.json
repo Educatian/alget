@@ -19,7 +19,7 @@
       "id": "cat100_supplement_4_2_scenario_based_ai_dialogue_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_evidence_based_revision",
-      "stem": "Which annotation would help BigAL give targeted support?",
+      "stem": "Which reader note would help BigAL give targeted support?",
       "options": [
         "This is interesting.",
         "I am confused about which constraint should override the AI suggestion in this artifact.",

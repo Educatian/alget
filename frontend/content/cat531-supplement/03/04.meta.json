@@ -1,9 +1,9 @@
 {
   "chapter_title": "AI in Education",
   "title": "AI Literacy for Teachers",
-  "description": "CAT 531 textbook section connecting ai literacy for teachers to field-placement transfer note connecting tool choice to classroom constraints, reader notes, support moments, and revision evidence.",
+  "description": "CAT 531 textbook section connecting ai literacy for teachers to TeachGen@i prompt transcript with teacher edits and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the field-placement transfer note connecting tool choice to classroom constraints shows a defensible decision in CAT 531.",
+    "Analyze how the TeachGen@i prompt transcript with teacher edits and rejected suggestions shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."

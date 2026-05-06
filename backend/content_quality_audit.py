@@ -38,6 +38,15 @@ LXD_LEAK_MARKERS = [
     "Recommend the first adaptive support action",
     "Which learner-model signal",
     "For research use",
+    "static textbook page",
+    "publication-quality analysis",
+    "research move issue",
+    "intelligent textbook evidence",
+    "social annotations",
+    "Annotation signal",
+    "Artifact signal",
+    "Support signal",
+    "Calibration signal",
 ]
 
 

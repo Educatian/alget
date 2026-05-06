@@ -1,9 +1,9 @@
 {
   "chapter_title": "Learning Experience Design and Software Technology",
   "title": "Interaction Patterns for Learning Software",
-  "description": "AIL 606 textbook section connecting interaction patterns for learning software to prototype README traceability matrix connecting theory to screen changes, reader notes, support moments, and revision evidence.",
+  "description": "AIL 606 textbook section connecting interaction patterns for learning software to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the prototype README traceability matrix connecting theory to screen changes shows a defensible decision in AIL 606.",
+    "Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Use annotations, support requests, and revision notes to decide what help or design change should come next."

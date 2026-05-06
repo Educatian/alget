@@ -1,10 +1,10 @@
 # CAT 531 Artifact Studio Packet: Classroom Context Variables
 
 ## Purpose
-This packet turns **Classroom Context Variables** into a concrete artifact studio task. The goal is not to make a polished submission on the first pass. The goal is to make the learner's judgment visible enough that ALGET can adapt support, an instructor can review the decision, and a researcher can code the trace.
+This packet turns **Classroom Context Variables** into a concrete artifact studio task. The goal is not to make a polished submission on the first pass. The goal is to make your judgment visible enough that an instructor, peer, or future version of you can review the decision.
 
 ## Artifact
-**equity-oriented edtech evaluation matrix with context-specific risk notes**
+**Design Tension Studio map naming a classroom value conflict and negotiated decision**
 
 ## Course Context
 Module: **Foundations of CBI and Design Tensions**  
@@ -16,7 +16,7 @@ Submit one artifact file or screenshot plus a revision trace. The trace must con
 1. **Initial claim:** What the artifact is supposed to help the audience do.
 2. **Constraint:** Which course idea limits or shapes the decision. Use at least one of: TPACK, critical edtech studies, AI and education datafication, teacher professional judgment.
 3. **Evidence source:** Identify the exact rubric line, peer annotation, transcript segment, data check, usability observation, accessibility check, or policy clause that influenced the revision.
-4. **AI/software support move:** Name the tool and the bounded request. The request should ask for critique, alternatives, simplification, debugging, or comparison, not full artifact authorship.
+4. **AI/software support choice:** Name the tool and the bounded request. The request should ask for critique, alternatives, simplification, debugging, or comparison, not full artifact authorship.
 5. **Accepted suggestion:** State what changed and why it improved the artifact.
 6. **Rejected or modified suggestion:** State what you did not accept and why.
 7. **Final limitation:** Name one remaining uncertainty or condition where the artifact may fail.
@@ -24,7 +24,7 @@ Submit one artifact file or screenshot plus a revision trace. The trace must con
 ## Worked Mini-Example
 Weak trace: "I used AI and made it clearer."
 
-Strong trace: "I asked for three alternatives for the equity-oriented edtech evaluation matrix with context-specific risk notes. I accepted the alternative that made the audience constraint explicit, rejected the alternative that removed the evidence source, and revised the artifact so the reader can see how TPACK shaped the final decision. The remaining limitation is that the trace has not yet been tested with a second reader."
+Strong trace: "I asked for three alternatives for the Design Tension Studio map naming a classroom value conflict and negotiated decision. I accepted the alternative that made the audience constraint explicit, rejected the alternative that removed the evidence source, and revised the artifact so the reader can see how TPACK shaped the final decision. The remaining limitation is that the trace has not yet been tested with a second reader."
 
 ## Instructor Rubric
 Score each row 0, 1, or 2.
@@ -38,15 +38,15 @@ Score each row 0, 1, or 2.
 | Rejection rationale | None | Vague | Explains why a suggestion was rejected or modified |
 | Transfer note | None | Mentions transfer | Names changed constraint in a new context |
 
-## ALGET Logging Targets
+## Revision Details To Preserve
 - `artifact_claim_visible`
 - `evidence_source_type`
-- `support_action_requested`
+- `support_choice_requested`
 - `accepted_suggestion_reason`
 - `rejected_suggestion_reason`
 - `revision_quality_score`
 - `confidence_before_revision`
 - `confidence_after_revision`
 
-## Research Use
-This packet supports item-level and artifact-level analysis because the learner's decision is separable from the surface quality of the artifact. In the dataset, the strongest evidence is not the final artifact alone; it is the relationship among claim, constraint, evidence, support, and revision.
+## Review Use
+This packet helps a reviewer separate the final artifact from the decision path behind it. The strongest evidence is not the finished artifact alone; it is the relationship among claim, constraint, evidence, support, and revision.

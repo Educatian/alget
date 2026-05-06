@@ -82,6 +82,47 @@ def slugify(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
+def select_artifact(course: str, title: str, chapter: int, section: int) -> str:
+    lower = title.lower()
+    if course == "cat100-supplement":
+        rules = [
+            (["resume", "linkedin", "bio", "portfolio", "career"], "resume before-after revision"),
+            (["pivot", "excel", "formula", "spreadsheet", "data", "chart"], "Excel pivot-table finding"),
+            (["presentation", "slide"], "presentation storyboard"),
+            (["github", "website", "pages"], "GitHub Pages file tree"),
+            (["privacy", "account", "safety"], "privacy checklist"),
+            (["ai", "prompt", "feedback", "critique", "ethobot"], "AI critique log"),
+        ]
+        for keys, artifact in rules:
+            if any(key in lower for key in keys):
+                return artifact
+    if course == "cat531-supplement":
+        rules = [
+            (["tension", "dts", "conflict"], "DTS tension map"),
+            (["teachgen", "prompt", "ai literacy", "prompting"], "TeachGen@i prompt transcript"),
+            (["ethobot", "dialogue", "ethical"], "Ethobot transcript annotation"),
+            (["policy", "privacy", "consent", "risk", "family", "fallback"], "school AI policy memo"),
+            (["equity", "evaluation", "rubric"], "edtech evaluation matrix"),
+            (["field", "transfer", "placement"], "field-placement transfer note"),
+        ]
+        for keys, artifact in rules:
+            if any(key in lower for key in keys):
+                return artifact
+    if course == "ail606-supplement":
+        rules = [
+            (["storyboard", "frame", "narration"], "storyboard frame sequence"),
+            (["cognitive", "load", "multimedia", "mayer"], "cognitive load diagnostic table"),
+            (["usability", "test", "observation"], "usability test script"),
+            (["prototype", "readme", "screen", "toolchain"], "prototype README traceability matrix"),
+            (["capstone", "defense", "readiness", "showcase"], "capstone defense evidence board"),
+            (["ai-use", "disclosure", "policy"], "AI-USE.md disclosure excerpt"),
+        ]
+        for keys, artifact in rules:
+            if any(key in lower for key in keys):
+                return artifact
+    return COURSE_PROFILES[course]["artifacts"][(chapter + section - 2) % len(COURSE_PROFILES[course]["artifacts"])]
+
+
 def wrap_lines(text: str, width: int = 36) -> list[str]:
     words = text.split()
     lines: list[str] = []
@@ -192,7 +233,7 @@ def artifact_download(course: str, chapter: int, section: int, title: str, profi
     - Final revision note
 
     ## Instructor Review Focus
-    Review whether the learner's judgment is visible, not only whether the artifact looks complete.
+    Review whether the student's judgment is visible, not only whether the artifact looks complete.
     """), encoding="utf-8")
     return f"/downloads/summer2026/{course}/{filename}"
 
@@ -200,7 +241,7 @@ def artifact_download(course: str, chapter: int, section: int, title: str, profi
 def section_body(course: str, chapter: int, section: int) -> str:
     profile = COURSE_PROFILES[course]
     module_title, title = load_title(course, chapter, section)
-    artifact = profile["artifacts"][(chapter + section - 2) % len(profile["artifacts"])]
+    artifact = select_artifact(course, title, chapter, section)
     anchors = profile["anchors"]
     citations = "; ".join(profile["citations"])
     image_path = draw_exemplar_image(course, chapter, section, title, profile, artifact)
@@ -213,11 +254,11 @@ def section_body(course: str, chapter: int, section: int) -> str:
 
     ## Why This Section Is No Longer Generic
 
-    This hardened version treats **{title}** as a concrete {profile['focus']} task rather than a generic AI-supported reflection. The student is not only asked to complete a course activity. The student must inspect a real artifact form, name the decision being made, and show how evidence changes the next version. That shift matters because an intelligent textbook paper needs to show more than content delivery; it needs to show how the system elicits, records, and responds to learner judgment.
+    This hardened version treats **{title}** as a concrete {profile['focus']} task rather than a generic AI-supported reflection. The student is not only asked to complete a course activity. The student must inspect a real artifact form, name the decision being made, and show how evidence changes the next version. That shift matters because an section needs to do more than deliver content; it should help the student make a decision, revise it, and explain the evidence behind it.
 
     The exemplar artifact for this section is a **{artifact}**. It is intentionally narrow. A narrow artifact helps you connect reading, annotation, practice, feedback, and revision around observable behavior. The section therefore creates a practical trace: what you noticed, what support you requested, what you revised, and what evidence justified the revision.
 
-    ## Research Anchors
+    ## Course Anchors
 
     This section is grounded in {citations}. The local course anchors are: **{anchors[0]}**, **{anchors[1]}**, **{anchors[2]}**, and **{anchors[3]}**. These anchors are not decorative citations. They define what counts as quality. For example, a polished artifact that ignores {anchors[1]} is still weak, because the artifact has not addressed the constraint that the course is designed to teach.
 
@@ -229,26 +270,26 @@ def section_body(course: str, chapter: int, section: int) -> str:
 
     Step 2 is to inspect the evidence. Evidence may come from a rubric criterion, a peer annotation, a usability observation, a spreadsheet check, an accessibility check, a classroom scenario, or a transcript mark. The key rule is that the evidence must be specific enough to force a visible revision. If the evidence cannot change the artifact, it is only an opinion.
 
-    Step 3 is to use AI or software support as a bounded move. The learner may ask for alternatives, debugging help, wording critique, checklist generation, or visual simplification. The learner may not outsource the whole artifact. ALGET should log this as a support event, not as authorship transfer.
+    Step 3 is to use AI or software support as a bounded move. The student may ask for alternatives, debugging help, wording critique, checklist generation, or visual simplification. The student may not outsource the whole artifact. The support choice should stay visible as part of the revision path, not as authorship transfer.
 
     ## Before/After Exemplar
 
-    **Before:** The learner submits the artifact and writes, "I used AI to improve it." The statement is not wrong, but it is not research-useful. It hides the learner's judgment and gives the instructor no evidence about what changed.
+    **Before:** The student submits the artifact and writes, "I used AI to improve it." The statement is not wrong, but it is not useful for review. It hides the student's judgment and gives the instructor no evidence about what changed.
 
     **After:** The learner writes, "I used AI to generate three possible revisions for the {artifact}. I accepted the suggestion that clarified the audience constraint, rejected the suggestion that weakened {anchors[0]}, and revised the artifact so the evidence trail now names the source of feedback." This version is easier for an instructor, peer, or future self to review.
 
     <dynamic-scenario prompt="You are revising a {artifact} for {profile['short']} {chapter:02d}.{section:02d}. The artifact is complete, but a peer comment shows unresolved confusion about {anchors[1]}. Choose the next revision move and what evidence would show that it helped." />
 
-    ## Intelligent Textbook Signal
+    ## What To Notice
 
-    ALGET should treat this section as a source of four signals:
+    Use this section to make four things visible:
 
-    - **Annotation signal:** Did the learner ask a question, flag confusion, make a connection, or identify an insight?
-    - **Artifact signal:** Did the learner submit a before/after decision trail?
-    - **Support signal:** Did the learner request explanation, representation, practice, or a next-step prompt?
-    - **Calibration signal:** Did the learner's confidence match the quality of the revision?
+    - **Reader note:** Did you ask a question, flag confusion, make a connection, or identify an insight?
+    - **Artifact record:** Did the artifact show a before/after decision trail?
+    - **Support choice:** Did you ask for explanation, representation, practice, or a next-step prompt?
+    - **Confidence check:** Did your confidence match the quality of the revision?
 
-    These signals are what make the page useful as a learning environment. Static content explains the topic. ALGET records how the learner uses the explanation, then offers support based on the evidence.
+    These details make the page useful as a working studio. The page explains the idea, then asks you to use it, revise with evidence, and choose support that fits the moment.
 
     ## Misconception Watch
 
@@ -267,18 +308,18 @@ def section_body(course: str, chapter: int, section: int) -> str:
     5. Suggestion accepted and why:
     6. Suggestion rejected and why:
 
-    <interactive-quiz question="What makes this artifact usable as intelligent textbook evidence?" options='["It looks finished and uses professional wording.", "It includes a visible claim, evidence source, bounded support move, and revision decision.", "It uses the newest AI tool available.", "It avoids mentioning uncertainty or rejected suggestions."]' correct-index="1" conceptid="{concept_id}" />
+    <interactive-quiz question="What makes this artifact useful for review?" options='["It looks finished and uses professional wording.", "It includes a visible claim, evidence source, bounded support choice, and revision decision.", "It uses the newest AI tool available.", "It avoids mentioning uncertainty or rejected suggestions."]' correct-index="1" conceptid="{concept_id}" />
 
     ## Carry Forward
 
-    Carry forward the artifact-specific rule: top-tier intelligent textbook evidence requires a visible learner decision. In the next section, do not only ask whether the artifact is complete. Ask what signal ALGET can capture, what support decision the system can make, and what outcome could validate that decision.
+    Carry forward the artifact-specific rule: review-ready evidence requires a visible student decision. In the next section, do not only ask whether the artifact is complete. Ask what changed, what support helped, and what evidence would make the next revision stronger.
     """)
 
 
 def update_json_sidecars(course: str, chapter: int, section: int) -> None:
     profile = COURSE_PROFILES[course]
     module_title, title = load_title(course, chapter, section)
-    artifact = profile["artifacts"][(chapter + section - 2) % len(profile["artifacts"])]
+    artifact = select_artifact(course, title, chapter, section)
     stem = slugify(f"{course}-{chapter}-{section}-{title}").replace("-", "_")
     practice_path = CONTENT_ROOT / course / f"{chapter:02d}" / f"{section:02d}.practice.json"
     misconceptions_path = CONTENT_ROOT / course / f"{chapter:02d}" / f"{section:02d}.misconceptions.json"
@@ -307,14 +348,14 @@ def update_json_sidecars(course: str, chapter: int, section: int) -> None:
                     "The learner writes a generic reflection after submitting.",
                 ],
                 "correct_index": 1,
-                "explanation": "Top-tier evidence requires visible learner judgment and a traceable revision decision.",
+                "explanation": "Strong evidence shows the student decision and the revision path clearly.",
                 "misconception_id": f"{stem}_polish_as_evidence",
             },
             {
                 "id": f"{stem}_annotation_signal",
                 "type": "multiple_choice",
                 "concept_id": meta["concept_ids"][2],
-                "stem": "Which annotation would be most useful for adaptive support?",
+                "stem": "Which reader note would help BigAL give targeted support?",
                 "options": [
                     "This is interesting.",
                     "I am confused about which constraint should override the AI suggestion in this artifact.",
@@ -322,7 +363,7 @@ def update_json_sidecars(course: str, chapter: int, section: int) -> None:
                     "The page is long.",
                 ],
                 "correct_index": 1,
-                "explanation": "A useful annotation reveals a support need tied to a concept, constraint, or decision.",
+                "explanation": "A useful reader note shows the concept, constraint, or decision where support is needed.",
                 "misconception_id": f"{stem}_annotation_without_signal",
             },
             {
@@ -372,8 +413,8 @@ def update_json_sidecars(course: str, chapter: int, section: int) -> None:
             {
                 "id": f"{stem}_annotation_without_signal",
                 "pattern": "low_information_annotation",
-                "description": "Writing social annotations that do not expose a concept, constraint, confusion, or connection",
-                "trigger": "annotation is generic agreement or interest",
+                "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
+                "trigger": "note is generic agreement or interest",
                 "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
                 "rail_action": "explain",
             },
@@ -413,7 +454,7 @@ def generate() -> None:
     - Strategy: rewrote every section in each Summer 2026 supplement course as an artifact-specific exemplar.
     - Added deep exemplar PNGs under `frontend/public/course-art/deep-exemplars/`.
     - Added downloadable artifact packets under `frontend/public/downloads/summer2026/`.
-    - Updated sidecar practice and misconception JSON with research-signal-oriented items.
+    - Updated sidecar practice and misconception JSON with student-facing revision items.
     """)
     (CONTENT_ROOT / "TOP_TIER_HARDENING_PASS.md").write_text(report, encoding="utf-8")
     print(report)
