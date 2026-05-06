@@ -28,7 +28,7 @@
     {
       "id": "cat100_supplement_6_4_publishing_with_github_pages_completion_only_model",
       "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for adaptive learner modeling",
+      "description": "Assuming completion alone is enough for useful follow-up support",
       "trigger": "learner or system records only a finished artifact",
       "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
       "rail_action": "practice"

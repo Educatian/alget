@@ -1,12 +1,12 @@
 {
   "chapter_title": "AI Conversations as a Teacher",
   "title": "Reflection on Teacher Judgment",
-  "description": "CAT 100 textbook section connecting reflection on teacher judgment to presentation storyboard with audience constraint and slide-level evidence, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 100 textbook section connecting reflection on teacher judgment to presentation storyboard with audience constraint and slide-level evidence, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze a presentation storyboard with audience constraint and slide-level evidence as evidence of learner judgment in CAT 100.",
+    "Analyze how the presentation storyboard with audience constraint and slide-level evidence shows a defensible decision in CAT 100.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
   ],
   "concept_ids": [
     "cat100_supplement_ai_conversations_as_a_teacher",

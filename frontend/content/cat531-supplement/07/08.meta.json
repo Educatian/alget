@@ -1,12 +1,12 @@
 {
   "chapter_title": "Field-Based Transfer and Coaching",
   "title": "Field Transfer Studio",
-  "description": "CAT 531 textbook section connecting field transfer studio to field-placement transfer note connecting tool choice to classroom constraints, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 531 textbook section connecting field transfer studio to field-placement transfer note connecting tool choice to classroom constraints, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze a field-placement transfer note connecting tool choice to classroom constraints as evidence of learner judgment in CAT 531.",
+    "Analyze how the field-placement transfer note connecting tool choice to classroom constraints shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
   ],
   "concept_ids": [
     "cat531_supplement_field_based_transfer_and_coaching",

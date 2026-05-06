@@ -1,12 +1,12 @@
 {
   "chapter_title": "Research Translation for Learning Design",
   "title": "Publication-Ready Artifact Packaging",
-  "description": "AIL 606 textbook section connecting publication-ready artifact packaging to AI-USE disclosure excerpt tied to one bounded design-support decision, social annotation signals, and adaptive learner-model evidence.",
+  "description": "AIL 606 textbook section connecting publication-ready artifact packaging to AI-USE disclosure excerpt tied to one bounded design-support decision, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze an AI-USE disclosure excerpt tied to one bounded design-support decision as evidence of learner judgment in AIL 606.",
+    "Analyze how the AI-USE disclosure excerpt tied to one bounded design-support decision shows a defensible decision in AIL 606.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
   ],
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",

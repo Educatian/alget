@@ -1,12 +1,12 @@
 {
   "chapter_title": "Field-Based Transfer and Coaching",
   "title": "Equity Audit in Field Contexts",
-  "description": "CAT 531 textbook section connecting equity audit in field contexts to equity-oriented edtech evaluation matrix with context-specific risk notes, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 531 textbook section connecting equity audit in field contexts to equity-oriented edtech evaluation matrix with context-specific risk notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze an equity-oriented edtech evaluation matrix with context-specific risk notes as evidence of learner judgment in CAT 531.",
+    "Analyze how the equity-oriented edtech evaluation matrix with context-specific risk notes shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
   ],
   "concept_ids": [
     "cat531_supplement_field_based_transfer_and_coaching",

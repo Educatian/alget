@@ -28,7 +28,7 @@
     {
       "id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_completion_only_model",
       "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for adaptive learner modeling",
+      "description": "Assuming completion alone is enough for useful follow-up support",
       "trigger": "learner or system records only a finished artifact",
       "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
       "rail_action": "practice"

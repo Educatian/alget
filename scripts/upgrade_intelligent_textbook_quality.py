@@ -78,14 +78,14 @@ SECTION_MOVES = [
     {
         "heading": "Interface Move",
         "frame": "This section should behave like a small studio, not a page of notes. The learner reads a compact explanation, inspects an artifact, makes one visible revision, and receives support that is justified by the trace they produced.",
-        "quiz": "Which interface behavior would make this section more intelligent than a static textbook page?",
-        "correct": "It asks for a visible artifact decision, records the evidence source, and adapts the next support move.",
+        "quiz": "Which page behavior would make this section more useful than a static textbook page?",
+        "correct": "It asks for a visible artifact decision, records the evidence source, and offers support based on your evidence.",
     },
     {
         "heading": "Adaptive Move",
-        "frame": "The intelligent step is the connection between evidence and support. A learner who flags confusion should not receive the same prompt as a learner who posts a strong critique or a completed revision trace.",
-        "quiz": "Which adaptive signal should change the next support action?",
-        "correct": "The combination of annotation type, artifact evidence, confidence, and revision quality.",
+        "frame": "The useful step is the connection between evidence and support. A learner who flags confusion should not receive the same prompt as a learner who posts a strong critique or a completed revision trace.",
+        "quiz": "Which clue should guide what support or revision comes next?",
+        "correct": "The combination of the note, artifact evidence, confidence, and revision quality.",
     },
     {
         "heading": "Research Move",
@@ -253,6 +253,15 @@ def learner_role(profile: dict) -> str:
     return "a student building practical digital evidence"
 
 
+def learner_trace_objective(profile: dict) -> str:
+    short = profile["short"]
+    if short == "AIL 606":
+        return "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    if short == "CAT 531":
+        return "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    return "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+
+
 def course_example(profile: dict, title: str, artifact: str, anchors: list[str]) -> str:
     short = profile["short"]
     if short == "AIL 606":
@@ -396,18 +405,18 @@ def common_misreadings(profile: dict, artifact: str, chapter: int, section: int)
 def research_trace(profile: dict, title: str, artifact: str, chapter: int, section: int) -> str:
     if profile["short"] == "AIL 606":
         options = [
-            f"For research use, this section is strongest when the {artifact} records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.",
-            f"The learner model can separate page completion from design learning when the trace links {title}, evidence source, support action, and revision quality.",
+            f"Before you move on, check that the {artifact} records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.",
+            f"Before you move on, make sure your trace links {title}, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.",
         ]
     elif profile["short"] == "CAT 531":
         options = [
-            f"For research use, this section is strongest when the {artifact} captures instructional purpose, equity or privacy boundary, support request, revision rationale, and confidence change.",
-            f"The learner model can separate tool enthusiasm from professional judgment when the trace records evidence source, risk, support action, and revision quality.",
+            f"Before you move on, check that the {artifact} captures instructional purpose, equity or privacy boundary, support request, revision rationale, and confidence change.",
+            "Before you move on, make sure your trace records evidence source, risk, support choice, and revision quality. That is what separates professional judgment from tool enthusiasm.",
         ]
     else:
         options = [
-            f"For research use, this section is strongest when the {artifact} records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.",
-            f"The learner model can separate digital activity completion from digital fluency when the trace links claim, evidence, tool boundary, revision, and remaining limitation.",
+            f"Before you move on, check that the {artifact} records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.",
+            "Before you move on, make sure your trace links claim, evidence, tool boundary, revision, and remaining limitation. That is what separates digital fluency from simple completion.",
         ]
     return pick_variant(options, chapter, section)
 
@@ -454,7 +463,7 @@ def write_section(course: str, chapter: int, section: int) -> None:
 
 {title} sits inside **{module_title}**. In this part of {profile['short']}, you are learning to work as {role}: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. {context_sentence}
 
-The section is not asking you to memorize a definition and move on. It is asking you to connect an idea to a decision that can be inspected. By the end of the page, you should be able to {objective_sentence}. The visible evidence for that learning is a **{artifact_phrase}**.
+Read this page as a short decision cycle: understand the idea, apply it to **{artifact_phrase}**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
 
 ## Learning Targets
 
@@ -523,7 +532,7 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your annotation is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your annotation is a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="A learner submits the {artifact_phrase} for {profile['short']} {chapter:02d}.{section:02d}. The annotation thread shows {prompt_move} issue connected to {anchor_names[1]}. Recommend the first adaptive support action and the evidence that would show whether it worked." />
+<dynamic-scenario prompt="You are revising the {artifact_phrase} for {profile['short']} {chapter:02d}.{section:02d}. A peer comment points to a {prompt_move} issue connected to {anchor_names[1]}. Choose the next revision move and the evidence that would show it helped." />
 
 ## Check Your Understanding
 
@@ -531,7 +540,7 @@ Before moving on, answer the embedded check. The point is not whether you rememb
 
 <interactive-quiz question="{move['quiz']}" options='{options}' correct-index="{correct_index}" conceptid="{concept_id}" />
 
-## Research Trace
+## Final Check
 
 {trace_note}
 
@@ -549,13 +558,13 @@ def update_meta(course: str, chapter: int, section: int) -> None:
     artifact = clean_phrase(select_artifact(profile, title, chapter, section))
     meta["description"] = (
         f"{profile['short']} textbook section connecting {title.lower()} to {artifact}, "
-        "social annotation signals, and adaptive learner-model evidence."
+        "reader notes, support moments, and revision evidence."
     )
     meta["learning_objectives"] = [
-        f"Analyze {article_for(artifact)} {artifact} as evidence of learner judgment in {profile['short']}.",
+        f"Analyze how the {artifact} shows a defensible decision in {profile['short']}.",
         "Distinguish artifact polish from evidence-based revision.",
         "Document a bounded AI/software support move with accepted and rejected suggestions.",
-        "Identify annotation, artifact, support, and calibration signals for intelligent textbook research.",
+        learner_trace_objective(profile),
     ]
     meta_path = CONTENT_ROOT / course / f"{chapter:02d}" / f"{section:02d}.meta.json"
     meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
@@ -568,7 +577,7 @@ def build_item(course: str, idx: int, construct: str, correct_index: int) -> dic
         "It links a learner decision to a named evidence source and a visible revision.",
         "It separates the total treatment effect from post-treatment mechanism variables.",
         "It records item-level responses, confidence, latency, and misconception labels.",
-        "It uses annotation type and quote location to select a bounded support action.",
+        "It uses the note type and quote location to select a bounded support choice.",
     ]
     distractors = [
         "It makes the final artifact look more polished without explaining the decision.",
@@ -586,7 +595,7 @@ def build_item(course: str, idx: int, construct: str, correct_index: int) -> dic
         "construct": construct,
         "form": "pre_post_retention_parallel",
         "difficulty": ["low", "medium", "high"][idx % 3],
-        "stem": f"In {profile['short']}, which response best supports a defensible intelligent-textbook quality claim for {construct}?",
+        "stem": f"In {profile['short']}, which response best supports a defensible learning-quality claim for {construct}?",
         "options": options,
         "correct_index": correct_index,
         "rationale": correct,
@@ -603,7 +612,7 @@ def write_item_bank() -> None:
         "artifact-centered learning",
         "annotation-informed adaptivity",
         "research trace reproducibility",
-        "learner-model calibration",
+        "support calibration",
         "ethical AI support",
         "transfer and retention",
         "instructor evidence review",

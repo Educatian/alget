@@ -1,12 +1,12 @@
 {
   "chapter_title": "AI-Enhanced Presentation Development",
   "title": "Accessibility Checks for Slides",
-  "description": "CAT 100 textbook section connecting accessibility checks for slides to privacy checklist for accounts, data sharing, and AI tool boundaries, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 100 textbook section connecting accessibility checks for slides to privacy checklist for accounts, data sharing, and AI tool boundaries, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze a privacy checklist for accounts, data sharing, and AI tool boundaries as evidence of learner judgment in CAT 100.",
+    "Analyze how the privacy checklist for accounts, data sharing, and AI tool boundaries shows a defensible decision in CAT 100.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
   ],
   "concept_ids": [
     "cat100_supplement_ai_enhanced_presentation_development",

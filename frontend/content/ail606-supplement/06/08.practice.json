@@ -4,22 +4,22 @@
       "id": "ail606_supplement_6_8_module_6_completion_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_module_6_completion_studio",
-      "stem": "Which evidence trace would best support an intelligent-textbook claim for this AI-USE.md disclosure excerpt?",
+      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
       "options": [
         "The artifact is visually polished and complete.",
-        "The learner identifies a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
+        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
         "The learner uses AI for every step so the artifact is consistent.",
         "The learner writes a generic reflection after submitting."
       ],
       "correct_index": 1,
-      "explanation": "Top-tier evidence requires visible learner judgment and a traceable revision decision.",
+      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
       "misconception_id": "ail606_supplement_6_8_module_6_completion_studio_polish_as_evidence"
     },
     {
       "id": "ail606_supplement_6_8_module_6_completion_studio_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which annotation would be most useful for adaptive support?",
+      "stem": "Which annotation would help BigAL give targeted support?",
       "options": [
         "This is interesting.",
         "I am confused about which constraint should override the AI suggestion in this artifact.",
@@ -27,7 +27,7 @@
         "The page is long."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation reveals a support need tied to a concept, constraint, or decision.",
+      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
       "misconception_id": "ail606_supplement_6_8_module_6_completion_studio_annotation_without_signal"
     },
     {
@@ -49,15 +49,15 @@
       "id": "ail606_supplement_6_8_module_6_completion_studio_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which learner-model signal should ALGET preserve?",
+      "stem": "Which detail would make later support more useful?",
       "options": [
         "Only the final artifact file.",
-        "Confidence, annotation type, support request, practice result, and revision quality.",
+        "Your confidence, question type, support request, practice result, and revision quality.",
         "Only the time of day.",
         "Only the number of words in the note."
       ],
       "correct_index": 1,
-      "explanation": "Adaptive claims require multiple interpretable signals, not only completion.",
+      "explanation": "Useful support depends on visible evidence, not only completion.",
       "misconception_id": "ail606_supplement_6_8_module_6_completion_studio_completion_only_model"
     }
   ]

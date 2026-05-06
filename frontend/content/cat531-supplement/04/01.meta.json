@@ -1,12 +1,12 @@
 {
   "chapter_title": "AI Ethics and Ethobot 3.2",
   "title": "Ethical Dialogue as Learning Activity",
-  "description": "CAT 531 textbook section connecting ethical dialogue as learning activity to TeachGen@i prompt transcript with teacher edits and rejected suggestions, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 531 textbook section connecting ethical dialogue as learning activity to TeachGen@i prompt transcript with teacher edits and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze a TeachGen@i prompt transcript with teacher edits and rejected suggestions as evidence of learner judgment in CAT 531.",
+    "Analyze how the TeachGen@i prompt transcript with teacher edits and rejected suggestions shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
   ],
   "concept_ids": [
     "cat531_supplement_ai_ethics_and_ethobot_3_2",
