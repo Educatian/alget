@@ -387,14 +387,14 @@ export default function AnalyticsDashboard() {
                 <header className="rounded-2xl border border-[var(--ath-line)] bg-white/85 px-5 py-4 shadow-sm">
                     <div className="flex flex-wrap items-center gap-3">
                         <h1 className="text-base font-semibold tracking-tight text-[var(--ath-text)]">Research Console</h1>
-                        <span className="text-[var(--ath-line-strong)]">·</span>
+                        <span className="text-[var(--ath-line-strong)]">/</span>
                         <span className="text-xs font-medium text-[var(--ath-muted)]">ALGET</span>
                         <div className="ml-auto flex flex-wrap items-center gap-2">
                             <button
                                 onClick={() => fetchDashboardData()}
                                 className="rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]"
                             >
-                                {loading ? 'Refreshing…' : 'Refresh'}
+                                {loading ? 'Refreshing...' : 'Refresh'}
                             </button>
                             <button
                                 onClick={() => {
