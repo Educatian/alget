@@ -25,7 +25,7 @@ COURSES = {
             ("usability heuristics", "https://www.nngroup.com/articles/ten-usability-heuristics/"),
         ],
         "artifact_rules": [
-            ("storyboard", "storyboard frame sequence with narration, signaling, and learner-action notes"),
+            ("storyboard", "storyboard frame sequence with narration, signaling, and reader-action notes"),
             ("cognitive", "cognitive load diagnosis table with intrinsic/extraneous/germane load evidence"),
             ("usability", "moderated usability test script with observation-to-revision trace"),
             ("prototype", "prototype README traceability matrix connecting theory to screen changes"),
@@ -64,10 +64,26 @@ COURSES = {
         ],
         "artifact_rules": [
             ("resume", "resume before-after revision with truthful evidence, role fit, and AI-use note"),
+            ("linkedin", "resume before-after revision with truthful evidence, role fit, and AI-use note"),
+            ("bio", "resume before-after revision with truthful evidence, role fit, and AI-use note"),
+            ("portfolio", "resume before-after revision with truthful evidence, role fit, and AI-use note"),
+            ("career", "resume before-after revision with truthful evidence, role fit, and AI-use note"),
+            ("professional presence", "resume before-after revision with truthful evidence, role fit, and AI-use note"),
             ("excel", "Excel pivot-table finding with unit labels, source note, and claim-first chart title"),
+            ("pivot", "Excel pivot-table finding with unit labels, source note, and claim-first chart title"),
+            ("formula", "Excel pivot-table finding with unit labels, source note, and claim-first chart title"),
+            ("spreadsheet", "Excel pivot-table finding with unit labels, source note, and claim-first chart title"),
+            ("data", "Excel pivot-table finding with unit labels, source note, and claim-first chart title"),
+            ("chart", "Excel pivot-table finding with unit labels, source note, and claim-first chart title"),
             ("presentation", "presentation storyboard with audience constraint and slide-level evidence"),
+            ("slide", "presentation storyboard with audience constraint and slide-level evidence"),
             ("github", "GitHub Pages file tree with accessibility, privacy, and publishing checks"),
+            ("website", "GitHub Pages file tree with accessibility, privacy, and publishing checks"),
+            ("pages", "GitHub Pages file tree with accessibility, privacy, and publishing checks"),
             ("privacy", "privacy checklist for accounts, data sharing, and AI tool boundaries"),
+            ("account", "privacy checklist for accounts, data sharing, and AI tool boundaries"),
+            ("digital citizenship", "privacy checklist for accounts, data sharing, and AI tool boundaries"),
+            ("responsible", "privacy checklist for accounts, data sharing, and AI tool boundaries"),
             ("ai", "AI critique log showing accepted, modified, and rejected suggestions"),
         ],
     },
@@ -78,8 +94,8 @@ SECTION_MOVES = [
     {
         "heading": "Interface Move",
         "frame": "This section should behave like a small studio, not a page of notes. The learner reads a compact explanation, inspects an artifact, makes one visible revision, and receives support that is justified by the trace they produced.",
-        "quiz": "Which page behavior would make this section more useful than a static textbook page?",
-        "correct": "It asks for a visible artifact decision, records the evidence source, and offers support based on your evidence.",
+        "quiz": "What would make this section more useful while you revise?",
+        "correct": "It asks you to name a decision, point to evidence, and choose support that helps the revision.",
     },
     {
         "heading": "Adaptive Move",
@@ -88,10 +104,10 @@ SECTION_MOVES = [
         "correct": "The combination of the note, artifact evidence, confidence, and revision quality.",
     },
     {
-        "heading": "Research Move",
-        "frame": "For a publishable intelligent textbook claim, the interface must leave analyzable traces. The section therefore asks for a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and final revision note.",
-        "quiz": "Which trace is most useful for publication-quality analysis?",
-        "correct": "A before-after artifact record linked to a learner decision and evidence source.",
+        "heading": "Evidence Move",
+        "frame": "For a strong revision claim, the interface must leave analyzable traces. The section therefore asks for a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and final revision note.",
+        "quiz": "Which trace would make the revision easiest to review?",
+        "correct": "A before-after artifact record linked to the decision you made and the evidence you used.",
     },
     {
         "heading": "Transfer Move",
@@ -132,7 +148,7 @@ def write_packet(course: str, chapter: int, section: int, title: str, module_tit
     # {profile['short']} Artifact Studio Packet: {title}
 
     ## Purpose
-    This packet turns **{title}** into a concrete artifact studio task. The goal is not to make a polished submission on the first pass. The goal is to make the learner's judgment visible enough that ALGET can adapt support, an instructor can review the decision, and a researcher can code the trace.
+    This packet turns **{title}** into a concrete artifact studio task. The goal is not to make a polished submission on the first pass. The goal is to make your judgment visible enough that an instructor, peer, or future version of you can review the decision.
 
     ## Artifact
     **{artifact_phrase}**
@@ -147,7 +163,7 @@ def write_packet(course: str, chapter: int, section: int, title: str, module_tit
     1. **Initial claim:** What the artifact is supposed to help the audience do.
     2. **Constraint:** Which course idea limits or shapes the decision. Use at least one of: {", ".join(anchor_names)}.
     3. **Evidence source:** Identify the exact rubric line, peer annotation, transcript segment, data check, usability observation, accessibility check, or policy clause that influenced the revision.
-    4. **AI/software support move:** Name the tool and the bounded request. The request should ask for critique, alternatives, simplification, debugging, or comparison, not full artifact authorship.
+    4. **AI/software support choice:** Name the tool and the bounded request. The request should ask for critique, alternatives, simplification, debugging, or comparison, not full artifact authorship.
     5. **Accepted suggestion:** State what changed and why it improved the artifact.
     6. **Rejected or modified suggestion:** State what you did not accept and why.
     7. **Final limitation:** Name one remaining uncertainty or condition where the artifact may fail.
@@ -169,18 +185,18 @@ def write_packet(course: str, chapter: int, section: int, title: str, module_tit
     | Rejection rationale | None | Vague | Explains why a suggestion was rejected or modified |
     | Transfer note | None | Mentions transfer | Names changed constraint in a new context |
 
-    ## ALGET Logging Targets
+    ## Revision Details To Preserve
     - `artifact_claim_visible`
     - `evidence_source_type`
-    - `support_action_requested`
+    - `support_choice_requested`
     - `accepted_suggestion_reason`
     - `rejected_suggestion_reason`
     - `revision_quality_score`
     - `confidence_before_revision`
     - `confidence_after_revision`
 
-    ## Research Use
-    This packet supports item-level and artifact-level analysis because the learner's decision is separable from the surface quality of the artifact. In the dataset, the strongest evidence is not the final artifact alone; it is the relationship among claim, constraint, evidence, support, and revision.
+    ## Review Use
+    This packet helps a reviewer separate the final artifact from the decision path behind it. The strongest evidence is not the finished artifact alone; it is the relationship among claim, constraint, evidence, support, and revision.
     """)
     path.write_text(packet, encoding="utf-8")
     return f"/downloads/summer2026/{course}/{path.name}"
@@ -311,7 +327,7 @@ def trace_bridge(profile: dict, title: str, artifact: str, chapter: int, section
         options = [
             f"A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the {artifact} should make that chain readable.",
             f"In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind {title} so the next revision is based on evidence, not taste.",
-            f"The textbook is doing more than presenting a principle here. It is asking you to leave a design trace that shows how {title} changed what you noticed in the {artifact}.",
+            f"This page is more than a principle summary. Use it to leave a design trace showing how {title} changed what you noticed in the {artifact}.",
         ]
     elif short == "CAT 531":
         options = [
@@ -527,16 +543,16 @@ Use the studio to create a before/after trace. The first version should show you
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your annotation is a **question**, ask for a concise explanation tied to **{anchor_names[0]}**.
-- If your annotation is **confusion**, compare a weak and strong version of the {artifact_phrase}.
-- If your annotation is an **insight**, transfer the same decision rule to a new audience or setting.
-- If your annotation is a **connection**, show where the connection changes the artifact.
+- If your note is a **question**, ask for a concise explanation tied to **{anchor_names[0]}**.
+- If your note shows **confusion**, compare a weak and strong version of the {artifact_phrase}.
+- If your note is an **insight**, transfer the same decision rule to a new audience or setting.
+- If your note makes a **connection**, show where the connection changes the artifact.
 
 <dynamic-scenario prompt="You are revising the {artifact_phrase} for {profile['short']} {chapter:02d}.{section:02d}. A peer comment points to a {prompt_move} issue connected to {anchor_names[1]}. Choose the next revision move and the evidence that would show it helped." />
 
 ## Check Your Understanding
 
-Before moving on, answer the embedded check. The point is not whether you remember the heading; it is whether you can distinguish surface completion from an auditable learning decision.
+Before moving on, use the check to distinguish surface completion from a decision another reader can inspect and revise.
 
 <interactive-quiz question="{move['quiz']}" options='{options}' correct-index="{correct_index}" conceptid="{concept_id}" />
 

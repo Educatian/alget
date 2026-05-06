@@ -12,8 +12,8 @@
     {
       "id": "ail606_supplement_7_5_reflection_as_data_annotation_without_signal",
       "pattern": "low_information_annotation",
-      "description": "Writing social annotations that do not expose a concept, constraint, confusion, or connection",
-      "trigger": "annotation is generic agreement or interest",
+      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
+      "trigger": "note is generic agreement or interest",
       "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
       "rail_action": "explain"
     },
