@@ -27,9 +27,9 @@ export default function PeerPulse({
     const overflowCount = Math.max(0, peers.length - visiblePeers.length)
     const topConfusion = signalSummary.topConfusion
     const tooltipLines = [
-        connected ? 'Live · anonymous peers in this section' : 'Reconnecting…',
+        connected ? 'Live peers in this section' : 'Reconnecting',
         livePeerCount > 0
-            ? `${livePeerCount} reader${livePeerCount === 1 ? '' : 's'}${sameHeadingPeers.length > 0 ? ` · ${sameHeadingPeers.length} on this passage` : sameConceptPeers.length > 0 ? ` · ${sameConceptPeers.length} on this concept` : ''}`
+            ? `${livePeerCount} reader${livePeerCount === 1 ? '' : 's'}${sameHeadingPeers.length > 0 ? ` / ${sameHeadingPeers.length} on this passage` : sameConceptPeers.length > 0 ? ` / ${sameConceptPeers.length} on this concept` : ''}`
             : 'Signals appear as readers join',
         topConfusion ? `Pause point: ${topConfusion.heading} (${topConfusion.count})` : null,
     ].filter(Boolean)
@@ -89,16 +89,20 @@ export default function PeerPulse({
                             <button
                                 type="button"
                                 onClick={() => onReaction?.('need_example')}
-                                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-[var(--ath-line)] bg-white px-2 py-1.5 text-[11px] font-semibold text-[var(--ath-text)] hover:bg-[var(--ath-panel)]"
+                                className="flex h-9 flex-1 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]"
+                                aria-label="Need example"
+                                title="Need example"
                             >
-                                <Lightbulb className="h-3.5 w-3.5" /> Need example
+                                <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
                             </button>
                             <button
                                 type="button"
                                 onClick={() => onReaction?.('stuck_too')}
-                                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-[var(--ath-line)] bg-white px-2 py-1.5 text-[11px] font-semibold text-[var(--ath-text)] hover:bg-[var(--ath-panel)]"
+                                className="flex h-9 flex-1 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]"
+                                aria-label="Stuck too"
+                                title="Stuck too"
                             >
-                                <HandHelping className="h-3.5 w-3.5" /> Stuck too
+                                <HandHelping className="h-3.5 w-3.5" aria-hidden="true" />
                             </button>
                         </div>
                     )}

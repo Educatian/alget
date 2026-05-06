@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { useTextSelection } from '../hooks/useTextSelection'
 import { logHighlightCreate } from '../lib/loggingService'
 import API_BASE from '../lib/apiConfig'
-import { MessageSquarePlus, Sparkles, Highlighter, X } from 'lucide-react'
+import { Download, Hash, MessageSquarePlus, Sparkles, Highlighter, X } from 'lucide-react'
 import HighlightDiscussion from './HighlightDiscussion'
 
 function getInitials(alias = '') {
@@ -447,7 +447,7 @@ export default function HighlightableContent({
         <div ref={containerRef} className="relative select-text">
             {(livePeerCount > 0 || underlinePassageCount > 0 || presenceSummary?.connected) && (
                 <div className="pointer-events-none sticky top-4 z-30 mb-4 flex justify-end px-4">
-                    <div className="pointer-events-auto inline-flex max-w-full items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] px-3 py-2 shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+                    <div className="pointer-events-auto inline-flex max-w-full items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] px-2.5 py-2 shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl">
                         <div className="flex -space-x-2">
                             {livePeerCount > 0 ? presenceSummary.peers.slice(0, 3).map((peer) => (
                                 <span
@@ -465,16 +465,16 @@ export default function HighlightableContent({
                         </div>
 
                         <div className="min-w-0">
-                            <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
-                                <span>{livePeerCount > 0 ? `${livePeerCount} live` : 'live ready'}</span>
-                                {sameHeadingCount > 0 && <span>{sameHeadingCount} in this passage</span>}
-                                {sameConceptCount > 0 && <span>{sameConceptCount} on this concept</span>}
+                            <div className="flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">
+                                <span>{livePeerCount > 0 ? `${livePeerCount} live` : 'live'}</span>
+                                {sameHeadingCount > 0 && <span>{sameHeadingCount} here</span>}
+                                {sameConceptCount > 0 && <span>{sameConceptCount} concept</span>}
                             </div>
-                            <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-[var(--ath-muted)]">
+                            <div className="mt-0.5 hidden flex-wrap items-center gap-2 text-xs text-[var(--ath-muted)] lg:flex">
                                 <span className="inline-flex items-center gap-1">
                                     <span className="inline-block h-[2px] w-4 rounded-full bg-[var(--ath-primary)]" />
                                     {underlinePassageCount > 0
-                                        ? `${underlineReaderCount} shared underlines across ${underlinePassageCount} passages`
+                                        ? `${underlineReaderCount} shared / ${underlinePassageCount} passages`
                                         : 'No shared underlines yet'}
                                 </span>
                                 {sameHeadingCount > 0 && (
@@ -488,7 +488,7 @@ export default function HighlightableContent({
                                                 />
                                             ))}
                                         </span>
-                                        Reading this heading now
+                                        Same heading
                                     </span>
                                 )}
                             </div>
@@ -502,41 +502,49 @@ export default function HighlightableContent({
             {/* Selection Popup */}
             {selectionState && !showNoteInput && (
                 <div
-                    className="fixed z-[100] flex items-center gap-1 bg-slate-900 border border-slate-700 p-1 rounded-xl shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+                    className="fixed z-[100] flex items-center gap-1 rounded-full border border-slate-700 bg-slate-900 p-1 shadow-2xl animate-in fade-in zoom-in-95 duration-200"
                     style={{
                         top: selectionState.rect.top - 60,
-                        left: Math.max(10, selectionState.rect.left + (selectionState.rect.width / 2) - 130),
+                        left: Math.max(10, selectionState.rect.left + (selectionState.rect.width / 2) - 76),
                     }}
                 >
                     <button
                         onClick={() => handleHighlight('yellow')}
-                        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800 rounded-lg transition-colors group"
+                        className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                        aria-label="Highlight"
+                        title="Highlight"
                     >
                         <Highlighter className="w-4 h-4 text-yellow-400 group-hover:text-yellow-300" />
-                        Highlight
                     </button>
 
                     <div className="w-px h-5 bg-slate-700 mx-1"></div>
 
                     <button
                         onClick={() => setShowNoteInput(true)}
-                        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800 rounded-lg transition-colors group"
+                        className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                        aria-label="Add note"
+                        title="Add note"
                     >
                         <MessageSquarePlus className="w-4 h-4 text-emerald-400 group-hover:text-emerald-300" />
-                        Add Note
                     </button>
 
                     <div className="w-px h-5 bg-slate-700 mx-1"></div>
 
                     <button
                         onClick={handleAskBigAL}
-                        className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800 rounded-lg transition-colors group"
+                        className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                        aria-label="Ask BigAL"
+                        title="Ask BigAL"
                     >
                         <Sparkles className="w-4 h-4 text-indigo-400 group-hover:text-indigo-300" />
-                        Ask AI
                     </button>
 
-                    <button onClick={clearSelection} className="px-2 py-1.5 ml-1 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors">
+                    <button
+                        onClick={clearSelection}
+                        className="ml-1 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+                        aria-label="Close selection menu"
+                        title="Close"
+                    >
                         <X className="w-4 h-4" />
                     </button>
 
@@ -610,7 +618,9 @@ export default function HighlightableContent({
                         <button
                             type="button"
                             onClick={() => setDiscussionHighlightId(hoveredHighlight.id)}
-                            className="mt-2 inline-flex items-center gap-1 rounded-full bg-[var(--ath-primary)] px-2.5 py-1 text-[11px] font-semibold text-white"
+                            className="mt-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-primary)] text-[0] font-semibold text-white"
+                            aria-label="Discuss highlight"
+                            title="Discuss"
                         >
                             💬 Discuss this highlight
                         </button>
@@ -640,18 +650,24 @@ export default function HighlightableContent({
 
             {/* Footer with export and stats */}
             {(highlights.length > 0 || popularHighlights.length > 0) && (
-                <div className="fixed bottom-24 left-6 flex gap-2 z-40">
+                <div className="pointer-events-none sticky bottom-4 z-40 mt-8 flex justify-end gap-2 px-4">
                     {highlights.length > 0 && (
                         <button
                             onClick={exportNotes}
-                            className="bg-white text-gray-700 px-3 py-2 rounded-lg shadow-md text-xs border border-gray-200 hover:bg-gray-50 flex items-center gap-1"
+                            className="pointer-events-auto flex h-10 items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.9)] px-3 text-xs font-semibold text-[var(--ath-muted)] shadow-md backdrop-blur-xl hover:bg-[var(--ath-panel)]"
+                            aria-label={`Export ${highlights.length} highlights`}
                         >
-                            Export ({highlights.length})
+                            <Download className="h-4 w-4 text-[var(--ath-primary)]" aria-hidden="true" />
+                            {highlights.length}
                         </button>
                     )}
                     {popularHighlights.length > 0 && (
-                        <div className="bg-blue-50 text-blue-700 px-3 py-2 rounded-lg shadow-md text-xs border border-blue-200">
-                            {popularHighlights.length} popular
+                        <div
+                            className="pointer-events-auto flex h-10 items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.9)] px-3 text-xs font-semibold text-[var(--ath-muted)] shadow-md backdrop-blur-xl"
+                            title={`${popularHighlights.length} popular highlights`}
+                        >
+                            <Hash className="h-4 w-4 text-[var(--ath-primary)]" aria-hidden="true" />
+                            {popularHighlights.length}
                         </div>
                     )}
                 </div>
