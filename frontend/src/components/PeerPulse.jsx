@@ -71,38 +71,38 @@ export default function PeerPulse({
                 <Popover.Content
                     side="top"
                     align="start"
-                    sideOffset={8}
-                    className="z-[80] w-64 rounded-2xl border border-[var(--ath-line)] bg-white/95 p-3 text-xs shadow-[0_18px_48px_rgba(15,23,42,0.14)] backdrop-blur-xl"
+                    sideOffset={6}
+                    className="z-[80] w-44 rounded-xl border border-[var(--ath-line)] bg-white/95 p-2 text-[11px] shadow-[0_12px_28px_rgba(15,23,42,0.12)] backdrop-blur-xl"
                 >
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Peer pulse</p>
-                    <p className="mt-1.5 text-[var(--ath-text)]">
-                        {livePeerCount > 0 ? `${livePeerCount} anonymous reader${livePeerCount === 1 ? '' : 's'} in this section` : 'No live peers right now'}
-                    </p>
-                    {sameHeadingPeers.length > 0 && (
-                        <p className="mt-1 text-[var(--ath-muted)]">{sameHeadingPeers.length} on this passage</p>
-                    )}
-                    {topConfusion && (
-                        <p className="mt-1 text-[var(--ath-muted)]">Pause point: {topConfusion.heading}</p>
+                    <div className="flex items-center justify-between gap-2">
+                        <span className="font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Pulse</span>
+                        <span className="font-semibold text-[var(--ath-text)]">{livePeerCount}</span>
+                    </div>
+                    {(sameHeadingPeers.length > 0 || topConfusion) && (
+                        <div className="mt-1 space-y-0.5 text-[var(--ath-muted)]">
+                            {sameHeadingPeers.length > 0 && <p>{sameHeadingPeers.length} here</p>}
+                            {topConfusion && <p>Pause {topConfusion.count}</p>}
+                        </div>
                     )}
                     {canReact && (
-                        <div className="mt-3 flex gap-2">
+                        <div className="mt-2 flex gap-1.5">
                             <button
                                 type="button"
                                 onClick={() => onReaction?.('need_example')}
-                                className="flex h-9 flex-1 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]"
+                                className="flex h-7 flex-1 items-center justify-center rounded-md border border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]"
                                 aria-label="Need example"
                                 title="Need example"
                             >
-                                <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
+                                <Lightbulb className="h-3 w-3" aria-hidden="true" />
                             </button>
                             <button
                                 type="button"
                                 onClick={() => onReaction?.('stuck_too')}
-                                className="flex h-9 flex-1 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]"
+                                className="flex h-7 flex-1 items-center justify-center rounded-md border border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]"
                                 aria-label="Stuck too"
                                 title="Stuck too"
                             >
-                                <HandHelping className="h-3.5 w-3.5" aria-hidden="true" />
+                                <HandHelping className="h-3 w-3" aria-hidden="true" />
                             </button>
                         </div>
                     )}

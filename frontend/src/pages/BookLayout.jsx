@@ -692,40 +692,37 @@ export default function BookLayout({ user, onLogout }) {
                         </div>
                     </main>
 
-                    {previousSection && (
-                        <button
-                            type="button"
-                            onClick={() => handleNavigate(previousSection.chapter, previousSection.section, 'backward')}
-                            className="pointer-events-auto absolute left-4 top-1/2 z-30 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.9)] text-[var(--ath-muted)] shadow-md shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:-translate-x-0.5 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] 2xl:flex 2xl:opacity-0 2xl:group-hover/nav:opacity-100"
-                            aria-label={`Go to previous section: ${previousSection.title}`}
-                            title={`${previousSection.chapter}.${previousSection.section} ${previousSection.title}`}
-                        >
-                            <ChevronLeft className="h-5 w-5 shrink-0" />
-                        </button>
+                    {(previousSection || nextSection) && (
+                        <div className="pointer-events-none absolute inset-x-0 bottom-4 z-30 hidden justify-center gap-2 opacity-0 transition-opacity duration-200 xl:flex xl:group-hover/nav:opacity-100 xl:focus-within:opacity-100">
+                            {previousSection && (
+                                <button
+                                    type="button"
+                                    onClick={() => handleNavigate(previousSection.chapter, previousSection.section, 'backward')}
+                                    className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.92)] text-[var(--ath-secondary)] shadow-md shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                                    aria-label={`Previous section: ${previousSection.title}`}
+                                    title={`Prev: ${previousSection.chapter}.${previousSection.section} ${previousSection.title}`}
+                                >
+                                    <ChevronLeft className="h-4 w-4" />
+                                </button>
+                            )}
+                            <div className="pointer-events-none flex items-center rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.92)] px-3 text-xs font-semibold text-[var(--ath-secondary)] shadow-md backdrop-blur-xl">
+                                <span className="text-[var(--ath-text)]">{sectionPosition}</span>
+                                <span className="mx-1 text-[var(--ath-line-strong)]">/</span>
+                                <span>{flatSections.length || 1}</span>
+                            </div>
+                            {nextSection && (
+                                <button
+                                    type="button"
+                                    onClick={() => handleNavigate(nextSection.chapter, nextSection.section, 'forward')}
+                                    className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.92)] text-[var(--ath-secondary)] shadow-md shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                                    aria-label={`Next section: ${nextSection.title}`}
+                                    title={`Next: ${nextSection.chapter}.${nextSection.section} ${nextSection.title}`}
+                                >
+                                    <ChevronRight className="h-4 w-4" />
+                                </button>
+                            )}
+                        </div>
                     )}
-
-                    {nextSection && (
-                        <button
-                            type="button"
-                            onClick={() => handleNavigate(nextSection.chapter, nextSection.section, 'forward')}
-                            className="pointer-events-auto absolute right-4 top-1/2 z-30 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.9)] text-[var(--ath-muted)] shadow-md shadow-slate-900/10 backdrop-blur-xl transition-all duration-200 hover:translate-x-0.5 hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] 2xl:flex 2xl:opacity-0 2xl:group-hover/nav:opacity-100"
-                            aria-label={`Go to next section: ${nextSection.title}`}
-                            title={`${nextSection.chapter}.${nextSection.section} ${nextSection.title}`}
-                        >
-                            <ChevronRight className="h-5 w-5 shrink-0" />
-                        </button>
-                    )}
-
-                    <div
-                        className="pointer-events-none absolute bottom-4 left-1/2 z-20 hidden -translate-x-1/2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] px-3 py-2 text-xs font-semibold text-[var(--ath-secondary)] opacity-0 shadow-md backdrop-blur-xl transition-opacity 2xl:block 2xl:group-hover/nav:opacity-100"
-                        aria-hidden="true"
-                    >
-                        <ChevronLeft className="mr-1 inline h-3.5 w-3.5 align-[-2px]" />
-                        <span className="text-[var(--ath-text)]">{sectionPosition}</span>
-                        <span className="mx-1 text-[var(--ath-line-strong)]">/</span>
-                        <span>{flatSections.length || 1}</span>
-                        <ChevronRight className="ml-1 inline h-3.5 w-3.5 align-[-2px]" />
-                    </div>
                 </div>
 
                 <aside

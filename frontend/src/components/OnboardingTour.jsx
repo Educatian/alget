@@ -3,7 +3,7 @@ import { logEvent } from '../lib/loggingService'
 import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
 
 /**
- * OnboardingTour — 5-step in-app tour shown on first visit to /book/*.
+ * OnboardingTour - 5-step in-app tour shown on first visit to /book/*.
  *
  * HCD principle: orient before you ask the user to perform. The tour
  * surfaces the four interaction surfaces (TOC, narrative, IntelRail,
@@ -12,7 +12,7 @@ import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
  *
  * LXD principle: keep it short. Five steps, dismissible at any time,
  * never re-shown unless the learner clicks "show tour again" in
- * Settings (not yet wired — placeholder).
+ * Settings (not yet wired - placeholder).
  */
 
 const TOUR_KEY = 'alget_onboarding_completed_v1'
@@ -20,27 +20,27 @@ const TOUR_KEY = 'alget_onboarding_completed_v1'
 const STEPS = [
     {
         title: 'Welcome to ALGET',
-        body: 'A short tour of the workspace. Five quick steps. You can dismiss any time and replay from Settings.',
+        body: '5 quick steps. Skip anytime.',
         target: null,
     },
     {
-        title: 'The reading pane',
-        body: 'The textbook narrative lives in the center. Embedded check-ins, diagrams, and worked examples appear inline. Read deliberately — pause at every check.',
+        title: 'Reading pane',
+        body: 'Center: narrative, inline checks, diagrams.',
         target: '[data-reading-kind="paragraph"]',
     },
     {
-        title: 'The intelligence rail',
-        body: 'When you stall, the rail opens with four short modes: Explain, Reframe, Practice, and Ask. Each gives you a different path into the same idea.',
+        title: 'Help rail',
+        body: 'Stuck? Try Explain, Reframe, Practice, or Ask.',
         target: '.intel-rail',
     },
     {
-        title: 'The floating tutor chat',
-        body: 'Bottom-right corner. Long conversations live here. The tutor will guide you to answers — it will not give them away. Ask specific questions.',
+        title: 'Tutor chat',
+        body: 'Bottom-right: longer questions. Coaching without giving away answers.',
         target: '[data-onboarding="chat-widget-button"]',
     },
     {
-        title: 'The brain network',
-        body: 'Your concept-level mastery, visualized. Click any node to jump to that section. Blue is the current concept; green is mastered; amber is emerging.',
+        title: 'Brain network',
+        body: 'Header minimap. Click any concept to jump. Blue: focus / green: stable / amber: developing',
         target: '.knowledge-graph-mount',
     },
 ]
@@ -98,7 +98,7 @@ export default function OnboardingTour() {
         <div className="fixed inset-0 z-[200] flex items-end justify-center bg-[rgba(5,6,8,0.52)] p-6 backdrop-blur-sm md:items-center">
             <div className="w-full max-w-md rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-6 shadow-xl">
                 <div className="flex items-center justify-between">
-                    <p className="editorial-kicker">Tour · {step + 1} of {totalSteps}</p>
+                    <p className="editorial-kicker">Tour {step + 1} of {totalSteps}</p>
                     <button
                         type="button"
                         onClick={() => finish('dismissed')}
