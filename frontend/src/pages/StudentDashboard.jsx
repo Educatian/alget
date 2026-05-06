@@ -8,7 +8,7 @@ import CohortLiveMap from '../components/CohortLiveMap'
 import KindredReaders from '../components/KindredReaders'
 
 /**
- * StudentDashboard — learner-facing mastery view. Shows weak concepts,
+ * StudentDashboard - learner-facing mastery view. Shows weak concepts,
  * dominant misconceptions, recent intervention activity, and the next
  * recommended action per concept.
  *
@@ -106,67 +106,67 @@ export default function StudentDashboard({ user }) {
     const isDemoUser = !user?.id || user.id === '00000000-0000-0000-0000-000000000000'
 
     return (
-        <div className="editorial-shell min-h-screen p-8">
+        <div className="editorial-shell min-h-screen p-6 md:p-8">
             <header className="mx-auto max-w-5xl">
-                <p className="editorial-kicker">Your dashboard</p>
-                <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">
-                    What's next for you to learn
-                </h1>
-                <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--ath-muted)]">
-                    A snapshot of your concept-level mastery. Weak concepts are the highest-leverage
-                    place to spend your next study session. Retention checks coming due strengthen
-                    long-term recall — five minutes spent here is worth far more than five extra
-                    minutes of new reading.
-                </p>
+                <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
+                    <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">Your dashboard</span>
+                    {weakConcepts.length > 0 && (
+                        <>
+                            <span className="text-[var(--ath-line-strong)]">/</span>
+                            <span>{weakConcepts.length} weak</span>
+                        </>
+                    )}
+                    {strongConcepts.length > 0 && (
+                        <>
+                            <span className="text-[var(--ath-line-strong)]">/</span>
+                            <span>{strongConcepts.length} strong</span>
+                        </>
+                    )}
+                    {retentionDue.length > 0 && (
+                        <>
+                            <span className="text-[var(--ath-line-strong)]">/</span>
+                            <span className="text-amber-700">{retentionDue.length} retention check{retentionDue.length === 1 ? '' : 's'} due</span>
+                        </>
+                    )}
+                </div>
             </header>
 
             {isDemoUser && (
-                <section className="mx-auto mt-6 max-w-5xl rounded-2xl border border-sky-200 bg-sky-50 p-5">
-                    <p className="editorial-kicker text-sky-700">Demo mode</p>
-                    <p className="mt-1 text-sm text-sky-900">
-                        You're using ALGET in demo mode. Mastery, kindred-readers, and retention checks
-                        appear here once you sign in with a real account so the system can persist your
-                        learning record across devices.
-                    </p>
+                <section className="mx-auto mt-4 max-w-5xl rounded-xl border border-sky-200 bg-sky-50 px-4 py-2.5 text-sm text-sky-900">
+                    <span className="font-semibold">Demo mode</span> / sign in to persist mastery, kindred readers, and retention checks
                     <button
                         type="button"
                         onClick={() => navigate('/')}
-                        className="mt-3 editorial-button px-4 py-2 text-xs"
+                        className="ml-3 text-xs font-semibold text-sky-700 underline-offset-4 hover:underline"
                     >
-                        Go to sign-in
+                        Sign in
                     </button>
                 </section>
             )}
 
             {retentionDue.length > 0 && (
-                <section className="mx-auto mt-6 max-w-5xl rounded-2xl border border-amber-200 bg-amber-50 p-5">
-                    <p className="editorial-kicker text-amber-700">Retention checks due</p>
-                    <ul className="mt-2 space-y-1 text-sm text-amber-900">
+                <section className="mx-auto mt-4 max-w-5xl rounded-xl border border-amber-200 bg-amber-50 px-4 py-3">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-amber-900">
+                        <span className="uppercase tracking-[0.18em]">Retention due</span>
                         {retentionDue.map((entry) => (
-                            <li key={entry.course} className="flex items-center justify-between">
-                                <span>{entry.course}</span>
-                                <button
-                                    type="button"
-                                    className="editorial-button px-3 py-1 text-xs"
-                                    onClick={() => navigate(`/diagnostic/${entry.course}?phase=retention`)}
-                                >
-                                    Take 5-min check
-                                </button>
-                            </li>
+                            <button
+                                key={entry.course}
+                                type="button"
+                                className="rounded-full bg-white px-2.5 py-0.5 text-[11px] font-semibold text-amber-700 hover:bg-amber-100"
+                                onClick={() => navigate(`/diagnostic/${entry.course}?phase=retention`)}
+                            >
+                                {entry.course} / 5 min
+                            </button>
                         ))}
-                    </ul>
+                    </div>
                 </section>
             )}
 
-            <section className="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-2">
-                <div className="editorial-surface p-6">
-                    <p className="editorial-kicker">Weakest concepts</p>
-                    <h2 className="mt-2 text-xl font-semibold text-[var(--ath-text)]">Where to focus next</h2>
+            <section className="mx-auto mt-6 grid max-w-5xl gap-4 lg:grid-cols-2">
+                <div className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-5 shadow-sm">
+                    <h2 className="text-sm font-semibold text-[var(--ath-text)]">Weakest concepts</h2>
                     {weakConcepts.length === 0 ? (
-                        <p className="mt-4 text-sm text-[var(--ath-muted)]">
-                            No concept is below 60% mastery. Keep your retention checks current and
-                            start a new section.
-                        </p>
+                        <p className="mt-3 text-xs text-[var(--ath-muted)]">All concepts ≥ 60% mastery. Keep retention checks current.</p>
                     ) : (
                         <ul className="mt-4 space-y-2">
                             {weakConcepts.map((row) => {
@@ -179,7 +179,7 @@ export default function StudentDashboard({ user }) {
                                         <div>
                                             <p className="text-sm font-semibold text-[var(--ath-text)]">{prettify(row.concept_id)}</p>
                                             <p className="text-xs text-[var(--ath-muted)]">
-                                                Mastery {Math.round(score * 100)}% · attempts {row.attempts_count || 0}
+                                                Mastery {Math.round(score * 100)}% / attempts {row.attempts_count || 0}
                                             </p>
                                         </div>
                                         <button
@@ -196,14 +196,10 @@ export default function StudentDashboard({ user }) {
                     )}
                 </div>
 
-                <div className="editorial-surface p-6">
-                    <p className="editorial-kicker">Recent misconception signals</p>
-                    <h2 className="mt-2 text-xl font-semibold text-[var(--ath-text)]">Patterns the system noticed</h2>
+                <div className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-5 shadow-sm">
+                    <h2 className="text-sm font-semibold text-[var(--ath-text)]">Misconception patterns</h2>
                     {recentMisconceptions.length === 0 ? (
-                        <p className="mt-4 text-sm text-[var(--ath-muted)]">
-                            No misconception patterns surfaced yet. Try the practice problems in your
-                            current section to give the system more signal.
-                        </p>
+                        <p className="mt-3 text-xs text-[var(--ath-muted)]">No patterns yet. Practice surfaces signals.</p>
                     ) : (
                         <ul className="mt-4 space-y-2">
                             {recentMisconceptions.map((entry) => (
@@ -220,13 +216,10 @@ export default function StudentDashboard({ user }) {
                 </div>
             </section>
 
-            <section className="mx-auto mt-8 max-w-5xl rounded-2xl border border-[var(--ath-line)] bg-white/70 p-6">
-                <p className="editorial-kicker">Strong concepts</p>
-                <h2 className="mt-2 text-xl font-semibold text-[var(--ath-text)]">What you've consolidated</h2>
+            <section className="mx-auto mt-4 max-w-5xl rounded-2xl border border-[var(--ath-line)] bg-white/85 p-5">
+                <h2 className="text-sm font-semibold text-[var(--ath-text)]">Strong concepts</h2>
                 {strongConcepts.length === 0 ? (
-                    <p className="mt-4 text-sm text-[var(--ath-muted)]">
-                        Practice and retention will move concepts here. Keep going.
-                    </p>
+                    <p className="mt-3 text-xs text-[var(--ath-muted)]">Practice + retention will move concepts here.</p>
                 ) : (
                     <ul className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-3">
                         {strongConcepts.map((row) => (

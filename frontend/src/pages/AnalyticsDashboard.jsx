@@ -384,39 +384,32 @@ export default function AnalyticsDashboard() {
     return (
         <div className="editorial-shell min-h-screen p-6 lg:p-10">
             <div className="mx-auto max-w-7xl space-y-8">
-                <header className="editorial-surface p-8">
-                    <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                        <div>
-                            <p className="editorial-kicker">Alabama Generative Intelligent Textbook</p>
-                            <h1 className="editorial-title mt-3 text-4xl md:text-5xl">
-                                Research console and social learning pulse
-                            </h1>
-                            <p className="mt-4 max-w-3xl text-[15px] leading-7 text-[var(--ath-muted)]">
-                                Review student knowledge state, live presence, completion momentum, help-seeking behavior, and section-level activity from a single dashboard.
-                            </p>
-                        </div>
-
-                        <div className="flex flex-wrap gap-3">
+                <header className="rounded-2xl border border-[var(--ath-line)] bg-white/85 px-5 py-4 shadow-sm">
+                    <div className="flex flex-wrap items-center gap-3">
+                        <h1 className="text-base font-semibold tracking-tight text-[var(--ath-text)]">Research Console</h1>
+                        <span className="text-[var(--ath-line-strong)]">·</span>
+                        <span className="text-xs font-medium text-[var(--ath-muted)]">ALGET</span>
+                        <div className="ml-auto flex flex-wrap items-center gap-2">
                             <button
                                 onClick={() => fetchDashboardData()}
-                                className="editorial-button-secondary rounded-full px-4 py-2 text-sm"
+                                className="rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]"
                             >
-                                {loading ? 'Refreshing...' : 'Refresh'}
+                                {loading ? 'Refreshing…' : 'Refresh'}
                             </button>
                             <button
                                 onClick={() => {
                                     safeSessionStorageRemove('alget_researcher_access')
                                     setIsAuthenticated(false)
                                 }}
-                                className="editorial-button-secondary rounded-full px-4 py-2 text-sm"
+                                className="rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]"
                             >
                                 Lock
                             </button>
                             <button
                                 onClick={() => navigate('/')}
-                                className="editorial-button rounded-full px-4 py-2 text-sm"
+                                className="rounded-full bg-[var(--ath-primary)] px-3 py-1 text-xs font-semibold text-white hover:bg-[var(--ath-primary-deep)]"
                             >
-                                Exit dashboard
+                                Exit
                             </button>
                         </div>
                     </div>
@@ -924,12 +917,12 @@ export default function AnalyticsDashboard() {
                     <header className="editorial-section-header">
                         <p className="editorial-kicker">RCT analysis</p>
                         <h1 className="editorial-section-title">Intervention effects & learning gains</h1>
-                        <p className="editorial-section-lead">Joins recommendation_decisions × intervention_traces × evaluation_runs from the rct_* SQL views. Empty until subjects complete pre/post evaluations.</p>
+                            <p className="editorial-section-lead">Joins recommendation_decisions, intervention_traces, and evaluation_runs from the rct_* SQL views. Empty until subjects complete pre/post evaluations.</p>
                     </header>
                     <div className="grid gap-6 lg:grid-cols-2">
                         <div className="editorial-surface p-8">
                             <p className="editorial-kicker">Intervention outcomes by action</p>
-                            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Accept rate × resolution</h2>
+                            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Accept rate and resolution</h2>
                             <div className="mt-6 space-y-3">
                                 {rctSnapshot.interventionOutcomes.length === 0 ? (
                                     <p className="text-sm text-[var(--ath-muted)]">No closed intervention traces yet.</p>
@@ -968,12 +961,12 @@ export default function AnalyticsDashboard() {
                                             <span className="text-xs uppercase tracking-wider text-[var(--ath-muted)]">user {String(row.user_id || '').slice(0, 8)}</span>
                                         </div>
                                         <div className="mt-2 grid grid-cols-3 gap-2 text-xs text-[var(--ath-muted)]">
-                                            <span>Pre {row.pre_score ?? '—'}</span>
-                                            <span>Post {row.post_score ?? '—'}</span>
-                                            <span>Retention {row.retention_score ?? '—'}</span>
+                                            <span>Pre {row.pre_score ?? '-'}</span>
+                                            <span>Post {row.post_score ?? '-'}</span>
+                                            <span>Retention {row.retention_score ?? '-'}</span>
                                         </div>
                                         {row.post_pre_gain !== null && row.post_pre_gain !== undefined ? (
-                                            <p className="mt-1 text-xs font-semibold text-[var(--ath-text)]">Δ post-pre: {Number(row.post_pre_gain).toFixed(1)} pts</p>
+                                            <p className="mt-1 text-xs font-semibold text-[var(--ath-text)]">Delta post-pre: {Number(row.post_pre_gain).toFixed(1)} pts</p>
                                         ) : null}
                                     </div>
                                 ))}
