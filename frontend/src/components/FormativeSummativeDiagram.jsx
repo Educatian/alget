@@ -44,7 +44,7 @@ export const FormativeSummativeDiagram = () => {
 
                     {/* Time Axis */}
                     <line x1="20" y1="100" x2="380" y2="100" stroke="#cbd5e1" strokeWidth="2" />
-                    <text x="380" y="115" fill="#475569" fontSize="8" textAnchor="end">Learning Timeline →</text>
+                    <text x="380" y="115" fill="#475569" fontSize="8" textAnchor="end">Learning Timeline</text>
                     <text x="20" y="115" fill="#475569" fontSize="8" textAnchor="start">Start</text>
 
                     {/* Formative Concept (Continuous Cycle) */}

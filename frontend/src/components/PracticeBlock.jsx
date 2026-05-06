@@ -264,13 +264,13 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
         <div className="space-y-4">
             <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
                 <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">Practice</span>
-                <span className="text-[var(--ath-line-strong)]">·</span>
+                <span className="text-[var(--ath-line-strong)]">/</span>
                 <span>Q{currentIndex + 1}/{problems.length}</span>
-                <span className="text-[var(--ath-line-strong)]">·</span>
+                <span className="text-[var(--ath-line-strong)]">/</span>
                 <span>{correctCount} correct</span>
                 {currentProblem?.difficulty && (
                     <>
-                        <span className="text-[var(--ath-line-strong)]">·</span>
+                        <span className="text-[var(--ath-line-strong)]">/</span>
                         <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.14em] ${
                             currentProblem.difficulty === 'easy'
                                 ? 'bg-emerald-50 text-emerald-700'
@@ -396,7 +396,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                             disabled={loading || !hasSelection}
                             className="editorial-button w-full px-5 py-3 text-sm disabled:opacity-50"
                         >
-                            {loading ? 'Checking…' : 'Submit'}
+                            {loading ? 'Checking...' : 'Submit'}
                         </button>
 
                         {showHint && currentProblem?.hint && (

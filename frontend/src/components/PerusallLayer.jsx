@@ -257,7 +257,7 @@ export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = []
                                 isSupabaseConfigured
                                     ? isSynced
                                         ? 'Annotations sync to the research layer'
-                                        : 'Saved locally — will sync when the annotations table is reachable'
+                                        : 'Saved locally - will sync when the annotations table is reachable'
                                     : 'Annotations are stored on this device only'
                             }
                         >

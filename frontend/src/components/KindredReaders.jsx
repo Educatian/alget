@@ -4,7 +4,7 @@ import { logEvent } from '../lib/loggingService'
 import { SkeletonGroup } from './Skeleton'
 
 /**
- * KindredReaders — peers whose highlight pattern overlaps with the
+ * KindredReaders - peers whose highlight pattern overlaps with the
  * current learner's. Reads from the `kindred_readers` SQL view, joins
  * the peer's chosen alias from `social_presence` (last seen alias used).
  *
@@ -89,7 +89,7 @@ export default function KindredReaders({ user, limit = 5 }) {
                 <p className="editorial-kicker">Kindred readers</p>
                 <p className="mt-2 text-sm text-[var(--ath-muted)]">
                     Once you and another learner highlight the same passages, they'll show up here.
-                    Try highlighting more — the system finds your reading-pattern peers.
+                    Try highlighting more - the system finds your reading-pattern peers.
                 </p>
             </div>
         )
@@ -102,7 +102,7 @@ export default function KindredReaders({ user, limit = 5 }) {
                 Learners highlighting similar passages
             </h2>
             <p className="mt-1 text-xs text-[var(--ath-muted)]">
-                Discovery only — aliases, not names. The point is to see who's noticing what you notice.
+                Discovery only - aliases, not names. The point is to see who's noticing what you notice.
             </p>
 
             <ul className="mt-4 space-y-2">
@@ -128,7 +128,7 @@ export default function KindredReaders({ user, limit = 5 }) {
                                     <span className="text-sm font-semibold text-[var(--ath-text)]">{alias}</span>
                                 </div>
                                 <span className="text-xs text-[var(--ath-muted)]">
-                                    {row.total_overlap} shared · {sections.length} section{sections.length === 1 ? '' : 's'}
+                                    {row.total_overlap} shared / {sections.length} section{sections.length === 1 ? '' : 's'}
                                 </span>
                             </button>
                             {expanded === row.peer_user_id && sections.length > 0 && (

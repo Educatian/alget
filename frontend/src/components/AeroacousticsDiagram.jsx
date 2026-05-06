@@ -19,7 +19,7 @@ export const MicroTurbulenceDiagram = () => {
                     className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg flex items-center gap-2
                         ${serrationEnabled ? 'bg-purple-600 hover:bg-purple-500 text-white shadow-purple-900/30' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}`}
                 >
-                    {serrationEnabled ? '✓ Serrations Active' : 'Enable Serrations'}
+                    {serrationEnabled ? 'Serrations Active' : 'Enable Serrations'}
                 </button>
             </div>
 

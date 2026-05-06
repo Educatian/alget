@@ -16,7 +16,7 @@ const LearningTheoriesDiagram = () => (
             {/* Behaviorism */}
             <rect x="20" y="50" width="140" height="80" rx="8" fill="url(#grad1)" stroke="#cbd5e1" strokeWidth="2" />
             <text x="90" y="85" textAnchor="middle" className="text-sm font-bold fill-slate-700">Behaviorism</text>
-            <text x="90" y="105" textAnchor="middle" className="text-xs fill-slate-500">Stimulus → Response</text>
+            <text x="90" y="105" textAnchor="middle" className="text-xs fill-slate-500">Stimulus to Response</text>
 
             {/* Arrow 1 */}
             <line x1="160" y1="90" x2="220" y2="90" stroke="#94a3b8" strokeWidth="2" markerEnd="url(#arrow)" />

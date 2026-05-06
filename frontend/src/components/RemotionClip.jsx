@@ -53,7 +53,7 @@ export default function RemotionClip({ name, width = 1280, height = 720 }) {
             </Suspense>
             <div className="flex items-center justify-between border-t border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-2 text-xs text-[var(--ath-muted)]">
                 <span>{clip.title}</span>
-                <span>{(clip.durationFrames / FPS).toFixed(0)}s · {FPS}fps</span>
+                <span>{(clip.durationFrames / FPS).toFixed(0)}s / {FPS}fps</span>
             </div>
         </div>
     )
