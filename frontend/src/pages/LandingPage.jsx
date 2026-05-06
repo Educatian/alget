@@ -168,27 +168,12 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                     <div className="relative">
                         <div className="absolute -inset-6 rounded-[2.7rem] bg-[radial-gradient(circle_at_top_right,_rgba(200,226,236,0.85),_transparent_42%),radial-gradient(circle_at_bottom_left,_rgba(199,137,67,0.14),_transparent_36%)] blur-2xl"></div>
                         <div className="relative overflow-hidden rounded-[2.7rem] border border-[rgba(15,81,103,0.14)] bg-[linear-gradient(180deg,_rgba(18,41,51,0.98),_rgba(10,28,36,0.95))] p-6 shadow-[0_30px_80px_rgba(15,23,42,0.24)]">
-                            <div className="mb-4 flex items-center justify-between rounded-[1.4rem] border border-white/10 bg-white/6 px-4 py-3">
-                                <div>
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/55">Active surface</p>
-                                    <p className="mt-1 text-sm font-semibold text-white">Adaptive textbook, quietly social</p>
-                                </div>
-                                <div className="rounded-full bg-[rgba(200,226,236,0.15)] px-3 py-1 text-xs font-semibold text-[var(--ath-primary-soft)]">
-                                    Live
-                                </div>
+                            <div className="mb-3 flex items-center gap-2">
+                                <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" aria-hidden />
+                                <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/55">Live preview</span>
                             </div>
                             <div className="rounded-[2rem] border border-white/10 bg-white/5 p-4">
                                 <GenerativeIllustration />
-                            </div>
-                            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                                <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">Learning rail</p>
-                                    <p className="mt-2 text-sm leading-6 text-white/82">Explain, reframe, practice, ask.</p>
-                                </div>
-                                <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
-                                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">Research mode</p>
-                                    <p className="mt-2 text-sm leading-6 text-white/82">Mastery, progress, support, cohort activity.</p>
-                                </div>
                             </div>
                         </div>
                     </div>

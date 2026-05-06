@@ -489,8 +489,7 @@ export default function AnalyticsDashboard() {
                 <section className="editorial-surface p-6">
                     <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
                         <div>
-                            <p className="editorial-kicker">Practical filters</p>
-                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Narrow the learning signals</h2>
+                            <h2 className="text-sm font-semibold text-[var(--ath-text)]">Filters</h2>
                             <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">
                                 Search concepts or section ids, focus the mastery band, and isolate course or signal activity without leaving the dashboard.
                             </p>
@@ -541,8 +540,7 @@ export default function AnalyticsDashboard() {
                     <div className="editorial-surface p-8">
                         <div className="flex items-center justify-between gap-4">
                             <div>
-                                <p className="editorial-kicker">Learner model</p>
-                                <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Concept mastery distribution</h2>
+                                <h2 className="text-sm font-semibold text-[var(--ath-text)]">Concept mastery distribution</h2>
                             </div>
                             <div className="editorial-chip">
                                 {masteryOverview.supportNeeded} concepts need support
@@ -602,8 +600,7 @@ export default function AnalyticsDashboard() {
 
                     <div className="space-y-8">
                         <div className="editorial-surface p-8">
-                            <p className="editorial-kicker">Social pulse</p>
-                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Cohort activity snapshot</h2>
+                            <h2 className="text-sm font-semibold text-[var(--ath-text)]">Cohort activity</h2>
                             <div className="mt-6 grid gap-4 sm:grid-cols-2">
                                 <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
                                     <p className="editorial-label">Average concurrency</p>
@@ -631,8 +628,7 @@ export default function AnalyticsDashboard() {
                         </div>
 
                         <div className="editorial-surface p-8">
-                            <p className="editorial-kicker">Pathway progress</p>
-                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Completion by course</h2>
+                            <h2 className="text-sm font-semibold text-[var(--ath-text)]">Completion by course</h2>
                             <div className="mt-5 space-y-4">
                                 {socialMetrics.progressByCourse.length === 0 ? (
                                     <p className="text-sm text-[var(--ath-muted)]">Cloud progress will appear here after synced completions are recorded.</p>
@@ -668,8 +664,7 @@ export default function AnalyticsDashboard() {
 
                 <section className="grid gap-8 lg:grid-cols-3">
                     <div className="editorial-surface p-8">
-                        <p className="editorial-kicker">Intervention queue</p>
-                        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Concepts needing attention</h2>
+                        <h2 className="text-sm font-semibold text-[var(--ath-text)]">Intervention queue / concepts needing attention</h2>
                         <div className="mt-6 space-y-4">
                             {struggleConcepts.length === 0 ? (
                                 <p className="text-sm text-[var(--ath-muted)]">No high-priority support concepts are flagged right now.</p>
@@ -697,8 +692,7 @@ export default function AnalyticsDashboard() {
                     </div>
 
                     <div className="editorial-surface p-8">
-                        <p className="editorial-kicker">Live section concurrency</p>
-                        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Where peers are clustering now</h2>
+                        <h2 className="text-sm font-semibold text-[var(--ath-text)]">Live section concurrency</h2>
                         <div className="mt-6 space-y-3">
                             {socialMetrics.liveSectionConcurrency.length === 0 ? (
                                 <p className="text-sm text-[var(--ath-muted)]">Live section clustering appears once active readers are present.</p>
@@ -721,8 +715,7 @@ export default function AnalyticsDashboard() {
                     </div>
 
                     <div className="editorial-surface p-8">
-                        <p className="editorial-kicker">Signal mix today</p>
-                        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Help, reaction, and completion balance</h2>
+                        <h2 className="text-sm font-semibold text-[var(--ath-text)]">Signal mix today / help / reactions / completions</h2>
                         <div className="mt-6 space-y-4">
                             {socialMetrics.signalMix.length === 0 ? (
                                 <p className="text-sm text-[var(--ath-muted)]">Signal mix appears after social and completion activity is recorded.</p>
@@ -747,8 +740,7 @@ export default function AnalyticsDashboard() {
                 <section className="editorial-surface p-8">
                     <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                         <div>
-                            <p className="editorial-kicker">Work product evidence</p>
-                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Artifact revision cohort dashboard</h2>
+                            <h2 className="text-sm font-semibold text-[var(--ath-text)]">Artifact revision / cohort</h2>
                             <p className="mt-2 max-w-3xl text-sm leading-7 text-[var(--ath-muted)]">
                                 De-identified score-derived traces show whether learners are improving claims, aligning evidence, making deeper revisions, and judging AI feedback responsibly.
                             </p>
@@ -836,8 +828,7 @@ export default function AnalyticsDashboard() {
 
                 <section className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
                     <div className="editorial-surface p-8">
-                        <p className="editorial-kicker">Intervention traces</p>
-                        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Why the system recommended what it did</h2>
+                        <h2 className="text-sm font-semibold text-[var(--ath-text)]">Intervention traces / why this recommendation</h2>
                         <div className="mt-6 space-y-4">
                             {researchSnapshot.traces.length === 0 ? (
                                 <p className="text-sm text-[var(--ath-muted)]">Recommendation traces will appear after the support rail is used.</p>
@@ -878,8 +869,7 @@ export default function AnalyticsDashboard() {
 
                     <div className="space-y-8">
                         <div className="editorial-surface p-8">
-                            <p className="editorial-kicker">Evaluation frame</p>
-                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Pre, post, and retention</h2>
+                            <h2 className="text-sm font-semibold text-[var(--ath-text)]">Pre / post / retention</h2>
                             <div className="mt-6 grid gap-4 sm:grid-cols-3">
                                 <div className="rounded-2xl bg-[var(--ath-panel-muted)] p-4">
                                     <p className="editorial-label">Pre</p>
@@ -897,8 +887,7 @@ export default function AnalyticsDashboard() {
                         </div>
 
                         <div className="editorial-surface p-8">
-                            <p className="editorial-kicker">Misconception mix</p>
-                            <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Dominant learner friction</h2>
+                            <h2 className="text-sm font-semibold text-[var(--ath-text)]">Dominant misconceptions</h2>
                             <div className="mt-6 space-y-3">
                                 {researchSnapshot.learnerMetrics.dominantMisconceptions.length === 0 ? (
                                     <p className="text-sm text-[var(--ath-muted)]">Misconception labels appear after learners categorize misses.</p>
@@ -915,14 +904,12 @@ export default function AnalyticsDashboard() {
 
                 <section className="editorial-section">
                     <header className="editorial-section-header">
-                        <p className="editorial-kicker">RCT analysis</p>
-                        <h1 className="editorial-section-title">Intervention effects & learning gains</h1>
+                        <h2 className="text-base font-semibold text-[var(--ath-text)]">RCT / intervention effects + learning gains</h2>
                             <p className="editorial-section-lead">Joins recommendation_decisions, intervention_traces, and evaluation_runs from the rct_* SQL views. Empty until subjects complete pre/post evaluations.</p>
                     </header>
                     <div className="grid gap-6 lg:grid-cols-2">
                         <div className="editorial-surface p-8">
-                            <p className="editorial-kicker">Intervention outcomes by action</p>
-                            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Accept rate and resolution</h2>
+                            <h2 className="text-sm font-semibold text-[var(--ath-text)]">Outcomes by action / accept + resolve</h2>
                             <div className="mt-6 space-y-3">
                                 {rctSnapshot.interventionOutcomes.length === 0 ? (
                                     <p className="text-sm text-[var(--ath-muted)]">No closed intervention traces yet.</p>
@@ -949,8 +936,7 @@ export default function AnalyticsDashboard() {
                         </div>
 
                         <div className="editorial-surface p-8">
-                            <p className="editorial-kicker">Pre / post / retention</p>
-                            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">Learning gains per learner</h2>
+                            <h2 className="text-sm font-semibold text-[var(--ath-text)]">Learning gains per learner</h2>
                             <div className="mt-6 space-y-3">
                                 {rctSnapshot.evaluationGains.length === 0 ? (
                                     <p className="text-sm text-[var(--ath-muted)]">Gains appear after at least one learner completes both a pre and post evaluation.</p>
