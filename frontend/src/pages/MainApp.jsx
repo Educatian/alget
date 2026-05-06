@@ -297,92 +297,64 @@ export default function MainApp({ user, onLogout }) {
 
             <main className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
                 {!unlockedMode ? (
-                    <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-                        <div>
-                            <div className="editorial-pill">
-                                <Sparkles className="h-3.5 w-3.5" />
-                                Controlled entry point
-                            </div>
-                            <p className="mt-8 editorial-kicker">Validated pathway access</p>
-                            <h2 className="editorial-title mt-3 max-w-3xl text-5xl leading-[0.97] md:text-6xl">
-                                Enter the right learning pathway
-                            </h2>
-                            <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--ath-muted)]">
-                                Select the cohort mode, validate access server-side, and launch into adaptive content designed for engineering or education contexts.
-                            </p>
-
-                            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                                <div className="editorial-surface p-5">
-                                    <p className="editorial-label">Modes</p>
-                                    <p className="mt-3 text-2xl font-semibold text-[var(--ath-text)]">2</p>
-                                    <p className="mt-1 text-sm leading-6 text-[var(--ath-muted)]">Engineering and education entry surfaces</p>
-                                </div>
-                                <div className="editorial-surface p-5">
-                                    <p className="editorial-label">Access</p>
-                                    <p className="mt-3 text-2xl font-semibold text-[var(--ath-text)]">Server</p>
-                                    <p className="mt-1 text-sm leading-6 text-[var(--ath-muted)]">Codes validated outside the client bundle</p>
-                                </div>
-                                <div className="editorial-surface p-5">
-                                    <p className="editorial-label">Outcome</p>
-                                    <p className="mt-3 text-2xl font-semibold text-[var(--ath-text)]">Adaptive</p>
-                                    <p className="mt-1 text-sm leading-6 text-[var(--ath-muted)]">Reading, practice, and support in one flow</p>
-                                </div>
-                            </div>
+                    <div className="mx-auto max-w-md">
+                        <div className="editorial-pill mx-auto w-fit">
+                            <Sparkles className="h-3.5 w-3.5" />
+                            Pathway access
                         </div>
+                        <h2 className="mt-6 text-center text-3xl font-semibold tracking-tight text-[var(--ath-text)]">
+                            Open your cohort track
+                        </h2>
+                        <p className="mt-2 text-center text-sm text-[var(--ath-muted)]">
+                            Pick a track + enter the code your instructor sent.
+                        </p>
 
-                        <div className="editorial-surface p-8">
-                            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[rgba(15,81,103,0.08)] text-[var(--ath-primary)]">
-                                <LockKeyhole className="h-7 w-7" />
-                            </div>
-                            <p className="editorial-kicker">Module Access</p>
-                            <h3 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">Open the right cohort track</h3>
-                            <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
-                                Select the track and enter the access code provided by your instructor or research lead.
-                            </p>
-
-                            <form onSubmit={handleUnlock} className="mt-8 space-y-5">
-                                <div>
-                                    <label htmlFor="pathway-track" className="editorial-label mb-2 block">Select track</label>
-                                    <select
-                                        id="pathway-track"
-                                        value={selectedMode}
-                                        onChange={(event) => setSelectedMode(event.target.value)}
-                                        className="editorial-input"
-                                    >
-                                        <option value="engineering">Engineering Mode</option>
-                                        <option value="education">Education Module</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label htmlFor="pathway-passcode" className="editorial-label mb-2 block">Passcode</label>
-                                    <input
-                                        id="pathway-passcode"
-                                        type="password"
-                                        value={passcode}
-                                        onChange={(event) => setPasscode(event.target.value)}
-                                        placeholder="Enter access code"
-                                        className="editorial-input"
-                                    />
-                                    <p className="mt-2 text-xs text-[var(--ath-secondary)]">Access is validated on the server instead of inside the client UI.</p>
-                                </div>
-
-                                {error && (
-                                    <div className="rounded-2xl border border-[color-mix(in_srgb,var(--ath-danger)_32%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] px-4 py-3 text-sm font-medium text-[var(--ath-danger)]">
-                                        {error}
-                                    </div>
-                                )}
-
-                                <button
-                                    type="submit"
-                                    disabled={unlocking}
-                                    className="editorial-button w-full px-5 py-3.5 text-sm disabled:opacity-60"
+                        <form onSubmit={handleUnlock} className="mt-8 space-y-4 rounded-2xl border border-[var(--ath-line)] bg-white/85 p-6 shadow-sm">
+                            <div>
+                                <label htmlFor="pathway-track" className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Track</label>
+                                <select
+                                    id="pathway-track"
+                                    value={selectedMode}
+                                    onChange={(event) => setSelectedMode(event.target.value)}
+                                    className="editorial-input mt-1.5"
                                 >
-                                    {unlocking ? 'Checking access...' : 'Unlock pathway'}
-                                    <ArrowRight className="h-4 w-4" />
-                                </button>
-                            </form>
-                        </div>
+                                    <option value="engineering">Engineering</option>
+                                    <option value="education">Education</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label htmlFor="pathway-passcode" className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Access code</label>
+                                <input
+                                    id="pathway-passcode"
+                                    type="password"
+                                    value={passcode}
+                                    onChange={(event) => setPasscode(event.target.value)}
+                                    placeholder="••••••"
+                                    className="editorial-input mt-1.5 tracking-[0.2em]"
+                                />
+                            </div>
+
+                            {error && (
+                                <div className="rounded-xl border border-[color-mix(in_srgb,var(--ath-danger)_32%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] px-3 py-2 text-xs font-medium text-[var(--ath-danger)]">
+                                    {error}
+                                </div>
+                            )}
+
+                            <button
+                                type="submit"
+                                disabled={unlocking}
+                                className="editorial-button w-full px-5 py-3 text-sm disabled:opacity-60"
+                            >
+                                {unlocking ? 'Checking…' : 'Unlock'}
+                                <ArrowRight className="h-4 w-4" />
+                            </button>
+                        </form>
+
+                        <p className="mt-3 flex items-center justify-center gap-1 text-[10px] text-[var(--ath-secondary)]">
+                            <LockKeyhole className="h-3 w-3" />
+                            Server-validated · no client-side bypass
+                        </p>
                     </div>
                 ) : (
                     <>
