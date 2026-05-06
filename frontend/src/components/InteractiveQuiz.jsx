@@ -156,7 +156,7 @@ export default function InteractiveQuiz({ question, options, explanation, concep
                         {!isCorrectChoice && (
                             <button
                                 onClick={handleRetry}
-                                className="self-end rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+                                className="self-end rounded-md border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-4 py-2 text-sm font-medium text-[var(--ath-text)] transition-colors hover:bg-[var(--ath-panel)]"
                             >
                                 Try Again
                             </button>

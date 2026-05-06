@@ -843,6 +843,16 @@ h6,
   text-shadow: none;
 }
 
+/* Dark mode contrast fix: any element that pairs the Tailwind arbitrary
+   `bg-[var(--ath-primary)]` (or its deeper variant) with the `text-white`
+   utility renders as white text on the bright lime primary, which fails
+   WCAG AA. Force the foreground to the inverted background token so it
+   becomes near-black on lime in dark mode and stays white in light mode. */
+[data-theme="dark"] .text-white[class*="bg-\[var\(--ath-primary"],
+[data-theme="dark"] [class*="bg-\[var\(--ath-primary"].text-white {
+  color: var(--ath-background) !important;
+}
+
 [data-theme="dark"] .editorial-button-secondary,
 [data-theme="dark"] .editorial-pill,
 [data-theme="dark"] .editorial-chip {
