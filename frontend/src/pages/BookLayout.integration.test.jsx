@@ -127,7 +127,7 @@ describe('BookLayout integration', () => {
         )
 
         expect(screen.getByText('Alabama Generative Intelligent Textbook')).toBeInTheDocument()
-        expect(screen.getByText('Learning Workspace')).toBeInTheDocument()
+        expect(screen.getByText('ALGET Reader')).toBeInTheDocument()
         expect(await screen.findByTestId('reading-pane')).toHaveTextContent('inst-design Section 01')
         expect(screen.getByText('Cloud sync on')).toBeInTheDocument()
     })
