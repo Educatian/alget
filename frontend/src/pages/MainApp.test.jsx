@@ -33,8 +33,8 @@ describe('MainApp', () => {
             </MemoryRouter>
         )
 
-        expect(screen.getByText(/Module Access/i)).toBeInTheDocument()
-        expect(screen.getByRole('button', { name: /unlock pathway/i })).toBeInTheDocument()
+        expect(screen.getByText(/Open your cohort track/i)).toBeInTheDocument()
+        expect(screen.getByRole('button', { name: /unlock/i })).toBeInTheDocument()
     })
 
     it('shows all engineering pathways after engineering access is validated', async () => {
@@ -44,9 +44,9 @@ describe('MainApp', () => {
             </MemoryRouter>
         )
 
-        fireEvent.change(screen.getByLabelText(/select track/i), { target: { value: 'engineering' } })
-        fireEvent.change(screen.getByLabelText(/passcode/i), { target: { value: 'eng123' } })
-        fireEvent.click(screen.getByRole('button', { name: /unlock pathway/i }))
+        fireEvent.change(screen.getByLabelText(/^track$/i), { target: { value: 'engineering' } })
+        fireEvent.change(screen.getByLabelText(/access code/i), { target: { value: 'eng123' } })
+        fireEvent.click(screen.getByRole('button', { name: /unlock/i }))
 
         expect(await screen.findByText('Engineering Statics')).toBeInTheDocument()
         expect(screen.getByText('ME 201: Engineering Dynamics')).toBeInTheDocument()
@@ -61,9 +61,9 @@ describe('MainApp', () => {
             </MemoryRouter>
         )
 
-        fireEvent.change(screen.getByLabelText(/select track/i), { target: { value: 'education' } })
-        fireEvent.change(screen.getByLabelText(/passcode/i), { target: { value: 'edu123' } })
-        fireEvent.click(screen.getByRole('button', { name: /unlock pathway/i }))
+        fireEvent.change(screen.getByLabelText(/^track$/i), { target: { value: 'education' } })
+        fireEvent.change(screen.getByLabelText(/access code/i), { target: { value: 'edu123' } })
+        fireEvent.click(screen.getByRole('button', { name: /unlock/i }))
 
         expect(await screen.findByText('Foundation of Instructional Design')).toBeInTheDocument()
         expect(screen.getByText('AI and Ethics')).toBeInTheDocument()
