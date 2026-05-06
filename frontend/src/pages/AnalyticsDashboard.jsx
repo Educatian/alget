@@ -370,12 +370,21 @@ export default function AnalyticsDashboard() {
                         </button>
                     </form>
 
-                    <button
-                        onClick={() => navigate('/')}
-                        className="mt-4 w-full text-sm font-medium text-[var(--ath-secondary)] transition-colors hover:text-[var(--ath-primary)]"
-                    >
-                        Back to home
-                    </button>
+                    <div className="mt-4 flex items-center justify-center gap-3 text-sm font-medium text-[var(--ath-secondary)]">
+                        <button
+                            onClick={() => navigate(-1)}
+                            className="transition-colors hover:text-[var(--ath-primary)]"
+                        >
+                            ← Back
+                        </button>
+                        <span className="text-[var(--ath-line-strong)]">·</span>
+                        <button
+                            onClick={() => navigate('/')}
+                            className="transition-colors hover:text-[var(--ath-primary)]"
+                        >
+                            Home
+                        </button>
+                    </div>
                 </div>
             </div>
         )

@@ -70,14 +70,14 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         type="button"
                         onClick={() => navigate('/')}
                         aria-label="Go to ALGET home"
-                        className="flex items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                        className="flex items-center gap-3 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                     >
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-lg font-bold text-white shadow-[0_16px_32px_rgba(9,56,72,0.18)]">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-sm font-bold text-white shadow-[0_12px_24px_rgba(9,56,72,0.16)]">
                             AL
                         </div>
-                        <div>
-                            <p className="editorial-kicker">The Scholarly Editorial</p>
-                            <p className="mt-1 text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">ALGET</p>
+                        <div className="leading-tight">
+                            <p className="text-base font-semibold tracking-tight text-[var(--ath-primary-deep)]">ALGET</p>
+                            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Alabama Generative Intelligent Textbook</p>
                         </div>
                     </button>
 
