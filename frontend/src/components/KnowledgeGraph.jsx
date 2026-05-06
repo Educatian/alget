@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import API_BASE from '../lib/apiConfig'
@@ -60,6 +60,8 @@ export default function KnowledgeGraph({
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [hoveredNode, setHoveredNode] = useState(null)
+    const [dragging, setDragging] = useState(null) // { id, dx, dy, moved }
+    const svgRef = useRef(null)
     const serializedCurrentConcepts = JSON.stringify(currentConceptIds)
     const navigate = useNavigate()
 
@@ -67,8 +69,50 @@ export default function KnowledgeGraph({
         // node.section_id is the slug "course/chapter/section" emitted by
         // build_mastery_graph_payload. Treat the brain network as a
         // navigation surface: clicking a concept jumps to its section.
+        // Suppress click-to-navigate when the node was dragged.
+        if (dragging?.moved) return
         if (!node?.section_id) return
         navigate(`/book/${node.section_id}`)
+    }
+
+    const screenToSvg = (event) => {
+        const svg = svgRef.current
+        if (!svg) return { x: 0, y: 0 }
+        const point = svg.createSVGPoint()
+        point.x = event.clientX
+        point.y = event.clientY
+        const ctm = svg.getScreenCTM()
+        if (!ctm) return { x: 0, y: 0 }
+        const transformed = point.matrixTransform(ctm.inverse())
+        return { x: transformed.x, y: transformed.y }
+    }
+
+    const handleNodeMouseDown = (event, node) => {
+        event.preventDefault()
+        event.stopPropagation()
+        const point = screenToSvg(event)
+        setDragging({ id: node.id, dx: point.x - node.x, dy: point.y - node.y, moved: false })
+    }
+
+    const handleSvgMouseMove = (event) => {
+        if (!dragging) return
+        const point = screenToSvg(event)
+        setGraphData((current) => {
+            if (!current) return current
+            return {
+                ...current,
+                nodes: current.nodes.map((node) =>
+                    node.id === dragging.id
+                        ? { ...node, x: point.x - dragging.dx, y: point.y - dragging.dy }
+                        : node
+                ),
+            }
+        })
+        if (!dragging.moved) setDragging((current) => current && { ...current, moved: true })
+    }
+
+    const handleSvgMouseUp = () => {
+        if (dragging) setDragging(null)
     }
 
     useEffect(() => {
@@ -209,7 +253,16 @@ export default function KnowledgeGraph({
             </div>
 
             <div className="relative w-full overflow-x-auto rounded-2xl border border-slate-800 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.12),transparent_35%),linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98))]">
-                <svg width="100%" height="540" viewBox={`0 0 ${graphData.width} ${graphData.height}`} className="min-w-[860px]">
+                <svg
+                    ref={svgRef}
+                    width="100%"
+                    height="540"
+                    viewBox={`0 0 ${graphData.width} ${graphData.height}`}
+                    className={`min-w-[860px] ${dragging ? 'cursor-grabbing' : ''}`}
+                    onMouseMove={handleSvgMouseMove}
+                    onMouseUp={handleSvgMouseUp}
+                    onMouseLeave={handleSvgMouseUp}
+                >
                     <defs>
                         <pattern id="graph-grid" width="36" height="36" patternUnits="userSpaceOnUse">
                             <path d="M 36 0 L 0 0 0 36" fill="none" stroke="rgba(148,163,184,0.08)" strokeWidth="1" />
@@ -278,6 +331,7 @@ export default function KnowledgeGraph({
                                 transform={`translate(${node.x},${node.y})`}
                                 onMouseEnter={() => setHoveredNode(node.id)}
                                 onMouseLeave={() => setHoveredNode(null)}
+                                onMouseDown={(event) => handleNodeMouseDown(event, node)}
                                 onClick={() => handleNodeClick(node)}
                                 onKeyDown={(event) => {
                                     if (event.key === 'Enter' || event.key === ' ') {
@@ -287,8 +341,8 @@ export default function KnowledgeGraph({
                                 }}
                                 role="button"
                                 tabIndex={0}
-                                aria-label={`Open section: ${node.section_title || node.label}`}
-                                className="cursor-pointer transition-transform duration-300 hover:scale-105 focus:outline-none focus:[&_circle]:stroke-indigo-300"
+                                aria-label={`Open section: ${node.section_title || node.label} (drag to reposition)`}
+                                className={`${dragging?.id === node.id ? 'cursor-grabbing' : 'cursor-grab'} transition-transform duration-300 hover:scale-105 focus:outline-none focus:[&_circle]:stroke-indigo-300`}
                             >
                                 <circle
                                     r={radius}

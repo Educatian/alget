@@ -29,35 +29,32 @@ describe('PerusallLayer local annotation integration', () => {
         vi.clearAllMocks()
     })
 
-    it('creates, displays, persists, filters, and reacts to a local public note', () => {
+    it('expands the collapsed bar, captures a local note, and exposes a Helpful reaction', async () => {
         render(
             <PerusallLayer
                 sectionId="ail606-supplement/05/01"
-                sectionTitle="From Rationale to Testable Hypotheses"
                 conceptIds={['design_claims', 'artifact_evidence']}
             />,
         )
 
-        expect(screen.getByText('Local only')).toBeInTheDocument()
-        expect(screen.getByText('design claims')).toBeInTheDocument()
-        expect(screen.getByText('artifact evidence')).toBeInTheDocument()
+        // Collapsed bar shows the count + sync badge + Add note CTA
+        expect(screen.getByText('Annotations')).toBeInTheDocument()
+        expect(screen.getByText('Local')).toBeInTheDocument()
 
-        const quoteText = 'The design claim must name the artifact evidence.'
-        const bodyText = 'This question asks whether the artifact trace is specific enough.'
+        // Add note opens the inline composer
+        fireEvent.click(screen.getByRole('button', { name: /Add note/i }))
 
-        fireEvent.change(screen.getByPlaceholderText(/capture or paste the passage/i), {
-            target: { value: quoteText },
-        })
-        fireEvent.change(screen.getByPlaceholderText(/Write a question for From Rationale/i), {
-            target: { value: bodyText },
-        })
-        fireEvent.click(screen.getByRole('button', { name: /Add Public Note/i }))
+        // Default tag is 'question' — the placeholder reflects it
+        const noteField = screen.getByPlaceholderText(/Write a question/i)
+        fireEvent.change(noteField, { target: { value: 'This is a confusion that the storyboard claim has no evidence.' } })
 
-        expect(screen.getByText('The design claim must name the artifact evidence.')).toBeInTheDocument()
-        expect(screen.getByText('This question asks whether the artifact trace is specific enough.')).toBeInTheDocument()
-        expect(screen.getByText('1 visible of 1 notes')).toBeInTheDocument()
+        fireEvent.click(screen.getByRole('button', { name: /^Post$/i }))
 
-        fireEvent.click(screen.getByRole('button', { name: /Helpful/i }))
+        // Posted note appears in the list
+        expect(screen.getByText('This is a confusion that the storyboard claim has no evidence.')).toBeInTheDocument()
+
+        // Helpful reaction works
+        fireEvent.click(screen.getByRole('button', { name: /^Helpful$/i }))
         expect(screen.getByRole('button', { name: /Helpful 1/i })).toBeInTheDocument()
 
         const persisted = JSON.parse(
@@ -65,8 +62,7 @@ describe('PerusallLayer local annotation integration', () => {
         )
         expect(persisted).toEqual([
             expect.objectContaining({
-                quote: 'The design claim must name the artifact evidence.',
-                body: 'This question asks whether the artifact trace is specific enough.',
+                body: 'This is a confusion that the storyboard claim has no evidence.',
                 tag: 'question',
                 source: 'local',
             }),
@@ -76,8 +72,6 @@ describe('PerusallLayer local annotation integration', () => {
             'perusall_layer',
             expect.objectContaining({
                 annotation_type: 'question',
-                quote_length: quoteText.length,
-                body_length: bodyText.length,
                 concept_ids: ['design_claims', 'artifact_evidence'],
                 synced: false,
             }),
@@ -92,11 +86,7 @@ describe('PerusallLayer local annotation integration', () => {
         expect(recordAdaptiveSignal).toHaveBeenCalledWith(
             'ail606-supplement/05/01',
             'annotation_create',
-            expect.objectContaining({
-                annotationType: 'question',
-                quoteLength: quoteText.length,
-                bodyLength: bodyText.length,
-            }),
+            expect.objectContaining({ annotationType: 'question' }),
         )
         expect(recordAdaptiveSignal).toHaveBeenCalledWith(
             'ail606-supplement/05/01',
