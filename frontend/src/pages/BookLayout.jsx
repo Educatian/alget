@@ -10,8 +10,7 @@ import {
     LogOut,
     Network,
     PanelRightClose,
-    PanelRightOpen,
-    Settings
+    PanelRightOpen
 } from 'lucide-react'
 import BookToc from '../components/BookToc'
 import ChapterPassport from '../components/ChapterPassport'
@@ -29,7 +28,6 @@ const ReadingPane = lazy(() => import('../components/ReadingPane'))
 const IntelRail = lazy(() => import('../components/IntelRail'))
 const ChatWidget = lazy(() => import('../components/ChatWidget'))
 const HighlightableContent = lazy(() => import('../components/HighlightableContent'))
-const SettingsModal = lazy(() => import('../components/SettingsModal'))
 const SocialPresencePanel = lazy(() => import('../components/SocialPresencePanel'))
 const KnowledgeGraph = lazy(() => import('../components/KnowledgeGraph'))
 
@@ -136,7 +134,6 @@ export default function BookLayout({ user, onLogout }) {
     const [railContext, setRailContext] = useState(null)
     const [stuckEvent, setStuckEvent] = useState(null)
     const [highlightQuestion, setHighlightQuestion] = useState(null)
-    const [isSettingsOpen, setIsSettingsOpen] = useState(false)
     const [transitionDirection, setTransitionDirection] = useState('forward')
     const [activeHeading, setActiveHeading] = useState('')
     const chatWidgetRef = useRef(null)
@@ -390,12 +387,6 @@ export default function BookLayout({ user, onLogout }) {
 
     return (
         <div className="editorial-shell flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
-            {isSettingsOpen && (
-                <Suspense fallback={<div className="fixed inset-0 z-[100] bg-slate-950/10 backdrop-blur-sm" />}>
-                    <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
-                </Suspense>
-            )}
-
             <OnboardingTour />
             <RetentionBanner course={course} />
 
@@ -525,14 +516,6 @@ export default function BookLayout({ user, onLogout }) {
                         <div className="h-8 w-px bg-[var(--ath-line)]"></div>
 
                         <ThemeToggle />
-
-                        <button
-                            onClick={() => setIsSettingsOpen(true)}
-                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
-                            title="API Settings"
-                        >
-                            <Settings className="h-4 w-4" />
-                        </button>
 
                         <Popover.Root>
                             <Popover.Trigger asChild>

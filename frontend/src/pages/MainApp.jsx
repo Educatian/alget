@@ -14,11 +14,9 @@ import {
     LogOut,
     Scale,
     School,
-    Settings,
     Sparkles
 } from 'lucide-react'
 import { BioInspiredIllustration, StaticsIllustration } from '../components/CourseIllustrations'
-import SettingsModal from '../components/SettingsModal'
 import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
@@ -175,7 +173,6 @@ export default function MainApp({ user, onLogout }) {
     const [selectedMode, setSelectedMode] = useState('engineering')
     const [passcode, setPasscode] = useState('')
     const [error, setError] = useState('')
-    const [isSettingsOpen, setIsSettingsOpen] = useState(false)
     const [unlocking, setUnlocking] = useState(false)
 
     const handleCourseSelect = (courseId) => {
@@ -232,7 +229,6 @@ export default function MainApp({ user, onLogout }) {
 
     return (
         <div className="editorial-shell min-h-screen">
-            <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
 
             <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] backdrop-blur-2xl">
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
@@ -260,13 +256,6 @@ export default function MainApp({ user, onLogout }) {
                         </div>
                         <ThemeToggle className="h-10 w-10 rounded-xl" />
 
-                        <button
-                            onClick={() => setIsSettingsOpen(true)}
-                            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] text-[var(--ath-muted)] transition-all hover:bg-[var(--ath-panel)] hover:text-[var(--ath-primary)]"
-                            title="API Settings"
-                        >
-                            <Settings className="h-5 w-5" />
-                        </button>
                         <button
                             onClick={() => navigate('/dashboard')}
                             className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] text-[var(--ath-muted)] transition-all hover:bg-[var(--ath-panel)] hover:text-[var(--ath-primary)]"

@@ -89,11 +89,11 @@ test.describe('ALGET full learner workflow', () => {
         await installResearchApiMocks(page)
         await page.goto('/book/ail606-supplement/01/01', { waitUntil: 'networkidle' })
 
-        await expect(page.getByRole('heading', { name: /^annotations$/i })).toBeVisible()
-        await page.getByLabel(/quoted passage/i).fill('The storyboard claim needs a stronger evidence source.')
+        // Annotations now collapsed — open via the Add note CTA in the bar
+        await page.getByRole('button', { name: /Add note/i }).first().click()
         await page.getByRole('button', { name: 'Connection', exact: true }).click()
-        await page.getByLabel(/^note$/i).fill('This passage should connect the storyboard revision to cognitive load evidence.')
-        await page.getByRole('button', { name: /add public note/i }).click()
+        await page.getByLabel(/^Note$/i).fill('This passage should connect the storyboard revision to cognitive load evidence.')
+        await page.getByRole('button', { name: /^Post$/i }).click()
         await expect(page.getByText('This passage should connect the storyboard revision')).toBeVisible()
 
         // ArtifactStudio is now a 4-step wizard. Walk through each step.

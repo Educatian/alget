@@ -75,6 +75,15 @@ export default function InstructorDashboard() {
         <div className="editorial-shell min-h-screen p-6 md:p-8">
             <header className="mx-auto max-w-5xl">
                 <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
+                    <button
+                        type="button"
+                        onClick={() => navigate(-1)}
+                        className="inline-flex items-center gap-1 text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
+                        aria-label="Go back"
+                    >
+                        ← Back
+                    </button>
+                    <span className="text-[var(--ath-line-strong)]">·</span>
                     <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">Instructor</span>
                     <span className="text-[var(--ath-line-strong)]">/</span>
                     <span>Cohort heatmap</span>

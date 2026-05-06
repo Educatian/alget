@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { Highlighter, MessageSquarePlus, Quote, Search, ThumbsUp } from 'lucide-react'
+import { ChevronDown, Highlighter, MessageSquarePlus, ThumbsUp } from 'lucide-react'
 import { isSupabaseConfigured, supabase } from '../lib/supabase'
 import { logEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
@@ -64,14 +64,15 @@ function dbToAnnotation(row, reactionCounts = {}) {
     }
 }
 
-export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = [] }) {
+export default function PerusallLayer({ sectionId, conceptIds = [] }) {
     const [annotations, setAnnotations] = useState(() => readAnnotations(sectionId))
     const [quote, setQuote] = useState('')
     const [body, setBody] = useState('')
     const [tag, setTag] = useState('question')
     const [filter, setFilter] = useState('all')
     const [isSynced, setIsSynced] = useState(false)
-    const [syncError, setSyncError] = useState('')
+    const [expanded, setExpanded] = useState(false)
+    const [composing, setComposing] = useState(false)
 
     useEffect(() => {
         writeAnnotations(sectionId, annotations)
@@ -108,11 +109,9 @@ export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = []
             const remoteAnnotations = (data || []).map((row) => dbToAnnotation(row, reactionCounts))
             setAnnotations((current) => mergeAnnotations(current, remoteAnnotations))
             setIsSynced(true)
-            setSyncError('')
         } catch (err) {
             console.warn('[PerusallLayer] remote sync unavailable, falling back to local:', err?.message || err)
             setIsSynced(false)
-            setSyncError(err?.message || 'Remote annotation sync failed')
         }
     }, [sectionId])
 
@@ -132,6 +131,8 @@ export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = []
             return acc
         }, {})
     }, [annotations])
+
+    void conceptIds // surface kept slim; concept chips moved to the section header
 
     const captureSelection = () => {
         const selected = window.getSelection()?.toString()?.trim() || ''
@@ -182,12 +183,10 @@ export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = []
                 if (error) throw error
                 setAnnotations((current) => [dbToAnnotation(data), ...current])
                 setIsSynced(true)
-                setSyncError('')
             } catch (err) {
                 console.warn('[PerusallLayer] insert failed, kept local:', err?.message || err)
                 setAnnotations((current) => [nextLocal, ...current])
                 setIsSynced(false)
-                setSyncError(err?.message || 'Saved locally; remote sync failed')
             }
         } else {
             setAnnotations((current) => [nextLocal, ...current])
@@ -236,184 +235,189 @@ export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = []
                 reaction_type: 'helpful',
             })
             if (error) throw error
-            setSyncError('')
         } catch (err) {
             console.warn('[PerusallLayer] reaction sync failed:', err?.message || err)
-            setSyncError(err?.message || 'Reaction sync failed')
         }
     }
 
+    const startCompose = (selectedTag) => {
+        setExpanded(true)
+        setComposing(true)
+        if (selectedTag) setTag(selectedTag)
+    }
+    const cancelCompose = () => {
+        setComposing(false)
+        setQuote('')
+        setBody('')
+    }
+    const submitNote = async () => {
+        await addAnnotation()
+        setComposing(false)
+    }
+
+    const syncBadge = (
+        <span
+            className="inline-flex items-center gap-1 rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-semibold text-[var(--ath-secondary)]"
+            title={
+                isSupabaseConfigured
+                    ? isSynced
+                        ? 'Annotations sync to the research layer'
+                        : 'Saved locally — will sync when the annotations table is reachable'
+                    : 'Annotations are stored on this device only'
+            }
+        >
+            <span className={`h-1.5 w-1.5 rounded-full ${isSupabaseConfigured && isSynced ? 'bg-emerald-500' : 'bg-amber-400'}`} aria-hidden />
+            {isSupabaseConfigured && isSynced ? 'Synced' : 'Local'}
+        </span>
+    )
+
     return (
-        <section className="my-10 rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.78)] p-6 shadow-sm">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                        <h2 className="text-base font-semibold tracking-tight text-[var(--ath-text)]">
-                            Annotations
-                        </h2>
-                        <span
-                            className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]"
-                            title={
-                                isSupabaseConfigured
-                                    ? isSynced
-                                        ? 'Annotations sync to the research layer'
-                                        : 'Saved locally - will sync when the annotations table is reachable'
-                                    : 'Annotations are stored on this device only'
-                            }
-                        >
-                            <span className={`h-1.5 w-1.5 rounded-full ${isSupabaseConfigured && isSynced ? 'bg-emerald-500' : 'bg-amber-400'}`} aria-hidden />
-                            {isSupabaseConfigured && isSynced ? 'Synced' : 'Local only'}
-                        </span>
-                        {conceptIds.slice(0, 3).map((concept) => (
-                            <span key={concept} className="rounded-full bg-[var(--ath-panel-muted)] px-2 py-0.5 text-[10px] font-medium text-[var(--ath-muted)]">
-                                {concept.replace(/_/g, ' ')}
-                            </span>
-                        ))}
-                    </div>
-                    {syncError && (
-                        <p className="mt-2 max-w-xl text-xs leading-5 text-[var(--ath-danger)]">
-                            Sync paused. Local notes are safe.
-                        </p>
-                    )}
-                </div>
-                <div className="grid min-w-[16rem] grid-cols-2 gap-2">
-                    {TAGS.map((item) => (
-                        <button
-                            key={item.id}
-                            type="button"
-                            onClick={() => setFilter(filter === item.id ? 'all' : item.id)}
-                            className={`rounded-2xl border px-3 py-2 text-left text-xs font-semibold transition-all ${filter === item.id
-                                ? 'border-[var(--ath-primary)] bg-[rgba(200,226,236,0.5)] text-[var(--ath-primary)]'
-                                : 'border-[var(--ath-line)] bg-white/70 text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]'
-                                }`}
-                        >
-                            <span className="block uppercase tracking-[0.16em]">{item.label}</span>
-                            <span className="mt-1 block text-lg text-[var(--ath-text)]">{tagCounts[item.id] || 0}</span>
-                        </button>
-                    ))}
-                </div>
+        <section className="my-6">
+            {/* Collapsed bar — single row that respects the reading flow */}
+            <div className="flex flex-wrap items-center gap-2 rounded-full border border-[var(--ath-line)] bg-white/70 px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)] shadow-sm">
+                <button
+                    type="button"
+                    onClick={() => setExpanded((value) => !value)}
+                    aria-expanded={expanded}
+                    className="flex items-center gap-2 text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] rounded-full px-1"
+                >
+                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${expanded ? '' : '-rotate-90'}`} aria-hidden />
+                    <span>Annotations</span>
+                    <span className="rounded-full bg-[var(--ath-panel-muted)] px-1.5 py-0.5 text-[10px] font-bold text-[var(--ath-text)]">{annotations.length}</span>
+                </button>
+                {syncBadge}
+                <button
+                    type="button"
+                    onClick={() => startCompose()}
+                    className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-[var(--ath-primary)] px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm hover:brightness-105"
+                >
+                    <MessageSquarePlus className="h-3.5 w-3.5" />
+                    Add note
+                </button>
             </div>
 
-            <div className="mt-6 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
-                <div className="rounded-[1.6rem] border border-[var(--ath-line)] bg-white/72 p-4">
-                    <div className="flex items-center justify-between gap-3">
-                        <p className="text-sm font-semibold text-[var(--ath-text)]">New Annotation</p>
+            {expanded && (
+                <div className="mt-3 rounded-2xl border border-[var(--ath-line)] bg-white/80 p-4 shadow-sm">
+                    {/* Inline filter pills */}
+                    <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-semibold">
                         <button
                             type="button"
-                            onClick={captureSelection}
-                            className="inline-flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.45)]"
+                            onClick={() => setFilter('all')}
+                            className={`rounded-full px-2.5 py-0.5 transition-colors ${filter === 'all' ? 'bg-[var(--ath-text)] text-[var(--ath-background)]' : 'bg-[var(--ath-panel)] text-[var(--ath-muted)] hover:bg-[var(--ath-panel-muted)]'}`}
                         >
-                            <Highlighter className="h-3.5 w-3.5" />
-                            Capture Selection
+                            All {annotations.length}
                         </button>
-                    </div>
-
-                    <label htmlFor={`${sectionId}-annotation-quote`} className="mt-4 block text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
-                        Quoted Passage
-                    </label>
-                    <textarea
-                        id={`${sectionId}-annotation-quote`}
-                        value={quote}
-                        onChange={(event) => setQuote(event.target.value)}
-                        placeholder="Optional: capture or paste the passage you are responding to."
-                        className="editorial-input mt-2 min-h-20 text-sm"
-                    />
-
-                    <label className="mt-4 block text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
-                        Annotation Type
-                    </label>
-                    <div className="mt-2 grid grid-cols-2 gap-2">
                         {TAGS.map((item) => (
                             <button
                                 key={item.id}
                                 type="button"
-                                onClick={() => setTag(item.id)}
-                                className={`rounded-xl border px-3 py-2 text-sm font-semibold ${tag === item.id
-                                    ? 'border-[var(--ath-primary)] bg-[rgba(200,226,236,0.45)] text-[var(--ath-primary)]'
-                                    : 'border-[var(--ath-line)] bg-white text-[var(--ath-muted)]'
+                                onClick={() => setFilter(filter === item.id ? 'all' : item.id)}
+                                className={`rounded-full px-2.5 py-0.5 transition-colors ${filter === item.id
+                                    ? 'bg-[var(--ath-text)] text-[var(--ath-background)]'
+                                    : 'bg-[var(--ath-panel)] text-[var(--ath-muted)] hover:bg-[var(--ath-panel-muted)]'
                                     }`}
                             >
-                                {item.label}
+                                {item.label} {tagCounts[item.id] || 0}
                             </button>
                         ))}
                     </div>
 
-                    <label htmlFor={`${sectionId}-annotation-body`} className="mt-4 block text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
-                        Note
-                    </label>
-                    <textarea
-                        id={`${sectionId}-annotation-body`}
-                        value={body}
-                        onChange={(event) => setBody(event.target.value)}
-                        placeholder={`Write a ${tag} for ${sectionTitle || 'this section'}...`}
-                        className="editorial-input mt-2 min-h-28 text-sm"
-                    />
-
-                    <button
-                        type="button"
-                        onClick={addAnnotation}
-                        disabled={!body.trim()}
-                        className="editorial-button mt-4 w-full px-4 py-3 text-sm disabled:opacity-50"
-                    >
-                        <MessageSquarePlus className="h-4 w-4" />
-                        Add Public Note
-                    </button>
-                </div>
-
-                <div className="rounded-[1.6rem] border border-[var(--ath-line)] bg-white/72 p-4">
-                    <div className="flex items-center justify-between gap-3">
-                        <div>
-                            <p className="text-sm font-semibold text-[var(--ath-text)]">Section Discussion</p>
-                            <p className="mt-1 text-xs text-[var(--ath-muted)]">
-                                {filteredAnnotations.length} visible of {annotations.length} notes
-                            </p>
-                        </div>
-                        <button
-                            type="button"
-                            onClick={() => setFilter('all')}
-                            className="inline-flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-muted)]"
-                        >
-                            <Search className="h-3.5 w-3.5" />
-                            All
-                        </button>
-                    </div>
-
-                    <div className="mt-4 max-h-[28rem] space-y-3 overflow-y-auto pr-1">
-                        {filteredAnnotations.length === 0 ? (
-                            <div className="rounded-[1.4rem] border border-dashed border-[var(--ath-line)] bg-[rgba(255,255,255,0.58)] p-6 text-center">
-                                <Quote className="mx-auto h-6 w-6 text-[var(--ath-secondary)]" />
-                                <p className="mt-3 text-sm font-semibold text-[var(--ath-text)]">No notes in this view yet.</p>
-                                <p className="mt-1 text-xs leading-5 text-[var(--ath-muted)]">Add the first question, confusion, insight, or connection for this section.</p>
+                    {/* Compose form (only when learner taps "Add note") */}
+                    {composing && (
+                        <div className="mt-4 rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-3">
+                            <div className="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold">
+                                {TAGS.map((item) => (
+                                    <button
+                                        key={item.id}
+                                        type="button"
+                                        onClick={() => setTag(item.id)}
+                                        className={`rounded-full px-2.5 py-0.5 transition-colors ${tag === item.id
+                                            ? 'bg-[var(--ath-primary)] text-white'
+                                            : 'bg-white text-[var(--ath-muted)] hover:text-[var(--ath-primary)]'
+                                            }`}
+                                    >
+                                        {item.label}
+                                    </button>
+                                ))}
+                                <button
+                                    type="button"
+                                    onClick={captureSelection}
+                                    className="ml-auto inline-flex items-center gap-1 text-[10px] font-medium text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
+                                    title="Use the currently selected reading text as the quote"
+                                >
+                                    <Highlighter className="h-3 w-3" />
+                                    Capture selection
+                                </button>
                             </div>
+                            {quote && (
+                                <blockquote className="mt-2 rounded-lg border-l-2 border-[var(--ath-primary)] bg-white/60 px-2 py-1 text-xs text-[var(--ath-muted)]">
+                                    {quote}
+                                </blockquote>
+                            )}
+                            <textarea
+                                id={`${sectionId}-annotation-body`}
+                                value={body}
+                                onChange={(event) => setBody(event.target.value)}
+                                placeholder={`Write a ${tag}…`}
+                                className="editorial-input mt-2 min-h-20 text-sm"
+                                aria-label="Note"
+                            />
+                            <div className="mt-2 flex items-center justify-end gap-2">
+                                <button
+                                    type="button"
+                                    onClick={cancelCompose}
+                                    className="rounded-full px-2.5 py-1 text-[11px] font-semibold text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={submitNote}
+                                    disabled={!body.trim()}
+                                    className="editorial-button px-3 py-1.5 text-[11px] disabled:opacity-50"
+                                >
+                                    <MessageSquarePlus className="h-3.5 w-3.5" />
+                                    Post
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* List */}
+                    <div className="mt-4 space-y-2">
+                        {filteredAnnotations.length === 0 ? (
+                            <p className="rounded-xl border border-dashed border-[var(--ath-line)] px-3 py-4 text-center text-xs text-[var(--ath-muted)]">
+                                {composing ? 'Your note will appear here.' : 'No notes yet — Add note above to start.'}
+                            </p>
                         ) : filteredAnnotations.map((annotation) => (
-                            <article key={annotation.id} className="rounded-[1.4rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.86)] p-4 shadow-sm">
-                                <div className="flex items-center justify-between gap-3">
-                                    <span className="rounded-full bg-[var(--ath-panel)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ath-primary)]">
+                            <article key={annotation.id} className="rounded-xl border border-[var(--ath-line)] bg-white/85 p-3">
+                                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">
+                                    <span className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[var(--ath-primary)]">
                                         {TAGS.find((item) => item.id === annotation.tag)?.label || annotation.tag}
                                     </span>
-                                    <span className="text-[11px] font-medium text-[var(--ath-muted)]">
+                                    <span className="font-medium normal-case tracking-normal">
                                         {new Date(annotation.createdAt).toLocaleString()}
                                     </span>
                                 </div>
                                 {annotation.quote && (
-                                    <blockquote className="mt-3 rounded-xl border-l-4 border-[var(--ath-primary)] bg-[rgba(200,226,236,0.24)] px-3 py-2 text-sm leading-6 text-[var(--ath-muted)]">
+                                    <blockquote className="mt-2 rounded-md border-l-2 border-[var(--ath-primary)] bg-[rgba(200,226,236,0.18)] px-2 py-1 text-xs leading-5 text-[var(--ath-muted)]">
                                         {annotation.quote}
                                     </blockquote>
                                 )}
-                                <p className="mt-3 text-sm leading-6 text-[var(--ath-text)]">{annotation.body}</p>
+                                <p className="mt-2 text-sm leading-6 text-[var(--ath-text)]">{annotation.body}</p>
                                 <button
                                     type="button"
                                     onClick={() => upvote(annotation.id)}
-                                    className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-[var(--ath-line)] bg-white px-2.5 py-1 text-xs font-semibold text-[var(--ath-muted)] hover:text-[var(--ath-primary)]"
+                                    className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--ath-muted)] hover:text-[var(--ath-primary)]"
                                 >
-                                    <ThumbsUp className="h-3.5 w-3.5" />
+                                    <ThumbsUp className="h-3 w-3" />
                                     Helpful {annotation.upvotes > 0 ? annotation.upvotes : ''}
                                 </button>
                             </article>
                         ))}
                     </div>
                 </div>
-            </div>
+            )}
         </section>
     )
 }
