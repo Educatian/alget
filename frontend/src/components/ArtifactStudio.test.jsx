@@ -26,7 +26,7 @@ describe('ArtifactStudio markdown contract surface', () => {
         vi.restoreAllMocks()
     })
 
-    it('logs the required artifact trace fields from markdown-provided props', async () => {
+    it('logs the required artifact trace fields once the learner steps through the wizard', async () => {
         globalThis.fetch = vi.fn().mockResolvedValue({
             ok: true,
             json: async () => ({
@@ -56,49 +56,59 @@ describe('ArtifactStudio markdown contract surface', () => {
             />,
         )
 
-        expect(screen.getByText('Artifact Definition')).toBeInTheDocument()
-        expect(screen.getByText('File Specification')).toBeInTheDocument()
-        expect(screen.getByText(/concrete course deliverable/i)).toBeInTheDocument()
-        expect(screen.getByText(/generic reflection with no inspectable product/i)).toBeInTheDocument()
-        expect(screen.getByText(/artifact\.\(md\|docx\|pdf\|pptx\|xlsx\|csv\|png\)/i)).toBeInTheDocument()
-        expect(screen.getByText(/artifact claim; evidence source/i)).toBeInTheDocument()
+        // Compact header carries course / section
+        expect(screen.getByText('CAT 100 01.06')).toBeInTheDocument()
 
-        fireEvent.click(screen.getByTitle('Compare support'))
-        fireEvent.change(screen.getByLabelText(/Initial Work Product Draft/i), {
+        // Step 1 - Draft
+        fireEvent.change(screen.getByPlaceholderText(/Paste or summarize the current draft/i), {
             target: { value: 'The first draft states a work product direction before critique.' },
         })
-        fireEvent.change(screen.getByLabelText(/Artifact Claim/i), {
+        fireEvent.click(screen.getAllByRole('button', { name: /Next/i })[0])
+
+        // Step 2 - Evidence
+        fireEvent.change(screen.getByPlaceholderText(/Audience, constraint/i), {
             target: { value: 'Audience and constraint are named clearly.' },
         })
         fireEvent.change(screen.getByPlaceholderText(/Rubric line, annotation/i), {
             target: { value: 'Rubric line and annotation evidence are cited.' },
         })
-        fireEvent.change(screen.getByPlaceholderText(/What changed/i), {
+        fireEvent.click(screen.getAllByRole('button', { name: /Next/i })[0])
+
+        // Step 3 - Judge AI
+        fireEvent.change(screen.getByPlaceholderText(/What did you accept/i), {
             target: { value: 'The accepted suggestion improved evidence alignment.' },
         })
-        fireEvent.change(screen.getByPlaceholderText(/What did you reject/i), {
+        fireEvent.change(screen.getByPlaceholderText(/What did you reject or modify/i), {
             target: { value: 'A vague suggestion was rejected for weak evidence.' },
         })
-        fireEvent.click(screen.getByRole('button', { name: /Modify/i }))
-        fireEvent.change(screen.getByLabelText(/Judgment Rationale/i), {
+        fireEvent.click(screen.getByRole('button', { name: /^Modify$/i }))
+        fireEvent.change(screen.getByPlaceholderText(/Why this judgment/i), {
             target: { value: 'The suggestion needed modification because the context was too broad.' },
         })
-        fireEvent.change(screen.getByLabelText(/Revised Work Product/i), {
+        fireEvent.click(screen.getAllByRole('button', { name: /Next/i })[0])
+
+        // Step 4 - Revise
+        fireEvent.change(screen.getByPlaceholderText(/Paste or summarize the revised version/i), {
             target: { value: 'The revised artifact now connects evidence to a specific course deliverable.' },
         })
-        fireEvent.change(screen.getByPlaceholderText(/Name the next audience/i), {
+        fireEvent.change(screen.getByPlaceholderText(/Where would this decision change next/i), {
             target: { value: 'The decision must be rechecked in a different classroom setting.' },
         })
-        fireEvent.change(screen.getByLabelText(/Confidence/i), {
-            target: { value: '4' },
-        })
+
+        // Expand rubric details and set every dimension to 2
+        fireEvent.click(screen.getByText(/Quality rubric/i))
         screen.getAllByRole('combobox').forEach((select) => {
             fireEvent.change(select, { target: { value: '2' } })
         })
-        fireEvent.click(screen.getByRole('button', { name: /Log Trace 8\/8/i }))
+
+        // Confidence slider
+        const confidenceSlider = screen.getByRole('slider')
+        fireEvent.change(confidenceSlider, { target: { value: '4' } })
+
+        fireEvent.click(screen.getByRole('button', { name: /^Submit$/i }))
 
         await waitFor(() => {
-            expect(screen.getByText(/Overall 81%/i)).toBeInTheDocument()
+            expect(screen.getByText(/81%/i)).toBeInTheDocument()
         })
 
         const scoreRequest = JSON.parse(fetch.mock.calls[0][1].body)
@@ -145,13 +155,10 @@ describe('ArtifactStudio markdown contract surface', () => {
                 artifact_required_sections: expect.arrayContaining(['artifact claim', 'transfer constraint']),
                 course: 'CAT 100',
                 section: '01.06',
-                support_move: 'compare',
                 studio_mode: 'traceability',
                 trace_score: 8,
                 trace_denominator: 8,
                 artifact_quality_score: 1,
-                recommended_support_move: 'audit',
-                support_rationale: expect.stringContaining('final quality'),
                 judgment: 'modify',
                 revision_scores: expect.objectContaining({
                     overall_revision_quality: 0.81,
@@ -185,8 +192,6 @@ describe('ArtifactStudio markdown contract surface', () => {
                 artifactQualityScore: 1,
                 artifactSubmissionSpecVersion: 'artifact-submission-spec-v1',
                 traceCompleteness: 1,
-                recommendedSupportMove: 'audit',
-                supportMove: 'compare',
                 judgment: 'modify',
             }),
         )

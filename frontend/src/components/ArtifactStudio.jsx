@@ -161,12 +161,14 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
     const [judgmentRationale, setJudgmentRationale] = useState('')
     const [revisedDraft, setRevisedDraft] = useState('')
     const [transfer, setTransfer] = useState('')
-    const [supportMove, setSupportMove] = useState('explain')
+    const [supportMove] = useState('explain')
     const [confidence, setConfidence] = useState(2)
     const [rubric, setRubric] = useState(() => RUBRIC_ROWS.reduce((acc, row) => ({ ...acc, [row.id]: 0 }), {}))
     const [revisionScore, setRevisionScore] = useState(null)
     const [adaptiveRecommendation, setAdaptiveRecommendation] = useState(null)
     const [status, setStatus] = useState('idle')
+    const [step, setStep] = useState(0)
+    const [showRules, setShowRules] = useState(false)
 
     const traceScore = useMemo(() => {
         return [initialDraft, claim, evidence, accepted, rejected, judgmentRationale, revisedDraft, transfer]
@@ -331,278 +333,310 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
         }
     }
 
+    const STEPS = [
+        { id: 'draft', label: 'Draft' },
+        { id: 'evidence', label: 'Evidence' },
+        { id: 'judge', label: 'Judge AI' },
+        { id: 'revise', label: 'Revise' },
+    ]
+    const stepValid = [
+        initialDraft.trim().length >= 12,
+        claim.trim().length >= 12 && evidence.trim().length >= 12,
+        accepted.trim().length >= 12 && rejected.trim().length >= 12 && judgmentRationale.trim().length >= 12,
+        revisedDraft.trim().length >= 12,
+    ]
+
     return (
-        <section className="my-8 rounded-[1.75rem] border border-[var(--ath-line)] bg-white p-5 shadow-sm">
-            <div className="flex flex-col gap-3 border-b border-[var(--ath-line)] pb-4 md:flex-row md:items-start md:justify-between">
-                <div>
-                    <p className="editorial-kicker">Work Product Studio</p>
-                    <div className="mt-2 flex items-center gap-2">
-                        <ModeIcon className="h-5 w-5 text-[var(--ath-primary)]" />
-                        <h3 className="text-xl font-semibold tracking-tight text-[var(--ath-text)]">{mode.title}</h3>
-                    </div>
-                    <p className="mt-2 max-w-3xl text-sm leading-6 text-[var(--ath-muted)]">{artifact}</p>
-                    <p className="mt-1 text-sm text-[var(--ath-muted)]">{course} {section}</p>
+        <section className="my-8 rounded-2xl border border-[var(--ath-line)] bg-white p-5 shadow-sm">
+            <div className="flex flex-wrap items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[var(--ath-panel)] text-[var(--ath-primary)]">
+                    <ModeIcon className="h-4 w-4" />
                 </div>
-                <div className="flex gap-2">
-                    {SUPPORT_MOVES.map((move) => {
-                        const Icon = move.icon
-                        return (
-                            <button
-                                key={move.id}
-                                type="button"
-                                title={`${move.label} support`}
-                                onClick={() => setSupportMove(move.id)}
-                                className={`inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${supportMove === move.id
-                                    ? 'border-[var(--ath-primary)] bg-[rgba(200,226,236,0.5)] text-[var(--ath-primary)]'
-                                    : 'border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-muted)] hover:text-[var(--ath-primary)]'
-                                    }`}
-                            >
-                                <Icon className="h-4 w-4" />
-                            </button>
-                        )
-                    })}
+                <div className="min-w-0 flex-1">
+                    <h3 className="truncate text-base font-semibold tracking-tight text-[var(--ath-text)]" title={mode.title}>{mode.title}</h3>
+                    <p className="truncate text-xs text-[var(--ath-muted)]" title={artifact}>{artifact}</p>
                 </div>
+                <span className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
+                    {course} {section}
+                </span>
+                <button
+                    type="button"
+                    onClick={() => setShowRules((value) => !value)}
+                    className="text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
+                    aria-expanded={showRules}
+                >
+                    {showRules ? 'Hide rules' : 'Submission rules'}
+                </button>
             </div>
 
-            <div className="mt-5 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.76)] p-4">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Artifact Definition</p>
-                <p className="mt-2 text-sm leading-6 text-[var(--ath-text)]">{artifactDefinition.definition}</p>
-                <div className="mt-3 grid gap-3 md:grid-cols-3">
-                    <div>
-                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Acceptable submissions</p>
-                        <p className="mt-1 text-sm leading-6 text-[var(--ath-muted)]">{artifactDefinition.submissionForms.join('; ')}</p>
+            {showRules && (
+                <div className="mt-3 rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-3 text-xs leading-6 text-[var(--ath-muted)]">
+                    <p className="text-[var(--ath-text)]">{artifactDefinition.definition}</p>
+                    <div className="mt-2 grid gap-2 md:grid-cols-3">
+                        <p><span className="font-semibold text-[var(--ath-text)]">Accept</span> | {artifactDefinition.submissionForms.join('; ')}</p>
+                        <p><span className="font-semibold text-[var(--ath-text)]">Not enough</span> | {artifactDefinition.nonExamples.join('; ')}</p>
+                        <p><span className="font-semibold text-[var(--ath-text)]">Quality</span> | {artifactDefinition.qualitySignal}</p>
                     </div>
-                    <div>
-                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Not enough</p>
-                        <p className="mt-1 text-sm leading-6 text-[var(--ath-muted)]">{artifactDefinition.nonExamples.join('; ')}</p>
-                    </div>
-                    <div>
-                        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">Quality signal</p>
-                        <p className="mt-1 text-sm leading-6 text-[var(--ath-muted)]">{artifactDefinition.qualitySignal}</p>
-                    </div>
-                </div>
-                <div className="mt-4 rounded-xl border border-[var(--ath-line)] bg-white/80 p-3">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">File Specification</p>
-                    <div className="mt-2 grid gap-3 md:grid-cols-2">
-                        <p className="text-sm leading-6 text-[var(--ath-muted)]">
-                            <strong className="text-[var(--ath-text)]">Files:</strong> {submissionSpec.requiredFiles.join('; ')}
-                        </p>
-                        <p className="text-sm leading-6 text-[var(--ath-muted)]">
-                            <strong className="text-[var(--ath-text)]">Formats:</strong> {submissionSpec.acceptedFormats.join(', ')}
-                        </p>
-                        <p className="text-sm leading-6 text-[var(--ath-muted)]">
-                            <strong className="text-[var(--ath-text)]">Name:</strong> {submissionSpec.namingPattern}
-                        </p>
-                        <p className="text-sm leading-6 text-[var(--ath-muted)]">
-                            <strong className="text-[var(--ath-text)]">Minimum:</strong> {submissionSpec.minimumContent}
-                        </p>
-                    </div>
-                    <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
-                        <strong className="text-[var(--ath-text)]">Required sections:</strong> {submissionSpec.requiredSections.join('; ')}
+                    <p className="mt-2">
+                        <span className="font-semibold text-[var(--ath-text)]">Files</span> {submissionSpec.requiredFiles.join('; ')} | <span className="font-semibold text-[var(--ath-text)]">Formats</span> {submissionSpec.acceptedFormats.join(', ')} | <span className="font-semibold text-[var(--ath-text)]">Name</span> <code className="rounded bg-white/70 px-1">{submissionSpec.namingPattern}</code>
                     </p>
+                    <p className="mt-1"><span className="font-semibold text-[var(--ath-text)]">Required sections</span> | {submissionSpec.requiredSections.join('; ')}</p>
                 </div>
-            </div>
+            )}
 
-            <div className="mt-5 grid gap-3 md:grid-cols-4">
-                {[
-                    ['1', 'Draft'],
-                    ['2', 'Evidence'],
-                    ['3', 'Judge AI'],
-                    ['4', 'Revise'],
-                ].map(([step, label]) => (
-                    <div key={step} className="rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.72)] px-4 py-3">
-                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Checkpoint {step}</p>
-                        <p className="mt-1 text-sm font-semibold text-[var(--ath-text)]">{label}</p>
+            <ol className="mt-4 flex items-center gap-1 text-[11px] font-semibold text-[var(--ath-secondary)]" aria-label="Studio progress">
+                {STEPS.map((stepDef, index) => {
+                    const isActive = step === index
+                    const isDone = stepValid[index]
+                    return (
+                        <li key={stepDef.id} className="flex flex-1 items-center gap-1.5">
+                            <button
+                                type="button"
+                                onClick={() => setStep(index)}
+                                aria-current={isActive ? 'step' : undefined}
+                                className={`flex min-w-0 flex-1 items-center gap-1.5 rounded-lg px-2 py-1.5 text-left transition-colors ${
+                                    isActive
+                                        ? 'bg-[rgba(200,226,236,0.45)] text-[var(--ath-primary)]'
+                                        : 'text-[var(--ath-secondary)] hover:bg-[var(--ath-panel)] hover:text-[var(--ath-text)]'
+                                }`}
+                            >
+                                <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
+                                    isActive
+                                        ? 'bg-[var(--ath-primary)] text-white'
+                                        : isDone
+                                            ? 'bg-emerald-100 text-emerald-700'
+                                            : 'bg-[var(--ath-panel)] text-[var(--ath-text)]'
+                                }`}>
+                                    {isDone && !isActive ? <CheckCircle2 className="h-3 w-3" aria-hidden="true" /> : index + 1}
+                                </span>
+                                <span className="truncate">{stepDef.label}</span>
+                            </button>
+                            {index < STEPS.length - 1 && <span aria-hidden className="hidden h-px flex-1 bg-[var(--ath-line)] sm:block" />}
+                        </li>
+                    )
+                })}
+            </ol>
+
+            <div className="mt-5 space-y-4">
+                {step === 0 && (
+                    <>
+                        <label className="block">
+                            <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Initial draft</span>
+                            <textarea
+                                value={initialDraft}
+                                onChange={(event) => setInitialDraft(event.target.value)}
+                                className="editorial-input mt-2 min-h-32 text-sm"
+                                placeholder="Paste or summarize the current draft before AI critique."
+                            />
+                        </label>
+                        {mode.prompts.length > 0 && (
+                            <ul className="grid gap-2 text-xs leading-5 text-[var(--ath-muted)] md:grid-cols-3">
+                                {mode.prompts.map((prompt) => (
+                                    <li key={prompt} className="rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2">{prompt}</li>
+                                ))}
+                            </ul>
+                        )}
+                    </>
+                )}
+
+                {step === 1 && (
+                    <div className="grid gap-4 md:grid-cols-2">
+                        <label className="block">
+                            <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Claim</span>
+                            <textarea
+                                value={claim}
+                                onChange={(event) => setClaim(event.target.value)}
+                                className="editorial-input mt-2 min-h-28 text-sm"
+                                placeholder="Audience, constraint, and intended action."
+                            />
+                        </label>
+                        <label className="block">
+                            <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">{mode.evidenceLabel}</span>
+                            <textarea
+                                value={evidence}
+                                onChange={(event) => setEvidence(event.target.value)}
+                                className="editorial-input mt-2 min-h-28 text-sm"
+                                placeholder="Rubric line, annotation, data check, or observation."
+                            />
+                        </label>
                     </div>
-                ))}
-            </div>
+                )}
 
-            <div className="mt-5 grid gap-3 md:grid-cols-3">
-                {mode.prompts.map((prompt) => (
-                    <div key={prompt} className="rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-4 py-3 text-sm font-medium leading-6 text-[var(--ath-text)]">
-                        {prompt}
+                {step === 2 && (
+                    <div className="space-y-4">
+                        <div className="grid gap-4 md:grid-cols-2">
+                            <label className="block">
+                                <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">{mode.acceptedLabel}</span>
+                                <textarea
+                                    value={accepted}
+                                    onChange={(event) => setAccepted(event.target.value)}
+                                    className="editorial-input mt-2 min-h-28 text-sm"
+                                    placeholder="What did you accept, and why?"
+                                />
+                            </label>
+                            <label className="block">
+                                <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">{mode.rejectedLabel}</span>
+                                <textarea
+                                    value={rejected}
+                                    onChange={(event) => setRejected(event.target.value)}
+                                    className="editorial-input mt-2 min-h-28 text-sm"
+                                    placeholder="What did you reject or modify, and why?"
+                                />
+                            </label>
+                        </div>
+                        <div className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-3">
+                            <div className="flex flex-wrap items-center gap-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Judgment</span>
+                                <div className="flex flex-1 flex-wrap gap-1">
+                                    {JUDGMENT_OPTIONS.map((option) => (
+                                        <button
+                                            key={option.id}
+                                            type="button"
+                                            onClick={() => setJudgment(option.id)}
+                                            className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                                                judgment === option.id
+                                                    ? 'bg-[var(--ath-primary)] text-white'
+                                                    : 'bg-white text-[var(--ath-muted)] hover:text-[var(--ath-primary)]'
+                                            }`}
+                                        >
+                                            {option.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                            <label className="mt-3 block">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Rationale</span>
+                                <textarea
+                                    value={judgmentRationale}
+                                    onChange={(event) => setJudgmentRationale(event.target.value)}
+                                    className="editorial-input mt-1 min-h-20 text-sm"
+                                    placeholder="Why this judgment?"
+                                />
+                            </label>
+                        </div>
                     </div>
-                ))}
-            </div>
+                )}
 
-            <div className="mt-5 rounded-2xl border border-[var(--ath-line)] bg-[rgba(200,226,236,0.22)] p-4">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Why This Support Now</p>
-                <p className="mt-2 text-sm leading-6 text-[var(--ath-text)]">
-                    Recommended move: <strong>{recommendedSupportMove}</strong>. {supportRationale}
-                </p>
-                {adaptiveRecommendation?.primary_action && (
-                    <div className="mt-3 rounded-xl border border-[var(--ath-line)] bg-white/75 p-3 text-sm leading-6 text-[var(--ath-text)]">
-                        Backend policy recommends <strong>{adaptiveRecommendation.primary_action}</strong>: {adaptiveRecommendation.recommended_because?.[0] || adaptiveRecommendation.evidence?.[0] || 'Recommendation generated from current learner and artifact evidence.'}
+                {step === 3 && (
+                    <div className="space-y-4">
+                        <label className="block">
+                            <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Revised work product</span>
+                            <textarea
+                                value={revisedDraft}
+                                onChange={(event) => setRevisedDraft(event.target.value)}
+                                className="editorial-input mt-2 min-h-32 text-sm"
+                                placeholder="Paste or summarize the revised version."
+                            />
+                        </label>
+                        <label className="block">
+                            <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Transfer constraint</span>
+                            <textarea
+                                value={transfer}
+                                onChange={(event) => setTransfer(event.target.value)}
+                                className="editorial-input mt-2 min-h-20 text-sm"
+                                placeholder="Where would this decision change next?"
+                            />
+                        </label>
+
+                        <details className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2 [&[open]>summary>span:last-child]:rotate-90">
+                            <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-semibold text-[var(--ath-secondary)]">
+                                <span>Quality rubric | {Math.round(artifactQualityScore * 100)}%</span>
+                                <span className="transition-transform">&gt;</span>
+                            </summary>
+                            <div className="mt-3 grid gap-2 md:grid-cols-3">
+                                {RUBRIC_ROWS.map((row) => (
+                                    <label key={row.id} className="rounded-lg border border-[var(--ath-line)] bg-white/80 px-2 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">
+                                        {row.label}
+                                        <select
+                                            value={rubric[row.id]}
+                                            onChange={(event) => setRubric((current) => ({ ...current, [row.id]: Number(event.target.value) }))}
+                                            className="mt-1 w-full rounded border border-[var(--ath-line)] bg-white px-1.5 py-1 text-sm font-medium text-[var(--ath-text)]"
+                                        >
+                                            <option value={0}>0 missing</option>
+                                            <option value={1}>1 partial</option>
+                                            <option value={2}>2 strong</option>
+                                        </select>
+                                    </label>
+                                ))}
+                            </div>
+                        </details>
+
+                        <div className="flex flex-wrap items-center gap-3">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Confidence</span>
+                            <span className="text-[10px] text-[var(--ath-secondary)]">Low</span>
+                            <input
+                                type="range"
+                                min="1"
+                                max="5"
+                                value={confidence}
+                                onChange={(event) => setConfidence(Number(event.target.value))}
+                                className="max-w-[12rem] flex-1"
+                            />
+                            <span className="text-[10px] text-[var(--ath-secondary)]">High</span>
+                            <span className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-xs font-semibold text-[var(--ath-text)]">{confidence}</span>
+                            <span
+                                className="ml-auto rounded-full border border-[var(--ath-line)] bg-[rgba(200,226,236,0.3)] px-2.5 py-1 text-[10px] font-semibold text-[var(--ath-primary)]"
+                                title={supportRationale}
+                            >
+                                Recommended: {recommendedSupportMove}
+                            </span>
+                        </div>
+
+                        {revisionScore?.scores && (
+                            <div className="rounded-xl border border-[var(--ath-line)] bg-white p-3">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Revision quality</span>
+                                    <span className="text-sm font-semibold text-[var(--ath-text)]">{Math.round((revisionScore.scores.overall_revision_quality || 0) * 100)}%</span>
+                                </div>
+                                <div className="mt-2 flex flex-wrap gap-1.5">
+                                    {Object.entries(revisionScore.scores).filter(([key]) => key !== 'overall_revision_quality').map(([key, value]) => (
+                                        <span key={key} className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-medium text-[var(--ath-text)]">
+                                            {key.replace(/_/g, ' ')} {Math.round(Number(value || 0) * 100)}%
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {adaptiveRecommendation?.primary_action && (
+                            <div className="rounded-xl border border-[var(--ath-line)] bg-[rgba(200,226,236,0.22)] px-3 py-2 text-xs leading-6 text-[var(--ath-text)]">
+                                <span className="font-semibold">Next: {adaptiveRecommendation.primary_action}</span>
+                                {' | '}{adaptiveRecommendation.recommended_because?.[0] || adaptiveRecommendation.evidence?.[0] || 'Based on current learner and artifact evidence.'}
+                            </div>
+                        )}
                     </div>
                 )}
             </div>
 
-            <div className="mt-5 grid gap-4 lg:grid-cols-2">
-                <label className="block lg:col-span-2">
-                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Initial Work Product Draft</span>
-                    <textarea
-                        value={initialDraft}
-                        onChange={(event) => setInitialDraft(event.target.value)}
-                        className="editorial-input mt-2 min-h-24 text-sm"
-                        placeholder="Paste or summarize the current draft before AI critique or revision."
-                    />
-                </label>
-                <label className="block">
-                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Artifact Claim</span>
-                    <textarea
-                        value={claim}
-                        onChange={(event) => setClaim(event.target.value)}
-                        className="editorial-input mt-2 min-h-24 text-sm"
-                        placeholder="Name the audience, constraint, and intended action."
-                    />
-                </label>
-                <label className="block">
-                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">{mode.evidenceLabel}</span>
-                    <textarea
-                        value={evidence}
-                        onChange={(event) => setEvidence(event.target.value)}
-                        className="editorial-input mt-2 min-h-24 text-sm"
-                        placeholder="Rubric line, annotation, data check, transcript segment, or usability observation."
-                    />
-                </label>
-                <label className="block">
-                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">{mode.acceptedLabel}</span>
-                    <textarea
-                        value={accepted}
-                        onChange={(event) => setAccepted(event.target.value)}
-                        className="editorial-input mt-2 min-h-24 text-sm"
-                        placeholder="What changed, and why was the change justified?"
-                    />
-                </label>
-                <label className="block">
-                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">{mode.rejectedLabel}</span>
-                    <textarea
-                        value={rejected}
-                        onChange={(event) => setRejected(event.target.value)}
-                        className="editorial-input mt-2 min-h-24 text-sm"
-                        placeholder="What did you reject or modify, and why?"
-                    />
-                </label>
-                <div className="lg:col-span-2 rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">AI Feedback Judgment Gate</p>
-                    <div className="mt-3 grid gap-2 sm:grid-cols-4">
-                        {JUDGMENT_OPTIONS.map((option) => (
-                            <button
-                                key={option.id}
-                                type="button"
-                                onClick={() => setJudgment(option.id)}
-                                className={`rounded-xl border px-3 py-2 text-sm font-semibold transition-colors ${judgment === option.id
-                                    ? 'border-[var(--ath-primary)] bg-[rgba(200,226,236,0.5)] text-[var(--ath-primary)]'
-                                    : 'border-[var(--ath-line)] bg-white text-[var(--ath-muted)] hover:text-[var(--ath-primary)]'
-                                    }`}
-                            >
-                                {option.label}
-                            </button>
-                        ))}
-                    </div>
-                    <label className="mt-4 block">
-                        <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Judgment Rationale</span>
-                        <textarea
-                            value={judgmentRationale}
-                            onChange={(event) => setJudgmentRationale(event.target.value)}
-                            className="editorial-input mt-2 min-h-20 text-sm"
-                            placeholder="Explain why the AI suggestion was accepted, modified, rejected, or deferred."
-                        />
-                    </label>
-                </div>
-                <label className="block lg:col-span-2">
-                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Revised Work Product</span>
-                    <textarea
-                        value={revisedDraft}
-                        onChange={(event) => setRevisedDraft(event.target.value)}
-                        className="editorial-input mt-2 min-h-24 text-sm"
-                        placeholder="Paste or summarize the revised version after critique and judgment."
-                    />
-                </label>
-                <label className="block lg:col-span-2">
-                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Transfer Constraint</span>
-                    <textarea
-                        value={transfer}
-                        onChange={(event) => setTransfer(event.target.value)}
-                        className="editorial-input mt-2 min-h-20 text-sm"
-                        placeholder="Name the next audience, class setting, tool, dataset, or role where this decision would need to change."
-                    />
-                </label>
-            </div>
-
-            <div className="mt-5 rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
-                <div className="flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
-                    <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Artifact Quality Rubric</p>
-                        <p className="mt-1 text-sm text-[var(--ath-muted)]">Score each trace dimension from 0 to 2.</p>
-                    </div>
-                    <p className="text-sm font-semibold text-[var(--ath-text)]">Quality {Math.round(artifactQualityScore * 100)}%</p>
-                </div>
-                <div className="mt-4 grid gap-3 md:grid-cols-3">
-                    {RUBRIC_ROWS.map((row) => (
-                        <label key={row.id} className="rounded-xl border border-[var(--ath-line)] bg-white/72 px-3 py-2 text-xs font-semibold text-[var(--ath-muted)]">
-                            {row.label}
-                            <select
-                                value={rubric[row.id]}
-                                onChange={(event) => setRubric((current) => ({ ...current, [row.id]: Number(event.target.value) }))}
-                                className="mt-2 w-full rounded-lg border border-[var(--ath-line)] bg-white px-2 py-1 text-sm text-[var(--ath-text)]"
-                            >
-                                <option value={0}>0 missing</option>
-                                <option value={1}>1 partial</option>
-                                <option value={2}>2 strong</option>
-                            </select>
-                        </label>
-                    ))}
-                </div>
-            </div>
-
-            {revisionScore?.scores && (
-                <div className="mt-5 rounded-2xl border border-[var(--ath-line)] bg-white p-4">
-                    <div className="flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
-                        <div>
-                            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Revision Quality</p>
-                            <p className="mt-1 text-sm text-[var(--ath-muted)]">Server-scored from draft and revision; raw text is not persisted in telemetry.</p>
-                        </div>
-                        <p className="text-sm font-semibold text-[var(--ath-text)]">
-                            Overall {Math.round((revisionScore.scores.overall_revision_quality || 0) * 100)}%
-                        </p>
-                    </div>
-                    <div className="mt-4 grid gap-2 md:grid-cols-3">
-                        {Object.entries(revisionScore.scores).filter(([key]) => key !== 'overall_revision_quality').map(([key, value]) => (
-                            <div key={key} className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2">
-                                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">{key.replace(/_/g, ' ')}</p>
-                                <p className="mt-1 text-sm font-semibold text-[var(--ath-text)]">{Math.round(Number(value || 0) * 100)}%</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            <div className="mt-5 flex flex-col gap-4 border-t border-[var(--ath-line)] pt-4 md:flex-row md:items-center md:justify-between">
-                <div className="rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.84)] px-4 py-2 text-sm font-semibold text-[var(--ath-muted)]">
-                    Trace completeness <span className="text-[var(--ath-text)]">{completionPercent}%</span>
-                </div>
-                <label className="flex flex-1 items-center gap-3 text-sm font-semibold text-[var(--ath-muted)]">
-                    Confidence
-                    <input
-                        type="range"
-                        min="1"
-                        max="5"
-                        value={confidence}
-                        onChange={(event) => setConfidence(Number(event.target.value))}
-                        className="max-w-xs flex-1"
-                    />
-                    <span className="w-5 text-center text-[var(--ath-text)]">{confidence}</span>
-                </label>
+            <div className="mt-6 flex items-center justify-between border-t border-[var(--ath-line)] pt-4">
                 <button
                     type="button"
-                    onClick={submitTrace}
-                    disabled={status === 'scoring' || status === 'recommending'}
-                    className="editorial-button px-4 py-2 text-sm"
+                    onClick={() => setStep((value) => Math.max(0, value - 1))}
+                    disabled={step === 0}
+                    className="text-xs font-semibold text-[var(--ath-secondary)] hover:text-[var(--ath-text)] disabled:opacity-30"
                 >
-                    <CheckCircle2 className="h-4 w-4" />
-                    {status === 'scoring' ? 'Scoring...' : status === 'recommending' ? 'Recommending...' : `Log Trace ${traceScore}/8`}
+                    Back
                 </button>
+                <span className="text-xs text-[var(--ath-secondary)]">{traceScore}/8 fields | {completionPercent}%</span>
+                {step < STEPS.length - 1 ? (
+                    <button
+                        type="button"
+                        onClick={() => setStep((value) => Math.min(STEPS.length - 1, value + 1))}
+                        className="editorial-button px-4 py-2 text-sm"
+                    >
+                        Next
+                    </button>
+                ) : (
+                    <button
+                        type="button"
+                        onClick={submitTrace}
+                        disabled={status === 'scoring' || status === 'recommending'}
+                        className="editorial-button px-4 py-2 text-sm"
+                    >
+                        <CheckCircle2 className="h-4 w-4" />
+                        {status === 'scoring' ? 'Scoring...' : status === 'recommending' ? 'Recommending...' : 'Submit'}
+                    </button>
+                )}
             </div>
         </section>
     )

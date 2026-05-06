@@ -35,10 +35,10 @@ describe('ReadingNarrative markdown extension contract', () => {
             />,
         )
 
-        expect(await screen.findByText('Work Product Studio')).toBeInTheDocument()
+        expect(await screen.findByRole('button', { name: /Submission rules/i })).toBeInTheDocument()
         expect(screen.getByText('Design Tension Studio map naming a classroom value conflict and negotiated decision')).toBeInTheDocument()
         expect(screen.getByText('CAT 531 08.06')).toBeInTheDocument()
-        expect(screen.getByRole('button', { name: /Log Trace 0\/8/i })).toBeInTheDocument()
+        expect(screen.getByText(/0\/8/)).toBeInTheDocument()
     })
 
     it('normalizes generated MDX where the first heading is flush but the remaining body is indented', async () => {
@@ -56,7 +56,7 @@ describe('ReadingNarrative markdown extension contract', () => {
             />,
         )
 
-        expect(await screen.findByText('Work Product Studio')).toBeInTheDocument()
+        expect(await screen.findByRole('button', { name: /Submission rules/i })).toBeInTheDocument()
         expect(screen.getByText('AIL 606 01.01')).toBeInTheDocument()
     })
 })
