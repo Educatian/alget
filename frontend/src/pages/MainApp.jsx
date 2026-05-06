@@ -346,43 +346,34 @@ export default function MainApp({ user, onLogout }) {
                                 disabled={unlocking}
                                 className="editorial-button w-full px-5 py-3 text-sm disabled:opacity-60"
                             >
-                                {unlocking ? 'Checking…' : 'Unlock'}
+                                {unlocking ? 'Checking...' : 'Unlock'}
                                 <ArrowRight className="h-4 w-4" />
                             </button>
                         </form>
 
                         <p className="mt-3 flex items-center justify-center gap-1 text-[10px] text-[var(--ath-secondary)]">
                             <LockKeyhole className="h-3 w-3" />
-                            Server-validated · no client-side bypass
+                            Server-validated / no client-side bypass
                         </p>
                     </div>
                 ) : (
                     <>
-                        <section className="editorial-surface p-8">
-                            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                                <div>
-                                    <p className="editorial-kicker">
-                                        {unlockedMode === 'engineering' ? 'Engineering workspace' : 'Education workspace'}
-                                    </p>
-                                    <h2 className="editorial-title mt-3 text-4xl">
-                                        {unlockedMode === 'engineering' ? 'Engineering Pathways' : 'Education Pathways'}
-                                    </h2>
-                                    <p className="mt-3 max-w-3xl text-[15px] leading-7 text-[var(--ath-muted)]">
-                                        Diagnostics, reading, practice, generation, and progress in one path.
-                                    </p>
-                                </div>
-                                <div className="flex flex-wrap items-center gap-3">
-                                    <div className="editorial-chip">{visibleCourses.length} available pathways</div>
-                                    <button
-                                        onClick={() => {
-                                            setUnlockedMode(null)
-                                            setPasscode('')
-                                        }}
-                                        className="editorial-button-secondary px-4 py-2 text-sm"
-                                    >
-                                        Change track
-                                    </button>
-                                </div>
+                        <section className="rounded-2xl border border-[var(--ath-line)] bg-white/85 px-5 py-3 shadow-sm">
+                            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
+                                <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">
+                                    {unlockedMode === 'engineering' ? 'Engineering' : 'Education'} pathways
+                                </span>
+                                <span className="text-[var(--ath-line-strong)]">/</span>
+                                <span>{visibleCourses.length} available</span>
+                                <button
+                                    onClick={() => {
+                                        setUnlockedMode(null)
+                                        setPasscode('')
+                                    }}
+                                    className="ml-auto text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
+                                >
+                                    Change track
+                                </button>
                             </div>
                         </section>
 
@@ -415,33 +406,23 @@ export default function MainApp({ user, onLogout }) {
                                     <button
                                         type="button"
                                         onClick={() => goToSavedSection(visibleRecentSection)}
-                                        className="editorial-surface group p-8 text-left transition-all hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.08)]"
+                                        className="editorial-surface group p-5 text-left transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]"
                                     >
-                                        <div className="flex items-start justify-between gap-4">
-                                            <div>
-                                                <p className="editorial-kicker">Resume learning</p>
-                                                <h3 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">
-                                                    Continue where you left off
-                                                </h3>
-                                                <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ath-muted)]">
-                                                    {visibleRecentSection.description || 'Return to the last section with support and practice ready.'}
-                                                </p>
-                                            </div>
-                                            <div className="rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
-                                                Last opened
-                                            </div>
+                                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
+                                            <span>Resume</span>
+                                            <span className="text-[var(--ath-line-strong)]">/</span>
+                                            <span>Last opened</span>
                                         </div>
 
-                                        <div className="mt-8 flex flex-wrap gap-2">
-                                            <span className="editorial-chip">{formatPathwayLabel(visibleRecentSection.course)}</span>
-                                            <span className="editorial-chip">Chapter {visibleRecentSection.chapter}</span>
-                                            <span className="editorial-chip">Section {visibleRecentSection.section}</span>
+                                        <div className="mt-3 flex flex-wrap gap-1.5">
+                                            <span className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-semibold text-[var(--ath-text)]">{formatPathwayLabel(visibleRecentSection.course)}</span>
+                                            <span className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-semibold text-[var(--ath-text)]">{visibleRecentSection.chapter}.{visibleRecentSection.section}</span>
                                             {visibleRecentSection.estimatedTimeMinutes && (
-                                                <span className="editorial-chip">{visibleRecentSection.estimatedTimeMinutes} min</span>
+                                                <span className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-semibold text-[var(--ath-text)]">{visibleRecentSection.estimatedTimeMinutes} min</span>
                                             )}
                                         </div>
 
-                                        <div className="mt-8 flex items-center justify-between border-t border-[var(--ath-line)] pt-5">
+                                        <div className="mt-4 flex items-center justify-between border-t border-[var(--ath-line)] pt-3">
                                             <div>
                                                 <p className="text-sm font-semibold text-[var(--ath-text)]">
                                                     {visibleRecentSection.title || `${formatPathwayLabel(visibleRecentSection.course)} section`}

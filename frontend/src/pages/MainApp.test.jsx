@@ -51,7 +51,7 @@ describe('MainApp', () => {
         expect(await screen.findByText('Engineering Statics')).toBeInTheDocument()
         expect(screen.getByText('ME 201: Engineering Dynamics')).toBeInTheDocument()
         expect(screen.getByText('Bio-Inspired Design')).toBeInTheDocument()
-        expect(screen.getByText('3 available pathways')).toBeInTheDocument()
+        expect(screen.getByText('3 available')).toBeInTheDocument()
     })
 
     it('shows all education pathways after education access is validated', async () => {
@@ -70,6 +70,6 @@ describe('MainApp', () => {
         expect(screen.getByText('AIL 606: Software Technology Supplement')).toBeInTheDocument()
         expect(screen.getByText('CAT 531: Technology and Teaching Supplement')).toBeInTheDocument()
         expect(screen.getByText('CAT 100: Computer Concepts Supplement')).toBeInTheDocument()
-        expect(screen.getByText('5 available pathways')).toBeInTheDocument()
+        expect(screen.getByText('5 available')).toBeInTheDocument()
     })
 })
