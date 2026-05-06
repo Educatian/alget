@@ -1,7 +1,18 @@
 import { Suspense, lazy, useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import * as Popover from '@radix-ui/react-popover'
-import { ChevronLeft, ChevronRight, Network, Settings } from 'lucide-react'
+import {
+    BarChart3,
+    Bookmark,
+    ChevronLeft,
+    ChevronRight,
+    Home,
+    LogOut,
+    Network,
+    PanelRightClose,
+    PanelRightOpen,
+    Settings
+} from 'lucide-react'
 import BookToc from '../components/BookToc'
 import ChapterPassport from '../components/ChapterPassport'
 import RetentionBanner from '../components/RetentionBanner'
@@ -401,7 +412,7 @@ export default function BookLayout({ user, onLogout }) {
                         </div>
                         <div className="min-w-0">
                             <p className="editorial-kicker">Alabama Generative Intelligent Textbook</p>
-                            <h1 className="truncate text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">Learning Workspace</h1>
+                            <h1 className="truncate text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">ALGET Reader</h1>
                             <p className="truncate text-xs font-medium uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
                                 {formatCourseLabel(course)} / Chapter {chapter} / Section {section}
                             </p>
@@ -489,22 +500,26 @@ export default function BookLayout({ user, onLogout }) {
 
                         <button
                             onClick={handleBookmarkToggle}
-                            className={`rounded-lg px-4 py-2 text-sm font-semibold transition-all duration-200 ${currentBookmarked
+                            className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 ${currentBookmarked
                                 ? 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
                                 : 'bg-[var(--ath-panel)] text-[var(--ath-secondary)] hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]'
                                 }`}
+                            aria-label={currentBookmarked ? 'Remove bookmark' : 'Save section'}
+                            title={currentBookmarked ? 'Saved' : 'Save for later'}
                         >
-                            {currentBookmarked ? 'Saved' : 'Save for later'}
+                            <Bookmark className={`h-4 w-4 ${currentBookmarked ? 'fill-current' : ''}`} aria-hidden="true" />
                         </button>
 
                         <button
                             onClick={toggleRail}
-                            className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${railOpen
+                            className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 ${railOpen
                                 ? 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[rgba(200,226,236,0.45)]'
                                 : 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
                                 }`}
+                            aria-label={railOpen ? 'Close support rail' : 'Open support rail'}
+                            title={railOpen ? 'Close support' : 'Open support'}
                         >
-                            {railOpen ? 'Close Help' : 'Get Help'}
+                            {railOpen ? <PanelRightClose className="h-4 w-4" aria-hidden="true" /> : <PanelRightOpen className="h-4 w-4" aria-hidden="true" />}
                         </button>
 
                         <div className="h-8 w-px bg-[var(--ath-line)]"></div>
@@ -556,9 +571,7 @@ export default function BookLayout({ user, onLogout }) {
                             title="My mastery dashboard"
                             aria-label="Open my mastery dashboard"
                         >
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                            </svg>
+                            <Home className="h-4 w-4" aria-hidden="true" />
                         </button>
                         <button
                             onClick={() => navigate('/analytics')}
@@ -566,9 +579,7 @@ export default function BookLayout({ user, onLogout }) {
                             title="Research Console"
                             aria-label="Open research console"
                         >
-                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                            </svg>
+                            <BarChart3 className="h-4 w-4" aria-hidden="true" />
                         </button>
 
                         <div className="flex items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.75)] px-3 py-1.5 shadow-sm">
@@ -580,9 +591,11 @@ export default function BookLayout({ user, onLogout }) {
 
                         <button
                             onClick={onLogout}
-                            className="rounded-lg px-3 py-1.5 text-sm font-semibold text-[var(--ath-secondary)] transition-all duration-200 hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)] md:px-4"
+                            className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--ath-secondary)] transition-all duration-200 hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)]"
+                            aria-label="Sign out"
+                            title="Sign out"
                         >
-                            Sign Out
+                            <LogOut className="h-4 w-4" aria-hidden="true" />
                         </button>
                     </div>
                 </div>

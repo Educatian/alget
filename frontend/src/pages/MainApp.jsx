@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import {
     ArrowRight,
     Atom,
+    BarChart3,
     BookOpen,
     Bookmark,
     Code2,
     FileSpreadsheet,
     GraduationCap,
+    Home,
     LockKeyhole,
+    LogOut,
     Scale,
     School,
     Settings,
@@ -243,8 +246,8 @@ export default function MainApp({ user, onLogout }) {
                             AL
                         </div>
                         <div>
-                            <p className="editorial-kicker">The Scholarly Editorial</p>
-                            <h1 className="mt-1 text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">Pathways Workspace</h1>
+                            <p className="editorial-kicker">ALGET</p>
+                            <h1 className="mt-1 text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">Learning Pathways</h1>
                         </div>
                     </button>
 
@@ -266,23 +269,27 @@ export default function MainApp({ user, onLogout }) {
                         </button>
                         <button
                             onClick={() => navigate('/dashboard')}
-                            className="editorial-button-secondary px-4 py-2 text-sm"
+                            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] text-[var(--ath-muted)] transition-all hover:bg-[var(--ath-panel)] hover:text-[var(--ath-primary)]"
                             title="Your mastery dashboard"
+                            aria-label="Open my dashboard"
                         >
-                            My Dashboard
+                            <Home className="h-5 w-5" aria-hidden="true" />
                         </button>
                         <button
                             onClick={() => navigate('/analytics')}
-                            className="editorial-button-secondary px-4 py-2 text-sm"
+                            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] text-[var(--ath-muted)] transition-all hover:bg-[var(--ath-panel)] hover:text-[var(--ath-primary)]"
                             title="Research/Instructor console (gated)"
+                            aria-label="Open research console"
                         >
-                            Research Console
+                            <BarChart3 className="h-5 w-5" aria-hidden="true" />
                         </button>
                         <button
                             onClick={onLogout}
-                            className="editorial-button px-4 py-2 text-sm"
+                            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[color-mix(in_srgb,var(--ath-primary)_36%,transparent)] bg-[var(--ath-primary)] text-[var(--ath-background)] shadow-sm transition-all hover:bg-[var(--ath-primary-deep)]"
+                            aria-label="Sign out"
+                            title="Sign out"
                         >
-                            Sign Out
+                            <LogOut className="h-5 w-5" aria-hidden="true" />
                         </button>
                     </div>
                 </div>
