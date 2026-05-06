@@ -110,6 +110,7 @@ export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = []
             setIsSynced(true)
             setSyncError('')
         } catch (err) {
+            console.warn('[PerusallLayer] remote sync unavailable, falling back to local:', err?.message || err)
             setIsSynced(false)
             setSyncError(err?.message || 'Remote annotation sync failed')
         }
@@ -183,6 +184,7 @@ export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = []
                 setIsSynced(true)
                 setSyncError('')
             } catch (err) {
+                console.warn('[PerusallLayer] insert failed, kept local:', err?.message || err)
                 setAnnotations((current) => [nextLocal, ...current])
                 setIsSynced(false)
                 setSyncError(err?.message || 'Saved locally; remote sync failed')
@@ -236,6 +238,7 @@ export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = []
             if (error) throw error
             setSyncError('')
         } catch (err) {
+            console.warn('[PerusallLayer] reaction sync failed:', err?.message || err)
             setSyncError(err?.message || 'Reaction sync failed')
         }
     }
@@ -243,25 +246,34 @@ export default function PerusallLayer({ sectionId, sectionTitle, conceptIds = []
     return (
         <section className="my-10 rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.78)] p-6 shadow-sm">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                <div>
-                    <p className="editorial-kicker">Perusall-Style Social Annotation</p>
-                    <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">
-                        Ask, Flag, Connect, and Compare Notes
-                    </h2>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--ath-muted)]">
-                        Use this layer for section-level public reading notes. Select text in the reading, click capture, then add a question, confusion, insight, or connection.
-                    </p>
-                    <p className="mt-2 text-xs font-semibold text-[var(--ath-secondary)]">
-                        {isSupabaseConfigured
-                            ? isSynced ? 'Synced research annotation layer' : `Local fallback${syncError ? `: ${syncError}` : ''}`
-                            : 'Offline local annotation mode'}
-                    </p>
-                    {conceptIds.length > 0 && (
-                        <div className="mt-3 flex flex-wrap gap-2">
-                            {conceptIds.slice(0, 4).map((concept) => (
-                                <span key={concept} className="editorial-chip">{concept.replace(/_/g, ' ')}</span>
-                            ))}
-                        </div>
+                <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-2">
+                        <h2 className="text-base font-semibold tracking-tight text-[var(--ath-text)]">
+                            Annotations
+                        </h2>
+                        <span
+                            className="inline-flex items-center gap-1.5 rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]"
+                            title={
+                                isSupabaseConfigured
+                                    ? isSynced
+                                        ? 'Annotations sync to the research layer'
+                                        : 'Saved locally — will sync when the annotations table is reachable'
+                                    : 'Annotations are stored on this device only'
+                            }
+                        >
+                            <span className={`h-1.5 w-1.5 rounded-full ${isSupabaseConfigured && isSynced ? 'bg-emerald-500' : 'bg-amber-400'}`} aria-hidden />
+                            {isSupabaseConfigured && isSynced ? 'Synced' : 'Local only'}
+                        </span>
+                        {conceptIds.slice(0, 3).map((concept) => (
+                            <span key={concept} className="rounded-full bg-[var(--ath-panel-muted)] px-2 py-0.5 text-[10px] font-medium text-[var(--ath-muted)]">
+                                {concept.replace(/_/g, ' ')}
+                            </span>
+                        ))}
+                    </div>
+                    {syncError && (
+                        <p className="mt-2 max-w-xl text-xs leading-5 text-[var(--ath-danger)]">
+                            Sync paused. Local notes are safe.
+                        </p>
                     )}
                 </div>
                 <div className="grid min-w-[16rem] grid-cols-2 gap-2">

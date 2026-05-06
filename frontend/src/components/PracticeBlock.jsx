@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Lightbulb } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
@@ -66,7 +67,13 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
 
     const handleSubmit = async (problemId) => {
         const answer = answers[problemId]
-        if (!answer?.value) return
+        const isMcq = currentProblem?.type === 'multiple_choice' && Array.isArray(currentProblem?.options)
+        const selectedIndex = isMcq && Number.isInteger(answer?.selectedIndex) ? answer.selectedIndex : null
+        if (isMcq) {
+            if (selectedIndex === null) return
+        } else if (!answer?.value) {
+            return
+        }
 
         setLoading(true)
 
@@ -75,8 +82,10 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    answer: answer.value,
-                    unit: answer.unit || ''
+                    answer: isMcq ? (currentProblem.options[selectedIndex] || '') : answer.value,
+                    unit: answer?.unit || '',
+                    section_id: sectionId || null,
+                    selected_option: selectedIndex,
                 })
             })
             const result = await response.json()
@@ -246,52 +255,61 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
     const correctCount = Object.values(gradeResults).filter((result) => result.is_correct).length
     const currentResult = gradeResults[currentProblem?.id]
 
+    const isMcq = currentProblem?.type === 'multiple_choice' && Array.isArray(currentProblem?.options)
+    const selectedIndex = answers[currentProblem?.id]?.selectedIndex
+    const hasSelection = isMcq ? Number.isInteger(selectedIndex) : Boolean(answers[currentProblem?.id]?.value)
+    const confidenceValue = Number(confidenceByProblem[currentProblem?.id] || 3)
+
     return (
-        <div className="space-y-6">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                    <p className="editorial-kicker">Practice</p>
-                    <h2 className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">Work Through the Section Problems</h2>
-                </div>
-                <div className="editorial-chip">
-                    {totalAnswered}/{problems.length} completed / {correctCount} correct
-                </div>
-            </div>
-
-            <div className="h-2 overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
-                <div
-                    className="h-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)] transition-all duration-300"
-                    style={{ width: `${(totalAnswered / Math.max(problems.length, 1)) * 100}%` }}
-                />
-            </div>
-
-            <div className="rounded-[1.9rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] p-6 shadow-sm">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                    <span className="editorial-kicker">Problem {currentIndex + 1} of {problems.length}</span>
-                    {currentProblem?.difficulty && (
-                        <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] ${
+        <div className="space-y-4">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
+                <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">Practice</span>
+                <span className="text-[var(--ath-line-strong)]">·</span>
+                <span>Q{currentIndex + 1}/{problems.length}</span>
+                <span className="text-[var(--ath-line-strong)]">·</span>
+                <span>{correctCount} correct</span>
+                {currentProblem?.difficulty && (
+                    <>
+                        <span className="text-[var(--ath-line-strong)]">·</span>
+                        <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.14em] ${
                             currentProblem.difficulty === 'easy'
                                 ? 'bg-emerald-50 text-emerald-700'
                                 : currentProblem.difficulty === 'medium'
                                     ? 'bg-amber-50 text-amber-700'
                                     : 'bg-[rgba(255,218,214,0.72)] text-[#8c1d1d]'
-                        }`}>
-                            {currentProblem.difficulty}
-                        </span>
-                    )}
+                        }`}>{currentProblem.difficulty}</span>
+                    </>
+                )}
+                <div className="ml-auto h-1 w-32 overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
+                    <div
+                        className="h-full bg-[var(--ath-primary)] transition-all duration-300"
+                        style={{ width: `${(totalAnswered / Math.max(problems.length, 1)) * 100}%` }}
+                    />
                 </div>
+            </div>
 
-                <p className="mt-5 text-lg font-medium leading-8 text-[var(--ath-text)]">
+            <div className="relative rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.82)] p-6 shadow-sm">
+                <button
+                    type="button"
+                    onClick={handleHintRequest}
+                    title={currentProblem?.hint ? 'Show hint' : 'Ask the tutor for a hint'}
+                    aria-label="Get a hint"
+                    className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-white/70 text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(255,221,187,0.45)] hover:text-[#8a5b1a]"
+                >
+                    <Lightbulb className="h-4 w-4" />
+                </button>
+
+                <p className="pr-10 text-base font-medium leading-7 text-[var(--ath-text)]">
                     {currentProblem?.stem || currentProblem?.statement}
                 </p>
 
                 {currentProblem?.givens && (
-                    <div className="mt-5 rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
-                        <p className="editorial-label">Given Values</p>
-                        <ul className="mt-3 space-y-2">
+                    <div className="mt-4 rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-3">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Given</p>
+                        <ul className="mt-2 grid gap-1 sm:grid-cols-2">
                             {Object.entries(currentProblem.givens).map(([key, value]) => (
                                 <li key={key} className="text-sm text-[var(--ath-muted)]">
-                                    <code className="rounded bg-white/75 px-2 py-1 text-[var(--ath-text)]">{key}</code> = {value}
+                                    <code className="rounded bg-white/75 px-1.5 py-0.5 text-[var(--ath-text)]">{key}</code> = {value}
                                 </li>
                             ))}
                         </ul>
@@ -299,68 +317,91 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                 )}
 
                 {!currentResult ? (
-                    <div className="mt-6 space-y-4">
-                        <div className="flex flex-col gap-3 md:flex-row">
-                            <input
-                                type="text"
-                                placeholder="Enter your answer"
-                                value={answers[currentProblem?.id]?.value || ''}
-                                onChange={(event) => updateAnswer(currentProblem?.id, 'value', event.target.value)}
-                                className="editorial-input flex-1"
-                            />
-                            {currentProblem?.requires_unit && (
-                                <input
-                                    type="text"
-                                    placeholder="Unit"
-                                    value={answers[currentProblem?.id]?.unit || ''}
-                                    onChange={(event) => updateAnswer(currentProblem?.id, 'unit', event.target.value)}
-                                    className="editorial-input w-full md:w-28"
-                                />
-                            )}
-                        </div>
-
-                        <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
-                            <p className="editorial-label">How confident are you before you submit?</p>
-                            <div className="mt-3 flex flex-wrap gap-2">
-                                {[1, 2, 3, 4, 5].map((value) => {
-                                    const isActive = Number(confidenceByProblem[currentProblem?.id] || 3) === value
+                    <div className="mt-5 space-y-4">
+                        {isMcq ? (
+                            <div className="space-y-2" role="radiogroup" aria-label="Answer options">
+                                {currentProblem.options.map((option, index) => {
+                                    const isSelected = selectedIndex === index
                                     return (
                                         <button
-                                            key={value}
+                                            key={index}
                                             type="button"
-                                            onClick={() => updateConfidence(currentProblem?.id, value)}
-                                            className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
-                                                isActive
-                                                    ? 'bg-[var(--ath-primary)] text-white'
-                                                    : 'border border-[var(--ath-line)] bg-white/80 text-[var(--ath-secondary)]'
+                                            role="radio"
+                                            aria-checked={isSelected}
+                                            onClick={() => updateAnswer(currentProblem?.id, 'selectedIndex', index)}
+                                            className={`group flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left text-sm leading-6 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] ${
+                                                isSelected
+                                                    ? 'border-[var(--ath-primary)] bg-[rgba(200,226,236,0.4)] text-[var(--ath-text)] shadow-sm'
+                                                    : 'border-[var(--ath-line)] bg-white/80 text-[var(--ath-text)] hover:border-[var(--ath-primary-deep)] hover:bg-[rgba(255,255,255,0.95)]'
                                             }`}
                                         >
-                                            {value}
+                                            <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-bold ${
+                                                isSelected
+                                                    ? 'border-[var(--ath-primary)] bg-[var(--ath-primary)] text-white'
+                                                    : 'border-[var(--ath-line)] bg-white text-[var(--ath-secondary)] group-hover:border-[var(--ath-primary-deep)]'
+                                            }`}>{String.fromCharCode(65 + index)}</span>
+                                            <span className="flex-1">{option}</span>
                                         </button>
                                     )
                                 })}
                             </div>
+                        ) : (
+                            <div className="flex flex-col gap-2 md:flex-row">
+                                <input
+                                    type="text"
+                                    placeholder="Your answer"
+                                    value={answers[currentProblem?.id]?.value || ''}
+                                    onChange={(event) => updateAnswer(currentProblem?.id, 'value', event.target.value)}
+                                    className="editorial-input flex-1"
+                                />
+                                {currentProblem?.requires_unit && (
+                                    <input
+                                        type="text"
+                                        placeholder="Unit"
+                                        value={answers[currentProblem?.id]?.unit || ''}
+                                        onChange={(event) => updateAnswer(currentProblem?.id, 'unit', event.target.value)}
+                                        className="editorial-input w-full md:w-28"
+                                    />
+                                )}
+                            </div>
+                        )}
+
+                        <div className="flex items-center gap-3">
+                            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Confidence</span>
+                            <div className="flex flex-1 items-center gap-2">
+                                <span className="text-[10px] text-[var(--ath-secondary)]">Low</span>
+                                <div className="flex flex-1 gap-0.5">
+                                    {[1, 2, 3, 4, 5].map((value) => {
+                                        const isActive = confidenceValue >= value
+                                        return (
+                                            <button
+                                                key={value}
+                                                type="button"
+                                                onClick={() => updateConfidence(currentProblem?.id, value)}
+                                                aria-label={`Confidence ${value} of 5`}
+                                                aria-pressed={confidenceValue === value}
+                                                className={`h-2 flex-1 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] ${
+                                                    isActive ? 'bg-[var(--ath-primary)]' : 'bg-[var(--ath-panel-muted)] hover:bg-[var(--ath-line-strong)]'
+                                                }`}
+                                            />
+                                        )
+                                    })}
+                                </div>
+                                <span className="text-[10px] text-[var(--ath-secondary)]">High</span>
+                            </div>
                         </div>
 
-                        <div className="flex flex-wrap gap-3">
-                            <button
-                                onClick={() => handleSubmit(currentProblem?.id)}
-                                disabled={loading || !answers[currentProblem?.id]?.value}
-                                className="editorial-button flex-1 px-5 py-3 text-sm disabled:opacity-50"
-                            >
-                                {loading ? 'Checking Answer...' : 'Submit Answer'}
-                            </button>
-                            <button
-                                onClick={handleHintRequest}
-                                className="editorial-button-secondary px-5 py-3 text-sm"
-                            >
-                                Get a Hint
-                            </button>
-                        </div>
+                        <button
+                            onClick={() => handleSubmit(currentProblem?.id)}
+                            disabled={loading || !hasSelection}
+                            className="editorial-button w-full px-5 py-3 text-sm disabled:opacity-50"
+                        >
+                            {loading ? 'Checking…' : 'Submit'}
+                        </button>
 
                         {showHint && currentProblem?.hint && (
-                            <div className="rounded-[1.2rem] border border-[rgba(199,137,67,0.18)] bg-[rgba(255,221,187,0.38)] p-4">
-                                <p className="text-sm leading-7 text-[var(--ath-text)]">
+                            <div className="rounded-xl border border-[rgba(199,137,67,0.18)] bg-[rgba(255,221,187,0.38)] p-3">
+                                <p className="text-sm leading-6 text-[var(--ath-text)]">
                                     <span className="font-semibold">Hint:</span> {currentProblem.hint}
                                 </p>
                             </div>

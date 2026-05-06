@@ -89,7 +89,7 @@ test.describe('ALGET full learner workflow', () => {
         await installResearchApiMocks(page)
         await page.goto('/book/ail606-supplement/01/01', { waitUntil: 'networkidle' })
 
-        await expect(page.getByRole('heading', { name: /ask, flag, connect, and compare notes/i })).toBeVisible()
+        await expect(page.getByRole('heading', { name: /^annotations$/i })).toBeVisible()
         await page.getByLabel(/quoted passage/i).fill('The storyboard claim needs a stronger evidence source.')
         await page.getByRole('button', { name: 'Connection', exact: true }).click()
         await page.getByLabel(/^note$/i).fill('This passage should connect the storyboard revision to cognitive load evidence.')

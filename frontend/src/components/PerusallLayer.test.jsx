@@ -38,7 +38,7 @@ describe('PerusallLayer local annotation integration', () => {
             />,
         )
 
-        expect(screen.getByText('Offline local annotation mode')).toBeInTheDocument()
+        expect(screen.getByText('Local only')).toBeInTheDocument()
         expect(screen.getByText('design claims')).toBeInTheDocument()
         expect(screen.getByText('artifact evidence')).toBeInTheDocument()
 

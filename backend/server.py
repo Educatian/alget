@@ -75,7 +75,7 @@ from module_hooks import (
     get_module_info,
     BIO_INSPIRED_MODULES
 )
-from content_service import load_section, load_section_meta, generate_toc, get_fallback_toc
+from content_service import load_section, load_section_meta, generate_toc, get_fallback_toc, load_practice_for_section
 from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
@@ -147,6 +147,8 @@ class ModuleInfo(BaseModel):
 class GradeRequest(BaseModel):
     answer: str
     unit: str = ""
+    section_id: Optional[str] = None  # "course/chapter/section"
+    selected_option: Optional[int] = None
 
 class ExplainRequest(BaseModel):
     section_id: str
@@ -2209,22 +2211,67 @@ async def get_practice(practice_id: str):
 
 @app.post("/api/grade/{problem_id}")
 async def grade_submission(problem_id: str, request: GradeRequest):
-    """Grade a problem submission."""
+    """Grade a problem submission against the actual practice JSON.
+
+    Falls back to a numeric sample only when section_id is not supplied or
+    the problem cannot be found, so legacy callers still work.
+    """
     try:
-        # For development, use a sample problem definition
-        # In production, this would load from database
-        sample_problem = {
-            "id": problem_id,
-            "type": "numeric",
-            "expected_value": 693.67,  # Sample: 50kg at 45° tension
-            "expected_unit": "N",
-            "tolerance": 0.02,
-            "require_unit": True
-        }
-        
-        result = grade_problem(sample_problem, request.answer, request.unit)
+        problem: Optional[dict] = None
+        if request.section_id:
+            parts = request.section_id.split("/")
+            if len(parts) == 3:
+                course, chapter, section = parts
+                practice = load_practice_for_section(course, chapter, section) or {}
+                for candidate in practice.get("problems", []):
+                    if str(candidate.get("id")) == str(problem_id):
+                        problem = candidate
+                        break
+
+        if problem is None:
+            # Legacy fallback so older callers don't break.
+            problem = {
+                "id": problem_id,
+                "type": "numeric",
+                "expected_value": 693.67,
+                "expected_unit": "N",
+                "tolerance": 0.02,
+                "require_unit": True,
+            }
+
+        if problem.get("type") == "multiple_choice":
+            options = problem.get("options") or []
+            correct_index = problem.get("correct_index")
+            selected_index = request.selected_option
+            if selected_index is None and request.answer:
+                # Tolerate legacy text-payload submissions.
+                try:
+                    selected_index = options.index(request.answer)
+                except ValueError:
+                    selected_index = None
+            is_correct = (
+                selected_index is not None
+                and correct_index is not None
+                and int(selected_index) == int(correct_index)
+            )
+            expected_text = (
+                options[int(correct_index)]
+                if correct_index is not None and 0 <= int(correct_index) < len(options)
+                else ""
+            )
+            return {
+                "is_correct": is_correct,
+                "user_answer": request.answer or (options[selected_index] if selected_index is not None and 0 <= selected_index < len(options) else ""),
+                "expected": expected_text,
+                "explanation": problem.get("explanation") or ("Correct." if is_correct else "Not quite — review the explanation and try again."),
+                "selected_option": selected_index,
+                "correct_index": correct_index,
+            }
+
+        # Numeric / short-answer fall through to the existing grader.
+        result = grade_problem(problem, request.answer, request.unit)
         return result
-        
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Grading error: {str(e)}")
 
