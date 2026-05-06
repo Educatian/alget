@@ -131,7 +131,7 @@ export function useTextSelection({ sectionId, userId }) {
 
                 if (error) {
                     console.warn('Highlight saved locally only (DB error):', error.message)
-                    toast.warning('Highlight saved offline only — will sync when connection returns.')
+                    toast.warning('Highlight saved offline only - will sync when connection returns.')
                 } else if (data) {
                     // Replace local highlight with DB version
                     setHighlights(prev => prev.map(h =>
@@ -140,7 +140,7 @@ export function useTextSelection({ sectionId, userId }) {
                 }
             } catch (err) {
                 console.warn('Highlight saved locally only:', err)
-                toast.warning('Highlight saved offline only — will sync when connection returns.')
+                toast.warning('Highlight saved offline only - will sync when connection returns.')
             }
         }
 

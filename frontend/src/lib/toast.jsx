@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ToastContext } from './toastContext'
 
 /**
- * Toast — global ephemeral feedback. Replaces silent `console.warn` for
+ * Toast - global ephemeral feedback. Replaces silent `console.warn` for
  * user-visible success/error notifications without blocking dialogs.
  *
  * Usage:
@@ -118,7 +118,7 @@ function ToastItem({ toast, onDismiss }) {
 const TONE_STYLES = {
     success: {
         shell: 'border-emerald-300 bg-emerald-50/95 text-emerald-900',
-        glyph: '✓',
+        glyph: 'OK',
     },
     error: {
         shell: 'border-rose-300 bg-rose-50/95 text-rose-900',

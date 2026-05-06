@@ -56,7 +56,7 @@ export const TorqueDiagram = () => {
                     <div className="pt-4 border-t border-slate-100">
                         <p className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Generated Torque ($\tau$)</p>
                         <div className="text-3xl font-black text-slate-800 tracking-tight">
-                            {Math.round(torqueAmount)} <span className="text-base font-semibold text-slate-400">N·m</span>
+                            {Math.round(torqueAmount)} <span className="text-base font-semibold text-slate-400">N*m</span>
                         </div>
                     </div>
                 </div>

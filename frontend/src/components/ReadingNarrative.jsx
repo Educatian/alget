@@ -16,6 +16,7 @@ const RevealedWorkedExample = lazy(() => import('./RevealedWorkedExample'))
 const Glossary = lazy(() => import('./Glossary'))
 const RemotionClip = lazy(() => import('./RemotionClip'))
 const ArtifactStudio = lazy(() => import('./ArtifactStudio'))
+const YouTubeEmbed = lazy(() => import('./YouTubeEmbed'))
 
 const TorqueDiagram = lazy(() => import('./TorqueDiagram').then((module) => ({ default: module.TorqueDiagram })))
 const MicroTurbulenceDiagram = lazy(() => import('./AeroacousticsDiagram').then((module) => ({ default: module.MicroTurbulenceDiagram })))
@@ -223,6 +224,7 @@ export default function ReadingNarrative({
         'worked-example': (props) => renderLazyMarkdownModule(RevealedWorkedExample, { ...props, sectionId }),
         glossary: (props) => renderLazyMarkdownModule(Glossary, props),
         'remotion-clip': (props) => renderLazyMarkdownModule(RemotionClip, props),
+        'youtube-embed': (props) => renderLazyMarkdownModule(YouTubeEmbed, props),
         'torque-diagram': (props) => renderLazyMarkdownModule(TorqueDiagram, props),
         'kinematics-diagram': (props) => renderLazyMarkdownModule(KinematicsDiagram, props),
         'micro-turbulence-diagram': (props) => renderLazyMarkdownModule(MicroTurbulenceDiagram, props),

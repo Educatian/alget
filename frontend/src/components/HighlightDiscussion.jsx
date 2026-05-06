@@ -6,7 +6,7 @@ import { useToast } from '../lib/toastContext'
 import { SkeletonCard } from './Skeleton'
 
 /**
- * HighlightDiscussion — per-highlight reactions + threaded replies.
+ * HighlightDiscussion - per-highlight reactions + threaded replies.
  *
  * Renders inside a popover anchored to a highlight. Loads reactions
  * (4 types: insight / question / disagree / same) and replies (depth-2
@@ -153,7 +153,7 @@ export default function HighlightDiscussion({ highlightId, user, onClose }) {
             })
         } catch (err) {
             console.warn('[HighlightDiscussion] reply post failed:', err)
-            toast.error('Could not post reply. Your text is preserved — try again.')
+            toast.error('Could not post reply. Your text is preserved - try again.')
         }
     }
 

@@ -183,7 +183,7 @@ export default function ReadingPane({
                             <button
                                 type="button"
                                 onClick={() => onNavigate?.(recentSection.chapter, recentSection.section, 'backward')}
-                                title={`Resume ${recentSection.chapter}.${recentSection.section} ${recentSection.title || ''} · ${formatRecentTimestamp(recentSection.updatedAt)}`}
+                                title={`Resume ${recentSection.chapter}.${recentSection.section} ${recentSection.title || ''} / ${formatRecentTimestamp(recentSection.updatedAt)}`}
                                 className="text-xs font-semibold text-[var(--ath-primary)] underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                             >
                                 ↶ Resume {recentSection.chapter}.{recentSection.section}

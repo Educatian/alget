@@ -191,7 +191,7 @@ export default function KnowledgeGraph({
                 <h3 className="mr-auto text-white font-bold text-base">
                     Brain Network
                     {focusedChapterTitle && (
-                        <span className="ml-2 text-xs font-medium text-slate-400">· {focusedChapterTitle}</span>
+                        <span className="ml-2 text-xs font-medium text-slate-400">/ {focusedChapterTitle}</span>
                     )}
                 </h3>
                 <span className="rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
@@ -203,7 +203,7 @@ export default function KnowledgeGraph({
                     <span className="inline-flex items-center gap-1.5" title="Stable"><span className="h-2 w-2 rounded-full bg-emerald-500" />Stable</span>
                     <span className="inline-flex items-center gap-1.5" title="Evidence needed"><span className="h-2 w-2 rounded-full bg-slate-400" />Needs evidence</span>
                 </div>
-                <span className="hidden text-[11px] text-slate-500 sm:inline" title="Click a node to jump · color = how much usable evidence the system has, not a grade">
+                <span className="hidden text-[11px] text-slate-500 sm:inline" title="Click a node to jump / color = how much usable evidence the system has, not a grade">
                     Click a node to jump
                 </span>
             </div>

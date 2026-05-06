@@ -3,7 +3,7 @@ import { logEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
 
 /**
- * InlineCheck — zyBooks-style embedded comprehension check.
+ * InlineCheck - zyBooks-style embedded comprehension check.
  *
  * Drops into MDX as <inline-check question="..." answer="..."
  *   options='[{"text":"...","correct":true|false}]' />.
@@ -85,7 +85,7 @@ export default function InlineCheck({
                     {parsedOptions[selectedIndex]?.explanation || (
                         (parsedOptions[selectedIndex]?.correct || parsedOptions[selectedIndex]?.isCorrect)
                             ? 'Correct. Keep reading.'
-                            : 'Not quite — re-read the surrounding passage and try the next check.'
+                            : 'Not quite - re-read the surrounding passage and try the next check.'
                     )}
                 </div>
             )}

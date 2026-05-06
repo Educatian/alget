@@ -59,4 +59,22 @@ describe('ReadingNarrative markdown extension contract', () => {
         expect(await screen.findByRole('button', { name: /Submission rules/i })).toBeInTheDocument()
         expect(screen.getByText('AIL 606 01.01')).toBeInTheDocument()
     })
+
+    it('renders curated youtube embeds from markdown without raw html', async () => {
+        render(
+            <ReadingNarrative
+                sectionId="inst-design/07/01"
+                course="inst-design"
+                conceptIds={['udl']}
+                content={`# UDL
+
+<youtube-embed id="PHOJwnSV6t4" title="Universal Design for Learning and CAST" caption="Use this after reading to compare the section's design language with a UDL overview." />
+`}
+            />,
+        )
+
+        const frame = await screen.findByTitle('Universal Design for Learning and CAST')
+        expect(frame).toHaveAttribute('src', expect.stringContaining('youtube-nocookie.com/embed/PHOJwnSV6t4'))
+        expect(screen.getByText(/compare the section's design language/i)).toBeInTheDocument()
+    })
 })

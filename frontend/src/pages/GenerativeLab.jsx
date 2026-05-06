@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AlertTriangle, ArrowLeft, BookOpen, FileText, Lightbulb } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import API_BASE from '../lib/apiConfig';
 
@@ -144,7 +145,8 @@ export default function GenerativeLab() {
                             onClick={() => navigate('/')}
                             className="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-lg"
                         >
-                            ← Back to Dashboard
+                            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                            Back to Dashboard
                         </button>
                     </div>
                 </div>
@@ -159,7 +161,7 @@ export default function GenerativeLab() {
                     <div className="relative z-10 w-full">
                         <div className="flex items-center gap-3 mb-4">
                             <div className="w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-xl shadow-sm border border-purple-200">
-                                💡
+                                <Lightbulb className="h-5 w-5" aria-hidden="true" />
                             </div>
                             <h2 className="text-2xl font-bold text-slate-900 tracking-tight">What do you want to explore?</h2>
                         </div>
@@ -198,7 +200,7 @@ export default function GenerativeLab() {
                 {/* Error Handling */}
                 {error && (
                     <div className="bg-red-50 border-l-4 border-red-500 text-red-800 p-4 rounded-r-xl shadow-sm font-medium flex items-center gap-3">
-                        <span className="text-xl">⚠️</span> {error}
+                        <AlertTriangle className="h-5 w-5" aria-hidden="true" /> {error}
                     </div>
                 )}
 
@@ -257,7 +259,7 @@ export default function GenerativeLab() {
                                         </>
                                     ) : (
                                         <>
-                                            <span className="text-xl">📚</span> Convert to Textbook Module
+                                            <BookOpen className="h-5 w-5" aria-hidden="true" /> Convert to Textbook Module
                                         </>
                                     )}
                                 </button>
@@ -268,7 +270,7 @@ export default function GenerativeLab() {
                         {result.summary && (
                             <div className="glass-panel p-8 text-slate-800 leading-relaxed max-w-none prose prose-slate prose-lg border-slate-200">
                                 <div className="flex items-center gap-3 border-b border-slate-200 pb-4 mb-5">
-                                    <span className="text-2xl">📝</span>
+                                    <FileText className="h-6 w-6" aria-hidden="true" />
                                     <h3 className="text-xl font-bold text-slate-900 m-0">Synthesis</h3>
                                 </div>
                                 <div className="font-medium text-[1.05rem]" dangerouslySetInnerHTML={{ __html: (typeof result.summary === 'string' ? result.summary : (result.summary.synthesis || JSON.stringify(result.summary))).replace(/\n/g, '<br />') }} />

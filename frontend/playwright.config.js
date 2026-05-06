@@ -27,7 +27,7 @@ export default defineConfig({
         {
             command: 'set VITE_E2E_AUTH_BYPASS=true&& npm.cmd run dev -- --host 127.0.0.1 --port 5179',
             url: 'http://127.0.0.1:5179',
-            reuseExistingServer: false,
+            reuseExistingServer: true,
             timeout: 120_000,
         },
     ],

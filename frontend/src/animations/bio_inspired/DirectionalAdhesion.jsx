@@ -1,5 +1,5 @@
 /**
- * DirectionalAdhesion — Remotion pilot composition.
+ * DirectionalAdhesion - Remotion pilot composition.
  *
  * 45 seconds @ 30fps = 1350 frames.
  *
@@ -30,8 +30,8 @@ export default function DirectionalAdhesion() {
     const sec = frame / FPS_LOCAL
 
     // Phase 1 (0-8s): introduce the gecko foot
-    // Phase 2 (8-22s): shear engagement — setae bend, contact area grows
-    // Phase 3 (22-32s): peel angle change — adhesion releases smoothly
+    // Phase 2 (8-22s): shear engagement - setae bend, contact area grows
+    // Phase 3 (22-32s): peel angle change - adhesion releases smoothly
     // Phase 4 (32-45s): contrast vs. isotropic adhesive (fails at same load)
     const phase = sec < 8 ? 1 : sec < 22 ? 2 : sec < 32 ? 3 : 4
 
@@ -67,7 +67,7 @@ export default function DirectionalAdhesion() {
                     textTransform: 'uppercase',
                     color: '#214b59',
                 }}>
-                    Bio-Inspired Design · 01.03
+                    Bio-Inspired Design / 01.03
                 </p>
                 <h1 style={{ fontSize: 36, margin: '6px 0 0', fontWeight: 600 }}>
                     Directional Adhesion: How Geckos Stick
@@ -131,7 +131,7 @@ export default function DirectionalAdhesion() {
                 {/* Peel-angle indicator during phase 3 */}
                 {phase === 3 && (
                     <text x="640" y="600" textAnchor="middle" fill="#093848" fontSize="20" fontWeight="600">
-                        Peel angle: {peelAngle.toFixed(0)}° — setae release
+                        Peel angle: {peelAngle.toFixed(0)} deg - setae release
                     </text>
                 )}
 
@@ -176,7 +176,7 @@ export default function DirectionalAdhesion() {
                 fontSize: 14,
                 color: '#214b59',
             }}>
-                Take-away: direction is part of the design — not a side effect.
+                Take-away: direction is part of the design - not a side effect.
             </footer>
         </div>
     )
