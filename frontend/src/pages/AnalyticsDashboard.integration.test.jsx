@@ -122,12 +122,12 @@ describe('AnalyticsDashboard integration', () => {
             </MemoryRouter>,
         )
 
-        expect(await screen.findByText('Concepts needing attention')).toBeInTheDocument()
+        expect(await screen.findByText(/Intervention queue/i)).toBeInTheDocument()
         expect(screen.getAllByText('instructional design').length).toBeGreaterThan(0)
-        expect(screen.getByText('Where peers are clustering now')).toBeInTheDocument()
+        expect(screen.getByText(/Live section concurrency/i)).toBeInTheDocument()
         expect(screen.getAllByText('inst-design/01/01').length).toBeGreaterThan(0)
-        expect(screen.getByText('Help, reaction, and completion balance')).toBeInTheDocument()
-        expect(screen.getByText('Artifact revision cohort dashboard')).toBeInTheDocument()
+        expect(screen.getByText(/Signal mix today/i)).toBeInTheDocument()
+        expect(screen.getByText(/Artifact revision/i)).toBeInTheDocument()
         expect(screen.getByText('Weak evidence alignment')).toBeInTheDocument()
     })
 })
