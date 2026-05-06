@@ -53,7 +53,6 @@ export default function ReadingPane({
     sectionData,
     loading,
     onStuckEvent,
-    onAskAi,
     onNeedsReview,
     isBookmarked,
     toggleBookmark,
@@ -186,7 +185,7 @@ export default function ReadingPane({
                                 title={`Resume ${recentSection.chapter}.${recentSection.section} ${recentSection.title || ''} / ${formatRecentTimestamp(recentSection.updatedAt)}`}
                                 className="text-xs font-semibold text-[var(--ath-primary)] underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                             >
-                                ↶ Resume {recentSection.chapter}.{recentSection.section}
+                                Resume {recentSection.chapter}.{recentSection.section}
                             </button>
                         )}
                     </div>
@@ -209,7 +208,6 @@ export default function ReadingPane({
                     course={sectionData?.meta?.course}
                     conceptIds={sectionData?.meta?.concept_ids || []}
                     sectionDescription={sectionData?.meta?.description}
-                    onAskAi={onAskAi}
                     onHeadingChange={(heading) => {
                         onHeadingChange?.(heading)
                     }}

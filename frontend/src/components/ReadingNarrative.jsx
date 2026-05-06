@@ -5,8 +5,7 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import 'katex/dist/katex.min.css'
-import TextAnnotator from './TextAnnotator'
-import { logInteraction, logEvent, logTimeOnTask } from '../lib/loggingService'
+import { logTimeOnTask } from '../lib/loggingService'
 
 const DynamicScenario = lazy(() => import('./DynamicScenario'))
 const ConceptDiagrams = lazy(() => import('./ConceptDiagrams'))
@@ -106,7 +105,6 @@ export default function ReadingNarrative({
     course,
     conceptIds,
     sectionDescription,
-    onAskAi,
     onHeadingChange,
 }) {
     const [activeHeading, setActiveHeading] = useState('')
@@ -297,31 +295,13 @@ export default function ReadingNarrative({
             className="prose reading-narrative mb-8"
             style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px' }}
         >
-            <TextAnnotator
-                onAskAi={(selectedText, latencyMs) => {
-                    logInteraction('annotation_ask_ai', selectedText, sectionId)
-                    if (latencyMs) {
-                        logEvent('highlight_to_chat_latency', activeHeading, {
-                            latency_ms: latencyMs,
-                            viewport_context: activeHeading,
-                            text: selectedText,
-                        }, sectionId)
-                    }
-                    onAskAi?.(selectedText)
-                }}
-                onAddNote={(selectedText) => {
-                    logInteraction('annotation_add_note', selectedText, sectionId)
-                }}
-                content={(
-                    <Markdown
-                        remarkPlugins={remarkPlugins}
-                        rehypePlugins={rehypePlugins}
-                        components={markdownComponents}
-                    >
-                        {narrativeSource}
-                    </Markdown>
-                )}
-            />
+            <Markdown
+                remarkPlugins={remarkPlugins}
+                rehypePlugins={rehypePlugins}
+                components={markdownComponents}
+            >
+                {narrativeSource}
+            </Markdown>
         </article>
     )
 }
