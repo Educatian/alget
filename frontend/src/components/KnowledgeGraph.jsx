@@ -13,35 +13,118 @@ function humanizeLabel(value) {
         .replace(/\b\w/g, (match) => match.toUpperCase())
 }
 
-function buildLayout(nodes) {
-    // Layout: one row per section (top→bottom), concepts within a section
-    // spread left→right. The backend now scopes nodes to the current
-    // chapter, so we stop trying to spread across multiple chapters.
-    const sectionSpacing = 110
-    const conceptSpacing = 190
-    const leftPadding = 160
-    const topPadding = 90
-
-    const positionedNodes = nodes.map((node) => ({
-        ...node,
-        x: leftPadding + ((node.concept_order || 1) - 1) * conceptSpacing,
-        y: topPadding + ((node.section_order || 1) - 1) * sectionSpacing,
-    }))
-
-    const width = Math.max(
-        720,
-        (Math.max(...positionedNodes.map((node) => node.x), 0)) + 220,
-    )
-    const height = Math.max(
-        360,
-        (Math.max(...positionedNodes.map((node) => node.y), 0)) + 90,
-    )
-
-    return {
-        nodes: positionedNodes,
-        width,
-        height,
+function buildLayout(nodes, links = []) {
+    // Radial / force-directed layout — gives the chapter map a "social
+    // network" constellation feel instead of a rigid grid. Steps:
+    //
+    //   1. Place all nodes on a polar seed (focus node at center; the rest
+    //      around concentric rings keyed off section_order, with angle
+    //      offset by concept_order so siblings fan out).
+    //   2. Run a tiny vanilla force simulation (no d3 dependency): pairwise
+    //      Coulomb repulsion + Hookean spring along links + gentle gravity
+    //      toward the viewport center. ~120 ticks settles to a stable layout
+    //      for ~40 nodes in well under 10ms.
+    //   3. Re-translate so the focus node is centered in the viewBox.
+    if (!nodes || nodes.length === 0) {
+        return { nodes: [], width: 720, height: 540 }
     }
+
+    const width = 760
+    const height = 540
+    const cx = width / 2
+    const cy = height / 2
+
+    const focusIndex = (() => {
+        const explicit = nodes.findIndex((node) => node.is_current)
+        return explicit >= 0 ? explicit : 0
+    })()
+
+    const ringSpacing = 110
+    const positioned = nodes.map((node, index) => {
+        if (index === focusIndex) {
+            return { ...node, x: cx, y: cy }
+        }
+        const ring = Math.max(1, node.section_order || 1)
+        const radius = ringSpacing + (ring - 1) * 70
+        const angle = ((index * 137.508) % 360) * (Math.PI / 180)
+        return {
+            ...node,
+            x: cx + Math.cos(angle) * radius,
+            y: cy + Math.sin(angle) * radius,
+        }
+    })
+
+    const REPULSION = 1900
+    const LINK_LENGTH = 130
+    const LINK_STRENGTH = 0.12
+    const GRAVITY = 0.012
+    const DAMPING = 0.84
+    const TICKS = 140
+
+    const linkList = (links || []).map((link) => {
+        const sourceIdx = positioned.findIndex((node) => node.id === link.source)
+        const targetIdx = positioned.findIndex((node) => node.id === link.target)
+        return sourceIdx >= 0 && targetIdx >= 0 ? { sourceIdx, targetIdx } : null
+    }).filter(Boolean)
+
+    const velocity = positioned.map(() => ({ x: 0, y: 0 }))
+
+    for (let step = 0; step < TICKS; step += 1) {
+        const force = positioned.map(() => ({ x: 0, y: 0 }))
+
+        for (let i = 0; i < positioned.length; i += 1) {
+            for (let j = i + 1; j < positioned.length; j += 1) {
+                const dx = positioned[i].x - positioned[j].x
+                const dy = positioned[i].y - positioned[j].y
+                const distSq = Math.max(64, dx * dx + dy * dy)
+                const factor = REPULSION / distSq
+                const fx = factor * dx
+                const fy = factor * dy
+                force[i].x += fx
+                force[i].y += fy
+                force[j].x -= fx
+                force[j].y -= fy
+            }
+            force[i].x += (cx - positioned[i].x) * GRAVITY
+            force[i].y += (cy - positioned[i].y) * GRAVITY
+        }
+
+        for (const { sourceIdx, targetIdx } of linkList) {
+            const dx = positioned[targetIdx].x - positioned[sourceIdx].x
+            const dy = positioned[targetIdx].y - positioned[sourceIdx].y
+            const dist = Math.max(1, Math.hypot(dx, dy))
+            const diff = (dist - LINK_LENGTH) / dist * LINK_STRENGTH
+            force[sourceIdx].x += dx * diff * 0.5
+            force[sourceIdx].y += dy * diff * 0.5
+            force[targetIdx].x -= dx * diff * 0.5
+            force[targetIdx].y -= dy * diff * 0.5
+        }
+
+        for (let i = 0; i < positioned.length; i += 1) {
+            if (i === focusIndex) continue
+            velocity[i].x = (velocity[i].x + force[i].x * 0.018) * DAMPING
+            velocity[i].y = (velocity[i].y + force[i].y * 0.018) * DAMPING
+            positioned[i].x += velocity[i].x
+            positioned[i].y += velocity[i].y
+        }
+    }
+
+    // Re-center on focus node after simulation drift
+    const focusOffsetX = cx - positioned[focusIndex].x
+    const focusOffsetY = cy - positioned[focusIndex].y
+    positioned.forEach((node) => {
+        node.x += focusOffsetX
+        node.y += focusOffsetY
+    })
+
+    // Clamp final positions inside viewbox (with margin for label box)
+    const margin = 140
+    positioned.forEach((node) => {
+        node.x = Math.max(margin, Math.min(width - margin, node.x))
+        node.y = Math.max(60, Math.min(height - 60, node.y))
+    })
+
+    return { nodes: positioned, width, height }
 }
 
 function describeNodeStatus(node) {
@@ -160,7 +243,7 @@ export default function KnowledgeGraph({
                 }
 
                 const data = await response.json()
-                const layout = buildLayout(data.nodes || [])
+                const layout = buildLayout(data.nodes || [], data.links || [])
 
                 if (!isCancelled) {
                     setGraphData({

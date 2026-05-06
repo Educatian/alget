@@ -289,7 +289,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             if (msg.role === 'user') {
                                 return (
                                     <div key={idx} className="flex justify-end animate-fade-in">
-                                        <div className="max-w-[85%] rounded-2xl rounded-br-sm bg-[var(--ath-primary)] px-4 py-2.5 text-[0.95rem] font-medium leading-relaxed text-[var(--ath-background)] shadow-md">
+                                        <div className="max-w-[85%] rounded-2xl rounded-br-sm bg-[var(--ath-primary)] px-3.5 py-2 text-[13px] font-medium leading-6 text-[var(--ath-background)] shadow-md">
                                             {msg.content}
                                         </div>
                                     </div>
@@ -300,7 +300,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
                                 return (
                                     <div key={idx} className="flex justify-start animate-fade-in">
-                                        <div className="max-w-[92%] rounded-2xl rounded-bl-sm border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-4 py-3 text-[0.95rem] leading-relaxed text-[var(--ath-text)] shadow-sm">
+                                        <div className="max-w-[92%] rounded-2xl rounded-bl-sm border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3.5 py-2.5 text-[13px] leading-6 text-[var(--ath-text)] shadow-sm">
                                             {data.intent === 'learn' && <LearnIntentCard data={data} />}
                                             {data.intent === 'evaluate' && <EvaluateIntentCard data={data} />}
                                              {data.intent === 'brainstorm' && <BrainstormIntentCard data={data} />}
