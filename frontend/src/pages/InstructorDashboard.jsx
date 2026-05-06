@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase'
 import { fetchRctSnapshot } from '../lib/researchService'
 
 /**
- * InstructorDashboard — cohort-level view for instructors. Shows where the
+ * InstructorDashboard - cohort-level view for instructors. Shows where the
  * class is collectively struggling, who needs attention, and which concepts
  * are surfacing the most stuck events. Distinct from /analytics (researcher)
  * and /dashboard (individual learner).
@@ -72,44 +72,41 @@ export default function InstructorDashboard() {
     }
 
     return (
-        <div className="editorial-shell min-h-screen p-8">
+        <div className="editorial-shell min-h-screen p-6 md:p-8">
             <header className="mx-auto max-w-5xl">
-                <p className="editorial-kicker">Instructor view</p>
-                <h1 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">
-                    Cohort heatmap and intervention surface
-                </h1>
-                <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--ath-muted)]">
-                    Where the class is collectively under-performing. Use this view to identify which
-                    concepts to re-teach in the next session and which learners may need a direct check-in.
-                    Researcher access is at <button type="button" onClick={() => navigate('/analytics')} className="underline">/analytics</button>.
-                </p>
+                <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
+                    <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">Instructor</span>
+                    <span className="text-[var(--ath-line-strong)]">/</span>
+                    <span>Cohort heatmap</span>
+                    <button
+                        type="button"
+                        onClick={() => navigate('/analytics')}
+                        className="ml-auto text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
+                    >
+                        Researcher view
+                    </button>
+                </div>
             </header>
 
-            <section className="mx-auto mt-6 grid max-w-5xl gap-6 md:grid-cols-3">
-                <div className="editorial-surface p-5">
-                    <p className="editorial-kicker">Cohort intervention success</p>
-                    <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">{cohortInterventionRate}%</p>
-                    <p className="text-xs text-[var(--ath-muted)]">of closed intervention traces resolved positively</p>
+            <section className="mx-auto mt-4 grid max-w-5xl gap-3 md:grid-cols-3">
+                <div className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-4 shadow-sm">
+                    <p className="text-2xl font-semibold text-[var(--ath-text)]">{cohortInterventionRate}%</p>
+                    <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Intervention success</p>
                 </div>
-                <div className="editorial-surface p-5">
-                    <p className="editorial-kicker">Learners needing attention</p>
-                    <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">{strugglers.length}</p>
-                    <p className="text-xs text-[var(--ath-muted)]">with average mastery below 50%</p>
+                <div className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-4 shadow-sm">
+                    <p className="text-2xl font-semibold text-[var(--ath-text)]">{strugglers.length}</p>
+                    <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Learners &lt; 50%</p>
                 </div>
-                <div className="editorial-surface p-5">
-                    <p className="editorial-kicker">Low-mastery concepts</p>
-                    <p className="mt-2 text-3xl font-semibold text-[var(--ath-text)]">{lowMasteryConcepts.length}</p>
-                    <p className="text-xs text-[var(--ath-muted)]">where 3+ learners scored below 60%</p>
+                <div className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-4 shadow-sm">
+                    <p className="text-2xl font-semibold text-[var(--ath-text)]">{lowMasteryConcepts.length}</p>
+                    <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Hot-spot concepts</p>
                 </div>
             </section>
 
-            <section className="mx-auto mt-8 max-w-5xl rounded-2xl border border-[var(--ath-line)] bg-white/70 p-6">
-                <p className="editorial-kicker">Concept hot-spots</p>
-                <h2 className="mt-2 text-xl font-semibold text-[var(--ath-text)]">Where to re-teach next session</h2>
+            <section className="mx-auto mt-4 max-w-5xl rounded-2xl border border-[var(--ath-line)] bg-white/85 p-5">
+                <h2 className="text-sm font-semibold text-[var(--ath-text)]">Concept hot-spots / re-teach next session</h2>
                 {lowMasteryConcepts.length === 0 ? (
-                    <p className="mt-4 text-sm text-[var(--ath-muted)]">
-                        No concept has cohort-wide low mastery. The class is broadly tracking the curriculum.
-                    </p>
+                    <p className="mt-3 text-xs text-[var(--ath-muted)]">No cohort-wide low mastery - class on track.</p>
                 ) : (
                     <ul className="mt-4 space-y-2">
                         {lowMasteryConcepts.map((entry) => (
@@ -120,7 +117,7 @@ export default function InstructorDashboard() {
                                 <div>
                                     <p className="text-sm font-semibold text-[var(--ath-text)]">{prettify(entry.concept_id)}</p>
                                     <p className="text-xs text-[var(--ath-muted)]">
-                                        {entry.learnerCount} learners · cohort avg {Math.round(entry.average * 100)}%
+                                        {entry.learnerCount} learners / cohort avg {Math.round(entry.average * 100)}%
                                     </p>
                                 </div>
                                 <span className={`rounded-full px-3 py-1 text-xs font-semibold ${
@@ -134,25 +131,23 @@ export default function InstructorDashboard() {
                 )}
             </section>
 
-            <section className="mx-auto mt-8 max-w-5xl rounded-2xl border border-[var(--ath-line)] bg-white/70 p-6">
-                <p className="editorial-kicker">Learners needing attention</p>
-                <h2 className="mt-2 text-xl font-semibold text-[var(--ath-text)]">Below 50% average mastery</h2>
+            <section className="mx-auto mt-4 max-w-5xl rounded-2xl border border-[var(--ath-line)] bg-white/85 p-5">
+                <div className="flex items-baseline justify-between">
+                    <h2 className="text-sm font-semibold text-[var(--ath-text)]">Learners &lt; 50% average</h2>
+                    <span className="text-[10px] text-[var(--ath-secondary)]" title="Anonymized - consult roster to map IDs to names">anon</span>
+                </div>
                 {strugglers.length === 0 ? (
-                    <p className="mt-4 text-sm text-[var(--ath-muted)]">No learners under the threshold currently.</p>
+                    <p className="mt-3 text-xs text-[var(--ath-muted)]">None under threshold.</p>
                 ) : (
-                    <ul className="mt-4 space-y-1 text-sm text-[var(--ath-muted)]">
+                    <ul className="mt-3 space-y-1 text-xs text-[var(--ath-muted)]">
                         {strugglers.slice(0, 12).map((s) => (
-                            <li key={s.user_id} className="flex justify-between rounded-lg bg-white/70 px-3 py-2">
-                                <span className="font-mono text-xs">{s.user_id.slice(0, 8)}...</span>
-                                <span>avg {Math.round(s.average * 100)}% across {s.conceptCount} concepts</span>
+                            <li key={s.user_id} className="flex justify-between rounded-lg bg-white/70 px-2.5 py-1.5">
+                                <span className="font-mono">{s.user_id.slice(0, 8)}...</span>
+                                <span>{Math.round(s.average * 100)}% / {s.conceptCount} concepts</span>
                             </li>
                         ))}
                     </ul>
                 )}
-                <p className="mt-3 text-xs text-[var(--ath-muted)]">
-                    User IDs are anonymized; consult roster to map to names. Action options: targeted check-in,
-                    office-hours invite, or supplementary practice assignment.
-                </p>
             </section>
         </div>
     )

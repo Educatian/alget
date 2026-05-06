@@ -599,11 +599,11 @@ h6,
 }
 
 .reading-narrative {
-  max-width: min(82ch, 100%);
+  max-width: min(76ch, 100%);
   margin-right: auto;
   margin-left: auto;
   color: var(--ath-text);
-  font-size: 1.05rem;
+  font-size: 1.0625rem;
 }
 
 .reading-narrative .markdown-content-wrapper {
@@ -651,22 +651,22 @@ h6,
 }
 
 .reading-narrative p {
-  margin: 0.95rem 0;
+  margin: 1.35rem 0;
   color: var(--ath-text);
-  font-size: 1.04rem;
-  line-height: 1.9;
+  font-size: 1.0625rem;
+  line-height: 1.78;
 }
 
 .reading-narrative ul,
 .reading-narrative ol {
-  margin: 1.05rem 0 1.45rem;
-  padding-left: 1.35rem;
+  margin: 1.35rem 0 1.6rem;
+  padding-left: 1.4rem;
 }
 
 .reading-narrative li {
-  margin: 0.45rem 0;
+  margin: 0.6rem 0;
   padding-left: 0.15rem;
-  line-height: 1.75;
+  line-height: 1.78;
 }
 
 .reading-narrative strong {
