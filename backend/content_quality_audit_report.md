@@ -2,41 +2,41 @@
 
 This stricter audit checks research-readiness signals beyond structural completeness.
 
-| Course | Sections | Mean Score | Below 8 | Artifact Packets | Generic Marker Total |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| ail606-supplement | 64 | 15.00 | 0 | 64 | 0 |
-| cat531-supplement | 64 | 14.77 | 0 | 64 | 0 |
-| cat100-supplement | 64 | 14.20 | 0 | 64 | 0 |
+| Course | Sections | Mean Score | Below 8 | Artifact Packets | Generic Marker Total | LXD Leaks |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| ail606-supplement | 64 | 15.00 | 0 | 64 | 0 | 0 |
+| cat531-supplement | 64 | 15.00 | 0 | 64 | 0 | 0 |
+| cat100-supplement | 64 | 15.00 | 0 | 64 | 0 | 0 |
 
 ## Lowest Scoring Sections
 
-- `cat100-supplement\01\02.mdx` score 13 | terms 2 | images 1 | downloads 1 | citations 4 | signals 5 | generic 0
-- `cat100-supplement\01\06.mdx` score 13 | terms 2 | images 1 | downloads 1 | citations 4 | signals 5 | generic 0
-- `cat100-supplement\04\02.mdx` score 13 | terms 2 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\04\03.mdx` score 13 | terms 2 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\07\04.mdx` score 13 | terms 2 | images 1 | downloads 1 | citations 4 | signals 5 | generic 0
-- `cat100-supplement\07\06.mdx` score 13 | terms 2 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\08\05.mdx` score 13 | terms 2 | images 1 | downloads 1 | citations 4 | signals 5 | generic 0
-- `cat531-supplement\03\01.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 4 | generic 0
-- `cat531-supplement\03\04.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0
-- `cat531-supplement\03\07.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 4 | generic 0
-- `cat531-supplement\03\08.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0
-- `cat531-supplement\04\05.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0
-- `cat531-supplement\06\01.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 4 | generic 0
-- `cat531-supplement\06\03.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0
-- `cat531-supplement\06\07.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0
-- `cat531-supplement\07\01.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 4 | generic 0
-- `cat531-supplement\07\03.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 4 | generic 0
-- `cat531-supplement\07\06.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 4 | generic 0
-- `cat531-supplement\07\08.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0
-- `cat531-supplement\08\02.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 4 | generic 0
-- `cat531-supplement\08\05.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0
-- `cat531-supplement\08\08.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 8 | signals 4 | generic 0
-- `cat100-supplement\01\01.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\01\03.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\01\05.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\01\07.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\01\08.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\02\01.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\02\02.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
-- `cat100-supplement\02\05.mdx` score 14 | terms 3 | images 1 | downloads 1 | citations 4 | signals 4 | generic 0
+- `cat531-supplement\03\04.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `cat531-supplement\03\06.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `cat531-supplement\06\01.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `cat531-supplement\06\03.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `cat531-supplement\06\07.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `cat531-supplement\07\01.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 3 | generic 0 | lxd leaks 0
+- `cat531-supplement\07\02.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `cat531-supplement\07\06.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `cat531-supplement\07\08.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `cat531-supplement\08\05.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `cat531-supplement\08\07.mdx` score 15 | terms 4 | images 1 | downloads 1 | citations 8 | signals 5 | generic 0 | lxd leaks 0
+- `ail606-supplement\01\01.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\01\03.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\01\04.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 5 | generic 0 | lxd leaks 0
+- `ail606-supplement\01\05.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\01\08.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 5 | generic 0 | lxd leaks 0
+- `ail606-supplement\02\01.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 5 | generic 0 | lxd leaks 0
+- `ail606-supplement\02\03.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 5 | generic 0 | lxd leaks 0
+- `ail606-supplement\02\04.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\02\07.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 5 | generic 0 | lxd leaks 0
+- `ail606-supplement\02\08.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\04\01.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 5 | generic 0 | lxd leaks 0
+- `ail606-supplement\04\02.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\04\04.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\04\07.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 5 | generic 0 | lxd leaks 0
+- `ail606-supplement\04\08.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\05\01.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\05\03.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0
+- `ail606-supplement\05\04.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 5 | generic 0 | lxd leaks 0
+- `ail606-supplement\05\05.mdx` score 15 | terms 5 | images 1 | downloads 1 | citations 6 | signals 3 | generic 0 | lxd leaks 0

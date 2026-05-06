@@ -1,12 +1,12 @@
 {
   "chapter_title": "AI in Education",
   "title": "AI Use Disclosure",
-  "description": "CAT 531 textbook section connecting ai use disclosure to Ethobot transcript annotation showing where ethical reasoning changed, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 531 textbook section connecting ai use disclosure to Ethobot transcript annotation showing where ethical reasoning changed, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze an Ethobot transcript annotation showing where ethical reasoning changed as evidence of learner judgment in CAT 531.",
+    "Analyze how the Ethobot transcript annotation showing where ethical reasoning changed shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
   ],
   "concept_ids": [
     "cat531_supplement_ai_in_education",

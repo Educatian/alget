@@ -1,12 +1,12 @@
 {
   "chapter_title": "Educational Technology Evaluation",
   "title": "Peer Review of Evaluation Briefs",
-  "description": "CAT 531 textbook section connecting peer review of evaluation briefs to equity-oriented edtech evaluation matrix with context-specific risk notes, social annotation signals, and adaptive learner-model evidence.",
+  "description": "CAT 531 textbook section connecting peer review of evaluation briefs to equity-oriented edtech evaluation matrix with context-specific risk notes, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze an equity-oriented edtech evaluation matrix with context-specific risk notes as evidence of learner judgment in CAT 531.",
+    "Analyze how the equity-oriented edtech evaluation matrix with context-specific risk notes shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
   ],
   "concept_ids": [
     "cat531_supplement_educational_technology_evaluation",

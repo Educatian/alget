@@ -69,6 +69,15 @@ COURSE_PROFILES = {
 TARGET_SECTIONS = [(chapter, section) for chapter in range(1, 9) for section in range(1, 9)]
 
 
+def learner_trace_objective(profile: dict) -> str:
+    short = profile["short"]
+    if short == "AIL 606":
+        return "Use annotations, support requests, and revision notes to decide what help or design change should come next."
+    if short == "CAT 531":
+        return "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    return "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+
+
 def slugify(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
@@ -206,7 +215,7 @@ def section_body(course: str, chapter: int, section: int) -> str:
 
     This hardened version treats **{title}** as a concrete {profile['focus']} task rather than a generic AI-supported reflection. The student is not only asked to complete a course activity. The student must inspect a real artifact form, name the decision being made, and show how evidence changes the next version. That shift matters because an intelligent textbook paper needs to show more than content delivery; it needs to show how the system elicits, records, and responds to learner judgment.
 
-    The exemplar artifact for this section is a **{artifact}**. It is intentionally narrow. A narrow artifact lets ALGET connect reading, annotation, practice, misconception feedback, and learner-model updates around observable behavior. The section therefore creates a research trace: what the learner noticed, what support they requested, what they revised, and what evidence justified the revision.
+    The exemplar artifact for this section is a **{artifact}**. It is intentionally narrow. A narrow artifact helps you connect reading, annotation, practice, feedback, and revision around observable behavior. The section therefore creates a practical trace: what you noticed, what support you requested, what you revised, and what evidence justified the revision.
 
     ## Research Anchors
 
@@ -226,9 +235,9 @@ def section_body(course: str, chapter: int, section: int) -> str:
 
     **Before:** The learner submits the artifact and writes, "I used AI to improve it." The statement is not wrong, but it is not research-useful. It hides the learner's judgment and gives the instructor no evidence about what changed.
 
-    **After:** The learner writes, "I used AI to generate three possible revisions for the {artifact}. I accepted the suggestion that clarified the audience constraint, rejected the suggestion that weakened {anchors[0]}, and revised the artifact so the evidence trail now names the source of feedback." This version can be coded, audited, and connected to learner modeling.
+    **After:** The learner writes, "I used AI to generate three possible revisions for the {artifact}. I accepted the suggestion that clarified the audience constraint, rejected the suggestion that weakened {anchors[0]}, and revised the artifact so the evidence trail now names the source of feedback." This version is easier for an instructor, peer, or future self to review.
 
-    <dynamic-scenario prompt="A learner submits a {artifact} for {profile['short']} {chapter:02d}.{section:02d}. The artifact is complete, but the annotation thread shows unresolved confusion about {anchors[1]}. Decide which adaptive support action ALGET should recommend first and what evidence would show that the support worked." />
+    <dynamic-scenario prompt="You are revising a {artifact} for {profile['short']} {chapter:02d}.{section:02d}. The artifact is complete, but a peer comment shows unresolved confusion about {anchors[1]}. Choose the next revision move and what evidence would show that it helped." />
 
     ## Intelligent Textbook Signal
 
@@ -239,7 +248,7 @@ def section_body(course: str, chapter: int, section: int) -> str:
     - **Support signal:** Did the learner request explanation, representation, practice, or a next-step prompt?
     - **Calibration signal:** Did the learner's confidence match the quality of the revision?
 
-    These signals are what make the textbook intelligent. Static content explains the topic. An intelligent textbook records how the learner uses the explanation, then adapts the next support move.
+    These signals are what make the page useful as a learning environment. Static content explains the topic. ALGET records how the learner uses the explanation, then offers support based on the evidence.
 
     ## Misconception Watch
 
@@ -275,12 +284,12 @@ def update_json_sidecars(course: str, chapter: int, section: int) -> None:
     misconceptions_path = CONTENT_ROOT / course / f"{chapter:02d}" / f"{section:02d}.misconceptions.json"
     meta_path = CONTENT_ROOT / course / f"{chapter:02d}" / f"{section:02d}.meta.json"
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
-    meta["description"] = f"Artifact-specific exemplar for {profile['short']} connecting {title.lower()} to {artifact}, social annotation signals, and adaptive learner-model evidence."
+    meta["description"] = f"Artifact-specific exemplar for {profile['short']} connecting {title.lower()} to {artifact}, reader notes, support moments, and revision evidence."
     meta["learning_objectives"] = [
-        f"Analyze a {artifact} as evidence of learner judgment in {profile['short']}.",
+        f"Analyze how the {artifact} shows a defensible decision in {profile['short']}.",
         "Distinguish artifact polish from evidence-based revision.",
         "Document a bounded AI/software support move with accepted and rejected suggestions.",
-        "Identify annotation, artifact, support, and calibration signals for intelligent textbook research.",
+        learner_trace_objective(profile),
     ]
     meta["top_tier_hardened"] = True
     meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
@@ -290,7 +299,7 @@ def update_json_sidecars(course: str, chapter: int, section: int) -> None:
                 "id": f"{stem}_artifact_signal",
                 "type": "multiple_choice",
                 "concept_id": meta["concept_ids"][1],
-                "stem": f"Which evidence trace would best support an intelligent-textbook claim for this {artifact}?",
+                "stem": "Which evidence trace would make this artifact easiest to review and improve?",
                 "options": [
                     "The artifact is visually polished and complete.",
                     "The learner identifies a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
@@ -335,15 +344,15 @@ def update_json_sidecars(course: str, chapter: int, section: int) -> None:
                 "id": f"{stem}_calibration",
                 "type": "multiple_choice",
                 "concept_id": meta["concept_ids"][2],
-                "stem": "Which learner-model signal should ALGET preserve?",
+                "stem": "Which detail would make later support more useful?",
                 "options": [
                     "Only the final artifact file.",
-                    "Confidence, annotation type, support request, practice result, and revision quality.",
+                    "Your confidence, question type, support request, practice result, and revision quality.",
                     "Only the time of day.",
                     "Only the number of words in the note.",
                 ],
                 "correct_index": 1,
-                "explanation": "Adaptive claims require multiple interpretable signals, not only completion.",
+                "explanation": "Useful support depends on visible evidence, not only completion.",
                 "misconception_id": f"{stem}_completion_only_model",
             },
         ]
@@ -379,7 +388,7 @@ def update_json_sidecars(course: str, chapter: int, section: int) -> None:
             {
                 "id": f"{stem}_completion_only_model",
                 "pattern": "completion_only_learner_model",
-                "description": "Assuming completion alone is enough for adaptive learner modeling",
+                "description": "Assuming completion alone is enough for useful follow-up support",
                 "trigger": "learner or system records only a finished artifact",
                 "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
                 "rail_action": "practice",

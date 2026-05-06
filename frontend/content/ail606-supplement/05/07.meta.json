@@ -1,12 +1,12 @@
 {
   "chapter_title": "Usability Testing and Learning Evidence",
   "title": "Prioritizing Iterations",
-  "description": "AIL 606 textbook section connecting prioritizing iterations to capstone defense evidence board with limitations and transfer claims, social annotation signals, and adaptive learner-model evidence.",
+  "description": "AIL 606 textbook section connecting prioritizing iterations to capstone defense evidence board with limitations and transfer claims, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze a capstone defense evidence board with limitations and transfer claims as evidence of learner judgment in AIL 606.",
+    "Analyze how the capstone defense evidence board with limitations and transfer claims shows a defensible decision in AIL 606.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Identify annotation, artifact, support, and calibration signals for intelligent textbook research."
+    "Use annotations, support requests, and revision notes to decide what help or design change should come next."
   ],
   "concept_ids": [
     "ail606_supplement_usability_testing_and_learning_evidence",

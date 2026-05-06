@@ -26,6 +26,20 @@ GENERIC_MARKERS = [
     "purpose, constraint, evidence, revision",
 ]
 
+LXD_LEAK_MARKERS = [
+    "Research Trace",
+    "intelligent textbook research",
+    "intelligent-textbook claim",
+    "learner-model",
+    "learner model",
+    "adaptive learner-model",
+    "social annotation signals",
+    "as evidence of learner judgment",
+    "Recommend the first adaptive support action",
+    "Which learner-model signal",
+    "For research use",
+]
+
 
 def score_section(course: str, path: Path) -> dict:
     text = path.read_text(encoding="utf-8")
@@ -36,13 +50,17 @@ def score_section(course: str, path: Path) -> dict:
     citations = len(re.findall(r"\b[A-Z][A-Za-z]+, 20\d{2}\b|\b[A-Z][A-Za-z]+, 19\d{2}\b|https?://|doi\.org", text))
     signal_terms = sum(1 for term in [
         "annotation type",
-        "support action",
+        "support choice",
+        "support request",
+        "support requests",
         "confidence before",
-        "learner-model",
+        "revision notes",
         "research trace",
+        "practical trace",
         "revision quality",
     ] if re.search(term, text, re.I))
     generic = sum(text.count(marker) for marker in GENERIC_MARKERS)
+    lxd_leaks = sum(len(re.findall(re.escape(marker), text, re.I)) for marker in LXD_LEAK_MARKERS)
     words = len(re.findall(r"[A-Za-z][A-Za-z'-]*", text))
     specificity = min(4, terms)
     artifact = 2 if downloads else 0
@@ -51,7 +69,7 @@ def score_section(course: str, path: Path) -> dict:
     media = min(2, images)
     activity = 2 if quiz else 0
     penalty = min(4, generic)
-    score = specificity + artifact + research + evidence + media + activity - penalty
+    score = specificity + artifact + research + evidence + media + activity - penalty - min(6, lxd_leaks)
     return {
         "path": str(path.relative_to(CONTENT_ROOT)),
         "course": course,
@@ -63,6 +81,7 @@ def score_section(course: str, path: Path) -> dict:
         "citations": citations,
         "signal_terms": signal_terms,
         "generic_markers": generic,
+        "lxd_leaks": lxd_leaks,
     }
 
 
@@ -78,6 +97,7 @@ def main() -> None:
         "mean_score": round(mean([r["score"] for r in rows]), 2),
         "below_8": sum(1 for r in rows if r["score"] < 8),
         "hardened_like": sum(1 for r in rows if r["downloads"] > 0 and r["signal_terms"] >= 3),
+        "lxd_leaks": sum(r["lxd_leaks"] for r in rows),
     }, indent=2))
 
 
@@ -90,21 +110,21 @@ def render(rows: list[dict]) -> str:
         "",
         "This stricter audit checks research-readiness signals beyond structural completeness.",
         "",
-        "| Course | Sections | Mean Score | Below 8 | Artifact Packets | Generic Marker Total |",
-        "| --- | ---: | ---: | ---: | ---: | ---: |",
+        "| Course | Sections | Mean Score | Below 8 | Artifact Packets | Generic Marker Total | LXD Leaks |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
     ]
     for course, cr in by_course.items():
         lines.append(
             f"| {course} | {len(cr)} | {mean([r['score'] for r in cr]):.2f} | "
             f"{sum(1 for r in cr if r['score'] < 8)} | {sum(r['downloads'] for r in cr)} | "
-            f"{sum(r['generic_markers'] for r in cr)} |"
+            f"{sum(r['generic_markers'] for r in cr)} | {sum(r['lxd_leaks'] for r in cr)} |"
         )
     lines.extend(["", "## Lowest Scoring Sections", ""])
     for row in sorted(rows, key=lambda r: (r["score"], r["terms"], -r["generic_markers"]))[:30]:
         lines.append(
             f"- `{row['path']}` score {row['score']} | terms {row['terms']} | "
             f"images {row['images']} | downloads {row['downloads']} | citations {row['citations']} | "
-            f"signals {row['signal_terms']} | generic {row['generic_markers']}"
+            f"signals {row['signal_terms']} | generic {row['generic_markers']} | lxd leaks {row['lxd_leaks']}"
         )
     lines.append("")
     return "\n".join(lines)
