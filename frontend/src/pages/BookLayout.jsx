@@ -11,7 +11,8 @@ import {
     LogOut,
     Network,
     PanelRightClose,
-    PanelRightOpen
+    PanelRightOpen,
+    Search
 } from 'lucide-react'
 import { getStreak } from '../lib/streak'
 import { useToast } from '../lib/toastContext'
@@ -542,6 +543,27 @@ export default function BookLayout({ user, onLogout }) {
                             title={railOpen ? 'Close support' : 'Open support'}
                         >
                             {railOpen ? <PanelRightClose className="h-4 w-4" aria-hidden="true" /> : <PanelRightOpen className="h-4 w-4" aria-hidden="true" />}
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => window.dispatchEvent(new CustomEvent('alget-open-search'))}
+                            className="hidden md:inline-flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] px-3 py-1.5 text-xs font-semibold text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
+                            title="Search ⌘K"
+                            aria-label="Open global search"
+                        >
+                            <Search className="h-3.5 w-3.5" />
+                            <span>Search</span>
+                            <span className="ml-1 hidden lg:inline rounded border border-[var(--ath-line)] bg-white/60 px-1 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">⌘K</span>
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => window.dispatchEvent(new CustomEvent('alget-open-search'))}
+                            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
+                            title="Search"
+                            aria-label="Open global search"
+                        >
+                            <Search className="h-4 w-4" />
                         </button>
 
                         <div className="h-8 w-px bg-[var(--ath-line)]"></div>

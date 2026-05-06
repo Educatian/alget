@@ -2199,6 +2199,82 @@ async def get_book_section(course: str, chapter: str, section: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+# ============================================================================
+# SEARCH INDEX (Cmd+K global search)
+# ============================================================================
+
+# Course list mirrors frontend/src/lib/courseCatalog.js. Kept in sync by hand;
+# adding a new course requires updating both. The search index is a flat
+# list of section records that the frontend caches and fuzzy-matches in JS.
+SEARCH_COURSE_IDS = [
+    "statics",
+    "dynamics",
+    "bio-inspired",
+    "inst-design",
+    "ai-ethics",
+    "ail606-supplement",
+    "cat531-supplement",
+    "cat100-supplement",
+]
+
+
+@app.get("/api/search/index")
+async def get_search_index():
+    """Return a flat list of every section across every course for client-side
+    fuzzy search. Includes title, description, and concept_ids per section.
+
+    Response shape:
+        {
+            "version": int,
+            "items": [
+                {
+                    "type": "section",
+                    "course": str,
+                    "chapter": str,
+                    "section": str,
+                    "title": str,
+                    "description": str,
+                    "concept_ids": [str],
+                    "chapter_title": str,
+                },
+                ...
+            ]
+        }
+    """
+    items: list[dict[str, Any]] = []
+    version = 0
+    for course in SEARCH_COURSE_IDS:
+        try:
+            toc = generate_toc(course)
+        except Exception as e:  # noqa: BLE001
+            print(f"[search_index] toc failed for {course}: {e}")
+            continue
+        if not toc.get("chapters"):
+            continue
+        for chapter in toc["chapters"]:
+            chapter_id = _ensure_str(chapter.get("id"))
+            chapter_title = _ensure_str(chapter.get("title")) or f"Chapter {chapter_id}"
+            for section in chapter.get("sections", []):
+                section_id = _ensure_str(section.get("id"))
+                section_title = _ensure_str(section.get("title")) or f"Section {section_id}"
+                meta = load_section_meta(course, chapter_id, section_id) or {}
+                concept_ids = meta.get("concept_ids") or []
+                description = _ensure_str(meta.get("description")) or ""
+                items.append({
+                    "type": "section",
+                    "course": course,
+                    "chapter": chapter_id,
+                    "section": section_id,
+                    "title": section_title,
+                    "description": description,
+                    "concept_ids": list(concept_ids),
+                    "chapter_title": chapter_title,
+                })
+                version += 1
+
+    return {"version": version, "items": items}
+
+
 @app.post("/api/book/generate_custom_module")
 async def generate_custom_module(request: CurriculumGenerateRequest):
     """Dynamically generate and write a full textbook module from Lab context."""

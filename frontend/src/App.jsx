@@ -8,6 +8,7 @@ import { ToastProvider } from './lib/toast.jsx'
 import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
 import AppErrorBoundary from './components/AppErrorBoundary'
+import GlobalSearch from './components/GlobalSearch'
 import API_BASE from './lib/apiConfig'
 import './index.css'
 
@@ -106,6 +107,7 @@ export default function App() {
         <ToastProvider>
           <AppErrorBoundary>
             <GlobalClickLogger>
+              <GlobalSearch />
               <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route
