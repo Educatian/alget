@@ -366,68 +366,67 @@ export default function DiagnosticAssessment() {
     const progress = Math.round(((currentQuestion + 1) / totalQuestions) * 100)
 
     return (
-        <div className="editorial-shell min-h-screen px-6 py-10 md:px-10">
-            <div className="mx-auto max-w-4xl">
-                <header className="editorial-panel p-6 md:p-8">
-                    <div className="flex flex-wrap items-start justify-between gap-4">
-                        <div>
-                            <p className="editorial-kicker">{courseLabel} {phaseMeta.title}</p>
-                            <h1 className="editorial-title mt-3 text-4xl md:text-5xl">Knowledge calibration</h1>
-                            <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--ath-muted)]">
-                                A short entry assessment to locate gaps, confirm strong concepts, and set a more precise starting point in the text.
-                            </p>
-                        </div>
-                        <button onClick={handleSkip} className="editorial-button-secondary px-4 py-2 text-sm">
-                            Skip assessment
+        <div className="editorial-shell min-h-screen px-6 py-8 md:px-10">
+            <div className="mx-auto max-w-3xl">
+                <header className="mb-6">
+                    <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[var(--ath-secondary)]">
+                        <span className="text-[var(--ath-text)] uppercase tracking-[0.18em]">{courseLabel}</span>
+                        <span className="text-[var(--ath-line-strong)]">/</span>
+                        <span>{phaseMeta.title}</span>
+                        <span className="text-[var(--ath-line-strong)]">/</span>
+                        <span>Q{currentQuestion + 1}/{totalQuestions}</span>
+                        <button
+                            onClick={handleSkip}
+                            className="ml-auto text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
+                            type="button"
+                        >
+                            Skip
                         </button>
                     </div>
-
-                    <div className="mt-8 flex flex-wrap items-center gap-3">
-                        <span className="editorial-pill">{phaseMeta.subtitle}</span>
-                        <span className="editorial-chip">Question {currentQuestion + 1} of {totalQuestions}</span>
-                        <span className="editorial-chip">{progress}% complete</span>
-                    </div>
-
-                    <div className="mt-5 h-1.5 w-full overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
+                    <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
                         <div
-                            className="h-full bg-[linear-gradient(90deg,var(--ath-primary),#4a7382)] transition-all duration-300"
+                            className="h-full bg-[var(--ath-primary)] transition-all duration-300"
                             style={{ width: `${progress}%` }}
                         />
                     </div>
                 </header>
 
-                <main className="mt-8 grid gap-6 lg:grid-cols-[1fr_16rem]">
-                    <section className="editorial-panel p-7 md:p-8">
-                        <div className="flex flex-wrap items-center justify-between gap-3">
-                            <span className="editorial-kicker">Concept Probe</span>
-                            <span className="editorial-chip">{titleize(currentQ.concept || 'core concept')}</span>
+                <main>
+                    <section className="rounded-2xl border border-[var(--ath-line)] bg-white/85 p-6 shadow-sm md:p-8">
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
+                            <span>Concept</span>
+                            <span className="text-[var(--ath-line-strong)]">/</span>
+                            <span className="text-[var(--ath-text)]">{titleize(currentQ.concept || 'core')}</span>
                         </div>
 
-                        <h2 className="mt-5 text-2xl font-semibold leading-relaxed text-[var(--ath-text)] md:text-[2rem]">
+                        <h2 className="mt-4 text-xl font-semibold leading-8 text-[var(--ath-text)] md:text-2xl">
                             {currentQ.stem}
                         </h2>
 
-                        <div className="mt-8 space-y-3">
+                        <div className="mt-6 space-y-2" role="radiogroup" aria-label="Answer options">
                             {currentQ.options.map((option, idx) => {
                                 const isSelected = answers[currentQuestion] === idx
                                 return (
                                     <button
                                         key={idx}
+                                        type="button"
+                                        role="radio"
+                                        aria-checked={isSelected}
                                         onClick={() => handleAnswer(idx)}
-                                        className={`flex w-full items-start gap-4 rounded-[1.3rem] border px-5 py-4 text-left transition-all ${
+                                        className={`group flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left text-sm leading-6 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] ${
                                             isSelected
-                                                ? 'border-[rgba(15,81,103,0.22)] bg-[rgba(200,226,236,0.35)] shadow-sm'
-                                                : 'border-[var(--ath-line)] bg-white/82 hover:bg-[var(--ath-panel)]'
+                                                ? 'border-[var(--ath-primary)] bg-[rgba(200,226,236,0.4)] shadow-sm'
+                                                : 'border-[var(--ath-line)] bg-white/85 hover:border-[var(--ath-primary-deep)] hover:bg-[var(--ath-panel)]'
                                         }`}
                                     >
-                                        <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-xs font-bold ${
+                                        <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-bold ${
                                             isSelected
                                                 ? 'border-[var(--ath-primary)] bg-[var(--ath-primary)] text-white'
-                                                : 'border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)]'
+                                                : 'border-[var(--ath-line)] bg-white text-[var(--ath-secondary)] group-hover:border-[var(--ath-primary-deep)]'
                                         }`}>
                                             {String.fromCharCode(65 + idx)}
                                         </span>
-                                        <span className={`pt-0.5 text-sm leading-7 ${isSelected ? 'text-[var(--ath-text)]' : 'text-[var(--ath-muted)]'}`}>
+                                        <span className={`flex-1 ${isSelected ? 'text-[var(--ath-text)]' : 'text-[var(--ath-text)]'}`}>
                                             {option}
                                         </span>
                                     </button>
@@ -435,14 +434,6 @@ export default function DiagnosticAssessment() {
                             })}
                         </div>
                     </section>
-
-                    <aside className="rounded-[1.7rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5 shadow-sm">
-                        <p className="editorial-label">Assessment Notes</p>
-                        <div className="mt-4 space-y-4 text-sm leading-7 text-[var(--ath-muted)]">
-                            <p>This probe samples prerequisites, so the goal is placement quality rather than a perfect score.</p>
-                            <p>Wrong answers are used to choose where the course should begin, not to lock the pathway.</p>
-                        </div>
-                    </aside>
                 </main>
 
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-3">

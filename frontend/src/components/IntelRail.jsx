@@ -338,66 +338,49 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                             )}
 
                             {reasoning && (
-                                <div className="mt-4 rounded-[1rem] border border-[var(--ath-line)] bg-white/75 p-4">
-                                    <div className="flex items-center justify-between gap-3">
-                                        <p className="editorial-label">Why this was chosen</p>
-                                        <span className="editorial-chip">confidence {Math.round((reasoning.confidence || 0) * 100)}%</span>
-                                    </div>
-                                    <div className="mt-3 flex flex-wrap gap-2">
-                                        {(reasoning.reason_codes || []).map((code) => (
-                                            <span key={code} className="editorial-chip">{prettyConcept(code)}</span>
-                                        ))}
-                                    </div>
-                                    {(reasoning.recommended_because || []).length > 0 && (
-                                        <div className="mt-4 space-y-2">
-                                            {reasoning.recommended_because.map((item, index) => (
-                                                <p key={`${item}-${index}`} className="text-xs leading-6 text-[var(--ath-muted)]">{item}</p>
+                                <details className="mt-3 rounded-lg border border-[var(--ath-line)] bg-white/75 px-3 py-2 text-xs text-[var(--ath-muted)] [&[open]>summary>span:last-child]:rotate-90">
+                                    <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-[var(--ath-secondary)]">
+                                        <span className="font-semibold">Why this | {Math.round((reasoning.confidence || 0) * 100)}% confidence</span>
+                                        <span className="transition-transform">&gt;</span>
+                                    </summary>
+                                    {(reasoning.reason_codes || []).length > 0 && (
+                                        <div className="mt-2 flex flex-wrap gap-1.5">
+                                            {(reasoning.reason_codes || []).map((code) => (
+                                                <span key={code} className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-medium text-[var(--ath-text)]">{prettyConcept(code)}</span>
                                             ))}
                                         </div>
                                     )}
-                                    {(reasoning.not_recommended_because || []).length > 0 && (
-                                        <div className="mt-4 border-t border-[var(--ath-line)] pt-3">
-                                            <p className="editorial-label">Why other actions were not first</p>
-                                            <div className="mt-2 space-y-2">
-                                                {reasoning.not_recommended_because.map((item, index) => (
-                                                    <p key={`${item}-${index}`} className="text-xs leading-6 text-[var(--ath-secondary)]">{item}</p>
-                                                ))}
-                                            </div>
-                                        </div>
+                                    {(reasoning.recommended_because || []).length > 0 && (
+                                        <ul className="mt-2 space-y-1 text-[11px] leading-5">
+                                            {reasoning.recommended_because.slice(0, 3).map((item, index) => (
+                                                <li key={`${item}-${index}`}>- {item}</li>
+                                            ))}
+                                        </ul>
                                     )}
                                     {actionScores.length > 0 && (
-                                        <div className="mt-4 border-t border-[var(--ath-line)] pt-3">
-                                            <div className="flex items-center justify-between gap-3">
-                                                <p className="editorial-label">Action score board</p>
-                                                <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
-                                                    {reasoning.policy_strategy || 'heuristic_bandit_v2'}
-                                                </span>
-                                            </div>
-                                            <div className="mt-3 space-y-3">
+                                        <details className="mt-2 border-t border-[var(--ath-line)] pt-2">
+                                            <summary className="cursor-pointer list-none text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--ath-secondary)] hover:text-[var(--ath-text)]">
+                                                Policy scores ({reasoning.policy_strategy || 'heuristic_bandit_v2'})
+                                            </summary>
+                                            <div className="mt-2 space-y-2">
                                                 {actionScores.map(([action, score]) => (
                                                     <div key={action}>
-                                                        <div className="flex items-center justify-between text-xs text-[var(--ath-muted)]">
+                                                        <div className="flex items-center justify-between text-[11px]">
                                                             <span className="font-semibold text-[var(--ath-text)]">{prettyConcept(action)}</span>
                                                             <span>{Math.round(score * 100)}%</span>
                                                         </div>
-                                                        <div className="mt-1 h-2 overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
+                                                        <div className="mt-0.5 h-1.5 overflow-hidden rounded-full bg-[var(--ath-panel-muted)]">
                                                             <div
-                                                                className="h-full rounded-full bg-[linear-gradient(90deg,var(--ath-primary),var(--ath-primary-deep))]"
+                                                                className="h-full rounded-full bg-[var(--ath-primary)]"
                                                                 style={{ width: `${Math.max(6, Math.round(score * 100))}%` }}
                                                             ></div>
                                                         </div>
-                                                        {reasoning.predicted_outcomes?.[action] && (
-                                                            <p className="mt-1 text-[11px] text-[var(--ath-secondary)]">
-                                                                Success {Math.round((reasoning.predicted_outcomes[action].success_rate || 0) * 100)}% /
-                                                                retention {Math.round((reasoning.predicted_outcomes[action].retention_lift || 0) * 100)}%
-                                                            </p>
-                                                        )}
                                                     </div>
                                                 ))}
                                             </div>
-                                        </div>
+                                        </details>
                                     )}
-                                </div>
+                                </details>
                             )}
 
                             <div className="mt-4 flex flex-wrap gap-2">
@@ -423,10 +406,6 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
 
                 {activeTab === 'explain' && (
                     <div className="space-y-4">
-                        <p className="text-sm leading-6 text-[var(--ath-muted)]">
-                            Ask for a simpler explanation tied to the exact section where the learner is slowing down.
-                        </p>
-
                         {!explanation ? (
                             <button
                                 onClick={requestExplanation}
@@ -446,10 +425,6 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
 
                 {activeTab === 'represent' && (
                     <div className="space-y-4">
-                        <p className="text-sm leading-6 text-[var(--ath-muted)]">
-                            Switch the mental model. A fresh representation often unlocks the next step faster than repeating the same wording.
-                        </p>
-
                         <div className="grid grid-cols-2 gap-2">
                             {[
                                 { type: 'mindmap', label: 'Mind map' },
@@ -478,10 +453,6 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
 
                 {activeTab === 'practice' && (
                     <div className="space-y-4">
-                        <p className="text-sm leading-6 text-[var(--ath-muted)]">
-                            The best practice move lives in the section practice block, where mastery updates and stuck detection are already tracked.
-                        </p>
-
                         <div className="rounded-[1.2rem] border border-emerald-200 bg-emerald-50/70 p-4">
                             <h4 className="font-semibold text-emerald-800">Recommended focus</h4>
                             <p className="mt-2 text-sm leading-relaxed text-emerald-700">
@@ -501,9 +472,6 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
 
                 {activeTab === 'ask' && (
                     <div className="space-y-4">
-                        <div className="rounded-[1.2rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4 text-sm leading-6 text-[var(--ath-muted)]">
-                            Short supports stay here. Longer questions move to chat.
-                        </div>
                         <div className="flex gap-2">
                             <input
                                 type="text"

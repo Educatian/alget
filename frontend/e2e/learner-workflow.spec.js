@@ -96,30 +96,39 @@ test.describe('ALGET full learner workflow', () => {
         await page.getByRole('button', { name: /add public note/i }).click()
         await expect(page.getByText('This passage should connect the storyboard revision')).toBeVisible()
 
-        await expect(page.getByRole('heading', { name: /studio/i }).first()).toBeVisible()
-        await expect(page.getByText(/why this support now/i)).toBeVisible()
+        // ArtifactStudio is now a 4-step wizard. Walk through each step.
+        await expect(page.getByRole('button', { name: /Submission rules/i })).toBeVisible()
 
-        await page.getByLabel(/initial work product draft/i).fill('The first storyboard draft lists media elements but does not name the learner audience or the design constraint.')
-        await page.getByLabel(/artifact claim/i).fill('The storyboard should help novice teachers choose one multimedia segmenting move for a short lesson.')
-        await page.getByLabel(/evidence/i).first().fill('The evidence source is the section note on cognitive load and the annotation about segmenting the narration.')
-        await page.getByLabel(/accepted/i).first().fill('I accepted a suggestion to add a learner action note to the first storyboard frame.')
-        await page.getByLabel(/rejected/i).first().fill('I rejected a suggestion that removed the evidence source because it made the revision impossible to audit.')
-        await page.getByRole('button', { name: /modify/i }).click()
-        await page.getByLabel(/judgment rationale/i).fill('The AI suggestion was modified because the revision needed to keep a visible theory-to-frame link.')
-        await page.getByLabel(/revised work product/i).fill('The revised storyboard names novice teachers, marks the segmenting constraint, and adds a frame-level action note tied to cognitive load evidence.')
-        await page.getByLabel(/transfer constraint/i).fill('This decision would need to change for advanced learners who can process more simultaneous narration and visual detail.')
+        // Step 1 - Draft
+        await page.getByPlaceholder(/Paste or summarize the current draft/i).fill('The first storyboard draft lists media elements but does not name the learner audience or the design constraint.')
+        await page.getByRole('button', { name: 'Next' }).first().click()
 
+        // Step 2 - Evidence
+        await page.getByPlaceholder(/Audience, constraint/i).fill('The storyboard should help novice teachers choose one multimedia segmenting move for a short lesson.')
+        await page.getByPlaceholder(/Rubric line, annotation/i).fill('The evidence source is the section note on cognitive load and the annotation about segmenting the narration.')
+        await page.getByRole('button', { name: 'Next' }).first().click()
+
+        // Step 3 - Judge AI
+        await page.getByPlaceholder(/What did you accept/i).fill('I accepted a suggestion to add a learner action note to the first storyboard frame.')
+        await page.getByPlaceholder(/What did you reject or modify/i).fill('I rejected a suggestion that removed the evidence source because it made the revision impossible to audit.')
+        await page.getByRole('button', { name: /^Modify$/i }).click()
+        await page.getByPlaceholder(/Why this judgment/i).fill('The AI suggestion was modified because the revision needed to keep a visible theory-to-frame link.')
+        await page.getByRole('button', { name: 'Next' }).first().click()
+
+        // Step 4 - Revise
+        await page.getByPlaceholder(/Paste or summarize the revised version/i).fill('The revised storyboard names novice teachers, marks the segmenting constraint, and adds a frame-level action note tied to cognitive load evidence.')
+        await page.getByPlaceholder(/Where would this decision change next/i).fill('This decision would need to change for advanced learners who can process more simultaneous narration and visual detail.')
+
+        await page.getByText(/Quality rubric/i).click()
         for (const select of await page.locator('select').all()) {
             await select.selectOption('2')
         }
 
-        await page.getByRole('button', { name: /log trace/i }).click()
+        await page.getByRole('button', { name: 'Submit' }).first().click()
 
-        await expect(page.getByText(/revision quality/i)).toBeVisible()
-        await expect(page.getByText(/overall 79%/i)).toBeVisible()
-        await expect(page.getByText(/backend policy recommends/i)).toBeVisible()
-        await expect(page.getByText(/artifact trace completeness/i)).toBeVisible()
-        await expect(page.getByText(/trace completeness 100%/i)).toBeVisible()
+        await expect(page.getByText(/Revision quality/i)).toBeVisible()
+        await expect(page.getByText(/79%/)).toBeVisible()
+        await expect(page.getByText(/Next: audit/i)).toBeVisible()
 
         expect(failures, failures.join('\n')).toEqual([])
     })
