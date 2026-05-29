@@ -49,7 +49,7 @@ $$\vec{a} = a_t\,\hat{u}_t + a_n\,\hat{u}_n$$
 
 with **tangential acceleration** $a_t = dv/dt$ (changes the speed) and **normal acceleration** $a_n = v^2/\rho$ (changes the direction), where $\rho$ is the local radius of curvature of the path.
 
-Two physical insights live in this decomposition. First, tangential acceleration is exactly the rate of change of speed; if speed is constant, $a_t = 0$ and only direction-changing acceleration remains. Second, normal acceleration is always nonzero on a curved path and always points toward the center of curvature — this is the centripetal direction. The faster you go around a tighter curve, the larger $a_n$ must be.
+Two physical insights live in this decomposition. First, tangential acceleration is exactly the rate of change of speed; if speed is constant, $a_t = 0$ and only direction-changing acceleration remains. Second, normal acceleration is always nonzero on a curved path and always points toward the center of curvature (this is the centripetal direction). The faster you go around a tighter curve, the larger $a_n$ must be.
 
 ---
 
@@ -65,15 +65,37 @@ The velocity has two components:
 
 $$\vec{v} = \dot{r}\,\hat{u}_r + r\dot{\theta}\,\hat{u}_\theta$$
 
-where $\dot{r}$ is the radial speed and $r\dot{\theta}$ is the transverse speed. Note the $r$ factor — the transverse component is not $\dot{\theta}$ alone; it scales with how far out the particle is.
+where $\dot{r}$ is the radial speed and $r\dot{\theta}$ is the transverse speed. Note the $r$ factor; the transverse component is not $\dot{\theta}$ alone; it scales with how far out the particle is.
 
-The acceleration decomposes into four terms — and this is where most students make errors:
+The acceleration decomposes into four terms, and this is where most students make errors:
 
 $$\vec{a} = (\ddot{r} - r\dot{\theta}^2)\,\hat{u}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\,\hat{u}_\theta$$
 
 The radial acceleration $\ddot{r} - r\dot{\theta}^2$ contains a centripetal-like term $-r\dot{\theta}^2$ that is present even when $\ddot{r} = 0$. The transverse acceleration $r\ddot{\theta} + 2\dot{r}\dot{\theta}$ contains a Coriolis-like term $2\dot{r}\dot{\theta}$ that is present even when $\ddot{\theta} = 0$.
 
 These cross terms exist because $\hat{u}_r$ and $\hat{u}_\theta$ themselves rotate as the particle moves. Differentiating the rotating unit vectors generates the extra terms. This is the central conceptual point: in non-inertial-feeling coordinate systems, the time derivatives of basis vectors do not vanish.
+
+### Deriving the Polar Acceleration (Where the Cross Terms Come From)
+
+The four-term acceleration is not a formula to memorize blindly; it falls straight out of the product rule once you know how the basis vectors turn. The key facts are the time derivatives of the rotating unit vectors. Because $\hat{u}_r$ rotates with angular rate $\dot{\theta}$, its tip sweeps in the $\hat{u}_\theta$ direction, and $\hat{u}_\theta$ in turn sweeps back toward $-\hat{u}_r$:
+
+$$\dot{\hat{u}}_r = \dot{\theta}\,\hat{u}_\theta, \qquad \dot{\hat{u}}_\theta = -\dot{\theta}\,\hat{u}_r$$
+
+Start from position $\vec{r} = r\,\hat{u}_r$ and differentiate once for velocity:
+
+$$\vec{v} = \dot{r}\,\hat{u}_r + r\,\dot{\hat{u}}_r = \dot{r}\,\hat{u}_r + r\dot{\theta}\,\hat{u}_\theta$$
+
+Differentiate again, applying the product rule to every factor and substituting $\dot{\hat{u}}_r$ and $\dot{\hat{u}}_\theta$:
+
+$$\vec{a} = \ddot{r}\,\hat{u}_r + \dot{r}\,\dot{\hat{u}}_r + (\dot{r}\dot{\theta} + r\ddot{\theta})\,\hat{u}_\theta + r\dot{\theta}\,\dot{\hat{u}}_\theta$$
+
+$$\vec{a} = \ddot{r}\,\hat{u}_r + \dot{r}\dot{\theta}\,\hat{u}_\theta + (\dot{r}\dot{\theta} + r\ddot{\theta})\,\hat{u}_\theta - r\dot{\theta}^2\,\hat{u}_r$$
+
+Collecting the $\hat{u}_r$ and $\hat{u}_\theta$ terms gives the result quoted above:
+
+$$\vec{a} = (\ddot{r} - r\dot{\theta}^2)\,\hat{u}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\,\hat{u}_\theta$$
+
+The two "extra" terms now have a clear pedigree. The $-r\dot{\theta}^2$ centripetal term comes from $\dot{\hat{u}}_\theta = -\dot{\theta}\,\hat{u}_r$ acting on the transverse velocity. The $2\dot{r}\dot{\theta}$ Coriolis term is the sum of two equal contributions: one from $\dot{r}$ changing the lever arm of the transverse velocity, and one from $\dot{\hat{u}}_r$ turning the radial velocity sideways. They are equal, so they add to a factor of 2. If you ever cannot remember the signs, redo these two lines; the algebra is short and self-correcting.
 
 <concept-diagram type="curvilinear-coordinate-comparison"></concept-diagram>
 
@@ -152,6 +174,52 @@ If you had forgotten the cross terms, you would have reported $a_r = 0$ and $a_\
 
 ---
 
+### Example 4: Radius of Curvature from a Path Equation
+
+When the path is given as a curve $y = f(x)$ rather than a circle, the local radius of curvature feeding $a_n = v^2/\rho$ comes from calculus:
+
+$$\rho = \frac{\left[1 + (dy/dx)^2\right]^{3/2}}{\left| d^2y/dx^2 \right|}$$
+
+**Problem:** A test vehicle follows the parabolic track $y = 0.01x^2$ (meters) at a steady speed $v = 20$ m/s. Find the normal acceleration as it passes the point $x = 50$ m.
+
+**Step 1: Slopes from the path.**
+
+$$\frac{dy}{dx} = 0.02x = 0.02(50) = 1.0, \qquad \frac{d^2y}{dx^2} = 0.02$$
+
+**Step 2: Radius of curvature.**
+
+$$\rho = \frac{\left[1 + (1.0)^2\right]^{3/2}}{0.02} = \frac{(2)^{3/2}}{0.02} = \frac{2.828}{0.02} = 141.4 \text{ m}$$
+
+**Step 3: Normal acceleration** (speed is constant, so $a_t = 0$):
+
+$$a_n = \frac{v^2}{\rho} = \frac{(20)^2}{141.4} = \boxed{2.83 \text{ m/s}^2}$$
+
+The same vehicle on the flatter part of the track near $x = 0$, where $\rho = 1/0.02 = 50$ m, would feel $a_n = 400/50 = 8.0$ m/s², nearly three times larger. The track straightens as $x$ grows, $\rho$ rises, and the cornering demand falls. This is precisely how highway and rail alignments are laid out: designers shape $\rho$ along the route so that $v^2/\rho$ never exceeds the friction or comfort limit.
+
+---
+
+### Example 5: Sizing a Banked Curve (Kinematics Drives the Design)
+
+**Problem:** A highway exit ramp of radius $\rho = 120$ m is to be banked so that a car traveling at the design speed $v = 25$ m/s needs zero friction to hold the curve. Find the required bank angle $\theta$.
+
+**Step 1: Kinematics sets the target.** The normal acceleration the car must be given is
+
+$$a_n = \frac{v^2}{\rho} = \frac{(25)^2}{120} = 5.208 \text{ m/s}^2 \text{ (horizontal, toward the center of the curve)}$$
+
+**Step 2: Force balance on the frictionless banked surface.** The only forces are weight $mg$ down and the road normal force $N$ perpendicular to the banked surface. The normal force tilts inward by the bank angle, so its horizontal component supplies $m a_n$ and its vertical component supports the weight:
+
+$$N\sin\theta = m a_n, \qquad N\cos\theta = mg$$
+
+**Step 3: Divide to eliminate $N$ and $m$.**
+
+$$\tan\theta = \frac{a_n}{g} = \frac{5.208}{9.81} = 0.5309$$
+
+$$\theta = \arctan(0.5309) = \boxed{27.96^\circ}$$
+
+A bank near $28^\circ$ lets the design-speed car round the ramp with no reliance on tire friction, leaving the full friction budget as a safety margin for rain, speed variation, or a tighter line. Notice the workflow: the kinematic quantity $a_n = v^2/\rho$ from this section is the input, and Newton's second law in the $n$ direction (next chapter) turns it into a buildable angle.
+
+---
+
 ## Common Errors and Their Diagnoses
 
 - **Forgetting the rotating-unit-vector cross terms** in polar acceleration. The full $a_r = \ddot{r} - r\dot{\theta}^2$ and $a_\theta = r\ddot{\theta} + 2\dot{r}\dot{\theta}$ are not optional.
@@ -161,6 +229,23 @@ If you had forgotten the cross terms, you would have reported $a_r = 0$ and $a_\
 - **Mixing coordinate systems mid-problem.** Pick one and convert at the end if needed.
 
 <dynamic-scenario topic="Curvilinear Motion" context="A radar at the origin tracks a small drone whose distance r and bearing θ both change with time: r(t) and θ(t) are given functions. The student must find the drone's velocity and acceleration vectors in polar coordinates, paying particular attention to the cross terms r̈ - rθ̇² and rθ̈ + 2ṙθ̇."></dynamic-scenario>
+
+---
+
+## Engineering Applications
+
+The choice between $n$-$t$ and polar coordinates is not academic; it tracks how the hardware is actually instrumented and what is held fixed.
+
+| Application | Natural Coordinates | What the Math Sizes |
+| --- | --- | --- |
+| Highway and rail alignment | $n$-$t$ (path known) | Radius of curvature $\rho$ so $v^2/\rho$ stays under friction/comfort limits |
+| Banked race or exit ramps | $n$-$t$ then $\sum F = m a_n$ | Bank angle from $\tan\theta = v^2/(g\rho)$ |
+| Roller coaster loops | $n$-$t$ (path known) | Minimum top speed so $a_n = v^2/\rho \geq g$ keeps riders on the track |
+| Satellite and orbital tracking | Polar / cylindrical | Radial and transverse acceleration from a fixed-Earth origin |
+| Radar and missile guidance | Polar | Line-of-sight rate $\dot{\theta}$ and closing rate $\dot{r}$ from a ground station |
+| Robotic arm / turntable | Polar (pinned origin) | Coriolis term $2\dot{r}\dot{\theta}$ on a part sliding along a rotating link |
+
+> **Engineering in Action:** A part sliding outward along a spinning robot arm experiences a real transverse force from the $2\dot{r}\dot{\theta}$ Coriolis term. Ignore it and the controller mis-commands the joint torque; the part lags or overshoots its target. The same term governs why winds curve on a rotating Earth.
 
 ---
 
@@ -174,6 +259,8 @@ If you had forgotten the cross terms, you would have reported $a_r = 0$ and $a_\
 | $n$-$t$ acceleration | $\vec{a} = \dot{v}\,\hat{u}_t + \dfrac{v^2}{\rho}\,\hat{u}_n$ |
 | Polar velocity | $\vec{v} = \dot{r}\,\hat{u}_r + r\dot{\theta}\,\hat{u}_\theta$ |
 | Polar acceleration | $\vec{a} = (\ddot{r} - r\dot{\theta}^2)\,\hat{u}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\,\hat{u}_\theta$ |
+| Radius of curvature ($y=f(x)$) | $\rho = \dfrac{[1 + (y')^2]^{3/2}}{\lvert y'' \rvert}$ |
+| Rotating basis derivatives | $\dot{\hat{u}}_r = \dot{\theta}\,\hat{u}_\theta,\;\; \dot{\hat{u}}_\theta = -\dot{\theta}\,\hat{u}_r$ |
 
 ### Key Takeaways
 

@@ -1,8 +1,25 @@
+# Module 6: Thermal Regulation and Architecture
+
+> **"The termite does not air-condition its mound. It shapes the mound so the air conditions itself."**
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Explain** how the stack effect drives passive thermal regulation, and quantify the pressure it produces.
+2. **Identify** the roles of vent geometry, thermal mass, and distributed airflow in termite mounds.
+3. **Calculate** buoyancy-driven airflow and thermal-mass storage for a simple passive design.
+4. **Translate** termite-inspired regulation principles into building and engineering design heuristics.
+
+---
+
 ## Why Termite Mounds Matter to Engineers
 
-The African termite mound is one of the cleanest examples of **environmental control without conventional machinery**. In the open savanna, outside temperature can swing from intense daytime heat to cold night air. Inside the mound, however, the colony keeps conditions near the narrow band needed for fungus cultivation, moisture balance, and survival.
+The African termite mound is one of the cleanest examples of **environmental control without conventional machinery**. In the open savanna, outside temperature can swing from intense daytime heat (often above $40^\circ\text{C}$) to cold night air near $15^\circ\text{C}$. Inside the mound, however, the colony keeps conditions near the narrow band needed for fungus cultivation, moisture balance, and survival, frequently holding the core within a few degrees of $31^\circ\text{C}$.
 
-For an engineer, that means the mound is not just a nest. It is a **distributed thermal regulation system** that solves airflow, heat transfer, humidity control, and carbon dioxide exchange at the same time.
+For an engineer, the mound is not just a nest. It is a **distributed thermal regulation system** that handles airflow, heat transfer, humidity control, and carbon dioxide exchange at once, driven by temperature differences of only a handful of degrees.
 
 Three design principles make the mound powerful:
 
@@ -16,25 +33,113 @@ This matters because human buildings often attack cooling with large, centralize
 
 ---
 
-## The Stack Effect in Plain Language
+## The Stack Effect, Made Quantitative
 
-The most important physical idea here is the **stack effect**, sometimes called the chimney effect. Warm air is less dense than cool air, so it naturally rises. If a structure gives that warm air a path upward, the rising air creates a pressure difference that pulls cooler air in somewhere else.
+The most important physical idea here is the **stack effect**, sometimes called the chimney effect. Warm air is less dense than cool air, so it naturally rises. If a structure gives that warm air a path upward, the rising column creates a pressure difference that pulls cooler air in somewhere lower.
 
-In termite mounds, the process works like this:
+### The Mechanism in Plain Language
 
-- Metabolic activity from termites and fungus produces heat.
+- Metabolic activity from termites and the cultivated fungus produces heat.
 - Slightly warmer air rises through internal shafts.
 - Cooler outside air is drawn in through lower pores and channels.
-- The moving air helps regulate both temperature and gas exchange.
+- The moving air regulates both temperature and gas exchange together.
 
 The key insight is that the mound does not need a smart thermostat in the modern sense. Its **geometry acts like a control system**.
 
+### The Governing Equation
+
+The driving pressure from the stack effect depends on the height of the air column and on how much warmer the inside air is than the outside air:
+
+$$
+\boxed{\Delta P = \rho_o \, g \, h \, \frac{T_i - T_o}{T_i}}
+$$
+
+where $\rho_o$ is the density of the cooler outside air (kg/m$^3$), $g = 9.81\ \text{m/s}^2$, $h$ is the effective vertical distance between the low intake and the high exhaust (m), and $T_i$, $T_o$ are the inside and outside **absolute** temperatures (Kelvin). The temperature difference appears as a ratio because what actually drives the flow is the **density difference** between the two air columns. Even a $7^\circ\text{C}$ gap between $25^\circ\text{C}$ and $32^\circ\text{C}$ air changes density by only about $0.027\ \text{kg/m}^3$ (from roughly $1.184$ to $1.157\ \text{kg/m}^3$), yet over enough height that small difference produces usable airflow.
+
+Once $\Delta P$ is known, the airflow speed through a vent follows from a Bernoulli-type orifice relation:
+
+$$
+v = C_d \sqrt{\frac{2\,\Delta P}{\rho}}, \qquad Q = v \, A
+$$
+
+Here $C_d$ is a discharge coefficient (about $0.6$ to $0.65$ for a sharp opening), $A$ is the open vent area, and $Q$ is the volumetric flow rate (m$^3$/s).
+
 ### What Engineers Should Notice
 
-- Airflow is shaped by section size, height, and resistance.
-- Vent placement matters as much as vent size.
+- Airflow is shaped by section size, height, and resistance: doubling $h$ doubles $\Delta P$.
+- Vent placement matters as much as vent size; intake low and exhaust high maximizes the effective $h$.
 - Thermal mass delays heat movement, buying time for passive regulation.
-- A good passive system usually balances temperature, humidity, and air quality together rather than optimizing just one variable.
+- A good passive system balances temperature, humidity, and air quality together rather than optimizing just one variable.
+
+---
+
+## Worked Example 1: Buoyancy-Driven Ventilation
+
+**Problem.** A termite-inspired ventilation shaft has an effective stack height of $h = 4\ \text{m}$. The interior air sits at $T_i = 32^\circ\text{C}$ while cooler intake air is at $T_o = 25^\circ\text{C}$. The exhaust vent has an open area of $A = 0.5\ \text{m}^2$ with a discharge coefficient $C_d = 0.65$. Outside air density is $\rho_o = 1.184\ \text{kg/m}^3$. Estimate the stack pressure, the airflow speed, and the volumetric flow rate. If the protected space has a volume of $300\ \text{m}^3$, how many air changes per hour (ACH) does this provide?
+
+**Step 1: Convert temperatures to Kelvin.**
+
+$$
+T_i = 32 + 273.15 = 305.15\ \text{K}, \qquad T_o = 25 + 273.15 = 298.15\ \text{K}
+$$
+
+**Step 2: Compute the stack pressure.**
+
+$$
+\Delta P = (1.184)(9.81)(4)\,\frac{305.15 - 298.15}{305.15}
+$$
+
+$$
+\Delta P = 46.46 \times \frac{7}{305.15} = 46.46 \times 0.02294 = \boxed{1.07\ \text{Pa}}
+$$
+
+A single pascal sounds tiny, but it is enough to move air steadily through a low-resistance path.
+
+**Step 3: Compute the airflow speed.**
+
+$$
+v = 0.65 \sqrt{\frac{2(1.07)}{1.184}} = 0.65 \sqrt{1.808} = 0.65 (1.345) = \boxed{0.87\ \text{m/s}}
+$$
+
+**Step 4: Compute the volumetric flow and air changes.**
+
+$$
+Q = vA = (0.87)(0.5) = 0.436\ \text{m}^3/\text{s} = 1570\ \text{m}^3/\text{h}
+$$
+
+$$
+\text{ACH} = \frac{Q}{V} = \frac{1570}{300} = \boxed{5.2\ \text{air changes per hour}}
+$$
+
+That is comfortably within the range needed for good indoor air quality, achieved with **no fan**, only a $7^\circ\text{C}$ temperature difference and a $4\ \text{m}$ shaft. This is exactly the leverage termites exploit: a modest temperature gap, applied over height through a well-shaped geometry, replaces mechanical work.
+
+> **Think About It:** If the shaft height doubled to $8\ \text{m}$, $\Delta P$ would double to about $2.13\ \text{Pa}$, and since $v \propto \sqrt{\Delta P}$, the flow speed would rise only by a factor of $\sqrt{2} \approx 1.41$, to about $1.23\ \text{m/s}$. Height helps, but with diminishing returns.
+
+---
+
+## Worked Example 2: Thermal Mass as a Battery for Coolth
+
+**Problem.** A passively cooled building stores nighttime coolness in a concrete floor slab measuring $100\ \text{m}^2$ in area and $0.20\ \text{m}$ thick. Concrete has density $\rho = 2400\ \text{kg/m}^3$ and specific heat $c = 880\ \text{J/(kg·K)}$. If night ventilation cools the slab by $\Delta T = 6\ \text{K}$, how much thermal energy can the slab absorb from the building the next day?
+
+**Step 1: Find the slab mass.**
+
+$$
+m = \rho V = 2400 \times (100 \times 0.20) = 2400 \times 20 = 48{,}000\ \text{kg}
+$$
+
+**Step 2: Apply the sensible-heat storage relation.**
+
+$$
+E = m\,c\,\Delta T = (48{,}000)(880)(6) = 2.534 \times 10^{8}\ \text{J}
+$$
+
+**Step 3: Convert to practical units.**
+
+$$
+E = \frac{2.534 \times 10^{8}}{3.6 \times 10^{6}} = \boxed{70.4\ \text{kWh}}
+$$
+
+That stored "coolth" can offset a substantial fraction of a day's cooling load before any active system is needed. This is the engineering meaning of **thermal buffering**: the slab behaves like a thermal flywheel, charged at night and discharged during the day, smoothing the temperature swing the occupants feel. The termite mound's thick walls and surrounding soil do the same job through their own large thermal mass.
 
 ---
 
@@ -42,14 +147,14 @@ The key insight is that the mound does not need a smart thermostat in the modern
 
 Architects turned to termite-inspired cooling because many hot climates face the same constraint: mechanical HVAC is expensive, energy-intensive, and often poorly matched to local conditions.
 
-The Eastgate Centre in Harare is the classic example. Its design borrows from termite-inspired passive ventilation logic:
+The **Eastgate Centre** in Harare, Zimbabwe is the classic case. Its design borrows from termite-inspired passive ventilation logic:
 
-- Massive walls store and release heat slowly.
-- Ventilation pathways help move warm air upward.
-- Night air is used strategically to cool the structure.
-- The building relies on form and thermal behavior first, machinery second.
+- Massive walls and floor slabs store and release heat slowly (the thermal-mass principle of Worked Example 2).
+- Tall internal flues let warm air rise and exit at roof level (the stack effect of Worked Example 1).
+- Night air is drawn through the structure to "charge" the thermal mass with coolness.
+- The building relies on form and thermal behavior first, machinery second; low-power fans assist circulation rather than provide the primary cooling.
 
-The lesson is not “copy the mound shape exactly.” The lesson is to identify the **underlying mechanism**:
+The reported result is striking: the building uses on the order of **10 percent of the cooling energy** of a conventionally air-conditioned building of similar size, with correspondingly lower running costs. The lesson is not "copy the mound shape exactly." The lesson is to identify the **underlying mechanism**:
 
 - What heat source is driving the system?
 - Where can hot air safely leave?
@@ -60,7 +165,7 @@ That is the real biomimetic move: copying the principle, not the silhouette.
 
 ## A Problem-to-Biology Translation Example
 
-The book repeatedly points out that one of the hardest parts of biologically inspired design is translating an engineering problem into language that can actually retrieve useful biological analogies.
+One of the hardest parts of biologically inspired design is translating an engineering problem into language that can actually retrieve useful biological analogies.
 
 For termite-inspired cooling, that translation might look like this:
 
@@ -99,9 +204,9 @@ That style of indexing supports problem-driven retrieval. A greenhouse engineer,
 
 When you want to apply termite-inspired regulation to engineering or architecture, start with these heuristics:
 
-1. **Use mass to stabilize, not just structure.** Heavy materials can function as thermal storage.
-2. **Create vertical pathways for hot air escape.** If heat cannot leave, passive cooling collapses.
-3. **Design intake and exhaust together.** A vent without a pressure story is just a hole.
+1. **Use mass to stabilize, not just structure.** Heavy materials can function as thermal storage; size them against the daily load, as in Worked Example 2.
+2. **Create vertical pathways for hot air escape.** If heat cannot leave, passive cooling collapses. Maximize the effective stack height $h$.
+3. **Design intake and exhaust together.** A vent without a pressure story is just a hole; the intake-to-exhaust height sets $\Delta P$.
 4. **Treat environmental cycles as assets.** Cool night air, shade, and wind can all become part of the system.
 5. **Avoid over-centralizing the solution.** Distributed pathways often make the system more resilient.
 
@@ -114,11 +219,33 @@ These heuristics work beyond buildings. The same logic can inform battery enclos
 Passive systems are powerful, but they are not magic.
 
 - If climate conditions are too humid, airflow alone may not solve comfort or preservation problems.
-- If internal heat loads are extremely high, passive ventilation may need mechanical backup.
+- If internal heat loads are extremely high, the buoyancy pressure (often only a pascal or two) cannot move enough air, and mechanical backup is required.
 - If vents are placed poorly, the system can short-circuit, moving air in ways that bypass the protected zone.
 - If thermal mass is too large or too poorly insulated, the system may respond too slowly when conditions change.
 
-So the professional question is never “Can passive design replace all HVAC forever?” It is “How much of the load can passive design remove before active systems are required?”
+So the professional question is never "Can passive design replace all HVAC forever?" It is "How much of the load can passive design remove before active systems are required?"
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Stack pressure | $\Delta P = \rho_o\, g\, h\, \dfrac{T_i - T_o}{T_i}$ |
+| Vent airflow speed | $v = C_d \sqrt{2\,\Delta P / \rho}$ |
+| Volumetric flow | $Q = vA$ |
+| Air changes per hour | $\text{ACH} = Q / V$ |
+| Thermal-mass storage | $E = m\,c\,\Delta T$ |
+
+### Key Principles
+
+- The mound regulates temperature through **geometry and material**, not machinery.
+- The stack effect converts a small temperature difference, applied over height, into steady airflow.
+- Thermal mass acts as a buffer (a "coolth battery") that smooths daily temperature swings.
+- Distributed vents share the exchange load and add resilience.
+- Biomimicry means copying the **function and mechanism**, not the literal shape.
 
 ---
 
@@ -129,3 +256,9 @@ So the professional question is never “Can passive design replace all HVAC for
   options='[{"text":"Efficient cooling mainly comes from building the tallest possible chimney.","isCorrect":false},{"text":"The mound works because its geometry, vents, and thermal mass create pressure-driven airflow and slow temperature swings.","isCorrect":true},{"text":"The mound stays cool because termites actively pump air through the walls like mechanical fans.","isCorrect":false}]'
   explanation="Correct. The key idea is not a single feature but the interaction of thermal mass, vent placement, and pressure-driven airflow. The mound behaves like a passive control system."
 />
+
+---
+
+## What's Next?
+
+In the next section we extend this passive-regulation thinking from a single structure to **adaptive envelopes**: surfaces and skins that change their behavior in response to sun, wind, and humidity, taking the termite's static geometry one step further toward responsive design.

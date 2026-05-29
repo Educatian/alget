@@ -30,6 +30,8 @@ That equation looks simple, but it only helps after the correct forces are place
 
 That is why experienced analysts slow down at the diagram stage. A careful free body diagram protects every later step.
 
+> **A Failure That Started on the Diagram:** The 1981 Hyatt Regency walkway collapse in Kansas City killed 114 people. A design change doubled the load that one set of connector rods had to carry, but the connection was never re-drawn as an isolated free body. Had the affected hanger-rod and box-beam been isolated and the actual transferred force placed on the diagram, the doubled demand would have been obvious before fabrication. The arithmetic was not exotic; the missing step was an honest free body diagram of the changed connection.
+
 ---
 
 ## What a Free Body Diagram Actually Is
@@ -113,48 +115,135 @@ This checklist matters because missing a single external force can invalidate th
 
 ---
 
-## Worked Example 1: Block on a Smooth Incline
+## Choosing Axes: Why a Tilted Frame Pays Off
 
-**Problem:** A 20 kg block rests on a smooth incline at $30^\circ$. Draw the free body diagram.
+A free body diagram becomes useful only when forces are resolved into components. On an inclined plane, two choices exist, and they are not equally convenient.
 
-Because the surface is smooth, there is **no friction force**. The isolated block has only two external forces:
+If we use standard horizontal/vertical axes, the normal force $N$ points along the incline normal, so it splits into two components and *both* equilibrium equations contain *both* unknowns. If instead we rotate the axes so that $x$ runs along the slope and $y$ runs normal to it, then $N$ lies entirely on the $y$ axis and only the weight needs resolving. The two equations then decouple, and each one isolates a single unknown.
 
-- weight $W = mg$
-- normal reaction $N$ from the surface
+For a plane inclined at angle $\theta$, a vertical weight $W$ resolves in the tilted frame as:
 
-The weight acts vertically downward:
+$$
+W_x = W \sin\theta \quad \text{(down the slope)}
+$$
+
+$$
+W_y = W \cos\theta \quad \text{(into the slope)}
+$$
+
+This small modeling choice removes most of the algebra before it ever appears. We use it directly below.
+
+---
+
+## Worked Example 1: Block Held on a Smooth Incline
+
+**Problem:** A 20 kg block rests on a smooth incline at $\theta = 30^\circ$. A cable parallel to the incline keeps it from sliding. Draw the FBD, then find the cable tension $T$ and the normal reaction $N$.
+
+**Step 1: Isolate and draw the FBD.** Cutting the block free, three external forces appear: the weight $W = mg$ acting vertically down, the normal reaction $N$ perpendicular to the surface, and the cable tension $T$ acting up the slope. Because the surface is smooth, there is no friction.
+
+**Step 2: Choose tilted axes.** Let $x$ point up the slope and $y$ point away from the surface. The weight is the only force that must be resolved:
 
 $$
 W = (20)(9.81) = 196.2 \text{ N}
 $$
 
-The normal force is perpendicular to the plane, not vertical. That distinction is one of the most common places students make mistakes.
+$$
+W_x = W \sin 30^\circ = 196.2(0.5) = 98.1 \text{ N (down-slope)}
+$$
 
-> **Modeling Insight:** Surfaces do not push "up." They push normal to themselves. On a slope, that difference changes the component equations immediately.
+$$
+W_y = W \cos 30^\circ = 196.2(0.866) = 169.9 \text{ N (into surface)}
+$$
+
+**Step 3: Apply equilibrium along the slope.**
+
+$$
+\sum F_x = 0: \quad T - W\sin 30^\circ = 0
+$$
+
+$$
+T = 98.1 \text{ N} \;\Rightarrow\; \boxed{T = 98.1 \text{ N}}
+$$
+
+**Step 4: Apply equilibrium normal to the slope.**
+
+$$
+\sum F_y = 0: \quad N - W\cos 30^\circ = 0
+$$
+
+$$
+N = 169.9 \text{ N} \;\Rightarrow\; \boxed{N = 169.9 \text{ N}}
+$$
+
+> **Modeling Insight:** Surfaces do not push "up." They push normal to themselves. Notice $N = 169.9$ N is *less* than the weight $196.2$ N, because the slope only has to resist the component of weight pressed into it. A student who draws $N$ straight up gets $N = W$ and an immediately wrong answer.
 
 ---
 
-## Worked Example 2: Hanging Mass and Pulley
+## Worked Example 2: Hanging Mass Over a Frictionless Pulley
 
-**Problem:** A 50 kg mass hangs from a rope passing over a frictionless pulley. Draw the free body diagram of the mass and of the pulley.
+**Problem:** A 50 kg mass hangs from a rope that passes over a frictionless pulley and is anchored to a wall. The two rope segments leave the pulley at $90^\circ$ to each other: one segment vertical (down to the mass), the other horizontal (to the wall anchor). Find the rope tension and the resultant force the rope bundle exerts on the pulley axle.
 
-### FBD of the Mass
+**Step 1: FBD of the mass.** Two forces act: tension $T$ up and weight $W$ down.
 
-The hanging mass has two forces:
+$$
+\sum F_y = 0: \quad T - mg = 0
+$$
 
-- upward tension $T$
-- downward weight $W = 490.5\text{ N}$
+$$
+T = (50)(9.81) = \boxed{490.5 \text{ N}}
+$$
 
-### FBD of the Pulley
+For an ideal frictionless pulley with a massless rope, the tension magnitude is identical on both rope segments, so each segment pulls with $490.5$ N.
 
-The pulley receives:
+**Step 2: FBD of the pulley.** Both rope segments pull *away* from the pulley along their own directions. Take $x$ horizontal (toward the wall anchor) and $y$ vertical (down toward the mass). The two equal tensions act along perpendicular directions, so the net rope pull on the pulley is the vector sum:
 
-- one rope tension on each contacting rope segment
-- a support reaction at its axle
+$$
+R = \sqrt{T^2 + T^2} = T\sqrt{2} = 490.5\,(1.414) = \boxed{693.7 \text{ N}}
+$$
 
-For an ideal frictionless pulley with a massless rope, the tension magnitude is the same on both sides.
+directed at $45^\circ$ between the two rope segments. The axle reaction must equal and oppose this $693.7$ N pull to keep the pulley in equilibrium.
 
-This example shows why the body of interest must be chosen carefully. The mass and the pulley belong to the same physical system, but they do **not** have the same free body diagram.
+This example shows why the body of interest must be chosen carefully. The mass and the pulley belong to the same physical system, but they do **not** share a free body diagram: the mass sees one tension and gravity, while the pulley sees two tensions and an axle reaction.
+
+> **Design Note:** A pulley that merely redirects a rope still carries a force larger than the load it serves. Bearings and brackets must be sized for the *resultant* axle force, here $693.7$ N, not for the $490.5$ N hanging weight.
+
+---
+
+## Worked Example 3: Ring Held by Two Cables and a Horizontal Pull
+
+**Problem:** A small ring is held in equilibrium by two cables and a horizontal applied force $P$. Cable 1 pulls up-and-left at $60^\circ$ above the horizontal with tension $T_1 = 400$ N. Cable 2 is vertical and supports a 30 kg load, so $T_2 = (30)(9.81) = 294.3$ N acting downward. Find the horizontal force $P$ (acting to the right) and confirm the system is consistent.
+
+**Step 1: FBD of the ring.** Three external forces act at the point: $T_1$ at $60^\circ$ above horizontal pointing up-left, the vertical downward load $T_2 = 294.3$ N, and the horizontal force $P$ pointing right.
+
+**Step 2: Resolve $T_1$.**
+
+$$
+T_{1x} = T_1\cos 60^\circ = 400(0.5) = 200 \text{ N (to the left)}
+$$
+
+$$
+T_{1y} = T_1\sin 60^\circ = 400(0.866) = 346.4 \text{ N (upward)}
+$$
+
+**Step 3: Horizontal equilibrium.** Taking right as positive:
+
+$$
+\sum F_x = 0: \quad P - T_{1x} = 0
+$$
+
+$$
+P = 200 \;\Rightarrow\; \boxed{P = 200 \text{ N}}
+$$
+
+**Step 4: Vertical check.** Taking up as positive:
+
+$$
+\sum F_y = T_{1y} - T_2 = 346.4 - 294.3 = +52.1 \text{ N}
+$$
+
+The vertical sum is **not** zero, so with the stated values the ring is *not* in equilibrium; it has a net $52.1$ N upward imbalance. For true equilibrium the vertical cable would need to support $346.4$ N, meaning a load of $346.4 / 9.81 = 35.3$ kg. This is exactly the kind of inconsistency a disciplined FBD exposes before any hardware is built.
+
+> **Takeaway:** Equilibrium is two equations in 2D, not one. A solution that satisfies $\sum F_x = 0$ can still fail $\sum F_y = 0$. Always close both.
 
 ---
 
@@ -190,6 +279,18 @@ For example:
 
 That is why a disciplined FBD habit improves more than homework performance. It improves load-path thinking.
 
+### Engineering Applications
+
+| Application | What the FBD Reveals |
+| --- | --- |
+| Crane and hoist rigging | The resultant axle and sheave forces exceed the lifted load, so bearings must be sized to the vector sum, not the weight |
+| Retaining walls and slopes | Resolving soil weight along tilted axes separates sliding demand from bearing demand |
+| Bolted connections | Isolating one bracket exposes hidden moments and shear that a symmetric sketch hides (the Hyatt Regency lesson) |
+| Cable-stayed and guyed masts | Shallow cable angles drive tension far above the supported load, visible only after components are drawn |
+| Robotic grippers and contacts | Replacing each contact with normal-plus-friction shows where slip and wear concentrate |
+
+> **Engineering in Action:** The same isolate-and-replace discipline scales from a 20 kg block to a 200-tonne bridge segment. The body changes; the workflow does not.
+
 ---
 
 ## A Practical Self-Check Before Solving
@@ -208,13 +309,24 @@ If the answer to the last question is yes, pause and fix the diagram before writ
 
 ## Summary
 
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Particle equilibrium (2D) | $\sum F_x = 0$, $\sum F_y = 0$ |
+| Weight (body force) | $W = mg$ |
+| Weight on incline (tilted axes) | $W_x = W\sin\theta$, $W_y = W\cos\theta$ |
+| Resultant of two perpendicular equal tensions | $R = T\sqrt{2}$ |
+| Cable component resolution | $T_x = T\cos\theta$, $T_y = T\sin\theta$ |
+
 ### Key Takeaways
 
-- The free body diagram is the modeling foundation of statics.
-- Isolate the body before writing any equations.
-- Replace every support or contact with the force it exerts.
-- Weight acts vertically downward, tension acts along the cable, and normal force acts perpendicular to the contact surface.
-- A correct diagram dramatically reduces sign mistakes and missing-force errors.
+- The free body diagram is the modeling foundation of statics; isolate the body before writing any equations.
+- Replace every support or contact with the force it exerts: cable to tension, smooth contact to normal only, rough contact to normal plus friction, pin to two components, fixed support to two components plus a moment.
+- Weight acts vertically downward, tension acts along the cable away from the body, and normal force acts perpendicular to the contact surface, not "up."
+- Rotating axes to align with an inclined surface decouples the equilibrium equations and removes most of the algebra.
+- A pulley or redirect point carries a resultant force larger than the load it serves; size hardware to the vector sum.
+- 2D equilibrium is two equations: satisfying one does not guarantee the other, so always close both $\sum F_x$ and $\sum F_y$.
 
 ---
 

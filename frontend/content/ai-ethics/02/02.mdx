@@ -1,10 +1,33 @@
+# Fairness Definitions and Their Impossibilities
+
+> **"Sometimes the best way to make a system fairer is to admit which fairness you are choosing, and which you are giving up."**
+
+---
+
+## Opening: The COMPAS Controversy
+
+In May 2016, the newsroom ProPublica published "Machine Bias" (Angwin, Larson, Mattu, and Kirchner), an investigation of COMPAS, a recidivism risk tool used by U.S. courts to inform bail and sentencing decisions. ProPublica reported that among defendants who did not go on to reoffend, Black defendants were labeled high-risk almost twice as often as white defendants (a false-positive rate of roughly 45% versus 23%). The company behind COMPAS, Northpointe (now Equivant), replied that its tool was in fact fair, because a given risk score predicted the same probability of reoffending regardless of race. The tool was calibrated.
+
+Here is the surprising part: both sides were right about their own numbers. ProPublica was measuring equality of error rates. Northpointe was measuring calibration. The public debate looked like a factual dispute, but it was really a dispute over which definition of fairness should govern the tool. Within a year, researchers proved that, given the conditions present in the data, no model could satisfy both definitions at once.
+
+> **The Big Picture:** A request for "a fair model" is under-specified. The fairness literature contains at least twenty formally defined criteria, and the central technical result of the field, proved by Chouldechova (2017) and independently by Kleinberg, Mullainathan, and Raghavan (2016), is that the most natural fairness definitions are mutually incompatible. The engineer's job is to surface the trade-off, choose deliberately, and document the choice, rather than silently pick one definition and hide the rest.
+
+---
+
+## Learning Objectives
+
+By the end of this module, you will be able to:
+
+1. **State** demographic parity, equalized odds, and calibration within groups in both plain language and formal notation.
+2. **Explain** the Chouldechova / Kleinberg-Mullainathan-Raghavan impossibility result for unequal base rates, and demonstrate it on concrete numbers.
+3. **Match** a fairness criterion to a deployment context based on which kind of error causes the larger concrete harm.
+4. **Document** a defensible fairness choice, including the criteria you are not satisfying and the rationale.
+
+---
+
 ## Why "Fair" Is a Family of Definitions, Not One
 
-When a stakeholder asks for a "fair" model, they have not yet specified what they mean. The fairness literature contains at least twenty formally defined fairness criteria, and the central technical result of the field — proved by Chouldechova (2017) and by Kleinberg, Mullainathan, and Raghavan (2016) — is that **the most natural fairness definitions are mutually incompatible**. You cannot satisfy them all simultaneously except in trivial cases.
-
-This is uncomfortable. It means a request for "a fair model" is under-specified and that the engineer must surface the trade-off rather than silently choose one definition and hide the rest.
-
-This module covers the three most-used fairness criteria, the formal impossibility result that links them, and the practical workflow for choosing among them.
+This module covers the three most-used fairness criteria, the formal impossibility result that links them, and the practical workflow for choosing among them. The hard truth from the COMPAS case generalizes: when a stakeholder asks for a "fair" model, they have not yet told you which fairness they mean, and an engineer who picks one quietly has still made an ethical decision, just an undocumented one.
 
 ---
 
@@ -43,6 +66,49 @@ Chouldechova showed this in the COMPAS context: a recidivism risk model can be c
 
 This is not a bug to fix with better engineering. It is a mathematical fact about the relationship among the criteria when base rates differ. **You must choose which property to give up.** Engineers who pretend the choice has not been made have made it.
 
+The cleanest way to see why is an algebraic identity (Chouldechova, 2017) linking the false-positive rate to the base rate $p$, the positive predictive value (PPV), and the false-negative rate (FNR):
+
+$$\text{FPR} = \frac{p}{1-p}\cdot\frac{1-\text{PPV}}{\text{PPV}}\cdot(1-\text{FNR})$$
+
+Hold PPV and FNR equal across two groups (that is what calibration plus equal recall buys you). The only remaining free term is the base-rate factor $p/(1-p)$. If $p$ differs across groups, the FPRs are forced to differ. There is no remaining degree of freedom to rescue them.
+
+---
+
+## Worked Case: Making the Impossibility Numeric
+
+Abstract impossibility claims are easy to nod along to and hard to feel. Let us build two concrete confusion matrices and watch the contradiction appear.
+
+**Setup.** A lender scores 2,000 applicants for a loan, 1,000 in group A and 1,000 in group B. "Qualified" (the positive class $Y=1$) means the applicant would repay. The two groups have different base rates, which is the realistic case after historical disinvestment:
+
+- Group A base rate: $p_A = 0.30$, so 300 of 1,000 truly qualify.
+- Group B base rate: $p_B = 0.60$, so 600 of 1,000 truly qualify.
+
+**Goal.** Build a classifier that is calibration-like (equal PPV across groups, here 0.75) and has equal recall (equal FNR across groups, here 0.20). These two equalities feel fair: a "yes" means the same thing in both groups, and the model misses qualified people at the same rate in both groups. Then we will read off the false-positive rates and see what survived.
+
+**Step 1: Group A counts.** With 300 actual positives and FNR = 0.20, false negatives are $0.20 \times 300 = 60$, so true positives are $300 - 60 = 240$. To get PPV = 0.75, total predicted positives must be $240 / 0.75 = 320$, so false positives are $320 - 240 = 80$. The 700 actual negatives split into 80 false positives and 620 true negatives.
+
+**Step 2: Group B counts.** With 600 actual positives and FNR = 0.20, false negatives are $0.20 \times 600 = 120$, so true positives are $600 - 120 = 480$. For PPV = 0.75, predicted positives are $480 / 0.75 = 640$, so false positives are $640 - 480 = 160$. The 400 actual negatives split into 160 false positives and 240 true negatives.
+
+**Step 3: Tabulate and compute the false-positive rates.**
+
+| Quantity | Group A | Group B |
+| --- | --- | --- |
+| Truly qualified ($Y=1$) | 300 | 600 |
+| Truly not qualified ($Y=0$) | 700 | 400 |
+| True positives (TP) | 240 | 480 |
+| False negatives (FN) | 60 | 120 |
+| False positives (FP) | 80 | 160 |
+| True negatives (TN) | 620 | 240 |
+| PPV $= \text{TP}/(\text{TP}+\text{FP})$ | $240/320 = 0.75$ | $480/640 = 0.75$ |
+| FNR $= \text{FN}/(\text{TP}+\text{FN})$ | $60/300 = 0.20$ | $120/600 = 0.20$ |
+| **FPR $= \text{FP}/(\text{FP}+\text{TN})$** | $80/700 = \boxed{0.114}$ | $160/400 = \boxed{0.400}$ |
+
+**Step 4: Read the result.** We enforced equal PPV and equal FNR, and we still ended up with a false-positive rate of 11.4% for group A and 40.0% for group B. A group-B applicant who will not repay is more than three times as likely to be wrongly approved (and, in a risk-screening framing, a group-B person who poses no risk is over three times as likely to be wrongly flagged). The algebraic identity predicted exactly this: $\frac{0.6/0.4}{0.3/0.7} = \frac{1.5}{0.4286} = 3.5$, and indeed $0.400 / 0.114 = 3.5$. The numbers were not chosen to be adversarial; they fell out of insisting on two reasonable-sounding equalities at once.
+
+This is the COMPAS dispute in miniature. If you announce "calibrated within groups" as your fairness banner, you have silently accepted unequal false-positive exposure. If you instead force equal FPR, you will break calibration and equal recall. The data does not let you have all three.
+
+> **Critical Check:** Before debating which definition is right, always compute the base-rate gap in your data. If base rates are (nearly) equal, the criteria can largely agree and there is no forced trade-off. The dilemma is created by the gap, not by the math.
+
 ---
 
 ## Trade-off Frame: What Are You Willing to Give Up?
@@ -58,6 +124,16 @@ Each fairness criterion has a downside when other criteria are not enforced.
 Choosing among these requires a **stakeholder-specific judgment**: which kind of harm is worse for the deployment context? In hiring, false negatives (qualified people screened out) typically harm the candidate; demographic parity tends to be the louder demand. In criminal risk, false positives (incorrectly classified as high-risk) cause concrete harm; equalized false-positive rates becomes the louder demand.
 
 The technical fact does not give you the ethical answer. The technical fact tells you which question you are answering when you pick a criterion.
+
+To make the choice concrete, lay the criteria against the stakeholders who bear each kind of harm. For the lending model above, a decision table makes the tension visible:
+
+| Criterion enforced | Who is protected | Who bears the residual harm | Best fit when |
+| --- | --- | --- | --- |
+| Demographic parity | Applicants in the lower-base-rate group (equal access) | Lender (more defaults) and qualified applicants displaced | Access to the resource is the primary justice concern and labels are distrusted |
+| Equalized odds / equal FPR | People wrongly flagged or wrongly denied | Predictive accuracy; calibration breaks | A false positive causes concrete, asymmetric harm (e.g., wrongful detention) |
+| Calibration within groups | Decision-makers who must trust scores | The higher-base-rate group's wrongly-approved/flagged share rises | Scores feed many downstream decisions and must mean one thing |
+
+Reading the table for COMPAS: a defendant carries the cost of a false positive (loss of liberty), which is why advocates pressed for equal FPR; a judge needs a score that means one thing, which is why the vendor defended calibration. Naming the stakeholder behind each column is how you convert an abstract impossibility into a defensible decision.
 
 <concept-diagram type="fairness-impossibility-trilemma"></concept-diagram>
 
@@ -81,7 +157,7 @@ In practice, defensible designs often blend a group-fairness criterion (to addre
 
 Kusner, Loftus, Russell, and Silva (2017) proposed a different family: a decision is **counterfactually fair** if it would have been the same in a counterfactual world where the protected attribute A took a different value, holding everything else causally upstream constant.
 
-This requires a causal model of the data-generating process — itself a strong assumption. When the causal model is defensible, counterfactual fairness aligns the decision with the intuition "would this person have been treated differently if their race/gender/age were different?" When the causal model is contested, counterfactual fairness becomes a debate over the model rather than the decision.
+This requires a causal model of the data-generating process, itself a strong assumption. When the causal model is defensible, counterfactual fairness aligns the decision with the intuition "would this person have been treated differently if their race/gender/age were different?" When the causal model is contested, counterfactual fairness becomes a debate over the model rather than the decision.
 
 ---
 
@@ -97,6 +173,52 @@ When stakeholders request "a fair model," walk this checklist:
 
 The goal is not to "achieve fairness." The goal is to **make a defensible, documented, stakeholder-aligned choice among incompatible definitions**, and to monitor the choice's consequences over time.
 
+---
+
+## Counterarguments and Limitations
+
+A careful engineer should hold these definitions loosely. Several legitimate objections temper the framework above.
+
+**"The base rates themselves are unjust, so equalizing against them launders bias."** This is the strongest objection. If group B's lower repayment rate (or higher recidivism rate) reflects historical disinvestment, over-policing, or biased labeling rather than an immutable fact, then any criterion anchored to observed $Y$ inherits that injustice. Calibration and equalized odds both trust the label. When the label is suspect, the more defensible move may be to attack the data-generating process (better labels, causal modeling, or demographic parity as a corrective) rather than optimize against a contaminated ground truth.
+
+**Group fairness can be satisfied while individuals are treated arbitrarily.** A model can hit demographic parity exactly and still hand near-identical applicants opposite outcomes. This is why individual fairness exists as a separate family; the two are not substitutes.
+
+**The protected attribute is rarely clean.** Race, gender, and disability are often missing, self-reported inconsistently, or correlated with dozens of proxies (zip code, name, browsing history). "Just remove the protected attribute" (fairness through unawareness) is widely shown to fail, because the model reconstructs the attribute from proxies. Auditing therefore requires the protected attribute to be present, not absent.
+
+**Impossibility is about exact equality, not about improvement.** The theorem forbids satisfying all criteria perfectly and simultaneously when base rates differ. It does not forbid reducing disparities on every axis at once. In practice teams negotiate small, bounded gaps on several metrics rather than insisting one metric be exactly equal. The theorem sets the shape of the trade-off; it does not excuse inaction.
+
+**A fair classifier in a unfair system is still embedded in that system.** Equalizing a loan model does nothing about the wealth gap that produced the base-rate difference. Fairness metrics are a local repair on one decision point, not a theory of justice. Treating a passing fairness audit as proof of an ethical system is a category error.
+
+---
+
+## Summary
+
+### Key Definitions at a Glance
+
+| Criterion | Plain reading | What it ignores |
+| --- | --- | --- |
+| Demographic parity | Equal selection rate across groups | Ground-truth qualification |
+| Equalized odds | Equal FPR and FNR across groups | Validity when labels are biased |
+| Calibration within groups | A score means the same thing across groups | Equal error exposure when base rates differ |
+| Individual fairness | Similar people, similar outcomes | Hides the ethics inside the distance metric $d$ |
+| Counterfactual fairness | Same decision if the attribute were different | Requires a contested causal model |
+
+### Key Takeaways
+
+- "Fair" is a family of definitions, not one; a vague request hides an unmade choice.
+- When base rates differ across groups, calibration, equalized odds, and demographic parity cannot all hold at once (Chouldechova; Kleinberg-Mullainathan-Raghavan). Our lending example produced FPRs of 11.4% versus 40.0% while holding PPV and FNR equal.
+- The technical result tells you which trade-off you face; it does not tell you which side to choose. That is a stakeholder-specific, harm-weighted judgment.
+- Match the criterion to the harm: false-positive harm pushes toward equal FPR; access concerns push toward demographic parity; multi-use scores push toward calibration.
+- Document the criterion chosen, the criteria forgone, and the reasoning. The audit trail is the deliverable that survives team turnover.
+
+---
+
+## What's Next?
+
+The next module moves from defining fairness to **measuring and mitigating** it: how to compute subgroup-disaggregated metrics on real data, where in the pipeline (pre-processing, in-processing, post-processing) to intervene, and how each mitigation interacts with the impossibility constraints established here.
+
+---
+
 <dynamic-scenario topic="Fairness Trade-offs" context="A team is building a college-admissions support model. Historical data shows different graduation rates by race, partly because of historical disinvestment in some schools and partly because of differential support during college. Stakeholders ask for 'a fair model.' Walk the checklist: which fairness criterion best fits this context, what trade-off is the team accepting, and what monitoring should be in place?"></dynamic-scenario>
 
 ---
@@ -105,6 +227,6 @@ The goal is not to "achieve fairness." The goal is to **make a defensible, docum
 
 <interactive-quiz
   question="A risk-assessment model is calibrated within race groups (a given score predicts the same outcome rate across groups). When base rates of the outcome differ across groups, what is the most accurate statement about the false-positive rates across groups?"
-  options='[{"text":"They will also be equal automatically; calibration implies equalized odds.","isCorrect":false},{"text":"They cannot be equalized simultaneously with calibration when base rates differ — this is the Chouldechova / Kleinberg-Mullainathan-Raghavan impossibility result. The team must choose which property to give up.","isCorrect":true},{"text":"There is no relationship between the two.","isCorrect":false}]'
+  options='[{"text":"They will also be equal automatically; calibration implies equalized odds.","isCorrect":false},{"text":"They cannot be equalized simultaneously with calibration when base rates differ; this is the Chouldechova / Kleinberg-Mullainathan-Raghavan impossibility result. The team must choose which property to give up.","isCorrect":true},{"text":"There is no relationship between the two.","isCorrect":false}]'
   explanation="Correct. The impossibility theorem says that with unequal base rates, calibration and equalized error rates cannot both be satisfied. This is a mathematical fact, not an engineering deficit."
 />

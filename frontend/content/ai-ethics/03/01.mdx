@@ -1,34 +1,60 @@
-## Why Explainability Stopped Being a Side Issue
+# Black Boxes, Interpretability, and the Right to Explanation
 
-For most of computing history, the question "why did the system make this decision?" had a tractable answer: read the code. Modern machine-learned systems made that question difficult. A neural network with 70 billion parameters does not have a "reason" in any sense a human can audit. The decision lives in distributed weights, and no individual weight contains the explanation.
+> **"You do not get to hide behind the algorithm. If the model made the decision, someone still has to be able to explain it."**
 
-That technical fact collides with three deepening commitments. The **GDPR Article 22** suggests a right not to be subject to fully automated decisions with significant effects, and Recital 71 references the ability to obtain meaningful information about the logic involved. The **EU AI Act** (2024) classifies certain high-risk systems and requires technical documentation, transparency, and human oversight. **NIST's AI Risk Management Framework** lists explainability and interpretability among the trustworthy-AI characteristics.
+---
 
-This module covers the technical concepts (interpretability vs. explainability, post-hoc methods, glass-box vs. black-box), the legal scaffolding (GDPR, EU AI Act, FCRA), and what counts as a defensible explanation in practice.
+## Opening: When "The Algorithm Decided" Stopped Being an Answer
+
+In November 2019, software developer David Heinemeier Hansson posted that he had been granted a credit limit roughly twenty times higher than his wife on the newly launched Apple Card, despite the couple filing joint tax returns and her having the higher credit score. Steve Wozniak, Apple's co-founder, reported the same pattern with his own spouse. The card's issuer, Goldman Sachs, responded that the underwriting model did not use gender as an input, so it could not be discriminating.
+
+That defense missed the point, and the New York Department of Financial Services opened an investigation. A model can produce gender-disparate outcomes without ever receiving "gender" as a feature, because other inputs act as proxies. More importantly, when applicants and regulators asked *why* a specific limit was assigned, neither the customer service line nor the issuer could give a faithful, decision-specific reason. The system was opaque even to the people defending it. The 2021 DFS report did not find the model intentionally used prohibited characteristics, but it sharply criticized the lack of transparency and the inability to explain individual decisions to customers.
+
+That is the recurring shape of the modern transparency problem. For most of computing history, the question "why did the system make this decision?" had a tractable answer: read the code. A neural network with billions of parameters does not have a "reason" in any sense a human can audit. The decision lives in distributed weights, and no individual weight contains the explanation.
+
+> **The Big Picture:** "We did not use the protected attribute" and "we cannot explain the decision" are increasingly treated by regulators as two failures, not one defense. This module is about closing both gaps.
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Distinguish** interpretability (a property of the model) from explainability (a property of the explanation surface).
+2. **Compare** feature-attribution, counterfactual, and example-based explanation methods, and state the limit of each.
+3. **Evaluate** an explanation against three properties (faithful, actionable, contextually appropriate) using a structured decision analysis.
+4. **Identify** the relevant regulatory framework (GDPR Article 22, EU AI Act, FCRA) for a given deployment context.
 
 ---
 
 ## Interpretability vs. Explainability
 
-The two terms are often used interchangeably but mean different things in the literature.
+The two terms are often used interchangeably but mean different things in the literature, and the difference drives design choices.
 
 **Interpretability** is a property of the model: the degree to which a human can understand the cause of a decision by inspecting the model itself. Linear models, decision trees, and small rule lists are intrinsically interpretable. Deep neural networks generally are not.
 
 **Explainability** is a property of the *explanation surface* offered around the model: the degree to which a human can understand the model's behavior through generated rationale, feature attributions, counterfactuals, or example-based justification. A black-box model can be explainable without being interpretable.
 
-This distinction matters for design. Interpretable models are auditable by their structure. Explainable systems are auditable by their explanation layer — and the quality of the explanation itself becomes the artifact under review.
+This distinction matters for accountability. Interpretable models are auditable by their structure; you check the thing that actually decides. Explainable systems are auditable only by their explanation layer, so the quality of the explanation itself becomes a separate artifact under review, and it can be wrong about the model it claims to describe.
+
+| | Interpretable model | Explainable black box |
+| --- | --- | --- |
+| What you audit | The model's structure | A generated explanation |
+| Failure mode | Model too simple for the task | Explanation unfaithful to model |
+| Example | Decision tree, logistic regression | Deep net + SHAP report |
+| Who guarantees accuracy | The model is the proof | You must separately validate the explainer |
 
 ---
 
 ## Glass-Box, Black-Box, and Why It's Not a Binary
 
-A useful taxonomy from Rudin (2019, *Nature Machine Intelligence*):
+A useful taxonomy comes from Rudin (2019, *Nature Machine Intelligence*):
 
-**Inherently interpretable models** (glass-box): linear regression, GAMs, small decision trees, RuleFit, EBMs. A human reading the model can usually reconstruct the decision.
+**Inherently interpretable models** (glass-box): linear regression, generalized additive models, small decision trees, RuleFit, explainable boosting machines. A human reading the model can usually reconstruct the decision.
 
 **Black-box models with post-hoc explanations**: deep networks, large ensembles, LLMs. The model is not directly readable; an explanation method (LIME, SHAP, integrated gradients, counterfactuals) is layered on top.
 
-Rudin's central argument: **for high-stakes decisions, prefer inherently interpretable models when their accuracy is competitive**. Many published comparisons that justify black-box use overstate the accuracy gap and ignore the cost of unauditable explanations.
+Rudin's central argument: **for high-stakes decisions, prefer inherently interpretable models when their accuracy is competitive.** Many published comparisons that justify black-box use overstate the accuracy gap and ignore the cost of unauditable explanations. The choice is not "accuracy versus interpretability" by default; it is a tradeoff that must be measured, not assumed.
 
 ---
 
@@ -36,13 +62,13 @@ Rudin's central argument: **for high-stakes decisions, prefer inherently interpr
 
 Three families of post-hoc explanation are widely used.
 
-**Feature attribution** (LIME, SHAP, integrated gradients) tells you which input features most influenced a particular output. Useful for sanity-checking ("did the model focus on race?"), but the explanation is local and can be unstable: small input changes can flip which features appear important.
+**Feature attribution** (LIME, SHAP, integrated gradients) tells you which input features most influenced a particular output. Useful for sanity-checking ("did the model lean on a protected proxy?"), but the explanation is local and can be unstable: small input changes can flip which features appear important.
 
-**Counterfactual explanations** answer "what minimal change to the input would have flipped the decision?" Aligns well with how humans naturally reason about causation. But counterfactuals are not unique — multiple minimal changes can flip the same decision, and which one to surface is itself a design choice.
+**Counterfactual explanations** answer "what minimal change to the input would have flipped the decision?" This aligns well with how humans naturally reason about causation. But counterfactuals are not unique; multiple minimal changes can flip the same decision, and which one to surface is itself a design and ethics choice.
 
-**Example-based explanations** retrieve similar training examples ("the model treated you like these other cases"). Intuitive but easily misleading if the retrieved examples do not actually drive the decision.
+**Example-based explanations** retrieve similar training examples ("the model treated you like these other cases"). Intuitive, but easily misleading if the retrieved examples do not actually drive the decision.
 
-A key warning: **post-hoc methods can be wrong**. They approximate the model's behavior locally; they do not reveal the model's mechanism. An explanation that satisfies a stakeholder is not the same as an explanation that is accurate.
+A key warning: **post-hoc methods can be wrong.** They approximate the model's behavior locally; they do not reveal the model's mechanism. An explanation that satisfies a stakeholder is not the same as an explanation that is accurate.
 
 <concept-diagram type="explainability-stack"></concept-diagram>
 
@@ -58,21 +84,77 @@ Three properties characterize a defensible explanation:
 - **Actionable**: the decision subject can do something with the explanation.
 - **Contextually appropriate**: the level of detail matches the stakeholder (regulator, decision subject, internal auditor) and the stakes.
 
-A faithful explanation that the decision subject cannot act on is a transparency floor, not a meaningful explanation. An actionable explanation that misrepresents the model is dangerous.
+A faithful explanation that the subject cannot act on is a transparency floor, not a meaningful explanation. An actionable explanation that misrepresents the model is dangerous.
+
+---
+
+## Worked Case: Auditing a Credit-Denial Explanation
+
+Return to the lending setting. A black-box model denies an applicant a loan. The compliance team must ship *one* explanation. Three candidates are on the table. We score each against the three properties and against the US Fair Credit Reporting Act (FCRA), which requires an "adverse action notice" stating specific, accurate reasons.
+
+**The three candidate explanations:**
+
+- **A.** "Your application did not meet our internal credit criteria."
+- **B.** "Top SHAP features for your denial: zip code, age, income."
+- **C.** "You were denied because your debt-to-income ratio is 43%. Bringing it below 38%, with other factors held constant, would have changed the decision."
+
+**Stakeholder / tradeoff analysis:**
+
+| Property | A (boilerplate) | B (raw SHAP) | C (counterfactual) |
+| --- | --- | --- | --- |
+| Faithful | Unknown (says nothing checkable) | Possibly, but SHAP is local and unstable | Yes, if the threshold is validated against the model |
+| Actionable | No lever given | No clear action; cannot change age or zip | Clear, legitimate lever the subject controls |
+| Contextually appropriate | Fails the applicant; too vague for a regulator | Confuses the applicant; alarms the auditor | Matches applicant need and auditor scrutiny |
+| FCRA adverse-action fit | Non-compliant (no specific reason) | Risky: surfaces a protected proxy (zip) and age | Compliant: specific, actionable, neutral lever |
+| Discrimination exposure | Hides any proxy use | Advertises proxy use in writing | Routes around proxies to a legitimate factor |
+
+**Decision and reasoning.** Candidate **C** is the only one that clears all three properties and the FCRA bar simultaneously. Candidate **A** is the path of least engineering effort and is exactly the failure the Apple Card episode exposed: no decision-specific reason. Candidate **B** is tempting because it looks technical and rigorous, but it is the most legally dangerous of the three. It puts "zip code" and "age" in an official notice, where zip code is a well-known proxy for race and income, and age is itself a protected characteristic in credit. Surfacing them as the operative reasons can convert an opaque problem into a documented one.
+
+**The catch.** Choosing C is not the end of the duty. The team must verify that the counterfactual is *faithful*: that moving debt-to-income below 38% with everything else fixed would actually flip this model's output. If the model is nonlinear and entangled, a single clean threshold may not exist, and presenting one would be an actionable-but-unfaithful explanation, the dangerous quadrant. The honest path may be to validate the counterfactual per-case, or, following Rudin, to ask whether a glass-box model would have been competitive here in the first place.
+
+> **Key Insight:** The most defensible explanation is rarely the most technical-looking one. "Faithful and actionable" beats "rigorous-sounding," and an explanation that names protected proxies in writing can be worse than no explanation at all.
 
 ---
 
 ## Legal Scaffolding: GDPR, EU AI Act, FCRA
 
-**GDPR Article 22** restricts decisions based solely on automated processing where they produce legal or similarly significant effects. Recital 71 references meaningful information about the logic. The exact scope of this "right to explanation" is contested, but the regulatory direction is clear: opacity is not a defense.
+**GDPR Article 22** restricts decisions based solely on automated processing where they produce legal or similarly significant effects. Recital 71 references meaningful information about the logic involved. The exact scope of this "right to explanation" is contested in the scholarship, but the regulatory direction is clear: opacity is not a defense.
 
-**EU AI Act** (2024) imposes transparency obligations on providers of high-risk AI systems and on providers of general-purpose AI. Documentation, instructions for use, and human oversight are required at the system-design layer.
+**EU AI Act** (2024) imposes transparency obligations on providers of high-risk AI systems and on providers of general-purpose AI. Technical documentation, instructions for use, and human oversight are required at the system-design layer, not bolted on after deployment.
 
-**Fair Credit Reporting Act (FCRA)** in the US requires "adverse action notices" with specific reasons when credit is denied. AI-driven credit decisions inherit this obligation; vague reasons are not compliant.
+**Fair Credit Reporting Act (FCRA)** in the US requires adverse-action notices with specific reasons when credit is denied. AI-driven credit decisions inherit this obligation; vague reasons like candidate A above are not compliant.
 
-These frameworks differ in scope but converge on a common commitment: **opaque high-stakes automation is not regulatorily defensible**. Engineers and instructional designers building such systems must produce explanation infrastructure as part of the build, not as an afterthought.
+These frameworks differ in scope but converge on a common commitment: **opaque high-stakes automation is not regulatorily defensible.** Engineers and instructional designers building such systems must produce explanation infrastructure as part of the build, not as an afterthought.
+
+---
+
+## Counterarguments and Limitations
+
+A rigorous treatment has to take the strongest objections seriously rather than wave them away.
+
+- **"Interpretable models cost accuracy we cannot afford."** Sometimes true, especially in perception tasks like medical imaging where deep nets clearly outperform simple models. Rudin's reply is narrower than critics assume: she argues the gap is often *unmeasured and overstated* for structured, high-stakes tabular decisions (credit, recidivism, hiring), not that interpretability is free everywhere. The duty is to measure the gap, not to assume it.
+- **"Explanations can be gamed."** If you tell people the exact lever, some will manipulate inputs (so-called gaming) rather than improve the underlying state. This is real, but it cuts against opacity-as-security, which is brittle, more than against transparency. Designers respond by surfacing levers tied to genuine creditworthiness rather than easily faked artifacts.
+- **"A right to explanation may not legally exist."** Several scholars argue GDPR's binding text creates a right to be informed, not a robust right to a per-decision explanation. Granting the legal uncertainty, the EU AI Act and FCRA impose concrete documentation and notice duties regardless, so the engineering obligation does not vanish with the GDPR debate.
+- **"Post-hoc explanations are good enough."** Only if validated. The honest limit is that a local approximation can be confidently wrong about the global mechanism, which is why faithfulness has to be tested, not presumed.
 
 <dynamic-scenario topic="Right to Explanation" context="A lender deploys a black-box credit-scoring model. A denied applicant requests an explanation. The vendor provides 'top features by SHAP value' which include zip code. Walk through whether this explanation is faithful, actionable, contextually appropriate, and legally defensible under FCRA."></dynamic-scenario>
+
+---
+
+## Key Takeaways
+
+- **Interpretability** is about the model; **explainability** is about the explanation layer wrapped around it. A black box can be explainable but never interpretable.
+- For high-stakes structured decisions, **prefer an inherently interpretable model when its accuracy is competitive** (Rudin 2019), and measure the gap rather than assume it.
+- Post-hoc methods (LIME, SHAP, counterfactuals, examples) **approximate** behavior locally and **can be unfaithful**; an explanation that reassures is not the same as one that is correct.
+- A defensible explanation is **faithful, actionable, and contextually appropriate**; the dangerous quadrant is actionable-but-unfaithful.
+- Putting **protected proxies** (zip code, age) into an official notice can be worse than a vague notice; counterfactual, lever-based reasons are usually the most defensible.
+- **GDPR Art. 22, the EU AI Act, and FCRA** converge: opaque high-stakes automation is not regulatorily defensible, and explanation infrastructure is part of the build.
+
+---
+
+## What's Next?
+
+The next module moves from *explaining one decision* to *accounting for a whole system*: audit trails, model documentation (model cards, datasheets), and the allocation of responsibility when an automated decision causes harm. Explainability is the per-decision floor; accountability is the institutional structure built on top of it.
 
 ---
 

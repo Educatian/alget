@@ -4,161 +4,286 @@
 
 ---
 
+## Opening: A Lattice That Carries a River
+
+When the Forth Bridge opened across the firth in Scotland in 1890, it stunned the public not with mass but with apparent emptiness. Most of the structure is air. The steel is gathered into long, slender lines that meet at joints, and almost every one of those lines does only one job: it pulls or it pushes along its own length. That is the central idea of a truss. Instead of fighting bending the way a solid beam does, a truss routes load along straight members that act in pure tension or compression, so material sits exactly where the force flows.
+
+The same logic that holds up a railway bridge also explains the failures. When a truss collapses, the cause is rarely an exotic effect; it is usually a compression member that buckled, a connection that tore, or a geometry that quietly turned into a mechanism because the triangles were not closed. Reading a truss correctly, before any equations, is therefore an engineering skill in its own right.
+
+> **The Big Picture:** If you can decide which members pull, which members push, and which carry nothing at all, you already understand most of what a truss is doing under load.
+
+---
+
 ## Learning Objectives
 
 By the end of this section, you should be able to:
 
-- define a truss and identify members and joints,
-- state the main assumptions used in truss analysis,
-- check whether a planar truss is stable and statically determinate,
-- and recognize zero-force members before starting full calculations.
+1. **Define** a truss and identify its members, joints, and two-force assumption,
+2. **State** the modeling assumptions that make simple truss analysis valid,
+3. **Check** whether a planar truss is stable and statically determinate using $m = 2j - 3$,
+4. **Identify** zero-force members by inspection before doing full calculations,
+5. **Solve** member forces by the **method of joints** and the **method of sections**, and report each as tension or compression.
 
 ---
 
 ## What Makes a Truss Special
 
-A truss is a structure built from straight members connected at joints. In ideal statics analysis, the members carry load primarily through **axial tension or compression** rather than bending.
+A truss is a structure built from straight members connected at joints. In ideal analysis the members carry load primarily through **axial tension or compression** rather than bending.
 
-That is why trusses are so efficient in bridges, roofs, towers, and cranes:
+That is why trusses dominate bridges, roofs, towers, and cranes:
 
 - material is placed along direct load paths,
-- members can remain slender,
-- and repeated triangular geometry provides stiffness without filling the whole region with solid material.
+- members can stay slender because they are not bent,
+- and repeated triangular geometry provides stiffness without filling the region with solid material.
 
-This is also why truss assumptions matter. If the assumptions fail badly, the simple analysis no longer matches the real structure.
+This efficiency is exactly why the assumptions matter. If the real structure violates them badly, the simple analysis stops matching reality.
 
 ---
 
 ## Core Truss Assumptions
 
-In introductory statics, we usually assume:
+In introductory statics we assume:
 
-- joints are frictionless pins,
-- external loads act only at joints,
-- member self-weight is negligible or lumped at joints,
-- and members are straight two-force members.
+- joints are frictionless pins (they transmit force but no moment),
+- external loads and reactions act only at joints,
+- member self-weight is negligible or lumped at the joints it connects,
+- and members are straight **two-force members**.
 
-Under these assumptions, each member carries either:
+A two-force member is the key idealization. If a straight member has forces applied only at its two ends and carries no moment, equilibrium forces those two end forces to be equal, opposite, and directed along the member. There is no other possibility. That is the reason a truss member can only pull or push.
 
-- **tension**, pulling away from a joint,
-- or **compression**, pushing toward a joint.
+| Member state | Direction on the joint | Physical meaning |
+| --- | --- | --- |
+| **Tension** | pulls **away** from the joint | the member is being stretched |
+| **Compression** | pushes **toward** the joint | the member is being squeezed |
 
-This simplifies the structure enormously because we do not need to model each member as a full bending beam in the first pass.
+> **Sign Convention:** Assume every unknown member is in **tension**. A positive answer confirms tension; a negative answer means the member is actually in compression. This single habit removes most sign confusion.
 
 ---
 
 ## Why Triangles Matter
 
-A triangle is the simplest polygon that is geometrically stable without changing member lengths. A rectangle can deform into a parallelogram if the joints are pin-connected, but a triangle cannot do that without stretching or shortening a member.
+A triangle is the simplest polygon that is rigid without changing member lengths. A pin-connected rectangle can collapse into a parallelogram, but a triangle cannot deform unless a member actually stretches or shortens.
 
-That is why simple trusses are built by:
+That is why **simple trusses** are built by a strict rule:
 
-- starting with a triangle,
-- then adding one new joint and two new members at a time.
+- start with one triangle,
+- then add each new joint with exactly two new members.
 
-This construction logic explains why triangular forms dominate classical truss systems.
+Every joint added this way keeps the member count and joint count locked in step, which is precisely what the determinacy formula below measures.
 
 ---
 
 ## The Determinacy Check
 
-For a planar truss, a common first check is:
+A planar truss has $2j$ equilibrium equations available (two per joint) and $m + 3$ unknowns (one force per member plus three support reactions for a stable planar support set). Setting equations equal to unknowns gives the determinacy criterion:
 
 $$
-\boxed{m = 2j - 3}
+2j = m + 3 \quad\Longrightarrow\quad \boxed{m = 2j - 3}
 $$
 
-where:
+where $m$ is the number of members and $j$ is the number of joints. Read it as:
 
-- $m$ is the number of members,
-- and $j$ is the number of joints.
+- if $m < 2j - 3$, the truss has too few members and is usually a **mechanism (unstable)**,
+- if $m = 2j - 3$, it is **statically determinate** (solvable by statics alone),
+- if $m > 2j - 3$, it is **statically indeterminate** (extra members require deformation analysis).
 
-Interpret the result like this:
-
-- if $m < 2j - 3$, the truss is usually unstable,
-- if $m = 2j - 3$, it is often statically determinate,
-- if $m > 2j - 3$, it is usually statically indeterminate.
-
-This is a necessary structural check, but it is not the whole story. Geometry still matters. A badly arranged truss can satisfy the count and still behave as a mechanism.
-
----
-
-## Tension, Compression, and Physical Meaning
-
-A truss calculation is not only about getting a number. You also need to interpret what the sign means.
-
-- **Tension:** the member is being stretched
-- **Compression:** the member is being squeezed
-
-This matters because compression members are often more vulnerable to buckling, while tension members are often governed by net-section or connection strength.
-
-So identifying whether a member is in tension or compression is already part of design judgment, not just bookkeeping.
+This count is **necessary but not sufficient**. Geometry still rules. A truss can satisfy the count and still behave as a mechanism if the members are badly arranged (for example, three members meeting so their lines all pass through one point).
 
 ---
 
 ## Zero-Force Members
 
-Before solving a full truss, look for zero-force members. They appear frequently and can simplify the whole problem.
+Before solving anything, scan for zero-force members. They appear constantly and shrink the work.
 
-Two common rules are:
+- **Two-member rule:** at an unloaded joint with only two non-collinear members, **both** are zero-force.
+- **Three-member rule:** at a joint with three members where two are collinear and no load or reaction acts there, the **non-collinear** member is zero-force.
 
-- At an unloaded joint with only two non-collinear members, both are zero-force members.
-- At a joint with three members where two are collinear and there is no external load or support reaction at that joint, the non-collinear member is zero-force.
+These follow directly from joint equilibrium: with no load, a force perpendicular to a pair of collinear members has nothing to balance it, so it must vanish.
 
-Why would engineers include a zero-force member at all?
+Why include a zero-force member at all? Because "zero" is true only for one load case. The member may:
 
-- to stabilize the structure under a different load case,
-- to improve stiffness,
-- or to support the structure during construction.
+- carry load under wind, snow, or asymmetric live loading,
+- stiffen a slender compression chord against buckling,
+- or hold geometry during construction before the structure is complete.
 
 <dynamic-scenario topic="Truss Stability" context="A bridge design team is deciding whether to remove a diagonal that appears to carry zero force under one loading case, while worrying that the same member may still be critical under wind or asymmetric loading."></dynamic-scenario>
 
 ---
 
-## Worked Example: Checking Determinacy
+## Worked Example 1: Method of Joints on a Triangle Truss
 
-Suppose a truss has 11 members and 7 joints.
+**Problem:** A symmetric triangle truss has a pin at $A(0,0)$, a roller at $B(6,0)$, and an apex at $C(3,4)$ (units in metres). A vertical load $P = 12\ \text{kN}$ acts downward at the apex $C$. Find the force in every member and state tension or compression.
 
-Compute:
+**Step 1: Support reactions (whole-truss FBD).**
+
+By symmetry the load splits evenly, and the pin carries no horizontal load because the only applied force is vertical:
 
 $$
-2j - 3 = 2(7) - 3 = 11
+A_x = 0, \qquad A_y = B_y = \frac{P}{2} = 6\ \text{kN (up)}
 $$
 
-Since $m = 11$, the count suggests the truss is statically determinate.
+**Step 2: Geometry of the inclined members.**
 
-That does **not** mean the analysis is finished. You would still inspect:
+Members $AC$ and $BC$ each rise $4$ over a run of $3$, so their length is $\sqrt{3^2 + 4^2} = 5\ \text{m}$. The unit components are therefore $\tfrac{3}{5} = 0.6$ horizontal and $\tfrac{4}{5} = 0.8$ vertical.
 
-- whether the support arrangement is appropriate,
-- whether the geometry is triangulated,
-- and whether the truss has any obvious mechanism-like behavior.
+**Step 3: Joint C (FBD of the apex).**
+
+Two unknown members ($CA$, $CB$) plus the $12\ \text{kN}$ load. Assume tension, so each member force pulls the joint outward along the member. By symmetry $F_{CA} = F_{CB} = F$. Vertical equilibrium:
+
+$$
+\sum F_y = 0: \quad -F\,(0.8) - F\,(0.8) - 12 = 0
+$$
+
+$$
+-1.6\,F = 12 \quad\Longrightarrow\quad F = -7.5\ \text{kN}
+$$
+
+The negative sign flips the assumption, so
+
+$$
+F_{AC} = F_{BC} = \boxed{7.5\ \text{kN (compression)}}
+$$
+
+This is physically right: the apex pushes down on the inclined legs, squeezing them.
+
+**Step 4: Joint A (FBD of the pin) for the bottom chord.**
+
+At $A$, member $AB$ is horizontal and member $AC$ rises toward $C$. With reaction $A_y = 6\ \text{kN}$ up and $A_x = 0$:
+
+$$
+\sum F_y = 0: \quad F_{AC}\,(0.8) + 6 = 0 \quad\Longrightarrow\quad F_{AC} = -7.5\ \text{kN}
+$$
+
+which agrees with Step 3. Horizontal equilibrium gives the bottom chord:
+
+$$
+\sum F_x = 0: \quad F_{AC}\,(0.6) + F_{AB} = 0
+$$
+
+$$
+F_{AB} = -(-7.5)(0.6) = +4.5\ \text{kN}
+$$
+
+$$
+F_{AB} = \boxed{4.5\ \text{kN (tension)}}
+$$
+
+The bottom chord stretches, tying the two leaning legs together; the inclined chords compress. That tension-bottom, compression-top pattern is the signature of a simply loaded triangle.
+
+---
+
+## Worked Example 2: Method of Sections
+
+When you need only a few interior member forces in a large truss, cutting the structure is far faster than marching joint by joint.
+
+**Problem:** A truss has bottom joints $A(0,0)$, $C(4,0)$, $E(8,0)$ and top joints $B(2,3)$, $D(6,3)$ (metres). A pin support sits at $A$, a roller at $E$. A single load $P = 10\ \text{kN}$ acts downward at $C$. Find the forces in the top chord $BD$, the bottom chord $AC$, and the diagonal $BC$.
+
+**Step 1: Reactions.** Load is at midspan, so by symmetry
+
+$$
+A_x = 0, \qquad A_y = E_y = \frac{10}{2} = 5\ \text{kN (up)}
+$$
+
+**Step 2: Cut the truss.** Pass a vertical section through $BD$, $BC$, and $AC$, and analyze the **left** portion (containing $A$ and $B$). Three unknowns, three equilibrium equations: take moments to isolate one unknown at a time.
+
+**Step 3: Moment about $C(4,0)$ gives the top chord $BD$.** Both $AC$ and $BC$ pass through $C$, so they drop out. The top chord $BD$ is horizontal at height $y = 3$, so its moment arm about $C$ is $3\ \text{m}$. Taking counterclockwise as positive and assuming $F_{BD}$ tension (acting toward $+x$ at $B$):
+
+$$
+\sum M_C = 0: \quad \underbrace{5(-4)}_{A_y \text{ at } x=0} \; - \; 3\,F_{BD} = 0
+$$
+
+$$
+-20 - 3\,F_{BD} = 0 \quad\Longrightarrow\quad F_{BD} = -6.67\ \text{kN}
+$$
+
+$$
+F_{BD} = \boxed{6.67\ \text{kN (compression)}}
+$$
+
+**Step 4: Moment about $B(2,3)$ gives the bottom chord $AC$.** Now $BD$ and $BC$ both pass through $B$ and drop out. The bottom chord $AC$ is horizontal at $y = 0$, moment arm $3\ \text{m}$:
+
+$$
+\sum M_B = 0: \quad \underbrace{5(-2)}_{A_y \text{ about } B} \; + \; 3\,F_{AC} = 0
+$$
+
+$$
+-10 + 3\,F_{AC} = 0 \quad\Longrightarrow\quad F_{AC} = \boxed{3.33\ \text{kN (tension)}}
+$$
+
+**Step 5: Vertical equilibrium gives the diagonal $BC$.** The diagonal runs from $B(2,3)$ to $C(4,0)$, length $\sqrt{2^2 + 3^2} = \sqrt{13} = 3.606\ \text{m}$, so its vertical component fraction is $3/\sqrt{13} = 0.832$. Only $BC$ has a vertical component among the cut members:
+
+$$
+\sum F_y = 0: \quad 5 - F_{BC}\,(0.832) = 0 \quad\Longrightarrow\quad F_{BC} = \boxed{6.01\ \text{kN (tension)}}
+$$
+
+Once again the top chord is in compression and the bottom chord plus diagonal are in tension, the classic distribution for a downward midspan load. Notice that one section and three moment equations delivered three member forces without ever touching the right half of the truss.
+
+---
+
+## Worked Example 3: A Quick Determinacy Audit
+
+**Problem:** A planar truss has $m = 11$ members and $j = 7$ joints. Is it statically determinate?
+
+$$
+2j - 3 = 2(7) - 3 = 11 = m
+$$
+
+The count matches, so the truss is **statically determinate by the count test**. That does not end the review. You would still confirm:
+
+- the supports give exactly three independent reaction components,
+- the geometry is fully triangulated (no four-bar panel),
+- and no set of members lines up to create a hidden mechanism.
+
+A determinate count with poor geometry can still collapse, which is why the formula is a screening tool, not a verdict.
 
 ---
 
 ## Common Truss Families
 
-Several named truss families appear often in practice:
+| Family | Layout | Force-pattern note |
+| --- | --- | --- |
+| **Warren** | repeated equal triangles, alternating diagonals | diagonals alternate tension and compression |
+| **Pratt** | vertical posts with diagonals sloping toward center | long diagonals usually in **tension** under gravity load |
+| **Howe** | diagonals sloping away from center (opposite of Pratt) | long diagonals usually in **compression** |
+| **K-truss** | panels subdivided with a central vertical | shortens compression members for long spans |
 
-- **Warren truss:** repeated triangular pattern
-- **Pratt truss:** diagonals typically oriented to place long diagonals in tension under common loads
-- **Howe truss:** opposite diagonal orientation relative to Pratt
-- **K-truss:** subdivided panels for longer spans
-
-The naming is less important than understanding what the layout does to member-force patterns and constructability.
+The names matter less than the consequence: layout decides which long members are compression-critical, and compression members are the ones that buckle.
 
 ---
 
-## Practical Design Heuristics
+## Engineering Applications
 
-Before moving to analysis, ask:
+| Application | Why truss analysis matters |
+| --- | --- |
+| Highway and rail bridges | member forces set the steel section and connection size |
+| Roof systems and stadiums | wind and snow create asymmetric cases that wake up zero-force members |
+| Transmission and antenna towers | slender compression legs govern the buckling check |
+| Crane booms and lattice masts | axial-only members keep weight low while reaching far |
+| Aircraft and spaceframe chassis | triangulated tubes carry load with minimal mass |
 
-- Is the load applied mainly at joints?
-- Are the supports modeled correctly?
-- Does the geometry form stable triangular load paths?
-- Are there obvious zero-force members that simplify the first pass?
-- Which members might be compression-critical if the loads increase?
+> **Engineering in Action:** The first decision a truss designer makes after solving the forces is not "how big is the number," but "is this member pulling or pushing." A tension member is usually limited by its connection and net section; a compression member is usually limited by buckling, which depends on length. Two members with the same force can need very different sizes.
 
-Those questions help you read the structure before you start solving equations.
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Determinacy (planar) | $m = 2j - 3$ |
+| Joint equilibrium | $\sum F_x = 0,\quad \sum F_y = 0$ |
+| Two-force member | end forces equal, opposite, along the member |
+| Member length / unit components | $L = \sqrt{(\Delta x)^2 + (\Delta y)^2}$, components $\Delta x / L$, $\Delta y / L$ |
+
+### Key Takeaways
+
+- Truss members are two-force members: they only pull (tension) or push (compression).
+- Assume tension for every unknown; a negative result means compression.
+- Triangles are rigid; simple trusses grow one joint and two members at a time.
+- $m = 2j - 3$ screens for determinacy but never overrides bad geometry.
+- Spot zero-force members first, but remember they may carry load in another case.
+- Use the **method of joints** for full trusses and the **method of sections** to reach a few interior members fast.
 
 ---
 
@@ -169,3 +294,9 @@ Those questions help you read the structure before you start solving equations.
   options='[{"text":"The truss is unstable because 13 is less than 2j - 3.","isCorrect":false},{"text":"The truss is statically determinate by the count test because 2(8) - 3 = 13.","isCorrect":true},{"text":"The truss must be indeterminate because every truss with more than 10 members is indeterminate.","isCorrect":false}]'
   explanation="Correct. For 8 joints, the count test gives 2j - 3 = 13, so the member count is consistent with a statically determinate planar truss."
 />
+
+---
+
+## What's Next?
+
+In the next section we put the **method of joints** to work systematically, marching from a joint with two unknowns through the whole structure, and then sharpen the **method of sections** for cases where you need only a handful of critical member forces.

@@ -258,6 +258,14 @@ $$
 
 This result is physically informative. The shallower cable carries the larger force because it contributes less vertical support per unit tension.
 
+**Quick generalization.** For two cables at angles $\alpha$ and $\beta$ measured from the horizontal on opposite sides of a weight $W$, the same two equations solve in closed form:
+
+$$
+T_A = \frac{W \cos\beta}{\sin(\alpha + \beta)}, \qquad T_B = \frac{W \cos\alpha}{\sin(\alpha + \beta)}
+$$
+
+Substituting $\alpha = 30^\circ$, $\beta = 60^\circ$, and $W = 981$ N gives $T_A = 981(0.5)/\sin 90^\circ = 490.5$ N and $T_B = 981(0.866)/1 = 849.4$ N, matching the step-by-step result above. The formula also shows why support becomes dangerous as the cables flatten toward each other: as $(\alpha + \beta) \to 0$, $\sin(\alpha+\beta) \to 0$ and both tensions grow without bound.
+
 ---
 
 ## Engineering Applications

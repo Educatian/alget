@@ -4,14 +4,25 @@
 
 ---
 
+## Opening: The Balcony That Rotated
+
+In June 2015, a fifth-floor apartment balcony in Berkeley, California sheared off its supports and collapsed, killing six people. The investigation traced the failure to rotted wooden cantilever joists: the connection at the wall could no longer supply the **reaction moment** needed to hold the balcony horizontal. The vertical loads were modest, well within what the floor could carry. What the building could no longer provide was the turning resistance at the support.
+
+That distinction is the heart of this section. A particle only needs its forces to cancel. A rigid body, because it occupies space and can spin about any point, also needs its **moments** to cancel. Many real structural failures are not "the load was too heavy" failures; they are "the support could not resist rotation" failures. Cantilevered balconies, wall-mounted brackets, retaining walls that tip, and cranes that overturn all fail the moment equation long before they fail the force equation.
+
+> **The Big Picture:** Rigid-body equilibrium is the first analytical screen in structural and machine design. It tells you the support reactions, where the load path concentrates, and whether a layout is even worth detailing further.
+
+---
+
 ## Learning Objectives
 
 By the end of this section, you should be able to:
 
-- apply the planar equilibrium equations for rigid bodies,
-- identify support reactions for common support types,
-- choose useful moment points,
-- and solve statically determinate beam and frame problems.
+1. **Apply** the three planar equilibrium equations for rigid bodies,
+2. **Identify** support reactions for common support types,
+3. **Choose** moment points that eliminate unknowns,
+4. **Solve** statically determinate beam and frame problems, including distributed and inclined loads,
+5. **Assess** static determinacy by counting unknowns against available equations.
 
 ---
 
@@ -23,31 +34,47 @@ $$
 \sum \vec{F} = 0
 $$
 
-But a rigid body can rotate, so force balance alone is not sufficient. A rigid body in 2D must satisfy:
+But a rigid body can rotate, so force balance alone is not sufficient. Imagine two equal and opposite forces offset from each other, a **couple**. Their vector sum is exactly zero, yet they spin the body. Force balance cannot detect this, so we add a second condition.
+
+A rigid body in 2D must satisfy:
 
 $$
-\sum F_x = 0,\qquad \sum F_y = 0,\qquad \sum M_O = 0
+\boxed{\sum F_x = 0,\qquad \sum F_y = 0,\qquad \sum M_O = 0}
 $$
 
 These three equations capture two ideas:
 
 - the body must not translate in $x$ or $y$,
-- and it must not have a net turning tendency.
+- and it must not have a net turning tendency about any point.
 
-If a problem has more than three unknown reactions in 2D, equilibrium alone will not be enough.
+A subtle and useful fact: if the forces balance ($\sum \vec F = 0$) and the moment about **one** point is zero, then the moment about **every** point is zero. This is why we are free to pick the most convenient moment center. In 3D the same logic gives six scalar equations ($\sum F_x=\sum F_y=\sum F_z=0$ and $\sum M_x=\sum M_y=\sum M_z=0$).
+
+> **Key Insight:** A single moment equation can be written about any point in the plane, and a wise choice of that point can deliver an unknown directly without simultaneous equations.
 
 ---
 
 ## Support Reactions
 
-Before writing equations, identify what each support can provide.
+Before writing equations, identify what each support can provide. A support can resist a motion only by supplying a reaction in that direction.
 
-- **Pin support:** horizontal and vertical reaction components
-- **Roller support:** one reaction normal to the surface
-- **Fixed support:** horizontal reaction, vertical reaction, and a reaction moment
-- **Cable:** tension only, directed along the cable
+| Support | Reactions Provided | Unknowns |
+| --- | --- | --- |
+| Roller / smooth surface | one force normal to the surface | 1 |
+| Pin / hinge | horizontal and vertical force components | 2 |
+| Fixed (built-in) | horizontal force, vertical force, reaction moment | 3 |
+| Cable / link | tension along its own line of action | 1 |
 
-This is why support identification matters so much. The support model determines the unknowns before the algebra even starts.
+The support model determines the unknowns before the algebra even starts. A pin "pins down" translation in two directions but lets the body rotate, so it supplies two force components and no moment. A fixed support also prevents rotation, so it adds the reaction moment $M_A$.
+
+### Static Determinacy
+
+Count the unknown reaction components, call it $r$, and compare to the number of independent equilibrium equations, here $3$ in 2D:
+
+- $r < 3$: **unstable / mechanism** (cannot resist all loads),
+- $r = 3$: **statically determinate** (solvable by equilibrium alone),
+- $r > 3$: **statically indeterminate** (needs material deformation relations too).
+
+Every worked example below is determinate ($r = 3$), which is exactly why equilibrium alone solves them.
 
 ---
 
@@ -55,100 +82,147 @@ This is why support identification matters so much. The support model determines
 
 Use the same sequence every time:
 
-1. Draw the free-body diagram.
-2. Replace supports with reaction forces and moments.
-3. Choose a coordinate system and sign convention.
-4. Write the three equilibrium equations.
+1. Draw the free-body diagram (FBD) of the whole body.
+2. Replace supports with their reaction forces and moments.
+3. Choose a coordinate system and a sign convention (counterclockwise positive is standard).
+4. Replace any distributed load with its resultant at the centroid of the load.
 5. Pick a smart moment point to eliminate as many unknowns as possible.
-6. Solve and check whether the reactions make physical sense.
+6. Write the three equilibrium equations and solve.
+7. Check whether the reactions make physical sense.
 
-Students often rush to equations before completing the free-body diagram. That usually causes sign mistakes or missing reactions.
-
----
-
-## Choosing a Good Moment Point
-
-Moment equations become easier when the chosen point removes unknowns.
-
-Good choices often include:
-
-- a pin support where two unknown reactions act,
-- a point where several lines of action intersect,
-- or a reference point that simplifies geometry.
-
-This is not a shortcut. It is one of the main skills in rigid-body equilibrium.
+Students often rush to equations before completing the FBD. That usually causes sign mistakes or missing reactions.
 
 ---
 
 ## Worked Example 1: Simply Supported Beam
 
-A 6 m beam is pinned at A and on a roller at B. A 1000 N load acts at midspan.
+**Problem:** A 6 m beam is pinned at A and on a roller at B. A 1000 N downward load acts at midspan (3 m from A). Find the reactions.
 
-By symmetry, we expect the vertical reactions to match, but we still verify with equilibrium:
+**FBD:** Pin A gives $A_x$ and $A_y$; roller B gives a vertical $B_y$; the 1000 N load points down at midspan. Unknowns $r = 3$, so the beam is determinate.
 
-$$
-\sum M_A = 0:\quad B_y(6) - 1000(3) = 0
-$$
+Take moments about A so the pin reactions drop out (their lines of action pass through A):
 
 $$
-B_y = 500 \text{ N}
+\sum M_A = 0:\quad B_y(6) - 1000(3) = 0 \;\Rightarrow\; B_y = 500 \text{ N}
 $$
 
-Then,
+Then vertical balance:
 
 $$
-\sum F_y = 0:\quad A_y + 500 - 1000 = 0
+\sum F_y = 0:\quad A_y + 500 - 1000 = 0 \;\Rightarrow\; A_y = 500 \text{ N}
+$$
+
+And horizontal balance, with no horizontal applied load:
+
+$$
+\sum F_x = 0 \;\Rightarrow\; A_x = 0
 $$
 
 $$
-A_y = 500 \text{ N}
+\boxed{A_x = 0,\quad A_y = 500\text{ N},\quad B_y = 500\text{ N}}
 $$
 
-Finally,
-
-$$
-\sum F_x = 0 \Rightarrow A_x = 0
-$$
-
-So the reactions are:
-
-$$
-\boxed{A_x = 0,\; A_y = 500\text{ N},\; B_y = 500\text{ N}}
-$$
+The symmetry check holds: equal reactions for a central load, each carrying half the total. Note how choosing A as the moment center turned a three-unknown system into a one-line solution.
 
 ---
 
 ## Worked Example 2: Cantilever Beam
 
-A 4 m cantilever carries a 2000 N downward load at the free end.
+**Problem:** A 4 m cantilever is fixed at A and carries a 2000 N downward load at the free end. Find the wall reactions.
 
-At the fixed support A, the unknowns are:
-
-- $A_x$
-- $A_y$
-- $M_A$
-
-From equilibrium:
+**FBD:** The fixed support supplies $A_x$, $A_y$, and a reaction moment $M_A$. Unknowns $r = 3$, determinate.
 
 $$
-\sum F_x = 0 \Rightarrow A_x = 0
+\sum F_x = 0 \;\Rightarrow\; A_x = 0
 $$
 
 $$
-\sum F_y = 0 \Rightarrow A_y - 2000 = 0 \Rightarrow A_y = 2000 \text{ N}
+\sum F_y = 0 \;\Rightarrow\; A_y - 2000 = 0 \;\Rightarrow\; A_y = 2000 \text{ N}
+$$
+
+Moments about A (the load sits 4 m out, turning the beam clockwise, so the wall must supply a counterclockwise $M_A$):
+
+$$
+\sum M_A = 0 \;\Rightarrow\; M_A - 2000(4) = 0 \;\Rightarrow\; M_A = 8000 \text{ N\,m}
 $$
 
 $$
-\sum M_A = 0 \Rightarrow M_A - 2000(4) = 0
+\boxed{A_x = 0,\quad A_y = 2000\text{ N},\quad M_A = 8000\text{ N\,m}}
 $$
 
-$$
-M_A = 8000 \text{ N m}
-$$
-
-This example shows why fixed supports create a reaction moment and why rigid-body equilibrium is richer than particle equilibrium.
+This is the Berkeley balcony lesson in algebra: the vertical force is easy to supply, but the 8000 N m reaction moment is what the support must not lose. A connection that cannot deliver $M_A$ rotates and fails.
 
 <dynamic-scenario topic="Rigid Body Equilibrium" context="A product engineer is checking whether a wall-mounted robotic arm bracket will overload its anchor bolts when a payload is extended outward from the wall."></dynamic-scenario>
+
+---
+
+## Worked Example 3: Beam with a Distributed Load
+
+**Problem:** A 6 m simply supported beam (pin at A, roller at B) carries a uniformly distributed load of $w = 400$ N/m over its entire length. Find the reactions.
+
+**Step 1: Replace the distribution with its resultant.** A uniform load has a rectangular diagram, so the resultant is its area, acting at the centroid (the midpoint):
+
+$$
+R = w L = (400)(6) = 2400 \text{ N at } x = 3 \text{ m}
+$$
+
+**Step 2: Moments about A.**
+
+$$
+\sum M_A = 0:\quad B_y(6) - 2400(3) = 0 \;\Rightarrow\; B_y = 1200 \text{ N}
+$$
+
+**Step 3: Force balance.**
+
+$$
+\sum F_y = 0:\quad A_y + 1200 - 2400 = 0 \;\Rightarrow\; A_y = 1200 \text{ N}, \qquad A_x = 0
+$$
+
+$$
+\boxed{A_x = 0,\quad A_y = 1200\text{ N},\quad B_y = 1200\text{ N}}
+$$
+
+The total load splits evenly because the resultant lands at midspan. The key technique is to convert the distributed load into a single equivalent force **before** taking moments.
+
+---
+
+## Worked Example 4: Inclined Cable Support (Pin plus Cable)
+
+**Problem:** A horizontal bracket arm is pinned at A and held by a cable from its tip to a wall above. The arm is 2 m long; a 500 N weight hangs at the tip. The cable makes $30^\circ$ above the horizontal where it meets the arm at the tip. Find the cable tension $T$ and the pin reactions.
+
+**FBD:** Pin A gives $A_x$, $A_y$. The cable at the tip pulls back toward the wall: its components are $T\cos 30^\circ$ (horizontal, toward A) and $T\sin 30^\circ$ (vertical, up). The 500 N weight pulls down at the tip. Unknowns $r = 3$, determinate.
+
+**Step 1: Moments about A** eliminate the pin reactions. Only the vertical forces at the tip (2 m out) create moment:
+
+$$
+\sum M_A = 0:\quad T\sin 30^\circ (2) - 500(2) = 0
+$$
+
+$$
+T(0.5)(2) = 1000 \;\Rightarrow\; T = \frac{1000}{1.0} = 1000 \text{ N}
+$$
+
+$$
+\boxed{T = 1000 \text{ N}}
+$$
+
+**Step 2: Horizontal balance.** The cable pulls the tip toward the wall, so its horizontal component is directed back at A; the pin must push outward:
+
+$$
+\sum F_x = 0:\quad A_x - T\cos 30^\circ = 0 \;\Rightarrow\; A_x = 1000(0.866) = 866 \text{ N}
+$$
+
+**Step 3: Vertical balance.**
+
+$$
+\sum F_y = 0:\quad A_y + T\sin 30^\circ - 500 = 0 \;\Rightarrow\; A_y = 500 - 1000(0.5) = 0 \text{ N}
+$$
+
+$$
+\boxed{A_x = 866 \text{ N},\quad A_y = 0}
+$$
+
+The shallow cable angle forces a large tension (twice the hung weight) and a large horizontal pin thrust. This is the same lesson as shallow guy wires: low angles multiply internal force. A steeper cable would cut both $T$ and $A_x$ sharply.
 
 ---
 
@@ -159,26 +233,16 @@ When rigid-body equilibrium problems go wrong, it is usually because of one of t
 - forgetting the reaction moment at a fixed support,
 - using the wrong sign convention for moments,
 - missing a reaction component at a pin,
-- or writing moment arms using nonperpendicular distances.
+- using nonperpendicular distances as moment arms,
+- or leaving a distributed load as is instead of replacing it with its resultant.
 
-A useful self-check is to ask:
+A useful self-check:
 
-- Are all support reactions included?
+- Are all support reactions included, and does the count give $r = 3$?
 - Did I use perpendicular distances in moment calculations?
 - Does the final answer agree with the likely direction of support action?
 
 ---
-
-## Design Intuition
-
-Rigid-body equilibrium is the gateway to structural analysis. Beams, brackets, frames, machines, and support systems all rely on this logic.
-
-If you can model the forces and moments correctly, then you can:
-
-- determine support loads,
-- size connections,
-- locate dangerous load paths,
-- and decide whether a system is statically determinate or needs additional methods.
 
 ## Design Interpretation
 
@@ -192,11 +256,9 @@ For example, if a bracket layout produces a very large reaction moment at one su
 
 This is why reaction calculations matter beyond homework. They tell you where anchors, welds, bolts, and bearing surfaces are likely to become critical.
 
-## Common Modeling Traps
+### Common Modeling Traps
 
-Even when the equations are correct, engineers can still misuse the model.
-
-Watch for these traps:
+Even when the equations are correct, engineers can still misuse the model. Watch for:
 
 - assuming a support behaves like a pin when it actually has partial fixity,
 - ignoring the eccentricity of a real load path,
@@ -204,6 +266,47 @@ Watch for these traps:
 - and trusting symmetry when the geometry or loading is only approximately symmetric.
 
 Equilibrium is a powerful first model, but it remains a model. Better design decisions come from knowing both what the model captures and what it leaves out.
+
+---
+
+## Engineering Applications
+
+| Application | Why Rigid-Body Equilibrium Matters |
+| --- | --- |
+| Cantilever balconies and signage | Support must supply the reaction moment, not just vertical force |
+| Tower-crane jibs | Counterweight moment must balance the lifted-load moment about the mast |
+| Retaining walls | Overturning moment from soil must be resisted to avoid tipping |
+| Wall-mounted equipment brackets | Anchor bolts sized from the reaction moment and shear |
+| Bridge girders | Pin/roller reactions set the internal shear and bending |
+
+> **Engineering in Action:** A crane that lifts a heavy load near its base may be perfectly safe, while the same load far out on the jib overturns it. The force never changed; the moment did.
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Planar equilibrium | $\sum F_x = 0,\;\sum F_y = 0,\;\sum M_O = 0$ |
+| Moment of a force | $M = F \, d_\perp$ |
+| Uniform load resultant | $R = wL$ at the load centroid |
+| Static determinacy (2D) | determinate when $r = 3$ |
+
+### Key Takeaways
+
+- Force balance is necessary but not sufficient for a rigid body; moments must balance too.
+- A moment equation can be taken about any point, so choose the point that removes the most unknowns.
+- Each support type supplies a known set of reactions; identify them before solving.
+- Replace distributed loads with their resultant at the centroid before taking moments.
+- Count unknowns: $r = 3$ in 2D means equilibrium alone will solve the problem.
+
+---
+
+## What's Next?
+
+In the next section we move from finding reactions to finding the **internal** forces they create: shear and bending moment along a beam. The reactions computed here become the starting boundary values for those internal-force diagrams.
 
 ---
 

@@ -1,8 +1,47 @@
-## Why "Bias" Is the Wrong Single Word for the Wrong Single Problem
+# Module 1: Algorithmic Bias and Where It Comes From
 
-When a deployed AI system performs systematically worse for one group than another, journalists, regulators, and engineers all call it "bias." The word is not wrong, but it is too compressed to be diagnostic. Bias in an AI system can come from at least six different places, each with a different fix and a different responsible party. Treating "bias" as one problem produces one-size-fits-all "debiasing" interventions that often address the wrong layer and leave the actual harm intact.
+> **"Bias deep in the model is a property of the data, the problem framing, and the deployment, not just the algorithm."**  
+> - paraphrasing Barocas, Hardt, and Narayanan, *Fairness and Machine Learning*
 
-This module disentangles the standard taxonomy used by Suresh and Guttag, by Barocas, Hardt, and Narayanan in *Fairness and Machine Learning*, and by NIST's AI Risk Management Framework. Once you can name the *kind* of bias a system has, you can pick the right intervention.
+---
+
+## Opening: One Word, Six Failures
+
+In October 2019, Ziad Obermeyer and colleagues published a finding in *Science* about a commercial risk-prediction algorithm used to manage care for roughly 200 million people in the United States each year. The algorithm was meant to flag the sickest patients for extra support. It worked exactly as designed, and it still produced a racial disparity: at any given risk score, Black patients were substantially sicker than white patients with the same score. The reason was subtle. The vendor had trained the model to predict future **healthcare cost**, reasoning that costly patients are sick patients. But because less money had historically been spent on Black patients with the same conditions, cost was a distorted stand-in for need. Correcting the flaw would have raised the share of Black patients flagged for extra care from 17.7% to 46.5%.
+
+Nobody in this story wrote a line of racist code. There was no malicious actor and no obvious bug. The harm came from a reasonable-sounding modeling choice colliding with an unequal world.
+
+> **The Big Picture:** When a deployed AI system performs systematically worse for one group than another, journalists, regulators, and engineers all call it "bias." The word is not wrong, but it is too compressed to be diagnostic. Bias can enter from at least six different places, each with a different fix and a different responsible party. Calling all of them "bias" produces one-size-fits-all "debiasing" that often targets the wrong layer and leaves the harm intact.
+
+This module disentangles the standard taxonomy used by Suresh and Guttag (2021), by Barocas, Hardt, and Narayanan in *Fairness and Machine Learning*, and by NIST's AI Risk Management Framework. Once you can name the *kind* of bias a system has, you can pick the right intervention.
+
+---
+
+## Learning Objectives
+
+By the end of this module, you will be able to:
+
+1. **Name and distinguish** the six sources of algorithmic bias and where in the pipeline each one enters.
+2. **Diagnose** which bias sources are present in a real-world AI failure case using a structured workflow.
+3. **Match** each bias source to an appropriate engineering or non-engineering intervention.
+4. **Recognize** when post-processing "debiasing" cannot, even in principle, fix the underlying problem.
+
+---
+
+## Locating Bias in the ML Pipeline
+
+A useful mental model: every machine learning system is a pipeline, and each of the six bias sources attaches to a specific stage. Naming the stage tells you who can act and what kind of action is even possible.
+
+| Pipeline Stage | Bias Source That Enters Here | Who Can Fix It |
+| --- | --- | --- |
+| The world generating the data | Historical | Institution, policy, product owner |
+| Sampling the data | Representation | Data engineering, collection |
+| Choosing what to record/label | Measurement | Domain experts, target redesign |
+| Choosing one model for all | Aggregation | ML architecture |
+| Choosing the test set | Evaluation | ML evaluation, QA |
+| Acting on predictions over time | Deployment / feedback | System design, governance |
+
+> **Key Insight:** "Bias" is not located in the algorithm alone. Four of the six sources enter before a single weight is learned, and one enters only after deployment. This is why a brilliant model on a flawed problem framing is still a biased system.
 
 ---
 
@@ -74,7 +113,7 @@ The act of deploying the model changes the world it operates in, which then feed
 
 **Sign:** small initial differences in predictions amplify over time without corresponding changes in the underlying world.
 
-**Wrong fixes:** retrain on more data — that is the trap.
+**Wrong fixes:** retrain on more data (that is the trap).
 
 **Right fixes:** counterfactual evaluation, randomized exploration to break the loop, deployment-time fairness constraints, periodic re-grounding against external truth.
 
@@ -97,13 +136,73 @@ Most real cases involve more than one. A complete diagnosis names which sources 
 
 ---
 
+## Worked Case Analysis: The Care-Management Algorithm
+
+Let us run the full diagnostic on the Obermeyer case from the opening, then turn the diagnosis into a decision. This is the move that separates a slogan ("the algorithm was biased") from an analysis a team can act on.
+
+### Step 1: State the claim precisely
+
+The observable harm: among patients assigned the same risk score, Black patients had more active chronic conditions than white patients. So at the threshold used to enroll patients in extra care, qualified Black patients were being passed over. The disparity was in **who got help**, not in raw predictive accuracy of the cost target.
+
+### Step 2: Walk the six sources
+
+| Source | Present? | Evidence in this case |
+| --- | --- | --- |
+| Historical | Partly | Less was historically spent on Black patients; that pattern is real and unjust. |
+| Representation | No strong sign | The training population resembled the deployment population; the failure was not a sampling gap. |
+| **Measurement** | **Primary** | Cost was used as a proxy for need; the proxy-to-need relationship differs by group. |
+| Aggregation | Minor | One model served all groups, but per-group models would not fix a mismeasured target. |
+| Evaluation | Secondary | The model was validated on cost prediction, not on need-disaggregated subgroup outcomes. |
+| Deployment feedback | Risk | Under-served patients incur lower future cost, which would re-confirm the proxy next round. |
+
+The dominant source is **measurement bias**: a proxy (cost) that correlates with the goal (need) but with a group-dependent slope. Evaluation bias hid it (nobody tested need by subgroup), and a feedback loop would have entrenched it.
+
+### Step 3: Identify stakeholders and what each one bears
+
+| Stakeholder | What they want | What the biased system does to them |
+| --- | --- | --- |
+| Under-served patients | Care matched to need | Systematically under-enrolled despite higher illness |
+| Health system | Cost control, good outcomes | Misallocates scarce care-management slots |
+| Algorithm vendor | A sellable, accurate product | Optimized the wrong target; reputational and legal exposure |
+| Regulator | Equitable, accountable care | Must detect a harm invisible in aggregate accuracy |
+
+### Step 4: Weigh the interventions
+
+| Candidate fix | Addresses the real source? | Tradeoff |
+| --- | --- | --- |
+| Add more training data | No | Same proxy, more of it; harm unchanged |
+| Post-process scores by race | No (and legally fraught) | Reshuffles error; target still mismeasured |
+| **Change the target** to a direct need measure (e.g., number of active chronic conditions) | **Yes** | Needs new labels and domain agreement; this is what the researchers showed reduced the disparity by ~84% |
+| Subgroup-disaggregated evaluation | Detects, does not cure | Cheap monitoring; must be paired with a target fix |
+| Decline to deploy | Removes harm | Forfeits genuine benefit of triage; rarely the best option here |
+
+### Step 5: Decide
+
+The defensible decision is to **redefine the prediction target** from cost to a direct measure of health need, and to **add subgroup-disaggregated evaluation** as a standing monitor. Both the engineering layer (re-label, re-train, re-evaluate) and the institutional layer (agree on what "need" means) must act. Post-processing alone would have been the seductive wrong answer: cheap, fast, and aimed at the wrong layer.
+
+> **Engineering in Action:** Notice that the highest-leverage fix here, changing the target variable, is not a hyperparameter or a fairness constraint. It is a reframing of the problem. The most consequential fairness decisions are often made before any model is trained.
+
+---
+
 ## What "Debiasing" Cannot Fix
 
 A widely circulated belief is that "post-processing" the model's predictions can eliminate bias. It cannot in general. Post-processing can change which group bears which kind of error, but it cannot create information the model never had, and it cannot rewrite the target variable.
 
 If the bias is **historical**, post-processing reshuffles the harm. If the bias is **measurement**, post-processing applies a transform to a measurement that was never measuring the right thing. If the bias is **deployment feedback**, post-processing each output does not break the loop.
 
-The only intervention that is robust across all six sources is **examining whether the system should be built or deployed at all** — what Bender, Gebru, McMillan-Major, and Mitchell call the "stochastic parrot" question: do we know what this model is reproducing, and is that worth reproducing?
+The only intervention that is robust across all six sources is **examining whether the system should be built or deployed at all**, the question Bender, Gebru, McMillan-Major, and Mitchell raise in their "stochastic parrots" critique: do we know what this model is reproducing, and is that worth reproducing?
+
+---
+
+## Counterarguments and Limitations
+
+A taxonomy is a tool, not the territory. Use it with these cautions in mind.
+
+- **The categories overlap.** Measurement and historical bias in particular shade into each other; the Obermeyer case can be told as either, depending on whether you emphasize the unequal spending (historical) or the proxy choice (measurement). The point of the taxonomy is not crisp classification, it is to surface *every* contributing layer so none is missed.
+- **Naming the source does not resolve the fairness definition.** Even after a clean diagnosis, "fair" can mean equal error rates, equal false-positive rates, calibration within groups, or individual consistency. Kleinberg, Mullainathan, and Raghavan (2016) proved that several of these cannot all hold at once except in degenerate cases. The taxonomy tells you *where* the bias enters; it does not tell you *which* fairness criterion to optimize.
+- **Some "fixes" trade one group's harm for another's.** Post-processing and threshold adjustment redistribute error rather than removing it. A fix that improves one subgroup's false-negative rate may worsen another's false-positive rate. There is rarely a free lunch.
+- **Group-blind is not bias-free.** Removing a protected attribute from the features does not remove the bias, because correlated proxies (ZIP code, name, purchase history) reconstruct it. Blindness can even make bias harder to audit.
+- **A model can be unbiased and still cause harm.** Even a perfectly calibrated, representative model can be deployed in a context where any automated decision concentrates power or removes recourse. The taxonomy diagnoses statistical bias; it is silent on legitimacy.
 
 <dynamic-scenario topic="Algorithmic Bias Sources" context="A school district deploys an AI grading model on student essays. After a year, parents in some neighborhoods report that the model gives their children systematically lower scores than human graders did. Walk the six bias-source diagnostic to identify which sources are most likely contributing and what engineering and non-engineering responses would address each."></dynamic-scenario>
 
@@ -116,3 +215,33 @@ The only intervention that is robust across all six sources is **examining wheth
   options='[{"text":"Aggregation bias; fix it by training one larger global model.","isCorrect":false},{"text":"Representation bias; fix it by stratified resampling, targeted data collection from underrepresented groups, and subgroup-disaggregated evaluation (Gender Shades methodology).","isCorrect":true},{"text":"Deployment feedback bias; fix it with post-processing.","isCorrect":false}]'
   explanation="Correct. Differential subgroup error driven by skewed training distribution is representation bias. The Buolamwini and Gebru Gender Shades work made this diagnostic the canonical reference."
 />
+
+---
+
+## Summary
+
+### The Six Sources at a Glance
+
+| Source | One-line signature | Best-matched response |
+| --- | --- | --- |
+| Historical | Accurate model of an unjust world | Change target; question deployment |
+| Representation | Subgroup error from skewed sampling | Stratified resampling; targeted collection |
+| Measurement | Group-dependent proxy for the real target | Redefine what you measure |
+| Aggregation | One model fits no subgroup well | Subgroup or hierarchical models |
+| Evaluation | Great in lab, worse in the field | Representative, disaggregated test sets |
+| Deployment feedback | Predictions manufacture confirming data | Counterfactual eval; randomized exploration |
+
+### Key Takeaways
+
+- "Bias" is six different problems with six different owners; diagnose before you intervene.
+- Four of the six sources enter before training; the fix often lives outside the model.
+- Run the diagnostic in order, and expect most real cases to involve more than one source.
+- A stakeholder and tradeoff analysis turns a diagnosis into a defensible decision.
+- Post-processing redistributes error; it cannot create missing information or rewrite a mismeasured target.
+- A statistically unbiased model can still be an illegitimate one; the taxonomy is necessary, not sufficient.
+
+---
+
+## What's Next?
+
+In **Module 2: Defining Fairness**, we move from *where bias comes from* to *what fairness even means*. We will formalize competing fairness criteria (demographic parity, equalized odds, calibration), work through the impossibility results that prevent satisfying them all at once, and decide how a team can choose a criterion defensibly for a given context.

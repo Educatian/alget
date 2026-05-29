@@ -23,7 +23,7 @@ That is angular momentum conservation made visible, and it is the heart of this 
 
 ## Why Rigid Body Impulse-Momentum Completes the Kinetics Trio
 
-For particles, dynamics offers three equivalent kinetics frameworks: Newton's second law (force-acceleration), work-energy (energy bookkeeping), and impulse-momentum (time-integrated force). Each one shines for a different class of problem. The rigid-body extension of impulse-momentum is the missing leg of the triangle for rotating and translating bodies — and is the only convenient tool for problems involving **collisions, impacts, and short-duration forces** in rigid-body dynamics.
+For particles, dynamics offers three equivalent kinetics frameworks: Newton's second law (force-acceleration), work-energy (energy bookkeeping), and impulse-momentum (time-integrated force). Each one shines for a different class of problem. The rigid-body extension of impulse-momentum is the missing leg of the triangle for rotating and translating bodies, and is the only convenient tool for problems involving **collisions, impacts, and short-duration forces** in rigid-body dynamics.
 
 Hibbeler's chapter 19, Beer/Johnston's chapter 17, and Meriam's chapter 6/7 cover this material. This module assembles the linear and angular impulse-momentum principles for rigid bodies, the principles of conservation, and a worked workflow for impact problems.
 
@@ -165,6 +165,46 @@ The angular velocity more than doubles, purely from redistributing mass. This is
 
 ---
 
+### Example 4: Eccentric Impact on a Free Rod (Restitution, Numbers)
+
+This example exercises the full eccentric-impact workflow: linear momentum, angular momentum about the mass center, and the coefficient of restitution evaluated at the **contact point**. It is the kind of problem that ordinary $F = ma$ simply cannot reach.
+
+**Problem:** A uniform rod of mass $M = 4$ kg and length $L = 1.2$ m rests at rest on a frictionless horizontal surface, free to translate and rotate. A ball of mass $m = 0.6$ kg slides along the surface at $v = 10$ m/s and strikes the rod perpendicular to its length at a point $d = 0.5$ m from the rod's mass center G. The coefficient of restitution is $e = 0.6$. Find the ball's velocity, the rod's mass-center velocity, and the rod's angular velocity immediately after impact.
+
+**Step 1: Set up the unknowns and the FBD logic.** During the brief impact, the only impulsive force is the contact impulse $J$ acting along the impact line (perpendicular to the rod). Friction is absent and gravity is negligible over the impulsive interval. Call the post-impact ball speed $v_1$, rod mass-center speed $V$, and rod angular velocity $\omega$. All act along or about the impact line.
+
+**Step 2: Linear momentum of the system (along the impact line).** No external impulse acts on the ball-plus-rod system along the line, so
+
+$$m v = m v_1 + M V$$
+
+**Step 3: Impulse on each body.** The rod starts from rest, so the contact impulse equals its momentum change, $J = M V$. The same impulse acts on the rod at offset $d$ from G, so by angular impulse-momentum about G,
+
+$$J d = I_G\,\omega, \qquad I_G = \tfrac{1}{12} M L^2 = \tfrac{1}{12}(4)(1.2)^2 = 0.48 \text{ kg·m}^2$$
+
+Combining $J = MV$ with $Jd = I_G\omega$ gives $\omega = \dfrac{M d}{I_G}\,V$.
+
+**Step 4: Coefficient of restitution at the contact point.** The rod's contact point moves at $V + \omega d$ (translation plus rotation), while the ball moves at $v_1$. With the rod initially at rest,
+
+$$e = \frac{(V + \omega d) - v_1}{v - 0} \;\Rightarrow\; e v = (V + \omega d) - v_1$$
+
+**Step 5: Solve the system.** From Step 2, $v_1 = v - \tfrac{M}{m} V$. Substituting that and $\omega = \tfrac{Md}{I_G}V$ into Step 4,
+
+$$e v = V + \frac{M d^2}{I_G} V - v + \frac{M}{m} V \;\Rightarrow\; (1 + e)\,v = V\left(1 + \frac{M d^2}{I_G} + \frac{M}{m}\right)$$
+
+Evaluate the bracket: $\dfrac{M d^2}{I_G} = \dfrac{(4)(0.5)^2}{0.48} = 2.083$ and $\dfrac{M}{m} = \dfrac{4}{0.6} = 6.667$, so the bracket is $1 + 2.083 + 6.667 = 9.75$. With $(1+e)v = (1.6)(10) = 16$,
+
+$$\boxed{V = \frac{16}{9.75} = 1.64 \text{ m/s}}$$
+
+Back-substitute:
+
+$$\omega = \frac{M d}{I_G}V = \frac{(4)(0.5)}{0.48}(1.64) = \boxed{6.84 \text{ rad/s}}$$
+
+$$v_1 = v - \frac{M}{m}V = 10 - (6.667)(1.64) = \boxed{-0.94 \text{ m/s}}$$
+
+**Step 6: Sanity checks.** The negative $v_1$ means the ball rebounds, which is reasonable for a light ball off a heavier rod. Linear momentum balances: $m v_1 + M V = (0.6)(-0.94) + (4)(1.64) = 6.0 = m v$. Kinetic energy drops from $\tfrac{1}{2}m v^2 = 30$ J to $\tfrac{1}{2}m v_1^2 + \tfrac{1}{2}M V^2 + \tfrac{1}{2}I_G \omega^2 \approx 16.9$ J; the 13.1 J loss is consistent with $e = 0.6 < 1$. Had we (wrongly) used the rod's mass-center velocity instead of the contact-point velocity $V + \omega d$ in Step 4, the restitution equation would have ignored the rotation entirely and badly underpredicted both $\omega$ and the energy loss.
+
+---
+
 ## Common Errors and Their Diagnoses
 
 - **Using F=ma for impulsive forces.** Impulsive forces produce finite impulses over zero (idealized) time intervals. F itself is unbounded; only the impulse $\int F\,dt$ is meaningful. Use impulse-momentum, not Newton's second law in instantaneous form.
@@ -173,6 +213,23 @@ The angular velocity more than doubles, purely from redistributing mass. This is
 - **Choosing the moment-of-inertia axis incorrectly.** When using angular impulse-momentum about a fixed point O, use $I_O$, not $I_G$. The parallel-axis theorem connects them.
 
 <dynamic-scenario topic="Rigid Body Impulse-Momentum" context="A bullet of mass m and speed v embeds in the end of a uniform rod of mass M and length L pinned at the other end. The student must compute the rod's angular velocity immediately after impact, justifying the choice of conservation principle, the choice of moment-of-inertia axis, and the treatment of the pin reaction."></dynamic-scenario>
+
+---
+
+## Engineering Applications
+
+Impulse-momentum is the design-level tool wherever forces are large but brief, or wherever total angular momentum is a conserved budget to be managed.
+
+| Application | What Impulse-Momentum Buys the Engineer |
+| --- | --- |
+| Vehicle crash analysis | Crumple zones lengthen the impact time $\Delta t$, lowering the peak force for the same momentum change $\int F\,dt = \Delta(mv)$ |
+| Forging and stamping presses | A hammer's momentum sets the deforming impulse delivered to the workpiece per blow |
+| Reaction wheels on satellites | Spinning a flywheel up or down trades angular momentum with the spacecraft body to reorient it without thrusters (zero external moment) |
+| Turbine and propeller blade strikes | Eccentric-impact and restitution models size the impulsive loads and rebound from foreign-object debris |
+| Sports equipment (bats, clubs, rackets) | The "sweet spot" is the impact point that minimizes the impulsive reaction felt at the hands, an eccentric-impact result |
+| Pile drivers and demolition | Each drop delivers a momentum-controlled impulse; restitution governs energy lost into the pile versus rebound |
+
+> **Engineering in Action:** A reaction wheel and a diver's tuck obey the identical law. With no external moment, total angular momentum is fixed, so changing $I$ changes $\omega$, and spinning an internal wheel one way turns the body the other. The scale spans from a 60 kg gymnast to a multi-tonne satellite; the conservation statement does not change.
 
 ---
 

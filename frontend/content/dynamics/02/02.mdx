@@ -19,6 +19,16 @@
 
 ---
 
+## Opening: The Crumple Zone
+
+When a car hits a barrier at 25 m/s, the driver survives not because the crash is gentle but because the front of the car is engineered to do a very specific amount of work. A modern crumple zone deliberately deforms, spreading the change in the car's kinetic energy over roughly half a meter of crush distance instead of a few millimeters of rigid contact. Because force times distance must equal the kinetic energy removed, lengthening the distance lowers the peak force on the occupant. A rigid bumper would stop the same car in a centimeter and multiply the deceleration force by a hundred.
+
+That is the entire philosophy of energy methods in one example. Instead of tracking the violent, millisecond-by-millisecond force history of the collision, an engineer can write a single statement: the kinetic energy at impact equals the work absorbed by the structure. The same idea sizes elevator buffers, ski-lift catch springs, regenerative brakes, and pile drivers.
+
+> **The Big Picture:** Newton's second law answers "what is happening right now." Work and energy answer "what changed between here and there." For many design questions, the second is the cheaper and clearer question.
+
+---
+
 ## Why Engineers Switch to Energy
 
 Newton's second law is local. It tells you what acceleration is happening at an instant. Energy methods are cumulative. They tell you how the system state changes between two positions.
@@ -44,6 +54,8 @@ $$
 \boxed{W = Fd\cos \theta}
 $$
 
+The dot product is the key idea: only the component of force along the displacement does work. A force perpendicular to motion (such as the normal force on a sliding block, or the tension in a string holding a ball in circular motion) does zero work no matter how large it is.
+
 The sign of work matters:
 
 - positive work adds kinetic energy
@@ -58,6 +70,14 @@ The sign of work matters:
 | Gravity | $W_g = -mg\Delta h$ | Negative when moving upward |
 | Spring | $W_s = \frac{1}{2}k(x_1^2 - x_2^2)$ | Depends on compression change |
 | Kinetic friction | $W_f = -f_k d = -\mu_k N d$ | Always resists sliding |
+
+The spring expression deserves a note, because students often misremember its sign. The force a linear spring exerts is $F = -kx$, opposing the stretch. Integrating that force from $x_1$ to $x_2$,
+
+$$
+W_s = \int_{x_1}^{x_2} (-kx)\, dx = \tfrac{1}{2}k\left(x_1^2 - x_2^2\right).
+$$
+
+So a spring that relaxes from a compression of $x_1$ to its free length ($x_2 = 0$) does positive work $\tfrac{1}{2}kx_1^2$ on whatever it pushes, which is exactly the energy it stored while being compressed.
 
 ## Kinetic Energy
 
@@ -78,6 +98,22 @@ Expanded for a particle:
 $$
 W_{net} = \frac{1}{2}mv_2^2 - \frac{1}{2}mv_1^2
 $$
+
+### Where the Theorem Comes From
+
+The theorem is not a separate law; it is Newton's second law integrated over distance. Start from $\sum \vec{F} = m\vec{a}$ along the path and take the dot product with $d\vec{r}$:
+
+$$
+\sum \vec{F} \cdot d\vec{r} = m\,\vec{a} \cdot d\vec{r}.
+$$
+
+Using $\vec{a} = \dfrac{d\vec{v}}{dt}$ and $d\vec{r} = \vec{v}\,dt$, the right side becomes $m\,\vec{v} \cdot d\vec{v}$. Integrating from state 1 to state 2,
+
+$$
+\int_1^2 \sum \vec{F} \cdot d\vec{r} = m \int_1^2 \vec{v} \cdot d\vec{v} = \tfrac{1}{2}mv_2^2 - \tfrac{1}{2}mv_1^2.
+$$
+
+The left side is exactly the net work, so $W_{net} = T_2 - T_1$. This derivation explains why the theorem is so general: it inherits the validity of Newton's second law and adds no new assumptions.
 
 This is the energy version of cause and effect:
 
@@ -148,11 +184,63 @@ When you use work and energy, you are usually assuming that:
 
 That is why energy methods are excellent for speed, height, compression, and stopping-distance estimates, but less informative when you care about peak force, transient acceleration, or exact timing.
 
-## Worked Example
+## Worked Examples
+
+### Example 2.1: Spring-Launched Slider with Friction
+
+**Problem:** A 0.5 kg slider rests against a spring of stiffness $k = 800$ N/m on a horizontal track. The spring is compressed 0.15 m and released. After leaving the spring, the slider crosses a rough patch 0.6 m long with $\mu_k = 0.25$ before reaching a sensor. Find (a) the launch speed as the slider leaves the spring, and (b) the speed at the sensor.
+
+**Free body diagram (rough patch).** Picture the slider on the horizontal track: weight $W = mg$ down, normal force $N$ up, and kinetic friction $f_k$ pointing backward against the motion. There is no vertical motion, so $N = mg$.
+
+**Step 1: Work done by the spring.** The spring relaxes from $x_1 = 0.15$ m to $x_2 = 0$:
+
+$$
+W_s = \tfrac{1}{2}k\left(x_1^2 - x_2^2\right) = \tfrac{1}{2}(800)(0.15^2 - 0) = 9.00 \text{ J}
+$$
+
+**Step 2: Launch speed (part a).** On the smooth section the only horizontal work is the spring's, and the slider starts from rest, so $W_s = \tfrac{1}{2}mv_1^2$:
+
+$$
+v_1 = \sqrt{\frac{2W_s}{m}} = \sqrt{\frac{2(9.00)}{0.5}} = \boxed{6.00 \text{ m/s}}
+$$
+
+**Step 3: Friction work on the rough patch.** First the normal force, then friction:
+
+$$
+N = mg = (0.5)(9.81) = 4.905 \text{ N}
+$$
+
+$$
+f_k = \mu_k N = (0.25)(4.905) = 1.226 \text{ N}
+$$
+
+$$
+W_f = -f_k d = -(1.226)(0.6) = -0.736 \text{ J}
+$$
+
+**Step 4: Speed at the sensor (part b).** Apply the work-energy theorem across the whole motion, from rest to the sensor:
+
+$$
+W_s + W_f = \tfrac{1}{2}mv_2^2
+$$
+
+$$
+9.00 - 0.736 = \tfrac{1}{2}(0.5)v_2^2 = 0.25\,v_2^2
+$$
+
+$$
+v_2 = \sqrt{\frac{8.264}{0.25}} = \boxed{5.75 \text{ m/s}}
+$$
+
+The slider arrives a little slower than its launch speed because the rough patch removed 0.74 J of the 9.00 J the spring delivered.
+
+---
 
 ### Example 2.2: Block Sliding Down an Incline with Friction
 
 **Problem:** A 5 kg block slides 3 m down a $30^\circ$ incline with $\mu_k = 0.2$. Starting from rest, find the final speed.
+
+**Free body diagram (on the incline).** Tilt the axes with the slope: weight $mg$ down, normal force $N$ perpendicular to the surface, and friction $f_k$ up the slope opposing the downhill slide. The component of weight along the slope drives the motion; the component perpendicular to the slope sets the normal force.
 
 ### Step A: Define the initial and final states
 
@@ -205,10 +293,38 @@ $$
 $$
 
 $$
-v_2 = \sqrt{19.24} = 4.39 \text{ m/s}
+v_2 = \sqrt{19.24} = \boxed{4.39 \text{ m/s}}
 $$
 
-The speed is lower than the frictionless case because some of the gravitational energy was dissipated by friction.
+The speed is lower than the frictionless case (which would give $v_2 = \sqrt{2gh} = 5.42$ m/s) because some of the gravitational energy was dissipated by friction.
+
+---
+
+### Example 2.3: Stopping Distance of a Braking Car
+
+**Problem:** A 1200 kg car travels at 25 m/s when the driver locks the brakes on dry pavement, $\mu_k = 0.7$. Using energy methods, find the stopping distance.
+
+**Free body diagram.** On level ground: weight $mg$ down, normal force $N = mg$ up, and friction $f_k$ backward, opposing motion. Friction is the only force doing work along the road.
+
+**Step 1: Initial kinetic energy.**
+
+$$
+T_1 = \tfrac{1}{2}mv_0^2 = \tfrac{1}{2}(1200)(25^2) = 375{,}000 \text{ J}
+$$
+
+**Step 2: Friction force.**
+
+$$
+f_k = \mu_k mg = (0.7)(1200)(9.81) = 8240 \text{ N}
+$$
+
+**Step 3: Work-energy balance.** The car ends at rest, so all kinetic energy is removed by friction over distance $d$:
+
+$$
+-f_k d = 0 - T_1 \quad\Rightarrow\quad d = \frac{T_1}{f_k} = \frac{375{,}000}{8240} = \boxed{45.5 \text{ m}}
+$$
+
+Notice the design lesson hidden in the algebra: $d = \dfrac{v_0^2}{2\mu_k g}$ scales with the **square** of speed. Doubling the speed quadruples the stopping distance, which is exactly why posted speed limits dominate crash severity.
 
 ## What Students Usually Miss
 
@@ -282,6 +398,18 @@ $$
 
 The difference is small in equation count but meaningful in design interpretation. Lower dissipation improves speed efficiency, but it may also increase stopping demand downstream. Energy methods make that trade-off visible very quickly.
 
+## Engineering Applications
+
+| Application | How work and energy are used |
+| --- | --- |
+| Vehicle crumple zones | Crush distance is sized so absorbed work limits peak deceleration force |
+| Regenerative braking | Kinetic energy is captured as stored charge instead of friction heat |
+| Elevator buffer springs | Spring work $\tfrac{1}{2}kx^2$ must absorb the car's kinetic energy on overtravel |
+| Pile drivers and forging | Dropped-mass potential energy converts to plastic work in the workpiece |
+| Roller coasters | Energy balance sets minimum hill clearance and loop entry speed |
+
+> **Engineering in Action:** Whether the device stores energy (a launch spring), dissipates it (a brake), or recovers it (a regenerative drive), the design question is the same accounting statement: where does the kinetic energy go, and over what distance.
+
 ## Check Your Understanding
 
 <interactive-quiz
@@ -300,10 +428,26 @@ The difference is small in equation count but meaningful in design interpretatio
 
 ## Summary
 
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Work (general) | $W = \int \vec{F} \cdot d\vec{r}$ |
+| Work (constant force) | $W = Fd\cos\theta$ |
+| Kinetic energy | $T = \tfrac{1}{2}mv^2$ |
+| Work-energy theorem | $W_{net} = T_2 - T_1$ |
+| Spring work | $W_s = \tfrac{1}{2}k(x_1^2 - x_2^2)$ |
+| Gravity work | $W_g = -mg\Delta h$ |
+| Friction work | $W_f = -\mu_k N d$ |
+| Energy balance with losses | $T_1 + V_1 + W_{nc} = T_2 + V_2$ |
+
+### Key Takeaways
+
 - Work is the energy transfer caused by a force acting through a displacement.
-- Net work changes kinetic energy.
+- Net work changes kinetic energy, and the theorem is just $\sum F = ma$ integrated over distance.
 - Conservative forces can be converted into potential-energy terms.
 - Friction and other dissipative effects should remain explicit unless you are modeling a truly conservative system.
+- Stopping distance scales with the square of speed, a direct consequence of the energy balance.
 
 ## What's Next?
 

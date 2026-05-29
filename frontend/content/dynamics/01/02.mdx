@@ -1,8 +1,27 @@
 # Rigid Body Mechanics in Motion
 
-When we treated an object like a particle, we only cared about where its mass center moved. Real engineering systems are richer than that. A robot leg swings, a wrench rotates, a satellite tumbles, and a bicycle wheel both translates and spins. To model those systems, we need the idea of a **rigid body**: an idealization in which the distance between any two points stays constant even while the object moves.
+> **"Give me a lever long enough and a fulcrum on which to place it, and I shall move the world."**  
+> - Archimedes
 
-This assumption lets us track both **translation** and **rotation** without having to model every molecule in the object.
+---
+
+On the morning of June 1, 2009, investigators studying a swing-stage scaffold collapse in New York traced the failure to a single overlooked quantity: the turning effect of an off-center load on the support frame. The platform itself was strong enough to carry the weight. What it could not survive was the **moment** that weight produced once the load shifted toward one end. The platform did not just sink; it rotated, and rotation is exactly the behavior a particle model can never predict. The moment a body can spin as well as slide, force magnitude alone stops telling the whole story. We need geometry too.
+
+When we treated an object like a particle, we only cared about where its mass center moved. Real engineering systems are richer than that. A robot leg swings, a wrench rotates, a satellite tumbles, and a bicycle wheel both translates and spins. To model those systems, we need the idea of a **rigid body**: an idealization in which the distance between any two points stays constant even while the object moves. This assumption lets us track both **translation** and **rotation** without having to model every molecule in the object.
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Define** a rigid body and explain why orientation, not just position, must be tracked
+2. **Relate** angular quantities to linear quantities using $v = r\omega$ and $a_t = r\alpha$
+3. **Calculate** torque from a force, a moment arm, and an included angle
+4. **Apply** moment-arm geometry to real joint and mechanism design decisions
+5. **Resolve** the acceleration of a point on a rotating body into tangential and normal parts
+
+---
 
 ## Why Rigid Bodies Matter
 
@@ -17,6 +36,10 @@ In other words, a rigid body asks two questions at once:
 1. Where is the object moving?
 2. How is the object rotating while it moves?
 
+> **Key Insight:** A particle has three things you can ask about (its position, velocity, acceleration). A planar rigid body adds three more (its angle $\theta$, angular velocity $\omega$, and angular acceleration $\alpha$). Dynamics is largely the discipline of keeping those two stories consistent.
+
+---
+
 ## Translation Versus Rotation
 
 Every rigid-body motion can be interpreted as some combination of:
@@ -30,11 +53,7 @@ $$
 v = r\omega
 $$
 
-where:
-
-- $v$ is tangential speed
-- $r$ is distance from the axis
-- $\omega$ is angular velocity
+where $v$ is tangential speed, $r$ is distance from the axis, and $\omega$ is angular velocity (in rad/s).
 
 If the angular speed changes, the tangential acceleration follows:
 
@@ -42,53 +61,150 @@ $$
 a_t = r\alpha
 $$
 
-where $\alpha$ is angular acceleration.
+where $\alpha$ is angular acceleration (in rad/s$^2$).
+
+There is a second acceleration hiding here. Even at constant angular speed, a point on the rim is constantly changing direction, so it carries a **normal (centripetal) acceleration** directed toward the axis:
+
+$$
+a_n = \frac{v^2}{r} = r\omega^2
+$$
+
+The total acceleration of a point on a rotating body is the vector sum of these perpendicular parts:
+
+$$
+\boxed{a = \sqrt{a_t^2 + a_n^2}}
+$$
+
+> **Critical Check:** A common error is to report only $a_t$ and forget $a_n$. At high spin rates the normal term usually dominates by orders of magnitude, which is why flywheels and turbine rotors fail by bursting outward, not by twisting.
+
+---
 
 ## Torque: The Rotational Version of Push
 
-A force does not automatically create rotation. Rotation depends on both the force and **where** that force is applied relative to the pivot or axis. That turning effect is **torque**:
+A force does not automatically create rotation. Rotation depends on both the force and **where** that force is applied relative to the pivot or axis. That turning effect is **torque** (also called a moment):
 
 $$
-\tau = r \times F
+\vec{\tau} = \vec{r} \times \vec{F}
 $$
 
 For magnitude in a planar problem:
 
 $$
-|\tau| = rF\sin{\theta}
+\boxed{|\tau| = rF\sin{\theta}}
 $$
 
-where:
+where $r$ is the distance from the pivot to the point of application, $F$ is the applied force, and $\theta$ is the angle between the position vector $\vec{r}$ and the force $\vec{F}$.
 
-- $r$ is the moment arm from the pivot to the point of application
-- $F$ is the applied force
-- $\theta$ is the angle between them
+The factor $r\sin\theta$ has its own name: the **perpendicular moment arm** $d$. It is the shortest distance from the pivot to the line of action of the force. Writing $\tau = Fd$ is often faster than tracking the angle, and it makes the geometry obvious: torque is large when the force pushes far from the pivot and perpendicular to the arm. This equation explains why a longer wrench feels stronger. The force from your hand may be the same, but the larger moment arm creates more torque.
 
-This equation explains why a longer wrench feels stronger. The force from your hand may be the same, but the larger moment arm creates more torque.
+### Sign Convention
 
-## Engineering Intuition: Moment Arm Design
-
-Suppose an exoskeleton knee actuator can apply a force of $180 \text{ N}$.
-
-- If the actuator is attached $0.04 \text{ m}$ from the joint center, the available torque is:
+In planar problems we pick a positive sense (usually counterclockwise) and sign every torque accordingly. The net torque is the algebraic sum:
 
 $$
-\tau = 0.04 \times 180 = 7.2 \text{ N m}
+\sum \tau = \sum \tau_{\text{CCW}} - \sum \tau_{\text{CW}}
 $$
 
-- If the attachment point is moved to $0.06 \text{ m}$ while keeping the same force:
+---
+
+## Worked Examples
+
+### Example 2.1: Torque From a Wrench at an Angle
+
+**Problem:** A mechanic pulls on a $0.30 \text{ m}$ wrench with a force of $120 \text{ N}$. Find the torque about the bolt (a) when the pull is perpendicular to the handle and (b) when the pull is at $60^\circ$ to the handle.
+
+**Step 1: Draw the situation.** On the FBD, place the pivot at the bolt, draw $\vec{r}$ along the handle, and draw $\vec{F}$ at its tip. The angle $\theta$ is measured between $\vec{r}$ and $\vec{F}$.
+
+**Step 2: Perpendicular pull ($\theta = 90^\circ$).**
 
 $$
-\tau = 0.06 \times 180 = 10.8 \text{ N m}
+\tau = rF\sin 90^\circ = (0.30)(120)(1) = \boxed{36.0 \text{ N m}}
 $$
 
-The second design produces 50% more torque without changing the motor. The tradeoff is that the larger mechanism may be bulkier, slower, or harder to package. This is exactly the sort of design compromise rigid-body mechanics helps us reason about.
+**Step 3: Angled pull ($\theta = 60^\circ$).**
+
+$$
+\tau = rF\sin 60^\circ = (0.30)(120)(0.8660) = \boxed{31.18 \text{ N m}}
+$$
+
+The angled pull wastes part of the force pushing along the handle, where it cannot turn the bolt. The lesson generalizes: maximum torque always comes from a force applied perpendicular to the moment arm.
+
+---
+
+### Example 2.2: Moment-Arm Design for an Exoskeleton Knee
+
+**Problem:** An exoskeleton knee actuator can apply a force of $180 \text{ N}$ perpendicular to a short lever attached to the joint. Compare the available joint torque when the attachment point sits $0.04 \text{ m}$ from the joint center versus $0.06 \text{ m}$.
+
+**Step 1: Apply $\tau = Fd$ at the first attachment point.**
+
+$$
+\tau_1 = (0.04)(180) = \boxed{7.2 \text{ N m}}
+$$
+
+**Step 2: Move the attachment outward.**
+
+$$
+\tau_2 = (0.06)(180) = \boxed{10.8 \text{ N m}}
+$$
+
+**Step 3: Interpret.** The percentage gain is
+
+$$
+\frac{10.8 - 7.2}{7.2} \times 100\% = 50\%
+$$
+
+The second design produces 50% more torque without changing the motor. The tradeoff is that the larger mechanism may be bulkier, slower, or harder to package, because a longer arm sweeps a wider arc for the same joint angle. This is exactly the sort of design compromise rigid-body mechanics helps us reason about.
+
+---
+
+### Example 2.3: A Point on a Spinning Wheel
+
+**Problem:** A grinding wheel of radius $0.35 \text{ m}$ accelerates uniformly from rest to $600 \text{ rpm}$ in $4.0 \text{ s}$. At the final speed, find the rim's tangential speed, its normal acceleration, and the total acceleration of a rim point at the instant it reaches full speed (where $\alpha$ is still acting).
+
+**Step 1: Convert to consistent units.**
+
+$$
+\omega = 600 \ \frac{\text{rev}}{\text{min}} \times \frac{2\pi \ \text{rad}}{1 \ \text{rev}} \times \frac{1 \ \text{min}}{60 \ \text{s}} = 62.83 \text{ rad/s}
+$$
+
+**Step 2: Tangential (rim) speed.**
+
+$$
+v = r\omega = (0.35)(62.83) = \boxed{21.99 \text{ m/s}}
+$$
+
+**Step 3: Angular acceleration during spin-up.**
+
+$$
+\alpha = \frac{\Delta\omega}{\Delta t} = \frac{62.83 - 0}{4.0} = 15.71 \text{ rad/s}^2
+$$
+
+**Step 4: Component accelerations of a rim point.**
+
+$$
+a_t = r\alpha = (0.35)(15.71) = 5.50 \text{ m/s}^2
+$$
+
+$$
+a_n = r\omega^2 = (0.35)(62.83)^2 = 1381.7 \text{ m/s}^2
+$$
+
+**Step 5: Total acceleration.**
+
+$$
+a = \sqrt{a_t^2 + a_n^2} = \sqrt{5.50^2 + 1381.7^2} = \boxed{1381.8 \text{ m/s}^2}
+$$
+
+The normal term overwhelms the tangential term by a factor of about 250. A rim point is being yanked inward far harder than it is being sped up, which is why the bonding and reinforcement of high-speed wheels is governed almost entirely by centripetal (bursting) demand.
+
+---
 
 ## Common Mistakes
 
 - **Confusing force with torque:** a large force applied directly through the pivot can produce almost no rotation.
 - **Ignoring direction:** clockwise and counterclockwise torques must be signed consistently.
 - **Forgetting radius effects:** points on the same rigid body do not all move at the same linear speed during rotation.
+- **Dropping the normal acceleration:** at high $\omega$, $a_n = r\omega^2$ usually dwarfs $a_t = r\alpha$.
 
 <torque-diagram />
 
@@ -101,6 +217,45 @@ Rigid-body reasoning becomes especially useful in biomechanics and bio-inspired 
 - Robotic limbs often borrow these ideas by shaping linkage geometry so that torque output is highest where support demand is highest.
 
 This is one reason mechanics and biology talk to each other so naturally: both care deeply about how force, geometry, and motion interact.
+
+---
+
+## Engineering Applications
+
+| Application | Why Rigid-Body Motion Matters |
+| --- | --- |
+| Powered exoskeletons | Joint torque from moment-arm geometry must match human strength needs |
+| Wind turbine rotors | Blade-tip normal acceleration ($r\omega^2$) drives structural design |
+| Robotic arms | Each joint torque depends on link length and payload position |
+| Wrenches and torque tools | Calibrated handle length sets the achievable bolt torque |
+| Flywheel energy storage | Burst safety is governed by rim centripetal loading |
+
+> **Engineering in Action:** The same $\tau = Fd$ logic that sizes a wrench also sizes the actuator in a surgical robot and the gearbox in a wind turbine. Only the numbers change; the geometry of turning effect is universal.
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Tangential speed | $v = r\omega$ |
+| Tangential acceleration | $a_t = r\alpha$ |
+| Normal acceleration | $a_n = r\omega^2 = v^2/r$ |
+| Total point acceleration | $a = \sqrt{a_t^2 + a_n^2}$ |
+| Torque (vector) | $\vec{\tau} = \vec{r} \times \vec{F}$ |
+| Torque (magnitude) | $|\tau| = rF\sin\theta = Fd$ |
+
+### Key Takeaways
+
+- A rigid body keeps every internal distance fixed, so we track both translation and rotation.
+- Angular velocity is shared by all points; tangential speed grows with radius.
+- Torque depends on force, distance, and angle, and is maximized by a perpendicular pull.
+- The moment arm $d = r\sin\theta$ is the cleanest way to think about turning effect.
+- At high spin, normal acceleration dominates and governs structural safety.
+
+---
 
 <dynamic-scenario topic="Robotic Knee Torque" context="A biomechatronics team is redesigning a powered knee brace and must decide whether to lengthen the actuator moment arm or increase motor force to help users stand up from a chair." />
 

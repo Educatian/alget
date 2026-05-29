@@ -12,25 +12,33 @@
 
 ## Learning Objectives
 
-1. **Define** linear momentum and impulse
-2. **Apply** the impulse-momentum theorem over a time interval
-3. **Use** conservation of momentum for isolated systems
-4. **Distinguish** elastic, inelastic, and perfectly inelastic collisions
+1. **Define** linear momentum and impulse, and state their units and vector nature
+2. **Apply** the impulse-momentum theorem over a finite time interval, including the average-force approximation
+3. **Use** conservation of momentum for isolated systems, with correct sign conventions
+4. **Distinguish** elastic, inelastic, and perfectly inelastic collisions, and apply the coefficient of restitution
 
 ---
 
-## Why Momentum Becomes Essential
+## Opening: The Egg, the Crumple Zone, and the Airbag
 
-Force-based analysis works well when the force history is simple. But impacts, collisions, and short bursts of loading are often too brief to model point by point. In those cases, what matters most is the total effect of force over time.
+Drop an egg onto a concrete floor and it shatters. Drop the identical egg from the identical height onto a thick foam pad and it survives. The egg arrives with exactly the same momentum in both cases, and in both cases it ends at rest, so the *change in momentum* is identical. What differs is the time over which that change happens. Concrete stops the egg in roughly a millisecond; foam stretches the same stop over tens of milliseconds. Because impulse equals force multiplied by time, lengthening the stopping time slashes the peak force.
 
-That is where momentum methods shine:
+This single idea is the reason cars have crumple zones, helmets have liners, and gymnasts land on mats. The 1959 Mercedes-Benz crumple-zone patent did not make collisions gentler in any energy sense. It made them *slower*, deliberately sacrificing the front of the car so the passenger cabin decelerates over a longer time and therefore at a lower force.
+
+> **The Big Picture:** When loading is too brief or too violent to track instant by instant, do not chase acceleration. Track the accumulated effect of force over time. That accumulated effect is impulse, and it changes momentum.
+
+Force-based analysis works well when the force history is simple. Impacts, collisions, and short bursts of loading are usually too brief to model point by point. In those cases what matters is the total effect of force over time, which is exactly what momentum methods capture:
 
 - a bat striking a ball
 - a crash absorber reducing peak force by lengthening impact time
 - a docking cart coupling to another cart
 - a robotic gripper delivering a short impulse to reposition a part
 
+---
+
 ## Linear Momentum
+
+Linear momentum is the product of mass and velocity:
 
 $$
 \boxed{\vec{p} = m\vec{v}}
@@ -42,7 +50,9 @@ $$
 | Vector? | Yes |
 | Depends on direction? | Yes |
 
-Momentum is not the same as kinetic energy. A heavy slow object and a light fast object may have comparable momentum but very different kinetic energies.
+Momentum is not the same as kinetic energy. A heavy slow object and a light fast object may have comparable momentum but very different kinetic energies, because momentum scales with $v$ while kinetic energy scales with $v^2$. This $v$ versus $v^2$ distinction is the deepest reason momentum and energy give different answers about collisions.
+
+---
 
 ## Impulse
 
@@ -55,28 +65,44 @@ $$
 If the force can be approximated by an average value over the interval,
 
 $$
-\boxed{\vec{J} = \vec{F}_{avg}\Delta t}
+\boxed{\vec{J} = \vec{F}_{avg}\,\Delta t}
 $$
 
-Graphically, impulse is the area under the force-time curve.
+Graphically, impulse is the area under the force-time curve. A tall, narrow spike (hard contact) and a short, wide hump (soft contact) can enclose the same area, and therefore deliver the same impulse, while producing wildly different peak forces.
+
+---
 
 ## Impulse-Momentum Theorem
+
+### Derivation from Newton's Second Law
+
+The theorem is not a separate axiom. It is Newton's second law integrated over time. Starting from $\vec{F} = m\,d\vec{v}/dt$ for constant mass,
+
+$$
+\vec{F}\,dt = m\,d\vec{v}
+$$
+
+Integrating both sides from $t_1$ to $t_2$,
+
+$$
+\int_{t_1}^{t_2} \vec{F}\,dt = m\int_{v_1}^{v_2} d\vec{v} = m\vec{v}_2 - m\vec{v}_1
+$$
+
+The left side is the impulse and the right side is the change in momentum, giving
 
 $$
 \boxed{\vec{J} = \Delta \vec{p} = m\vec{v}_2 - m\vec{v}_1}
 $$
 
-This theorem is especially useful when:
-
-- the force varies strongly with time
-- the contact duration is short
-- only initial and final velocities matter
+This theorem is especially useful when the force varies strongly with time, the contact duration is short, or only the initial and final velocities matter. It lets us bypass the messy, unknown force history and work only with endpoints.
 
 <dynamic-scenario
   topic="Crash Cushion Design"
   context="A transportation engineer is comparing two highway crash cushions that stop the same maintenance cart. One stops the cart in 0.08 s, and the other in 0.20 s. The design team wants to reduce the average impact force without changing the vehicle mass or entry speed."
   course="dynamics"
 />
+
+---
 
 ## System Thinking in Momentum Problems
 
@@ -90,7 +116,9 @@ Use impulse-momentum directly for one body when the external force history is kn
 
 Use conservation of momentum when the net external impulse is negligible compared with the internal collision forces.
 
-This is the part many students miss: momentum is conserved for a **system**, not automatically for every individual body.
+This is the part many students miss: momentum is conserved for a **system**, not automatically for every individual body. During a collision the internal forces are enormous (the carts shove each other hard) but they are equal and opposite, so they cancel within the system. External forces such as gravity and friction are still present, but over a millisecond-scale impact they deliver negligible impulse compared with the collision itself.
+
+---
 
 ## Conservation of Momentum
 
@@ -108,7 +136,9 @@ $$
 
 Direction must be handled with signs. A leftward velocity is not "just slower." It is a negative velocity under a right-positive sign convention.
 
-## Collision Types
+---
+
+## Collision Types and the Coefficient of Restitution
 
 | Type | Momentum | Kinetic energy |
 | --- | --- | --- |
@@ -118,41 +148,93 @@ Direction must be handled with signs. A leftward velocity is not "just slower." 
 
 The easiest mistake here is to remember only that "momentum is conserved" and forget that kinetic energy is **not** generally conserved except in elastic collisions.
 
-## Worked Example
+The bridge between these categories is the **coefficient of restitution** $e$, defined as the ratio of relative separation speed to relative approach speed along the line of impact:
 
-### Example 2.3: Two Carts Stick Together
+$$
+\boxed{e = \frac{v_{B2} - v_{A2}}{v_{A1} - v_{B1}}}
+$$
+
+Here $e = 1$ is perfectly elastic (no kinetic energy lost), $e = 0$ is perfectly inelastic (the bodies move together afterward), and real impacts fall in between (steel on steel is roughly 0.6, a hardwood floor and a basketball roughly 0.75). Pairing this single equation with momentum conservation gives two equations for the two unknown final velocities of any one-dimensional impact.
+
+---
+
+## Worked Examples
+
+### Example 2.3: Two Carts Stick Together (Perfectly Inelastic)
 
 **Problem:** Cart A (2 kg) moves at 5 m/s to the right. Cart B (3 kg) is at rest. They collide and stick together. Find the final velocity.
 
-### Step A: Define the system
+**Step A: Define the system.** Choose the two-cart system together. During the short collision we neglect external impulse compared with the large internal collision forces. Take rightward as positive.
 
-Choose the two-cart system together. During the short collision, we neglect external impulse compared with the large internal collision forces.
-
-### Step B: Write momentum conservation
+**Step B: Write momentum conservation.** Because the carts stick, they share one final velocity $v_f$:
 
 $$
 m_A v_{A1} + m_B v_{B1} = (m_A + m_B)v_f
 $$
 
-### Step C: Substitute values
+**Step C: Substitute values.**
 
 $$
-(2)(5) + (3)(0) = 5v_f
-$$
-
-$$
-10 = 5v_f
+(2)(5) + (3)(0) = (2+3)v_f
 $$
 
 $$
-v_f = 2 \text{ m/s}
+10 = 5 v_f \quad\Rightarrow\quad v_f = \boxed{2 \text{ m/s (rightward)}}
 $$
 
-The combined carts move to the right at 2 m/s.
+**Step D: Interpret.** The final speed is smaller than the original 5 m/s because the moving cart shares its momentum with the previously stationary cart. Check the energy: before, $KE_1 = \tfrac12(2)(5^2) = 25$ J; after, $KE_2 = \tfrac12(5)(2^2) = 10$ J. So 15 J (60 percent) was lost to deformation and heat, exactly as expected for a perfectly inelastic collision ($e = 0$).
 
-### Step D: Interpret the result
+---
 
-The final speed is smaller than the original 5 m/s because the moving cart shares momentum with the previously stationary cart.
+### Example 2.4: Average Force in a Short Impact (Impulse-Momentum)
+
+**Problem:** A 0.145 kg baseball arrives at a bat at 40 m/s and leaves at 50 m/s in the opposite direction. The bat and ball are in contact for 0.7 ms (0.0007 s). Find the impulse on the ball and the average force the bat exerts.
+
+**Step 1: Set a sign convention.** Take the outgoing direction (away from the bat, toward the pitcher) as positive. Then the incoming velocity is $v_1 = -40$ m/s and the outgoing velocity is $v_2 = +50$ m/s.
+
+**Step 2: Compute the impulse from the momentum change.**
+
+$$
+J = m v_2 - m v_1 = (0.145)(50) - (0.145)(-40)
+$$
+
+$$
+J = 7.25 - (-5.80) = \boxed{13.05 \text{ N*s}}
+$$
+
+The impulse is positive, meaning it points away from the bat, which makes physical sense.
+
+**Step 3: Recover the average force.** Using $J = F_{avg}\,\Delta t$,
+
+$$
+F_{avg} = \frac{J}{\Delta t} = \frac{13.05}{0.0007} = \boxed{18{,}643 \text{ N}}
+$$
+
+That is about 1.9 metric tons of average force, and the peak force is even higher. This is why a clean hit can shatter a wooden bat: the brief contact time forces an enormous average force to deliver the needed momentum change.
+
+---
+
+### Example 2.5: Elastic Collision with Restitution
+
+**Problem:** A 1 kg cart (A) moving at 4 m/s strikes a stationary 1 kg cart (B) head-on. The collision is elastic ($e = 1$). Find both final velocities.
+
+**Step 1: Momentum conservation (rightward positive).**
+
+$$
+(1)(4) + (1)(0) = (1)v_{A2} + (1)v_{B2} \quad\Rightarrow\quad v_{A2} + v_{B2} = 4
+$$
+
+**Step 2: Restitution equation with $e = 1$.**
+
+$$
+e = \frac{v_{B2} - v_{A2}}{v_{A1} - v_{B1}} = \frac{v_{B2} - v_{A2}}{4 - 0} = 1 \quad\Rightarrow\quad v_{B2} - v_{A2} = 4
+$$
+
+**Step 3: Solve the two equations.** Adding them: $2 v_{B2} = 8$, so $v_{B2} = \boxed{4 \text{ m/s}}$. Then $v_{A2} = 4 - 4 = \boxed{0 \text{ m/s}}$.
+
+**Step 4: Interpret.** For equal masses in an elastic collision the carts exchange velocities exactly: A stops and B leaves at A's original speed. Check energy: before, $\tfrac12(1)(4^2) = 8$ J; after, $\tfrac12(1)(0^2) + \tfrac12(1)(4^2) = 8$ J. Kinetic energy is conserved, confirming the collision is elastic. This velocity-exchange result is the principle behind a Newton's cradle.
+
+---
 
 ## A Fast Diagnostic for Collision Problems
 
@@ -162,7 +244,46 @@ Ask these three questions:
 2. Is external impulse negligible during the event?
 3. Is kinetic energy also conserved, or only momentum?
 
-Those three questions separate most correct setups from most incorrect ones.
+Those three questions separate most correct setups from most incorrect ones. If the answer to question 3 is "energy too," use the restitution equation with $e = 1$ as a second equation; if the bodies stick, use $e = 0$ and a single shared final velocity.
+
+---
+
+## Engineering Applications
+
+| Application | Role of Impulse and Momentum |
+| --- | --- |
+| Automotive crumple zones | Lengthen impact time to cut peak occupant force for a fixed momentum change |
+| Airbags and helmet liners | Spread the same impulse over more time and area, lowering force and pressure |
+| Rocket and jet propulsion | Thrust is the rate of momentum carried away by exhaust mass |
+| Pile drivers and forging hammers | Deliver a large momentum change in a short impact for high peak force |
+| Spacecraft docking | Low closing speed keeps the coupling impulse and structural loads small |
+| Recoil in firearms and artillery | Conservation of momentum sets recoil velocity from projectile momentum |
+
+> **Engineering in Action:** A crash cushion and an airbag use the same equation as a baseball bat. The bat maximizes force by shrinking contact time; the cushion minimizes force by stretching it. Identical physics, opposite design goals.
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Linear momentum | $\vec{p} = m\vec{v}$ |
+| Impulse (general) | $\vec{J} = \int_{t_1}^{t_2}\vec{F}\,dt$ |
+| Impulse (average force) | $\vec{J} = \vec{F}_{avg}\,\Delta t$ |
+| Impulse-momentum theorem | $\vec{J} = m\vec{v}_2 - m\vec{v}_1$ |
+| Conservation of momentum | $\vec{p}_{total,1} = \vec{p}_{total,2}$ |
+| Coefficient of restitution | $e = (v_{B2} - v_{A2})/(v_{A1} - v_{B1})$ |
+
+### Key Takeaways
+
+- Momentum tracks the dynamic state of a body through mass and velocity, and is a vector.
+- Impulse is the accumulated effect of force over time and equals the change in momentum.
+- For a fixed momentum change, longer contact time means smaller average force.
+- Conservation of momentum is a *system* statement and depends on negligible external impulse.
+- Kinetic energy is conserved only in elastic collisions; the coefficient of restitution quantifies how much survives.
+- Classify the collision type before solving, and always fix a sign convention first.
 
 ## Check Your Understanding
 
@@ -180,13 +301,6 @@ Those three questions separate most correct setups from most incorrect ones.
   explanation="Exactly. Momentum is conserved in isolated collisions, but kinetic energy decreases in a perfectly inelastic collision because some mechanical energy is transformed into deformation, heat, or sound."
 />
 
-## Summary
-
-- Momentum tracks the dynamic state of a body through mass and velocity.
-- Impulse is the accumulated effect of force over time.
-- Conservation of momentum is a system statement and depends on negligible external impulse.
-- Collision problems become much easier when you classify the collision type before solving.
-
 ## What's Next?
 
-In **Chapter 3**, we extend these ideas from particles to rigid bodies that can both translate and rotate.
+In **Chapter 3**, we extend these ideas from particles to rigid bodies that can both translate and rotate, where impulse pairs with angular impulse and momentum pairs with angular momentum.

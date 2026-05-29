@@ -1,6 +1,36 @@
+# Why AI Ethics Is Its Own Subject
+
+> **"The model is the policy."**
+
+---
+
+## Opening: The Resume Screen That Taught Itself to Reject Women
+
+In October 2018, Reuters reported that Amazon had quietly scrapped an experimental recruiting tool. The system had been built to do something that sounds purely technical: read a resume and score it from one to five stars, the way the company's warehouse review software scores products. The training data was a decade of resumes Amazon had actually received, paired with who got hired.
+
+The model learned the pattern in that data faithfully. Because the historical applicant pool and hiring record skewed male, the system learned that male-coded signals predicted "hired." It reportedly penalized resumes containing the word "women's" (as in "women's chess club captain") and downgraded graduates of two all-women's colleges. Engineers tried to neutralize those specific terms, but they could not be sure the model had not found other, subtler proxies for gender, so the project was abandoned.
+
+No one on that team set out to discriminate. There was no malicious line of code, no biased manager, no ethics review that got skipped at the end. The injustice was authored entirely by ordinary technical choices: which data to train on, what to predict, and how to score. That is the single most important idea in this course, and it is why AI ethics cannot be a footnote to general engineering ethics.
+
+> **The Big Picture:** In AI, the decisions usually filed under "ethics" are made while you write the spec and assemble the dataset, not in a review meeting afterward. By the time a model has weights, most of the ethical decisions have already been made.
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Explain** why ethical choices in AI are encoded in technical choices, and why this makes AI ethics distinct from end-of-pipeline review.
+2. **Identify** the four stakeholder groups affected by an AI system, including the three that are usually invisible.
+3. **Analyze** a real deployment by tracing which technical choices encoded harm and at which project phase it could have been caught.
+4. **Distinguish** ethical claims from preferences and from legal compliance.
+5. **Recognize and rebut** the common misframings that shut down AI ethics discussions.
+
+---
+
 ## Why "AI Ethics" Is Not the Same as "Ethics"
 
-Most engineering disciplines treat ethics as a layer applied at the end: build the system, then ask whether it harms anyone. AI breaks that ordering. The technical decisions inside an AI system — which data to collect, which target variable to optimize, which threshold to deploy — *are* ethical decisions before any user touches the product. The model is the policy. The training data is the politics. There is no separate ethics review step that can fix decisions already encoded in weights.
+Most engineering disciplines treat ethics as a layer applied at the end: build the system, then ask whether it harms anyone. AI breaks that ordering. The technical decisions inside an AI system (which data to collect, which target variable to optimize, which threshold to deploy) *are* ethical decisions before any user touches the product. The model is the policy. The training data is the politics. There is no separate ethics review step that can fix decisions already encoded in weights.
 
 This is the central reason AI ethics is its own subject and not a footnote to general computing ethics. Stanford's CS281, the University of Chicago Harris course on AI governance, and Georgia Tech's CS 6603 all open with this point. So do the canonical books on the topic: Floridi's *The Ethics of Artificial Intelligence*, Coeckelbergh's *AI Ethics*, Vallor's *The AI Mirror*, and O'Neil's *Weapons of Math Destruction*.
 
@@ -12,15 +42,15 @@ This module covers the four reasons AI is ethically distinctive, and what those 
 
 A human decision-maker who is biased affects the people they personally meet. An AI system that encodes the same bias affects every person it is deployed against, often by orders of magnitude more, often without any individual being aware that a decision has been made.
 
-This is the **scale argument**. The same fairness defect that would be a personal failing in one human becomes a structural injustice when wired into a hiring screen, a credit model, or a school placement algorithm. Cathy O'Neil calls these "Weapons of Math Destruction" — opaque, scaled, and consequential.
+This is the **scale argument**. The same fairness defect that would be a personal failing in one human becomes a structural injustice when wired into a hiring screen, a credit model, or a school placement algorithm. Cathy O'Neil calls these "Weapons of Math Destruction": opaque, scaled, and consequential.
 
-Scale also amplifies error. A 2% misclassification rate sounds tolerable until you realize 2% of a million users is twenty thousand people, and the twenty thousand are not random — they are systematically the people whose data the model fit least well, who tend to be the people already underserved.
+Scale also amplifies error. A 2% misclassification rate sounds tolerable until you realize 2% of a million users is twenty thousand people, and the twenty thousand are not random; they are systematically the people whose data the model fit least well, who tend to be the people already underserved.
 
 ---
 
 ## Distinctive 2: Ethical Choices Are Encoded in Technical Choices
 
-When an engineer chooses a target variable, that choice is ethics. Predicting "good employee" by encoding it as "long tenure" treats a person who left for parental leave the same as a person who quit because of poor management — and the model will downrank candidates who pattern-match either case.
+When an engineer chooses a target variable, that choice is ethics. Predicting "good employee" by encoding it as "long tenure" treats a person who left for parental leave the same as a person who quit because of poor management, and the model will downrank candidates who pattern-match either case.
 
 When a team chooses a training distribution, that choice is ethics. Excluding users in low-bandwidth regions, or smartphones older than three years, or speakers of less-common languages, decides whose reality the system will model and whose it will misread.
 
@@ -37,7 +67,7 @@ Traditional product design recognizes a user. AI systems usually have at least f
 - **The decision-maker** who deploys the system (usually a company, government, or institution).
 - **The decision subject** about whom the system makes a decision (often a person who never asked for the decision).
 - **The data subject** whose data was used to train the system (often a third group that overlaps imperfectly with both above).
-- **Bystanders** affected by the deployment ecology — competitors who lose customers to the recommender system, neighbors who appear in someone's photo upload, future generations affected by environmental cost.
+- **Bystanders** affected by the deployment ecology: competitors who lose customers to the recommender system, neighbors who appear in someone's photo upload, future generations affected by environmental cost.
 
 A design that asks only "is the user happy?" misses three of the four stakeholder groups. UNESCO's 2021 *Recommendation on the Ethics of AI* explicitly broadens the moral circle to include data subjects, downstream effects, and environmental impact, partly because the user-only frame had become obviously inadequate.
 
@@ -53,9 +83,64 @@ That shift moves several ethical questions out of the user-interface layer and i
 - **Accountability.** When an autonomous trading agent loses billions, who is liable? The user who set its goal, the company that trained it, the framework provider?
 - **Consent.** When a chatbot mediates a thousand customer conversations a day, can each customer's consent to "talk to AI" be meaningful? Should the chatbot disclose itself?
 
-These questions do not have settled answers. The job of an AI ethics curriculum is not to deliver settled answers — it is to give you a structured way to recognize when a question is being asked and which framework will produce a defensible response.
+These questions do not have settled answers. The job of an AI ethics curriculum is not to deliver settled answers; it is to give you a structured way to recognize when a question is being asked and which framework will produce a defensible response.
 
 <concept-diagram type="ai-stakeholder-map"></concept-diagram>
+
+---
+
+## Worked Case: Analyzing the Amazon Hiring Screen
+
+The four distinctives are not just lecture points; they are an analysis procedure. Here we run that procedure on the case from the opening, the same way later modules will apply a formal framework. The goal is to show what "tracing the ethics through the technical choices" actually looks like in practice.
+
+### Step 1: Map the Stakeholders
+
+A user-only frame would ask "is the recruiter happy with the tool?" That question hides almost everyone who matters. Applying Distinctive 3:
+
+| Stakeholder Group | Who, in this case | Visible to the team? | Primary harm |
+| --- | --- | --- | --- |
+| Decision-maker | Amazon recruiting and the hiring managers | Yes | Reputational and legal exposure |
+| Decision subject | Every applicant scored by the tool | No | Qualified women silently downranked |
+| Data subject | Past applicants whose resumes formed the training set | No | Their historical treatment became a rule applied to others |
+| Bystanders | The broader labor pool, future applicants, public trust in algorithmic hiring | No | Norm-setting: other firms copy the pattern |
+
+The team optimized for the only stakeholder it could see. Three of the four groups bore the cost.
+
+### Step 2: Trace the Encoded Choices
+
+Applying Distinctive 2, we locate exactly where the ethics entered the technical pipeline:
+
+| Technical choice | What it encoded | Ethically loaded? |
+| --- | --- | --- |
+| Target variable = "resembles people we hired" | Past hiring decisions treated as ground truth | Yes: it canonizes historical bias as the definition of merit |
+| Training data = 10 years of received resumes | A male-skewed applicant pool became the model of "normal" | Yes: it decides whose reality the system learns |
+| Features = raw resume text | Lets the model learn gender proxies ("women's", college names) | Yes: it opens the door to indirect discrimination |
+| Operating use = rank and filter | Scaled the bias across every applicant at once | Yes: this is Distinctive 1, scale, in action |
+
+Notice that none of these is a "bug." Each is a defensible-sounding default. That is precisely why the harm slipped through.
+
+### Step 3: Identify the Phase Where It Could Be Caught
+
+The most expensive lesson here is about timing. Bias was not introduced at deployment; it was introduced at problem-framing and dataset selection.
+
+| Project phase | Could the harm be caught here? | Why or why not |
+| --- | --- | --- |
+| Problem framing | Yes, cheapest | Asking "is past hiring a valid label for merit?" reframes the whole project |
+| Data selection | Yes | Auditing the training distribution for skew flags the risk before any model exists |
+| Model training | Partly | You can measure disparate scoring, but the cause is upstream |
+| Deployment-time patch | No | Removing the word "women's" did not work; the model found other proxies |
+
+This is Distinctive 2 made concrete: the cheapest, most effective intervention is at the earliest phase, and a deployment-time patch is the weakest and most expensive option. Amazon's engineers reached for the patch, could not trust it, and abandoned the system, the correct call once the problem had been allowed to reach that stage.
+
+### Step 4: The Tradeoff That Has No Free Answer
+
+A common reaction is "just remove gender from the data." But the case shows why that is not a clean fix, and it previews the kind of tradeoff later frameworks must adjudicate:
+
+- Remove explicit gender, and the model rebuilds it from proxies (college, hobbies, word choice). Fairness is not achieved, only hidden.
+- Actively constrain the model to score groups equally, and you may downrank some individually stronger candidates to balance the aggregate, raising a different fairness question (group parity versus individual merit).
+- Keep the human recruiter as the final decision-maker, and you reintroduce the very human bias the tool was meant to remove, now laundered through a number that looks objective.
+
+There is no setting of the dials that makes every concern vanish at once. The job of an ethics framework, introduced in the next module, is to make these competing claims explicit and to produce a defensible choice among them, not to pretend the tension does not exist.
 
 ---
 
@@ -67,7 +152,7 @@ Two implications.
 
 **Ethics is not preferences.** "I prefer recommender systems that show me happy content" is a preference. "Recommender systems that systematically downweight content from underrepresented creators are unjust" is an ethical claim. Ethical claims can be wrong, but they require argument, not assertion.
 
-**Ethics is not law.** Laws encode some ethical commitments and ignore others. The EU AI Act, the GDPR, FERPA, and COPPA each formalize specific ethical concerns into legal language. But many ethical questions — about fairness trade-offs, about long-term effects, about power — are not yet in any law, and engineering practice still has to answer them.
+**Ethics is not law.** Laws encode some ethical commitments and ignore others. The EU AI Act, the GDPR, FERPA, and COPPA each formalize specific ethical concerns into legal language. But many ethical questions (about fairness trade-offs, about long-term effects, about power) are not yet in any law, and engineering practice still has to answer them.
 
 The next module introduces the ethics frameworks (consequentialist, deontological, virtue, care) that give those answers structure.
 
@@ -79,10 +164,27 @@ Before moving on, four misframings to dismiss:
 
 - **"AI is just a tool, the user is responsible."** Tools that scale, encode policy, and act autonomously are not the same as hammers. The framing collapses three of the four stakeholder groups into one.
 - **"We will fix bias once the model is deployed."** Bias is encoded in training; deployment-time mitigation is a patch on the model, not a substitute for what the data taught it.
-- **"Ethics slows down innovation."** Most documented AI failures slowed down innovation more than ethics review would have. Tay, Compas, the Apple Card credit-limit episode, the Amazon hiring screen — each cost their organizations significantly.
+- **"Ethics slows down innovation."** Most documented AI failures slowed down innovation more than ethics review would have. Tay, Compas, the Apple Card credit-limit episode, the Amazon hiring screen; each cost their organizations significantly.
 - **"There is no objective answer, so any answer is fine."** Ethical frameworks do not converge to a single answer, but they do produce defensible and indefensible answers. "I cannot prove which is best" is not the same as "all are equally good."
 
 <dynamic-scenario topic="AI Ethics Foundations" context="A team launches an AI-driven hiring screen trained on the company's last decade of resumes. The model downranks women applicants because the historical data reflects past hiring bias. Trace which of the four stakeholder groups are affected, which technical choices encoded the bias, and at which phase of the project the bias should have been caught."></dynamic-scenario>
+
+---
+
+## Key Takeaways
+
+- **The model is the policy.** In AI, technical choices (data, target variable, threshold) *are* ethical choices, made before any review step. Ethics cannot be bolted on at the end.
+- **Four distinctives** make AI ethics its own subject: decisions generalize at scale; ethics is encoded in technical choices; there are many, mostly invisible stakeholders; and generative or autonomous systems shift the locus of action away from a per-output human.
+- **Four stakeholder groups,** not one: decision-maker, decision subject, data subject, and bystanders. A user-only frame hides three of them.
+- **Catch harm early.** Problem framing and data selection are the cheapest, most effective places to intervene; a deployment-time patch is the weakest and most expensive (and may simply hide bias behind proxies).
+- **Ethics is not preferences and not law.** Ethical claims require argument, not assertion, and many ethical questions are not yet encoded in any statute.
+- **Reject the four misframings:** "just a tool," "fix it after deployment," "ethics slows innovation," and "no objective answer, so anything goes." Each one ends an analysis that should have continued.
+
+---
+
+## What's Next?
+
+The next module introduces the four **ethics frameworks**, consequentialist, deontological, virtue, and care, that give structure to the tradeoffs this section only named. Where this module taught you to *recognize* that an ethical question is being asked and to trace it through the technical choices, the framework module gives you the tools to produce a defensible *answer*, especially for cases like the Step 4 tradeoff where no setting of the dials satisfies every concern at once.
 
 ---
 
@@ -90,6 +192,6 @@ Before moving on, four misframings to dismiss:
 
 <interactive-quiz
   question="Which statement most accurately captures why AI ethics is treated as its own subject rather than a footnote to general computing ethics?"
-  options='[{"text":"Because AI is more complicated than other software.","isCorrect":false},{"text":"Because AI systems encode ethical decisions in technical choices (data, targets, thresholds), apply those decisions at scale, and shift the locus of action into the system itself — so ethics cannot be added at the end.","isCorrect":true},{"text":"Because AI is regulated by special laws.","isCorrect":false}]'
+  options='[{"text":"Because AI is more complicated than other software.","isCorrect":false},{"text":"Because AI systems encode ethical decisions in technical choices (data, targets, thresholds), apply those decisions at scale, and shift the locus of action into the system itself, so ethics cannot be added at the end.","isCorrect":true},{"text":"Because AI is regulated by special laws.","isCorrect":false}]'
   explanation="Correct. The combination of scale, encoded decisions, multiple invisible stakeholders, and generative/autonomous behavior is what distinguishes AI ethics from generic engineering ethics."
 />
