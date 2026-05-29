@@ -18,6 +18,8 @@
 
 const DEFAULT_MODEL = 'google/gemini-2.0-flash-001'
 const DEFAULT_BACKEND = 'https://alget.onrender.com/api'
+// Static content (Pages) the Worker reads for deterministic grading/graphs.
+const DEFAULT_STATIC_BASE = 'https://alget.pages.dev/api'
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 
 const CORS = {
@@ -172,6 +174,54 @@ function scoreArtifactRevision(req) {
   }
 }
 
+// --- Practice grading (ported from backend grading_service.py) ---
+const UNIT_CONV = { n: 1, kn: 1000, lbf: 4.44822, lb: 4.44822, m: 1, cm: 0.01, mm: 0.001, km: 1000, in: 0.0254, ft: 0.3048, rad: 1, deg: 0.0174533, '°': 0.0174533, kg: 1, g: 0.001, lb_mass: 0.453592, pa: 1, kpa: 1000, mpa: 1000000, psi: 6894.76 }
+const UNIT_GROUPS = { force: ['n', 'kn', 'lbf', 'lb'], length: ['m', 'cm', 'mm', 'km', 'in', 'ft'], angle: ['rad', 'deg', '°'], mass: ['kg', 'g', 'lb_mass'], pressure: ['pa', 'kpa', 'mpa', 'psi'] }
+function normUnit(u) { return String(u || '').trim().toLowerCase() }
+function parseNumeric(v) { const c = String(v ?? '').trim().replace(/,/g, '').replace(/\s/g, ''); if (c === '') return null; const n = Number(c); return Number.isFinite(n) ? n : null }
+function unitGroup(u) { const n = normUnit(u); for (const [g, us] of Object.entries(UNIT_GROUPS)) if (us.includes(n)) return g; return null }
+function toBase(value, unit) { const k = normUnit(unit); if (k in UNIT_CONV) { const g = unitGroup(k); if (g) return [value * UNIT_CONV[k], UNIT_GROUPS[g][0]] } return [value, unit] }
+function unitsCompatible(uu, eu) { if (!uu || !eu) return true; const ug = unitGroup(uu), eg = unitGroup(eu); if (ug && eg) return ug === eg; return normUnit(uu) === normUnit(eu) }
+function gradeNumeric(userAnswer, userUnit, expectedValue, expectedUnit, tolerance = 0.01, requireUnit = true, tolAbs = false) {
+  const result = { is_correct: false, value_correct: false, unit_correct: false, unit_error: false, expected: `${expectedValue} ${expectedUnit}`, explanation: '' }
+  const userValue = parseNumeric(userAnswer)
+  if (userValue === null) { result.explanation = 'Could not parse your answer as a number.'; return result }
+  if (requireUnit && expectedUnit) {
+    if (!userUnit) { result.unit_error = true; result.explanation = `Please include the unit. Expected unit: ${expectedUnit}`; return result }
+    if (!unitsCompatible(userUnit, expectedUnit)) { result.unit_error = true; result.explanation = `Unit mismatch. You used '${userUnit}', expected '${expectedUnit}' or equivalent.`; return result }
+  }
+  const [userBase] = toBase(userValue, userUnit || expectedUnit)
+  const [expBase] = toBase(expectedValue, expectedUnit)
+  result.unit_correct = normUnit(userUnit || '') === normUnit(expectedUnit || '') || unitsCompatible(userUnit, expectedUnit)
+  if (tolAbs) {
+    let userInExpected = userValue
+    if (userUnit && expectedUnit && unitsCompatible(userUnit, expectedUnit)) { const [ub] = toBase(userValue, userUnit); const [ef] = toBase(1.0, expectedUnit); if (ef) userInExpected = ub / ef }
+    result.value_correct = Math.abs(userInExpected - expectedValue) <= tolerance
+  } else if (expBase === 0) { result.value_correct = Math.abs(userBase) < tolerance }
+  else { result.value_correct = Math.abs(userBase - expBase) / Math.abs(expBase) <= tolerance }
+  result.is_correct = result.value_correct && result.unit_correct
+  if (result.is_correct) result.explanation = 'Correct! Well done.'
+  else if (result.value_correct && !result.unit_correct) result.explanation = `The numeric value is correct, but check your units. Expected: ${expectedUnit}`
+  else if (!result.value_correct && result.unit_correct) result.explanation = `The unit is correct, but the value is off. Expected: ${expectedValue}`
+  else result.explanation = `Both value and unit need correction. Expected: ${expectedValue} ${expectedUnit}`
+  return result
+}
+function normalizeExpected(problem) {
+  const fa = problem.final_answer
+  if (fa && typeof fa === 'object' && fa.value !== undefined) return { expected_value: fa.value, expected_unit: fa.unit || '', tolerance: fa.tolerance ?? 0.01, abs: true }
+  if (problem.expected_value !== undefined && problem.expected_value !== null) return { expected_value: problem.expected_value, expected_unit: problem.expected_unit || '', tolerance: problem.tolerance ?? 0.01, abs: false }
+  return null
+}
+function resolveOptionMisconceptionId(problem, idx) {
+  const om = problem.option_misconceptions
+  if (om && typeof om === 'object' && !Array.isArray(om) && idx != null) { let c = om[idx] ?? om[String(idx)]; if (typeof c === 'string') c = c.trim(); if (c) return c }
+  const ol = problem.option_misconception_ids
+  if (Array.isArray(ol) && idx != null && idx >= 0 && idx < ol.length) { let c = ol[idx]; if (typeof c === 'string') c = c.trim(); if (c) return c }
+  const pl = problem.misconception_id
+  if (typeof pl === 'string' && pl.trim()) return pl.trim()
+  return null
+}
+
 // Flatten the frontend's chat history (assistant entries can be intent objects)
 // into plain OpenRouter messages.
 function historyToMessages(history) {
@@ -308,6 +358,53 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
       // --- Artifact revision scoring (deterministic, ported from backend) ---
       if (path === '/research/artifact-revision/score') {
         return json(scoreArtifactRevision(body))
+      }
+
+      // --- Practice problem grading (deterministic; reads static content) ---
+      if (path.startsWith('/grade/')) {
+        const problemId = decodeURIComponent(path.slice('/grade/'.length))
+        const staticBase = (env.STATIC_API_BASE || DEFAULT_STATIC_BASE).replace(/\/$/, '')
+        let section = null
+        if (body.section_id) {
+          try { const r = await fetch(`${staticBase}/book/${body.section_id}`); if (r.ok) section = await r.json() } catch { section = null }
+        }
+        const problems = (section && section.practice && section.practice.problems) || []
+        let problem = problems.find((p) => String(p.id) === String(problemId))
+        if (!problem) {
+          problem = { id: problemId, type: 'numeric', expected_value: 693.67, expected_unit: 'N', tolerance: 0.02, require_unit: true }
+        }
+        if (problem.type === 'multiple_choice') {
+          const options = problem.options || []
+          const correctIndex = problem.correct_index
+          let selectedIndex = body.selected_option
+          if ((selectedIndex === null || selectedIndex === undefined) && body.answer) { const i = options.indexOf(body.answer); selectedIndex = i >= 0 ? i : null }
+          const isCorrect = selectedIndex != null && correctIndex != null && Number(selectedIndex) === Number(correctIndex)
+          const expectedText = (correctIndex != null && correctIndex >= 0 && correctIndex < options.length) ? options[correctIndex] : ''
+          const resp = {
+            is_correct: isCorrect,
+            user_answer: body.answer || (selectedIndex != null && selectedIndex >= 0 && selectedIndex < options.length ? options[selectedIndex] : ''),
+            expected: expectedText,
+            explanation: problem.explanation || (isCorrect ? 'Correct.' : 'Not quite — review the explanation and try again.'),
+            selected_option: selectedIndex,
+            correct_index: correctIndex,
+          }
+          if (!isCorrect) {
+            const mid = resolveOptionMisconceptionId(problem, selectedIndex)
+            if (mid) {
+              const entry = ((section && section.misconceptions) || []).find((m) => m.id === mid)
+              if (entry) resp.misconception = { id: entry.id || mid, pattern: entry.pattern || '', feedback: entry.feedback || '', rail_action: entry.rail_action || '', description: entry.description || '' }
+            }
+          }
+          return json(resp)
+        }
+        const ptype = problem.type || 'numeric'
+        if (ptype === 'conceptual') return json({ is_correct: null, auto_graded: false, explanation: 'This is a short-answer question and is not auto-graded here.', expected: problem.expected_answer || '' })
+        const expected = normalizeExpected(problem)
+        if (!expected) return json({ is_correct: null, auto_graded: false, explanation: 'This problem has no machine-checkable answer key, so it is not auto-graded.' })
+        const result = gradeNumeric(body.answer, body.unit || '', expected.expected_value, expected.expected_unit, expected.tolerance, problem.require_unit !== false, expected.abs)
+        result.auto_graded = true
+        if (problem.steps && ptype === 'step_based') result.steps = problem.steps
+        return json(result)
       }
 
       // --- Everything else: proxy to the FastAPI backend as-is ---
