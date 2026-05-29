@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { useTextSelection } from '../hooks/useTextSelection'
 import { logHighlightCreate } from '../lib/loggingService'
 import API_BASE from '../lib/apiConfig'
@@ -605,13 +606,26 @@ export default function HighlightableContent({
                 </div>
             )}
 
-            {/* Note Tooltip on Hover */}
-            {(hoveredHighlight?.note || hoveredHighlight?.label || hoveredHighlight?.id) && (
+            {/* Note Tooltip on Hover. Portaled to <body> so it escapes the
+                reading shell's overflow-hidden + transformed (section-animation)
+                ancestors, and clamped to BOTH viewport edges so a highlight near
+                the right/bottom margin never renders the popup off-screen. */}
+            {(hoveredHighlight?.note || hoveredHighlight?.label || hoveredHighlight?.id) && createPortal(
                 <div
-                    className="fixed z-50 max-w-xs rounded-xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.96)] p-3 text-sm shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-xl"
+                    className="fixed z-[120] w-[min(20rem,calc(100vw-1.5rem))] rounded-xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.96)] p-3 text-sm shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-xl"
                     style={{
-                        left: hoveredHighlight?.x ? Math.max(12, hoveredHighlight.x - 120) : 12,
-                        top: hoveredHighlight?.y ? Math.max(12, hoveredHighlight.y - 56) : 12
+                        left: hoveredHighlight?.x
+                            ? Math.min(
+                                  Math.max(12, hoveredHighlight.x - 120),
+                                  (typeof window !== 'undefined' ? window.innerWidth : 1280) - 332,
+                              )
+                            : 12,
+                        top: hoveredHighlight?.y
+                            ? Math.min(
+                                  Math.max(12, hoveredHighlight.y - 56),
+                                  (typeof window !== 'undefined' ? window.innerHeight : 720) - 160,
+                              )
+                            : 12,
                     }}
                 >
                     {hoveredHighlight?.label && (
@@ -633,7 +647,8 @@ export default function HighlightableContent({
                             💬 Discuss this highlight
                         </button>
                     )}
-                </div>
+                </div>,
+                document.body,
             )}
 
             {/* Discussion modal: per-highlight reactions + replies (R1) */}

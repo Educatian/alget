@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import * as Popover from '@radix-ui/react-popover'
 import { logEvent } from '../lib/loggingService'
 
 /**
@@ -52,31 +53,43 @@ export default function Glossary({ term, children }) {
         return <span>{display}</span>
     }
 
+    // Radix Popover.Portal renders the tooltip at the document root with
+    // viewport collision handling, so it is never clipped by the reading
+    // surface's overflow-hidden ancestors (book shell / scroll panes).
     return (
-        <span className="relative inline-block">
-            <button
-                type="button"
-                className="cursor-help border-b border-dotted border-[var(--ath-primary)] text-[var(--ath-text)]"
-                onMouseEnter={() => setOpen(true)}
-                onMouseLeave={() => setOpen(false)}
-                onFocus={() => {
-                    setOpen(true)
-                    logEvent('glossary_open', null, { term: key })
-                }}
-                onBlur={() => setOpen(false)}
-                aria-label={`Definition of ${display}`}
-            >
-                {display}
-            </button>
-            {open && (
-                <span
+        <Popover.Root open={open} onOpenChange={setOpen}>
+            <Popover.Trigger asChild>
+                <button
+                    type="button"
+                    className="cursor-help border-b border-dotted border-[var(--ath-primary)] text-[var(--ath-text)] underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                    onMouseEnter={() => setOpen(true)}
+                    onMouseLeave={() => setOpen(false)}
+                    onFocus={() => {
+                        setOpen(true)
+                        logEvent('glossary_open', null, { term: key })
+                    }}
+                    onBlur={() => setOpen(false)}
+                    aria-label={`Definition of ${display}`}
+                >
+                    {display}
+                </button>
+            </Popover.Trigger>
+            <Popover.Portal>
+                <Popover.Content
+                    side="top"
+                    align="center"
+                    sideOffset={6}
+                    collisionPadding={12}
                     role="tooltip"
-                    className="absolute left-0 top-full z-50 mt-1 w-64 rounded-xl border border-[var(--ath-line)] bg-white p-3 text-xs leading-5 text-[var(--ath-muted)] shadow-lg"
+                    onOpenAutoFocus={(e) => e.preventDefault()}
+                    aria-label={`Definition of ${display}`}
+                    className="z-[80] w-[min(18rem,calc(100vw-1.5rem))] rounded-xl border border-[var(--ath-line)] bg-white/95 p-3 text-xs leading-5 text-[var(--ath-muted)] shadow-[0_12px_28px_rgba(15,23,42,0.12)] backdrop-blur-xl"
                 >
                     <span className="block font-semibold text-[var(--ath-text)]">{display}</span>
                     <span className="mt-1 block">{definition}</span>
-                </span>
-            )}
-        </span>
+                    <Popover.Arrow className="fill-white/95" />
+                </Popover.Content>
+            </Popover.Portal>
+        </Popover.Root>
     )
 }
