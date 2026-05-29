@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { LLM_API_BASE } from '../lib/apiConfig'
+import API_BASE from '../lib/apiConfig'
 import { recordCalibrationMastery } from '../lib/knowledgeService'
 import { getEvaluationStatus, recordEvaluationResult } from '../lib/researchService'
 import '../index.css'
@@ -64,7 +64,7 @@ export default function DiagnosticAssessment() {
     useEffect(() => {
         const fetchQuestions = async () => {
             try {
-                const response = await fetch(`${LLM_API_BASE}/diagnostic/questions/${course || 'statics'}`)
+                const response = await fetch(`${API_BASE}/diagnostic/questions/${course || 'statics'}`)
                 if (!response.ok) {
                     throw new Error(`Failed to fetch specific questions for ${course}`)
                 }
