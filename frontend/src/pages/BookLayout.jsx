@@ -427,7 +427,7 @@ export default function BookLayout({ user, onLogout }) {
                         aria-label="Go to ALGET home"
                         className="flex min-w-0 items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                     >
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-xl font-bold text-white shadow-[0_16px_32px_rgba(9,56,72,0.18)]">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-[var(--ath-radius-xl)] border border-[color-mix(in_srgb,var(--ath-primary)_14%,transparent)] bg-[var(--ath-primary)] text-xl font-bold text-white shadow-[0_16px_32px_color-mix(in_srgb,var(--ath-primary-deep)_24%,transparent)]">
                             AL
                         </div>
                         <div className="min-w-0">
@@ -531,7 +531,7 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => setTocOpen(true)}
-                            className="xl:hidden flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
+                            className="xl:hidden flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)] md:h-9 md:w-9"
                             aria-label="Open chapter contents"
                             title="Chapter contents"
                         >
@@ -540,7 +540,7 @@ export default function BookLayout({ user, onLogout }) {
 
                         <button
                             onClick={handleBookmarkToggle}
-                            className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 ${currentBookmarked
+                            className={`flex h-11 w-11 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 md:h-9 md:w-9 ${currentBookmarked
                                 ? 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
                                 : 'bg-[var(--ath-panel)] text-[var(--ath-secondary)] hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]'
                                 }`}
@@ -552,7 +552,7 @@ export default function BookLayout({ user, onLogout }) {
 
                         <button
                             onClick={toggleRail}
-                            className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 ${railOpen
+                            className={`flex h-11 w-11 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 md:h-9 md:w-9 ${railOpen
                                 ? 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[rgba(200,226,236,0.45)]'
                                 : 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
                                 }`}
@@ -576,7 +576,7 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => window.dispatchEvent(new CustomEvent('alget-open-search'))}
-                            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
+                            className="md:hidden flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
                             title="Search"
                             aria-label="Open global search"
                         >
@@ -591,7 +591,7 @@ export default function BookLayout({ user, onLogout }) {
                             <Popover.Trigger asChild>
                                 <button
                                     type="button"
-                                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
+                                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)] md:h-9 md:w-9"
                                     title="Concept map"
                                     aria-label="Open the concept map for this chapter"
                                 >
@@ -620,7 +620,7 @@ export default function BookLayout({ user, onLogout }) {
 
                         <button
                             onClick={() => navigate('/dashboard')}
-                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"
+                            className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)] md:h-9 md:w-9"
                             title="My progress"
                             aria-label="Open my progress dashboard"
                         >
@@ -628,7 +628,7 @@ export default function BookLayout({ user, onLogout }) {
                         </button>
                         <button
                             onClick={() => navigate('/analytics')}
-                            className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"
+                            className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)] md:h-9 md:w-9"
                             title="Learning analytics"
                             aria-label="Open learning analytics"
                         >
@@ -644,7 +644,7 @@ export default function BookLayout({ user, onLogout }) {
 
                         <button
                             onClick={onLogout}
-                            className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--ath-secondary)] transition-all duration-200 hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)]"
+                            className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--ath-secondary)] transition-all duration-200 hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)] md:h-9 md:w-9"
                             aria-label="Sign out"
                             title="Sign out"
                         >
@@ -702,7 +702,7 @@ export default function BookLayout({ user, onLogout }) {
                                 <button
                                     type="button"
                                     onClick={() => setTocOpen(false)}
-                                    className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)]"
+                                    className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)] md:h-9 md:w-9"
                                     aria-label="Close chapter contents"
                                 >
                                     <PanelRightClose className="h-4 w-4" aria-hidden="true" />

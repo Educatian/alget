@@ -27,6 +27,55 @@
   --ath-radius-lg: 14px;
   --ath-radius-xl: 18px;
 
+  /* TYPE SCALE: modular ~1.20 (minor-third) ratio. Use these instead of
+     one-off rem/px literals so every surface shares one governing rhythm.
+     --ath-text-stat is the dedicated quantitative/display tier (pairs with
+     the .ath-stat utility: IBM Plex Mono, tabular-nums). */
+  --ath-text-2xs: 0.75rem;   /* 12px floor */
+  --ath-text-xs: 0.8125rem;  /* 13px */
+  --ath-text-sm: 0.875rem;   /* 14px */
+  --ath-text-base: 1rem;     /* 16px */
+  --ath-text-lg: 1.125rem;   /* 18px */
+  --ath-text-xl: 1.5rem;     /* 24px */
+  --ath-text-2xl: 1.875rem;  /* 30px */
+  --ath-text-3xl: 2.25rem;   /* 36px */
+  --ath-text-stat: 1.875rem; /* dedicated numeric/display tier */
+
+  /* SPACING SCALE: 4/8-base rhythm. --ath-section-gap is the vertical band
+     between major page sections; --ath-gutter is the horizontal page inset. */
+  --ath-space-1: 0.25rem;  /* 4px */
+  --ath-space-2: 0.5rem;   /* 8px */
+  --ath-space-3: 0.75rem;  /* 12px */
+  --ath-space-4: 1rem;     /* 16px */
+  --ath-space-5: 1.5rem;   /* 24px */
+  --ath-space-6: 2rem;     /* 32px */
+  --ath-space-7: 3rem;     /* 48px */
+  --ath-space-8: 4rem;     /* 64px */
+  --ath-section-gap: 2rem;
+  --ath-gutter: 1.5rem;
+
+  /* SEMANTIC COLOR RAMP (light). Components derive softer tints via
+     color-mix() instead of hardcoding amber/emerald/sky/#b45309/#047857. */
+  --ath-success: #2f7d63;
+  --ath-warning: #b45309;
+  --ath-info: var(--ath-primary);
+  --ath-success-soft: color-mix(in srgb, var(--ath-success) 14%, transparent);
+  --ath-warning-soft: color-mix(in srgb, var(--ath-warning) 14%, transparent);
+  --ath-info-soft: color-mix(in srgb, var(--ath-info) 14%, transparent);
+
+  /* CONTAINER tokens: one width per surface intent. Consume via .ath-container
+     (set --ath-container before the utility, or use the modifier classes). */
+  --ath-container-app: 64rem;        /* 1024px: dashboard / app shell */
+  --ath-container-marketing: 80rem;  /* 1280px: landing / marketing */
+  --ath-container-focus: 48rem;      /* 768px: diagnostic / focused flows */
+
+  /* DATA-VIZ ramp (light): categorical series for concept diagrams/charts. */
+  --ath-viz-1: #27624f;
+  --ath-viz-2: #b45309;
+  --ath-viz-3: #2f6f9e;
+  --ath-viz-4: #8a5f24;
+  --ath-viz-5: #6d4a8f;
+
   /* UDL 3.0 reading-surface custom properties (Representation: perception).
      Defaults defined here; the reading-preferences modal SETS these per
      learner (font scale, line height, measure/width, letter/word spacing).
@@ -54,28 +103,46 @@
   --ath-panel-muted: #181b21;
   --ath-line: rgba(204, 214, 220, 0.14);
   --ath-line-strong: rgba(219, 232, 239, 0.24);
-  --ath-primary: #b9ff4a;
-  --ath-primary-deep: #e4ff91;
-  --ath-primary-soft: #263a14;
+  /* Desaturated green keeps the editorial brand hue at night (was near-lime
+     #b9ff4a, which shifted the product ~40 deg toward neon). Lime is demoted
+     to --ath-accent as an intentional pop, not the primary brand. */
+  --ath-primary: #5fae8c;
+  --ath-primary-deep: #3f8a6a;
+  --ath-primary-soft: #1c3329;
   --ath-secondary: #9aa4aa;
   --ath-text: #f2f4f5;
   --ath-muted: #a4adb3;
-  --ath-accent: #69d2ff;
+  --ath-accent: #b9ff4a;
   --ath-danger: #ff8674;
   --ath-topbar: rgba(10, 11, 13, 0.88);
-  --ath-grid-line: rgba(185, 255, 74, 0.055);
+  --ath-grid-line: rgba(95, 174, 140, 0.06);
   --ath-shadow: 0 22px 64px rgba(0, 0, 0, 0.58);
   --ath-shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.38);
   --ath-radius: 8px;
   --ath-radius-lg: 12px;
   --ath-radius-xl: 16px;
+
+  /* SEMANTIC COLOR RAMP (dark): lightened for contrast on the #08090b canvas. */
+  --ath-success: #5fae8c;
+  --ath-warning: #e0a04a;
+  --ath-info: #6bb3df;
+  --ath-success-soft: color-mix(in srgb, var(--ath-success) 20%, transparent);
+  --ath-warning-soft: color-mix(in srgb, var(--ath-warning) 20%, transparent);
+  --ath-info-soft: color-mix(in srgb, var(--ath-info) 20%, transparent);
+
+  /* DATA-VIZ ramp (dark): lifted lightness/saturation for the dark canvas. */
+  --ath-viz-1: #5fae8c;
+  --ath-viz-2: #e0a04a;
+  --ath-viz-3: #6bb3df;
+  --ath-viz-4: #d6b06a;
+  --ath-viz-5: #b394d6;
 }
 
 [data-theme="dark"] body {
   background:
-    linear-gradient(rgba(185, 255, 74, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(185, 255, 74, 0.045) 1px, transparent 1px),
-    radial-gradient(circle at 84% 12%, rgba(185, 255, 74, 0.10), transparent 26%),
+    linear-gradient(rgba(95, 174, 140, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 174, 140, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 84% 12%, rgba(95, 174, 140, 0.12), transparent 26%),
     linear-gradient(180deg, #0b0c0f 0%, #050608 100%);
   background-size: 44px 44px, 44px 44px, auto, auto;
 }
@@ -127,18 +194,6 @@ h6,
 .serif-text {
   font-family: 'Fraunces', Georgia, serif;
   letter-spacing: 0;
-}
-
-[data-theme="dark"] h1,
-[data-theme="dark"] h2,
-[data-theme="dark"] h3,
-[data-theme="dark"] h4,
-[data-theme="dark"] h5,
-[data-theme="dark"] h6,
-[data-theme="dark"] .font-headline,
-[data-theme="dark"] .newsreader,
-[data-theme="dark"] .serif-text {
-  font-family: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
 }
 
 #root {
@@ -201,7 +256,6 @@ h6,
 }
 
 [data-theme="dark"] .editorial-title {
-  font-family: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
   font-weight: 800;
 }
 
@@ -238,6 +292,36 @@ h6,
   font-weight: 600;
 }
 
+/* Quantitative/display tier. Apply to any numeric value (counts, mastery %,
+   stats) so figures get a monospaced, tabular, semibold treatment that lines
+   up vertically and reads as data rather than prose. Pair with --ath-text-stat
+   (or any --ath-text-* size) for the display scale. */
+.ath-stat {
+  font-family: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+/* Shared page-width container. Defaults to the app width; the modifier classes
+   switch to the marketing or focus widths so every surface draws from the same
+   three container tokens instead of inventing one-off max-widths. */
+.ath-container {
+  width: 100%;
+  max-width: var(--ath-container-app);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--ath-gutter);
+  padding-right: var(--ath-gutter);
+}
+
+.ath-container-marketing {
+  max-width: var(--ath-container-marketing);
+}
+
+.ath-container-focus {
+  max-width: var(--ath-container-focus);
+}
+
 .editorial-button {
   display: inline-flex;
   align-items: center;
@@ -259,6 +343,34 @@ h6,
   box-shadow: 0 20px 34px color-mix(in srgb, var(--ath-primary) 26%, transparent);
 }
 
+.editorial-button:active {
+  transform: translateY(0);
+  filter: brightness(0.97);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--ath-primary) 18%, transparent);
+}
+
+.editorial-button:focus-visible {
+  outline: 2px solid var(--ath-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ath-primary) 22%, transparent);
+}
+
+.editorial-button:disabled,
+.editorial-button[aria-disabled='true'] {
+  opacity: 0.55;
+  box-shadow: none;
+  transform: none;
+  filter: none;
+  cursor: not-allowed;
+}
+
+.editorial-button:disabled:hover,
+.editorial-button[aria-disabled='true']:hover {
+  transform: none;
+  filter: none;
+  box-shadow: none;
+}
+
 .editorial-button-secondary {
   display: inline-flex;
   align-items: center;
@@ -274,8 +386,34 @@ h6,
 }
 
 .editorial-button-secondary:hover {
-  background: var(--ath-surface-strong);
+  background: var(--ath-panel-muted);
+  border-color: var(--ath-line-strong);
   transform: translateY(-1px);
+}
+
+.editorial-button-secondary:active {
+  background: var(--ath-panel-muted);
+  transform: translateY(0);
+}
+
+.editorial-button-secondary:focus-visible {
+  outline: 2px solid var(--ath-primary);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ath-primary) 22%, transparent);
+}
+
+.editorial-button-secondary:disabled,
+.editorial-button-secondary[aria-disabled='true'] {
+  opacity: 0.55;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.editorial-button-secondary:disabled:hover,
+.editorial-button-secondary[aria-disabled='true']:hover {
+  background: var(--ath-surface-strong);
+  border-color: var(--ath-line);
+  transform: none;
 }
 
 .editorial-input {
@@ -290,8 +428,8 @@ h6,
 }
 
 .editorial-input:focus {
-  border-color: rgba(15, 81, 103, 0.35);
-  box-shadow: 0 0 0 4px rgba(200, 226, 236, 0.45);
+  border-color: color-mix(in srgb, var(--ath-primary) 45%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ath-primary) 22%, transparent);
 }
 
 /* a11y (WCAG 2.4.7 Focus Visible): the input previously cleared its outline
@@ -302,10 +440,10 @@ h6,
 }
 
 .editorial-input:focus-visible {
-  outline: 2px solid var(--ath-primary, #6d28d9);
+  outline: 2px solid var(--ath-primary);
   outline-offset: 2px;
-  border-color: rgba(15, 81, 103, 0.35);
-  box-shadow: 0 0 0 4px rgba(200, 226, 236, 0.45);
+  border-color: color-mix(in srgb, var(--ath-primary) 45%, transparent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ath-primary) 22%, transparent);
 }
 
 .glow-orb,
@@ -326,14 +464,14 @@ h6,
   border-radius: var(--ath-radius);
   background: linear-gradient(135deg, var(--ath-primary) 0%, var(--ath-primary-deep) 100%);
   color: white;
-  box-shadow: 0 16px 30px rgba(9, 56, 72, 0.18);
+  box-shadow: 0 16px 30px color-mix(in srgb, var(--ath-primary) 18%, transparent);
   transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
 }
 
 .btn-crimson:hover {
   transform: translateY(-1px);
   filter: brightness(1.03);
-  box-shadow: 0 20px 36px rgba(9, 56, 72, 0.2);
+  box-shadow: 0 20px 36px color-mix(in srgb, var(--ath-primary) 22%, transparent);
 }
 
 .btn-crimson::after {
@@ -349,6 +487,12 @@ h6,
   opacity: 1;
 }
 
+/* CARD PRIMITIVES. All three share the tokenized surface, radius, and shadow
+   and dark-adapt via the [data-theme="dark"] surface overrides below.
+   - .content-card  : default elevated content surface (subtle hover lift).
+   - .card-surface  : read-only panel, no transform (use for summary blocks).
+   - .card-actionable: clickable card with a clear at-rest affordance (left
+     accent bar) plus a hover lift and pointer cursor. */
 .content-card {
   border: 1px solid var(--ath-line);
   border-radius: var(--ath-radius-xl);
@@ -360,7 +504,52 @@ h6,
 .content-card:hover {
   transform: translateY(-1px);
   box-shadow: var(--ath-shadow);
-  border-color: rgba(15, 81, 103, 0.16);
+  border-color: color-mix(in srgb, var(--ath-primary) 24%, var(--ath-line));
+}
+
+.card-surface {
+  border: 1px solid var(--ath-line);
+  border-radius: var(--ath-radius-xl);
+  background: var(--ath-surface-strong);
+  box-shadow: var(--ath-shadow-soft);
+}
+
+.card-actionable {
+  position: relative;
+  border: 1px solid var(--ath-line);
+  border-radius: var(--ath-radius-xl);
+  background: var(--ath-surface-strong);
+  box-shadow: var(--ath-shadow-soft);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+/* At-rest affordance: a thin brand bar on the leading edge signals "clickable"
+   before any hover, so static and interactive cards are never visually identical. */
+.card-actionable::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  border-radius: var(--ath-radius-xl) 0 0 var(--ath-radius-xl);
+  background: color-mix(in srgb, var(--ath-primary) 45%, transparent);
+  transition: width 0.22s ease, background 0.22s ease;
+}
+
+.card-actionable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ath-shadow);
+  border-color: color-mix(in srgb, var(--ath-primary) 30%, var(--ath-line));
+}
+
+.card-actionable:hover::before {
+  width: 4px;
+  background: var(--ath-primary);
+}
+
+.card-actionable:focus-visible {
+  outline: 2px solid var(--ath-primary);
+  outline-offset: 2px;
 }
 
 .step-circle {
@@ -473,18 +662,18 @@ h6,
 
 @keyframes review-anchor-flash {
   0% {
-    background: rgba(200, 226, 236, 0.88);
-    box-shadow: 0 0 0 0 rgba(15, 81, 103, 0.18);
+    background: color-mix(in srgb, var(--ath-primary) 28%, transparent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--ath-primary) 18%, transparent);
   }
 
   50% {
-    background: rgba(200, 226, 236, 0.52);
-    box-shadow: 0 0 0 10px rgba(15, 81, 103, 0.08);
+    background: color-mix(in srgb, var(--ath-primary) 16%, transparent);
+    box-shadow: 0 0 0 10px color-mix(in srgb, var(--ath-primary) 8%, transparent);
   }
 
   100% {
     background: transparent;
-    box-shadow: 0 0 0 0 rgba(15, 81, 103, 0);
+    box-shadow: 0 0 0 0 transparent;
   }
 }
 
@@ -538,7 +727,7 @@ h6,
 .prose h3,
 .prose h4 {
   color: var(--ath-text);
-  font-family: 'Newsreader', Georgia, serif;
+  font-family: 'Fraunces', Georgia, serif;
 }
 
 .prose a {
@@ -603,7 +792,7 @@ h6,
   margin: 2rem 0;
   border-left: 3px solid var(--ath-primary);
   border-radius: 0 1.25rem 1.25rem 0;
-  background: linear-gradient(90deg, rgba(200, 226, 236, 0.34), rgba(255, 255, 255, 0.1));
+  background: linear-gradient(90deg, color-mix(in srgb, var(--ath-primary) 12%, transparent), rgba(255, 255, 255, 0.1));
   padding: 1.3rem 1.5rem;
 }
 
@@ -909,17 +1098,12 @@ h6,
   color: var(--ath-text);
 }
 
-[data-theme="dark"] .prose h1,
-[data-theme="dark"] .prose h2,
-[data-theme="dark"] .prose h3,
-[data-theme="dark"] .prose h4 {
-  font-family: 'IBM Plex Sans', 'Inter', system-ui, sans-serif;
-}
-
 [data-theme="dark"] .prose table,
 [data-theme="dark"] .prose .katex-display,
 [data-theme="dark"] .prose blockquote,
 [data-theme="dark"] .content-card,
+[data-theme="dark"] .card-surface,
+[data-theme="dark"] .card-actionable,
 [data-theme="dark"] .editorial-surface,
 [data-theme="dark"] .editorial-panel,
 [data-theme="dark"] .glass,
@@ -1012,6 +1196,30 @@ h6,
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* Duration-clamping alone still leaves transform END-STATES (hover:scale-105,
+     hover:-translate-y, the editorial-button/card lifts) active, so a
+     reduced-motion user still gets a positional jump on hover/focus. Neutralize
+     the hover/focus transform so interactive elements stay put. */
+  a:hover,
+  button:hover,
+  summary:hover,
+  label:hover,
+  [role='button']:hover,
+  .editorial-button:hover,
+  .editorial-button-secondary:hover,
+  .btn-crimson:hover,
+  .content-card:hover,
+  .card-actionable:hover,
+  .step-circle:hover,
+  a:focus-visible,
+  button:focus-visible,
+  [role='button']:focus-visible,
+  .editorial-button:active,
+  .editorial-button-secondary:active,
+  .card-actionable:hover::before {
+    transform: none !important;
+  }
 }
 
 /* a11y (WCAG 2.4.1 Bypass Blocks): "Skip to content" link. Visually hidden
@@ -1026,7 +1234,7 @@ h6,
   transform: translateY(-150%);
   padding: 0.75rem 1.25rem;
   border-radius: 0 0 var(--ath-radius, 10px) 0;
-  background: var(--ath-primary, #6d28d9);
+  background: var(--ath-primary);
   color: #ffffff;
   font-family: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
   font-size: 0.9rem;
@@ -1039,7 +1247,7 @@ h6,
 .skip-to-content-link:focus,
 .skip-to-content-link:focus-visible {
   transform: translateY(0);
-  outline: 2px solid var(--ath-primary, #6d28d9);
+  outline: 2px solid var(--ath-primary);
   outline-offset: 2px;
 }
 
@@ -1048,7 +1256,7 @@ h6,
    :focus-visible treatment, ensuring keyboard users can always see where
    they are. Mouse interaction (no :focus-visible) is left untouched. */
 :focus-visible {
-  outline: 2px solid var(--ath-primary, #6d28d9);
+  outline: 2px solid var(--ath-primary);
   outline-offset: 2px;
 }
 

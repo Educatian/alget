@@ -16,24 +16,24 @@ export const FluidDynamicsDiagram = () => {
     const dragPenalty = flowSpeed < 20 ? "Negligible" : surfaceType === 'smooth' && isTurbulent ? "Critical (Flow Separation)" : "Moderate";
 
     return (
-        <div className="my-8 p-6 bg-slate-900 rounded-2xl border border-slate-700 shadow-xl max-w-3xl mx-auto font-sans relative overflow-hidden">
-            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between mb-6 border-b border-slate-800 pb-6">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] rounded-2xl border border-[var(--ath-line)] shadow-xl max-w-3xl mx-auto font-sans relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between mb-6 border-b border-[var(--ath-line)] pb-6">
                 <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-[var(--ath-text)] mb-2 flex items-center gap-2">
                         <span className="text-blue-400" aria-hidden="true">🌊</span> Boundary Layer Topology
                     </h3>
-                    <p className="text-sm text-slate-400 mb-4">Adjust free-stream velocity to observe how micro-riblets control chaotic vortices under high Reynolds numbers.</p>
+                    <p className="text-sm text-[var(--ath-muted)] mb-4">Adjust free-stream velocity to observe how micro-riblets control chaotic vortices under high Reynolds numbers.</p>
 
-                    <div className="flex bg-slate-800 p-1.5 rounded-xl shadow-inner w-fit mb-4">
+                    <div className="flex bg-[var(--ath-panel-muted)] p-1.5 rounded-xl shadow-inner w-fit mb-4">
                         <button
                             onClick={() => setSurfaceType('smooth')}
-                            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${surfaceType === 'smooth' ? 'bg-slate-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'}`}
+                            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${surfaceType === 'smooth' ? 'bg-[var(--ath-panel)] text-[var(--ath-text)] shadow-md' : 'text-[var(--ath-muted)] hover:text-[var(--ath-text)]'}`}
                         >
                             Smooth Hull
                         </button>
                         <button
                             onClick={() => setSurfaceType('riblets')}
-                            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-2 ${surfaceType === 'riblets' ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50' : 'text-slate-400 hover:text-slate-200'}`}
+                            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-2 ${surfaceType === 'riblets' ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50' : 'text-[var(--ath-muted)] hover:text-[var(--ath-text)]'}`}
                         >
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true" focusable="false"><path d="M4 22L12 14L20 22"></path></svg>
                             Denticle Riblets
@@ -41,7 +41,7 @@ export const FluidDynamicsDiagram = () => {
                     </div>
 
                     <div className="w-full max-w-xs">
-                        <label className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2 flex justify-between">
+                        <label className="text-xs text-[var(--ath-muted)] font-bold uppercase tracking-wider mb-2 flex justify-between">
                             <span>Free-Stream Velocity (U∞)</span>
                             <span className="text-blue-400">{flowSpeed} m/s</span>
                         </label>
@@ -51,21 +51,21 @@ export const FluidDynamicsDiagram = () => {
                             max="100"
                             value={flowSpeed}
                             onChange={(e) => setFlowSpeed(parseInt(e.target.value))}
-                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500"
+                            className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-blue-500"
                         />
                     </div>
                 </div>
 
                 <div className="flex flex-col gap-3 min-w-[140px]">
-                    <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-700">
-                        <div className="text-[10px] text-slate-500 font-mono tracking-wider uppercase mb-1">Reynolds Number (Re)</div>
+                    <div className="bg-[var(--ath-panel-muted)] rounded-lg p-3 border border-[var(--ath-line)]">
+                        <div className="text-[10px] text-[var(--ath-muted)] font-mono tracking-wider uppercase mb-1">Reynolds Number (Re)</div>
                         <div className={`text-lg font-black font-mono ${isTurbulent ? 'text-orange-400' : 'text-blue-400'}`}>{reynoldsNumber.toLocaleString()}</div>
-                        <div className="text-[10px] text-slate-400 mt-1">{isTurbulent ? 'Turbulent Regime' : 'Laminar Regime'}</div>
+                        <div className="text-[10px] text-[var(--ath-muted)] mt-1">{isTurbulent ? 'Turbulent Regime' : 'Laminar Regime'}</div>
                     </div>
-                    <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-700">
-                        <div className="text-[10px] text-slate-500 font-mono tracking-wider uppercase mb-1">Drag Coeff (Cd)</div>
-                        <div className={`text-lg font-black font-mono ${surfaceType === 'riblets' && isTurbulent ? 'text-green-400' : surfaceType === 'smooth' && isTurbulent ? 'text-red-400' : 'text-slate-300'}`}>{dragCoefficient.toFixed(4)}</div>
-                        <div className="text-[10px] text-slate-400 mt-1">{dragPenalty}</div>
+                    <div className="bg-[var(--ath-panel-muted)] rounded-lg p-3 border border-[var(--ath-line)]">
+                        <div className="text-[10px] text-[var(--ath-muted)] font-mono tracking-wider uppercase mb-1">Drag Coeff (Cd)</div>
+                        <div className={`text-lg font-black font-mono ${surfaceType === 'riblets' && isTurbulent ? 'text-green-400' : surfaceType === 'smooth' && isTurbulent ? 'text-red-400' : 'text-[var(--ath-text)]'}`}>{dragCoefficient.toFixed(4)}</div>
+                        <div className="text-[10px] text-[var(--ath-muted)] mt-1">{dragPenalty}</div>
                     </div>
                 </div>
             </div>

@@ -52,9 +52,9 @@ export const SelfHealingDiagram = () => {
     const isAnimating = isStressing && crackProgress < 100;
 
     return (
-        <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
-            <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: Vascular Self-Healing Polymer</h3>
-            <p aria-live="polite" className="text-sm text-slate-500 mb-6 text-center max-w-lg min-h-[40px]">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] border border-[var(--ath-line)] rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
+            <h3 className="text-lg font-bold text-[var(--ath-text)] mb-2">Interactive: Vascular Self-Healing Polymer</h3>
+            <p aria-live="polite" className="text-sm text-[var(--ath-muted)] mb-6 text-center max-w-lg min-h-[40px]">
                 {crackProgress === 0 && "Click 'Apply Stress' to simulate material shear."}
                 {crackProgress > 0 && crackProgress < 50 && "Crack propagating through the polymer matrix..."}
                 {crackProgress >= 50 && crackProgress < 90 && "Crack ruptures embedded microcapsule! Healing agent released."}
@@ -64,20 +64,20 @@ export const SelfHealingDiagram = () => {
             <button
                 onClick={handleStress}
                 disabled={isAnimating}
-                className="mb-6 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-400 text-white font-bold rounded-lg transition-colors shadow-sm active:scale-95"
+                className="mb-6 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-[var(--ath-panel-muted)] disabled:text-[var(--ath-muted)] text-white font-bold rounded-lg transition-colors shadow-sm active:scale-95"
             >
                 {crackProgress === 0 ? "Apply Structural Stress" : (crackProgress >= 100 ? "Reset & Re-stress" : "Fracturing...")}
             </button>
 
             <AccessibleSvg
                 viewBox="0 0 600 300"
-                className="w-full max-w-2xl drop-shadow-sm rounded-lg overflow-hidden border border-slate-100"
+                className="w-full max-w-2xl drop-shadow-sm rounded-lg overflow-hidden border border-[var(--ath-line)]"
                 title="Vascular self-healing polymer cross-section"
                 desc={`A polymer matrix embedded with a catalyst grid and liquid-filled microcapsules. ${crackProgress === 0 ? 'No crack is present.' : crackProgress < 50 ? 'A crack is propagating through the matrix.' : crackProgress < 90 ? 'The crack has ruptured a microcapsule, releasing healing agent.' : 'The released agent has met the catalyst and polymerized, sealing the crack.'}`}
             >
                 {/* Polymer Matrix */}
-                <rect x="0" y="0" width="600" height="300" fill="#f8fafc" />
-                <text x="300" y="30" textAnchor="middle" className="font-bold text-sm fill-slate-400 tracking-widest uppercase">Polymer Matrix</text>
+                <rect x="0" y="0" width="600" height="300" fill="var(--ath-panel-muted)" />
+                <text x="300" y="30" textAnchor="middle" className="font-bold text-sm tracking-widest uppercase" fill="var(--ath-muted)">Polymer Matrix</text>
 
                 {/* Embedded Catalyst */}
                 <g fill="#a855f7" opacity="0.6">
@@ -102,7 +102,7 @@ export const SelfHealingDiagram = () => {
                 </g>
 
                 {/* Crack */}
-                <path d={crackPath} fill="none" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                <path d={crackPath} fill="none" stroke="var(--ath-text)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
 
                 {/* Healing agent bleeding down the crack */}
                 {hitCapsule1 && (

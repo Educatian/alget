@@ -2,6 +2,7 @@ import React, { useId, useState } from 'react';
 import { Check, X, Lightbulb } from 'lucide-react';
 import { recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService';
 import { useReducedMotion, motionClasses } from '../lib/motion';
+import QuizOption from './QuizOption';
 
 // Confidence levels offered before grading. The learner taps one to register
 // how sure they are; this is folded into the adaptive signal so the engine can
@@ -28,9 +29,9 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
     } catch (e) {
         console.error('InteractiveQuiz: Failed to parse options JSON:', e.message, '\nRaw options:', options);
         return (
-            <div className="my-10 rounded-xl border border-amber-300 bg-amber-50 p-6 font-sans">
-                <p className="font-medium text-amber-800">Quiz Loading Error: question data could not be parsed.</p>
-                <p className="mt-1 text-sm text-amber-600">
+            <div className="my-10 rounded-xl border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] p-6 font-sans">
+                <p className="font-medium text-[var(--ath-warning)]">Quiz Loading Error: question data could not be parsed.</p>
+                <p className="mt-1 text-sm text-[var(--ath-muted)]">
                     This is usually caused by special characters in the question text. Please try refreshing.
                 </p>
             </div>
@@ -97,34 +98,27 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
         setConfidence(null);
     };
 
-    const getOptionStyle = (idx, isCorrect) => {
+    // Map each option to one of the shared QuizOption primitive's states so this
+    // widget renders IDENTICAL markup to the practice quiz (critique issue #2:
+    // "indigo radio-dot vs green letter-badge ... extract a shared <QuizOption>").
+    const resolveState = (idx, isCorrect) => {
         if (!isSubmitted) {
-            return selectedOption === idx
-                ? 'border-indigo-500 bg-indigo-50 text-indigo-900 ring-2 ring-indigo-500/20'
-                : 'border-slate-200 bg-white text-slate-700 hover:border-indigo-300 hover:bg-slate-50';
+            return selectedOption === idx ? 'selected' : 'default';
         }
-
-        if (isCorrect) {
-            return 'border-emerald-500 bg-emerald-50 text-emerald-900';
-        }
-
-        if (selectedOption === idx && !isCorrect) {
-            return 'border-rose-500 bg-rose-50 text-rose-900';
-        }
-
-        return 'border-slate-200 bg-white text-slate-400 opacity-60';
+        if (isCorrect) return 'correct';
+        if (selectedOption === idx && !isCorrect) return 'incorrect';
+        return 'disabled';
     };
 
     const isCorrectChoice = isSubmitted && parsedOptions[selectedOption]?.isCorrect;
     const hasHint = Boolean(hint && String(hint).trim());
     const hintRegionId = `${baseId}-hint`;
-    const optionMotion = motionClasses(['transition', 'press'], reducedMotion);
 
     return (
-        <div className="my-10 overflow-hidden rounded-xl border border-slate-200 bg-white font-sans shadow-sm">
-            <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
-                <h3 className="flex items-center gap-2 font-bold text-slate-800">
-                    <span className="rounded-full bg-[#9E1B32]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#9E1B32]">
+        <div className="my-10 overflow-hidden rounded-[var(--ath-radius-xl)] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] font-sans shadow-sm">
+            <div className="flex items-center justify-between border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-6 py-4">
+                <h3 className="flex items-center gap-2 font-bold text-[var(--ath-text)]">
+                    <span className="rounded-full bg-[var(--ath-primary-soft)] px-2 py-0.5 text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.2em] text-[var(--ath-primary-deep)]">
                         KC
                     </span>
                     Knowledge Check
@@ -135,7 +129,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                         onClick={() => setHintShown((shown) => !shown)}
                         aria-expanded={hintShown}
                         aria-controls={hintRegionId}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800 transition-colors hover:bg-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] px-3 py-1 text-xs font-semibold text-[var(--ath-warning)] transition-colors hover:bg-[color-mix(in_srgb,var(--ath-warning)_22%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-warning)_45%,transparent)]"
                     >
                         <Lightbulb className="h-3.5 w-3.5" aria-hidden="true" />
                         {hintShown ? 'Hide hint' : 'Show hint'}
@@ -144,15 +138,15 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
             </div>
 
             <div className="p-6">
-                <p className="mb-6 text-lg font-medium text-slate-800">{question}</p>
+                <p className="mb-6 text-lg font-medium text-[var(--ath-text)]">{question}</p>
 
                 {hasHint && hintShown && !isSubmitted && (
                     <div
                         id={hintRegionId}
                         role="note"
-                        className={`mb-6 flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 ${motionClasses(['fadeIn'], reducedMotion)}`}
+                        className={`mb-6 flex items-start gap-2 rounded-lg border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] px-4 py-3 text-sm text-[var(--ath-warning)] ${motionClasses(['fadeIn'], reducedMotion)}`}
                     >
-                        <Lightbulb className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" aria-hidden="true" />
+                        <Lightbulb className="mt-0.5 h-4 w-4 flex-shrink-0 text-[var(--ath-warning)]" aria-hidden="true" />
                         <span><span className="font-semibold">Hint: </span>{hint}</span>
                     </div>
                 )}
@@ -162,51 +156,23 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                         const isChecked = selectedOption === idx;
                         const isFocusable = isChecked || (selectedOption === null && idx === 0);
                         const isCorrect = Boolean(opt.isCorrect);
-                        const showCorrectMark = isSubmitted && isCorrect;
-                        const showWrongMark = isSubmitted && isChecked && !isCorrect;
-                        let resultLabel = '';
-                        if (showCorrectMark) {
-                            resultLabel = ' (correct answer)';
-                        } else if (showWrongMark) {
-                            resultLabel = ' (your answer, incorrect)';
-                        }
                         return (
-                        <button
-                            key={idx}
-                            type="button"
-                            role="radio"
-                            aria-checked={isChecked}
-                            aria-label={`${opt.text}${resultLabel}`}
-                            tabIndex={isSubmitted ? -1 : (isFocusable ? 0 : -1)}
-                            onClick={() => handleSelect(idx)}
-                            onKeyDown={(event) => handleOptionKeyDown(event, idx)}
-                            disabled={isSubmitted}
-                            className={`flex w-full items-start gap-3 rounded-lg border-2 p-4 text-left ${optionMotion} ${getOptionStyle(idx, opt.isCorrect)}`}
-                        >
-                            <div className={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border
-                                ${showCorrectMark ? 'border-emerald-500 text-emerald-600' : ''}
-                                ${showWrongMark ? 'border-rose-500 text-rose-600' : ''}
-                                ${!isSubmitted && isChecked ? 'border-indigo-500 bg-indigo-500' : ''}
-                                ${!isSubmitted && !isChecked ? 'border-slate-300 bg-white' : ''}
-                            `}>
-                                {!isSubmitted && isChecked && <div className="h-2 w-2 rounded-full bg-white" />}
-                                {showCorrectMark && <Check className="h-3.5 w-3.5" strokeWidth={3} aria-hidden="true" />}
-                                {showWrongMark && <X className="h-3.5 w-3.5" strokeWidth={3} aria-hidden="true" />}
-                            </div>
-                            <span className="flex-1 leading-snug">{opt.text}</span>
-                            {(showCorrectMark || showWrongMark) && (
-                                <span className={`flex-shrink-0 text-xs font-bold uppercase tracking-wide ${showCorrectMark ? 'text-emerald-700' : 'text-rose-700'}`}>
-                                    {showCorrectMark ? 'Correct' : 'Incorrect'}
-                                </span>
-                            )}
-                        </button>
+                            <QuizOption
+                                key={idx}
+                                label={opt.text}
+                                state={resolveState(idx, isCorrect)}
+                                checked={isChecked}
+                                focusable={isSubmitted ? false : isFocusable}
+                                onSelect={() => handleSelect(idx)}
+                                onKeyDown={(event) => handleOptionKeyDown(event, idx)}
+                            />
                         );
                     })}
                 </div>
 
                 {!isSubmitted && (
-                    <fieldset className="mb-6 rounded-lg border border-slate-200 bg-slate-50/60 px-4 py-3">
-                        <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    <fieldset className="mb-6 rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-4 py-3">
+                        <legend className="px-1 text-xs font-semibold uppercase tracking-wide text-[var(--ath-secondary)]">
                             How confident are you?
                         </legend>
                         <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label="Confidence level">
@@ -218,10 +184,10 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                                         type="button"
                                         aria-pressed={active}
                                         onClick={() => setConfidence((current) => (current === level.value ? null : level.value))}
-                                        className={`rounded-full border px-3 py-1 text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 ${motionClasses(['transition'], reducedMotion)} ${
+                                        className={`rounded-full border px-3 py-1 text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] ${motionClasses(['transition'], reducedMotion)} ${
                                             active
-                                                ? 'border-indigo-500 bg-indigo-500 text-white'
-                                                : 'border-slate-300 bg-white text-slate-600 hover:border-indigo-300 hover:bg-white'
+                                                ? 'border-[var(--ath-primary)] bg-[var(--ath-primary)] text-[var(--ath-background)]'
+                                                : 'border-[var(--ath-line-strong)] bg-[var(--ath-surface-strong)] text-[var(--ath-muted)] hover:border-[var(--ath-primary)] hover:bg-[var(--ath-panel)]'
                                         }`}
                                     >
                                         {level.label}
@@ -236,10 +202,10 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                     <button
                         onClick={handleSubmit}
                         disabled={selectedOption === null}
-                        className={`w-full rounded-lg py-3 font-bold text-white ${motionClasses(['transition'], reducedMotion)}
+                        className={`w-full rounded-lg py-3 font-bold ${motionClasses(['transition'], reducedMotion)}
                             ${selectedOption !== null
-                                ? 'bg-[#9E1B32] shadow-md hover:bg-[#7a1526] hover:shadow-lg'
-                                : 'cursor-not-allowed bg-slate-300'}`}
+                                ? 'bg-[var(--ath-primary)] text-[var(--ath-background)] shadow-md hover:bg-[var(--ath-primary-deep)] hover:shadow-lg'
+                                : 'cursor-not-allowed bg-[var(--ath-panel-muted)] text-[var(--ath-muted)]'}`}
                     >
                         Check Answer
                     </button>
@@ -248,11 +214,13 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                         role="status"
                         aria-live="polite"
                         className={`flex flex-col gap-4 rounded-lg border p-5 ${motionClasses(['fadeIn'], reducedMotion)}
-                        ${isCorrectChoice ? 'border-emerald-200 bg-emerald-50' : 'border-rose-200 bg-rose-50'}
+                        ${isCorrectChoice
+                                ? 'border-[var(--ath-success,#2f7d63)] bg-[var(--ath-success-soft)]'
+                                : 'border-[var(--ath-danger)] bg-[var(--ath-danger-soft,var(--ath-panel-muted))]'}
                     `}>
                         <div className="flex items-start gap-3">
                             <span
-                                className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-white ${isCorrectChoice ? 'bg-emerald-500' : 'bg-rose-500'}`}
+                                className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-[var(--ath-background)] ${isCorrectChoice ? 'bg-[var(--ath-success,#2f7d63)]' : 'bg-[var(--ath-danger)]'}`}
                                 aria-hidden="true"
                             >
                                 {isCorrectChoice
@@ -260,16 +228,16 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                                     : <X className="h-4 w-4" strokeWidth={3} />}
                             </span>
                             <div>
-                                <h4 className={`mb-1 font-bold ${isCorrectChoice ? 'text-emerald-900' : 'text-rose-900'}`}>
+                                <h4 className="mb-1 font-bold text-[var(--ath-text)]">
                                     {isCorrectChoice ? 'Correct!' : 'Not Quite Right.'}
                                 </h4>
-                                <p className={`text-sm ${isCorrectChoice ? 'text-emerald-800' : 'text-rose-800'}`}>
+                                <p className="text-sm text-[var(--ath-muted)]">
                                     {explanation}
                                 </p>
                             </div>
                         </div>
                         {feedbackSaved && (
-                            <p className="text-xs font-medium text-slate-500">
+                            <p className="text-xs font-medium text-[var(--ath-secondary)]">
                                 This response has been folded into your learner model.
                             </p>
                         )}

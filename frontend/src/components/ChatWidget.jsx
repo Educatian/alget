@@ -299,7 +299,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             setIsOpen(false)
                         }
                     }}
-                    className="glass-panel fixed bottom-24 right-6 z-50 flex h-[600px] w-[420px] origin-bottom-right animate-fade-in flex-col overflow-hidden border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
+                    className="glass-panel fixed bottom-24 right-3 left-3 z-50 flex h-[min(600px,calc(100dvh-7rem))] w-auto origin-bottom-right animate-fade-in flex-col overflow-hidden border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:left-auto sm:right-6 sm:w-[min(420px,calc(100vw-2rem))]">
                     {/* Header */}
                     <div className="relative flex items-center justify-between overflow-hidden bg-[var(--ath-panel-muted)] px-6 py-5 shadow-md">
                         <div className="flex items-center gap-4 relative z-10">
@@ -318,7 +318,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 <button
                                     onClick={clearHistory}
                                     aria-label="Clear chat history for this section"
-                                    className="text-xs text-[var(--ath-muted)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] rounded"
+                                    className="flex h-11 w-11 items-center justify-center rounded-full text-base text-[var(--ath-muted)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
                                     title="Clear history"
                                 >
                                     <span aria-hidden="true">🗑️</span>
@@ -327,7 +327,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             <button
                                 onClick={() => setIsOpen(false)}
                                 aria-label="Close BigAL tutor chat"
-                                className="p-1 text-[var(--ath-muted)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] rounded"
+                                className="flex h-11 w-11 items-center justify-center rounded-full text-[var(--ath-muted)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
                             >
                                 <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -432,13 +432,13 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 onKeyDown={handleKeyDown}
                                 aria-label="Type your question for BigAL"
                                 placeholder="Type your question..."
-                                className="flex-1 rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] py-3 pl-5 pr-12 text-sm font-medium text-[var(--ath-text)] shadow-inner transition-all placeholder:text-[var(--ath-secondary)] focus:bg-[var(--ath-surface-strong)] focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--ath-primary)_34%,transparent)]"
+                                className="min-h-[44px] flex-1 rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] py-3 pl-5 pr-14 text-sm font-medium text-[var(--ath-text)] shadow-inner transition-all placeholder:text-[var(--ath-secondary)] focus:bg-[var(--ath-surface-strong)] focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--ath-primary)_34%,transparent)]"
                             />
                             <button
                                 onClick={sendMessage}
                                 aria-label="Send message to BigAL"
                                 disabled={!inputValue.trim() || loading}
-                                className="absolute bottom-1.5 right-1.5 top-1.5 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ath-primary)] text-[var(--ath-background)] transition-all hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] disabled:cursor-not-allowed disabled:opacity-50"
+                                className="absolute bottom-1 right-1 top-1 flex w-11 items-center justify-center rounded-full bg-[var(--ath-primary)] text-[var(--ath-background)] transition-all hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] disabled:cursor-not-allowed disabled:opacity-50"
                             >
                                 <svg aria-hidden="true" className="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />

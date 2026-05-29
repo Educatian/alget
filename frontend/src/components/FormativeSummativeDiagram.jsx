@@ -11,37 +11,37 @@ export const FormativeSummativeDiagram = () => {
     const [view, setView] = useState('both'); // formative, summative, both
 
     return (
-        <div className="my-8 p-6 bg-white rounded-2xl border border-slate-200 shadow-md max-w-2xl mx-auto font-sans relative overflow-hidden">
-            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-200 pb-6">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] rounded-2xl border border-[var(--ath-line)] shadow-md max-w-2xl mx-auto font-sans relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-[var(--ath-line)] pb-6">
                 <div>
-                    <h3 className="text-xl font-bold text-slate-800 mb-1 flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-[var(--ath-text)] mb-1 flex items-center gap-2">
                         <span className="text-pink-500" aria-hidden="true">⚖️</span> Assessment Types
                     </h3>
-                    <p className="text-sm text-slate-600">Compare continuous (formative) vs final point-in-time (summative) evaluation.</p>
+                    <p className="text-sm text-[var(--ath-muted)]">Compare continuous (formative) vs final point-in-time (summative) evaluation.</p>
                 </div>
                 <div className="flex gap-2">
                     <button
                         onClick={() => setView('formative')}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'formative' ? 'bg-pink-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'formative' ? 'bg-pink-600 text-white' : 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[var(--ath-line)]'}`}
                     >
                         Formative
                     </button>
                     <button
                         onClick={() => setView('summative')}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'summative' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'summative' ? 'bg-indigo-600 text-white' : 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[var(--ath-line)]'}`}
                     >
                         Summative
                     </button>
                     <button
                         onClick={() => setView('both')}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'both' ? 'bg-slate-800 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${view === 'both' ? 'bg-[var(--ath-text)] text-[var(--ath-panel)]' : 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[var(--ath-line)]'}`}
                     >
                         Compare Both
                     </button>
                 </div>
             </div>
 
-            <div className="w-full h-48 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center p-4">
+            <div className="w-full h-48 bg-[var(--ath-panel-muted)] rounded-xl border border-[var(--ath-line)] shadow-inner relative flex items-center justify-center p-4">
                 <AccessibleSvg
                     viewBox="0 0 400 120"
                     className="w-full h-full relative z-10"
@@ -55,9 +55,9 @@ export const FormativeSummativeDiagram = () => {
                     </defs>
 
                     {/* Time Axis */}
-                    <line x1="20" y1="100" x2="380" y2="100" stroke="#cbd5e1" strokeWidth="2" />
-                    <text x="380" y="115" fill="#475569" fontSize="8" textAnchor="end">Learning Timeline</text>
-                    <text x="20" y="115" fill="#475569" fontSize="8" textAnchor="start">Start</text>
+                    <line x1="20" y1="100" x2="380" y2="100" stroke="var(--ath-line-strong)" strokeWidth="2" />
+                    <text x="380" y="115" fill="var(--ath-muted)" fontSize="8" textAnchor="end">Learning Timeline</text>
+                    <text x="20" y="115" fill="var(--ath-muted)" fontSize="8" textAnchor="start">Start</text>
 
                     {/* Formative Concept (Continuous Cycle) */}
                     <g className={`transition-all duration-500 ${view === 'summative' ? 'opacity-10 grayscale' : 'opacity-100'}`}>
@@ -98,18 +98,18 @@ export const FormativeSummativeDiagram = () => {
                         <line x1="350" y1="20" x2="350" y2="100" stroke="#4f46e5" strokeWidth="2" />
                     </g>
 
-                    <rect x="10" y="10" width="80" height="20" rx="4" fill={view === 'formative' || view === 'both' ? '#db2777' : '#e2e8f0'} className="transition-colors duration-300" />
-                    <text x="50" y="24" fill={view === 'formative' || view === 'both' ? 'white' : '#64748b'} fontSize="9" textAnchor="middle" fontWeight="bold">Formative = During</text>
+                    <rect x="10" y="10" width="80" height="20" rx="4" fill={view === 'formative' || view === 'both' ? '#db2777' : 'var(--ath-line)'} className="transition-colors duration-300" />
+                    <text x="50" y="24" fill={view === 'formative' || view === 'both' ? 'white' : 'var(--ath-muted)'} fontSize="9" textAnchor="middle" fontWeight="bold">Formative = During</text>
 
-                    <rect x="290" y="10" width="90" height="20" rx="4" fill={view === 'summative' || view === 'both' ? '#4f46e5' : '#e2e8f0'} className="transition-colors duration-300" />
-                    <text x="335" y="24" fill={view === 'summative' || view === 'both' ? 'white' : '#64748b'} fontSize="9" textAnchor="middle" fontWeight="bold">Summative = After</text>
+                    <rect x="290" y="10" width="90" height="20" rx="4" fill={view === 'summative' || view === 'both' ? '#4f46e5' : 'var(--ath-line)'} className="transition-colors duration-300" />
+                    <text x="335" y="24" fill={view === 'summative' || view === 'both' ? 'white' : 'var(--ath-muted)'} fontSize="9" textAnchor="middle" fontWeight="bold">Summative = After</text>
 
                 </AccessibleSvg>
             </div>
 
             {/* Selected view surfaced as text + live region (WCAG 1.4.1) */}
             <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
-                <span className="font-bold text-slate-900">{VIEW_LABEL[view]}</span>
+                <span className="font-bold text-[var(--ath-text)]">{VIEW_LABEL[view]}</span>
             </div>
             {(view === 'formative' || view === 'both') && <div className="absolute top-0 left-0 w-64 h-64 bg-pink-500/10 rounded-full blur-[60px] pointer-events-none"></div>}
             {(view === 'summative' || view === 'both') && <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[60px] pointer-events-none"></div>}

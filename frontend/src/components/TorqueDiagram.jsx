@@ -24,16 +24,16 @@ export const TorqueDiagram = () => {
     const torqueAmount = force * Math.sin(angleRad);
 
     return (
-        <div className="my-8 p-6 bg-slate-50 rounded-2xl border border-slate-200 shadow-sm max-w-2xl mx-auto font-sans">
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Interactive Torque Simulation</h3>
-            <p className="text-sm text-slate-500 mb-6">Adjust the applied force and angle to see how it affects the generated torque on the joint. Try to maximize the torque.</p>
+        <div className="my-8 p-6 bg-[var(--ath-panel-muted)] rounded-2xl border border-[var(--ath-line)] shadow-sm max-w-2xl mx-auto font-sans">
+            <h3 className="text-xl font-bold text-[var(--ath-text)] mb-2">Interactive Torque Simulation</h3>
+            <p className="text-sm text-[var(--ath-muted)] mb-6">Adjust the applied force and angle to see how it affects the generated torque on the joint. Try to maximize the torque.</p>
 
             <div className="flex flex-col md:flex-row gap-8 items-center">
                 {/* Left: Controls */}
-                <div className="w-full md:w-1/3 space-y-6 bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
+                <div className="w-full md:w-1/3 space-y-6 bg-[var(--ath-panel)] p-5 rounded-xl border border-[var(--ath-line)] shadow-sm">
                     <div>
                         <div className="flex justify-between mb-2">
-                            <label htmlFor="torque-force" className="text-xs font-bold text-slate-600 uppercase tracking-wider">Applied Force</label>
+                            <label htmlFor="torque-force" className="text-xs font-bold text-[var(--ath-muted)] uppercase tracking-wider">Applied Force</label>
                             <span className="text-xs font-bold text-indigo-600">{force} N</span>
                         </div>
                         <input
@@ -41,12 +41,12 @@ export const TorqueDiagram = () => {
                             type="range" min="10" max="100" value={force}
                             aria-valuetext={`${force} newtons`}
                             onChange={(e) => setForce(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-indigo-600"
                         />
                     </div>
                     <div>
                         <div className="flex justify-between mb-2">
-                            <label htmlFor="torque-angle" className="text-xs font-bold text-slate-600 uppercase tracking-wider">Angle (θ)</label>
+                            <label htmlFor="torque-angle" className="text-xs font-bold text-[var(--ath-muted)] uppercase tracking-wider">Angle (θ)</label>
                             <span className="text-xs font-bold text-indigo-600">{angle}°</span>
                         </div>
                         <input
@@ -54,25 +54,25 @@ export const TorqueDiagram = () => {
                             type="range" min="0" max="180" value={angle}
                             aria-valuetext={`${angle} degrees`}
                             onChange={(e) => setAngle(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-indigo-600"
                         />
                     </div>
 
-                    <div className="pt-4 border-t border-slate-100" aria-live="polite">
-                        <p className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Generated Torque ($\tau$)</p>
-                        <div className="text-3xl font-black text-slate-800 tracking-tight">
-                            {Math.round(torqueAmount)} <span className="text-base font-semibold text-slate-400">N*m</span>
+                    <div className="pt-4 border-t border-[var(--ath-line)]" aria-live="polite">
+                        <p className="text-xs text-[var(--ath-muted)] uppercase tracking-wider font-bold mb-1">Generated Torque ($\tau$)</p>
+                        <div className="text-3xl font-black text-[var(--ath-text)] tracking-tight">
+                            {Math.round(torqueAmount)} <span className="text-base font-semibold text-[var(--ath-muted)]">N*m</span>
                         </div>
-                        <p className="mt-1 text-xs text-slate-500">
+                        <p className="mt-1 text-xs text-[var(--ath-muted)]">
                             {force} N at {angle}° gives {Math.round(torqueAmount)} N*m of torque.
                         </p>
                     </div>
                 </div>
 
                 {/* Right: Visualization */}
-                <div className="w-full md:w-2/3 h-64 bg-white rounded-xl border border-slate-100 shadow-inner flex items-center justify-center relative overflow-hidden">
+                <div className="w-full md:w-2/3 h-64 bg-[var(--ath-panel)] rounded-xl border border-[var(--ath-line)] shadow-inner flex items-center justify-center relative overflow-hidden">
                     {/* Background Grid */}
-                    <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
+                    <div className="absolute inset-0 opacity-[0.06]" style={{ backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)', backgroundSize: '10px 10px', color: 'var(--ath-muted)' }}></div>
 
                     <AccessibleSvg
                         viewBox="0 0 300 250"
@@ -81,8 +81,8 @@ export const TorqueDiagram = () => {
                         desc={`A wrench on a nut with a red force vector of ${force} newtons applied at the end at ${angle} degrees to the arm. The blue arc marks the angle and the green circular arrow shows the resulting torque of ${Math.round(torqueAmount)} newton-meters.`}
                     >
                         {/* The Joint / Nut */}
-                        <circle cx={cx} cy={cy} r="12" fill="#475569" />
-                        <circle cx={cx} cy={cy} r="6" fill="#94a3b8" />
+                        <circle cx={cx} cy={cy} r="12" fill="var(--ath-text)" />
+                        <circle cx={cx} cy={cy} r="6" fill="var(--ath-muted)" />
 
                         {/* Visual representation of the torque (circular arrow) */}
                         {torqueAmount > 5 && (
@@ -109,8 +109,8 @@ export const TorqueDiagram = () => {
                         </defs>
 
                         {/* Wrench / Arm */}
-                        <path d={`M ${cx} ${cy - 8} L ${endX} ${cy - 6} L ${endX} ${cy + 6} L ${cx} ${cy + 8} Z`} fill="#cbd5e1" stroke="#94a3b8" strokeWidth="1" />
-                        <circle cx={endX} cy={cy} r="3" fill="#cbd5e1" />
+                        <path d={`M ${cx} ${cy - 8} L ${endX} ${cy - 6} L ${endX} ${cy + 6} L ${cx} ${cy + 8} Z`} fill="var(--ath-line-strong)" stroke="var(--ath-muted)" strokeWidth="1" />
+                        <circle cx={endX} cy={cy} r="3" fill="var(--ath-line-strong)" />
 
                         {/* Force Vector (Red Arrow) */}
                         <line
@@ -131,7 +131,7 @@ export const TorqueDiagram = () => {
                         />
                         <text x={endX - 25} y={cy - 15} fill="#3b82f6" fontSize="10" fontWeight="bold">θ</text>
                         <text x={fx + 5} y={fy - 5} fill="#ef4444" fontSize="12" fontWeight="bold">F</text>
-                        <text x={cx + 60} y={cy + 20} fill="#64748b" fontSize="12" fontWeight="bold">r</text>
+                        <text x={cx + 60} y={cy + 20} fill="var(--ath-muted)" fontSize="12" fontWeight="bold">r</text>
                     </AccessibleSvg>
                 </div>
             </div>

@@ -12,9 +12,9 @@ export const GeckoAdhesionDiagram = () => {
     const forceRadius = 10 * forceOpacity + 2;
 
     return (
-        <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
-            <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: Van der Waals Adhesion</h3>
-            <p className="text-sm text-slate-500 mb-6 text-center max-w-lg">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] border border-[var(--ath-line)] rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
+            <h3 className="text-lg font-bold text-[var(--ath-text)] mb-2">Interactive: Van der Waals Adhesion</h3>
+            <p className="text-sm text-[var(--ath-muted)] mb-6 text-center max-w-lg">
                 Drag the slider to bring the gecko's microscopic spatulae closer to the atomic surface. Notice how the electrostatic forces only engage at extreme proximity.
             </p>
 
@@ -27,7 +27,7 @@ export const GeckoAdhesionDiagram = () => {
                     onChange={(e) => setDistance(Number(e.target.value))}
                     className="w-full accent-lime-600 mb-2"
                 />
-                <div className="flex justify-between w-full text-xs font-semibold text-slate-400">
+                <div className="flex justify-between w-full text-xs font-semibold text-[var(--ath-muted)]">
                     <span>Attaching (0nm)</span>
                     <span>Approaching...</span>
                     <span>Detached (100nm)</span>
@@ -36,13 +36,13 @@ export const GeckoAdhesionDiagram = () => {
 
             <AccessibleSvg
                 viewBox="0 0 600 300"
-                className="w-full max-w-2xl bg-slate-50 rounded-lg overflow-hidden border border-slate-100"
+                className="w-full max-w-2xl bg-[var(--ath-panel-muted)] rounded-lg overflow-hidden border border-[var(--ath-line)]"
                 title="Gecko spatulae approaching an atomic surface"
                 desc={`Gecko toe setae and their microscopic spatulae are held about ${distance} nanometers from an atomic surface. ${distance <= 60 ? 'At this close proximity, Van der Waals forces are active and the spatulae adhere.' : 'At this distance there is no attractive force.'}`}
             >
                 {/* Surface */}
-                <rect x="50" y="210" width="500" height="50" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="2" />
-                <text x="300" y="240" textAnchor="middle" className="font-bold fill-slate-500 text-sm">Atomic Surface (e.g. Glass)</text>
+                <rect x="50" y="210" width="500" height="50" fill="var(--ath-panel-muted)" stroke="var(--ath-line-strong)" strokeWidth="2" />
+                <text x="300" y="240" textAnchor="middle" className="font-bold text-sm" fill="var(--ath-muted)">Atomic Surface (e.g. Glass)</text>
 
                 {/* Setae Group that moves up and down */}
                 <g style={{ transform: `translateY(${distance - 50}px)`, transition: 'transform 0.1s ease-out' }}>
@@ -61,7 +61,7 @@ export const GeckoAdhesionDiagram = () => {
                     </g>
 
                     <text x="300" y="40" textAnchor="middle" className="font-bold text-lg fill-lime-900 drop-shadow-md">Gecko Toe Setae</text>
-                    <text x="300" y="140" textAnchor="middle" className="text-xs font-semibold fill-lime-700 bg-white px-2">Microscopic Spatulae</text>
+                    <text x="300" y="140" textAnchor="middle" className="text-xs font-semibold fill-lime-700">Microscopic Spatulae</text>
                 </g>
 
                 {/* Van der Waals indicators (stationary on surface, intensity changes) */}
@@ -72,15 +72,15 @@ export const GeckoAdhesionDiagram = () => {
                     <text x="300" y="205" textAnchor="middle" className="font-bold text-red-600 text-sm drop-shadow-sm">Van der Waals Forces Active!</text>
                 </g>
                 <g style={{ opacity: distance > 60 ? 1 : 0, transition: 'opacity 0.2s' }}>
-                    <text x="300" y="180" textAnchor="middle" className="font-bold text-slate-400 text-sm">No attractive force</text>
+                    <text x="300" y="180" textAnchor="middle" className="font-bold text-sm" fill="var(--ath-muted)">No attractive force</text>
                 </g>
 
             </AccessibleSvg>
 
             {/* Adhesion state surfaced as text + live region so it is not color-only (WCAG 1.4.1) */}
             <div aria-live="polite" className="mt-4 text-center text-sm">
-                <span className="font-semibold text-slate-500">~{distance} nm: </span>
-                <span className="font-bold text-slate-800">
+                <span className="font-semibold text-[var(--ath-muted)]">~{distance} nm: </span>
+                <span className="font-bold text-[var(--ath-text)]">
                     {distance <= 60 ? 'Van der Waals forces active (adhering)' : 'No attractive force (detached)'}
                 </span>
             </div>

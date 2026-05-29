@@ -17,9 +17,9 @@ export const StructuralColorDiagram = () => {
     const reflectionOffset = Math.sin(angleRad) * 40;
 
     return (
-        <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
-            <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: Photonic Crystal Iridescence</h3>
-            <p className="text-sm text-slate-500 mb-6 text-center max-w-lg">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] border border-[var(--ath-line)] rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
+            <h3 className="text-lg font-bold text-[var(--ath-text)] mb-2">Interactive: Photonic Crystal Iridescence</h3>
+            <p className="text-sm text-[var(--ath-muted)] mb-6 text-center max-w-lg">
                 Drag the slider to change your viewing angle. Because color is produced strictly by the physical structure reflecting light (not by pigment), the constructive interference wavelength shifts, causing the color to change dynamically (Iridescence).
             </p>
 
@@ -33,7 +33,7 @@ export const StructuralColorDiagram = () => {
                     className="w-full mb-2"
                     style={{ accentColor: currentColor }}
                 />
-                <div className="flex justify-between w-full text-xs font-semibold text-slate-400">
+                <div className="flex justify-between w-full text-xs font-semibold text-[var(--ath-muted)]">
                     <span>Shallow Angle</span>
                     <span>Straight On</span>
                 </div>
@@ -88,8 +88,8 @@ export const StructuralColorDiagram = () => {
 
             {/* Reflected wavelength surfaced as text + live region so the color shift is not color-only (WCAG 1.4.1) */}
             <div aria-live="polite" className="mt-4 text-center text-sm">
-                <span className="font-semibold text-slate-500">Viewing angle {angle}°: </span>
-                <span className="font-bold text-slate-800">reflected color near {Math.round(wavelength)} nm</span>
+                <span className="font-semibold text-[var(--ath-muted)]">Viewing angle {angle}°: </span>
+                <span className="font-bold text-[var(--ath-text)]">reflected color near {Math.round(wavelength)} nm</span>
             </div>
         </div>
     );

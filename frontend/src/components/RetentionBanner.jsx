@@ -39,10 +39,10 @@ export default function RetentionBanner({ course = null }) {
     const primary = dueCourses[0]
 
     return (
-        <div className="mx-auto mb-4 flex max-w-5xl flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-3 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto mb-4 flex max-w-5xl flex-col gap-3 rounded-2xl border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] px-5 py-3 shadow-sm sm:flex-row sm:items-center sm:justify-between">
             <div className="flex-1">
-                <p className="editorial-kicker text-amber-700">Retention check ready</p>
-                <p className="mt-1 text-sm text-amber-900">
+                <p className="editorial-kicker text-[var(--ath-warning)]">Retention check ready</p>
+                <p className="mt-1 text-sm text-[var(--ath-text)]">
                     A 5-minute review of <span className="font-semibold">{primary}</span> is due. Spaced
                     retrieval is the cheapest way to keep what you learned last week.
                 </p>
@@ -64,7 +64,7 @@ export default function RetentionBanner({ course = null }) {
                         logEvent('retention_banner_dismiss', null, { course: primary })
                         setDismissed(true)
                     }}
-                    className="text-xs text-amber-700 underline"
+                    className="text-xs text-[var(--ath-warning)] underline"
                 >
                     Later
                 </button>
