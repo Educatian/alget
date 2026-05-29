@@ -1509,9 +1509,28 @@ function buildSnapshotFromRemote({
     }
 }
 
+function normalizeCandidateAction(candidate) {
+    if (!candidate) return null
+    if (typeof candidate === 'string') {
+        return { action: candidate, title: candidate, rationale: '' }
+    }
+    return {
+        action: candidate.action || candidate.id || 'alternate',
+        title: candidate.title || candidate.action || 'Alternate action',
+        rationale: candidate.rationale || ''
+    }
+}
+
 function mapRemoteTrace(traceRow, decisionRow) {
     const explanation = decisionRow?.explanation_snapshot || {}
     const reasoning = explanation?.reasoning || {}
+    const chosenAction = decisionRow?.chosen_action || 'support'
+    // Rejected candidate actions are the persisted candidates the policy did NOT
+    // select. Surfacing them (with the evidence snapshot) is what makes the
+    // decision auditable as RCT data for the instructor view.
+    const rejectedActions = (decisionRow?.candidate_actions || [])
+        .map(normalizeCandidateAction)
+        .filter((candidate) => candidate && candidate.action !== chosenAction)
     return {
         trace_id: traceRow.trace_id,
         section_id: traceRow.section_id,
@@ -1521,9 +1540,11 @@ function mapRemoteTrace(traceRow, decisionRow) {
         closed_at: traceRow.closed_at,
         accepted: traceRow.accepted,
         outcome_label: traceRow.outcome_label,
+        rejected_actions: rejectedActions,
+        evidence_snapshot: reasoning?.evidence_snapshot || decisionRow?.evidence_snapshot || {},
         recommendation: {
             primary_recommendation: {
-                action: decisionRow?.chosen_action || 'support',
+                action: chosenAction,
                 rationale: explanation?.rationale || 'No rationale recorded.',
                 focus_concepts: decisionRow?.concept_ids || []
             },
@@ -1565,7 +1586,7 @@ export async function fetchResearchDashboardSnapshot() {
                 .order('opened_at', { ascending: false }),
             supabase
                 .from('recommendation_decisions')
-                .select('id, trace_id, chosen_action, concept_ids, explanation_snapshot, policy_score, created_at')
+                .select('id, trace_id, chosen_action, concept_ids, candidate_actions, evidence_snapshot, explanation_snapshot, policy_score, created_at')
                 .order('created_at', { ascending: false }),
             supabase
                 .from('evaluation_runs')

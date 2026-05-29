@@ -82,7 +82,7 @@ describe('ArtifactStudio markdown contract surface', () => {
             target: { value: 'A vague suggestion was rejected for weak evidence.' },
         })
         fireEvent.click(screen.getByRole('button', { name: /^Modify$/i }))
-        fireEvent.change(screen.getByPlaceholderText(/Why this judgment/i), {
+        fireEvent.change(screen.getByPlaceholderText(/Name the evidence that drove this judgment/i), {
             target: { value: 'The suggestion needed modification because the context was too broad.' },
         })
         fireEvent.click(screen.getAllByRole('button', { name: /Next/i })[0])
@@ -96,7 +96,7 @@ describe('ArtifactStudio markdown contract surface', () => {
         })
 
         // Expand rubric details and set every dimension to 2
-        fireEvent.click(screen.getByText(/Quality rubric/i))
+        fireEvent.click(screen.getByText(/Quality after revision/i))
         screen.getAllByRole('combobox').forEach((select) => {
             fireEvent.change(select, { target: { value: '2' } })
         })

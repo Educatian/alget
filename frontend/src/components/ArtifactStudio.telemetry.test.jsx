@@ -43,7 +43,10 @@ async function stepToReview() {
     fireEvent.change(screen.getByPlaceholderText(/What did you reject or modify/i), {
         target: { value: 'A vague suggestion was rejected for weak evidence.' },
     })
-    fireEvent.change(screen.getByPlaceholderText(/Why this judgment/i), {
+    // The AI Feedback Judgment Gate uses progressive disclosure: the rationale
+    // field only appears after an explicit accept/modify/reject/defer choice.
+    fireEvent.click(screen.getByRole('button', { name: /^Modify$/i }))
+    fireEvent.change(screen.getByPlaceholderText(/Name the evidence that drove this judgment/i), {
         target: { value: 'The suggestion needed modification because the context was too broad.' },
     })
     fireEvent.click(screen.getAllByRole('button', { name: /Next/i })[0])
@@ -108,12 +111,27 @@ describe('ArtifactStudio support-move telemetry integrity', () => {
         // The recommended move is still persisted alongside the selected one.
         expect(loggedPayload.recommended_support_move).toBe('audit')
 
+        // AI Feedback Judgment Gate is logged as a first-class trace field.
+        expect(loggedPayload.judgment).toBe('modify')
+        expect(loggedPayload.ai_feedback_judgment.value).toBe('modify')
+        expect(loggedPayload.ai_feedback_judgment.resolved).toBe(true)
+        // Scored before/after artifact states are exported as live policy inputs.
+        expect(loggedPayload.artifact_quality).toBe(loggedPayload.after_quality_score)
+        expect(typeof loggedPayload.artifact_gap).toBe('number')
+        expect(loggedPayload.artifact_gap).toBeCloseTo(1 - loggedPayload.artifact_quality, 5)
+        expect(loggedPayload).toHaveProperty('before_quality_score')
+        expect(loggedPayload).toHaveProperty('artifact_revision_delta')
+
         const adaptivePayload = recordAdaptiveSignal.mock.calls.find(
             (call) => call[1] === 'artifact_studio_trace',
         )[2]
         expect(adaptivePayload.supportMove).toBe('compare')
         expect(adaptivePayload.recommendedSupportMove).toBe('audit')
         expect(adaptivePayload.supportMoveOverridden).toBe(true)
+        // artifact_quality and artifact_gap are fed INTO the live policy signal.
+        expect(adaptivePayload.artifactQuality).toBe(loggedPayload.artifact_quality)
+        expect(adaptivePayload.artifactGap).toBe(loggedPayload.artifact_gap)
+        expect(adaptivePayload.judgment).toBe('modify')
     })
 
     it('defaults the logged support_move to the recommended move (not a frozen constant) when the learner does not override', async () => {

@@ -888,6 +888,47 @@ export default function AnalyticsDashboard() {
                                             ))}
                                         </div>
                                     )}
+
+                                    {/* Instructor audit: rejected candidate actions + the evidence
+                                        snapshot the policy used. Robust to absent backend fields. */}
+                                    {(trace.rejected_actions || []).length > 0 && (
+                                        <div className="mt-4 rounded-2xl border border-[var(--ath-line)] bg-[rgba(158,27,50,0.05)] p-3">
+                                            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Rejected candidate actions</p>
+                                            <div className="mt-2 space-y-2">
+                                                {trace.rejected_actions.map((candidate, index) => (
+                                                    <div key={`${trace.trace_id}-rej-${candidate.action}-${index}`} className="rounded-xl border border-[var(--ath-line)] bg-white/70 px-3 py-2">
+                                                        <p className="text-xs font-semibold text-[var(--ath-text)]">{formatConceptLabel(candidate.action)}</p>
+                                                        {candidate.rationale && (
+                                                            <p className="mt-1 text-[11px] leading-5 text-[var(--ath-muted)]">{candidate.rationale}</p>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            {(trace.recommendation?.reasoning?.not_recommended_because || []).length > 0 && (
+                                                <div className="mt-2 space-y-1">
+                                                    {trace.recommendation.reasoning.not_recommended_because.map((item, index) => (
+                                                        <p key={`${trace.trace_id}-nrb-${index}`} className="text-[11px] leading-5 text-[var(--ath-secondary)]">- {item}</p>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+
+                                    {Object.keys(trace.evidence_snapshot || trace.recommendation?.reasoning?.evidence_snapshot || {}).length > 0 && (
+                                        <details className="mt-3 rounded-2xl border border-[var(--ath-line)] bg-white/60 px-3 py-2 text-xs text-[var(--ath-muted)]">
+                                            <summary className="cursor-pointer list-none font-semibold text-[var(--ath-secondary)]">Evidence snapshot</summary>
+                                            <div className="mt-2 grid grid-cols-2 gap-2">
+                                                {Object.entries(trace.evidence_snapshot || trace.recommendation?.reasoning?.evidence_snapshot || {})
+                                                    .filter(([, value]) => value !== null && value !== undefined && typeof value !== 'object')
+                                                    .map(([key, value]) => (
+                                                        <div key={`${trace.trace_id}-ev-${key}`} className="rounded-lg border border-[var(--ath-line)] bg-white/70 px-2 py-1">
+                                                            <p className="font-semibold text-[var(--ath-text)]">{formatConceptLabel(key)}</p>
+                                                            <p className="mt-0.5">{typeof value === 'number' ? value : String(value)}</p>
+                                                        </div>
+                                                    ))}
+                                            </div>
+                                        </details>
+                                    )}
                                 </div>
                             ))}
                         </div>
