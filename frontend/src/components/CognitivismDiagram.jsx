@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
+
+const STAGE_LABEL = {
+    sensory: 'Sensory register (1-3s input)',
+    working: 'Working memory (capacity 7±2)',
+    longTerm: 'Long-term memory (effectively unlimited)',
+};
 
 export const CognitivismDiagram = () => {
     const [processStage, setProcessStage] = useState('sensory'); // sensory, working, longTerm
@@ -14,7 +21,7 @@ export const CognitivismDiagram = () => {
             <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-200 pb-6">
                 <div>
                     <h3 className="text-xl font-bold text-slate-800 mb-1 flex items-center gap-2">
-                        <span className="text-blue-500">🧠</span> Information Processing
+                        <span className="text-blue-500" aria-hidden="true">🧠</span> Information Processing
                     </h3>
                     <p className="text-sm text-slate-600">Simulate how the mind processes, encodes, and stores information like a computer.</p>
                 </div>
@@ -27,7 +34,12 @@ export const CognitivismDiagram = () => {
             </div>
 
             <div className="w-full h-48 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center p-4">
-                <svg viewBox="0 0 400 120" className="w-full h-full relative z-10">
+                <AccessibleSvg
+                    viewBox="0 0 400 120"
+                    className="w-full h-full relative z-10"
+                    title="Information processing memory model"
+                    desc={`Information flows through three stores connected by arrows: the Sensory register, then Working memory (via Attention), then Long-term memory (via Encoding, with a Retrieval arrow back). The currently highlighted stage is: ${STAGE_LABEL[processStage]}.`}
+                >
                     <defs>
                         <radialGradient id="data-pulse" cx="50%" cy="50%" r="50%">
                             <stop offset="0%" stopColor="#3b82f6" stopOpacity="1" />
@@ -83,7 +95,13 @@ export const CognitivismDiagram = () => {
                             <line x1="330" y1="85" x2="360" y2="85" stroke="#60a5fa" strokeWidth="2" className="animate-pulse delay-75" />
                         </g>
                     )}
-                </svg>
+                </AccessibleSvg>
+            </div>
+
+            {/* Active stage as text + live region so the highlighted store is not signalled by color alone (WCAG 1.4.1) */}
+            <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
+                <span className="font-semibold text-slate-600">Active store: </span>
+                <span className="font-bold text-slate-900">{STAGE_LABEL[processStage]}</span>
             </div>
             <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[60px] pointer-events-none"></div>
         </div>

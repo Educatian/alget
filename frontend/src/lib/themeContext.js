@@ -5,7 +5,20 @@ export const ThemeContext = createContext(null)
 export function useTheme() {
     const ctx = useContext(ThemeContext)
     if (!ctx) {
-        return { theme: 'light', setTheme: () => {}, toggleTheme: () => {} }
+        return {
+            theme: 'light',
+            setTheme: () => {},
+            toggleTheme: () => {},
+            readingPrefs: {
+                fontScale: 1,
+                lineHeight: 'standard',
+                paragraphSpacing: 'standard',
+                readingWidth: 'standard',
+                dyslexiaFont: 'off'
+            },
+            setReadingPref: () => {},
+            resetReadingPrefs: () => {}
+        }
     }
     return ctx
 }

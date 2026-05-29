@@ -410,6 +410,7 @@ export default function BookLayout({ user, onLogout }) {
 
     return (
         <div className="editorial-shell flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
+            <a href="#main-content" className="skip-to-content-link">Skip to reading content</a>
             <OnboardingTour />
             <RetentionBanner course={course} />
 
@@ -672,7 +673,7 @@ export default function BookLayout({ user, onLogout }) {
                 </aside>
 
                 <div className="group/nav relative min-h-0 flex-1 overflow-hidden">
-                    <main ref={mainScrollRef} className="h-full min-h-0 overflow-y-auto">
+                    <main ref={mainScrollRef} id="main-content" tabIndex={-1} className="h-full min-h-0 overflow-y-auto">
                         <div
                             key={sectionPath}
                             className={`min-h-full ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}

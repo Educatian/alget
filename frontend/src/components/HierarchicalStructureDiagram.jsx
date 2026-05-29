@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const HierarchicalStructureDiagram = () => {
     const [stressLevel, setStressLevel] = useState(0);
@@ -12,9 +13,11 @@ export const HierarchicalStructureDiagram = () => {
                 </div>
 
                 <div className="w-1/3">
-                    <label className="text-xs font-bold text-slate-400 uppercase mb-2 block text-right">Applied Stress</label>
+                    <label htmlFor="hierarchical-stress" className="text-xs font-bold text-slate-400 uppercase mb-2 block text-right">Applied Stress</label>
                     <input
+                        id="hierarchical-stress"
                         type="range" min="0" max="100" value={stressLevel}
+                        aria-label="Applied stress percentage"
                         onChange={(e) => setStressLevel(Number(e.target.value))}
                         className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
                     />
@@ -22,7 +25,12 @@ export const HierarchicalStructureDiagram = () => {
             </div>
 
             <div className="w-full h-56 bg-slate-800 rounded-xl border border-slate-700 shadow-inner relative flex items-center justify-center p-4">
-                <svg viewBox="0 0 500 200" className="w-full h-full drop-shadow-lg">
+                <AccessibleSvg
+                    viewBox="0 0 500 200"
+                    className="w-full h-full drop-shadow-lg"
+                    title="Nacre brick-and-mortar crack arrest"
+                    desc={`A brick-and-mortar nacre structure of staggered mineral bricks bonded by polymer mortar, under ${stressLevel} percent applied stress. As stress rises, the layers slide and a crack zig-zags between bricks rather than running straight, so the mortar arrests crack propagation.`}
+                >
                     {/* Background Structure (The Mortar) */}
                     <rect x="10" y="10" width="480" height="180" fill="#1e293b" rx="4" />
 
@@ -79,10 +87,10 @@ export const HierarchicalStructureDiagram = () => {
                             <line x1="235" y1="135" x2="290" y2="135" />
                         </g>
                     )}
-                </svg>
+                </AccessibleSvg>
             </div>
 
-            <div className="mt-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-500">
+            <div aria-live="polite" className="mt-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-500">
                 <span>Material Status:</span>
                 {stressLevel < 30 ? (
                     <span className="text-emerald-400">Intact (Solid)</span>

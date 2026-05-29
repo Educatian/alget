@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const StructuralColorDiagram = () => {
     const [angle, setAngle] = useState(45); // viewing angle 0 to 90
@@ -27,6 +28,7 @@ export const StructuralColorDiagram = () => {
                     type="range"
                     min="0" max="90"
                     value={angle}
+                    aria-label="Viewing angle in degrees"
                     onChange={(e) => setAngle(Number(e.target.value))}
                     className="w-full mb-2"
                     style={{ accentColor: currentColor }}
@@ -37,7 +39,12 @@ export const StructuralColorDiagram = () => {
                 </div>
             </div>
 
-            <svg viewBox="0 0 600 300" className="w-full max-w-2xl bg-slate-900 rounded-lg overflow-hidden border border-slate-700">
+            <AccessibleSvg
+                viewBox="0 0 600 300"
+                className="w-full max-w-2xl bg-slate-900 rounded-lg overflow-hidden border border-slate-700"
+                title="Photonic crystal iridescence at viewing angle"
+                desc={`A cross-section of a Morpho butterfly scale's nano-scale photonic crystal. At a ${angle} degree viewing angle, constructive interference reinforces light around ${Math.round(wavelength)} nanometers (the reflected structural color) while other wavelengths are cancelled by destructive interference.`}
+            >
                 {/* Nano-Scale structure (cross-section of Morpho butterfly scale) */}
                 <g fill="none" stroke="#64748b" strokeWidth="4">
                     <line x1="300" y1="280" x2="300" y2="100" />
@@ -77,7 +84,13 @@ export const StructuralColorDiagram = () => {
                 <text x="300" y="40" textAnchor="middle" className="font-bold text-lg fill-white bg-slate-900 px-2 rounded">
                     Nano-Scale Photonic Crystal Matrix
                 </text>
-            </svg>
+            </AccessibleSvg>
+
+            {/* Reflected wavelength surfaced as text + live region so the color shift is not color-only (WCAG 1.4.1) */}
+            <div aria-live="polite" className="mt-4 text-center text-sm">
+                <span className="font-semibold text-slate-500">Viewing angle {angle}°: </span>
+                <span className="font-bold text-slate-800">reflected color near {Math.round(wavelength)} nm</span>
+            </div>
         </div>
     );
 };

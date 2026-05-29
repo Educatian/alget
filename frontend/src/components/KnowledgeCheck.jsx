@@ -257,14 +257,16 @@ export default function KnowledgeCheck({
                     You answered {score} of {questions.length} items correctly. Mastery was updated for each concept touched in this section.
                 </p>
 
-                <div className="mt-6 flex justify-center gap-2">
+                <ul className="mt-6 flex list-none justify-center gap-2 p-0" aria-label="Per-item results">
                     {results.map((result, index) => (
-                        <span
+                        <li
                             key={`${result.conceptId || 'item'}-${index}`}
+                            role="img"
+                            aria-label={`Item ${index + 1}: ${result.isCorrect ? 'correct' : 'missed'}`}
                             className={`h-3 w-3 rounded-full ${result.isCorrect ? 'bg-emerald-500' : 'bg-[#9E1B32]'}`}
                         />
                     ))}
-                </div>
+                </ul>
 
                 {missedConcepts.length > 0 && (
                     <button
@@ -306,13 +308,30 @@ export default function KnowledgeCheck({
                 </h3>
 
                 <div className="mt-6 rounded-[1.25rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
-                    <p className="editorial-label">How confident are you in this answer?</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    <p className="editorial-label" id={`confidence-label-${currentQuestionIndex}`}>How confident are you in this answer?</p>
+                    <div
+                        className="mt-3 flex flex-wrap gap-2"
+                        role="radiogroup"
+                        aria-labelledby={`confidence-label-${currentQuestionIndex}`}
+                    >
                         {[1, 2, 3, 4, 5].map((value) => (
                             <button
                                 key={value}
                                 type="button"
+                                role="radio"
+                                aria-checked={confidence === value}
+                                aria-label={`Confidence ${value} of 5`}
+                                tabIndex={confidence === value ? 0 : -1}
                                 onClick={() => setConfidence(value)}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                                        event.preventDefault()
+                                        setConfidence(value === 5 ? 1 : value + 1)
+                                    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                                        event.preventDefault()
+                                        setConfidence(value === 1 ? 5 : value - 1)
+                                    }
+                                }}
                                 className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
                                     confidence === value
                                         ? 'bg-[var(--ath-primary)] text-white'
@@ -326,10 +345,17 @@ export default function KnowledgeCheck({
                 </div>
 
                 {currentQuestion?.type === 'mcq' ? (
-                    <div className="mt-8 space-y-3">
-                        {currentQuestion.options?.map((option) => {
+                    <div className="mt-8 space-y-3" role="radiogroup" aria-label="Answer choices">
+                        {currentQuestion.options?.map((option, optionIndex) => {
                             const isSelected = selectedOptionId === option.id
                             const isCorrect = option.id === currentQuestion.correct_option_id
+                            let resultLabel = ''
+                            if (isAnswered && isCorrect) {
+                                resultLabel = ' (correct answer)'
+                            } else if (isAnswered && isSelected && !isCorrect) {
+                                resultLabel = ' (your answer, incorrect)'
+                            }
+                            const isFocusable = isSelected || (selectedOptionId === null && optionIndex === 0)
 
                             let optionClasses = 'border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
 
@@ -349,18 +375,22 @@ export default function KnowledgeCheck({
                                 <button
                                     key={option.id}
                                     type="button"
+                                    role="radio"
+                                    aria-checked={isSelected}
+                                    aria-label={`${option.id}. ${option.text}${resultLabel}`}
+                                    tabIndex={isAnswered ? -1 : (isFocusable ? 0 : -1)}
                                     disabled={isAnswered}
                                     onClick={() => handleOptionClick(option.id)}
                                     className={`flex w-full items-center gap-3 rounded-[1.25rem] border px-4 py-4 text-left transition-all ${optionClasses}`}
                                 >
-                                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] text-xs font-bold text-[var(--ath-secondary)]">{option.id}</span>
+                                    <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] text-xs font-bold text-[var(--ath-secondary)]">{option.id}</span>
                                     <span className="flex-1 text-sm leading-7">{option.text}</span>
                                 </button>
                             )
                         })}
 
                         {isAnswered && (
-                            <div className="mt-5 rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
+                            <div role="status" aria-live="polite" className="mt-5 rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
                                 <p className={`text-sm font-semibold ${selectedOptionId === currentQuestion.correct_option_id ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
                                     {selectedOptionId === currentQuestion.correct_option_id ? 'Correct' : 'Needs Another Pass'}
                                 </p>
@@ -441,7 +471,7 @@ export default function KnowledgeCheck({
                         )}
 
                         {isAnswered && summaryFeedback && (
-                            <div className="rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
+                            <div role="status" aria-live="polite" className="rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
                                 <div className="flex flex-wrap items-start justify-between gap-3">
                                     <p className={`text-sm font-semibold ${summaryFeedback.is_passing ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
                                         {summaryFeedback.is_passing ? 'Passing Response' : 'Needs More Specificity'}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const MicroTurbulenceDiagram = () => {
     const [serrationEnabled, setSerrationEnabled] = useState(false);
@@ -9,7 +10,7 @@ export const MicroTurbulenceDiagram = () => {
             <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-800 pb-6">
                 <div>
                     <h3 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
-                        <span className="text-purple-400">✧</span> Vortex Shredding Analysis
+                        <span className="text-purple-400" aria-hidden="true">✧</span> Vortex Shredding Analysis
                     </h3>
                     <p className="text-sm text-slate-400">Observe how trailing edge wing serrations break up large acoustic vortices.</p>
                 </div>
@@ -27,7 +28,14 @@ export const MicroTurbulenceDiagram = () => {
                 {/* Wind Flow Lines background */}
                 <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'linear-gradient(90deg, transparent 0%, #3b82f6 50%, transparent 100%)', backgroundSize: '200% 100%', animation: 'dash 3s linear infinite' }}></div>
 
-                <svg viewBox="0 0 400 150" className="w-full h-full drop-shadow-[0_0_15px_rgba(168,85,247,0.15)] relative z-10">
+                <AccessibleSvg
+                    viewBox="0 0 400 150"
+                    className="w-full h-full drop-shadow-[0_0_15px_rgba(168,85,247,0.15)] relative z-10"
+                    title="Trailing-edge serration airflow"
+                    desc={serrationEnabled
+                        ? 'With serrations enabled, the airflow over the trailing edge breaks into many small micro-turbulences, producing silent flight.'
+                        : 'With a smooth trailing edge, the airflow forms one large coherent vortex that produces loud noise.'}
+                >
                     <defs>
                         <radialGradient id="vortex-grad" cx="50%" cy="50%" r="50%">
                             <stop offset="0%" stopColor="#ef4444" stopOpacity="0.8" />
@@ -81,7 +89,15 @@ export const MicroTurbulenceDiagram = () => {
                             <text x="230" y="125" fill="#10b981" fontSize="10" fontWeight="bold" textAnchor="middle">Micro-Turbulence (Silent)</text>
                         </>
                     )}
-                </svg>
+                </AccessibleSvg>
+            </div>
+
+            {/* Airflow regime surfaced as text + live region (WCAG 1.4.1) */}
+            <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
+                <span className="font-semibold text-slate-400">Airflow: </span>
+                <span className="font-bold text-white">
+                    {serrationEnabled ? 'Micro-turbulence (silent flight)' : 'Coherent vortex (loud noise)'}
+                </span>
             </div>
 
             <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[60px] pointer-events-none"></div>

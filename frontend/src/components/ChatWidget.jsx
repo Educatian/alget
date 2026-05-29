@@ -11,8 +11,39 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     const [inputValue, setInputValue] = useState('')
     const [loading, setLoading] = useState(false)
     const [historyLoaded, setHistoryLoaded] = useState(false)
+    const [speakingIdx, setSpeakingIdx] = useState(null)
     const messagesEndRef = useRef(null)
     const lastAutoQuestionRef = useRef(null)
+    const inputRef = useRef(null)
+    const launcherRef = useRef(null)
+    const wasOpenRef = useRef(false)
+
+    const speechSupported = typeof window !== 'undefined' && 'speechSynthesis' in window
+
+    // Read-aloud (UDL multiple means of representation). Browser-native, no backend.
+    const speakText = (text, idx) => {
+        if (!speechSupported || !text) return
+        const synth = window.speechSynthesis
+        // Toggle: clicking the speaking message stops it.
+        if (speakingIdx === idx) {
+            synth.cancel()
+            setSpeakingIdx(null)
+            return
+        }
+        synth.cancel()
+        const utterance = new SpeechSynthesisUtterance(String(text))
+        utterance.onend = () => setSpeakingIdx(null)
+        utterance.onerror = () => setSpeakingIdx(null)
+        setSpeakingIdx(idx)
+        synth.speak(utterance)
+    }
+
+    // Stop any ongoing narration when the widget unmounts or the section changes.
+    useEffect(() => {
+        return () => {
+            if (speechSupported) window.speechSynthesis.cancel()
+        }
+    }, [speechSupported])
 
     // Expose methods via ref
     useImperativeHandle(ref, () => ({
@@ -29,7 +60,25 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         setLoading(false)
         setHistoryLoaded(false)
         lastAutoQuestionRef.current = null
-    }, [context?.sectionId])
+        if (speechSupported) window.speechSynthesis.cancel()
+        setSpeakingIdx(null)
+    }, [context?.sectionId, speechSupported])
+
+    // Manage focus for the chat dialog (WCAG 2.4.3 focus order):
+    // move focus into the input when it opens, restore it to the launcher on close.
+    useEffect(() => {
+        if (isOpen) {
+            const id = setTimeout(() => inputRef.current?.focus(), 0)
+            wasOpenRef.current = true
+            return () => clearTimeout(id)
+        }
+        if (wasOpenRef.current) {
+            launcherRef.current?.focus()
+            wasOpenRef.current = false
+            if (speechSupported) window.speechSynthesis.cancel()
+            setSpeakingIdx(null)
+        }
+    }, [isOpen, speechSupported])
 
     // Load chat history from Supabase
     useEffect(() => {
@@ -191,7 +240,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         await sendMessageWithText(inputValue)
     }
 
-    const handleKeyPress = (e) => {
+    const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault()
             sendMessage()
@@ -215,8 +264,11 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         <>
             {/* Floating Bubble Button */}
             <button
+                ref={launcherRef}
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label={isOpen ? 'Close BigAL tutor chat' : 'Open BigAL tutor chat'}
+                aria-expanded={isOpen}
+                aria-haspopup="dialog"
                 data-onboarding="chat-widget-button"
                 className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-[0_8px_30px_color-mix(in_srgb,var(--ath-primary)_34%,transparent)] transition-all duration-300 hover:scale-110 active:scale-95 ${isOpen
                     ? 'bg-[var(--ath-panel-muted)] hover:bg-[var(--ath-panel)]'
@@ -224,11 +276,11 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     }`}
             >
                 {isOpen ? (
-                    <svg className="h-6 w-6 text-[var(--ath-background)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" className="h-6 w-6 text-[var(--ath-background)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 ) : (
-                    <svg className="h-6 w-6 text-[var(--ath-background)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" className="h-6 w-6 text-[var(--ath-background)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
                 )}
@@ -236,11 +288,22 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="glass-panel fixed bottom-24 right-6 z-50 flex h-[600px] w-[420px] origin-bottom-right animate-fade-in flex-col overflow-hidden border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
+                /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- dialog captures Escape to close per WAI-ARIA dialog pattern */
+                <div
+                    role="dialog"
+                    aria-modal="false"
+                    aria-label="BigAL tutor chat"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Escape') {
+                            e.stopPropagation()
+                            setIsOpen(false)
+                        }
+                    }}
+                    className="glass-panel fixed bottom-24 right-6 z-50 flex h-[600px] w-[420px] origin-bottom-right animate-fade-in flex-col overflow-hidden border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
                     {/* Header */}
                     <div className="relative flex items-center justify-between overflow-hidden bg-[var(--ath-panel-muted)] px-6 py-5 shadow-md">
                         <div className="flex items-center gap-4 relative z-10">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-primary)] text-xl text-[var(--ath-background)] shadow-inner">
+                            <div aria-hidden="true" className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-primary)] text-xl text-[var(--ath-background)] shadow-inner">
                                 🐘
                             </div>
                             <div>
@@ -254,18 +317,19 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             {messages.length > 0 && (
                                 <button
                                     onClick={clearHistory}
-                                    className="text-xs text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
+                                    aria-label="Clear chat history for this section"
+                                    className="text-xs text-[var(--ath-muted)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] rounded"
                                     title="Clear history"
                                 >
-                                    🗑️
+                                    <span aria-hidden="true">🗑️</span>
                                 </button>
                             )}
                             <button
                                 onClick={() => setIsOpen(false)}
                                 aria-label="Close BigAL tutor chat"
-                                className="p-1 text-[var(--ath-muted)] hover:text-[var(--ath-text)]"
+                                className="p-1 text-[var(--ath-muted)] hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] rounded"
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
@@ -273,10 +337,16 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     </div>
 
                     {/* Messages */}
-                    <div className="flex-1 space-y-6 overflow-y-auto bg-[var(--ath-panel-muted)] p-6 scroll-smooth">
+                    <div
+                        role="log"
+                        aria-live="polite"
+                        aria-relevant="additions"
+                        aria-label="Conversation with BigAL tutor"
+                        className="flex-1 space-y-6 overflow-y-auto bg-[var(--ath-panel-muted)] p-6 scroll-smooth"
+                    >
                         {messages.length === 0 && (
                             <div className="h-full flex flex-col items-center justify-center text-center px-6 animate-fade-in">
-                                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--ath-surface-strong)] shadow-sm ring-1 ring-[var(--ath-line)]">
+                                <div aria-hidden="true" className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--ath-surface-strong)] shadow-sm ring-1 ring-[var(--ath-line)]">
                                     <span className="text-3xl">✨</span>
                                 </div>
                                 <h4 className="mb-2 text-lg font-bold text-[var(--ath-text)]">How can I help you today?</h4>
@@ -297,6 +367,12 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             } else {
                                 // Assistant messages could be complex objects now
                                 const data = typeof msg.content === 'object' ? msg.content : { intent: 'legacy', text: msg.content }
+                                // Plain-text distillation of the response for read-aloud (UDL 1).
+                                const spokenText = [data.summary, data.text, data.error, data.explanation]
+                                    .filter((v) => typeof v === 'string' && v.trim())
+                                    .join('. ')
+                                    || (typeof msg.content === 'string' ? msg.content : '')
+                                const isSpeaking = speakingIdx === idx
 
                                 return (
                                     <div key={idx} className="flex justify-start animate-fade-in">
@@ -311,6 +387,20 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                              {(!['learn', 'evaluate', 'brainstorm', 'help', 'illustrate', 'simulate', 'error'].includes(data.intent)) && (
                                                  <p className="whitespace-pre-wrap">{data.error || data.text || data.summary || JSON.stringify(data)}</p>
                                              )}
+                                            {speechSupported && spokenText.trim() && (
+                                                <div className="mt-2 flex justify-end">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => speakText(spokenText, idx)}
+                                                        aria-label={isSpeaking ? 'Stop reading this response aloud' : 'Read this response aloud'}
+                                                        aria-pressed={isSpeaking}
+                                                        className="inline-flex items-center gap-1 rounded-full border border-[var(--ath-line)] px-2 py-0.5 text-[11px] font-medium text-[var(--ath-muted)] transition-colors hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                                                    >
+                                                        <span aria-hidden="true">{isSpeaking ? '■' : '🔊'}</span>
+                                                        <span>{isSpeaking ? 'Stop' : 'Listen'}</span>
+                                                    </button>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 )
@@ -319,11 +409,12 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                         {loading && (
                             <div className="flex justify-start animate-fade-in">
                                 <div className="rounded-2xl rounded-bl-sm border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-5 py-3.5 shadow-sm">
-                                    <div className="flex gap-1.5 items-center h-2">
+                                    <div aria-hidden="true" className="flex gap-1.5 items-center h-2">
                                         <span className="h-2 w-2 animate-bounce rounded-full bg-[color-mix(in_srgb,var(--ath-primary)_40%,transparent)]" style={{ animationDelay: '0ms' }}></span>
                                         <span className="h-2 w-2 animate-bounce rounded-full bg-[color-mix(in_srgb,var(--ath-primary)_65%,transparent)]" style={{ animationDelay: '150ms' }}></span>
                                         <span className="h-2 w-2 animate-bounce rounded-full bg-[var(--ath-primary)]" style={{ animationDelay: '300ms' }}></span>
                                     </div>
+                                    <span className="sr-only">BigAL is responding</span>
                                 </div>
                             </div>
                         )}
@@ -334,10 +425,12 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     <div className="z-10 border-t border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-4 shadow-[0_-10px_30px_rgba(0,0,0,0.08)] backdrop-blur-3xl">
                         <div className="flex gap-3 relative">
                             <input
+                                ref={inputRef}
                                 type="text"
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
-                                onKeyPress={handleKeyPress}
+                                onKeyDown={handleKeyDown}
+                                aria-label="Type your question for BigAL"
                                 placeholder="Type your question..."
                                 className="flex-1 rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] py-3 pl-5 pr-12 text-sm font-medium text-[var(--ath-text)] shadow-inner transition-all placeholder:text-[var(--ath-secondary)] focus:bg-[var(--ath-surface-strong)] focus:outline-none focus:ring-2 focus:ring-[color-mix(in_srgb,var(--ath-primary)_34%,transparent)]"
                             />
@@ -345,9 +438,9 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                 onClick={sendMessage}
                                 aria-label="Send message to BigAL"
                                 disabled={!inputValue.trim() || loading}
-                                className="absolute bottom-1.5 right-1.5 top-1.5 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ath-primary)] text-[var(--ath-background)] transition-all hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50"
+                                className="absolute bottom-1.5 right-1.5 top-1.5 flex h-9 w-9 items-center justify-center rounded-full bg-[var(--ath-primary)] text-[var(--ath-background)] transition-all hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] disabled:cursor-not-allowed disabled:opacity-50"
                             >
-                                <svg className="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg aria-hidden="true" className="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                 </svg>
                             </button>

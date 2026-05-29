@@ -1,4 +1,12 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
+
+const STAGE_TEXT = {
+    idle: 'Idle (loop not running)',
+    stimulus: 'Stimulus presented',
+    response: 'Behavior / response occurs',
+    reinforcement: 'Consequence delivered',
+};
 
 export const BehaviorismDiagram = () => {
     const [action, setAction] = useState('idle'); // idle, stimulus, response, reinforcement
@@ -31,7 +39,7 @@ export const BehaviorismDiagram = () => {
             <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between mb-6 border-b border-slate-200 pb-6">
                 <div className="flex-1">
                     <h3 className="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2">
-                        <span className="text-orange-500">🔔</span> Advanced Operant Conditioning
+                        <span className="text-orange-500" aria-hidden="true">🔔</span> Advanced Operant Conditioning
                     </h3>
                     <p className="text-sm text-slate-600 mb-4">Select a conditioning type and trigger the loops to see how consequences alter future behavior.</p>
 
@@ -56,7 +64,12 @@ export const BehaviorismDiagram = () => {
             </div>
 
             <div className="w-full h-56 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center p-4">
-                <svg viewBox="0 0 500 160" className="w-full h-full relative z-10">
+                <AccessibleSvg
+                    viewBox="0 0 500 160"
+                    className="w-full h-full relative z-10"
+                    title="Operant conditioning loop"
+                    desc={`Three stages flow left to right: Stimulus, Behavior, and the consequence "${config.text}" (${config.effect}). A feedback arrow returns from the consequence to the stimulus, showing that consequences alter future behavior. Currently the active stage is: ${STAGE_TEXT[action]}.`}
+                >
                     {/* Zones */}
                     <circle cx="100" cy="70" r="45" fill={action === 'stimulus' ? '#ea580c' : '#ffffff'} stroke={action === 'stimulus' ? 'transparent' : '#cbd5e1'} strokeWidth="2" opacity={action === 'stimulus' ? 0.2 : 1} className="transition-all duration-500" />
                     <circle cx="250" cy="70" r="45" fill={action === 'response' ? '#eab308' : '#ffffff'} stroke={action === 'response' ? 'transparent' : '#cbd5e1'} strokeWidth="2" opacity={action === 'response' ? 0.2 : 1} className="transition-all duration-500" />
@@ -66,7 +79,7 @@ export const BehaviorismDiagram = () => {
                     <text x="100" y="75" fill={action === 'stimulus' ? '#ea580c' : '#475569'} fontSize="14" fontWeight="bold" textAnchor="middle">Stimulus</text>
                     <text x="250" y="75" fill={action === 'response' ? '#ca8a04' : '#475569'} fontSize="14" fontWeight="bold" textAnchor="middle">Behavior</text>
                     <text x="400" y="70" fill={action === 'reinforcement' ? config.color : '#475569'} fontSize="14" fontWeight="bold" textAnchor="middle">{config.text}</text>
-                    <text x="400" y="85" fill={action === 'reinforcement' ? config.color : '#94a3b8'} fontSize="10" textAnchor="middle">{config.icon}</text>
+                    <text x="400" y="85" fill={action === 'reinforcement' ? config.color : '#94a3b8'} fontSize="10" textAnchor="middle" aria-hidden="true">{config.icon}</text>
 
                     {/* Forward Connecting Lines */}
                     <path d="M 150 70 Q 175 50 200 70" fill="none" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="4 4" />
@@ -88,7 +101,17 @@ export const BehaviorismDiagram = () => {
                         <rect x="190" y="130" width="120" height="24" rx="12" fill="white" stroke={config.color} strokeWidth="1.5" />
                         <text x="250" y="146" fill={config.color} fontSize="11" fontWeight="bold" textAnchor="middle">{config.effect}</text>
                     </g>
-                </svg>
+                </AccessibleSvg>
+            </div>
+
+            {/* Active state surfaced as text + live region so color/emoji is not the sole channel (WCAG 1.4.1) */}
+            <div aria-live="polite" className="relative z-10 mt-4 flex flex-wrap items-center justify-center gap-2 text-sm">
+                <span className="font-semibold text-slate-600">Active stage:</span>
+                <span className="font-bold text-slate-900">{STAGE_TEXT[action]}</span>
+                <span className="text-slate-400" aria-hidden="true">•</span>
+                <span className="text-slate-600">
+                    Consequence: <span className="font-semibold text-slate-900">{config.text}</span> ({config.effect})
+                </span>
             </div>
 
             <div className={`absolute top-0 left-0 w-96 h-96 rounded-full blur-[80px] pointer-events-none transition-colors duration-1000 ${action === 'idle' ? 'bg-slate-100/50' : action === 'stimulus' ? 'bg-orange-500/10' : action === 'response' ? 'bg-yellow-500/10' : 'bg-green-500/10'}`}></div>

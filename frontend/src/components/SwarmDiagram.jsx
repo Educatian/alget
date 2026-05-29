@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const SwarmDiagram = () => {
     const [isRunning, setIsRunning] = useState(false);
@@ -52,7 +53,7 @@ export const SwarmDiagram = () => {
     return (
         <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
             <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: Stigmergy Simulation</h3>
-            <p className="text-sm text-slate-500 mb-6 text-center max-w-lg min-h-[40px]">
+            <p aria-live="polite" className="text-sm text-slate-500 mb-6 text-center max-w-lg min-h-[40px]">
                 {step === 0 && "Click Start to watch ant exploration."}
                 {earlyStage && step > 0 && "1. Random Exploration: Ants mapping paths."}
                 {midStage && "2. Pheromone Dropping: Both paths found, but short path takes less time."}
@@ -75,7 +76,12 @@ export const SwarmDiagram = () => {
                 </button>
             </div>
 
-            <svg viewBox="0 0 600 300" className="w-full max-w-2xl bg-slate-50 rounded-lg overflow-hidden border border-slate-100">
+            <AccessibleSvg
+                viewBox="0 0 600 300"
+                className="w-full max-w-2xl bg-slate-50 rounded-lg overflow-hidden border border-slate-100"
+                title="Ant colony stigmergy path optimization"
+                desc={`Ants travel between a Nest on the left and Food on the right along two routes: a long upper route and a short lower route. ${earlyStage ? 'Early stage: ants explore randomly.' : midStage ? 'Mid stage: both paths carry pheromone, but the short route accumulates more.' : 'Late stage: pheromone has converged on the short route, the stigmergic winner.'}`}
+            >
                 {/* Nest */}
                 <circle cx="100" cy="150" r="40" fill="#fcd34d" stroke="#b45309" strokeWidth="3" />
                 <text x="100" y="155" textAnchor="middle" className="font-bold fill-amber-900 text-sm">Nest</text>
@@ -94,7 +100,7 @@ export const SwarmDiagram = () => {
 
                 <text x="300" y="30" textAnchor="middle" className="text-sm font-bold fill-slate-400">Long Route</text>
                 <text x="300" y="260" textAnchor="middle" className="text-sm font-bold fill-red-600 drop-shadow-sm">Short Route (Stigmergic Winner)</text>
-            </svg>
+            </AccessibleSvg>
         </div>
     );
 };

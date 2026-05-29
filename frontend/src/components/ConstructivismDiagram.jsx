@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
+
+const SCAFFOLD_LABEL = {
+    0: 'Foundation only: prior knowledge in place',
+    1: 'New experiences (Idea A and Idea B) added on top of prior knowledge',
+    2: 'Synthesized schema connecting the new ideas into prior knowledge',
+};
 
 export const ConstructivismDiagram = () => {
     const [scaffoldLevel, setScaffoldLevel] = useState(0); // 0, 1, 2 = levels of built knowledge
@@ -12,7 +19,7 @@ export const ConstructivismDiagram = () => {
             <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-200 pb-6">
                 <div>
                     <h3 className="text-xl font-bold text-slate-800 mb-1 flex items-center gap-2">
-                        <span className="text-emerald-500">🧱</span> Constructing Knowledge
+                        <span className="text-emerald-500" aria-hidden="true">🧱</span> Constructing Knowledge
                     </h3>
                     <p className="text-sm text-slate-600">Experience how learners actively build new schemas upon prior knowledge foundations.</p>
                 </div>
@@ -25,7 +32,12 @@ export const ConstructivismDiagram = () => {
             </div>
 
             <div className="w-full h-56 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex flex-col items-center justify-end overflow-hidden">
-                <svg viewBox="0 0 400 200" className="w-full h-full relative z-10">
+                <AccessibleSvg
+                    viewBox="0 0 400 200"
+                    className="w-full h-full relative z-10"
+                    title="Knowledge construction scaffold"
+                    desc={`Stacked blocks show knowledge being built upward: a Prior Knowledge foundation, then new experience blocks (Idea A, Idea B), then a Synthesized Schema that bridges them. Current build level: ${SCAFFOLD_LABEL[scaffoldLevel]}.`}
+                >
                     <defs>
                         <linearGradient id="block-base" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="0%" stopColor="#94a3b8" />
@@ -86,7 +98,13 @@ export const ConstructivismDiagram = () => {
                             </g>
                         )}
                     </g>
-                </svg>
+                </AccessibleSvg>
+            </div>
+
+            {/* Build level surfaced as text + live region (WCAG 1.4.1) */}
+            <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
+                <span className="font-semibold text-slate-600">Build level: </span>
+                <span className="font-bold text-slate-900">{SCAFFOLD_LABEL[scaffoldLevel]}</span>
             </div>
 
             <div className="absolute top-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[60px] pointer-events-none"></div>

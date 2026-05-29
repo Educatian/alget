@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
+
+const VIEW_LABEL = {
+    formative: 'Showing formative assessment only (continuous checks during learning)',
+    summative: 'Showing summative assessment only (a single final evaluation)',
+    both: 'Comparing both: formative checks during learning vs a summative final evaluation',
+};
 
 export const FormativeSummativeDiagram = () => {
     const [view, setView] = useState('both'); // formative, summative, both
@@ -8,7 +15,7 @@ export const FormativeSummativeDiagram = () => {
             <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-200 pb-6">
                 <div>
                     <h3 className="text-xl font-bold text-slate-800 mb-1 flex items-center gap-2">
-                        <span className="text-pink-500">⚖️</span> Assessment Types
+                        <span className="text-pink-500" aria-hidden="true">⚖️</span> Assessment Types
                     </h3>
                     <p className="text-sm text-slate-600">Compare continuous (formative) vs final point-in-time (summative) evaluation.</p>
                 </div>
@@ -35,7 +42,12 @@ export const FormativeSummativeDiagram = () => {
             </div>
 
             <div className="w-full h-48 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center p-4">
-                <svg viewBox="0 0 400 120" className="w-full h-full relative z-10">
+                <AccessibleSvg
+                    viewBox="0 0 400 120"
+                    className="w-full h-full relative z-10"
+                    title="Formative versus summative assessment timeline"
+                    desc={`A learning timeline contrasts formative assessment (repeated cycles such as Quiz 1, Draft Review, and Peer Feedback spread across the timeline with a rising growth curve) against summative assessment (a single Final Exam at the end). ${VIEW_LABEL[view]}.`}
+                >
                     <defs>
                         <mask id="fadeMask" x="0" y="0" width="400" height="120">
                             <rect x="0" y="0" width="400" height="120" fill="white" />
@@ -92,7 +104,12 @@ export const FormativeSummativeDiagram = () => {
                     <rect x="290" y="10" width="90" height="20" rx="4" fill={view === 'summative' || view === 'both' ? '#4f46e5' : '#e2e8f0'} className="transition-colors duration-300" />
                     <text x="335" y="24" fill={view === 'summative' || view === 'both' ? 'white' : '#64748b'} fontSize="9" textAnchor="middle" fontWeight="bold">Summative = After</text>
 
-                </svg>
+                </AccessibleSvg>
+            </div>
+
+            {/* Selected view surfaced as text + live region (WCAG 1.4.1) */}
+            <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
+                <span className="font-bold text-slate-900">{VIEW_LABEL[view]}</span>
             </div>
             {(view === 'formative' || view === 'both') && <div className="absolute top-0 left-0 w-64 h-64 bg-pink-500/10 rounded-full blur-[60px] pointer-events-none"></div>}
             {(view === 'summative' || view === 'both') && <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[60px] pointer-events-none"></div>}

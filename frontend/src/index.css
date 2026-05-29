@@ -26,6 +26,18 @@
   --ath-radius: 10px;
   --ath-radius-lg: 14px;
   --ath-radius-xl: 18px;
+
+  /* UDL 3.0 reading-surface custom properties (Representation: perception).
+     Defaults defined here; the reading-preferences modal SETS these per
+     learner (font scale, line height, measure/width, letter/word spacing).
+     The reading surface (.reading-narrative) CONSUMES them below. */
+  --reading-font-scale: 1;
+  --reading-line-height: 1.78;
+  --reading-width: 76ch;
+  --reading-letter-spacing: 0em;
+  --reading-word-spacing: 0em;
+  --reading-paragraph-spacing: 1.35rem;
+  --reading-font-family: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
 }
 
 [data-theme="dark"] {
@@ -273,7 +285,20 @@ h6,
 }
 
 .editorial-input:focus {
+  border-color: rgba(15, 81, 103, 0.35);
+  box-shadow: 0 0 0 4px rgba(200, 226, 236, 0.45);
+}
+
+/* a11y (WCAG 2.4.7 Focus Visible): the input previously cleared its outline
+   with no visible alternative for keyboard users. Mouse focus keeps the soft
+   ring only; keyboard focus adds a high-contrast outline on top. */
+.editorial-input:focus:not(:focus-visible) {
   outline: none;
+}
+
+.editorial-input:focus-visible {
+  outline: 2px solid var(--ath-primary, #6d28d9);
+  outline-offset: 2px;
   border-color: rgba(15, 81, 103, 0.35);
   box-shadow: 0 0 0 4px rgba(200, 226, 236, 0.45);
 }
@@ -599,11 +624,14 @@ h6,
 }
 
 .reading-narrative {
-  max-width: min(76ch, 100%);
+  max-width: min(var(--reading-width, 76ch), 100%);
   margin-right: auto;
   margin-left: auto;
   color: var(--ath-text);
-  font-size: 1.0625rem;
+  font-size: calc(1.0625rem * var(--reading-font-scale, 1));
+  font-family: var(--reading-font-family, 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif);
+  letter-spacing: var(--reading-letter-spacing, 0em);
+  word-spacing: var(--reading-word-spacing, 0em);
 }
 
 .reading-narrative .markdown-content-wrapper {
@@ -651,10 +679,10 @@ h6,
 }
 
 .reading-narrative p {
-  margin: 1.35rem 0;
+  margin: var(--reading-paragraph-spacing, 1.35rem) 0;
   color: var(--ath-text);
-  font-size: 1.0625rem;
-  line-height: 1.78;
+  font-size: calc(1.0625rem * var(--reading-font-scale, 1));
+  line-height: var(--reading-line-height, 1.78);
 }
 
 .reading-narrative ul,
@@ -666,7 +694,7 @@ h6,
 .reading-narrative li {
   margin: 0.6rem 0;
   padding-left: 0.15rem;
-  line-height: 1.78;
+  line-height: var(--reading-line-height, 1.78);
 }
 
 .reading-narrative strong {
@@ -899,4 +927,65 @@ h6,
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* a11y (WCAG 2.4.1 Bypass Blocks): "Skip to content" link. Visually hidden
+   until it receives keyboard focus, at which point it appears in the top-left
+   so keyboard/screen-reader users can jump past the persistent header/rail
+   straight to <main id="main-content">. */
+.skip-to-content-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transform: translateY(-150%);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 var(--ath-radius, 10px) 0;
+  background: var(--ath-primary, #6d28d9);
+  color: #ffffff;
+  font-family: 'IBM Plex Sans', 'Inter', 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--ath-shadow, 0 18px 44px rgba(27, 34, 31, 0.10));
+  transition: transform 0.18s ease;
+}
+
+.skip-to-content-link:focus,
+.skip-to-content-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--ath-primary, #6d28d9);
+  outline-offset: 2px;
+}
+
+/* a11y (WCAG 2.4.7 Focus Visible): global visible keyboard-focus indicator.
+   Applies to every focusable element that does not define its own
+   :focus-visible treatment, ensuring keyboard users can always see where
+   they are. Mouse interaction (no :focus-visible) is left untouched. */
+:focus-visible {
+  outline: 2px solid var(--ath-primary, #6d28d9);
+  outline-offset: 2px;
+}
+
+/* <main> targets receive focus programmatically via the skip link
+   (tabIndex={-1}); suppress the lingering outline on that synthetic focus
+   while keeping it for genuine keyboard traversal. */
+#main-content:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* UDL 3.0 (Representation): dyslexia-friendly reading mode. Toggled by adding
+   the .font-dyslexic class to <body>; it remaps the reading-surface font
+   custom property to OpenDyslexic / Atkinson Hyperlegible with a safe stack
+   fallback, plus mild spacing that aids decoding. The modal SETS the class. */
+.font-dyslexic {
+  --reading-font-family: 'OpenDyslexic', 'Atkinson Hyperlegible', 'Comic Sans MS', 'Segoe UI', sans-serif;
+  --reading-letter-spacing: 0.02em;
+  --reading-word-spacing: 0.08em;
+}
+
+.font-dyslexic .reading-narrative,
+.font-dyslexic .reading-narrative p,
+.font-dyslexic .reading-narrative li {
+  font-family: var(--reading-font-family);
 }

@@ -215,6 +215,8 @@ export default function GlobalSearch() {
     if (!open) return null
 
     return (
+        // Backdrop click-to-dismiss; Escape close is handled by the global keydown listener above; keyboard close provided globally.
+        /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
         <div
             className="fixed inset-0 z-[300] flex items-start justify-center bg-[rgba(5,6,8,0.42)] p-4 pt-[14vh] backdrop-blur-sm"
             onClick={() => setOpen(false)}
@@ -222,6 +224,7 @@ export default function GlobalSearch() {
             aria-modal="true"
             aria-label="Search ALGET"
         >
+            {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events -- stops backdrop dismissal when interacting inside the panel; not a user-facing control */}
             <div
                 className="w-full max-w-xl overflow-hidden rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-2xl"
                 onClick={(event) => event.stopPropagation()}

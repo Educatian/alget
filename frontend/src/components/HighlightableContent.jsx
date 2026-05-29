@@ -26,6 +26,7 @@ export default function HighlightableContent({
     presenceSummary = null
 }) {
     const containerRef = useRef(null)
+    const noteInputRef = useRef(null)
     const [selectionState, setSelectionState] = useState(null)
     const [noteInput, setNoteInput] = useState('')
     const [showNoteInput, setShowNoteInput] = useState(false)
@@ -374,6 +375,13 @@ export default function HighlightableContent({
         }
     }, [showNoteInput, clearSelection])
 
+    // Focus the note textarea when the note input popup opens (replaces autoFocus for a11y).
+    useEffect(() => {
+        if (showNoteInput) {
+            noteInputRef.current?.focus()
+        }
+    }, [showNoteInput])
+
     useEffect(() => {
         document.addEventListener('mouseup', handleMouseUp)
         document.addEventListener('scroll', handleScroll, true)
@@ -567,12 +575,12 @@ export default function HighlightableContent({
                         {editingNoteId ? 'Edit note:' : `Add note to highlighted text`}
                     </p>
                     <textarea
+                        ref={noteInputRef}
                         value={noteInput}
                         onChange={(e) => setNoteInput(e.target.value)}
                         placeholder="Type your note..."
                         className="w-full px-2 py-1.5 text-sm border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-yellow-300 resize-none"
                         rows={3}
-                        autoFocus
                     />
                     <div className="flex justify-end gap-2 mt-3">
                         <button
@@ -630,14 +638,20 @@ export default function HighlightableContent({
 
             {/* Discussion modal: per-highlight reactions + replies (R1) */}
             {discussionHighlightId && (
+                /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events -- dialog backdrop click-to-dismiss; close button provided inside the panel */
                 <div
                     className="fixed inset-0 z-[150] flex items-center justify-center bg-slate-900/40 p-6 backdrop-blur-sm"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Highlight discussion"
                     onClick={(event) => {
                         if (event.target === event.currentTarget) {
                             setDiscussionHighlightId(null)
                         }
                     }}
                 >
+                    {/* stops backdrop dismissal when interacting inside the panel; not a user-facing control */}
+                    {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
                     <div className="w-full max-w-lg" onClick={(event) => event.stopPropagation()}>
                         <HighlightDiscussion
                             highlightId={discussionHighlightId}

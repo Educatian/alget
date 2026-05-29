@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Pause, Play } from 'lucide-react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const KinematicsDiagram = () => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -73,7 +74,12 @@ export const KinematicsDiagram = () => {
                 {/* Background Grid */}
                 <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(#94a3b8 1px, transparent 1px), linear-gradient(90deg, #94a3b8 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
 
-                <svg viewBox="0 0 400 150" className="w-full h-full">
+                <AccessibleSvg
+                    viewBox="0 0 400 150"
+                    className="w-full h-full"
+                    title="Projectile kinematics vectors"
+                    desc={`A particle moves along a parabolic trajectory on x and y axes. A green position vector points from the origin to the particle, a blue velocity vector points tangent to the path, and a red acceleration vector points straight down for gravity. ${isPlaying ? `Simulation running at t = ${(displayedTime / 10).toFixed(1)} seconds.` : 'Simulation paused at the start point.'}`}
+                >
                     <defs>
                         <marker id="v-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                             <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
@@ -148,13 +154,13 @@ export const KinematicsDiagram = () => {
                             <text x="35" y="90" fill="#475569" fontSize="12" fontWeight="bold">START</text>
                         </g>
                     )}
-                </svg>
+                </AccessibleSvg>
             </div>
 
             <div className="mt-4 flex gap-6 px-2 justify-center">
-                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#10b981]"></span><span className="text-xs font-bold text-slate-500 uppercase">Position (s)</span></div>
-                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#3b82f6]"></span><span className="text-xs font-bold text-slate-500 uppercase">Velocity (v)</span></div>
-                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#ef4444]"></span><span className="text-xs font-bold text-slate-500 uppercase">Acceleration (a)</span></div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#10b981]" aria-hidden="true"></span><span className="text-xs font-bold text-slate-500 uppercase">Position (s)</span></div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#3b82f6]" aria-hidden="true"></span><span className="text-xs font-bold text-slate-500 uppercase">Velocity (v)</span></div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#ef4444]" aria-hidden="true"></span><span className="text-xs font-bold text-slate-500 uppercase">Acceleration (a)</span></div>
             </div>
         </div>
     );

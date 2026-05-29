@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { isSupabaseConfigured, resetPassword, signIn, signUp } from '../lib/supabase'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 
 const DEMO_USER = {
     email: 'demo@alget.local',
@@ -14,6 +15,8 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const [message, setMessage] = useState('')
+
+    const dialogRef = useFocusTrap(isOpen, onClose)
 
     const copy = useMemo(() => ({
         signin: {
@@ -94,13 +97,28 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.42)] px-4 backdrop-blur-md">
-            <div className="w-full max-w-lg overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_32px_80px_rgba(15,23,42,0.22)]">
+        // Backdrop click dismisses the dialog. The keyboard-equivalent
+        // dismissal (Escape) is handled by useFocusTrap, so a key handler on
+        // this presentational overlay would be redundant.
+        // eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+        <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[rgba(15,23,42,0.42)] px-4 backdrop-blur-md"
+            onClick={(event) => {
+                if (event.target === event.currentTarget) onClose()
+            }}
+        >
+            <div
+                ref={dialogRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="auth-modal-title"
+                className="w-full max-w-lg overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_32px_80px_rgba(15,23,42,0.22)]"
+            >
                 <div className="border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-8 py-7">
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <p className="editorial-kicker">The Scholarly Editorial</p>
-                            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">{copy[mode].title}</h2>
+                            <h2 id="auth-modal-title" className="mt-3 text-3xl font-semibold tracking-tight text-[var(--ath-text)]">{copy[mode].title}</h2>
                             <p className="mt-2 text-sm leading-7 text-[var(--ath-muted)]">{copy[mode].subtitle}</p>
                         </div>
                         <button
@@ -122,8 +140,9 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="editorial-label mb-2 block">Email</label>
+                            <label htmlFor="auth-email" className="editorial-label mb-2 block">Email</label>
                             <input
+                                id="auth-email"
                                 type="email"
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
@@ -136,7 +155,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                         {mode !== 'forgot' && (
                             <div>
                                 <div className="mb-2 flex items-center justify-between gap-3">
-                                    <label className="editorial-label">Password</label>
+                                    <label htmlFor="auth-password" className="editorial-label">Password</label>
                                     {mode === 'signin' && (
                                         <button
                                             type="button"
@@ -148,6 +167,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                                     )}
                                 </div>
                                 <input
+                                    id="auth-password"
                                     type="password"
                                     value={password}
                                     onChange={(event) => setPassword(event.target.value)}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const FluidDynamicsDiagram = () => {
     const [surfaceType, setSurfaceType] = useState('smooth'); // 'smooth' or 'riblets'
@@ -19,7 +20,7 @@ export const FluidDynamicsDiagram = () => {
             <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between mb-6 border-b border-slate-800 pb-6">
                 <div className="flex-1">
                     <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                        <span className="text-blue-400">🌊</span> Boundary Layer Topology
+                        <span className="text-blue-400" aria-hidden="true">🌊</span> Boundary Layer Topology
                     </h3>
                     <p className="text-sm text-slate-400 mb-4">Adjust free-stream velocity to observe how micro-riblets control chaotic vortices under high Reynolds numbers.</p>
 
@@ -34,7 +35,7 @@ export const FluidDynamicsDiagram = () => {
                             onClick={() => setSurfaceType('riblets')}
                             className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-2 ${surfaceType === 'riblets' ? 'bg-blue-600 text-white shadow-md shadow-blue-900/50' : 'text-slate-400 hover:text-slate-200'}`}
                         >
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M4 22L12 14L20 22"></path></svg>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true" focusable="false"><path d="M4 22L12 14L20 22"></path></svg>
                             Denticle Riblets
                         </button>
                     </div>
@@ -70,7 +71,12 @@ export const FluidDynamicsDiagram = () => {
             </div>
 
             <div className="w-full h-64 bg-slate-950 rounded-xl border border-slate-800/80 shadow-inner relative flex items-center justify-center overflow-hidden">
-                <svg viewBox="0 0 500 200" className="w-full h-full relative z-10 transition-all duration-500">
+                <AccessibleSvg
+                    viewBox="0 0 500 200"
+                    className="w-full h-full relative z-10 transition-all duration-500"
+                    title="Boundary-layer flow over hull surface"
+                    desc={`Water flows over a ${surfaceType === 'riblets' ? 'denticle-riblet' : 'smooth'} hull at ${flowSpeed} meters per second. Reynolds number ${reynoldsNumber.toLocaleString()} is in the ${isTurbulent ? 'turbulent' : 'laminar'} regime, with drag coefficient ${dragCoefficient.toFixed(4)} (${dragPenalty}). ${surfaceType === 'riblets' ? 'Riblets keep vortices small and isolated above the valleys.' : isTurbulent ? 'The smooth surface lets large chaotic eddies reach the wall.' : 'Flow stays attached and orderly.'}`}
+                >
                     <defs>
                         <linearGradient id="water-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="#1e3a8a" stopOpacity="0.3" />
@@ -140,7 +146,7 @@ export const FluidDynamicsDiagram = () => {
                             )}
                         </g>
                     )}
-                </svg>
+                </AccessibleSvg>
 
                 {/* Particle overlay effect when turbulent */}
                 {isTurbulent && surfaceType === 'smooth' && (
