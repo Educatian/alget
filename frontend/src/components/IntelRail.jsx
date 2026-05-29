@@ -297,10 +297,14 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 )}
             </div>
 
-            <div className="flex border-b border-[var(--ath-line)] bg-[rgba(240,237,230,0.6)]">
+            <div className="flex border-b border-[var(--ath-line)] bg-[rgba(240,237,230,0.6)]" role="tablist" aria-label="Adaptive support">
                 {TABS.map((tab) => (
                     <button
                         key={tab.id}
+                        role="tab"
+                        id={`intelrail-tab-${tab.id}`}
+                        aria-selected={activeTab === tab.id}
+                        aria-controls="intelrail-tabpanel"
                         onClick={() => setActiveTab(tab.id)}
                         className={`flex-1 py-3 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${activeTab === tab.id
                             ? 'border-b-2 border-[var(--ath-primary)] bg-[rgba(255,255,255,0.74)] text-[var(--ath-primary)]'
@@ -312,7 +316,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 ))}
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4">
+            <div className="flex-1 overflow-y-auto p-4" role="tabpanel" id="intelrail-tabpanel" aria-labelledby={`intelrail-tab-${activeTab}`}>
                 <div className="mb-4 rounded-[1.5rem] border border-[var(--ath-line)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(240,237,230,0.64))] p-4 shadow-sm">
                     <div className="mb-3 flex items-center justify-between gap-3">
                         <div>

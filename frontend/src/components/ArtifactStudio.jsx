@@ -729,7 +729,7 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
                         </div>
 
                         {revisionScore?.scores && (
-                            <div className="rounded-xl border border-[var(--ath-line)] bg-white p-3">
+                            <div className="rounded-xl border border-[var(--ath-line)] bg-white p-3" role="status" aria-live="polite">
                                 <div className="flex items-center justify-between">
                                     <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Revision quality</span>
                                     <span className="text-sm font-semibold text-[var(--ath-text)]">{Math.round((revisionScore.scores.overall_revision_quality || 0) * 100)}%</span>

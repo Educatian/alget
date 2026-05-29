@@ -13,7 +13,7 @@ const nextMsgId = () =>
     (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `m${++_msgSeq}`)
 const withMsgId = (msg) => (msg && msg.id ? msg : { ...msg, id: nextMsgId() })
 
-const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId }, ref) {
+const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId, railOpen = false }, ref) {
     const [isOpen, setIsOpen] = useState(false)
     const [messages, setMessages] = useState([])
     const [inputValue, setInputValue] = useState('')
@@ -282,7 +282,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                 aria-expanded={isOpen}
                 aria-haspopup="dialog"
                 data-onboarding="chat-widget-button"
-                className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-[0_8px_30px_color-mix(in_srgb,var(--ath-primary)_34%,transparent)] transition-all duration-300 hover:scale-110 active:scale-95 ${isOpen
+                className={`fixed bottom-6 right-6 z-50 ${railOpen && !isOpen ? 'hidden xl:flex' : 'flex'} h-14 w-14 items-center justify-center rounded-full shadow-[0_8px_30px_color-mix(in_srgb,var(--ath-primary)_34%,transparent)] transition-all duration-300 hover:scale-110 active:scale-95 ${isOpen
                     ? 'bg-[var(--ath-panel-muted)] hover:bg-[var(--ath-panel)]'
                     : 'bg-[var(--ath-primary)] hover:shadow-[0_12px_40px_color-mix(in_srgb,var(--ath-primary)_42%,transparent)]'
                     }`}
