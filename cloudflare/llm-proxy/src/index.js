@@ -1,23 +1,23 @@
 // Cloudflare Worker: alget-llm  (OpenRouter-backed)
 //
-// The dynamic AI layer for ALGET. On the static Pages deploy, /api only holds
-// content/search snapshots, so every LLM call (BigAL rail, chat, grading,
-// generation) 404/405'd. This Worker is the single dynamic endpoint:
-//
-//   - /assist/explain, /assist/represent, /orchestrate  -> answered DIRECTLY
-//     via OpenRouter (no cold start). These are the BigAL rail + chat the
-//     learner actually sees.
-//   - everything else (grade, generate*, diagnostic, research, ...) -> PROXIED
-//     to the FastAPI backend as-is (best effort; needs the backend's own key).
+// The ENTIRE dynamic AI/compute layer for ALGET — no FastAPI/onrender backend.
+//   - LLM (BigAL rail explain/represent, chat, Knowledge Check generate/grade)
+//     -> OpenRouter directly.
+//   - Deterministic, ported from the Python backend (parity-verified): BKT
+//     grade + telemetry_fusion, practice grade/{id} (reads static practice),
+//     artifact-revision score, research-evaluation validate, concept-origin +
+//     mastery_graph (from baked static indexes), adaptive_recommendation
+//     (policy via the alget-adaptive-recommendation Worker, service-bound).
+//   - Static content/diagnostic/indexes are served by Cloudflare Pages.
 //
 // SECRET (set via wrangler, NOT committed):
 //   wrangler secret put OPENROUTER_API_KEY
 // Optional [vars]:
-//   OPENROUTER_MODEL     (default: google/gemini-2.0-flash-001)
-//   BACKEND_API_BASE     (default: the onrender FastAPI deploy)
+//   OPENROUTER_MODEL  (default google/gemini-2.0-flash-001)
+//   STATIC_API_BASE   (default the Pages /api origin)
+//   BACKEND_API_BASE  (unset; only set to re-enable a proxy escape hatch)
 
 const DEFAULT_MODEL = 'google/gemini-2.0-flash-001'
-const DEFAULT_BACKEND = 'https://alget.onrender.com/api'
 // Static content (Pages) the Worker reads for deterministic grading/graphs.
 const DEFAULT_STATIC_BASE = 'https://alget.pages.dev/api'
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
@@ -292,15 +292,13 @@ export default {
 
     const url = new URL(request.url)
     const path = url.pathname.replace(/^\/api/, '') || '/'
-    const backendEarly = (env.BACKEND_API_BASE || DEFAULT_BACKEND).replace(/\/$/, '')
 
-    // On-demand warm-up: the app pings this on load so the (free-tier, sleepy)
-    // FastAPI backend is booting while the learner reads, eliminating the cold
-    // start before they hit a proxied deterministic endpoint (grade, etc.).
-    // Returns immediately; the wake request continues in the background.
+    // Warm-up is now a no-op: every endpoint is served by this Worker (or static
+    // Pages), so there is no sleepy backend to wake. Kept so the app's on-load
+    // ping still gets a 200. Only wakes a backend if one is explicitly configured.
     if (path === '/warmup') {
-      ctx.waitUntil(fetch(`${backendEarly}/book/inst-design/toc`).catch(() => {}))
-      return json({ ok: true, warming: true })
+      if (env.BACKEND_API_BASE) ctx.waitUntil(fetch(`${String(env.BACKEND_API_BASE).replace(/\/$/, '')}/book/inst-design/toc`).catch(() => {}))
+      return json({ ok: true })
     }
 
     let body = {}
@@ -310,7 +308,6 @@ export default {
     // Server key by default; allow a per-user OpenRouter key via the request.
     const key = (body.api_key && String(body.api_key).trim()) || env.OPENROUTER_API_KEY || ''
     const model = env.OPENROUTER_MODEL || DEFAULT_MODEL
-    const backend = (env.BACKEND_API_BASE || DEFAULT_BACKEND).replace(/\/$/, '')
     const noKeyMsg = 'AI support is not configured yet (no OpenRouter key). Add your own key in Settings, or ask your instructor to enable it.'
 
     try {
@@ -632,17 +629,63 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
         })
       }
 
-      // --- Everything else: proxy to the FastAPI backend as-is ---
-      const proxied = await fetch(`${backend}${path}${url.search}`, {
-        method: request.method,
-        headers: { 'content-type': 'application/json' },
-        body: request.method === 'POST' ? JSON.stringify(body) : undefined,
-      })
-      const text = await proxied.text()
-      return new Response(text, {
-        status: proxied.status,
-        headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' },
-      })
+      // --- Research evaluation validation (deterministic, ported) ---
+      if (path === '/research/evaluation/validate') {
+        const items = Array.isArray(body.item_responses) ? body.item_responses : []
+        const totalQuestions = Math.max(0, parseInt(body.total_questions || items.length, 10) || 0)
+        const errors = []
+        const seen = new Set()
+        const normalized = items.map((item, i) => {
+          const itemId = String(item.item_id || '').trim() || `item_${String(i + 1).padStart(2, '0')}`
+          if (seen.has(itemId)) errors.push(`duplicate_item_id:${itemId}`)
+          seen.add(itemId)
+          const sel = item.selected_option, cor = item.correct_index
+          if (sel != null && !(Number(sel) >= 0 && Number(sel) <= 8)) errors.push(`selected_option_out_of_range:${itemId}`)
+          if (cor != null && !(Number(cor) >= 0 && Number(cor) <= 8)) errors.push(`correct_index_out_of_range:${itemId}`)
+          let conf = item.confidence
+          if (conf != null) { conf = Number(conf); conf = conf <= 1 ? clampN(conf, 0, 1) : clampN(conf / 5, 0, 1) }
+          return {
+            item_id: itemId,
+            concept_id: (String(item.concept_id || '').trim() || null),
+            is_correct: !!item.is_correct,
+            confidence: conf != null ? conf : null,
+            latency_ms: item.latency_ms != null ? Math.max(0, parseInt(item.latency_ms, 10) || 0) : null,
+            response_payload: { ...(item.response_payload || {}), selected_option: sel ?? null, correct_index: cor ?? null, server_validated: true },
+          }
+        })
+        const computedScore = normalized.filter((it) => it.is_correct).length
+        const denom = totalQuestions || normalized.length || 1
+        const computedPct = Math.round((computedScore / denom) * 10000) / 100
+        if (normalized.length !== totalQuestions) errors.push('item_count_mismatch')
+        if (Math.abs(computedScore - parseInt(body.score, 10 || 0)) > 0) errors.push('score_mismatch')
+        if (Math.abs(computedPct - Number(body.percentage || 0)) > 1.0) errors.push('percentage_mismatch')
+        return json({
+          validator_pass: errors.length === 0, validation_errors: errors, computed_score: computedScore,
+          computed_percentage: computedPct, item_count: normalized.length, normalized_item_responses: normalized,
+          policy_version: 'research-evaluation-validator-v1',
+        })
+      }
+
+      // --- Custom module authoring: needs a writable content filesystem, which
+      // the static Cloudflare deploy doesn't have (the generated section can't be
+      // persisted or served). Return a clear message instead of proxying. ---
+      if (path === '/book/generate_custom_module') {
+        return json({ success: false, message: 'Custom module authoring runs only in the local/dev environment (it writes new content files). The hosted build serves a fixed, versioned catalog.' })
+      }
+
+      // --- Unknown path. Every endpoint the app calls is handled above, so the
+      // app no longer depends on the onrender backend at all. Optional escape
+      // hatch: only proxy if a BACKEND_API_BASE var is explicitly configured.
+      if (env.BACKEND_API_BASE) {
+        const proxied = await fetch(`${String(env.BACKEND_API_BASE).replace(/\/$/, '')}${path}${url.search}`, {
+          method: request.method,
+          headers: { 'content-type': 'application/json' },
+          body: request.method === 'POST' ? JSON.stringify(body) : undefined,
+        })
+        const text = await proxied.text()
+        return new Response(text, { status: proxied.status, headers: { ...CORS, 'content-type': proxied.headers.get('content-type') || 'application/json' } })
+      }
+      return json({ error: `Unknown endpoint: ${path}` }, 404)
     } catch (e) {
       return json({ error: String(e?.message || e) }, 500)
     }
