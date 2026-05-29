@@ -6,6 +6,7 @@ import {
     evaluateSupportContent,
     incrementConceptInterventionCount
 } from '../lib/researchService'
+import WhySupportNow from './WhySupportNow'
 
 const ACTION_TO_TAB = {
     explain: 'explain',
@@ -236,6 +237,25 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         .sort((left, right) => right[1] - left[1])
         .slice(0, 5)
 
+    // Wires the WhySupportNow contest/accept control to the SAME explicit
+    // accepted/declined signal path that Phase 1 added. The learner's judgment of
+    // the explanation is the explicit signal; it is not derived from the action
+    // type. Declining contests the support without leaving the rail.
+    const resolveSupportJudgment = ({ accepted }) => {
+        recordAdaptiveSignal(resolvedSectionId, accepted ? 'intervention_accept' : 'intervention_decline', {
+            action: primaryRecommendation?.action || null,
+            accepted,
+            surface: 'why-support-now'
+        })
+        if (activeTraceId) {
+            appendInterventionTrace(activeTraceId, {
+                type: 'recommendation_action',
+                status: accepted ? 'engaged' : 'awaiting_outcome',
+                detail: { action: primaryRecommendation?.action || null, accepted, surface: 'why-support-now' }
+            })
+        }
+    }
+
     const handleClose = () => {
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
@@ -406,6 +426,13 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                                     </button>
                                 ))}
                             </div>
+
+                            {primaryRecommendation && (
+                                <WhySupportNow
+                                    decision={recommendation}
+                                    onResolve={resolveSupportJudgment}
+                                />
+                            )}
                         </>
                     )}
                 </div>

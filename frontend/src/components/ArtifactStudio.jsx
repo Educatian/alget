@@ -157,7 +157,10 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
     const [evidence, setEvidence] = useState('')
     const [accepted, setAccepted] = useState('')
     const [rejected, setRejected] = useState('')
-    const [judgment, setJudgment] = useState('modify')
+    // AI Feedback Judgment Gate. The judgment starts UNSET so the rationale
+    // field stays hidden until the learner makes an explicit accept/modify/
+    // reject/defer choice (progressive disclosure against cognitive overload).
+    const [judgment, setJudgment] = useState(null)
     const [judgmentRationale, setJudgmentRationale] = useState('')
     const [revisedDraft, setRevisedDraft] = useState('')
     const [transfer, setTransfer] = useState('')
@@ -168,6 +171,10 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
     const [selectedSupportMove, setSelectedSupportMove] = useState(null)
     const [supportMoveOverridden, setSupportMoveOverridden] = useState(false)
     const [confidence, setConfidence] = useState(2)
+    // BEFORE state: rubric-scored snapshot of the artifact prior to AI-mediated
+    // revision. AFTER state lives in `rubric`. The revision delta is derived
+    // from the two so the backend policy can read a scored before/after episode.
+    const [beforeRubric, setBeforeRubric] = useState(() => RUBRIC_ROWS.reduce((acc, row) => ({ ...acc, [row.id]: 0 }), {}))
     const [rubric, setRubric] = useState(() => RUBRIC_ROWS.reduce((acc, row) => ({ ...acc, [row.id]: 0 }), {}))
     const [revisionScore, setRevisionScore] = useState(null)
     const [adaptiveRecommendation, setAdaptiveRecommendation] = useState(null)
@@ -184,6 +191,27 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
         const total = Object.values(rubric).reduce((sum, value) => sum + Number(value || 0), 0)
         return Number((total / (RUBRIC_ROWS.length * 2)).toFixed(3))
     }, [rubric])
+
+    // Scored BEFORE state (pre-revision artifact quality on the same rubric).
+    const beforeQualityScore = useMemo(() => {
+        const total = Object.values(beforeRubric).reduce((sum, value) => sum + Number(value || 0), 0)
+        return Number((total / (RUBRIC_ROWS.length * 2)).toFixed(3))
+    }, [beforeRubric])
+
+    // The after-state quality IS the artifact_quality the policy consumes; the
+    // gap is its complement. artifactRevisionDelta is the scored before/after
+    // movement, broken out per sub-score so the instructor view can audit it.
+    const artifactQuality = artifactQualityScore
+    const artifactGap = Number(Math.max(0, 1 - artifactQuality).toFixed(3))
+    const artifactRevisionDelta = useMemo(() => {
+        return Number((artifactQualityScore - beforeQualityScore).toFixed(3))
+    }, [artifactQualityScore, beforeQualityScore])
+    const rubricDeltas = useMemo(() => {
+        return RUBRIC_ROWS.reduce((acc, row) => {
+            acc[row.id] = Number(rubric[row.id] || 0) - Number(beforeRubric[row.id] || 0)
+            return acc
+        }, {})
+    }, [beforeRubric, rubric])
 
     const supportRationale = useMemo(() => {
         if (traceScore <= 3) return SUPPORT_MOVES.find((move) => move.id === 'explain').rationale
@@ -209,7 +237,7 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
                 initial_draft: initialDraft,
                 claim,
                 evidence,
-                judgment,
+                judgment: judgment || 'modify',
                 judgment_rationale: judgmentRationale,
                 revised_draft: revisedDraft,
                 transfer,
@@ -271,9 +299,28 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
             trace_score: traceScore,
             trace_denominator: 8,
             artifact_quality_score: artifactQualityScore,
+            // Scored BEFORE/AFTER artifact states + revision delta. artifact_quality
+            // and artifact_gap are exported as first-class policy inputs so the
+            // backend support-selection policy can read them as live signals.
+            artifact_quality: artifactQuality,
+            artifact_gap: artifactGap,
+            before_quality_score: beforeQualityScore,
+            after_quality_score: artifactQualityScore,
+            artifact_revision_delta: artifactRevisionDelta,
+            before_rubric: beforeRubric,
+            after_rubric: rubric,
+            rubric_deltas: rubricDeltas,
             rubric,
             confidence,
-            judgment,
+            // AI Feedback Judgment Gate as a first-class trace field. resolved
+            // marks whether the learner made an explicit judgment before submit.
+            judgment: judgment || 'unresolved',
+            ai_feedback_judgment: {
+                value: judgment || 'unresolved',
+                resolved: Boolean(judgment),
+                rationale_length: judgmentRationale.length,
+                rationale_present: judgmentRationale.trim().length >= 12,
+            },
             submission_id: submissionId,
             source_text_metrics: sourceTextMetrics,
             revision_scores: nextRevisionScore?.scores || null,
@@ -311,9 +358,15 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
             recommendedSupportMove,
             supportMoveOverridden,
             artifactQualityScore,
+            // First-class scored-revision signals fed INTO the live policy.
+            artifactQuality,
+            artifactGap,
+            beforeQualityScore,
+            artifactRevisionDelta,
             traceCompleteness: traceScore / 8,
             confidence,
-            judgment,
+            judgment: judgment || 'unresolved',
+            judgmentResolved: Boolean(judgment),
         })
 
         setStatus('recommending')
@@ -330,8 +383,11 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
                     source: 'work_product_studio',
                     traceScore,
                     artifactQualityScore,
+                    artifactQuality,
+                    artifactGap,
+                    artifactRevisionDelta,
                     revisionScores: nextRevisionScore?.scores || null,
-                    judgment,
+                    judgment: judgment || 'unresolved',
                 },
             })
             setAdaptiveRecommendation(recommendation)
@@ -352,7 +408,7 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
     const stepValid = [
         initialDraft.trim().length >= 12,
         claim.trim().length >= 12 && evidence.trim().length >= 12,
-        accepted.trim().length >= 12 && rejected.trim().length >= 12 && judgmentRationale.trim().length >= 12,
+        accepted.trim().length >= 12 && rejected.trim().length >= 12 && Boolean(judgment) && judgmentRationale.trim().length >= 12,
         revisedDraft.trim().length >= 12,
     ]
 
@@ -446,6 +502,32 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
                                 ))}
                             </ul>
                         )}
+
+                        <details className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2 [&[open]>summary>span:last-child]:rotate-90">
+                            <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-semibold text-[var(--ath-secondary)]">
+                                <span>Score the draft before AI revision | {Math.round(beforeQualityScore * 100)}%</span>
+                                <span className="transition-transform">&gt;</span>
+                            </summary>
+                            <p className="mt-2 text-[11px] leading-5 text-[var(--ath-secondary)]">
+                                This baseline lets the studio measure the before/after revision movement, not just the final state.
+                            </p>
+                            <div className="mt-3 grid gap-2 md:grid-cols-3">
+                                {RUBRIC_ROWS.map((row) => (
+                                    <label key={row.id} className="rounded-lg border border-[var(--ath-line)] bg-white/80 px-2 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">
+                                        {row.label}
+                                        <select
+                                            value={beforeRubric[row.id]}
+                                            onChange={(event) => setBeforeRubric((current) => ({ ...current, [row.id]: Number(event.target.value) }))}
+                                            className="mt-1 w-full rounded border border-[var(--ath-line)] bg-white px-1.5 py-1 text-sm font-medium text-[var(--ath-text)]"
+                                        >
+                                            <option value={0}>0 missing</option>
+                                            <option value={1}>1 partial</option>
+                                            <option value={2}>2 strong</option>
+                                        </select>
+                                    </label>
+                                ))}
+                            </div>
+                        </details>
                     </>
                 )}
 
@@ -496,12 +578,13 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
                         </div>
                         <div className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-3">
                             <div className="flex flex-wrap items-center gap-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Judgment</span>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">AI feedback judgment</span>
                                 <div className="flex flex-1 flex-wrap gap-1">
                                     {JUDGMENT_OPTIONS.map((option) => (
                                         <button
                                             key={option.id}
                                             type="button"
+                                            aria-pressed={judgment === option.id}
                                             onClick={() => setJudgment(option.id)}
                                             className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
                                                 judgment === option.id
@@ -514,15 +597,24 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
                                     ))}
                                 </div>
                             </div>
-                            <label className="mt-3 block">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Rationale</span>
-                                <textarea
-                                    value={judgmentRationale}
-                                    onChange={(event) => setJudgmentRationale(event.target.value)}
-                                    className="editorial-input mt-1 min-h-20 text-sm"
-                                    placeholder="Why this judgment?"
-                                />
-                            </label>
+                            {/* Progressive disclosure: the rationale field is revealed only
+                                after the learner commits to a judgment, so the gate does not
+                                present every field at once. */}
+                            {judgment ? (
+                                <label className="mt-3 block">
+                                    <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Why did you {judgment} it?</span>
+                                    <textarea
+                                        value={judgmentRationale}
+                                        onChange={(event) => setJudgmentRationale(event.target.value)}
+                                        className="editorial-input mt-1 min-h-20 text-sm"
+                                        placeholder="Name the evidence that drove this judgment."
+                                    />
+                                </label>
+                            ) : (
+                                <p className="mt-2 text-[11px] leading-5 text-[var(--ath-secondary)]">
+                                    Choose how you judged the AI suggestion to unlock the rationale field.
+                                </p>
+                            )}
                         </div>
                     </div>
                 )}
@@ -550,7 +642,7 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
 
                         <details className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2 [&[open]>summary>span:last-child]:rotate-90">
                             <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-semibold text-[var(--ath-secondary)]">
-                                <span>Quality rubric | {Math.round(artifactQualityScore * 100)}%</span>
+                                <span>Quality after revision | {Math.round(artifactQualityScore * 100)}% ({artifactRevisionDelta >= 0 ? '+' : ''}{Math.round(artifactRevisionDelta * 100)} pts vs before)</span>
                                 <span className="transition-transform">&gt;</span>
                             </summary>
                             <div className="mt-3 grid gap-2 md:grid-cols-3">

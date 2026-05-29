@@ -345,6 +345,141 @@ create index if not exists idx_chat_history_user on chat_history(user_id);
 create index if not exists idx_chat_history_section on chat_history(section_id);
 
 -- ============================================================================
+-- HIGHLIGHT SOCIAL TABLES (reactions, threaded replies)
+-- Depends on: highlights
+-- ============================================================================
+
+create table if not exists highlight_reactions (
+    id uuid primary key default gen_random_uuid(),
+    highlight_id uuid not null references highlights(id) on delete cascade,
+    user_id uuid not null references auth.users(id) on delete cascade,
+    reaction_type text not null check (reaction_type in ('insight','question','disagree','same')),
+    created_at timestamptz default now(),
+    unique (highlight_id, user_id, reaction_type)
+);
+
+create index if not exists idx_highlight_reactions_highlight on highlight_reactions(highlight_id);
+create index if not exists idx_highlight_reactions_user on highlight_reactions(user_id);
+
+create table if not exists highlight_replies (
+    id uuid primary key default gen_random_uuid(),
+    highlight_id uuid not null references highlights(id) on delete cascade,
+    user_id uuid not null references auth.users(id) on delete cascade,
+    alias text,
+    color_token text,
+    body text not null check (length(body) between 1 and 1200),
+    parent_reply_id uuid references highlight_replies(id) on delete cascade,
+    created_at timestamptz default now()
+);
+
+create index if not exists idx_highlight_replies_highlight on highlight_replies(highlight_id, created_at);
+create index if not exists idx_highlight_replies_user on highlight_replies(user_id);
+create index if not exists idx_highlight_replies_parent on highlight_replies(parent_reply_id);
+
+-- ============================================================================
+-- SOCIAL ANNOTATION RESEARCH TABLES (section annotations + replies/reactions/reads)
+-- Depends on: auth.users
+-- ============================================================================
+
+create table if not exists section_annotations (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete cascade,
+  course_id text,
+  section_id text not null,
+  concept_ids text[] not null default '{}',
+  quote_text text,
+  quote_hash text,
+  start_offset integer,
+  end_offset integer,
+  annotation_type text not null check (annotation_type in ('question', 'confusion', 'insight', 'connection')),
+  body text not null,
+  visibility text not null default 'course' check (visibility in ('private', 'course')),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists idx_section_annotations_section
+  on section_annotations(section_id, created_at desc);
+create index if not exists idx_section_annotations_user
+  on section_annotations(user_id, created_at desc);
+create index if not exists idx_section_annotations_type
+  on section_annotations(annotation_type);
+create index if not exists idx_section_annotations_quote_hash
+  on section_annotations(quote_hash);
+
+create table if not exists annotation_replies (
+  id uuid primary key default gen_random_uuid(),
+  annotation_id uuid not null references section_annotations(id) on delete cascade,
+  user_id uuid references auth.users(id) on delete cascade,
+  body text not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists idx_annotation_replies_annotation
+  on annotation_replies(annotation_id, created_at);
+
+create table if not exists annotation_reactions (
+  annotation_id uuid not null references section_annotations(id) on delete cascade,
+  user_id uuid references auth.users(id) on delete cascade,
+  reaction_type text not null default 'helpful' check (reaction_type in ('helpful', 'same_question', 'resolved')),
+  created_at timestamptz not null default now(),
+  primary key (annotation_id, user_id, reaction_type)
+);
+
+create table if not exists annotation_read_states (
+  annotation_id uuid not null references section_annotations(id) on delete cascade,
+  user_id uuid references auth.users(id) on delete cascade,
+  seen_at timestamptz not null default now(),
+  primary key (annotation_id, user_id)
+);
+
+-- ============================================================================
+-- RAG DOCUMENT STORE (pgvector-backed retrieval)
+-- Depends on: vector extension
+-- ============================================================================
+
+create table if not exists rag_documents (
+  doc_id text primary key,
+  content text not null,
+  metadata jsonb not null default '{}'::jsonb,
+  embedding vector(768),
+  content_checksum text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists rag_documents_embedding_idx
+  on rag_documents using hnsw (embedding vector_cosine_ops);
+create index if not exists rag_documents_metadata_gin
+  on rag_documents using gin (metadata);
+
+create or replace function match_rag_documents(
+  query_embedding vector(768),
+  match_count int default 3
+)
+returns table (
+  doc_id text,
+  content text,
+  metadata jsonb,
+  similarity float
+)
+language plpgsql
+as $$
+begin
+  return query
+  select
+    rag_documents.doc_id,
+    rag_documents.content,
+    rag_documents.metadata,
+    1 - (rag_documents.embedding <=> query_embedding) as similarity
+  from rag_documents
+  where rag_documents.embedding is not null
+  order by rag_documents.embedding <=> query_embedding
+  limit match_count;
+end;
+$$;
+
+-- ============================================================================
 -- RESEARCH TABLES
 -- ============================================================================
 
@@ -517,6 +652,36 @@ create table if not exists generated_feedback (
 
 create index if not exists idx_generated_feedback_trace on generated_feedback(trace_id, created_at desc);
 
+create table if not exists artifact_revision_scores (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete cascade,
+  section_id text not null,
+  course_id text,
+  artifact_type text,
+  studio_mode text,
+  trace_event_id uuid references interaction_events(id) on delete set null,
+  judgment text check (judgment in ('accept', 'modify', 'reject', 'defer')),
+  trace_score integer not null default 0,
+  trace_denominator integer not null default 8,
+  claim_clarity double precision not null default 0,
+  evidence_alignment double precision not null default 0,
+  revision_depth double precision not null default 0,
+  judgment_quality double precision not null default 0,
+  transfer_readiness double precision not null default 0,
+  specificity_delta double precision not null default 0,
+  overall_revision_quality double precision not null default 0,
+  diagnostics jsonb not null default '{}'::jsonb,
+  privacy_policy text not null default 'score-derived-only-v1',
+  scorer_version text not null default 'artifact-revision-scorer-v1',
+  instructor_override jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists artifact_revision_scores_section_idx
+  on artifact_revision_scores(section_id, created_at desc);
+create index if not exists artifact_revision_scores_user_idx
+  on artifact_revision_scores(user_id, created_at desc);
+
 create table if not exists content_audits (
   id uuid primary key default gen_random_uuid(),
   feedback_id uuid references generated_feedback(id) on delete cascade,
@@ -574,6 +739,14 @@ alter table evaluation_responses enable row level security;
 alter table generated_feedback enable row level security;
 alter table content_audits enable row level security;
 alter table human_ratings enable row level security;
+alter table highlight_reactions enable row level security;
+alter table highlight_replies enable row level security;
+alter table section_annotations enable row level security;
+alter table annotation_replies enable row level security;
+alter table annotation_reactions enable row level security;
+alter table annotation_read_states enable row level security;
+alter table artifact_revision_scores enable row level security;
+alter table rag_documents enable row level security;
 
 -- ============================================================================
 -- RLS POLICIES
@@ -771,6 +944,64 @@ drop policy if exists "Users can manage own human ratings" on human_ratings;
 create policy "Users can manage own human ratings" on human_ratings
   for all using (auth.uid() = rater_id) with check (auth.uid() = rater_id);
 
+-- Highlight social policies
+drop policy if exists "Users can manage own reactions" on highlight_reactions;
+create policy "Users can manage own reactions" on highlight_reactions
+    for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists "Authenticated users can read reactions" on highlight_reactions;
+create policy "Authenticated users can read reactions" on highlight_reactions
+    for select to authenticated using (true);
+
+drop policy if exists "Users can manage own replies" on highlight_replies;
+create policy "Users can manage own replies" on highlight_replies
+    for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists "Authenticated users can read replies" on highlight_replies;
+create policy "Authenticated users can read replies" on highlight_replies
+    for select to authenticated using (true);
+
+-- Section annotation policies
+drop policy if exists "Users can manage own section annotations" on section_annotations;
+create policy "Users can manage own section annotations" on section_annotations
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists "Authenticated users can read course annotations" on section_annotations;
+create policy "Authenticated users can read course annotations" on section_annotations
+  for select to authenticated using (visibility = 'course' or auth.uid() = user_id);
+
+drop policy if exists "Users can manage own annotation replies" on annotation_replies;
+create policy "Users can manage own annotation replies" on annotation_replies
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists "Authenticated users can read annotation replies" on annotation_replies;
+create policy "Authenticated users can read annotation replies" on annotation_replies
+  for select to authenticated using (true);
+
+drop policy if exists "Users can manage own annotation reactions" on annotation_reactions;
+create policy "Users can manage own annotation reactions" on annotation_reactions
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+drop policy if exists "Authenticated users can read annotation reactions" on annotation_reactions;
+create policy "Authenticated users can read annotation reactions" on annotation_reactions
+  for select to authenticated using (true);
+
+drop policy if exists "Users can manage own annotation read states" on annotation_read_states;
+create policy "Users can manage own annotation read states" on annotation_read_states
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+-- Artifact revision scores policy
+drop policy if exists "Users can manage own artifact revision scores" on artifact_revision_scores;
+create policy "Users can manage own artifact revision scores" on artifact_revision_scores
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+-- RAG documents: shared course content. Inserts are server-side (service role
+-- bypasses RLS); authenticated clients may read. RLS is enabled so re-running
+-- this script never leaves the table without an explicit access policy.
+drop policy if exists "Authenticated users can read rag documents" on rag_documents;
+create policy "Authenticated users can read rag documents" on rag_documents
+  for select to authenticated using (true);
+
 -- ============================================================================
 -- ANALYTICS AND RESEARCH VIEWS
 -- ============================================================================
@@ -864,8 +1095,87 @@ from intervention_traces traces
 join recommendation_decisions decisions
   on decisions.id = traces.recommendation_id;
 
+drop view if exists highlight_reaction_summary;
+create or replace view highlight_reaction_summary as
+select
+    highlight_id,
+    reaction_type,
+    count(*) as count
+from highlight_reactions
+group by highlight_id, reaction_type;
+
+drop view if exists highlight_overlap;
+create or replace view highlight_overlap as
+select
+    h1.user_id as user_a,
+    h2.user_id as user_b,
+    h1.section_id,
+    count(*) as overlap_count,
+    array_agg(distinct h1.text_content) as shared_texts
+from highlights h1
+join highlights h2
+  on h1.section_id = h2.section_id
+ and h1.text_content = h2.text_content
+ and h1.user_id < h2.user_id
+group by h1.user_id, h2.user_id, h1.section_id
+having count(*) >= 2;
+
+drop view if exists kindred_readers;
+create or replace view kindred_readers as
+select
+    user_a,
+    user_b as peer_user_id,
+    sum(overlap_count) as total_overlap,
+    array_agg(distinct section_id) as shared_sections
+from highlight_overlap
+group by user_a, user_b
+union all
+select
+    user_b,
+    user_a as peer_user_id,
+    sum(overlap_count) as total_overlap,
+    array_agg(distinct section_id) as shared_sections
+from highlight_overlap
+group by user_b, user_a;
+
+drop view if exists section_annotation_summary;
+create or replace view section_annotation_summary
+with (security_invoker = true) as
+select
+  ann.section_id,
+  ann.annotation_type,
+  count(*) as annotation_count,
+  count(distinct ann.user_id) as contributor_count,
+  count(reactions.annotation_id) filter (where reactions.reaction_type = 'helpful') as helpful_count,
+  max(ann.created_at) as last_annotation_at
+from section_annotations ann
+left join annotation_reactions reactions
+  on reactions.annotation_id = ann.id
+group by ann.section_id, ann.annotation_type;
+
+drop view if exists annotation_network_edges;
+create or replace view annotation_network_edges
+with (security_invoker = true) as
+select
+  a1.section_id,
+  a1.user_id as source_user_id,
+  a2.user_id as target_user_id,
+  count(*) as shared_quote_count
+from section_annotations a1
+join section_annotations a2
+  on a1.section_id = a2.section_id
+ and a1.quote_hash is not null
+ and a1.quote_hash = a2.quote_hash
+ and a1.user_id <> a2.user_id
+group by a1.section_id, a1.user_id, a2.user_id;
+
 grant select on popular_highlights to authenticated;
 grant select on session_event_sequence to authenticated;
 grant select on research_trace_summary to authenticated;
+grant select on highlight_reaction_summary to authenticated;
+grant select on highlight_overlap to authenticated;
+grant select on kindred_readers to authenticated;
+grant select on section_annotation_summary to authenticated;
+grant select on annotation_network_edges to authenticated;
 
 select 'ALGET all-in-one schema ready' as status;

@@ -326,7 +326,7 @@ backend/supabase_research_schema.sql
 backend/supabase_social_features.sql
 ```
 
-Or `backend/supabase_all_in_one.sql` for a single-shot deploy.
+Or run `backend/supabase_all_in_one.sql` for a single-shot deploy. This bundle is the complete, idempotent superset of every feature schema (all 37 tables, including the social-annotation, highlight-social, RAG, and artifact-revision-score layers), so you do not need to run the individual files alongside it. Every table is created with `if not exists` guards, has row-level security enabled, and carries owner plus visibility policies (re-running drops and recreates each policy safely). Use the per-file list above only if you want to apply a single layer in isolation.
 
 ### 9.5 Demo flow
 

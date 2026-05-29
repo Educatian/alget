@@ -79,7 +79,13 @@ from content_service import load_section, load_section_meta, generate_toc, get_f
 from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
-from knowledge_tracing import BayesianKnowledgeTracing
+from knowledge_tracing import (
+    BayesianKnowledgeTracing,
+    select_support_move,
+    reason_codes_are_faithful,
+    REASON_CODE_FEATURES,
+    ANNOTATION_REASON_CODES,
+)
 
 @asynccontextmanager
 async def app_lifespan(_app: FastAPI):
@@ -364,6 +370,33 @@ class AdaptiveLearnerProfile(BaseModel):
     telemetry_snapshot: dict[str, Any] = Field(default_factory=dict)
 
 
+class AdaptiveAnnotationSignal(BaseModel):
+    """A single social-annotation signal fed into the live policy.
+
+    type: annotation TYPE (question, confusion, insight, connection, ...).
+    quote_section_id: the section the annotated quote belongs to. When this
+    matches the current section, the annotation carries section-overlap weight
+    (it is about THIS reading, not the book at large).
+    """
+
+    type: str = ""
+    quote_section_id: Optional[str] = None
+    count: int = 1
+
+
+class AdaptiveArtifactRevisionScore(BaseModel):
+    """Scored before/after artifact-revision features fed into the live policy.
+
+    quality is the after-revision rubric quality [0,1]; delta is the
+    after-minus-before change in quality (negative = regression).
+    """
+
+    artifact_quality: float = 0.0
+    artifact_gap: float = 0.0
+    revision_delta: float = 0.0
+    section_id: Optional[str] = None
+
+
 class AdaptiveRecommendationRequest(BaseModel):
     section_id: str
     section_title: str = ""
@@ -373,6 +406,20 @@ class AdaptiveRecommendationRequest(BaseModel):
     mastery: list[AdaptiveMasteryState] = Field(default_factory=list)
     telemetry: AdaptiveTelemetrySummary = Field(default_factory=AdaptiveTelemetrySummary)
     learner_profile: AdaptiveLearnerProfile = Field(default_factory=AdaptiveLearnerProfile)
+    # Social-annotation family (TYPE + quote-section overlap) fed INTO the policy.
+    annotation_signals: list[AdaptiveAnnotationSignal] = Field(default_factory=list)
+    # Scored before/after artifact-revision features fed INTO the policy.
+    artifact_revision_scores: list[AdaptiveArtifactRevisionScore] = Field(default_factory=list)
+    # RQ4 ablation flag: run the policy with annotation signals ON vs OFF.
+    annotation_adaptive: bool = True
+    # Identity for persisting the decision as reusable RCT data (optional).
+    learner_id: Optional[str] = None
+    session_id: Optional[str] = None
+    # Optional Supabase credentials so the server can persist the decision at
+    # generation time. When absent the decision is still persisted in-process so
+    # the provenance read endpoint works offline / in tests.
+    supabase_url: Optional[str] = None
+    supabase_anon_key: Optional[str] = None
 
 
 class LearnerStateSummary(BaseModel):
@@ -399,12 +446,15 @@ class AdaptiveRecommendationCard(BaseModel):
 class AdaptiveRecommendationReasoning(BaseModel):
     confidence: float = 0.0
     policy_strategy: str = "heuristic_bandit_v2"
+    policy_mode: str = "annotation_adaptive"
     reason_codes: list[str] = Field(default_factory=list)
     recommended_because: list[str] = Field(default_factory=list)
     not_recommended_because: list[str] = Field(default_factory=list)
     evidence_snapshot: dict[str, Any] = Field(default_factory=dict)
     action_scores: dict[str, float] = Field(default_factory=dict)
     predicted_outcomes: dict[str, dict[str, float]] = Field(default_factory=dict)
+    candidate_actions: list[str] = Field(default_factory=list)
+    rejected_actions: list[str] = Field(default_factory=list)
 
 
 class PrerequisiteHint(BaseModel):
@@ -415,6 +465,8 @@ class PrerequisiteHint(BaseModel):
 
 class AdaptiveRecommendationResponse(BaseModel):
     section_id: str
+    decision_id: str = ""
+    policy_mode: str = "annotation_adaptive"
     learner_state: LearnerStateSummary
     primary_recommendation: AdaptiveRecommendationCard
     secondary_recommendations: list[AdaptiveRecommendationCard] = Field(default_factory=list)
@@ -755,6 +807,68 @@ def _estimate_action_outcomes(
     return outcomes
 
 
+# ---------------------------------------------------------------------------
+# Server-persisted adaptive-decision provenance.
+#
+# Every adaptive recommendation is persisted SERVER-SIDE at generation time
+# (not via a client upsert) so the evidence -> decision mapping is reusable as
+# RCT data and a client can later attach an outcome/accepted label. The
+# in-process store guarantees the 'why this support now' read endpoint works
+# offline and in tests; when Supabase credentials are supplied the same record
+# is best-effort written to the adaptive_decisions table.
+# ---------------------------------------------------------------------------
+_ADAPTIVE_DECISION_STORE: "dict[str, dict[str, Any]]" = {}
+_ADAPTIVE_DECISION_ORDER: list[str] = []
+_ADAPTIVE_DECISION_CAP = 500
+
+
+def _store_adaptive_decision(record: dict[str, Any]) -> None:
+    """Persist a decision record in-process, capped to avoid unbounded growth."""
+    decision_id = record.get("decision_id")
+    if not decision_id:
+        return
+    _ADAPTIVE_DECISION_STORE[decision_id] = record
+    _ADAPTIVE_DECISION_ORDER.append(decision_id)
+    while len(_ADAPTIVE_DECISION_ORDER) > _ADAPTIVE_DECISION_CAP:
+        oldest = _ADAPTIVE_DECISION_ORDER.pop(0)
+        _ADAPTIVE_DECISION_STORE.pop(oldest, None)
+
+
+def get_adaptive_decision(decision_id: str) -> Optional[dict[str, Any]]:
+    return _ADAPTIVE_DECISION_STORE.get(decision_id)
+
+
+async def _persist_decision_to_supabase(
+    record: dict[str, Any],
+    supabase_url: Optional[str],
+    supabase_anon_key: Optional[str],
+) -> bool:
+    """Best-effort write of the decision record to Supabase. Never raises:
+    a persistence backend failure must not break the live recommendation.
+    """
+    if not supabase_url or not supabase_anon_key:
+        return False
+    import httpx
+
+    headers = {
+        "apikey": supabase_anon_key,
+        "Authorization": f"Bearer {supabase_anon_key}",
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal",
+    }
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            res = await client.post(
+                f"{supabase_url.rstrip('/')}/rest/v1/adaptive_decisions",
+                headers=headers,
+                json=record,
+            )
+        return 200 <= res.status_code < 300
+    except Exception as exc:  # pragma: no cover - network failure path
+        logger.warning("adaptive_decisions persist failed: %s", exc)
+        return False
+
+
 _CONCEPT_ORIGIN_CACHE: Optional[dict[str, str]] = None
 
 
@@ -875,20 +989,84 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
     engagement_signal = clamp((positive_momentum + telemetry.chat_turns * 0.5) / 6, 0.0, 1.0)
     support_fatigue = _normalize_signal(learner_profile.recent_interventions, 6)
     chat_signal = _normalize_signal(telemetry.chat_turns + telemetry.explain_requests + telemetry.representation_requests, 5)
+    # ---- Social-annotation family (TYPE + quote-section overlap) ----------
+    # Start from the aggregate telemetry counts, then fold in the per-annotation
+    # signals carrying TYPE and the section the annotated quote belongs to. An
+    # annotation whose quote_section_id matches the current section is weighted
+    # more heavily: it is about THIS reading, not the book at large.
+    annotation_question_count = telemetry.annotation_questions
+    annotation_confusion_count = telemetry.annotation_confusions
+    annotation_insight_count = telemetry.annotation_insights
+    annotation_connection_count = telemetry.annotation_connections
+    friction_overlap_hits = 0
+    friction_total_hits = 0
+    for signal in request.annotation_signals:
+        sig_type = _ensure_str(signal.type).lower()
+        count = max(0, signal.count)
+        if not count:
+            continue
+        in_section = bool(
+            signal.quote_section_id
+            and _ensure_str(signal.quote_section_id) == _ensure_str(request.section_id)
+        )
+        if sig_type in {"question", "confusion", "stuck"}:
+            annotation_question_count += count if sig_type == "question" else 0
+            annotation_confusion_count += count if sig_type in {"confusion", "stuck"} else 0
+            friction_total_hits += count
+            if in_section:
+                friction_overlap_hits += count
+        elif sig_type in {"insight", "connection", "aha", "summary"}:
+            annotation_insight_count += count if sig_type in {"insight", "aha"} else 0
+            annotation_connection_count += count if sig_type in {"connection", "summary"} else 0
+
+    # quote-section overlap: fraction of friction annotations anchored to the
+    # current section (0 when there are no per-annotation friction signals).
+    annotation_section_overlap = (
+        clamp(friction_overlap_hits / friction_total_hits, 0.0, 1.0)
+        if friction_total_hits
+        else 0.0
+    )
+
     annotation_friction = clamp(
-        _normalize_signal(telemetry.annotation_questions + telemetry.annotation_confusions * 2, 6)
+        _normalize_signal(annotation_question_count + annotation_confusion_count * 2, 6)
         + min(0.2, telemetry.annotation_helpful_reactions * 0.03),
         0.0,
         1.0,
     )
     annotation_momentum = clamp(
-        _normalize_signal(telemetry.annotation_insights + telemetry.annotation_connections, 5),
+        _normalize_signal(annotation_insight_count + annotation_connection_count, 5),
         0.0,
         1.0,
     )
+
+    # ---- Scored artifact-revision family ----------------------------------
+    # Telemetry carries running averages; the explicit per-revision scores (when
+    # present) carry the most recent before/after rubric quality and the
+    # after-minus-before delta. We prefer in-section scores, falling back to the
+    # latest available, and fuse with the telemetry aggregate.
     artifact_quality = _normalize_ratio(telemetry.artifact_quality_average, 0.0)
     artifact_completeness = _normalize_ratio(telemetry.artifact_trace_completeness, 0.0)
-    artifact_gap = clamp(1 - max(artifact_quality, artifact_completeness * 0.6), 0.0, 1.0) if telemetry.artifact_trace_count else 0.0
+    artifact_revision_delta = 0.0
+    has_artifact_signal = bool(telemetry.artifact_trace_count) or bool(request.artifact_revision_scores)
+    if request.artifact_revision_scores:
+        in_section_scores = [
+            s for s in request.artifact_revision_scores
+            if s.section_id and _ensure_str(s.section_id) == _ensure_str(request.section_id)
+        ]
+        chosen = in_section_scores or request.artifact_revision_scores
+        latest = chosen[-1]
+        # Fuse latest scored revision quality with the telemetry aggregate.
+        scored_quality = _normalize_ratio(latest.artifact_quality, 0.0)
+        artifact_quality = max(artifact_quality, scored_quality)
+        # gap can be supplied directly; otherwise derive from quality.
+        if latest.artifact_gap:
+            artifact_completeness = max(artifact_completeness, 1.0 - _normalize_ratio(latest.artifact_gap, 0.0))
+        artifact_revision_delta = clamp(latest.revision_delta, -1.0, 1.0)
+    artifact_gap = (
+        clamp(1 - max(artifact_quality, artifact_completeness * 0.6), 0.0, 1.0)
+        if has_artifact_signal
+        else 0.0
+    )
     unit_signal = 1.0 if "unit" in _ensure_str(request.stuck_reason).lower() else 0.0
     idle_signal = 1.0 if "idle" in _ensure_str(request.stuck_reason).lower() else 0.0
 
@@ -958,87 +1136,61 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
         evidence.append(f"Stability index is {stability_index:.0%}.")
 
     stuck_reason = _ensure_str(request.stuck_reason).lower()
-    action_scores = {
-        "explain": (
-            0.52 * mastery_gap
-            + 0.28 * friction_signal
-            + 0.2 * unit_signal
-            + 0.16 * calibration_drift
-            + 0.18 * misconception_pressure
-            + 0.1 * forgetting_risk
-            + 0.14 * annotation_friction
-            + 0.12 * artifact_gap
-            - 0.16 * transfer_readiness
-            - 0.08 * engagement_signal
-        ),
-        "represent": (
-            0.24 * friction_signal
-            + 0.2 * accuracy_gap
-            + 0.18 * misconception_pressure
-            + 0.18 * uncertainty_signal
-            + 0.16 * idle_signal
-            + 0.14 * annotation_friction
-            + 0.08 * artifact_gap
-            + 0.08 * support_fatigue
-            + 0.06 * engagement_signal
-            - 0.08 * unit_signal
-        ),
-        "practice": (
-            0.32 * average_mastery
-            + 0.2 * predicted_next_correct
-            + 0.16 * correct_ratio
-            + 0.12 * (1 - friction_signal)
-            + 0.12 * stability_index
-            + 0.08 * (1 - forgetting_risk)
-            + 0.1 * annotation_momentum
-            + 0.12 * artifact_quality
-            - 0.18 * accuracy_gap
-            - 0.1 * misconception_pressure
-        ),
-        "advance": (
-            0.42 * average_mastery
-            + 0.18 * correct_ratio
-            + 0.16 * transfer_readiness
-            + 0.14 * engagement_signal
-            + 0.08 * predicted_retention
-            + 0.08 * annotation_momentum
-            + 0.1 * artifact_quality
-            - 0.24 * friction_signal
-            - 0.2 * forgetting_risk
-            - 0.16 * calibration_drift
-            - 0.1 * misconception_pressure
-            - 0.18 * artifact_gap
-        ),
-        "ask": (
-            0.18 * friction_signal
-            + 0.18 * calibration_drift
-            + 0.16 * misconception_pressure
-            + 0.14 * uncertainty_signal
-            + 0.14 * chat_signal
-            + 0.18 * annotation_friction
-            + 0.1 * artifact_gap
-            + 0.1 * support_fatigue
-            + 0.06 * (0 if request.stuck_reason else 1)
-        ),
+
+    # ---- Fuse the three signal families into ONE policy decision -----------
+    # The feature vector below is the single, auditable basis for selection. It
+    # bundles (1) KT/telemetry, (2) scored artifact-revision, and (3) social-
+    # annotation features. select_support_move() applies the support-move
+    # weights, honors the annotation ablation flag, and returns the candidate
+    # actions, the selected action, the rejected actions, and reason_codes
+    # derived FROM these same features.
+    feature_vector: dict[str, Any] = {
+        "mastery_gap": round(mastery_gap, 4),
+        "average_mastery": round(average_mastery, 4),
+        "friction_signal": round(friction_signal, 4),
+        "frustration_index": frustration_index,
+        "accuracy_gap": round(accuracy_gap, 4),
+        "uncertainty_signal": round(uncertainty_signal, 4),
+        "correct_ratio": round(correct_ratio, 4),
+        "forgetting_risk": round(forgetting_risk, 4),
+        "calibration_drift": round(calibration_drift, 4),
+        "transfer_readiness": round(transfer_readiness, 4),
+        "stability_index": round(stability_index, 4),
+        "predicted_next_correct": round(predicted_next_correct, 4),
+        "predicted_retention": round(predicted_retention, 4),
+        "misconception_pressure": round(misconception_pressure, 4),
+        "engagement_signal": round(engagement_signal, 4),
+        "support_fatigue": round(support_fatigue, 4),
+        "chat_signal": round(chat_signal, 4),
+        "unit_signal": unit_signal,
+        "idle_signal": idle_signal,
+        "no_stuck_reason": 0.0 if request.stuck_reason else 1.0,
+        # Family (2): scored artifact-revision features.
+        "artifact_quality": round(artifact_quality, 4),
+        "artifact_gap": round(artifact_gap, 4),
+        "artifact_revision_delta": round(artifact_revision_delta, 4),
+        # Family (3): social-annotation features.
+        "annotation_friction": round(annotation_friction, 4),
+        "annotation_momentum": round(annotation_momentum, 4),
+        "annotation_section_overlap": round(annotation_section_overlap, 4),
     }
 
-    exploration_bonus = {
-        "explain": 0.02 * unit_signal,
-        "represent": 0.06 * uncertainty_signal + 0.04 * idle_signal,
-        "practice": 0.03 * (1 - uncertainty_signal),
-        "advance": 0.02 * transfer_readiness,
-        "ask": 0.08 * uncertainty_signal + 0.03 * support_fatigue,
-    }
-    action_scores = {
-        action: round(clamp(score + exploration_bonus.get(action, 0.0), 0.02, 0.99), 3)
-        for action, score in action_scores.items()
-    }
+    decision = select_support_move(
+        feature_vector,
+        annotation_adaptive=request.annotation_adaptive,
+        prefer_advance=(readiness == "advance"),
+    )
+    policy_mode = decision["policy_mode"]
+    action_scores = decision["action_scores"]
+    primary_action = decision["selected_action"]
+    rejected_actions = decision["rejected_actions"]
+    policy_reason_codes = decision["reason_codes"]
     ranked_actions = sorted(action_scores.items(), key=lambda item: item[1], reverse=True)
-    if readiness == "advance" and action_scores["advance"] >= ranked_actions[0][1] - 0.06:
-        primary_action = "advance"
-        ranked_actions = sorted(action_scores.items(), key=lambda item: (item[0] != "advance", -item[1]))
-    else:
-        primary_action = ranked_actions[0][0]
+    if primary_action != ranked_actions[0][0]:
+        ranked_actions = sorted(
+            action_scores.items(),
+            key=lambda item: (item[0] != primary_action, -item[1]),
+        )
     second_best_score = ranked_actions[1][1] if len(ranked_actions) > 1 else ranked_actions[0][1]
     predicted_outcomes = _estimate_action_outcomes(
         action_scores,
@@ -1065,46 +1217,31 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
         title = "Use a diagnostic coaching turn"
         rationale = "The learner state is mixed enough that one targeted question is the best way to disambiguate the next move."
 
-    reason_codes: list[str] = []
-    recommended_because: list[str] = []
+    # reason_codes come from the policy core so they FAITHFULLY reflect the
+    # features that drove the selection (and so the annotation ablation flag
+    # actually removes annotation-derived codes). recommended_because renders
+    # each code as user-facing prose.
+    reason_codes: list[str] = list(policy_reason_codes)
+    _reason_prose = {
+        "unit_mismatch": "A unit mismatch is present, which strongly favors direct conceptual repair.",
+        "idle_reengagement": "The learner paused long enough that a lighter re-entry move is justified.",
+        "low_mastery": "Average mastery is still below the stability band for fluent application.",
+        "high_friction": "Recent stuck and wrong-answer signals indicate substantial friction in this section.",
+        "retrieval_risk": "Forgetting risk is elevated, so the engine favors retrieval-supportive actions.",
+        "calibration_gap": "Confidence and correctness are diverging, which makes unsupported advancement risky.",
+        "misconception_pattern": "Misconception tags are clustering around the same idea, so the engine is correcting the frame instead of repeating the task.",
+        "annotation_friction": "Peer/self annotations contain question or confusion signals, so support is being selected from reading evidence, not only quiz data.",
+        "annotation_section_focus": "Annotations anchored to this exact section show the friction is about this reading, so the engine targets it directly.",
+        "artifact_quality_gap": "Artifact trace quality or completeness is still weak, so the engine is holding back unsupported advancement.",
+        "artifact_revision_regression": "The latest artifact revision scored lower than the prior draft, so the engine repairs before advancing.",
+        "artifact_annotation_momentum": "Annotation and artifact traces show enough momentum to favor practice or advancement.",
+        "transfer_ready": "Transfer readiness is strong enough that application-oriented moves are likely to pay off.",
+        "balanced_profile": "No single risk dominated, so the action was chosen by the best overall score across mastery, friction, and transfer.",
+    }
+    recommended_because: list[str] = [
+        _reason_prose[code] for code in reason_codes if code in _reason_prose
+    ]
     not_recommended_because: list[str] = []
-
-    if unit_signal:
-        reason_codes.append("unit_mismatch")
-        recommended_because.append("A unit mismatch is present, which strongly favors direct conceptual repair.")
-    if idle_signal:
-        reason_codes.append("idle_reengagement")
-        recommended_because.append("The learner paused long enough that a lighter re-entry move is justified.")
-    if mastery_gap >= 0.45:
-        reason_codes.append("low_mastery")
-        recommended_because.append("Average mastery is still below the stability band for fluent application.")
-    if friction_signal >= 0.55:
-        reason_codes.append("high_friction")
-        recommended_because.append("Recent stuck and wrong-answer signals indicate substantial friction in this section.")
-    if forgetting_risk >= 0.6:
-        reason_codes.append("retrieval_risk")
-        recommended_because.append("Forgetting risk is elevated, so the engine favors retrieval-supportive actions.")
-    if calibration_drift >= 0.3:
-        reason_codes.append("calibration_gap")
-        recommended_because.append("Confidence and correctness are diverging, which makes unsupported advancement risky.")
-    if misconception_pressure >= 0.35:
-        reason_codes.append("misconception_pattern")
-        recommended_because.append("Misconception tags are clustering around the same idea, so the engine is correcting the frame instead of repeating the task.")
-    if annotation_friction >= 0.35:
-        reason_codes.append("annotation_friction")
-        recommended_because.append("Peer/self annotations contain question or confusion signals, so support is being selected from reading evidence, not only quiz data.")
-    if artifact_gap >= 0.35:
-        reason_codes.append("artifact_quality_gap")
-        recommended_because.append("Artifact trace quality or completeness is still weak, so the engine is holding back unsupported advancement.")
-    if annotation_momentum >= 0.35 and artifact_quality >= 0.65:
-        reason_codes.append("artifact_annotation_momentum")
-        recommended_because.append("Annotation and artifact traces show enough momentum to favor practice or advancement.")
-    if transfer_readiness >= 0.7 and primary_action in {"practice", "advance"}:
-        reason_codes.append("transfer_ready")
-        recommended_because.append("Transfer readiness is strong enough that application-oriented moves are likely to pay off.")
-    if not reason_codes:
-        reason_codes.append("balanced_profile")
-        recommended_because.append("No single risk dominated, so the action was chosen by the best overall score across mastery, friction, and transfer.")
 
     for alt_action, alt_score in ranked_actions[1:3]:
         if alt_action == "advance" and (friction_signal >= 0.35 or calibration_drift >= 0.25):
@@ -1212,8 +1349,60 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
                 ),
             )
 
-    return AdaptiveRecommendationResponse(
+    # The evidence_snapshot is the AUDITABLE basis for the decision. It starts
+    # from the policy core's effective feature vector (so every reason_code maps
+    # to a feature present here) and adds human-facing context fields.
+    evidence_snapshot: dict[str, Any] = dict(decision["evidence_snapshot"])
+    evidence_snapshot.update(
+        {
+            "lowest_concept": lowest_concept,
+            "lowest_score": round(lowest_score, 3) if lowest_concept else None,
+            "practice_accuracy": round(correct_ratio, 3),
+            "confidence_average": round(_normalize_ratio(learner_profile.average_confidence, 0.5), 3),
+            "dominant_misconception": learner_profile.misconception_patterns[0].type if learner_profile.misconception_patterns else None,
+            "artifact_trace_completeness": round(artifact_completeness, 3),
+            "annotation_signal_count": len(request.annotation_signals),
+            "artifact_revision_score_count": len(request.artifact_revision_scores),
+        }
+    )
+
+    final_reason_codes = reason_codes[:5]
+    # FAITHFULNESS SELF-CHECK: every reason_code must correspond to at least one
+    # feature present in the evidence_snapshot. This guarantees the persisted
+    # evidence -> decision mapping is honest (no code without backing evidence).
+    assert reason_codes_are_faithful(final_reason_codes, evidence_snapshot), (
+        f"Unfaithful reason_codes {final_reason_codes} for snapshot keys "
+        f"{sorted(evidence_snapshot.keys())}"
+    )
+
+    import uuid
+    import time
+
+    decision_id = str(uuid.uuid4())
+    decision_record: dict[str, Any] = {
+        "decision_id": decision_id,
+        "created_at": time.time(),
+        "section_id": request.section_id,
+        "learner_id": request.learner_id,
+        "session_id": request.session_id,
+        "policy_mode": policy_mode,
+        "policy_strategy": "heuristic_bandit_v2",
+        "candidate_actions": decision["candidate_actions"],
+        "selected_action": primary_action,
+        "rejected_actions": rejected_actions,
+        "action_scores": action_scores,
+        "reason_codes": final_reason_codes,
+        "evidence_snapshot": evidence_snapshot,
+        "annotation_adaptive": request.annotation_adaptive,
+        "outcome": None,
+        "accepted": None,
+    }
+    _store_adaptive_decision(decision_record)
+
+    response = AdaptiveRecommendationResponse(
         section_id=request.section_id,
+        decision_id=decision_id,
+        policy_mode=policy_mode,
         learner_state=LearnerStateSummary(
             average_mastery=round(average_mastery, 3),
             lowest_mastery_concept=lowest_concept,
@@ -1230,35 +1419,18 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
         needs_prerequisite=needs_prereq,
         reasoning=AdaptiveRecommendationReasoning(
             confidence=confidence,
-            reason_codes=reason_codes[:5],
+            policy_mode=policy_mode,
+            reason_codes=final_reason_codes,
             recommended_because=recommended_because[:4],
             not_recommended_because=not_recommended_because[:4],
-            evidence_snapshot={
-                "average_mastery": round(average_mastery, 3),
-                "lowest_concept": lowest_concept,
-                "lowest_score": round(lowest_score, 3) if lowest_concept else None,
-                "practice_accuracy": round(correct_ratio, 3),
-                "frustration_index": frustration_index,
-                "forgetting_risk": round(forgetting_risk, 3),
-                "calibration_drift": round(calibration_drift, 3),
-                "transfer_readiness": round(transfer_readiness, 3),
-                "confidence_average": round(_normalize_ratio(learner_profile.average_confidence, 0.5), 3),
-                "dominant_misconception": learner_profile.misconception_patterns[0].type if learner_profile.misconception_patterns else None,
-                "predicted_next_correct": round(predicted_next_correct, 3),
-                "predicted_retention": round(predicted_retention, 3),
-                "stability_index": round(stability_index, 3),
-                "misconception_pressure": round(misconception_pressure, 3),
-                "uncertainty_signal": round(uncertainty_signal, 3),
-                "annotation_friction": round(annotation_friction, 3),
-                "annotation_momentum": round(annotation_momentum, 3),
-                "artifact_quality": round(artifact_quality, 3),
-                "artifact_trace_completeness": round(artifact_completeness, 3),
-                "artifact_gap": round(artifact_gap, 3),
-            },
+            evidence_snapshot=evidence_snapshot,
             action_scores=action_scores,
             predicted_outcomes=predicted_outcomes,
+            candidate_actions=decision["candidate_actions"],
+            rejected_actions=rejected_actions,
         ),
     )
+    return response
 
 
 def validate_access_passcode(scope: Literal["engineering", "education", "researcher"], passcode: str) -> bool:
@@ -1904,13 +2076,73 @@ async def validate_access(request: AccessValidationRequest):
     return {"valid": is_valid, "scope": request.scope}
 
 
+class AdaptiveDecisionOutcomeRequest(BaseModel):
+    accepted: Optional[bool] = None
+    outcome: Optional[str] = None
+    next_correct: Optional[bool] = None
+    note: Optional[str] = None
+    supabase_url: Optional[str] = None
+    supabase_anon_key: Optional[str] = None
+
+
 @app.post("/api/adaptive_recommendation", response_model=AdaptiveRecommendationResponse)
 async def adaptive_recommendation(request: AdaptiveRecommendationRequest):
-    """Recommend the next best learning action from mastery and recent telemetry."""
+    """Recommend the next best learning action by FUSING three signal families
+    (KT/telemetry, scored artifact-revision, social-annotation) into one
+    support-move policy. The decision is persisted SERVER-SIDE at generation
+    time with a faithful evidence -> decision provenance record.
+    """
     try:
-        return build_adaptive_recommendation(request)
+        response = build_adaptive_recommendation(request)
+        # Server-side persistence of the full provenance record. The in-process
+        # store is already written inside the builder; here we best-effort
+        # mirror to Supabase when credentials are supplied.
+        record = get_adaptive_decision(response.decision_id)
+        if record is not None:
+            await _persist_decision_to_supabase(
+                record, request.supabase_url, request.supabase_anon_key
+            )
+        return response
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Adaptive recommendation error: {str(e)}")
+
+
+@app.get("/api/adaptive_recommendation/{decision_id}")
+async def get_adaptive_decision_provenance(decision_id: str):
+    """Return a decision's full provenance for the 'why this support now' UI:
+    candidate actions, selected/rejected actions, action scores, reason_codes,
+    and the evidence snapshot that drove the choice.
+    """
+    record = get_adaptive_decision(decision_id)
+    if record is None:
+        raise HTTPException(status_code=404, detail="Decision not found")
+    return record
+
+
+@app.post("/api/adaptive_recommendation/{decision_id}/outcome")
+async def attach_adaptive_decision_outcome(
+    decision_id: str, request: AdaptiveDecisionOutcomeRequest
+):
+    """Attach an outcome / accepted label to a persisted decision so the
+    evidence -> decision -> outcome triple is reusable as RCT data.
+    """
+    record = get_adaptive_decision(decision_id)
+    if record is None:
+        raise HTTPException(status_code=404, detail="Decision not found")
+    if request.accepted is not None:
+        record["accepted"] = request.accepted
+    if request.outcome is not None:
+        record["outcome"] = request.outcome
+    if request.next_correct is not None:
+        record["next_correct"] = request.next_correct
+    if request.note is not None:
+        record["note"] = request.note
+    await _persist_decision_to_supabase(
+        record, request.supabase_url, request.supabase_anon_key
+    )
+    return {"decision_id": decision_id, "updated": True, "record": record}
 
 
 @app.post("/api/research/evaluation/validate")
