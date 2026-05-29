@@ -182,6 +182,7 @@ export default function ReadingNarrative({
     const [activeHeading, setActiveHeading] = useState('')
     const [speechState, setSpeechState] = useState('idle') // 'idle' | 'speaking' | 'paused'
     const startTimeRef = useRef(0)
+    const articleRef = useRef(null)
     const speechSupported = typeof window !== 'undefined' && 'speechSynthesis' in window
     const normalizedSource = normalizeMarkdownSource(content || sectionDescription || '*No content available*')
     const narrativeSource = normalizedSource.replace(/^#\s+.+(?:\n+|$)/, '')
@@ -292,11 +293,12 @@ export default function ReadingNarrative({
             </Suspense>
         ),
         'concept-diagram': (props) => renderBreakoutLazyModule(ConceptDiagrams, props),
-        'interactive-quiz': ({ options, ...props }) => (
+        'interactive-quiz': ({ options, conceptid, ...props }) => (
             <Suspense fallback={<MarkdownBlockFallback />}>
                 <InteractiveQuiz
                     options={options}
                     sectionId={sectionId}
+                    conceptId={conceptid || conceptIds?.[0] || null}
                     defaultConceptId={conceptIds?.[0] || null}
                     {...props}
                 />
@@ -394,8 +396,12 @@ export default function ReadingNarrative({
             { rootMargin: '-10% 0px -80% 0px', threshold: 0.1 }
         )
 
+        // Scope the heading query to THIS narrative's <article> (not a global
+        // .prose selector) so a coexisting/lazy sibling .prose block can't make
+        // setActiveHeading report the wrong section's heading.
         const timeoutId = setTimeout(() => {
-            const headings = document.querySelectorAll('.prose h1, .prose h2, .prose h3')
+            const root = articleRef.current || document
+            const headings = root.querySelectorAll('h1, h2, h3')
             headings.forEach((heading) => observer.observe(heading))
         }, 500)
 
@@ -456,6 +462,7 @@ export default function ReadingNarrative({
 
     return (
         <article
+            ref={articleRef}
             className="prose reading-narrative reading-narrative-fluid mb-8"
             style={{
                 contentVisibility: 'auto',
@@ -464,7 +471,10 @@ export default function ReadingNarrative({
                 // actually consumes, and let the article itself fill the content
                 // column so figure-like blocks can use the full width.
                 '--reading-width': readingMeasure,
-                '--reading-column-max': '74rem',
+                // Drive the article's own max-width from the shared breakout
+                // token so the two can't drift: if --reading-breakout is ever
+                // widened, the article box widens with it (prevents re-clipping).
+                '--reading-column-max': 'var(--reading-breakout, 74rem)',
             }}
         >
             {/*

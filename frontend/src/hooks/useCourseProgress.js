@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
 import { supabase } from '../lib/supabase'
 
@@ -211,6 +211,14 @@ export function useCourseProgress(user) {
     const [bookmarks, setBookmarks] = useState(() => loadBookmarks(userId))
     const [syncStatus, setSyncStatus] = useState('idle')
 
+    // Mirror of completedSections so markCompleted can decide "is this a NEW
+    // completion?" WITHOUT running side effects inside the state updater (which
+    // React may invoke twice in StrictMode/concurrent mode -> double streak/toast).
+    const completedRef = useRef(completedSections)
+    useEffect(() => {
+        completedRef.current = completedSections
+    }, [completedSections])
+
     useEffect(() => {
         let cancelled = false
 
@@ -274,36 +282,36 @@ export function useCourseProgress(user) {
     const markCompleted = useCallback((course, chapter, section) => {
         const sectionId = normalizeSectionId(course, chapter, section)
 
-        setCompletedSections((previous) => {
-            if (previous.includes(sectionId)) {
-                return previous
-            }
+        // Determine newness from the ref (not inside the updater) so the
+        // celebration/persist/sync side effects run exactly once per real
+        // completion even if React double-invokes the pure updater.
+        if (completedRef.current.includes(sectionId)) {
+            return
+        }
 
-            const next = dedupeSections([...previous, sectionId])
-            persistCompletedSections(userId, next)
+        const next = dedupeSections([...completedRef.current, sectionId])
+        completedRef.current = next
+        setCompletedSections(next) // pure: just commit the new value
+        persistCompletedSections(userId, next)
 
-            // Streak + celebration: only fire on a NEW completion (not a
-            // repeat). Use dynamic import so the hook stays usable in
-            // environments without window/localStorage. Dispatch a window
-            // event so chrome (BookLayout header chip, toast) can react.
-            if (typeof window !== 'undefined') {
-                import('../lib/streak').then(({ bumpStreak }) => {
-                    const result = bumpStreak()
-                    window.dispatchEvent(new CustomEvent('alget-section-completed', {
-                        detail: { sectionId, course, chapter, section, streak: result },
-                    }))
-                }).catch(() => {})
-            }
+        // Streak + celebration on a NEW completion only. Dynamic import keeps
+        // the hook usable without window/localStorage. Dispatch a window event
+        // so chrome (BookLayout header chip, toast) can react.
+        if (typeof window !== 'undefined') {
+            import('../lib/streak').then(({ bumpStreak }) => {
+                const result = bumpStreak()
+                window.dispatchEvent(new CustomEvent('alget-section-completed', {
+                    detail: { sectionId, course, chapter, section, streak: result },
+                }))
+            }).catch(() => {})
+        }
 
-            if (userId) {
-                setSyncStatus('syncing')
-                void syncProgressRows(userId, [sectionId]).finally(() => {
-                    setSyncStatus('synced')
-                })
-            }
-
-            return next
-        })
+        if (userId) {
+            setSyncStatus('syncing')
+            void syncProgressRows(userId, [sectionId]).finally(() => {
+                setSyncStatus('synced')
+            })
+        }
     }, [userId])
 
     const markRecentSection = useCallback((course, chapter, section, metadata = {}) => {

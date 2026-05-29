@@ -359,7 +359,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             if (msg.role === 'user') {
                                 return (
                                     <div key={idx} className="flex justify-end animate-fade-in">
-                                        <div className="max-w-[85%] rounded-2xl rounded-br-sm bg-[var(--ath-primary)] px-3.5 py-2 text-[13px] font-medium leading-6 text-[var(--ath-background)] shadow-md">
+                                        <div className="max-w-[85%] break-words rounded-2xl rounded-br-sm bg-[var(--ath-primary)] px-3.5 py-2 text-[13px] font-medium leading-6 text-[var(--ath-background)] shadow-md">
                                             {msg.content}
                                         </div>
                                     </div>
@@ -385,7 +385,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                              {data.intent === 'simulate' && <SimulateIntentCard data={data} />}
                                              {data.intent === 'error' && <ErrorIntentCard data={data} />}
                                              {(!['learn', 'evaluate', 'brainstorm', 'help', 'illustrate', 'simulate', 'error'].includes(data.intent)) && (
-                                                 <p className="whitespace-pre-wrap">{data.error || data.text || data.summary || JSON.stringify(data)}</p>
+                                                 <p className="whitespace-pre-wrap break-words">{data.error || data.text || data.summary || JSON.stringify(data)}</p>
                                              )}
                                             {speechSupported && spokenText.trim() && (
                                                 <div className="mt-2 flex justify-end">

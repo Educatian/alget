@@ -17,8 +17,14 @@ export function useTextSelection({ sectionId, userId }) {
     useEffect(() => {
         if (!sectionId) return
 
+        // Guard against the cross-section race: fast navigation can let a slow
+        // response for a PREVIOUS section resolve after the new section's data
+        // and overwrite it (wrong marks applied), and against setState-after-
+        // unmount. Every setX is gated on `cancelled`, flipped in cleanup.
+        let cancelled = false
+
         const fetchHighlights = async () => {
-            setLoading(true)
+            if (!cancelled) setLoading(true)
             try {
                 // Fetch user's own highlights
                 if (userId) {
@@ -29,7 +35,7 @@ export function useTextSelection({ sectionId, userId }) {
                         .eq('user_id', userId)
                         .order('created_at', { ascending: true })
 
-                    if (!error && userHighlights) {
+                    if (!cancelled && !error && userHighlights) {
                         setHighlights(userHighlights)
                     }
 
@@ -42,7 +48,7 @@ export function useTextSelection({ sectionId, userId }) {
                         .order('created_at', { ascending: false })
                         .limit(50) // limit so we don't fetch too many
 
-                    if (others) {
+                    if (!cancelled && others) {
                         setPeerHighlights(others)
                     }
                 }
@@ -53,15 +59,19 @@ export function useTextSelection({ sectionId, userId }) {
                     .select('*')
                     .eq('section_id', sectionId)
 
-                setPopularHighlights(popular || [])
+                if (!cancelled) setPopularHighlights(popular || [])
             } catch (err) {
                 console.warn('Error fetching highlights:', err)
             } finally {
-                setLoading(false)
+                if (!cancelled) setLoading(false)
             }
         }
 
         fetchHighlights()
+
+        return () => {
+            cancelled = true
+        }
     }, [sectionId, userId])
 
     // Handle text selection
