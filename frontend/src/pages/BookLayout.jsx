@@ -181,6 +181,27 @@ export default function BookLayout({ user, onLogout }) {
         focusConcept: sectionData?.meta?.concept_ids?.[0] || null
     })
 
+    // Stable identity: HighlightableContent's mark-applying effect lists
+    // presenceSummary in its deps. A fresh object literal each render made that
+    // expensive DOM-walking effect re-run on every presence tick (tearing out
+    // <mark> nodes mid-selection/hover). Memoize on the underlying values.
+    const presenceSummary = useMemo(
+        () => ({
+            connected: socialState.connected,
+            peers: socialState.peers,
+            sameHeadingPeers: socialState.sameHeadingPeers,
+            sameConceptPeers: socialState.sameConceptPeers,
+            activeHeading,
+        }),
+        [
+            socialState.connected,
+            socialState.peers,
+            socialState.sameHeadingPeers,
+            socialState.sameConceptPeers,
+            activeHeading,
+        ],
+    )
+
     const [tocReloadKey, setTocReloadKey] = useState(0)
     const retryToc = useCallback(() => {
         setTocError(null)
@@ -755,13 +776,7 @@ export default function BookLayout({ user, onLogout }) {
                                     sectionId={sectionPath}
                                     userId={user?.id}
                                     onAskBigAL={(text) => setHighlightQuestion(text)}
-                                    presenceSummary={{
-                                        connected: socialState.connected,
-                                        peers: socialState.peers,
-                                        sameHeadingPeers: socialState.sameHeadingPeers,
-                                        sameConceptPeers: socialState.sameConceptPeers,
-                                        activeHeading
-                                    }}
+                                    presenceSummary={presenceSummary}
                                 >
                                     <ReadingPane
                                         course={course}

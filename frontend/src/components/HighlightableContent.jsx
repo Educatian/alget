@@ -508,13 +508,22 @@ export default function HighlightableContent({
 
             {children}
 
-            {/* Selection Popup */}
-            {selectionState && !showNoteInput && (
+            {/* Selection Popup. Portaled to <body> (escapes the reading shell's
+                overflow-hidden / transformed ancestors) and clamped to BOTH
+                viewport edges: a selection near the right margin no longer pushes
+                the toolbar off-screen, and a first-line selection flips the
+                toolbar BELOW the text instead of rendering above the top edge. */}
+            {selectionState && !showNoteInput && createPortal(
                 <div
-                    className="fixed z-[100] flex items-center gap-1 rounded-full border border-slate-700 bg-slate-900 p-1 shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+                    className="fixed z-[120] flex items-center gap-1 rounded-full border border-slate-700 bg-slate-900 p-1 shadow-2xl animate-in fade-in zoom-in-95 duration-200"
                     style={{
-                        top: selectionState.rect.top - 60,
-                        left: Math.max(10, selectionState.rect.left + (selectionState.rect.width / 2) - 76),
+                        top: selectionState.rect.top - 60 < 12
+                            ? selectionState.rect.bottom + 10
+                            : selectionState.rect.top - 60,
+                        left: Math.min(
+                            Math.max(12, selectionState.rect.left + (selectionState.rect.width / 2) - 76),
+                            (typeof window !== 'undefined' ? window.innerWidth : 1280) - 300,
+                        ),
                     }}
                 >
                     <button
@@ -559,7 +568,8 @@ export default function HighlightableContent({
 
                     {/* Triangle pointer */}
                     <div className="absolute left-1/2 -bottom-2 -translate-x-1/2 border-8 border-transparent border-t-slate-900"></div>
-                </div>
+                </div>,
+                document.body,
             )}
 
             {/* Note Input Popup */}

@@ -21,7 +21,7 @@ export function LearnIntentCard({ data }) {
         <div className="space-y-4">
             <div className="glass-panel p-4 bg-white/90 border-blue-200/50 shadow-sm">
                 <h4 className="font-bold text-blue-900 text-sm mb-2.5">BigAL's Synthesis</h4>
-                <p className="text-slate-700 text-[13px] leading-relaxed whitespace-pre-wrap">{summaryText}</p>
+                <p className="text-slate-700 text-[13px] leading-relaxed whitespace-pre-wrap break-words">{summaryText}</p>
                 {nextSteps.length > 0 && (
                     <ul className="list-disc pl-5 mt-3 space-y-1.5 text-[13px] text-slate-700">
                         {nextSteps.map((point, i) => <li key={i}>{point}</li>)}
@@ -339,7 +339,7 @@ export function ErrorIntentCard({ data }) {
     return (
         <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-red-900">
             <h4 className="font-bold text-sm mb-2">Response Error</h4>
-            <p className="text-sm leading-relaxed whitespace-pre-wrap">{message}</p>
+            <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">{message}</p>
         </div>
     );
 }

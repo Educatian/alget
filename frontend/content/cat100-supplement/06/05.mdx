@@ -48,7 +48,7 @@ Maria's nav links render as plain blue underlined text, and everything below the
 </nav>
 ```
 
-The first <a> is never closed. The open link swallows the following content.
+The first `<a>` is never closed. The open link swallows the following content.
 
 **Step 2. Write a verifiable prompt.** Not "fix my site." Instead: "My nav links show as plain text and content below is also blue. Here is my nav block. What prevents my 'nav a' CSS from applying?"
 
@@ -56,11 +56,11 @@ The first <a> is never closed. The open link swallows the following content.
 
 | AI suggestion | Decision | Reason |
 | --- | --- | --- |
-| Close the first anchor: add </a> after About | Accept | Matches the missing-close-tag symptom exactly |
+| Close the first anchor: add `</a>` after About | Accept | Matches the missing-close-tag symptom exactly |
 | Also add a CORS server config for the headshot | Reject | The image is a same-folder local file; CORS cannot apply here |
 | Rewrite the whole nav in a framework | Reject | Out of scope; the bug is one tag |
 
-**Step 4. Verify, do not assume.** Add </a>, reload, and check the browser console: the runaway styling is gone and no errors remain.
+**Step 4. Verify, do not assume.** Add `</a>`, reload, and check the browser console: the runaway styling is gone and no errors remain.
 
 The fix was a single closing tag. The accepted-modified-rejected log shows judgment: Maria kept the suggestion that fit the evidence and rejected the off-target CORS advice because it could not apply to a local file.
 
