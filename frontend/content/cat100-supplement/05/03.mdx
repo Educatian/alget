@@ -56,9 +56,9 @@ The reversed-order output is the teaching moment. The picture looked clean and p
 
 Run the specify-then-verify loop yourself, predicting each move before you reveal it:
 
-<step-reveal title="Generate a pipeline diagram that explains, not decorates" steps='[{"prompt":"You need a diagram of your three-stage pipeline. What kind of prompt do you write first?","predictType":"choice","choices":["\"Make a cool tech graphic for data\"","Three labeled boxes, Collect then Clean then Analyze, arrows showing flow, no people","A glowing brain wired to floating numbers","\"Something modern and professional about data\""],"answerIndex":1,"reveal":"You write a specification: exact parts, exact labels, exact relationship. A vibe prompt produces decoration; a specification produces an explanation you can check."},{"prompt":"The first output reads Collect then Analyze then Clean. Before placing it, what do you do?","predictType":"choice","choices":["Place it; it looks clean and professional","Reject it and re-prompt to lock the order, because analysis cannot precede cleaning","Keep it but shrink it so the error is less visible","Add a caption apologizing for the order"],"answerIndex":1,"reveal":"Reject and re-prompt. The polished look does not make the order correct. You lock the sequence: \"in this exact order: Collect, then Clean, then Analyze.\""},{"reveal":"Verify the regenerated image: every label, arrow, and order must match your real pipeline before it goes on the slide. Only then is it accepted, and your log records the rejection and the check."}]' />
+<step-reveal title="Generate a pipeline diagram that explains, not decorates" steps='[{"prompt":"You need a diagram of your three-stage pipeline. What kind of prompt do you write first?","predictType":"choice","choices":["\"Make a cool tech graphic for data\"","Three labeled boxes, Collect then Clean then Analyze, arrows showing flow, no people","A glowing brain wired to floating numbers","\"Something modern and professional about data\""],"answerIndex":1,"reveal":"You write a specification: exact parts, exact labels, exact relationship. A vibe prompt produces decoration; a specification produces an explanation you can check."},{"prompt":"The first output reads Collect then Analyze then Clean. Before placing it, what do you do?","predictType":"choice","choices":["Place it; it looks clean and professional","Reject it and re-prompt to lock the order, because analysis cannot precede cleaning","Keep it but shrink it so the error is less visible","Add a caption apologizing for the order"],"answerIndex":1,"reveal":"Reject and re-prompt. The polished look does not make the order correct. You lock the sequence: \"in this exact order: Collect, then Clean, then Analyze.\""},{"reveal":"Verify the regenerated image: every label, arrow, and order must match your real pipeline before it goes on the slide. Only then is it accepted, and your log records the rejection and the check."}]'></step-reveal>
 
-<inline-check question="A generated diagram looks polished and professional. Why is that not evidence the content is correct?" explanation="The model optimizes for plausible appearance, not for matching your data. Visual polish and factual correctness are unrelated in generated images, which is why verification against your real process is mandatory." options='[{"text":"Polish guarantees the labels and order are right","correct":false},{"text":"Polish and correctness are unrelated; the model optimizes appearance, not truth","correct":true},{"text":"A polished image never needs a caption","correct":false},{"text":"Professional styling means the tool checked the facts","correct":false}]' />
+<inline-check question="A generated diagram looks polished and professional. Why is that not evidence the content is correct?" explanation="The model optimizes for plausible appearance, not for matching your data. Visual polish and factual correctness are unrelated in generated images, which is why verification against your real process is mandatory." options='[{"text":"Polish guarantees the labels and order are right","correct":false},{"text":"Polish and correctness are unrelated; the model optimizes appearance, not truth","correct":true},{"text":"A polished image never needs a caption","correct":false},{"text":"Professional styling means the tool checked the facts","correct":false}]'></inline-check>
 
 ## Decision Rule
 
@@ -80,7 +80,7 @@ The second is writing about the tool ("I used AI to make a diagram") instead of 
 
 Order the specify-then-verify loop so each step depends on the one before it:
 
-<sequence-builder mode="order" items='["Decide whether the slide needs an explanatory image or only decoration", "Write a specification that names the exact parts, labels, and order", "Generate the image from the specification", "Check every label, arrow, and order against your real process", "Re-prompt to fix any element that does not match reality", "Place the image only after it passes verification, and log the rejection"]' />
+<sequence-builder mode="order" items='["Decide whether the slide needs an explanatory image or only decoration", "Write a specification that names the exact parts, labels, and order", "Generate the image from the specification", "Check every label, arrow, and order against your real process", "Re-prompt to fix any element that does not match reality", "Place the image only after it passes verification, and log the rejection"]'></sequence-builder>
 
 ## Textbook Walkthrough
 
@@ -113,13 +113,13 @@ Suppose the assignment bans generated images entirely and you must explain the s
 
 Connect the ideas this section builds on. See how specifying and verifying a generated image feeds evidence-based revision of the critique log:
 
-<concept-map concepts='["cat100_supplement_image_generation_for_explaining_ideas", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_image_generation_for_explaining_ideas", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the AI critique log showing accepted, modified, and rejected suggestions packet](/downloads/summer2026/cat100-supplement/05-03-image-generation-for-explaining-ideas-artifact.md).
 
-<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="05.03" />
+<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="05.03"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -132,13 +132,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the specify-then-verify habit to a different generated graphic.
 - If your note makes a **connection**, show where verifying an image caught a factual error.
 
-<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 05.03. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 05.03. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_image_generation_for_explaining_ideas" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_image_generation_for_explaining_ideas"></interactive-quiz>
 
 ## Final Check
 

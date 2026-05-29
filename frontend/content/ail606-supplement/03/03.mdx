@@ -59,7 +59,7 @@ The improvement is not a prettier image. It is an image chosen for its instructi
 
 Work the screening of the first lever render one gate at a time, predicting each verdict before the reveal.
 
-<step-reveal title="Screening the first generated lever image" steps='[{"prompt":"The first render is a photorealistic studio with a crowbar among many tools. Apply the function gate: can a learner read the rule that moving the fulcrum toward the load increases mechanical advantage from this image?","predictType":"choice","choices":["Yes, a crowbar is clearly a lever","No, a single lever cannot show two effort-arm lengths, so the relationship is invisible","Yes, the caption explains it"],"answerIndex":1,"reveal":"The function requires contrasting two effort-arm lengths. One pretty lever cannot show a comparison, so the relationship is not readable and the image fails the function gate. You do not patch a failed function gate with caption text."},{"prompt":"Suppose you re-prompt to a clean diagram that does show the relationship. Apply the coherence gate: what should you strip?","predictType":"choice","choices":["The labels for fulcrum, load, and effort","The studio scenery, dramatic lighting, and any extra figures","The two effort-arm lengths"],"answerIndex":1,"reveal":"Strip the seductive detail (scenery, lighting, added people) that competes with the geometry. The labels and the two arm lengths are the function and must stay."},{"reveal":"The accuracy gate then catches what the eye glides past: the first diagram had swapped the load and effort labels. One verified error means the image is not shippable until corrected. Polish is the last gate, never the first."}]' />
+<step-reveal title="Screening the first generated lever image" steps='[{"prompt":"The first render is a photorealistic studio with a crowbar among many tools. Apply the function gate: can a learner read the rule that moving the fulcrum toward the load increases mechanical advantage from this image?","predictType":"choice","choices":["Yes, a crowbar is clearly a lever","No, a single lever cannot show two effort-arm lengths, so the relationship is invisible","Yes, the caption explains it"],"answerIndex":1,"reveal":"The function requires contrasting two effort-arm lengths. One pretty lever cannot show a comparison, so the relationship is not readable and the image fails the function gate. You do not patch a failed function gate with caption text."},{"prompt":"Suppose you re-prompt to a clean diagram that does show the relationship. Apply the coherence gate: what should you strip?","predictType":"choice","choices":["The labels for fulcrum, load, and effort","The studio scenery, dramatic lighting, and any extra figures","The two effort-arm lengths"],"answerIndex":1,"reveal":"Strip the seductive detail (scenery, lighting, added people) that competes with the geometry. The labels and the two arm lengths are the function and must stay."},{"reveal":"The accuracy gate then catches what the eye glides past: the first diagram had swapped the load and effort labels. One verified error means the image is not shippable until corrected. Polish is the last gate, never the first."}]'></step-reveal>
 
 
 ## Decision Rule
@@ -76,14 +76,14 @@ Polish is the last gate, not the first; a striking image that fails any earlier 
 
 Put the commission-then-verify workflow in the order a defensible image decision follows.
 
-<sequence-builder mode="order" items='["Write the image function in one sentence before prompting","Prompt for that function (clean diagram, labeled parts, side-by-side cases) not a mood","Function gate: confirm the relationship is readable without the caption","Coherence gate: strip decorative and seductive detail","Accuracy gate: verify every label, count, and proportion against the source","Polish: refine style only after the earlier gates pass"]' />
+<sequence-builder mode="order" items='["Write the image function in one sentence before prompting","Prompt for that function (clean diagram, labeled parts, side-by-side cases) not a mood","Function gate: confirm the relationship is readable without the caption","Coherence gate: strip decorative and seductive detail","Accuracy gate: verify every label, count, and proportion against the source","Polish: refine style only after the earlier gates pass"]'></sequence-builder>
 
 
 ## Common Misreadings
 
 The first misreading is "photorealism equals quality." For most instructional functions a clean line diagram outperforms a photo, because the photo carries surface detail (texture, background, lighting) that competes with the relationship being taught. The second misreading is trusting the model on facts: because the render looks confident and professional, designers skip verification, and ship images with swapped labels or impossible structures. The model is fluent, not accurate; fluency is exactly what makes its errors hard to catch.
 
-<inline-check question="A generated 'plant cell' image is gorgeous but renders animal-cell organelles and buries the cell wall under decorative texture. Which gate catches this, and why is its appeal a trap?" explanation="The accuracy gate catches it: the model has no commitment to truth, so its confident, professional render is an unverified claim with wrong structures. The polish that makes it tempting is exactly what hides the error, so appeal must never substitute for verification against the content source." options='[{"text":"No gate, because the image looks authoritative and was free to make","correct":false},{"text":"The accuracy gate, because the render is an unverified claim and its polish hides the structural errors","correct":true},{"text":"The polish gate, because the texture should be smoother","correct":false}]' />
+<inline-check question="A generated 'plant cell' image is gorgeous but renders animal-cell organelles and buries the cell wall under decorative texture. Which gate catches this, and why is its appeal a trap?" explanation="The accuracy gate catches it: the model has no commitment to truth, so its confident, professional render is an unverified claim with wrong structures. The polish that makes it tempting is exactly what hides the error, so appeal must never substitute for verification against the content source." options='[{"text":"No gate, because the image looks authoritative and was free to make","correct":false},{"text":"The accuracy gate, because the render is an unverified claim and its polish hides the structural errors","correct":true},{"text":"The polish gate, because the texture should be smoother","correct":false}]'></inline-check>
 
 
 ## Textbook Walkthrough
@@ -112,7 +112,7 @@ Move from a generated diagram to a generated photo for a soft-skills scenario, s
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/03-03-image-generation-for-instruction-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="03.03" />
+<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="03.03"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -125,13 +125,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 03.03. A peer comment points to an interface move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 03.03. A peer comment points to an interface move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What would make this section more useful while you revise?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_image_generation_for_instruction" />
+<interactive-quiz question="What would make this section more useful while you revise?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_image_generation_for_instruction"></interactive-quiz>
 
 ## Final Check
 
@@ -141,7 +141,7 @@ Before you move on, check that the storyboard frame sequence with narration, sig
 
 Connect image generation for instruction to the evidence-based revision that verifies it and the bounded AI support that produced the draft.
 
-<concept-map concepts='["ail606_supplement_multimedia_storyboarding_and_ai_asset_generation","ail606_supplement_image_generation_for_instruction","evidence_based_revision","ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_multimedia_storyboarding_and_ai_asset_generation","ail606_supplement_image_generation_for_instruction","evidence_based_revision","ai_supported_learning"]'></concept-map>
 
 ## References
 

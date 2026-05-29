@@ -2,7 +2,7 @@
 
 ![Pivot Tables as Summaries textbook visual](/course-art/deep-exemplars/cat100-supplement/03-04-pivot-tables-as-summaries.png)
 
-<youtube-embed id="aA4AG1LCG0M" title="Easily Learn Pivot Tables in Microsoft Excel" caption="Use this only after reading the section. Then return to the artifact and make the chart claim, unit label, and source note more precise." />
+<youtube-embed id="aA4AG1LCG0M" title="Easily Learn Pivot Tables in Microsoft Excel" caption="Use this only after reading the section. Then return to the artifact and make the chart claim, unit label, and source note more precise."></youtube-embed>
 
 A pivot table turns hundreds of raw rows into a short summary without a single formula. Hand it a list of every order and it can answer "how much did each region sell?" or "how many orders did we get per month?" in a few drags. It is the fastest path from a messy log to a finding, which is why it is the workhorse of everyday spreadsheet analysis.
 
@@ -69,11 +69,11 @@ Step 3. Add a seventh source row (South, 1007, 500) below the data. The totals d
 
 The auditable decision: choose the aggregation that matches the question (Sum for dollars, Count for orders), read region rows rather than the Grand Total, and refresh a range that actually covers the data.
 
-<step-reveal title="Build the region pivot and avoid the two traps" steps='[{"prompt":"You select A1:C7 and insert a pivot. To answer how much money each region brought in, what goes in Rows and Values, and which aggregation?","predictType":"choice","choices":["Sales in Rows, Region in Values, Average","Region in Rows, Sales in Values, Sum","Order in Rows, Sales in Values, Count","Region in Rows, Order in Values, Sum"],"answerIndex":1,"reveal":"Region to Rows, Sales to Values, aggregation Sum. The pivot reports West 1200, East 550, South 150, Grand Total 1900."},{"prompt":"Your boss now asks how many ORDERS each region placed. What single change answers the new question?","predictType":"choice","choices":["Drag a new field into Filters","Open Value Field Settings and switch Sum to Count","Sort the rows alphabetically","Read the Grand Total instead"],"answerIndex":1,"reveal":"Switch the Values aggregation from Sum to Count. Same fields, different question: West 3, East 2, South 1."},{"prompt":"Someone reports the top region sold 1900. Why is that wrong?","predictType":"choice","choices":["1900 is the Grand Total of all regions, not one category; West is 1200","1900 is correct, West is the biggest","The pivot needs refreshing first","1900 is the order count"],"answerIndex":0,"reveal":"1900 is the all-data Grand Total. Quoting it as one region is a category error. West’s actual figure is the named row, 1200."},{"reveal":"Add a 7th row (South, 1007, 500). The totals do NOT move until you click Refresh, and only if the source range reaches the new row. That is the stale-source-range trap."}]' />
+<step-reveal title="Build the region pivot and avoid the two traps" steps='[{"prompt":"You select A1:C7 and insert a pivot. To answer how much money each region brought in, what goes in Rows and Values, and which aggregation?","predictType":"choice","choices":["Sales in Rows, Region in Values, Average","Region in Rows, Sales in Values, Sum","Order in Rows, Sales in Values, Count","Region in Rows, Order in Values, Sum"],"answerIndex":1,"reveal":"Region to Rows, Sales to Values, aggregation Sum. The pivot reports West 1200, East 550, South 150, Grand Total 1900."},{"prompt":"Your boss now asks how many ORDERS each region placed. What single change answers the new question?","predictType":"choice","choices":["Drag a new field into Filters","Open Value Field Settings and switch Sum to Count","Sort the rows alphabetically","Read the Grand Total instead"],"answerIndex":1,"reveal":"Switch the Values aggregation from Sum to Count. Same fields, different question: West 3, East 2, South 1."},{"prompt":"Someone reports the top region sold 1900. Why is that wrong?","predictType":"choice","choices":["1900 is the Grand Total of all regions, not one category; West is 1200","1900 is correct, West is the biggest","The pivot needs refreshing first","1900 is the order count"],"answerIndex":0,"reveal":"1900 is the all-data Grand Total. Quoting it as one region is a category error. West’s actual figure is the named row, 1200."},{"reveal":"Add a 7th row (South, 1007, 500). The totals do NOT move until you click Refresh, and only if the source range reaches the new row. That is the stale-source-range trap."}]'></step-reveal>
 
 Match each business question to the aggregation that answers it.
 
-<sequence-builder mode="match" items='[{"term":"How much money did each region bring in?","definition":"Sum"},{"term":"How many orders did each region place?","definition":"Count"},{"term":"What was the typical order size per region?","definition":"Average"},{"term":"A row was added but the total did not change","definition":"Click Refresh (and check the source range)"}]' />
+<sequence-builder mode="match" items='[{"term":"How much money did each region bring in?","definition":"Sum"},{"term":"How many orders did each region place?","definition":"Count"},{"term":"What was the typical order size per region?","definition":"Average"},{"term":"A row was added but the total did not change","definition":"Click Refresh (and check the source range)"}]'></sequence-builder>
 
 ## Decision Rule
 
@@ -111,9 +111,9 @@ A strong reader interrogates a pivot before believing it, because a pivot can be
 
 When you can look at a summary and immediately ask "sum or count?" and "refreshed when?", you treat a pivot as evidence to be checked rather than an answer to be trusted.
 
-<inline-check question="A colleague added three orders to the bottom of the log this morning, but the pivot’s headline number is unchanged. What happened?" explanation="A pivot caches its source range and is not live like a formula. New rows are ignored until you click Refresh, and if they fall outside the original source range, even a refresh misses them. This is the freshness check failing, not a data-entry error." options='[{"text":"The new orders were entered incorrectly","correct":false},{"text":"The pivot was not refreshed (and the source range may not reach the new rows)","correct":true},{"text":"Pivots automatically ignore the last three rows","correct":false}]' />
+<inline-check question="A colleague added three orders to the bottom of the log this morning, but the pivot’s headline number is unchanged. What happened?" explanation="A pivot caches its source range and is not live like a formula. New rows are ignored until you click Refresh, and if they fall outside the original source range, even a refresh misses them. This is the freshness check failing, not a data-entry error." options='[{"text":"The new orders were entered incorrectly","correct":false},{"text":"The pivot was not refreshed (and the source range may not reach the new rows)","correct":true},{"text":"Pivots automatically ignore the last three rows","correct":false}]'></inline-check>
 
-<concept-map concepts='["cat100_supplement_pivot_tables_as_summaries", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_pivot_tables_as_summaries", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Stronger Artifact Standard
 
@@ -129,7 +129,7 @@ The same pivot logic transfers to a two-dimensional cross-tab, where you use the
 
 Open the studio packet: [download the Excel pivot-table finding with unit labels, source note, and claim-first chart title packet](/downloads/summer2026/cat100-supplement/03-04-pivot-tables-as-summaries-artifact.md).
 
-<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.04" />
+<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.04"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -142,13 +142,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.04. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.04. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="cat100_supplement_pivot_tables_as_summaries" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="cat100_supplement_pivot_tables_as_summaries"></interactive-quiz>
 
 ## Final Check
 

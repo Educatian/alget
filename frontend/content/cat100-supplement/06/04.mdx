@@ -33,7 +33,7 @@ Three facts about GitHub Pages explain almost every publishing surprise.
 
 These facts connect to the course anchors. NACE career readiness frames publishing as shipping: professionals are judged on what is live, not on what works locally. data-ink and visual evidence applies to verification itself; the strongest evidence that your fix worked is a screenshot or check of the live URL, not a claim that it looked fine in the editor.
 
-<inline-check question="Your site is a project site served from username.github.io/portfolio/. Your stylesheet link reads <link rel='stylesheet' href='/style.css'>. What happens to the styles on the live URL?" explanation="A leading slash makes the path absolute, resolving from the domain root username.github.io/style.css, which does not exist on a project subpath. The browser silently gets a 404 and renders unstyled. A relative path like assets/style.css resolves under /portfolio/ and loads correctly." options='[{"text":"Styles fail: the absolute path resolves to the domain root, which has no style.css on a project subpath","correct":true},{"text":"Styles load fine: a leading slash always points at the current folder","correct":false},{"text":"Styles load only after the CSS file is rewritten; the path is irrelevant","correct":false}]' />
+<inline-check question="Your site is a project site served from username.github.io/portfolio/. Your stylesheet link reads <link rel='stylesheet' href='/style.css'>. What happens to the styles on the live URL?" explanation="A leading slash makes the path absolute, resolving from the domain root username.github.io/style.css, which does not exist on a project subpath. The browser silently gets a 404 and renders unstyled. A relative path like assets/style.css resolves under /portfolio/ and loads correctly." options='[{"text":"Styles fail: the absolute path resolves to the domain root, which has no style.css on a project subpath","correct":true},{"text":"Styles load fine: a leading slash always points at the current folder","correct":false},{"text":"Styles load only after the CSS file is rewritten; the path is irrelevant","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -59,7 +59,7 @@ The fix was one character of path logic, not a broken deploy. The lesson is that
 
 Order the publishing-and-verify steps so you diagnose before you rewrite. Enabling Pages and waiting for the build come first, and confirming on the real URL comes last.
 
-<sequence-builder mode="order" items='["Enable Pages: Settings, Pages, Deploy from a branch, Branch main, Save","Wait for the Pages build to finish before judging the result","Reproduce the problem on the live URL, not the editor preview","Inspect the link tag and switch absolute /style.css to relative assets/style.css","Commit and push the fix, then wait for the rebuild","Hard-refresh in a private window on a phone to confirm styles load"]' />
+<sequence-builder mode="order" items='["Enable Pages: Settings, Pages, Deploy from a branch, Branch main, Save","Wait for the Pages build to finish before judging the result","Reproduce the problem on the live URL, not the editor preview","Inspect the link tag and switch absolute /style.css to relative assets/style.css","Commit and push the fix, then wait for the rebuild","Hard-refresh in a private window on a phone to confirm styles load"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -73,7 +73,7 @@ Most "broken deploy" panics are really a caching delay or one absolute path. Dia
 
 Walk the unstyled-page case through the three checks and predict each verdict before you reveal it. The page is styled locally but plain on the live project URL at /portfolio/.
 
-<step-reveal title="Diagnose the unstyled live page with the build, path, and environment checks" steps='[{"prompt":"Build check first: the Pages dashboard shows the latest build succeeded and a private-window reload still shows no styles. Is build timing or cache the cause?","predictType":"choice","choices":["Yes, wait longer and it will fix itself","No, a fresh private-window load with a finished build rules out build and cache"],"answerIndex":1,"reveal":"A successful build plus a clean private-window load eliminates timing and caching. The cause is elsewhere, so move to the path check."},{"prompt":"Path check next: the link tag reads href=/style.css and the site serves from /portfolio/. Will the stylesheet load?","predictType":"choice","choices":["Yes, the leading slash points into the project folder","No, the absolute path resolves to the domain root, which has no style.css"],"answerIndex":1,"reveal":"The absolute path points to username.github.io/style.css, outside the project, so it 404s. Switch to the relative assets/style.css that resolves under /portfolio/."},{"reveal":"Environment check: prove the fix on the live URL, not the editor. Open the published address in a private window on a phone after the rebuild. Verdict: one path change fixed it, found by ruling out build and cache before touching the CSS."}]' />
+<step-reveal title="Diagnose the unstyled live page with the build, path, and environment checks" steps='[{"prompt":"Build check first: the Pages dashboard shows the latest build succeeded and a private-window reload still shows no styles. Is build timing or cache the cause?","predictType":"choice","choices":["Yes, wait longer and it will fix itself","No, a fresh private-window load with a finished build rules out build and cache"],"answerIndex":1,"reveal":"A successful build plus a clean private-window load eliminates timing and caching. The cause is elsewhere, so move to the path check."},{"prompt":"Path check next: the link tag reads href=/style.css and the site serves from /portfolio/. Will the stylesheet load?","predictType":"choice","choices":["Yes, the leading slash points into the project folder","No, the absolute path resolves to the domain root, which has no style.css"],"answerIndex":1,"reveal":"The absolute path points to username.github.io/style.css, outside the project, so it 404s. Switch to the relative assets/style.css that resolves under /portfolio/."},{"reveal":"Environment check: prove the fix on the live URL, not the editor. Open the published address in a private window on a phone after the rebuild. Verdict: one path change fixed it, found by ruling out build and cache before touching the CSS."}]'></step-reveal>
 
 ## Common Misreadings
 
@@ -112,7 +112,7 @@ Move the same publishing logic to a different host, say a Netlify or Cloudflare 
 
 Open the studio packet: [download the GitHub Pages file tree with accessibility, privacy, and publishing checks packet](/downloads/summer2026/cat100-supplement/06-04-publishing-with-github-pages-artifact.md).
 
-<artifact-studio artifact="GitHub Pages file tree with accessibility, privacy, and publishing checks" course="CAT 100" section="06.04" />
+<artifact-studio artifact="GitHub Pages file tree with accessibility, privacy, and publishing checks" course="CAT 100" section="06.04"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -125,13 +125,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the GitHub Pages file tree with accessibility, privacy, and publishing checks for CAT 100 06.04. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the GitHub Pages file tree with accessibility, privacy, and publishing checks for CAT 100 06.04. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_publishing_with_github_pages" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_publishing_with_github_pages"></interactive-quiz>
 
 ## Final Check
 
@@ -139,7 +139,7 @@ Before you move on, check that the GitHub Pages file tree with accessibility, pr
 
 ## Concept Map
 
-<concept-map concepts='["cat100_supplement_publishing_with_github_pages", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]' />
+<concept-map concepts='["cat100_supplement_publishing_with_github_pages", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]'></concept-map>
 
 ## References
 

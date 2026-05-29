@@ -57,11 +57,11 @@ Step 3. Total the orders with `=SUM(E3:E4)`, which returns `37.00`.
 
 The decision a reader can audit: relative references (`B3`, `C3`) for per-row inputs, an absolute reference (`$F$1`) for the one shared fee. Mixing those up is the single most common formula error in this section.
 
-<step-reveal title="Build and copy the order sheet without the shipping bug" steps='[{"prompt":"In D3 you need the line total for Mug (Qty 3, Price 4.00). Which formula, and why these reference styles?","predictType":"choice","choices":["=B3*C3 (both relative, each row has its own qty and price)","=$B$3*$C$3 (lock both so the total never changes)","=B3*C3*F1 (multiply in shipping here)","Type 12.00 directly"],"answerIndex":0,"reveal":"=B3*C3 with both relative. Each row owns its quantity and price, so when you copy down, D4 correctly becomes =B4*C4 = 15.00."},{"prompt":"In E3 you add the fixed shipping in F1=5. Which formula survives copying down?","predictType":"choice","choices":["=D3+F1","=D3+$F$1","=$D$3+F1","=D3+F$1 only works going sideways"],"answerIndex":1,"reveal":"=D3+$F$1. The absolute $F$1 stays pinned, so E4 becomes =D4+$F$1 = 20.00. Writing =D3+F1 would slide to =D4+F2 (empty), silently dropping shipping to zero."},{"reveal":"Total with =SUM(E3:E4) = 37.00. The auditable pattern: relative for per-row inputs, absolute for the one shared fee."}]' />
+<step-reveal title="Build and copy the order sheet without the shipping bug" steps='[{"prompt":"In D3 you need the line total for Mug (Qty 3, Price 4.00). Which formula, and why these reference styles?","predictType":"choice","choices":["=B3*C3 (both relative, each row has its own qty and price)","=$B$3*$C$3 (lock both so the total never changes)","=B3*C3*F1 (multiply in shipping here)","Type 12.00 directly"],"answerIndex":0,"reveal":"=B3*C3 with both relative. Each row owns its quantity and price, so when you copy down, D4 correctly becomes =B4*C4 = 15.00."},{"prompt":"In E3 you add the fixed shipping in F1=5. Which formula survives copying down?","predictType":"choice","choices":["=D3+F1","=D3+$F$1","=$D$3+F1","=D3+F$1 only works going sideways"],"answerIndex":1,"reveal":"=D3+$F$1. The absolute $F$1 stays pinned, so E4 becomes =D4+$F$1 = 20.00. Writing =D3+F1 would slide to =D4+F2 (empty), silently dropping shipping to zero."},{"reveal":"Total with =SUM(E3:E4) = 37.00. The auditable pattern: relative for per-row inputs, absolute for the one shared fee."}]'></step-reveal>
 
 The reference decision is only safe if you also test the fill. Order the copy-and-verify procedure a reviewer would follow.
 
-<sequence-builder mode="order" items='["Decide per reference: should it move with the fill or stay fixed?","Lock shared constants with \\$ (the one fee or rate)","Copy the formula down the column","Click the LAST filled cell and read the formula bar","Confirm locked references still point where intended"]' />
+<sequence-builder mode="order" items='["Decide per reference: should it move with the fill or stay fixed?","Lock shared constants with \\$ (the one fee or rate)","Copy the formula down the column","Click the LAST filled cell and read the formula bar","Confirm locked references still point where intended"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -99,9 +99,9 @@ A strong reader can look at a formula and narrate what it will become two rows d
 
 When you can read a formula and forecast its copied form, you can debug a wrong column in seconds instead of retyping it.
 
-<inline-check question="You copy =B2*(1+$E$1) from row 2 down to row 3. What does row 3 become?" explanation="The relative B2 advances to B3, but the absolute $E$1 stays pinned to the one tax-rate cell. So row 3 reads =B3*(1+$E$1), exactly what you want. Had you written E1 unlocked, it would slide to the blank E2 and the tax would vanish." options='[{"text":"=B3*(1+$E$1) (the rate stays locked, the cost advances)","correct":true},{"text":"=B3*(1+$E$2) (both references shift down)","correct":false},{"text":"=B2*(1+$E$1) (nothing changes when copied)","correct":false}]' />
+<inline-check question="You copy =B2*(1+$E$1) from row 2 down to row 3. What does row 3 become?" explanation="The relative B2 advances to B3, but the absolute $E$1 stays pinned to the one tax-rate cell. So row 3 reads =B3*(1+$E$1), exactly what you want. Had you written E1 unlocked, it would slide to the blank E2 and the tax would vanish." options='[{"text":"=B3*(1+$E$1) (the rate stays locked, the cost advances)","correct":true},{"text":"=B3*(1+$E$2) (both references shift down)","correct":false},{"text":"=B2*(1+$E$1) (nothing changes when copied)","correct":false}]'></inline-check>
 
-<concept-map concepts='["cat100_supplement_formulas_for_everyday_analysis", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_formulas_for_everyday_analysis", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Stronger Artifact Standard
 
@@ -117,7 +117,7 @@ The same locking logic transfers to a multiplication grid, where you lock differ
 
 Open the studio packet: [download the Excel pivot-table finding with unit labels, source note, and claim-first chart title packet](/downloads/summer2026/cat100-supplement/03-02-formulas-for-everyday-analysis-artifact.md).
 
-<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.02" />
+<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.02"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -130,13 +130,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.02. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.02. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The learner explains how the same decision rule changes under a new audience or constraint.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_formulas_for_everyday_analysis" />
+<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The learner explains how the same decision rule changes under a new audience or constraint.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_formulas_for_everyday_analysis"></interactive-quiz>
 
 ## Final Check
 

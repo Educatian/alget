@@ -60,11 +60,11 @@ Step 4. Confirm Units is numeric. `=SUM(units)` returns `39`. If any cell had be
 
 The clean table is now: three rows, one header, one value per cell, one spelling per region, and a SUM that matches the data. Each step is a decision a reader can re-trace against the raw export.
 
-<step-reveal title="Repair the messy Q3 export, defect by defect" steps='[{"prompt":"The export has a banner in A1 and a blank row 2 above the header. Before you compute anything, what is the first repair?","predictType":"choice","choices":["Run =SUM on the Units column to see the total","Delete rows 1 and 2 so the header becomes row 1","Make a bar chart of the three rows","Rename the Region column"],"answerIndex":1,"reveal":"Fix layout first. Delete rows 1 and 2 so Name | Region | Units sits in row 1 with data directly beneath it and no banner or spacer above."},{"prompt":"The cell Lopez, Maria holds two facts. Which tool splits it into Lopez and Maria?","predictType":"choice","choices":["Find and Replace","Text to Columns on the comma delimiter","Delete the row","SUM"],"answerIndex":1,"reveal":"Text to Columns on the comma delimiter splits one cell into two, satisfying the one-value-per-cell rule."},{"prompt":"Region reads TX, texas, and Tx in three rows. What collapses them to one label?","predictType":"choice","choices":["Text to Columns","Find and Replace texas and Tx with TX","Delete the duplicate rows","AVERAGE"],"answerIndex":1,"reveal":"Find and Replace collapses the spelling variants to a single canonical TX, so a pivot counts one region instead of three."},{"reveal":"Finally confirm Units is numeric (right-aligned). =SUM now returns 39, matching a hand count. If a cell were typed 18 units, it would be skipped and the total would read 21, the visible symptom of numbers-stored-as-text."}]' />
+<step-reveal title="Repair the messy Q3 export, defect by defect" steps='[{"prompt":"The export has a banner in A1 and a blank row 2 above the header. Before you compute anything, what is the first repair?","predictType":"choice","choices":["Run =SUM on the Units column to see the total","Delete rows 1 and 2 so the header becomes row 1","Make a bar chart of the three rows","Rename the Region column"],"answerIndex":1,"reveal":"Fix layout first. Delete rows 1 and 2 so Name | Region | Units sits in row 1 with data directly beneath it and no banner or spacer above."},{"prompt":"The cell Lopez, Maria holds two facts. Which tool splits it into Lopez and Maria?","predictType":"choice","choices":["Find and Replace","Text to Columns on the comma delimiter","Delete the row","SUM"],"answerIndex":1,"reveal":"Text to Columns on the comma delimiter splits one cell into two, satisfying the one-value-per-cell rule."},{"prompt":"Region reads TX, texas, and Tx in three rows. What collapses them to one label?","predictType":"choice","choices":["Text to Columns","Find and Replace texas and Tx with TX","Delete the duplicate rows","AVERAGE"],"answerIndex":1,"reveal":"Find and Replace collapses the spelling variants to a single canonical TX, so a pivot counts one region instead of three."},{"reveal":"Finally confirm Units is numeric (right-aligned). =SUM now returns 39, matching a hand count. If a cell were typed 18 units, it would be skipped and the total would read 21, the visible symptom of numbers-stored-as-text."}]'></step-reveal>
 
 Before computing, the four repairs must run in a deliberate order. Drag them into the sequence a reviewer can re-trace.
 
-<sequence-builder mode="order" items='["Delete the banner and blank spacer rows so the header is row 1","Split comma-joined cells with Text to Columns (one value per cell)","Standardize category spellings with Find and Replace","Confirm the Units column is numeric, then =SUM"]' />
+<sequence-builder mode="order" items='["Delete the banner and blank spacer rows so the header is row 1","Split comma-joined cells with Text to Columns (one value per cell)","Standardize category spellings with Find and Replace","Confirm the Units column is numeric, then =SUM"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -103,9 +103,9 @@ A strong reader does not just notice that a sheet is messy; they predict the exa
 
 When you can move from "this looks untidy" to "this specific cell will drop \$600 from the total," you are reading the structure, not just the surface.
 
-<inline-check question="A column you believe is numeric returns =SUM of 21, but a hand count of the rows totals 39. Which audit check just failed?" explanation="A SUM lower than the hand count means at least one value is stored as text (left-aligned, like 18 units) and is being silently skipped. That is the type-and-label check, not a layout or atomic problem." options='[{"text":"The layout check (a banner or blank row above the header)","correct":false},{"text":"The type check (a value is stored as text and skipped by SUM)","correct":true},{"text":"Nothing failed; 21 is simply the correct total","correct":false}]' />
+<inline-check question="A column you believe is numeric returns =SUM of 21, but a hand count of the rows totals 39. Which audit check just failed?" explanation="A SUM lower than the hand count means at least one value is stored as text (left-aligned, like 18 units) and is being silently skipped. That is the type-and-label check, not a layout or atomic problem." options='[{"text":"The layout check (a banner or blank row above the header)","correct":false},{"text":"The type check (a value is stored as text and skipped by SUM)","correct":true},{"text":"Nothing failed; 21 is simply the correct total","correct":false}]'></inline-check>
 
-<concept-map concepts='["cat100_supplement_spreadsheet_structure_and_clean_data", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_spreadsheet_structure_and_clean_data", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Stronger Artifact Standard
 
@@ -121,7 +121,7 @@ The same audit transfers to a context with no banner and no blank rows: a survey
 
 Open the studio packet: [download the Excel pivot-table finding with unit labels, source note, and claim-first chart title packet](/downloads/summer2026/cat100-supplement/03-01-spreadsheet-structure-and-clean-data-artifact.md).
 
-<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.01" />
+<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.01"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -134,13 +134,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.01. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.01. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_spreadsheet_structure_and_clean_data" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_spreadsheet_structure_and_clean_data"></interactive-quiz>
 
 ## Final Check
 

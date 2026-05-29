@@ -39,7 +39,7 @@ The procedure that follows from these ideas is fixed:
 
 The common error is collapsing this to a single step (run on everything and hope), which works until the day it does not, and that day is unrecoverable.
 
-<inline-check question="A rename rule will touch 200 files at once and the tool offers no undo button. Before clicking run, which single safeguard most reduces the blast radius if the pattern is subtly wrong?" explanation="A dry run on a small sample shrinks the blast radius from 200 files to three throwaway copies, so a flawed pattern is caught for free. Reading the rule again cannot reveal output errors, and a faster machine only applies the wrong pattern faster." options='[{"text":"Copy three files into a test folder and run the rule there first","correct":true},{"text":"Read the rename rule one more time to be sure it looks right","correct":false},{"text":"Run it on a faster machine so it finishes before any damage spreads","correct":false},{"text":"Trust the recycle bin to recover anything that goes wrong","correct":false}]' />
+<inline-check question="A rename rule will touch 200 files at once and the tool offers no undo button. Before clicking run, which single safeguard most reduces the blast radius if the pattern is subtly wrong?" explanation="A dry run on a small sample shrinks the blast radius from 200 files to three throwaway copies, so a flawed pattern is caught for free. Reading the rule again cannot reveal output errors, and a faster machine only applies the wrong pattern faster." options='[{"text":"Copy three files into a test folder and run the rule there first","correct":true},{"text":"Read the rename rule one more time to be sure it looks right","correct":false},{"text":"Run it on a faster machine so it finishes before any damage spreads","correct":false},{"text":"Trust the recycle bin to recover anything that goes wrong","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -76,7 +76,7 @@ Three safety checks did the work:
 
 The safe procedure has a fixed order. Drag these five moves into the sequence that limits the blast radius and preserves an undo path.
 
-<sequence-builder mode="order" items='["Copy a small sample (three files) into a separate test location","Run the operation on the sample only, never on the live set","Inspect the sample output against exactly what you expected","Back up the full set to create the undo path the tool does not provide","Run on the full set, treating it as verification of an already-tested rule"]' />
+<sequence-builder mode="order" items='["Copy a small sample (three files) into a separate test location","Run the operation on the sample only, never on the live set","Inspect the sample output against exactly what you expected","Back up the full set to create the undo path the tool does not provide","Run on the full set, treating it as verification of an already-tested rule"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -104,7 +104,7 @@ Now adjust the rule (exclude PDFs, or move-to-archive instead of delete), back u
 
 Work the bulk-delete case one decision at a time, predicting each safeguard before it is revealed.
 
-<step-reveal title="Make a ’delete everything older than 90 days’ rule safe" steps='[{"prompt":"You plan to delete every file in Downloads older than 90 days. A permanent bulk delete is the operation. What do you do before deleting anything?","predictType":"choice","choices":["Delete immediately to reclaim space","Sort by date and list what the rule would catch, without deleting (a dry run)","Empty the recycle bin first to make room","Delete and check the results afterward"],"answerIndex":1,"reveal":"Dry run first. Listing the matches without deleting lets you scan for false matches, and you spot the syllabus PDF you saved months ago that also fits ’older than 90 days.’"},{"prompt":"The dry-run list includes a PDF you need. The rule has a false match. What is the better next move?","predictType":"choice","choices":["Delete anyway; one file is acceptable loss","Refine the rule (exclude PDFs, or move-to-archive instead of delete)","Lower the age threshold to 30 days and delete more","Run it twice to be thorough"],"answerIndex":1,"reveal":"Fix the false match. Excluding PDFs or moving to an archive folder instead of deleting removes the file you needed from the blast radius."},{"prompt":"The refined rule looks right and the action is a permanent delete. What is the last safeguard before running it?","predictType":"choice","choices":["Nothing; the dry run was enough","Back up Downloads to the cloud as an undo path, then run","Trust the recycle bin to catch mistakes","Run it and watch closely"],"answerIndex":1,"reveal":"Back up for irreversibility. A permanent delete has no built-in undo, so a cloud backup of Downloads covers the case where the refined rule still misses something."},{"reveal":"Dry run surfaced the false match, the refined rule removed it from the blast radius, and the backup covered the residual risk. The same dry-run-then-backup habit makes every irreversible bulk action survivable."}]' />
+<step-reveal title="Make a ’delete everything older than 90 days’ rule safe" steps='[{"prompt":"You plan to delete every file in Downloads older than 90 days. A permanent bulk delete is the operation. What do you do before deleting anything?","predictType":"choice","choices":["Delete immediately to reclaim space","Sort by date and list what the rule would catch, without deleting (a dry run)","Empty the recycle bin first to make room","Delete and check the results afterward"],"answerIndex":1,"reveal":"Dry run first. Listing the matches without deleting lets you scan for false matches, and you spot the syllabus PDF you saved months ago that also fits ’older than 90 days.’"},{"prompt":"The dry-run list includes a PDF you need. The rule has a false match. What is the better next move?","predictType":"choice","choices":["Delete anyway; one file is acceptable loss","Refine the rule (exclude PDFs, or move-to-archive instead of delete)","Lower the age threshold to 30 days and delete more","Run it twice to be thorough"],"answerIndex":1,"reveal":"Fix the false match. Excluding PDFs or moving to an archive folder instead of deleting removes the file you needed from the blast radius."},{"prompt":"The refined rule looks right and the action is a permanent delete. What is the last safeguard before running it?","predictType":"choice","choices":["Nothing; the dry run was enough","Back up Downloads to the cloud as an undo path, then run","Trust the recycle bin to catch mistakes","Run it and watch closely"],"answerIndex":1,"reveal":"Back up for irreversibility. A permanent delete has no built-in undo, so a cloud backup of Downloads covers the case where the refined rule still misses something."},{"reveal":"Dry run surfaced the false match, the refined rule removed it from the blast radius, and the backup covered the residual risk. The same dry-run-then-backup habit makes every irreversible bulk action survivable."}]'></step-reveal>
 
 ## What Strong Reading Looks Like
 
@@ -117,7 +117,7 @@ A strong reader of an automated operation can answer four questions:
 3. Is this action reversible, and if not, where is the backup?
 4. Which items match the rule but should not be touched, and how did I catch them?
 
-<concept-map concepts='["cat100_supplement_automation_safety_checks", "cat100_supplement_productivity_and_workflow_automation", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_automation_safety_checks", "cat100_supplement_productivity_and_workflow_automation", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Stronger Artifact Standard
 
@@ -133,7 +133,7 @@ Move the safety habit from file renaming to a spreadsheet find-and-replace. Dry 
 
 Open the studio packet: [download the automation safety checks packet](/downloads/summer2026/cat100-supplement/07-05-automation-safety-checks-artifact.md).
 
-<artifact-studio artifact="bulk operation safety record with dry run and backup" course="CAT 100" section="07.05" />
+<artifact-studio artifact="bulk operation safety record with dry run and backup" course="CAT 100" section="07.05"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -146,13 +146,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the dry-run-and-backup rule to a new setting.
 - If your note makes a **connection**, show where the connection changes the operation.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 07.05. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 07.05. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_automation_safety_checks" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_automation_safety_checks"></interactive-quiz>
 
 ## Final Check
 

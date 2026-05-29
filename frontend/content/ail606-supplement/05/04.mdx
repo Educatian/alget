@@ -32,7 +32,7 @@ Metrics divide into two families because they measure two different constructs. 
 
 Match each metric to the construct family it actually measures, so a claim can never quietly borrow validity from the wrong family.
 
-<sequence-builder mode="match" items='[{"term":"Task completion rate","definition":"Usability: whether people can operate the thing, silent on whether anyone learned"},{"term":"Time on task","definition":"Usability: operability data that can rise or fall for reasons unrelated to learning"},{"term":"Pre/post gain on a target skill","definition":"Learning: capability change, the metric a learning claim actually requires"},{"term":"Transfer-item accuracy","definition":"Learning: applying the skill to a novel item, the Mayer standard for a meaningful outcome"},{"term":"Satisfaction rating","definition":"Attitude: how the experience felt, which correlates weakly with learning and can drop on effortful lessons"}]' />
+<sequence-builder mode="match" items='[{"term":"Task completion rate","definition":"Usability: whether people can operate the thing, silent on whether anyone learned"},{"term":"Time on task","definition":"Usability: operability data that can rise or fall for reasons unrelated to learning"},{"term":"Pre/post gain on a target skill","definition":"Learning: capability change, the metric a learning claim actually requires"},{"term":"Transfer-item accuracy","definition":"Learning: applying the skill to a novel item, the Mayer standard for a meaningful outcome"},{"term":"Satisfaction rating","definition":"Attitude: how the experience felt, which correlates weakly with learning and can drop on effortful lessons"}]'></sequence-builder>
 
 Satisfaction is the trap because it feels like a verdict on everything; in fact it is an attitude reading, and attitudes correlate weakly with learning. Learners often rate a hard, effortful lesson lower precisely because it made them think, which **cognitive load theory** explains as the difference between extraneous load (bad, lowers both satisfaction and learning) and germane load (the productive effort of building schemas, which can lower satisfaction while raising learning). A module that feels easy may have stripped out the very effort that produces durable knowledge.
 
@@ -61,13 +61,13 @@ The after version is defensible because each claim is backed by a metric that ca
 
 A learning claim lives or dies on the pre/post gain, and a single mean can hide a subgroup the design failed. Adjust the pre and post scores for a high-prior-knowledge group and a novice group below, and watch how the overall mean can stay healthy while one subgroup flatlines, the disaggregation check made visible.
 
-<parameter-explorer config='{"title":"Pre/post learning gain and the hidden-subgroup trap (5-item quiz)","sliders":[{"name":"pre_high","label":"High-prior group pre score","min":0,"max":5,"step":0.1,"unit":"items","default":3.4},{"name":"post_high","label":"High-prior group post score","min":0,"max":5,"step":0.1,"unit":"items","default":4.8},{"name":"pre_nov","label":"Novice group pre score","min":0,"max":5,"step":0.1,"unit":"items","default":2.8},{"name":"post_nov","label":"Novice group post score","min":0,"max":5,"step":0.1,"unit":"items","default":2.9}],"outputs":[{"label":"High-prior gain","unit":"items","expr":"post_high - pre_high"},{"label":"Novice gain","unit":"items","expr":"post_nov - pre_nov"},{"label":"Overall mean gain (reported headline)","unit":"items","expr":"(post_high + post_nov - pre_high - pre_nov) / 2"}],"plot":{"x":"post_nov","output":1}}' />
+<parameter-explorer config='{"title":"Pre/post learning gain and the hidden-subgroup trap (5-item quiz)","sliders":[{"name":"pre_high","label":"High-prior group pre score","min":0,"max":5,"step":0.1,"unit":"items","default":3.4},{"name":"post_high","label":"High-prior group post score","min":0,"max":5,"step":0.1,"unit":"items","default":4.8},{"name":"pre_nov","label":"Novice group pre score","min":0,"max":5,"step":0.1,"unit":"items","default":2.8},{"name":"post_nov","label":"Novice group post score","min":0,"max":5,"step":0.1,"unit":"items","default":2.9}],"outputs":[{"label":"High-prior gain","unit":"items","expr":"post_high - pre_high"},{"label":"Novice gain","unit":"items","expr":"post_nov - pre_nov"},{"label":"Overall mean gain (reported headline)","unit":"items","expr":"(post_high + post_nov - pre_high - pre_nov) / 2"}],"plot":{"x":"post_nov","output":1}}'></parameter-explorer>
 
 Set the novice post score equal to its pre score: the novice gain goes to zero, yet the overall mean gain stays clearly positive on the strength of the high-prior group alone. That positive headline is exactly the construct-valid-looking number that conceals a design which lifted the prepared and stranded the unprepared.
 
 ## Decision Rule
 
-<inline-check question="A demanding lesson earns LOWER satisfaction ratings than the easy version it replaced, but higher pre/post gain. What is the most defensible reading?" explanation="Cognitive load theory distinguishes extraneous load (bad) from germane load, the productive effort of building schemas. A lesson that makes learners think can feel harder and rate lower while teaching more. The cure is to check the learning metric, not to soften the lesson; low satisfaction here is plausibly the signature of germane load." options='[{"text":"The lesson is a usability failure and should be made easier","correct":false},{"text":"Lower satisfaction may signal productive germane load; the gain shows it taught more","correct":true},{"text":"Satisfaction and gain conflict, so both metrics are invalid","correct":false},{"text":"Satisfaction should override the gain because learners disliked it","correct":false}]' />
+<inline-check question="A demanding lesson earns LOWER satisfaction ratings than the easy version it replaced, but higher pre/post gain. What is the most defensible reading?" explanation="Cognitive load theory distinguishes extraneous load (bad) from germane load, the productive effort of building schemas. A lesson that makes learners think can feel harder and rate lower while teaching more. The cure is to check the learning metric, not to soften the lesson; low satisfaction here is plausibly the signature of germane load." options='[{"text":"The lesson is a usability failure and should be made easier","correct":false},{"text":"Lower satisfaction may signal productive germane load; the gain shows it taught more","correct":true},{"text":"Satisfaction and gain conflict, so both metrics are invalid","correct":false},{"text":"Satisfaction should override the gain because learners disliked it","correct":false}]'></inline-check>
 
 Name the claim first, then choose the metric that has the validity to support that exact claim; never let a metric you happen to have collected define the claim you make. If your strongest evidence is satisfaction, your strongest defensible claim is about how the experience felt, not about whether it worked or taught.
 
@@ -116,7 +116,7 @@ Move the same construct-matching discipline to a program-evaluation context, whe
 
 Open the studio packet: [download the moderated usability test script with observation-to-revision trace packet](/downloads/summer2026/ail606-supplement/05-04-learning-metrics-and-usability-metrics-artifact.md).
 
-<artifact-studio artifact="moderated usability test script with observation-to-revision trace" course="AIL 606" section="05.04" />
+<artifact-studio artifact="moderated usability test script with observation-to-revision trace" course="AIL 606" section="05.04"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -129,19 +129,19 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the moderated usability test script with observation-to-revision trace for AIL 606 05.04. A peer comment points to a transfer move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the moderated usability test script with observation-to-revision trace for AIL 606 05.04. A peer comment points to a transfer move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The learner explains how the same decision rule changes under a new audience or constraint.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="ail606_supplement_learning_metrics_and_usability_metrics" />
+<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The learner explains how the same decision rule changes under a new audience or constraint.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="ail606_supplement_learning_metrics_and_usability_metrics"></interactive-quiz>
 
 ## Final Check
 
 Before you move on, confirm each claim is paired with a metric of matching construct, that no satisfaction or completion number is standing in for a learning outcome, and that means are disaggregated where a subgroup could be hidden.
 
-<concept-map concepts='["ail606_supplement_learning_metrics_and_usability_metrics", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_learning_metrics_and_usability_metrics", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

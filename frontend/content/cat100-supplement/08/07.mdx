@@ -35,7 +35,7 @@ A submission checklist is a list of concrete, testable requirements, where each 
 
 The unifying principle is testing from the recipient's environment. Exporting to PDF is not enough; you open the PDF to confirm a chart did not move. Pasting a link is not enough; you load it while signed out, which is the single most common catch, because GitHub Pages, Google Drive, and many tools quietly grant you access they do not grant a stranger. Each checklist row is a hypothesis ("the link is public") paired with the experiment that confirms it ("loaded it incognito, no 404").
 
-<inline-check question="Your portfolio link loads fine when you click it. Is the public-link requirement satisfied?" explanation="It loads for you because you are signed into the account that owns it. Signed-in access is invisible privilege; the only honest test is loading it in an incognito or signed-out window and confirming no 404." options='[{"text":"Yes; if it loads for you, it loads for the grader.","correct":false},{"text":"No; you must load it signed out in an incognito window to confirm no 404.","correct":true},{"text":"Yes, as long as the URL contains the word public.","correct":false}]' />
+<inline-check question="Your portfolio link loads fine when you click it. Is the public-link requirement satisfied?" explanation="It loads for you because you are signed into the account that owns it. Signed-in access is invisible privilege; the only honest test is loading it in an incognito or signed-out window and confirming no 404." options='[{"text":"Yes; if it loads for you, it loads for the grader.","correct":false},{"text":"No; you must load it signed out in an incognito window to confirm no 404.","correct":true},{"text":"Yes, as long as the URL contains the word public.","correct":false}]'></inline-check>
 
 ## Worked Example: Running the Final Submission Checklist
 
@@ -53,15 +53,15 @@ The checklist is not cosmetic. Each row is a concrete test the student actually 
 
 Run the checklist as a fixed procedure. Predict each step before revealing it:
 
-<step-reveal title="Verify a submission from the recipient’s position" steps='[{"prompt":"The assignment says submit slides as a PDF. What is the first move?","predictType":"choice","choices":["Upload the PowerPoint file; it is basically the same","Read the requirement literally and export to PDF","Email the grader to ask if PPTX is fine"],"answerIndex":1,"reveal":"Read the requirement literally: slides as a PDF means a PDF, not the source file. Convert the exact format the assignment states."},{"reveal":"Open what you exported. Conversion routinely shifts charts and fonts, so confirm fidelity by opening the PDF, not by trusting the export button."},{"reveal":"Test access while signed out. Load every link in an incognito window; a 404 there is a 404 for the grader, the most common catch."},{"reveal":"Finish the safety and correctness rows: rename to the convention, re-scan for credentials with zero hits, and confirm the total computes. Submit only when every row passes."}]' />
+<step-reveal title="Verify a submission from the recipient’s position" steps='[{"prompt":"The assignment says submit slides as a PDF. What is the first move?","predictType":"choice","choices":["Upload the PowerPoint file; it is basically the same","Read the requirement literally and export to PDF","Email the grader to ask if PPTX is fine"],"answerIndex":1,"reveal":"Read the requirement literally: slides as a PDF means a PDF, not the source file. Convert the exact format the assignment states."},{"reveal":"Open what you exported. Conversion routinely shifts charts and fonts, so confirm fidelity by opening the PDF, not by trusting the export button."},{"reveal":"Test access while signed out. Load every link in an incognito window; a 404 there is a 404 for the grader, the most common catch."},{"reveal":"Finish the safety and correctness rows: rename to the convention, re-scan for credentials with zero hits, and confirm the total computes. Submit only when every row passes."}]'></step-reveal>
 
 Now order the submission-verification steps:
 
-<sequence-builder mode="order" items='["Read each requirement literally and turn it into a testable row","Export to the required format, then open the exported file to confirm fidelity","Load every link signed out in an incognito window","Rename the file to the stated convention and re-scan for credentials","Submit only after every row passes its test"]' />
+<sequence-builder mode="order" items='["Read each requirement literally and turn it into a testable row","Export to the required format, then open the exported file to confirm fidelity","Load every link signed out in an incognito window","Rename the file to the stated convention and re-scan for credentials","Submit only after every row passes its test"]'></sequence-builder>
 
 These four concepts anchor the section; trace how they connect:
 
-<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_final_submission_checklist","evidence_based_revision","ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_final_submission_checklist","evidence_based_revision","ai_supported_learning"]'></concept-map>
 
 ## Decision Rule
 
@@ -112,7 +112,7 @@ Apply the same checklist discipline to a job application, where the recipient is
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/08-07-final-submission-checklist-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="08.07" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="08.07"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -125,13 +125,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 08.07. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 08.07. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="cat100_supplement_final_submission_checklist" />
+<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="cat100_supplement_final_submission_checklist"></interactive-quiz>
 
 ## Final Check
 

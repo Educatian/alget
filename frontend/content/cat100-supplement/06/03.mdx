@@ -33,7 +33,7 @@ Repository setup rests on a few mechanics that beginners can learn in one sittin
 
 These mechanics meet ISTE digital citizenship directly: committing a key is a real security exposure, and knowing that history is permanent is the difference between a recoverable mistake and a published one. NACE career readiness applies too, because version control and not leaking credentials are baseline expectations in any technical workplace.
 
-<inline-check question="You commit token.txt holding an API key, then in the next commit you delete the file. Is the key now safe?" explanation="A commit is a permanent record. Deleting the file in a later commit removes it from the current snapshot but leaves it readable in history. The only real fix is to rotate (revoke and reissue) the key, and the prevention is to list it in .gitignore before the first commit so it never enters history." options='[{"text":"No: the key still lives in history, so you must rotate it, not just delete the file","correct":true},{"text":"Yes: deleting the file in a new commit removes it from the repo entirely","correct":false},{"text":"Yes, as long as you also run git push after deleting it","correct":false}]' />
+<inline-check question="You commit token.txt holding an API key, then in the next commit you delete the file. Is the key now safe?" explanation="A commit is a permanent record. Deleting the file in a later commit removes it from the current snapshot but leaves it readable in history. The only real fix is to rotate (revoke and reissue) the key, and the prevention is to list it in .gitignore before the first commit so it never enters history." options='[{"text":"No: the key still lives in history, so you must rotate it, not just delete the file","correct":true},{"text":"Yes: deleting the file in a new commit removes it from the repo entirely","correct":false},{"text":"Yes, as long as you also run git push after deleting it","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -73,7 +73,7 @@ The repository is now named correctly, the secret is ignored before it can leak,
 
 Order the setup steps so the irreversible decisions happen before the first push. The repo name and what enters history are both hard to undo, so they must be settled first.
 
-<sequence-builder mode="order" items='["Name the repo username.github.io so it serves from the clean root URL","Add a .gitignore listing token.txt so the secret never enters history","Confirm a lowercase index.html exists at the served level","git init, then git add only the files you intend to publish","git commit with a clear message, then git remote add origin","git push to upload the first snapshot to GitHub"]' />
+<sequence-builder mode="order" items='["Name the repo username.github.io so it serves from the clean root URL","Add a .gitignore listing token.txt so the secret never enters history","Confirm a lowercase index.html exists at the served level","git init, then git add only the files you intend to publish","git commit with a clear message, then git remote add origin","git push to upload the first snapshot to GitHub"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -87,7 +87,7 @@ A failure here is not cosmetic. The wrong name means rebuilding URLs; a leaked s
 
 Walk one repo through the three checks and predict each verdict before you reveal it. The repo is named portfolio, contains a committed config with a database password, and has an Index.HTML at the root.
 
-<step-reveal title="Run the name, secret, and entry-file checks on this repo before the first push" steps='[{"prompt":"Name check first: the repo is named portfolio and the goal is the clean root URL username.github.io. Does the name produce the URL you want?","predictType":"choice","choices":["Yes, any repo name serves from the root","No, portfolio publishes at the /portfolio subpath, not the root"],"answerIndex":1,"reveal":"Only the exact string username.github.io serves from the root. portfolio becomes a project site at /portfolio/, which also changes how asset paths must be written."},{"prompt":"Secret check next: a config file with a database password is already committed. What does the check require?","predictType":"choice","choices":["Just delete the file in the next commit","Rotate the password and add the file to .gitignore, because history is permanent"],"answerIndex":1,"reveal":"Deleting it later leaves it readable in history, so the credential must be rotated. Going forward, list it in .gitignore so it never re-enters history."},{"reveal":"Entry-file check: Index.HTML is not lowercase index.html, so the root request can 404 on a case-sensitive server. Verdict: rename the repo (or accept the subpath and fix paths), rotate the leaked password, and rename the entry file to lowercase index.html, all before pushing."}]' />
+<step-reveal title="Run the name, secret, and entry-file checks on this repo before the first push" steps='[{"prompt":"Name check first: the repo is named portfolio and the goal is the clean root URL username.github.io. Does the name produce the URL you want?","predictType":"choice","choices":["Yes, any repo name serves from the root","No, portfolio publishes at the /portfolio subpath, not the root"],"answerIndex":1,"reveal":"Only the exact string username.github.io serves from the root. portfolio becomes a project site at /portfolio/, which also changes how asset paths must be written."},{"prompt":"Secret check next: a config file with a database password is already committed. What does the check require?","predictType":"choice","choices":["Just delete the file in the next commit","Rotate the password and add the file to .gitignore, because history is permanent"],"answerIndex":1,"reveal":"Deleting it later leaves it readable in history, so the credential must be rotated. Going forward, list it in .gitignore so it never re-enters history."},{"reveal":"Entry-file check: Index.HTML is not lowercase index.html, so the root request can 404 on a case-sensitive server. Verdict: rename the repo (or accept the subpath and fix paths), rotate the leaked password, and rename the entry file to lowercase index.html, all before pushing."}]'></step-reveal>
 
 ## Common Misreadings
 
@@ -126,7 +126,7 @@ Take the same setup skills to a different project: a small Python script you wan
 
 Open the studio packet: [download the GitHub Pages file tree with accessibility, privacy, and publishing checks packet](/downloads/summer2026/cat100-supplement/06-03-github-repository-setup-artifact.md).
 
-<artifact-studio artifact="GitHub Pages file tree with accessibility, privacy, and publishing checks" course="CAT 100" section="06.03" />
+<artifact-studio artifact="GitHub Pages file tree with accessibility, privacy, and publishing checks" course="CAT 100" section="06.03"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -139,13 +139,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the GitHub Pages file tree with accessibility, privacy, and publishing checks for CAT 100 06.03. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the GitHub Pages file tree with accessibility, privacy, and publishing checks for CAT 100 06.03. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_github_repository_setup" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_github_repository_setup"></interactive-quiz>
 
 ## Final Check
 
@@ -153,7 +153,7 @@ Before you move on, make sure your trace links claim, evidence, tool boundary, r
 
 ## Concept Map
 
-<concept-map concepts='["cat100_supplement_github_repository_setup", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]' />
+<concept-map concepts='["cat100_supplement_github_repository_setup", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]'></concept-map>
 
 ## References
 

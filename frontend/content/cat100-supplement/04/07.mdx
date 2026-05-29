@@ -36,7 +36,7 @@ The key idea is a one-to-one mapping between claims and files. Coverage means ev
 
 A manifest is just a small table, often kept as a `README.txt` or a sheet, with two columns: the file name and the claim it proves. It is the index to your evidence. Without it, the reviewer reconstructs your argument by guessing; with it, they verify it by reading.
 
-<inline-check question="Your manifest lists the claim ’I revised my persona after testing it,’ but you saved only the final persona and overwrote the draft. What does the coverage check tell you to do?" explanation="The claim maps to no file, so the coverage check fails. The honest options are to create the missing evidence (save persona_v1.txt and persona_v2.txt) or drop the claim. Asserting ’I revised it’ with nothing a reviewer can open is exactly the unsupported claim the manifest is built to expose." options='[{"text":"Either produce the before/after files or drop the claim; do not assert what no file can back","correct":true},{"text":"Add three more screenshots so the folder looks fuller","correct":false},{"text":"Keep the claim anyway, since you remember doing the revision","correct":false},{"text":"Rename the final file to persona_v2.txt and call it proof of revision","correct":false}]' />
+<inline-check question="Your manifest lists the claim ’I revised my persona after testing it,’ but you saved only the final persona and overwrote the draft. What does the coverage check tell you to do?" explanation="The claim maps to no file, so the coverage check fails. The honest options are to create the missing evidence (save persona_v1.txt and persona_v2.txt) or drop the claim. Asserting ’I revised it’ with nothing a reviewer can open is exactly the unsupported claim the manifest is built to expose." options='[{"text":"Either produce the before/after files or drop the claim; do not assert what no file can back","correct":true},{"text":"Add three more screenshots so the folder looks fuller","correct":false},{"text":"Keep the claim anyway, since you remember doing the revision","correct":false},{"text":"Rename the final file to persona_v2.txt and call it proof of revision","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -69,11 +69,11 @@ Step 4. Log the one rejected item. You had a fifth file, `Screenshot 2026-05-18.
 
 Order the moves that turn a messy folder into a reviewable evidence set:
 
-<sequence-builder mode="order" items='["List the claims you want credit for, before looking at the files", "Rename each file with a numbered prefix so the name states its content (01_persona.txt)", "Map each claim to exactly one named file in the manifest", "Run the coverage check: every claim has a file, and either supply or drop any claim that has none", "Prune any file that backs no claim, logging what you cut and why"]' />
+<sequence-builder mode="order" items='["List the claims you want credit for, before looking at the files", "Rename each file with a numbered prefix so the name states its content (01_persona.txt)", "Map each claim to exactly one named file in the manifest", "Run the coverage check: every claim has a file, and either supply or drop any claim that has none", "Prune any file that backs no claim, logging what you cut and why"]'></sequence-builder>
 
 Now assemble the manifest one decision at a time, predicting each call before you reveal it:
 
-<step-reveal title="Map files to claims, then prune" steps='[{"prompt":"You face two files: ’Untitled.docx’ and ’final final v2.docx.’ What is the first move toward a reviewable set?","predictType":"choice","choices":["Rename each so the name states its content and reading order (01_persona.txt, 03_parent_email_before_after.docx)","Leave the names and just open each to remember what they are","Delete both and start over","Add a screenshot to make the folder look complete"],"answerIndex":0,"reveal":"Rename first. A name that states the content and a numbered prefix give the reviewer a reading order and let them know what a file is before opening it."},{"prompt":"Your folder still has ’Screenshot 2026-05-18.png,’ which maps to no claim. What does the pruning check say?","predictType":"choice","choices":["Cut it, because a file that backs no claim is clutter that lowers the signal","Keep it, because more files look like more evidence","Rename it 05_evidence.png and leave it unmapped","Map it to all four claims at once"],"answerIndex":0,"reveal":"Cut it. A file with no claim is clutter; a screenshot is evidence only if it is named and mapped to a specific claim, such as ’05_published_page.png proves the page is live.’"},{"reveal":"After renaming, mapping, and pruning, each of your four claims has exactly one named file and every file appears in the manifest. A reviewer can open any row and confirm the claim without asking you, which is the test of a reviewable evidence set."}]' />
+<step-reveal title="Map files to claims, then prune" steps='[{"prompt":"You face two files: ’Untitled.docx’ and ’final final v2.docx.’ What is the first move toward a reviewable set?","predictType":"choice","choices":["Rename each so the name states its content and reading order (01_persona.txt, 03_parent_email_before_after.docx)","Leave the names and just open each to remember what they are","Delete both and start over","Add a screenshot to make the folder look complete"],"answerIndex":0,"reveal":"Rename first. A name that states the content and a numbered prefix give the reviewer a reading order and let them know what a file is before opening it."},{"prompt":"Your folder still has ’Screenshot 2026-05-18.png,’ which maps to no claim. What does the pruning check say?","predictType":"choice","choices":["Cut it, because a file that backs no claim is clutter that lowers the signal","Keep it, because more files look like more evidence","Rename it 05_evidence.png and leave it unmapped","Map it to all four claims at once"],"answerIndex":0,"reveal":"Cut it. A file with no claim is clutter; a screenshot is evidence only if it is named and mapped to a specific claim, such as ’05_published_page.png proves the page is live.’"},{"reveal":"After renaming, mapping, and pruning, each of your four claims has exactly one named file and every file appears in the manifest. A reviewer can open any row and confirm the claim without asking you, which is the test of a reviewable evidence set."}]'></step-reveal>
 
 Map every claim to one named file and cut every file that maps to no claim. An evidence set is reviewable only when the manifest lets someone confirm each claim by opening a single file.
 
@@ -122,13 +122,13 @@ Move the manifest from a course folder to a job portfolio on GitHub Pages. The s
 
 See how the file-to-claim manifest connects to the chapter’s wider ideas:
 
-<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_evidence_collection", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_evidence_collection", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/04-07-evidence-collection-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.07" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.07"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -141,13 +141,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.07. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.07. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="cat100_supplement_evidence_collection" />
+<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="cat100_supplement_evidence_collection"></interactive-quiz>
 
 ## Final Check
 

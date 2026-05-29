@@ -33,9 +33,9 @@ Three rules make the system work:
 
 The underlying logic is that time is a finite resource you allocate in advance. A due date is a constraint; a work block is the allocation that satisfies it.
 
-<sequence-builder mode="order" items='["Enter the fixed event: put the Tuesday 10:00 AM lecture on the calendar at its set time","Capture the task: add Write the lab report to the task list with its Friday 11:59 PM deadline","Reserve a work block: place a Wednesday 6 to 8 PM event that is the time you will actually do the task","Set a reminder with lead time: have it fire before the start so travel and setup are covered, not at the deadline itself"]' />
+<sequence-builder mode="order" items='["Enter the fixed event: put the Tuesday 10:00 AM lecture on the calendar at its set time","Capture the task: add Write the lab report to the task list with its Friday 11:59 PM deadline","Reserve a work block: place a Wednesday 6 to 8 PM event that is the time you will actually do the task","Set a reminder with lead time: have it fire before the start so travel and setup are covered, not at the deadline itself"]'></sequence-builder>
 
-<inline-check question="A student puts 'submit lab report, Friday 11:59 PM' on their calendar at 11:59 PM and feels organized. What did they actually reserve?" explanation="Putting the due time on the calendar reserves the instant work is due, not the hours it takes to produce. The work still has no home; it needs a separate work block." options='[{"text":"The moment the work is due, but no time to actually do the work","correct":true},{"text":"A full work block plus a reminder","correct":false},{"text":"Both the deadline and the allocation","correct":false},{"text":"Nothing, because tasks cannot go on a calendar","correct":false}]' />
+<inline-check question="A student puts 'submit lab report, Friday 11:59 PM' on their calendar at 11:59 PM and feels organized. What did they actually reserve?" explanation="Putting the due time on the calendar reserves the instant work is due, not the hours it takes to produce. The work still has no home; it needs a separate work block." options='[{"text":"The moment the work is due, but no time to actually do the work","correct":true},{"text":"A full work block plus a reminder","correct":false},{"text":"Both the deadline and the allocation","correct":false},{"text":"Nothing, because tasks cannot go on a calendar","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -95,7 +95,7 @@ Apply the system to a real conflict. You have a lecture Tuesday at 10 AM, a lab 
 
 The walkthrough exposes a hidden risk: if you had only written "lab due Wed," you would not have noticed that the shift consumed your obvious work time until Wednesday evening. By allocating the work block in advance, you discovered the squeeze on Sunday, when you could still adjust (start a day earlier or trade the shift). The system's value is catching the collision before it becomes a missed deadline.
 
-<step-reveal title="Resolve the Tuesday-lecture, Wednesday-shift, Wednesday-deadline conflict" steps='[{"prompt":"Three obligations: lecture Tue 10 AM, lab report due Wed 11:59 PM, shift Wed 1 to 5 PM. Step one is to SORT. Which item is the task?","predictType":"choice","choices":["The lecture","The shift","The lab report","All three are tasks"],"answerIndex":2,"reveal":"Lecture and shift are fixed-time events; the lab report is work with a deadline, so it is the only task that needs a work block."},{"prompt":"The shift eats Wednesday 1 to 5 PM. Where is the only viable work block before the deadline?","predictType":"choice","choices":["Wednesday 1 to 5 PM, during the shift","Wednesday 6 to 8 PM, after the shift and before 11:59 PM","Thursday morning, after the deadline","No block is needed"],"answerIndex":1,"reveal":"After the shift, before the deadline: Wednesday 6 to 8 PM is the only window. Allocating it on Sunday surfaces the squeeze while you can still adjust."},{"reveal":"Discovering the collision early is the whole payoff. With only ’lab due Wed’ written down, you would notice the shift ate your work time on Wednesday evening, far too late to recover."}]' />
+<step-reveal title="Resolve the Tuesday-lecture, Wednesday-shift, Wednesday-deadline conflict" steps='[{"prompt":"Three obligations: lecture Tue 10 AM, lab report due Wed 11:59 PM, shift Wed 1 to 5 PM. Step one is to SORT. Which item is the task?","predictType":"choice","choices":["The lecture","The shift","The lab report","All three are tasks"],"answerIndex":2,"reveal":"Lecture and shift are fixed-time events; the lab report is work with a deadline, so it is the only task that needs a work block."},{"prompt":"The shift eats Wednesday 1 to 5 PM. Where is the only viable work block before the deadline?","predictType":"choice","choices":["Wednesday 1 to 5 PM, during the shift","Wednesday 6 to 8 PM, after the shift and before 11:59 PM","Thursday morning, after the deadline","No block is needed"],"answerIndex":1,"reveal":"After the shift, before the deadline: Wednesday 6 to 8 PM is the only window. Allocating it on Sunday surfaces the squeeze while you can still adjust."},{"reveal":"Discovering the collision early is the whole payoff. With only ’lab due Wed’ written down, you would notice the shift ate your work time on Wednesday evening, far too late to recover."}]'></step-reveal>
 
 ## What Strong Reading Looks Like
 
@@ -122,7 +122,7 @@ Move the system into a job with on-call hours. The fixed-event versus task split
 
 Open the studio packet: [download the calendar and task systems packet](/downloads/summer2026/cat100-supplement/07-02-calendar-and-task-systems-artifact.md).
 
-<artifact-studio artifact="one-week calendar and task plan with work blocks" course="CAT 100" section="07.02" />
+<artifact-studio artifact="one-week calendar and task plan with work blocks" course="CAT 100" section="07.02"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -135,17 +135,17 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the event-versus-task rule to a new setting.
 - If your note makes a **connection**, show where the connection changes the plan.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 07.02. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 07.02. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The learner explains how the same decision rule changes under a new audience or constraint.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_calendar_and_task_systems" />
+<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The learner explains how the same decision rule changes under a new audience or constraint.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_calendar_and_task_systems"></interactive-quiz>
 
 ## Concept Map
 
-<concept-map concepts='["cat100_supplement_calendar_and_task_systems", "cat100_supplement_productivity_and_workflow_automation", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_calendar_and_task_systems", "cat100_supplement_productivity_and_workflow_automation", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Final Check
 

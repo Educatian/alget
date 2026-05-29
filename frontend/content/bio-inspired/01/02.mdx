@@ -78,7 +78,7 @@ A 30 MPa glue line is leveraged into a 480 MPa tablet stress: a **16x amplificat
 
 Sweep the aspect ratio and interface strength yourself. The tablet stress is the product $\tau_y\, s$, so geometry and interface trade off directly.
 
-<parameter-explorer config='{"title":"Tension-Shear Chain: Tablet Stress","sliders":[{"name":"s","label":"Aspect ratio s = L/t","min":4,"max":40,"step":1,"unit":"","default":16},{"name":"tau","label":"Interface shear yield tau_y","min":10,"max":60,"step":1,"unit":"MPa","default":30}],"outputs":[{"label":"Tablet stress at yield","unit":"MPa","expr":"tau*s"},{"label":"Amplification vs interface","unit":"x","expr":"s"}],"plot":{"x":"s","output":0}}' />
+<parameter-explorer config='{"title":"Tension-Shear Chain: Tablet Stress","sliders":[{"name":"s","label":"Aspect ratio s = L/t","min":4,"max":40,"step":1,"unit":"","default":16},{"name":"tau","label":"Interface shear yield tau_y","min":10,"max":60,"step":1,"unit":"MPa","default":30}],"outputs":[{"label":"Tablet stress at yield","unit":"MPa","expr":"tau*s"},{"label":"Amplification vs interface","unit":"x","expr":"s"}],"plot":{"x":"s","output":0}}'></parameter-explorer>
 
 ---
 
@@ -108,7 +108,7 @@ $$
 
 **Interpret.** The simple rule-of-mixtures (Voigt) upper bound would predict $\phi E_m = 95\ \text{GPa}$. Nacre reaches about 88 GPa, more than 90% of the ideal, while remaining far tougher than solid aragonite. Note what the aspect ratio buys: repeating the calculation with $s = 8$ gives only 72 GPa, while $s = 32$ gives 93 GPa. Slender, well-bonded tablets recover nearly the full mineral stiffness; that is the design lever.
 
-<inline-check question="As aspect ratio s grows from 8 to 32, the modulus rises from 72 to 93 GPa but never exceeds the Voigt bound of 95 GPa. Why does it saturate rather than keep climbing?" explanation="The shear-lag compliance term, 4(1-phi)/(phi^2 s^2 G_p), shrinks as 1/s^2, so increasing s removes the soft-phase penalty. Once that term is negligible, the modulus is limited by the mineral tensile compliance 1/(phi*E_m), which sets the Voigt ceiling of phi*E_m = 95 GPa." options='[{"text":"The shear-lag term falls as 1/s^2, so once it is negligible the mineral tensile compliance caps the modulus at the Voigt bound.","correct":true},{"text":"The protein shear modulus increases with s and eventually dominates.","correct":false},{"text":"The mineral fraction phi decreases as tablets get longer.","correct":false}]' />
+<inline-check question="As aspect ratio s grows from 8 to 32, the modulus rises from 72 to 93 GPa but never exceeds the Voigt bound of 95 GPa. Why does it saturate rather than keep climbing?" explanation="The shear-lag compliance term, 4(1-phi)/(phi^2 s^2 G_p), shrinks as 1/s^2, so increasing s removes the soft-phase penalty. Once that term is negligible, the modulus is limited by the mineral tensile compliance 1/(phi*E_m), which sets the Voigt ceiling of phi*E_m = 95 GPa." options='[{"text":"The shear-lag term falls as 1/s^2, so once it is negligible the mineral tensile compliance caps the modulus at the Voigt bound.","correct":true},{"text":"The protein shear modulus increases with s and eventually dominates.","correct":false},{"text":"The mineral fraction phi decreases as tablets get longer.","correct":false}]'></inline-check>
 
 ---
 
@@ -150,7 +150,7 @@ Collagen molecules twist into triple helices, the helices stagger into fibrils, 
 
 Reconstruct the collagen hierarchy from the smallest scale up to the whole tissue.
 
-<sequence-builder mode="order" items='["Tropocollagen triple helix","Staggered collagen fibril","Collagen fiber bundle","Whole tendon"]' />
+<sequence-builder mode="order" items='["Tropocollagen triple helix","Staggered collagen fibril","Collagen fiber bundle","Whole tendon"]'></sequence-builder>
 
 ---
 
@@ -176,8 +176,7 @@ A good bio-inspired designer therefore asks:
   question="Why can nacre be much tougher than its brittle mineral ingredients would suggest?"
   conceptId="hierarchical_structures"
   options='[{"text":"Because its layered brick-and-mortar hierarchy forces cracks to deflect, slide, and lose energy instead of moving straight through.","isCorrect":true},{"text":"Because the aragonite crystals are chemically identical to structural steel.","isCorrect":false},{"text":"Because hierarchical materials eliminate all deformation under load.","isCorrect":false}]'
-  explanation="Correct. The toughness comes from architecture across scales, not from a magically strong ingredient. The interfaces and platelets manage how cracks grow."
-/>
+  explanation="Correct. The toughness comes from architecture across scales, not from a magically strong ingredient. The interfaces and platelets manage how cracks grow."></interactive-quiz>
 
 ---
 
@@ -193,7 +192,7 @@ Consider a lightweight wing panel. A solid ceramic skin may be very stiff, but o
 
 The aspect-ratio result is directly actionable: in a nacre-mimetic ceramic, engineers choose platelet length so tablets reach high stress yet still pull out before fracturing, exactly the $s = 16$ sweet spot biology converged on.
 
-<self-explain prompt="Nacre's tablets are not arbitrarily long. Explain in your own words why an engineer designing a nacre-mimetic armor would AVOID making the platelets much longer than the s = 16 sweet spot, even though longer tablets give higher modulus and higher tablet stress." answer="A higher aspect ratio raises both the stiffness (shear-lag term falls as 1/s^2) and the tablet stress at yield (sigma = tau_y * s). But toughness comes from pull-out: the tablet must slide and pull out rather than fracture. If s is too large, the tablet stress tau_y*s exceeds the tablet's own fracture strength, so the platelet snaps instead of pulling out, killing the process zone that supplies toughness. The s = 16 region balances high stiffness/strength against retained pull-out toughness." />
+<self-explain prompt="Nacre's tablets are not arbitrarily long. Explain in your own words why an engineer designing a nacre-mimetic armor would AVOID making the platelets much longer than the s = 16 sweet spot, even though longer tablets give higher modulus and higher tablet stress." answer="A higher aspect ratio raises both the stiffness (shear-lag term falls as 1/s^2) and the tablet stress at yield (sigma = tau_y * s). But toughness comes from pull-out: the tablet must slide and pull out rather than fracture. If s is too large, the tablet stress tau_y*s exceeds the tablet's own fracture strength, so the platelet snaps instead of pulling out, killing the process zone that supplies toughness. The s = 16 region balances high stiffness/strength against retained pull-out toughness."></self-explain>
 
 Modern examples include:
 
@@ -201,14 +200,13 @@ Modern examples include:
 - layered helmet shells that separate impact spreading from comfort
 - fiber composites with interleaved toughening layers that improve delamination resistance
 
-<dynamic-scenario topic="Hierarchical Composite Design" context="An engineer is redesigning a lightweight e-bike helmet shell and wants it to resist crack propagation during repeated low-speed impacts without becoming bulky." />
+<dynamic-scenario topic="Hierarchical Composite Design" context="An engineer is redesigning a lightweight e-bike helmet shell and wants it to resist crack propagation during repeated low-speed impacts without becoming bulky."></dynamic-scenario>
 
 <interactive-quiz
   question="A designer wants a composite panel to be stiff in normal use but damage-tolerant during impact. What is the most bio-inspired strategy?"
   conceptId="multiscale"
   options='[{"text":"Assign different roles to different scales, such as stiff fibers for carrying load and softer interfaces for dissipating impact energy.","isCorrect":true},{"text":"Use a single perfectly uniform material so the stress field remains unchanged everywhere.","isCorrect":false},{"text":"Reduce all internal interfaces because interfaces can never help structural performance.","isCorrect":false}]'
-  explanation="Correct. Multiscale design works best when different structural levels handle different mechanical jobs instead of forcing one material to do everything."
-/>
+  explanation="Correct. Multiscale design works best when different structural levels handle different mechanical jobs instead of forcing one material to do everything."></interactive-quiz>
 
 ---
 
@@ -233,7 +231,7 @@ Modern examples include:
 
 Connect the multiscale ideas of this section before continuing.
 
-<concept-map concepts='["hierarchical_structures","nacre","collagen","multiscale"]' />
+<concept-map concepts='["hierarchical_structures","nacre","collagen","multiscale"]'></concept-map>
 
 ---
 

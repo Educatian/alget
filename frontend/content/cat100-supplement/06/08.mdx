@@ -33,7 +33,7 @@ Integration in this studio means three things working together.
 
 All three course anchors converge here. NACE career readiness treats shipping a working public artifact as the real outcome. ISTE digital citizenship covers the privacy and accessibility obligations of anything you publish. data-ink and visual evidence applies to your proof: the strongest evidence is the live site itself, demonstrated, not asserted.
 
-<inline-check question="Every section passed in isolation: accessible markup, clean latest snapshot, sharp resume bullet. You submit a folder of files. Is the studio complete?" explanation="Passing each section separately is necessary but not sufficient. A site can be accessible yet 404 from the live subpath, and a clean latest snapshot can still hide a secret in history. The studio requires one integrated end-to-end test on the published URL, not a folder of correct files." options='[{"text":"No: you must verify the integrated result on the live URL, since sections can pass alone yet fail as a whole","correct":true},{"text":"Yes: if each section passed, the assembled site is guaranteed to work","correct":false},{"text":"Yes, as long as the folder of files is complete and well organized","correct":false}]' />
+<inline-check question="Every section passed in isolation: accessible markup, clean latest snapshot, sharp resume bullet. You submit a folder of files. Is the studio complete?" explanation="Passing each section separately is necessary but not sufficient. A site can be accessible yet 404 from the live subpath, and a clean latest snapshot can still hide a secret in history. The studio requires one integrated end-to-end test on the published URL, not a folder of correct files." options='[{"text":"No: you must verify the integrated result on the live URL, since sections can pass alone yet fail as a whole","correct":true},{"text":"Yes: if each section passed, the assembled site is guaranteed to work","correct":false},{"text":"Yes, as long as the folder of files is complete and well organized","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -70,7 +70,7 @@ The submission is now a real published site, not a mockup. One end-to-end test o
 
 Order the capstone integration steps so the single live-URL test comes last and subsumes the rest. Assemble and check the pieces first, then prove the whole on the real address.
 
-<sequence-builder mode="order" items='["Assemble one file tree satisfying architecture, markup, repo hygiene, and publishing","Run the combined checklist, naming concrete evidence for accessibility, privacy, and publishing","Confirm the whole commit history is clean, not just the latest snapshot","Attach an honest AI-use note covering every tool-assisted change","Open the live URL in a private window on a phone as the one end-to-end test","Confirm pages load, alt text announces, links resolve, and no secret surfaces"]' />
+<sequence-builder mode="order" items='["Assemble one file tree satisfying architecture, markup, repo hygiene, and publishing","Run the combined checklist, naming concrete evidence for accessibility, privacy, and publishing","Confirm the whole commit history is clean, not just the latest snapshot","Attach an honest AI-use note covering every tool-assisted change","Open the live URL in a private window on a phone as the one end-to-end test","Confirm pages load, alt text announces, links resolve, and no secret surfaces"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -84,7 +84,7 @@ If the live check passes on the real URL, you have a published site. If you only
 
 Walk a submission that passed every section in isolation through the integrated checks and predict each verdict before you reveal it. It was never tested on the live URL.
 
-<step-reveal title="Run the tree, live, and history checks on the never-tested submission" steps='[{"prompt":"Tree check first: the file tree has purposeful pages, valid markup, a .gitignore, and a lowercase index.html. Does the tree satisfy all four dimensions at once?","predictType":"choice","choices":["Yes, the tree itself looks complete across architecture, markup, repo, and publishing","No, the tree cannot be trusted until the site is tested live"],"answerIndex":0,"reveal":"The tree does pass on paper: it shows architecture, markup, repo hygiene, and publishing readiness together. But a passing tree is necessary, not sufficient."},{"prompt":"Live check next: the project links were never opened on the live subpath. What does opening the published URL on a phone reveal?","predictType":"choice","choices":["Nothing new, since the local preview already looked right","The project links 404 from the subpath because the paths are absolute"],"answerIndex":1,"reveal":"The live subpath exposes absolute paths that work locally but 404 online. Only the real URL surfaces this, which is why the live check is decisive."},{"reveal":"History check: a deleted token still sits in an old commit, so privacy fails across history even though the latest snapshot looks clean. Verdict: incomplete. Fix the paths, rotate and purge the secret, and re-verify on the live URL before submitting."}]' />
+<step-reveal title="Run the tree, live, and history checks on the never-tested submission" steps='[{"prompt":"Tree check first: the file tree has purposeful pages, valid markup, a .gitignore, and a lowercase index.html. Does the tree satisfy all four dimensions at once?","predictType":"choice","choices":["Yes, the tree itself looks complete across architecture, markup, repo, and publishing","No, the tree cannot be trusted until the site is tested live"],"answerIndex":0,"reveal":"The tree does pass on paper: it shows architecture, markup, repo hygiene, and publishing readiness together. But a passing tree is necessary, not sufficient."},{"prompt":"Live check next: the project links were never opened on the live subpath. What does opening the published URL on a phone reveal?","predictType":"choice","choices":["Nothing new, since the local preview already looked right","The project links 404 from the subpath because the paths are absolute"],"answerIndex":1,"reveal":"The live subpath exposes absolute paths that work locally but 404 online. Only the real URL surfaces this, which is why the live check is decisive."},{"reveal":"History check: a deleted token still sits in an old commit, so privacy fails across history even though the latest snapshot looks clean. Verdict: incomplete. Fix the paths, rotate and purge the secret, and re-verify on the live URL before submitting."}]'></step-reveal>
 
 ## Common Misreadings
 
@@ -123,7 +123,7 @@ Carry the integration-and-verify discipline to any capstone deliverable, for exa
 
 Open the studio packet: [download the GitHub Pages file tree with accessibility, privacy, and publishing checks packet](/downloads/summer2026/cat100-supplement/06-08-module-6-website-studio-artifact.md).
 
-<artifact-studio artifact="GitHub Pages file tree with accessibility, privacy, and publishing checks" course="CAT 100" section="06.08" />
+<artifact-studio artifact="GitHub Pages file tree with accessibility, privacy, and publishing checks" course="CAT 100" section="06.08"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -136,13 +136,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the GitHub Pages file tree with accessibility, privacy, and publishing checks for CAT 100 06.08. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the GitHub Pages file tree with accessibility, privacy, and publishing checks for CAT 100 06.08. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_module_6_website_studio" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_module_6_website_studio"></interactive-quiz>
 
 ## Final Check
 
@@ -150,7 +150,7 @@ Before you move on, check that the GitHub Pages file tree with accessibility, pr
 
 ## Concept Map
 
-<concept-map concepts='["cat100_supplement_module_6_website_studio", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]' />
+<concept-map concepts='["cat100_supplement_module_6_website_studio", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]'></concept-map>
 
 ## References
 

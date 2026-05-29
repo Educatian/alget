@@ -33,7 +33,7 @@ A fourth outcome is "not loggable": vague praise like "nice site" has no target,
 
 The key idea is that feedback is input, not instruction. An AI reviewer suggesting "rename Net Revenue to Profit" sounds plausible, but if the column is revenue minus returns rather than revenue minus all costs, renaming it to Profit makes the spreadsheet lie. Accepting it would be polish that damages truth. The log forces you to judge each suggestion against what the artifact actually means, which is the difference between editing and just complying.
 
-<inline-check question="An AI reviewer says rename the Net Revenue column to Profit. The column is revenue minus returns, not minus all costs. What is the right log entry?" explanation="Source does not set quality; meaning does. Renaming Net Revenue to Profit would mislabel the data, so the correct decision is Reject with a recorded reason, even though Profit sounds tidier." options='[{"text":"Accept; the AI reviewer is more authoritative than a peer.","correct":false},{"text":"Reject; the rename would mislabel data, so record the reason and keep Net Revenue.","correct":true},{"text":"Not loggable; it is just a naming preference.","correct":false}]' />
+<inline-check question="An AI reviewer says rename the Net Revenue column to Profit. The column is revenue minus returns, not minus all costs. What is the right log entry?" explanation="Source does not set quality; meaning does. Renaming Net Revenue to Profit would mislabel the data, so the correct decision is Reject with a recorded reason, even though Profit sounds tidier." options='[{"text":"Accept; the AI reviewer is more authoritative than a peer.","correct":false},{"text":"Reject; the rename would mislabel data, so record the reason and keep Net Revenue.","correct":true},{"text":"Not loggable; it is just a naming preference.","correct":false}]'></inline-check>
 
 ## Worked Example: A Critique Log with Accept, Modify, and Reject
 
@@ -50,15 +50,15 @@ The log is strong because three of four rows show judgment: one accepted with pr
 
 Triage each piece of feedback as a fixed procedure. Predict each step before revealing it:
 
-<step-reveal title="Log one suggestion: accept, modify, reject, or not loggable" steps='[{"prompt":"A peer says the contact form email field has no label. What is the first thing the log records?","predictType":"choice","choices":["The suggestion verbatim, with its source named","Whether you liked the peer’s tone","A thank-you note to the reviewer"],"answerIndex":0,"reveal":"Capture the suggestion verbatim with its source, so you react to what was actually said and can later see if you over-trusted one source."},{"reveal":"Run the correctness check. The missing label is a real accessibility bug, so Accept: add <label for=email>Email</label> and re-test with a screen reader."},{"reveal":"Run the meaning guard. Renaming Net Revenue to Profit would misrepresent the data, so Reject and record the reason."},{"reveal":"Try intent rescue. The total-row idea is good but the placement is off, so Modify: add the total and pin it where it stays visible. Vague praise with no target is Not loggable; ask for a specific element."}]' />
+<step-reveal title="Log one suggestion: accept, modify, reject, or not loggable" steps='[{"prompt":"A peer says the contact form email field has no label. What is the first thing the log records?","predictType":"choice","choices":["The suggestion verbatim, with its source named","Whether you liked the peer’s tone","A thank-you note to the reviewer"],"answerIndex":0,"reveal":"Capture the suggestion verbatim with its source, so you react to what was actually said and can later see if you over-trusted one source."},{"reveal":"Run the correctness check. The missing label is a real accessibility bug, so Accept: add <label for=email>Email</label> and re-test with a screen reader."},{"reveal":"Run the meaning guard. Renaming Net Revenue to Profit would misrepresent the data, so Reject and record the reason."},{"reveal":"Try intent rescue. The total-row idea is good but the placement is off, so Modify: add the total and pin it where it stays visible. Vague praise with no target is Not loggable; ask for a specific element."}]'></step-reveal>
 
 Now order the triage decision flow for one comment:
 
-<sequence-builder mode="order" items='["Record the suggestion verbatim with its source","Check whether it makes the artifact more true, usable, or accessible","Guard meaning: would the change misrepresent the data or claim","Rescue intent: modify a real need whose proposed fix is off","Write the decision and reason, or mark it not loggable"]' />
+<sequence-builder mode="order" items='["Record the suggestion verbatim with its source","Check whether it makes the artifact more true, usable, or accessible","Guard meaning: would the change misrepresent the data or claim","Rescue intent: modify a real need whose proposed fix is off","Write the decision and reason, or mark it not loggable"]'></sequence-builder>
 
 These four concepts anchor the section; trace how they connect:
 
-<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_peer_showcase_feedback","evidence_based_revision","ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_peer_showcase_feedback","evidence_based_revision","ai_supported_learning"]'></concept-map>
 
 ## Decision Rule
 
@@ -109,7 +109,7 @@ Carry the log into a workplace code review, where a senior colleague and an AI a
 
 Open the studio packet: [download the AI critique log showing accepted, modified, and rejected suggestions packet](/downloads/summer2026/cat100-supplement/08-05-peer-showcase-feedback-artifact.md).
 
-<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="08.05" />
+<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="08.05"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -122,13 +122,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 08.05. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 08.05. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_peer_showcase_feedback" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_peer_showcase_feedback"></interactive-quiz>
 
 ## Final Check
 

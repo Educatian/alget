@@ -39,7 +39,7 @@ Third, and most important, severity is independent of score. A criterion can sco
 
 Severity answers a different question than score, so match each severity tag to its effect on the go/no-go decision before you triage.
 
-<sequence-builder mode="match" items='[{"term":"Blocker","definition":"Defeats the instructional purpose or excludes a learner; must fix before defense"},{"term":"Major","definition":"Degrades the experience but does not defeat purpose; fix if time allows, otherwise disclose"},{"term":"Cosmetic","definition":"Surface inconsistency with no learning impact; optional and never blocks a defense"}]' />
+<sequence-builder mode="match" items='[{"term":"Blocker","definition":"Defeats the instructional purpose or excludes a learner; must fix before defense"},{"term":"Major","definition":"Degrades the experience but does not defeat purpose; fix if time allows, otherwise disclose"},{"term":"Cosmetic","definition":"Surface inconsistency with no learning impact; optional and never blocks a defense"}]'></sequence-builder>
 
 The two course anchors supply the criteria themselves. Mayer's principles define what instructional alignment and signaling quality look like; UDL defines the accessibility criteria (perceivable media, multiple means of representation) whose failure tends to register as a blocker. The error the whole method exists to prevent is letting visual polish, the most salient and least consequential dimension, stand in for instructional quality.
 
@@ -64,7 +64,7 @@ That review is a verdict with no criteria, no evidence, and no severity. Now the
 
 Two findings (alignment and captions) are high-severity blockers that the original 9/10 hid behind visual polish. The review now separates what blocks the defense from what is cosmetic, and each score points to a criterion and screen evidence a committee can re-check.
 
-<inline-check question="Navigation consistency scored 4 out of 5 (one screen places Next top-left); accessibility scored 3 out of 5 (two narrated frames lack captions). Which should you fix first, and why?" explanation="Order by severity, not by lowest score. The caption gap excludes some learners, so it is a blocker; the single off-grid Next control degrades the experience but does not defeat purpose, so it is at most major. The higher score (3) outranks the lower-impact 4 in fix priority." options='[{"text":"The navigation item, because 4 is closer to a fixable score","correct":false},{"text":"The captions, because the accessibility gap is a blocker even though its score is lower-numbered urgency","correct":true},{"text":"Neither; average them into one composite first","correct":false},{"text":"The navigation item, because it appears on more screens","correct":false}]' />
+<inline-check question="Navigation consistency scored 4 out of 5 (one screen places Next top-left); accessibility scored 3 out of 5 (two narrated frames lack captions). Which should you fix first, and why?" explanation="Order by severity, not by lowest score. The caption gap excludes some learners, so it is a blocker; the single off-grid Next control degrades the experience but does not defeat purpose, so it is at most major. The higher score (3) outranks the lower-impact 4 in fix priority." options='[{"text":"The navigation item, because 4 is closer to a fixable score","correct":false},{"text":"The captions, because the accessibility gap is a blocker even though its score is lower-numbered urgency","correct":true},{"text":"Neither; average them into one composite first","correct":false},{"text":"The navigation item, because it appears on more screens","correct":false}]'></inline-check>
 
 
 ## Decision Rule
@@ -106,9 +106,9 @@ A strong quality review is judged by whether someone else could re-run it and re
 
 A final paragraph for the artifact would read like this: "I scored the prototype against fixed criteria with screen-level evidence, kept severity separate from quality, and ordered my revisions by severity. The high polish score did not move the go/no-go decision, because the blockers were an alignment gap and a captioning gap, not the surface."
 
-<self-explain prompt="Explain why averaging the four criterion scores into a single composite is the specific operation that lets blockers disappear. Use the worked example numbers (alignment 2, navigation 4, captions 3, polish 5)." answer="Averaging those four scores yields 3.5, a comfortable-looking composite, but the mean blends a failing alignment score (2) and a partial accessibility gap (3) with a perfect polish score (5). The high polish number lifts the failing ones until the profile reads as adequate, which hides the two findings that are actually blockers. A profile keeps each dimension visible so a low-score, high-severity criterion cannot be masked by a high-score, low-severity one; the mean destroys exactly the information triage depends on." />
+<self-explain prompt="Explain why averaging the four criterion scores into a single composite is the specific operation that lets blockers disappear. Use the worked example numbers (alignment 2, navigation 4, captions 3, polish 5)." answer="Averaging those four scores yields 3.5, a comfortable-looking composite, but the mean blends a failing alignment score (2) and a partial accessibility gap (3) with a perfect polish score (5). The high polish number lifts the failing ones until the profile reads as adequate, which hides the two findings that are actually blockers. A profile keeps each dimension visible so a low-score, high-severity criterion cannot be masked by a high-score, low-severity one; the mean destroys exactly the information triage depends on."></self-explain>
 
-<concept-map concepts='["ail606_supplement_final_prototype_quality_review", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]' />
+<concept-map concepts='["ail606_supplement_final_prototype_quality_review", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]'></concept-map>
 
 ## Transfer Case
 
@@ -118,7 +118,7 @@ Move the review to a context with a fixed external standard, for example a corpo
 
 Open the studio packet: [download the prototype README traceability matrix connecting theory to screen changes packet](/downloads/summer2026/ail606-supplement/06-04-final-prototype-quality-review-artifact.md).
 
-<artifact-studio artifact="prototype README traceability matrix connecting theory to screen changes" course="AIL 606" section="06.04" />
+<artifact-studio artifact="prototype README traceability matrix connecting theory to screen changes" course="AIL 606" section="06.04"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -131,13 +131,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the prototype README traceability matrix connecting theory to screen changes for AIL 606 06.04. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the prototype README traceability matrix connecting theory to screen changes for AIL 606 06.04. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_final_prototype_quality_review" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_final_prototype_quality_review"></interactive-quiz>
 
 ## Final Check
 

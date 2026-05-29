@@ -2,7 +2,7 @@
 
 ![Cognitive Architecture for Multimedia Learning textbook visual](/course-art/deep-exemplars/ail606-supplement/01-01-cognitive-architecture-for-multimedia-lear.png)
 
-<youtube-embed id="KbzmM30NXNQ" title="Cognitive Load Theory: An Introduction" caption="Watch after the opening visual. Use it to compare intrinsic, extraneous, and generative load with the diagnosis table you revise in this section." />
+<youtube-embed id="KbzmM30NXNQ" title="Cognitive Load Theory: An Introduction" caption="Watch after the opening visual. Use it to compare intrinsic, extraneous, and generative load with the diagnosis table you revise in this section."></youtube-embed>
 
 ## Why This Section Matters
 
@@ -39,7 +39,7 @@ The single most consequential move in the table is correctly attributing demand.
 
 The architecture treats each channel as a bounded counter of interacting elements. The explorer below lets you push verbal and visual elements through the two channels and watch the busiest channel approach a novice ceiling of roughly five elements. Notice that moving printed words to narration drains the visual channel without changing the total amount of content.
 
-<parameter-explorer config='{"title":"Channel load: routing elements through two channels","sliders":[{"name":"visual_pictorial","label":"Visual elements (animation, diagram)","min":0,"max":8,"step":1,"unit":"el","default":3},{"name":"printed_words","label":"Printed-text elements (eyes / visual channel)","min":0,"max":8,"step":1,"unit":"el","default":4},{"name":"narrated_words","label":"Narrated-word elements (ears / auditory channel)","min":0,"max":8,"step":1,"unit":"el","default":0}],"outputs":[{"label":"Visual channel load","unit":"el","expr":"visual_pictorial + printed_words"},{"label":"Auditory channel load","unit":"el","expr":"narrated_words"},{"label":"Headroom on busiest channel vs novice ceiling 5","unit":"el","expr":"5 - (visual_pictorial + printed_words)"}],"plot":{"x":"printed_words","output":0}}' />
+<parameter-explorer config='{"title":"Channel load: routing elements through two channels","sliders":[{"name":"visual_pictorial","label":"Visual elements (animation, diagram)","min":0,"max":8,"step":1,"unit":"el","default":3},{"name":"printed_words","label":"Printed-text elements (eyes / visual channel)","min":0,"max":8,"step":1,"unit":"el","default":4},{"name":"narrated_words","label":"Narrated-word elements (ears / auditory channel)","min":0,"max":8,"step":1,"unit":"el","default":0}],"outputs":[{"label":"Visual channel load","unit":"el","expr":"visual_pictorial + printed_words"},{"label":"Auditory channel load","unit":"el","expr":"narrated_words"},{"label":"Headroom on busiest channel vs novice ceiling 5","unit":"el","expr":"5 - (visual_pictorial + printed_words)"}],"plot":{"x":"printed_words","output":0}}'></parameter-explorer>
 
 ## Worked Example
 
@@ -69,7 +69,7 @@ The improvement is not that the frame is prettier. The verbal load now travels t
 
 Work the frame-3 revision one decision at a time, predicting each move before the reveal.
 
-<step-reveal title="Re-routing frame 3 across the two channels" steps='[{"prompt":"The animation and a 90-word printed paragraph both sit on screen. Which channel does the printed paragraph load?","predictType":"choice","choices":["The auditory channel, because the words are verbal","The visual channel, because printed text enters through the eyes","Neither, because text is not an element"],"answerIndex":1,"reveal":"Printed text is verbal in content but enters through the eyes, so it loads the visual channel and competes with the animation for the same limited capacity."},{"prompt":"To relieve the overload without deleting content, what is the governing move?","predictType":"choice","choices":["Shrink the font so the paragraph takes less space","Convert the paragraph to timed narration so it travels through the unused auditory channel","Add a caption track restating the narration"],"answerIndex":1,"reveal":"Offloading the verbal stream to narration uses the idle auditory channel, dropping the visual element count for a novice from roughly nine to four while keeping all the content."},{"reveal":"The intrinsic load (the water-cycle phases) is untouched; only extraneous competition fell. Adding a caption track would have reintroduced a third visual element, undoing the rebalancing, which is why that suggestion is rejected."}]' />
+<step-reveal title="Re-routing frame 3 across the two channels" steps='[{"prompt":"The animation and a 90-word printed paragraph both sit on screen. Which channel does the printed paragraph load?","predictType":"choice","choices":["The auditory channel, because the words are verbal","The visual channel, because printed text enters through the eyes","Neither, because text is not an element"],"answerIndex":1,"reveal":"Printed text is verbal in content but enters through the eyes, so it loads the visual channel and competes with the animation for the same limited capacity."},{"prompt":"To relieve the overload without deleting content, what is the governing move?","predictType":"choice","choices":["Shrink the font so the paragraph takes less space","Convert the paragraph to timed narration so it travels through the unused auditory channel","Add a caption track restating the narration"],"answerIndex":1,"reveal":"Offloading the verbal stream to narration uses the idle auditory channel, dropping the visual element count for a novice from roughly nine to four while keeping all the content."},{"reveal":"The intrinsic load (the water-cycle phases) is untouched; only extraneous competition fell. Adding a caption track would have reintroduced a third visual element, undoing the rebalancing, which is why that suggestion is rejected."}]'></step-reveal>
 
 ## Decision Rule
 
@@ -85,7 +85,7 @@ If a revision lowers extraneous load but also strips a prediction or self-explan
 
 The most common error is treating the architecture as a style guide ("less text, more pictures"). It is a capacity model. A picture-heavy frame can still overload a single channel, and a text-only frame can be fine for an expert whose schema chunks the words.
 
-<inline-check question="A frame shows a diagram plus on-screen narration captions that print exactly what the audio says. For a novice, is this dual-channel design?" explanation="Captions are printed text, so they load the visual channel alongside the diagram while the audio is redundant. The verbal stream is duplicated across channels rather than split, so the visual channel is overloaded rather than relieved." options='[{"text":"Yes, audio and text use two channels, so load is balanced","correct":false},{"text":"No, the captions reload the visual channel and duplicate the audio, so the visual channel is still overloaded","correct":true},{"text":"Yes, more representations always reduce load","correct":false}]' />
+<inline-check question="A frame shows a diagram plus on-screen narration captions that print exactly what the audio says. For a novice, is this dual-channel design?" explanation="Captions are printed text, so they load the visual channel alongside the diagram while the audio is redundant. The verbal stream is duplicated across channels rather than split, so the visual channel is overloaded rather than relieved." options='[{"text":"Yes, audio and text use two channels, so load is balanced","correct":false},{"text":"No, the captions reload the visual channel and duplicate the audio, so the visual channel is still overloaded","correct":true},{"text":"Yes, more representations always reduce load","correct":false}]'></inline-check>
  The second error is calling all difficulty "load to be removed." Germane load is difficulty you want; an interface that removes the learner's need to predict, explain, or organize has lowered effort and lowered learning at the same time.
 
 ## Textbook Walkthrough
@@ -117,7 +117,7 @@ Now move the same screen to an expert audience: graduate hydrologists reviewing 
 
 Open the studio packet: [download the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence packet](/downloads/summer2026/ail606-supplement/01-01-cognitive-architecture-for-multimedia-lear-artifact.md).
 
-<artifact-studio artifact="cognitive load diagnosis table with intrinsic/extraneous/germane load evidence" course="AIL 606" section="01.01" />
+<artifact-studio artifact="cognitive load diagnosis table with intrinsic/extraneous/germane load evidence" course="AIL 606" section="01.01"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -130,13 +130,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence for AIL 606 01.01. A peer comment points to an interface move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence for AIL 606 01.01. A peer comment points to an interface move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What would make this section more useful while you revise?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_cognitive_architecture_for_multimedia_learning" />
+<interactive-quiz question="What would make this section more useful while you revise?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_cognitive_architecture_for_multimedia_learning"></interactive-quiz>
 
 ## Final Check
 
@@ -146,7 +146,7 @@ Before you move on, check that each row of the table names the channel an elemen
 
 See how this section's ideas connect: the architecture grounds evidence-based revision of the artifact, and AI support is bounded by what the model can and cannot diagnose.
 
-<concept-map concepts='["ail606_supplement_cognitive_architecture_for_multimedia_learning", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_cognitive_architecture_for_multimedia_learning", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

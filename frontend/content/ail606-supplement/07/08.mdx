@@ -35,9 +35,9 @@ An argument is only as strong as its weakest link. The two most common breaks ar
 
 Assemble the translation chain in order, from research to a disclosed, tested decision.
 
-<sequence-builder mode="order" items='["Finding: a research result relevant to the design choice (identical narration plus on-screen text raises extraneous load).", "Principle: the design rule the finding implies (remove duplicate on-screen text where narration carries the content).", "Design decision: the specific change to the artifact (on frames 2 to 5, drop the duplicated caption, keep key labels).", "Evidence: the observation that tests the decision (4 of 5 testers re-read less and started the next action sooner).", "Disclosed revision: the change with AI assistance scoped, verified, and owned."]' />
+<sequence-builder mode="order" items='["Finding: a research result relevant to the design choice (identical narration plus on-screen text raises extraneous load).", "Principle: the design rule the finding implies (remove duplicate on-screen text where narration carries the content).", "Design decision: the specific change to the artifact (on frames 2 to 5, drop the duplicated caption, keep key labels).", "Evidence: the observation that tests the decision (4 of 5 testers re-read less and started the next action sooner).", "Disclosed revision: the change with AI assistance scoped, verified, and owned."]'></sequence-builder>
 
-<inline-check question="A report cites Mayer's redundancy principle, then ships a storyboard that still shows narration AND identical on-screen text. Which link is broken?" explanation="The finding was cited but never altered a decision: the screens still duplicate narration and text, the very thing the principle warns against. This is the back break, a decorative citation that changes nothing." options='[{"text":"The forward link: the decision was tested but the finding is wrong.","correct":false},{"text":"The back link: the finding is cited but changes no design decision.","correct":true},{"text":"No link is broken; citing the principle is enough.","correct":false}]' />
+<inline-check question="A report cites Mayer's redundancy principle, then ships a storyboard that still shows narration AND identical on-screen text. Which link is broken?" explanation="The finding was cited but never altered a decision: the screens still duplicate narration and text, the very thing the principle warns against. This is the back break, a decorative citation that changes nothing." options='[{"text":"The forward link: the decision was tested but the finding is wrong.","correct":false},{"text":"The back link: the finding is cited but changes no design decision.","correct":true},{"text":"No link is broken; citing the principle is enough.","correct":false}]'></inline-check>
 
 The course anchors are the raw material the chain translates. **Mayer's redundancy principle** is a finding that becomes a principle (remove duplicated on-screen text where narration carries content) and then a concrete decision (drop captions on specific frames). **Cognitive load theory** explains *why* the decision should help (it lowers extraneous load), which is what lets the evidence be interpreted rather than merely collected. **UDL learner variability** keeps the chain honest about scope: a decision that helps the tested learners may need rechecking for others, so the evidence link names whose behavior was observed.
 
@@ -65,7 +65,7 @@ The revised version is a complete chain: each design decision traces back to a f
 
 One rejected addition: a second, unrelated theory citation. I left it out because it would not change any decision in this package and would only decorate the argument, reintroducing the very back break the studio exists to eliminate.
 
-<step-reveal title="Hunt the broken link in a feedback-timing package" steps='[{"prompt":"A student cites a finding that immediate feedback can aid skill acquisition, then builds a prototype that delays all feedback to the end of the lesson. Which link breaks first?","predictType":"choice","choices":["Back link: the finding is cited then contradicted by the decision","Forward link: the decision is tested but unsupported","Disclosure link: AI use is hidden"],"answerIndex":0,"reveal":"Back break. The finding implies a principle (deliver feedback immediately after the response on practice items), but the prototype delays it, so the citation changed nothing or was contradicted. Repair: move feedback to immediately after each item so the decision matches the principle."},{"prompt":"After moving feedback to immediately after each item, the report still asserts the prototype \"gives good feedback\" with no observation. Which link is now the weak one?","predictType":"choice","choices":["Back link","Forward link: the decision is never tested","Principle link"],"answerIndex":1,"reveal":"Forward break. An untested decision is a hope, not a result. Repair: add a small moderated check of whether learners use the immediate feedback before the next item, scoped honestly as a usability observation, not an efficacy claim."},{"reveal":"Repaired chain: finding to principle to a decision that matches the principle to evidence that tests it to a disclosed, verified revision. Integration is repair work, finding each break and closing it, not adding more citations."}]' />
+<step-reveal title="Hunt the broken link in a feedback-timing package" steps='[{"prompt":"A student cites a finding that immediate feedback can aid skill acquisition, then builds a prototype that delays all feedback to the end of the lesson. Which link breaks first?","predictType":"choice","choices":["Back link: the finding is cited then contradicted by the decision","Forward link: the decision is tested but unsupported","Disclosure link: AI use is hidden"],"answerIndex":0,"reveal":"Back break. The finding implies a principle (deliver feedback immediately after the response on practice items), but the prototype delays it, so the citation changed nothing or was contradicted. Repair: move feedback to immediately after each item so the decision matches the principle."},{"prompt":"After moving feedback to immediately after each item, the report still asserts the prototype \"gives good feedback\" with no observation. Which link is now the weak one?","predictType":"choice","choices":["Back link","Forward link: the decision is never tested","Principle link"],"answerIndex":1,"reveal":"Forward break. An untested decision is a hope, not a result. Repair: add a small moderated check of whether learners use the immediate feedback before the next item, scoped honestly as a usability observation, not an efficacy claim."},{"reveal":"Repaired chain: finding to principle to a decision that matches the principle to evidence that tests it to a disclosed, verified revision. Integration is repair work, finding each break and closing it, not adding more citations."}]'></step-reveal>
 
 ## Decision Rule
 
@@ -96,13 +96,13 @@ Carry the integration discipline into a full thesis or design-case publication, 
 
 ## Concept Map
 
-<concept-map concepts='["ail606_supplement_research_translation_for_learning_design", "ail606_supplement_research_translation_studio", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_research_translation_for_learning_design", "ail606_supplement_research_translation_studio", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/07-08-research-translation-studio-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="07.08" />
+<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="07.08"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -115,13 +115,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 07.08. A peer comment points to an adaptive move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 07.08. A peer comment points to an adaptive move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="ail606_supplement_research_translation_studio" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="ail606_supplement_research_translation_studio"></interactive-quiz>
 
 ## Final Check
 

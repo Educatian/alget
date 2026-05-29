@@ -61,9 +61,9 @@ Notice that two of the six layers caught problems on a single slide that already
 
 Walk the capstone pipeline one decision at a time, predicting each move before you reveal it:
 
-<step-reveal title="Run a finished-looking deck through the six layers" steps='[{"prompt":"A deck has a nice theme, smooth animations, and confident narration. Where do you start the capstone pass?","predictType":"choice","choices":["At polish; the surface is already strong","At purpose: confirm who the audience is and what action the deck drives","At accessibility, since it is the strictest check","At narration, since the voice is already recorded"],"answerIndex":1,"reveal":"Start at purpose. It decides which content belongs, so there is no point structuring a slide the audience does not need. The six layers run in dependency order."},{"prompt":"Slide 3’s title is the label \"Results\" and its contrast fails. Which layers caught these, and when do you fix contrast?","predictType":"choice","choices":["Polish caught both; fix them together at the end","Structure caught the label title; accessibility caught contrast, fixed last once content is final","Purpose caught both; fix before anything else","Citation caught both; fix during sourcing"],"answerIndex":1,"reveal":"Structure flags the label title (rewrite to \"Cut report time 40%\"); accessibility flags contrast. Fix contrast last, because re-checking it on a slide you are about to rewrite wastes the check."},{"reveal":"Attach the revision trail: the earlier slide 3, the gap each layer exposed, the support you used (alt-text help from BigAL, disclosed), and one rejected suggestion (an animated transition) with the reason it added no meaning. The trail, not the finish, is the evidence."}]' />
+<step-reveal title="Run a finished-looking deck through the six layers" steps='[{"prompt":"A deck has a nice theme, smooth animations, and confident narration. Where do you start the capstone pass?","predictType":"choice","choices":["At polish; the surface is already strong","At purpose: confirm who the audience is and what action the deck drives","At accessibility, since it is the strictest check","At narration, since the voice is already recorded"],"answerIndex":1,"reveal":"Start at purpose. It decides which content belongs, so there is no point structuring a slide the audience does not need. The six layers run in dependency order."},{"prompt":"Slide 3’s title is the label \"Results\" and its contrast fails. Which layers caught these, and when do you fix contrast?","predictType":"choice","choices":["Polish caught both; fix them together at the end","Structure caught the label title; accessibility caught contrast, fixed last once content is final","Purpose caught both; fix before anything else","Citation caught both; fix during sourcing"],"answerIndex":1,"reveal":"Structure flags the label title (rewrite to \"Cut report time 40%\"); accessibility flags contrast. Fix contrast last, because re-checking it on a slide you are about to rewrite wastes the check."},{"reveal":"Attach the revision trail: the earlier slide 3, the gap each layer exposed, the support you used (alt-text help from BigAL, disclosed), and one rejected suggestion (an animated transition) with the reason it added no meaning. The trail, not the finish, is the evidence."}]'></step-reveal>
 
-<inline-check question="A student wants to check accessibility first because it feels like the most rigorous layer. Why does the pipeline put accessibility last?" explanation="Accessibility must be re-verified after content is final. Checking contrast or labels on a slide you are about to rewrite means re-checking after every edit; running it last lands the check on stable content." options='[{"text":"Accessibility matters least, so it goes last","correct":false},{"text":"It must be re-verified after content is final, so checking it early forces rework","correct":true},{"text":"Accessibility depends on the theme, which is chosen first","correct":false},{"text":"Screen readers cannot run until narration is recorded","correct":false}]' />
+<inline-check question="A student wants to check accessibility first because it feels like the most rigorous layer. Why does the pipeline put accessibility last?" explanation="Accessibility must be re-verified after content is final. Checking contrast or labels on a slide you are about to rewrite means re-checking after every edit; running it last lands the check on stable content." options='[{"text":"Accessibility matters least, so it goes last","correct":false},{"text":"It must be re-verified after content is final, so checking it early forces rework","correct":true},{"text":"Accessibility depends on the theme, which is chosen first","correct":false},{"text":"Screen readers cannot run until narration is recorded","correct":false}]'></inline-check>
 
 ## Decision Rule
 
@@ -91,7 +91,7 @@ Because you ran the layers in order, this is a cheap fix at the end rather than 
 
 Order the six capstone layers the way the pipeline runs them, where each depends on the one before it:
 
-<sequence-builder mode="order" items='["Purpose: name the audience and the single action the deck should drive", "Structure: make each title an assertion the evidence proves", "Media: confirm each image explains and is verified", "Narration: ensure the voice adds reasoning instead of rereading the slide", "Citation: verify every source and figure and disclose AI authorship", "Accessibility: check contrast, alt text, and not-color-alone on final content"]' />
+<sequence-builder mode="order" items='["Purpose: name the audience and the single action the deck should drive", "Structure: make each title an assertion the evidence proves", "Media: confirm each image explains and is verified", "Narration: ensure the voice adds reasoning instead of rereading the slide", "Citation: verify every source and figure and disclose AI authorship", "Accessibility: check contrast, alt text, and not-color-alone on final content"]'></sequence-builder>
 
 ## What Strong Reading Looks Like
 
@@ -118,13 +118,13 @@ Suppose the final deliverable changes from a live pitch to a self-running file a
 
 Connect the ideas this capstone pulls together. See how running the full six-layer pipeline feeds evidence-based revision of the storyboard:
 
-<concept-map concepts='["cat100_supplement_module_5_presentation_studio", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_module_5_presentation_studio", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the presentation storyboard with audience constraint and slide-level evidence packet](/downloads/summer2026/cat100-supplement/05-08-module-5-presentation-studio-artifact.md).
 
-<artifact-studio artifact="presentation storyboard with audience constraint and slide-level evidence" course="CAT 100" section="05.08" />
+<artifact-studio artifact="presentation storyboard with audience constraint and slide-level evidence" course="CAT 100" section="05.08"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -137,13 +137,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the pipeline to a new deliverable and predict which layers shift.
 - If your note makes a **connection**, show where one layer caught a gap polish was hiding.
 
-<dynamic-scenario prompt="You are revising the presentation storyboard with audience constraint and slide-level evidence for CAT 100 05.08. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the presentation storyboard with audience constraint and slide-level evidence for CAT 100 05.08. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The learner explains how the same decision rule changes under a new audience or constraint.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_module_5_presentation_studio" />
+<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The learner explains how the same decision rule changes under a new audience or constraint.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_module_5_presentation_studio"></interactive-quiz>
 
 ## Final Check
 

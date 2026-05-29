@@ -68,7 +68,7 @@ If you mix frames accidentally, the algebra can look correct while the answer is
 
 The subscript grammar is the part students misread most. Match each relative-motion symbol or rule to its meaning to lock in the "as observed by" convention before the worked examples.
 
-<sequence-builder mode="match" items='[{"term":"v_B/A","definition":"Velocity of B as seen by an observer riding on A (v_B minus v_A)"},{"term":"v_A/G","definition":"Velocity of A relative to the fixed ground, the same as v_A"},{"term":"v_B/G = v_B/A + v_A/G","definition":"Frame chaining: the inner A subscript cancels, leaving B relative to ground"},{"term":"v_B/A = 0","definition":"B appears stationary to A because their ground velocities are identical"}]' />
+<sequence-builder mode="match" items='[{"term":"v_B/A","definition":"Velocity of B as seen by an observer riding on A (v_B minus v_A)"},{"term":"v_A/G","definition":"Velocity of A relative to the fixed ground, the same as v_A"},{"term":"v_B/G = v_B/A + v_A/G","definition":"Frame chaining: the inner A subscript cancels, leaving B relative to ground"},{"term":"v_B/A = 0","definition":"B appears stationary to A because their ground velocities are identical"}]'></sequence-builder>
 
 ---
 
@@ -114,14 +114,13 @@ $$
 
 The explorer below makes the subtraction tangible. Enter the ground-frame velocity components of two cars approaching an intersection and read the relative-velocity components and the closing speed $|\vec{v}_{B/A}|$ that a collision-avoidance system would compute. Try equal velocities to see the relative speed collapse to zero.
 
-<parameter-explorer config='{"title":"Relative velocity of B with respect to A (closing speed)","sliders":[{"name":"vAx","label":"Car A east component vAx","min":-40,"max":40,"step":1,"unit":"m/s","default":30},{"name":"vAy","label":"Car A north component vAy","min":-40,"max":40,"step":1,"unit":"m/s","default":0},{"name":"vBx","label":"Car B east component vBx","min":-40,"max":40,"step":1,"unit":"m/s","default":0},{"name":"vBy","label":"Car B north component vBy","min":-40,"max":40,"step":1,"unit":"m/s","default":40}],"outputs":[{"label":"Relative east comp (vBx - vAx)","unit":"m/s","expr":"vBx - vAx"},{"label":"Relative north comp (vBy - vAy)","unit":"m/s","expr":"vBy - vAy"},{"label":"Closing speed |v_B/A|","unit":"m/s","expr":"sqrt((vBx - vAx)^2 + (vBy - vAy)^2)"}],"plot":{"x":"vBy","output":2}}' />
+<parameter-explorer config='{"title":"Relative velocity of B with respect to A (closing speed)","sliders":[{"name":"vAx","label":"Car A east component vAx","min":-40,"max":40,"step":1,"unit":"m/s","default":30},{"name":"vAy","label":"Car A north component vAy","min":-40,"max":40,"step":1,"unit":"m/s","default":0},{"name":"vBx","label":"Car B east component vBx","min":-40,"max":40,"step":1,"unit":"m/s","default":0},{"name":"vBy","label":"Car B north component vBy","min":-40,"max":40,"step":1,"unit":"m/s","default":40}],"outputs":[{"label":"Relative east comp (vBx - vAx)","unit":"m/s","expr":"vBx - vAx"},{"label":"Relative north comp (vBy - vAy)","unit":"m/s","expr":"vBy - vAy"},{"label":"Closing speed |v_B/A|","unit":"m/s","expr":"sqrt((vBx - vAx)^2 + (vBy - vAy)^2)"}],"plot":{"x":"vBy","output":2}}'></parameter-explorer>
 
 <inline-check
   question="Two cars have IDENTICAL ground velocities (same speed, same direction). What does the relative-velocity explorer report for the closing speed |v_B/A|?"
   conceptId="relative_velocity"
   explanation="Relative velocity is v_B minus v_A. If the two velocity vectors are identical, their difference is the zero vector, so the closing speed is 0. Each driver sees the other as stationary, even though both move fast over the ground."
-  options='[{"text":"Zero, because the velocity vectors cancel in the subtraction.","correct":true},{"text":"The sum of the two speeds.","correct":false},{"text":"Twice either car speed.","correct":false}]'
-/>
+  options='[{"text":"Zero, because the velocity vectors cancel in the subtraction.","correct":true},{"text":"The sum of the two speeds.","correct":false},{"text":"Twice either car speed.","correct":false}]'></inline-check>
 
 ### Worked Example 3.2: Aircraft in Wind
 
@@ -189,7 +188,7 @@ Correcting for drift costs about $26 \text{ s}$ of extra crossing time, because 
 
 Walk the river-crossing logic step by step. Predict each result before revealing it, and notice exactly where the drift-correction heading steals speed from the across-stream direction.
 
-<step-reveal title="River crossing: drift, then correction (Example 3.3)" steps='[{"prompt":"The bow is aimed straight across (north) at 4 m/s in water that flows east at 3 m/s. What is the boat ground SPEED?","predictType":"choice","choices":["5.0 m/s","1.0 m/s","7.0 m/s"],"answerIndex":0,"reveal":"Ground velocity = 3 i + 4 j, so speed = sqrt(3^2 + 4^2) = 5.0 m/s. The current adds an east component the boat never intended."},{"prompt":"The river is 200 m wide. The crossing time depends on which component of the boat velocity?","predictType":"choice","choices":["The 4 m/s northward (across-stream) component only","The full 5 m/s ground speed","The 3 m/s current"],"answerIndex":0,"reveal":"Only the across-stream component moves the boat toward the far bank: t = 200/4 = 50 s. The east current does not shorten the crossing; it just slides the boat downstream."},{"prompt":"During those 50 s, how far downstream (east) does the current carry the boat?","predictType":"choice","choices":["150 m east","100 m east","50 m east"],"answerIndex":0,"reveal":"d = (3 m/s)(50 s) = 150 m east. This is the drift you must cancel to land directly opposite."},{"prompt":"To land straight across, aim the bow at angle phi west of north so 4 sin(phi) cancels the 3 m/s current. What is phi?","predictType":"choice","choices":["48.6 degrees west of north","36.9 degrees west of north","30 degrees west of north"],"answerIndex":0,"reveal":"sin(phi) = 3/4, so phi = 48.6 degrees west of north. Part of the 4 m/s is now spent fighting the current."},{"reveal":"The remaining north component is 4 cos(48.6) = 2.65 m/s, so t = 200/2.65 = 75.6 s. Correcting for drift costs about 26 s: accuracy and crossing speed trade against each other."}]' />
+<step-reveal title="River crossing: drift, then correction (Example 3.3)" steps='[{"prompt":"The bow is aimed straight across (north) at 4 m/s in water that flows east at 3 m/s. What is the boat ground SPEED?","predictType":"choice","choices":["5.0 m/s","1.0 m/s","7.0 m/s"],"answerIndex":0,"reveal":"Ground velocity = 3 i + 4 j, so speed = sqrt(3^2 + 4^2) = 5.0 m/s. The current adds an east component the boat never intended."},{"prompt":"The river is 200 m wide. The crossing time depends on which component of the boat velocity?","predictType":"choice","choices":["The 4 m/s northward (across-stream) component only","The full 5 m/s ground speed","The 3 m/s current"],"answerIndex":0,"reveal":"Only the across-stream component moves the boat toward the far bank: t = 200/4 = 50 s. The east current does not shorten the crossing; it just slides the boat downstream."},{"prompt":"During those 50 s, how far downstream (east) does the current carry the boat?","predictType":"choice","choices":["150 m east","100 m east","50 m east"],"answerIndex":0,"reveal":"d = (3 m/s)(50 s) = 150 m east. This is the drift you must cancel to land directly opposite."},{"prompt":"To land straight across, aim the bow at angle phi west of north so 4 sin(phi) cancels the 3 m/s current. What is phi?","predictType":"choice","choices":["48.6 degrees west of north","36.9 degrees west of north","30 degrees west of north"],"answerIndex":0,"reveal":"sin(phi) = 3/4, so phi = 48.6 degrees west of north. Part of the 4 m/s is now spent fighting the current."},{"reveal":"The remaining north component is 4 cos(48.6) = 2.65 m/s, so t = 200/2.65 = 75.6 s. Correcting for drift costs about 26 s: accuracy and crossing speed trade against each other."}]'></step-reveal>
 
 ---
 
@@ -241,9 +240,9 @@ A lot of "surprise" failures in motion analysis come from forgetting that the ch
 
 Relative motion rests on three linked ideas. Select a node to see how the reference frame, the relative-velocity vector, and the Galilean transformation depend on one another.
 
-<concept-map concepts='["relative_velocity","reference_frame","galilean_transform"]' title="Relative Motion" />
+<concept-map concepts='["relative_velocity","reference_frame","galilean_transform"]' title="Relative Motion"></concept-map>
 
-<dynamic-scenario topic="Relative Motion in Navigation" context="An autonomous rescue drone must deliver medicine to a boat moving downstream while crosswinds push the drone sideways." />
+<dynamic-scenario topic="Relative Motion in Navigation" context="An autonomous rescue drone must deliver medicine to a boat moving downstream while crosswinds push the drone sideways."></dynamic-scenario>
 
 ---
 
@@ -283,15 +282,13 @@ Relative motion rests on three linked ideas. Select a node to see how the refere
   question="A runner moves east at 6 m/s on a moving walkway that itself moves east at 2 m/s relative to the ground. What is the runner's velocity relative to the ground?"
   conceptId="relative_velocity"
   options='[{"text":"8 m/s east, because the walkway and runner velocities add in the same direction.","isCorrect":true},{"text":"4 m/s east, because the walkway speed must always be subtracted.","isCorrect":false},{"text":"6 m/s east, because only the runner motion counts for relative motion.","isCorrect":false}]'
-  explanation="Correct. When the motions are in the same direction, the ground-relative velocity is the platform velocity plus the motion measured relative to that platform."
-/>
+  explanation="Correct. When the motions are in the same direction, the ground-relative velocity is the platform velocity plus the motion measured relative to that platform."></interactive-quiz>
 
 <interactive-quiz
   question="Why is it dangerous to solve a boat-in-current problem using the boat speed through water as if it were already the ground speed?"
   conceptId="reference_frame"
   options='[{"text":"Because water-relative speed and ground-relative speed belong to different reference frames and cannot be treated as interchangeable.","isCorrect":true},{"text":"Because boats only follow scalar equations, not vector equations.","isCorrect":false},{"text":"Because currents affect acceleration but never velocity.","isCorrect":false}]'
-  explanation="Correct. A boat's speed relative to water is not the same as its speed relative to shore. The current changes the frame, so the velocity must be recombined vectorially."
-/>
+  explanation="Correct. A boat's speed relative to water is not the same as its speed relative to shore. The current changes the frame, so the velocity must be recombined vectorially."></interactive-quiz>
 
 ---
 

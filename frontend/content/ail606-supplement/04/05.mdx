@@ -37,9 +37,9 @@ The reason these are revision checks and not aesthetic preferences is that each 
 
 Contrast is arithmetic, not taste. Given the relative luminance of the text (\$L_t\$) and the background (\$L_b\$), the ratio is \$(L_{light} + 0.05) / (L_{dark} + 0.05)\$. With white text on a white-ish page the denominator stays near the background, so the ratio is \$(L_b + 0.05)/(L_t + 0.05)\$ for dark text on a light field. Drive the text luminance down and watch the ratio cross the 4.5:1 AA threshold (gray #999 sits near \$L_t = 0.32\$; #333 near \$L_t = 0.03\$).
 
-<parameter-explorer config='{"title":"WCAG 1.4.3 contrast ratio for dark text on a light background","sliders":[{"name":"Lb","label":"Background relative luminance","min":0.5,"max":1,"step":0.01,"unit":"","default":1},{"name":"Lt","label":"Text relative luminance","min":0,"max":0.6,"step":0.01,"unit":"","default":0.32}],"outputs":[{"label":"Contrast ratio (X to 1)","unit":":1","expr":"(Lb + 0.05) / (Lt + 0.05)"},{"label":"Margin over the 4.5 AA threshold","unit":"","expr":"(Lb + 0.05) / (Lt + 0.05) - 4.5"}],"plot":{"x":"Lt","output":0}}' />
+<parameter-explorer config='{"title":"WCAG 1.4.3 contrast ratio for dark text on a light background","sliders":[{"name":"Lb","label":"Background relative luminance","min":0.5,"max":1,"step":0.01,"unit":"","default":1},{"name":"Lt","label":"Text relative luminance","min":0,"max":0.6,"step":0.01,"unit":"","default":0.32}],"outputs":[{"label":"Contrast ratio (X to 1)","unit":":1","expr":"(Lb + 0.05) / (Lt + 0.05)"},{"label":"Margin over the 4.5 AA threshold","unit":"","expr":"(Lb + 0.05) / (Lt + 0.05) - 4.5"}],"plot":{"x":"Lt","output":0}}'></parameter-explorer>
 
-<inline-check question="An image of a three-step workflow has its alt attribute set to the bare word image. A validator reports no error. Why does this still fail WCAG 1.1.1?" explanation="The validator only checks that the alt attribute exists, not that it carries the information in the image. A screen-reader user hears the word image and learns nothing about the workflow; the text alternative must convey the steps and flow the graphic communicates." options='[{"text":"The alt attribute exists but carries none of the workflow information the image communicates.","correct":true},{"text":"The image file format is wrong for accessibility.","correct":false},{"text":"Alt text is never required on informative images.","correct":false},{"text":"It passes; a validator with no error means the screen is accessible.","correct":false}]' />
+<inline-check question="An image of a three-step workflow has its alt attribute set to the bare word image. A validator reports no error. Why does this still fail WCAG 1.1.1?" explanation="The validator only checks that the alt attribute exists, not that it carries the information in the image. A screen-reader user hears the word image and learns nothing about the workflow; the text alternative must convey the steps and flow the graphic communicates." options='[{"text":"The alt attribute exists but carries none of the workflow information the image communicates.","correct":true},{"text":"The image file format is wrong for accessibility.","correct":false},{"text":"Alt text is never required on informative images.","correct":false},{"text":"It passes; a validator with no error means the screen is accessible.","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -74,7 +74,7 @@ Work through one annotated before/after accessibility revision of a single quiz-
 
 Match each common failure to the named WCAG criterion it violates and the verifiable fix that resolves it. Naming the criterion is what turns "looks fine" into reproducible evidence.
 
-<sequence-builder mode="match" items='[{"term":"Body text at #999 on white, about 2.8 to 1","definition":"1.4.3 Contrast: darken the text until the computed ratio clears 4.5 to 1"},{"term":"A workflow diagram whose alt text is just the word image","definition":"1.1.1 Non-text Content: describe the steps and flow the diagram communicates"},{"term":"Correct and incorrect shown only by green vs red","definition":"1.4.1 Use of Color: pair each status with a word or distinct shape"}]' />
+<sequence-builder mode="match" items='[{"term":"Body text at #999 on white, about 2.8 to 1","definition":"1.4.3 Contrast: darken the text until the computed ratio clears 4.5 to 1"},{"term":"A workflow diagram whose alt text is just the word image","definition":"1.1.1 Non-text Content: describe the steps and flow the diagram communicates"},{"term":"Correct and incorrect shown only by green vs red","definition":"1.4.1 Use of Color: pair each status with a word or distinct shape"}]'></sequence-builder>
 
 ## Decision Rule
 
@@ -125,7 +125,7 @@ Move the same screen from a desktop web prototype to a printed, black-and-white 
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/04-05-accessibility-and-wcag-checks-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="04.05" />
+<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="04.05"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -138,17 +138,17 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 04.05. A peer comment points to an adaptive move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 04.05. A peer comment points to an adaptive move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="ail606_supplement_accessibility_and_wcag_checks" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="ail606_supplement_accessibility_and_wcag_checks"></interactive-quiz>
 
 ## Concept Map
 
-<concept-map concepts='["accessibility", "ail606_supplement_design_draft_and_theory_to_prototype_alignment", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["accessibility", "ail606_supplement_design_draft_and_theory_to_prototype_alignment", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Final Check
 

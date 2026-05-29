@@ -59,13 +59,13 @@ The after version is defensible because a moderated session can disconfirm it: i
 
 Walk the rationale-to-hypothesis conversion as predictions you commit to before any data arrives. Each step locks in one part that a weak hypothesis leaves blank.
 
-<step-reveal title="Convert the onboarding rationale into a falsifiable H1" steps='[{"prompt":"The team writes: \"Simplified onboarding is easier, so confirm it is better.\" Which part of a testable hypothesis is missing first?","predictType":"choice","choices":["A named mechanism","An observable outcome and a threshold a session could miss","A larger participant pool","A more polished prototype"],"answerIndex":1,"reveal":"The rationale names a feeling (easier) with no countable outcome and no threshold, so no session result could ever contradict it. Naming the observable outcome and the kill threshold is the first fix."},{"prompt":"You pick first-task abandonment as the outcome. Which mechanism predicts the DIRECTION of the change?","predictType":"choice","choices":["UDL learner variability","Mayer signaling principle","Cognitive load theory (fewer fields lower extraneous load)","Satisfaction theory"],"answerIndex":2,"reveal":"Cognitive load theory predicts that cutting 7 fields to 3 reduces extraneous load competing with the learners goal, so abandonment should fall. The mechanism is what makes a null result interpretable rather than mute."},{"reveal":"Final H1: With the 3-field screen, at least 8 of 10 first-time participants reach the first tutoring task without abandoning, versus the 4 of 10 baseline. Mechanism, observable outcome, direction, and a threshold a sample of 10 could plausibly miss are all now present, so a result of 5 of 10 would kill the hypothesis and force a revision of the rationale, not the data."}]' />
+<step-reveal title="Convert the onboarding rationale into a falsifiable H1" steps='[{"prompt":"The team writes: \"Simplified onboarding is easier, so confirm it is better.\" Which part of a testable hypothesis is missing first?","predictType":"choice","choices":["A named mechanism","An observable outcome and a threshold a session could miss","A larger participant pool","A more polished prototype"],"answerIndex":1,"reveal":"The rationale names a feeling (easier) with no countable outcome and no threshold, so no session result could ever contradict it. Naming the observable outcome and the kill threshold is the first fix."},{"prompt":"You pick first-task abandonment as the outcome. Which mechanism predicts the DIRECTION of the change?","predictType":"choice","choices":["UDL learner variability","Mayer signaling principle","Cognitive load theory (fewer fields lower extraneous load)","Satisfaction theory"],"answerIndex":2,"reveal":"Cognitive load theory predicts that cutting 7 fields to 3 reduces extraneous load competing with the learners goal, so abandonment should fall. The mechanism is what makes a null result interpretable rather than mute."},{"reveal":"Final H1: With the 3-field screen, at least 8 of 10 first-time participants reach the first tutoring task without abandoning, versus the 4 of 10 baseline. Mechanism, observable outcome, direction, and a threshold a sample of 10 could plausibly miss are all now present, so a result of 5 of 10 would kill the hypothesis and force a revision of the rationale, not the data."}]'></step-reveal>
 
 ## Decision Rule
 
 When a result comes back, decide what it revises before you decide what to build. A confirmed hypothesis revises the prototype toward the next risk; a disconfirmed one revises the rationale, because the mechanism you trusted did not hold here. The mistake to avoid is revising the data (explaining away a miss) instead of the reasoning.
 
-<inline-check question="A reviewer reads: H1 is that the new screen will improve completion. What is the single most disqualifying flaw?" explanation="Improve has no baseline and no numeric threshold, so any result reads as success. Without a threshold a sample could miss, the line is a goal, not a falsifiable hypothesis. The mechanism could be added next, but the missing kill condition is what makes it untestable now." options='[{"text":"It does not cite usability heuristics","correct":false},{"text":"It has no threshold a session could fail to reach, so nothing could disconfirm it","correct":true},{"text":"It uses ten participants instead of five","correct":false},{"text":"It mentions completion rather than satisfaction","correct":false}]' />
+<inline-check question="A reviewer reads: H1 is that the new screen will improve completion. What is the single most disqualifying flaw?" explanation="Improve has no baseline and no numeric threshold, so any result reads as success. Without a threshold a sample could miss, the line is a goal, not a falsifiable hypothesis. The mechanism could be added next, but the missing kill condition is what makes it untestable now." options='[{"text":"It does not cite usability heuristics","correct":false},{"text":"It has no threshold a session could fail to reach, so nothing could disconfirm it","correct":true},{"text":"It uses ten participants instead of five","correct":false},{"text":"It mentions completion rather than satisfaction","correct":false}]'></inline-check>
 
 Before locking the hypothesis into your moderated usability test script with observation-to-revision trace, run three checks:
 
@@ -89,7 +89,7 @@ Now stress-test it against **UDL learner variability**. If the gain is concentra
 
 A threshold is only honest if your sample could plausibly miss it. Manipulate the baseline, the predicted gain, and the sample size below to see how many successes your hypothesis demands and how big a swing a single participant produces, which is the calibration check made concrete.
 
-<parameter-explorer config='{"title":"Calibrate a falsifiable success threshold","sliders":[{"name":"n","label":"Sample size (participants)","min":4,"max":20,"step":1,"unit":"people","default":10},{"name":"baseline","label":"Baseline success rate","min":0,"max":100,"step":5,"unit":"%","default":40},{"name":"gain","label":"Predicted gain over baseline","min":0,"max":60,"step":5,"unit":"pts","default":40}],"outputs":[{"label":"Predicted success rate","unit":"%","expr":"baseline + gain"},{"label":"Successes you must observe (rounded up via threshold)","unit":"people","expr":"n * (baseline + gain) / 100"},{"label":"Swing from one participant","unit":"pts","expr":"100 / n"}],"plot":{"x":"n","output":2}}' />
+<parameter-explorer config='{"title":"Calibrate a falsifiable success threshold","sliders":[{"name":"n","label":"Sample size (participants)","min":4,"max":20,"step":1,"unit":"people","default":10},{"name":"baseline","label":"Baseline success rate","min":0,"max":100,"step":5,"unit":"%","default":40},{"name":"gain","label":"Predicted gain over baseline","min":0,"max":60,"step":5,"unit":"pts","default":40}],"outputs":[{"label":"Predicted success rate","unit":"%","expr":"baseline + gain"},{"label":"Successes you must observe (rounded up via threshold)","unit":"people","expr":"n * (baseline + gain) / 100"},{"label":"Swing from one participant","unit":"pts","expr":"100 / n"}],"plot":{"x":"n","output":2}}'></parameter-explorer>
 
 Notice the third output: with n at 4, one participant moves the rate by 25 points, so a 40-point predicted gain is barely two people; with n at 20, each participant is worth only 5 points and the same threshold becomes far harder to hit by chance. That is why a credible threshold must be read against the sample, not chosen in the abstract.
 
@@ -118,7 +118,7 @@ Move the same hypothesis-writing discipline to a high-stakes setting: a complian
 
 Open the studio packet: [download the moderated usability test script with observation-to-revision trace packet](/downloads/summer2026/ail606-supplement/05-01-from-rationale-to-testable-hypotheses-artifact.md).
 
-<artifact-studio artifact="moderated usability test script with observation-to-revision trace" course="AIL 606" section="05.01" />
+<artifact-studio artifact="moderated usability test script with observation-to-revision trace" course="AIL 606" section="05.01"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -131,19 +131,19 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the moderated usability test script with observation-to-revision trace for AIL 606 05.01. A peer comment points to an interface move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the moderated usability test script with observation-to-revision trace for AIL 606 05.01. A peer comment points to an interface move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What would make this section more useful while you revise?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_from_rationale_to_testable_hypotheses" />
+<interactive-quiz question="What would make this section more useful while you revise?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_from_rationale_to_testable_hypotheses"></interactive-quiz>
 
 ## Final Check
 
 Before you move on, confirm your hypothesis states a baseline, a direction, an observable outcome, a threshold your sample could miss, and the named mechanism that predicts the direction.
 
-<concept-map concepts='["ail606_supplement_from_rationale_to_testable_hypotheses", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_from_rationale_to_testable_hypotheses", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

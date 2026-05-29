@@ -32,11 +32,11 @@ Two distinctions drive the design:
 
 Two failure modes are worth naming because they masquerade as success. The first is convergence by habit: raters who score together long enough start agreeing without shared anchors, so the agreement is brittle and breaks with a new rater. The second is splitting the difference: when A scores 3 and B scores 1, averaging to 2 hides the disagreement instead of resolving it. Genuine calibration finds what the two raters were each looking at and rewrites the descriptor so both look at the same evidence.
 
-<self-explain prompt="The decision rule says: rewrite the descriptor, do not retrain the rater. Why does fixing the rubric text outlast a meeting where two raters discuss and then agree?" answer="Discussion produces convergence by habit: the agreement lives in the room, in two people's privately shared understanding, not in the written descriptor. A new rater who never attended the meeting reopens every split. Rewriting the descriptor into countable evidence puts the shared anchor into the instrument itself, so it survives a new rater." />
+<self-explain prompt="The decision rule says: rewrite the descriptor, do not retrain the rater. Why does fixing the rubric text outlast a meeting where two raters discuss and then agree?" answer="Discussion produces convergence by habit: the agreement lives in the room, in two people's privately shared understanding, not in the written descriptor. A new rater who never attended the meeting reopens every split. Rewriting the descriptor into countable evidence puts the shared anchor into the instrument itself, so it survives a new rater."></self-explain>
 
 Order a calibration session so the gain comes from shared anchors, not from raters converging by habit.
 
-<sequence-builder mode="order" items='["Both raters score the same five drafts independently and record exact-agreement","Locate the splits and read the disagreement rather than averaging it","Trace one split (A=3, B=1) to the exact feature: whether silent frames count","Rewrite the level descriptor as a countable observation instead of an adjective","Re-score the same drafts independently and re-check agreement against the new text"]' />
+<sequence-builder mode="order" items='["Both raters score the same five drafts independently and record exact-agreement","Locate the splits and read the disagreement rather than averaging it","Trace one split (A=3, B=1) to the exact feature: whether silent frames count","Rewrite the level descriptor as a countable observation instead of an adjective","Re-score the same drafts independently and re-check agreement against the new text"]'></sequence-builder>
 
 | Symptom | Diagnosis | Calibration move |
 | --- | --- | --- |
@@ -68,7 +68,7 @@ Subject every descriptor to three tests before you trust the rubric:
 
 A rubric that fails any of these can still produce grades; it cannot produce grades that mean the same thing in different hands.
 
-<inline-check question="Two veteran co-teachers agree 95 percent of the time on a rubric whose Level 3 reads only 'Good narration.' Why is this not evidence the rubric is calibrated?" explanation="High agreement among raters who have privately converged over years of co-teaching lives in the room, not in the descriptors. The adjective 'Good' still carries a private definition, so the agreement evaporates the moment a new instructor scores the same drafts. This is convergence by habit, not calibration." options='[{"text":"The agreement is convergence by habit; a new rater using only the written text would reopen the splits.","correct":true},{"text":"95 percent is too low to count as calibrated.","correct":false},{"text":"Veteran raters are biased and should not score together.","correct":false},{"text":"The rubric is holistic, so agreement is impossible to measure.","correct":false}]' />
+<inline-check question="Two veteran co-teachers agree 95 percent of the time on a rubric whose Level 3 reads only 'Good narration.' Why is this not evidence the rubric is calibrated?" explanation="High agreement among raters who have privately converged over years of co-teaching lives in the room, not in the descriptors. The adjective 'Good' still carries a private definition, so the agreement evaporates the moment a new instructor scores the same drafts. This is convergence by habit, not calibration." options='[{"text":"The agreement is convergence by habit; a new rater using only the written text would reopen the splits.","correct":true},{"text":"95 percent is too low to count as calibrated.","correct":false},{"text":"Veteran raters are biased and should not score together.","correct":false},{"text":"The rubric is holistic, so agreement is impossible to measure.","correct":false}]'></inline-check>
 
 ## Common Misreadings
 
@@ -109,7 +109,7 @@ Move the calibration from human raters to an AI-assisted grader that pre-scores 
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/08-03-rubric-calibration-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="08.03" />
+<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="08.03"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -122,19 +122,19 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 08.03. A peer comment points to a transfer move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 08.03. A peer comment points to a transfer move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="ail606_supplement_rubric_calibration" />
+<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="ail606_supplement_rubric_calibration"></interactive-quiz>
 
 ## Final Check
 
 Before you move on, make sure your trace links Rubric Calibration, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
 
-<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "rubric_design", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "rubric_design", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

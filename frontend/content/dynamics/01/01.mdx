@@ -45,7 +45,7 @@ You can think of kinematics as the "what is the body doing?" layer, and kinetics
 
 The link between the two columns is **acceleration**. Kinematics treats $a$ as something to be measured or integrated; kinetics treats $a$ as something forces *cause*. The same symbol bridges geometry and force, which is why mastering its meaning is the single most important habit in this course.
 
-<kinematics-diagram />
+<kinematics-diagram></kinematics-diagram>
 
 ## Motion Is More Than Speed
 
@@ -102,14 +102,13 @@ These follow only when $a$ is constant. The moment acceleration varies with time
 
 The explorer below lets you drive the constant-acceleration model directly. Set an initial speed and a (signed) acceleration, then read off the position, the current velocity, and the stopping distance at the chosen time. Watch how the stopping distance responds when you change the initial speed: that quadratic sensitivity is the whole reason highway speed limits exist.
 
-<parameter-explorer config='{"title":"Constant-acceleration motion (x = x0 + v0 t + 1/2 a t^2)","sliders":[{"name":"v0","label":"Initial speed v0","min":0,"max":40,"step":1,"unit":"m/s","default":12},{"name":"a","label":"Acceleration a","min":-10,"max":10,"step":0.5,"unit":"m/s^2","default":-3},{"name":"t","label":"Elapsed time t","min":0,"max":10,"step":0.1,"unit":"s","default":4}],"outputs":[{"label":"Velocity v = v0 + a t","unit":"m/s","expr":"v0 + a * t"},{"label":"Position x = v0 t + 1/2 a t^2","unit":"m","expr":"v0 * t + 0.5 * a * t^2"},{"label":"Stopping distance v0^2 / (2|a|)","unit":"m","expr":"v0 * v0 / (2 * sqrt(a * a))"}],"plot":{"x":"v0","output":2}}' />
+<parameter-explorer config='{"title":"Constant-acceleration motion (x = x0 + v0 t + 1/2 a t^2)","sliders":[{"name":"v0","label":"Initial speed v0","min":0,"max":40,"step":1,"unit":"m/s","default":12},{"name":"a","label":"Acceleration a","min":-10,"max":10,"step":0.5,"unit":"m/s^2","default":-3},{"name":"t","label":"Elapsed time t","min":0,"max":10,"step":0.1,"unit":"s","default":4}],"outputs":[{"label":"Velocity v = v0 + a t","unit":"m/s","expr":"v0 + a * t"},{"label":"Position x = v0 t + 1/2 a t^2","unit":"m","expr":"v0 * t + 0.5 * a * t^2"},{"label":"Stopping distance v0^2 / (2|a|)","unit":"m","expr":"v0 * v0 / (2 * sqrt(a * a))"}],"plot":{"x":"v0","output":2}}'></parameter-explorer>
 
 <inline-check
   question="In the explorer, you double the initial speed v0 while keeping the acceleration fixed. Roughly how does the stopping distance v0^2/(2|a|) change?"
   conceptId="acceleration"
   explanation="Stopping distance is proportional to v0 squared, so doubling v0 multiplies the stopping distance by four. This is the v^2 law that drives speed limits and following-distance rules."
-  options='[{"text":"It roughly doubles.","correct":false},{"text":"It roughly quadruples.","correct":true},{"text":"It stays about the same.","correct":false}]'
-/>
+  options='[{"text":"It roughly doubles.","correct":false},{"text":"It roughly quadruples.","correct":true},{"text":"It stays about the same.","correct":false}]'></inline-check>
 
 ---
 
@@ -175,7 +174,7 @@ This example shows the full dynamics loop: kinetics ($F \to a$) hands its result
 
 Step through that loop yourself before re-reading the solution. Commit to a prediction at each stage, then reveal how the force becomes an acceleration and the acceleration becomes a stopping distance.
 
-<step-reveal title="Walking the kinetics-to-kinematics loop (Example 1.3)" steps='[{"prompt":"Forward is positive and the braking force is 7,200 N rearward. What is the SIGN of the net force on the car?","predictType":"choice","choices":["Positive, because the car is still moving forward","Negative, because the force opposes the forward motion","Zero, because the car has not stopped yet"],"answerIndex":1,"reveal":"The net force is -7,200 N. Sign comes from the force direction, not the velocity: the brake force points backward, opposite the chosen positive (forward) direction."},{"prompt":"Use Newton second law a = F/m with m = 1,200 kg. Which acceleration is correct?","predictType":"choice","choices":["a = -6.0 m/s^2","a = +6.0 m/s^2","a = -0.167 m/s^2"],"answerIndex":0,"reveal":"a = (-7,200)/(1,200) = -6.0 m/s^2. Kinetics has now produced the acceleration; it is negative because it opposes the forward velocity."},{"prompt":"Now hand a to kinematics. With v0 = 30 m/s and final v = 0, which equation gives the stopping distance without needing time?","predictType":"choice","choices":["x = x0 + v0 t + 1/2 a t^2","v^2 = v0^2 + 2 a (x - x0)","v = v0 + a t"],"answerIndex":1,"reveal":"The time-free relation v^2 = v0^2 + 2 a (delta x) is the right tool because time is unknown and not asked for."},{"reveal":"Solving: delta x = -v0^2/(2a) = -(30)^2 / (2*(-6.0)) = -900 / -12.0 = 75 m. The negatives cancel, giving a positive distance, and the kinetics-to-kinematics loop is complete."}]' />
+<step-reveal title="Walking the kinetics-to-kinematics loop (Example 1.3)" steps='[{"prompt":"Forward is positive and the braking force is 7,200 N rearward. What is the SIGN of the net force on the car?","predictType":"choice","choices":["Positive, because the car is still moving forward","Negative, because the force opposes the forward motion","Zero, because the car has not stopped yet"],"answerIndex":1,"reveal":"The net force is -7,200 N. Sign comes from the force direction, not the velocity: the brake force points backward, opposite the chosen positive (forward) direction."},{"prompt":"Use Newton second law a = F/m with m = 1,200 kg. Which acceleration is correct?","predictType":"choice","choices":["a = -6.0 m/s^2","a = +6.0 m/s^2","a = -0.167 m/s^2"],"answerIndex":0,"reveal":"a = (-7,200)/(1,200) = -6.0 m/s^2. Kinetics has now produced the acceleration; it is negative because it opposes the forward velocity."},{"prompt":"Now hand a to kinematics. With v0 = 30 m/s and final v = 0, which equation gives the stopping distance without needing time?","predictType":"choice","choices":["x = x0 + v0 t + 1/2 a t^2","v^2 = v0^2 + 2 a (x - x0)","v = v0 + a t"],"answerIndex":1,"reveal":"The time-free relation v^2 = v0^2 + 2 a (delta x) is the right tool because time is unknown and not asked for."},{"reveal":"Solving: delta x = -v0^2/(2a) = -(30)^2 / (2*(-6.0)) = -900 / -12.0 = 75 m. The negatives cancel, giving a positive distance, and the kinetics-to-kinematics loop is complete."}]'></step-reveal>
 
 ---
 
@@ -244,7 +243,7 @@ When you feel stuck in dynamics, it is often because one of those four confusion
 
 The four core ideas of this section are not a list; they form a small network. Select a node to see how kinematics, kinetics, velocity, and acceleration relate, with acceleration sitting at the center as the bridge between describing motion and explaining its cause.
 
-<concept-map concepts='["kinematics","dynamics","velocity","acceleration"]' title="Introduction to Dynamics" />
+<concept-map concepts='["kinematics","dynamics","velocity","acceleration"]' title="Introduction to Dynamics"></concept-map>
 
 ## Check Your Understanding
 
@@ -252,15 +251,13 @@ The four core ideas of this section are not a list; they form a small network. S
   question="A car is moving to the right, but its speed is decreasing. If right is defined as positive, which statement must be true?"
   conceptId="acceleration"
   options='[{"text":"Its velocity and acceleration are both positive.","isCorrect":false},{"text":"Its velocity is positive and its acceleration is negative.","isCorrect":true},{"text":"Its velocity is negative and its acceleration is positive.","isCorrect":false},{"text":"Its velocity is zero because it is slowing down.","isCorrect":false}]'
-  explanation="Exactly. The car is still moving right, so velocity is positive. Because its speed is decreasing, the acceleration must point opposite the motion, which makes it negative in this sign convention."
-/>
+  explanation="Exactly. The car is still moving right, so velocity is positive. Because its speed is decreasing, the acceleration must point opposite the motion, which makes it negative in this sign convention."></interactive-quiz>
 
 <interactive-quiz
   question="Why is the distinction between kinematics and kinetics so important in engineering dynamics?"
   conceptId="kinematics"
   options='[{"text":"Because kinematics and kinetics are just two words for the same equations.","isCorrect":false},{"text":"Because kinematics describes the motion, while kinetics explains the forces and moments causing it.","isCorrect":true},{"text":"Because kinetics is only used for chemistry problems, not mechanics.","isCorrect":false}]'
-  explanation="Right. Kinematics tells us what the motion looks like; kinetics tells us why it is happening. Strong problem solving in dynamics depends on knowing when you are describing motion and when you are explaining its cause."
-/>
+  explanation="Right. Kinematics tells us what the motion looks like; kinetics tells us why it is happening. Strong problem solving in dynamics depends on knowing when you are describing motion and when you are explaining its cause."></interactive-quiz>
 
 ---
 

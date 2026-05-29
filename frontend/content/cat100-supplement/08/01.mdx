@@ -35,7 +35,7 @@ The checklist covers three distinct surfaces, and confusing them is where studen
 
 The reason a checklist beats good intentions is that secrets enter files by accident, during testing, when you are focused on making something work. You will not remember them later. A scan finds them; a memory does not. The output that earns review is not "I was careful," it is a reproducible command and its result.
 
-<inline-check question="You deleted an API key from app.js in a new commit and pushed it. Is the leak fixed?" explanation="Deletion does not remove the value from a public repository’s history; a clone still exposes the old commit. The only safe response to any pushed credential is to rotate it." options='[{"text":"Yes, the current file no longer contains the key, so it is safe.","correct":false},{"text":"No, the key still lives in the commit history; you must rotate it.","correct":true},{"text":"Yes, as long as the commit message does not mention the key.","correct":false}]' />
+<inline-check question="You deleted an API key from app.js in a new commit and pushed it. Is the leak fixed?" explanation="Deletion does not remove the value from a public repository’s history; a clone still exposes the old commit. The only safe response to any pushed credential is to rotate it." options='[{"text":"Yes, the current file no longer contains the key, so it is safe.","correct":false},{"text":"No, the key still lives in the commit history; you must rotate it.","correct":true},{"text":"Yes, as long as the commit message does not mention the key.","correct":false}]'></inline-check>
 
 ## Worked Example: Auditing One Repo Against the Privacy Checklist
 
@@ -67,15 +67,15 @@ That paragraph names the file, the line, the action, the date, and the re-check,
 
 Work the scan as a fixed procedure. Reveal each step only after you have predicted what it does:
 
-<step-reveal title="Run the privacy checklist on one repo" steps='[{"prompt":"You are about to publish a GitHub Pages portfolio. What is the first move before you trust the page looks clean?","predictType":"choice","choices":["Add a hero image so the site looks finished","Scan the tracked files for secrets with git grep","Email the link to a friend to check it loads"],"answerIndex":1,"reveal":"Scan first. Run git grep -n -i for key, password, and token against the actual tracked files, not your memory of how careful you were."},{"reveal":"For each hit, decide and act row by row: move the secret out of tracked files, add that path to .gitignore, and note the exact file and line."},{"reveal":"Rotate any secret that was ever pushed. Deletion alone leaves the value in public history, so invalidate the old credential and issue a new one."},{"reveal":"Record verifiable evidence: file, line, action, rotation date, and a clean re-scan that returns zero hits. That paragraph is what earns review."}]' />
+<step-reveal title="Run the privacy checklist on one repo" steps='[{"prompt":"You are about to publish a GitHub Pages portfolio. What is the first move before you trust the page looks clean?","predictType":"choice","choices":["Add a hero image so the site looks finished","Scan the tracked files for secrets with git grep","Email the link to a friend to check it loads"],"answerIndex":1,"reveal":"Scan first. Run git grep -n -i for key, password, and token against the actual tracked files, not your memory of how careful you were."},{"reveal":"For each hit, decide and act row by row: move the secret out of tracked files, add that path to .gitignore, and note the exact file and line."},{"reveal":"Rotate any secret that was ever pushed. Deletion alone leaves the value in public history, so invalidate the old credential and issue a new one."},{"reveal":"Record verifiable evidence: file, line, action, rotation date, and a clean re-scan that returns zero hits. That paragraph is what earns review."}]'></step-reveal>
 
 Then practice the order itself. Drag these into the sequence a safe audit follows:
 
-<sequence-builder mode="order" items='["Scan tracked files with git grep for key, password, token","Decide accept or remove for each flagged hit","Move secrets out of tracked files and into .gitignore","Rotate every credential that was ever pushed","Re-scan and confirm zero hits, then log file, line, action, and date"]' />
+<sequence-builder mode="order" items='["Scan tracked files with git grep for key, password, token","Decide accept or remove for each flagged hit","Move secrets out of tracked files and into .gitignore","Rotate every credential that was ever pushed","Re-scan and confirm zero hits, then log file, line, action, and date"]'></sequence-builder>
 
 These four concepts anchor the section; trace how they connect:
 
-<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_capstone_artifact_review","evidence_based_revision","ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_capstone_artifact_review","evidence_based_revision","ai_supported_learning"]'></concept-map>
 
 ## Decision Rule
 
@@ -126,7 +126,7 @@ Move the same artifact into a stricter setting: a public job application where t
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/08-01-capstone-artifact-review-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="08.01" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="08.01"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -139,13 +139,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 08.01. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 08.01. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_capstone_artifact_review" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_capstone_artifact_review"></interactive-quiz>
 
 ## Final Check
 

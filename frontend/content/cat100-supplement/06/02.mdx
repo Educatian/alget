@@ -33,7 +33,7 @@ Three mechanics carry most of the weight in starter HTML and CSS.
 
 These mechanics connect to the course anchors. ISTE digital citizenship makes the alt-text requirement an equity issue: a page without it excludes blind visitors. NACE career readiness reframes clean, valid markup as a professional habit; sloppy HTML is the kind of thing a technical reviewer notices immediately.
 
-<inline-check question="An informative headshot is marked up as <img src='me.jpg' alt='image'>. What does the accessibility check say?" explanation="alt='image' just repeats the word the screen reader would already imply and describes nothing. For an informative image, alt must describe content or function, for example alt='Maria Lopez, headshot'. Only a purely decorative flourish may use empty alt='' so the screen reader skips it." options='[{"text":"It fails: alt must describe the content or function, e.g. alt=\"Maria Lopez, headshot\"","correct":true},{"text":"It passes: any non-empty alt attribute satisfies WCAG","correct":false},{"text":"It should be alt=\"\" because all images are decorative","correct":false}]' />
+<inline-check question="An informative headshot is marked up as <img src='me.jpg' alt='image'>. What does the accessibility check say?" explanation="alt='image' just repeats the word the screen reader would already imply and describes nothing. For an informative image, alt must describe content or function, for example alt='Maria Lopez, headshot'. Only a purely decorative flourish may use empty alt='' so the screen reader skips it." options='[{"text":"It fails: alt must describe the content or function, e.g. alt=\"Maria Lopez, headshot\"","correct":true},{"text":"It passes: any non-empty alt attribute satisfies WCAG","correct":false},{"text":"It should be alt=\"\" because all images are decorative","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -77,7 +77,7 @@ The page now sets the correct tab title, gives the image a real alt description,
 
 Predict the cascade before you reveal it. Two rules target the same heading, so the resolution is deterministic, not random.
 
-<step-reveal title="Predict the heading color when two equal-specificity rules conflict" steps='[{"prompt":"Your stylesheet has h1 { color: #1f3a5f; } near the top and h1 { color: #b00; } pasted at the bottom. Both are bare-tag selectors (equal specificity). What color renders?","predictType":"choice","choices":["Navy #1f3a5f, because it was written first","Red #b00, because the later rule wins at equal specificity","Undefined, the browser picks at random"],"answerIndex":1,"reveal":"At equal specificity the rule written LATER in source order wins, so the heading is red #b00. Source order is the tiebreaker, never randomness."},{"prompt":"What is the correct fix to get the navy you intended?","predictType":"choice","choices":["Add !important to the navy rule","Delete the stray red rule so the source says exactly one thing","Move the navy rule to the bottom and hope"],"answerIndex":1,"reveal":"Delete the stray red rule. Reaching for !important is a blunt tool that creates worse conflicts later; the clean fix is to make the source state one thing about the heading color."},{"reveal":"Specificity overrides order: an id beats a class beats a bare tag regardless of where it sits. Order only decides ties. Knowing both rules is the difference between debugging the cascade and fighting it."}]' />
+<step-reveal title="Predict the heading color when two equal-specificity rules conflict" steps='[{"prompt":"Your stylesheet has h1 { color: #1f3a5f; } near the top and h1 { color: #b00; } pasted at the bottom. Both are bare-tag selectors (equal specificity). What color renders?","predictType":"choice","choices":["Navy #1f3a5f, because it was written first","Red #b00, because the later rule wins at equal specificity","Undefined, the browser picks at random"],"answerIndex":1,"reveal":"At equal specificity the rule written LATER in source order wins, so the heading is red #b00. Source order is the tiebreaker, never randomness."},{"prompt":"What is the correct fix to get the navy you intended?","predictType":"choice","choices":["Add !important to the navy rule","Delete the stray red rule so the source says exactly one thing","Move the navy rule to the bottom and hope"],"answerIndex":1,"reveal":"Delete the stray red rule. Reaching for !important is a blunt tool that creates worse conflicts later; the clean fix is to make the source state one thing about the heading color."},{"reveal":"Specificity overrides order: an id beats a class beats a bare tag regardless of where it sits. Order only decides ties. Knowing both rules is the difference between debugging the cascade and fighting it."}]'></step-reveal>
 
 ## Decision Rule
 
@@ -91,7 +91,7 @@ If you cannot pass all three by reading the source, the page may look done but i
 
 Order the parts of a minimal valid HTML document from the outside in. Some pieces live in the head (unseen metadata) and some in the body (visible content), and the skeleton only validates when they nest in the right sequence.
 
-<sequence-builder mode="order" items='["<!DOCTYPE html> declaration on the first line","<html lang=\"en\"> opening element","<head> holding the charset, <title>, and stylesheet link","<body> holding the visible h1, img with alt, and paragraphs","Close </body> then </html>"]' />
+<sequence-builder mode="order" items='["<!DOCTYPE html> declaration on the first line","<html lang=\"en\"> opening element","<head> holding the charset, <title>, and stylesheet link","<body> holding the visible h1, img with alt, and paragraphs","Close </body> then </html>"]'></sequence-builder>
 
 ## Common Misreadings
 
@@ -130,7 +130,7 @@ Take the same skills to a different document type: a single landing page for a c
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/06-02-starter-html-and-css-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="06.02" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="06.02"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -143,13 +143,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 06.02. A peer comment points to an interface move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 06.02. A peer comment points to an interface move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What would make this section more useful while you revise?" options='["It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_starter_html_and_css" />
+<interactive-quiz question="What would make this section more useful while you revise?" options='["It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_starter_html_and_css"></interactive-quiz>
 
 ## Final Check
 
@@ -157,7 +157,7 @@ Before you move on, check that the privacy checklist for accounts, data sharing,
 
 ## Concept Map
 
-<concept-map concepts='["cat100_supplement_starter_html_and_css", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]' />
+<concept-map concepts='["cat100_supplement_starter_html_and_css", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]'></concept-map>
 
 ## References
 
