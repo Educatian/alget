@@ -34,9 +34,16 @@ export default function RevealedWorkedExample({
     const checkPair = () => {
         if (!pairAttempt.trim()) return
         setPairChecked(true)
-        const expected = String(pairAnswer || '').trim().toLowerCase()
-        const got = pairAttempt.trim().toLowerCase()
-        const matches = expected && (got === expected || got.includes(expected) || expected.includes(got))
+        const expected = String(pairAnswer || '').trim().toLowerCase().replace(/\s+/g, ' ')
+        const got = pairAttempt.trim().toLowerCase().replace(/\s+/g, ' ')
+        // Exact (normalized) match, OR numeric equality when both are numbers.
+        // The previous substring test (includes) gave false positives, e.g.
+        // expected "12" matched a typed "112" or "1".
+        const expNum = Number(expected.replace(/[^0-9.eE+-]/g, ''))
+        const gotNum = Number(got.replace(/[^0-9.eE+-]/g, ''))
+        const numeric = /[0-9]/.test(expected) && /[0-9]/.test(got)
+            && Number.isFinite(expNum) && Number.isFinite(gotNum)
+        const matches = Boolean(expected) && (got === expected || (numeric && Math.abs(expNum - gotNum) < 1e-6))
         logEvent('worked_example_pair_attempt', sectionId, { matches: Boolean(matches) }, sectionId)
     }
 

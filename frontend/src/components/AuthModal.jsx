@@ -111,7 +111,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="auth-modal-title"
-                className="w-full max-w-lg overflow-hidden rounded-[2rem] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_32px_80px_rgba(15,23,42,0.22)]"
+                className="w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-[2rem] border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-[0_32px_80px_rgba(15,23,42,0.22)]"
             >
                 <div className="border-b border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-8 py-7">
                     <div className="flex items-start justify-between gap-4">

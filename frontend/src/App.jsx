@@ -102,6 +102,10 @@ export default function App() {
   }, [])
 
   const handleLogin = (user) => {
+    // Clear any demo session so a real login isn't silently reverted to the
+    // demo identity on reload (readDemoUser would otherwise win and mask it,
+    // misattributing all subsequent writes to the demo user id).
+    safeLocalStorageRemove(DEMO_SESSION_KEY)
     setUser(user)
     initSession(user)
   }

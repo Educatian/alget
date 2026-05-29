@@ -68,7 +68,7 @@ function ToastViewport({ toasts, dismiss }) {
     if (toasts.length === 0) return null
     return (
         <div
-            className="pointer-events-none fixed bottom-6 right-6 z-[300] flex max-w-sm flex-col gap-2 sm:bottom-8 sm:right-8"
+            className="pointer-events-none fixed bottom-24 right-4 z-[300] flex max-w-[calc(100vw-2rem)] flex-col gap-2 sm:max-w-sm sm:right-8"
             role="region"
             aria-label="Notifications"
             aria-live="polite"

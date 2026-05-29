@@ -92,6 +92,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     useEffect(() => {
         if (!userId || !context?.sectionId || historyLoaded) return
 
+        let cancelled = false
         const loadHistory = async () => {
             try {
                 const { data } = await supabase
@@ -101,16 +102,19 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     .eq('section_id', context.sectionId)
                     .maybeSingle()
 
-                if (data?.messages) {
+                if (!cancelled && data?.messages) {
                     setMessages(data.messages.map(withMsgId))
                 }
             } catch {
                 // No history yet, that's fine
             }
-            setHistoryLoaded(true)
+            if (!cancelled) setHistoryLoaded(true)
         }
 
         loadHistory()
+        return () => {
+            cancelled = true
+        }
     }, [userId, context?.sectionId, historyLoaded])
 
     // Listen for global open-chat events.

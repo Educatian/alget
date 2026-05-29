@@ -533,7 +533,7 @@ export default function HighlightableContent({
                 >
                     <button
                         onClick={() => handleHighlight('yellow')}
-                        className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                        className="flex h-11 w-11 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
                         aria-label="Highlight"
                         title="Highlight"
                     >
@@ -544,7 +544,7 @@ export default function HighlightableContent({
 
                     <button
                         onClick={() => setShowNoteInput(true)}
-                        className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                        className="flex h-11 w-11 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
                         aria-label="Add note"
                         title="Add note"
                     >
@@ -555,7 +555,7 @@ export default function HighlightableContent({
 
                     <button
                         onClick={handleAskBigAL}
-                        className="flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
+                        className="flex h-11 w-11 items-center justify-center rounded-full text-white transition-colors hover:bg-slate-800 group"
                         aria-label="Ask BigAL"
                         title="Ask BigAL"
                     >
@@ -564,7 +564,7 @@ export default function HighlightableContent({
 
                     <button
                         onClick={clearSelection}
-                        className="ml-1 flex h-9 w-9 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+                        className="ml-1 flex h-11 w-11 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
                         aria-label="Close selection menu"
                         title="Close"
                     >
@@ -655,7 +655,7 @@ export default function HighlightableContent({
                         <button
                             type="button"
                             onClick={() => setDiscussionHighlightId(hoveredHighlight.id)}
-                            className="mt-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-primary)] text-[0] font-semibold text-white"
+                            className="mt-2 inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ath-primary)] text-[0] font-semibold text-white"
                             aria-label="Discuss highlight"
                             title="Discuss"
                         >
