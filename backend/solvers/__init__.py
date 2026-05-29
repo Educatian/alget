@@ -12,7 +12,7 @@ Use :func:`run_solver` / :func:`get_solver` / :func:`list_solver_ids` for
 lookup, and :func:`assert_solver_ids_resolve` for a startup/CI guard.
 """
 
-from . import friction, kinematics, statics_equilibrium, truss
+from . import dynamics_extra, friction, kinematics, statics_equilibrium, truss
 from .statics_equilibrium import (
     solve_equilibrium_2d,
     solve_tension_inclined,
@@ -29,7 +29,7 @@ def _build_registry() -> dict:
     that in as well.
     """
     registry: dict = {}
-    for module in (kinematics, friction, truss):
+    for module in (kinematics, friction, truss, dynamics_extra):
         registry.update(getattr(module, "SOLVERS", {}))
     # Legacy statics equilibrium solvers (statics_tension_vertical, etc.)
     registry.update(getattr(statics_equilibrium, "SOLVER_REGISTRY", {}))
@@ -38,10 +38,44 @@ def _build_registry() -> dict:
 
 SOLVER_REGISTRY = _build_registry()
 
+# Generic family dispatch table: a {family_prefix: solver} map consulted ONLY
+# after an exact-id lookup misses. It lets a content solver_id that names a
+# topic FAMILY (e.g. "dyn_newton_basic_numeric") resolve to a representative
+# closed-form solver without a uniquely-named function per problem, while never
+# shadowing an exactly-registered solver.
+GENERIC_SOLVER_FAMILIES = dict(getattr(dynamics_extra, "GENERIC_SOLVER_FAMILIES", {}))
+
+
+def _resolve_generic(solver_id: str):
+    """Return a family solver whose prefix matches ``solver_id``, or None.
+
+    Longest matching prefix wins so a more specific family is preferred. Used
+    only as a fallback by ``get_solver`` after the exact registry misses.
+    """
+    if not solver_id:
+        return None
+    matches = [
+        (prefix, solver)
+        for prefix, solver in GENERIC_SOLVER_FAMILIES.items()
+        if solver_id == prefix or solver_id.startswith(prefix + "_") or solver_id.startswith(prefix)
+    ]
+    if not matches:
+        return None
+    matches.sort(key=lambda item: len(item[0]), reverse=True)
+    return matches[0][1]
+
 
 def get_solver(solver_id: str):
-    """Return the solver callable for ``solver_id`` or None."""
-    return SOLVER_REGISTRY.get(solver_id)
+    """Return the solver callable for ``solver_id``.
+
+    Exact registry lookup first; on a miss, fall back to the generic family
+    dispatch so a family-named solver_id still resolves. Returns None when
+    neither resolves.
+    """
+    solver = SOLVER_REGISTRY.get(solver_id)
+    if solver is not None:
+        return solver
+    return _resolve_generic(solver_id)
 
 
 def list_solver_ids() -> list:
@@ -63,7 +97,7 @@ def assert_solver_ids_resolve(referenced_ids) -> None:
     Intended as a startup/CI guard so a content solver_id can never silently
     fall through to a wrong grader.
     """
-    unresolved = sorted({sid for sid in referenced_ids if sid not in SOLVER_REGISTRY})
+    unresolved = sorted({sid for sid in referenced_ids if get_solver(sid) is None})
     assert not unresolved, (
         f"Unresolved solver_id(s) referenced by content: {unresolved}. "
         f"Registered: {list_solver_ids()}"

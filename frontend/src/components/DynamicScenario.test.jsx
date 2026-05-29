@@ -37,4 +37,41 @@ describe('DynamicScenario curated bank', () => {
         expect(screen.getByText('Feedback')).toBeInTheDocument()
         expect(screen.getAllByRole('button').length).toBeGreaterThan(1)
     })
+
+    it('renders nothing when no curated case matches the section', () => {
+        const { container } = render(
+            <DynamicScenario
+                topic="Zxqv Nonsense"
+                context="qwzzlptv unrelated gibberish"
+                course="xyzzy"
+            />,
+        )
+
+        expect(container).toBeEmptyDOMElement()
+        expect(screen.queryByText('Tailored case')).not.toBeInTheDocument()
+    })
+
+    it('renders a live parametric torque sim for the engineering torque case', () => {
+        render(
+            <DynamicScenario
+                topic="Torque and Moment Arm"
+                context="A powered knee brace overheats; choose force or moment arm."
+                course="dynamics"
+            />,
+        )
+
+        // Labeled, keyboard-operable sliders that recompute a live result.
+        const forceSlider = screen.getByLabelText(/Actuator force/i)
+        expect(forceSlider).toHaveAttribute('type', 'range')
+        expect(screen.getByLabelText(/Moment arm/i)).toBeInTheDocument()
+
+        // The simulation's accessible description carries the live torque value,
+        // and it must change when the learner drags the force slider.
+        const sim = screen.getByRole('img', { name: /Torque on a powered joint/i })
+        const before = sim.textContent
+        fireEvent.change(forceSlider, { target: { value: '10' } })
+        const after = sim.textContent
+        expect(after).not.toBe(before)
+        expect(after).toMatch(/newton metres/i)
+    })
 })

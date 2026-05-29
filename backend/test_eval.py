@@ -134,6 +134,86 @@ def test_absolute_tolerance_rejects_near_miss():
     assert grading_service.grade_problem(problem, "24.05", "m/s")["is_correct"] is True
 
 
+# ---------------------------------------------------------------------------
+# Solver coverage + generic family dispatch.
+# ---------------------------------------------------------------------------
+
+def test_new_dynamics_solvers_compute_known_answers():
+    """The added closed-form solvers recompute the published practice answers."""
+    cases = [
+        ("solve_newton_second_law", {"force_N": 20, "mass_kg": 5}, 4.0),
+        ("solve_kinetic_energy", {"mass_kg": 6, "v": 4}, 48.0),
+        ("solve_linear_momentum", {"mass_kg": 4, "v": 8}, 32.0),
+        ("solve_impulse", {"force_N": 15, "time_s": 2}, 30.0),
+        ("solve_perfectly_inelastic_collision", {"m1": 2, "v1": 8, "m2": 2, "v2": 2}, 5.0),
+        ("solve_rim_speed", {"omega": 2.5, "radius_m": 2.0}, 5.0),
+        ("solve_moment_perpendicular", {"force_N": 90, "distance_m": 5}, 450.0),
+    ]
+    for solver_id, params, expected in cases:
+        result = solvers.run_solver(solver_id, params)
+        assert result is not None, solver_id
+        assert abs(result["expected_value"] - expected) < 0.05, (solver_id, result)
+        assert result.get("steps"), f"{solver_id} should surface worked steps"
+
+
+def test_generic_family_dispatch_resolves_family_named_ids():
+    """A solver_id that names a family resolves via generic dispatch, and the
+    exact-id path still takes precedence over the generic fallback."""
+    # Family-named id (no exact function) resolves through the prefix dispatch.
+    assert solvers.get_solver("dyn_newton_basic_numeric") is not None
+    assert solvers.get_solver("statics_moment_arm") is not None
+    # Exact registration is never shadowed by the generic fallback.
+    assert solvers.get_solver("solve_max_friction") is solvers.SOLVER_REGISTRY["solve_max_friction"]
+    # A genuinely unknown id still resolves to nothing.
+    assert solvers.get_solver("totally_unknown_solver") is None
+
+
+def test_resolve_assertion_stays_green_with_generic_dispatch():
+    """assert_solver_ids_resolve must treat generic-resolvable ids as resolved."""
+    solvers.assert_solver_ids_resolve(
+        list(collect_referenced_solver_ids()) + ["dyn_newton_extra", "statics_moment_x"]
+    )
+
+
+# ---------------------------------------------------------------------------
+# Richer formative feedback: a targeted hint for a WRONG numeric/step answer.
+# ---------------------------------------------------------------------------
+
+def test_wrong_numeric_answer_returns_targeted_hint():
+    """A wrong answer graded through the solver path returns a step-derived hint
+    that points at the first formula step without revealing the final value."""
+    wrong = grading_service.grade_problem_with_solver(
+        "solve_max_friction", {"mass_kg": 80, "mu_s": 0.35, "g": 9.81}, "100", "N"
+    )
+    assert wrong["is_correct"] is False
+    hint = wrong.get("hint")
+    assert hint, "wrong numeric answer should carry a targeted hint"
+    assert "N = m*g" in hint  # the first worked step is surfaced
+    assert "274" not in hint  # never reveal the final answer value
+    assert "too low" in hint  # directional nudge (100 < ~274.7)
+
+
+def test_correct_answer_has_no_hint():
+    right = grading_service.grade_problem_with_solver(
+        "solve_max_friction", {"mass_kg": 80, "mu_s": 0.35, "g": 9.81}, "274.7", "N"
+    )
+    assert right["is_correct"] is True
+    assert right.get("hint") is None
+
+
+def test_step_based_wrong_answer_returns_hint_from_steps():
+    problem = {
+        "type": "step_based",
+        "final_answer": {"value": 84, "unit": "m", "tolerance": 0.5},
+        "steps": [{"step_id": 1, "description": "v = v0 + at", "formula": "v = v0 + a*t"}],
+    }
+    result = grading_service.grade_problem(problem, "200", "m")
+    assert result["is_correct"] is False
+    assert result.get("hint")
+    assert "v = v0 + a*t" in result["hint"]
+    assert "too high" in result["hint"]  # 200 > 84
+
+
 def _local_server_available(host: str = "127.0.0.1", port: int = 8000) -> bool:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.settimeout(0.25)

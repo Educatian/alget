@@ -17,7 +17,13 @@ export const KinematicsDiagram = () => {
         return () => clearInterval(interval);
     }, [isPlaying]);
 
-    const displayedTime = isPlaying ? time : 0;
+    // When paused, the learner can scrub the trajectory manually with a slider.
+    // This keeps the simulation interactive without requiring the animation to
+    // run, and makes every state keyboard-reachable (the range input responds
+    // to arrow keys / Home / End).
+    const [scrub, setScrub] = useState(0);
+    const displayedTime = isPlaying ? time : scrub;
+    const showParticle = isPlaying || scrub > 0;
 
     // Path mathematics (Projectile motion arc)
     // Formula for simple parabolic motion: y = a(x - h)^2 + k
@@ -42,6 +48,13 @@ export const KinematicsDiagram = () => {
     const vMag = 40;
     const vx = x + vMag * Math.cos(angle);
     const vy = y + vMag * Math.sin(angle);
+
+    // Readable kinematic quantities for the live result region. Horizontal
+    // speed is constant (uniform x); vertical speed grows with the slope.
+    const tSeconds = displayedTime / 10;
+    const vxComponent = 3.0; // constant horizontal scale (m/s)
+    const vyComponent = vxComponent * slope; // sign matches descent
+    const speed = Math.sqrt(vxComponent * vxComponent + vyComponent * vyComponent);
 
     return (
         <div className="my-8 p-6 bg-white rounded-2xl border border-slate-200 shadow-sm max-w-2xl mx-auto font-sans relative overflow-hidden">
@@ -70,6 +83,32 @@ export const KinematicsDiagram = () => {
                 </button>
             </div>
 
+            {/* Manual time scrubber: keeps the simulation interactive while paused. */}
+            <div className="mb-4">
+                <div className="flex items-baseline justify-between gap-2">
+                    <label htmlFor="kinematics-scrub" className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                        Scrub time {isPlaying ? '(stop to drag)' : ''}
+                    </label>
+                    <span className="text-xs font-bold text-indigo-600">t = {tSeconds.toFixed(1)} s</span>
+                </div>
+                <input
+                    id="kinematics-scrub"
+                    type="range"
+                    min="0"
+                    max="99"
+                    step="1"
+                    value={scrub}
+                    disabled={isPlaying}
+                    onChange={(event) => setScrub(Number(event.target.value))}
+                    aria-valuetext={`t = ${tSeconds.toFixed(1)} seconds`}
+                    className="mt-2 h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-indigo-600 disabled:opacity-50"
+                />
+                <p className="mt-2 rounded-lg bg-slate-50 px-3 py-2 text-xs text-slate-600" aria-live="polite">
+                    At t = {tSeconds.toFixed(1)} s the speed is {speed.toFixed(1)} m/s
+                    {' '}(v_x {vxComponent.toFixed(1)} m/s, v_y {vyComponent.toFixed(1)} m/s); acceleration stays a constant 9.8 m/s downward.
+                </p>
+            </div>
+
             <div className="w-full h-64 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center">
                 {/* Background Grid */}
                 <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(#94a3b8 1px, transparent 1px), linear-gradient(90deg, #94a3b8 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
@@ -78,7 +117,7 @@ export const KinematicsDiagram = () => {
                     viewBox="0 0 400 150"
                     className="w-full h-full"
                     title="Projectile kinematics vectors"
-                    desc={`A particle moves along a parabolic trajectory on x and y axes. A green position vector points from the origin to the particle, a blue velocity vector points tangent to the path, and a red acceleration vector points straight down for gravity. ${isPlaying ? `Simulation running at t = ${(displayedTime / 10).toFixed(1)} seconds.` : 'Simulation paused at the start point.'}`}
+                    desc={`A particle moves along a parabolic trajectory on x and y axes. A green position vector points from the origin to the particle, a blue velocity vector points tangent to the path, and a red acceleration vector points straight down for gravity. ${showParticle ? `Particle is at t = ${tSeconds.toFixed(1)} seconds with speed ${speed.toFixed(1)} metres per second.` : 'Simulation paused at the start point.'}`}
                 >
                     <defs>
                         <marker id="v-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -104,7 +143,7 @@ export const KinematicsDiagram = () => {
                     </g>
 
                     {/* Dynamic Moving System */}
-                    {isPlaying && (
+                    {showParticle && (
                         <g>
                             {/* Position Vector (Origin to Particle) */}
                             <line
@@ -148,7 +187,7 @@ export const KinematicsDiagram = () => {
                         </g>
                     )}
 
-                    {!isPlaying && (
+                    {!showParticle && (
                         <g>
                             <circle cx="50" cy="110" r="8" fill="#475569" className="drop-shadow-md" />
                             <text x="35" y="90" fill="#475569" fontSize="12" fontWeight="bold">START</text>

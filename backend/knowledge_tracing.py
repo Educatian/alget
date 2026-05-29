@@ -316,6 +316,193 @@ def select_support_move(
     return decision
 
 
+# ---------------------------------------------------------------------------
+# SPACED REPETITION (SM-2) review schedule.
+#
+# A pure, dependency-free SM-2 (SuperMemo-2) scheduler keyed off SECTION
+# COMPLETION review events per concept_id. It is exposed as a TRANSPARENT
+# signal that feeds the existing forgetting_risk / retrieval_risk reason codes
+# (see derive_reason_codes -> "retrieval_risk", REASON_CODE_FEATURES, and the
+# live engine's forgetting_risk feature). The engine already consumes a
+# forgetting_risk float; this function turns an auditable review history into
+# that float (and the underlying SM-2 state) so the "why this support now" UI
+# can show the spacing basis, not just an opaque risk number.
+#
+# Design choices kept faithful to canonical SM-2:
+#   * Each review carries a quality grade q in [0,5] (>=3 = recall success).
+#   * Easiness factor (EF) starts at 2.5, updated with the SM-2 EF recurrence,
+#     floored at 1.3.
+#   * Repetition count and interval (in days) follow SM-2: a sub-3 grade resets
+#     the repetition streak and the interval to 1 day.
+#   * Spacing is keyed off SECTION COMPLETION: each completed section that
+#     exercises a concept is one review event, so the schedule advances as the
+#     learner finishes sections rather than on a wall clock alone.
+# The forgetting_risk we surface is a bounded function of how overdue the
+# concept is relative to its scheduled interval, so it is a smooth, transparent
+# signal rather than a step function.
+# ---------------------------------------------------------------------------
+
+SM2_DEFAULT_EF: float = 2.5
+SM2_MIN_EF: float = 1.3
+SM2_PASS_GRADE: int = 3  # q >= 3 counts as a successful recall
+
+
+def _sm2_update_ef(ef: float, quality: int) -> float:
+    """SM-2 easiness-factor recurrence, floored at SM2_MIN_EF.
+
+    EF' = EF + (0.1 - (5 - q)*(0.08 + (5 - q)*0.02))
+    """
+    q = max(0, min(5, int(quality)))
+    ef_new = ef + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02))
+    return max(SM2_MIN_EF, ef_new)
+
+
+def _sm2_next_interval(repetition: int, prev_interval: float, ef: float) -> float:
+    """SM-2 next interval (days) for a SUCCESSFUL review at this repetition.
+
+    repetition is the 1-based count of consecutive successful recalls.
+    """
+    if repetition <= 1:
+        return 1.0
+    if repetition == 2:
+        return 6.0
+    return round(prev_interval * ef, 4)
+
+
+def compute_sm2_schedule(
+    review_history: List[Dict[str, Any]],
+    elapsed_days_since_last: float = 0.0,
+) -> Dict[str, Any]:
+    """Fold a concept's section-completion review history into an SM-2 schedule.
+
+    Pure and import-light. Given the ordered list of review events for ONE
+    concept_id (each produced when the learner completes a section that
+    exercises the concept), return the SM-2 state plus a transparent
+    forgetting_risk signal the policy already consumes.
+
+    Args:
+        review_history: ordered list of review events, each a dict with:
+            * ``quality`` (or ``q``): recall grade in [0,5]; >=3 is a success.
+              Defaults to 4 (a clean recall) when absent so a bare "completed
+              this section" event still advances the schedule sensibly.
+            * ``section_id`` (optional): which section completion produced the
+              review, surfaced for auditability.
+        elapsed_days_since_last: days elapsed since the most recent review
+            (e.g. now - last_review). Used only to compute how overdue the
+            concept is; 0.0 means "evaluate as of the last review".
+
+    Returns a descriptor dict:
+        {
+          "repetition": int,            # consecutive successful recalls
+          "easiness_factor": float,     # SM-2 EF (>= 1.3)
+          "interval_days": float,       # scheduled days until next review
+          "reviews": int,               # total review events folded in
+          "last_quality": int | None,   # grade of the most recent review
+          "days_overdue": float,        # elapsed - interval, floored at 0
+          "forgetting_risk": float,     # [0,1] transparent retrieval-risk signal
+          "due": bool,                  # elapsed >= interval
+          "last_section_id": str | None,
+        }
+
+    forgetting_risk semantics (transparent, smooth):
+      * No reviews yet  -> 0.5 (engine's neutral prior for an unseen concept).
+      * Within interval -> low risk that decays from ~0.5 toward 0 as the
+        review streak / EF grow (a well-spaced, often-recalled concept is safe).
+      * Overdue         -> rises toward 1.0 in proportion to how many intervals
+        past due the concept is, so retrieval_risk (>= 0.6) fires once a concept
+        is roughly a full interval overdue.
+    """
+    if not review_history:
+        return {
+            "repetition": 0,
+            "easiness_factor": SM2_DEFAULT_EF,
+            "interval_days": 0.0,
+            "reviews": 0,
+            "last_quality": None,
+            "days_overdue": 0.0,
+            "forgetting_risk": 0.5,
+            "due": True,
+            "last_section_id": None,
+        }
+
+    ef = SM2_DEFAULT_EF
+    repetition = 0
+    interval = 0.0
+    last_quality: int = SM2_PASS_GRADE + 1
+    last_section_id: Any = None
+
+    for event in review_history:
+        if not isinstance(event, dict):
+            continue
+        raw_q = event.get("quality", event.get("q", 4))
+        try:
+            quality = max(0, min(5, int(round(float(raw_q)))))
+        except (TypeError, ValueError):
+            quality = 4
+        last_quality = quality
+        last_section_id = event.get("section_id", last_section_id)
+
+        if quality >= SM2_PASS_GRADE:
+            repetition += 1
+            ef = _sm2_update_ef(ef, quality)
+            interval = _sm2_next_interval(repetition, interval, ef)
+        else:
+            # Failed recall: reset the streak and re-learn from a 1-day interval.
+            repetition = 0
+            ef = _sm2_update_ef(ef, quality)
+            interval = 1.0
+
+    elapsed = max(0.0, float(elapsed_days_since_last))
+    days_overdue = max(0.0, elapsed - interval) if interval > 0 else elapsed
+    due = elapsed >= interval if interval > 0 else True
+
+    # Transparent forgetting_risk: blend a "well-rehearsed concept is safe"
+    # baseline with an overdue penalty. A concept one full interval overdue
+    # reaches ~0.6 (so retrieval_risk fires); deeper overdue saturates toward 1.
+    safe_interval = interval if interval > 0 else 1.0
+    overdue_ratio = days_overdue / safe_interval
+    rehearsed = _clamp(repetition / 5.0, 0.0, 1.0)
+    baseline = 0.5 * (1.0 - 0.6 * rehearsed)  # 0.5 down toward 0.2 as it sticks
+    forgetting_risk = _clamp(baseline + 0.6 * overdue_ratio, 0.0, 1.0)
+    # A failed last recall is itself a strong retrieval-risk signal.
+    if last_quality < SM2_PASS_GRADE:
+        forgetting_risk = max(forgetting_risk, 0.7)
+
+    return {
+        "repetition": repetition,
+        "easiness_factor": round(ef, 4),
+        "interval_days": round(interval, 4),
+        "reviews": sum(1 for e in review_history if isinstance(e, dict)),
+        "last_quality": last_quality,
+        "days_overdue": round(days_overdue, 4),
+        "forgetting_risk": round(forgetting_risk, 4),
+        "due": due,
+        "last_section_id": last_section_id,
+    }
+
+
+def aggregate_forgetting_risk(
+    schedules_by_concept: Dict[str, Dict[str, Any]],
+) -> float:
+    """Reduce per-concept SM-2 schedules to ONE forgetting_risk for the policy.
+
+    The live engine consumes a single forgetting_risk float (which backs the
+    ``retrieval_risk`` reason code at >= 0.6). When several concepts are in
+    play we take the MAX per-concept risk: a single overdue concept is enough
+    to justify a retrieval-supportive move, mirroring how the engine treats the
+    weakest-link concept as the binding constraint. Empty input -> 0.5 (the
+    engine's neutral prior).
+    """
+    risks = [
+        _feature(sched, "forgetting_risk", 0.5)
+        for sched in schedules_by_concept.values()
+        if isinstance(sched, dict)
+    ]
+    if not risks:
+        return 0.5
+    return round(_clamp(max(risks), 0.0, 1.0), 4)
+
+
 class BayesianKnowledgeTracing:
     """
     Implements Bayesian Knowledge Tracing (BKT) calculation for mastery updates.
