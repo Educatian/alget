@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "alget://schema/misconceptions.schema.json",
+  "title": "Section Misconceptions File",
+  "description": "Canonical contract for *.misconceptions.json. The canonical shape is an OBJECT {section_id, misconceptions:[...]}. A bare top-level ARRAY is a legacy defect and is rejected. Each item must carry a non-null rail_action from the allowed rail set. The legacy item variant (claim/reality/whyItHappens/coachPrompt with no rail_action) is rejected so the validator flags the items needing backfill.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["section_id", "misconceptions"],
+  "properties": {
+    "section_id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+    "misconceptions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/misconception" }
+    }
+  },
+  "$defs": {
+    "misconception": {
+      "type": "object",
+      "required": ["id", "rail_action"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "trigger": { "type": "string" },
+        "pattern": { "type": "string" },
+        "description": { "type": "string" },
+        "feedback": { "type": "string" },
+        "rail_action": {
+          "type": "string",
+          "enum": ["explain", "represent", "practice", "ask"]
+        }
+      }
+    }
+  }
+}

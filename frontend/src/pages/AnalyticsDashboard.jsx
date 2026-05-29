@@ -934,8 +934,14 @@ export default function AnalyticsDashboard() {
                                 ) : rctSnapshot.interventionOutcomes.map((row) => {
                                     const total = Number(row.total_closed || 0)
                                     const accepted = Number(row.accepted_count || 0)
+                                    const declined = Number(row.declined_count || 0)
                                     const positive = Number(row.resolved_positive || 0)
-                                    const acceptRate = total > 0 ? Math.round((accepted / total) * 100) : 0
+                                    // Accept rate is only meaningful over interventions the learner
+                                    // explicitly resolved (accepted or declined). Closed-but-unresolved
+                                    // traces (accepted is null) are excluded from the denominator so a
+                                    // followed 'advance' no longer understates the rate.
+                                    const resolvedDecisions = accepted + declined
+                                    const acceptRate = resolvedDecisions > 0 ? Math.round((accepted / resolvedDecisions) * 100) : 0
                                     const resolveRate = total > 0 ? Math.round((positive / total) * 100) : 0
                                     return (
                                         <div key={row.chosen_action} className="rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-3">

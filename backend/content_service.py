@@ -152,6 +152,45 @@ def load_practice_for_section(course: str, chapter: str, section: str) -> dict:
     return {"problems": []}
 
 
+def collect_referenced_solver_ids() -> set:
+    """Scan every *.practice.json under the content tree and collect the set of
+    solver_id values referenced by problems.
+
+    Used by the startup/CI assertion that guarantees every content solver_id
+    resolves in the solver registry (so a problem can never silently fall
+    through to a wrong grader).
+    """
+    referenced: set = set()
+    if not CONTENT_DIR.exists():
+        return referenced
+
+    for practice_path in CONTENT_DIR.rglob("*.practice.json"):
+        try:
+            with open(practice_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            continue
+        for problem in data.get("problems", []):
+            solver_id = problem.get("solver_id")
+            if solver_id:
+                referenced.add(solver_id)
+
+    return referenced
+
+
+def assert_content_solver_ids_resolve() -> None:
+    """Assert every referenced solver_id resolves in the registry.
+
+    Raises AssertionError listing any unresolved ids. Safe to call at startup;
+    if the solvers package cannot be imported the check is skipped (the app
+    still boots) but the failure is surfaced to the caller via the raised
+    ImportError only when invoked directly in CI.
+    """
+    import solvers as solver_registry
+
+    solver_registry.assert_solver_ids_resolve(collect_referenced_solver_ids())
+
+
 def generate_toc(course: str) -> dict:
     """
     Generate table of contents from content folder structure.

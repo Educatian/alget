@@ -17,7 +17,9 @@
     ],
     "prereq_section_ids": [],
     "practice_ids": [
-        "p001",
-        "p002"
+        "statics_eq_vertical_tension",
+        "statics_eq_inclined_tension",
+        "statics_eq_component_rule",
+        "statics_eq_second_vertical"
     ]
 }

@@ -1,23 +1,29 @@
-[
-  {
-    "id": "torque-near-hinge",
-    "claim": "A large force always creates large rotation, even when it is applied right next to the pivot.",
-    "reality": "Torque depends on both force magnitude and moment arm. A large force with almost no lever arm can produce very little rotation.",
-    "whyItHappens": "Students often import straight-line force intuition into rotational problems and ignore geometry.",
-    "coachPrompt": "Compare pushing a door near the hinge versus at the handle. Which case has the larger turning effect?"
-  },
-  {
-    "id": "same-linear-speed",
-    "claim": "All points on a rigid body move with the same linear speed during rotation because the body is rigid.",
-    "reality": "Rigid bodies share angular velocity, not tangential speed. Linear speed depends on radius through v = r omega.",
-    "whyItHappens": "Learners confuse shared angular motion with shared linear motion.",
-    "coachPrompt": "On a spinning wheel, does the rim or the hub cover more distance in one second?"
-  },
-  {
-    "id": "torque-is-force",
-    "claim": "Torque is just another word for force.",
-    "reality": "Force causes translation, while torque measures the turning tendency of a force about an axis.",
-    "whyItHappens": "Both are associated with pushes and pulls, so the distinction gets blurred.",
-    "coachPrompt": "What changes if the same force is applied with a longer wrench?"
-  }
-]
+{
+  "section_id": "dynamics_0102",
+  "misconceptions": [
+    {
+      "id": "torque-near-hinge",
+      "trigger": "Students often import straight-line force intuition into rotational problems and ignore geometry.",
+      "pattern": "A large force always creates large rotation, even when it is applied right next to the pivot.",
+      "description": "Torque depends on both force magnitude and moment arm. A large force with almost no lever arm can produce very little rotation.",
+      "feedback": "Compare pushing a door near the hinge versus at the handle. Which case has the larger turning effect?",
+      "rail_action": "ask"
+    },
+    {
+      "id": "same-linear-speed",
+      "trigger": "Learners confuse shared angular motion with shared linear motion.",
+      "pattern": "All points on a rigid body move with the same linear speed during rotation because the body is rigid.",
+      "description": "Rigid bodies share angular velocity, not tangential speed. Linear speed depends on radius through v = r omega.",
+      "feedback": "On a spinning wheel, does the rim or the hub cover more distance in one second?",
+      "rail_action": "ask"
+    },
+    {
+      "id": "torque-is-force",
+      "trigger": "Both are associated with pushes and pulls, so the distinction gets blurred.",
+      "pattern": "Torque is just another word for force.",
+      "description": "Force causes translation, while torque measures the turning tendency of a force about an axis.",
+      "feedback": "What changes if the same force is applied with a longer wrench?",
+      "rail_action": "ask"
+    }
+  ]
+}

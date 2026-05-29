@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "alget://schema/meta.schema.json",
+  "title": "Section Meta File",
+  "description": "Canonical contract for *.meta.json. The corpus contains TWO meta generations: the 'engineering' generation (course/chapter/section present, 20 files) and the 'supplement' generation (those keys absent, 236 files). Backfilling course/chapter/section into the 236 supplement metas is a deferred metadata pass, so this schema requires only the keys present in every meta today (`title`) and validates the optional keys when present. `practice_ids`, when present, must reference real problem ids in the sibling practice file (enforced by the cross-file checks in validate_content.py).",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["title"],
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "course": { "type": "string" },
+    "chapter": { "type": "string" },
+    "section": { "type": "string" },
+    "chapter_title": { "type": "string" },
+    "description": { "type": "string" },
+    "estimated_time_minutes": { "type": "number" },
+    "order": { "type": "number" },
+    "top_tier_hardened": { "type": "boolean" },
+    "learning_objectives": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "concept_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "practice_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

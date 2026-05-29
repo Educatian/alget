@@ -198,14 +198,20 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
     // 'open-chat' CustomEvent which ChatWidget listens for.
 
     const handleRecommendationAction = (action, coachPrompt = '') => {
-        recordAdaptiveSignal(resolvedSectionId, action === 'advance' ? 'intervention_decline' : 'intervention_accept', {
-            action
+        // The learner's click is the explicit accept/decline signal. Opening the
+        // suggested support is an acceptance; choosing to keep moving past the
+        // recommendation ('advance') is a decline. This is the learner ACTION,
+        // which must not be conflated with the recommendation TYPE downstream.
+        const accepted = action !== 'advance'
+        recordAdaptiveSignal(resolvedSectionId, accepted ? 'intervention_accept' : 'intervention_decline', {
+            action,
+            accepted
         })
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
                 type: 'recommendation_action',
-                status: action === 'advance' ? 'awaiting_outcome' : 'engaged',
-                detail: { action }
+                status: accepted ? 'engaged' : 'awaiting_outcome',
+                detail: { action, accepted }
             })
         }
 

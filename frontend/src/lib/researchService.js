@@ -313,6 +313,17 @@ function normalizeAction(value) {
     return 'ask'
 }
 
+// Derive learner ACCEPTANCE from an explicit accept/decline signal rather than
+// from the recommendation TYPE. A followed 'advance' must not be silently logged
+// as accepted=false: acceptance is whatever the learner explicitly resolved
+// (event.detail.accepted), and stays null (unresolved) until they act.
+function resolveAcceptedFromEvent(event, previousAccepted = null) {
+    if (event?.type === 'recommendation_action' && typeof event?.detail?.accepted === 'boolean') {
+        return event.detail.accepted
+    }
+    return previousAccepted ?? null
+}
+
 function buildLearnerConceptRow(userId, conceptId, state) {
     const masteryProbability = clamp(
         (state.predicted_next_correct || 0) * 0.45
@@ -429,9 +440,7 @@ async function persistTraceEventUpdate(trace, event) {
     const userId = await getCurrentUserId()
     if (!userId || !trace || !event) return
 
-    const accepted = event?.type === 'recommendation_action'
-        ? event?.detail?.action !== 'advance'
-        : trace.accepted
+    const accepted = resolveAcceptedFromEvent(event, trace.accepted)
     const closedAt = ['resolved_positive', 'resolved_negative'].includes(trace.status)
         ? trace.resolved_at || new Date().toISOString()
         : event?.type === 'rail_closed'
@@ -1063,9 +1072,7 @@ export function appendInterventionTrace(traceId, event) {
         updatedTrace = {
             ...trace,
             status: event?.status || trace.status,
-            accepted: event?.type === 'recommendation_action'
-                ? event?.detail?.action !== 'advance'
-                : trace.accepted,
+            accepted: resolveAcceptedFromEvent(event, trace.accepted),
             last_event_at: nextEvent.timestamp,
             events: [...(trace.events || []), nextEvent].slice(-20)
         }

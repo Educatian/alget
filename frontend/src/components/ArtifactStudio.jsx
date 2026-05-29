@@ -161,7 +161,12 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
     const [judgmentRationale, setJudgmentRationale] = useState('')
     const [revisedDraft, setRevisedDraft] = useState('')
     const [transfer, setTransfer] = useState('')
-    const [supportMove] = useState('explain')
+    // supportMove tracks the learner's selected support move. Until the learner
+    // explicitly overrides it, it follows the recommended move so the logged
+    // value is never frozen to a constant. supportMoveOverridden records whether
+    // the learner has made an explicit choice, which we also persist.
+    const [selectedSupportMove, setSelectedSupportMove] = useState(null)
+    const [supportMoveOverridden, setSupportMoveOverridden] = useState(false)
     const [confidence, setConfidence] = useState(2)
     const [rubric, setRubric] = useState(() => RUBRIC_ROWS.reduce((acc, row) => ({ ...acc, [row.id]: 0 }), {}))
     const [revisionScore, setRevisionScore] = useState(null)
@@ -187,6 +192,9 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
     }, [traceScore])
 
     const recommendedSupportMove = traceScore <= 3 ? 'explain' : traceScore <= 6 ? 'compare' : 'audit'
+    // Effective support move: learner override when present, otherwise the
+    // recommended move. This replaces the previously frozen 'explain' constant.
+    const supportMove = supportMoveOverridden && selectedSupportMove ? selectedSupportMove : recommendedSupportMove
     const completionPercent = Math.round((traceScore / 8) * 100)
 
     const scoreRevision = async () => {
@@ -257,6 +265,7 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
             artifact_required_sections: submissionSpec.requiredSections,
             support_move: supportMove,
             recommended_support_move: recommendedSupportMove,
+            support_move_overridden: supportMoveOverridden,
             support_rationale: supportRationale,
             studio_mode: mode.id,
             trace_score: traceScore,
@@ -300,6 +309,7 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
             studioMode: mode.id,
             supportMove,
             recommendedSupportMove,
+            supportMoveOverridden,
             artifactQualityScore,
             traceCompleteness: traceScore / 8,
             confidence,
@@ -574,12 +584,56 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
                             />
                             <span className="text-[10px] text-[var(--ath-secondary)]">High</span>
                             <span className="rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-xs font-semibold text-[var(--ath-text)]">{confidence}</span>
-                            <span
-                                className="ml-auto rounded-full border border-[var(--ath-line)] bg-[rgba(200,226,236,0.3)] px-2.5 py-1 text-[10px] font-semibold text-[var(--ath-primary)]"
-                                title={supportRationale}
-                            >
-                                Recommended: {recommendedSupportMove}
-                            </span>
+                        </div>
+
+                        <div className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-3">
+                            <div className="flex flex-wrap items-center gap-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">Support move</span>
+                                <div className="flex flex-1 flex-wrap gap-1">
+                                    {SUPPORT_MOVES.map((move) => {
+                                        const MoveIcon = move.icon
+                                        const isSelected = supportMove === move.id
+                                        return (
+                                            <button
+                                                key={move.id}
+                                                type="button"
+                                                aria-pressed={isSelected}
+                                                onClick={() => {
+                                                    setSelectedSupportMove(move.id)
+                                                    setSupportMoveOverridden(true)
+                                                }}
+                                                title={move.rationale}
+                                                className={`flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                                                    isSelected
+                                                        ? 'bg-[var(--ath-primary)] text-white'
+                                                        : 'bg-white text-[var(--ath-muted)] hover:text-[var(--ath-primary)]'
+                                                }`}
+                                            >
+                                                <MoveIcon className="h-3 w-3" aria-hidden="true" />
+                                                {move.label}
+                                            </button>
+                                        )
+                                    })}
+                                </div>
+                                <span
+                                    className="rounded-full border border-[var(--ath-line)] bg-[rgba(200,226,236,0.3)] px-2.5 py-1 text-[10px] font-semibold text-[var(--ath-primary)]"
+                                    title={supportRationale}
+                                >
+                                    Recommended: {recommendedSupportMove}
+                                </span>
+                            </div>
+                            {supportMoveOverridden && (
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setSupportMoveOverridden(false)
+                                        setSelectedSupportMove(null)
+                                    }}
+                                    className="mt-2 text-[10px] font-semibold text-[var(--ath-secondary)] underline-offset-2 hover:text-[var(--ath-text)] hover:underline"
+                                >
+                                    Follow recommended move
+                                </button>
+                            )}
                         </div>
 
                         {revisionScore?.scores && (
