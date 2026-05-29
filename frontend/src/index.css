@@ -88,6 +88,10 @@
      --reading-breakout so textbook content is not boxed into the text column. */
   --reading-width: 92ch;
   --reading-breakout: 74rem;
+  /* Reading shell must be wider than --reading-breakout (+ gutters) so wide
+     visuals never overflow the centered column into an overflow-hidden shell
+     and get clipped. 80rem holds the 74rem breakout + 2x1.5rem gutter. */
+  --ath-container-reading: 80rem;
   --reading-letter-spacing: 0em;
   --reading-word-spacing: 0em;
   --reading-paragraph-spacing: 1.35rem;
@@ -835,11 +839,14 @@ h6,
 /* Let wide textbook visuals break out past the text measure so tables,
    figures, code, and worked examples use the full content column at >=1280px
    while body prose keeps a comfortable line length. Clamps to the wrapper so
-   nothing overflows horizontally. */
-.reading-narrative table,
+   nothing overflows horizontally. NOTE: the breakout sizing targets the table
+   SCROLL WRAPPER (.reading-table-scroll), never the bare <table>; the table
+   scrolls *inside* that wrapper (rule below) so even very wide tables get a
+   horizontal scrollbar instead of being clipped by an overflow-hidden shell. */
 .reading-narrative figure,
 .reading-narrative pre,
 .reading-narrative .worked-example,
+.reading-narrative .reading-table-scroll,
 .reading-narrative [data-reading-breakout] {
   width: min(var(--reading-breakout, 64rem), 100%);
   max-width: min(var(--reading-breakout, 64rem), 100%);
@@ -848,16 +855,30 @@ h6,
 }
 
 @media (min-width: 1280px) {
-  .reading-narrative table,
   .reading-narrative figure,
   .reading-narrative pre,
   .reading-narrative .worked-example,
+  .reading-narrative .reading-table-scroll,
   .reading-narrative [data-reading-breakout] {
     width: var(--reading-breakout, 64rem);
     max-width: min(var(--reading-breakout, 64rem), calc(100% + 14rem));
     margin-left: calc((min(var(--reading-breakout, 64rem), calc(100% + 14rem)) - 100%) / -2);
     margin-right: calc((min(var(--reading-breakout, 64rem), calc(100% + 14rem)) - 100%) / -2);
   }
+}
+
+/* The table scroll wrapper is the breakout box; the table fills or exceeds it
+   and scrolls horizontally within, so columns are never clipped. */
+.reading-narrative .reading-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.reading-narrative .reading-table-scroll > table {
+  width: auto;
+  min-width: 100%;
+  max-width: none;
+  margin: 0;
 }
 
 .reading-narrative h1,

@@ -748,7 +748,7 @@ export default function BookLayout({ user, onLogout }) {
                     <main ref={mainScrollRef} id="main-content" tabIndex={-1} className="h-full min-h-0 overflow-y-auto">
                         <div
                             key={sectionPath}
-                            className={`mx-auto min-h-full w-full max-w-[var(--ath-container-app)] px-[var(--ath-gutter)] ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
+                            className={`mx-auto min-h-full w-full max-w-[var(--ath-container-reading)] px-[var(--ath-gutter)] ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
                         >
                             <Suspense fallback={<div className="mx-auto max-w-4xl px-8 py-12 xl:max-w-5xl"><SurfaceFallback label="Loading reading surface..." /></div>}>
                                 <HighlightableContent

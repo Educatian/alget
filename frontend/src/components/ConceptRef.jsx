@@ -50,11 +50,12 @@ export default function ConceptRef({ id, children }) {
             <Popover.Portal>
                 <Popover.Content
                     side="top"
-                    align="start"
+                    align="center"
                     sideOffset={6}
+                    collisionPadding={12}
                     role="dialog"
                     aria-label={`Definition of ${concept.label}`}
-                    className="z-[80] w-72 rounded-xl border border-[var(--ath-line)] bg-white/95 p-3 text-xs leading-5 text-[var(--ath-muted)] shadow-[0_12px_28px_rgba(15,23,42,0.12)] backdrop-blur-xl"
+                    className="z-[80] w-[min(18rem,calc(100vw-1.5rem))] rounded-xl border border-[var(--ath-line)] bg-white/95 p-3 text-xs leading-5 text-[var(--ath-muted)] shadow-[0_12px_28px_rgba(15,23,42,0.12)] backdrop-blur-xl"
                 >
                     <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
                         Concept
