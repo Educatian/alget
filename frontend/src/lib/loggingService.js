@@ -57,6 +57,16 @@ function ensureGuestCredentials() {
  * Initialize a new session
  */
 export async function initSession(user) {
+    // Defensive: if a prior session is still active (e.g. demo -> real login
+    // without an intervening endSession), tear down its flush timer + listeners
+    // first so they don't accumulate (duplicate intervals / beforeunload handlers).
+    if (flushTimer) {
+        clearInterval(flushTimer)
+        flushTimer = null
+        window.removeEventListener('beforeunload', handleUnload)
+        window.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+
     sessionId = generateUUID()
     sequenceCounter = 0
     userId = user?.id || null

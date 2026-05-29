@@ -1,4 +1,4 @@
-import React, { useId, useState } from 'react';
+import React, { useId, useRef, useState } from 'react';
 import { Check, X, Lightbulb } from 'lucide-react';
 import { recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService';
 import { useReducedMotion, motionClasses } from '../lib/motion';
@@ -18,6 +18,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
     const reducedMotion = useReducedMotion();
     const baseId = useId();
     const [selectedOption, setSelectedOption] = useState(null);
+    const radiogroupRef = useRef(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [feedbackSaved, setFeedbackSaved] = useState(false);
     const [hintShown, setHintShown] = useState(false);
@@ -62,6 +63,10 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
         if (nextIdx !== null) {
             event.preventDefault();
             setSelectedOption(nextIdx);
+            // Move DOM focus with the selection (roving tabindex) so keyboard/SR
+            // focus tracks the chosen option instead of being stranded.
+            const radios = radiogroupRef.current?.querySelectorAll('[role="radio"]');
+            radios?.[nextIdx]?.focus();
         }
     };
 
@@ -151,7 +156,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                     </div>
                 )}
 
-                <div className="mb-6 space-y-3" role="radiogroup" aria-label="Answer options">
+                <div ref={radiogroupRef} className="mb-6 space-y-3" role="radiogroup" aria-label="Answer options">
                     {parsedOptions.map((opt, idx) => {
                         const isChecked = selectedOption === idx;
                         const isFocusable = isChecked || (selectedOption === null && idx === 0);
