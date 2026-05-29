@@ -50,6 +50,17 @@ const RemotionClip = lazy(() => import('./RemotionClip'))
 const ArtifactStudio = lazy(() => import('./ArtifactStudio'))
 const YouTubeEmbed = lazy(() => import('./YouTubeEmbed'))
 
+// Advanced interactive learning components. Block-level interactives that the
+// learner manipulates (sliders, ordering, branching, predict/explain), so they
+// use the breakout wrapper for full content-column width and are lazy-loaded
+// behind a Suspense fallback like the other interactives above.
+const ParameterExplorer = lazy(() => import('./ParameterExplorer'))
+const StepReveal = lazy(() => import('./StepReveal'))
+const SequenceBuilder = lazy(() => import('./SequenceBuilder'))
+const BranchingScenario = lazy(() => import('./BranchingScenario'))
+const ConceptMapMini = lazy(() => import('./ConceptMapMini'))
+const SelfExplain = lazy(() => import('./SelfExplain'))
+
 const TorqueDiagram = lazy(() => import('./TorqueDiagram').then((module) => ({ default: module.TorqueDiagram })))
 const MicroTurbulenceDiagram = lazy(() => import('./AeroacousticsDiagram').then((module) => ({ default: module.MicroTurbulenceDiagram })))
 const KinematicsDiagram = lazy(() => import('./KinematicsDiagram').then((module) => ({ default: module.KinematicsDiagram })))
@@ -311,6 +322,24 @@ export default function ReadingNarrative({
         'formative-summative-diagram': (props) => renderBreakoutLazyModule(FormativeSummativeDiagram, props),
         'rubric-design-diagram': (props) => renderBreakoutLazyModule(RubricDesignDiagram, props),
         'feedback-models-diagram': (props) => renderBreakoutLazyModule(FeedbackModelsDiagram, props),
+        // Advanced interactive learning components. react-markdown lowercases
+        // tag and attribute names and passes every MDX attribute value as a
+        // STRING, so each component parses its own config/steps/items/tree/
+        // concepts JSON defensively (mirroring how interactive-quiz/inline-check
+        // parse their options). They are block-level interactives, so they use
+        // the breakout wrapper for full content-column width with a Suspense
+        // fallback. Section/concept context is threaded through for the ones that
+        // log interactions or resolve the concept registry.
+        'parameter-explorer': (props) => renderBreakoutLazyModule(ParameterExplorer, props),
+        'step-reveal': (props) => renderBreakoutLazyModule(StepReveal, props),
+        'sequence-builder': (props) => renderBreakoutLazyModule(SequenceBuilder, props),
+        'branching-scenario': (props) => renderBreakoutLazyModule(BranchingScenario, props),
+        'concept-map': (props) => renderBreakoutLazyModule(ConceptMapMini, { course: course || undefined, ...props }),
+        'self-explain': ({ conceptid, ...props }) => renderBreakoutLazyModule(SelfExplain, {
+            ...props,
+            sectionId,
+            conceptId: conceptid || conceptIds?.[0] || null,
+        }),
         // Typed SEMANTIC content nodes (PreTeXt semantic blocks + Torus purpose
         // vocabulary). Additive: existing presentational markdown is unchanged;
         // authors opt in by using these tags. react-markdown lowercases tag and

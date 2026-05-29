@@ -752,6 +752,58 @@ h6,
   border-top: 1px solid var(--ath-line);
 }
 
+/* Professional motion / polish layer for interactive blocks.
+   The interactive components are rendered inside .reading-breakout wrappers
+   (parameter-explorer, step-reveal, sequence-builder, branching-scenario,
+   concept-map, self-explain, quizzes, worked examples, diagrams). This layer
+   adds a subtle, consistent entrance settle and a calm feedback transition so
+   the blocks feel responsive and polished rather than static.
+
+   Everything here is GATED behind prefers-reduced-motion: no-preference, so a
+   user who asks the OS to reduce motion gets none of it (the only effect they
+   keep is the static appearance). This is in addition to the global reduce
+   clamp further down; gating at the source means no animation is ever defined
+   for reduced-motion users in the first place. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes reading-interactive-enter {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reading-narrative .reading-breakout {
+    animation: reading-interactive-enter 0.42s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  /* Interactive controls inside the blocks settle their hover / active /
+     pressed feedback with a short, uniform ease so the whole reading surface
+     feels coherent rather than each widget transitioning differently. */
+  .reading-narrative .reading-breakout button,
+  .reading-narrative .reading-breakout [role='button'],
+  .reading-narrative .reading-breakout input[type='range'],
+  .reading-narrative .reading-breakout label,
+  .reading-narrative .reading-breakout summary {
+    transition:
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      color 0.18s ease,
+      box-shadow 0.18s ease,
+      transform 0.18s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  /* A gentle lift on press feedback for the primary interactive affordances,
+     kept small so it reads as tactile, not flashy. */
+  .reading-narrative .reading-breakout button:not(:disabled):active,
+  .reading-narrative .reading-breakout [role='button']:not([aria-disabled='true']):active {
+    transform: translateY(1px);
+  }
+}
+
 @media (max-width: 720px) {
   .reading-narrative {
     font-size: 1rem;
