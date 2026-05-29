@@ -9,3 +9,8 @@ __pycache__/
 frontend/dist/
 frontend/node_modules/
 
+
+# transient UI-audit captures
+screenshots/ui_audit/
+screenshots/ui_final/
+screenshots/fix_*/

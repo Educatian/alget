@@ -9,6 +9,7 @@ import {
     Flame,
     Home,
     LogOut,
+    Menu,
     Network,
     PanelRightClose,
     PanelRightOpen,
@@ -135,6 +136,7 @@ export default function BookLayout({ user, onLogout }) {
     const [sectionData, setSectionData] = useState(null)
     const [loadedSectionPath, setLoadedSectionPath] = useState('')
     const [railOpen, setRailOpen] = useState(false)
+    const [tocOpen, setTocOpen] = useState(false)
     const [railContext, setRailContext] = useState(null)
     const [stuckEvent, setStuckEvent] = useState(null)
     const [highlightQuestion, setHighlightQuestion] = useState(null)
@@ -312,6 +314,7 @@ export default function BookLayout({ user, onLogout }) {
         setStuckEvent(null)
         setRailContext(null)
         setRailOpen(false)
+        setTocOpen(false)
         navigate(`/book/${course}/${nextChapter}/${nextSection}`)
     }, [course, navigate])
 
@@ -382,10 +385,11 @@ export default function BookLayout({ user, onLogout }) {
             const activeTag = document.activeElement?.tagName
             const isEditable = document.activeElement?.isContentEditable
 
-            // Escape closes the help rail even when focus is in an input/button
-            if (event.key === 'Escape' && railOpen) {
+            // Escape closes the help rail / mobile TOC even when focus is in an input/button
+            if (event.key === 'Escape' && (railOpen || tocOpen)) {
                 event.preventDefault()
                 setRailOpen(false)
+                setTocOpen(false)
                 return
             }
 
@@ -406,7 +410,7 @@ export default function BookLayout({ user, onLogout }) {
 
         window.addEventListener('keydown', handleKeyNavigation)
         return () => window.removeEventListener('keydown', handleKeyNavigation)
-    }, [handleNavigate, nextSection, previousSection, railOpen])
+    }, [handleNavigate, nextSection, previousSection, railOpen, tocOpen])
 
     return (
         <div className="editorial-shell flex h-screen flex-col overflow-hidden selection:bg-[rgba(200,226,236,0.35)]">
@@ -521,6 +525,16 @@ export default function BookLayout({ user, onLogout }) {
                                 </Popover.Content>
                             </Popover.Portal>
                         </Popover.Root>
+
+                        <button
+                            type="button"
+                            onClick={() => setTocOpen(true)}
+                            className="xl:hidden flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
+                            aria-label="Open chapter contents"
+                            title="Chapter contents"
+                        >
+                            <Menu className="h-4 w-4" aria-hidden="true" />
+                        </button>
 
                         <button
                             onClick={handleBookmarkToggle}
@@ -639,7 +653,7 @@ export default function BookLayout({ user, onLogout }) {
             </header>
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
-                <aside className="min-h-0 w-72 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
+                <aside className="hidden xl:block min-h-0 w-72 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
                     {tocError ? (
                         <div className="m-4 rounded-2xl border border-[rgba(220,38,38,0.25)] bg-[rgba(254,242,242,0.85)] p-4 text-sm">
                             <p className="font-semibold text-[var(--ath-text)]">Couldn't load chapter list</p>
@@ -671,6 +685,60 @@ export default function BookLayout({ user, onLogout }) {
                         </>
                     )}
                 </aside>
+
+                {tocOpen && (
+                    <div className="fixed inset-0 z-[80] flex xl:hidden">
+                        <button
+                            type="button"
+                            aria-label="Close chapter contents"
+                            onClick={() => setTocOpen(false)}
+                            className="absolute inset-0 bg-[rgba(15,23,42,0.42)] backdrop-blur-sm"
+                        />
+                        <aside className="relative z-10 flex h-full w-[min(20rem,86vw)] flex-col overflow-y-auto border-r border-[var(--ath-line)] bg-[var(--ath-background)] shadow-[24px_0_60px_rgba(15,23,42,0.22)] animate-section-forward">
+                            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.92)] px-4 py-3 backdrop-blur-xl">
+                                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Chapter contents</p>
+                                <button
+                                    type="button"
+                                    onClick={() => setTocOpen(false)}
+                                    className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.65)] hover:text-[var(--ath-text)]"
+                                    aria-label="Close chapter contents"
+                                >
+                                    <PanelRightClose className="h-4 w-4" aria-hidden="true" />
+                                </button>
+                            </div>
+                            {tocError ? (
+                                <div className="m-4 rounded-2xl border border-[rgba(220,38,38,0.25)] bg-[rgba(254,242,242,0.85)] p-4 text-sm">
+                                    <p className="font-semibold text-[var(--ath-text)]">Couldn't load chapter list</p>
+                                    <p className="mt-1 text-xs text-[var(--ath-muted)]">{tocError}</p>
+                                    <button
+                                        type="button"
+                                        onClick={retryToc}
+                                        className="mt-3 rounded-lg border border-[var(--ath-line)] bg-white px-3 py-1.5 text-xs font-semibold text-[var(--ath-primary)] shadow-sm hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                                    >
+                                        Retry
+                                    </button>
+                                </div>
+                            ) : (
+                                <>
+                                    <ChapterPassport
+                                        toc={toc}
+                                        currentCourse={course}
+                                        currentChapter={chapter}
+                                        completedSections={completedSections}
+                                    />
+                                    <BookToc
+                                        toc={toc}
+                                        currentCourse={course}
+                                        currentChapter={chapter}
+                                        currentSection={section}
+                                        onNavigate={handleNavigate}
+                                        completedSections={completedSections}
+                                    />
+                                </>
+                            )}
+                        </aside>
+                    </div>
+                )}
 
                 <div className="group/nav relative min-h-0 flex-1 overflow-hidden">
                     <main ref={mainScrollRef} id="main-content" tabIndex={-1} className="h-full min-h-0 overflow-y-auto">

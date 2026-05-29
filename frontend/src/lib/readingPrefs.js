@@ -26,9 +26,9 @@ export const PARAGRAPH_SPACING_OPTIONS = [
 ]
 
 export const READING_WIDTH_OPTIONS = [
-    { value: 'narrow', label: 'Narrow', width: '42rem' },
-    { value: 'standard', label: 'Standard', width: '52rem' },
-    { value: 'wide', label: 'Wide', width: '68rem' }
+    { value: 'narrow', label: 'Narrow', width: '64ch' },
+    { value: 'standard', label: 'Standard', width: '78ch' },
+    { value: 'wide', label: 'Wide', width: '92ch' }
 ]
 
 export const DYSLEXIA_FONT_OPTIONS = [
@@ -66,7 +66,9 @@ export function applyReadingPrefs(prefs) {
     root.style.setProperty('--reading-font-scale', String(fontScale))
     root.style.setProperty('--reading-line-height', String(lineHeight.multiplier))
     root.style.setProperty('--reading-paragraph-spacing', spacing.spacing)
-    root.style.setProperty('--reading-max-width', width.width)
+    // index.css's .reading-narrative consumes --reading-width, so emit that
+    // exact name (previously this set --reading-max-width, a dead no-op var).
+    root.style.setProperty('--reading-width', width.width)
 
     root.classList.toggle('font-opendyslexic', prefs.dyslexiaFont === 'opendyslexic')
     root.classList.toggle('font-atkinson', prefs.dyslexiaFont === 'atkinson')

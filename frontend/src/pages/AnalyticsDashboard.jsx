@@ -589,7 +589,7 @@ export default function AnalyticsDashboard() {
                             <div className="mt-8 grid gap-5 md:grid-cols-2">
                                 {filteredMasteryData.map((concept, index) => (
                                 <div key={`${concept.concept_id}-${index}`} className="group relative overflow-hidden rounded-[1.8rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.78)] p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md">
-                                        <div className={`absolute -right-10 -top-10 h-28 w-28 rounded-full blur-3xl opacity-20 ${concept.mastery_score >= 0.8 ? 'bg-emerald-500' : concept.mastery_score >= 0.5 ? 'bg-amber-400' : 'bg-[#9E1B32]'}`}></div>
+                                        <div className={`absolute -right-10 -top-10 h-28 w-28 rounded-full blur-3xl opacity-20 ${concept.mastery_score >= 0.8 ? 'bg-emerald-500' : concept.mastery_score >= 0.5 ? 'bg-amber-400' : 'bg-[var(--ath-primary)]'}`}></div>
                                         <div className="relative">
                                             <div className="mb-4 flex items-start justify-between gap-4">
                                                 <h3 className="text-lg font-semibold uppercase tracking-[0.08em] text-[var(--ath-text)]">
@@ -602,7 +602,7 @@ export default function AnalyticsDashboard() {
 
                                             <div className="mb-5 h-2 overflow-hidden rounded-full bg-slate-100">
                                                 <div
-                                                    className={`h-full rounded-full ${concept.mastery_score >= 0.8 ? 'bg-emerald-500' : concept.mastery_score >= 0.5 ? 'bg-amber-400' : 'bg-[#9E1B32]'}`}
+                                                    className={`h-full rounded-full ${concept.mastery_score >= 0.8 ? 'bg-emerald-500' : concept.mastery_score >= 0.5 ? 'bg-amber-400' : 'bg-[var(--ath-primary)]'}`}
                                                     style={{ width: `${Math.max(6, (concept.mastery_score || 0) * 100)}%` }}
                                                 ></div>
                                             </div>
@@ -763,6 +763,7 @@ export default function AnalyticsDashboard() {
                     </div>
                 </section>
 
+                {(artifactMetrics.totalScores || 0) > 0 && (
                 <section className="editorial-surface p-8">
                     <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                         <div>
@@ -851,6 +852,7 @@ export default function AnalyticsDashboard() {
                         </div>
                     </div>
                 </section>
+                )}
 
                 <section className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
                     <div className="editorial-surface p-8">
@@ -969,6 +971,7 @@ export default function AnalyticsDashboard() {
                     </div>
                 </section>
 
+                {(rctSnapshot.interventionOutcomes.length > 0 || rctSnapshot.evaluationGains.length > 0) && (
                 <section className="editorial-section">
                     <header className="editorial-section-header">
                         <h2 className="text-base font-semibold text-[var(--ath-text)]">RCT / intervention effects + learning gains</h2>
@@ -1033,6 +1036,7 @@ export default function AnalyticsDashboard() {
                         </div>
                     </div>
                 </section>
+                )}
             </div>
         </div>
     )

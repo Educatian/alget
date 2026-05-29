@@ -33,7 +33,12 @@
      The reading surface (.reading-narrative) CONSUMES them below. */
   --reading-font-scale: 1;
   --reading-line-height: 1.78;
-  --reading-width: 76ch;
+  /* Comfortable body-text measure. The UDL reading-width preference
+     (readingPrefs.js) overrides this live; defaults to the "Standard" option.
+     Block-level visuals (tables, figures, worked examples) break out wider via
+     --reading-breakout so textbook content is not boxed into the text column. */
+  --reading-width: 78ch;
+  --reading-breakout: 64rem;
   --reading-letter-spacing: 0em;
   --reading-word-spacing: 0em;
   --reading-paragraph-spacing: 1.35rem;
@@ -636,6 +641,34 @@ h6,
 
 .reading-narrative .markdown-content-wrapper {
   display: flow-root;
+}
+
+/* Let wide textbook visuals break out past the text measure so tables,
+   figures, code, and worked examples use the full content column at >=1280px
+   while body prose keeps a comfortable line length. Clamps to the wrapper so
+   nothing overflows horizontally. */
+.reading-narrative table,
+.reading-narrative figure,
+.reading-narrative pre,
+.reading-narrative .worked-example,
+.reading-narrative [data-reading-breakout] {
+  width: min(var(--reading-breakout, 64rem), 100%);
+  max-width: min(var(--reading-breakout, 64rem), 100%);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1280px) {
+  .reading-narrative table,
+  .reading-narrative figure,
+  .reading-narrative pre,
+  .reading-narrative .worked-example,
+  .reading-narrative [data-reading-breakout] {
+    width: var(--reading-breakout, 64rem);
+    max-width: min(var(--reading-breakout, 64rem), calc(100% + 14rem));
+    margin-left: calc((min(var(--reading-breakout, 64rem), calc(100% + 14rem)) - 100%) / -2);
+    margin-right: calc((min(var(--reading-breakout, 64rem), calc(100% + 14rem)) - 100%) / -2);
+  }
 }
 
 .reading-narrative h1,

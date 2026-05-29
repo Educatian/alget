@@ -65,37 +65,37 @@ export default function LandingPage({ onLogin, user, onLogout }) {
             </div>
 
             <nav className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.82)] backdrop-blur-2xl">
-                <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+                <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-4 lg:px-8">
                     <button
                         type="button"
                         onClick={() => navigate('/')}
                         aria-label="Go to ALGET home"
-                        className="flex items-center gap-3 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                        className="flex min-w-0 items-center gap-3 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
                     >
-                        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-sm font-bold text-white shadow-[0_12px_24px_rgba(9,56,72,0.16)]">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-sm font-bold text-white shadow-[0_12px_24px_rgba(9,56,72,0.16)]">
                             AL
                         </div>
-                        <div className="leading-tight">
+                        <div className="min-w-0 leading-tight">
                             <p className="text-base font-semibold tracking-tight text-[var(--ath-primary-deep)]">ALGET</p>
-                            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Alabama Generative Intelligent Textbook</p>
+                            <p className="hidden text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--ath-secondary)] sm:block">Alabama Generative Intelligent Textbook</p>
                         </div>
                     </button>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-wrap items-center justify-end gap-2">
                         <ThemeToggle />
                         {user ? (
                             <>
-                                <span className="hidden text-sm font-medium text-[var(--ath-muted)] sm:inline-block">{user.email}</span>
+                                <span className="hidden max-w-[12rem] truncate text-sm font-medium text-[var(--ath-muted)] lg:inline-block">{user.email}</span>
                                 <button
                                     onClick={() => navigate('/learn')}
-                                    className="editorial-button px-5 py-2.5 text-sm"
+                                    className="editorial-button px-3 py-2 text-sm sm:px-5 sm:py-2.5"
                                 >
                                     Open workspace
                                     <ArrowRight className="h-4 w-4" />
                                 </button>
                                 <button
                                     onClick={onLogout}
-                                    className="editorial-button-secondary px-4 py-2 text-sm"
+                                    className="editorial-button-secondary px-3 py-2 text-sm sm:px-4"
                                 >
                                     Sign out
                                 </button>
@@ -103,7 +103,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         ) : (
                             <button
                                 onClick={() => setAuthOpen(true)}
-                                className="editorial-button-secondary px-5 py-2.5 text-sm"
+                                className="editorial-button-secondary px-3 py-2 text-sm sm:px-5 sm:py-2.5"
                             >
                                 Sign in
                             </button>
