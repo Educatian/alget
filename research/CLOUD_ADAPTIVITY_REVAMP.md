@@ -67,3 +67,87 @@ invalidates. Learner-state reads stay live.
 
 No external A/B platform, no ClickHouse/EMR analytics ops; the closed loop + provenance stay in-system.
 The edge function is the in-system policy, just relocated for speed.
+
+## Implementation notes (v1 shipped)
+
+### What landed
+
+- `supabase/functions/adaptive-recommendation/policy.ts` — a faithful 1:1 TypeScript port of the PURE
+  core of `backend/knowledge_tracing.py` (`SUPPORT_ACTIONS`, `REASON_CODE_FEATURES`,
+  `ANNOTATION_REASON_CODES`, `ANNOTATION_FEATURES`, `_clamp`/`_feature`, `score_support_actions`,
+  `derive_reason_codes`, `reason_codes_are_faithful`, `select_support_move`). Identical thresholds,
+  tie-breaking order, and the `annotation_adaptive` ablation behavior. **Python remains the source of
+  truth — never hand-edit the policy logic here without re-running the parity test.**
+  - One subtlety: Python's `round(x, 3)` rounds the *exact binary* value half-to-even. A naive JS
+    `Math.round(x*1000)/1000` diverges on exact halves (e.g. `0.6045` → 0.605, `0.2095` → 0.209). The
+    port implements `_roundPy` over a high-precision (`toFixed(20)`) decimal expansion so rounded
+    `action_scores` match Python bit-for-bit. This was the only non-mechanical part of the port.
+- `supabase/functions/adaptive-recommendation/index.ts` — the edge function (`Deno.serve`). Accepts the
+  same request contract `{ learner_id, course, section_id, annotation_adaptive?,
+  artifact_revision_scores?, annotation_signals?, learner_profile? }` (plus optional pre-assembled
+  `features`, `prefer_advance`/`readiness`, `content_version`), runs `select_support_move`, generates a
+  `decision_id` via `crypto.randomUUID()`, **best-effort** persists the decision record (candidate /
+  selected / rejected actions, `action_scores`, `evidence_snapshot`, `reason_codes`, `policy_mode`,
+  `content_version`) to `adaptive_decisions` via the service role (`SUPABASE_URL` +
+  `SUPABASE_SERVICE_ROLE_KEY` from `Deno.env`), enforces the faithfulness invariant before returning,
+  and returns the same response shape incl. `decision_id`. Persistence never throws to the caller.
+- `supabase/functions/adaptive-recommendation/parity/` — `fixtures.json` (13 diverse vectors varying
+  mastery_gap, friction, artifact quality/gap, annotation overlap, prefer_advance, and
+  `annotation_adaptive` on/off), `gen_golden.py` (imports `backend.knowledge_tracing.select_support_move`
+  and emits `golden.json`), `run_parity.mjs` (runs the TS policy over the same fixtures and deep-compares
+  every field), and `run_parity.sh` (the one-shot runner). **Result: 13/13 PASS — TS == Python on all
+  fixtures** (`selected_action`, `rejected_actions`, `reason_codes`, `action_scores`, `evidence_snapshot`,
+  `policy_mode`).
+- Frontend: `frontend/src/lib/apiConfig.js` exports `ADAPTIVE_EDGE_FUNCTION` and `isAdaptiveEdgeEnabled()`
+  (`VITE_ADAPTIVE_EDGE` flag, OFF by default). `frontend/src/lib/adaptiveClient.js` exposes
+  `getAdaptiveRecommendation(payload, opts)` — when the flag is truthy and Supabase is configured it calls
+  `supabase.functions.invoke('adaptive-recommendation', { body })` with a timeout (default 2500ms) and on
+  **any** error/timeout falls back to `POST ${API_BASE}/adaptive_recommendation`. Returns
+  `{ data, error, source }` where `source` is `'edge'` or `'fastapi'`.
+
+### Switching a caller to the edge path
+
+Existing FastAPI callers are untouched. To migrate one, replace the direct
+`fetch(\`${API_BASE}/adaptive_recommendation\`, ...)` with:
+
+```js
+import { getAdaptiveRecommendation } from '../lib/adaptiveClient'
+const { data, error, source } = await getAdaptiveRecommendation(payload)
+```
+
+Set `VITE_ADAPTIVE_EDGE=1` in the frontend env to enable edge routing; unset to revert instantly.
+
+### Running the parity check
+
+```bash
+bash supabase/functions/adaptive-recommendation/parity/run_parity.sh
+```
+
+It generates the Python golden file, transpiles `policy.ts` to ESM (via the frontend's bundled
+`esbuild`; uses `deno check` first if Deno is present), and asserts TS == Python on every fixture.
+
+### Deploy
+
+```bash
+# from repo root, with the Supabase CLI logged in + project linked
+supabase functions deploy adaptive-recommendation
+
+# set the function secrets (service role is in-region, behind the function only)
+supabase secrets set SUPABASE_URL="https://<project-ref>.supabase.co"
+supabase secrets set SUPABASE_SERVICE_ROLE_KEY="<service-role-key>"
+```
+
+Then set `VITE_ADAPTIVE_EDGE=1` in the frontend deploy env and ship. Verify parity (above) and measure
+latency before defaulting the flag on.
+
+### Deferred to v2
+
+- **DB-side feature mining.** v1 trusts the assembled signals the client already sends (the
+  post-feature-gather feature vector, or the raw `learner_profile` / `annotation_signals` /
+  `artifact_revision_scores` that `assembleFeatures` folds into it). The full server-side mining the
+  FastAPI path does (mastery reads, telemetry aggregation, misconception clustering, SM-2
+  `forgetting_risk` from review history, content-version hashing) is **not** replicated in the isolate
+  yet. v2 should read learner state in-region and compute the vector edge-side so the client cannot
+  shape the inputs.
+- Per-section static-feature caching keyed by `content_version` (isolate-level), per the Caching section.
+- The `.../outcome` label-attach endpoint mirrored on the edge.
