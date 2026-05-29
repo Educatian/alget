@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-GitHub Repository Setup sits inside **GitHub Pages Personal Website**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats GitHub Repository Setup as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the GitHub Pages file tree with accessibility, privacy, and publishing checks.
+A GitHub repository (repo) is a folder whose entire history is tracked. Setting one up correctly is what turns the loose files on your laptop into a published, recoverable, shareable project. Two setup decisions in particular have consequences that are hard to undo later: the exact name of the repository, which determines your live URL, and what you allow into version history, because anything committed once lives in the history even after you delete it.
 
-Read this page as a short decision cycle: understand the idea, apply it to **GitHub Pages file tree with accessibility, privacy, and publishing checks**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section walks the real commands (`git init`, `git add`, `git commit`, `git remote`, `git push`) and the two guardrails beginners most often skip: naming a user site so it serves from the clean root URL, and using a `.gitignore` so secrets never enter history in the first place. Getting these right now prevents the most painful failures in publishing (06.04) and maintenance (06.07).
 
 ## Learning Targets
 
@@ -17,21 +17,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **Git
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for GitHub Repository Setup. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The GitHub Pages file tree with accessibility, privacy, and publishing checks is the place where that verification becomes visible.
+A student wants her portfolio at the clean address `mlopez.github.io`. She creates a repo called `portfolio`, pushes everything, and enables Pages. Her site appears, but at `mlopez.github.io/portfolio/`, not the root she wanted, and worse, every absolute stylesheet path she wrote now points to the wrong place. Separately, in her rush she committed a `token.txt` file holding an API key. She deletes the file in her next commit and assumes it is gone. It is not: the key still sits in the repo's history, visible to anyone who looks, which means it must be rotated, not just deleted.
 
-A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The GitHub Pages file tree with accessibility, privacy, and publishing checks is where that trust is built.
+Both problems trace to a single setup moment. The repository name fixed the URL shape, and the first commit fixed what entered history. This section teaches you to make those two decisions deliberately.
 
 ## Core Concept
 
-The core idea in this section is that **GitHub Repository Setup** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Repository setup rests on a few mechanics that beginners can learn in one sitting.
 
-Three course anchors shape the reasoning here:
+**Repo name determines URL.** GitHub Pages distinguishes a user site from a project site by the repo name. A repo named exactly `username.github.io` publishes at the root, `https://username.github.io/`. Any other name publishes as a project site at a subpath, `https://username.github.io/reponame/`. The subpath is not wrong, but it changes how your asset paths must be written (the cause of the broken-CSS case above), so choose the name with the URL you want in mind.
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+**The commit pipeline.** Git tracks changes in three stages. The working directory is your files as they sit. `git add` moves chosen files to the staging area, a holding pen for the next snapshot. `git commit` records that snapshot permanently with a message. `git push` uploads commits to GitHub. Understanding the stages explains why `git add` then `git commit` are two separate steps: staging lets you choose precisely what goes into each snapshot.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+**History is permanent; `.gitignore` is prevention.** A commit is a permanent record. Deleting a file later removes it from the current snapshot but not from past commits. The correct defense is to never commit secrets: a `.gitignore` file lists patterns (like `token.txt` or `.DS_Store`) that Git will refuse to stage. Prevention beats cleanup because cleaning history is hard and, for a leaked credential, insufficient (you still have to rotate the key).
+
+These mechanics meet ISTE digital citizenship directly: committing a key is a real security exposure, and knowing that history is permanent is the difference between a recoverable mistake and a published one. NACE career readiness applies too, because version control and not leaking credentials are baseline expectations in any technical workplace.
 
 ## Worked Example
 
@@ -71,50 +71,46 @@ The repository is now named correctly, the secret is ignored before it can leak,
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Before your first push, run three checks in this order, because each one is hard to reverse afterward:
 
-Before submitting the GitHub Pages file tree with accessibility, privacy, and publishing checks, slow down and check whether the trace can answer three questions:
+1. **Name check:** Does the repo name produce the URL you want? Use `username.github.io` for a root user site; accept a subpath only if you have written your asset paths to suit it.
+2. **Secret check:** Is there any credential, key, token, or private path among the files? If so, add it to `.gitignore` before you stage anything. If a secret was already committed, plan to rotate it, not just delete it.
+3. **Entry-file check:** Is there a lowercase `index.html` at the level GitHub will serve? The root URL looks for `index.html`; a file named `Index.HTML` returns a 404 on case-sensitive servers.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A failure here is not cosmetic. The wrong name means rebuilding URLs; a leaked secret means a real exposure; a missing index means a blank live site.
 
 ## Common Misreadings
 
-A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.
+The most damaging misreading is "I deleted the file, so the secret is gone." Git history keeps every committed version. Deleting a file in a new commit hides it from the current snapshot but leaves it readable in history, which is why a committed key must be rotated. Treat the first commit as a one-way door for anything sensitive.
 
-The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.
+A second misreading is assuming any repo name works the same. The exact string `username.github.io` is special; everything else becomes a subpath site with different path requirements.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **GitHub Pages file tree with accessibility, privacy, and publishing checks**. Then ask what problem the artifact is supposed to solve inside website publishing. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the rule to a clean setup. A student named Maria wants `mlopez.github.io`. She names the repo exactly that, satisfying the name check and the root-URL goal in one decision. Before staging, she scans the folder and spots `token.txt` from an earlier experiment; she writes a `.gitignore` containing `token.txt` and `.DS_Store`, satisfying the secret check before anything sensitive can enter history. She confirms the entry file is lowercase `index.html`, satisfying the entry-file check.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Only then does she run the commit pipeline: `git add index.html about.html assets/`, `git commit -m "Initial portfolio"`, connect the remote, and `git push`. Because she checked the three things first, the live site appears at the clean root URL, the token never reaches GitHub, and the root request resolves to her home page. The order of operations is the lesson: the checks come before the push, not after.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 06.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader can predict the consequence of each setup choice before running it. As you read the worked example, pause at the repo-name line and ask what URL it produces; pause at the `.gitignore` and ask what would have happened without it. If you can state the downstream effect of each command, you understand setup as a chain of consequences rather than a recipe to copy.
 
-A strong reader of GitHub Repository Setup can answer four questions:
+A strong reader of repository setup can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Given a repo name, what will the live URL be, root or subpath?
+2. What is the difference between staging and committing, and why are they separate?
+3. If a secret was committed three commits ago, what does it take to truly remove the risk?
+4. What single file prevents secrets from entering history, and how does it work?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+Your repository is strong when a reviewer cloning it finds no secrets in any commit, a sensible `.gitignore`, a clear commit message, and a lowercase `index.html` that the root URL serves. The history should read as deliberate: each commit groups related changes rather than dumping everything at once.
 
-A useful final paragraph for the artifact would sound like this: "I changed **GitHub Pages file tree with accessibility, privacy, and publishing checks** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A strong submission documents one prevention you made on purpose: "I added token.txt to .gitignore before the first commit, because once a key is in history, deleting the file is not enough and I would have had to rotate it."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **GitHub Pages file tree with accessibility, privacy, and publishing checks** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand GitHub Repository Setup deeply enough to adapt it rather than repeat it.
+Take the same setup skills to a different project: a small Python script you want to share rather than a website. The URL concern disappears (you may not publish Pages at all), but the history and secrets concerns are identical. You would still write a `.gitignore`, this time excluding a `config.py` with database passwords and a `__pycache__` folder, and you would still treat the first commit as permanent. The specific patterns in `.gitignore` change with the project type; the principle that history is permanent and secrets must be kept out of it never changes. Carrying that principle to a non-web project is the test that you learned version-control hygiene, not just one portfolio recipe.
 
 ## Artifact Studio
 

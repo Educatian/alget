@@ -4,34 +4,34 @@
 
 ## Why This Section Matters
 
-Participant Profiles and Sampling sits inside **Usability Testing and Learning Evidence**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Participant Profiles and Sampling as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the moderated usability test script with observation-to-revision trace is ready for revision.
+A usability finding is only as trustworthy as the people who produced it. You can run a flawless session, log every behavior, and still draw a false conclusion if the participants do not stand in for the learners the design is actually for. This is the validity problem at the heart of sampling: who you recruit silently determines which problems can even appear. Recruit experts and the friction novices feel never surfaces; recruit only the eager and you miss the reluctant learner the course most needs to reach. This section treats the participant profile as a design decision with consequences, not as a logistics chore solved by "whoever is available."
 
-Read this page as a short decision cycle: understand the idea, apply it to **moderated usability test script with observation-to-revision trace**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+In AIL 606 the moderated usability test script with observation-to-revision trace must say not just what you tested but who you tested it on, and why those people make a found problem likely to transfer to the real audience. A clean session with the wrong sample is worse than a messy one with the right sample, because it overclaims with confidence.
 
 ## Learning Targets
 
-- Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Define a target population by the trait that drives the design's usability risk, not by convenience.
+- Build a screener that recruits for that trait and excludes participants who would mask the problem.
+- Use small-sample logic to choose a defensible number of participants per relevant subgroup.
+- Span the range of learner variability so a finding is not an artifact of one narrow cluster.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Participant Profiles and Sampling. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the moderated usability test script with observation-to-revision trace records that reasoning.
+A designer needs feedback on a self-paced course built for warehouse staff with little prior experience using a learning management system. The fastest people to recruit are five colleagues from the design team. They are sharp, available, and fluent in e-learning, so the session runs smoothly and everyone completes every task. The plan looks validated.
 
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind Participant Profiles and Sampling so the next revision is based on evidence, not taste.
+It is not. The colleagues never stumbled where warehouse staff will stumble, because expertise erased exactly the friction the test was meant to find. The smooth session is not evidence that the design works; it is evidence that the wrong people tried it. The sample, chosen for availability, guaranteed a false positive before anyone clicked a button.
 
 ## Core Concept
 
-The core idea in this section is that **Participant Profiles and Sampling** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Sampling in formative usability is purposive, not statistical. You are not trying to estimate a population parameter; you are trying to surface design problems, and the math that governs that is the discovery curve. With problems that affect a reasonable share of users, a handful of well-chosen participants exposes most of them, while the next handful mostly repeats what you already saw. The classic rule of thumb (roughly five users per homogeneous group surfaces the bulk of that group's problems) is a budgeting heuristic, not a guarantee, and it collapses the moment your users are not homogeneous.
 
-Three course anchors shape the reasoning here:
+That caveat is where **UDL learner variability** does real work. If your audience spans novices and frequent users, or differs on a trait that changes how people interact (language, assistive technology, prior schema), then "five users" is five users per meaningfully different group, not five users total. Recruit for the trait that drives risk:
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+- **Risk-driving trait first.** Screen on the variable most likely to cause failure (prior LMS use, reading level, device), because that is the axis along which problems cluster.
+- **Exclude the maskers.** Participants whose expertise or insider knowledge would hide the problem are not "extra data"; they are contamination.
+- **Span the range.** Cover the edges of the variability, not just the comfortable middle, since edge learners reveal problems the median never hits.
 
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+**Cognitive load theory** explains why the wrong sample misleads: experts have schemas that absorb extraneous load invisibly, so a screen that overloads a novice feels effortless to them. The expert's success is not transferable evidence.
 
 ## Worked Example: Revising a Participant Profile and Sampling Plan
 
@@ -56,50 +56,48 @@ The after version is defensible because the sample is chosen for the trait that 
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Recruit for the trait that breaks the design, then cover its range; let availability decide only among people who already pass the screener. If you find yourself justifying a participant by "they were free" rather than "they match the risk profile," stop and rewrite the screener.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+Before locking the sample into your moderated usability test script with observation-to-revision trace, check three things:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Representativeness check:** Does each participant share the trait that drives the usability risk?
+2. **Coverage check:** Do your participants span the variability that matters, or cluster in one comfortable subgroup?
+3. **Contamination check:** Would any participant's expertise hide a problem the real audience would hit?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any check fails, the session may run smoothly and still produce evidence that does not transfer.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the moderated usability test script with observation-to-revision trace while the designer never explains the learning demand.
+The frequent error is reading "five users is enough" as a universal license, when it holds only within a single homogeneous group; an audience with three meaningfully different segments needs participants in each. A second error is equating a diverse-looking roster with a valid sample: diversity on traits that do not affect the interaction (favorite color, department) adds nothing, while a missing axis that does affect it (no screen-reader users for an accessibility claim) quietly voids the finding.
 
-Treat the artifact as a record of design judgment, not only as a deliverable.
+A sample is a claim about who your evidence covers; recruit so that claim is true.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **moderated usability test script with observation-to-revision trace**. Then ask what problem the artifact is supposed to solve inside usability and learning evidence. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Trace one recruitment decision from population to roster. A team is testing a tutoring app aimed at first-generation college students. The risk-driving trait is not age or major; it is unfamiliarity with academic-jargon navigation labels, which **cognitive load theory** predicts will cost these learners extraneous effort that experienced students never spend. So the screener targets that trait directly: it recruits students who have not previously used a campus tutoring portal, and it excludes peer tutors who know the vocabulary.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now apply **UDL learner variability**. Within first-generation students there is still a range: some are confident readers, some are multilingual and parse English jargon more slowly. A walkthrough plan covers both ends rather than filling all six slots with confident readers, because a label that confuses the slower reader is precisely the finding worth keeping. The roster, read back, is a sentence: "Six first-generation students, none prior portal users, spanning confident to slower readers." That sentence is what makes any problem they hit credible for the real audience.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 05.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read a recruitment plan, keep one column for who is included and one for who is excluded, and for each entry ask which problems that choice makes visible or invisible. The exclusions are usually more revealing than the inclusions; a plan that excludes the very learners who would struggle has engineered its own clean result.
 
-A strong reader of Participant Profiles and Sampling can answer four questions:
+A strong reader of a sampling plan can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. What single trait most threatens this design, and does the screener recruit for it?
+2. Which subgroups must appear for the finding to transfer?
+3. Who, if recruited, would hide the problem rather than reveal it?
+4. How many participants per group, and what discovery logic justifies that number?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The sampling section is strong when a reviewer can read the screener alone and predict which learners will and will not appear, then agree those are the right people for the claim you intend to make. Treat the screener question as the artifact's load-bearing element; a vague criterion ("some experience") lets the wrong people through and reintroduces the contamination you were guarding against. Use the annotation tools to flag any slot justified by availability, and ask BigAL to compare your roster against the coverage check rather than to suggest more participants.
 
-A useful final paragraph for the artifact would sound like this: "I changed **moderated usability test script with observation-to-revision trace** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful closing line reads: "I changed the sample from five available colleagues to six warehouse staff screened by prior LMS use because the colleagues' expertise would have hidden the navigation problem; I rejected the suggestion to add two designers as a comparison group, since their data could not transfer to the real audience."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **moderated usability test script with observation-to-revision trace** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Participant Profiles and Sampling deeply enough to adapt it rather than repeat it.
+Move the same sampling logic to a classroom field test where you cannot screen freely and must take the students enrolled. The discipline does not disappear; it shifts from recruitment to interpretation. You now document which subgroups your fixed roster happens to cover and which it misses, and you scope every claim to the segments actually present. A reader who treats "the whole class participated" as automatic representativeness has missed that an intact class is itself a convenience sample, with its own blind spots to name.
 
 ## Artifact Studio
 
@@ -128,7 +126,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links Participant Profiles and Sampling, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+Before you move on, make sure your sampling plan names the risk-driving trait, screens for it, spans the relevant variability, and excludes participants who would mask the problem.
 
 ## References
 

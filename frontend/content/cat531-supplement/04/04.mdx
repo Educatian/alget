@@ -4,34 +4,34 @@
 
 ## Why This Section Matters
 
-Privacy and Consent With Minors sits inside **AI Ethics and Ethobot 3.2**. In this part of CAT 531, you are learning to work as a teacher making a defensible technology decision: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Privacy and Consent With Minors as a professional judgment problem: the learner must connect pedagogy, classroom constraints, and ethics before defending the school AI policy memo with privacy, equity, consent, and learning-purpose checks.
+Consent is the one place where good intentions are not enough, because minors cannot legally give it. A teacher who says "I told the students the chatbot would save their questions" has not obtained consent; she has issued a notice to people who lack the legal capacity to agree. The gap between notifying, assenting, and consenting is where most well-meaning classroom AI runs aground, and closing that gap is the core competency of this section. Privacy law treats children differently for a reason, and a defensible policy memo has to honor that difference in its design, not just its tone.
 
-Read this page as a short decision cycle: understand the idea, apply it to **school AI policy memo with privacy, equity, consent, and learning-purpose checks**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The stakes are higher with AI tools specifically because their default business model often runs against the student. Many vendors retain student inputs to train their models, sometimes for years, by default. A teacher who adopts the tool without changing that default has, in effect, enrolled minors in a data pipeline their families never agreed to. The consent clause you learn to write here is the mechanism that flips the default back toward the student.
 
 ## Learning Targets
 
-- Analyze how the school AI policy memo with privacy, equity, consent, and learning-purpose checks shows a defensible decision in CAT 531.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to make a classroom technology decision more defensible.
+- Distinguish notification, assent, and consent, and assign each to the correct party (student assents; parent or guardian consents).
+- Specify what data an AI tool collects, the single purpose it is collected for, and what it is explicitly not used for.
+- Choose opt-in with parental consent over opt-out, and explain why a minor family's silence is not agreement.
+- Write a retention and deletion rule that overrides the vendor's default, and cite the vendor setting that made the clause necessary.
 
 ## Opening Case
 
-Imagine a teacher choosing whether to use a classroom technology for Privacy and Consent With Minors. The important question is not whether the tool is exciting; it is whether the teacher can name the instructional purpose, the equity risk, the student-data boundary, and the evidence that makes the school AI policy memo with privacy, equity, consent, and learning-purpose checks a professional judgment rather than a preference.
-
-This section turns Privacy and Consent With Minors into a defensible teaching decision. The goal is to make the reasoning public enough that a colleague could inspect and improve it.
+A teacher wants to use an AI homework chatbot with her 6th-grade class. The tool stores each student's questions to "personalize" help, and the vendor's default retains those logs for 24 months and uses them to train the model. The teacher's instinct is to send a friendly note home: "Your child will be using a helpful AI tutor this term." That note feels responsible but does almost nothing legally or ethically. It does not name what data is collected, it does not ask for agreement, and it treats a non-response as a yes. This section is about turning that note into a consent clause that would survive a privacy officer's review.
 
 ## Core Concept
 
-The core idea in this section is that **Privacy and Consent With Minors** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Privacy and consent with minors rest on three terms that are routinely blurred and must be kept separate:
 
-Three course anchors shape the reasoning here:
+| Term | Who acts | What it means | Legally sufficient alone? |
+| --- | --- | --- | --- |
+| Notification | Teacher tells | "Here is what will happen." | No |
+| Assent | Minor agrees | The student's age-appropriate "yes." | No |
+| Consent | Parent or guardian agrees | Legally binding permission for a minor. | Yes, when informed |
 
-- **TPACK** helps you decide what counts as a meaningful learning or performance demand.
-- **critical edtech studies** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **AI and education datafication** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+A defensible consent design does four things in order. It names both parties (the student assents, the guardian consents). It states the data and a single bounded purpose ("question text and timestamps, used only to alert the teacher to a struggling student, never to train the vendor model"). It sets the default to opt-in, because a family that does not return a form has not agreed to anything. And it sets a retention and deletion rule that overrides the vendor's, with a specific end date.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+The course anchors are concrete here. **AI and education datafication** is the lens that exposes the vendor default as the real adversary: the 24-month retention and training-on-student-data setting is the thing your clause exists to override. **Critical edtech studies** reminds you that the families least able to parse a dense consent form are often the ones whose children are most exposed, so plain language is an equity requirement, not a courtesy. **Teacher professional judgment** is what bounds the purpose: you decide the data serves a teacher alert and nothing more, and you write that limit in.
 
 ## Worked Example: A Consent Clause for a Minors' AI Tool
 
@@ -54,50 +54,36 @@ The strong clause separates assent from consent, names data use and retention, d
 
 ## Decision Rule
 
-Use the classroom value conflict first, the technology affordance second, and the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity.
+Before any minor uses an AI tool that records them, the consent design must satisfy four tests:
 
-A strong submission should survive three quick tests:
+1. **Capacity:** Is legal consent sought from a guardian, with student assent as a separate, age-appropriate step?
+2. **Purpose limitation:** Is the data tied to one named use and explicitly walled off from model training?
+3. **Default:** Is the tool opt-in, so that no form returned means no account created?
+4. **Retention:** Is there a deletion date that overrides the vendor default, with the vendor setting cited?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any test fails, the tool is not ready, regardless of how useful it is.
 
 ## Common Misreadings
 
-Teachers can also over-trust a platform recommendation and under-document the classroom constraint that should govern the choice.
-
-In this course, quality means the technology choice can be inspected as a professional judgment.
+The most common error is mistaking notification for consent: telling families is not asking them, and assuming a yes from silence inverts the protection minors are owed. A subtler error is naming a vague purpose ("to improve learning") that quietly licenses almost any data use. Purpose limitation only protects students if the purpose is narrow enough to exclude the vendor's training pipeline by name.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **school AI policy memo with privacy, equity, consent, and learning-purpose checks**. Then ask what problem the artifact is supposed to solve inside ethics and Ethobot reasoning. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **TPACK**, **critical edtech studies**, **teacher professional judgment**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Apply the four tests to a different tool: an AI behavior-tracking app that logs which students are "off task" via webcam. Capacity: webcam observation of minors plainly requires guardian consent, not just a posted notice. Purpose limitation: the data must be tied to one use (a teacher's own classroom-management reflection) and explicitly barred from any disciplinary record or vendor analytics. Default: opt-in, with a non-camera alternative for families who decline, so opting out carries no penalty. Retention: footage deleted same-day, since standing video of children is a severe risk and the vendor's default cloud storage runs 90 days. Once you walk the tests, the honest conclusion may be that no consent design rescues this tool, because continuous webcam monitoring of minors fails the purpose-and-proportion test no matter how the clause is worded. Recognizing when the answer is "decline" is itself the competency.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 531 04.04, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
-
-A strong reader of Privacy and Consent With Minors can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+Keep a two-column note: each of the four tests on the left, the exact clause language that satisfies it on the right, with the vendor default it overrides in the margin. A strong reader can point to the line that turns the vendor's 24-month training default off, not just assert that privacy is protected. If your note says "we got consent" without naming who consented, for what bounded purpose, and against which vendor setting, the consent is decorative.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a mentor teacher can see the instructional purpose, the classroom constraint, and the reason a revision was made. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong policy memo separates assent from consent, states a bounded purpose, defaults to opt-in, sets a deletion date, and cites the vendor setting each clause overrides. Polish is the last layer. If the memo names a vague purpose or omits the retention override, mark the gap and ask BigAL to show the vendor default your clause needs to counter rather than a general explanation of privacy.
 
-A useful final paragraph for the artifact would sound like this: "I changed **school AI policy memo with privacy, equity, consent, and learning-purpose checks** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving whether the technology choice serves a specific learning activity for real students."
+A useful closing line for the artifact sounds like this: "I required parental opt-in and walled the data off from vendor training because the tool's default retains and trains on student questions for 24 months; the clause deletes logs at term end, which the vendor setting otherwise would not."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **school AI policy memo with privacy, equity, consent, and learning-purpose checks** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Privacy and Consent With Minors deeply enough to adapt it rather than repeat it.
+Move the consent design to an 18-year-old dual-enrollment class, where students are legal adults. The capacity test changes: students now consent for themselves, and a separate guardian step is no longer required. But the purpose-limitation, opt-in, and retention tests do not relax at all, and treating adult students as if consent is automatic is its own error. Working this version tests whether you understand consent as a structured set of protections or merely as "ask the parents."
 
 ## Artifact Studio
 

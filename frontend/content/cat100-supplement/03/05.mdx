@@ -2,11 +2,9 @@
 
 ![AI Help for Excel Debugging textbook visual](/course-art/deep-exemplars/cat100-supplement/03-05-ai-help-for-excel-debugging.png)
 
-## Why This Section Matters
+An AI assistant can write an Excel formula faster than you can type it, but it cannot know whether the formula is right for your data. It does not see your sheet; it only sees the words in your prompt. So the value you get from AI debugging depends almost entirely on two things you control: how precisely you describe the problem, and how rigorously you verify the answer before you trust it.
 
-AI Help for Excel Debugging sits inside **Data Storytelling With Excel**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats AI Help for Excel Debugging as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the Excel pivot-table finding with unit labels, source note, and claim-first chart title.
-
-Read this page as a short decision cycle: understand the idea, apply it to **Excel pivot-table finding with unit labels, source note, and claim-first chart title**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section treats AI as a fast assistant that is sometimes confidently wrong. The discipline it teaches is a loop: read the actual error code to diagnose the cause, write a prompt that names the exact cells and the behavior you want, then verify the returned formula on a row whose answer you already know. Skipping the diagnosis or the verification is how a plausible-looking AI formula ships a hidden bug.
 
 ## Learning Targets
 
@@ -17,21 +15,25 @@ Read this page as a short decision cycle: understand the idea, apply it to **Exc
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for AI Help for Excel Debugging. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The Excel pivot-table finding with unit labels, source note, and claim-first chart title is the place where that verification becomes visible.
+A cell in your gradebook shows `#DIV/0!` and you are stuck. You paste "fix my Excel error" into an AI chat and it returns a formula that uses functions you do not recognize, applied to cells it guessed at. You drop it in, the error disappears, and you move on, never noticing that the formula now reports the wrong average for half the class.
 
-The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.
+The error went away, but the bug did not. That is the danger of using AI without diagnosis and verification: it is very good at making errors disappear and only sometimes good at making them correct. The move this section builds is the opposite habit, reading what `#DIV/0!` actually means, telling the AI exactly which cells and which behavior, and checking its answer against a row you can compute yourself.
 
 ## Core Concept
 
-The core idea in this section is that **AI Help for Excel Debugging** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Effective AI debugging rests on two skills: reading Excel's error codes and writing prompts that leave nothing to guess. Excel's errors are not random; each one names a category of cause, so the error code is your first diagnostic clue.
 
-Three course anchors shape the reasoning here:
+| Error | Means | Usual cause |
+| --- | --- | --- |
+| `#DIV/0!` | Division by zero | The denominator cell is blank or zero |
+| `#REF!` | Invalid reference | A cell the formula pointed to was deleted |
+| `#VALUE!` | Wrong data type | Text where a number is expected (`18 units`) |
+| `#NAME?` | Unrecognized name | A misspelled function or undefined range name |
+| `#N/A` | Value not found | A lookup found no match |
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+Reading the code tells you where to look before you ask anyone, human or AI, for help.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+A good debugging prompt has four parts: the current formula, the error or wrong result it produces, the cause if you know it, and the exact behavior you want, including any edge case. Compare "fix my formula" with "My formula `=B4/D4` returns #DIV/0! because D4 is blank; I want it to show 'n/a' when D4 is empty and otherwise divide normally; give me one formula." The second prompt constrains the AI so tightly that its answer is easy to check. Then comes the non-negotiable step: verify the returned formula on a known-answer row, a row where you already know the correct result, before copying it anywhere.
 
 ## Worked Example
 
@@ -59,50 +61,49 @@ The auditable trace: the error code named the cause, the prompt named the exact 
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Diagnose with the error code, prompt with exact cells and behavior, and verify on a known-answer row before you copy anything. An AI formula is a suggestion until you have proven it on a value you can compute yourself.
 
-A strong submission should survive three quick tests:
+Run every AI fix through this gate:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Diagnosis check:** Did you read the actual error code and form a guess at the cause before asking?
+2. **Prompt check:** Does your prompt name the formula, the wrong result, and the exact behavior including edge cases?
+3. **Verification check:** Did the AI formula produce the correct, already-known answer on a test row before you trusted it?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If you cannot point to a row where you confirmed the AI formula was right, you have not finished debugging.
 
 ## Common Misreadings
 
-Another misreading is to write about the tool instead of showing what the tool helped you revise.
+The biggest misreading is treating "the error disappeared" as proof the formula is correct. An AI fix that replaces `#DIV/0!` with a number can still compute the wrong number; the absence of a red error is not the presence of a right answer. Only a known-answer row settles it.
 
-In this course, quality means another reader can verify what changed and why.
+A second misreading is pasting a whole sheet of sensitive data into a chat to get help. The AI does not need the data to fix a formula; it needs the formula, the error, and the intended behavior. Describe the structure and share the formula, not the people's names, grades, or other private values.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Excel pivot-table finding with unit labels, source note, and claim-first chart title**. Then ask what problem the artifact is supposed to solve inside spreadsheet data stories. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the loop to a lookup error in a price list. Column C uses `=VLOOKUP(B2, Prices, 2, FALSE)` to fetch a price for each product code in B, but a few rows show `#N/A`. The error code is your first clue: `#N/A` means the lookup found no match, so the suspect is the lookup value, not the table.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Diagnose before prompting. Inspect a failing row and you notice B7 reads `A-100 ` with a trailing space while the price table lists `A-100`; the space breaks the match. Now write a precise prompt: "My `=VLOOKUP(B2, Prices, 2, FALSE)` returns #N/A on rows where the code has a trailing space; I want it to match after trimming spaces; give me one formula." The AI returns `=VLOOKUP(TRIM(B2), Prices, 2, FALSE)`.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Verify before trusting. On a row you know is correct, where B3 is a clean `A-200` priced at \$15, the new formula must still return 15. It does, so the TRIM did not break the working rows. Now copy it down and the `#N/A` rows resolve.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 03.05, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader treats an AI formula the way a careful editor treats a draft: useful, but unverified until checked. The habits to build:
 
-A strong reader of AI Help for Excel Debugging can answer four questions:
+1. Read the error code first and predict the cause before opening a chat.
+2. Notice when a prompt is too vague to produce a checkable answer, and tighten it.
+3. Always identify a known-answer row to test the fix against.
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+When your instinct on receiving any AI formula is "let me test it on a row I can compute," you have internalized the safeguard that makes AI help trustworthy.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong AI-debugging artifact shows the whole loop, not just the final formula. It records the original broken formula and its error code, the exact prompt you wrote, the formula the AI returned, and the known-answer row that confirmed it. A model line reads: "`=B4/D4` gave #DIV/0! on blank-denominator rows; I prompted for an n/a-on-empty version; the AI returned `=IF(D4=0,"n/a",B4/D4)`; I confirmed it returns 9.0 on David's row (45/5) before copying it down."
 
-A useful final paragraph for the artifact would sound like this: "I changed **Excel pivot-table finding with unit labels, source note, and claim-first chart title** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+The weak version says "AI helped me fix the formula." The strong version lets a reviewer see what was wrong, what was asked, what was returned, and the proof it was right, so the AI's contribution is bounded and checkable rather than a black box.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Excel pivot-table finding with unit labels, source note, and claim-first chart title** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand AI Help for Excel Debugging deeply enough to adapt it rather than repeat it.
+The same diagnose-prompt-verify loop transfers from formulas to chart and pivot problems. Suppose a pivot total looks too low and you suspect the source range. You would not paste the workbook into a chat; you would describe the symptom ("my pivot of a 200-row log only totals about half the orders"), state your hypothesis ("I think the source range stops at row 100"), and ask how to confirm and extend the range. Then you verify by hand-counting a subset against the refreshed pivot. The tool changed from a formula to a pivot, but the discipline, name the symptom, hypothesize the cause, verify the fix, is identical, which is the sign you have learned the loop rather than one formula.
 
 ## Artifact Studio
 

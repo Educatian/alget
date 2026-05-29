@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Scenario-Based AI Dialogue sits inside **AI Conversations as a Teacher**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Scenario-Based AI Dialogue as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the AI critique log showing accepted, modified, and rejected suggestions.
+A single long prompt that asks for everything at once usually returns a vague answer, because the AI has to balance too many goals in one shot. A scenario-based dialogue solves this by breaking the work into a planned sequence of turns, where each turn does exactly one job: set the situation, narrow the constraints, then stress-test the result. You stop hoping for a perfect first reply and instead steer the conversation toward a usable one.
 
-Read this page as a short decision cycle: understand the idea, apply it to **AI critique log showing accepted, modified, and rejected suggestions**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This matters because the value lives in the steering, and the steering has to be visible. When each turn is labeled with its job, a reviewer can read your transcript and see which turn caused which improvement. An unlabeled wall of chat hides your reasoning; a labeled sequence makes it auditable, which is what turns a chat log into evidence of skill.
 
 ## Learning Targets
 
@@ -17,21 +17,23 @@ Read this page as a short decision cycle: understand the idea, apply it to **AI 
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Scenario-Based AI Dialogue. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The AI critique log showing accepted, modified, and rejected suggestions is the place where that verification becomes visible.
+A student needs a 90-second welcome to read aloud to a new study-group member. They type one giant prompt: "write a warm, short, professional, reassuring welcome for a nervous new student who missed orientation, no jargon, friendly but not childish." The reply is 300 words and uses the phrase "academic onboarding." It satisfies every adjective a little and none of them well.
 
-A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The AI critique log showing accepted, modified, and rejected suggestions is where that trust is built.
+The same student, working in turns, gets a tighter result. Turn one sets the situation. Turn two adds the single hard limit ("under 90 seconds aloud, no jargon"). Turn three pressure-tests it ("what if they already feel behind?"). Each turn fixes one thing, and the transcript shows exactly where the length dropped and where the reassurance line appeared.
 
 ## Core Concept
 
-The core idea in this section is that **Scenario-Based AI Dialogue** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A scenario-based dialogue has three structural moves, run in order. Skipping or merging them is what produces vague output.
 
-Three course anchors shape the reasoning here:
+| Move | Turn job | What it controls |
+|------|----------|------------------|
+| SET CONTEXT | name the situation and the audience | who the answer is for and what counts as success |
+| NARROW | add one hard constraint at a time | length, vocabulary, format, or tone |
+| STRESS-TEST | introduce a complication | robustness when the easy case breaks |
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The reason for one job per turn is diagnosis. If you change three things in a single message and the reply gets worse, you cannot tell which change caused it. Isolating one move per turn means every improvement and every regression has a single visible cause. This is the same logic a programmer uses when changing one variable at a time to find a bug.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+Labeling is not decoration. Writing the turn's job ("Turn 2: NARROW") next to the message converts a private chat into a readable record. A reviewer can replay your reasoning turn by turn and check that each move actually did its job, which is the standard this section holds you to.
 
 ## Worked Example
 
@@ -59,50 +61,48 @@ Step 4. Log the accept/reject. Turn 3 returned two reassurance lines; you kept "
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Plan the turns before you type the first one. A dialogue is well-built when every turn has a named job and the transcript shows a visible cause for each change in the output.
 
-Before submitting the AI critique log showing accepted, modified, and rejected suggestions, slow down and check whether the trace can answer three questions:
+Check the transcript against three questions:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **One-job check:** Does each turn change exactly one thing (context, a constraint, or a complication)?
+2. **Cause check:** Can you point to the turn that produced each improvement, rather than a general "the conversation got better"?
+3. **Stress check:** Did at least one turn introduce a complication, so the final answer is tested, not just polished for the easy case?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If two turns change several things at once, split them. You will not be able to defend which move mattered, and neither will a reviewer.
 
 ## Common Misreadings
 
-A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.
+The first misreading is thinking more turns automatically means better dialogue. Ten turns that each tweak wording are weaker than three turns that set context, narrow, and stress-test. Quality comes from distinct jobs, not from quantity.
 
-The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.
+The second misreading is saving only the final answer and discarding the path. The final answer alone proves nothing about your skill; anyone can copy a good paragraph. The labeled path is the artifact, because it shows you steered the result on purpose.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **AI critique log showing accepted, modified, and rejected suggestions**. Then ask what problem the artifact is supposed to solve inside teacher-AI dialogue and communication. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the three moves to a new scenario: convincing a hesitant classmate to join a group presentation. Turn one (SET CONTEXT) names the audience, a shy classmate who fears public speaking, and the goal, a two-line invitation. The first reply is generic encouragement. Turn two (NARROW) adds the constraint "offer one specific low-pressure role," and the reply now suggests "you could run the slides while we talk." Turn three (STRESS-TEST) asks "what if they say they will freeze on stage?" and the reply adds a fallback (they can read from notes).
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Notice that the useful content, the specific role and the fallback, only appeared after the NARROW and STRESS-TEST turns. The SET CONTEXT turn alone gave you nothing actionable. That is the lesson: the early turn frames the problem, but the later turns extract the parts you can actually use. Reading the transcript, anyone can see that progression and trust that you built the answer rather than copied it.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 04.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is "this turn improved the output"; the evidence is the labeled turn and the specific change it produced. A strong reader does not say "the dialogue worked"; they say "Turn 2 cut the welcome from 300 words to 70 because it added the length limit."
 
 A strong reader of Scenario-Based AI Dialogue can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which turn carried the most weight in reaching a usable answer?
+2. Which turn, if removed, would leave the answer vague or untested?
+3. What complication did the stress-test turn introduce, and did the AI handle it?
+4. If you ran the same scenario again, which turn would you reorder or split?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is strong when the labeled transcript lets a reviewer reconstruct your steering without your narration. Keep the full sequence, mark each turn's job, and add a one-line accept/reject note for at least one AI suggestion you did not take whole.
 
-A useful final paragraph for the artifact would sound like this: "I changed **AI critique log showing accepted, modified, and rejected suggestions** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful closing note for the artifact would read: "Turn 3 returned two reassurance lines; I kept the one about everyone joining at a different point and cut the duplicate. The cut matters because the reader has 90 seconds, and a repeated reassurance wastes time that the labeled transcript shows I was protecting." That ties a concrete edit to the constraint you set earlier in the dialogue.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **AI critique log showing accepted, modified, and rejected suggestions** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Scenario-Based AI Dialogue deeply enough to adapt it rather than repeat it.
+Move the dialogue from a low-stakes welcome to a high-stakes message: a note to a struggling teammate about missed deadlines. The three-move structure transfers, but the STRESS-TEST turn changes character. For a welcome, you stress-tested for nerves; here you stress-test for defensiveness ("what if they feel blamed?"). The NARROW turn also tightens, since tone now carries real consequences. The skeleton (context, narrow, stress-test) holds across both, but the complication you choose to test depends on what could go wrong in the new setting. Understanding the structure means knowing which turn to re-aim, not retyping the old one.
 
 ## Artifact Studio
 
@@ -131,7 +131,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the AI critique log showing accepted, modified, and rejected suggestions records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
+Before you move on, check that your transcript labels each turn's job, shows a visible cause for each change, includes one stress-test turn, and logs at least one accepted and one rejected suggestion.
 
 ## References
 

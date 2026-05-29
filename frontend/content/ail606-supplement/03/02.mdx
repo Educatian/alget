@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Signaling and Segmenting in Practice sits inside **Multimedia Storyboarding and AI Asset Generation**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Signaling and Segmenting in Practice as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+Signaling and segmenting are two of the most cited principles in multimedia learning, and two of the most often misapplied. Designers who have read Mayer tend to over-apply both: they cue everything that seems important, which destroys the contrast that makes signaling work, and they chop a smooth explanation into so many clicks that the segmenting interrupts comprehension instead of pacing it. Knowing the principle's name is not the skill. The skill is the calibration: how much to cue, where exactly to place a break, and how to tell from learner behavior whether you cued too little or too much.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section moves both principles from the textbook definition to a procedure you can run on an actual frame. Signaling is treated as a scarce budget of attention you spend deliberately; segmenting is treated as cutting an explanation at its conceptual seams so the learner controls the pace of essential processing. The defensible decision is not "I applied signaling," it is "I cued this one element and not those three, and I broke the sequence here and not there, and here is why."
 
 ## Learning Targets
 
@@ -17,21 +17,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **sto
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Signaling and Segmenting in Practice. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A designer proudly presents a lab-safety frame: every step heading is bold red, each diagram sits in a yellow box, and two arrows pulse for emphasis. "I used signaling on everything important," she says. But when ten elements are all emphasized, none of them is, because signaling works only by contrast against an unemphasized background. The frame has more cuing and less guidance than the plain version it replaced.
 
-This page is more than a principle summary. Use it to leave a design trace showing how Signaling and Segmenting in Practice changed what you noticed in the storyboard frame sequence with narration, signaling, and reader-action notes.
+Across the room, another designer split a single fluid demonstration into eleven Continue clicks, one per sentence, "to apply segmenting." Learners now lose the thread between clicks because the breaks fall inside ideas, not between them. Both designers cited the right principle and produced a worse frame. This section is about the judgment that sits between the principle and the panel.
 
 ## Core Concept
 
-The core idea in this section is that **Signaling and Segmenting in Practice** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+**Signaling** (Mayer's cueing principle) means adding non-content cues, contrast, position, arrows, isolation, brief motion, that direct limited attention to the part of the display that matters now. Its mechanism is contrast against a background, so its first law is scarcity: the proportion of the display that is cued must stay small. The practical question is never "is this important?" (everything on a teaching frame is) but "is this where attention must land at this moment in the task?" That converts signaling from decoration into routing.
 
-Three course anchors shape the reasoning here:
+**Segmenting** (Mayer's segmenting principle) means breaking a continuous explanation into learner-paced units so that essential processing of one chunk completes before the next begins. Its mechanism is managing intrinsic load over time: a high-element-interactivity process (mitosis, a four-step procedure) overwhelms working memory if delivered as one continuous stream, but becomes tractable in paced units. The skill is locating the conceptual seam, the boundary between one complete idea and the next, and placing the break there, never inside an idea.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The two principles interact and can collide:
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+- Over-signaling is a coherence violation in disguise: extra cues become extraneous load, so cognitive load theory predicts harm even when each cue "looks helpful."
+- Over-segmenting fractures a single idea, raising load instead of lowering it; the break must fall at a seam, not at a sentence boundary.
+- UDL learner variability sets the calibration target: novices need more, larger segments and clearer cues, while experts experience the same cues and breaks as redundant interruptions (the expertise reversal effect). A defensible decision names the learner whose pacing it is tuned to.
 
 ## Worked Example: Fixing Over-Cuing and Adding Real Segmenting
 
@@ -58,50 +58,41 @@ The improvement is not more polish. It is less cuing used more precisely, plus l
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+For signaling, set a cue budget and defend it: on any single frame, cue the one element where attention must land for the current action, and demote everything else. Before adding a cue, ask "what is currently competing with this for attention, and can I remove that instead of cuing harder?" Removing a distractor is usually cheaper than adding a signal.
 
-A strong submission should survive three quick tests:
+For segmenting, run the seam test on every break you insert:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Seam test:** Does the break fall between two complete ideas, or inside one? If a learner would be mid-thought at the break, move it.
+2. **Control test:** Does the learner trigger the next segment, or does the system auto-advance? Segmenting requires learner pacing; auto-advance is not segmenting.
+3. **Count test:** Could two adjacent segments be one without overloading the target learner? If yes, merge them; over-segmentation is as real a defect as under-segmentation.
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A decision survives only if you can name both the cue you spent and the cue you withheld, and both the seam you cut and the seam you left whole.
 
 ## Common Misreadings
 
-Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.
-
-In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.
+The most damaging misreading is that more signaling is safer than less. It is not symmetric: under-cuing leaves attention undirected, but over-cuing actively destroys the contrast mechanism, so the over-cued frame can score worse than a frame with no cues at all. A second misreading treats segmenting as "add a Next button between every screen." Pagination is not segmenting unless the page breaks coincide with conceptual seams and the learner controls advancement for the purpose of completing essential processing.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside storyboarding and AI asset generation. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Walk a real frame through both principles. A three-minute animation explains how a four-stroke engine works. The first draft cues all four strokes in red simultaneously and plays end to end with no stops. Apply signaling: cue only the stroke currently in motion (one salient element), and gray the other three until reached, so contrast routes attention to the active stroke. Apply segmenting: find the seams, which here are the boundaries between strokes (intake, compression, power, exhaust), and place a learner-controlled Continue at each of the three seams, not in the middle of a stroke where a piston is mid-travel.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now predict the failure each fix prevents. Without the signaling fix, a learner watching four red strokes at once cannot tell which motion the narration is describing. Without the segmenting fix, a learner who needs to re-watch compression must scrub a continuous timeline and overshoot. The walkthrough shows that the two principles solve different problems on the same frame: signaling routes attention in space, segmenting paces processing in time.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 03.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+Read every cued element as a spending decision and ask what it cost. For each signal in the chapter's examples, name the element it makes more salient and the elements it necessarily makes less salient, because contrast is zero-sum. For each break, decide whether it sits on a seam or inside an idea. A strong reader can look at an over-busy frame and say not just "too much going on" but specifically "five cues competing; the action only needs one; remove four."
 
-A strong reader of Signaling and Segmenting in Practice can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+A strong reader of signaling and segmenting can state, for any frame, which single element earns the cue, which seam earns the break, and which learner the calibration is tuned to.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact reaches the stronger standard when the trace documents restraint, not just application. It names at least one element the designer chose not to cue and one seam the designer chose not to break, with the reason, because demonstrating where you withheld a principle is stronger evidence of calibration than demonstrating where you applied it. The trace ties the calibration to a named learner (novice versus near-expert) and predicts how the cue count or segment count would change for the other.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A strong closing note reads: "I reduced Frame 2 from four simultaneous step cues to one active-step cue and left the other headings plain, because contrast routes attention only if most of the frame stays quiet. I placed Continue controls at the three between-step seams and explicitly did not break mid-step, where the procedure is one continuous motion. This pacing targets first-time learners; for a refresher audience I would merge to two segments."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Signaling and Segmenting in Practice deeply enough to adapt it rather than repeat it.
+Carry the calibration from a visual animation to an audio-first podcast lesson where there is no screen to cue. Signaling now lives in the voice: a deliberate pause, a change in pace, or the phrase "here is the part that matters" becomes the cue, and the same scarcity law holds, because if every sentence is emphasized vocally, none is. Segmenting becomes the chapter break or the prompt "pause and try this before you continue." The transfer test is whether you can move both decisions into a channel with no visual contrast at all and still name the one cue and the one seam. If your signaling skill collapses the moment you lose arrows and color, you had learned the format, not the principle.
 
 ## Artifact Studio
 

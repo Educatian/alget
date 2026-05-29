@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-LXD Optimizer Critical Use sits inside **Learning Experience Design and Software Technology**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats LXD Optimizer Critical Use as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+A new class of tools promises to "optimize" your learning experience: scan a module, score it on completion, time-on-page, and efficiency, and return a ranked list of edits with predicted gains. Used uncritically, these optimizers are dangerous precisely because they are useful. They surface real problems (a missing alt text, a confusing layout) alongside changes that move a metric while damaging learning, and they present both with the same confident green arrow. This section is about reading an optimizer report as a designer rather than obeying it as an operator.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The crux is the gap between a metric and the learning it stands in for. An optimizer can measure completion, dwell time, and click counts, but it cannot measure understanding, transfer, or whether a learner can perform the target action a week later. Every optimizer suggestion is therefore an argument about a proxy, and the designer's job is to ask, for each one, whether improving the proxy also improves, leaves untouched, or harms the actual learning goal. Goodhart's law looms over the whole enterprise: when a measure becomes a target, it stops being a good measure.
 
 ## Learning Targets
 
@@ -17,21 +17,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **sto
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for LXD Optimizer Critical Use. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+An optimizer scans a module and returns four edits, each with a predicted gain: shorten the worked example from six steps to two (+14% completion), move the self-check above the reading (+9% time-on-page), add alt text to two diagrams (+3% completion), remove a rarely played audio-description track (+6% efficiency). The dashboard turns green if you apply all four. The tempting move, and the one a manager under deadline pressure may demand, is "accept all, the numbers all went up."
 
-This page is more than a principle summary. Use it to leave a design trace showing how LXD Optimizer Critical Use changed what you noticed in the storyboard frame sequence with narration, signaling, and reader-action notes.
+But three of those four edits trade learning for a metric. Cutting the worked example to two steps removes the modeled reasoning the example exists to teach; the completion gain comes from learners finishing a worse artifact. Moving the self-check before the reading raises time-on-page because confused learners linger, not because they engage. Removing the audio-description track improves efficiency by deleting an accessibility provision the metric cannot value. Only the alt text serves both a learner need and the goal, and its completion gain is a side effect, not the reason to do it. The storyboard trace must record which suggestions were refused and why, so the green dashboard cannot stand in for a design decision.
 
 ## Core Concept
 
-The core idea in this section is that **LXD Optimizer Critical Use** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Critical use of an optimizer rests on understanding what a proxy metric can and cannot see. **Completion** measures whether learners reached the end, not whether they learned; it rises when you make a module shorter, easier, or less demanding, regardless of whether that helps. **Time-on-page** is ambiguous by design: it goes up with both deep engagement and total confusion, so it can never, on its own, tell you which one occurred. **Efficiency** rewards removing steps, which collides directly with provisions (accessibility tracks, worked examples) whose value is concentrated in a minority of learners or in long-term outcomes the metric never measures.
 
-Three course anchors shape the reasoning here:
+The disciplined response is to classify each suggestion by its relationship to the learning goal, not by the size of its predicted gain. A suggestion is **goal-aligned** (improves the proxy and the learning, like adding alt text), **goal-neutral** (improves the proxy without touching learning, where you may accept it for the side benefit), or **goal-opposed** (improves the proxy by harming learning, which you reject regardless of the number). The predicted gain is information about the proxy only; it carries no weight in the verdict until you know which of the three categories the suggestion falls into.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The course anchors are the instruments that let you classify:
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+- **Cognitive load theory** distinguishes a cut that removes extraneous load (good) from one that removes the germane processing a worked example exists to create (bad), even though both raise completion.
+- **UDL learner variability** is the defense against efficiency edits, since usage-weighted metrics systematically undervalue features that serve learners with disabilities or atypical paths.
+- **Mayer's principles** tell you when a "shorten it" suggestion crosses from the coherence principle (cut the irrelevant) into deleting the explanatory core.
 
 ## Worked Example: Triaging an Optimizer Report
 
@@ -60,50 +60,51 @@ The revision is defensible because each optimizer suggestion was judged against 
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Judge each optimizer suggestion by its effect on the learning goal, not by the size of its predicted metric gain. The number tells you about the proxy; only the learning goal tells you whether to act.
 
-A strong submission should survive three quick tests:
+Run each suggestion in an optimizer report through this triage before accepting any of them:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Proxy named:** What exact metric does this suggestion move (completion, time, efficiency), and what does that metric fail to capture?
+2. **Mechanism:** Does the gain come from better learning, from an easier task, or from confused learners lingering?
+3. **Category:** Is the suggestion goal-aligned, goal-neutral, or goal-opposed?
+4. **Accessibility check:** Does the edit remove a provision that serves a minority of learners whose value the metric cannot see?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+Accept goal-aligned edits, accept goal-neutral edits only for a stated side benefit, and reject goal-opposed edits no matter how green the arrow. Then log the reason for each verdict, because the rejections are the evidence that a designer, not a dashboard, made the call.
 
 ## Common Misreadings
 
-Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.
+The first misreading treats a larger predicted gain as a stronger reason to act. The size of the gain is irrelevant until you know its mechanism; a +14% completion that comes from gutting a worked example is worse than a +3% gain that comes from adding alt text. Read the mechanism, then the magnitude, never the reverse.
 
-In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.
+The second misreading assumes that because an optimizer is automated, it is objective. An optimizer is only as objective as its proxy metrics, and those metrics encode a value system that prizes completion and efficiency over transfer and equity. The tool is not neutral; it has a built-in bias toward shorter, easier, faster modules. Critical use means treating the report as an argument from a biased source, to be cross-examined against the learning goal, not as a verdict from a disinterested judge.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside learning-experience design tools. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Walk the optimizer table from the worked example one row at a time and watch the triage operate. The "shorten the worked example" row predicts +14% completion, the largest gain on the report, and is rejected first, which already breaks the accept-all instinct. The reason is mechanistic: a worked example reduces load for novices by modeling the full chain of reasoning, so cutting it to two steps removes the germane processing that is the example's entire purpose. The completion gain is real and irrelevant.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Notice that the table separates the gain from the verdict in two columns. The "self-check above the reading" row is rejected because higher time-on-page here signals confusion, not engagement; reading the mechanism behind the metric flips its apparent meaning. The "remove audio-description track" row is rejected on UDL grounds, because an efficiency metric structurally cannot see the value of a provision used by a few learners with high need. Only the alt-text row survives, and the designer's note is careful to say the completion gain is a side effect, not the reason, which keeps the decision anchored to the goal.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+The walkthrough's lesson is that a defensible response to an optimizer is a per-suggestion log of verdicts and reasons, plus a follow-up check (the transfer quiz before and after the accepted edit) that confirms understanding did not drop. The green dashboard is an input to that process, never its output.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 02.06, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, practice on real dashboards: for any analytics report you see (a course's completion stats, a website's bounce rate), name the proxy and then name one thing that proxy cannot see. The habit of asking "what does this number fail to capture?" is the entire defense against optimizer overreach, and it transfers far beyond learning design.
 
-A strong reader of LXD Optimizer Critical Use can answer four questions:
+A strong reader of optimizer reports can answer four questions about any suggested edit:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which proxy does this move, and what does that proxy fail to measure?
+2. Does the gain come from better learning, an easier task, or learner confusion?
+3. Is the suggestion goal-aligned, goal-neutral, or goal-opposed?
+4. What follow-up evidence would confirm that understanding did not drop when the metric rose?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong artifact for this section is a triaged optimizer report: every suggestion classified as goal-aligned, goal-neutral, or goal-opposed, each with a one-line mechanism and verdict, plus at least one reasoned rejection. The strongest versions add a before-and-after transfer check on the accepted edit, demonstrating that the designer confirmed learning rather than trusting the dashboard.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+When you bring an optimizer suggestion to BigAL, ask it to expose the proxy and the mechanism, not to confirm the gain. A useful prompt is: "An optimizer says shortening my worked example will raise completion 14%. What is completion failing to measure here, and what learning would I lose?" That turns the AI into a cross-examiner of the metric instead of a second voice telling you to apply the edit.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand LXD Optimizer Critical Use deeply enough to adapt it rather than repeat it.
+Take the same four-suggestion report and change the optimizer's objective from completion and efficiency to a different proxy: predicted exam score from an embedded item bank. The triage logic survives, but the verdicts can move. Now the "shorten the worked example" suggestion might be reported as *lowering* predicted score, because the optimizer's new proxy partly captures the understanding the example builds; the metric and the goal are better aligned, so the tool's recommendation is more trustworthy, though still not authoritative. The lesson is that an optimizer is only as good as the distance between its proxy and your real goal. If you can explain why the audio-description edit is still rejected even under a learning-aligned proxy (because exam score still cannot see accessibility need), you understand that critical use is permanent, not a workaround for bad metrics.
 
 ## Artifact Studio
 

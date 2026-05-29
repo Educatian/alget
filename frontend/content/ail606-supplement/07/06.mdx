@@ -4,34 +4,36 @@
 
 ## Why This Section Matters
 
-Publication-Ready Artifact Packaging sits inside **Research Translation for Learning Design**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Publication-Ready Artifact Packaging as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+A design artifact that only its author can use is not finished; it is a private draft. Publication-ready packaging is the discipline of preparing an artifact so a competent stranger can identify the canonical version, understand its intent, reuse it legally, and reproduce its use, all without contacting you. This is the reproducibility standard that scholarly and open-source communities have converged on: a clear README, an unambiguous canonical file, recorded provenance for every reused asset, an explicit license, and a changelog. The folder of "FINAL" and "FINAL (1)" files is the anti-pattern this section exists to eliminate.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+For a learning designer, packaging is where evidence of your reasoning either survives or evaporates. If the decision log, the asset sources, and the AI-assistance notes are not written down at packaging time, they are usually lost. Treating packaging as a design step, not a clerical afterthought, is what makes your work citable, auditable, and reusable.
 
 ## Learning Targets
 
-- Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Identify the reuse test: could a competent stranger find the canonical artifact and reproduce its use from the package alone?
+- Build a package with a README (intent and decision log), a single dated canonical file, per-asset provenance, an explicit license, and a changelog.
+- Record asset provenance (source and license) rather than silently reusing images.
+- Decide what to include and what to summarize (e.g., disclose AI assistance in the README rather than dumping a full chat log).
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Publication-Ready Artifact Packaging. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
-
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind Publication-Ready Artifact Packaging so the next revision is based on evidence, not taste.
+A teammate says the storyboard is "done" and shows you the folder: `storyboard_final_v2_FINAL.pdf`, `storyboard_final_v2_FINAL (1).pdf`, an `images/` directory, and a `notes.txt`. The work may be excellent, but the package fails immediately: a stranger cannot tell which PDF is canonical, the reused images carry no license, and nothing states what the artifact is for or how to use it. "Done" here means the author can still open it; it does not mean anyone else can. This section turns that folder into a package that passes the reuse test.
 
 ## Core Concept
 
-The core idea in this section is that **Publication-Ready Artifact Packaging** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Publication-ready packaging is organized around one operational standard, the reuse test, supported by five components:
 
-Three course anchors shape the reasoning here:
+| Component | What it guarantees | Failure if missing |
+| --- | --- | --- |
+| README | Intent, decision log, how to view, AI-assist and verification note | Reuser cannot tell what the artifact is for |
+| Canonical file (single, dated) | One unambiguous source of truth | "Which FINAL is the real one?" |
+| Per-asset provenance | Source and license for every reused image or text | Legal and ethical reuse risk |
+| LICENSE | Explicit terms for reuse | Reuser does not know what is permitted |
+| CHANGELOG | Version history and what changed | No way to track or cite a specific version |
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The components serve the reuse test: a competent stranger should be able to open the README, find the canonical file, confirm they may reuse the assets, and rebuild the work. Packaging also includes a judgment about *what not to include*: the goal is the provenance a reuser needs, not every artifact you produced. A full AI chat transcript, for instance, is noise; the README's statement of which sections the AI drafted and how you verified them is the signal.
 
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+The course anchors apply even at the packaging stage. **Mayer's principles** shape the README so it communicates efficiently (a coherent, signposted document, not a wall of text), because a README that overloads the reader defeats its purpose. **Cognitive load theory** argues for structure that lowers the reuser's extraneous effort: a manifest and clear naming reduce the search cost of finding the canonical file. **UDL learner variability** reminds you that "competent stranger" includes reusers with different tools and access needs, so the package should not assume your exact software environment.
 
 ## Worked Example
 
@@ -46,9 +48,9 @@ images/
 notes.txt
 ```
 
-1. Annotation: two near-identical "final" files with no manifest, reused images with no license, and no statement of intent or how to run anything.
-2. Decision point: could a stranger identify the canonical artifact and reproduce its use from this alone? No.
-3. Revision move: name the canonical files, add provenance, and write a README that states intent and steps.
+1. Two near-identical "final" files, with no manifest to say which is canonical.
+2. Reused images in `images/` with no recorded source or license.
+3. No statement of intent and no instructions for viewing or rebuilding.
 
 **After (publication-ready package):**
 
@@ -60,54 +62,36 @@ LICENSE              # CC BY 4.0
 CHANGELOG.md         # version history
 ```
 
-The after package passes the reuse test: the canonical artifact is unambiguous, every reused asset carries provenance, and the README lets a competent stranger rebuild the work. I rejected including the full AI chat log; instead the README states which sections the AI drafted and how I verified them, which is the provenance a reuser actually needs.
+The revised package passes the reuse test: the canonical artifact is unambiguous, every reused asset carries provenance, and the README lets a competent stranger rebuild the work.
+
+One rejected inclusion: the full AI chat log. I left it out because a reuser does not need the transcript; instead the README states which sections the AI drafted and how I verified them, which is the provenance that actually supports reuse and accountability.
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Package the artifact, then run the reuse test as a thought experiment with a stranger:
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+1. **Canonical check:** Could the stranger identify the single authoritative file without guessing? If two files compete for "final," fix the naming and the manifest.
+2. **Provenance check:** Does every reused asset record a source and a license? If an image's origin is unknown, you cannot ship it.
+3. **Rebuild check:** Do the README instructions let the stranger view or reproduce the artifact in their own environment, without your help?
+4. **Inclusion check:** Does the package contain the provenance a reuser needs and exclude noise (raw logs, dead drafts) that obscures it?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A package that fails any check is not "almost done"; it is a private draft wearing a "final" label.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the storyboard frame sequence with narration, signaling, and reader-action notes while the designer never explains the learning demand.
-
-Treat the artifact as a record of design judgment, not only as a deliverable.
+One misreading equates a polished artifact with a publication-ready one. A beautiful PDF in an unlicensed, unlabeled folder still fails the reuse test, because polish is a property of the artifact and reusability is a property of the package around it. A second misreading treats "include everything" as transparency. Dumping every draft and every chat log does not aid a reuser; it buries the canonical file and the relevant provenance under noise. Good packaging is curation toward reuse, not exhaustive archival.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside research translation. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Apply the standard to a dataset-plus-dashboard artifact. The first pass is a folder with `data.csv`, `dashboard.html`, and `final_charts.xlsx`, no README. Walk the checks. Canonical: name the authoritative dashboard file and date it, and state in the README that `data.csv` is the source for `dashboard.html`. Provenance: record where `data.csv` came from, how it was collected, and any de-identification applied, plus the license under which it may be reused. Rebuild: write the steps to open the dashboard and regenerate the charts, naming the tool versions so a stranger on different software can adapt. Inclusion: drop the stale `final_charts.xlsx` if the dashboard supersedes it, or mark it explicitly as deprecated in the changelog. The result is a package a reviewer could cite by version and a peer could rebuild, which is the whole point.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 07.06, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
-
-A strong reader of Publication-Ready Artifact Packaging can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
-
-## Stronger Artifact Standard
-
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
-
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+Read your own package as a stranger who has never met you and cannot ask you anything. For each file, ask "would I know what this is and whether I may use it?" and for the folder as a whole, ask "could I find the one real version and rebuild it?" A strong reader notices the gaps that authors are blind to: the unlicensed image, the undated duplicate, the assumed software, the missing decision log. The discipline is to package for the reuser you will never meet, not for the author who already knows everything.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Publication-Ready Artifact Packaging deeply enough to adapt it rather than repeat it.
+Move packaging into a regulated or archival context, such as depositing an artifact in an institutional repository that requires persistent identifiers and long-term access. The reuse test tightens: the canonical file now needs a stable identifier, the license must permit the repository's terms, and the README must remain intelligible years after the software that made the artifact is gone. The same five components carry over, but the "competent stranger" becomes a future reuser with none of your context and possibly none of your tools. Designing the package to survive that gap is the proof that you understand packaging as future-proofing reuse, not as tidying a folder.
 
 ## Artifact Studio
 

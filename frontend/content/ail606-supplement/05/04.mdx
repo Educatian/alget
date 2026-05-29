@@ -4,34 +4,35 @@
 
 ## Why This Section Matters
 
-Learning Metrics and Usability Metrics sits inside **Usability Testing and Learning Evidence**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Learning Metrics and Usability Metrics as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the moderated usability test script with observation-to-revision trace is ready for revision.
+A satisfied learner is not necessarily a learning learner, and an efficient interface is not necessarily an effective lesson. The single most common overclaim in instructional design is letting one comfortable number (usually satisfaction) speak for a claim it cannot support. This section is about construct validity in measurement: matching each claim you want to make to a metric that can actually bear it. Usability metrics tell you whether people can operate the thing; learning metrics tell you whether they walked away able to do something they could not do before. They answer different questions, and a plan that confuses them will report success on the easy question while staying silent on the hard one.
 
-Read this page as a short decision cycle: understand the idea, apply it to **moderated usability test script with observation-to-revision trace**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+In AIL 606 the moderated usability test script with observation-to-revision trace must keep these two measurement families distinct and pair each claim with the metric that fits it. Mixing them is not a rounding error; it is a category mistake that lets a smooth, well-liked module pass without any evidence that anyone learned.
 
 ## Learning Targets
 
-- Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Classify a metric as usability (operability) or learning (capability gain) by the construct it measures.
+- Pair each claim with a metric that has the validity to support it, never a proxy.
+- Read satisfaction as an attitude signal, not as evidence of learning or of effectiveness.
+- Combine completion, time, error, and outcome data into a picture no single number could give.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Learning Metrics and Usability Metrics. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the moderated usability test script with observation-to-revision trace records that reasoning.
+A team tests a statistics-tutorial prototype and reports that nine of ten learners rated it four or five out of five. The headline writes itself: the module works and learners are learning. The slide deck is built before anyone notices the gap.
 
-A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the moderated usability test script with observation-to-revision trace should make that chain readable.
+The gap is that satisfaction measured how the experience felt, and nothing else. It is silent on whether anyone can now interpret a confidence interval, which is the actual learning goal. The team has a usability-adjacent attitude metric standing in for a learning outcome it never measured. The number is real, but it is answering a question no one asked, and the unasked question (did they learn?) remains open.
 
 ## Core Concept
 
-The core idea in this section is that **Learning Metrics and Usability Metrics** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Metrics divide into two families because they measure two different constructs. Usability metrics measure operation; learning metrics measure capability change. Keeping them straight is the whole skill.
 
-Three course anchors shape the reasoning here:
+| Family | Construct | Typical metrics | Cannot tell you |
+| --- | --- | --- | --- |
+| Usability | Can people operate it? | task completion, time on task, error rate, satisfaction | Whether anyone learned |
+| Learning | Did capability change? | pre/post gain, transfer-item accuracy, retention | Whether the interface was pleasant |
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+Satisfaction is the trap because it feels like a verdict on everything; in fact it is an attitude reading, and attitudes correlate weakly with learning. Learners often rate a hard, effortful lesson lower precisely because it made them think, which **cognitive load theory** explains as the difference between extraneous load (bad, lowers both satisfaction and learning) and germane load (the productive effort of building schemas, which can lower satisfaction while raising learning). A module that feels easy may have stripped out the very effort that produces durable knowledge.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+This is why **Mayer multimedia learning** insists that the outcome metric target a meaningful, transferable performance rather than a vanity count. Time on a page is operability data; accuracy on a novel transfer item is learning data. **UDL learner variability** adds the final caution: a single mean can hide a split where the design helped advanced learners and stranded novices, so disaggregating outcomes by subgroup is part of measuring learning honestly, not an optional extra.
 
 ## Worked Example: Separating a Usability Metric From a Learning Metric
 
@@ -56,50 +57,48 @@ The after version is defensible because each claim is backed by a metric that ca
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Name the claim first, then choose the metric that has the validity to support that exact claim; never let a metric you happen to have collected define the claim you make. If your strongest evidence is satisfaction, your strongest defensible claim is about how the experience felt, not about whether it worked or taught.
 
-Before submitting the moderated usability test script with observation-to-revision trace, slow down and check whether the trace can answer three questions:
+Before locking metrics into your moderated usability test script with observation-to-revision trace, check three things:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Construct check:** Does each metric measure the construct the claim is about (operation versus learning)?
+2. **Proxy check:** Are you using satisfaction or completion as a stand-in for a learning outcome you never measured?
+3. **Disaggregation check:** Could a single mean be hiding a subgroup the design failed?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any check fails, you are about to report a number that answers a different question than the one you are claiming.
 
 ## Common Misreadings
 
-A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.
+The classic error is treating satisfaction as the master metric, so a well-liked module is declared effective without any outcome data. A second error is reading low satisfaction on a demanding lesson as a design failure, when it may be the signature of productive germane load; the cure for that is checking the learning metric, not softening the lesson. A third is reporting a flattering mean while a subgroup quietly failed, which a single number is structurally unable to reveal.
 
-The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.
+A metric is an answer to one specific question; using it for another question is how plans overclaim.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **moderated usability test script with observation-to-revision trace**. Then ask what problem the artifact is supposed to solve inside usability and learning evidence. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Trace one claim from ambition to the metric that earns it. A team wants to assert that an interactive simulation teaches Ohm's law better than the static text it replaces. "Better" is a learning claim, so satisfaction and time on task are off the table; they can describe the experience but not the gain. The right instrument is a transfer measure: items that require applying the relationship to a circuit the learners never saw, scored pre and post, which is the **Mayer multimedia learning** standard for meaningful outcomes rather than recall of the worked examples themselves.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now read the result through **UDL learner variability**. Suppose the mean gain is healthy but driven entirely by learners with strong prior math; novices flatline. A disaggregated table turns that hidden split into a finding: the simulation helps the prepared and overloads the unprepared, which **cognitive load theory** would predict if the simulation's interface added extraneous demand that experts could absorb and novices could not. The walkthrough's lesson is that the learning claim and the usability claim must be reported side by side, because the usability metric (where novices stalled) often explains the learning metric (why novices did not gain).
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 05.04, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read a results section, keep one column for each claim and one for the metric offered to support it, then mark every pairing where the metric measures a different construct than the claim. Those mismatches are where the report overclaims, and they are almost always a satisfaction or completion number doing a learning number's job.
 
-A strong reader of Learning Metrics and Usability Metrics can answer four questions:
+A strong reader of a metrics plan can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. For each claim, is the metric measuring operation or capability?
+2. Where is a proxy standing in for a learning outcome that was never measured?
+3. What does the satisfaction number actually license you to say?
+4. Could the headline mean be concealing a subgroup the design failed?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The measurement plan is strong when a reviewer can lay each claim beside its metric and confirm the metric could, on its own, disconfirm the claim. Treat the claim-to-metric pairing as the load-bearing element; a strong satisfaction result attached to a learning claim is not weak evidence but no evidence for that claim at all. Use the annotation tools to flag any claim whose only support is an attitude or completion number, and ask BigAL to compare your pairings against the construct check rather than to add more metrics.
 
-A useful final paragraph for the artifact would sound like this: "I changed **moderated usability test script with observation-to-revision trace** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful closing line reads: "I separated the usability and learning claims because a single satisfaction rating was carrying both; I rejected the suggestion to report only the overall mean gain, since disaggregating by prior knowledge revealed that novices did not improve."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **moderated usability test script with observation-to-revision trace** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Learning Metrics and Usability Metrics deeply enough to adapt it rather than repeat it.
+Move the same construct-matching discipline to a program-evaluation context, where the tempting proxy is not satisfaction but attendance or completion rate. A course with high completion has demonstrated that people finished it, not that they learned, exactly as high satisfaction demonstrated enjoyment, not learning. The structure transfers (name the claim, demand a metric with matching validity), but the seductive proxy changes with the setting. A reader who accepts completion as evidence of impact has made the same category mistake as the team that accepted satisfaction as evidence of learning.
 
 ## Artifact Studio
 
@@ -128,7 +127,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links Learning Metrics and Usability Metrics, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+Before you move on, confirm each claim is paired with a metric of matching construct, that no satisfaction or completion number is standing in for a learning outcome, and that means are disaggregated where a subgroup could be hidden.
 
 ## References
 

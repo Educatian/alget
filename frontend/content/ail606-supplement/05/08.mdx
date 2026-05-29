@@ -4,34 +4,38 @@
 
 ## Why This Section Matters
 
-Module 5 Usability Plan Studio sits inside **Usability Testing and Learning Evidence**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Module 5 Usability Plan Studio as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the moderated usability test script with observation-to-revision trace is ready for revision.
+The pieces of a usability plan can each be excellent and the plan can still be worthless, because the failure mode of a whole plan is not a weak part but parts that do not line up. A precise hypothesis tested with the wrong participants, scored by a mismatched metric, on a task that leaks the answer, decided by a rule that ignores the data: every component is plausible alone, yet the chain is broken. This capstone studio is about internal coherence, the property that makes a plan trace end to end so the metric can actually test the hypothesis, the sample can represent the population, the task can expose the behavior, and the decision rule can follow the evidence. Coherence is what a reviewer checks last and what a designer should design first.
 
-Read this page as a short decision cycle: understand the idea, apply it to **moderated usability test script with observation-to-revision trace**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+In AIL 606 the moderated usability test script with observation-to-revision trace is assembled here into one plan, and the studio's job is to catch the seams where chapter 05.01 through 05.07 fail to connect, before a single session burns the budget on a misaligned design.
 
 ## Learning Targets
 
-- Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Audit a full usability plan for alignment across hypothesis, sample, task, metric, observation, and decision rule.
+- Trace each component back to the single learning goal the plan exists to serve.
+- Locate the seam where two well-formed parts contradict each other.
+- Revise the plan so every part puts the same hypothesis at risk.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Module 5 Usability Plan Studio. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the moderated usability test script with observation-to-revision trace records that reasoning.
+A draft plan reads, in one breath: hypothesis, the navigation will feel more modern; participants, five expert designers; tasks, click Settings then Profile then Save; metric, satisfaction rating; rule, ship if satisfaction is high. Each clause sounds like something a usability plan should contain, and a quick reader nods along.
 
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind Module 5 Usability Plan Studio so the next revision is based on evidence, not taste.
+A coherence reader does not. The hypothesis is untestable, so the satisfaction metric could never confirm it; the experts cannot represent the real audience; the task spells out the click path, so findability is never tested; and the decision rule lets an attitude number drive a launch the data cannot justify. Nothing is missing, yet nothing connects. The plan would run smoothly and teach nothing, which is the most expensive kind of failure because it looks like success.
 
 ## Core Concept
 
-The core idea in this section is that **Module 5 Usability Plan Studio** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Coherence is a chain, and a chain is only as strong as its weakest link. Auditing means checking each adjacent pair of components for alignment, not each component in isolation.
 
-Three course anchors shape the reasoning here:
+| Link | Alignment question | Section |
+| --- | --- | --- |
+| Hypothesis to metric | Can this metric disconfirm this prediction? | 05.01, 05.04 |
+| Population to sample | Do these participants represent the target? | 05.02 |
+| Hypothesis to task | Does the task expose the predicted behavior? | 05.03 |
+| Behavior to observation | Will the protocol capture it verifiably? | 05.05 |
+| Evidence to decision | Does the rule follow what the data can show? | 05.06, 05.07 |
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The deep idea is that each component constrains its neighbors. A findability hypothesis demands a goal-based task and a completion metric, and it forbids a satisfaction-only metric and a click-path task; choosing one component silently rules out options for the others. This is why coherence cannot be added at the end by polishing parts. **Mayer multimedia learning** supplies the fixed point that holds the chain together: the learning goal, to which every link must trace, so a part that serves no goal is a part that breaks alignment no matter how well-formed it is.
 
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+The same alignment logic recruits the rest of the module's theory. **Cognitive load theory** governs the hypothesis-to-task and behavior-to-observation links, because a task that overloads or a protocol that judges in real time corrupts the very behavior the hypothesis predicts. **UDL learner variability** governs the population-to-sample and evidence-to-decision links, because a sample that misses a subgroup and a decision rule that ignores disaggregated results will both ship a design that fails learners the plan never represented. Coherence, in other words, is where every earlier section's lesson becomes a single integrated check.
 
 ## Worked Example: Auditing a Full Usability Plan for Internal Coherence
 
@@ -56,50 +60,48 @@ The after version is defensible because every part traces to the same goal: the 
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Audit the links, not the parts; a plan ships only when every adjacent pair aligns and every component traces to one learning goal. If you can describe each component in isolation but cannot draw a line from each to the same goal, the plan is a collection, not a plan.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+Before finalizing the moderated usability test script with observation-to-revision trace, check three things:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Alignment check:** Does each adjacent pair (hypothesis-metric, population-sample, hypothesis-task, evidence-decision) actually connect?
+2. **Goal-trace check:** Does every component point back to the same learning goal?
+3. **Seam check:** Is there any well-formed part that quietly contradicts its neighbor?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any check fails, the plan will run cleanly and answer no question worth asking.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the moderated usability test script with observation-to-revision trace while the designer never explains the learning demand.
+The frequent error is auditing components in isolation, approving each because it is individually competent and missing that two competent parts contradict each other. A second error is treating coherence as a finishing pass, when the constraints between components mean alignment has to be designed in from the hypothesis outward. A third is assuming a complete plan is a coherent one; completeness only means every slot is filled, not that the slots agree.
 
-Treat the artifact as a record of design judgment, not only as a deliverable.
+A plan with no missing parts can still have no working chain.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **moderated usability test script with observation-to-revision trace**. Then ask what problem the artifact is supposed to solve inside usability and learning evidence. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Trace one seam from a plausible draft to a fix. A team's plan predicts that an interactive simulation raises transfer accuracy, recruits a representative novice-to-expert sample, writes goal-based tasks, and logs careful behavioral observations: four strong links. Then the metric is time on task, and the seam snaps. Time is a usability measure (05.04); it cannot disconfirm a transfer-learning hypothesis (05.01), so the plan's strongest claim has no instrument that could ever test it. Every neighbor is fine, but this one link is broken, and the whole plan fails through it.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+The fix is local but the diagnosis was global. Swap in a pre/post transfer measure, and the hypothesis-to-metric link aligns; nothing else needs to move. Then re-walk the chain with **UDL learner variability**, checking that the decision rule reads the disaggregated transfer results rather than the mean, so the plan will not ship a simulation that lifts experts and strands novices. The walkthrough's lesson is that coherence auditing finds the one seam that quality-checking each part would miss, because the defect lives between the components, not inside any of them.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 05.08, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read a complete plan, keep one column for each component and one for the neighbor it must agree with, then test each pair rather than each box. The defects you are hunting do not live inside the boxes, which usually look fine; they live on the lines between them, which is exactly where a part-by-part review never looks.
 
-A strong reader of Module 5 Usability Plan Studio can answer four questions:
+A strong reader of a full plan can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Can the metric actually disconfirm the hypothesis?
+2. Does the sample represent the population the hypothesis is about?
+3. Does the task expose the behavior the hypothesis predicts?
+4. Does the decision rule follow only what the evidence can support?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The plan is strong when a reviewer can start at any component, follow the chain to the learning goal and back, and find no link where two parts pull in different directions. Treat the seams as the load-bearing elements; a flawless hypothesis wired to a mismatched metric is a broken plan, not a strong plan with one weak spot. Use the annotation tools to mark every adjacency you cannot defend, and ask BigAL to compare your plan against the alignment check rather than to improve any single section.
 
-A useful final paragraph for the artifact would sound like this: "I changed **moderated usability test script with observation-to-revision trace** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful closing line reads: "I changed the metric from time on task to a pre/post transfer measure because the original could not disconfirm the learning hypothesis it was paired with; I rejected the suggestion to keep satisfaction as the decision metric, since an attitude rating cannot justify shipping a transfer claim."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **moderated usability test script with observation-to-revision trace** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Module 5 Usability Plan Studio deeply enough to adapt it rather than repeat it.
+Move the same coherence audit to a grant proposal or a research design, where the components are a research question, a sample, an instrument, and an analysis plan. The failure mode is identical: a sharp question undone by an instrument that cannot measure it, or an analysis that cannot answer it, each part defensible alone. The structure transfers (check the links, trace every part to the question), but the cost of a broken seam rises, because a misaligned study wastes a funded year rather than a test session. A reader who reviews such a proposal section by section, approving each, has repeated the exact mistake the studio exists to prevent.
 
 ## Artifact Studio
 
@@ -128,7 +130,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links Module 5 Usability Plan Studio, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+Before you move on, confirm every adjacent pair in the plan aligns, every component traces to one learning goal, and no well-formed part contradicts its neighbor.
 
 ## References
 

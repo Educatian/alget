@@ -6,46 +6,43 @@
 
 ## Why This Section Matters
 
-Accessibility Basics sits inside **Digital Citizenship and AI Readiness**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Accessibility Basics as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the privacy checklist for accounts, data sharing, and AI tool boundaries.
+When you make a slide, a document, or a web page, some of your audience will use a screen reader, some cannot distinguish red from green, and some are reading on a dim phone in bright sun. Accessibility is the practice of making sure your content works for all of them, not just for a sighted reader on a good monitor. It is not charity or an afterthought; it is part of doing the job correctly, and in many settings it is a legal requirement.
 
-Read this page as a short decision cycle: understand the idea, apply it to **privacy checklist for accounts, data sharing, and AI tool boundaries**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The work product is a before-after accessibility pass on a real artifact, where each fix maps to a specific, checkable standard. The WCAG guidelines turn "make it accessible" into concrete, testable items: does the image have alt text, does the page use real headings, does meaning survive without color, does the text have enough contrast.
 
 ## Learning Targets
 
-- Analyze how the privacy checklist for accounts, data sharing, and AI tool boundaries shows a defensible decision in CAT 100.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use feedback, support requests, and revision notes to improve the artifact before sharing it.
+- Write alt text that conveys an image's meaning, not just its file name.
+- Use real heading styles so assistive technology can navigate the structure.
+- Ensure no information is carried by color alone.
+- Check text contrast against the WCAG threshold and fix failures.
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Accessibility Basics. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The privacy checklist for accounts, data sharing, and AI tool boundaries is the place where that verification becomes visible.
+Jordan finishes a slide titled "Club Growth" with a bar chart and a list of steps. It looks clean. But the chart's alt text is `Chart1.png`, the title is just large bold text rather than a heading, the required steps are marked only in red, and the body text is light gray on white. To a sighted reader on a laptop, none of this is visible. To a student using a screen reader, the chart is meaningless and the title is not announced; to a colorblind classmate, "required" is invisible; to anyone in bright light, the gray text disappears.
 
-In CAT 100, completion is not the same as digital fluency. The section asks you to show how Accessibility Basics changes the choices you make in the privacy checklist for accounts, data sharing, and AI tool boundaries.
+The slide is not broken for Jordan, which is exactly why the problem is easy to miss. Accessibility errors are usually invisible to the person who made them.
 
 ## Core Concept
 
-The core idea in this section is that **Accessibility Basics** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Accessibility is the principle that content should not depend on a single way of perceiving it. A screen reader needs text where you put an image; a colorblind reader needs a second cue besides color; a low-vision reader needs contrast. Each need maps to a concrete WCAG check.
 
-Three course anchors shape the reasoning here:
+| Check | What it fixes | How to verify it |
+|-------|---------------|------------------|
+| Alt text | Images for screen-reader users | Read the alt aloud: does it convey the meaning? |
+| Heading structure | Navigation for assistive tech | Use real heading styles, not big bold text |
+| Color independence | Meaning for colorblind users | Remove color: is the info still there? |
+| Contrast ratio | Readability for low vision | Check against the WCAG 4.5:1 ratio for body text |
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
-
-The anchors should do work in your artifact. If NACE career readiness or ISTE digital citizenship does not change a decision, it is only a citation rather than evidence of judgment.
+Two ideas make these checks make sense. First, alt text should describe the image's function in context, not its appearance: a chart's alt text is the conclusion the chart shows ("membership rose from 20 to 55"), not "a bar chart." Second, a real heading is structural, not visual: applying the `Heading 1` style lets a screen reader announce and jump to it, while text that is merely large and bold looks like a heading but is invisible to navigation. Building access in from the start (the Universal Design for Learning idea) is far easier than retrofitting it at the end.
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+A first draft of an accessibility claim often hides the real work:
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+> I made the slide more accessible.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
-
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
-
-Notice the shift: the artifact is no longer just polished. The revision points to **ISTE digital citizenship**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+That sentence is too thin because it names no check and no change. A reviewer cannot confirm it. A strong record shows each WCAG check, the before state, and the specific fix, so accessibility becomes a list of confirmable items rather than a claim.
 
 ### Worked Example: fixing one slide for accessibility, step by step
 
@@ -60,50 +57,44 @@ Result: the slide looks similar but now passes four concrete checks, each one a 
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+For every visual element you create, ask whether a person who cannot see it, cannot tell colors apart, or cannot read low-contrast text would still get the full meaning. If the answer is no, you have an accessibility gap to fix. The rule of thumb: never let a single channel (sight, color, contrast) be the only way to receive important information.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
-
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+1. **Image check:** Does every meaningful image have alt text that conveys its point?
+2. **Structure check:** Are titles and sections marked with real heading styles?
+3. **Independence check:** Is any information carried by color alone, and does the text meet the contrast ratio?
 
 ## Common Misreadings
 
-Students sometimes accept an AI suggestion because it sounds better, without checking whether it protects the claim, audience, or evidence.
+A common mistake is writing alt text that describes the picture literally instead of its purpose. "Image of a graph with blue bars" tells a screen-reader user nothing useful; "membership grew from 20 to 55 over the year" tells them what the graph is for. Alt text answers "why is this image here?" not "what does it look like?"
 
-Your trace should make the judgment visible enough that a reviewer can trust the digital product.
+A second misreading is treating accessibility as a final cleanup step. Retrofitting access after the design is locked is slow and incomplete; you end up bolting alt text onto images and discovering that your color-coded system has no backup cue. Building access in from the start, the way Universal Design for Learning recommends, means the design works for everyone the first time instead of being patched for some people at the end.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **privacy checklist for accounts, data sharing, and AI tool boundaries**. Then ask what problem the artifact is supposed to solve inside digital readiness and AI verification. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Imagine running an accessibility pass on a one-page event flyer you built in a word processor. Start with images: the venue map and the sponsor logos all need alt text, and the decorative divider line should be marked decorative so the screen reader skips it. Move to structure: the event name becomes `Heading 1`, the schedule and the RSVP sections become `Heading 2`, so a screen-reader user can jump between sections. Check color: the "SOLD OUT" sessions were shown only in gray, so add the word "(full)" next to each. Finally check contrast: the pale-blue tagline on white fails, so darken it.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+The walkthrough shows accessibility as a repeatable checklist, not a judgment call. Each pass (images, structure, color, contrast) has a clear test, and each fix is something a reviewer or an automated checker can confirm. The flyer still looks like the same flyer; it is now usable by people whose needs you cannot see when you look at your own screen.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 01.06, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+When you review a document or slide for accessibility, do not ask "does it look fine?" Ask the four checks directly: turn on the screen reader or read the alt text aloud, view the page in grayscale to find color-only meaning, and run a contrast check on the body text. Each test exposes problems that are invisible to a normal glance.
 
-A strong reader of Accessibility Basics can answer four questions:
+A strong reviewer of an artifact can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Would a screen-reader user get every meaningful image and the page structure?
+2. Does any information vanish when color is removed?
+3. Does the body text meet the contrast threshold?
+4. Were these built in, or bolted on at the end?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+Your accessibility pass is strong when each fix maps to a named WCAG check and could be confirmed by a reviewer or a checker tool. The earlier layers are alt text, heading structure, color independence, and contrast; the last layer is visual polish, which should never come at the cost of access. If a fix is unclear, mark it in your trace and ask BigAL to help you write functional alt text or find the contrast ratio rather than asking it to make the slide "look better."
 
-A useful final paragraph for the artifact would sound like this: "I changed **privacy checklist for accounts, data sharing, and AI tool boundaries** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful note would read: "On the Club Growth slide I rewrote the chart alt text to state the trend, applied a real Heading 1 to the title, added the word 'Required' so meaning does not rely on red, and darkened the body text to meet the contrast ratio. Each change maps to a WCAG check a reviewer can confirm."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **privacy checklist for accounts, data sharing, and AI tool boundaries** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Accessibility Basics deeply enough to adapt it rather than repeat it.
+Carry the four checks to a different medium: a short video you post for a group project. The principles re-map cleanly. Alt text becomes captions and a transcript, so deaf and hard-of-hearing viewers get the audio content. Heading structure becomes clear on-screen titles and a described agenda, so the video is navigable. Color independence becomes "do not say 'click the green button' without also naming it." Contrast applies to any on-screen text over video. The medium changed from a slide to a video, but the underlying question, can someone with a different way of perceiving still get the full meaning, did not. Owning that question rather than a fixed slide-checklist is what lets you make any artifact accessible.
 
 ## Artifact Studio
 
@@ -111,18 +102,18 @@ Open the studio packet: [download the privacy checklist for accounts, data shari
 
 <artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="01.06" />
 
-Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
+Use the studio to create a before/after trace. The first version should show the artifact's accessibility gaps. The revised version should show each fix mapped to a WCAG check. The trace should explain how each fix helps a specific reader.
 
 ## Adaptive Support
 
 ALGET uses your annotations and artifact trace to choose support:
 
 - If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
-- If your note shows **confusion**, compare a weak and strong version of the privacy checklist for accounts, data sharing, and AI tool boundaries.
-- If your note is an **insight**, transfer the same decision rule to a new audience or setting.
-- If your note makes a **connection**, show where the connection changes the artifact.
+- If your note shows **confusion**, compare a slide with literal alt text against one with functional alt text.
+- If your note is an **insight**, transfer the four checks to a new medium such as video.
+- If your note makes a **connection**, show where the connection changes one of your fixes.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 01.06. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising an accessibility pass for CAT 100 01.06. A peer comment notes that an important status is shown only by color. Choose the next revision move and the second cue that would make the meaning survive without color." />
 
 ## Check Your Understanding
 
@@ -132,7 +123,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links claim, evidence, tool boundary, revision, and remaining limitation. That is what separates digital fluency from simple completion.
+Before you move on, check that your pass records alt text, heading structure, color independence, and contrast, each fix mapped to a WCAG check a reviewer could confirm.
 
 ## References
 

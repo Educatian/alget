@@ -4,34 +4,36 @@
 
 ## Why This Section Matters
 
-Cognitive Load Analysis in the Draft sits inside **Design Draft and Theory-to-Prototype Alignment**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Cognitive Load Analysis in the Draft as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence is ready for revision.
+"This screen feels overwhelming" is a real observation, but it is useless as a design instruction, because it does not say what to cut. Cognitive load theory gives you the diagnostic vocabulary that turns "overwhelming" into a plan: some difficulty is intrinsic to the material, some is extraneous noise the design added, and some is the productive germane effort that actually builds understanding. The whole point of a load analysis is that the three demand the opposite of each other; you manage intrinsic load, eliminate extraneous load, and protect germane load. Cutting the wrong one (deleting practice to "reduce load") destroys learning.
 
-Read this page as a short decision cycle: understand the idea, apply it to **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches you to diagnose a draft screen by load type rather than by a single overall rating. You should leave able to attribute each piece of demand to a specific screen feature and prescribe the matching move: stage the intrinsic, strip the extraneous, keep the germane.
 
 ## Learning Targets
 
-- Analyze how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Classify a screen's demand into intrinsic, extraneous, and germane load with evidence.
+- Attribute each load source to a specific feature, not a vague overall feeling.
+- Prescribe the type-appropriate move (segment, remove, protect) for each source.
+- Recognize when a "reduce load" suggestion would actually cut germane processing.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Cognitive Load Analysis in the Draft. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence records that reasoning.
+A pilot tester stalls for two minutes on screen 3, the introduction to standard deviation. The draft margin note reads "High, should reduce: delete the practice set." Deleting practice would indeed make the screen feel lighter, and it would also remove the only part of the screen where a schema gets built. The stall is real, but its cause is element interactivity (mean, deviation, squaring, and averaging all introduced at once), which is intrinsic load to be staged, not germane load to be cut. The right move lowers demand and keeps the learning; the proposed move lowers demand by deleting the learning.
 
-This page is more than a principle summary. Use it to leave a design trace showing how Cognitive Load Analysis in the Draft changed what you noticed in the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence.
+The case is the central trap of load analysis: every kind of load makes a screen feel heavier, so a single "feels hard" rating cannot tell you what to do. Only a typed diagnosis distinguishes the difficulty worth keeping from the noise worth removing.
 
 ## Core Concept
 
-The core idea in this section is that **Cognitive Load Analysis in the Draft** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Cognitive load theory partitions the demand on working memory into three types. Intrinsic load is set by the complexity of the material itself, specifically its element interactivity: how many elements the learner must hold and relate simultaneously. You cannot delete intrinsic load without changing the objective, but you can stage it through segmenting, pre-training, and worked examples so it arrives in processable pieces. Extraneous load is demand created by the design rather than the content: redundant on-screen text that competes with narration, split-attention layouts that force the eye to integrate separated sources, decorative seductive details. Extraneous load has no instructional value, so the move is always to remove it. Germane load is the effort the learner spends building and automating schemas, exactly the productive work that practice and self-explanation create. The move for germane load is to protect it.
 
-Three course anchors shape the reasoning here:
+The diagnostic discipline is attribution: every load entry must point at a specific feature and a load type, because the prescription depends entirely on the type. The same surface symptom (a hard screen) routes to opposite actions.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+| Load type | Source on the screen | Right move | Wrong move |
+| --- | --- | --- | --- |
+| Intrinsic | Four interacting concepts introduced at once | Segment; pre-train the mean first | Leave unstaged and hope |
+| Extraneous | On-screen paragraph duplicating the narration | Remove the redundant text | Reformat it to look nicer |
+| Germane | Two practice items after the worked steps | Keep; this builds the schema | Delete to "reduce load" |
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+The theory matters because total working-memory capacity is fixed and shared. Extraneous load steals capacity that germane processing needs; removing extraneous noise is not just tidying, it frees capacity for the learning to happen. That is why the order of operations is strip extraneous first, then stage intrinsic, then verify germane survived.
 
 ## Worked Example
 
@@ -61,50 +63,48 @@ Work through one annotated before/after revision of a cognitive load diagnosis t
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Never act on an overall load rating; act on a typed, attributed source. For each entry in the diagnosis table:
 
-A strong submission should survive three quick tests:
+1. **Type check:** Is this demand intrinsic, extraneous, or germane, with a reason?
+2. **Attribution check:** Does it point at a specific feature, not the whole screen?
+3. **Move check:** Does the action match the type (stage intrinsic, remove extraneous, protect germane), and would it cut any learning?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a proposed reduction would lower germane load, reject it; you are about to delete the learning to make the screen feel easier.
 
 ## Common Misreadings
 
-Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.
+The classic error is conflating difficulty with bad design and trying to remove all of it; some difficulty (germane effort) is the entire point. The mirror error is rating a screen "high" without typing the load, which produces actions that lower demand by gutting practice. A third error is treating extraneous load as cosmetic; redundant on-screen text is not just ugly, it actively competes for the capacity germane processing needs.
 
-In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.
+Difficulty is not the enemy; undifferentiated difficulty is, because it hides which demand to cut and which to keep.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence**. Then ask what problem the artifact is supposed to solve inside prototype authoring. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Walk a screen feature by feature and ask of each one: is this demand coming from the content, from the design, or from the learner's own effort to understand? Content-side demand is intrinsic, design-side demand is extraneous, effort-side demand is germane. Naming the source forces the type, and the type forces the move.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Then sequence the moves correctly. Strip the extraneous first, because freeing that capacity sometimes resolves a stall on its own and changes how much staging the intrinsic load needs. Stage the intrinsic next through segmenting and pre-training. Verify last that the germane work (practice, self-explanation) is still present and was not collateral damage.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, make each move testable. "Segment into 3 worked steps" and "remove the redundant paragraph" are checkable against a re-test of the same stall; "reduce load" is not. A load analysis is only as good as the re-measurement it sets up.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 04.04, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the load type you assign a feature; the evidence is the specific reason (element interactivity, redundancy, schema-building) that justifies the type. By the end of AIL 606 04.04, your notes should let a reviewer check that no proposed cut would remove germane processing.
 
-A strong reader of Cognitive Load Analysis in the Draft can answer four questions:
+A strong reader of a load diagnosis can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. For each demand source, what is the load type and why?
+2. Which feature creates the extraneous load, and what is the removal move?
+3. Where is the germane processing, and how is it protected?
+4. Which seemingly helpful cut would actually delete learning?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is strong when every entry names a source, a type, and a type-matched move, and when no action lowers germane load. Treat a single overall rating as the weakest possible diagnosis. Where you are unsure whether demand is intrinsic or extraneous, mark it with the annotation tools and ask BigAL to contrast an intrinsic-load fix (segmenting) with an extraneous-load fix (removing redundancy) rather than for a generic definition of load.
 
-A useful final paragraph for the artifact would sound like this: "I changed **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful final paragraph for the artifact would sound like this: "I segmented the standard-deviation intro to stage its intrinsic load and removed the redundant on-screen paragraph to cut extraneous load. I rejected the suggestion to delete the practice items, because that demand is germane and is where the schema actually forms."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Cognitive Load Analysis in the Draft deeply enough to adapt it rather than repeat it.
+Move the same diagnosis from novice learners to advanced learners who already hold the prerequisite schemas. Now the redundancy and worked-example supports that helped novices can backfire through the expertise-reversal effect: for experts, the extra scaffolding becomes extraneous load. The element interactivity that was intrinsic for novices is largely automated for experts, so what was germane staging is now redundant. Transfer means re-typing the same features for a different prior-knowledge level, not reusing the novice table. If you understand load theory, raising expertise flips some supports from helpful to harmful.
 
 ## Artifact Studio
 
@@ -133,7 +133,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm that your diagnosis table types every demand source, prescribes a type-matched move, and contains no action that would lower germane load. That separation is what makes the analysis a plan rather than a rating.
 
 ## References
 

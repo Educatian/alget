@@ -4,46 +4,57 @@
 
 ## Why This Section Matters
 
-Equity Audit in Field Contexts sits inside **Field-Based Transfer and Coaching**. In this part of CAT 531, you are learning to work as a teacher making a defensible technology decision: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Equity Audit in Field Contexts as a professional judgment problem: the learner must connect pedagogy, classroom constraints, and ethics before defending the equity-oriented edtech evaluation matrix with context-specific risk notes.
+A generic risk statement, "this tool might not work for every student," protects no one, because it names no student, no harm, and no safeguard. An equity audit replaces that vagueness with a context-specific risk register: for this tool, in this placement, with these students, here is who is most likely to be harmed, how, and what we will do about it. The shift from generic to specific is the whole skill. "Might not be perfect" cannot be acted on; "the feedback model flags multilingual phrasing as errors, and 11 of my 27 students are multilingual" can.
 
-Read this page as a short decision cycle: understand the idea, apply it to **equity-oriented edtech evaluation matrix with context-specific risk notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section treats the equity-oriented evaluation matrix as a tool for converting abstract caution into context-bound, monitorable risks. A risk you cannot tie to a named group, a mechanism, and a check is not yet an audit finding.
 
 ## Learning Targets
 
-- Analyze how the equity-oriented edtech evaluation matrix with context-specific risk notes shows a defensible decision in CAT 531.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to make a classroom technology decision more defensible.
+- Convert generic risk statements into context-specific risks tied to a named group, a mechanism, and your actual placement constraints.
+- Treat vendor fairness claims as unverified hypotheses and write the questions they leave open.
+- Document a bounded AI/software support move, replacing AI-generated generic risks with placement-specific ones.
+- Produce an evaluation matrix that pairs each risk with an affected group, a safeguard, and a monitoring check.
 
 ## Opening Case
 
-Imagine a teacher choosing whether to use a classroom technology for Equity Audit in Field Contexts. The important question is not whether the tool is exciting; it is whether the teacher can name the instructional purpose, the equity risk, the student-data boundary, and the evidence that makes the equity-oriented edtech evaluation matrix with context-specific risk notes a professional judgment rather than a preference.
+Vendors and AI assistants both produce risk language that sounds responsible and commits to nothing. "Bias-tested and fair for all learners" is a marketing claim, not evidence; it does not say which groups were tested, on what data, or whether your students resemble them. Accepting it ends the audit before it starts.
 
-This section turns Equity Audit in Field Contexts into a defensible teaching decision. The goal is to make the reasoning public enough that a colleague could inspect and improve it.
+The audit begins when you treat that claim as a hypothesis and ask the questions it dodges. A fairness claim with no test population named is an open question, not a closed case. The matrix exists to hold those open questions next to your real roster, so the decision to adopt rests on what you can verify about your students rather than what the vendor asserts about everyone.
 
 ## Core Concept
 
-The core idea in this section is that **Equity Audit in Field Contexts** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+An equity audit is disaggregation applied to risk. A whole-class average hides the students a tool fails; the audit's job is to break the class into the groups whose experience of the tool differs and ask what happens to each. The unit of analysis is never "the students"; it is "the 11 multilingual learners," "the 3 students using read-aloud," "the 9 without reliable home access."
 
-Three course anchors shape the reasoning here:
+Each finding has three required parts. The **affected group** names who, specifically and by count. The **mechanism** names how the tool produces the harm (a model trained on standard-English essays flags non-standard phrasing). The **safeguard** names what you will do (teacher review of flagged multilingual work) and the **monitoring check** names when you will confirm it worked (two weeks after rollout). A risk missing any part is incomplete.
 
-- **TPACK** helps you decide what counts as a meaningful learning or performance demand.
-- **critical edtech studies** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **AI and education datafication** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+Three lenses drive the disaggregation:
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+- **Critical edtech studies** supplies the core move: ask whose interests the tool was built around and which students sit outside that default. A model trained mostly on standard English has a built-in default that your multilingual students fall outside of.
+- **AI and education datafication** asks what the tool does with the data it gathers, and whether its training data represented your students at all. Underrepresentation in training is a mechanism, not a footnote.
+- **TPACK** keeps the audit tethered to learning: a tool that fails a subgroup on the actual content goal is failing, regardless of how engaging it is for the majority.
+
+A lens has done its work when it produced a specific risk row, not a general worry.
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Compare a generic risk to an audited one. The generic version is unactionable:
 
-> I made the equity-oriented edtech evaluation matrix with context-specific risk notes clearer.
+> The tool might not be perfect for every student.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+It names no group, no mechanism, no safeguard. The audited version is a usable finding:
 
-> I revised the equity-oriented edtech evaluation matrix with context-specific risk notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **critical edtech studies**, and I can point to the exact part of the artifact that changed.
+> The feedback model was trained mostly on standard-English essays. Of my 27 students, 11 are multilingual learners whose phrasing the tool may flag as errors. Safeguard: teacher review of all flagged multilingual phrasing before students see comments. Check: compare flag rates for multilingual and monolingual writers two weeks after rollout.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **critical edtech studies**, and the exact revision that followed.
+The second version can be acted on, assigned, and verified. It also handles the vendor's "fair for all learners" claim correctly by logging it as unverified and recording the question it leaves open: which groups were tested, on what data, and were multilingual learners represented.
+
+Set side by side, the structure becomes clear:
+
+| Element | Generic risk | Audited risk |
+| --- | --- | --- |
+| Affected group | "every student" | 11 multilingual learners (of 27) |
+| Mechanism | none stated | model trained mostly on standard-English essays |
+| Safeguard | none | teacher review of flagged multilingual phrasing |
+| Monitoring check | none | compare flag rates by group at two weeks |
 
 ### Annotated Judgment Call: Auditing an AI Writing-Feedback Tool
 
@@ -59,50 +70,46 @@ A colleague can now trust the recommendation because every risk names who is aff
 
 ## Decision Rule
 
-Use the classroom value conflict first, the technology affordance second, and the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity.
+For each risk, name the group before the harm and the safeguard before the recommendation. A recommendation to adopt is only as good as the safeguards attached to its risks. Sofia's audit follows the rule: she does not write "adopt" until each risk carries an affected group, a safeguard, and a check, which is why "adopt with safeguards" is a defensible recommendation rather than a hopeful one.
 
-A strong submission should survive three quick tests:
+Before you submit an audit, three checks should pass:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Specificity check:** Does every risk name an actual group by count, a mechanism, and a placement constraint, or do some rows apply to any school anywhere?
+2. **Claim check:** Did you treat each vendor fairness claim as a hypothesis and record the question it leaves open, rather than accepting it as evidence?
+3. **Monitoring check:** Does every risk you accepted carry a safeguard and a dated check, so adoption is conditional and watched, not final?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any risk lacks a group, a mechanism, or a check, the audit is not yet actionable.
 
 ## Common Misreadings
 
-Teachers can also over-trust a platform recommendation and under-document the classroom constraint that should govern the choice.
-
-In this course, quality means the technology choice can be inspected as a professional judgment.
+The first misreading is treating a vendor's fairness claim as a finding; it is an advertisement until you know the test population. The second is leaving risks generic enough to apply to any school, which feels thorough but commits to nothing and protects no specific student. The third is accepting an AI-generated risk column wholesale; these read comprehensive but float free of your roster, and the audit only becomes real when each line is rewritten against your actual students, device cart, and data policy.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **equity-oriented edtech evaluation matrix with context-specific risk notes**. Then ask what problem the artifact is supposed to solve inside field transfer. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the matrix to a different tool. Your placement is considering an AI attendance system that uses facial recognition to log entry. The generic risk ("it might misidentify some students") is useless. Disaggregate.
 
-Next, connect the artifact to the course anchors: **TPACK**, **critical edtech studies**, **teacher professional judgment**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Affected group: facial-recognition error rates are documented to be higher for darker-skinned students, and your placement's roster is majority Black and Latino. Mechanism: the model's training data underrepresented these groups, so misidentification is structurally more likely for them. Safeguard: a manual roster check whenever the system fails to match, and no consequence (such as a tardy mark) triggered by the system alone. Monitoring check: review misidentification logs by student after two weeks and compare rates across groups. The recommendation that follows is not a thumbs-up; it is "adopt only with the manual override and the disparity check, and reconsider if the two-week logs show a gap." The walkthrough repeats the structure: name the group, name the mechanism, attach a safeguard, schedule the check.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 531 07.04, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read an audit, keep a two-column note: **named group and mechanism** on the left, **safeguard and check** on the right. A row with the left side empty is a slogan; a row with the right side empty is an alarm with no response. A strong audit has both columns filled for every risk it raises.
 
-A strong reader of Equity Audit in Field Contexts can answer four questions:
+A strong reader of an equity audit can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. For each risk, which actual group is affected and through what mechanism?
+2. Which vendor claims were accepted as evidence, and which were correctly logged as open questions?
+3. What safeguard and dated check make the recommendation conditional rather than blind?
+4. What would change in the matrix if this exact tool were adopted in a placement with a different student population?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a mentor teacher can see the instructional purpose, the classroom constraint, and the reason a revision was made. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+An equity audit is strong when a colleague could adopt the tool using only your matrix and know exactly who to watch and when. That requires every risk to carry its group, mechanism, safeguard, and check, and every vendor claim to be marked verified or open. Clean tables are the last layer; a matrix that looks rigorous but contains risks that could describe any school has skipped the specificity that makes it an audit rather than a checklist.
 
-A useful final paragraph for the artifact would sound like this: "I changed **equity-oriented edtech evaluation matrix with context-specific risk notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving whether the technology choice serves a specific learning activity for real students."
+A useful closing line sounds like this: "I recommend adopting with safeguards because each risk names a real group and a check, not a general caution. I rejected the AI-generated risk column, because risks that fit any school protect none of mine."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **equity-oriented edtech evaluation matrix with context-specific risk notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Equity Audit in Field Contexts deeply enough to adapt it rather than repeat it.
+Take the same audit to a placement with the opposite profile: a tool that works well for multilingual learners but was never tested on students with visual impairments, in a class that includes two students using screen readers. The disaggregation still drives the audit, but the affected group, the mechanism (incompatibility with screen-reader navigation), and the safeguard (an accessible alternate path) all change. If you can rebuild the matrix around a different vulnerable group rather than reusing the multilingual rows, you understand equity auditing as a method rather than a single finding.
 
 ## Artifact Studio
 
@@ -131,7 +138,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace records evidence source, risk, support choice, and revision quality. That is what separates professional judgment from simple completion.
+Before you move on, make sure each risk names an actual group and mechanism, each vendor claim is marked verified or open, and each accepted risk carries a safeguard and a dated check. That is what separates an audit from a general caution.
 
 ## References
 

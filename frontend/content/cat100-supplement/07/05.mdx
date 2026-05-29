@@ -4,34 +4,40 @@
 
 ## Why This Section Matters
 
-Automation Safety Checks sits inside **Productivity and Workflow Automation**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Automation Safety Checks as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the privacy checklist for accounts, data sharing, and AI tool boundaries.
+Automation is a force multiplier, and a force multiplier multiplies mistakes as readily as it multiplies good work. A rename rule, a bulk delete, a mail filter, or a find-and-replace applied to 200 items will execute a flawed pattern 200 times in a second, with no pause to let you notice. The thing that makes automation safe is not better luck; it is a habit of testing on a small sample first and keeping an undo path for actions the tool cannot reverse. This section teaches that habit: dry run, backup, then scale.
 
-Read this page as a short decision cycle: understand the idea, apply it to **privacy checklist for accounts, data sharing, and AI tool boundaries**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The stakes are concrete. A wrong rename pattern can corrupt every file name in a folder; a bad bulk delete can empty a drive past the point a recycle bin can recover. The safety check costs a minute; the missing safety check can cost a semester of work.
 
 ## Learning Targets
 
-- Analyze how the privacy checklist for accounts, data sharing, and AI tool boundaries shows a defensible decision in CAT 100.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use feedback, support requests, and revision notes to improve the artifact before sharing it.
+- Run any bulk operation on a small sample (a dry run) before applying it to everything.
+- Create a backup or undo path before any action the tool cannot reverse.
+- Confirm the sample result is correct before scaling, so the full run is verification, not a gamble.
+- Distinguish reversible actions (safe to try) from irreversible ones (must be backed up first).
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Automation Safety Checks. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The privacy checklist for accounts, data sharing, and AI tool boundaries is the place where that verification becomes visible.
+A student wants to add a date prefix to 200 coursework files and writes a rename rule. The pattern has a subtle flaw: it prepends the date to a name that already starts with the date, but the student does not see this, because they run it on all 200 files at once. In one click, every file becomes `2026-05-28_2026-05-28_essay.docx`, and the rename tool offers no single-step undo. The error was small; the blast radius was the entire folder.
 
-A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The privacy checklist for accounts, data sharing, and AI tool boundaries is where that trust is built.
+The fix is structural, not careful: test the rule on three copies first, confirm the output, then run it on the full set with a backup already in place.
 
 ## Core Concept
 
-The core idea in this section is that **Automation Safety Checks** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Automation safety rests on two ideas: limiting the blast radius and preserving reversibility.
 
-Three course anchors shape the reasoning here:
+**Blast radius** is how many items a single action affects. The danger of automation is that the blast radius equals the whole set, so one flawed rule damages everything at once. A **dry run** shrinks the blast radius to a tiny sample: copy three files into a test folder, run the rule there, and inspect the result. If the pattern is wrong, only three throwaway copies are affected, and you learn it for free.
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+**Reversibility** is whether you can get back to the prior state. Some actions are reversible (moving a file, which you can move back). Many automated actions are not: a permanent delete, an overwrite, or a rename with no built-in undo. For any irreversible action, you make a **backup** first, which manufactures an undo path the tool itself does not provide.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+The procedure that follows from these ideas is fixed:
+
+1. Copy a small sample into a test location.
+2. Run the operation on the sample only.
+3. Inspect the sample output against what you expected.
+4. Back up the full set (the undo path).
+5. Run on the full set, treating it as verification, not a first try.
+
+The common error is collapsing this to a single step (run on everything and hope), which works until the day it does not, and that day is unrecoverable.
 
 ## Worked Example
 
@@ -68,56 +74,54 @@ Three safety checks did the work:
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Before running any operation on more than a handful of items, ask: can I test this on a small sample first, and if it goes wrong, can I undo it? If the answer to either is no, do not run it yet; create the test or the backup first.
 
-Before submitting the privacy checklist for accounts, data sharing, and AI tool boundaries, slow down and check whether the trace can answer three questions:
+A safe bulk operation passes three checks:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Dry-run check:** Was the operation tested on a small sample and the output inspected before scaling?
+2. **Reversibility check:** Is there a backup or undo path for any action the tool cannot itself reverse?
+3. **Confirm-before-scale check:** Did the sample produce exactly the expected result before the full run?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If you cannot point to the test sample and the backup, the full run is a gamble, not a safe operation.
 
 ## Common Misreadings
 
-A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.
+The most common misreading is "I read the rule carefully, so it is fine." Careful reading does not catch subtle pattern errors; a dry run does. Inspection of actual output beats inspection of the rule.
 
-The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.
+A second misreading is assuming the recycle bin or an app's undo button is a sufficient safety net. Many bulk tools bypass the recycle bin or offer no undo at all, which is exactly why you make your own backup before running.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **privacy checklist for accounts, data sharing, and AI tool boundaries**. Then ask what problem the artifact is supposed to solve inside workflow and collaboration. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply this to a bulk delete, the most dangerous common operation. You want to clear out old downloads: delete every file in `Downloads/` older than 90 days. The risk is that an important PDF you saved months ago also matches "older than 90 days." Run the dry run first by sorting the folder by date and listing what the rule would catch, without deleting; scan that list and you spot the syllabus you meant to keep.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now adjust the rule (exclude PDFs, or move-to-archive instead of delete), back up `Downloads/` to the cloud as the undo path, and only then run the deletion. The walkthrough shows that the dry run is not a formality: it surfaces the false matches (files that fit the rule but should not be touched) that a careful reading of the rule would miss, and the backup covers the case where you miss one anyway.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 07.05, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader treats every automated action as guilty until proven safe, asking what the worst case is before running it. They mentally separate "this is reversible" from "this is permanent" and apply heavier safeguards to the permanent ones.
 
-A strong reader of Automation Safety Checks can answer four questions:
+A strong reader of an automated operation can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. How many items will this affect, and what is the worst thing that happens if the rule is wrong?
+2. Did I test it on a sample and inspect the actual output, not just the rule?
+3. Is this action reversible, and if not, where is the backup?
+4. Which items match the rule but should not be touched, and how did I catch them?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is a record of a bulk operation done safely: the rule, the dry-run sample and its output, the backup location, and the full-run result. It is strong when a reader can see that the operation was tested and reversible before it ran at scale.
 
-A useful final paragraph for the artifact would sound like this: "I changed **privacy checklist for accounts, data sharing, and AI tool boundaries** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful note sounds like this: "I tested the rename rule on three copies first and caught a doubled-prefix bug; I fixed it, backed up the folder to OneDrive, then ran the full rename. I rejected running directly on the live folder even though it was faster, because the tool has no undo and a wrong pattern would have hit all 200 files."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **privacy checklist for accounts, data sharing, and AI tool boundaries** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Automation Safety Checks deeply enough to adapt it rather than repeat it.
+Move the safety habit from file renaming to a spreadsheet find-and-replace. Dry run, backup, and confirm-before-scale all transfer, but the test method changes: instead of copying files, you duplicate the sheet (or save a copy of the workbook) and run the replace there first, watching for unintended matches like replacing "1" inside "10" or "100." The procedure is identical; what adapts is how you build the sample (a copied sheet rather than copied files) and what false matches to watch for.
 
 ## Artifact Studio
 
-Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/07-05-automation-safety-checks-artifact.md).
+Open the studio packet: [download the automation safety checks packet](/downloads/summer2026/cat100-supplement/07-05-automation-safety-checks-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="07.05" />
+<artifact-studio artifact="bulk operation safety record with dry run and backup" course="CAT 100" section="07.05" />
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -126,9 +130,9 @@ Use the studio to create a before/after trace. The first version should show you
 ALGET uses your annotations and artifact trace to choose support:
 
 - If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
-- If your note shows **confusion**, compare a weak and strong version of the privacy checklist for accounts, data sharing, and AI tool boundaries.
-- If your note is an **insight**, transfer the same decision rule to a new audience or setting.
-- If your note makes a **connection**, show where the connection changes the artifact.
+- If your note shows **confusion**, compare a weak and strong version of the bulk operation safety record.
+- If your note is an **insight**, transfer the dry-run-and-backup rule to a new setting.
+- If your note makes a **connection**, show where the connection changes the operation.
 
 <dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 07.05. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
 
@@ -140,7 +144,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the privacy checklist for accounts, data sharing, and AI tool boundaries records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm your operation passes the dry-run, reversibility, and confirm-before-scale checks: tested on a sample, backed up for irreversible actions, and the sample output verified before the full run.
 
 ## References
 

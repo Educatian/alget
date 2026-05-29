@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Teacher Persona Setup sits inside **AI Conversations as a Teacher**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Teacher Persona Setup as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the privacy checklist for accounts, data sharing, and AI tool boundaries.
+A persona is the single most reusable thing you build when you work with an AI tool. Most students type a fresh request every time and get a different voice, a different reading level, and a different set of guesses with each reply. A saved persona fixes that: it is a short block of text you paste at the start of a chat that pins down who the AI is acting as, who the output is for, what facts it may rely on, and what it must refuse to do. In this section you learn to write that block as a real file you can version and reuse, not as a sentence you retype.
 
-Read this page as a short decision cycle: understand the idea, apply it to **privacy checklist for accounts, data sharing, and AI tool boundaries**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The payoff is consistency you can defend. When the persona is explicit, two different chats produce comparable output, a reviewer can read your persona and predict the AI's behavior, and you can point to the exact line that caused a good or bad result. That is the difference between prompting by luck and prompting by design.
 
 ## Learning Targets
 
@@ -17,21 +17,24 @@ Read this page as a short decision cycle: understand the idea, apply it to **pri
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Teacher Persona Setup. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The privacy checklist for accounts, data sharing, and AI tool boundaries is the place where that verification becomes visible.
+A peer leader asks an AI for help explaining long division to a third grader and types only "you are a teacher, help me." The first reply uses words like "dividend" and "quotient." The second reply, asked an hour later, switches to cartoon analogies. Same request, two voices, because nothing told the AI who the reader was or what vocabulary was allowed.
 
-The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.
+The fix is not a longer request. It is a saved persona that names the reader (a third grader's parent), caps the vocabulary, and states a refusal (do not invent the child's grade). Once that block exists in a file, every chat starts from the same fixed contract, and the inconsistency disappears.
 
 ## Core Concept
 
-The core idea in this section is that **Teacher Persona Setup** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A persona is a system prompt: text that defines the assistant's standing instructions before any task is asked. A complete persona controls four fields, and each field closes off a specific way the output can drift.
 
-Three course anchors shape the reasoning here:
+| Field | Question it answers | What goes wrong if it is blank |
+|-------|--------------------|-------------------------------|
+| ROLE | grade level plus subject the AI is teaching | the AI picks a default reading level and tone |
+| AUDIENCE | who reads the output | the AI guesses at vocabulary and formality |
+| KNOWLEDGE BOUND | which facts the AI may treat as true | the AI fills gaps with plausible-sounding invention |
+| HARD STOP | what the AI must never do | the AI offers advice outside its competence (medical, legal, grades) |
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The KNOWLEDGE BOUND and HARD STOP fields are what separate a real persona from a friendly greeting. ROLE and AUDIENCE shape style; KNOWLEDGE BOUND and HARD STOP shape safety and accuracy. A persona that only sets ROLE ("you are a kind teacher") feels good but still hallucinates, because nothing limits what the AI may assert or refuse.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+Save the persona as a plain text file (for example `persona.txt`) for two reasons. First, plain text pastes cleanly into any tool without hidden formatting. Second, a file can be revised and compared: you can keep `persona_v1.txt` and `persona_v2.txt` and show exactly which line you changed and why.
 
 ## Worked Example
 
@@ -67,50 +70,50 @@ Step 4. Record the one rejected suggestion. The AI offered to add "act friendly 
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Test a persona by what it forbids, not by how warm it sounds. A persona is ready when each of the four fields has a concrete value and at least one field actively prevents a known failure.
 
-A strong submission should survive three quick tests:
+Run these three checks before you save:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Bound check:** Does KNOWLEDGE BOUND name a real source (pasted standards, a specific document) rather than "be accurate"?
+2. **Refusal check:** Does HARD STOP name something the AI could plausibly do but should not, so the line actually constrains behavior?
+3. **Reuse check:** Could a classmate paste this persona into their own chat and get output in the same voice for the same reader?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any field reads as a generic compliment ("be helpful," "be clear"), it is decoration, not control, and the AI will still drift.
 
 ## Common Misreadings
 
-Another misreading is to write about the tool instead of showing what the tool helped you revise.
+The most common mistake is treating a persona as a personality. Students write "you are an enthusiastic, caring teacher" and stop there. That sets a mood but leaves KNOWLEDGE BOUND and HARD STOP empty, so the AI still invents facts in a cheerful voice.
 
-In this course, quality means another reader can verify what changed and why.
+A second mistake is burying the persona inside the task ("write me a parent email, and by the way act like a teacher"). When the persona is mixed into the request, you cannot reuse it and you cannot tell whether a bad reply came from the persona or the task.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **privacy checklist for accounts, data sharing, and AI tool boundaries**. Then ask what problem the artifact is supposed to solve inside teacher-AI dialogue and communication. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Walk through reusing one persona across two different tasks. You have saved the four-field math persona above. Today you need a note about a missed homework assignment; tomorrow you need a note about a strong quiz score. You paste the same persona block first, then the task underneath, in both chats.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Because the AUDIENCE field is fixed ("a parent with no math background"), both notes come back at the same reading level. Because the HARD STOP field forbids inventing a grade, neither note claims a score you did not provide. The persona did the work of holding voice and safety steady while only the task changed. That is the test of a good persona: the file stays put and the task slots in on top.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+If the second note had drifted into jargon, you would not rewrite the request. You would open `persona.txt`, find the AUDIENCE line, and tighten it (for example, "use no math term above a 5th grade level"), then save a new version. The fix lives in the persona, which is why keeping it as a separate file matters.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 04.01, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: **claim** on the left, **evidence** on the right. For this section the claim is "this persona controls the AI's behavior," and the evidence is the specific line that does the controlling. A strong reader can point to the AUDIENCE line and say "that is why the output stays at parent reading level," not just assert that the persona is good.
 
 A strong reader of Teacher Persona Setup can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which of the four fields is doing the most work for this particular task?
+2. Which field, if deleted, would let the AI invent or drift first?
+3. What known failure does the HARD STOP line actually prevent?
+4. What would you change in the persona, not the request, if the reader changed?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is strong when a reader can predict the AI's behavior from the persona alone, before seeing any output. Save two versions so the revision is visible: `persona_v1.txt` with the blank fields filled and `persona_v2.txt` after one tightening, plus a one-line note on what changed and why.
 
-A useful final paragraph for the artifact would sound like this: "I changed **privacy checklist for accounts, data sharing, and AI tool boundaries** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful final note for the artifact would read: "I revised the AUDIENCE line from 'parents' to 'a parent with no math background' because v1 still produced the word 'quotient.' I rejected the AI's offer to add emojis because the parent-note context makes them read as unserious." That note ties a specific line change to a specific observed failure, which is what makes the persona defensible rather than merely complete.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **privacy checklist for accounts, data sharing, and AI tool boundaries** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Teacher Persona Setup deeply enough to adapt it rather than repeat it.
+Move the same persona to a stricter setting: a school that bans pasting any student record into an AI tool. The ROLE and AUDIENCE fields can stay, but the KNOWLEDGE BOUND field can no longer say "use the standards I paste below" if those standards are tied to a named student. You rewrite the bound to rely only on the public, de-identified grade-level standards, and you add a HARD STOP line forbidding any student name or ID. The persona's shape survives; two fields change to honor the new privacy rule. If you understand the persona deeply, you adapt those two lines instead of starting over.
 
 ## Artifact Studio
 
@@ -139,7 +142,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links claim, evidence, tool boundary, revision, and remaining limitation. That is what separates digital fluency from simple completion.
+Before you move on, make sure your persona file has a concrete value in all four fields, a HARD STOP that prevents a real failure, and a one-line note tying your revision to the output it fixed.
 
 ## References
 

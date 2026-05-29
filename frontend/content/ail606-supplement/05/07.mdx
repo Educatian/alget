@@ -4,34 +4,36 @@
 
 ## Why This Section Matters
 
-Prioritizing Iterations sits inside **Usability Testing and Learning Evidence**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Prioritizing Iterations as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+A test usually surfaces more problems than a team can fix before the next build, so the real skill is not finding issues but deciding which ones to fix first. Teams default to fixing what is easy (a typo, a color) because easy work feels like progress, while the issue actually blocking learners sits untouched because it is hard. This section is about ranking revisions by their effect on the learning goal rather than by their cost to fix, using severity (how badly an issue blocks the goal) and reach (how many learners hit it) instead of effort. Prioritization is where formative testing either pays off or is wasted, because the same evidence can drive a build that removes the worst barrier or one that polishes around it.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+In AIL 606 the storyboard frame sequence with narration, signaling, and reader-action notes is revised across iterations, and the order of those revisions is itself a defensible decision. A prioritized backlog is an argument: it says these problems, in this order, because of this evidence.
 
 ## Learning Targets
 
-- Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Rank issues by severity and reach against the learning goal, not by ease of fixing.
+- Treat accessibility barriers as non-negotiable even when they do not block the median learner.
+- Build a triage table that makes the ordering inspectable and arguable.
+- Defend an iteration plan by tracing each item's position to its effect on the goal.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Prioritizing Iterations. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A test of a tutorial storyboard turns up four issues. The team's instinct is to start with the welcome-screen typo and the button color, because both are five-minute fixes, and to "get to the rest later." Later never comes before the deadline, and the next build ships with the same blocking defect it had before: three of five participants could not find the Submit control and abandoned the task.
 
-A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the storyboard frame sequence with narration, signaling, and reader-action notes should make that chain readable.
+The plan optimized for motion, not impact. It cleared the trivial and left the barrier that actually stops people from reaching the learning goal. The team will demo a tidier interface and report progress, but the one number that matters (whether learners can complete the task) will not have moved, because the iteration spent its budget on the wrong end of the list.
 
 ## Core Concept
 
-The core idea in this section is that **Prioritizing Iterations** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Prioritization runs on two axes that effort routinely overrides: severity and reach. Severity asks how much an issue blocks the goal; reach asks how many learners encounter it. Ranking by their combination, rather than by how cheap the fix is, is the entire move.
 
-Three course anchors shape the reasoning here:
+| Axis | Question | Why it ranks ahead of effort |
+| --- | --- | --- |
+| Severity | Does it block the learning goal? | A blocking defect wastes the whole session for that learner |
+| Reach | How many learners hit it? | A widespread issue compounds across the audience |
+| Effort | How hard to fix? | Real, but it sets order only among equally important items |
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+There is one principled exception to "rank by impact on the median learner," and it is an access barrier. A low-contrast control may not block the typical user, but for a learner with low vision it is a wall, and **UDL learner variability** treats that as non-negotiable: access is not a nice-to-have that competes on severity-times-reach, it is a floor below which the design cannot ship. So an accessibility issue can outrank a cosmetic one even when its raw reach looks modest, because the learners it excludes are excluded completely.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+The learning-goal anchor keeps the ranking honest. **Mayer multimedia learning** reminds you that the goal is a learning performance, so an issue is severe to the degree it blocks that performance, not to the degree it annoys someone. And **cognitive load theory** explains why a "small" friction can rank high: a confusing control that adds extraneous load at a decision point can derail the learning task even if it never produces an outright failure, which is why hesitation data, not just abandonment data, feeds the severity judgment.
 
 ## Worked Example: Prioritizing Which Issues to Fix First
 
@@ -64,50 +66,48 @@ The after version is defensible because effort is spent where it removes the lar
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Order by severity times reach against the learning goal, hold accessibility as a floor, and let effort break ties only among items of equal importance. If the first item on your backlog is the cheapest rather than the most blocking, the list is sorted by comfort, not evidence.
 
-Before submitting the storyboard frame sequence with narration, signaling, and reader-action notes, slow down and check whether the trace can answer three questions:
+Before locking the iteration plan into your storyboard frame sequence with narration, signaling, and reader-action notes, check three things:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Impact check:** Is each item ranked by its effect on the learning goal, not by how easy it is?
+2. **Access check:** Have accessibility barriers been protected as non-negotiable, regardless of raw reach?
+3. **Traceability check:** Can you point to the evidence (severity and reach) behind each item's position?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any check fails, the iteration will spend its budget on motion rather than on the barrier that matters.
 
 ## Common Misreadings
 
-A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.
+The most common error is letting effort masquerade as priority, so the backlog becomes a list of quick wins with the hard, important problem perpetually at the bottom. A second error is treating accessibility as a low-priority polish item because it does not block the median learner, which silently accepts excluding the learners it does block. A third is ranking by how loudly an issue was reported rather than by how much it blocks the goal, which lets one vivid complaint jump the queue ahead of a quiet, widespread barrier.
 
-The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.
+A backlog sorted by ease is a backlog that protects the team's comfort at the learner's expense.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside usability and learning evidence. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Trace one backlog from instinct to a defensible order. A storyboard test surfaces a frame whose narration runs long (annoying, two participants mentioned it), a missing caption on a key diagram (blocks deaf learners entirely), and a slightly off-brand color (one stakeholder noticed). The effort instinct fixes the color first; the impact discipline does not. The missing caption is an access floor under **UDL learner variability**, so it leads even though only some learners hit it, because for them it is total exclusion, not mild friction.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+The long narration ranks next, not because it was mentioned, but because **cognitive load theory** flags overlong audio as extraneous load competing with the diagram the frame is teaching, so it plausibly blocks the learning action for more than the two who complained. The off-brand color, blocking nothing, drops to last. Read back, the order is an argument anyone can check: caption (access floor), narration (load on the learning goal), color (cosmetic), and each position cites the evidence that earned it rather than the hour it takes to fix.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 05.07, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read an iteration plan, keep one column for each item's rank and one for the justification, then flag any item whose position is explained by effort rather than by severity, reach, or access. Those are the places the plan has quietly sorted itself by convenience, and they are where the next build will disappoint.
 
-A strong reader of Prioritizing Iterations can answer four questions:
+A strong reader of a prioritization can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Is each item ranked by its effect on the learning goal?
+2. Were accessibility barriers held as a floor rather than traded against severity?
+3. What evidence (how many, how blocking) sits behind each position?
+4. Where did ease of fixing distort the order?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The iteration plan is strong when a reviewer can read the ordering, ignore how hard each fix is, and still agree the sequence removes the largest barriers to learning first. Treat the ranking justification as the load-bearing element; an order without cited severity and reach is an assertion, not an argument. Use the annotation tools to flag any item promoted for being cheap, and ask BigAL to compare your ordering against the impact check rather than to estimate development time.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful closing line reads: "I moved Submit findability to the top and the typo to the bottom because findability blocked three of five from the learning goal while the typo blocked no one; I rejected the suggestion to do the quick fixes first, since that order would ship the same task-blocking defect again."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Prioritizing Iterations deeply enough to adapt it rather than repeat it.
+Move the same prioritization discipline to triaging a course's redesign across a semester, where the issues are not interface defects but failing assignments, confusing readings, and a clunky gradebook. The temptation to fix the gradebook first because it is bounded is the same effort trap; the failing assignment that blocks the learning goal for most students has to lead. The structure transfers (severity times reach against the goal, access as a floor), but the units change from clicks to learning outcomes. A reader who sequences the redesign by what is administratively easiest has repeated the mistake of fixing the typo before the Submit button.
 
 ## Artifact Studio
 
@@ -136,7 +136,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the storyboard frame sequence with narration, signaling, and reader-action notes records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm your backlog is ordered by severity and reach against the learning goal, holds accessibility as a floor, and cites the evidence behind each item's position.
 
 ## References
 

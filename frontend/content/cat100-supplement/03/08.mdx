@@ -2,11 +2,9 @@
 
 ![Module 3 Data Story Studio textbook visual](/course-art/deep-exemplars/cat100-supplement/03-08-module-3-data-story-studio.png)
 
-## Why This Section Matters
+This is the capstone of the module, where the separate skills become one pipeline. Cleaning, formulas, pivots, charts, ethics, and narration are not five unrelated lessons; they are stages of a single workflow that turns a raw export into a data story a reader can trust. The studio asks you to run that whole pipeline end to end on one dataset and to show that every number ties back to the original rows.
 
-Module 3 Data Story Studio sits inside **Data Storytelling With Excel**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Module 3 Data Story Studio as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the Excel pivot-table finding with unit labels, source note, and claim-first chart title.
-
-Read this page as a short decision cycle: understand the idea, apply it to **Excel pivot-table finding with unit labels, source note, and claim-first chart title**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The skill that only appears at the full-pipeline level is reconciliation: making sure the headline number, the pivot cell, and the chart bar all agree, because each stage can introduce a mismatch the previous stage hid. A clean sheet can still feed a stale pivot; an honest pivot can still feed a misleading chart; an accurate chart can still get a wrong headline. The data story is finished only when the chain holds from raw row to published claim.
 
 ## Learning Targets
 
@@ -17,21 +15,23 @@ Read this page as a short decision cycle: understand the idea, apply it to **Exc
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Module 3 Data Story Studio. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The Excel pivot-table finding with unit labels, source note, and claim-first chart title is the place where that verification becomes visible.
+You have a raw store export of six orders. By the end of this studio you will hand a reader a single slide: a claim-first headline, an honest bar chart, a source note, and a small-sample caveat. But between the export and the slide are five decisions, and a slip at any one of them quietly corrupts the slide while leaving it looking polished.
 
-The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.
+Suppose your headline says West led at 2,400 but the pivot row for West reads 1,200. The slide looks finished; the chain is broken. That mismatch is almost always a stale pivot range or an active filter, and a reader who re-traces your numbers will catch it even though the chart is beautifully formatted. The studio is where you learn to catch it first, by reconciling the headline against the pivot against the bar before anything ships.
 
 ## Core Concept
 
-The core idea in this section is that **Module 3 Data Story Studio** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+The data-story pipeline has five stages, each drawing on one earlier section, plus a reconciliation gate at the end:
 
-Three course anchors shape the reasoning here:
+| Stage | Draws on | What it produces | Failure it prevents |
+| --- | --- | --- | --- |
+| Clean | 03.01 | A tidy table, consistent labels, numeric values | Split categories, skipped numbers |
+| Summarize | 03.04 | A pivot with the right aggregation | Answering the wrong question |
+| Chart | 03.03 | An honest figure for the real question | A misleading axis or chart type |
+| Narrate | 03.07 | A claim-first, faithful headline | Overstated or buried findings |
+| Protect | 03.06 | A sample-size caveat where n is small | Over-reading a tiny dataset |
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
-
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+The reconciliation gate sits across all five. Its rule is simple and strict: the number in your headline must equal the matching pivot cell, which must equal the height of the matching chart bar. If West is 1,200 in the pivot, the West bar must read 1,200 and the headline must say 1,200. Three independent representations of the same fact, forced to agree, is what makes a data story checkable. When they disagree, the disagreement points to the exact stage that failed, usually a stale pivot range or a filter left on.
 
 ## Worked Example
 
@@ -62,50 +62,49 @@ The auditable package: cleaned data, pivot summary, honest chart, claim-first he
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Run the five stages in order and do not publish until the reconciliation gate passes. Cleaning before summarizing, summarizing before charting, and reconciling before sharing is not bureaucracy; each stage assumes the one before it is correct.
 
-A strong submission should survive three quick tests:
+Before the data story ships, confirm the chain end to end:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Trace-back check:** Can every number in the headline be re-derived from the raw rows by re-running clean and summarize?
+2. **Three-way match check:** Does the headline number equal the pivot cell and the chart bar for the same category?
+3. **Caveat check:** Does the story name its source and, when n is small, say so plainly?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If the headline, the pivot, and the bar do not all show the same figure, stop and find which stage drifted before you do anything else.
 
 ## Common Misreadings
 
-Another misreading is to write about the tool instead of showing what the tool helped you revise.
+The most common capstone error is polishing the slide before reconciling the numbers. A crisp chart with a confident headline can still carry a 2,400-versus-1,200 mismatch from a stale pivot, and formatting effort spent before the three-way match just makes a wrong story look more credible. Reconcile first, format last.
 
-In this course, quality means another reader can verify what changed and why.
+A second misreading is assuming that because each stage worked alone, the pipeline works together. The pivot may have been correct yesterday, but if you cleaned a new batch of rows this morning without refreshing, the chart now disagrees with the data. Integration introduces failures no single stage could, which is exactly why the reconciliation gate exists.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Excel pivot-table finding with unit labels, source note, and claim-first chart title**. Then ask what problem the artifact is supposed to solve inside spreadsheet data stories. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Run the full pipeline on a different raw export: a semester of help-desk tickets with columns Building, Date, and Minutes-to-resolve, mixed case and a few durations typed as text. The question is "which building's tickets took longest on average?"
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Clean first: standardize Building case so `Library` and `library` merge, and strip the `min` suffix from text durations so Minutes is numeric. Summarize next: a pivot with Building in Rows and Minutes in Values, aggregation set to Average, not Sum, because the question is about typical resolution time. Chart third: a bar chart with the axis at 0, since this is a category comparison, so the longest building's bar is honestly proportional. Narrate fourth: "Science Hall tickets took longest to resolve, averaging 47 minutes versus 22 in the Library (one semester, 60 tickets)." Protect: 60 tickets is modest and one semester, so note it is not a permanent ranking.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now the reconciliation gate. The headline 47 minutes must equal Science Hall's pivot row and the height of its bar. If the bar reads 47 but the headline says 52, you mistyped the headline; if the pivot reads 38, your chart is built on a stale range. Only when all three agree, traceable back to the cleaned tickets, is the data story done.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 03.08, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader of a finished data story works backward from the headline to the raw data, checking that the chain holds at every link. The audit path:
 
-A strong reader of Module 3 Data Story Studio can answer four questions:
+1. Take the headline number and find it in the chart, then in the pivot.
+2. From the pivot cell, identify which source rows feed it and re-sum or re-average them by hand.
+3. Confirm the source note and sample size match what the pivot actually covers.
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+When you can take any published claim and walk it back to the original rows without the author's help, you are reading the pipeline's integrity, not just its surface.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong capstone artifact exposes the whole chain and an explicit reconciliation step, not just the polished slide. The trace should list the cleaning fixes, the pivot aggregation, the chart choice, the headline, the caveat, and the three-way match. A model line reads: "Cleaned region case and stripped text from Sales; pivot Sum by region gives West 1,200; the West bar reads 1,200 and the headline says 1,200; source is the store export of six orders, a small sample, so I flagged it."
 
-A useful final paragraph for the artifact would sound like this: "I changed **Excel pivot-table finding with unit labels, source note, and claim-first chart title** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+The weak version submits a clean-looking slide and asserts the numbers are right. The strong version lets a reviewer re-derive the headline from the raw rows and see the headline, pivot, and bar agreeing, so the entire story is checkable from export to claim.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Excel pivot-table finding with unit labels, source note, and claim-first chart title** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Module 3 Data Story Studio deeply enough to adapt it rather than repeat it.
+The same pipeline-with-reconciliation transfers to any tool that turns records into a summarized claim, including the dashboard tools in later modules. Move the help-desk data into a reporting dashboard and the stages persist: you still clean the source, define an aggregation, choose a visual, write a headline, and note the sample, and you still must confirm that the dashboard's big number equals the underlying query equals the displayed chart. The interface changed from Excel to a dashboard, but the integrity discipline, every number traceable to source and three representations forced to agree, is what carries over, which is the real product of this module.
 
 ## Artifact Studio
 

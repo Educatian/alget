@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Platform Affordances and Constraints sits inside **Learning Experience Design and Software Technology**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Platform Affordances and Constraints as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+Every learning platform quietly votes on your pedagogy. An LMS that defaults forum posts to public, a quiz engine that allows one attempt, an authoring tool with no branching: each of these is not a neutral container but a set of preferences about what learners can and cannot do. The discipline this section teaches is to read those votes before you design, so the platform serves your learning goals instead of silently overriding them. Designers who skip this step routinely build elegant activities the platform cannot deliver, then blame the tool.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The key conceptual move is to stop describing a platform by its feature list and start describing it by its affordances and constraints relative to a specific learner action. A feature is what the software has; an affordance is what the software makes easy for a particular user to do; a constraint is what it makes hard or impossible. The same feature can be an affordance for one task and a constraint for another. Learning to translate "the LMS has X" into "for the action I need, X affords this and constrains that" is what separates a designer who works with a platform from one who fights it.
 
 ## Learning Targets
 
@@ -17,21 +17,23 @@ Read this page as a short decision cycle: understand the idea, apply it to **sto
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Platform Affordances and Constraints. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A designer storyboards a beautiful peer-critique activity: learners post a draft, three classmates respond privately with structured feedback, and the author revises. The storyboard is approved, built, and then collides with reality. The chosen LMS forum is public to the whole cohort by default and cannot be set to small private groups without an admin change the institution will not approve before launch. The "private structured feedback" the entire activity depended on is not an affordance of this platform. The activity is not salvageable by polish; it was designed against a constraint nobody checked.
 
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind Platform Affordances and Constraints so the next revision is based on evidence, not taste.
+This is the recurring failure the section guards against. The storyboard looked complete and defensible on paper because the designer reasoned about pedagogy in the abstract, never asking the prior question: does the platform actually afford the action this design requires? Recording an affordance check in the storyboard, before the pedagogy is locked, is what prevents a fully reasoned design from being undeliverable.
 
 ## Core Concept
 
-The core idea in this section is that **Platform Affordances and Constraints** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+The term "affordance" comes from the ecological psychology of James Gibson and entered design through Don Norman, who refined it to mean a *perceived* possibility for action available to a user. That refinement matters for learning software in two ways. First, an affordance is relational: it exists between a tool and a particular user pursuing a particular goal, not as a fixed property of the tool. A drag-and-drop canvas affords sequencing for a sighted mouse user and constrains it for a keyboard-only or screen-reader user. Second, an affordance can be real but hidden; if learners do not perceive that a button is clickable or that text is editable, the affordance might as well not exist. Norman's companion concept, the **signifier**, is the visible cue that advertises an affordance, and weak signifiers are a frequent cause of learners doing nothing.
 
-Three course anchors shape the reasoning here:
+A disciplined affordance analysis works in one direction: from the intended learner action to the platform, never the reverse. For each action your design requires, you classify the platform's response as an **affordance** (the tool makes this easy and the signifier is clear), a **soft constraint** (possible but awkward, costly, or poorly signified), or a **hard constraint** (impossible without an external change). The output is an action-to-affordance map, not a feature inventory.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The course anchors sharpen this analysis:
 
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+- **Cognitive load theory** explains why a soft constraint is rarely free: every workaround a learner must improvise around a missing affordance is extraneous load spent on the interface instead of the content.
+- **UDL learner variability** insists that you run the affordance check across the full range of learners, since an affordance for the average user (a mouse-based drag) is often a hard constraint for someone using assistive technology.
+- **Mayer's signaling principle** connects to Norman's signifiers: an affordance the learner cannot perceive needs a cue, and an over-cued interface adds noise.
+
+A constraint is not automatically a flaw. A single-attempt quiz constrains resubmission, but you may keep that constraint deliberately to create a commitment point. The discipline is to know which constraints you accepted on purpose and which ones you are about to discover the hard way.
 
 ## Worked Example: Reading a Platform Affordance Map
 
@@ -61,50 +63,51 @@ The revision is defensible because each interaction now maps to an action the re
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Map actions to affordances before you commit to pedagogy, not after. The rule is: name the learner action first, then ask the platform what it affords for that action, and design only with the affordances you confirmed, plus the constraints you chose to keep on purpose.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+When an affordance map looks finished, audit it with these questions:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Action:** Have you listed the actual learner actions, not the platform's features?
+2. **Affordance evidence:** Did you verify each affordance in the live tool, or assume it from a marketing page or memory?
+3. **Variability:** Does each affordance hold for keyboard, screen-reader, and low-bandwidth learners, or only for the default user?
+4. **Deliberate constraints:** For each constraint you left in place, can you say whether it is intentional (a commitment point) or unexamined (a future failure)?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A map that passes these is deliverable. A map that assumes affordances from feature names is a launch-day incident waiting to happen.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the storyboard frame sequence with narration, signaling, and reader-action notes while the designer never explains the learning demand.
+The first misreading is treating a long feature list as a strong platform. A tool with fifty features but no private-reflection affordance is weaker, for a reflection-heavy design, than a tool with five features that includes it. More features often mean more ways to be distracted and more constraints hidden among the options. Count fit to your actions, not features.
 
-Treat the artifact as a record of design judgment, not only as a deliverable.
+The second misreading is assuming an affordance exists because the feature name implies it. "File upload" sounds like it affords iterative revision until you discover it allows one attempt with no resubmission window. The feature is real; the affordance you needed is not. Always verify the affordance against the live tool and the specific action, because the gap between a feature's name and its behavior is where designs quietly break.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside learning-experience design tools. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Trace the worked example's three-column table, which is the heart of an affordance analysis. The left column lists intended learner actions ("rank options by trade-off," "reflect privately," "submit a revised storyboard"). The middle column reports what the live platform actually does for that action. The right column issues a verdict. Notice that the verdicts are not "good tool / bad tool"; they are action-specific. The same LMS affords the multi-select quiz and constrains the drag-to-rank. A feature-list reviewer would have missed both mismatches because feature lists never bind a feature to an action.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Now study the resolution moves, because they show the three legitimate responses to a constraint. The drag-to-rank constraint was answered by **redesigning the action** to one the platform affords (pick two and explain). The private-reflection constraint was answered by **changing the tool** (move to a journal that is private by default). The single-attempt constraint was answered by **keeping it on purpose** and reframing it as a commitment point. A weaker designer treats every constraint as a defeat; a disciplined one chooses among redesign, retool, or deliberate acceptance.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, see that the design became deliverable precisely because the affordance check happened during the storyboard, not after the build. The cost of finding the journal-versus-forum constraint on paper is a line edit; the cost of finding it after launch is a broken activity and a re-platforming. The walkthrough's real lesson is about *when* the affordance map earns its keep.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 02.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+Read this topic with a three-column affordance map in hand: action, platform response, verdict. Apply it to any tool you actually use this week (an LMS, a polling app, a discussion board). The discipline reveals itself the moment you try to fill the middle column honestly, because you will catch yourself wanting to write the feature name ("it has polls") instead of the action-bound behavior ("it affords anonymous single-question polls but constrains multi-question sequences").
 
-A strong reader of Platform Affordances and Constraints can answer four questions:
+A strong reader of platform affordances can answer four questions about any learning tool:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. For the action I need, is the platform's response an affordance, a soft constraint, or a hard constraint?
+2. Is the affordance perceivable to learners (a clear signifier), or real but hidden?
+3. Does the affordance survive learner variability (keyboard, screen reader, low bandwidth)?
+4. Which constraints am I keeping deliberately, and which am I about to discover by accident?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong artifact for this section includes the action-to-affordance map as a visible part of the storyboard, with each affordance marked as verified-in-tool rather than assumed. The strongest versions also record at least one constraint the designer chose to keep on purpose, with the learning reason for keeping it, because that demonstrates the difference between a designer who only avoids constraints and one who uses them.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+When you bring this to BigAL, do not ask it whether the platform is "good." Ask it to stress-test a specific affordance claim: "I claim this LMS affords private peer feedback in groups of three. What platform settings would have to be true for that to hold, and what is the most likely way I am wrong?" That turns the tool into an affordance auditor instead of a feature cheerleader.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Platform Affordances and Constraints deeply enough to adapt it rather than repeat it.
+Take the affordance map from the worked example and move the same activity from the LMS to a mobile-first delivery on learners' phones. The intended actions are unchanged, but the affordances shift dramatically. Drag-to-rank, awkward on a laptop, becomes a hard constraint on a small touchscreen where precise dragging is error-prone, so the "pick two and explain" workaround is now not a compromise but the obviously correct design. Meanwhile the private-journal affordance may improve, since mobile apps often default to single-user private views. The lesson is that an affordance map is never portable; it is a snapshot of one tool and one device meeting one set of actions. If you can predict which cells of the map would flip on a platform change before you test, you understand affordances as relationships rather than as fixed tool properties.
 
 ## Artifact Studio
 

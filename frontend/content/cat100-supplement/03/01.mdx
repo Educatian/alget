@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Spreadsheet Structure and Clean Data sits inside **Data Storytelling With Excel**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Spreadsheet Structure and Clean Data as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the Excel pivot-table finding with unit labels, source note, and claim-first chart title.
+Every chart, pivot, and formula later in this module assumes the data underneath is clean. If the rows are not laid out the way Excel expects, nothing downstream behaves: a SUM skips numbers stored as text, a pivot splits `TX` and `texas` into two regions, and a chart inherits the mess. Clean structure is not housekeeping; it is the load-bearing step that decides whether the rest of your data story is trustworthy.
 
-Read this page as a short decision cycle: understand the idea, apply it to **Excel pivot-table finding with unit labels, source note, and claim-first chart title**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+A spreadsheet built for analysis follows one quiet rule called tidy data: one variable per column, one observation (record) per row, and exactly one value in each cell. Downloaded exports almost never arrive that way. They carry banner titles, merged cells, blank spacer rows, two facts crammed into one column, and three spellings of the same category. This section teaches you to spot those defects and repair them in a sequence a reader can re-trace against the original file.
 
 ## Learning Targets
 
@@ -17,21 +17,24 @@ Read this page as a short decision cycle: understand the idea, apply it to **Exc
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Spreadsheet Structure and Clean Data. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The Excel pivot-table finding with unit labels, source note, and claim-first chart title is the place where that verification becomes visible.
+You download a club's "Q3 Sales Report" and the first thing you see is a title in cell A1, an empty row 2, and a header row that does not start until row 3. The Region column reads `TX`, `texas`, and `Tx` in three different rows, and one name cell holds `Lopez, Maria`. You drop in `=SUM` to total the units and get a number that feels too low. Nothing is broken in an obvious way, yet the file cannot be analyzed as it stands.
 
-In CAT 100, completion is not the same as digital fluency. The section asks you to show how Spreadsheet Structure and Clean Data changes the choices you make in the Excel pivot-table finding with unit labels, source note, and claim-first chart title.
+That gap, between a file that looks finished and a table that is actually analyzable, is the real subject of this section. The fix is not cosmetic. Each repair changes what a formula or pivot will compute, so each repair is a decision you can defend.
 
 ## Core Concept
 
-The core idea in this section is that **Spreadsheet Structure and Clean Data** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Clean data has a precise definition you can check against any sheet. A table is analysis-ready when it satisfies three structural conditions and one consistency condition:
 
-Three course anchors shape the reasoning here:
+| Rule | What it means | Common violation |
+| --- | --- | --- |
+| One header row | Row 1 holds column names only, with nothing above it | A banner title in A1 or a blank spacer row 2 |
+| One value per cell | Each cell holds a single fact | `Lopez, Maria` (two facts) or `18 units` (number plus text) |
+| One record per row | Each row is one observation | A subtotal row mixed in with raw rows |
+| Consistent category labels | The same category is spelled one way | `TX`, `Tx`, and `texas` for one state |
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The reason these rules matter is mechanical, not stylistic. Excel's aggregation tools (SUM, COUNT, pivot tables) treat each distinct text string as a distinct category and silently skip cells whose type is text when they expect a number. So `texas` and `TX` become two regions in a pivot, and a units value typed as `18 units` is read as text and excluded from a SUM. The visible symptom is a total that is lower than you expect with no error message to warn you. Cleaning the data is what makes the later count, sum, and chart say what you think they say.
 
-The anchors should do work in your artifact. If NACE career readiness or ISTE digital citizenship does not change a decision, it is only a citation rather than evidence of judgment.
+Three tools do most of the repair work: **Text to Columns** (split one cell into two on a delimiter such as a comma), **Find and Replace** (collapse spelling variants into one canonical label), and deleting non-data rows (the banner and the blank). Knowing which tool fixes which defect is the core skill here.
 
 ## Worked Example
 
@@ -59,50 +62,50 @@ The clean table is now: three rows, one header, one value per cell, one spelling
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Clean structure before you compute anything. The order is deliberate: fix the layout, then split the cells, then standardize the labels, then confirm the numeric type, and only then sum, count, or chart. Running an analysis first and cleaning afterward means you never know which numbers were wrong.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+Before you trust any total, run this three-point structural audit:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Layout check:** Is row 1 a pure header with no banner or blank row above it, and is every row below it one record?
+2. **Atomic check:** Does any cell hold two facts (a comma-joined name) or a number with a label (`18 units`)? If so, split it.
+3. **Type and label check:** Are the values you will sum actually numeric (right-aligned by default), and is each category spelled exactly one way?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If `=SUM` of a column you believe is numeric returns a total lower than a hand count, you have failed the type check: at least one value is text and is being skipped.
 
 ## Common Misreadings
 
-Students sometimes accept an AI suggestion because it sounds better, without checking whether it protects the claim, audience, or evidence.
+The most common error is treating a value typed as `18 units` or `$600` the same as a number. Excel left-aligns text and right-aligns numbers by default, so alignment is your fastest tell; a "number" hugging the left edge of its cell is text and will be dropped from sums.
 
-Your trace should make the judgment visible enough that a reviewer can trust the digital product.
+A second misreading is thinking that deleting the visible banner is enough. If a blank spacer row remains between the title and the data, a pivot table will treat the first data row as a header or stop reading at the gap. Remove the blank row too, so the header sits in row 1 with data directly beneath it.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Excel pivot-table finding with unit labels, source note, and claim-first chart title**. Then ask what problem the artifact is supposed to solve inside spreadsheet data stories. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the audit to a registrar export that lists course enrollments. The file opens with `Fall Enrollment Snapshot` in A1, a blank A2, and headers `Student, Course, Credits` starting in A3. The layout check fails twice, so delete rows 1 and 2 until `Student | Course | Credits` is row 1.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Scan for atomic violations. The Course column holds `CAT 100 - Intro`, two facts (a code and a title) in one cell. Use Text to Columns with the hyphen as the delimiter so the code and title live in separate columns; now you can pivot on the code alone. Then run the type check on Credits: a few cells read `3 cr`, which is text. Strip the `cr` so `=SUM(Credits)` counts every row instead of skipping the labeled ones.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, standardize labels. The Course code appears as `CAT 100`, `CAT100`, and `cat 100`. Find and Replace each variant with `CAT 100`. Only now is the snapshot ready to summarize, and every step is one a reviewer can re-run against the original download.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 03.01, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader does not just notice that a sheet is messy; they predict the exact analytical failure each defect will cause. Train yourself to read a raw export and name the downstream consequence:
 
-A strong reader of Spreadsheet Structure and Clean Data can answer four questions:
+1. A blank spacer row will truncate a pivot or break a SUM range.
+2. A comma-joined name cell cannot be sorted or filtered by last name.
+3. Three spellings of one region will appear as three rows in a pivot, inflating the category count.
+4. A number stored as text will silently lower every total it should be part of.
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+When you can move from "this looks untidy" to "this specific cell will drop \$600 from the total," you are reading the structure, not just the surface.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong cleaned-data artifact ships with a short repair log, not just the tidy table. The log names each defect found in the raw export, the tool used to fix it, and the proof that the fix worked. A model line reads: "Region had `texas`, `Tx`, and `TX`; Find and Replace collapsed all three to `TX`; the pivot dropped from three region rows to one." The proof matters because it lets a reviewer confirm the repair without reopening the raw file.
 
-A useful final paragraph for the artifact would sound like this: "I changed **Excel pivot-table finding with unit labels, source note, and claim-first chart title** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+The weakest version says only "I cleaned the data." The strongest version lets a reader reconstruct the original mess and verify that the SUM now matches a hand count of the rows. Aim for the version where the before state, the action, and the numeric proof are all visible.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Excel pivot-table finding with unit labels, source note, and claim-first chart title** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Spreadsheet Structure and Clean Data deeply enough to adapt it rather than repeat it.
+The same audit transfers to a context with no banner and no blank rows: a survey export from a Google Form. Here the structural defects move into the cells. A "select all that apply" question stores `Pizza, Tacos, Sushi` in one cell, which violates the atomic rule and cannot be counted by option. A timestamp column mixes date and time, which you may need to split for a by-day pivot. The layout is fine, but the atomic and type checks still drive the work, so the skill is the audit itself rather than the specific banner-deleting steps from the worked example.
 
 ## Artifact Studio
 

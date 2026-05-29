@@ -4,99 +4,82 @@
 
 ## Why This Section Matters
 
-Telemetry and Privacy Boundaries sits inside **Research Translation for Learning Design**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Telemetry and Privacy Boundaries as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+A prototype that logs learner behavior is collecting personal data, whether or not the designer thinks of it that way. The default temptation is to capture everything ("we might want it later"), but that default inverts the ethical and legal order: data collection should follow from a question, not precede it. This section teaches data minimization as a design discipline. The principle, central to FERPA's protection of education records and to the GDPR notion of purpose limitation, is that you collect the smallest amount of the least identifiable data needed to answer a stated question, and you bind its use and retention to what learners agreed to.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+For a learning designer, telemetry is not an IT afterthought. The fields you choose to log, the granularity, the identifiers, and the retention window are design decisions with consequences for re-identification risk, learner trust, and what claims you are later allowed to make. Getting the boundary right is part of designing the artifact, not a checkbox after it ships.
 
 ## Learning Targets
 
-- Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Apply data minimization: derive the logging plan from a stated question rather than from technical capability.
+- Distinguish direct identifiers, indirect identifiers, and pseudonymous keys, and explain how combinations enable re-identification.
+- Set purpose limitation and a retention window that match the consent learners actually gave.
+- Reject "collect now, decide later" requests and state the harm they create.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Telemetry and Privacy Boundaries. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
-
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind Telemetry and Privacy Boundaries so the next revision is based on evidence, not taste.
+A team is excited about the analytics dashboard their prototype could produce, so the first logging plan is: capture the full clickstream, keystroke timing, screen recordings, and each learner's name and email, stored indefinitely "so we can analyze it later." Nothing here is tied to a question. Names and email maximize identifiability; screen recordings can capture incidental third parties; indefinite storage means the data outlives any purpose and any consent. The plan feels thorough, but thoroughness in collection is precisely the risk. The work of this section is to replace "log everything" with "log what one question needs, and no more."
 
 ## Core Concept
 
-The core idea in this section is that **Telemetry and Privacy Boundaries** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Telemetry design turns on four boundaries, each answering a different question:
 
-Three course anchors shape the reasoning here:
+- **Purpose:** Which single, stated design question does this field help answer? A field with no question behind it has no justification.
+- **Minimization:** What is the smallest data that answers the question at the lowest identifiability? Often a counter or a timestamp suffices where a recording was proposed.
+- **Identifiability:** Is the key a direct identifier (name, email), an indirect identifier (a quasi-identifier like timestamp + class + device that can be triangulated), or a pseudonymous random id? Re-identification usually happens not through one field but through the *combination* of several, so minimizing fields lowers risk multiplicatively, not additively.
+- **Retention and use:** How long is the data kept, and is its use bound to the consent given? Indefinite retention and scope creep ("we collected it for X, now we use it for Y") are the two most common boundary violations.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
-
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+The course anchors connect privacy to learning quality, not just compliance. **Cognitive load theory** is relevant because intrusive data capture (a visible recorder, a consent wall that reappears) can itself add extraneous load and alter the very behavior you are trying to measure. **UDL learner variability** matters because identifiability harms are unevenly distributed: a small cohort, a learner from a marginalized group, or a class small enough that "the only student who took it on a phone" is identifiable, all bear more re-identification risk from the same fields. **Mayer's principles** remind you that telemetry should serve a learning question; data with no link to a learning decision is collection for its own sake.
 
 ## Worked Example
 
-Trace one telemetry decision from over-collection to a defensible boundary.
+Trace one logging plan from over-collection to a defensible boundary.
 
 **Before (logging plan, first draft):**
 
 > Log everything the prototype can capture: full clickstream, keystroke timing, screen recording, and each learner's name and email, stored indefinitely so we can analyze it later.
 
-1. Annotation: none of these fields is tied to a stated question, names and email maximize identifiability, and indefinite storage has no purpose limit.
-2. Decision point: which single design question are we answering, and what is the smallest data that answers it?
-3. Revision move: keep only the fields the question needs, reduce identifiability, and set a retention limit and consent scope.
+1. No field is tied to a stated question, so none can be justified.
+2. Name plus email are direct identifiers; combined with timestamps they make every record trivially re-identifiable.
+3. Indefinite retention sets no purpose limit, so the data outlives any consent.
 
 **After (minimized logging plan):**
 
-> Question: does the new hint button reduce time-to-correct on item 4? Log only item-4 response time and hint-clicks, keyed to a random pseudonymous id, retained for the study term and used only to improve the lesson, as stated in the consent form.
+> Question: does the new hint button reduce time-to-correct on item 4? Log only item-4 response time and hint-click events, keyed to a random pseudonymous id, retained for the study term and used only to improve the lesson, as stated in the consent form.
 
-The after plan collects the two fields the question needs, drops direct identifiers, and binds use and retention to what learners agreed to. I rejected a teammate's suggestion to also store email "for follow-up," because no current question requires it and it would widen re-identification risk without a design justification.
+The revised plan collects exactly two fields the question needs, drops direct identifiers in favor of a random key, and binds use and retention to the consent learners gave. A reviewer can see the boundary and check it against the consent text.
+
+One rejected request: a teammate asked to also store email "for follow-up." I declined because no current question requires it; adding email would reintroduce a direct identifier and widen re-identification risk with no design justification. If a follow-up study is later approved, it can seek its own consent rather than borrowing this one.
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Derive the plan from the question, then test each proposed field against the four boundaries:
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+1. **Purpose check:** Which stated question does this field answer? No question, no field.
+2. **Minimization check:** Is there a less identifiable field that answers the same question (a count instead of a recording, a pseudonymous key instead of a name)?
+3. **Combination check:** Could this field, joined with the others, re-identify a learner in the smallest plausible cohort? If so, coarsen or drop it.
+4. **Retention-and-use check:** Does the retention window end when the purpose ends, and is use confined to the consent given?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A field that fails any check is not a "nice to have"; it is an uncompensated risk to the learner.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the storyboard frame sequence with narration, signaling, and reader-action notes while the designer never explains the learning demand.
-
-Treat the artifact as a record of design judgment, not only as a deliverable.
+One misreading is that anonymization is a switch you flip after collection. Removing names does not anonymize a dataset if quasi-identifiers remain; a record keyed by class, date, and device can still single out one learner. A second misreading treats consent as a blanket permission. Consent is scoped: data gathered "to improve this lesson" cannot be quietly repurposed for a marketing model or a different study. Boundary work is about matching collection, identifiability, retention, and use to the specific purpose and the specific consent.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside research translation. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Apply the boundaries to a discussion-board prototype. A first plan logs every post's full text, author name, IP address, and timestamp, kept forever, to study engagement. Walk the checks. Purpose: the question is "does a prompt scaffold raise the rate of evidence-based replies?" That needs a coded reply-type per post, not the full verbatim text plus identifiers. Minimization: replace stored full text with a derived code (evidence-based: yes/no) computed at collection time; drop IP entirely. Combination: author name plus timestamp in a 12-person seminar re-identifies everyone, so swap names for a random per-study id. Retention: keep coded counts for the study term, then delete. The revised plan answers the engagement question while collecting a fraction of the data and almost none of the identifiability, which is exactly the trade data minimization is designed to produce.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 07.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
-
-A strong reader of Telemetry and Privacy Boundaries can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+For each logged field, write two things: the question it serves and the worst-case re-identification it enables in the smallest cohort you can imagine. A strong reader notices that the danger usually lives in the join, not the field: response-time alone is harmless, but response-time plus device plus a four-person class is not. The skill is to read a logging plan adversarially, as an attacker who wants to single out one learner, and to keep only the fields that survive that reading while still answering the question.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
-
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+The telemetry plan is strong when every field traces to a stated question, when identifiers are minimized to the lowest level the question allows, and when the README records the retention window and the consent scope alongside the field list. A reviewer should be able to see, for at least one field you dropped, the re-identification risk that justified dropping it. Treat the dashboard's visual appeal as the last concern; the load-bearing layer is the field-by-field justification against the four boundaries.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Telemetry and Privacy Boundaries deeply enough to adapt it rather than repeat it.
+Move the plan into a stricter jurisdiction or a smaller cohort, the two constraints that most often break a telemetry design. In a five-student pilot, fields that were safe in a 200-student deployment (timestamp, device, completion order) may now re-identify everyone, so the same question forces a coarser plan: bucket timestamps, drop device, report only aggregates. The purpose stays stable while the identifiability boundary tightens. Testing your plan against the smallest, most regulated context is how you confirm you understand minimization as a relationship between data and cohort, not as a fixed list of "safe" fields.
 
 ## Artifact Studio
 

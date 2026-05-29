@@ -2,11 +2,9 @@
 
 ![Data Ethics in Small Datasets textbook visual](/course-art/deep-exemplars/cat100-supplement/03-06-data-ethics-in-small-datasets.png)
 
-## Why This Section Matters
+When a dataset has thousands of rows, one person's record disappears into the crowd. When it has seven rows, every record is a recognizable individual, and the ethical stakes of how you handle and report it rise sharply. A small dataset is the most common kind a student actually works with, a club survey, a class poll, a team roster, and it is precisely where privacy and honesty are easiest to violate by accident.
 
-Data Ethics in Small Datasets sits inside **Data Storytelling With Excel**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Data Ethics in Small Datasets as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the Excel pivot-table finding with unit labels, source note, and claim-first chart title.
-
-Read this page as a short decision cycle: understand the idea, apply it to **Excel pivot-table finding with unit labels, source note, and claim-first chart title**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches two related disciplines for small data. The first is protecting identity: removing a name is not the same as anonymizing, because a rare combination of attributes can still point to one person. The second is reporting honestly: a percentage over seven people, or an average over a group of one, can mislead a reader into seeing a pattern that is really just noise. Both are decisions you make at the spreadsheet, and both protect real people.
 
 ## Learning Targets
 
@@ -17,21 +15,24 @@ Read this page as a short decision cycle: understand the idea, apply it to **Exc
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Data Ethics in Small Datasets. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The Excel pivot-table finding with unit labels, source note, and claim-first chart title is the place where that verification becomes visible.
+You survey seven members of a campus club and want to share the results. You delete the name column, feeling responsible, and report that "57% chose option A." Both moves feel careful. Both are quietly unsafe. The row for the only computer-science major living in Hall C still identifies that one person even with the name gone, and "57%" makes seven opinions sound like a representative measurement.
 
-A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The Excel pivot-table finding with unit labels, source note, and claim-first chart title is where that trust is built.
+These are not exotic mistakes; they are the default outcome of treating a small dataset like a big one. The work of this section is to slow down at exactly these moments, to recognize when a "deidentified" row is still re-identifiable and when a tidy percentage is hiding a tiny, fragile sample.
 
 ## Core Concept
 
-The core idea in this section is that **Data Ethics in Small Datasets** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Two ideas do the heavy lifting here. The first is re-identification through quasi-identifiers. A direct identifier (a name, an ID number) names someone outright, but a quasi-identifier is any attribute that, combined with others, narrows the field to one person: major, dorm, age, hometown. In a large dataset many people share each combination; in a seven-row table a single rare combination can be unique. So anonymizing means looking at combinations of columns, not just deleting the name.
 
-Three course anchors shape the reasoning here:
+The second idea is honest reporting at small n (the number of observations). At small n, two habits protect the reader:
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+| Practice | Why it matters at small n |
+| --- | --- |
+| Report raw counts, not just percentages | "4 of 7" is honest; "57%" implies a precision the sample lacks |
+| Name the sample size and that it is not representative | Seven club members do not speak for the campus |
+| Never publish a statistic over a group of one | An average of one both exposes the person and fakes a pattern |
+| Suppress or merge thin categories | A subgroup with n of 1 should be combined, not reported alone |
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+The throughline is that small numbers demand both more privacy care and more humility in what you claim, because each row is a person and each subgroup may be a single voice.
 
 ## Worked Example
 
@@ -59,50 +60,49 @@ The auditable decision: anonymize by combinations not just the name, report raw 
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Protect the person and respect the sample size. Before you share any small-dataset finding, check that no row is uniquely identifiable, no group of one is reported, and no percentage hides how few people it represents.
 
-Before submitting the Excel pivot-table finding with unit labels, source note, and claim-first chart title, slow down and check whether the trace can answer three questions:
+Apply this three-point ethics screen to a small dataset:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Re-identification check:** Could any combination of remaining columns single out one individual? If so, generalize or merge those columns.
+2. **Group-of-one check:** Does any reported average or percentage cover a subgroup with n of 1? If so, suppress or combine it.
+3. **Honest-magnitude check:** Are you reporting raw counts and naming the sample size, rather than a bare percentage that implies precision?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a friend in the dataset could recognize their own row from your published summary, the re-identification check failed.
 
 ## Common Misreadings
 
-A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.
+The most consequential misreading is "I deleted the names, so it's anonymous." Deletion removes the direct identifier but leaves the quasi-identifiers untouched, and in a seven-row table the lone nursing major in Hall B is as identifiable as if you had printed her name. Anonymizing means flattening rare combinations, often by grouping dorms into on- and off-campus or collapsing majors into broad fields.
 
-The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.
+A second misreading is preferring percentages because they look professional. "57% chose A" sounds like a poll result; "4 of 7 respondents chose A" tells the truth that the whole study was seven people. At small n the raw count is the honest form, and dropping the sample size from the sentence is itself a small deception.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Excel pivot-table finding with unit labels, source note, and claim-first chart title**. Then ask what problem the artifact is supposed to solve inside spreadsheet data stories. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the screen to a different small dataset: a six-person internship cohort's exit feedback, with columns Name, Department, Hometown, and a 1-to-5 satisfaction score. You want to publish a short summary for next year's applicants.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Start with re-identification. Delete Name, then look at the survivors: only one intern came from the marketing department, and only one listed a small hometown. Either column alone re-identifies someone, so generalize Hometown to a region and report Department only in aggregate, not row by row. Next, the group-of-one check: if you split satisfaction by department, marketing has n of 1, so reporting "marketing scored 2/5" both exposes that intern and treats one opinion as a department verdict. Merge departments into a single overall figure instead.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, honest magnitude. Rather than "67% were satisfied," write "4 of 6 interns rated their experience 4 or higher (small cohort, not representative)." The summary now informs applicants without exposing any single intern or overstating six data points.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 03.06, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader of a small-data report instinctively asks who could be identified and how fragile the numbers are. Train these reflexes:
 
-A strong reader of Data Ethics in Small Datasets can answer four questions:
+1. Scan for any subgroup small enough that one person defines it, and treat a reported value over that group as a red flag.
+2. Mentally reconstruct whether a known individual's row could be picked out from the published attributes.
+3. Convert every percentage back to a count over the stated n, and notice when the n is missing.
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+When a clean-looking "73% agree" makes you immediately ask "out of how many?", you are reading the ethics, not just the result.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong small-data artifact documents the privacy and honesty decisions, not just the polished chart. The trace should name what you generalized to prevent re-identification, which thin groups you suppressed, and why you reported counts with the sample size. A model line reads: "I grouped dorms into on- and off-campus because the Hall C plus computer-science combination identified one member; I reported '4 of 7 chose A' rather than '57%' so no reader overreads a seven-person poll."
 
-A useful final paragraph for the artifact would sound like this: "I changed **Excel pivot-table finding with unit labels, source note, and claim-first chart title** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+The weak version shares a tidy percentage and a deidentified-looking table. The strong version makes the protective choices visible, so a reviewer can confirm that no individual is exposed and no claim outruns the sample.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Excel pivot-table finding with unit labels, source note, and claim-first chart title** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Data Ethics in Small Datasets deeply enough to adapt it rather than repeat it.
+The same ethics screen transfers from a survey to an open-ended dataset, where the risk hides in the text. Suppose you collect short written comments from eight tutoring clients to share themes. There is no name column, but a comment that mentions a specific course, a specific time slot, and a personal detail can identify the writer as surely as a name. The re-identification check now means scanning quotes for identifying specifics and paraphrasing them, and the group-of-one check means not attributing a unique, recognizable comment to its lone author. The data type changed from numbers to text, but the duty, prevent re-identification and do not over-claim from few voices, is the same, which shows the screen is about the people, not the cell format.
 
 ## Artifact Studio
 

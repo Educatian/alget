@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Debugging With AI Assistance sits inside **GitHub Pages Personal Website**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Debugging With AI Assistance as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the AI critique log showing accepted, modified, and rejected suggestions.
+AI coding assistants are fast and confident, and that combination is dangerous for a beginner who cannot yet tell a correct suggestion from a plausible-sounding wrong one. An assistant will happily propose a server configuration for a problem that has no server, or rewrite your whole site to fix a single typo. The skill that matters is not getting answers from AI; it is judging them against the actual symptom in your code and recording which you accepted, modified, or rejected and why.
 
-Read this page as a short decision cycle: understand the idea, apply it to **AI critique log showing accepted, modified, and rejected suggestions**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches you to debug with AI as a junior partner you supervise, not an oracle you obey. You will learn to write a prompt that includes the real symptom and code, to verify a suggested fix instead of assuming it, and to keep a decision log that makes your judgment auditable. That log is the artifact, because it shows you understood the bug, not just that the bug went away.
 
 ## Learning Targets
 
@@ -17,21 +17,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **AI 
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Debugging With AI Assistance. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The AI critique log showing accepted, modified, and rejected suggestions is the place where that verification becomes visible.
+A student's navigation links all render as plain blue underlined text, and oddly, every paragraph below them turns blue too. He pastes "fix my website" into an AI assistant. It returns three suggestions: close an unclosed anchor tag, add a CORS server configuration for his headshot image, and rewrite the whole site in a JavaScript framework. All three sound technical and authoritative. He has no way to tell that only the first one is right, that the second is impossible for a local image, and that the third is wildly out of scope, so he tries them in order and makes the site worse before he makes it better.
 
-The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.
+The failure was not the AI; it was the absence of a method for evaluating what the AI said. This section gives you that method.
 
 ## Core Concept
 
-The core idea in this section is that **Debugging With AI Assistance** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Effective AI-assisted debugging has three moving parts.
 
-Three course anchors shape the reasoning here:
+**Read the symptom in the code first.** Before asking anyone (human or AI), locate the evidence. Blue runaway styling that swallows everything below a link is the classic signature of an unclosed `<a>` tag: the browser keeps treating later content as part of the link. Identifying the symptom yourself is what lets you judge whether a suggested fix actually matches it.
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+**Write a verifiable prompt.** "Fix my site" gives the assistant nothing to verify against, so it guesses. A verifiable prompt states the symptom, includes the relevant code, and asks a specific question: "My nav links show as plain text and the content below is also blue. Here is my nav block. What prevents my `nav a` CSS from applying?" A prompt grounded in the symptom and the code produces suggestions you can check against reality.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+**Classify every suggestion: accept, modify, or reject, with a reason.** An assistant produces a mix of right, half-right, and irrelevant ideas. The discipline is to judge each one against the evidence. Accept a fix that matches the symptom. Modify a fix that is close but wrong in detail. Reject a fix that cannot apply (a CORS server config has nothing to do with a same-folder local image) or that is out of scope (rewriting everything to fix one tag). The reason is what proves the judgment was yours.
+
+This is where ISTE digital citizenship becomes concrete: using AI responsibly means verifying its output, not laundering it as your own work. NACE career readiness applies because professionals are expected to supervise tools, owning the result whether the suggestion came from a colleague, a search, or a model.
 
 ## Worked Example
 
@@ -64,50 +64,46 @@ The fix was a single closing tag. The accepted-modified-rejected log shows judgm
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+For every AI suggestion, run it through three questions before touching your code:
 
-A strong submission should survive three quick tests:
+1. **Match check:** Does this fix address the symptom I actually observed? An unclosed-tag fix matches runaway styling; a server config does not match a local-file problem.
+2. **Scope check:** Is this proportionate to the bug? A one-tag bug does not justify a framework rewrite. Reject fixes that solve more than you asked.
+3. **Verify check:** After applying, did I confirm the result in the browser (and console), or did I just assume it worked?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A suggestion that passes match and scope gets applied; then the verify check decides whether it stays. Anything failing match or scope is rejected with a reason, and the reason goes in your log.
 
 ## Common Misreadings
 
-Another misreading is to write about the tool instead of showing what the tool helped you revise.
+The most common misreading is treating AI output as correct because it is fluent. Confidence is not accuracy. A suggestion can be grammatically perfect, technically worded, and completely irrelevant to your bug, like recommending CORS for an image that lives in the same folder.
 
-In this course, quality means another reader can verify what changed and why.
+A second misreading is logging only what you accepted. The rejections carry the most evidence of judgment, because choosing not to follow a confident suggestion, and saying why, is exactly the skill the section is testing.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **AI critique log showing accepted, modified, and rejected suggestions**. Then ask what problem the artifact is supposed to solve inside website publishing. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the rule to the nav bug. The student first reads the symptom and finds the first `<a href="about.html">About` is never closed; the open link swallows the following content, which explains both the plain-text rendering and the runaway blue. Now armed with the actual cause, he evaluates the three AI suggestions. "Add `</a>` after About" passes the match check (it fixes the exact symptom) and the scope check (it is one tag), so he accepts it. "Add a CORS server config for the headshot" fails the match check (the image is a same-folder local file; CORS governs cross-origin requests, which do not apply), so he rejects it. "Rewrite the nav in a framework" fails the scope check (a framework is absurd overhead for one missing tag), so he rejects it.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+He applies the closing tag, reloads, and runs the verify check: the runaway styling is gone and the console shows no errors. His log records all three decisions with reasons, so a reviewer can see he understood why the wrong suggestions were wrong, not just that the page now works.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 06.05, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader evaluates suggestions against evidence rather than against how authoritative they sound. As you study the worked example, cover the Decision column in the log and predict, for each suggestion, whether you would accept or reject it and on which check it turns. If your reasoning matches the log, you can supervise an assistant rather than be steered by one.
 
-A strong reader of Debugging With AI Assistance can answer four questions:
+A strong reader of AI-assisted debugging can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. What is the difference between a prompt the AI can verify against and one it must guess at?
+2. Why is a fluent, confident suggestion not necessarily a correct one?
+3. For a given bug, which suggestions fail the match check and which fail the scope check?
+4. Why does the log of rejected suggestions show more skill than the list of accepted ones?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+Your debugging log is strong when a reader can reconstruct your reasoning for each AI suggestion: what the symptom was, what the assistant proposed, what you decided, and the specific reason. The log should make clear that you, not the model, made the call, and that you verified the outcome rather than trusting it.
 
-A useful final paragraph for the artifact would sound like this: "I changed **AI critique log showing accepted, modified, and rejected suggestions** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A strong submission highlights the suggestion you were most tempted to follow and chose not to: "The CORS fix sounded technical and convincing, but I rejected it because my image is a local same-folder file, so cross-origin rules cannot apply."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **AI critique log showing accepted, modified, and rejected suggestions** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Debugging With AI Assistance deeply enough to adapt it rather than repeat it.
+Take the same supervision method to a different tool and a different bug, say an AI assistant suggesting an Excel formula that returns the wrong total. The medium changes from HTML to a spreadsheet, but the method is identical: read the symptom (the total is off by one row), write a prompt that includes the formula and the wrong result, then judge the suggestion against the evidence (does the proposed range actually cover all rows?) and verify by checking the recomputed total. The accept-modify-reject log works the same way. Carrying the method across tools is the proof that you learned to supervise AI, not to debug one specific page.
 
 ## Artifact Studio
 

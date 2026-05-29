@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Prompting for Classroom Constraints sits inside **Teaching in Tech-Rich Classrooms With TeachGen@i**. In this part of CAT 531, you are learning to work as a teacher making a defensible technology decision: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Prompting for Classroom Constraints as a professional judgment problem: the learner must connect pedagogy, classroom constraints, and ethics before defending the TeachGen@i prompt transcript with teacher edits and rejected suggestions.
+Scenario setup tells the tool what room it is planning for; prompting for constraints tells it what it is not allowed to do. The two are different skills. A constraint is a boundary the plan must respect even when respecting it makes the plan worse on some other dimension: a hard time cap, a legally required accommodation, a no-homework week, a privacy rule. Generative tools are optimizers; left to their own devices they will quietly trade a constraint they were told to keep for an outcome they were trained to favor (more engagement, more coverage, a tidier flow). Prompting for constraints, and then verifying that the constraint actually held, is how a teacher keeps the tool inside the lines that law and equity draw.
 
-Read this page as a short decision cycle: understand the idea, apply it to **TeachGen@i prompt transcript with teacher edits and rejected suggestions**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches the difference between hard constraints (non-negotiable, often legal or ethical) and soft preferences (nice to have), and the discipline of checking compliance line by line rather than trusting that a stated constraint was honored. The transcript artifact records both the constraint you set and the verification you performed.
 
 ## Learning Targets
 
@@ -17,21 +17,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **Tea
 
 ## Opening Case
 
-Imagine a teacher choosing whether to use a classroom technology for Prompting for Classroom Constraints. The important question is not whether the tool is exciting; it is whether the teacher can name the instructional purpose, the equity risk, the student-data boundary, and the evidence that makes the TeachGen@i prompt transcript with teacher edits and rejected suggestions a professional judgment rather than a preference.
-
-This section turns Prompting for Classroom Constraints into a defensible teaching decision. The goal is to make the reasoning public enough that a colleague could inspect and improve it.
+A middle-school teacher has a student whose IEP guarantees extended time on written responses, a hard 38-minute period, and a school directive: no homework this week. She prompts TeachGen@i for "an engaging, rigorous civics lesson." The plan runs 55 minutes and ends with a take-home reading. She re-prompts, this time naming the time cap, the no-homework rule, and the extended-time accommodation. The new plan fits 38 minutes but drops the extended-time support to squeeze in a movement break. The tool treated a legal accommodation and a nice-to-have break as interchangeable constraints to juggle. The teacher's job is to mark which boundaries are immovable and verify they survived the optimization.
 
 ## Core Concept
 
-The core idea in this section is that **Prompting for Classroom Constraints** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Every constraint you give a tool falls into one of two classes, and conflating them is the central error of constraint prompting.
 
-Three course anchors shape the reasoning here:
+| | Hard constraint | Soft preference |
+| --- | --- | --- |
+| Definition | A boundary that must hold no matter the cost | A goal the plan should pursue if possible |
+| Typical source | Law, IEP/504, policy, ethics, the bell schedule | Pedagogical taste, pacing, variety |
+| Example | "Extended response time for one student" | "Include a movement break" |
+| If violated | The plan is unusable or unlawful | The plan is merely less ideal |
+| Correct instruction to the tool | "Non-negotiable; never drop" | "Optional; drop this first if something must give" |
 
-- **TPACK** helps you decide what counts as a meaningful learning or performance demand.
-- **critical edtech studies** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **AI and education datafication** helps you check whether the artifact works for varied learners, audiences, or use contexts.
-
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+The method has three moves. First, sort: label each constraint hard or soft before prompting, so you can tell the tool what it may sacrifice. Second, rank the soft preferences, so the tool knows the order to cut them in. Third, and most important, verify: read the returned plan against each hard constraint individually, because stating a constraint and the tool satisfying it are two separate events. TPACK keeps you honest about which content demands are real; critical edtech studies warns that an optimizer will always find a way to trade a quiet accommodation for a visible feature unless you forbid it explicitly and then check.
 
 ## Worked Example
 
@@ -51,50 +51,36 @@ Walk through one annotated judgment call on prompting for constraints. A middle-
 
 ## Decision Rule
 
-Use the classroom value conflict first, the technology affordance second, and the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity.
+Mark every hard constraint as non-negotiable, tell the tool which soft preference to cut first, and verify each hard constraint by reading the plan rather than trusting the prompt. A constraint you stated but did not check is a constraint you do not know you have.
 
-A strong submission should survive three quick tests:
+Before accepting any plan, run the compliance pass:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Sort:** Is each constraint explicitly labeled hard or soft for the tool?
+2. **Rank:** Have you told the tool the order to drop soft preferences in?
+3. **Verify:** Have you read the plan against each hard constraint one at a time?
+4. **Log:** Did you record any hard constraint the tool violated and the re-prompt that fixed it?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A plan that "feels" compliant has not been verified; only a line-by-line read counts.
 
 ## Common Misreadings
 
-Teachers can also over-trust a platform recommendation and under-document the classroom constraint that should govern the choice.
-
-In this course, quality means the technology choice can be inspected as a professional judgment.
+The first misreading is to assume that naming a constraint guarantees the tool kept it. Optimizers regress toward their training favorites; a stated accommodation can silently vanish in the next revision. The second is to over-trust the platform's own "this plan meets accessibility standards" badge and skip your own read. A vendor's compliance claim is a marketing surface, not a verified fit to your specific student's IEP. The under-documented constraint, the one you held in your head but never wrote into the prompt or the transcript, is the one most likely to be traded away and the hardest to defend later.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **TeachGen@i prompt transcript with teacher edits and rejected suggestions**. Then ask what problem the artifact is supposed to solve inside technology-rich routines and TeachGen@i planning. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **TPACK**, **critical edtech studies**, **teacher professional judgment**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Apply the sort-rank-verify method to a science lab. Hard constraints: a 50-minute period, a safety rule that the student who missed safety training does no open-flame work, and a budget line that allows no consumables over \$40 this unit. Soft preferences, ranked: (1) a real-world phenomenon hook, (2) lab partners chosen by students, (3) a digital data-collection sheet. Prompt the tool with the hard constraints marked non-negotiable and the soft list in cut-order. When the plan returns, verify each hard line: search the plan for any open-flame step assigned to that student, total the consumable cost against \$40, and confirm the timing. The transcript should show the cost arithmetic and the safety check explicitly, because "I told it the budget" is not evidence that the plan stayed under \$40.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 531 02.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
-
-A strong reader of Prompting for Classroom Constraints can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+As you read, keep a two-column note: in the left column list each constraint and whether it is hard or soft; in the right column write the verification result (held, violated, or fixed in re-prompt N). For the civics case, the left column says "extended time, hard" and the right column says "violated in prompt 2, restored in prompt 3 after marking non-negotiable." A strong reader can look at any AI plan and ask, for each requirement, "what is my evidence this held?" If the only answer is "I asked for it," the reading is not strong yet.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a mentor teacher can see the instructional purpose, the classroom constraint, and the reason a revision was made. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
-
-A useful final paragraph for the artifact would sound like this: "I changed **TeachGen@i prompt transcript with teacher edits and rejected suggestions** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving whether the technology choice serves a specific learning activity for real students."
+A strong constraint transcript labels each constraint hard or soft so a reviewer can see what was protected and what was tradeable. It shows at least one iteration where the tool violated a hard constraint and the re-prompt that forced compliance, because the violation-and-fix is the clearest evidence of verification. And it includes a concrete verification trace (the cost total, the line-by-line accommodation check), not just the assertion that the plan complied. Polish is a clean final prompt; evidence is the visible check that the boundaries held.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **TeachGen@i prompt transcript with teacher edits and rejected suggestions** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Prompting for Classroom Constraints deeply enough to adapt it rather than repeat it.
+Move the method from a single lesson to a multi-day field trip plan. The hard constraints multiply and harden: a fixed bus return time, a 1:8 chaperone ratio mandated by district policy, a peanut-free lunch for one student, and a strict spending cap. The optimizer's temptation also grows, because a richer itinerary is easy to favor over a boring ratio rule. The sort-rank-verify discipline transfers exactly, but verification now means counting chaperones against students per group and checking every food vendor against the allergy, not just reading for time. If you can build the field-trip compliance pass without reusing the civics example, you have learned constraint prompting as a verification habit rather than a phrasing trick.
 
 ## Artifact Studio
 
@@ -123,7 +109,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace records evidence source, risk, support choice, and revision quality. That is what separates professional judgment from simple completion.
+Before you move on, make sure your transcript labels each constraint hard or soft, shows one hard-constraint violation and its fix, and records a concrete verification (a count, a cost total, a line-by-line read), not just the claim that the plan complied.
 
 ## References
 

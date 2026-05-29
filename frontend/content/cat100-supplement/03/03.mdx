@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Charts That Answer Questions sits inside **Data Storytelling With Excel**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Charts That Answer Questions as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the Excel pivot-table finding with unit labels, source note, and claim-first chart title.
+A chart is not decoration added to finished data; it is an argument. Before you pick a chart type, you have to know the question the chart is supposed to answer, because the question determines the shape. "Which region sold the most?" is a comparison and wants bars. "How did sales change over the year?" is a trend and wants a line. Choosing the chart before the question is how people end up with a pie chart that hides the very comparison they meant to show.
 
-Read this page as a short decision cycle: understand the idea, apply it to **Excel pivot-table finding with unit labels, source note, and claim-first chart title**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section also teaches the honest-axis rule, the single most abused setting in everyday charts. Where a value axis starts decides how large a difference looks, and starting it above zero can make a small gap look like a landslide. Reading and building charts that answer a question truthfully is the skill here, not making them colorful.
 
 ## Learning Targets
 
@@ -17,21 +17,24 @@ Read this page as a short decision cycle: understand the idea, apply it to **Exc
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Charts That Answer Questions. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The Excel pivot-table finding with unit labels, source note, and claim-first chart title is the place where that verification becomes visible.
+You have four regions with Q1 revenue: West 48000, East 31000, South 29000, North 22000. You highlight the data, click the chart button, and Excel hands you a default column chart titled "Q1 Revenue." It is technically a chart, but it answers nothing on its own. A viewer still has to do the work of deciding what the bars mean.
 
-A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The Excel pivot-table finding with unit labels, source note, and claim-first chart title is where that trust is built.
+Now compare two finishing moves on the same chart. In one, the title stays "Q1 Revenue" and the axis quietly starts at 20000, so North's bar nearly disappears and West looks five times larger than it is. In the other, the axis starts at 0 and the title reads "West Led Q1 Revenue, More Than Double North." Same data, two very different impressions. The difference between them is the subject of this section: a chart that answers a question honestly versus one that merely exists.
 
 ## Core Concept
 
-The core idea in this section is that **Charts That Answer Questions** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+The chart type follows from the kind of question, and there is a short, reliable map between them:
 
-Three course anchors shape the reasoning here:
+| Question type | Right chart | Why |
+| --- | --- | --- |
+| Compare separate categories | Bar or column | Length is easy to compare side by side |
+| Show change over time | Line | The connected slope reads as a trend |
+| Show parts of one whole | Pie (sparingly) | Only when slices sum to 100% and there are few of them |
+| Relate two numeric variables | Scatter | Position shows correlation |
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+Most everyday business questions are category comparisons, so bars are the default and pies are the exception. A pie fails the moment you have more than four or five slices or want a precise comparison, because the eye reads bar length far more accurately than slice angle.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+Two principles keep a chart honest. First, the value axis on a bar or column chart must start at zero, because bar length is the visual encoding and a truncated axis exaggerates differences. Second, the title should state the finding, not just label the data. "West Led Q1 at 48K" is a claim-first title; "Q1 Revenue" is only a caption. A claim-first title turns the chart into evidence for a specific statement a reader can check against the bars.
 
 ## Worked Example
 
@@ -56,50 +59,49 @@ The auditable decision chain: question -> chart type (bar for category compariso
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Write the question before you build the chart, then let the question pick the chart type and the title. If you cannot state the one question your chart answers, you are decorating data, not analyzing it.
 
-Before submitting the Excel pivot-table finding with unit labels, source note, and claim-first chart title, slow down and check whether the trace can answer three questions:
+Run a chart through this three-point honesty check before sharing it:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Type check:** Does the chart type match the question (bars for category comparison, line for change over time)?
+2. **Axis check:** Does the value axis start at zero so bar lengths are proportional to the numbers?
+3. **Title check:** Does the title state the finding the bars support, not just name the dataset?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a reader could read the opposite conclusion from your chart than the data supports, one of these three failed.
 
 ## Common Misreadings
 
-A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.
+The most damaging misreading is thinking a truncated axis is a styling choice. Starting a bar chart's value axis at 20000 instead of 0 is not zooming in; it visually triples a real gap and misleads anyone who trusts the bars. The zero baseline is mandatory for bars because length is the encoding.
 
-The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.
+A second misreading is reaching for a pie chart to compare categories. A pie asks the eye to judge angles, which it does poorly, so a four-region revenue comparison that is obvious in a bar chart becomes a guessing game in a pie. Reserve pies for a small number of parts of a single whole, and prefer bars whenever the goal is comparison.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Excel pivot-table finding with unit labels, source note, and claim-first chart title**. Then ask what problem the artifact is supposed to solve inside spreadsheet data stories. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the rules to a different dataset: monthly active users for an app across January through June, rising from 1,200 to 4,100. First state the question: "How did active users change over the first half of the year?" That is change over time, so the right chart is a line, not bars; the connected slope shows the growth trend at a glance.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Build the line from the month and user columns, then check the axis. Because this is a line chart of a trend rather than a magnitude comparison, the zero-baseline rule is softer, but you should still avoid an axis range so tight that normal month-to-month wobble looks like a crisis. Label the vertical axis "Monthly active users" so the units are unmistakable.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finish with a claim-first title: "Monthly Active Users More Than Tripled, January to June." Now the title states the finding, the line is the evidence, and a reader can trace the headline back to the six plotted points.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 03.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader audits a chart they did not make by asking what trick, if any, is being played. Look first at the axis, then at the chart type, then at the title:
 
-A strong reader of Charts That Answer Questions can answer four questions:
+1. Where does the value axis start? If it is above zero on a bar chart, the differences are exaggerated.
+2. Does the chart type fit the question, or is a comparison hidden inside a pie?
+3. Does the title assert a finding the chart actually supports, or does it claim more than the bars show?
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+When you can spot a misleading axis or a mismatched chart type in someone else's figure, you will stop building those mistakes into your own.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong chart artifact carries its evidence on its face: a claim-first title, labeled axes with units, a zero baseline where bars demand it, and a source note saying where the numbers came from. The trace should name the question the chart answers and one honest-design choice you made. A model line reads: "The question was which region led Q1, so I used a bar chart with the axis at 0; the title states 'West Led, More Than Double North,' which a reader can verify against the four bars."
 
-A useful final paragraph for the artifact would sound like this: "I changed **Excel pivot-table finding with unit labels, source note, and claim-first chart title** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+The weak version is a chart with the default title and a hidden truncated axis. The strong version is one where a skeptical reader can confirm the headline claim by reading the bars themselves, with no need to reopen the data.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Excel pivot-table finding with unit labels, source note, and claim-first chart title** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Charts That Answer Questions deeply enough to adapt it rather than repeat it.
+The same question-first discipline transfers to a relationship chart, where the right form is a scatter rather than a bar. Suppose you want to know whether hours studied relate to exam scores across a class. The question is "do two numeric variables move together?", so neither bars nor a line fits; a scatter plot, with hours on the horizontal axis and scores on the vertical, lets the cloud of points reveal whether the relationship is positive, flat, or noisy. Recognizing that this question demands a scatter, and resisting the urge to force it into the familiar bar chart, shows you are matching chart to question rather than defaulting to one shape.
 
 ## Artifact Studio
 

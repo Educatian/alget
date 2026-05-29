@@ -2,11 +2,9 @@
 
 ![Alt Text and Accessibility textbook visual](/course-art/deep-exemplars/ail606-supplement/03-05-alt-text-and-accessibility.png)
 
-## Why This Section Matters
+Alt text is the most misunderstood accessibility control in instructional design. Many designers treat it as a description of the picture, so they write what the image looks like ("a colorful bar chart"). But alt text exists to deliver the image's instructional function to a learner who cannot see it, which is almost never the same as describing its appearance. The right question is not "what does this image show?" but "what is a learner supposed to learn from this image, and how do I carry that meaning in words?"
 
-Alt Text and Accessibility sits inside **Multimedia Storyboarding and AI Asset Generation**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Alt Text and Accessibility as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
-
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section treats accessibility as a design obligation that is decided when you choose the image, not bolted on at the end. It covers the three decisions that actually determine whether an image is accessible: classifying the image (decorative versus meaningful, which sets whether alt is empty or content-bearing), writing functional alt that carries the learning point concisely, and ensuring no meaning rides on color alone. Done well, accessibility is invisible and improves the design for everyone; done as an afterthought, it produces alt text that satisfies a checker and teaches nothing.
 
 ## Learning Targets
 
@@ -17,21 +15,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **sto
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Alt Text and Accessibility. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A frame presents a bar chart comparing test scores across three teaching methods, with alt text that reads "a colorful bar chart with blue, green, and orange bars." An automated accessibility checker passes it: the alt attribute is present and non-empty. Yet a screen-reader user learns nothing the chart was meant to teach, no ranking, no margin, no result, only that some colored bars exist. The checker measured presence; it could not measure function.
 
-This page is more than a principle summary. Use it to leave a design trace showing how Alt Text and Accessibility changed what you noticed in the storyboard frame sequence with narration, signaling, and reader-action notes.
+Worse, the bars are distinguished by color alone, so a color-blind learner who can see the chart also cannot tell the series apart. The frame is "accessible" by automated audit and inaccessible in practice. This section asks you to expose that gap: passing a checker is not the goal, delivering the instructional meaning through a non-visual path is.
 
 ## Core Concept
 
-The core idea in this section is that **Alt Text and Accessibility** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Accessible images turn on three distinct decisions, each with its own rule.
 
-Three course anchors shape the reasoning here:
+First, **classification**. An image is either decorative (it adds no information the surrounding text lacks, for example a header rule or a stock photo of a campus) or meaningful (it carries content a learner must get). Decorative images take empty alt (`alt=""`) so a screen reader skips them; announcing "decorative divider line" is noise that wastes a non-visual learner's attention. Meaningful images take content-bearing alt. Misclassifying in either direction harms: empty alt on a meaningful chart hides the content, verbose alt on decoration buries it.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+Second, **function over appearance**. For a meaningful image, the alt must convey what the learner should take from it, the ranking, the relationship, the value, not the colors or layout. Compare "blue, green, orange bars" (appearance) with "inquiry scored highest at 82, then lecture at 74, then lab at 70" (function). Keep it brief; alt is read linearly with no skimming, so a complex chart's full data belongs in an adjacent table or a long description, with the alt giving the headline.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+Third, **do not encode meaning in color alone** (a WCAG requirement). If series are told apart only by hue, color-blind learners lose the distinction even with full sight; add a redundant cue, direct labels, patterns, or values on the bars.
+
+These map onto the course anchors. UDL learner variability is the driver: design for the range of sensory and perceptual access, not the median learner. Mayer's coherence principle keeps alt brief, because over-long alt is extraneous load delivered through the ear. And accessibility is a multimedia decision, not a compliance afterthought, so it belongs at image-selection time, beside the function and coherence decisions of 03.03.
 
 ## Worked Example: Rewriting Alt Text for a Bar Chart
 
@@ -59,50 +57,39 @@ The improvement is access carried by structure, brief functional alt plus a read
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Run every image through the accessibility sequence in order:
 
-A strong submission should survive three quick tests:
+1. **Classify:** Is this image decorative or meaningful? Decorative gets `alt=""`. Meaningful gets content-bearing alt. If you are unsure, ask whether the surrounding text already conveys what the image conveys; if it does, the image is decorative.
+2. **Write to function, briefly:** For a meaningful image, state what the learner should take from it in one tight sentence. If the image is data-dense, give the headline in alt and put the full values in an adjacent table or long description.
+3. **Audit color:** Is any distinction carried by color alone? If yes, add a non-color cue (labels, values, patterns) so the meaning survives color blindness and grayscale.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A defensible image decision can answer all three: how it was classified, what function its alt carries, and how it avoids color-only coding. The right test is the cover test: hide the image and read only the alt, can a learner still get the point?
 
 ## Common Misreadings
 
-Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.
-
-In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.
+The first misreading is "more alt text is better alt text." Long, exhaustive alt is itself a barrier, because screen-reader output is linear and unskimmable, so a 200-word alt forces the learner to listen through everything to find the point; brevity plus an adjacent data table serves them far better. The second misreading is "passing the checker means it is accessible." Automated tools verify that alt exists and flag a few color-contrast ratios, but they cannot tell whether the alt carries the instructional function or whether a distinction depends on color, the two failures that matter most. Human judgment, not the checker, is the standard.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside storyboarding and AI asset generation. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Walk a real frame with mixed images. The frame has a decorative banner photo of a lab, a meaningful line graph of reaction rate versus temperature, and a small "click here" arrow icon. Classify each: the banner is decorative (`alt=""`), the graph is meaningful, the arrow is functional UI whose alt should name its action ("expand the data table"), not its shape. Write the graph's alt to function: "reaction rate rises slowly up to 40C, then climbs sharply, doubling between 40 and 60C," with the precise values placed in a table beside it. Audit color: the graph plotted two reactions in red and green only, so add direct end-of-line labels so the two curves are distinguishable without color.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Apply the cover test: hide the graph and read the alt plus the table, a non-visual learner gets the trend and the numbers; a color-blind learner reading the visible graph gets the labels. The walkthrough shows the three decisions are separable: classification fixed the banner, function fixed the alt, and the color audit fixed a defect the alt alone would have missed.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 03.05, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+Read every image in the chapter twice, once for classification and once for the cover test. For each, decide decorative or meaningful and predict the alt it should carry; then imagine the image hidden and ask whether the alt alone would teach the point. A strong reader catches the two silent failures: alt that describes appearance instead of function, and a distinction that quietly depends on color. Keep a note of which images would need an adjacent table because their data is too dense for alt to carry.
 
-A strong reader of Alt Text and Accessibility can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+A strong reader of accessibility can, for any image, state its classification, the function its alt must deliver, where the full data lives if alt cannot hold it, and whether any meaning rides on color.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact reaches the stronger standard when the trace shows the classify-function-color sequence applied per image, including at least one image correctly marked decorative with empty alt and one meaningful image whose alt was rewritten from appearance to function. It records the cover test being run, and where data was dense, names the adjacent table or long description. Where an AI tool generated an exhaustive paragraph-length alt, the trace records trimming it to the headline and moving detail to a table.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A strong closing note reads: "I reclassified the lab banner as decorative and gave it empty alt so screen readers skip it, and I rewrote the chart alt from a color description to the ranking and the eight-point gap it teaches. I added on-bar value labels so the comparison survives color blindness, and put the full values in a table beside the chart. I rejected the tool's 200-word alt because linear audio makes exhaustive alt a barrier, not a help."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Alt Text and Accessibility deeply enough to adapt it rather than repeat it.
+Move from a static image to a data dashboard the learner can filter and re-sort interactively. Alt text alone cannot describe a display that changes on interaction, so the obligation transfers but the mechanism does not: accessibility now means a keyboard-operable interface, programmatic labels that update as the data changes, and a downloadable data table as the reliable equivalent. The transfer test is whether you can carry the function-not-appearance principle into a dynamic artifact where the "image" is never fixed. If your accessibility skill only knows how to write one alt string for one static picture, it will not survive the move to interactive media; the durable skill is guaranteeing a non-visual path to the same meaning, whatever form the visual takes.
 
 ## Artifact Studio
 

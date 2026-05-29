@@ -4,34 +4,40 @@
 
 ## Why This Section Matters
 
-Template-Based Productivity sits inside **Productivity and Workflow Automation**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Template-Based Productivity as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the privacy checklist for accounts, data sharing, and AI tool boundaries.
+A template is the difference between doing a task once and doing it once for every future time. The student who retypes a budget total every term, or hand-formats a weekly status note from scratch, is paying a tax that compounds. The student who builds the calculation as a formula and saves the blank shell as a reusable file pays the cost once. This section is about the mechanics that make a document reusable rather than disposable: live formulas instead of typed values, cell references that copy correctly, and a master file you never edit directly.
 
-Read this page as a short decision cycle: understand the idea, apply it to **privacy checklist for accounts, data sharing, and AI tool boundaries**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The skill matters most in spreadsheets, where the gap between a typed number and a formula is the gap between a document that goes stale the moment you change an input and one that stays correct forever. Understanding relative versus absolute references is the single highest-leverage spreadsheet idea a freshman can learn.
 
 ## Learning Targets
 
-- Analyze how the privacy checklist for accounts, data sharing, and AI tool boundaries shows a defensible decision in CAT 100.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use feedback, support requests, and revision notes to improve the artifact before sharing it.
+- Replace hand-typed totals with formulas (`=SUM`) so values recalculate when inputs change.
+- Distinguish relative references (`B2`) from absolute references (`$C$1`) and predict how each behaves when copied.
+- Keep a blank master template separate from each filled-in working copy.
+- Justify a template by the recurring task it eliminates, not by how the document looks.
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Template-Based Productivity. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The privacy checklist for accounts, data sharing, and AI tool boundaries is the place where that verification becomes visible.
+A student builds a course-budget spreadsheet, types the total `250` into the bottom cell, and submits it. A week later the lab fee changes from \$45 to \$60. The student updates the lab-fee cell, but the total still reads `250`, because it was a typed number, not a formula. The spreadsheet now contradicts itself, and nobody notices until grading.
 
-In CAT 100, completion is not the same as digital fluency. The section asks you to show how Template-Based Productivity changes the choices you make in the privacy checklist for accounts, data sharing, and AI tool boundaries.
+The lesson is that a typed value is a snapshot frozen at the moment you typed it, while a formula is a living relationship that updates with its inputs. Every recurring document should be built from living relationships.
 
 ## Core Concept
 
-The core idea in this section is that **Template-Based Productivity** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Template-based productivity rests on two mechanics.
 
-Three course anchors shape the reasoning here:
+The first is the **formula**: a cell whose value is computed from other cells rather than typed. `=SUM(B2:B4)` does not store a number; it stores an instruction to add the range, recomputed every time any cell in it changes. This is why a budget built with formulas can never go stale: the total is defined as "whatever the parts add up to," not "250."
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The second is the **reference type**, which controls what happens when you copy a formula. This is the concept students most often get wrong:
 
-The anchors should do work in your artifact. If NACE career readiness or ISTE digital citizenship does not change a decision, it is only a citation rather than evidence of judgment.
+| Reference | Written as | When copied down a column | Use it for |
+| --- | --- | --- | --- |
+| Relative | `B2` | Shifts to `B3`, `B4`, ... | The value on each row |
+| Absolute | `$C$1` | Stays locked at `C1` | A shared constant like a tax rate |
+| Mixed | `$C1` or `C$1` | Locks only the part with `$` | Locking a column but not a row |
+
+A formula like `=B2*$C$1` says "this row's cost times the one fixed tax rate." Copy it down and `B2` becomes `B3`, `B4` (each row's own cost) while `$C$1` stays pinned to the single rate cell. Get the dollar signs wrong and the formula either drifts off the rate or fails to advance through the rows.
+
+The third practice is **separating master from working copy**: keep `budget_template.xlsx` blank and reusable, and Save As a dated copy (`budget_2026spring.xlsx`) before filling it in, so the template survives for next term.
 
 ## Worked Example
 
@@ -69,56 +75,54 @@ Three concrete moves made it a template:
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Before you type a number into a spreadsheet, ask whether it is an input or a result. Inputs (costs, the tax rate) get typed once; results (totals, taxes) get formulas. Before you copy a formula, ask which references should move and which should stay, and add `$` to the ones that must stay.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+A reusable document passes three checks:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Formula check:** Is every computed cell a formula, so nothing goes stale when an input changes?
+2. **Reference check:** When you copy a formula, do row references shift and shared constants stay locked with `$`?
+3. **Master check:** Is the blank template preserved separately from the filled-in working copy?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a "total" is a typed number, the document is a one-time snapshot, not a template.
 
 ## Common Misreadings
 
-Students sometimes accept an AI suggestion because it sounds better, without checking whether it protects the claim, audience, or evidence.
+The most damaging error is typing a result you could compute. A hand-typed total looks identical to a formula on screen but silently goes wrong the first time an input changes.
 
-Your trace should make the judgment visible enough that a reviewer can trust the digital product.
+The second is forgetting the dollar signs. `=B2*C1` copied down becomes `=B3*C2`, `=B4*C3`, so the tax rate reference drifts off the rate cell entirely and produces garbage. Lock the constant with `$C$1`.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **privacy checklist for accounts, data sharing, and AI tool boundaries**. Then ask what problem the artifact is supposed to solve inside workflow and collaboration. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply this to a weekly grade tracker. You want a sheet where you enter points earned and points possible for each assignment, and a final cell shows your current percentage. Inputs are the two point columns, typed each week. The percentage is a result: `=SUM(B2:B10)/SUM(C2:C10)`, formatted as a percent. Because it is a formula, every new graded item you enter updates your standing automatically.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now suppose each category has a weight (homework 30%, exams 70%) stored in a corner cell. Each category's weighted contribution is `=category_percent*$E$1` style, with the weight cell locked by `$` so it does not drift when you copy the formula across categories. Save the empty version as `grade_tracker_template.xlsx`; each course gets its own Save As copy. The walkthrough shows the same three mechanics (formula, locked reference, master copy) producing a tool you reuse for every class.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 07.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader clicks into a spreadsheet cell to see whether it holds a number or a formula, rather than trusting the displayed value. A total that turns out to be typed is a defect, however correct it looks today.
 
-A strong reader of Template-Based Productivity can answer four questions:
+A strong reader of a template can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which cells are inputs (typed) and which are results (formula-driven)?
+2. When this formula is copied, which references move and which stay locked, and is that what the math requires?
+3. If an input changes, does every dependent value update on its own?
+4. Where is the blank master, separate from this filled-in copy?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is a working template plus a short note on its formulas. It is strong when a reader can change any input and watch every result update correctly, and when the absolute references are placed exactly where a shared constant lives.
 
-A useful final paragraph for the artifact would sound like this: "I changed **privacy checklist for accounts, data sharing, and AI tool boundaries** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful note sounds like this: "I replaced the typed total with `=SUM(B2:B4)` and built the tax column as `=B2*$C$1` so it copies down without losing the rate. I rejected hard-coding the 0.08 rate into each formula because then changing the rate would mean editing every row instead of one cell."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **privacy checklist for accounts, data sharing, and AI tool boundaries** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Template-Based Productivity deeply enough to adapt it rather than repeat it.
+Move the template to a context with a different constant, say a currency conversion instead of a tax rate. The structure is identical: per-row values stay relative, the conversion rate stays absolute in one cell. What changes is that exchange rates move daily, so the single locked cell now needs a date label and a habit of updating it. Recognizing that the `$`-locked-constant pattern transfers, while the maintenance discipline around the constant must adapt, shows real command of the idea.
 
 ## Artifact Studio
 
-Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/07-03-template-based-productivity-artifact.md).
+Open the studio packet: [download the template-based productivity packet](/downloads/summer2026/cat100-supplement/07-03-template-based-productivity-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="07.03" />
+<artifact-studio artifact="reusable spreadsheet template with formulas and locked references" course="CAT 100" section="07.03" />
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -127,9 +131,9 @@ Use the studio to create a before/after trace. The first version should show you
 ALGET uses your annotations and artifact trace to choose support:
 
 - If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
-- If your note shows **confusion**, compare a weak and strong version of the privacy checklist for accounts, data sharing, and AI tool boundaries.
-- If your note is an **insight**, transfer the same decision rule to a new audience or setting.
-- If your note makes a **connection**, show where the connection changes the artifact.
+- If your note shows **confusion**, compare a weak and strong version of the reusable spreadsheet template.
+- If your note is an **insight**, transfer the relative-versus-absolute rule to a new setting.
+- If your note makes a **connection**, show where the connection changes the template.
 
 <dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 07.03. A peer comment points to an interface move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
 
@@ -141,7 +145,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the privacy checklist for accounts, data sharing, and AI tool boundaries records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm your template passes the formula, reference, and master checks: results are formulas, shared constants are locked with `$`, row references shift correctly when copied, and the blank master is saved separately.
 
 ## References
 

@@ -4,34 +4,32 @@
 
 ## Why This Section Matters
 
-Facial Recognition as Classroom Case sits inside **AI Ethics and Ethobot 3.2**. In this part of CAT 531, you are learning to work as a teacher making a defensible technology decision: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Facial Recognition as Classroom Case as a professional judgment problem: the learner must connect pedagogy, classroom constraints, and ethics before defending the Design Tension Studio map naming a classroom value conflict and negotiated decision.
+Facial recognition is the cleanest case study in the module because the trade it forces is so concrete. A vendor promises measurable time savings; independent testing shows the same system fails more often on darker-skinned faces; and the data it collects (a face template) is biometric and durable. A teacher who can reason through this one case can reason through almost any classroom AI proposal, because it contains all three pressures (efficiency, equity, privacy) in a single decision and refuses to let you satisfy all three at once.
 
-Read this page as a short decision cycle: understand the idea, apply it to **Design Tension Studio map naming a classroom value conflict and negotiated decision**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+What makes this a judgment problem rather than a slogan is that "facial recognition is biased, so no" is not yet a defensible decision. It names one pole and skips the negotiation a colleague or principal will demand. The artifact you build, a tension map with a negotiated decision, exists precisely to show that you weighed the real benefit against the documented harm and the hidden data cost, and arrived somewhere you can defend with evidence.
 
 ## Learning Targets
 
-- Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to make a classroom technology decision more defensible.
+- Separate the three distinct pressures in an automated-attendance proposal: instructional time, demographic accuracy, and biometric data retention.
+- Read a vendor accuracy claim critically by asking for error rates broken out by subgroup, not a single aggregate number.
+- Build a tension map that attaches specific evidence to each pole rather than asserting a verdict.
+- State a negotiated decision with a re-entry condition, so the door is not simply closed but conditioned on measurable improvement.
 
 ## Opening Case
 
-Imagine a teacher choosing whether to use a classroom technology for Facial Recognition as Classroom Case. The important question is not whether the tool is exciting; it is whether the teacher can name the instructional purpose, the equity risk, the student-data boundary, and the evidence that makes the Design Tension Studio map naming a classroom value conflict and negotiated decision a professional judgment rather than a preference.
-
-For a teacher, the important record is not simply that a technology was selected. The Design Tension Studio map naming a classroom value conflict and negotiated decision should show how classroom purpose, student risk, and evidence shaped the decision.
+A district pilots facial-recognition check-in to cut hallway tardies, and a teacher is asked to weigh in before the building-wide rollout. The pitch is appealing: ten minutes per period back for instruction. But the teacher knows two facts the pitch omits. The vendor's own documentation shows higher false-non-match rates for darker-skinned students, which means some students would be marked absent while standing in the doorway. And the face templates sit on a vendor server for two years. The decision is not "is this cool" but "which value do I protect, and can I name a condition under which the trade would change."
 
 ## Core Concept
 
-The core idea in this section is that **Facial Recognition as Classroom Case** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A defensible facial-recognition decision treats the proposal as a set of competing values with evidence attached, not as a single feature to approve or reject. The mistake to avoid is collapsing the case to its most salient pole. "It saves time" hides the equity cost; "it's biased" hides the privacy cost and the real instructional benefit. A tension map keeps all the poles visible at once.
 
-Three course anchors shape the reasoning here:
+There are three distinct pressures, and they do not trade against each other on the same scale:
 
-- **TPACK** helps you decide what counts as a meaningful learning or performance demand.
-- **critical edtech studies** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **AI and education datafication** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+- **Efficiency** is measured in recovered instructional minutes. Real, but bounded and substitutable (a manual roster also works).
+- **Equity** is measured in differential error rates across groups. A system that is 99 percent accurate overall can still be 90 percent accurate for one subgroup, and that subgroup absorbs the entire cost.
+- **Privacy** is measured in what data is collected, where it lives, and for how long. A face template is biometric: unlike a password, a student cannot change their face if the data leaks.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+The course anchors do specific work here. **Critical edtech studies** is what surfaces the equity pole, because aggregate accuracy claims are designed to make subgroup failure invisible; you have to ask for the breakdown. **AI and education datafication** is what surfaces the privacy pole, naming the 24-month retention as a standing risk rather than a footnote. **Teacher professional judgment** is what produces the negotiated decision, the part no policy template can write for you: which value you protect now, and what evidence would justify revisiting.
 
 ## Worked Example: Mapping the Facial-Recognition Tension
 
@@ -58,50 +56,35 @@ The strong map names both poles, attaches evidence, surfaces the privacy pole, a
 
 ## Decision Rule
 
-Use the classroom value conflict first, the technology affordance second, and the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity.
+For any biometric classroom tool, run the poles in this order before you decide:
 
-Before submitting the Design Tension Studio map naming a classroom value conflict and negotiated decision, slow down and check whether the trace can answer three questions:
+1. **Equity first:** Ask for error rates by subgroup. If the vendor gives only an aggregate, treat the gap as unknown and therefore unacceptable until shown.
+2. **Privacy second:** Name what is collected, where it is stored, and the retention period. Biometric data raises the bar because it cannot be reissued.
+3. **Efficiency last:** Quantify the benefit honestly, then ask whether a non-biometric method captures most of it.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A negotiated decision must include a re-entry condition: the specific, measurable thing that would have to change for the answer to flip.
 
 ## Common Misreadings
 
-A common mistake is to defend a technology because it is engaging. Engagement matters, but it does not replace evidence about learning, access, or risk.
-
-The artifact should show how student need, evidence, and policy boundaries shaped the revision.
+The first misreading is trusting a single accuracy number. "99 percent accurate" is a marketing average that can conceal a steep subgroup failure, and the students who absorb that failure are usually the ones with the least power to complain. The second is treating efficiency as a value on the same footing as equity. Saved minutes are recoverable by other means; a misidentified student or a leaked face template is not. Ranking them flat is itself the error.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Design Tension Studio map naming a classroom value conflict and negotiated decision**. Then ask what problem the artifact is supposed to solve inside ethics and Ethobot reasoning. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **TPACK**, **critical edtech studies**, **teacher professional judgment**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Apply the reasoning to a different biometric pitch. A vendor offers fingerprint scanning for lunch-line payment, sold as faster lines and no lost cards. Run the poles. Equity: fingerprint readers have known higher failure rates for young children and for worn or damaged prints, so some kids get held up daily, in front of peers, at the lunch line. Privacy: fingerprints are biometric and the contract stores them with a third-party payment processor. Efficiency: real, but a PIN pad captures most of the speed gain without biometric data. The negotiated decision writes itself once the poles are visible: adopt the PIN pad, decline the fingerprint reader, and name the re-entry condition (an on-device, no-third-party storage model with documented parity for young children). The same three-pole move that handled facial recognition handles this with no new theory.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 531 04.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
-
-A strong reader of Facial Recognition as Classroom Case can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+Keep a two-column note: each pole on the left, the exact evidence on the right (the subgroup error figure, the retention clause, the measured time saving). A strong reader of a facial-recognition case can state which pole the current design centers and which one absorbs the cost, and can name the one fact that would change the decision. If your note has a verdict but only one pole with evidence, you have an opinion, not a map.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a mentor teacher can see the instructional purpose, the classroom constraint, and the reason a revision was made. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong tension map shows both poles with evidence attached, surfaces the hidden privacy pole, and ends in a negotiated decision with a re-entry condition, not a winner-take-all verdict. Visual neatness is the last layer. If a pole has no evidence beside it, mark the gap and ask BigAL for the vendor-documentation question you should be asking rather than a general explanation of bias.
 
-A useful final paragraph for the artifact would sound like this: "I changed **Design Tension Studio map naming a classroom value conflict and negotiated decision** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving whether the technology choice serves a specific learning activity for real students."
+A useful closing line for the artifact sounds like this: "I centered the equity pole because the vendor's own breakdown shows the cost falls on darker-skinned students; I held the door open with a parity-and-retention condition rather than a permanent ban, so the decision stays evidence-driven."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Design Tension Studio map naming a classroom value conflict and negotiated decision** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Facial Recognition as Classroom Case deeply enough to adapt it rather than repeat it.
+Move the case to a small rural school where the principal argues the demographic homogeneity makes the accuracy gap "not really a problem here." That setting changes the equity calculus but does not erase it: the privacy pole is unchanged (templates still leave the building), and a single misidentified student in a small school is more, not less, visible. Working that version tests whether you treat equity as a checklist item that small numbers can wave away, or as a structural question about who bears the cost when a system fails.
 
 ## Artifact Studio
 
