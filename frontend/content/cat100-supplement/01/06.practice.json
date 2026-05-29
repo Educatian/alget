@@ -8,35 +8,35 @@
         "accessibility",
         "cat100_supplement_digital_citizenship_and_ai_readiness"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your slide has a chart showing club membership rising from 20 to 55. Which alt text is most useful to a screen reader user?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "IMG_2043.jpg",
+        "Bar chart showing club membership rising from 20 members in fall to 55 in spring.",
+        "image",
+        "chart"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_1_6_accessibility_basics_polish_as_evidence",
+      "explanation": "Good alt text describes what the image shows and why it matters. A filename or the word 'image' tells the reader nothing.",
+      "misconception_id": "cat100_supplement_1_6_accessibility_basics_filename_as_alt",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_1_6_accessibility_basics_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_accessibility_basics",
       "concept_ids": [
-        "evidence_based_revision"
+        "accessibility"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "You want section titles in your document. You make each line 20pt bold so it looks like a heading. Why can this fail an accessibility check?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Bold text is too hard to read on screens.",
+        "Screen readers and document navigation rely on real heading styles or tags, not on visual size, so bold-only titles are not recognized as headings.",
+        "Headings must always be underlined, not bold.",
+        "20pt is too small for any heading."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_1_6_accessibility_basics_annotation_without_signal",
+      "explanation": "Use real heading styles (Heading 1, Heading 2) or tags (h1, h2). Visual size alone does not create the structure assistive tools depend on.",
+      "misconception_id": "cat100_supplement_1_6_accessibility_basics_bold_not_heading",
       "difficulty": "medium"
     },
     {
@@ -44,37 +44,38 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "accessibility"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to generate alt text for a complex diagram and it returns one vague line: \"A diagram about a process.\" How should you use this output responsibly?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Use it as-is; AI alt text is always compliant.",
+        "Treat it as a draft, then rewrite it to name the actual steps shown, because you are responsible for whether the alt text is accurate.",
+        "Delete the diagram so you do not need alt text.",
+        "Ask the AI to make the alt text longer without checking accuracy."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_1_6_accessibility_basics_ai_as_authority",
+      "explanation": "AI-generated alt text is a starting point. You must verify it describes the real content; vague output does not meet the need.",
+      "misconception_id": "cat100_supplement_1_6_accessibility_basics_filename_as_alt",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_1_6_accessibility_basics_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_accessibility_basics",
       "concept_ids": [
-        "evidence_based_revision"
+        "accessibility"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A form marks required fields only by coloring their labels red. Why might this exclude some users, and what is the fix?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Red is unprofessional; change it to blue.",
+        "Users who cannot distinguish red cannot tell which fields are required; add a text label or asterisk such as \"Required\" so meaning does not depend on color alone.",
+        "There is no problem if the red is bright enough.",
+        "Remove the colors and leave the fields unmarked."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_1_6_accessibility_basics_completion_only_model",
+      "explanation": "Color alone can hide meaning from users who cannot distinguish it. Pair color with text or an icon so the cue is reliable.",
+      "misconception_id": "cat100_supplement_1_6_accessibility_basics_color_only_meaning",
       "difficulty": "medium"
     }
   ]

@@ -33,17 +33,30 @@ Three course anchors shape the reasoning here:
 
 Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
 
-## Worked Example
+## Worked Example: Triaging an Optimizer Report
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+An LXD optimizer scanned one module and returned four suggestions. Here is the before-and-after of how a critical user handled them.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (accept-all framing)**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+The designer's first instinct: "The tool raised every metric, so apply all four edits."
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+**The decision point.** Read against the learning goal, the four suggestions split apart:
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+| Optimizer suggestion | Reported gain | Verdict and reason |
+| --- | --- | --- |
+| Shorten the worked example from 6 steps to 2 | +14% completion | Reject. Cutting the steps removes the modeled reasoning the example exists to teach. |
+| Move the self-check above the reading | +9% time-on-page | Reject. Higher time-on-page reflects confusion, not engagement, when the check precedes the content. |
+| Add alt text to two unlabeled diagrams | +3% completion | Accept. Serves accessibility and learning; the gain is a side effect, not the reason. |
+| Remove the rarely played audio-description track | +6% efficiency | Reject. The track is an accessibility provision the usage metric cannot value. |
+
+**After (critical-use framing)**
+
+The designer applied one of four edits, kept a one-line reason for each verdict, and added a transfer quiz before and after the accepted change to confirm understanding did not drop.
+
+Designer note (decision level): "I refused to treat the optimizer's proxies as learning. I accepted only the edit that served both a learner need and the goal, and I logged why I rejected the three that moved a metric without serving learning, including one that would have cut an accessibility feature."
+
+The revision is defensible because each optimizer suggestion was judged against the learning goal and learner variability, not accepted as a batch because the dashboard turned green.
 
 ## Decision Rule
 

@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_2_4_feedback_loops_and_learner_control",
   "misconceptions": [
     {
-      "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_verdict_is_feedback",
+      "pattern": "correctness_verdict_mistaken_for_feedback",
+      "description": "Treating a right or wrong verdict as instructional feedback rather than information the learner can act on",
+      "trigger": "learner designs a check that only says Correct or Incorrect with a score and no path to improve",
+      "feedback": "Feedback must be actionable. Beyond a verdict, tell the learner what was misunderstood and what to try next, or the loop teaches nothing.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_control_means_anything",
+      "pattern": "learner_control_as_unbounded_choice",
+      "description": "Equating learner control with unlimited freedom to skip, reorder, or exit, ignoring that novices often choose poorly",
+      "trigger": "learner gives full skip-everything control to beginners who lack the prior knowledge to self-regulate",
+      "feedback": "Learner control should be calibrated to expertise. Offer guided control (recommended path plus optional detours) for novices rather than unbounded freedom.",
+      "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_immediate_always_better",
+      "pattern": "immediate_feedback_always_optimal",
+      "description": "Assuming immediate feedback is always superior, even when delayed feedback would better support retention or transfer",
+      "trigger": "learner attaches instant answer reveals to tasks meant to build retrieval or self-monitoring",
+      "feedback": "Feedback timing is a design choice. For tasks that build retrieval or self-assessment, brief delay can strengthen learning more than instant reveal.",
+      "rail_action": "represent"
     }
   ]
 }

@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_7_5_student_voice_and_feedback",
   "misconceptions": [
     {
-      "id": "cat531_supplement_7_5_student_voice_and_feedback_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_7_5_voice_as_decoration",
+      "pattern": "student_voice_as_decoration",
+      "description": "Collecting student feedback for show without letting it carry weight in the decision",
+      "trigger": "candidate uses claps, cherry-picked quotes, or skips voice while citing scores",
+      "feedback": "Gather feedback fairly, report the patterns, and name the change that follows. Voice must influence the decision.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_7_5_student_voice_and_feedback_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_7_5_student_voice_and_feedback_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_7_5_average_silences_subgroup",
+      "pattern": "average_silences_subgroup",
+      "description": "Averaging feedback in a way that erases a subgroup's distinct concern",
+      "trigger": "candidate reports a majority average while dropping low subgroup ratings as outliers",
+      "feedback": "Surface the subgroup split and act on the named barrier before averaging away the students the audit should protect.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_7_5_student_voice_and_feedback_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_7_5_ai_themes_drop_voice",
+      "pattern": "ai_theming_suppresses_minority_voice",
+      "description": "Accepting AI-generated themes that quietly drop critical or minority student comments",
+      "trigger": "candidate reports AI themes without checking them against the raw comments",
+      "feedback": "Read the raw comments yourself, restore dropped critical ones, and verify AI themes against what students wrote.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_7_5_survey_without_response",
+      "pattern": "survey_collected_no_response",
+      "description": "Treating a completed survey as proof that student voice shaped the decision",
+      "trigger": "candidate records completion or a satisfaction chart but no resulting change",
+      "feedback": "Show the line from feedback to the change you made, and tell students how their input was used.",
       "rail_action": "practice"
     }
   ]

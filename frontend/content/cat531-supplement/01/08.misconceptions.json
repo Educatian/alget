@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_1_8_module_1_reflection_studio",
   "misconceptions": [
     {
-      "id": "cat531_supplement_1_8_module_1_reflection_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_1_8_reflection_as_vague_summary",
+      "pattern": "reflection_states_complexity_only",
+      "description": "Writing a reflection that asserts the topic is complicated without naming a specific module principle or its effect on a decision",
+      "trigger": "learner offers 'it is complicated, there is a lot to consider' as the synthesis",
+      "feedback": "Name a specific principle from the module and show how it would change a decision you make. 'It is complicated' synthesizes nothing.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_1_8_module_1_reflection_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_1_8_module_1_reflection_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_1_8_reflection_as_recap_not_transfer",
+      "pattern": "reflection_recaps_instead_of_transfers",
+      "description": "Believing a module reflection should only recap the readings rather than transfer principles to a new dilemma",
+      "trigger": "learner equates reflection with summary and avoids applying principles to a fresh situation",
+      "feedback": "Transfer the principles to a new classroom dilemma. Applied synthesis is stronger evidence of learning than a recap.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_1_8_module_1_reflection_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_1_8_ai_reflection_skips_synthesis",
+      "pattern": "ai_authored_reflection_skips_consolidation",
+      "description": "Submitting AI-generated reflection text, which removes the personal synthesis the studio exists to produce",
+      "trigger": "learner pastes the prompt into AI and submits the output as their reflection",
+      "feedback": "Do the synthesis yourself. The studio's value is consolidating the module's principles in your own reasoning; AI output skips that work.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_1_8_agreement_without_change",
+      "pattern": "reflection_shows_only_agreement",
+      "description": "Reflecting only on what one now agrees with, with no view that changed and no open tension",
+      "trigger": "learner lists agreements but names nothing that shifted or remains unresolved",
+      "feedback": "Surface a point where your view changed or a tension still open. Learning is most visible at those points, not in uniform agreement.",
       "rail_action": "practice"
     }
   ]

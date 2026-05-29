@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning",
   "misconceptions": [
     {
-      "id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_1_1_cma_channels_are_modalities",
+      "pattern": "channel_modality_confusion",
+      "description": "Believing the two channels are defined by the sense organ (eyes vs ears) rather than by the processing route, so printed text and pictures are treated as separate channels.",
+      "trigger": "learner pairs an animation with simultaneous on-screen text and assumes the two channels are balanced",
+      "feedback": "Printed text enters through the eyes but is processed in the verbal channel, the same route used for narration. On-screen text plus a picture both compete in the visual channel. Route the explanation to spoken narration to use both channels.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_1_1_cma_unlimited_working_memory",
+      "pattern": "unlimited_working_memory",
+      "description": "Assuming working memory can hold an arbitrary number of elements, so adding more on-screen content always helps.",
+      "trigger": "learner adds detail or elements to a screen to be thorough and ignores capacity limits",
+      "feedback": "Working memory processes only a few elements at once. Segment dense material and let the learner control pacing so the number of interacting elements stays within capacity.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_1_1_cma_presentation_equals_learning",
+      "pattern": "presentation_equals_learning",
+      "description": "Treating mere dual presentation of words and pictures as proof of learning, ignoring the active selecting, organizing, and integrating the learner must do.",
+      "trigger": "learner justifies a screen only by saying it shows both pictures and words",
+      "feedback": "Dual presentation is necessary but not sufficient. Show how the design prompts the learner to select, organize, and integrate the material into a coherent model.",
+      "rail_action": "ask"
     }
   ]
 }

@@ -4,17 +4,17 @@
       "id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_from_rationale_to_testable_hypotheses",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A designer writes: \"We expect the redesigned dashboard to feel more intuitive.\" Why is this not yet a testable usability hypothesis?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It does not mention the artifact by name.",
+        "\"Feel more intuitive\" names no observable behavior, direction, or threshold a moderated session could disconfirm.",
+        "It is too short to score as a hypothesis.",
+        "It cites a feeling, which is always invalid in design research."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A testable hypothesis must predict an observable outcome with a direction and a threshold so the session can confirm or disconfirm it.",
+      "misconception_id": "ail606_supplement_5_1_vague_rationale_as_hypothesis",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_from_rationale_to_testable_hypotheses"
       ]
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_from_rationale_to_testable_hypotheses",
+      "stem": "Which rewrite best converts the rationale \"fewer fields should reduce abandonment\" into a falsifiable hypothesis?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Learners will appreciate the cleaner onboarding flow.",
+        "The 3-field screen will be objectively better than the 7-field screen.",
+        "At least 8 of 10 first-time participants will reach the first task on the 3-field screen, versus 4 of 10 on the 7-field baseline.",
+        "Reducing fields aligns with cognitive load theory."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_annotation_without_signal",
-      "difficulty": "easy",
+      "correct_index": 2,
+      "explanation": "Only this option names an observable outcome, a direction, and a threshold against a stated baseline, so it can fail.",
+      "misconception_id": "ail606_supplement_5_1_directionless_prediction",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_from_rationale_to_testable_hypotheses"
       ]
     },
     {
       "id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to draft usability hypotheses from your design rationale. What is the defensible boundary on its output?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the AI hypotheses as written because they sound rigorous.",
+        "Treat each AI hypothesis as a proposal and keep only those tied to an outcome you can actually observe in your prototype session.",
+        "Reject any AI help on hypotheses because that is the designer's job.",
+        "Use AI only to make the hypotheses sound more academic."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_ai_as_authority",
+      "explanation": "AI can propose phrasing, but the designer must verify each hypothesis names an outcome observable in the planned session.",
+      "misconception_id": "ail606_supplement_5_1_unfalsifiable_confirmation",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,20 +60,20 @@
     {
       "id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_from_rationale_to_testable_hypotheses",
+      "stem": "A team writes: \"We predict the new menu will help everyone find settings.\" After two sessions where 3 of 4 users found settings, they call it confirmed. What is the design-reasoning flaw?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Two sessions is always too few for any claim.",
+        "\"Help everyone\" has no failure condition, so no result could ever disconfirm it; the prediction was never falsifiable.",
+        "They should have used a survey instead of observation.",
+        "Finding settings is not a usability outcome."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_completion_only_model",
+      "explanation": "A hypothesis with no condition under which it could fail is unfalsifiable; any result can be read as support, which is not evidence.",
+      "misconception_id": "ail606_supplement_5_1_unfalsifiable_confirmation",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_from_rationale_to_testable_hypotheses"
       ]
     }
   ]

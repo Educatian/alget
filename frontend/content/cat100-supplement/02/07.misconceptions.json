@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_2_7_peer_review_for_professional_materials",
   "misconceptions": [
     {
-      "id": "cat100_supplement_2_7_peer_review_for_professional_materials_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_2_7_peer_review_for_professional_materials_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_2_7_praise_is_review",
+      "pattern": "praise_counts_as_review",
+      "description": "Believing that positive, general comments (\"looks great\") count as a completed peer review",
+      "trigger": "reviewer leaves only praise or vague reactions with no specific, actionable note",
+      "feedback": "Useful review names a location, the problem, and a concrete fix. \"Looks great\" gives the writer nothing to act on.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_2_7_peer_review_for_professional_materials_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_2_7_rewriting_for_them",
+      "pattern": "rewriting_instead_of_advising",
+      "description": "Taking over a peer's document by rewriting passages instead of flagging issues for them to decide on",
+      "trigger": "reviewer replaces the writer's wording rather than raising a question or suggestion",
+      "feedback": "Keep ownership with the writer. Raise concerns as questions or suggestions, not as a takeover of their voice.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_2_7_sharing_peer_data",
+      "pattern": "sharing_peer_data_without_consent",
+      "description": "Pasting a peer's resume, including personal contact details, into a third-party tool without permission",
+      "trigger": "reviewer submits another person's identifying data to an AI tool during review",
+      "feedback": "Peer review carries a duty of care. Strip identifying details before using any third-party tool, and get consent.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_2_7_peer_review_for_professional_materials_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_2_7_apply_all_comments",
+      "pattern": "applying_all_feedback_uncritically",
+      "description": "Treating every peer comment as a required edit instead of judging each against the goal",
+      "trigger": "writer applies all comments verbatim or rejects all of them without reasons",
+      "feedback": "Judge each comment against your goal. Act on the ones that fit, decline the rest with a reason, and log the decisions.",
       "rail_action": "practice"
     }
   ]

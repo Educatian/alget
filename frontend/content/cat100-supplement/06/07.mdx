@@ -35,15 +35,31 @@ The anchors should do work in your artifact. If NACE career readiness or ISTE di
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Maria's site is live. Now she writes a maintenance plan she can actually follow, and she filters a generic AI checklist down to what fits a static GitHub Pages site.
 
-> I made the AI critique log showing accepted, modified, and rejected suggestions clearer.
+**Step 1. Start from the AI draft and judge each item.**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+| AI checklist item | Keep for GitHub Pages? | Reason |
+| --- | --- | --- |
+| Renew SSL certificate monthly | Drop | Pages provides HTTPS automatically |
+| Patch server dependencies | Drop | Static site; there is no server to patch |
+| Refresh content quarterly | Keep | Resume and projects go stale |
+| Check all links periodically | Keep | Renamed files break internal links |
 
-> I revised the AI critique log showing accepted, modified, and rejected suggestions so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+**Step 2. Turn the kept items into a triggered, specific plan.**
 
-Notice the shift: the artifact is no longer just polished. The revision points to **ISTE digital citizenship**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+```text
+MAINTENANCE PLAN (my-portfolio)
+Trigger: first day of each quarter (Jan 1, Apr 1, Jul 1, Oct 1)
+1. Replace the oldest project card with my newest work.
+2. Export the current resume to assets/resume.pdf.
+3. Click every nav link and every project link; fix any 404.
+4. Open the live URL on a phone to confirm layout still holds.
+```
+
+**Step 3. Record why a vague version was rejected.** The first draft said "keep the site updated sometime." That has no trigger and no task list, so it can never be verified or repeated. Naming the date and the four steps makes it actionable.
+
+The plan now matches the platform (no server tasks), names a concrete cadence, and lists steps a future Maria can perform without guessing. Maintenance became a repeatable routine instead of a good intention.
 
 ## Decision Rule
 

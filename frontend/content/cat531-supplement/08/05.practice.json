@@ -4,16 +4,16 @@
       "id": "cat531_supplement_8_5_discussion_prompts_by_module_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_discussion_prompts_by_module",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A module discussion prompt reads: \"Is AI good or bad for the classroom? Post your opinion.\" Why does this prompt produce thin posts?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too long for students to read.",
+        "It contains no decision to make; students restate a stance with no specific tension to wrestle with.",
+        "It mentions AI, which students dislike.",
+        "It asks for a post instead of an essay."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_8_5_discussion_prompts_by_module_polish_as_evidence",
+      "explanation": "A closed good-or-bad question has no decision in it, so students just restate an opinion.",
+      "misconception_id": "cat531_supplement_8_5_discussion_closed_opinion_prompt",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_instructor_toolkit_for_cat_531",
@@ -26,18 +26,19 @@
       "id": "cat531_supplement_8_5_discussion_prompts_by_module_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "To make discussion posts grounded rather than just felt, what should the prompt require?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "A minimum word count.",
+        "One course anchor (such as TPACK or critical edtech studies) and one detail from the case.",
+        "A personal story about technology.",
+        "A summary of the reading."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_8_5_discussion_prompts_by_module_annotation_without_signal",
+      "explanation": "Requiring a course anchor and a case detail forces evidence-based reasoning instead of opinion.",
+      "misconception_id": "cat531_supplement_8_5_discussion_no_evidence_required",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_discussion_prompts_by_module",
         "evidence_based_revision"
       ]
     },
@@ -45,18 +46,19 @@
       "id": "cat531_supplement_8_5_discussion_prompts_by_module_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A facilitator drafting a prompt about an AI reading-level rewriter is offered the auto-suggested follow-up \"What does everyone think?\" What is the defensible move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept it, since more responses are always better.",
+        "Reject it: it reopens opinion and drops the named tension (access versus shared common text) the prompt was built around.",
+        "Accept it but shorten it.",
+        "Let the tool decide whether to add it."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_8_5_discussion_prompts_by_module_ai_as_authority",
+      "explanation": "A generic follow-up reopens opinion instead of pressing the tension, so the facilitator rejects it.",
+      "misconception_id": "cat531_supplement_8_5_discussion_reopening_opinion",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_discussion_prompts_by_module",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_8_5_discussion_prompts_by_module_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which addition most increases the chance that students engage one another's reasoning rather than post in isolation?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Tell students to make their posts longer.",
+        "Require each student to reply to a peer who took the opposite position on the decision.",
+        "Grade only the first post.",
+        "Ask students to like three other posts."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_8_5_discussion_prompts_by_module_completion_only_model",
+      "explanation": "Requiring a reply to a peer who chose the opposite call forces students to engage reasoning that differs from their own.",
+      "misconception_id": "cat531_supplement_8_5_discussion_no_peer_engagement",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_discussion_prompts_by_module",
         "evidence_based_revision"
       ]
     }

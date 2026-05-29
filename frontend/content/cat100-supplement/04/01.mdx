@@ -35,15 +35,35 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+A teacher persona is a concrete text artifact: a saved system prompt that tells the AI who it is acting as, what it knows, and what it must not do. A freshman writes it in a plain text file (for example `persona.txt`) so it can be reused and revised. Follow the steps and watch the persona move from vague to inspectable.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+Step 1. Write the weak first draft (this is what most students save first):
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```text
+You are a helpful 3rd grade teacher. Help me with my lesson.
+```
 
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Step 2. Run the four-field persona checklist and mark what is missing:
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+| Field | Required value | In the draft above? |
+|-------|----------------|---------------------|
+| ROLE | grade + subject | partial (grade only) |
+| AUDIENCE | who the output is for | missing |
+| KNOWLEDGE BOUND | what facts it may assume | missing |
+| HARD STOP | what it must never do | missing |
+
+Three of four fields are blank, so the AI will guess and the output will drift.
+
+Step 3. Rewrite the persona so every field has a value:
+
+```text
+ROLE: You are a 3rd grade math teacher in a U.S. public school.
+AUDIENCE: You write notes a parent with no math background can read.
+KNOWLEDGE BOUND: Use only the Grade 3 standards I paste below. If a topic is outside them, say so.
+HARD STOP: Never invent a student's grade, never give medical or legal advice.
+```
+
+Step 4. Record the one rejected suggestion. The AI offered to add "act friendly and use emojis." You rejected it because the AUDIENCE field already fixes tone for parents, and emojis would clash with that. That accept/reject line is the evidence trace: a reader can now see the four filled fields and the one boundary you held.
 
 ## Decision Rule
 

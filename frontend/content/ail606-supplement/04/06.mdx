@@ -35,15 +35,33 @@ The anchors should do work in your artifact. If Mayer multimedia learning or cog
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Work through one annotated before/after revision of a Codex-assisted authoring decision for a flashcard widget.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (prompt and what Codex returned):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+Prompt: "Make me a good flashcard app for my module."
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+```js
+let cards = "Q1:A1;Q2:A2;Q3:A3"; // all data in one global string, answers inline in markup
+function showConfetti() { /* fires on every click, even wrong answers */ }
+```
 
-Notice the shift: the artifact is no longer just polished. The revision points to **cognitive load theory**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+**Annotations a reviewer would leave:**
+
+1. The prompt handed the design decision ("a good flashcard app") to Codex instead of specifying the interaction.
+2. Content and logic are fused in one global string, so a non-coder on the team cannot edit cards and the answers are exposed in the markup.
+3. Confetti fires on every click, including wrong answers, which rewards errors and adds extraneous load.
+
+**After (revised prompt and accepted code):**
+
+Prompt: "Generate a flashcard component that reads cards from a separate JSON array, flips on click, reveals the answer only after a flip, and shows brief feedback; no celebratory animation on incorrect responses. I will write the card content."
+
+```js
+import cards from "./cards.json"; // content separated from logic, editable by non-coders
+// feedback text comes from the card object; positive animation gated to correct answers only
+```
+
+**Why the after version is stronger:** the designer kept the instructional decisions (separation of content and logic, answer hidden until flip, animation only on correct) and used Codex to implement them. Each accepted or rejected suggestion is documented with its reason, so a reviewer can audit why the confetti-on-every-click behavior was dropped. The change is a defensible authoring decision, not just code that runs.
 
 ## Decision Rule
 

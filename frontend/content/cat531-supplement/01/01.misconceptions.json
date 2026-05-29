@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment",
   "misconceptions": [
     {
-      "id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_1_1_judgment_as_tool_preference",
+      "pattern": "judgment_collapses_to_preference",
+      "description": "Treating a technology-adoption decision as a matter of taste, engagement, or demo polish rather than a defensible professional judgment",
+      "trigger": "learner justifies a tool by 'students like it' or 'the demo was impressive' with no instructional purpose, constraint, or evidence",
+      "feedback": "Restate the choice as a judgment: name the instructional purpose, the constraint that matters here, and the evidence that makes this call defensible.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_1_1_one_right_answer_fallacy",
+      "pattern": "single_correct_decision_assumption",
+      "description": "Assuming a tool decision has one objectively correct answer rather than a defensible reasoning trace that can vary across contexts",
+      "trigger": "learner insists one teacher must be wrong when two defensible teachers reach different decisions",
+      "feedback": "Defensibility lives in the reasoning, not in agreement. Compare the two teachers' purpose, constraint weighting, and evidence rather than picking a single winner.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_1_1_ai_holds_the_judgment",
+      "pattern": "ai_as_decision_authority",
+      "description": "Letting an AI assistant's confident output stand as the professional decision about appropriateness or access",
+      "trigger": "learner adopts a tool because an AI said it was appropriate, with no check against actual learners or policy",
+      "feedback": "The teacher holds the accountability. Treat the AI output as one unverified input and judge it against the named learners and the data policy.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_1_1_naming_risk_equals_resolving_it",
+      "pattern": "naming_substitutes_for_reasoning",
+      "description": "Believing that naming an equity or privacy risk is the same as resolving it in a defensible way",
+      "trigger": "learner lists a risk but never shows the evidence used or the alternative weighed and rejected",
+      "feedback": "Add the inspectable layer: which evidence informed the call, and which alternative did you weigh and set aside, and why.",
       "rail_action": "practice"
     }
   ]

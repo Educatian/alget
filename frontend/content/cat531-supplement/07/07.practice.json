@@ -4,16 +4,16 @@
       "id": "cat531_supplement_7_7_professional_learning_network_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_professional_learning_network",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A candidate finds a viral AI lesson-plan generator recommended by 300 teachers in a Facebook group. Which note shows she is treating her professional learning network as a source to vet rather than an authority to follow?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "300 teachers use it, so it must be effective for my placement.",
+        "The post is popular; before I use it I will check what evidence backs the claims, whether the recommenders teach my grade and subject, and what the tool does with student data.",
+        "It has the most likes in the group, so I will adopt it this week.",
+        "A teacher I admire shared it, so the data question does not matter."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_7_7_professional_learning_network_polish_as_evidence",
+      "explanation": "A professional learning network is a source to vet. Defensible practice checks the evidence, the relevance of the recommenders, and the data handling, rather than treating popularity or admiration as proof.",
+      "misconception_id": "cat531_supplement_7_7_popularity_as_evidence",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_field_based_transfer_and_coaching",
@@ -26,16 +26,16 @@
       "id": "cat531_supplement_7_7_professional_learning_network_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A network colleague shares a strategy that worked great in their affluent suburban school. Which annotation best protects the candidate's judgment as she considers it for her under-resourced placement?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It worked for them, so it should work for me.",
+        "Note the context gap: their 1-to-1 device school differs from my shared-cart placement, so I must test whether the strategy survives that constraint before adopting it.",
+        "Note that the colleague is more experienced than I am.",
+        "Note that the strategy looks impressive in their photos."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_7_7_professional_learning_network_annotation_without_signal",
+      "explanation": "Borrowing from a network requires checking whether the source context matches the placement. Naming the context gap is the judgment move; deference or appearances are not.",
+      "misconception_id": "cat531_supplement_7_7_borrow_without_context_check",
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
@@ -45,16 +45,16 @@
       "id": "cat531_supplement_7_7_professional_learning_network_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The candidate asks an AI tool to summarize the best practices from her online teacher network. The AI cites three studies, but none of them appear when she searches for them. What should she do?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Share the AI summary with the network because it sounds authoritative.",
+        "Stop and treat the unverifiable citations as a signal the AI may have fabricated them, then rely only on sources she can locate and check.",
+        "Assume the studies exist but are hard to find.",
+        "Add the citations to her own lesson plan to look rigorous."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_7_7_professional_learning_network_ai_as_authority",
+      "explanation": "Citations that cannot be located are a fabrication signal. A teacher who shares them into her network would spread misinformation. Defensible practice verifies sources before passing them on.",
+      "misconception_id": "cat531_supplement_7_7_ai_citation_unverified",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -64,16 +64,16 @@
       "id": "cat531_supplement_7_7_professional_learning_network_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "What record best shows the candidate added value to her professional learning network rather than just resharing?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A count of how many posts she liked.",
+        "A note of the strategy she tried, the context where it worked and where it did not, and the caution she passed back so colleagues can judge fit.",
+        "The number of followers she gained.",
+        "A list of every tool mentioned in the group."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_7_7_professional_learning_network_completion_only_model",
+      "explanation": "Contributing to a network means reporting tested evidence and context-bound cautions others can use. Engagement metrics or a tool list do not show professional contribution.",
+      "misconception_id": "cat531_supplement_7_7_resharing_as_contribution",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

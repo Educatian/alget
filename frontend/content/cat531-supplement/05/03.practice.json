@@ -4,16 +4,16 @@
       "id": "cat531_supplement_5_3_usability_accessibility_and_equity_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_usability_accessibility_and_equity",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher reports: 'The app is very easy to use; even my youngest students click through it fast.' Why does this not yet establish accessibility?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Ease of use is the same thing as accessibility.",
+        "Usability for typical users does not show that students using screen readers, captions, or keyboard-only navigation can complete the same tasks.",
+        "Accessibility only matters for physical buildings, not software.",
+        "Fast clicking proves the tool works for everyone."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_5_3_usability_accessibility_and_equity_polish_as_evidence",
+      "explanation": "Usability describes the experience of typical users. Accessibility asks whether learners who rely on assistive technology or accommodations can do the same work. The first does not demonstrate the second.",
+      "misconception_id": "cat531_supplement_5_3_usability_equals_accessibility",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
@@ -25,58 +25,61 @@
     {
       "id": "cat531_supplement_5_3_usability_accessibility_and_equity_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_usability_accessibility_and_equity",
+      "stem": "A vendor says the tool 'meets WCAG AA.' What evidence would let a teacher trust that claim for their classroom?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The vendor's marketing badge alone.",
+        "An accessibility conformance report (such as a VPAT) plus a check of the specific tasks students will actually perform.",
+        "The fact that the tool has many users.",
+        "A confirmation that the homepage looks accessible."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_5_3_usability_accessibility_and_equity_annotation_without_signal",
+      "explanation": "A conformance label is a starting point, not proof. A documented report and a task-level check on the workflows students use are what make the claim usable for a decision.",
+      "misconception_id": "cat531_supplement_5_3_wcag_badge_is_proof",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_educational_technology_evaluation",
+        "cat531_supplement_usability_accessibility_and_equity"
       ]
     },
     {
       "id": "cat531_supplement_5_3_usability_accessibility_and_equity_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to run an accessibility audit on a learning app. It reports 'no accessibility issues found.' What is the defensible interpretation?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The tool is fully accessible for all students.",
+        "Automated checks catch only some barriers; you still need a task walkthrough with assistive technology and, where possible, disabled-user testing.",
+        "Manual testing is now unnecessary.",
+        "The AI result overrides any conformance report."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_5_3_usability_accessibility_and_equity_ai_as_authority",
+      "explanation": "Automated audits detect a minority of accessibility barriers. Many barriers only surface in real use with a screen reader, keyboard, or actual disabled testers. The AI result is one input, not a clearance.",
+      "misconception_id": "cat531_supplement_5_3_automated_audit_is_complete",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_usability_accessibility_and_equity"
       ]
     },
     {
       "id": "cat531_supplement_5_3_usability_accessibility_and_equity_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "An app is accessible and easy to use, but it requires a reliable home internet connection for nightly homework. In an equity analysis, how should a teacher treat this?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Ignore it, since the app itself is accessible.",
+        "Flag it as an equity risk: a tool that is accessible can still disadvantage students without home connectivity, so the decision must address that gap.",
+        "Assume all students have home internet.",
+        "Treat connectivity as the vendor's responsibility."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_5_3_usability_accessibility_and_equity_completion_only_model",
+      "explanation": "Accessibility and equity are distinct. A tool can clear accessibility standards yet still impose unequal burdens through its access requirements. A defensible decision names that burden and how it will be addressed.",
+      "misconception_id": "cat531_supplement_5_3_accessible_means_equitable",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat531_supplement_usability_accessibility_and_equity"
       ]
     }
   ]

@@ -4,16 +4,16 @@
       "id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_cognitive_architecture_for_multimedia_learning",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A storyboard frame narrates an on-screen animation with a paragraph of printed text shown at the same time. Citing the dual-channel and limited-capacity assumptions of the cognitive theory of multimedia learning, which redesign is best justified?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Keep the printed paragraph and add a third caption track so every learner has options.",
+        "Move the explanation to spoken narration and delete the simultaneous printed paragraph so the visual channel is not overloaded by redundant text.",
+        "Make the printed paragraph larger and bold so it is easier to read alongside the animation.",
+        "Replace the animation with the same printed paragraph so only one channel is used."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_polish_as_evidence",
+      "explanation": "Both the animation and the printed text load the visual channel, so they compete for limited visual working memory. Narrating the explanation routes it to the auditory channel, splitting the processing across both channels.",
+      "misconception_id": "ail606_supplement_1_1_cma_channels_are_modalities",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_cognitive_architecture_for_multimedia_learning"
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_cognitive_architecture_for_multimedia_learning",
+      "stem": "In Mayer's model, what must happen for information to move from sensory memory into working memory?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The learner must store it permanently in long-term memory first.",
+        "The learner must select relevant words and images through attention before the rest decays.",
+        "The system must present the same content in every modality simultaneously.",
+        "The information transfers automatically because sensory memory has unlimited duration."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_annotation_without_signal",
+      "explanation": "Sensory memory holds incoming material only briefly. The learner must actively select relevant words and images, or the material decays before it reaches the capacity-limited working memory.",
+      "misconception_id": "ail606_supplement_1_1_cma_unlimited_working_memory",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_cognitive_architecture_for_multimedia_learning"
       ]
     },
     {
       "id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_evidence_based_revision",
+      "stem": "A designer claims a screen is effective because it 'presents the content in both pictures and words.' Why is this not yet evidence of meaningful learning under the active-processing assumption?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Because pictures should never be paired with words in any design.",
+        "Because presenting in two formats does not by itself show the learner selected, organized, and integrated the material into a coherent mental model.",
+        "Because the screen needs more decorative graphics to engage learners.",
+        "Because all words should be spoken rather than printed in every case."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_ai_as_authority",
+      "explanation": "The active-processing assumption says learning requires the learner to build verbal and pictorial models and integrate them. Dual presentation is a necessary condition, not proof that integration occurred.",
+      "misconception_id": "ail606_supplement_1_1_cma_presentation_equals_learning",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "evidence_based_revision"
       ]
     },
     {
       "id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_cognitive_architecture_for_multimedia_learning",
+      "stem": "A long, expert-written narration accompanies a complex diagram with many interacting parts. Two novices report feeling overwhelmed. Mapping this to the three memory stores, where is the bottleneck and what redesign follows?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The bottleneck is long-term memory; add a final summary slide to store everything.",
+        "The bottleneck is limited working-memory capacity processing many interacting elements at once; segment the diagram into parts the learner advances through and give pacing control.",
+        "The bottleneck is sensory memory; increase the font size of the narration transcript.",
+        "There is no bottleneck; novices simply need to watch the narration twice."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_1_1_cognitive_architecture_for_multimedia_learning_completion_only_model",
+      "explanation": "Many interacting elements raise the load on capacity-limited working memory for novices who lack schemas. Segmenting and learner-paced advancement reduce the number of elements processed at once.",
+      "misconception_id": "ail606_supplement_1_1_cma_unlimited_working_memory",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_cognitive_architecture_for_multimedia_learning"
       ]
     }
   ]

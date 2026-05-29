@@ -33,17 +33,26 @@ Three course anchors shape the reasoning here:
 
 Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
 
-## Worked Example
+## Worked Example: Rewriting a Finding So It Does Not Overclaim
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+A designer summarizes results after a 5-participant test of an onboarding storyboard.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (overclaimed finding):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> Finding: Users hate the progress bar. We proved the progress bar fails and should remove it from the product.
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+Walk through how to scale the claim to the evidence:
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+1. **Count what actually happened.** 2 of 5 participants commented negatively on the progress bar; 1 ignored it; 2 used it without comment.
+2. **Distinguish observation from preference.** "Hate" and "fails" are not what was observed; what was observed is two negative comments and no completion failures.
+3. **Match the claim strength to the sample.** Five participants in a formative test can surface candidate problems, not population-level proof.
+4. **State the finding with its uncertainty and a next step.**
+
+**After (calibrated finding):**
+
+> Finding: In this 5-participant formative session, 2 participants found the progress-bar labels ambiguous; no participant failed the task because of it. This is a candidate issue, not a confirmed defect. Next step: add a clearer label and re-test with a larger, more varied sample before deciding to remove it.
+
+The after version is defensible because the claim does not exceed what five sessions can show, and it names a verification step. The before version overgeneralized a small qualitative signal into proof and a product decision, the central failure this section guards against.
 
 ## Decision Rule
 

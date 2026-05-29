@@ -4,16 +4,16 @@
       "id": "cat531_supplement_8_8_readiness_review_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_readiness_review",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A readiness review reads: \"Everything looks good, we are ready to launch the AI tutor next week.\" What makes this a weak review?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too optimistic about students.",
+        "It is a rubber stamp: it does not check each prior artifact against a go or no-go criterion.",
+        "It names a specific tool.",
+        "It mentions a launch date."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_8_8_readiness_review_polish_as_evidence",
+      "explanation": "A readiness review is a gate. Asserting readiness without an item-by-item check skips the actual work.",
+      "misconception_id": "cat531_supplement_8_8_readiness_rubber_stamp",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_instructor_toolkit_for_cat_531",
@@ -26,18 +26,19 @@
       "id": "cat531_supplement_8_8_readiness_review_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "During the review the consent forms for the AI tutor have not gone home. What should the readiness verdict be on that item?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Go, because consent can be handled later.",
+        "No-go on that item: launch is blocked until opt-out paths and the low-tech fallback are in place.",
+        "Conditional, because consent is optional.",
+        "Go, because the rest of the items passed."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_8_8_readiness_review_annotation_without_signal",
+      "explanation": "A gate must be able to fail. An unmet blocking item like unsent consent forms returns a no-go.",
+      "misconception_id": "cat531_supplement_8_8_readiness_cannot_fail",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_readiness_review",
         "evidence_based_revision"
       ]
     },
@@ -45,18 +46,19 @@
       "id": "cat531_supplement_8_8_readiness_review_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Someone proposes launching the AI tutor now and gathering consent afterward. Why is this not acceptable?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "It would take too long to write the memo.",
+        "It reverses the policy boundary: consent and the low-tech fallback must be in place before any launch.",
+        "It would make the review shorter.",
+        "Launching early is fine if students agree."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_8_8_readiness_review_ai_as_authority",
+      "explanation": "Launch-then-comply reverses the consent boundary. The review must reject it.",
+      "misconception_id": "cat531_supplement_8_8_readiness_launch_then_comply",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_readiness_review",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_8_8_readiness_review_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which readiness verdict is most auditable by a mentor teacher?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "We are ready overall.",
+        "Go on the tension map (08.01), tool-boundary transcript (08.02), and rubric (08.04); no-go on policy until consent and the 08.06 fallback are in place; conditional on collecting the 08.07 baseline before week 1.",
+        "Most things are done.",
+        "The team feels confident."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_8_8_readiness_review_completion_only_model",
+      "explanation": "The strongest verdict ties each go, no-go, and conditional to the specific prior artifact that justifies it.",
+      "misconception_id": "cat531_supplement_8_8_readiness_no_artifact_tie",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_readiness_review",
         "evidence_based_revision"
       ]
     }

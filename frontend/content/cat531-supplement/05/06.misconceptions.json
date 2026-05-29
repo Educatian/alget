@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_5_6_adoption_recommendation",
   "misconceptions": [
     {
-      "id": "cat531_supplement_5_6_adoption_recommendation_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_5_6_recommendation_is_verdict",
+      "pattern": "recommendation_as_bare_verdict",
+      "description": "Treating a one-word adopt or reject as a complete adoption recommendation",
+      "trigger": "learner ends with 'adopt' or 'reject' without scope, conditions, evidence, or reversal signals",
+      "feedback": "State the scope, the conditions, the evidence behind the call, and what would reverse it. A bare verdict is not a recommendation.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_5_6_adoption_recommendation_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_5_6_adopt_or_reject_only",
+      "pattern": "binary_adopt_reject_under_mixed_evidence",
+      "description": "Forcing an all-or-nothing adopt or reject when the evidence is mixed",
+      "trigger": "learner picks full adoption or full rejection despite unresolved evidence",
+      "feedback": "Match the recommendation to the evidence. Mixed evidence supports a conditional, bounded pilot with a review point, not all-or-nothing.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_5_6_adoption_recommendation_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_5_6_ai_owns_recommendation",
+      "pattern": "ai_recommendation_treated_as_owned",
+      "description": "Submitting an AI-written recommendation without taking accountability for its evidence and conditions",
+      "trigger": "learner adopts an AI 'adopt' paragraph without checking it against the evidence",
+      "feedback": "You are accountable to students and stakeholders, not the AI. Verify the draft against your evidence and conditions before owning it.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_5_6_adoption_recommendation_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_5_6_recommendation_is_final",
+      "pattern": "recommendation_without_reversal_trigger",
+      "description": "Treating a recommendation as final once adopted, with no condition that reopens it",
+      "trigger": "learner omits the consequence if a stated condition goes unmet",
+      "feedback": "Build in a trigger: if a stated condition is not met by a set date, the recommendation no longer stands and the tool is paused.",
+      "rail_action": "ask"
     }
   ]
 }

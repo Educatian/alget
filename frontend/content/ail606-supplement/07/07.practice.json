@@ -3,77 +3,89 @@
     {
       "id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ethical_reporting_of_ai_use",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "ai_use_disclosure",
+      "stem": "Which AI-use disclosure is specific enough to be honest and useful in a design report?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "AI was used in this project.",
+        "I used a generative model to draft three alternative item stems for screen 4; I revised two and discarded one, and verified all wording against the rubric myself.",
+        "No AI was used, though it actually was.",
+        "AI helped a little here and there."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_polish_as_evidence",
+      "explanation": "An ethical disclosure names what the AI did, where, and how the human verified it. Vague or false statements defeat the purpose of disclosure.",
+      "misconception_id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_vague_blanket_disclosure",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_use_disclosure"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ai_use_disclosure",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ai_use_disclosure",
+      "stem": "A disclosure says: \"All analysis was AI-generated and is therefore objective.\" What is the reporting flaw?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "There is no flaw; AI output is objective.",
+        "It claims authority for the AI and removes human accountability, when the designer is still responsible for verifying and standing behind the analysis.",
+        "It is too detailed.",
+        "It should not mention AI at all."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_annotation_without_signal",
+      "explanation": "Disclosure must preserve human accountability. Framing AI output as inherently objective launders responsibility the designer cannot give away.",
+      "misconception_id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_ai_output_as_objective",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ai_use_disclosure",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You want a disclosure tied to one bounded design-support decision. Which scope is right?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Disclose nothing, since the work is mostly yours.",
+        "Disclose the specific decision the AI supported, the prompt intent, and your accept or reject calls, rather than a blanket statement covering the whole project.",
+        "Disclose every keystroke and the entire model configuration regardless of relevance.",
+        "Disclose only the parts that make you look good."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_ai_as_authority",
+      "explanation": "Bounded disclosure ties the report to the actual decision the AI touched and your judgment on it. That is more honest than silence, a blanket claim, or selective omission.",
+      "misconception_id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_disclosure_optional",
       "difficulty": "medium",
       "concept_ids": [
+        "ail606_supplement_research_translation_for_learning_design",
+        "ai_use_disclosure",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ai_use_disclosure",
+      "stem": "A teammate argues, \"We polished the wording afterward, so we do not need to mention the AI draft.\" Why is that reasoning wrong?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "They are right; editing the output erases the need to disclose.",
+        "Editing does not remove the AI's contribution to the underlying content, so the disclosure still owes an honest account of what the AI produced and how it was checked.",
+        "Disclosure is only needed if the AI wrote the final words verbatim.",
+        "Disclosure is a formality with no ethical weight."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_completion_only_model",
+      "explanation": "Provenance follows the contribution, not the surface wording. Human editing does not retroactively make the work AI-free or excuse omission.",
+      "misconception_id": "ail606_supplement_7_7_ethical_reporting_of_ai_use_disclosure_optional",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ai_use_disclosure",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

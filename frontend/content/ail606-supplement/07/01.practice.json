@@ -4,76 +4,88 @@
       "id": "ail606_supplement_7_1_turning_designs_into_study_questions_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_turning_designs_into_study_questions",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A storyboard frame shows a branching simulation. Which research question turns that design feature into something a small study could actually answer?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Is the branching simulation engaging and visually appealing?",
+        "Does adding the branch point after the narration reduce the number of learners who skip the reader-action prompt, compared with the linear version?",
+        "Will learners enjoy the simulation more than a textbook?",
+        "Is the storyboard finished and ready to hand off?"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
+      "explanation": "A study question names a design feature (the branch placement), an observable outcome (skipped prompts), and a comparison (linear version). The other options ask for opinions or completion, not evidence.",
       "misconception_id": "ail606_supplement_7_1_turning_designs_into_study_questions_polish_as_evidence",
       "difficulty": "medium",
       "concept_ids": [
-        "ail606_supplement_turning_designs_into_study_questions"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_turning_designs_into_study_questions",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_1_turning_designs_into_study_questions_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_turning_designs_into_study_questions",
+      "stem": "Which storyboard annotation is specific enough to become a testable study question rather than a vague design hope?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Make the narration nicer.",
+        "Signaling cue on frame 3 should cut the time learners spend hunting for the next action; check whether action-start time drops.",
+        "This frame feels off.",
+        "Add more color to the simulation."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_7_1_turning_designs_into_study_questions_annotation_without_signal",
+      "explanation": "The strong annotation names the design element (signaling cue, frame 3), a mechanism (less hunting), and a measure (action-start time). The rest are reactions, not questions.",
+      "misconception_id": "ail606_supplement_7_1_turning_designs_into_study_questions_outcome_without_construct",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_turning_designs_into_study_questions",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_1_turning_designs_into_study_questions_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to help you turn a storyboard into a study question. What is the strongest bounded use of that help?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Have the AI write the entire research question and submit it unchanged.",
+        "Ask the AI to draft three candidate questions, then keep only the one that names a design element and a measurable learner action you can observe in this storyboard.",
+        "Avoid the AI because all study questions must be original.",
+        "Use the AI only to make the question sound more academic."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_7_1_turning_designs_into_study_questions_ai_as_authority",
+      "explanation": "Bounded use means the AI proposes options and you judge them against the storyboard's actual design features and observable outcomes. You stay responsible for the design-to-question link.",
+      "misconception_id": "ail606_supplement_7_1_turning_designs_into_study_questions_unfalsifiable_question",
       "difficulty": "medium",
       "concept_ids": [
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_turning_designs_into_study_questions",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_1_turning_designs_into_study_questions_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_turning_designs_into_study_questions",
+      "stem": "A peer writes the question, \"Does my storyboard improve learning?\" Why is this not yet usable, and what fixes it?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "It is fine; learning improvement is the goal of every design.",
+        "It names no specific design feature and no observable measure, so no result could confirm or disconfirm it; bind it to one frame change and one learner action you can record.",
+        "It is too short; make it a full paragraph.",
+        "It needs a more polished storyboard before any question can be asked."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_7_1_turning_designs_into_study_questions_completion_only_model",
+      "explanation": "An unfalsifiable question cannot guide revision. Tying it to a single design change and a single observable action makes the result interpretable.",
+      "misconception_id": "ail606_supplement_7_1_turning_designs_into_study_questions_unfalsifiable_question",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_turning_designs_into_study_questions",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

@@ -8,74 +8,74 @@
         "cat100_supplement_collaboration_norms",
         "cat100_supplement_productivity_and_workflow_automation"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your four-person group needs to edit one shared report. Which sharing setting fits the task?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Anyone with the link can edit",
+        "Share to the four named teammates as editors; anyone else gets view-only or no access",
+        "Make it fully public on the web",
+        "Email a copy to each person so there are four versions"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_7_6_collaboration_norms_polish_as_evidence",
+      "explanation": "Give the team the least access they need. Public edit invites strangers; four separate copies fragment the work.",
+      "misconception_id": "cat100_supplement_7_6_anyone_with_link_edit",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_7_6_collaboration_norms_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_collaboration_norms",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_collaboration_norms"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "You disagree with a teammate's paragraph in a shared doc. What keeps the change visible and reversible?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Delete it and retype your version",
+        "Use Suggesting mode or a comment so the teammate can see and accept or reject the change",
+        "Rewrite it overnight without telling anyone",
+        "Lock them out of the document"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_7_6_collaboration_norms_annotation_without_signal",
+      "explanation": "Suggestions and comments preserve the original and show what changed, instead of silently overwriting a teammate.",
+      "misconception_id": "cat100_supplement_7_6_overwrite_teammate",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_6_collaboration_norms_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_collaboration_norms",
       "concept_ids": [
-        "ai_supported_learning"
+        "cat100_supplement_collaboration_norms"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Two teammates keep retyping the same intro at the same time and edits get lost. What norm prevents this?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Everyone edits everything whenever they want",
+        "Assign section owners (you: intro, me: methods) so people do not collide on the same text",
+        "Only edit on weekends",
+        "Make the document read-only for everyone"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_7_6_collaboration_norms_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "Dividing ownership stops two people writing over each other in the same paragraph.",
+      "misconception_id": "cat100_supplement_7_6_no_section_owners",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_6_collaboration_norms_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_collaboration_norms",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_collaboration_norms"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "The group report is due Friday 11:59 PM. The last section keeps arriving at 11:55 PM with no time to check it. What norm fixes this?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Submit later than the deadline",
+        "Set an internal deadline 24 hours before the real one so the team can review and fix before submitting",
+        "Remove the slow teammate",
+        "Make the report shorter"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_7_6_collaboration_norms_completion_only_model",
-      "difficulty": "medium"
+      "explanation": "An earlier internal deadline builds in review time so the whole group is not gambling at 11:55 PM.",
+      "misconception_id": "cat100_supplement_7_6_no_deadline_norm",
+      "difficulty": "hard"
     }
   ]
 }

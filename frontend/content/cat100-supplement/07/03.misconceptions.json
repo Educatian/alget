@@ -2,36 +2,36 @@
   "section_id": "cat100_supplement_7_3_template_based_productivity",
   "misconceptions": [
     {
-      "id": "cat100_supplement_7_3_template_based_productivity_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_7_3_template_based_productivity_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_7_3_template_based_productivity_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_7_3_overwrite_master",
+      "pattern": "editing_the_master_template",
+      "description": "Typing real data straight into the master template file so the blank template is destroyed",
+      "trigger": "learner opens budget_template.xlsx, fills in their numbers, and saves over it",
+      "feedback": "Save a copy first (File > Save As, or duplicate the .dotx/.xltx), then edit the copy. The master should stay blank and reusable.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_7_3_template_based_productivity_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_7_3_hardcode_instead_of_formula",
+      "pattern": "typed_value_instead_of_formula",
+      "description": "Typing a computed result by hand into a spreadsheet cell instead of writing a formula that recalculates",
+      "trigger": "learner types 450 into a total cell rather than =SUM(B2:B10)",
+      "feedback": "Use a formula like =SUM(B2:B10) so the total updates when a number changes. A typed 450 goes stale the moment a row edits.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_7_3_format_without_placeholders",
+      "pattern": "manual_retyping_each_time",
+      "description": "Treating a template as a finished document to retype rather than as fixed structure with clearly marked fill-in fields",
+      "trigger": "learner copies last week's report and edits scattered words, missing some old values",
+      "feedback": "Mark the variable parts with placeholders like [NAME] or [DATE] so every reuse fills the same fields and nothing stale is left behind.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_7_3_no_relative_reference",
+      "pattern": "misuse_of_absolute_reference",
+      "description": "Locking a cell reference with dollar signs when the formula should adjust as it is copied down a column",
+      "trigger": "learner copies =B2*$C$2 down and every row multiplies by the wrong cell",
+      "feedback": "Use a relative reference (B2) for the part that should shift per row, and an absolute reference ($C$2) only for the one fixed cell like a tax rate.",
+      "rail_action": "ask"
     }
   ]
 }

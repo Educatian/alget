@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_8_2_professional_story_across_artifacts",
   "misconceptions": [
     {
-      "id": "cat100_supplement_8_2_professional_story_across_artifacts_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_8_2_professional_story_across_artifacts_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_8_2_professional_story_across_artifacts_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_8_2_one_slide_per_artifact",
+      "pattern": "one_slide_per_artifact_dump",
+      "description": "Giving every artifact its own slide and reading the file list aloud instead of building one connected story for the audience",
+      "trigger": "storyboard has a slide titled 'My Excel project', another 'My website', another 'My resume' with no throughline",
+      "feedback": "A storyboard is a story, not a folder. Open with the audience's question, then use each artifact as evidence that answers it. Order slides by the argument, not by file type.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_8_2_professional_story_across_artifacts_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_8_2_bullet_text_no_evidence",
+      "pattern": "claim_bullets_without_slide_evidence",
+      "description": "Writing slide bullets that assert a skill but show no artifact-level evidence on the slide",
+      "trigger": "a slide reads 'I am good at data analysis' with no chart, formula, or before/after shown",
+      "feedback": "Each claim slide needs one visible piece of evidence: a pivot table, a formula, a chart, or a code snippet. Replace the adjective with the artifact.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_8_2_same_deck_every_audience",
+      "pattern": "ignore_audience_constraint",
+      "description": "Reusing the identical deck for a hiring manager, a peer panel, and an instructor without adjusting depth or framing",
+      "trigger": "learner says the audience does not change the storyboard",
+      "feedback": "Audience sets the constraint. A hiring manager wants outcomes and fit; a peer panel wants the technique. Keep the artifacts, but reorder and reframe the slides for who is in the room.",
+      "rail_action": "ask"
     }
   ]
 }

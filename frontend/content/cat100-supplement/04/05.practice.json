@@ -8,35 +8,35 @@
         "cat100_supplement_tone_bias_and_audience",
         "cat100_supplement_ai_conversations_as_a_teacher"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your edit table flags the phrase 'lazy habits.' Which replacement removes the label while keeping the message?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "careless attitude",
+        "could use more practice on fractions",
+        "bad student behavior",
+        "obviously unmotivated"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_4_5_tone_bias_and_audience_polish_as_evidence",
+      "explanation": "It describes the behavior to work on instead of labeling the child's character.",
+      "misconception_id": "cat100_supplement_4_5_label_the_person",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_4_5_tone_bias_and_audience_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_tone_bias_and_audience",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_tone_bias_and_audience"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The draft says 'Your child obviously did not study.' Why does your edit table flag 'obviously did not study'?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It is too short.",
+        "It states a cause you cannot actually know as if it were a fact.",
+        "It uses the word 'your.'",
+        "It is grammatically incorrect."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_4_5_tone_bias_and_audience_annotation_without_signal",
+      "explanation": "You can observe the score, not the cause. Replace the assumed cause with the observable fact.",
+      "misconception_id": "cat100_supplement_4_5_assumed_cause",
       "difficulty": "medium"
     },
     {
@@ -44,37 +44,39 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_tone_bias_and_audience"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The AI suggests replacing 'your child' with the student's first name throughout a parent email. What is the strongest evidence-based response?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept it; names always sound warmer.",
+        "Reject it and log why: in a privacy-sensitive parent email 'your child' is clearer and safer than repeating the name.",
+        "Replace it with the student's full legal name and ID.",
+        "Ignore the suggestion without recording anything."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_4_5_tone_bias_and_audience_ai_as_authority",
+      "explanation": "Rejecting against a privacy and audience constraint, and logging the reason, is the evidence trace.",
+      "misconception_id": "cat100_supplement_4_5_tone_ignores_audience",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_4_5_tone_bias_and_audience_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_tone_bias_and_audience",
       "concept_ids": [
+        "cat100_supplement_tone_bias_and_audience",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "For a parent audience, which replacement best fixes the pressuring word 'immediately'?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "right now",
+        "over the next two weeks",
+        "as soon as humanly possible",
+        "before it is too late"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_4_5_tone_bias_and_audience_completion_only_model",
+      "explanation": "A two-week window matches a partnership tone with parents; the others keep or increase the pressure.",
+      "misconception_id": "cat100_supplement_4_5_tone_ignores_audience",
       "difficulty": "medium"
     }
   ]

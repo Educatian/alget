@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_8_6_revision_sprint",
   "misconceptions": [
     {
-      "id": "cat100_supplement_8_6_revision_sprint_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat100_supplement_8_6_polish_before_fix",
+      "pattern": "cosmetic_before_correctness",
+      "description": "Spending limited sprint time on colors and fonts before fixing a broken formula, link, or data error",
+      "trigger": "learner restyles the page while a #REF! error or dead link remains",
+      "feedback": "Triage by impact. In a time box, fix correctness errors (broken formula, dead link, wrong total) before any cosmetic change. A pretty page with a #REF! still fails.",
       "rail_action": "ask"
     },
     {
-      "id": "cat100_supplement_8_6_revision_sprint_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_8_6_revision_sprint_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_8_6_no_changelog",
+      "pattern": "edits_without_changelog",
+      "description": "Making many edits during the sprint without recording what changed, so the work cannot be reviewed or reverted",
+      "trigger": "learner saves over the file repeatedly with no timestamped log of edits",
+      "feedback": "Keep a short changelog: time, what changed, and why. It lets a reviewer trace the sprint and lets you roll back a change that made things worse.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_8_6_revision_sprint_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_8_6_scope_creep",
+      "pattern": "rewrite_instead_of_revise",
+      "description": "Starting a full rebuild in the middle of a short revision sprint instead of making targeted fixes",
+      "trigger": "learner deletes the working artifact to start over with 20 minutes left",
+      "feedback": "A sprint revises, it does not rebuild. Make the highest-impact targeted edits the time allows, and note larger rework as a future item rather than starting from scratch.",
+      "rail_action": "explain"
     }
   ]
 }

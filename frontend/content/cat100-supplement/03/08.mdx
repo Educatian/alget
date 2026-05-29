@@ -35,15 +35,30 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+This capstone chains every skill from Module 3 into one verifiable data story. Start from a raw export of six rows.
 
-> I made the Excel pivot-table finding with unit labels, source note, and claim-first chart title clearer.
+```
+   A       B       C
+1  Region  Order   Sales
+2  west    1001    400
+3  East    1002    250
+4  West    1003    600
+5  south   1004    150
+6  East    1005    300
+7  West    1006    200
+```
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+Step 1 (clean). Standardize Region case so `west`/`West` and `south`/`South` are consistent: West, East, South. Confirm Sales are numbers, not text.
 
-> I revised the Excel pivot-table finding with unit labels, source note, and claim-first chart title so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Step 2 (summarize). Build a pivot with Region in Rows and Sum of Sales in Values: West = 1200, East = 550, South = 150. Grand Total = 1900.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+Step 3 (chart). The question is "which region led?", a category comparison, so use a bar chart with the value axis starting at 0. West's bar is more than double East's, matching 1200 vs 550.
+
+Step 4 (narrate). Write a claim-first headline tied to the numbers: "West led Q1 sales at 1,200, more than double East (550); source: store export, 6 orders." Note the small n so no one over-reads it.
+
+Step 5 (reconcile). The headline number (1,200 for West) must equal the West row in the pivot and the height of the West bar. If the headline said 2,400, that mismatch means a stale pivot range or a filter, and you fix it before publishing.
+
+The auditable package: cleaned data, pivot summary, honest chart, claim-first headline, source note, and a reconciliation check. A reviewer can re-trace every number from the six raw rows.
 
 ## Decision Rule
 

@@ -4,16 +4,16 @@
       "id": "cat531_supplement_8_2_teachgen_i_troubleshooting_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_teachgen_i_troubleshooting",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher prompts TeachGen@i for a 5-question water-cycle quiz and the first output is at a 9th-grade reading level for a 5th-grade class. What is the first troubleshooting move?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Accept the output as written because the tool produced five complete items.",
+        "Edit the prompt to fix the reading level (for example, Lexile 740 to 940, one sentence per stem) before any item reaches a student.",
+        "Print the quiz and hand it out, then see how students do.",
+        "Ask the tool to make the items longer."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_8_2_teachgen_i_troubleshooting_polish_as_evidence",
+      "explanation": "The first output is a draft to troubleshoot, not a finished quiz. Grade level is checked and fixed before students see it.",
+      "misconception_id": "cat531_supplement_8_2_teachgen_accept_first_output",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_instructor_toolkit_for_cat_531",
@@ -26,18 +26,19 @@
       "id": "cat531_supplement_8_2_teachgen_i_troubleshooting_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Item 3 of the generated quiz uses a family ski-trip example. Why should the troubleshooting transcript record this edit?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Ski trips are not part of the water cycle topic.",
+        "The example assumes household income and family travel, which disadvantages some students, so swapping it for a rain-barrel example is an equity edit worth documenting.",
+        "Item 3 should always be removed from any quiz.",
+        "The example is too short to keep."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_8_2_teachgen_i_troubleshooting_annotation_without_signal",
+      "explanation": "Context-loaded examples create unequal access. Recording the swap shows the equity reasoning behind the teacher edit.",
+      "misconception_id": "cat531_supplement_8_2_teachgen_blind_to_bias",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_teachgen_i_troubleshooting",
         "evidence_based_revision"
       ]
     },
@@ -45,18 +46,19 @@
       "id": "cat531_supplement_8_2_teachgen_i_troubleshooting_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "TeachGen@i offers to auto-grade the short-answer items and email scores to parents. What is the defensible boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept it, since automation saves the teacher time.",
+        "Reject it: short-answer judgment on science explanations is the teacher's call, and parent contact is governed by district policy, not a tool default.",
+        "Accept the auto-grading but not the auto-email.",
+        "Let the tool decide whether the boundary applies."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_8_2_teachgen_i_troubleshooting_ai_as_authority",
+      "explanation": "Open-response judgment and family communication are protected teacher and policy decisions. The tool default that crosses that line is rejected.",
+      "misconception_id": "cat531_supplement_8_2_teachgen_delegating_judgment",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_teachgen_i_troubleshooting",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_8_2_teachgen_i_troubleshooting_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A teacher submits only the final polished prompt and its clean output. Why is this a weaker troubleshooting artifact than one that keeps the edit history?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A shorter transcript is always weaker than a longer one.",
+        "Without any modified or rejected suggestion in the record, a reviewer cannot see where teacher judgment intervened on the tool.",
+        "The final prompt should be written by the tool, not the teacher.",
+        "Clean prompts are never acceptable in CAT 531."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_8_2_teachgen_i_troubleshooting_completion_only_model",
+      "explanation": "A troubleshooting transcript is evidence of judgment. Keeping at least one rejected or modified suggestion makes that judgment inspectable.",
+      "misconception_id": "cat531_supplement_8_2_teachgen_no_rejected_suggestion",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_teachgen_i_troubleshooting",
         "evidence_based_revision"
       ]
     }

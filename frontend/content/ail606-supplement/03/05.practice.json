@@ -4,17 +4,17 @@
       "id": "ail606_supplement_3_5_alt_text_and_accessibility_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_alt_text_and_accessibility",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An instructional bar chart compares test scores across three teaching methods. Which alt text best serves a screen-reader user?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A colorful bar chart with blue, green, and orange bars on a white background.",
+        "Bar chart: scores were highest for inquiry (82), then lecture (74), then lab (70), showing inquiry led by 8 points.",
+        "An image of a chart.",
+        "Chart.png, 1200 by 800 pixels."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_3_5_alt_text_and_accessibility_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Alt text conveys the image's instructional function, the comparison and its takeaway, not its appearance or file metadata.",
+      "misconception_id": "ail606_supplement_3_5_alt_describes_appearance",
+      "difficulty": "easy",
       "concept_ids": [
         "accessibility"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_3_5_alt_text_and_accessibility_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_alt_text_and_accessibility",
+      "stem": "A page has a decorative corner flourish and a labeled circuit diagram that learners must read. How should their alt attributes differ?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Both should get the same generic alt text.",
+        "The flourish gets empty alt so screen readers skip it; the circuit diagram gets alt that carries its components and connections.",
+        "The flourish needs a long description; the circuit diagram can be left with empty alt.",
+        "Neither needs alt text."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_3_5_alt_text_and_accessibility_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Classify first. Decorative images take empty alt to avoid noise; meaningful images need alt that conveys their content. Reversing this is a common error.",
+      "misconception_id": "ail606_supplement_3_5_decorative_needs_no_alt",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "accessibility"
       ]
     },
     {
       "id": "ail606_supplement_3_5_alt_text_and_accessibility_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_alt_text_and_accessibility",
+      "stem": "An AI tool generates a status legend that marks safe steps green and risky steps red, with no other label. Before shipping, what accessibility judgment must you apply?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept it, since red and green are intuitive.",
+        "Recognize that color-only coding excludes color-blind learners; add text labels or patterns so the safe-versus-risky distinction survives without color.",
+        "Make the red brighter so it stands out more.",
+        "Reject all AI-generated legends."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_3_5_alt_text_and_accessibility_ai_as_authority",
+      "explanation": "Meaning must not be carried by color alone. Adding labels or patterns keeps the distinction usable in color blindness and grayscale, which the tool will not enforce for you.",
+      "misconception_id": "ail606_supplement_3_5_color_alone_carries_meaning",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "accessibility"
       ]
     },
     {
       "id": "ail606_supplement_3_5_alt_text_and_accessibility_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_alt_text_and_accessibility",
+      "stem": "A multi-series line graph with twelve data points per series is too rich to capture in a short alt attribute. What is the best accessible solution?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Write a single 250-word alt attribute containing every value.",
+        "Give a brief alt naming the graph's purpose and trend, plus a nearby data table or long description holding the full values.",
+        "Leave the alt empty, since the graph is complex.",
+        "Replace the graph with the word graph."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_3_5_alt_text_and_accessibility_completion_only_model",
+      "explanation": "Alt text should stay brief. Complex visuals pair a short alt with a longer description or data table the learner can read in full, rather than overloading the alt attribute.",
+      "misconception_id": "ail606_supplement_3_5_overlay_alt_for_complex",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "accessibility"
       ]
     }
   ]

@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_7_5_reflection_as_data",
   "misconceptions": [
     {
-      "id": "ail606_supplement_7_5_reflection_as_data_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_7_5_reflection_as_data_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_7_5_reflection_as_data_description_as_analysis",
+      "pattern": "description_mistaken_for_analysis",
+      "description": "Treating global, descriptive reflection (liked it, learned a lot) as analytic evidence about a design feature",
+      "trigger": "learner cites praise or general impressions as data without a named feature, behavior, or consequence",
+      "feedback": "Use excerpts that connect a specific design feature to a behavior and a consequence. Global praise cannot be coded against a decision.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_7_5_reflection_as_data_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_7_5_reflection_as_data_no_coding_scheme",
+      "pattern": "reflection_coded_without_scheme",
+      "description": "Applying vague valence labels to reflections instead of defined, observable codes that another coder could apply",
+      "trigger": "learner sorts reflections as positive or good with no operational code definition",
+      "feedback": "Define codes by an observable claim in the text so two coders could agree, rather than by overall feeling.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_7_5_reflection_as_data_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_7_5_reflection_as_data_self_report_as_outcome",
+      "pattern": "self_report_as_learning_outcome",
+      "description": "Treating learners' felt helpfulness or perceived learning as proof of measured learning gains",
+      "trigger": "learner claims a learning effect solely from reflections that say the lesson helped",
+      "feedback": "Reflection is evidence of perception. Pair it with a performance measure before claiming a learning effect.",
+      "rail_action": "ask"
     }
   ]
 }

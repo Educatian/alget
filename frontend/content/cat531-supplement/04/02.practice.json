@@ -4,59 +4,59 @@
       "id": "cat531_supplement_4_2_facial_recognition_as_classroom_case_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_facial_recognition_as_classroom_case",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A vendor reports that its classroom facial-recognition check-in is 98 percent accurate overall. What should a teacher check before treating that number as evidence the tool is fair?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Whether 98 percent is higher than the previous vendor's number.",
+        "Whether accuracy is broken down by student subgroup, since an average can hide a larger error rate for darker-skinned students.",
+        "Whether the 2 percent error happens in the morning or afternoon.",
+        "Whether the school can afford the licensing fee."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_4_2_facial_recognition_as_classroom_case_polish_as_evidence",
+      "explanation": "Overall accuracy can mask subgroup error. The equity tension lives in the breakdown, not the average.",
+      "misconception_id": "cat531_supplement_4_2_accuracy_equals_fairness",
       "difficulty": "easy",
       "concept_ids": [
-        "cat531_supplement_ai_ethics_and_ethobot_3_2",
         "cat531_supplement_facial_recognition_as_classroom_case",
-        "evidence_based_revision",
-        "ai_supported_learning"
+        "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_2_facial_recognition_as_classroom_case_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_facial_recognition_as_classroom_case",
+      "stem": "A student submits a tension map that reads only: 'Facial recognition is biased, so the school should ban it.' What is the most useful revision note?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Add a citation to make the claim sound more academic.",
+        "Name the opposing pole and its evidence (time saved at check-in) so the map shows a negotiated decision rather than a single verdict.",
+        "Make the map more colorful so it reads as finished.",
+        "Replace 'biased' with a stronger word."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_4_2_facial_recognition_as_classroom_case_annotation_without_signal",
+      "explanation": "A tension map needs both poles with evidence; a one-pole verdict is not yet a negotiated decision.",
+      "misconception_id": "cat531_supplement_4_2_verdict_not_negotiation",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_facial_recognition_as_classroom_case",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_2_facial_recognition_as_classroom_case_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_facial_recognition_as_classroom_case",
+      "stem": "A teacher maps the case purely as 'instructional time saved versus equity.' Which question most clearly reveals a value the map is hiding?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "How many minutes per period are actually saved?",
+        "Where are the students' face templates stored, by whom, and for how long?",
+        "Which teacher proposed the pilot first?",
+        "Does the district like the vendor's customer service?"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_4_2_facial_recognition_as_classroom_case_ai_as_authority",
+      "explanation": "Biometric data retention is a third, privacy pole the time-versus-equity framing hides.",
+      "misconception_id": "cat531_supplement_4_2_ignoring_data_retention",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_facial_recognition_as_classroom_case",
         "ai_supported_learning"
       ]
     },
@@ -64,19 +64,20 @@
       "id": "cat531_supplement_4_2_facial_recognition_as_classroom_case_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which negotiated decision is most defensible given a documented subgroup accuracy gap and 24-month vendor retention of face templates?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Deploy the system district-wide because it saves 10 minutes per period.",
+        "Keep manual check-in now and revisit only if the vendor shows parity across skin tones and reduces retention.",
+        "Ban all attendance technology permanently.",
+        "Let each teacher decide privately without recording the reasoning."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_4_2_facial_recognition_as_classroom_case_completion_only_model",
+      "explanation": "The strong decision names conditions for change tied to the evidence, so a reviewer can audit it.",
+      "misconception_id": "cat531_supplement_4_2_verdict_not_negotiation",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_evidence_based_revision",
+        "cat531_supplement_facial_recognition_as_classroom_case"
       ]
     }
   ]

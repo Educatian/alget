@@ -35,15 +35,15 @@ The anchors should do work in your artifact. If Mayer multimedia learning or cog
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Walk through one concrete accessibility review of a single prototype screen, a narrated storyboard frame with an embedded diagram and a "Next" button.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (the polished-but-inaccessible screen).** The screen looked finished: clean typography, a labeled diagram, instructions in light gray on white. A structured WCAG-anchored pass found three concrete blockers. (a) The diagram had no alt text, so a screen-reader user reached "image" with no content. (b) The instruction text measured a 2.9:1 contrast ratio against the background, below the 4.5:1 minimum for normal text. (c) The only cue for the required action was color ("the red frame is next"), unusable for a color-blind learner.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+1. **Review against criteria, not impression.** "Looks clean" is not an accessibility finding. Each blocker is tied to a specific WCAG success criterion (1.1.1 non-text content, 1.4.3 contrast, 1.4.1 use of color), so the review produces a checkable list rather than a vibe.
+2. **Fix in priority order by who is excluded.** The missing alt text fully excludes a screen-reader user, so it is fixed first: a one-sentence alt description naming what the diagram shows and why it matters. Contrast is raised to 4.6:1. The color-only cue gains a text label plus an arrow icon so the action is conveyed three ways.
+3. **Confirm the fix does not add load for everyone else.** By **UDL learner variability**, the redundant cue (color plus label plus icon) supports varied learners without crowding the screen, because the existing layout had room.
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
-
-Notice the shift: the artifact is no longer just polished. The revision points to **cognitive load theory**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+**After (the screen as an accessible artifact).** Three named WCAG blockers closed: alt text added (1.1.1), contrast 2.9:1 raised to 4.6:1 (1.4.3), action cue no longer color-only (1.4.1). The change is auditable: a reviewer can map each fix to its success criterion and to the specific learner who was previously excluded, justified by **UDL learner variability**.
 
 ## Decision Rule
 

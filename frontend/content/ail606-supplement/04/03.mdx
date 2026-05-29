@@ -35,15 +35,41 @@ The anchors should do work in your artifact. If Mayer multimedia learning or cog
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Work through one annotated before/after revision of a practice-screen wireframe, the kind you would walk a reviewer through.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (wireframe of a mastery-check screen):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```
++------------------------------------------+
+|  [Question text]                         |
+|  ( ) Option A   ( ) Option B             |
+|  ( ) Option C   ( ) Option D             |
+|  [ Hint ] beside each item               |
+|  [ Submit ]   feedback after all items   |
++------------------------------------------+
+```
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+**Annotations a reviewer would leave:**
 
-Notice the shift: the artifact is no longer just polished. The revision points to **cognitive load theory**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+1. No region is labeled with the learner action it supports, so this reads as a layout, not learning logic.
+2. A per-item Hint button on a mastery check invites prompting, which contradicts the screen's purpose of observing unaided performance.
+3. Feedback batched to the end fits a final check, but the per-item hints fight that intent.
+
+**After (revised wireframe with logic annotations):**
+
+```
++------------------------------------------+
+|  [Question text]   <- assess recall of   |
+|                       Concept 4.2        |
+|  ( ) A  ( ) B  ( ) C  ( ) D              |
+|  [ Need help? ] one button, bottom,      |
+|     logs a hint request before scoring   |
+|  [ Submit ]  -> end-of-set feedback,     |
+|     so performance stays unaided         |
++------------------------------------------+
+```
+
+**Why the after version is stronger:** each region now names the learner action and its place in the sequence (recall assessment, then optional help, then end-of-set feedback). Moving hints to one effortful bottom button encodes the assessment intent rather than decorating the screen. The reviewer can now critique the teaching decision, not just the look. The change is a clearer learning argument, not a prettier screen.
 
 ## Decision Rule
 

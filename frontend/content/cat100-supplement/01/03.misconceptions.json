@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_1_3_ethobot_cat100_orientation",
   "misconceptions": [
     {
-      "id": "cat100_supplement_1_3_ethobot_cat100_orientation_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_1_3_ethobot_cat100_orientation_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_1_3_ethobot_cat100_orientation_tutor_grades",
+      "pattern": "tutor_assumed_to_grade",
+      "description": "Believing the ETHOBOT tutor assigns the official course grade or replaces the instructor",
+      "trigger": "learner expects the tutor's response to be the final graded score",
+      "feedback": "ETHOBOT is a practice and feedback tutor, not the grader. Your instructor and the rubric set the official grade; use the tutor to prepare.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_1_3_ethobot_cat100_orientation_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_1_3_ethobot_cat100_orientation_vague_request",
+      "pattern": "vague_help_request",
+      "description": "Asking the tutor a vague question like 'help' or 'is this good' with no goal or context",
+      "trigger": "learner sends a one-word or contextless request to the tutor",
+      "feedback": "Give the tutor a goal, the artifact, and what you are stuck on, for example: 'Check whether this resume bullet has a measurable result.'",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_1_3_ethobot_cat100_orientation_answer_machine",
+      "pattern": "tutor_as_answer_machine",
+      "description": "Asking the tutor to produce the finished assignment instead of feedback you can act on",
+      "trigger": "learner asks the tutor to write or complete the deliverable",
+      "feedback": "Ask for feedback, a comparison, or a next step you can apply. The work and the judgment stay yours.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_1_3_ethobot_cat100_orientation_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_1_3_ethobot_cat100_orientation_log_skips_rejections",
+      "pattern": "critique_log_omits_rejected",
+      "description": "Recording only accepted tutor suggestions in the critique log and dropping the rejected ones",
+      "trigger": "learner logs only changes they made and not suggestions they declined",
+      "feedback": "A complete critique log records accepted, modified, and rejected suggestions, each with a one-line reason.",
       "rail_action": "practice"
     }
   ]

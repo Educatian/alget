@@ -4,16 +4,16 @@
       "id": "cat531_supplement_7_8_field_transfer_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_field_transfer_studio",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "In the capstone studio a candidate assembles a field-transfer portfolio for one technology decision across her placement. Which structure shows synthesis rather than a stack of separate assignments?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Each chapter artifact pasted in order with no connection between them.",
+        "One decision traced from the online case, through her observation notes and equity audit, to the revision she made and the student-voice evidence that justified it.",
+        "The most polished single artifact, presented alone.",
+        "A reflection written after submission summarizing how the semester felt."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_7_8_field_transfer_studio_polish_as_evidence",
+      "explanation": "A capstone shows synthesis when one decision is traced across the chapter's tools and evidence. A stack of artifacts, a single polished piece, or an after-the-fact reflection does not connect the reasoning.",
+      "misconception_id": "cat531_supplement_7_8_portfolio_as_stack",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_field_based_transfer_and_coaching",
@@ -26,16 +26,16 @@
       "id": "cat531_supplement_7_8_field_transfer_studio_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A hiring committee will read the portfolio. Which framing makes the candidate's professional judgment legible to a reader who was not in the placement?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Assume the reader knows the classroom context.",
+        "State the placement constraint, the decision she made, the evidence that justified it, and what she would do differently if the context changed.",
+        "List the names of every tool she tried.",
+        "Emphasize how hard she worked all semester."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_7_8_field_transfer_studio_annotation_without_signal",
+      "explanation": "A reader outside the placement needs the constraint, decision, evidence, and adaptation made explicit. Effort claims and tool lists do not make the judgment legible.",
+      "misconception_id": "cat531_supplement_7_8_assume_shared_context",
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
@@ -45,16 +45,16 @@
       "id": "cat531_supplement_7_8_field_transfer_studio_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The candidate asks an AI tool to write a unified narrative tying her chapter artifacts together. It produces a smooth story but smooths over the equity tension she actually wrestled with. How should she use it?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Submit the smooth narrative because it reads professionally.",
+        "Restore the equity tension and the hard tradeoff she made, because the studio is meant to show real judgment, not a frictionless story.",
+        "Let the AI decide which tensions are worth keeping.",
+        "Remove the equity section since the AI left it out."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_7_8_field_transfer_studio_ai_as_authority",
+      "explanation": "A capstone's value is the real tradeoff, which AI tends to smooth away. The candidate must restore the tension she navigated rather than present a frictionless narrative.",
+      "misconception_id": "cat531_supplement_7_8_ai_smooths_tension",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -64,16 +64,16 @@
       "id": "cat531_supplement_7_8_field_transfer_studio_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "What would let an evaluator confirm the portfolio shows transferable judgment rather than one lucky lesson?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A claim that the placement went well overall.",
+        "Evidence that the same decision rule held across at least two situations, plus a clear account of how she would adapt it under a new constraint.",
+        "A high grade on the original online module.",
+        "A note that the mentor was satisfied."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_7_8_field_transfer_studio_completion_only_model",
+      "explanation": "Transferable judgment is shown when a decision rule holds across situations and the candidate can adapt it to a new constraint. A single outcome, grade, or satisfaction note does not demonstrate transfer.",
+      "misconception_id": "cat531_supplement_7_8_one_success_proves_transfer",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

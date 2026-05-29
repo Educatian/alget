@@ -35,15 +35,23 @@ Use these anchors as lenses, not as names to drop into a reflection. A useful le
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+Here is one persona-based simulation check written two ways. Read the before version, then the annotated after version.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (weak check):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> Persona: Maria, 42, marketing director. Walkthrough: completed the module. No problems found.
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+That check found nothing because the persona was a demographic label and the walkthrough never left the happy path. Now the same check rebuilt to do work:
 
-The stronger version treats the storyboard frame sequence with narration, signaling, and reader-action notes as evidence. It names what changed, links the change to **cognitive load theory**, and leaves a reader able to audit the decision.
+**After (annotated simulation):**
+
+1. **Persona (goal + constraint + context):** Devin must finish required onboarding on a phone during a 10-minute commute, with intermittent signal and audio off.
+2. **Path driven:** Started Frame 2, lost signal mid-video, returned to find the module had reset to Frame 1.
+3. **Failure observed:** No progress save and audio-only narration on Frame 2, so the segment was inaccessible muted.
+4. **Design consequence:** Added per-frame progress persistence and on-screen captions for all narrated frames. Logged this as a revision to screens 2 and 4.
+5. **Rejected alternative:** Considered a "do not use on mobile" warning instead. Rejected because the persona's context is the actual use context, not an edge case to exclude.
+
+The after version names a goal, a constraint, and a context, drives the persona into friction, and converts the finding into a specific screen revision a committee can audit.
 
 ## Decision Rule
 

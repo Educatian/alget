@@ -4,59 +4,59 @@
       "id": "cat531_supplement_4_7_adapting_ethobot_prompts_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_adapting_ethobot_prompts",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "The default prompt 'Conduct a Socratic dialogue probing the ethics of surveillance' produces one-word answers from a class of English learners. What is the most likely teaching problem?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The students are not interested in ethics.",
+        "The prompt's abstract framing and jargon do not fit this class, so it needs adaptation rather than blame.",
+        "The Ethobot model is broken and should be replaced.",
+        "The topic of surveillance is inappropriate for ninth grade."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_4_7_adapting_ethobot_prompts_polish_as_evidence",
+      "explanation": "A default prompt is not universal; thin responses signal a need to adapt framing and vocabulary to the class.",
+      "misconception_id": "cat531_supplement_4_7_default_prompt_universal",
       "difficulty": "easy",
       "concept_ids": [
-        "cat531_supplement_ai_ethics_and_ethobot_3_2",
         "cat531_supplement_adapting_ethobot_prompts",
-        "evidence_based_revision",
-        "ai_supported_learning"
+        "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_7_adapting_ethobot_prompts_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_adapting_ethobot_prompts",
+      "stem": "A teacher adapts the prompt by adding 'Tell students that hallway cameras are a violation of privacy, then discuss.' Why is this adaptation poor?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It is longer than the original prompt.",
+        "It steers students to a predetermined verdict instead of scaffolding how they reason.",
+        "It mentions hallways, which are not academic.",
+        "It uses the word violation, which is too strong."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_4_7_adapting_ethobot_prompts_annotation_without_signal",
+      "explanation": "Adapting should improve the reasoning move, not bake the conclusion into the prompt.",
+      "misconception_id": "cat531_supplement_4_7_steering_the_verdict",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_adapting_ethobot_prompts",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_7_adapting_ethobot_prompts_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_adapting_ethobot_prompts",
+      "stem": "Which prompt scaffold supports English learners without steering the verdict?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "If the student disagrees with cameras, tell them they are correct.",
+        "If the student gives a one-word answer, ask for an example from their own school day.",
+        "Tell the student the ethical conclusion the class should reach.",
+        "Stop the dialogue after the first short answer."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_4_7_adapting_ethobot_prompts_ai_as_authority",
+      "explanation": "A language scaffold elicits more reasoning without dictating the conclusion.",
+      "misconception_id": "cat531_supplement_4_7_steering_the_verdict",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_adapting_ethobot_prompts",
         "ai_supported_learning"
       ]
     },
@@ -64,19 +64,20 @@
       "id": "cat531_supplement_4_7_adapting_ethobot_prompts_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A teacher reports 'I simplified the prompt and it worked better.' What single addition would make this a defensible evidence claim?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The total number of words removed from the prompt.",
+        "A comparison of a turn from the default run and the adapted run showing where reasoning became richer.",
+        "The date the prompt was changed.",
+        "A note that students seemed happier."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_4_7_adapting_ethobot_prompts_completion_only_model",
+      "explanation": "Transcript evidence comparing the two runs makes the improvement claim auditable.",
+      "misconception_id": "cat531_supplement_4_7_change_without_evidence",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_evidence_based_revision",
+        "cat531_supplement_adapting_ethobot_prompts"
       ]
     }
   ]

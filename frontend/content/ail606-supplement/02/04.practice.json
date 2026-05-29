@@ -4,17 +4,17 @@
       "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_feedback_loops_and_learner_control",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A quiz item responds to a wrong answer with only \"Incorrect. Score: 0/1.\" Why is this not yet a feedback loop?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The score should be shown as a percentage instead of a fraction.",
+        "It delivers a verdict but no actionable information about what was misunderstood or what to try next.",
+        "It should award partial credit for effort.",
+        "The word Incorrect is too harsh and should be softened."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_2_4_feedback_loops_and_learner_control_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A verdict alone closes nothing. A feedback loop tells the learner what was misunderstood and gives a next move, so the learner can act.",
+      "misconception_id": "ail606_supplement_2_4_feedback_loops_and_learner_control_verdict_is_feedback",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_feedback_loops_and_learner_control"
       ]
@@ -22,55 +22,55 @@
     {
       "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_feedback_loops_and_learner_control",
+      "stem": "A module for first-week novices adds a \"Skip any section\" menu giving full freedom to reorder and exit. What is the design risk?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "There is no risk; more control always improves motivation.",
+        "Novices often lack the prior knowledge to self-regulate, so unbounded skipping can let them miss the scaffolding they most need.",
+        "The menu will slow the page load.",
+        "Skipping is fine as long as a final exam blocks the exit."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_2_4_feedback_loops_and_learner_control_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Learner control should be calibrated to expertise. Guided control, a recommended path with optional detours, suits novices better than unbounded freedom.",
+      "misconception_id": "ail606_supplement_2_4_feedback_loops_and_learner_control_control_means_anything",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_feedback_loops_and_learner_control"
       ]
     },
     {
       "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_feedback_loops_and_learner_control",
+      "stem": "A vocabulary task is meant to build long-term retrieval. The designer attaches an instant answer reveal to every prompt. Why might delayed feedback serve this goal better?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Delayed feedback is cheaper to build.",
+        "For retrieval and self-monitoring tasks, a brief delay forces the learner to commit and self-assess first, which can strengthen retention more than an instant reveal.",
+        "Instant feedback is never appropriate in any task.",
+        "Delayed feedback prevents cheating, which is the main concern."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_2_4_feedback_loops_and_learner_control_ai_as_authority",
+      "explanation": "Feedback timing is a design choice. Instant reveal can short-circuit the retrieval effort the task is built to produce.",
+      "misconception_id": "ail606_supplement_2_4_feedback_loops_and_learner_control_immediate_always_better",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_feedback_loops_and_learner_control"
       ]
     },
     {
       "id": "ail606_supplement_2_4_feedback_loops_and_learner_control_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Pilot data show 70 percent of learners who got the bare verdict \"Incorrect\" repeated the same error on the next attempt. Which revision is the strongest evidence-based response?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Add an encouraging emoji to the Incorrect message.",
+        "Replace the bare verdict with feedback that names the specific error type and offers one targeted retry, then re-pilot to see whether the repeat-error rate drops.",
+        "Lower the passing threshold so fewer learners see Incorrect.",
+        "Hide the score so learners feel less discouraged."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_2_4_feedback_loops_and_learner_control_completion_only_model",
+      "explanation": "The 70 percent repeat rate is evidence the loop is not closing. Actionable feedback plus a targeted retry, then re-measurement, is the defensible revision.",
+      "misconception_id": "ail606_supplement_2_4_feedback_loops_and_learner_control_verdict_is_feedback",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

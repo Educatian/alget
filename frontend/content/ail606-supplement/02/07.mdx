@@ -33,17 +33,32 @@ Three course anchors shape the reasoning here:
 
 Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
 
-## Worked Example
+## Worked Example: Building a Comparative Audit Matrix
 
-Start with a thin claim that many students write on a first pass:
+Here is a before-and-after of an audit comparing three authoring tools for a task defined as "let novice designers build a branching scenario with screen-reader support, on a fixed budget."
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (unsound comparison)**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+The draft praised each tool on a different axis: "Tool A is cheap, Tool B has the most templates, Tool C is the newest." It then picked Tool B for its template count. No two tools were judged on the same dimension.
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+**The decision point.** The audit was rebuilt around five shared criteria, scored 0 to 2 for every tool, with accessibility marked as a non-negotiable gate.
 
-The stronger version treats the storyboard frame sequence with narration, signaling, and reader-action notes as evidence. It names what changed, links the change to **cognitive load theory**, and leaves a reader able to audit the decision.
+| Criterion (gate marked *) | Tool A | Tool B | Tool C |
+| --- | --- | --- | --- |
+| Branching authoring | 2 | 2 | 1 |
+| Screen-reader support * | 2 | 0 | 2 |
+| Novice learnability | 2 | 1 | 1 |
+| Cost within budget | 2 | 2 | 0 |
+| Export to LMS | 1 | 2 | 2 |
+| Total | 9 | 7 | 6 |
+
+**After (defensible recommendation)**
+
+Tool B had the most templates but scored 0 on the accessibility gate, which disqualifies it for a cohort that includes screen-reader users. Tool A wins on both total score and the gate.
+
+Audit note (decision level): "I scored all three tools on one shared criteria set rather than praising each on its own strength. Accessibility is a gate, not a weight, so Tool B's template lead cannot rescue a 0 there. The recommendation holds for novice designers on this budget with screen-reader users; if that context changed, Tool B could re-enter."
+
+The audit is defensible because the verdict rests on common criteria, an explicit gate, and a named context, not on a feature count or a per-tool compliment.
 
 ## Decision Rule
 

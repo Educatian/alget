@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_3_8_module_3_ai_analysis_studio",
   "misconceptions": [
     {
-      "id": "cat531_supplement_3_8_module_3_ai_analysis_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_3_8_module_3_ai_analysis_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_3_8_single_lens_analysis",
+      "pattern": "complex_case_judged_on_one_dimension",
+      "description": "Analyzing a classroom AI decision through only one lens, such as engagement, while ignoring privacy, bias, and policy",
+      "trigger": "learner recommends adopting or banning a tool after weighing a single factor",
+      "feedback": "A capstone analysis weighs pedagogy, bias, literacy, privacy, policy, and disclosure together. State how each lens shifts the recommendation, not just the one you find easiest.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_3_8_module_3_ai_analysis_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_3_8_recommendation_without_tradeoff",
+      "pattern": "recommendation_omits_named_tradeoffs",
+      "description": "Giving an all-good or all-bad verdict without naming the tension the decision had to resolve",
+      "trigger": "learner presents a recommendation with no rejected option or acknowledged cost",
+      "feedback": "Every defensible decision sacrifices something. Name the strongest opposing consideration and why you decided against it, so a reviewer can audit the tradeoff.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_3_8_module_3_ai_analysis_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_3_8_ai_self_evaluates",
+      "pattern": "ai_used_to_validate_its_own_use",
+      "description": "Asking the AI tool under review to judge whether it should be adopted, then treating that as evidence",
+      "trigger": "learner cites the tool's own claims about its fairness or safety as the analysis",
+      "feedback": "The tool cannot certify itself. Ground the analysis in independent evidence: disaggregated data, the data policy, and your own classroom observation.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_3_8_analysis_without_action",
+      "pattern": "analysis_stops_before_a_decision",
+      "description": "Producing a balanced description of pros and cons but never committing to a defensible recommendation",
+      "trigger": "learner lists considerations and stops without a decision or next step",
+      "feedback": "An analysis studio ends in a committed, justified recommendation with a concrete next step, not an endless on-the-other-hand list.",
       "rail_action": "practice"
     }
   ]

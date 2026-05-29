@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_4_8_module_4_ethics_studio",
   "misconceptions": [
     {
-      "id": "cat531_supplement_4_8_module_4_ethics_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_4_8_efficiency_over_purpose",
+      "pattern": "efficiency_justifies_adoption",
+      "description": "Justifying an AI tool by its efficiency while skipping the learning purpose it is supposed to serve",
+      "trigger": "learner adopts a tool because it is fast or consistent without stating what learning goal it advances",
+      "feedback": "State the learning purpose first. Efficiency is only defensible once the tool clearly serves a specific learning goal.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_4_8_module_4_ethics_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_4_8_module_4_ethics_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_4_8_single_lens_decision",
+      "pattern": "deciding_with_one_ethics_lens",
+      "description": "Reaching a decision using only one lens (only equity, or only privacy) instead of integrating the module's tools",
+      "trigger": "learner's capstone map applies one check and ignores stakeholders, consent, or the negotiated decision",
+      "feedback": "Integrate the lenses. A capstone decision should run the stakeholder, privacy and consent, and negotiated-decision checks together.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_4_8_module_4_ethics_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_4_8_no_rejected_option",
+      "pattern": "decision_without_a_rejected_alternative",
+      "description": "Presenting a final decision with no record of an alternative that was considered and rejected for a reason",
+      "trigger": "learner states a conclusion but never shows what they ruled out",
+      "feedback": "Record at least one rejected option and why. A defensible judgment shows the alternative it turned down.",
+      "rail_action": "explain"
     }
   ]
 }

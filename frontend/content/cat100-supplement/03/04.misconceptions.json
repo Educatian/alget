@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_3_4_pivot_tables_as_summaries",
   "misconceptions": [
     {
-      "id": "cat100_supplement_3_4_pivot_tables_as_summaries_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_3_4_pivot_tables_as_summaries_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_3_4_pivot_tables_as_summaries_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_3_4_pivot_tables_as_summaries_count_vs_sum",
+      "pattern": "wrong_value_aggregation",
+      "description": "Reading whatever aggregation the pivot defaults to as the answer, without checking whether Sum, Count, or Average matches the question asked",
+      "trigger": "learner reports a pivot total without confirming the value field setting",
+      "feedback": "Match the aggregation to the question. Use Sum for totals, Count for how many records, and Average for typical size. Set this in Value Field Settings.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_3_4_pivot_tables_as_summaries_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_3_4_pivot_tables_as_summaries_stale_source_range",
+      "pattern": "stale_pivot_source_range",
+      "description": "Assuming a pivot table updates automatically when new rows are added, even though its source range was fixed to the original data",
+      "trigger": "learner adds rows and the pivot totals do not change after refresh",
+      "feedback": "A pivot only summarizes the range it was given. Expand the source range or base the pivot on an Excel Table so added rows are included on refresh.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_3_4_pivot_tables_as_summaries_grand_total_misread",
+      "pattern": "grand_total_as_per_category",
+      "description": "Reading the pivot Grand Total row as if it were a single category subtotal rather than the total across all categories",
+      "trigger": "learner cites the Grand Total when a per-region figure was needed",
+      "feedback": "The Grand Total combines every category. Read the individual region rows for per-category figures, not the bottom total.",
+      "rail_action": "ask"
     }
   ]
 }

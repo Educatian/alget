@@ -35,15 +35,27 @@ The anchors should do work in your artifact. If NACE career readiness or ISTE di
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Suppose a downloaded export arrives looking like this, with a banner title, a blank row, mixed name format, and inconsistent regions:
 
-> I made the Excel pivot-table finding with unit labels, source note, and claim-first chart title clearer.
+```
+   A              B        C
+1  Q3 Sales Report
+2
+3  Name           Region   Units
+4  Lopez, Maria   TX       18
+5  Chen, David    texas     9
+6  Park, Sun      Tx       12
+```
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+Step 1. Delete rows 1 and 2 so the header row `Name | Region | Units` becomes row 1 with no banner or blank row above it.
 
-> I revised the Excel pivot-table finding with unit labels, source note, and claim-first chart title so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Step 2. Split column A on the comma with Text to Columns so `Lopez, Maria` becomes `Lopez` in one column and `Maria` in the next. Now one value lives in one cell.
 
-Notice the shift: the artifact is no longer just polished. The revision points to **ISTE digital citizenship**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+Step 3. Standardize the Region column. Replace `texas` and `Tx` with `TX` so all three rows read `TX`. A pivot will now count one region, not three.
+
+Step 4. Confirm Units is numeric. `=SUM(units)` returns `39`. If any cell had been typed as `18 units`, that text cell would have been skipped and the total would read `21`, which is the visible symptom of the numbers-stored-as-text problem.
+
+The clean table is now: three rows, one header, one value per cell, one spelling per region, and a SUM that matches the data. Each step is a decision a reader can re-trace against the raw export.
 
 ## Decision Rule
 

@@ -3,17 +3,17 @@
     {
       "id": "ail606_supplement_1_3_cognitive_load_diagnosis_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_cognitive_load_diagnosis",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "cognitive_load",
+      "stem": "On a diagnosis table, a designer logs that a lesson on balancing chemical equations is hard 'because the steps interact and cannot be understood one at a time.' Which load category does this describe?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Extraneous load caused by poor layout.",
+        "Intrinsic load from high element interactivity in the task itself.",
+        "Germane load from the learner building a schema.",
+        "Extraneous load from a distracting background image."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_1_3_cognitive_load_diagnosis_polish_as_evidence",
+      "explanation": "Intrinsic load comes from the inherent element interactivity of the material. When elements must be processed together to be understood, intrinsic load is high regardless of the layout.",
+      "misconception_id": "ail606_supplement_1_3_clt_intrinsic_is_fixed_difficulty",
       "difficulty": "medium",
       "concept_ids": [
         "cognitive_load"
@@ -22,56 +22,56 @@
     {
       "id": "ail606_supplement_1_3_cognitive_load_diagnosis_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cognitive_load",
+      "stem": "Two diagnosis-table rows describe the same lesson. Row A: 'cluttered slide with unrelated clip art.' Row B: 'learner self-explains why each step follows.' Which row is extraneous load and which is germane load?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Both are extraneous load.",
+        "Row A is extraneous load to reduce; Row B is germane load to support.",
+        "Row A is germane load; Row B is extraneous load.",
+        "Both are intrinsic load and cannot be changed."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_1_3_cognitive_load_diagnosis_annotation_without_signal",
+      "explanation": "Extraneous load is processing wasted on poor design (clip art) and should be cut. Germane load is processing devoted to building schemas (self-explanation) and should be supported.",
+      "misconception_id": "ail606_supplement_1_3_clt_all_load_is_bad",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "cognitive_load"
       ]
     },
     {
       "id": "ail606_supplement_1_3_cognitive_load_diagnosis_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cognitive_load",
+      "stem": "A novice and an expert both work the same dense diagram. The diagnosis table records 'high intrinsic load.' Why must the table state the learner, not just the material?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Because intrinsic load is identical for everyone who sees the material.",
+        "Because intrinsic load depends on element interactivity relative to the learner's existing schemas, so the expert's chunked schema lowers it while the novice's load stays high.",
+        "Because experts always experience higher load than novices.",
+        "Because intrinsic load is only about screen layout, not the learner."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_1_3_cognitive_load_diagnosis_ai_as_authority",
-      "difficulty": "medium",
+      "explanation": "Element interactivity is relative to what the learner already knows. An expert's schemas chunk many elements into one, lowering intrinsic load, so a diagnosis must name the target learner.",
+      "misconception_id": "ail606_supplement_1_3_clt_intrinsic_is_fixed_difficulty",
+      "difficulty": "hard",
       "concept_ids": [
-        "ai_supported_learning"
+        "cognitive_load"
       ]
     },
     {
       "id": "ail606_supplement_1_3_cognitive_load_diagnosis_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "A designer wants to lower intrinsic load on a genuinely complex procedure without dumbing it down. Which move is best justified by cognitive load theory?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Delete half the steps so the procedure is shorter.",
+        "Use sequencing and pre-training: teach the component concepts first, then present the whole procedure, so fewer novel elements interact at once.",
+        "Add decorative animation to make the procedure feel easier.",
+        "Present every step simultaneously so the learner sees the whole picture at once."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_1_3_cognitive_load_diagnosis_completion_only_model",
-      "difficulty": "hard",
+      "explanation": "Pre-training and segmenting manage intrinsic load by building partial schemas first, reducing the number of novel interacting elements processed at once, without removing essential content.",
+      "misconception_id": "ail606_supplement_1_3_clt_reduce_load_means_remove_content",
+      "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
       ]

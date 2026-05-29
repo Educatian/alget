@@ -4,16 +4,16 @@
       "id": "ail606_supplement_4_2_principle_to_feature_traceability_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_principle_to_feature_traceability",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A traceability row reads: Principle = Mayer's signaling principle; Feature = \"we added color.\" Which rewrite makes the row defensible?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Principle = signaling; Feature = we used a nicer color palette across the deck.",
+        "Principle = signaling; Feature = a yellow highlight cues the one term the narration is explaining at that moment, so attention is directed instead of left to scan the whole frame.",
+        "Principle = signaling; Feature = the slide looks more modern now.",
+        "Principle = signaling; Feature = AI suggested the color, so we kept it."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_4_2_principle_to_feature_traceability_polish_as_evidence",
+      "explanation": "Traceability requires the feature to be the operational mechanism of the principle. Signaling directs attention to essential material at the right moment, not decoration.",
+      "misconception_id": "ail606_supplement_4_2_traceability_decoration_as_principle",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_principle_to_feature_traceability"
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_4_2_principle_to_feature_traceability_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_principle_to_feature_traceability",
+      "stem": "Which direction should a sound traceability argument run?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Feature to principle: build the feature you like, then find a principle that sounds like it justifies it.",
+        "Principle to feature: name the learning principle and the demand it addresses, then show the specific feature that operationalizes it.",
+        "Either direction works as long as both are named somewhere in the matrix.",
+        "Principle to aesthetic: pick the principle that matches the chosen visual style."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_4_2_principle_to_feature_traceability_annotation_without_signal",
+      "explanation": "Post-hoc principle-fitting rationalizes a feature you already wanted. Traceability is meaningful only when the principle and its demand drive the feature.",
+      "misconception_id": "ail606_supplement_4_2_traceability_post_hoc_justification",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_principle_to_feature_traceability"
       ]
     },
     {
       "id": "ail606_supplement_4_2_principle_to_feature_traceability_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "You ask an AI tool to map your storyboard features to multimedia principles. It returns a clean table citing the coherence and modality principles. What is the strongest bounded use?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept the table because every row cites a real principle.",
+        "Check each row for a controlling principle per feature and reject any row where the cited principle does not actually describe what the feature does to the learner's processing.",
+        "Add every principle the AI lists so the table looks thorough.",
+        "Ask the AI to also score each mapping out of ten and report the average."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_4_2_principle_to_feature_traceability_ai_as_authority",
+      "explanation": "AI often attaches plausible-sounding principle labels that do not match the feature's actual mechanism. The designer must audit each mapping against the principle's real definition.",
+      "misconception_id": "ail606_supplement_4_2_traceability_ai_label_matching",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,17 +60,17 @@
     {
       "id": "ail606_supplement_4_2_principle_to_feature_traceability_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "A reviewer notes that your matrix \"maps every feature to three principles each.\" Why might this be a weakness rather than a strength?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Three principles per feature is always too many to defend.",
+        "Stacking many principles onto one feature often hides that the feature was not designed from any single principle's demand, making the mapping decorative rather than diagnostic.",
+        "Reviewers prefer one principle per matrix, not per feature.",
+        "It makes the matrix too long to fit on one page."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_4_2_principle_to_feature_traceability_completion_only_model",
+      "explanation": "Dense many-to-one mappings usually signal post-hoc labeling. A diagnostic matrix names the controlling principle and the demand it addresses, even if a feature touches others secondarily.",
+      "misconception_id": "ail606_supplement_4_2_traceability_principle_overstacking",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

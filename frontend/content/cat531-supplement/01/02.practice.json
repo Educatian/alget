@@ -4,16 +4,16 @@
       "id": "cat531_supplement_1_2_design_tensions_before_tool_choice_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_design_tensions_before_tool_choice",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A department lead announces: 'We picked the new LMS analytics dashboard; now let's figure out what problems it solves.' Why does this sequence violate the principle of naming design tensions before tool choice?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Analytics dashboards are never appropriate in classrooms.",
+        "The tool was selected before the competing classroom values it must trade off were even surfaced, so the choice cannot be defended as a resolution of any tension.",
+        "The department should have asked the vendor first.",
+        "Dashboards must always be chosen by a committee."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_1_2_design_tensions_before_tool_choice_polish_as_evidence",
+      "explanation": "Naming tensions first means surfacing the competing values (for example, monitoring versus student autonomy) before adoption, so the tool is chosen to resolve a known tension rather than to manufacture one.",
+      "misconception_id": "cat531_supplement_1_2_tool_first_then_rationalize",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_1_2_design_tensions_before_tool_choice_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_design_tensions_before_tool_choice",
+      "stem": "A teacher names the tension as 'fast feedback vs. teacher workload.' A colleague says this is not yet a design tension a tool choice can resolve. What is the most accurate critique?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Both sides of a design tension should serve student interests; 'teacher workload' is a constraint, but the real value conflict is between fast feedback and the depth or fairness of that feedback.",
+        "Feedback speed does not matter in any classroom.",
+        "Tensions can only have one side, not two.",
+        "Teacher workload should never be considered."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_1_2_design_tensions_before_tool_choice_annotation_without_signal",
+      "correct_index": 0,
+      "explanation": "A genuine design tension pits two values that both have legitimate claims on the learning. Workload is a real constraint, but framing the tension around competing learning values (speed vs. depth/fairness) is what a tool choice can actually be tested against.",
+      "misconception_id": "cat531_supplement_1_2_constraint_mistaken_for_tension",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_design_tensions_before_tool_choice",
         "evidence_based_revision"
       ]
     },
@@ -45,37 +46,39 @@
       "id": "cat531_supplement_1_2_design_tensions_before_tool_choice_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Before choosing a tool, a teacher asks an AI to 'recommend the best app for differentiated reading.' The AI names one. What is the defensible way to use this output given the section's principle?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the recommended app, since differentiation is a recognized goal.",
+        "First use the AI to help enumerate the competing values at stake (for example, personalization vs. shared class discussion), then evaluate any tool against that named tension.",
+        "Ask the AI to also write the lesson plan and grade it.",
+        "Ignore the AI entirely because tool recommendations are off-limits."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_1_2_design_tensions_before_tool_choice_ai_as_authority",
+      "explanation": "A tool recommendation skips the step that matters: surfacing the tension. AI is most defensibly used to help name competing values, after which any candidate tool is judged against that tension.",
+      "misconception_id": "cat531_supplement_1_2_ai_recommendation_skips_tension",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_design_tensions_before_tool_choice"
       ]
     },
     {
       "id": "cat531_supplement_1_2_design_tensions_before_tool_choice_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_design_tensions_before_tool_choice",
+      "stem": "A teacher claims to have resolved the tension between 'monitoring engagement' and 'student privacy' by buying a camera-based attention tracker, saying 'the tension is gone now.' Why is this resolution not yet defensible?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Cameras are always banned in schools.",
+        "A defensible resolution shows how the chosen tool negotiates BOTH values and what was given up; declaring the tension gone hides the privacy cost that was actually paid.",
+        "Engagement cannot be monitored at all.",
+        "The teacher should have bought two trackers."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_1_2_design_tensions_before_tool_choice_completion_only_model",
+      "explanation": "Resolving a tension is not eliminating one side. A defensible decision shows the negotiated position, what each value gained, and what was traded away. Claiming the tension is 'gone' conceals the privacy cost.",
+      "misconception_id": "cat531_supplement_1_2_resolution_means_eliminate_one_side",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_design_tensions_before_tool_choice",
         "evidence_based_revision"
       ]
     }

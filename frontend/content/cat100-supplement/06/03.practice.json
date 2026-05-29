@@ -8,35 +8,35 @@
         "cat100_supplement_github_repository_setup",
         "cat100_supplement_github_pages_personal_website"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "To publish a user site at https://mlopez.github.io with GitHub Pages, what must the repository be named?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "portfolio",
+        "mlopez.github.io",
+        "website-final-v3",
+        "github-pages"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_6_3_github_repository_setup_polish_as_evidence",
+      "explanation": "A GitHub user site is served from a repository named exactly username.github.io. Any other repo name produces a project site at a /repo subpath instead.",
+      "misconception_id": "cat100_supplement_6_3_repo_name_arbitrary",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_6_3_github_repository_setup_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_github_repository_setup",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_github_repository_setup"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your home page is in a file called Index.HTML. The published site shows a 404 at the root URL. What is the most likely cause?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "GitHub Pages requires the entry file to be named index.html in lowercase",
+        "The repository is too small",
+        "GitHub Pages does not support HTML files",
+        "You need to pay for hosting"
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_6_3_github_repository_setup_annotation_without_signal",
+      "correct_index": 0,
+      "explanation": "GitHub Pages serves index.html (lowercase) as the root document. Index.HTML is treated as a different filename, so the root URL has nothing to serve.",
+      "misconception_id": "cat100_supplement_6_3_filename_case_ignored",
       "difficulty": "medium"
     },
     {
@@ -44,37 +44,39 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_github_repository_setup"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI assistant tells you to run 'git push -f origin main' to fix a rejected push on your shared class repo. What is the responsible move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Run it immediately; force-push always fixes push errors",
+        "Pause: a force push can overwrite teammates' commits, so first run 'git pull' to integrate their work, then push normally",
+        "Delete the repository and start over",
+        "Ignore the error and keep editing files locally forever"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_6_3_github_repository_setup_ai_as_authority",
+      "explanation": "Force-pushing to a shared branch can erase others' commits. AI suggestions about destructive git commands must be judged against the cost; pulling first is the safe path.",
+      "misconception_id": "cat100_supplement_6_3_force_push_is_safe",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_6_3_github_repository_setup_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_github_repository_setup",
       "concept_ids": [
+        "cat100_supplement_github_repository_setup",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You accidentally committed a file named secrets.txt containing an API key. What should you do?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Nothing; private repos can never leak",
+        "Remove the file, add it to .gitignore, commit the removal, and rotate (regenerate) the exposed key",
+        "Rename the file to notes.txt and leave the key in it",
+        "Make the repo public so more people can help"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_6_3_github_repository_setup_completion_only_model",
+      "explanation": "Once a key is committed it is in history. You remove and gitignore the file and, crucially, rotate the key, because the old one must be treated as compromised.",
+      "misconception_id": "cat100_supplement_6_3_committed_secret_is_safe",
       "difficulty": "medium"
     }
   ]

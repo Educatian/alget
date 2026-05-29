@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_2_8_module_2_branding_studio",
   "misconceptions": [
     {
-      "id": "cat100_supplement_2_8_module_2_branding_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_2_8_module_2_branding_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_2_8_one_artifact_is_package",
+      "pattern": "single_artifact_treated_as_package",
+      "description": "Submitting one document and treating it as the complete brand package the studio requires",
+      "trigger": "learner turns in only a resume or only a LinkedIn screenshot",
+      "feedback": "The package integrates resume, bio, LinkedIn, portfolio, and an AI-use log. One isolated file is not the package.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_2_8_module_2_branding_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_2_8_cosmetic_over_factual",
+      "pattern": "prioritizing_cosmetic_over_factual_consistency",
+      "description": "Spending the final pass matching fonts and colors while leaving contradictory facts across artifacts",
+      "trigger": "learner fixes visual style but misses conflicting dates, titles, or accomplishments",
+      "feedback": "Fix factual contradictions first. Two different graduation dates break trust; matching fonts does not earn it.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_2_8_module_2_branding_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_2_8_ai_does_the_package",
+      "pattern": "delegating_whole_package_to_ai",
+      "description": "Letting AI produce the entire brand package and submitting it without exercising or recording judgment",
+      "trigger": "learner's AI-use log shows the tool did the work and the student only submitted it",
+      "feedback": "Use AI for bounded help, then choose, reject, and rewrite. The log should show your judgment on top of the tool's output.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_2_8_polish_means_ready",
+      "pattern": "polish_mistaken_for_readiness",
+      "description": "Judging the package ready because it looks polished, rather than because it is consistent and accountable",
+      "trigger": "learner submits based on visual polish without a cross-artifact consistency check or AI-use log",
+      "feedback": "Readiness is consistency plus accountability. Confirm the facts agree across artifacts and the AI-use log is complete.",
       "rail_action": "practice"
     }
   ]

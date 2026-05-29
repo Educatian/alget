@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_6_5_debugging_with_ai_assistance",
   "misconceptions": [
     {
-      "id": "cat100_supplement_6_5_debugging_with_ai_assistance_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_6_5_debugging_with_ai_assistance_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_6_5_browser_blamed_for_markup_bug",
+      "pattern": "blaming_tool_for_own_markup_error",
+      "description": "Attributing a rendering bug to the browser or platform when the real cause is an unclosed or malformed tag in the learner's own HTML",
+      "trigger": "learner sees runaway styling and concludes the browser is broken rather than inspecting their tags",
+      "feedback": "Most layout breaks are unbalanced tags. Read the markup around the symptom and check that each element that opens also closes.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_6_5_debugging_with_ai_assistance_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_6_5_vague_prompt_expectation",
+      "pattern": "vague_debug_prompt",
+      "description": "Expecting a useful debugging answer from a vague prompt like fix my site instead of stating the symptom and pasting the relevant code",
+      "trigger": "learner asks the AI to fix it without describing the error or sharing code",
+      "feedback": "Give the AI the symptom, the exact code block, and a specific question. A targeted prompt produces an answer you can verify against your files.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_6_5_debugging_with_ai_assistance_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_6_5_ai_diagnosis_unverified",
+      "pattern": "ai_diagnosis_accepted_unverified",
+      "description": "Acting on an AI diagnosis that does not fit the situation, such as a CORS fix for a same-folder local image",
+      "trigger": "learner applies an off-target AI fix without checking whether the diagnosed cause is even possible in their context",
+      "feedback": "Test the diagnosis against your context. If the named cause cannot apply, ignore the fix and look at the simpler explanation, usually a path or filename typo.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_6_5_fix_assumed_without_check",
+      "pattern": "fix_assumed_to_work",
+      "description": "Committing an AI-suggested fix without reloading and confirming in the browser console that the error is actually gone",
+      "trigger": "learner pastes a fix and commits it based on the AI's confidence alone",
+      "feedback": "Reload and check the developer console. A cleared error message is the evidence the fix worked; the AI saying so is not.",
       "rail_action": "practice"
     }
   ]

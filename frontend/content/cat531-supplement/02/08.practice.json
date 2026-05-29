@@ -4,16 +4,16 @@
       "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_module_2_teaching_plan_studio",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A capstone teaching plan has four labeled sections (scenario, prompts, adaptations, noticing) that never reference one another. Why does this fall short of an integrated plan?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is missing a fifth section.",
+        "The parts are stapled together; an integrated plan shows how each move serves one teaching goal.",
+        "The sections are in the wrong order.",
+        "It uses too few headings."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_2_8_module_2_teaching_plan_studio_polish_as_evidence",
+      "explanation": "Integration means the parts reinforce one objective. A collated set of disconnected sections is assembly, not a coherent plan.",
+      "misconception_id": "cat531_supplement_2_8_module_2_teaching_plan_studio_assembly_not_integration",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
@@ -25,57 +25,60 @@
     {
       "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_module_2_teaching_plan_studio",
+      "stem": "A candidate submits a flawless capstone plan generated entirely by TeachGen@i, with no teacher edits shown. Why is this a problem for a teaching portfolio?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The plan is too detailed to be useful.",
+        "It shows no accepted, edited, or rejected AI input, so it does not document the candidate's own professional judgment.",
+        "AI plans are always lower quality than human ones.",
+        "The plan should have been longer."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_2_8_module_2_teaching_plan_studio_annotation_without_signal",
+      "explanation": "A capstone must record where the candidate accepted, edited, and rejected AI input. Undocumented AI authorship is not evidence of the candidate's judgment.",
+      "misconception_id": "cat531_supplement_2_8_module_2_teaching_plan_studio_ai_authors_the_plan",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_module_2_teaching_plan_studio",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_module_2_teaching_plan_studio",
+      "stem": "The capstone plan must cover a broad standard in one 40-minute period. The candidate cannot do both full coverage and deep practice. What is the defensible move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Pretend the tension is not there and claim the plan does both.",
+        "Name the coverage-versus-depth tradeoff, choose depth on the highest-leverage subskill, and defend why with the standard and learner needs.",
+        "Let TeachGen@i decide and accept whatever it returns.",
+        "Cut the period short to avoid the choice."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_2_8_module_2_teaching_plan_studio_ai_as_authority",
+      "explanation": "A professional plan surfaces the tradeoff and defends the call. Hiding the hard choice is not the same as resolving it.",
+      "misconception_id": "cat531_supplement_2_8_module_2_teaching_plan_studio_no_defense_for_tradeoffs",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_module_2_teaching_plan_studio",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Which Design Tension Studio map entry best captures an integrated, defensible capstone plan for a reviewer to audit?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"Combined all the module work into one document.\"",
+        "One objective stated, each module move (scenario constraints, constrained prompts, an access-preserving adaptation, a noticing-driven revision) tied back to that objective, plus a named coverage-versus-depth tradeoff with the defended choice and one rejected AI suggestion.",
+        "\"Used AI to write the whole plan.\"",
+        "\"Plan covers everything in the module.\""
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_2_8_module_2_teaching_plan_studio_completion_only_model",
+      "explanation": "The strongest capstone map shows one objective, integration of each module move toward it, a defended tradeoff, and documented AI judgment, all of which a reviewer can inspect.",
+      "misconception_id": "cat531_supplement_2_8_module_2_teaching_plan_studio_assembly_not_integration",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_module_2_teaching_plan_studio",
         "evidence_based_revision"
       ]
     }

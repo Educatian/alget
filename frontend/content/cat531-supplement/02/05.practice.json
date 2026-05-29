@@ -4,16 +4,16 @@
       "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_adapting_plans_for_learner_variability",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "To adapt a writing lesson for variability, a teacher gives advanced students twelve sentences to write and struggling students four. Why is this a weak adaptation?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Four sentences is still too many for some students.",
+        "It changes only the amount of work; the cognitive demand and the access barriers stay identical for everyone.",
+        "Advanced students should get fewer sentences, not more.",
+        "Writing is not a good subject for differentiation."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_polish_as_evidence",
+      "explanation": "Adapting for variability changes the path to the objective, not the page count. Adjusting quantity alone leaves the same students stuck.",
+      "misconception_id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_differentiation_is_volume",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
@@ -25,57 +25,60 @@
     {
       "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_adapting_plans_for_learner_variability",
+      "stem": "The objective is \"analyze a primary source.\" For a student who needs reading support, which adaptation keeps the goal intact?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Replace the analysis task with a fill-in-the-blank vocabulary sheet.",
+        "Provide the same source with a glossary and an audio version so the student still performs the analysis.",
+        "Have the student summarize a children's book instead.",
+        "Skip the primary source and grade on participation."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_annotation_without_signal",
+      "explanation": "An accommodation changes access, not the target. The student still analyzes a primary source; only the route to the text changes.",
+      "misconception_id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_lower_the_goal",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_adapting_plans_for_learner_variability",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "A teacher prompts TeachGen@i: \"Adapt this lesson for my ELL students.\" The AI returns a generic ELL accommodation list. What is the most defensible next move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Apply the whole list, since it is labeled for ELLs.",
+        "Name the specific barrier this task creates (for example, dense idioms in the word problems) and adapt to that barrier, not to the label.",
+        "Ignore the list because AI cannot help with language learners.",
+        "Give those students a shorter version of the same lesson."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_ai_as_authority",
+      "explanation": "A category label is not a lesson plan. The teacher identifies the task-specific barrier for these students and adapts to it.",
+      "misconception_id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_label_drives_plan",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_adapting_plans_for_learner_variability",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "On a Design Tension Studio map about adapting for variability, which entry best documents a defensible decision?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"Made it easier for some, harder for others.\"",
+        "Tension named (one common task vs. unequal access) paired with the decision to keep one objective but offer the source as text, audio, and annotated excerpt, and the reason a quantity-only AI suggestion was rejected for not changing access.",
+        "\"Differentiated the lesson.\"",
+        "\"Gave the IEP students extra time.\""
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_completion_only_model",
+      "explanation": "A defensible map names the tension between a shared objective and unequal access, records the adaptation that preserves the goal, and explains a rejection.",
+      "misconception_id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_lower_the_goal",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_adapting_plans_for_learner_variability",
         "evidence_based_revision"
       ]
     }

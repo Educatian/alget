@@ -8,35 +8,35 @@
         "cat100_supplement_responsible_ai_use_in_coursework",
         "cat100_supplement_digital_citizenship_and_ai_readiness"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A CAT 100 assignment says: \"You may use AI to brainstorm, but the final draft must be your own words and you must disclose any AI use.\" You used AI to brainstorm three topic ideas, then wrote the essay yourself. What is the correct disclosure?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Write nothing, since the final words are yours.",
+        "Add a note: \"Used ChatGPT on 6/3 to brainstorm three topic ideas; selected one and wrote the draft myself.\"",
+        "Add \"AI-assisted\" with no detail about what AI did.",
+        "Claim no AI use because brainstorming does not count."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_polish_as_evidence",
+      "explanation": "The policy allows brainstorming but requires disclosure. A specific note of what AI did, and when, meets the rule even though the words are your own.",
+      "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_paraphrase_avoids_disclosure",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_responsible_ai_use_in_coursework",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_responsible_ai_use_in_coursework"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your ENGL course let you use AI to outline essays. Your CAT 100 assignment's syllabus says \"no AI for graded writing.\" You want to use AI to outline the CAT 100 essay. What is the defensible move?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Use AI to outline; the ENGL rule shows it is generally acceptable.",
+        "Follow the CAT 100 syllabus: do not use AI for this graded writing, and ask the instructor if any AI step is unclear.",
+        "Use AI but do not mention it, since rules differ between courses anyway.",
+        "Ask a classmate from ENGL whether the CAT 100 rule really applies."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_annotation_without_signal",
+      "explanation": "AI rules are set per assignment and syllabus. A rule from one course does not transfer; follow this course's stated policy and ask when unclear.",
+      "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_policy_is_uniform",
       "difficulty": "medium"
     },
     {
@@ -46,35 +46,35 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An assignment permits AI \"for spelling and grammar only.\" You paste your finished paragraph and the AI both fixes commas and rewrites your thesis into a stronger argument. What should you submit?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The full AI version, including the rewritten thesis, since it is better.",
+        "Keep only the grammar and comma fixes; restore your own thesis, because rewriting the argument exceeds the permitted use.",
+        "Submit the AI thesis but credit it in a footnote.",
+        "Reject all changes, including the grammar fixes that were allowed."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_ai_as_authority",
+      "explanation": "Proofreading was allowed; generating a new thesis was not. Accept the permitted edits and reject the part that crosses the boundary.",
+      "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_editing_vs_generating",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_responsible_ai_use_in_coursework",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_responsible_ai_use_in_coursework"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You hand-reword every sentence an AI generated so the wording is entirely yours. The assignment requires disclosure of AI use. Do you still disclose?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "No, because none of the original AI words remain.",
+        "Yes, because the AI shaped the ideas and the draft, which is what disclosure covers.",
+        "Only if more than half the words are still the AI's.",
+        "Only if the instructor specifically asks you later."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_completion_only_model",
+      "explanation": "Disclosure tracks the source of the ideas and drafting help, not surface wording. Rewording does not erase the AI's contribution to the content.",
+      "misconception_id": "cat100_supplement_1_2_responsible_ai_use_in_coursework_paraphrase_avoids_disclosure",
       "difficulty": "medium"
     }
   ]

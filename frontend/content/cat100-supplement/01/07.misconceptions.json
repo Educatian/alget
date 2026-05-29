@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_1_7_evidence_of_digital_citizenship",
   "misconceptions": [
     {
-      "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_screenshot_without_context",
+      "pattern": "artifact_without_context",
+      "description": "Collecting screenshots or files with no caption explaining what they show or which skill they demonstrate",
+      "trigger": "learner pastes an image or link into the portfolio with no label",
+      "feedback": "Each evidence item needs a caption: what it is, which skill it shows, and what you decided or revised.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_quantity_over_quality",
+      "pattern": "more_items_equals_better",
+      "description": "Believing a longer portfolio with many items is automatically stronger evidence",
+      "trigger": "learner adds many low-relevance items to look thorough",
+      "feedback": "Choose a few items that each clearly map to a learning target. Quantity does not show competence; relevant evidence does.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_no_process_trail",
+      "pattern": "only_final_artifact_shown",
+      "description": "Showing only the polished final product with no before, revision, or decision trail",
+      "trigger": "portfolio item has a final version but no record of what changed or why",
+      "feedback": "Include a short before/after or decision note so a reviewer can see the reasoning, not only the finished file.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_claim_without_artifact",
+      "pattern": "claim_unsupported_by_artifact",
+      "description": "Claiming a skill in a reflection without linking to an artifact that demonstrates it",
+      "trigger": "learner writes 'I improved my privacy practices' with no evidence attached",
+      "feedback": "Tie every skill claim to a specific artifact a reviewer can open, such as your privacy checklist or revised resume bullet.",
       "rail_action": "practice"
     }
   ]

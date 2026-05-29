@@ -35,15 +35,45 @@ Use these anchors as lenses, not as names to drop into a reflection. A useful le
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+The Module 4 studio is where you publish the work as a real web page on GitHub Pages, so the dialogue artifact and its evidence are public and linkable. A freshman writes plain HTML, then checks it against a publish checklist. Follow the steps.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+Step 1. A student's first `index.html` looks like this:
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```html
+<html>
+my ai project
+<a>link</a>
+</html>
+```
 
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+It loads, but it has no title, the heading is not a heading, and the link points nowhere.
 
-The stronger version treats the privacy checklist for accounts, data sharing, and AI tool boundaries as evidence. It names what changed, links the change to **ISTE digital citizenship**, and leaves a reader able to audit the decision.
+Step 2. Run the four-item publish checklist and mark each PASS or FAIL:
+
+| Item | Requirement | Draft above |
+|------|-------------|-------------|
+| Page title | `<title>` in the head | FAIL (no head, no title) |
+| Real heading | content uses `<h1>` | FAIL (bare text) |
+| Working link | `<a href="...">` points to a file | FAIL (empty href) |
+| One artifact shown | the dialogue or table is embedded | FAIL (nothing shown) |
+
+Step 3. Rewrite the markup so every item passes:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CAT 100 Module 4: AI Dialogue Studio</title>
+  </head>
+  <body>
+    <h1>My Teacher-AI Dialogue Project</h1>
+    <p>This page links my four Module 4 artifacts.</p>
+    <a href="02_factcheck_table.xlsx">Fact-check table (3 claims verified)</a>
+  </body>
+</html>
+```
+
+Step 4. Verify the publish. After pushing to the `gh-pages` branch, you open the live URL and confirm the title shows in the browser tab, the heading renders large, and the link downloads the real file. You also rejected the AI's suggestion to add a flashy background color, because the publish checklist values a working link over decoration. The before/after markup plus the passing checklist is the evidence: a reader can view source and see exactly what you fixed.
 
 ## Decision Rule
 

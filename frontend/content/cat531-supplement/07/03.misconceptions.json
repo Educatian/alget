@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_7_3_technology_observation_notes",
   "misconceptions": [
     {
-      "id": "cat531_supplement_7_3_technology_observation_notes_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_7_3_judgment_before_observation",
+      "pattern": "judgment_before_observation",
+      "description": "Recording conclusions about engagement or quality before recording the observable behavior",
+      "trigger": "candidate writes that a tool engaged students without time-stamped, countable evidence",
+      "feedback": "Record what you could see and count first. Save the conclusion until the observed evidence supports it.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_7_3_technology_observation_notes_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_7_3_technology_observation_notes_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_7_3_notes_miss_access_pattern",
+      "pattern": "notes_miss_access_pattern",
+      "description": "Writing observation notes that overlook who got teacher attention and who did not",
+      "trigger": "candidate notes overall climate but no pattern of access across students",
+      "feedback": "Track who used which feature and who received check-ins. Access patterns are the evidence a coaching conversation needs.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_7_3_technology_observation_notes_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_7_3_ai_invents_observation",
+      "pattern": "ai_invents_observation",
+      "description": "Keeping AI-added claims (such as motivation) that the raw observation notes never recorded",
+      "trigger": "candidate accepts an AI summary that asserts more than the notes contain",
+      "feedback": "An observation summary may only state what you recorded. Delete AI interpretation that has no observed evidence.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_7_3_summary_replaces_evidence",
+      "pattern": "summary_replaces_evidence",
+      "description": "Offering an overall rating in place of verifiable evidence a second observer could check",
+      "trigger": "candidate submits a one-line verdict or a feature list instead of observed data",
+      "feedback": "Keep counts, timing, feature use, and access gaps separate from your interpretation so another observer can judge independently.",
       "rail_action": "practice"
     }
   ]

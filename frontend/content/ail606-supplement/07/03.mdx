@@ -35,15 +35,21 @@ The anchors should do work in your artifact. If Mayer multimedia learning or cog
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Trace one telemetry decision from over-collection to a defensible boundary.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (logging plan, first draft):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> Log everything the prototype can capture: full clickstream, keystroke timing, screen recording, and each learner's name and email, stored indefinitely so we can analyze it later.
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+1. Annotation: none of these fields is tied to a stated question, names and email maximize identifiability, and indefinite storage has no purpose limit.
+2. Decision point: which single design question are we answering, and what is the smallest data that answers it?
+3. Revision move: keep only the fields the question needs, reduce identifiability, and set a retention limit and consent scope.
 
-Notice the shift: the artifact is no longer just polished. The revision points to **cognitive load theory**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+**After (minimized logging plan):**
+
+> Question: does the new hint button reduce time-to-correct on item 4? Log only item-4 response time and hint-clicks, keyed to a random pseudonymous id, retained for the study term and used only to improve the lesson, as stated in the consent form.
+
+The after plan collects the two fields the question needs, drops direct identifiers, and binds use and retention to what learners agreed to. I rejected a teammate's suggestion to also store email "for follow-up," because no current question requires it and it would widen re-identification risk without a design justification.
 
 ## Decision Rule
 

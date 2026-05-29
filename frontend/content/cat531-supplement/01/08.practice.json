@@ -4,16 +4,16 @@
       "id": "cat531_supplement_1_8_module_1_reflection_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_module_1_reflection_studio",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A module-1 reflection reads: 'My biggest takeaway is that technology decisions are complicated and there are many things to consider.' Why is this a weak synthesis of the module?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is grammatically incorrect.",
+        "It restates that complexity exists without naming any specific principle from the module or how it changed a decision she would make.",
+        "It mentions technology, which is not the module topic.",
+        "It is too optimistic about technology."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_1_8_module_1_reflection_studio_polish_as_evidence",
+      "explanation": "A strong reflection synthesizes specific module principles (naming tensions first, equal vs. equitable, teacher agency) and shows how they changed the learner's reasoning. 'It is complicated' names nothing.",
+      "misconception_id": "cat531_supplement_1_8_reflection_as_vague_summary",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_1_8_module_1_reflection_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_module_1_reflection_studio",
+      "stem": "In the reflection studio, a teacher describes a NEW classroom dilemma and works out how she would decide. A peer says she is 'doing it wrong, you just summarize what you learned.' Who is closer to the studio's purpose?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The peer; a reflection should only recap the readings.",
+        "The teacher; the studio asks her to TRANSFER module principles to a fresh dilemma, which demonstrates understanding better than recap.",
+        "Neither; reflections should avoid examples.",
+        "The peer; new dilemmas are out of scope for module 1."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_1_8_module_1_reflection_studio_annotation_without_signal",
+      "explanation": "Reflection that transfers principles to a new situation is stronger evidence of learning than a recap of what was read. The studio is designed for applied synthesis, not summary.",
+      "misconception_id": "cat531_supplement_1_8_reflection_as_recap_not_transfer",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_module_1_reflection_studio",
         "evidence_based_revision"
       ]
     },
@@ -45,37 +46,39 @@
       "id": "cat531_supplement_1_8_module_1_reflection_studio_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher pastes the reflection prompt into an AI and submits its output as her module-1 reflection. Beyond integrity, what does this cost HER as a learner?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Nothing; the output covers the prompt.",
+        "It skips the synthesis work that consolidates the module's principles in her own reasoning, so the reflection no longer reflects or builds her judgment.",
+        "It makes the reflection too short.",
+        "It uses too much technical vocabulary."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_1_8_module_1_reflection_studio_ai_as_authority",
+      "explanation": "The value of a reflection is the act of synthesizing in one's own terms. Outsourcing it to AI removes the consolidation that the studio exists to produce, regardless of integrity rules.",
+      "misconception_id": "cat531_supplement_1_8_ai_reflection_skips_synthesis",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_module_1_reflection_studio"
       ]
     },
     {
       "id": "cat531_supplement_1_8_module_1_reflection_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_module_1_reflection_studio",
+      "stem": "A teacher's reflection lists everything from module 1 she now agrees with but names nothing that changed her mind or that she still finds unresolved. Why does this limit the reflection's value as evidence of learning?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Agreement is never allowed in reflections.",
+        "Learning is most visible at the points of change or tension; a reflection with no shifted view or open question shows consumption but not the reasoning work.",
+        "The reflection should agree with nothing in the module.",
+        "Unresolved questions are a sign of failure."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_1_8_module_1_reflection_studio_completion_only_model",
+      "explanation": "The strongest reflections surface where a view changed or where a tension remains open, because that is where reasoning is visible. Uniform agreement reads as consumption, not synthesis.",
+      "misconception_id": "cat531_supplement_1_8_agreement_without_change",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_module_1_reflection_studio",
         "evidence_based_revision"
       ]
     }

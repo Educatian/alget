@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_3_5_alt_text_and_accessibility",
   "misconceptions": [
     {
-      "id": "ail606_supplement_3_5_alt_text_and_accessibility_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_3_5_alt_text_and_accessibility_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_3_5_alt_describes_appearance",
+      "pattern": "alt_text_describes_pixels_not_function",
+      "description": "Writing alt text that describes how an image looks rather than the information or function it conveys in context",
+      "trigger": "alt text lists colors and shapes but not what the image communicates for the lesson",
+      "feedback": "Alt text should convey the image's instructional function, not its appearance. Ask what a sighted learner gains, then say that in words.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_3_5_alt_text_and_accessibility_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_3_5_decorative_needs_no_alt",
+      "pattern": "decorative_vs_meaningful_misjudged",
+      "description": "Adding verbose alt text to purely decorative images or, conversely, leaving meaningful images with empty alt",
+      "trigger": "learner writes long alt for a background flourish or empty alt for a data chart",
+      "feedback": "Decorative images take empty alt so screen readers skip them; meaningful images need alt that carries their content. Classify first.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_3_5_color_alone_carries_meaning",
+      "pattern": "meaning_encoded_by_color_only",
+      "description": "Relying on color alone to distinguish elements, excluding color-blind learners and those using high-contrast modes",
+      "trigger": "a chart distinguishes series only by red versus green with no labels or patterns",
+      "feedback": "Do not encode meaning in color alone. Add labels, patterns, or text so the distinction survives color blindness and grayscale.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_3_5_alt_text_and_accessibility_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_3_5_overlay_alt_for_complex",
+      "pattern": "complex_image_crammed_into_alt",
+      "description": "Cramming a complex chart or diagram's full data into one long alt string instead of providing a longer text description nearby",
+      "trigger": "learner writes a 200-word alt attribute for a multi-series graph",
+      "feedback": "Alt text should be brief. For complex visuals, give a short alt plus a longer description or data table the learner can read in full.",
       "rail_action": "practice"
     }
   ]

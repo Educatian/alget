@@ -4,16 +4,16 @@
       "id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_professional_teaching_philosophy_with_ai",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teaching-philosophy statement says: \"I believe AI should empower every learner.\" Which revision turns this into a defensible professional stance rather than a slogan?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"I believe AI is the future of education and embrace it fully.\"",
+        "\"I will use AI tools for formative feedback but keep grading and disclosure decisions with the teacher, because students must know when their work is read by a model.\"",
+        "\"I believe AI should empower and inspire every single learner equally.\"",
+        "\"I am cautiously optimistic about AI and will see how it goes.\""
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_polish_as_evidence",
+      "explanation": "A professional philosophy commits to a specific stance with a named boundary and a reason, not an aspirational slogan.",
+      "misconception_id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_slogan_as_stance",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_final_project_and_professional_vision",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_professional_teaching_philosophy_with_ai",
+      "stem": "A reviewer annotates a philosophy statement: \"Your values section says you prioritize student autonomy, but your practice section has the AI auto-correct student answers before they submit. These contradict.\" What does this note ask the writer to fix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Delete the practice section so only the stated values remain.",
+        "Add a citation to an autonomy theorist next to the values claim.",
+        "Align the stated value with an actual classroom practice, or revise the value so the philosophy is internally consistent.",
+        "Make the autonomy sentence longer and more confident."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "A professional philosophy must show consistency between stated values and the practices the teacher actually commits to.",
+      "misconception_id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_values_practice_mismatch",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_professional_teaching_philosophy_with_ai",
         "evidence_based_revision"
       ]
     },
@@ -45,16 +46,16 @@
       "id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A candidate asks BigAL to write their entire teaching-philosophy statement and submits it unchanged. Beyond academic-honesty issues, why does this most undermine the artifact's purpose?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The model writes too formally for a philosophy statement.",
+        "A teaching philosophy is supposed to disclose the author's own committed values and judgment; outsourcing it leaves no actual professional stance to defend in an interview or classroom.",
+        "The statement would be too short to meet the length requirement.",
+        "AI text always contains factual errors about education law."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_ai_as_authority",
+      "explanation": "The artifact's whole purpose is to make the teacher's own values inspectable; a generated stance cannot be defended as the teacher's judgment.",
+      "misconception_id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_outsourced_values",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -63,19 +64,20 @@
     {
       "id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_professional_teaching_philosophy_with_ai",
+      "stem": "Which philosophy statement would best survive a skeptical hiring committee asking, \"What would you NOT do with AI, even if it saved time?\"",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "One that lists every AI tool the candidate has tried.",
+        "One that says AI should always be used to maximize efficiency.",
+        "One that names a specific line the teacher will not cross (for example, never letting AI assign final grades without human review) and gives the value that draws the line.",
+        "One that avoids mentioning AI to stay neutral."
       ],
-      "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_completion_only_model",
+      "correct_index": 2,
+      "explanation": "A defensible philosophy names its limits, not only its enthusiasms; a stated boundary with a reason shows committed judgment.",
+      "misconception_id": "cat531_supplement_6_2_professional_teaching_philosophy_with_ai_no_stated_limits",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_professional_teaching_philosophy_with_ai",
         "evidence_based_revision"
       ]
     }

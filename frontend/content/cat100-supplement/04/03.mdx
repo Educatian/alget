@@ -35,15 +35,27 @@ The anchors should do work in your artifact. If NACE career readiness or ISTE di
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Checking AI advice is concrete verification work: you put each claim the AI made into a row of a spreadsheet, find the source, and mark a verdict. A freshman builds this as a small table (in Excel or Google Sheets) so the check is inspectable. Follow the steps.
 
-> I made the AI critique log showing accepted, modified, and rejected suggestions clearer.
+Step 1. The AI gave this advice when you asked how to help a struggling reader:
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```text
+"Research shows students learn 90% of what they teach others,
+so have the struggling student tutor a classmate. This is the
+'learning pyramid' and it is proven by Edgar Dale (1969)."
+```
 
-> I revised the AI critique log showing accepted, modified, and rejected suggestions so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Step 2. Break the reply into separate checkable claims, one per row, and add a SOURCE and VERDICT column:
 
-Notice the shift: the artifact is no longer just polished. The revision points to **ISTE digital citizenship**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+| Claim | Source you found | Verdict |
+|-------|------------------|---------|
+| "students learn 90% of what they teach" | no peer-reviewed study; traces to a corporate handout | FALSE (fabricated statistic) |
+| "this is the learning pyramid" | the pyramid exists as a popular graphic | TRUE-ish (real graphic, unproven numbers) |
+| "proven by Edgar Dale (1969)" | Dale wrote on the Cone of Experience but assigned no percentages | MISATTRIBUTED |
+
+Step 3. Compute the check result. 1 of 3 claims survives, and even that one is weakened. The advice is built on a fabricated number and a wrong citation, so you do not act on it as stated.
+
+Step 4. Record the bounded outcome. You keep the usable idea ("peer tutoring can help") because that part is independently supported, and you reject the 90% statistic and the Dale citation, logging the source you checked. That filled table is the evidence: a reader can see exactly which claim failed and why.
 
 ## Decision Rule
 

@@ -4,16 +4,16 @@
       "id": "cat531_supplement_8_7_evidence_collection_checklist_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_collection_checklist",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An evidence-collection row reads: \"The AI tool improved student writing.\" What is missing for this to count as evidence?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A longer sentence describing the tool.",
+        "The artifact, where it is stored, and the date range, so another teacher could locate and inspect it.",
+        "A statement that the teacher liked the tool.",
+        "The vendor's marketing claims."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_8_7_evidence_collection_checklist_polish_as_evidence",
+      "explanation": "A claim with no cited artifact or source is an opinion. Evidence names what can be located and inspected.",
+      "misconception_id": "cat531_supplement_8_7_evidence_opinion_as_evidence",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_instructor_toolkit_for_cat_531",
@@ -26,18 +26,19 @@
       "id": "cat531_supplement_8_7_evidence_collection_checklist_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A row claims the AI revision coach raised organization scores. What must the checklist include for that claim to be testable?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "A note that students seemed happier.",
+        "A pre-tool baseline scored on the same rubric, so the before and after can be compared.",
+        "The number of students in the class.",
+        "The brand name of the tool."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_8_7_evidence_collection_checklist_annotation_without_signal",
+      "explanation": "Improvement implies a before and an after measured the same way. Without a baseline the claim cannot be tested.",
+      "misconception_id": "cat531_supplement_8_7_evidence_no_baseline",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_evidence_collection_checklist",
         "evidence_based_revision"
       ]
     },
@@ -45,18 +46,19 @@
       "id": "cat531_supplement_8_7_evidence_collection_checklist_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher only records the cases where the AI coach seemed to help. What habit makes the evidence stronger?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Collecting even more examples that confirm the tool helped.",
+        "Stating what would have changed your mind and checking for it, for example whether weaker writers gained less.",
+        "Deleting any result that does not fit the conclusion.",
+        "Asking the tool whether it helped."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_8_7_evidence_collection_checklist_ai_as_authority",
+      "explanation": "Strong evidence can be disconfirmed. Looking for the counter-case (who gained less) bounds and strengthens the claim.",
+      "misconception_id": "cat531_supplement_8_7_evidence_no_disconfirmation",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_evidence_collection_checklist",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_8_7_evidence_collection_checklist_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which checklist entry best makes a result verifiable by someone other than the teacher who collected it?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The result felt clear to me.",
+        "22 paired drafts are stored in the unit folder; a colleague can re-score 5 random pairs blind on the same 4-point rubric.",
+        "The class agreed the tool was useful.",
+        "I remember the scores going up."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_8_7_evidence_collection_checklist_completion_only_model",
+      "explanation": "Stored artifacts plus a stated re-check method let an independent reader confirm the result, which is what makes it evidence.",
+      "misconception_id": "cat531_supplement_8_7_evidence_not_verifiable",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_evidence_collection_checklist",
         "evidence_based_revision"
       ]
     }

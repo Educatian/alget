@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_5_6_analyzing_feedback_without_overclaiming",
   "misconceptions": [
     {
-      "id": "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_5_6_small_sample_as_proof",
+      "pattern": "formative_sample_as_proof",
+      "description": "Treating a small formative session as proof of a population-level finding",
+      "trigger": "learner uses words like proved, confirmed, or always after testing a handful of users",
+      "feedback": "Scale the claim to the sample. A few sessions surface candidate problems; reserve proof language for verified, larger evidence.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_5_6_preference_as_failure",
+      "pattern": "preference_treated_as_failure",
+      "description": "Reporting a negative comment or preference as if it were an observed task failure",
+      "trigger": "learner reports users 'hate' or 'failed' when the data shows a comment but no completion failure",
+      "feedback": "Separate what participants said from what they did. Report comments and task outcomes as distinct evidence.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_5_6_analyzing_feedback_without_overclaiming_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_5_6_ai_confidence_as_evidence",
+      "pattern": "ai_confidence_as_claim_strength",
+      "description": "Letting an AI tool's confidence wording set the strength of a usability finding",
+      "trigger": "learner adopts an AI 'high confidence' label as the finding without checking counts or outcomes",
+      "feedback": "Set claim strength from observed counts and task outcomes, not from an AI tool's asserted confidence.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_5_6_single_voice_generalized",
+      "pattern": "single_voice_generalized",
+      "description": "Generalizing one participant's suggestion into a population need and a large decision",
+      "trigger": "learner writes 'users want X' from a single comment and scales a major build on it",
+      "feedback": "Attribute the suggestion to the one participant and verify demand before escalating it into a major decision.",
       "rail_action": "practice"
     }
   ]

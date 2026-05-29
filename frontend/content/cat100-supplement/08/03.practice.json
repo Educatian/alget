@@ -8,16 +8,16 @@
         "cat100_supplement_digital_skills_transfer_map",
         "cat100_supplement_course_completion_and_transfer"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "On your transfer map, the skill column for one row just says 'Excel'. Why is this a weak transfer entry?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too short to fit the table cell.",
+        "It names a tool, not a capability; a reader cannot tell what you can actually do or where it transfers.",
+        "Excel is outdated, so the row should say 'Google Sheets'.",
+        "Tool names should always be in bold."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_8_3_digital_skills_transfer_map_polish_as_evidence",
+      "explanation": "Transfer maps describe capabilities. 'Built a pivot table to summarize 500 sales rows' transfers across tools and jobs; the word 'Excel' does not.",
+      "misconception_id": "cat100_supplement_8_3_named_tool_is_the_skill",
       "difficulty": "easy"
     },
     {
@@ -27,16 +27,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which transfer-map row gives a reader a verifiable destination task?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "'HTML will help me in my future career.'",
+        "'I can update the campus club's GitHub Pages site by editing the <h2> section headings and the nav list in index.html.'",
+        "'Websites are useful everywhere.'",
+        "'I learned HTML this semester.'"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_8_3_digital_skills_transfer_map_annotation_without_signal",
+      "explanation": "A real transfer claim names the destination and the exact task. Editing specific tags in index.html is something a reviewer can check.",
+      "misconception_id": "cat100_supplement_8_3_transfer_without_proof",
       "difficulty": "medium"
     },
     {
@@ -46,16 +46,16 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "In class you wrote =VLOOKUP(A2,Products,2,FALSE) over 40 rows. At a part-time job the lookup table has 4,000 rows and you will copy the formula down a full column. What must you check when transferring it?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Nothing; the formula works the same at any size.",
+        "Lock the table range with absolute references like Products being a fixed range, or the lookup area will shift as you copy the formula down.",
+        "Switch to a bar chart instead.",
+        "Delete the FALSE argument because large tables are always sorted."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_8_3_digital_skills_transfer_map_ai_as_authority",
+      "explanation": "Transfer adapts to the new constraint. Across 4,000 rows you must anchor the lookup range (absolute reference) so copying does not slide it off the data.",
+      "misconception_id": "cat100_supplement_8_3_assume_identical_context",
       "difficulty": "hard"
     },
     {
@@ -65,16 +65,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which transfer-map cell best documents both the capability and its proof?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "'Good with spreadsheets.'",
+        "'Capability: summarize data with pivot tables. Proof: Unit 5 file pivots 512 order rows into a Region x Month table. Destination: weekly sales recap at my retail job.'",
+        "'Spreadsheets transfer to jobs.'",
+        "'Pivot tables.'"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_8_3_digital_skills_transfer_map_completion_only_model",
+      "explanation": "A strong cell names the capability, points to a concrete proof artifact, and states the destination task, so a reviewer can verify the transfer.",
+      "misconception_id": "cat100_supplement_8_3_named_tool_is_the_skill",
       "difficulty": "medium"
     }
   ]

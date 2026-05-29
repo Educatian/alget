@@ -8,73 +8,72 @@
         "cat100_supplement_self_recording_with_ai_coaching",
         "cat100_supplement_ai_enhanced_presentation_development"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An AI coach reports your practice take had 16 filler words, a 190 wpm pace, and a 'rushed' clarity flag. Which response shows you used the feedback well?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Submit the take because it was your first try.",
+        "Re-record the rushed section at about 140 wpm, replacing filler with brief pauses, and keep the pauses that help comprehension.",
+        "Delete all pauses to push the pace even higher.",
+        "Ignore the report and re-record nothing."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_polish_as_evidence",
-      "difficulty": "easy"
+      "explanation": "You act on the specific flags, slow the rushed part, and keep meaningful pauses rather than blindly chasing one number.",
+      "difficulty": "easy",
+      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_metric_chasing"
     },
     {
       "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which note gives BigAL a usable self-recording problem?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "My recording is ok.",
+        "The AI coach flags my open with 9 filler words, but cutting them all made me sound robotic. How do I reduce fillers without losing natural pacing?",
+        "Help with my video.",
+        "I recorded it."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "The note names a concrete tension (filler reduction versus natural pacing) so feedback can be specific.",
+      "difficulty": "medium",
+      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_one_take"
     },
     {
       "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "What is a sound boundary for AI coaching on your own recording?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Treat the AI clarity score as the final grade on your delivery.",
+        "Use the AI flags to pick one issue to fix per take, then confirm the fix with your own playback or a peer.",
+        "Re-record until the AI score is perfect even if the talk no longer makes sense.",
+        "Avoid recording yourself because the AI might be wrong."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "The AI provides targeted signals; you verify improvements through playback and human judgment.",
+      "difficulty": "hard",
+      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_coach_as_judge"
     },
     {
       "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which record of your practice session is most useful for later support?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Only the final video file.",
+        "The AI flags per take, which one issue you fixed each time, and whether a peer found the result clearer.",
+        "Only the total recording time.",
+        "Only the number of takes."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_5_5_self_recording_with_ai_coaching_completion_only_model",
+      "explanation": "Logging the flag, the fix, and the human check turns practice into inspectable improvement evidence.",
       "difficulty": "medium"
     }
   ]

@@ -4,16 +4,16 @@
       "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_risk_mitigation_and_family_communication",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher drafts a family letter about a new AI tutoring tool. Which version best mitigates risk and respects families' right to decide?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"We are excited to use an innovative AI tool this year to boost learning.\"",
+        "\"Your child's writing will be sent to an AI tutor for feedback. The tool stores submissions for 30 days and does not use them for training. You may opt your child into teacher-only feedback by replying by Friday.\"",
+        "\"We use industry-standard, FERPA-aware technology to support instruction.\"",
+        "\"The district has approved several tools; details are available on request.\""
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_polish_as_evidence",
+      "explanation": "Risk-mitigating family communication is specific about what data is shared, how long it is kept, and how to opt out, in plain language.",
+      "misconception_id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_vague_reassurance",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_final_project_and_professional_vision",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_risk_mitigation_and_family_communication",
+      "stem": "A reviewer annotates a policy memo: \"You offer an opt-out, but every alternative you list still requires the same login and uploads the same data. The opt-out is not real.\" What does this expose?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "A grammar problem in the opt-out sentence.",
+        "A consent defect: a meaningful opt-out must provide a genuinely different option that avoids the risk being declined.",
+        "The memo is simply too short.",
+        "A missing logo on the letterhead."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_annotation_without_signal",
+      "explanation": "Consent is only meaningful when declining leads to a real alternative; a fake opt-out is a risk, not a mitigation.",
+      "misconception_id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_hollow_optout",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_risk_mitigation_and_family_communication",
         "evidence_based_revision"
       ]
     },
@@ -45,16 +46,16 @@
       "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher asks BigAL to draft the family AI-policy memo. What is the defensible boundary on using the draft?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Send the model's draft as written, since it covers privacy and equity by default.",
+        "Use the draft for structure, then verify each factual claim (retention period, training use, opt-out path) against the tool's actual data agreement before sending.",
+        "Ask the model to assure families the tool is safe so the letter is reassuring.",
+        "Let the model decide which families need the consent form."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_ai_as_authority",
+      "explanation": "A model can scaffold the memo, but the teacher must verify every data claim against the real agreement, because families rely on its accuracy.",
+      "misconception_id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_unverified_claims",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -63,19 +64,20 @@
     {
       "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_risk_mitigation_and_family_communication",
+      "stem": "A policy memo is written at a college reading level and only in English, in a school where many families read at a different level or speak other languages. Why does this weaken the consent it seeks, even if every fact is correct?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "It will take longer for families to read.",
+        "Consent obtained from a notice families cannot fully understand is not informed consent, so the equity and consent checks fail.",
+        "The memo should always be exactly one page.",
+        "Reading level never affects the validity of a consent form."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_completion_only_model",
+      "explanation": "Informed consent requires comprehensible communication; accessibility of the notice is part of the equity and consent checks, not a formatting nicety.",
+      "misconception_id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_accessibility_optional",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_risk_mitigation_and_family_communication",
         "evidence_based_revision"
       ]
     }

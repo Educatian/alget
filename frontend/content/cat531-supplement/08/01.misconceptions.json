@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_8_1_facilitator_notes_for_dts",
   "misconceptions": [
     {
-      "id": "cat531_supplement_8_1_facilitator_notes_for_dts_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_8_1_facilitator_notes_for_dts_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_8_1_facilitator_notes_for_dts_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_8_1_dts_one_sided_tension",
+      "pattern": "naming_only_one_axis_of_the_tension",
+      "description": "Writing a Design Tension Studio map that names only the benefit axis (for example feedback speed) and leaves the competing value (authorship, teacher judgment) off the map",
+      "trigger": "facilitator note recommends a tool without naming the value it trades against",
+      "feedback": "A tension map needs both axes. Name the competing value the tool puts at risk, not only the benefit it offers.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_8_1_facilitator_notes_for_dts_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_8_1_dts_uniform_risk",
+      "pattern": "treating_the_class_as_one_undifferentiated_group",
+      "description": "Assuming a technology choice carries the same risk for every student instead of locating who bears the equity cost (ELL students, students with IEPs)",
+      "trigger": "note describes the class as a single group with no subgroup risk",
+      "feedback": "Locate who bears the risk. Name the specific students for whom the tool is most likely to misfire.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_8_1_dts_preference_not_decision",
+      "pattern": "recording_a_preference_instead_of_a_negotiated_decision",
+      "description": "Logging that the team liked or chose a tool rather than recording the negotiated decision the team can be held to and later test",
+      "trigger": "map ends with a preference and no commitment or evidence plan",
+      "feedback": "Record the negotiated decision and what evidence would later confirm it, not just which tool the team preferred.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_8_1_dts_engagement_as_justification",
+      "pattern": "engagement_as_justification",
+      "description": "Defending a classroom tool because it is engaging rather than because it protects students and improves a specific learning activity",
+      "trigger": "the only stated reason for the tool is that students find it fun",
+      "feedback": "Engagement is not a justification on its own. Tie the choice to a protected learning value and a named risk.",
+      "rail_action": "explain"
     }
   ]
 }

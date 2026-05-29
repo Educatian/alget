@@ -8,73 +8,75 @@
         "cat100_supplement_ai_help_for_excel_debugging",
         "cat100_supplement_data_storytelling_with_excel"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Cell C2 shows #DIV/0! from the formula =A2/B2. What does this error tell you about the values?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The formula is too long for the cell.",
+        "B2 is empty or zero, and dividing by zero is undefined.",
+        "A2 contains text instead of a number.",
+        "The cell needs to be formatted as currency."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_polish_as_evidence",
+      "explanation": "#DIV/0! appears when a formula divides by an empty or zero cell. The fix is to handle the zero case, for example with =IF(B2=0,\"n/a\",A2/B2).",
+      "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_error_codes",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_ai_help_for_excel_debugging",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_ai_help_for_excel_debugging"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A VLOOKUP returns #N/A for some lookup values that you can see in the source table. The most reliable thing to check first is:",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Whether the workbook needs to be saved again.",
+        "Whether the lookup value has extra spaces or differs in type (text vs number) from the value in the source column.",
+        "Whether the column is wide enough to show the result.",
+        "Whether the font color matches the table."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_annotation_without_signal",
+      "explanation": "#N/A from a lookup usually means no exact match was found. Trailing spaces or a text-vs-number mismatch between the lookup value and the source column is the most common cause.",
+      "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_error_codes",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_ai_help_for_excel_debugging",
       "concept_ids": [
+        "cat100_supplement_ai_help_for_excel_debugging",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You paste a broken formula into an AI tool and it returns a confident rewrite. Before trusting it, what is the responsible verification step?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Submit the rewrite immediately because the AI sounded certain.",
+        "Test the rewritten formula on a row where you already know the correct answer, then confirm it matches.",
+        "Ask the AI again until two answers agree.",
+        "Use the rewrite only if it is shorter than yours."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_ai_as_authority",
+      "explanation": "AI can return a fluent but wrong formula. Checking it against a row whose answer you already know turns the suggestion into a verified fix rather than a guess.",
+      "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_unverified_ai_fix",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_ai_help_for_excel_debugging",
       "concept_ids": [
+        "cat100_supplement_ai_help_for_excel_debugging",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "To get useful debugging help from an AI assistant, the most effective thing to include in your prompt is:",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Only the word 'help' and the file name.",
+        "The exact formula, the error message it produces, and what result you expected for a specific row.",
+        "A request to rewrite the entire spreadsheet.",
+        "The color theme you used in the workbook."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_completion_only_model",
+      "explanation": "A precise debugging prompt gives the formula text, the error message, and the expected result for a concrete row. Vague prompts produce vague or wrong fixes.",
+      "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_vague_prompt",
       "difficulty": "medium"
     }
   ]

@@ -4,16 +4,16 @@
       "id": "cat531_supplement_3_4_ai_literacy_for_teachers_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_literacy_for_teachers",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You ask a chatbot for three peer-reviewed studies supporting a teaching strategy. It returns three citations with authors, journals, and DOIs, written confidently. What does AI literacy require next?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Use them, because the confident, complete format shows they are real.",
+        "Verify each citation in a library database, because models routinely fabricate plausible-looking references.",
+        "Use them if the journal names sound familiar.",
+        "Trust them because the model had access to a lot of data."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_3_4_ai_literacy_for_teachers_polish_as_evidence",
+      "explanation": "Fluent, confident formatting is not evidence of accuracy. Models hallucinate citations, so verification against an authoritative source is the literate move.",
+      "misconception_id": "cat531_supplement_3_4_confident_tone_equals_correct",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_ai_in_education",
@@ -25,58 +25,67 @@
     {
       "id": "cat531_supplement_3_4_ai_literacy_for_teachers_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_ai_literacy_for_teachers",
+      "stem": "A teacher finishes a one-hour training on a lesson-generator app and writes, \"I am now AI literate.\" Which statement best describes the gap?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "There is no gap; knowing the app's buttons is AI literacy.",
+        "Operating one app is tool skill; AI literacy also includes judging when the tool fits, what it cannot do, and how it affects students.",
+        "AI literacy only means typing faster prompts.",
+        "The training made her literate in all AI tools."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_3_4_ai_literacy_for_teachers_annotation_without_signal",
+      "explanation": "AI literacy is judgment about fit, limits, and impact, not operation of a single product. Tool skill is necessary but not sufficient.",
+      "misconception_id": "cat531_supplement_3_4_literacy_is_button_skill",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_ai_literacy_for_teachers",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_4_ai_literacy_for_teachers_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_ai_literacy_for_teachers",
+      "stem": "A student asks, \"Does the AI actually understand my essay when it gives feedback?\" Which response reflects accurate AI literacy?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Yes, it reads and understands meaning like a human reader.",
+        "No, it predicts likely feedback from text patterns; it does not understand your argument, so weigh its comments against your own judgment.",
+        "Yes, because it was trained on millions of essays.",
+        "It understands grammar but feels emotion about your topic."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_3_4_ai_literacy_for_teachers_ai_as_authority",
+      "explanation": "Generative models pattern-match plausible text; they do not comprehend or verify meaning. Naming this limit is core AI literacy and shapes how output is used.",
+      "misconception_id": "cat531_supplement_3_4_more_data_means_understanding",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_ai_literacy_for_teachers",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_4_ai_literacy_for_teachers_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_ai_literacy_for_teachers",
+      "stem": "A teacher uses AI to draft a quiz, silently fixes two wrong answer keys, and hands students the corrected quiz without comment. From an AI-literacy-instruction standpoint, what was the missed opportunity?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Nothing; students should never see AI involved.",
+        "By hiding the verification, she missed the chance to model the critical checking that teaches students to evaluate AI output themselves.",
+        "She should have used the AI answers as-is to save time.",
+        "She should have told students the AI is always right."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_3_4_ai_literacy_for_teachers_completion_only_model",
+      "explanation": "Teacher AI literacy is most powerful when made visible. Modeling how she caught and corrected the errors teaches the critical-use habits that are the goal.",
+      "misconception_id": "cat531_supplement_3_4_literacy_not_modeled",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_ai_literacy_for_teachers",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

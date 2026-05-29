@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_8_3_rubric_calibration",
   "misconceptions": [
     {
-      "id": "ail606_supplement_8_3_rubric_calibration_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_8_3_rubric_calibration_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_8_3_rubric_calibration_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_8_3_adjective_descriptors",
+      "pattern": "adjective_only_level_descriptors",
+      "description": "Believing adjective-only levels (Excellent, Good, Fair) can be scored consistently across raters",
+      "trigger": "rubric levels use adjectives with no observable or countable anchor",
+      "feedback": "Rewrite each level as observable counts or conditions so two raters look at the same evidence.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_8_3_rubric_calibration_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_8_3_average_as_calibration",
+      "pattern": "splitting_the_difference_as_agreement",
+      "description": "Treating averaging two scores to the midpoint as if it resolved a calibration disagreement",
+      "trigger": "raters reconcile by taking a mean instead of finding what each was looking at",
+      "feedback": "Read the disagreement: find which evidence each rater weighed differently, then fix the descriptor.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_8_3_agreement_without_anchors",
+      "pattern": "convergence_by_habit_not_evidence",
+      "description": "Counting rater agreement that came from shared habit rather than shared evidence anchors",
+      "trigger": "raters agree but cannot point to the rubric language that produced the agreement",
+      "feedback": "Trace the agreement to a specific descriptor; agreement without an anchor will not transfer to new drafts.",
+      "rail_action": "explain"
     }
   ]
 }

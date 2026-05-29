@@ -4,17 +4,17 @@
       "id": "ail606_supplement_2_8_module_2_design_memo_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_module_2_design_memo",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A design memo opens: \"First I built the storyboard, then I ran a pilot, then I revised the feedback.\" Why does this fail as a design memo?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too short to count as a memo.",
+        "It recounts activity rather than arguing for a recommended decision the reader must act on.",
+        "It mentions a pilot, which does not belong in a memo.",
+        "Memos should never be written in the first person."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A design memo makes an argument for a decision. A chronological activity log gives the reader nothing to decide.",
+      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_memo_is_summary",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_module_2_design_memo"
       ]
@@ -22,55 +22,55 @@
     {
       "id": "ail606_supplement_2_8_module_2_design_memo_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_module_2_design_memo",
+      "stem": "A memo argues well but names no recipient and no decision. What does it most need?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "More citations to course readings.",
+        "A named audience and the specific decision that audience owns (for example, the program lead deciding whether to fund the screen-reader build).",
+        "A longer background section.",
+        "A different font for the heading."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "A memo to no one, about no decision, cannot be acted on. Naming the audience and the decision they own makes it actionable.",
+      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_no_named_audience",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_module_2_design_memo"
       ]
     },
     {
       "id": "ail606_supplement_2_8_module_2_design_memo_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_module_2_design_memo",
+      "stem": "A reviewer cannot find the recommendation until the last paragraph of a one-page memo. What revision principle applies?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Move the recommendation to the front as a bottom-line-up-front statement, then let the background support it.",
+        "Keep the recommendation last so it lands as a strong finish.",
+        "Add a summary paragraph that repeats the entire memo.",
+        "Remove the background entirely so only the recommendation remains."
       ],
-      "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_ai_as_authority",
+      "correct_index": 0,
+      "explanation": "Bottom line up front lets a busy reader act immediately. Background should support the recommendation, not delay it.",
+      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_recommendation_buried",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_module_2_design_memo"
       ]
     },
     {
       "id": "ail606_supplement_2_8_module_2_design_memo_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "A memo recommends adopting Tool A and attaches pilot data and an audit matrix as appendices, but the body never references them. What is the strongest evidence-based revision?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Delete the appendices to shorten the memo.",
+        "Tie each evidence item to the claim it supports in the body (for example, cite the 3-of-5 pilot miss when arguing the accessibility gate), so the data becomes the argument rather than decoration.",
+        "Move the appendices to the front of the memo.",
+        "Add more appendices to look thorough."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_completion_only_model",
+      "explanation": "Unlinked evidence is decoration. Connecting each data point to the claim it backs turns attachments into the memo's actual argument.",
+      "misconception_id": "ail606_supplement_2_8_module_2_design_memo_evidence_not_linked",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

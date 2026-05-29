@@ -4,16 +4,16 @@
       "id": "cat531_supplement_5_5_classroom_fit_matrix_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_classroom_fit_matrix",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A classroom fit matrix scores each tool on a list of criteria. What makes a fit matrix more than a generic feature checklist?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It uses more rows than a checklist.",
+        "Its criteria and weights are tied to the specific classroom: the learners, the unit, and the constraints that actually matter here.",
+        "It assigns every tool a single overall percentage.",
+        "It copies the criteria from a published rubric without changes."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_5_5_classroom_fit_matrix_polish_as_evidence",
+      "explanation": "A fit matrix is contextual. The same tool can fit one classroom and not another, so the criteria and their weights must reflect this room's learners, unit, and constraints rather than a universal list.",
+      "misconception_id": "cat531_supplement_5_5_matrix_is_universal",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
@@ -25,58 +25,61 @@
     {
       "id": "cat531_supplement_5_5_classroom_fit_matrix_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_classroom_fit_matrix",
+      "stem": "Tool A scores 92 percent and Tool B scores 88 percent on a fit matrix. Tool B is the only one that works offline, which this rural classroom needs. What does this reveal about the totals?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Tool A wins because 92 is higher than 88.",
+        "An aggregate score can hide a non-negotiable constraint; a deal-breaker criterion should gate the decision, not be averaged away.",
+        "The four-point gap proves Tool A is clearly better.",
+        "Offline access is a minor criterion that the total already handles."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_5_5_classroom_fit_matrix_annotation_without_signal",
+      "explanation": "Averaging treats a must-have like any other point. When a criterion is a hard constraint, it should act as a gate that removes non-compliant tools before scoring, or the total misleads.",
+      "misconception_id": "cat531_supplement_5_5_total_overrides_dealbreaker",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_educational_technology_evaluation",
+        "cat531_supplement_classroom_fit_matrix"
       ]
     },
     {
       "id": "cat531_supplement_5_5_classroom_fit_matrix_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to fill in your classroom fit matrix. It assigns plausible scores to every cell. What is the defensible move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept the AI scores since the matrix is now complete.",
+        "Treat the AI scores as hypotheses, then verify each one against the tool and your classroom before trusting any cell.",
+        "Ask the AI to also pick the winner.",
+        "Use the AI scores only for the criteria you dislike rating."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_5_5_classroom_fit_matrix_ai_as_authority",
+      "explanation": "An AI cannot know your learners or test the tool in your room. Its scores are hypotheses to verify, not classroom evidence. The teacher owns the judgment behind each cell.",
+      "misconception_id": "cat531_supplement_5_5_ai_fills_matrix",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_classroom_fit_matrix"
       ]
     },
     {
       "id": "cat531_supplement_5_5_classroom_fit_matrix_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A colleague borrows your fit matrix for their classroom unchanged. Why might your high-fit tool be a poor fit for them?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Fit scores are objective and transfer directly between classrooms.",
+        "Their learners, constraints, and instructional goals differ, so the weights and even the criteria likely need to change before the scores mean anything.",
+        "The tool changes between classrooms.",
+        "A fit matrix only works in the classroom that built it because of the file format."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_5_5_classroom_fit_matrix_completion_only_model",
+      "explanation": "Fit is relative to context. Reusing a matrix without re-examining the weights and criteria imports another room's priorities and produces a misleading verdict.",
+      "misconception_id": "cat531_supplement_5_5_fit_transfers_unchanged",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat531_supplement_classroom_fit_matrix"
       ]
     }
   ]

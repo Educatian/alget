@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_8_4_ai_use_disclosure_portfolio",
   "misconceptions": [
     {
-      "id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat100_supplement_8_4_ai_inflated_claim",
+      "pattern": "ai_inflates_resume_claim",
+      "description": "Accepting an AI-suggested resume bullet that overstates a role or result the student cannot back up",
+      "trigger": "AI rewrites 'helped with a club budget' into 'led financial operations'; learner keeps it",
+      "feedback": "Keep the claim truthful. A resume line must match what you actually did and what you can defend in an interview. Reject the inflated verb and use one you can prove.",
       "rail_action": "ask"
     },
     {
-      "id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_8_4_disclosure_is_confession",
+      "pattern": "disclosure_means_dont_use",
+      "description": "Believing that disclosing AI use means the work is dishonest or disallowed",
+      "trigger": "learner hides that AI helped reword a bullet, fearing it looks like cheating",
+      "feedback": "Disclosure documents the boundary, it does not confess wrongdoing. Note what the AI proposed, what you accepted, and what you rejected. Bounded, judged AI use is allowed and credible.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_8_4_keyword_stuffing",
+      "pattern": "keyword_match_over_truth",
+      "description": "Adding job-posting keywords to the resume that do not reflect real experience just to pass a screener",
+      "trigger": "learner pastes the posting's skill list into the resume verbatim without evidence",
+      "feedback": "Match the role with true evidence, not copied keywords. If the posting wants 'data visualization', cite the chart you actually built, not the phrase alone.",
       "rail_action": "represent"
-    },
-    {
-      "id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
     }
   ]
 }

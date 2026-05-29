@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_2_3_prompting_for_classroom_constraints",
   "misconceptions": [
     {
-      "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_more_detail_better",
+      "pattern": "verbosity_over_constraint",
+      "description": "Believing a longer, more elaborate prompt is automatically a better-constrained prompt",
+      "trigger": "teacher adds adjectives and wishes (engaging, rigorous, fun) but no measurable limits the plan must respect",
+      "feedback": "A strong constraint is checkable: a time cap, a banned tool, a required standard, a reading level. Adjectives are not constraints.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_soft_vs_hard",
+      "pattern": "soft_and_hard_constraints_treated_alike",
+      "description": "Treating a preference (would be nice to include movement) the same as a non-negotiable limit (IEP requires extended time)",
+      "trigger": "teacher lets the AI trade away a legal or safety requirement to satisfy a stylistic wish",
+      "feedback": "Separate hard constraints the plan must satisfy from soft preferences. Never let a soft preference override an accommodation or safety rule.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_unverified_compliance",
+      "pattern": "assumed_constraint_compliance",
+      "description": "Assuming the AI honored a stated constraint without checking the returned plan against it",
+      "trigger": "teacher states no homework but the plan still assigns reading at home, and the teacher submits it unchecked",
+      "feedback": "After each prompt, re-read the plan against every hard constraint. A stated constraint is not a satisfied constraint.",
+      "rail_action": "explain"
     }
   ]
 }

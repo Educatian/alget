@@ -4,16 +4,16 @@
       "id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_cbi_as_pedagogical_judgment",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher writes in a tool-adoption memo: 'I chose the adaptive math app because students find it engaging and the vendor demo was impressive.' What is the core problem with this as a pedagogical-judgment artifact?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It names a learning purpose but no equity risk.",
+        "It justifies the choice by appeal (engagement, demo polish) rather than by an instructional purpose, a constraint, and inspectable evidence.",
+        "It cites the vendor, which is never allowed in CAT 531.",
+        "It is too short to be a memo."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_polish_as_evidence",
+      "explanation": "Pedagogical judgment requires naming the instructional purpose, the constraint that matters, and the evidence that makes the call defensible. Engagement and demo polish are preferences, not justification.",
+      "misconception_id": "cat531_supplement_1_1_judgment_as_tool_preference",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_cbi_as_pedagogical_judgment",
+      "stem": "Two teachers face the same situation: a free quiz platform that improves grading speed but stores student responses on servers with an unclear data-retention policy. Teacher A adopts it; Teacher B declines. Under CBI as pedagogical judgment, when can BOTH be defensible decisions?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Never; one of them must be objectively wrong.",
+        "Only if the principal approves both.",
+        "When each teacher names the same instructional purpose but weighs the student-data constraint against the workflow benefit differently and can show the reasoning.",
+        "When both teachers agree to use the tool the same way."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "Judgment is defensible when the reasoning is inspectable, not when everyone reaches the same answer. Two teachers can weigh a real constraint differently and both be defensible if each shows purpose, constraint, and evidence.",
+      "misconception_id": "cat531_supplement_1_1_one_right_answer_fallacy",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_cbi_as_pedagogical_judgment",
         "evidence_based_revision"
       ]
     },
@@ -45,38 +46,40 @@
       "id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher asks an AI assistant whether a reading app is appropriate for a class with three multilingual learners and an IEP student. The AI returns a confident 'Yes, it is fully appropriate.' What is the defensible next move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the app, since the AI verified appropriateness.",
+        "Treat the AI claim as one unverified input and check it against the named learners' specific needs and the privacy policy before deciding.",
+        "Reject the app because AI cannot be trusted on any classroom question.",
+        "Ask the AI a second time to confirm."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_ai_as_authority",
+      "explanation": "An AI cannot hold the professional accountability for an equity or access decision. Its output is a proposal to be judged against the actual learners and policy, not an authority that ends the judgment.",
+      "misconception_id": "cat531_supplement_1_1_ai_holds_the_judgment",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_cbi_as_pedagogical_judgment"
       ]
     },
     {
       "id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A teacher's adoption rationale lists the instructional purpose and the equity risk but stops there. A reviewer says it is still not defensible. What single element is missing that would make the judgment inspectable?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A longer description of how engaging the tool is.",
+        "The named evidence source plus what was rejected or modified, so a colleague can reconstruct why this choice beat the alternative.",
+        "A statement that the teacher has used technology before.",
+        "The price of the tool."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_1_1_cbi_as_pedagogical_judgment_completion_only_model",
+      "explanation": "Naming purpose and risk is necessary but not sufficient. A defensible judgment also points to the evidence used and the alternative weighed and set aside, so the reasoning can be reconstructed and challenged.",
+      "misconception_id": "cat531_supplement_1_1_naming_risk_equals_resolving_it",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat531_supplement_cbi_as_pedagogical_judgment"
       ]
     }
   ]

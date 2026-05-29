@@ -4,16 +4,16 @@
       "id": "cat531_supplement_2_2_teachgen_i_scenario_setup_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_teachgen_i_scenario_setup",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher opens TeachGen@i and types: \"Plan a fractions lesson.\" The transcript shows a polished plan came back. Why is this scenario setup weak?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Fractions are too easy for a generative tool to plan.",
+        "It names a topic but no grade band, prior lesson, time block, or constraint, so the plan cannot fit a real class.",
+        "The teacher should have asked for two lessons at once.",
+        "TeachGen@i should never be used for math."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_2_2_teachgen_i_scenario_setup_polish_as_evidence",
+      "explanation": "A scenario the AI can usefully plan for specifies the learners and setting. A bare topic produces a generic plan no matter how polished it looks.",
+      "misconception_id": "cat531_supplement_2_2_teachgen_i_scenario_setup_generic_scenario",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
@@ -25,38 +25,40 @@
     {
       "id": "cat531_supplement_2_2_teachgen_i_scenario_setup_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_teachgen_i_scenario_setup",
+      "stem": "Which scenario detail is safe and useful to include when setting up a TeachGen@i prompt for a planning task?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "\"Marcus R. has an IEP for dyslexia and scored 62% on the unit test.\"",
+        "\"About a third of the class reads two grade levels below the text, and we have no one-to-one devices.\"",
+        "A screenshot of the class roster with names and student IDs.",
+        "The teacher's own login credentials so the tool can pull records."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_2_2_teachgen_i_scenario_setup_annotation_without_signal",
+      "explanation": "Describe learner needs in de-identified, aggregate terms. Naming individual students or pasting records into a generative tool is a privacy violation, not a setup detail.",
+      "misconception_id": "cat531_supplement_2_2_teachgen_i_scenario_setup_invented_student_data",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_teachgen_i_scenario_setup",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_2_2_teachgen_i_scenario_setup_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher generates a plan, then realizes the period is only 40 minutes and devices are banned that day, but the plan assumes 60 minutes of laptop work. What does this reveal about the scenario setup?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "TeachGen@i is unreliable and should not be used for planning.",
+        "The binding constraints were left out of the scenario, so the fluent plan is not usable; constraints belong in the setup first.",
+        "The teacher should accept the plan and find extra time.",
+        "The plan is fine because it was internally consistent."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_2_2_teachgen_i_scenario_setup_ai_as_authority",
+      "explanation": "Hard constraints (time block, device policy, target standard) belong in the scenario before generation. A plan built on missing constraints reads well but fails in the room.",
+      "misconception_id": "cat531_supplement_2_2_teachgen_i_scenario_setup_constraints_as_afterthought",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_teachgen_i_scenario_setup",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_2_2_teachgen_i_scenario_setup_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "In a TeachGen@i prompt transcript submitted as evidence, which entry best documents a defensible scenario-setup decision?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"Prompt: plan a lesson. Output: looked good. Submitted.\"",
+        "The original scenario, the line where the teacher added the 40-minute and no-device constraints, and a note explaining a generated grouping suggestion was rejected because it assumed reading levels the class does not have.",
+        "A clean final plan with no prompt history.",
+        "A note that the teacher tried three tools and picked the fastest."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_2_2_teachgen_i_scenario_setup_completion_only_model",
+      "explanation": "A defensible transcript shows the scenario, the constraints the teacher added, and at least one rejected suggestion with the reason, so a mentor can audit the judgment.",
+      "misconception_id": "cat531_supplement_2_2_teachgen_i_scenario_setup_constraints_as_afterthought",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_teachgen_i_scenario_setup",
         "evidence_based_revision"
       ]
     }

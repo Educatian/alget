@@ -33,17 +33,33 @@ Three course anchors shape the reasoning here:
 
 Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
 
-## Worked Example
+## Worked Example: Auditing One Repo Against the Privacy Checklist
 
-Start with a thin claim that many students write on a first pass:
+A student is about to submit a personal portfolio site hosted on GitHub Pages. Before the capstone review, they run the three-line privacy checklist against the repo.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+**Step 1. Scan for committed secrets.** Open the project and search the tracked files.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```
+$ git grep -n -i "key\|password\|token"
+app.js:14:  const WEATHER_API_KEY = "a1f4c9e7b2d6";
+contact.html:32:  <!-- TODO: SMTP password = summer2026! -->
+```
 
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Two hits. Both are real secrets sitting in tracked files.
 
-The stronger version treats the privacy checklist for accounts, data sharing, and AI tool boundaries as evidence. It names what changed, links the change to **ISTE digital citizenship**, and leaves a reader able to audit the decision.
+**Step 2. Decide and act, row by row.**
+
+| Item | Finding | Action |
+| --- | --- | --- |
+| `app.js:14` weather API key | Live key in a public repo | Move to `/config/keys.js`, add that path to `.gitignore`, rotate the key |
+| `contact.html:32` SMTP password | Password in an HTML comment | Delete the comment, store the password in the server env, rotate it |
+| Old commits | Key already pushed in commit `a1b2c3` | History is public, so treat both secrets as leaked and rotate regardless of deletion |
+
+**Step 3. Record verifiable evidence.** The checklist line that passes review is not "checked privacy." It is:
+
+> Removed weather key from `app.js:14` into `/config/keys.js` (now in `.gitignore`), deleted SMTP comment in `contact.html:32`, rotated both secrets on 2026-05-12, reran `git grep -i key` with zero hits, confirmed the page still loads.
+
+That paragraph names the file, the line, the action, the date, and the re-check, so a reviewer can reproduce every step. Polish (a nicer layout, a hero image) is the last layer; it never substitutes for the secret audit.
 
 ## Decision Rule
 

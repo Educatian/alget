@@ -4,16 +4,16 @@
       "id": "cat531_supplement_1_5_classroom_context_variables_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_classroom_context_variables",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher read that a discussion-bot tool 'raised engagement in a study' and plans to adopt it. Which classroom context variable, if unexamined, would most undermine that evidence transferring to her room?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The font size used in the bot's interface.",
+        "The study's classes were 12 students with 1:1 devices, while her class is 34 students sharing a cart of 10 tablets.",
+        "The color of the study's cover page.",
+        "Whether the study was published recently."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_1_5_classroom_context_variables_polish_as_evidence",
+      "explanation": "Context variables such as class size and device ratio govern whether evidence from one setting transfers. A 12-student 1:1 study tells you little about a 34-student shared-device room.",
+      "misconception_id": "cat531_supplement_1_5_evidence_transfers_context_free",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_1_5_classroom_context_variables_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_classroom_context_variables",
+      "stem": "A teacher lists her context as 'a normal high school class.' A mentor says this description is too thin to support a tool decision. Which set of variables would make the context decision-relevant?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The school mascot, the bell schedule, and the room number.",
+        "Class size, device-to-student ratio, proportion of multilingual learners, students with IEPs/504 plans, and reliable home-internet access.",
+        "The teacher's years of experience only.",
+        "The brand of the classroom projector."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_1_5_classroom_context_variables_annotation_without_signal",
+      "explanation": "Decision-relevant context variables are the ones that change whether a tool works and for whom: class size, device ratio, language profile, accommodations, and connectivity.",
+      "misconception_id": "cat531_supplement_1_5_context_as_vague_label",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_classroom_context_variables",
         "evidence_based_revision"
       ]
     },
@@ -45,37 +46,39 @@
       "id": "cat531_supplement_1_5_classroom_context_variables_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher asks an AI to 'recommend a vocabulary tool for my class.' The AI gives a confident recommendation without asking anything. What context-aware move keeps the decision defensible?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept the recommendation; the AI is trained on many classrooms.",
+        "Supply the AI the specific context variables (class size, language profile, device access) and ask it to flag where the recommendation might fail for her room, then judge the fit.",
+        "Ask the AI to pick for every class in the school at once.",
+        "Reject all AI recommendations as context-blind."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_1_5_classroom_context_variables_ai_as_authority",
+      "explanation": "A context-free recommendation cannot account for the variables that decide fit. The defensible move is to feed the AI the actual context and use it to surface where the tool might fail, not to outsource the judgment.",
+      "misconception_id": "cat531_supplement_1_5_ai_recommends_context_free",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_classroom_context_variables"
       ]
     },
     {
       "id": "cat531_supplement_1_5_classroom_context_variables_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_classroom_context_variables",
+      "stem": "A tool worked well in a teacher's 1st-period class but failed in her 5th-period class with the same lesson. She concludes 'the tool is unreliable.' What is the more defensible reading?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The tool is simply broken and should be discarded.",
+        "Context variables differ across the two periods (for example more multilingual learners or a co-teaching schedule in 5th), so the failure is a fit problem to diagnose, not proof the tool is universally bad.",
+        "5th-period students are less capable.",
+        "The lesson should never be reused across periods."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_1_5_classroom_context_variables_completion_only_model",
+      "explanation": "Differing outcomes across sections usually signal differing context variables, not a defective tool. The defensible move is to identify which variable changed and adjust, not to generalize 'unreliable.'",
+      "misconception_id": "cat531_supplement_1_5_outcome_generalized_across_contexts",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_classroom_context_variables",
         "evidence_based_revision"
       ]
     }

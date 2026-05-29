@@ -8,73 +8,76 @@
         "cat100_supplement_revision_logs",
         "cat100_supplement_resume_branding_and_ai_brainstorming"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A revision log for your resume should record, for each change, three things. Which set is correct?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The font, the color, and the file size.",
+        "What changed, why it changed, and what evidence or feedback prompted the change.",
+        "The date, the weather, and how long it took.",
+        "How many words were added and how tired you felt."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_2_6_revision_logs_polish_as_evidence",
+      "explanation": "A useful revision log lets a reader reconstruct your reasoning: the change itself, the reason, and the prompt (a piece of feedback, an AI suggestion, or new evidence).",
+      "misconception_id": "cat100_supplement_2_6_log_records_cosmetics",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_2_6_revision_logs_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_revision_logs",
       "concept_ids": [
+        "cat100_supplement_revision_logs",
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which revision-log row is specific enough that a reader could find and understand the change?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "\"Fixed some stuff in the summary.\"",
+        "\"Made it better overall.\"",
+        "\"Summary, line 2: replaced 'good with computers' with 'proficient in Excel and SQL' after the career-center feedback flagged vague skills.\"",
+        "\"Updated the document.\""
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_2_6_revision_logs_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "The strong row names the location (summary, line 2), the exact change, and the prompt (career-center feedback). The vague rows could describe any edit anywhere.",
+      "misconception_id": "cat100_supplement_2_6_vague_log_row",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_2_6_revision_logs_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_revision_logs"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You used an AI tool to suggest edits. How should the revision log treat the AI's role?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Leave AI out of the log; only the final wording matters.",
+        "Note which edits originated from AI, which you accepted, and which you rejected, so the log shows your judgment over the tool's.",
+        "Credit every edit to AI to be safe.",
+        "Mention AI once at the top and never again."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_2_6_revision_logs_ai_as_authority",
+      "explanation": "A revision log that hides AI use cannot show your judgment. Recording what AI proposed, what you accepted, and what you rejected is exactly what makes the log honest and useful.",
+      "misconception_id": "cat100_supplement_2_6_hiding_ai_in_log",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_2_6_revision_logs_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_revision_logs",
       "concept_ids": [
+        "cat100_supplement_revision_logs",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Why is a dated revision log more useful than simply saving over the old file each time?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Dates make the document look more professional.",
+        "It lets you and a reviewer trace the order of changes, see what feedback led to what edit, and recover an earlier choice if a later one was worse.",
+        "It is required by every employer.",
+        "It automatically improves the writing quality."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_2_6_revision_logs_completion_only_model",
+      "explanation": "The value of a log is traceability over time: you can see the sequence of decisions, link each to its prompt, and roll back if a change did not help. Overwriting destroys that history.",
+      "misconception_id": "cat100_supplement_2_6_overwrite_loses_history",
       "difficulty": "medium"
     }
   ]

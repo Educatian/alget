@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_7_4_ai_assisted_email_drafting",
   "misconceptions": [
     {
-      "id": "cat100_supplement_7_4_ai_assisted_email_drafting_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat100_supplement_7_4_send_unedited_ai",
+      "pattern": "send_ai_draft_unread",
+      "description": "Sending an AI-generated email without checking facts, names, dates, or tone for the real recipient",
+      "trigger": "learner pastes the AI draft and hits send, keeping a wrong professor name or invented office hours",
+      "feedback": "Read every AI draft before sending. Verify the recipient name, dates, and any claimed facts; the AI does not know your real details.",
       "rail_action": "ask"
     },
     {
-      "id": "cat100_supplement_7_4_ai_assisted_email_drafting_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_7_4_no_specifics_in_prompt",
+      "pattern": "vague_prompt_to_ai",
+      "description": "Giving the AI a one-line prompt with no recipient, purpose, or facts, then expecting a usable email",
+      "trigger": "learner types 'write an email to my professor' with no course, request, or deadline",
+      "feedback": "Put the specifics in the prompt: who it is to, the course, the exact ask, and any dates. A vague prompt yields a generic, unusable draft.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_7_4_ai_assisted_email_drafting_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_7_4_tone_mismatch",
+      "pattern": "casual_tone_for_formal_email",
+      "description": "Keeping an overly casual or overly stiff AI tone that does not fit a professor or employer audience",
+      "trigger": "learner sends 'Hey can u bump my grade thx' to a professor",
+      "feedback": "Match tone to audience. For a professor or employer, use a clear subject line, a greeting with their name, a specific request, and a sign-off.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_7_4_ai_assisted_email_drafting_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_7_4_leak_private_info",
+      "pattern": "pasting_private_data_into_ai",
+      "description": "Pasting sensitive personal data such as a student ID or grades into a public AI tool to draft an email",
+      "trigger": "learner pastes their full student ID number and medical note into the chat prompt",
+      "feedback": "Keep private identifiers out of the prompt. Use a placeholder like [STUDENT ID] and fill it in yourself after the draft returns.",
       "rail_action": "practice"
     }
   ]

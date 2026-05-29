@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics",
   "misconceptions": [
     {
-      "id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_5_4_satisfaction_as_learning",
+      "pattern": "satisfaction_as_learning_evidence",
+      "description": "Using satisfaction or attitude ratings as evidence that learning occurred",
+      "trigger": "learner reports high satisfaction and concludes the module taught the skill",
+      "feedback": "Satisfaction is a usability and attitude metric. Support a learning claim with a learning metric such as pre/post or transfer performance.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_5_4_construct_mismatch",
+      "pattern": "claim_metric_construct_mismatch",
+      "description": "Pairing a claim with a metric that measures a different construct",
+      "trigger": "learner backs a learning claim with a usability metric or vice versa",
+      "feedback": "Match the metric to the construct: findability to task success or time, mastery to outcome scores, transfer to novel-item accuracy.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_5_4_blended_score",
+      "pattern": "blended_single_score",
+      "description": "Collapsing distinct usability and learning metrics into one composite number",
+      "trigger": "learner reports a single effectiveness score combining different constructs",
+      "feedback": "Keep the metrics disaggregated so a reader can see which specific claim each result supports.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_5_4_immediate_recall_as_learning",
+      "pattern": "immediate_recall_as_durable_learning",
+      "description": "Treating an immediate post-test gain as evidence of durable or transferable learning",
+      "trigger": "learner claims durable learning from a test taken right after the content was shown",
+      "feedback": "Add a delay or a transfer item so the gain is not just short-term recall of just-seen answers.",
       "rail_action": "practice"
     }
   ]

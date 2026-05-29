@@ -4,17 +4,17 @@
       "id": "ail606_supplement_6_4_final_prototype_quality_review_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_final_prototype_quality_review",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A quality-review row reads: 'Navigation: 4/5.' What single addition makes this score defensible at a capstone review?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A note that the reviewer is experienced.",
+        "The named criterion (such as 'consistent location of the Next control') and the screen evidence that earned the 4.",
+        "A second reviewer who also gives a 4.",
+        "Converting the 4 out of 5 into a percentage."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_6_4_final_prototype_quality_review_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A reproducible score is tied to a named criterion and the specific screen evidence behind it, not to reviewer authority.",
+      "misconception_id": "ail606_supplement_6_4_rubric_score_without_criterion",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_final_prototype_quality_review"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_6_4_final_prototype_quality_review_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_final_prototype_quality_review",
+      "stem": "A reviewer gives a prototype a high overall quality rating, praising its clean visual design. The final quiz, however, never measures the stated objective. What flaw does the high rating reveal?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The reviewer did not spend enough time.",
+        "Polish drove the score while the objectives-to-assessment alignment criterion went unchecked.",
+        "The quiz should have more questions.",
+        "Visual design should not be in the rubric at all."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_6_4_final_prototype_quality_review_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Instructional and accessibility criteria must be scored independently of visual polish; a beautiful screen can still fail alignment.",
+      "misconception_id": "ail606_supplement_6_4_polish_mistaken_for_quality",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_final_prototype_quality_review"
       ]
     },
     {
       "id": "ail606_supplement_6_4_final_prototype_quality_review_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You run your prototype through an AI reviewer and it returns 'Overall quality: 9/10.' How should this inform your final review?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Report the 9 out of 10 as the prototype's quality verdict.",
+        "Treat the AI output as a candidate issue list to confirm against your rubric and the live prototype; the score is not the verdict.",
+        "Discard it because AI cannot judge instructional design.",
+        "Average it with your own overall number."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_6_4_final_prototype_quality_review_ai_as_authority",
+      "explanation": "An AI review supplies issues to verify against the rubric and the running prototype; the overall score is not the review verdict.",
+      "misconception_id": "ail606_supplement_6_4_ai_score_as_verdict",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_6_4_final_prototype_quality_review_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Your issue log lists nine problems but a committee member cannot tell which ones block release. The log treats a broken Module 4 assessment and a 2-pixel margin gap identically. What is missing?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A longer description of each issue.",
+        "A severity rating for each issue based on its effect on the learner, separating high-severity blockers from cosmetic items.",
+        "Screenshots of all nine issues.",
+        "A decision to fix every issue regardless of impact."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_6_4_final_prototype_quality_review_completion_only_model",
+      "explanation": "Severity rating lets a defense distinguish readiness blockers from cosmetic items instead of treating all issues as equal.",
+      "misconception_id": "ail606_supplement_6_4_review_without_severity",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_evidence_based_revision"
       ]
     }
   ]

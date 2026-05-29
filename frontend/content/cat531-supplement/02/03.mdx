@@ -35,15 +35,19 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Walk through one annotated judgment call on prompting for constraints. A middle-school teacher needs a 38-minute civics lesson, has a student with an IEP for extended response time, and may not assign homework this week.
 
-> I made the TeachGen@i prompt transcript with teacher edits and rejected suggestions clearer.
+**Step 1. Sort hard from soft.** Hard constraints (must hold): 38-minute cap, extended-time accommodation, no homework. Soft preferences (nice to have): a short movement break, a current-events hook.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+**Step 2. Prompt and check, iteration by iteration.**
 
-> I revised the TeachGen@i prompt transcript with teacher edits and rejected suggestions so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **critical edtech studies**, and I can point to the exact part of the artifact that changed.
+> **Prompt 1:** "Plan an engaging, rigorous civics lesson." Result ran 55 minutes and ended with a take-home reading. Annotated: adjectives are not constraints, and two hard limits were violated.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **critical edtech studies**, and the exact revision that followed.
+> **Prompt 2:** "Plan a 38-minute civics lesson, no homework, and build in extended response time for one student. A movement break is optional." Result dropped the extended-time support to fit a movement break. Annotated: the tool traded a hard accommodation for a soft preference.
+
+> **Prompt 3:** "Protect extended response time as non-negotiable. Drop the movement break if needed. Keep the lesson at 38 minutes with no homework." Result honored all three hard constraints in 37 minutes.
+
+**Step 3. Verify, do not assume.** The teacher re-read prompt 3's plan line by line against each hard constraint and confirmed compliance, then logged the rejected movement-break suggestion with the reason. The transcript now shows that stating a constraint and satisfying it are two different events, and the teacher checked both.
 
 ## Decision Rule
 

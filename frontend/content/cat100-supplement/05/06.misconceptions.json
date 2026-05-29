@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_5_6_citation_and_attribution",
   "misconceptions": [
     {
-      "id": "cat100_supplement_5_6_citation_and_attribution_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_5_6_citation_and_attribution_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_5_6_citation_and_attribution_image_no_credit",
+      "pattern": "reused_media_without_credit",
+      "description": "Reusing images, charts, or icons in slides without crediting the source or license",
+      "trigger": "learner pastes a chart from a website with no source line and no license check",
+      "feedback": "Add a source line and confirm the license allows reuse. 'Found online' is not a citation.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_5_6_citation_and_attribution_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "cat100_supplement_5_6_citation_and_attribution_ai_not_disclosed",
+      "pattern": "ai_assistance_not_disclosed",
+      "description": "Failing to disclose AI-generated text, images, or narration when the assignment requires it",
+      "trigger": "learner uses an AI-written summary as their own words with no AI note",
+      "feedback": "Disclose AI assistance where required and attribute generated media; undisclosed AI use is an integrity risk.",
+      "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_5_6_citation_and_attribution_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_5_6_citation_and_attribution_citation_is_decoration",
+      "pattern": "citation_as_afterthought",
+      "description": "Treating citations as decoration added at the end rather than verifiable links to sources",
+      "trigger": "learner lists a URL that does not actually contain the cited figure",
+      "feedback": "Each citation must point to the exact source of the claim or media; check that the link supports what you said.",
+      "rail_action": "ask"
     }
   ]
 }

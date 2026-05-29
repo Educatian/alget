@@ -4,16 +4,16 @@
       "id": "ail606_supplement_8_5_accessibility_review_workflow_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_accessibility_review_workflow",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A reviewer says 'this screen looks clean, so it is accessible.' What is the strongest correction?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Agree, since clean layouts are usually accessible.",
+        "Check the screen against named WCAG criteria such as alt text, contrast, and color-only cues; appearance is not a finding.",
+        "Add more whitespace until it looks even cleaner.",
+        "Ask a colleague whether they also think it looks clean."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_8_5_accessibility_review_workflow_polish_as_evidence",
+      "explanation": "Accessibility findings come from specific success criteria, not from how polished the screen appears.",
+      "misconception_id": "ail606_supplement_8_5_clean_means_accessible",
       "difficulty": "medium",
       "concept_ids": [
         "accessibility"
@@ -23,16 +23,16 @@
       "id": "ail606_supplement_8_5_accessibility_review_workflow_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The only cue for the required next action is 'the red frame is next.' Which WCAG issue does this raise?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It is fine because red is easy to see.",
+        "Conveying the action by color alone fails use-of-color (1.4.1); add a text label and an icon.",
+        "It only affects the font size.",
+        "It is a contrast problem, so just darken the red."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_8_5_accessibility_review_workflow_annotation_without_signal",
+      "explanation": "Color alone excludes color-blind learners; the action must be conveyed in more than one channel.",
+      "misconception_id": "ail606_supplement_8_5_color_only_cue",
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
@@ -42,16 +42,16 @@
       "id": "ail606_supplement_8_5_accessibility_review_workflow_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A reviewer uses AI to draft alt text for a content-bearing diagram. What is the strongest boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept the AI alt text unread because it is grammatical.",
+        "Use the AI draft as a starting point, then check it names what the diagram shows and why it matters before accepting.",
+        "Leave the alt text empty since the image is decorative.",
+        "Ask AI only to make the alt text longer."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_8_5_accessibility_review_workflow_ai_as_authority",
+      "explanation": "AI can draft alt text, but the reviewer must verify it conveys the diagram's content and purpose (WCAG 1.1.1).",
+      "misconception_id": "ail606_supplement_8_5_decorative_alt_assumption",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -61,16 +61,16 @@
       "id": "ail606_supplement_8_5_accessibility_review_workflow_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Three blockers are found: missing alt text, 2.9:1 contrast, and a color-only action cue. Which fix should go first and why?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Contrast, because it is the easiest to change.",
+        "Alt text, because the missing description fully excludes a screen-reader user from the content.",
+        "The color cue, because color is the most noticeable.",
+        "Any order, since all three are equally urgent."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_8_5_accessibility_review_workflow_completion_only_model",
+      "explanation": "Prioritize by who is fully excluded; a screen-reader user gets nothing from an undescribed content image.",
+      "misconception_id": "ail606_supplement_8_5_decorative_alt_assumption",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

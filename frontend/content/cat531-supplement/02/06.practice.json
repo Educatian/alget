@@ -4,16 +4,16 @@
       "id": "cat531_supplement_2_6_teacher_noticing_and_revision_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_teacher_noticing_and_revision",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Which is a noticing record rather than a premature verdict?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"Jordan is lazy and never tries.\"",
+        "\"During independent work Jordan started, erased twice, then set the pencil down and stared at the prompt for three minutes.\"",
+        "\"Jordan does not care about this class.\"",
+        "\"Jordan is just a weak student.\""
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_2_6_teacher_noticing_and_revision_polish_as_evidence",
+      "explanation": "Noticing describes the observable behavior in the moment. The other options leap to a global judgment that cannot be acted on or checked.",
+      "misconception_id": "cat531_supplement_2_6_teacher_noticing_and_revision_noticing_is_evaluation",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
@@ -25,57 +25,60 @@
     {
       "id": "cat531_supplement_2_6_teacher_noticing_and_revision_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_teacher_noticing_and_revision",
+      "stem": "One student looks confused during a new model. What is the most defensible response before redesigning the lesson?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Scrap the model and rewrite the whole lesson tonight.",
+        "Check whether the confusion is shared by glancing at a few other students' work or asking a quick question, then decide.",
+        "Ignore it, since one student is not enough to matter.",
+        "Assume the model is fine and move on."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_2_6_teacher_noticing_and_revision_annotation_without_signal",
+      "explanation": "One signal warrants a check, not a redesign. The teacher weighs the moment against the pattern before changing the plan.",
+      "misconception_id": "cat531_supplement_2_6_teacher_noticing_and_revision_one_signal_revision",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_teacher_noticing_and_revision",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_2_6_teacher_noticing_and_revision_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "A teacher asks TeachGen@i to revise tomorrow's lesson after noticing that six of twenty exit tickets confused area with perimeter. What makes this an evidence-based use of the tool?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The revision is driven by a named noticed pattern (six exit tickets) the teacher can show, not by a vague sense the lesson flopped.",
+        "The AI rewrote the lesson, so it must be better.",
+        "The teacher changed the lesson because it felt stale.",
+        "The revision was made because one student complained."
       ],
-      "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_2_6_teacher_noticing_and_revision_ai_as_authority",
+      "correct_index": 0,
+      "explanation": "Evidence-based revision links the change to a documented noticing. The exit-ticket pattern is the cause the teacher can point to.",
+      "misconception_id": "cat531_supplement_2_6_teacher_noticing_and_revision_revision_without_cause",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_teacher_noticing_and_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_2_6_teacher_noticing_and_revision_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Which Design Tension Studio map entry best documents teacher noticing leading to revision, in a form a mentor could audit?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"Lesson felt off, so I changed it.\"",
+        "Observed (6 of 20 exit tickets swapped area and perimeter) linked to the revision (open tomorrow by sorting shapes into area vs. perimeter tasks) and the rejected option (reteach the formula again) with the reason it would not address the confusion of the two ideas.",
+        "\"Revised the lesson.\"",
+        "\"Students seemed bored.\""
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_2_6_teacher_noticing_and_revision_completion_only_model",
+      "explanation": "A defensible map links a described observation to a revision and explains the rejected alternative, so the reasoning is inspectable.",
+      "misconception_id": "cat531_supplement_2_6_teacher_noticing_and_revision_revision_without_cause",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_teacher_noticing_and_revision",
         "evidence_based_revision"
       ]
     }

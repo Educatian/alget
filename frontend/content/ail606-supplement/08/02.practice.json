@@ -4,16 +4,16 @@
       "id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_feedback_templates_for_design_drafts",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A feedback template line reads 'Tighten this up before final.' Which rewrite makes it drive a design revision?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Nice progress, keep going!",
+        "Frame 4's narration states the goal but not the learner action; add one sentence naming what the learner does here.",
+        "This is a bit confusing, can you clarify?",
+        "Tighten this up and also fix the fonts and headings."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_polish_as_evidence",
+      "explanation": "The strong line names a criterion, locates it in the draft, and requests an observable next move.",
+      "misconception_id": "ail606_supplement_8_2_vague_directive",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_feedback_templates_for_design_drafts"
@@ -23,16 +23,16 @@
       "id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which template line is praise rather than actionable feedback?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Great start!",
+        "On slide 2, align the heading to the stated objective about navigation.",
+        "Add alt text to the diagram on slide 5.",
+        "Cut the second paragraph; it repeats the goal statement."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_annotation_without_signal",
+      "correct_index": 0,
+      "explanation": "Encouragement names no criterion, location, or action, so it cannot guide a revision.",
+      "misconception_id": "ail606_supplement_8_2_praise_as_feedback",
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
@@ -42,16 +42,16 @@
       "id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An instructor uses AI to help draft comments on 12 design drafts. What is the strongest boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Let the AI generate and post all 12 comment sets unedited.",
+        "Use AI to draft candidate criterion-located-action lines, then keep or cut each against the actual draft.",
+        "Refuse to use AI even for phrasing.",
+        "Ask AI only to make the comments sound more encouraging."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_ai_as_authority",
+      "explanation": "AI proposes phrasing; the instructor's judgment against the real draft decides what stays.",
+      "misconception_id": "ail606_supplement_8_2_praise_as_feedback",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -61,16 +61,16 @@
       "id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Students keep revising only cosmetics. The template lists six equal-weight comments per draft. What is the best fix?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Add more comments so nothing is missed.",
+        "Cap the template at one prioritized revision per draft so the feedback itself does not overload the student.",
+        "Remove all comments and let students self-assess.",
+        "Reorder the six comments alphabetically."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_completion_only_model",
+      "explanation": "Too many equal-weight comments hide the priority; one prioritized revision keeps feedback load on the design decision.",
+      "misconception_id": "ail606_supplement_8_2_overloaded_comments",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

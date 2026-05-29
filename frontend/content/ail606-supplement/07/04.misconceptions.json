@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_7_4_small_n_testing_and_design_claims",
   "misconceptions": [
     {
-      "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_smalln_proves_efficacy",
+      "pattern": "smalln_treated_as_efficacy_trial",
+      "description": "Drawing population-level effectiveness or statistical-significance claims from a handful of moderated usability sessions",
+      "trigger": "learner reports that a five-person test shows the design improves learning or beats the old version with confidence",
+      "feedback": "Small-N moderated testing supports usability and design-failure claims, not efficacy. Scope the claim to observed friction in this sample.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_observation_without_action",
+      "pattern": "observation_logged_without_revision",
+      "description": "Recording what testers did but never linking each observation to a specific design change and recheck",
+      "trigger": "learner lists behaviors or scores but the trace shows no observation-to-revision pairing",
+      "feedback": "Pair each meaningful observation with the design change it triggered and a plan to recheck it. The trace is the link, not the list.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_one_voice_overgeneralized",
+      "pattern": "single_observation_overgeneralized",
+      "description": "Treating a one-of-five occurrence as either a confirmed defect or a percentage of the whole population",
+      "trigger": "learner converts a single tester's struggle into a population rate or an immediate redesign",
+      "feedback": "Record low-frequency signals as uncertain and watch for recurrence before committing a redesign or reporting a rate.",
+      "rail_action": "ask"
     }
   ]
 }

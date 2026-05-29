@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_6_2_starter_html_and_css",
   "misconceptions": [
     {
-      "id": "cat100_supplement_6_2_starter_html_and_css_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_6_2_starter_html_and_css_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_6_2_h1_sets_tab_title",
+      "pattern": "confusing_h1_with_title",
+      "description": "Believing the page heading <h1> controls the browser tab text rather than the <title> element in <head>",
+      "trigger": "learner edits <h1> expecting the browser tab to change",
+      "feedback": "The tab text comes from <title> inside <head>. <h1> is the visible heading on the page. They are two different elements with two different jobs.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_6_2_starter_html_and_css_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_6_2_first_rule_wins",
+      "pattern": "first_css_rule_wins",
+      "description": "Assuming the first CSS rule always wins when in fact, at equal specificity, the later rule in source order overrides the earlier one",
+      "trigger": "learner predicts the earlier color for two same-specificity rules",
+      "feedback": "At equal specificity the cascade takes the last matching rule. Reorder the rules or raise specificity if you need a different one to win.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_6_2_starter_html_and_css_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_6_2_ai_css_runs_blindly",
+      "pattern": "ai_css_assumed_correct",
+      "description": "Pasting AI-generated CSS without checking that its selectors match classes and elements that actually exist in the HTML",
+      "trigger": "learner applies AI CSS that targets a non-existent class and is surprised nothing changes",
+      "feedback": "A selector only styles elements it matches. Confirm every class in the CSS exists in your HTML, then keep, add, or drop classes so the two agree.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_6_2_alt_text_optional",
+      "pattern": "alt_text_treated_as_optional",
+      "description": "Treating the alt attribute on images as decorative or optional rather than as the accessible description a screen reader announces",
+      "trigger": "learner ships an <img> with no alt or an empty alt for a meaningful image",
+      "feedback": "Give meaningful images a short, specific alt describing what they show. That is how non-visual users receive the same information sighted users get.",
       "rail_action": "practice"
     }
   ]

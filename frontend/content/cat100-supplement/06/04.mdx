@@ -35,15 +35,25 @@ The anchors should do work in your artifact. If NACE career readiness or ISTE di
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Maria pushed her files but the live page shows unstyled text. Follow the publishing checklist that finds and fixes the break.
 
-> I made the GitHub Pages file tree with accessibility, privacy, and publishing checks clearer.
+**Step 1. Turn Pages on.** In the repo: Settings, Pages, Source, Deploy from a branch, Branch: main, Folder: / (root), Save. GitHub reports: Your site is live at https://mlopez.github.io/portfolio/.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+**Step 2. Reproduce the bug on the live URL, not the editor.** Locally the page is styled. On the live project URL the CSS is missing. The difference is the subpath /portfolio/.
 
-> I revised the GitHub Pages file tree with accessibility, privacy, and publishing checks so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+**Step 3. Inspect the link tag.**
 
-Notice the shift: the artifact is no longer just polished. The revision points to **ISTE digital citizenship**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+```html
+<!-- before: absolute path points at the domain root, 404s on a project site -->
+<link rel="stylesheet" href="/style.css">
+
+<!-- after: relative path resolves under /portfolio/ -->
+<link rel="stylesheet" href="assets/style.css">
+```
+
+**Step 4. Verify like a visitor.** Commit, wait for the Pages build to finish, then hard-refresh and open the live URL in a private window on a phone. Styles now load.
+
+The fix was one character of path logic, not a broken deploy. The lesson is that a project site serves from a subpath, so absolute paths that work locally break online. Verifying on the live URL, not the editor preview, is what exposed it.
 
 ## Decision Rule
 

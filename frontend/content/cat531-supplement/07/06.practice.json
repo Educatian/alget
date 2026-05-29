@@ -4,16 +4,16 @@
       "id": "cat531_supplement_7_6_revising_plans_after_field_evidence_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_revising_plans_after_field_evidence",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A candidate planned a flipped lesson where students watch a video at home and use class time for an AI-coached problem set. After teaching it once, only 9 of 26 students had watched the video. Which revision is driven by the field evidence rather than by the candidate's preference?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Keep the flipped plan because the design is sound in principle.",
+        "Move the video to a 7-minute in-class viewing because most students lacked reliable at-home time and the AI coaching assumed they had watched it.",
+        "Assign the same video again and warn students to watch it.",
+        "Add a quiz penalty for students who did not watch."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_7_6_revising_plans_after_field_evidence_polish_as_evidence",
+      "explanation": "The field evidence (17 of 26 did not watch at home) points to an access barrier, so the defensible revision moves the video into class. Repeating the plan or adding penalties ignores the evidence.",
+      "misconception_id": "cat531_supplement_7_6_ignore_field_evidence",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_field_based_transfer_and_coaching",
@@ -26,16 +26,16 @@
       "id": "cat531_supplement_7_6_revising_plans_after_field_evidence_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "After one rough lesson, the candidate wants to scrap the whole AI-coached problem set. What does responsible revision require before that large a change?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Scrap it immediately because one lesson felt chaotic.",
+        "Separate which part actually failed (the at-home prep) from the part that worked (in-class coaching) so she revises the cause, not the whole plan.",
+        "Replace it with a tool the candidate personally prefers.",
+        "Blame the students for not preparing and keep everything the same."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_7_6_revising_plans_after_field_evidence_annotation_without_signal",
+      "explanation": "Revision after field evidence isolates the failing component instead of discarding everything. The candidate should change the cause (prep access), not abandon a part that worked.",
+      "misconception_id": "cat531_supplement_7_6_overcorrect_on_one_lesson",
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
@@ -45,16 +45,16 @@
       "id": "cat531_supplement_7_6_revising_plans_after_field_evidence_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The candidate gives an AI tool her lesson plan and the line that only 9 students watched the video, and asks for a revision. The AI proposes a gamified points system but never addresses home access. How should she use it?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the gamified system because the AI is good at engagement ideas.",
+        "Note that the AI ignored the access cause she observed, and revise toward the access barrier instead of the AI's engagement framing.",
+        "Trust that gamification will fix attendance to the video.",
+        "Ask the AI to add more game mechanics."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_7_6_revising_plans_after_field_evidence_ai_as_authority",
+      "explanation": "The AI reframed an access problem as an engagement problem. The candidate's field evidence about home access must govern the revision, not the AI's default framing.",
+      "misconception_id": "cat531_supplement_7_6_ai_reframes_the_cause",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -64,16 +64,16 @@
       "id": "cat531_supplement_7_6_revising_plans_after_field_evidence_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "What record best shows the candidate's revision was evidence-based rather than a hunch?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A note that the second lesson felt better.",
+        "The original plan, the field data that prompted the change, the specific revision, and the follow-up data showing whether participation rose.",
+        "A new, longer lesson plan.",
+        "A statement that the candidate has more experience now."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_7_6_revising_plans_after_field_evidence_completion_only_model",
+      "explanation": "Evidence-based revision shows the original plan, the prompting data, the change, and follow-up data. A feeling that it went better is not evidence the revision worked.",
+      "misconception_id": "cat531_supplement_7_6_feeling_replaces_followup",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

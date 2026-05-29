@@ -4,76 +4,88 @@
       "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_publication_ready_artifact_packaging",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "What makes a learning-design artifact package publication-ready rather than just submitted?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It looks polished and has a nice cover image.",
+        "Another designer could reuse or rebuild it from the package alone: versioned files, a README of intent and decisions, attribution, and a license.",
+        "It is large and includes every working file you ever made.",
+        "It is zipped and emailed on time."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_polish_as_evidence",
+      "explanation": "Publication readiness is about reproducibility and reuse by someone else, not appearance or size. The package must carry enough provenance to stand alone.",
+      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_polish_equals_ready",
       "difficulty": "medium",
       "concept_ids": [
-        "ail606_supplement_publication_ready_artifact_packaging"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_publication_ready_artifact_packaging",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_publication_ready_artifact_packaging",
+      "stem": "Your package uses a stock image and a colleague's rubric. What must the package include to be ethically reusable?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Nothing; if it is in your folder you can publish it.",
+        "Source and license for the stock image and credit plus permission for the colleague's rubric, recorded in the package.",
+        "A note that says all rights reserved on everything.",
+        "Only your own name on the cover."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_annotation_without_signal",
+      "explanation": "Provenance and licensing for reused materials are part of a publishable package. Without them, the artifact cannot be lawfully or ethically reused.",
+      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_no_provenance",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_publication_ready_artifact_packaging",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You used an AI tool to generate part of the package contents. What belongs in the publication-ready package about that use?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Nothing; AI assistance never needs to be recorded.",
+        "A note stating which components the AI helped produce and how you verified them, so a reuser can judge provenance.",
+        "A claim that you wrote everything yourself.",
+        "The full chat log pasted in without context."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_ai_as_authority",
+      "explanation": "Reproducibility includes honest provenance about AI contributions and verification, scoped to what a reuser needs, not a raw transcript.",
+      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_no_provenance",
       "difficulty": "medium",
       "concept_ids": [
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_publication_ready_artifact_packaging",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_publication_ready_artifact_packaging",
+      "stem": "A reviewer downloads your package and cannot tell which file is the final storyboard or how to run the prototype. What does this reveal about the package?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The reviewer should try harder; the files are all there.",
+        "The package fails the reuse test: it lacks a manifest and a README that name the canonical files and the steps to run them.",
+        "Nothing important; final files are obvious by date.",
+        "The package needs more files added."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_completion_only_model",
+      "explanation": "If a competent outsider cannot identify the canonical artifact and reproduce its use, the package is not publication-ready regardless of how complete it feels to the author.",
+      "misconception_id": "ail606_supplement_7_6_publication_ready_artifact_packaging_polish_equals_ready",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_publication_ready_artifact_packaging",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

@@ -3,17 +3,17 @@
     {
       "id": "cat531_supplement_3_5_responsible_prompting_with_students_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_responsible_prompting_with_students",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "prompting_practice",
+      "stem": "A teacher wants AI help writing a behavior plan and types into a public chatbot: \"Suggest interventions for Jayden Carter, grade 4, diagnosed with ADHD, who hit a peer Tuesday.\" What is the responsible-prompting problem?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The prompt is too short to work.",
+        "It pastes identifiable student data (name, grade, diagnosis, incident) into a public tool that may store and train on it.",
+        "ADHD interventions cannot be requested from AI.",
+        "There is no problem; the detail makes the answer better."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_3_5_responsible_prompting_with_students_polish_as_evidence",
+      "explanation": "Responsible prompting strips personally identifiable information first. Describe the situation generically rather than entering a named student's record into a public tool.",
+      "misconception_id": "cat531_supplement_3_5_pasting_student_pii",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_ai_in_education",
@@ -25,58 +25,67 @@
     {
       "id": "cat531_supplement_3_5_responsible_prompting_with_students_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "prompting_practice",
+      "stem": "A student types \"write about the water cycle\" and accepts the generic paragraph that returns. Which teacher move best builds responsible prompting?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Tell the student the prompt was fine since the model figured out the topic.",
+        "Model adding audience, purpose, and constraints: \"Explain the water cycle for fourth graders in 4 sentences using one everyday example,\" then compare outputs.",
+        "Tell the student never to use AI for science.",
+        "Have the student lengthen the prompt with random extra words."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_3_5_responsible_prompting_with_students_annotation_without_signal",
+      "explanation": "Responsible prompting specifies audience, purpose, and constraints. Modeling that specification is the teachable skill, not hoping the model guesses intent.",
+      "misconception_id": "cat531_supplement_3_5_vague_prompt_good_enough",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "prompting_practice",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_5_responsible_prompting_with_students_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "prompting_practice",
+      "stem": "Students use a chatbot to research a local historical figure and paste the first response into their reports. Two reports contain the same invented birthdate. What routine should the teacher have taught?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Always trust the first AI output to save time.",
+        "An iterate-and-verify routine: read the output critically, confirm facts against a reliable source, then refine the prompt or correct the claim.",
+        "Use a longer prompt so the first answer is always right.",
+        "Forbid research entirely."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_3_5_responsible_prompting_with_students_ai_as_authority",
+      "explanation": "The first output is a draft. Responsible prompting includes checking claims against sources and iterating, which would have caught the fabricated birthdate.",
+      "misconception_id": "cat531_supplement_3_5_first_output_is_answer",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ai_in_education",
+        "prompting_practice",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_5_responsible_prompting_with_students_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "prompting_practice",
+      "stem": "A second-grade teacher plans to let seven-year-olds chat freely and unsupervised with a general-purpose AI assistant whose terms of service set a minimum age of 13. What is the most defensible decision?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Proceed, because young students learn fastest with full freedom.",
+        "Do not use that tool as designed; the activity violates the age terms and lacks supervision, so use a vetted, age-appropriate tool with teacher-mediated prompts.",
+        "Proceed but tell students to lie about their age.",
+        "Proceed, because the tool is popular with adults."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_3_5_responsible_prompting_with_students_completion_only_model",
+      "explanation": "Responsible prompting accounts for age, consent, and supervision. A tool whose terms exclude the students' age and that offers no safeguards is not defensible for unsupervised use.",
+      "misconception_id": "cat531_supplement_3_5_age_appropriateness_ignored",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "prompting_practice",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

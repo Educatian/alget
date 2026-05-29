@@ -4,17 +4,17 @@
       "id": "ail606_supplement_5_2_participant_profiles_and_sampling_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_participant_profiles_and_sampling",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your prototype trains warehouse staff with low LMS experience, but you recruit 5 instructional designers because they are available. What is the main threat to your usability evidence?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The sample is too small for any conclusion.",
+        "Expert designers will not encounter the friction the real low-experience users would, so usability problems stay hidden.",
+        "Designers cannot give honest feedback about their own field.",
+        "You should always recruit exactly 8 participants."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_5_2_participant_profiles_and_sampling_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A convenience sample of experts is unrepresentative of the target population, so it hides the very problems the test should surface.",
+      "misconception_id": "ail606_supplement_5_2_convenience_equals_representative",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_participant_profiles_and_sampling"
       ]
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_5_2_participant_profiles_and_sampling_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_participant_profiles_and_sampling",
+      "stem": "Which screening criterion best targets the design risk in a tutoring prototype whose hardest moment is first-time onboarding?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Recruit whoever responds first to the email.",
+        "Recruit only people who already use the tutoring tool daily.",
+        "Screen on prior experience with similar tools and include a band of first-time users who face the onboarding step.",
+        "Screen on age alone."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_5_2_participant_profiles_and_sampling_annotation_without_signal",
-      "difficulty": "easy",
+      "correct_index": 2,
+      "explanation": "Screen on the trait that drives the design risk; first-time users are the ones who will reveal onboarding friction.",
+      "misconception_id": "ail606_supplement_5_2_screen_on_wrong_trait",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_participant_profiles_and_sampling"
       ]
     },
     {
       "id": "ail606_supplement_5_2_participant_profiles_and_sampling_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI tool generates synthetic participant personas and offers to 'run' the usability session against them. What is the defensible boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Replace real recruitment with the AI personas to save time.",
+        "Use the personas only to draft your screener and profile categories, then test with real humans from the target population.",
+        "Trust the AI session results because the personas are detailed.",
+        "Avoid AI personas entirely because sampling must be manual."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_5_2_participant_profiles_and_sampling_ai_as_authority",
+      "explanation": "Synthetic personas can scaffold a screener, but usability evidence requires observed behavior from real members of the population.",
+      "misconception_id": "ail606_supplement_5_2_synthetic_for_real_users",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,20 +60,20 @@
     {
       "id": "ail606_supplement_5_2_participant_profiles_and_sampling_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_participant_profiles_and_sampling",
+      "stem": "A team recruits 6 frequent users of the platform, finds almost no problems, and concludes the design works for all learners. Why does this overclaim?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Six participants is statistically significant, so the claim is fine.",
+        "The sample covers only one slice of learner variability; results cannot generalize to first-time or occasional users who were never observed.",
+        "They should have run an A/B test instead.",
+        "Frequent users always find more problems, not fewer."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_5_2_participant_profiles_and_sampling_completion_only_model",
+      "explanation": "A sample that omits parts of the population's variability cannot support a claim about the whole population.",
+      "misconception_id": "ail606_supplement_5_2_one_slice_generalization",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_participant_profiles_and_sampling"
       ]
     }
   ]

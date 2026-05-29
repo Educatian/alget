@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_6_5_risk_mitigation_and_family_communication",
   "misconceptions": [
     {
-      "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_vague_reassurance",
+      "pattern": "reassurance_instead_of_disclosure",
+      "description": "Communicating excitement or vague reassurance instead of specific data, retention, and opt-out facts",
+      "trigger": "family letter says innovative or industry-standard but never states what data is shared or how to decline",
+      "feedback": "State exactly what data is shared, how long it is kept, and how families can opt out, in plain language.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_hollow_optout",
+      "pattern": "opt_out_without_alternative",
+      "description": "Offering an opt-out whose alternatives still carry the same risk being declined",
+      "trigger": "every listed alternative uses the same login and uploads the same data",
+      "feedback": "Provide a genuinely different option that avoids the declined risk, or the opt-out is not real consent.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_unverified_claims",
+      "pattern": "unverified_data_claims",
+      "description": "Sending AI-drafted privacy claims to families without checking them against the tool's actual agreement",
+      "trigger": "retention or training-use statements are taken from the model draft and not verified",
+      "feedback": "Verify every data claim against the real data agreement before the memo reaches families.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_6_5_risk_mitigation_and_family_communication_accessibility_optional",
+      "pattern": "accessibility_treated_as_optional",
+      "description": "Treating reading level and translation as formatting rather than as part of informed consent",
+      "trigger": "memo is English-only at a high reading level in a multilingual or varied-literacy community",
+      "feedback": "Make the notice comprehensible to the families it serves; consent from an unreadable notice is not informed.",
       "rail_action": "practice"
     }
   ]

@@ -8,35 +8,35 @@
         "cat100_supplement_evidence_of_digital_citizenship",
         "cat100_supplement_digital_citizenship_and_ai_readiness"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You add a screenshot of your two-factor setup to your digital citizenship portfolio. What turns it into usable evidence?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Leaving it as just the image, since it speaks for itself.",
+        "Adding a caption: \"Enabled 2FA on my school email to protect my account; shows the account safety skill from this module.\"",
+        "Adding ten more screenshots so the portfolio looks full.",
+        "Renaming the file to portfolio1.png."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_polish_as_evidence",
+      "explanation": "Evidence needs context: what it is, which skill it demonstrates, and what you decided. A bare screenshot leaves the reviewer guessing.",
+      "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_screenshot_without_context",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_evidence_of_digital_citizenship",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_evidence_of_digital_citizenship"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your module has four learning targets. Which portfolio is the strongest evidence of digital citizenship?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Twenty loosely related screenshots with no labels.",
+        "Four items, each captioned and mapped to one learning target, with a short note on what you decided or revised.",
+        "One long reflection essay with no artifacts attached.",
+        "The single most visually polished item, repeated in three formats."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_annotation_without_signal",
+      "explanation": "A few relevant items that each map to a target show competence better than a large pile of unlabeled files.",
+      "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_quantity_over_quality",
       "difficulty": "medium"
     },
     {
@@ -46,35 +46,36 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask AI to write your portfolio reflection. It produces a polished paragraph claiming you \"mastered data privacy.\" Your portfolio has no privacy artifact. What is the responsible move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Submit the AI reflection; it sounds confident.",
+        "Either attach a real privacy artifact that supports the claim or revise the reflection to match what you actually did, then disclose the AI help.",
+        "Keep the claim and hope the reviewer does not check.",
+        "Delete all reflections so no claims need evidence."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_ai_as_authority",
+      "explanation": "Every skill claim must be backed by an artifact. AI polish cannot substitute for evidence, and AI use should be disclosed.",
+      "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_claim_without_artifact",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_1_7_evidence_of_digital_citizenship_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_evidence_of_digital_citizenship",
       "concept_ids": [
+        "cat100_supplement_evidence_of_digital_citizenship",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Your portfolio shows only the final, polished resume. A reviewer wants to see growth. What single addition best demonstrates your digital citizenship process?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A nicer font on the final resume.",
+        "A short before/after note: the original duty-only bullet, the revised result-based bullet, and one line on why you changed it.",
+        "A second copy of the final resume.",
+        "A statement that you worked hard on it."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_completion_only_model",
+      "explanation": "A before/after with a reason shows the reasoning behind the work, which is what process evidence requires; a polished final file alone does not.",
+      "misconception_id": "cat100_supplement_1_7_evidence_of_digital_citizenship_no_process_trail",
       "difficulty": "medium"
     }
   ]

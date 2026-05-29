@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_4_8_module_4_design_draft_clinic",
   "misconceptions": [
     {
-      "id": "ail606_supplement_4_8_module_4_design_draft_clinic_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_4_8_module_4_design_draft_clinic_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_4_8_clinic_polish_over_reasoning",
+      "pattern": "clinic_focus_on_polish",
+      "description": "Running a design clinic on surface attributes instead of the chain from learner action to principle to revision",
+      "trigger": "clinic questions ask about fonts, time spent, or whether it looks finished",
+      "feedback": "Ask the author to trace one screen from learner action to principle to revision. Polish is the last layer, not the clinic's focus.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_4_8_module_4_design_draft_clinic_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_4_8_clinic_preference_as_feedback",
+      "pattern": "preference_stated_as_feedback",
+      "description": "Giving clinic feedback as personal preference with no tie to learner need, principle, or evidence",
+      "trigger": "reviewer says I would have done it differently without a reason the author can act on",
+      "feedback": "Name the learner consequence and the principle behind a suggested change. Preference alone gives the author nothing to evaluate.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_4_8_clinic_ai_critique_as_verdict",
+      "pattern": "ai_critique_treated_as_verdict",
+      "description": "Treating a generic AI critique as a verdict rather than a prompt for self-review against your own learners and goals",
+      "trigger": "learner adopts AI suggestions wholesale without verifying them against the draft",
+      "feedback": "Bring only the AI points you can substantiate in your own draft with evidence. Generic critique does not know your learners.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_4_8_module_4_design_draft_clinic_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_4_8_clinic_unprioritized_fix_list",
+      "pattern": "unprioritized_revision_list",
+      "description": "Producing a revision plan as a flat list of unrelated fixes with no tie back to the problem statement or evidenced impact",
+      "trigger": "plan lists every possible improvement with no priority or connection to the learner outcome",
+      "feedback": "Rank revisions by evidenced impact on the named learner outcome and connect each back to the problem statement.",
       "rail_action": "practice"
     }
   ]

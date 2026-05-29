@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_4_3_checking_ai_pedagogical_advice",
   "misconceptions": [
     {
-      "id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_4_3_citation_means_true",
+      "pattern": "named_source_equals_verified",
+      "description": "Believing that because the AI names an author or year (for example 'Dale, 1969') the claim is checked",
+      "trigger": "learner accepts a claim because it carries a citation, without opening the source",
+      "feedback": "A named source is not a checked source. Find the actual work and confirm it says what the AI claims; AI often misattributes.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_4_3_whole_reply_one_verdict",
+      "pattern": "single_verdict_for_mixed_reply",
+      "description": "Marking an entire AI reply 'true' or 'false' instead of checking each claim separately",
+      "trigger": "learner records one verdict for a reply that contains several distinct claims",
+      "feedback": "Split the reply into one claim per row. A reply can be part true, part fabricated; one verdict hides that.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_4_3_precise_number_trust",
+      "pattern": "specific_statistic_feels_proven",
+      "description": "Trusting a precise-sounding statistic (for example '90%') more than a hedged statement, even when no study backs it",
+      "trigger": "learner keeps an exact percentage with no locatable source",
+      "feedback": "A specific number is not the same as a sourced number. If you cannot find the study, mark it fabricated and drop it.",
+      "rail_action": "ask"
     }
   ]
 }

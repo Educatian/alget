@@ -4,16 +4,16 @@
       "id": "ail606_supplement_8_3_rubric_calibration_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_rubric_calibration",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A rubric level reads '3 = Good narration.' Two raters disagree on what 'Good' means. Which rewrite calibrates the level?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "3 = Very good narration throughout.",
+        "3 = Every frame has a narration note AND at least 4 of 5 notes name a specific learner action.",
+        "3 = Better than level 2 but not as strong as level 4.",
+        "3 = The narration is clear and effective."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_8_3_rubric_calibration_polish_as_evidence",
+      "explanation": "Observable counts give both raters the same evidence to look at, replacing adjective interpretation.",
+      "misconception_id": "ail606_supplement_8_3_adjective_descriptors",
       "difficulty": "medium",
       "concept_ids": [
         "rubric_design"
@@ -23,16 +23,16 @@
       "id": "ail606_supplement_8_3_rubric_calibration_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "On Draft 3, Rater A scores 3 and Rater B scores 1. What should the calibration session do first?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Record the score as 2 (the average) and move on.",
+        "Find what each rater looked at, for example whether silent frames counted against the score.",
+        "Let the more experienced rater's score stand.",
+        "Re-read the whole rubric aloud and re-vote."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_8_3_rubric_calibration_annotation_without_signal",
+      "explanation": "Calibration means surfacing the evidence each rater weighed, not splitting the difference to a midpoint.",
+      "misconception_id": "ail606_supplement_8_3_average_as_calibration",
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
@@ -42,16 +42,16 @@
       "id": "ail606_supplement_8_3_rubric_calibration_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The team uses AI to help draft rubric descriptors. What is the strongest boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the AI descriptors as final because they read smoothly.",
+        "Use AI to propose observable descriptors, then test them by re-scoring the five shared drafts.",
+        "Avoid AI and keep the adjective-only levels.",
+        "Ask AI only to make the descriptors sound more rigorous."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_8_3_rubric_calibration_ai_as_authority",
+      "explanation": "AI can propose wording, but rater agreement on real drafts is the evidence that decides whether a descriptor works.",
+      "misconception_id": "ail606_supplement_8_3_agreement_without_anchors",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -61,16 +61,16 @@
       "id": "ail606_supplement_8_3_rubric_calibration_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After rewriting descriptors, exact agreement rose from 2 of 5 to 5 of 5. Which interpretation is defensible?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The raters happened to converge by habit this time.",
+        "The agreement traces to specific observable descriptors, so it should transfer to new drafts.",
+        "The rubric is now perfect and never needs recalibration.",
+        "The higher agreement proves the drafts improved."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_8_3_rubric_calibration_completion_only_model",
+      "explanation": "Agreement anchored to observable descriptors is reproducible; agreement by habit would not transfer.",
+      "misconception_id": "ail606_supplement_8_3_agreement_without_anchors",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

@@ -8,73 +8,76 @@
         "cat100_supplement_module_2_branding_studio",
         "cat100_supplement_resume_branding_and_ai_brainstorming"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "The Module 2 Branding Studio asks you to submit a complete brand package. Which set of artifacts belongs in that package?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A single polished resume PDF and nothing else.",
+        "A resume, a professional bio, an aligned LinkedIn headline and About section, a portfolio link, and an AI-use log.",
+        "Only screenshots of your LinkedIn profile.",
+        "A folder of unrelated class assignments."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_2_8_module_2_branding_studio_polish_as_evidence",
+      "explanation": "The studio integrates the whole module: resume, bio, LinkedIn, portfolio, and the AI-use log that shows your judgment across them. One isolated file is not a package.",
+      "misconception_id": "cat100_supplement_2_8_one_artifact_is_package",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_2_8_module_2_branding_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_module_2_branding_studio",
       "concept_ids": [
+        "cat100_supplement_module_2_branding_studio",
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "When you do the final consistency pass on your brand package, which mismatch is most important to fix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Your resume uses Arial but your bio uses Calibri.",
+        "Your resume lists \"May 2026 graduation\" but your LinkedIn says \"Dec 2025,\" so the two contradict each other.",
+        "Your portfolio uses a blue accent and your resume uses black.",
+        "Your bio is one sentence longer than your LinkedIn About."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_2_8_module_2_branding_studio_annotation_without_signal",
+      "explanation": "Contradictory facts (two different graduation dates) break trust the moment a recruiter cross-checks. Font and color differences are cosmetic by comparison.",
+      "misconception_id": "cat100_supplement_2_8_cosmetic_over_factual",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_2_8_module_2_branding_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_module_2_branding_studio"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "For the studio's AI-use log, which entry best demonstrates the bounded, accountable use this module teaches?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "\"AI wrote my whole package; I just submitted it.\"",
+        "\"I did not use AI at all, so there is nothing to report.\" (but you did use it)",
+        "\"I used AI to brainstorm 5 headline options, chose 1 that matched my real focus, rejected 2 that overstated my experience, and rewrote the rest in my own words.\"",
+        "\"AI is unreliable so I ignored every suggestion.\""
       ],
-      "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_2_8_module_2_branding_studio_ai_as_authority",
+      "correct_index": 2,
+      "explanation": "Accountable use means the tool helped within a bounded task while you made and recorded the judgments: what you chose, what you rejected, and why. The log shows your voice on top of the tool's help.",
+      "misconception_id": "cat100_supplement_2_8_ai_does_the_package",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_2_8_module_2_branding_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_module_2_branding_studio",
       "concept_ids": [
+        "cat100_supplement_module_2_branding_studio",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "What is the strongest sign that your Module 2 package is ready to submit?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Every document is visually polished and free of typos.",
+        "A reader can open any two artifacts and find the same name, title, dates, and headline accomplishment, and your AI-use log explains any place a tool helped.",
+        "It is the longest package you have ever made.",
+        "An AI tool rated it a 10 out of 10."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_2_8_module_2_branding_studio_completion_only_model",
+      "explanation": "Readiness in this studio is consistency plus accountability: the artifacts agree on the facts, and the AI-use log makes your judgment visible. Polish and length alone do not prove either.",
+      "misconception_id": "cat100_supplement_2_8_polish_means_ready",
       "difficulty": "medium"
     }
   ]

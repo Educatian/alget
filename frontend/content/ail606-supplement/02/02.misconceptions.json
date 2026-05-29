@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_2_2_platform_affordances_and_constraints",
   "misconceptions": [
     {
-      "id": "ail606_supplement_2_2_platform_affordances_and_constraints_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_2_2_platform_affordances_and_constraints_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_2_2_platform_affordances_and_constraints_affordance_is_button",
+      "pattern": "affordance_confused_with_feature_list",
+      "description": "Treating a platform affordance as a list of buttons the tool offers rather than the learner action the tool makes easy or hard",
+      "trigger": "learner describes the LMS by enumerating features (quizzes, forums, badges) instead of the learner behaviors those features afford or block",
+      "feedback": "An affordance is a relationship between the tool and a learner action, not a feature checkbox. Ask what the platform makes easy, hard, or impossible for the learner to do.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_2_2_platform_affordances_and_constraints_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "ail606_supplement_2_2_platform_affordances_and_constraints_constraint_is_flaw",
+      "pattern": "constraint_treated_as_defect",
+      "description": "Reading every platform constraint as a flaw to engineer around instead of a boundary that can be designed with",
+      "trigger": "learner proposes plugins or workarounds to defeat a constraint rather than asking whether the constraint protects a learning purpose",
+      "feedback": "Some constraints are productive. Before working around a limit (for example, no auto-grading of essays), ask whether the constraint actually serves the learning goal.",
+      "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_2_2_platform_affordances_and_constraints_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_2_2_platform_affordances_and_constraints_ideal_tool_fallacy",
+      "pattern": "design_for_imaginary_platform",
+      "description": "Designing the storyboard for an idealized platform and ignoring what the actual delivery tool can render",
+      "trigger": "learner specifies drag-and-drop branching or video annotation that the assigned LMS cannot deliver",
+      "feedback": "Design within the affordances of the real delivery platform. Note the platform you are targeting and confirm each interaction it can actually support.",
+      "rail_action": "represent"
     }
   ]
 }

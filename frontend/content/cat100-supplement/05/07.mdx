@@ -35,15 +35,30 @@ Use these anchors as lenses, not as names to drop into a reflection. A useful le
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+Goal: run a three-point accessibility check on one slide and fix what fails.
 
-> I made the presentation storyboard with audience constraint and slide-level evidence clearer.
+Starting slide:
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```
+Title color:  #BBBBBB on #FFFFFF background
+Chart image:  no alt text
+Status dots:  green = on track, red = at risk (no labels)
+```
 
-> I revised the presentation storyboard with audience constraint and slide-level evidence so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Steps:
 
-The stronger version treats the presentation storyboard with audience constraint and slide-level evidence as evidence. It names what changed, links the change to **ISTE digital citizenship**, and leaves a reader able to audit the decision.
+1. Contrast: #BBBBBB on white is about 1.7:1, below the 4.5:1 minimum for normal text. Darken the title to #1A2A4F, which exceeds 4.5:1.
+2. Alt text: add a description that states the point, not just the type:
+
+   `Alt: "Bar chart; signups rose from 1,200 to 2,400 after launch."`
+
+3. Color-only meaning: a colorblind viewer cannot tell the dots apart, so add a label to each:
+
+   `On track (green) / At risk (red)` with text labels next to the dots.
+
+4. Re-check all three. Now the slide passes contrast, has alt text, and does not rely on color alone.
+
+The revision is justified by **WCAG accessibility**: each fix maps to a specific success criterion, so the slide works for varied learners.
 
 ## Decision Rule
 

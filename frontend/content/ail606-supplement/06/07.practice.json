@@ -4,16 +4,16 @@
       "id": "ail606_supplement_6_7_capstone_presentation_narrative_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_capstone_presentation_narrative",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A capstone talk is outlined as: 'Slide 1 home screen, slide 2 menu, slide 3 quiz, slide 4 results.' Why is this a weak presentation narrative?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It has too few slides.",
+        "It is a feature tour: the order is driven by the interface, not by a problem-decision-evidence argument.",
+        "It should start with the results.",
+        "Screenshots are not allowed in a defense."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_6_7_capstone_presentation_narrative_polish_as_evidence",
+      "explanation": "A defense narrative is an argument from problem to decisions to evidence, not a walkthrough of screens in interface order.",
+      "misconception_id": "ail606_supplement_6_7_feature_tour_not_argument",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_capstone_presentation_narrative"
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_6_7_capstone_presentation_narrative_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_capstone_presentation_narrative",
+      "stem": "A presenter's slides are full paragraphs that they read aloud word for word. Which principle does this violate, and what is the fix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The coherence principle; add more decorative images.",
+        "The redundancy principle; let slides carry the visual evidence while the spoken narrative carries the argument.",
+        "The signaling principle; remove all slide headings.",
+        "No principle; reading slides is standard practice."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_6_7_capstone_presentation_narrative_annotation_without_signal",
+      "explanation": "Identical text on slides and in speech is redundant and overloads the audience; the spoken and visual channels should carry different loads.",
+      "misconception_id": "ail606_supplement_6_7_slide_text_as_script",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_capstone_presentation_narrative"
       ]
     },
     {
       "id": "ail606_supplement_6_7_capstone_presentation_narrative_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI drafts your full talk and includes the line 'usability testing with 30 users confirmed the design.' You only ran 3 informal tryouts. What is the correct response?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Keep the line; it sounds stronger and the committee will not check.",
+        "Correct the claim to match what your project actually did, then rehearse so you can defend the real evidence.",
+        "Run 30 tests the night before to make the line true.",
+        "Remove all evidence claims to be safe."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_6_7_capstone_presentation_narrative_ai_as_authority",
-      "difficulty": "medium",
+      "explanation": "AI may outline the arc, but every claim must match the real project and be defensible under follow-up questions; reciting unverified claims collapses at the defense.",
+      "misconception_id": "ail606_supplement_6_7_ai_script_unrehearsed",
+      "difficulty": "hard",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_6_7_capstone_presentation_narrative_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Your narrative states 'learners found the module engaging.' A committee member asks how you know. What should the narrative have included alongside that claim?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A more enthusiastic tone of voice.",
+        "An evidence beat for the claim, such as a tryout observation, completion data, or learner comment the committee can probe.",
+        "A longer description of the feature.",
+        "A statement that engagement is hard to measure."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_6_7_capstone_presentation_narrative_completion_only_model",
-      "difficulty": "hard",
+      "explanation": "Each effectiveness claim needs a paired evidence beat (tryout, data, or theory link) so the committee can interrogate the basis for it.",
+      "misconception_id": "ail606_supplement_6_7_claims_without_evidence_beat",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_evidence_based_revision"
       ]
     }
   ]

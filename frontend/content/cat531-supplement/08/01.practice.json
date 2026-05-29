@@ -4,16 +4,16 @@
       "id": "cat531_supplement_8_1_facilitator_notes_for_dts_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_facilitator_notes_for_dts",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A facilitator note reads: \"The AI essay tool is engaging and saves grading time, so adopt it.\" On a Design Tension Studio map, what is the strongest objection?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The note should also mention how much money the tool costs.",
+        "The note names only the benefit axis (speed) and leaves the competing value, student authorship and teacher judgment, off the map.",
+        "The note is too short to be a real facilitator note.",
+        "The note should have been written by the AI tool itself."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_8_1_facilitator_notes_for_dts_polish_as_evidence",
+      "explanation": "A Design Tension Studio map has to show both axes of the conflict. Naming only the benefit hides the value being traded away.",
+      "misconception_id": "cat531_supplement_8_1_dts_one_sided_tension",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_instructor_toolkit_for_cat_531",
@@ -26,18 +26,19 @@
       "id": "cat531_supplement_8_1_facilitator_notes_for_dts_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A team decides an AI tool may draft essay comments. Which line turns that preference into a negotiated decision a mentor teacher could later audit?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The team agreed the tool was a good idea.",
+        "Everyone liked the tool, so we will use it this unit.",
+        "AI drafts comments, but the teacher reads and signs each one before release, with a mandatory human first pass on flagged-for-support students.",
+        "We will see how it goes and decide later."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_8_1_facilitator_notes_for_dts_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "A negotiated decision states a commitment the team can be held to and later test, not just that they liked the tool.",
+      "misconception_id": "cat531_supplement_8_1_dts_preference_not_decision",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_facilitator_notes_for_dts",
         "evidence_based_revision"
       ]
     },
@@ -45,18 +46,19 @@
       "id": "cat531_supplement_8_1_facilitator_notes_for_dts_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "When mapping the equity risk of the AI essay tool, what does a defensible facilitator note do?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "States the tool carries the same risk for every student equally.",
+        "Names the specific students most likely to be misread (ELL students, students with IEPs) so the equity cost is located, not averaged.",
+        "Leaves equity out because the tool is only a draft assistant.",
+        "Assumes the vendor already handled fairness."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_8_1_facilitator_notes_for_dts_ai_as_authority",
+      "explanation": "Equity risk lands unevenly. A defensible note locates who bears it rather than treating the class as one undifferentiated group.",
+      "misconception_id": "cat531_supplement_8_1_dts_uniform_risk",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_facilitator_notes_for_dts",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_8_1_facilitator_notes_for_dts_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A facilitator justifies adopting the tool entirely on the grounds that \"students find it fun.\" Why is this not yet a defensible decision on the tension map?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Fun is the only thing that matters in a classroom decision.",
+        "Engagement alone is not a justification; the note must tie the choice to a protected learning value and a named risk.",
+        "The decision is fine as long as test scores are not mentioned.",
+        "The note simply needs to be longer to be defensible."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_8_1_facilitator_notes_for_dts_completion_only_model",
+      "explanation": "Engagement matters but does not replace evidence about learning, access, or risk. The map must connect the choice to a protected value and a named cost.",
+      "misconception_id": "cat531_supplement_8_1_dts_engagement_as_justification",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_facilitator_notes_for_dts",
         "evidence_based_revision"
       ]
     }

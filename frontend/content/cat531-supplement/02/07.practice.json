@@ -4,16 +4,16 @@
       "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_for_portfolio_entry",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A candidate uploads a polished lesson plan to the portfolio and labels it \"evidence of differentiation.\" What turns that artifact into actual evidence?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Making the plan look more professional.",
+        "Pairing it with the claim it supports, the part of the plan that shows differentiation, and the outcome it produced.",
+        "Uploading it in a higher-resolution format.",
+        "Adding more lessons to the folder."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_2_7_evidence_for_portfolio_entry_polish_as_evidence",
+      "explanation": "An artifact is not self-evident. It becomes portfolio evidence only when paired with the claim, the warranting detail, and the result.",
+      "misconception_id": "cat531_supplement_2_7_evidence_for_portfolio_entry_artifact_is_evidence",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
@@ -25,57 +25,60 @@
     {
       "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_evidence_for_portfolio_entry",
+      "stem": "A reflection states \"This entry demonstrates that I use assessment data to drive instruction.\" Which addition gives the claim a warrant?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Repeating the claim in stronger words.",
+        "Pointing to the exit-ticket data and the next-day revision the data produced, both visible in the attached artifact.",
+        "Saying the candidate strongly believes in data.",
+        "Adding more standards to the same claim."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_2_7_evidence_for_portfolio_entry_annotation_without_signal",
+      "explanation": "A claim needs a warrant: the specific moment in the evidence that shows it. Without that location, the claim is an assertion.",
+      "misconception_id": "cat531_supplement_2_7_evidence_for_portfolio_entry_claim_without_warrant",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_evidence_for_portfolio_entry",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "A candidate tags a single TeachGen@i-assisted lesson plan to five competencies: planning, differentiation, assessment, technology integration, and family communication. Why is a reviewer right to be skeptical?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "AI-assisted plans can never be portfolio evidence.",
+        "One artifact rarely genuinely demonstrates five unrelated competencies; overclaiming weakens the entries that are real.",
+        "Five is too few competencies for one plan.",
+        "Technology integration cannot appear in a lesson plan."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_2_7_evidence_for_portfolio_entry_ai_as_authority",
+      "explanation": "Each claim should match the artifact that truly shows it. Stretching one plan across many standards dilutes credibility.",
+      "misconception_id": "cat531_supplement_2_7_evidence_for_portfolio_entry_one_artifact_all_standards",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_evidence_for_portfolio_entry",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Which portfolio entry, mapped on the Design Tension Studio map, is strongest for an external reviewer to audit?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A clean lesson plan with the label \"good teaching.\"",
+        "A claim (uses formative data to revise), the warrant (annotated exit tickets plus the revised next-day opener), the outcome (area-perimeter errors dropped from six to one the following day), and a note that a second standard was deliberately not claimed because this artifact does not show it.",
+        "Five competencies tagged to one screenshot.",
+        "A reflection that says the lesson went well."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_2_7_evidence_for_portfolio_entry_completion_only_model",
+      "explanation": "The strongest entry pairs one claim with a located warrant and an outcome, and resists overclaiming, which is exactly what a reviewer can verify.",
+      "misconception_id": "cat531_supplement_2_7_evidence_for_portfolio_entry_claim_without_warrant",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_evidence_for_portfolio_entry",
         "evidence_based_revision"
       ]
     }

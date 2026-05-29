@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_8_7_evidence_collection_checklist",
   "misconceptions": [
     {
-      "id": "cat531_supplement_8_7_evidence_collection_checklist_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_8_7_evidence_collection_checklist_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_8_7_evidence_collection_checklist_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_8_7_evidence_opinion_as_evidence",
+      "pattern": "logging_an_opinion_as_evidence",
+      "description": "Writing a checklist row that asserts a result (the tool improved writing) without naming the artifact, source, or location that would let anyone verify it",
+      "trigger": "row states a conclusion with no cited source or artifact",
+      "feedback": "Name the artifact, where it lives, and the date range. A claim with no source is an opinion, not evidence.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_8_7_evidence_collection_checklist_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_8_7_evidence_no_baseline",
+      "pattern": "claiming_improvement_with_no_baseline",
+      "description": "Asserting improvement without a before measure, so there is nothing to compare the result against",
+      "trigger": "row claims a gain but records no pre-tool baseline",
+      "feedback": "Record the baseline. Improvement implies a before and an after measured the same way.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_8_7_evidence_no_disconfirmation",
+      "pattern": "collecting_only_confirming_evidence",
+      "description": "Gathering only evidence that supports the hoped-for conclusion and never looking for what would disconfirm it",
+      "trigger": "row admits no possibility of being wrong and seeks no counter-case",
+      "feedback": "State what would have changed your mind and whether you looked for it. Strong evidence can be disconfirmed.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_8_7_evidence_not_verifiable",
+      "pattern": "result_no_one_else_can_check",
+      "description": "Recording a result with no way for a colleague to re-check it, such as no stored artifacts or scoring method",
+      "trigger": "row gives no path for an independent re-check",
+      "feedback": "Make it verifiable: store the artifacts and name how a colleague could re-score or re-check the result.",
       "rail_action": "practice"
     }
   ]

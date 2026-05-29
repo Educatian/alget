@@ -8,73 +8,76 @@
         "cat100_supplement_linkedin_and_portfolio_alignment",
         "cat100_supplement_resume_branding_and_ai_brainstorming"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your resume says \"Treasurer, Coding Club\" but your LinkedIn lists \"Member, Coding Club\" and your portfolio site has no club mention at all. Why is this a problem for alignment?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is not a problem; each platform is independent.",
+        "A recruiter who checks all three sees inconsistent claims and may wonder which one is true.",
+        "LinkedIn should always list more than the resume.",
+        "Portfolios are not supposed to mention clubs."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_polish_as_evidence",
+      "explanation": "Alignment means the same role is described consistently across platforms. A recruiter cross-checking your resume, LinkedIn, and portfolio should find the same facts, not three different stories.",
+      "misconception_id": "cat100_supplement_2_4_platforms_independent",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_linkedin_and_portfolio_alignment",
       "concept_ids": [
+        "cat100_supplement_linkedin_and_portfolio_alignment",
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A portfolio project page shows screenshots of an app but never links to the live site or the code repository. What is the strongest improvement for a technical portfolio?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Add more screenshots so the page looks fuller.",
+        "Add a short paragraph saying the project was \"really fun to build.\"",
+        "Add a link to the live demo or GitHub repository so a reviewer can verify the work, plus a one-line note on your specific role.",
+        "Remove the screenshots since they take up space."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "A portfolio's job is to let someone verify your work. A live link or repository is the strongest evidence; screenshots alone cannot be inspected or confirmed.",
+      "misconception_id": "cat100_supplement_2_4_screenshots_without_links",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_linkedin_and_portfolio_alignment"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI tool rewrites your LinkedIn headline to \"Award-Winning Developer and Industry Thought Leader.\" You have won no awards and published nothing. The most aligned, honest fix is to:",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Keep it because headlines are supposed to be bold.",
+        "Keep \"Award-Winning\" but drop \"Thought Leader.\"",
+        "Replace it with a truthful headline that matches your resume and portfolio, such as \"CS Student | Building Web Apps | Open to Internships.\"",
+        "Use the AI headline only on LinkedIn and keep the resume modest."
       ],
-      "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_ai_as_authority",
+      "correct_index": 2,
+      "explanation": "A headline that contradicts your actual record breaks alignment and trust the moment someone checks. The honest headline matches what your resume and portfolio can prove.",
+      "misconception_id": "cat100_supplement_2_4_ai_inflated_headline",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_linkedin_and_portfolio_alignment",
       "concept_ids": [
+        "cat100_supplement_linkedin_and_portfolio_alignment",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You are aligning three platforms for one internship application. Which checklist row is the most useful alignment check?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"Does each platform use a different color scheme?\"",
+        "\"Does the same job title, date range, and top accomplishment appear consistently on the resume, LinkedIn, and portfolio?\"",
+        "\"Is the LinkedIn profile longer than the resume?\"",
+        "\"Does the portfolio have more pages than last semester?\""
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_completion_only_model",
+      "explanation": "Alignment is about consistent facts across platforms: same title, same dates, same headline accomplishment. Visual variety and length are not what a cross-checking recruiter cares about.",
+      "misconception_id": "cat100_supplement_2_4_alignment_is_visual",
       "difficulty": "medium"
     }
   ]

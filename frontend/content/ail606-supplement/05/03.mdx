@@ -33,17 +33,26 @@ Three course anchors shape the reasoning here:
 
 Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
 
-## Worked Example
+## Worked Example: Rewriting a Task Scenario So It Does Not Leak the Answer
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+A designer is writing the task a participant will attempt in a usability session for a course-authoring prototype.
 
-> I made the moderated usability test script with observation-to-revision trace clearer.
+**Before (leading, instruction-style task):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> Task: Click the blue "New Module" button in the top-right toolbar, then choose "From Template," then name your module and click Save.
 
-> I revised the moderated usability test script with observation-to-revision trace so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+Walk through why this task cannot test the design:
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+1. **Spot the embedded solution.** The task names the exact buttons and order, so the participant only follows directions; nothing about findability is tested.
+2. **Recover the underlying goal.** What does a real author actually want? To create a module from a template, without being told where the control lives.
+3. **Write a goal-based scenario with a realistic context.** Give a situation and a desired end-state, not a click path.
+4. **Define an observable success condition** the moderator can score without prompting.
+
+**After (goal-based scenario):**
+
+> Scenario: You are an instructor with one week before your course launches. You want to add a new module built from an existing template so you do not start from scratch. Using this prototype, create that module. (Success: a template-based module is created and saved; moderator records the path taken and any wrong turns.)
+
+The after version is defensible because it tests whether the participant can find and complete the goal, which is what usability evidence requires. The before version guaranteed success and produced no evidence, a hidden ceiling effect.
 
 ## Decision Rule
 

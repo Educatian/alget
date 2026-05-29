@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_6_4_publishing_with_github_pages",
   "misconceptions": [
     {
-      "id": "cat100_supplement_6_4_publishing_with_github_pages_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_6_4_publishing_with_github_pages_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_6_4_pages_source_unnecessary",
+      "pattern": "pages_publishes_without_source",
+      "description": "Assuming a repository goes live automatically without selecting a Pages Source branch and folder",
+      "trigger": "learner expects the site to publish without configuring Settings, Pages, Deploy from a branch",
+      "feedback": "GitHub Pages only builds once you set a Source. Choose Deploy from a branch, then main and root, so it knows which committed files to serve.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_6_4_publishing_with_github_pages_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_6_4_root_paths_always_work",
+      "pattern": "leading_slash_paths_on_project_site",
+      "description": "Believing leading-slash absolute paths that work locally will also work on a project site served under a /repo subpath",
+      "trigger": "learner uses href=/style.css and the CSS 404s on username.github.io/repo",
+      "feedback": "A leading slash points at the domain root, not your /repo subpath. Use relative paths or include the subpath so links resolve on the live project site.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_6_4_publishing_with_github_pages_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_6_4_publish_is_instant",
+      "pattern": "publish_assumed_instant",
+      "description": "Expecting pushed changes to appear on the live site instantly and concluding the deploy is broken when they do not",
+      "trigger": "learner sees the old page after a push and reaches for a destructive fix",
+      "feedback": "Deploys take a moment and browsers cache. Check the build status and hard-refresh before assuming anything is broken or recreating the repo.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_6_4_local_preview_equals_live",
+      "pattern": "local_preview_equals_live_site",
+      "description": "Treating a successful local editor preview as proof the published site works for visitors",
+      "trigger": "learner verifies only in their own editor and skips the live URL",
+      "feedback": "Local previews hide path and cache issues. Open the live URL in a private window on another device to test what a real visitor actually receives.",
       "rail_action": "practice"
     }
   ]

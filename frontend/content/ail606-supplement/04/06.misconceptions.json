@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex",
   "misconceptions": [
     {
-      "id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_4_6_codex_runs_means_correct",
+      "pattern": "running_code_treated_as_sound_design",
+      "description": "Assuming Codex-generated code is good because it runs, without checking that the structure serves the learning interaction and authoring needs",
+      "trigger": "learner accepts generated code on the basis that it executes without error",
+      "feedback": "Evaluate whether the structure supports the designed interaction and is maintainable, not only whether it runs. Working is not the same as well-designed.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "ail606_supplement_4_6_codex_design_handover",
+      "pattern": "design_decisions_handed_to_codex",
+      "description": "Letting Codex choose the instructional content or interaction rather than implementing the designer's decisions",
+      "trigger": "prompt asks Codex to decide what makes a good quiz or to pick questions",
+      "feedback": "Specify the interaction, constraints, and content yourself. Use Codex to implement decisions you already made, not to make them.",
+      "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_4_6_codex_suggestion_as_requirement",
+      "pattern": "ai_suggestion_treated_as_requirement",
+      "description": "Adopting a Codex feature suggestion as if it were a requirement instead of a proposal to judge against learning goals",
+      "trigger": "learner keeps a generated feature such as constant animation without weighing its effect on learning",
+      "feedback": "Treat each suggestion as a proposal. Accept it only where it supports the learning goal; reject or scope it where it adds extraneous load or misleads.",
+      "rail_action": "represent"
     }
   ]
 }

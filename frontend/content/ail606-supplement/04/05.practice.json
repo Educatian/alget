@@ -3,17 +3,17 @@
     {
       "id": "ail606_supplement_4_5_accessibility_and_wcag_checks_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_accessibility_and_wcag_checks",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "accessibility",
+      "stem": "A draft screen uses light gray text (#999999) on a white background for body copy. Against WCAG 2.1 AA, which is the correct judgment?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It passes, because gray on white is a common, clean look.",
+        "It fails AA: body text needs a contrast ratio of at least 4.5:1, and #999 on white is about 2.8:1, so the text must be darkened.",
+        "It passes, because contrast rules apply only to images.",
+        "Contrast cannot be evaluated until the final colors are chosen."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_4_5_accessibility_and_wcag_checks_polish_as_evidence",
+      "explanation": "WCAG 2.1 AA requires 4.5:1 contrast for normal-size body text. #999 on white falls well short, so this is a measurable failure, not a style preference.",
+      "misconception_id": "ail606_supplement_4_5_a11y_contrast_as_taste",
       "difficulty": "medium",
       "concept_ids": [
         "accessibility"
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_4_5_accessibility_and_wcag_checks_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "accessibility",
+      "stem": "An image of a workflow diagram carries alt text reading \"image.\" Why does this fail an accessibility check even though alt text is present?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Alt text must always be at least one sentence long.",
+        "Alt text must convey the information the image carries; \"image\" tells a screen-reader user nothing about the workflow, so the content is still inaccessible.",
+        "Decorative images are not allowed to have alt text.",
+        "The check fails only if the alt text is missing entirely."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_4_5_accessibility_and_wcag_checks_annotation_without_signal",
+      "explanation": "Present-but-useless alt text is a common failure. Alt text must describe the informational content for users who cannot see the image, not merely exist.",
+      "misconception_id": "ail606_supplement_4_5_a11y_alt_text_presence_only",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "accessibility"
       ]
     },
     {
       "id": "ail606_supplement_4_5_accessibility_and_wcag_checks_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "You ask an AI tool to generate alt text for all 12 images in your prototype. It returns fluent descriptions. What is the strongest bounded use?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Paste all 12 in, since the descriptions read well.",
+        "Check each against what the image must communicate in context, since AI alt text often describes appearance but misses the instructional point the image serves.",
+        "Ask the AI to also decide which images are decorative and skip those.",
+        "Trust the AI for charts but write your own for photos."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_4_5_accessibility_and_wcag_checks_ai_as_authority",
+      "explanation": "AI alt text describes what it sees, not why the image is on the page. The designer must confirm each description conveys the image's role in the lesson.",
+      "misconception_id": "ail606_supplement_4_5_a11y_ai_alt_text_unchecked",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,17 +60,17 @@
     {
       "id": "ail606_supplement_4_5_accessibility_and_wcag_checks_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Your draft signals correct answers using a green checkmark and incorrect ones using a red X, with no other difference. Which WCAG concern does this raise, and what is the defensible fix?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "No concern; red and green are standard for right and wrong.",
+        "It relies on color alone to convey meaning, which fails users with color vision deficiency; add a text or shape label so the status is not carried by color alone.",
+        "The concern is only that green and red clash visually.",
+        "The fix is to make the checkmark and X larger."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_4_5_accessibility_and_wcag_checks_completion_only_model",
+      "explanation": "WCAG requires that color not be the only means of conveying information. Pairing the color with text or a distinct shape makes the status perceivable without color discrimination.",
+      "misconception_id": "ail606_supplement_4_5_a11y_color_only_meaning",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

@@ -8,73 +8,75 @@
         "cat100_supplement_module_3_data_story_studio",
         "cat100_supplement_data_storytelling_with_excel"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You are assembling a one-page data story from a raw export. Which order of steps produces a trustworthy result?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Build the chart first, then clean the data, then write the headline.",
+        "Clean the data, summarize it with a pivot, choose the right chart, then write a claim-first headline tied to the numbers.",
+        "Write the headline you hope for, then find data that fits it.",
+        "Polish the colors first, then decide what the story is."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_polish_as_evidence",
+      "explanation": "A defensible data story flows from clean data to summary to chart to headline. Building visuals or writing the headline before cleaning the data risks telling a story the numbers do not support.",
+      "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_chart_before_clean",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_3_8_module_3_data_story_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_module_3_data_story_studio",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_module_3_data_story_studio"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your finished data story shows a chart whose total (1,900) does not match the headline number (2,400). Before publishing, what is the right move?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Publish anyway because the chart looks finished.",
+        "Trace the mismatch: the headline likely counted rows the pivot range excluded, so reconcile the two before publishing.",
+        "Change the headline to a vaguer claim so no one checks.",
+        "Delete the chart and keep only the headline."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "The headline and the chart must come from the same reconciled numbers. A mismatch means a step in the pipeline (range, filter, or stale pivot) is out of sync and must be fixed first.",
+      "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_unreconciled_numbers",
+      "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_3_8_module_3_data_story_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_module_3_data_story_studio",
       "concept_ids": [
+        "cat100_supplement_module_3_data_story_studio",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "For the capstone data story, what is a responsible use of an AI assistant?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Have the AI invent the dataset and the finding for you.",
+        "Ask the AI to critique your draft headline against your own numbers, then accept or reject each suggestion yourself.",
+        "Paste your classmates' raw personal data so the AI can label rows.",
+        "Let the AI pick a chart type without telling it what question you are answering."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "The capstone keeps the learner responsible for the data and the claim. AI can critique a draft against your real numbers, but it should not fabricate findings or receive others' personal data.",
+      "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_ai_makes_the_story",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_3_8_module_3_data_story_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_module_3_data_story_studio",
       "concept_ids": [
+        "cat100_supplement_module_3_data_story_studio",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which final data story package lets a reviewer fully verify your work?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A single chart image with no numbers or source.",
+        "The cleaned data, the pivot summary, the chart, the claim-first headline, the data source, and a note on what you excluded and why.",
+        "Only the headline sentence.",
+        "A long list of every formula keystroke with no result."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_completion_only_model",
+      "explanation": "A verifiable data story exposes the whole chain: clean data, summary, chart, headline, source, and exclusion notes. The reviewer can then re-trace each step rather than trust a lone image.",
+      "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_chart_before_clean",
       "difficulty": "medium"
     }
   ]

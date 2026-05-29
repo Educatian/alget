@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_7_6_publication_ready_artifact_packaging",
   "misconceptions": [
     {
-      "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_polish_equals_ready",
+      "pattern": "polish_mistaken_for_reproducibility",
+      "description": "Equating a visually polished or on-time submission with a publication-ready package that another designer could rebuild and reuse",
+      "trigger": "learner judges readiness by appearance, size, or deadline rather than by whether an outsider could reproduce the artifact's use",
+      "feedback": "Test the package for reuse: can a competent stranger find the canonical files and reproduce the work from the package alone?",
       "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_no_provenance",
+      "pattern": "missing_provenance_and_license",
+      "description": "Publishing reused materials, or AI-assisted components, without source, license, attribution, or verification notes",
+      "trigger": "learner includes stock media, a colleague's rubric, or AI output with no provenance recorded",
+      "feedback": "Record source, license, attribution, and how AI-assisted parts were verified. Provenance is part of the publishable package.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_7_6_publication_ready_artifact_packaging_no_manifest",
+      "pattern": "no_manifest_or_run_steps",
+      "description": "Bundling many files with no manifest or README that names the canonical artifact and the steps to run or read it",
+      "trigger": "package has no index distinguishing the final files or explaining how to use the prototype",
+      "feedback": "Add a manifest and README that name the canonical files and the steps to run them, so a reviewer is not left guessing.",
+      "rail_action": "explain"
     }
   ]
 }

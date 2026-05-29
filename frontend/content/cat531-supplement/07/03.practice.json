@@ -4,16 +4,16 @@
       "id": "cat531_supplement_7_3_technology_observation_notes_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_technology_observation_notes",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "While observing a 9th-grade class using an adaptive math platform, a candidate writes observation notes. Which note is an observation a colleague could verify rather than a judgment slipped in early?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The platform clearly engaged the students and improved their learning.",
+        "At 10:14, 6 of 24 students were on the platform's hint screen for more than two minutes before any teacher check-in.",
+        "The teacher should have used a better tool for this lesson.",
+        "The students seemed to enjoy the technology overall."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_7_3_technology_observation_notes_polish_as_evidence",
+      "explanation": "An observation note records time-stamped, countable behavior that another observer could confirm. The other options state conclusions or preferences without the observed evidence underneath them.",
+      "misconception_id": "cat531_supplement_7_3_judgment_before_observation",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_field_based_transfer_and_coaching",
@@ -26,16 +26,16 @@
       "id": "cat531_supplement_7_3_technology_observation_notes_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The candidate noticed that three students who use the platform's read-aloud feature were seated far from the teacher. Which annotation turns this into useful evidence for a later coaching conversation?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Note that the technology was fine for most students.",
+        "Note the pattern: read-aloud users clustered in the back row received zero teacher check-ins in 20 minutes, which is an access question to raise.",
+        "Note that the room was a little noisy.",
+        "Note that the candidate would have arranged the seats differently."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_7_3_technology_observation_notes_annotation_without_signal",
+      "explanation": "A strong annotation names a pattern tied to access (who got attention and who did not) so it can drive a coaching conversation. The other notes are vague or are the candidate's preference, not observed evidence.",
+      "misconception_id": "cat531_supplement_7_3_notes_miss_access_pattern",
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
@@ -45,16 +45,16 @@
       "id": "cat531_supplement_7_3_technology_observation_notes_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The candidate feeds raw observation notes into an AI tool and asks it to summarize what happened. The AI adds that students were highly motivated, which the notes never recorded. What should she do?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Keep the motivation claim because the AI summary reads well.",
+        "Delete the unsupported motivation claim because the observation notes contain no evidence of it, and keep only what was observed.",
+        "Add a survey afterward so the AI claim becomes true.",
+        "Ask the AI to make the summary even more positive."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_7_3_technology_observation_notes_ai_as_authority",
+      "explanation": "An observation summary may only assert what the notes recorded. AI-added interpretation that has no observed evidence must be removed, not retrofitted.",
+      "misconception_id": "cat531_supplement_7_3_ai_invents_observation",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -64,16 +64,16 @@
       "id": "cat531_supplement_7_3_technology_observation_notes_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which set of observation notes would let a second observer reach an independent conclusion about the platform's effect on this class?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A single sentence saying the lesson went well.",
+        "Time-stamped counts of on-task and off-task moments, which students used which features, teacher check-in timing, and any access gaps, separated from the candidate's interpretation.",
+        "A list of features the platform advertises.",
+        "The candidate's overall rating of the teacher."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_7_3_technology_observation_notes_completion_only_model",
+      "explanation": "Notes that separate verifiable evidence (counts, timing, feature use, access gaps) from interpretation let another observer judge for themselves. A summary rating or a feature list does not.",
+      "misconception_id": "cat531_supplement_7_3_summary_replaces_evidence",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

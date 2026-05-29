@@ -8,16 +8,16 @@
         "cat100_supplement_digital_identity_and_professional_presence",
         "cat100_supplement_digital_citizenship_and_ai_readiness"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A student writes the resume bullet: \"Responsible for the social media of the robotics club.\" Which revision turns it into employer-ready evidence?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Helped out with the robotics club's social media accounts.",
+        "Grew the robotics club Instagram from 80 to 240 followers in one semester by posting a weekly build update.",
+        "Passionate and detail-oriented social media manager for robotics.",
+        "Responsible for managing all robotics club online presence and branding."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_polish_as_evidence",
+      "explanation": "A strong bullet pairs an action verb with a measurable, verifiable result (80 to 240 followers, one semester). The others restate the duty or add adjectives without evidence.",
+      "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_duties_not_results",
       "difficulty": "easy"
     },
     {
@@ -27,16 +27,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your resume lists \"Expert in Python\" but you have only finished one intro CAT 100 module that used short scripts. What is the most defensible fix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Leave it as \"Expert in Python\" because it sounds stronger to recruiters.",
+        "Change it to \"Familiar with Python (intro coursework: wrote short data-cleaning scripts in CAT 100).\"",
+        "Delete every mention of Python so nothing can be questioned.",
+        "Change it to \"Advanced Python developer with production experience.\""
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_annotation_without_signal",
+      "explanation": "Truthful evidence means the claim matches what you can show. Naming the level (familiar) and the source (intro coursework) is defensible; inflating to expert or advanced is not.",
+      "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_inflate_truth",
       "difficulty": "medium"
     },
     {
@@ -46,16 +46,16 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to tighten your resume bullets. It rewrites one as \"Led a 12-person engineering team.\" You were one of 12 members, not the lead. What belongs in your AI-use note and final resume?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept the bullet as written; the AI is usually correct about phrasing.",
+        "Reject that suggestion, record it as rejected in the AI-use note, and keep a truthful bullet such as \"Contributed as one of 12 members of the engineering build team.\"",
+        "Keep the AI bullet but add an emoji so it looks original.",
+        "Remove all AI involvement and do not mention that AI helped at all."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_ai_as_authority",
+      "explanation": "AI is a bounded helper. You must reject claims that are untrue, log the decision in the AI-use note, and keep the surviving bullet verifiable.",
+      "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_ai_undisclosed",
       "difficulty": "hard"
     },
     {
@@ -65,16 +65,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You are applying to a data-entry internship that lists \"Excel\" and \"attention to detail\" as top requirements. Your resume leads with a graphic-design club bullet. What is the best role-fit revision?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Send the same resume; reordering is not worth the effort.",
+        "Move your Excel and data-accuracy bullets to the top so the most role-relevant evidence appears first, then keep design lower.",
+        "Delete every bullet that is not about Excel.",
+        "Add the word \"Excel\" five times so the keyword scanner ranks you higher."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_completion_only_model",
+      "explanation": "Role fit means ordering and keywords match the posting. Lead with the most relevant verifiable evidence; do not delete real experience or keyword-stuff.",
+      "misconception_id": "cat100_supplement_1_1_digital_identity_and_professional_presence_one_resume_fits_all",
       "difficulty": "medium"
     }
   ]

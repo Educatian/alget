@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_8_6_low_tech_fallbacks",
   "misconceptions": [
     {
-      "id": "cat531_supplement_8_6_low_tech_fallbacks_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_8_6_low_tech_fallbacks_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_8_6_low_tech_fallbacks_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_8_6_fallback_tool_mandatory",
+      "pattern": "making_the_ai_tool_the_single_point_of_failure",
+      "description": "Writing a policy that requires every student to use the AI tool, so learning stops when the tool, consent, or device is unavailable",
+      "trigger": "memo mandates the tool with no equivalent non-AI path",
+      "feedback": "Name a low-tech fallback that reaches the same learning target so no student's learning depends on the tool.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_8_6_low_tech_fallbacks_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_8_6_fallback_consent_by_omission",
+      "pattern": "making_ai_mandatory_by_omitting_consent",
+      "description": "Leaving consent out of the memo so families who decline have no path and the AI tool becomes mandatory by default",
+      "trigger": "memo is silent on opt-out and gives declining families no route",
+      "feedback": "State the opt-out path. Families that decline still need an equivalent route to the same target.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_8_6_fallback_homework_access_gap",
+      "pattern": "ignoring_the_home_device_access_gap",
+      "description": "Requiring AI tool use as homework, which penalizes students without reliable home devices or internet",
+      "trigger": "memo assigns AI tool use outside school with no access note",
+      "feedback": "Keep AI use in class on school devices, or provide an offline path, so home access is not a penalty.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_8_6_fallback_silent_on_privacy",
+      "pattern": "silent_on_student_data_privacy",
+      "description": "Omitting whether the vendor retains student work for model training, leaving a privacy risk unaddressed",
+      "trigger": "memo names no data-retention boundary for student text",
+      "feedback": "State the privacy boundary: confirm student text is not retained by the vendor for training.",
       "rail_action": "practice"
     }
   ]

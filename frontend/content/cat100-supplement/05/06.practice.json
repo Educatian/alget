@@ -8,73 +8,72 @@
         "cat100_supplement_citation_and_attribution",
         "cat100_supplement_ai_enhanced_presentation_development"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your slide uses a chart you found online and a paragraph drafted by AI. Which attribution shows you handled credit correctly?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "No source line, because the chart was free to view.",
+        "A caption: 'Chart: U.S. BLS, 2025, CC BY 4.0' and a note 'Summary drafted with AI, edited by me' where disclosure is required.",
+        "A line saying 'image from the internet.'",
+        "Nothing, since you reworded the AI text slightly."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_polish_as_evidence",
-      "difficulty": "easy"
+      "explanation": "Correct attribution names the real source and license for the media and discloses AI assistance where required.",
+      "difficulty": "easy",
+      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_image_no_credit"
     },
     {
       "id": "cat100_supplement_5_6_citation_and_attribution_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which note gives BigAL a concrete attribution problem to check?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "My citations are fine.",
+        "Slide 4 cites a 2025 report URL, but the page does not contain the 18% figure I quoted. Did I cite the wrong source?",
+        "Add some citations.",
+        "I think I cited stuff."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "The note names a specific mismatch between the claim and the linked source, so feedback can verify it.",
+      "difficulty": "medium",
+      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_citation_is_decoration"
     },
     {
       "id": "cat100_supplement_5_6_citation_and_attribution_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "What is a defensible way to use AI when handling citations?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Ask AI to generate citations and trust them without checking the sources exist.",
+        "Ask AI to format a reference you supply, then verify the link actually contains the claim and disclose AI help where required.",
+        "Let AI invent plausible-looking sources to fill the reference list.",
+        "Use AI to remove all citations so the slides look cleaner."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "AI can format references you provide, but you must verify the source and disclose AI use; fabricated citations are an integrity violation.",
+      "difficulty": "hard",
+      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_ai_not_disclosed"
     },
     {
       "id": "cat100_supplement_5_6_citation_and_attribution_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A reviewer says one citation is 'just a URL.' Which revision makes it verifiable?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Bold the URL.",
+        "Replace it with 'Author/Org, title, year, and a link to the exact page that states the 18% figure.'",
+        "Move the URL to the last slide.",
+        "Change the URL font color."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_5_6_citation_and_attribution_completion_only_model",
+      "explanation": "A verifiable citation names author, title, year, and points to the exact location of the claim, not a bare link.",
       "difficulty": "medium"
     }
   ]

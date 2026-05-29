@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_3_1_storyboard_frames_as_claims",
   "misconceptions": [
     {
-      "id": "ail606_supplement_3_1_storyboard_frames_as_claims_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_3_1_storyboard_frames_as_claims_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_3_1_storyboard_frames_as_claims_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_3_1_frame_is_decoration",
+      "pattern": "frame_treated_as_decoration",
+      "description": "Treating a storyboard frame as a picture of the screen rather than as a testable claim about what the learner will do and learn",
+      "trigger": "frame caption describes appearance (colors, layout) but states no learning claim or learner action",
+      "feedback": "Rewrite the frame caption as a claim: who does what, and what evidence on the next frame would show the claim held. A frame is an argument, not a snapshot.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_3_1_storyboard_frames_as_claims_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_3_1_no_warrant_for_frame",
+      "pattern": "claim_without_theory_warrant",
+      "description": "Stating a frame-level claim with no warrant from Mayer or cognitive load theory that would justify why the frame should produce the claimed learning",
+      "trigger": "learner asserts a frame helps learning but cites no principle and no expected processing change",
+      "feedback": "Attach one warrant. Name the principle (for example, signaling or coherence) and state the processing it is meant to change on this frame.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_3_1_unfalsifiable_frame",
+      "pattern": "unfalsifiable_frame_claim",
+      "description": "Writing a frame claim so vague that no prototype observation could ever contradict it",
+      "trigger": "claim uses words like clearer or engaging with no observable learner behavior attached",
+      "feedback": "State what an observer would see if the frame failed. If nothing could disconfirm the claim, it is decoration, not a design decision.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_3_1_frame_sequence_ignored",
+      "pattern": "frame_isolated_from_sequence",
+      "description": "Judging a single frame as if it stood alone, ignoring how the prior frame set up the claim and the next frame tests it",
+      "trigger": "learner revises one frame without checking the claim it inherits or hands off",
+      "feedback": "Trace the claim across three frames: setup, claim, evidence. A frame that breaks the chain weakens the whole storyboard argument.",
       "rail_action": "practice"
     }
   ]

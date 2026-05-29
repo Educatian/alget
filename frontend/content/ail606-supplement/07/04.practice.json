@@ -4,76 +4,88 @@
       "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_small_n_testing_and_design_claims",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You ran a moderated usability test with five learners. Which claim does that small-N test actually license?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The lesson significantly improves learning outcomes for the population.",
+        "Most learners hit the same navigation snag at the branch screen, so the design has a usability problem worth fixing.",
+        "The new design is more effective than the old one, with statistical confidence.",
+        "Learners in general prefer this lesson."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_polish_as_evidence",
+      "explanation": "Small-N moderated testing surfaces usability problems and design failures, not population-level efficacy or significance claims. The supported claim is about observed friction, not generalized effect.",
+      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_smalln_proves_efficacy",
       "difficulty": "medium",
       "concept_ids": [
-        "ail606_supplement_small_n_testing_and_design_claims"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_small_n_testing_and_design_claims",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_small_n_testing_and_design_claims",
+      "stem": "Which entry belongs in an observation-to-revision trace rather than in a results section?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Mean score was 72 percent.",
+        "Observation: 4 of 5 learners clicked Back instead of Next at frame 2. Revision: relabel the button and move it; recheck at next session.",
+        "The lesson was well received.",
+        "Participants were recruited by email."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_annotation_without_signal",
+      "explanation": "An observation-to-revision trace pairs a concrete observed behavior with the specific design change it triggered and a recheck plan. Means and recruitment notes are not that link.",
+      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_observation_without_action",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_small_n_testing_and_design_claims",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You use an AI tool on your five session transcripts. Which use respects what small-N evidence can bear?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Ask the AI to compute a p-value and declare the design effective.",
+        "Ask the AI to cluster recurring friction moments across the five sessions, then you decide which clusters justify a design change.",
+        "Have the AI invent two more participants so the sample looks larger.",
+        "Use the AI to write a conclusion that the lesson works for all learners."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_ai_as_authority",
+      "explanation": "The AI can help organize observed friction patterns; it must not manufacture sample size or convert usability findings into efficacy claims. Judgment about which patterns matter stays yours.",
+      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_smalln_proves_efficacy",
       "difficulty": "medium",
       "concept_ids": [
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_small_n_testing_and_design_claims",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_4_small_n_testing_and_design_claims_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_small_n_testing_and_design_claims",
+      "stem": "Only one of your five testers struggled with the glossary popup. How should the trace handle a one-of-five observation?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Treat it as a confirmed design defect and overhaul the glossary.",
+        "Log it as a low-frequency signal, note it may be idiosyncratic, and flag it to watch in the next round before committing a redesign.",
+        "Ignore it entirely because it was only one person.",
+        "Report it as affecting 20 percent of all learners."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_completion_only_model",
+      "explanation": "A single occurrence is weak evidence in small-N testing. The disciplined move is to record it, mark uncertainty, and watch for recurrence rather than over- or under-reacting.",
+      "misconception_id": "ail606_supplement_7_4_small_n_testing_and_design_claims_observation_without_action",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_small_n_testing_and_design_claims",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

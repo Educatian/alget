@@ -45,6 +45,25 @@ That claim is too thin because "clearer" does not identify the audience, the pro
 
 The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
 
+### Annotated Before/After: From Description to Rationale
+
+Here is one entry in a design-rationale log for an onboarding module, revised so it functions as evidence rather than description.
+
+**Before (description).** "Screen 4 has a branching scenario with three choices, a progress bar, and a Submit button. The colors match our brand."
+
+The diagnosis: this lists what the screen contains. A reviewer learns nothing about why these decisions were made or whether they were reasoned.
+
+**After (rationale as evidence).**
+
+1. Decision: use a three-choice branching scenario on Screen 4.
+2. Motivation and evidence: pilot observation showed five of six testers passed a multiple-choice version while still making the target error in the follow-up task, so we needed decision practice with consequences, not recall.
+3. Alternatives weighed: a multiple-choice item (rejected, it tested recall not judgment) and a five-branch tree (rejected, the extra branches raised authoring time past our 2-week window without adding distinct decision types).
+4. Expected effect and check: testers should now encounter the consequence of a wrong choice; we will confirm by comparing follow-up-task error rates before and after.
+
+**Rejected suggestion.** An AI writing aid offered to "polish the log into smoother prose." Rejected: smoother prose without the motivation, alternatives, and check would hide the very reasoning the log exists to expose.
+
+The improvement is that a reviewer can now reconstruct why Screen 4 looks as it does, see what was traded off, and challenge a specific decision.
+
 ## Decision Rule
 
 Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.

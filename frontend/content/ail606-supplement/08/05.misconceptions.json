@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_8_5_accessibility_review_workflow",
   "misconceptions": [
     {
-      "id": "ail606_supplement_8_5_accessibility_review_workflow_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_8_5_accessibility_review_workflow_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_8_5_accessibility_review_workflow_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_8_5_clean_means_accessible",
+      "pattern": "visual_polish_mistaken_for_access",
+      "description": "Believing a clean, well-typeset screen is therefore accessible",
+      "trigger": "review judges the screen by appearance instead of named WCAG criteria",
+      "feedback": "Check against specific success criteria (alt text, contrast, color cues); looking clean is not an accessibility finding.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_8_5_accessibility_review_workflow_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_8_5_color_only_cue",
+      "pattern": "color_as_sole_action_cue",
+      "description": "Conveying a required action using color alone",
+      "trigger": "the only cue for the next action is a color, with no label or icon",
+      "feedback": "Add a text label or icon so the action is conveyed in more than one channel (WCAG 1.4.1).",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_8_5_decorative_alt_assumption",
+      "pattern": "content_image_left_without_alt",
+      "description": "Assuming a content-bearing diagram needs no alt text",
+      "trigger": "an informative image has empty or missing alt text",
+      "feedback": "Give content images a one-sentence alt description naming what they show and why it matters (WCAG 1.1.1).",
+      "rail_action": "ask"
     }
   ]
 }

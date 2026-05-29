@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_2_3_professional_bio_drafting",
   "misconceptions": [
     {
-      "id": "cat100_supplement_2_3_professional_bio_drafting_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_2_3_professional_bio_drafting_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_2_3_voice_is_decorative",
+      "pattern": "voice_choice_is_decorative",
+      "description": "Believing the choice between first and third person in a bio is cosmetic rather than tied to the platform and audience",
+      "trigger": "learner picks a voice at random or lets a tool decide without considering where the bio will appear",
+      "feedback": "Match voice to the venue. First person fits a personal LinkedIn About; third person fits a speaker or team-page bio.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_2_3_professional_bio_drafting_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_2_3_buzzword_opening",
+      "pattern": "buzzword_stack_opening",
+      "description": "Opening a bio with stacked adjectives (passionate, results-driven, detail-oriented) that fit almost anyone",
+      "trigger": "learner's first sentence is a string of personality adjectives with no role or proof",
+      "feedback": "Open with a role, a focus, and one concrete thing you have done, not a list of interchangeable adjectives.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_2_3_professional_bio_drafting_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_2_3_ai_invents_seniority",
+      "pattern": "accepting_ai_invented_seniority",
+      "description": "Keeping AI-generated claims of experience or leadership the student does not actually have",
+      "trigger": "learner accepts a bio that overstates years of experience or scope of leadership",
+      "feedback": "A bio must be true. Replace invented seniority with your real level: coursework, a club role, or one project.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_2_3_no_concrete_proof",
+      "pattern": "bio_without_concrete_proof",
+      "description": "Writing a bio that states interests and goals but never includes one concrete, checkable accomplishment",
+      "trigger": "learner's bio lists what they like but names no project, role, or measurable result",
+      "feedback": "Anchor the bio with one proof: a project, a tool you used, or a number, so the reader has something specific to remember.",
       "rail_action": "practice"
     }
   ]

@@ -8,16 +8,16 @@
         "ai_use_disclosure",
         "cat100_supplement_course_completion_and_transfer"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your real role was tracking a student club's $600 snack budget in a spreadsheet. An AI tool rewrites your resume bullet as 'Led financial operations for a campus organization.' What should you do?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Keep it; it sounds more impressive and the AI suggested it.",
+        "Reject the inflated verb and write 'Tracked a $600 club budget in a spreadsheet, flagging a 12% overspend' which you can defend in an interview.",
+        "Keep it but add 'approximately' in front.",
+        "Keep both versions on the resume."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_polish_as_evidence",
+      "explanation": "A resume claim must be true and defensible. 'Led financial operations' overstates a $600 tracking task; the honest, specific bullet is stronger and verifiable.",
+      "misconception_id": "cat100_supplement_8_4_ai_inflated_claim",
       "difficulty": "easy"
     },
     {
@@ -27,16 +27,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "You used an AI tool to tighten the wording of three resume bullets. What is the purpose of the AI-use note in this portfolio?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "To confess that you cheated on the resume.",
+        "To document the boundary: what the AI proposed, which suggestions you accepted, and which you rejected, so the work stays honest and reviewable.",
+        "To hide the AI use behind a generic 'I worked hard' statement.",
+        "To take credit for the AI's writing as your own."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_annotation_without_signal",
+      "explanation": "Disclosure records a bounded, judged use of AI. It is not a confession; it shows you stayed in control of the truthful content.",
+      "misconception_id": "cat100_supplement_8_4_disclosure_is_confession",
       "difficulty": "medium"
     },
     {
@@ -46,16 +46,16 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A job posting lists 'data visualization' and 'SQL'. You built a bar chart in Excel but have never used SQL. What is the truthful, role-fit move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Paste both keywords into the resume so the automated screener accepts it.",
+        "Add a bullet citing the Excel bar chart for data visualization, and leave SQL off because you have no evidence for it.",
+        "List SQL as a skill since it is 'related' to spreadsheets.",
+        "Ask the AI to write SQL experience for you."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_ai_as_authority",
+      "explanation": "Match the role with true evidence. Cite the chart you actually built; do not claim a skill you cannot demonstrate just to match a keyword.",
+      "misconception_id": "cat100_supplement_8_4_keyword_stuffing",
       "difficulty": "hard"
     },
     {
@@ -65,16 +65,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which before/after record best documents a truthful, AI-supported resume revision?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "'Made my resume better with AI.'",
+        "'Before: \"Did data stuff.\" After: \"Built an Excel bar chart of 6 months of club attendance.\" AI proposed \"spearheaded analytics\"; rejected as inflated; kept the chart-based bullet.'",
+        "'AI fixed my resume.'",
+        "'Resume is final.'"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_8_4_ai_use_disclosure_portfolio_completion_only_model",
+      "explanation": "A verifiable record shows the before line, the after line, the AI proposal, and the accept/reject decision with a reason, so a reviewer can audit honesty.",
+      "misconception_id": "cat100_supplement_8_4_ai_inflated_claim",
       "difficulty": "medium"
     }
   ]

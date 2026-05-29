@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_6_3_portfolio_artifact_selection",
   "misconceptions": [
     {
-      "id": "cat531_supplement_6_3_portfolio_artifact_selection_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_6_3_portfolio_artifact_selection_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_6_3_portfolio_artifact_selection_grade_proxy",
+      "pattern": "grade_as_selection_criterion",
+      "description": "Selecting portfolio artifacts by grade, polish, or recency rather than by the competency they evidence",
+      "trigger": "learner chooses the highest-scoring or newest assignments without matching them to a claim",
+      "feedback": "Start from the competency claim, then choose the artifact that best evidences it, even if its grade was lower.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_6_3_portfolio_artifact_selection_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_6_3_portfolio_artifact_selection_no_rationale",
+      "pattern": "artifact_without_rationale",
+      "description": "Including artifacts with no statement of which standard they evidence or how",
+      "trigger": "artifact appears in the portfolio with no rationale tag",
+      "feedback": "Add a rationale that names the competency the artifact supports and the evidence inside it that shows the claim.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_6_3_portfolio_artifact_selection_ai_curates",
+      "pattern": "selection_delegated_to_ai",
+      "description": "Treating an AI ranking as the curatorial decision rather than as input the teacher must judge against the rubric",
+      "trigger": "learner adopts the model's recommended set without checking it against the actual standards",
+      "feedback": "Use AI to cluster candidate evidence, then make the final selection yourself against the rubric.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_6_3_portfolio_artifact_selection_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_6_3_portfolio_artifact_selection_only_successes_count",
+      "pattern": "only_successes_belong_in_portfolio",
+      "description": "Believing only flawless work belongs in a portfolio, so reflective growth artifacts are cut",
+      "trigger": "learner removes an artifact because it documents a lesson that went poorly",
+      "feedback": "A documented revision can evidence reflective judgment; keep it if its rationale names what the growth shows.",
       "rail_action": "practice"
     }
   ]

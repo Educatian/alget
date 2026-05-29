@@ -37,15 +37,36 @@ The anchors should do work in your artifact. If NACE career readiness or ISTE di
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Start with this raw order list of six rows.
 
-> I made the Excel pivot-table finding with unit labels, source note, and claim-first chart title clearer.
+```
+   A       B       C
+1  Region  Order   Sales
+2  West    1001    400
+3  East    1002    250
+4  West    1003    600
+5  South   1004    150
+6  East    1005    300
+7  West    1006    200
+```
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+Step 1. Select A1:C7 and insert a pivot table. Drag `Region` to Rows and `Sales` to Values. The default aggregation is Sum, so the pivot reports:
 
-> I revised the Excel pivot-table finding with unit labels, source note, and claim-first chart title so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+```
+Region   Sum of Sales
+East     550
+South    150
+West     1200
+Grand Total  1900
+```
 
-Notice the shift: the artifact is no longer just polished. The revision points to **ISTE digital citizenship**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+West totals `400 + 600 + 200 = 1200`, and the Grand Total `1900` is the sum of all six orders, not a single region.
+
+Step 2. The question changes to "how many orders per region?" Open Value Field Settings and switch Sum to Count. The same layout now reports West = 3, East = 2, South = 1. Same fields, different question, different aggregation.
+
+Step 3. Add a seventh source row (South, 1007, 500) below the data. The totals do not move until you click Refresh, and they only move if the source range includes row 8. That is the stale-source-range trap.
+
+The auditable decision: choose the aggregation that matches the question (Sum for dollars, Count for orders), read region rows rather than the Grand Total, and refresh a range that actually covers the data.
 
 ## Decision Rule
 

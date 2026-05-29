@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_1_6_choosing_a_software_case",
   "misconceptions": [
     {
-      "id": "ail606_supplement_1_6_choosing_a_software_case_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_1_6_choosing_a_software_case_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_1_6_case_more_features_better",
+      "pattern": "feature_count_equals_quality",
+      "description": "Selecting a software case because it has the most features, equating feature count with instructional value.",
+      "trigger": "team justifies a tool by how many features it offers",
+      "feedback": "Select for fit, not feature count. Tie one specific affordance to the learning goal; unused features add complexity, not value.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_1_6_choosing_a_software_case_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_1_6_case_tool_drives_goal",
+      "pattern": "tool_first_design",
+      "description": "Starting from a tool's appealing features and inventing a learning goal to fit them, reversing the design logic.",
+      "trigger": "team lists tool features first and derives the goal afterward",
+      "feedback": "Lead with the learning goal and audience, then choose a tool whose affordances serve that goal. Avoid solutions in search of a problem.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_1_6_choosing_a_software_case_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_1_6_case_ignore_constraints",
+      "pattern": "ignore_resource_constraints",
+      "description": "Choosing a software case without weighing time, cost, and learner-access constraints when goal fit is comparable.",
+      "trigger": "team picks a tool without any constraint analysis",
+      "feedback": "When affordance fit is comparable, justify the choice with constraints: setup time, cost, and learner access. Record the tradeoff.",
+      "rail_action": "ask"
     }
   ]
 }

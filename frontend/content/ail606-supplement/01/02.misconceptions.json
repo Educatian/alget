@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_1_2_mayer_principles_as_design_constraints",
   "misconceptions": [
     {
-      "id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_1_2_mayer_redundancy_means_more_is_safer",
+      "pattern": "redundancy_helps",
+      "description": "Believing that duplicating narration as identical on-screen text gives learners more access and is therefore safer.",
+      "trigger": "learner adds on-screen text identical to the narration to be thorough",
+      "feedback": "Identical on-screen text plus narration overloads the visual channel and forces reconciliation. For novices, keep the graphic plus narration and drop the duplicated text.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "ail606_supplement_1_2_mayer_engaging_extras_help",
+      "pattern": "seductive_details_help",
+      "description": "Assuming that interesting extras such as background video, music, or decorative images raise learning because they raise engagement.",
+      "trigger": "learner adds engaging-but-extraneous media to motivate learners",
+      "feedback": "The coherence principle: extraneous material competes for limited capacity. Remove or minimize seductive details and justify any retained media by the learning goal.",
+      "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_1_2_mayer_principles_are_absolute",
+      "pattern": "principles_without_boundary_conditions",
+      "description": "Treating Mayer's principles as universal rules that apply identically to every learner, ignoring expertise reversal and pacing conditions.",
+      "trigger": "learner applies a principle without naming the target learner or conditions",
+      "feedback": "State the principle as a constraint with boundary conditions. Name the target learner, prior knowledge, and pacing before applying it, since some effects reverse for experts.",
+      "rail_action": "represent"
     }
   ]
 }

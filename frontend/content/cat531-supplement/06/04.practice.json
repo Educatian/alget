@@ -4,16 +4,16 @@
       "id": "cat531_supplement_6_4_classroom_implementation_plan_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_classroom_implementation_plan",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A classroom implementation plan for an AI math-practice tool lists the lesson activities and the login steps. A mentor says it is not yet a defensible plan. What is most clearly missing?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A longer description of the tool's features.",
+        "A rollout that names what happens when the tool fails or a student cannot access it, plus who is responsible at each step.",
+        "More screenshots of the tool interface.",
+        "A statement that the tool is popular with other teachers."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_6_4_classroom_implementation_plan_polish_as_evidence",
+      "explanation": "An implementation plan must anticipate failure modes, access gaps, and responsibility, not just describe the happy-path activity.",
+      "misconception_id": "cat531_supplement_6_4_classroom_implementation_plan_happy_path_only",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_final_project_and_professional_vision",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_6_4_classroom_implementation_plan_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_classroom_implementation_plan",
+      "stem": "A reviewer annotates a plan: \"You scheduled the AI tool for week 1, but the parental-consent forms are not collected until week 3.\" What kind of error does this expose?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "A formatting error in the timeline table.",
+        "A sequencing error: a required consent gate is scheduled after the activity that depends on it, so the plan is not yet enactable.",
+        "A word-choice problem in the activity description.",
+        "A missing citation for the consent policy."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_6_4_classroom_implementation_plan_annotation_without_signal",
+      "explanation": "An enactable plan orders dependencies correctly; a consent gate must clear before the activity it protects.",
+      "misconception_id": "cat531_supplement_6_4_classroom_implementation_plan_dependency_ignored",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_classroom_implementation_plan",
         "evidence_based_revision"
       ]
     },
@@ -45,16 +46,16 @@
       "id": "cat531_supplement_6_4_classroom_implementation_plan_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher asks BigAL to generate a week-by-week rollout schedule for the new tool. What is the defensible boundary on using that draft?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the schedule as written, since the model balanced the weeks for you.",
+        "Use the draft as a checklist, then adjust it against the real school calendar, device-cart availability, and consent timeline the model could not know.",
+        "Ask the model to also pick which students get the tool first.",
+        "Trust the schedule because it cites instructional-design principles."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_6_4_classroom_implementation_plan_ai_as_authority",
+      "explanation": "AI can produce a generic schedule, but the teacher must reconcile it with local constraints the model cannot see.",
+      "misconception_id": "cat531_supplement_6_4_classroom_implementation_plan_ai_schedule_authority",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -63,19 +64,20 @@
     {
       "id": "cat531_supplement_6_4_classroom_implementation_plan_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_classroom_implementation_plan",
+      "stem": "Two implementation plans target the same AI tool. Plan A defines success as \"all students complete the module.\" Plan B defines success as \"the median student gains at least one proficiency level and no subgroup falls further behind.\" Why is Plan B more defensible?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Plan B is longer and uses more measurement language.",
+        "Plan B ties the tool to a learning outcome and an equity guardrail, so the plan can be evaluated and stopped if it harms a subgroup.",
+        "Plan A is wrong because completion never matters.",
+        "Plan B will guarantee better results in any classroom."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_6_4_classroom_implementation_plan_completion_only_model",
+      "explanation": "A defensible plan defines success as a learning outcome with an equity check, making the rollout evaluable and stoppable.",
+      "misconception_id": "cat531_supplement_6_4_classroom_implementation_plan_completion_as_success",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_classroom_implementation_plan",
         "evidence_based_revision"
       ]
     }

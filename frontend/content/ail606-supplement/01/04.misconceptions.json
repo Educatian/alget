@@ -2,36 +2,36 @@
   "section_id": "ail606_supplement_1_4_worked_examples_and_fading",
   "misconceptions": [
     {
-      "id": "ail606_supplement_1_4_worked_examples_and_fading_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_1_4_worked_examples_and_fading_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_1_4_we_practice_always_beats_examples",
+      "pattern": "unguided_practice_is_best",
+      "description": "Believing novices learn best from unguided problem solving and that worked examples are a shortcut that weakens learning.",
+      "trigger": "learner gives novices many open problems and no worked examples",
+      "feedback": "For novices, the worked-example effect favors studying worked solutions first. Front-load worked examples, then fade toward open problems.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_1_4_worked_examples_and_fading_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_1_4_we_fading_is_removing_examples",
+      "pattern": "fading_is_deletion",
+      "description": "Treating fading as simply deleting worked examples rather than gradually transferring steps to the learner through completion problems.",
+      "trigger": "learner jumps from full worked example straight to open problems with no completion step",
+      "feedback": "Fading is gradual: insert completion problems that hand off some steps before full independence. It is a transfer of responsibility, not a sudden removal.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_1_4_worked_examples_and_fading_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_1_4_we_examples_always_best",
+      "pattern": "examples_for_everyone",
+      "description": "Assuming worked examples remain optimal for all learners at all times, ignoring the expertise-reversal effect.",
+      "trigger": "learner keeps full worked support for advanced learners who already have schemas",
+      "feedback": "Expertise reversal: continued full worked support becomes redundant for experienced learners. Fade support as prior knowledge grows.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_1_4_we_answer_is_the_example",
+      "pattern": "answer_key_as_worked_example",
+      "description": "Confusing a final-answer key with a worked example, omitting the intermediate steps and rationale that carry the learning value.",
+      "trigger": "learner presents only the final answer and calls it a worked example",
+      "feedback": "A worked example must show and explain the intermediate steps. An answer alone gives no schema to study.",
+      "rail_action": "explain"
     }
   ]
 }

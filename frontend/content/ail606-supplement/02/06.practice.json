@@ -4,17 +4,17 @@
       "id": "ail606_supplement_2_6_lxd_optimizer_critical_use_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_lxd_optimizer_critical_use",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An LXD optimizer reports that shortening a worked example raised average time-on-page and completion rate. Why is this not sufficient reason to keep the change?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Time-on-page and completion are engagement proxies, not measures of whether learners understood the worked example.",
+        "Optimizers are always wrong and should be ignored.",
+        "The change should be kept because higher completion is the goal of any course.",
+        "Shorter worked examples are always better for learning."
       ],
-      "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_2_6_lxd_optimizer_critical_use_polish_as_evidence",
-      "difficulty": "medium",
+      "correct_index": 0,
+      "explanation": "Optimizers report proxies. A change can raise completion while reducing the generative processing a worked example is meant to support.",
+      "misconception_id": "ail606_supplement_2_6_lxd_optimizer_critical_use_metric_is_learning",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_lxd_optimizer_critical_use"
       ]
@@ -22,55 +22,55 @@
     {
       "id": "ail606_supplement_2_6_lxd_optimizer_critical_use_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_lxd_optimizer_critical_use",
+      "stem": "An optimizer returns a list of 12 suggested edits. What is the critical-use move?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Apply all 12 at once to save time, then re-run the optimizer.",
+        "Triage the list: accept the edits that serve the learning goal, reject the ones that only move a proxy, and record a reason for each.",
+        "Reject all 12 because automated tools cannot be trusted.",
+        "Apply only the first three, since order signals importance."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_2_6_lxd_optimizer_critical_use_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Wholesale acceptance hides which edits served learning. Triaging each suggestion against the learning goal keeps the designer accountable.",
+      "misconception_id": "ail606_supplement_2_6_lxd_optimizer_critical_use_accept_all_suggestions",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_lxd_optimizer_critical_use"
       ]
     },
     {
       "id": "ail606_supplement_2_6_lxd_optimizer_critical_use_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_lxd_optimizer_critical_use",
+      "stem": "The optimizer flags an audio-description track as \"low-efficiency\" because few learners play it, and recommends removing it. What should the designer weigh that the optimizer cannot see?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Nothing; low usage proves the track is unnecessary.",
+        "The track is an accessibility provision for blind and low-vision learners, a learner-variability need the optimizer's usage metric cannot measure.",
+        "Whether the audio file size slows page load.",
+        "Whether the narrator's voice is pleasant."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_2_6_lxd_optimizer_critical_use_ai_as_authority",
+      "explanation": "The optimizer measures aggregate usage, not who depends on a feature. Accessibility provisions can be essential for a few learners while looking inefficient in aggregate.",
+      "misconception_id": "ail606_supplement_2_6_lxd_optimizer_critical_use_optimizer_knows_context",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_lxd_optimizer_critical_use"
       ]
     },
     {
       "id": "ail606_supplement_2_6_lxd_optimizer_critical_use_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "You accept an optimizer edit that raised completion by 18 percent. To make this a defensible evidence-based revision, what additional evidence should you gather?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A second optimizer run confirming the completion gain.",
+        "A learning measure (for example, a short transfer quiz before and after) showing whether understanding held or dropped when completion rose.",
+        "Survey ratings of how modern the page looks.",
+        "The exact timestamp of when the edit was applied."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_2_6_lxd_optimizer_critical_use_completion_only_model",
+      "explanation": "A completion gain is only a proxy. Pairing it with a learning measure tests whether the optimizer's edit served the goal or just the metric.",
+      "misconception_id": "ail606_supplement_2_6_lxd_optimizer_critical_use_metric_is_learning",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

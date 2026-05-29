@@ -33,17 +33,34 @@ Three course anchors shape the reasoning here:
 
 Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
 
-## Worked Example
+## Worked Example: Prioritizing Which Issues to Fix First
 
-Start with a thin claim that many students write on a first pass:
+A test surfaces four issues. The team must decide what to revise before the next build.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (fix by ease, not impact):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> Plan: Start with the typo on the welcome screen and the button color, because they are quick. We'll get to the rest later.
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+Walk through a defensible prioritization, step by step:
 
-The stronger version treats the storyboard frame sequence with narration, signaling, and reader-action notes as evidence. It names what changed, links the change to **cognitive load theory**, and leaves a reader able to audit the decision.
+1. **List each issue with severity and reach.** Severity = how much it blocks the goal; reach = how many participants hit it.
+
+| Issue | Hit by | Blocks task? | Severity |
+| --- | --- | --- | --- |
+| Cannot find Submit; 3 abandoned | 3 of 5 | Yes | High |
+| Quiz feedback misread as error | 2 of 5 | Partly | Medium |
+| Button color low contrast | 4 of 5 | No | Low (but accessibility) |
+| Welcome-screen typo | 1 of 5 | No | Trivial |
+
+2. **Sort by severity x reach, not by effort.** The Submit issue blocks the core task for most users; it ranks first.
+3. **Protect access as a non-negotiable.** Low contrast does not block the task but is a **UDL learner variability** access barrier, so it stays above the typo.
+4. **Schedule the cheap-but-trivial last.**
+
+**After (impact-ordered plan):**
+
+> Next iteration, in order: (1) fix Submit findability (high severity, 3 of 5 blocked); (2) relabel quiz feedback (medium); (3) raise button contrast (accessibility); (4) typo, if time allows.
+
+The after version is defensible because effort is spent where it removes the largest barrier to the learning goal, and access is not deprioritized. The before version optimized for what was easy, leaving the task-blocking defect unaddressed, the classic prioritization trap.
 
 ## Decision Rule
 

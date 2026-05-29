@@ -33,17 +33,29 @@ Three course anchors shape the reasoning here:
 
 Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
 
-## Worked Example
+## Worked Example: A 30-Minute Revision Sprint with a Changelog
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+A student has 30 minutes to revise a budget spreadsheet and its GitHub Pages page before submission. They first list every issue, then triage by impact, then log each fix with a timestamp.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+**Triage list (highest impact first).**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+| Priority | Issue | Type |
+| --- | --- | --- |
+| 1 | `#REF!` in the Total cell B14 | Correctness |
+| 2 | Dead link to the data source in `index.html` | Correctness |
+| 3 | Default font, no heading styles | Cosmetic |
+| 4 | "Rebuild layout with CSS grid" (AI suggestion) | Out of scope |
 
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+**Sprint changelog.**
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+```
+14:05  Replaced #REF! in B14 with =SUM(B2:B13) = 8,420; checked against receipts tab. (Priority 1)
+14:13  Fixed dead <a href> in index.html line 31 to the real CSV path; link now opens. (Priority 2)
+14:22  Added <h2> styles and a readable font in styles.css. (Priority 3)
+14:28  Logged "CSS grid rebuild" as a FUTURE item; declined for this sprint to avoid shipping unfinished. (Priority 4)
+```
+
+The sprint succeeds because correctness was fixed before cosmetics, and the changelog lets a reviewer trace every edit by time, location, and reason. The grid rebuild is recorded as future work rather than started with eight minutes left, which would have left the artifact broken.
 
 ## Decision Rule
 

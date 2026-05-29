@@ -8,35 +8,35 @@
         "cat100_supplement_teacher_persona_setup",
         "cat100_supplement_ai_conversations_as_a_teacher"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A saved persona file reads only: 'You are a helpful 3rd grade teacher.' Which field of the four-field persona checklist is already filled?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "HARD STOP",
+        "ROLE (partly: grade is given, subject is not)",
+        "AUDIENCE",
+        "KNOWLEDGE BOUND"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_4_1_teacher_persona_setup_polish_as_evidence",
+      "explanation": "It names a grade so ROLE is partly filled, but AUDIENCE, KNOWLEDGE BOUND, and HARD STOP are all blank.",
+      "misconception_id": "cat100_supplement_4_1_persona_is_just_role_line",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_4_1_teacher_persona_setup_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_teacher_persona_setup",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_teacher_persona_setup"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which line belongs in the HARD STOP field of a teacher persona?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Explain place value using base-ten blocks.",
+        "Never invent a student's name, grade, or medical history.",
+        "You are a 3rd grade math teacher.",
+        "Write so a parent with no math background can read it."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_4_1_teacher_persona_setup_annotation_without_signal",
+      "explanation": "HARD STOP names a forbidden action. The other lines are KNOWLEDGE/task, ROLE, and AUDIENCE.",
+      "misconception_id": "cat100_supplement_4_1_no_hard_stop",
       "difficulty": "medium"
     },
     {
@@ -44,18 +44,19 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_teacher_persona_setup"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You want to reuse one persona file across three different homework chats. What should you NOT put inside the saved persona?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The ROLE line naming grade and subject.",
+        "The specific question 'Grade this student's fraction worksheet for me.'",
+        "The AUDIENCE line describing who reads the output.",
+        "The KNOWLEDGE BOUND line listing which standards to use."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_4_1_teacher_persona_setup_ai_as_authority",
+      "explanation": "A specific task belongs in your first message, not the reusable persona. Keeping it out lets the persona stay constant across chats.",
+      "misconception_id": "cat100_supplement_4_1_persona_vs_first_message",
       "difficulty": "hard"
     },
     {
@@ -63,18 +64,19 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_evidence_based_revision",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat100_supplement_teacher_persona_setup"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After filling all four fields, the AI suggests adding 'act friendly and use emojis.' Your AUDIENCE field already says output is for parents. What is the strongest evidence-based move?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Accept it; more suggestions always improve the persona.",
+        "Reject it and log the reason: emojis clash with the parent AUDIENCE the persona already fixes.",
+        "Delete the AUDIENCE field so the emoji line fits.",
+        "Add the emoji line to the HARD STOP field."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_4_1_teacher_persona_setup_completion_only_model",
+      "explanation": "Rejecting against an existing field and recording why is the evidence trace; you judge the suggestion against your own constraint.",
+      "misconception_id": "cat100_supplement_4_1_no_hard_stop",
       "difficulty": "medium"
     }
   ]

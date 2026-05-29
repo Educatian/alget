@@ -8,35 +8,35 @@
         "cat100_supplement_scenario_based_ai_dialogue",
         "cat100_supplement_ai_conversations_as_a_teacher"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "In a three-turn scenario dialogue, which turn does the job of NARROW?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The turn that pastes the scenario and names the audience.",
+        "The turn that says 'Keep it under 90 seconds to read aloud; no jargon.'",
+        "The turn that asks 'What if the student already feels behind?'",
+        "The turn that copies the whole AI reply into the artifact."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_4_2_scenario_based_ai_dialogue_polish_as_evidence",
+      "explanation": "NARROW adds the constraint (length, tone). Pasting the scenario is SET CONTEXT; the 'what if' is STRESS-TEST.",
+      "misconception_id": "cat100_supplement_4_2_one_giant_prompt",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_4_2_scenario_based_ai_dialogue_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_scenario_based_ai_dialogue",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_scenario_based_ai_dialogue"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A scenario reads only: 'A new student joined late. Draft what I say.' What constraint is missing that the model needs?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Nothing; the situation is enough.",
+        "Audience, length, and tone (for example: nervous new student, under 90 seconds, no jargon).",
+        "The student's full name and ID number.",
+        "A request to make the answer longer."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_4_2_scenario_based_ai_dialogue_annotation_without_signal",
+      "explanation": "A scenario without constraints lets the model guess. Audience, length, and tone make the output usable.",
+      "misconception_id": "cat100_supplement_4_2_no_scenario_constraints",
       "difficulty": "medium"
     },
     {
@@ -44,18 +44,19 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_scenario_based_ai_dialogue"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Turn 3 returns two reassurance lines that say nearly the same thing. What is the strongest move for the saved artifact?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Keep both lines so the artifact is longer.",
+        "Keep one line and log that you cut the duplicate and why.",
+        "Delete the whole transcript and start over in one prompt.",
+        "Ask the AI to add a third reassurance line."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_4_2_scenario_based_ai_dialogue_ai_as_authority",
+      "explanation": "Selecting one line and logging the cut makes your judgment part of the evidence; keeping both adds no information.",
+      "misconception_id": "cat100_supplement_4_2_keep_whole_output",
       "difficulty": "hard"
     },
     {
@@ -63,18 +64,19 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_evidence_based_revision",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat100_supplement_scenario_based_ai_dialogue"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Why label each turn (SET CONTEXT, NARROW, STRESS-TEST) instead of writing one long prompt?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Labels make the prompt look more professional.",
+        "Labels let a reader see which turn caused which change in the output.",
+        "Labels force the AI to answer faster.",
+        "Labels are required by every AI tool."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_4_2_scenario_based_ai_dialogue_completion_only_model",
+      "explanation": "Labeled turns make the cause of each change traceable; one giant prompt hides which instruction did the work.",
+      "misconception_id": "cat100_supplement_4_2_one_giant_prompt",
       "difficulty": "medium"
     }
   ]

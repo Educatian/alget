@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_7_6_collaboration_norms",
   "misconceptions": [
     {
-      "id": "cat100_supplement_7_6_collaboration_norms_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_7_6_collaboration_norms_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_7_6_collaboration_norms_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_7_6_anyone_with_link_edit",
+      "pattern": "overpermissive_sharing",
+      "description": "Sharing a group doc as 'Anyone with the link can edit' when only the team should have edit access",
+      "trigger": "learner sets a shared assignment to public edit and a stranger alters it",
+      "feedback": "Share to specific people with the least access they need. Use 'Anyone with link: view' or named editors, not public edit.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_7_6_collaboration_norms_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_7_6_overwrite_teammate",
+      "pattern": "edit_without_tracking",
+      "description": "Editing a teammate's text directly with no comments or suggestion mode, erasing their work silently",
+      "trigger": "learner rewrites a section and the teammate cannot tell what changed or why",
+      "feedback": "Use Suggesting mode or comments so teammates can see and accept changes, instead of overwriting their work invisibly.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_7_6_no_section_owners",
+      "pattern": "no_division_of_work",
+      "description": "Everyone editing the same paragraphs at once with no agreed owners, causing collisions and lost edits",
+      "trigger": "two members retype the intro at the same time and one version is lost",
+      "feedback": "Assign section owners up front (you take intro, I take methods) so edits do not collide on the same text.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_7_6_no_deadline_norm",
+      "pattern": "no_shared_deadline_norm",
+      "description": "Not agreeing on internal deadlines, so a teammate's part lands minutes before the real due time",
+      "trigger": "the last section arrives at 11:55 PM for an 11:59 PM submission with no time to review",
+      "feedback": "Set an internal deadline earlier than the real one (for example 24 hours before) so the team can review and fix.",
       "rail_action": "practice"
     }
   ]

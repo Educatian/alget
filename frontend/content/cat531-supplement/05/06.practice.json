@@ -4,16 +4,16 @@
       "id": "cat531_supplement_5_6_adoption_recommendation_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_adoption_recommendation",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An evaluation ends with: 'We recommend adopting the tool.' What turns this into a defensible adoption recommendation?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Adding an exclamation point for emphasis.",
+        "Naming the scope, the conditions, the evidence behind the call, and what would reverse it.",
+        "Stating that the team liked the tool.",
+        "Listing every feature the tool offers."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_5_6_adoption_recommendation_polish_as_evidence",
+      "explanation": "A recommendation is defensible when it specifies who and what it covers, the conditions attached, the evidence behind it, and the signals that would trigger a reversal. A bare 'adopt' hides all of that.",
+      "misconception_id": "cat531_supplement_5_6_recommendation_is_verdict",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
@@ -25,58 +25,61 @@
     {
       "id": "cat531_supplement_5_6_adoption_recommendation_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_adoption_recommendation",
+      "stem": "The evidence is mixed: strong on learning gains, unresolved on data privacy. Which recommendation best matches that evidence?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Recommend full adoption now and resolve privacy later.",
+        "Recommend a bounded pilot conditional on a signed data-privacy agreement, with a defined review point.",
+        "Recommend rejecting the tool because the evidence is not perfect.",
+        "Stay silent until the evidence is fully resolved."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_5_6_adoption_recommendation_annotation_without_signal",
+      "explanation": "A recommendation should be proportional to the evidence. Mixed evidence supports a conditional, bounded step (a pilot with a privacy condition and a review date), not an all-or-nothing call.",
+      "misconception_id": "cat531_supplement_5_6_adopt_or_reject_only",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_educational_technology_evaluation",
+        "cat531_supplement_adoption_recommendation"
       ]
     },
     {
       "id": "cat531_supplement_5_6_adoption_recommendation_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to write your adoption recommendation. It produces a confident 'adopt' paragraph. What is the responsible use?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Sign and submit it because it reads professionally.",
+        "Use it as a draft, then make sure the recommendation reflects your evidence, your conditions, and a decision you can stand behind to stakeholders.",
+        "Ask the AI to also approve the budget.",
+        "Adopt whatever the AI recommends to save time."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_5_6_adoption_recommendation_ai_as_authority",
+      "explanation": "The teacher or committee, not the AI, is accountable to students and stakeholders for the recommendation. An AI draft must be checked against the actual evidence and conditions before it is owned.",
+      "misconception_id": "cat531_supplement_5_6_ai_owns_recommendation",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_adoption_recommendation"
       ]
     },
     {
       "id": "cat531_supplement_5_6_adoption_recommendation_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A committee adopts a tool on your recommendation, but a key privacy condition you stated is never met. What should your recommendation have made explicit?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Nothing; once adopted, the recommendation is finished.",
+        "A trigger: if the stated condition is not met by a set date, the recommendation no longer stands and the tool is paused.",
+        "That the committee, not you, is responsible for everything.",
+        "A note that the tool was popular."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_5_6_adoption_recommendation_completion_only_model",
+      "explanation": "A defensible recommendation builds in accountability: it states the conditions and the consequence if they go unmet, so an unmet condition reopens the decision rather than being quietly ignored.",
+      "misconception_id": "cat531_supplement_5_6_recommendation_is_final",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat531_supplement_adoption_recommendation"
       ]
     }
   ]

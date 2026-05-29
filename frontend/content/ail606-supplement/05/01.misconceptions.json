@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses",
   "misconceptions": [
     {
-      "id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_5_1_vague_rationale_as_hypothesis",
+      "pattern": "rationale_stated_as_hypothesis",
+      "description": "Treating a design rationale such as 'it should feel easier' as if it were already a testable usability hypothesis",
+      "trigger": "learner submits a prediction using subjective adjectives (easier, intuitive, cleaner) with no observable outcome",
+      "feedback": "A rationale explains why you changed the design; a hypothesis predicts an observable behavior. Convert the adjective into something a moderator could count.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_5_1_from_rationale_to_testable_hypotheses_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_5_1_directionless_prediction",
+      "pattern": "missing_direction_or_threshold",
+      "description": "Stating a prediction with no direction or numeric threshold against a baseline",
+      "trigger": "learner predicts an outcome will 'improve' or 'be better' without a baseline or target",
+      "feedback": "Add a direction and a threshold against a stated baseline (for example, 8 of 10 versus a 4 of 10 baseline) so the session can confirm or disconfirm it.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_5_1_unfalsifiable_confirmation",
+      "pattern": "unfalsifiable_hypothesis",
+      "description": "Writing a hypothesis with no condition under which it could fail, so every observation is read as confirmation",
+      "trigger": "learner reports a prediction confirmed when no result could have disconfirmed it",
+      "feedback": "State the failure condition explicitly. If no observed outcome could have disproven the prediction, it is not yet a testable hypothesis.",
+      "rail_action": "ask"
     }
   ]
 }

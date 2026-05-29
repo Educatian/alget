@@ -4,17 +4,17 @@
       "id": "ail606_supplement_3_8_module_3_storyboard_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_module_3_storyboard_studio",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A studio submission has eight beautifully polished frames, but a reviewer notes the sequence skips from defining photosynthesis straight to a quiz with no worked step between. What does this reveal about the storyboard?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Nothing; each frame is high quality, so the storyboard is strong.",
+        "The frames were optimized in isolation; the full sequence has a gap and does not carry the learner to the objective.",
+        "The quiz should simply be removed.",
+        "The frames need brighter colors."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_3_8_module_3_storyboard_studio_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A studio submission is judged as a whole sequence. Excellent individual frames that leave a gap toward the objective still fail as a storyboard.",
+      "misconception_id": "ail606_supplement_3_8_frames_dont_need_to_cohere",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_module_3_storyboard_studio"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_3_8_module_3_storyboard_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_module_3_storyboard_studio",
+      "stem": "In one storyboard, Frame 2 gives the learner a Continue control to pace the content, but Frame 6 auto-advances through a dense multi-step procedure. What design flaw does this show?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Frame 6 should also be removed.",
+        "A principle (segmenting) was applied inconsistently across the storyboard, signaling an unintegrated design.",
+        "Continue controls are never appropriate.",
+        "The two frames should use the same color."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_3_8_module_3_storyboard_studio_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Principles must hold across the whole storyboard. Honoring segmenting on one frame and breaking it on another shows the design was not integrated.",
+      "misconception_id": "ail606_supplement_3_8_principles_applied_once",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_module_3_storyboard_studio"
       ]
     },
     {
       "id": "ail606_supplement_3_8_module_3_storyboard_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_module_3_storyboard_studio",
+      "stem": "For the studio capstone, a learner pastes together the frame exercise, the image, the alt text, and the peer comments from earlier in the module with no connecting rationale. Why does this fall short of the studio's intent?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The artifacts should have been done in a different order.",
+        "The studio integrates the pieces into one defensible storyboard serving a single objective; a collection is not an integration.",
+        "Earlier artifacts may not be reused at all.",
+        "The capstone should contain only new work."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_3_8_module_3_storyboard_studio_ai_as_authority",
+      "explanation": "The capstone asks the learner to integrate frame, modality, accessibility, and review decisions toward one objective, not to staple separate exercises together.",
+      "misconception_id": "ail606_supplement_3_8_studio_is_just_assembly",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_module_3_storyboard_studio"
       ]
     },
     {
       "id": "ail606_supplement_3_8_module_3_storyboard_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_module_3_storyboard_studio",
+      "stem": "A learner submits a polished final storyboard for the studio with no other materials. Which addition would most raise the quality of the capstone as evidence of learning?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A higher-resolution export of the same storyboard.",
+        "A decision record listing the major design choices, the options rejected, and the principle or learner data behind each one.",
+        "A longer title slide.",
+        "More frames of the same kind."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_3_8_module_3_storyboard_studio_completion_only_model",
+      "explanation": "The capstone needs its evidence trail. A decision record of accepted and rejected choices, with warrants, is what turns a polished storyboard into defensible evidence of design judgment.",
+      "misconception_id": "ail606_supplement_3_8_revision_trail_optional",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_module_3_storyboard_studio"
       ]
     }
   ]

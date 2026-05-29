@@ -8,73 +8,76 @@
         "cat100_supplement_resume_claims_and_evidence",
         "cat100_supplement_resume_branding_and_ai_brainstorming"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A resume bullet reads: \"Helped run the campus food pantry.\" Which rewrite turns the claim into evidence a recruiter can verify?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"Passionate, hard-working volunteer dedicated to helping others.\"",
+        "\"Coordinated weekly intake for the campus food pantry, scheduling 12 volunteers and serving about 80 students per week across two semesters.\"",
+        "\"Helped out a lot at the campus food pantry and learned so much.\"",
+        "\"Food pantry experience (see references for details).\""
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_2_1_resume_claims_and_evidence_polish_as_evidence",
+      "explanation": "A verifiable claim names a concrete action, a number, and a scope. \"Coordinated weekly intake, 12 volunteers, 80 students, two semesters\" lets a reader check the scale and the role, unlike adjective-only or vague phrasing.",
+      "misconception_id": "cat100_supplement_2_1_adjectives_as_evidence",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_2_1_resume_claims_and_evidence_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_resume_claims_and_evidence",
       "concept_ids": [
+        "cat100_supplement_resume_claims_and_evidence",
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "You worked on a class team that built a website, and you wrote the page copy. Which bullet states a defensible claim without overstating your role?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "\"Built and launched a five-page marketing website that increased traffic 300%.\"",
+        "\"Single-handedly created the organization's entire web presence.\"",
+        "\"Wrote and edited the copy for a five-page team website that launched on time for the spring campaign.\"",
+        "\"Did website stuff for a class team project.\""
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_2_1_resume_claims_and_evidence_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "Claiming credit for the whole site or a 300% gain you cannot trace is overstatement. Naming exactly your contribution (copy for five pages, launched on time) is both truthful and specific.",
+      "misconception_id": "cat100_supplement_2_1_inflating_scope",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_2_1_resume_claims_and_evidence_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_resume_claims_and_evidence"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI tool suggests adding \"Increased department sales by 25% through strategic initiatives\" to your retail resume, but you only stocked shelves and ran a register. What is the right move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Keep it; the AI knows what recruiters want to see.",
+        "Keep it but lower the number to 10% so it sounds more believable.",
+        "Reject it, replace it with a truthful bullet you can defend, and note in your AI-use log why you rejected it.",
+        "Keep it and add \"as part of the team\" so it is technically true."
       ],
-      "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_2_1_resume_claims_and_evidence_ai_as_authority",
+      "correct_index": 2,
+      "explanation": "An AI suggestion is a proposal, not a fact. A claim you cannot defend in an interview is fabrication even if the percentage is softened. Reject it, write a truthful bullet, and record the rejection.",
+      "misconception_id": "cat100_supplement_2_1_ai_invents_metrics",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_2_1_resume_claims_and_evidence_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat100_supplement_resume_claims_and_evidence"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which before-after pair is the stronger revision because it moves from a duty to an action plus a measurable result?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Before: \"Responsible for social media.\" After: \"Was in charge of all social media for the company.\"",
+        "Before: \"Responsible for social media.\" After: \"Scheduled and posted 4 Instagram posts per week, growing the account from 210 to 540 followers over a 10-week internship.\"",
+        "Before: \"Responsible for social media.\" After: \"Handled social media duties as assigned by my supervisor.\"",
+        "Before: \"Responsible for social media.\" After: \"Did social media and other marketing tasks.\""
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_2_1_resume_claims_and_evidence_completion_only_model",
+      "explanation": "A strong revision moves from a vague responsibility to a specific action plus a measurable outcome (4 posts/week, 210 to 540 followers, 10 weeks). The other options just restate the duty in different words.",
+      "misconception_id": "cat100_supplement_2_1_reword_not_revise",
       "difficulty": "medium"
     }
   ]

@@ -4,17 +4,17 @@
       "id": "ail606_supplement_3_3_image_generation_for_instruction_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_image_generation_for_instruction",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You can ship one of two generated images for a lesson on how a lever multiplies force: a photorealistic workshop scene with a lever among many tools, or a plain line diagram labeling the fulcrum, load, and effort distances. Which better serves instruction, and why?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The photorealistic scene, because realism always increases motivation.",
+        "The line diagram, because it isolates the fulcrum-load-effort relationship the learner must grasp, without competing detail.",
+        "The photorealistic scene, because it has more pixels and looks professional.",
+        "Either one, since image choice does not affect learning."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_3_3_image_generation_for_instruction_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Instructional value comes from representing the target relationship clearly. Photorealistic detail here is extraneous and can crowd out the lever mechanics the learner needs to see.",
+      "misconception_id": "ail606_supplement_3_3_realism_equals_instructional",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_image_generation_for_instruction"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_3_3_image_generation_for_instruction_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_image_generation_for_instruction",
+      "stem": "A designer adds a vivid generated image of a lightning storm to a slide about static electricity, mainly because it looks dramatic. What is the design risk?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The image file will be too large to load.",
+        "The dramatic but tangential detail can act as seductive detail, diverting attention from the charge-transfer point being taught.",
+        "Lightning images are copyrighted by default.",
+        "Storms cannot be generated accurately by any model."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_3_3_image_generation_for_instruction_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "An engaging but off-topic image competes with the essential content. If the image does not carry the learning point, it adds extraneous processing.",
+      "misconception_id": "ail606_supplement_3_3_decorative_image_is_neutral",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_image_generation_for_instruction"
       ]
     },
     {
       "id": "ail606_supplement_3_3_image_generation_for_instruction_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_image_generation_for_instruction",
+      "stem": "An AI tool generates a labeled diagram of the human heart for your module. Before placing it, what is the essential check that keeps you the designer of record?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Confirm the image resolution is at least 1080p.",
+        "Verify every chamber label, vessel, and flow arrow against an anatomy source, because generated diagrams can render confident but wrong content.",
+        "Check that the diagram matches the slide's color theme.",
+        "Trust the diagram, since the model was trained on medical data."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_3_3_image_generation_for_instruction_ai_as_authority",
+      "explanation": "Generated images can look authoritative while mislabeling or miscounting parts. Verifying against the content source is the bounded, non-delegable check.",
+      "misconception_id": "ail606_supplement_3_3_unverified_generated_content",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_image_generation_for_instruction"
       ]
     },
     {
       "id": "ail606_supplement_3_3_image_generation_for_instruction_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_image_generation_for_instruction",
+      "stem": "A learner spends an hour refining an image prompt for lighting, camera angle, and art style, then asks why reviewers still call the image instructionally weak. What did the prompt work most likely skip?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A higher output resolution setting.",
+        "Stating the learning function the image must serve, so the visual choices target what the learner needs to understand.",
+        "A more popular art style.",
+        "A watermark for attribution."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_3_3_image_generation_for_instruction_completion_only_model",
+      "explanation": "Prompt craft for style does not substitute for design judgment. Without naming the learning function first, polished prompting still yields decoration.",
+      "misconception_id": "ail606_supplement_3_3_prompt_is_the_artifact",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_image_generation_for_instruction"
       ]
     }
   ]

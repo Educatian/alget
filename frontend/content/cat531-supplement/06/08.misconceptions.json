@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_6_8_module_6_final_studio",
   "misconceptions": [
     {
-      "id": "cat531_supplement_6_8_module_6_final_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_6_8_module_6_final_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_6_8_module_6_final_studio_stapled_not_integrated",
+      "pattern": "collection_mistaken_for_integration",
+      "description": "Treating a stapled set of artifacts as a capstone instead of one connected chain of judgment",
+      "trigger": "artifacts appear in sequence with no decision linking one to the next",
+      "feedback": "Show how each artifact follows from the value decision in the prior one, so the capstone reads as one argument.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_6_8_module_6_final_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_6_8_module_6_final_studio_internal_contradiction",
+      "pattern": "later_artifact_contradicts_earlier",
+      "description": "Letting a later capstone artifact drop or contradict a value the earlier one committed to",
+      "trigger": "implementation plan or memo violates the priority set in the tension map",
+      "feedback": "Make later artifacts honor the value decisions earlier ones committed to, or revise the decision openly.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_6_8_module_6_final_studio_ai_resolves_capstone",
+      "pattern": "ai_resolves_integration",
+      "description": "Delegating the integrative judgment to AI rather than using it to flag inconsistencies the teacher resolves",
+      "trigger": "learner accepts model edits that make artifacts agree without checking the underlying decision",
+      "feedback": "Use AI to flag possible contradictions, then resolve each one yourself against your value decision.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_6_8_module_6_final_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_6_8_module_6_final_studio_polish_hides_tradeoffs",
+      "pattern": "uniform_polish_hides_tradeoffs",
+      "description": "Producing a uniformly confident, polished capstone that hides rather than reasons through hard tradeoffs",
+      "trigger": "every artifact reaches a positive conclusion with no tension left visible",
+      "feedback": "Surface at least one hard tradeoff and show how you reasoned through it; hidden tradeoffs are not judgment.",
       "rail_action": "practice"
     }
   ]

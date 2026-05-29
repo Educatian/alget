@@ -4,16 +4,16 @@
       "id": "cat531_supplement_1_4_balancing_efficiency_and_equity_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_balancing_efficiency_and_equity",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An AI grading tool lets a teacher return feedback to 30 students in 10 minutes instead of 3 hours. A reviewer asks for the equity check. Which response shows the teacher actually balanced efficiency against equity?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It saved three hours, which means more time for every student, so equity improves automatically.",
+        "I sampled the AI's feedback on the 6 multilingual learners' essays and found it flagged correct dialect features as errors, so I hand-review that subgroup before returning scores.",
+        "The tool is the same for everyone, so it is automatically fair.",
+        "Faster grading is always more equitable than slower grading."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_1_4_balancing_efficiency_and_equity_polish_as_evidence",
+      "explanation": "Balancing efficiency and equity requires checking whether the efficient method distributes its benefits and harms evenly. Sampling a vulnerable subgroup's results is the actual equity check; time saved alone is not.",
+      "misconception_id": "cat531_supplement_1_4_efficiency_implies_equity",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_1_4_balancing_efficiency_and_equity_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_balancing_efficiency_and_equity",
+      "stem": "A teacher gives every student the same self-paced AI tutor 'to be fair.' By week three, students with home internet have completed 8 modules and students without have completed 2. What does this reveal about equal-versus-equitable access?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Equal access to the tool produced unequal outcomes because it ignored an out-of-school constraint; equity would require allocating in-class time or devices to the under-resourced group.",
+        "The slower students simply did not try hard enough.",
+        "The tutor should be removed from all students.",
+        "Equal treatment is always the same as equity."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_1_4_balancing_efficiency_and_equity_annotation_without_signal",
+      "correct_index": 0,
+      "explanation": "Identical treatment is not equity when starting conditions differ. The home-internet gap turns equal access into unequal outcomes; an equitable response reallocates resources to close the gap.",
+      "misconception_id": "cat531_supplement_1_4_equal_treatment_equals_equity",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_balancing_efficiency_and_equity",
         "evidence_based_revision"
       ]
     },
@@ -45,37 +46,39 @@
       "id": "cat531_supplement_1_4_balancing_efficiency_and_equity_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher asks an AI to 'flag students at risk of failing' so support can be allocated efficiently. The AI ranks students using prior grades and attendance. What is the defensible equity boundary on using this output?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Allocate support strictly by the AI ranking, since it is data-driven.",
+        "Treat the ranking as a starting hypothesis, check whether its inputs encode existing disadvantage (for example attendance shaped by jobs or caregiving), and adjust before allocating support.",
+        "Ignore the AI and allocate support randomly.",
+        "Use the ranking only to reduce support for low-ranked students."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_1_4_balancing_efficiency_and_equity_ai_as_authority",
+      "explanation": "An efficiency tool can reproduce inequity if its inputs already reflect disadvantage. The defensible move is to interrogate the inputs for embedded bias before letting the ranking drive resource allocation.",
+      "misconception_id": "cat531_supplement_1_4_data_driven_means_unbiased",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_balancing_efficiency_and_equity"
       ]
     },
     {
       "id": "cat531_supplement_1_4_balancing_efficiency_and_equity_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_balancing_efficiency_and_equity",
+      "stem": "A teacher decides to keep a slower manual process for one assignment because automating it would disadvantage three students, even though automation would save time overall. A colleague calls this 'inefficient.' Why can this still be the defensible decision?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Because slower is always better than faster.",
+        "Because balancing efficiency and equity sometimes means accepting a known, bounded efficiency cost to avoid a concentrated harm to a specific subgroup, and that trade was made visible.",
+        "Because the colleague has no authority.",
+        "Because the three students will eventually catch up on their own."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_1_4_balancing_efficiency_and_equity_completion_only_model",
+      "explanation": "Efficiency is not the only value. A defensible balance can pay a bounded, named efficiency cost to prevent a concentrated equity harm, as long as the trade-off is explicit and revisitable.",
+      "misconception_id": "cat531_supplement_1_4_efficiency_overrides_equity",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_balancing_efficiency_and_equity",
         "evidence_based_revision"
       ]
     }

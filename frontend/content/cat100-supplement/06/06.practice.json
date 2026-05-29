@@ -8,35 +8,35 @@
         "cat100_supplement_portfolio_evidence_and_reflection",
         "cat100_supplement_github_pages_personal_website"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Which resume bullet gives a reader the strongest, most verifiable evidence of impact?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Responsible for spreadsheets",
+        "Built a 3-tab Excel budget tracker with VLOOKUP that cut the club's monthly reconciliation time from 2 hours to 20 minutes",
+        "Hard worker who is good with computers",
+        "Did various data tasks as needed"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_6_6_portfolio_evidence_and_reflection_polish_as_evidence",
+      "explanation": "A strong bullet names the artifact, the skill, and a measurable result a reader can picture and verify. Vague duty statements carry no evidence.",
+      "misconception_id": "cat100_supplement_6_6_duties_count_as_evidence",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_6_6_portfolio_evidence_and_reflection_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_portfolio_evidence_and_reflection",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_portfolio_evidence_and_reflection"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "You took one short tutorial in Python. Which resume phrasing is both truthful and useful?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Expert Python developer",
+        "Completed an introductory Python course; wrote a 40-line script that cleaned a 500-row CSV",
+        "Mastered all of Python",
+        "Python since birth"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_6_6_portfolio_evidence_and_reflection_annotation_without_signal",
+      "explanation": "Truthful framing states the actual scope (intro course, a concrete script) so a reader is not misled. Overclaiming expertise fails the first technical question.",
+      "misconception_id": "cat100_supplement_6_6_overclaiming_skills",
       "difficulty": "medium"
     },
     {
@@ -44,37 +44,39 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_portfolio_evidence_and_reflection"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI tool rewrites your resume and invents a bullet: 'Led a team of 12 to launch a national campaign.' You never did this. What is the right action?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Keep it; it sounds impressive and AI wrote it",
+        "Delete the fabricated bullet and keep only claims you can back with real evidence; note that AI was used for wording only",
+        "Keep it but lower the number to 6",
+        "Submit it and explain later if asked"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_6_6_portfolio_evidence_and_reflection_ai_as_authority",
+      "explanation": "AI will happily fabricate accomplishments. You stay accountable for truthfulness: remove invented claims and disclose that AI helped with wording, not facts.",
+      "misconception_id": "cat100_supplement_6_6_ai_fabrication_accepted",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_6_6_portfolio_evidence_and_reflection_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_portfolio_evidence_and_reflection",
       "concept_ids": [
+        "cat100_supplement_portfolio_evidence_and_reflection",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You are tailoring one resume for a data-analyst posting that lists Excel and visualization. Which revision shows role fit?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Lead with an unrelated babysitting bullet because it came first chronologically",
+        "Move the Excel dashboard and chart-design bullets to the top and trim bullets unrelated to data work",
+        "Add every job you ever had in full detail to look experienced",
+        "Use a rainbow color scheme to stand out"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_6_6_portfolio_evidence_and_reflection_completion_only_model",
+      "explanation": "Role fit means surfacing the evidence the specific posting asks for. Promoting the relevant bullets and trimming the rest signals fit better than length or decoration.",
+      "misconception_id": "cat100_supplement_6_6_one_resume_fits_all",
       "difficulty": "medium"
     }
   ]

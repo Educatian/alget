@@ -8,35 +8,35 @@
         "cat100_supplement_module_1_readiness_studio",
         "cat100_supplement_digital_citizenship_and_ai_readiness"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "The Module 1 readiness checklist asks you to confirm \"my resume bullets show measurable results.\" How should you check this box honestly?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Check it because you finished the resume section.",
+        "Open your resume, confirm each bullet has an action verb plus a number or outcome, and only then check the box.",
+        "Check every box at once to save time.",
+        "Leave it unchecked since checklists do not matter."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_polish_as_evidence",
+      "explanation": "A readiness check is a real test, not a formality. Verify the artifact meets the standard before marking it complete.",
+      "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_checklist_is_busywork",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_1_8_module_1_readiness_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_module_1_readiness_studio",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_module_1_readiness_studio"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "You are finalizing one shared profile slide for the studio. Which approach reflects that the module's skills work together?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Make it look polished and ignore the other module skills.",
+        "Check that it has truthful evidence, a disclosed AI-use note, alt text on its image, and no exposed private data, all at once.",
+        "Apply only the resume skill, since that is the main one.",
+        "Run a single AI pass and assume it handled everything."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_annotation_without_signal",
+      "explanation": "The module's skills combine in one artifact. Readiness means evidence, AI disclosure, accessibility, and privacy are all handled together.",
+      "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_skills_dont_connect",
       "difficulty": "medium"
     },
     {
@@ -46,16 +46,16 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask the studio's AI, \"Am I ready for Module 2?\" and it replies \"Yes, you are ready.\" How should you treat this?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept it and move on; the studio decided.",
+        "Use it as a prompt to inspect your own artifacts against each target, since you confirm readiness, not the tool.",
+        "Ask three more times until you get a different answer.",
+        "Skip checking your artifacts because the AI is confident."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_ai_as_authority",
+      "explanation": "The studio supports your self-assessment but does not replace it. You verify readiness by checking your own evidence against the standards.",
+      "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_studio_replaces_judgment",
       "difficulty": "hard"
     },
     {
@@ -65,16 +65,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Going through the checklist, you find your privacy skill is still shaky: you have not enabled two-factor authentication. What is the most useful thing to record?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Mark privacy as complete so the module looks finished.",
+        "Flag privacy as a gap and request targeted practice on enabling two-factor authentication.",
+        "Hide the gap and hope it does not come up later.",
+        "Delete the privacy item from the checklist."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_completion_only_model",
+      "explanation": "An honestly flagged gap routes you to the right practice. A false all-clear hides exactly the skill you most need to build.",
+      "misconception_id": "cat100_supplement_1_8_module_1_readiness_studio_gaps_left_unmarked",
       "difficulty": "medium"
     }
   ]

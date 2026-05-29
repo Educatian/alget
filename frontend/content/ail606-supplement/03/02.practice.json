@@ -4,17 +4,17 @@
       "id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_signaling_and_segmenting_in_practice",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A storyboard frame bolds the heading, boxes the diagram, colors three labels red, and adds a pulsing arrow, all at once. Why does this weaken signaling?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Signaling works by contrast, so cuing almost everything leaves nothing standing out as essential.",
+        "Red is never an acceptable color for instructional cues.",
+        "Arrows can only be used in video, not still frames.",
+        "Bold headings always violate the coherence principle."
       ],
-      "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_polish_as_evidence",
-      "difficulty": "medium",
+      "correct_index": 0,
+      "explanation": "Signaling directs limited attention. When many elements are cued at once, contrast collapses and the learner cannot tell what matters. Cut cues to the single essential element.",
+      "misconception_id": "ail606_supplement_3_2_more_signaling_is_better",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_signaling_and_segmenting_in_practice"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_signaling_and_segmenting_in_practice",
+      "stem": "A designer says a frame was 'segmented' because the on-screen paragraph was split into two shorter ones, but the animation still plays straight through. What is missing for this to count as segmenting?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "A brighter font color on the second paragraph.",
+        "Learner control over pacing, such as a continue button or pause between the two meaningful units.",
+        "A third even shorter paragraph.",
+        "Background music under the animation."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Segmenting gives the learner control over the pace of meaningful units. Shorter text inside a non-stop sequence is chunking the prose, not segmenting the experience.",
+      "misconception_id": "ail606_supplement_3_2_segmenting_is_short_text",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_signaling_and_segmenting_in_practice"
       ]
     },
     {
       "id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_signaling_and_segmenting_in_practice",
+      "stem": "An AI tool suggests adding an animated glow around the key term to draw the eye. Before accepting, which check keeps the decision sound?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept it, since motion always increases engagement.",
+        "Ask whether the glow's own motion adds processing that competes with reading the term it is meant to highlight.",
+        "Reject it because AI should never touch signaling decisions.",
+        "Accept it only if the glow matches the brand color."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_ai_as_authority",
+      "explanation": "A cue spends part of the load budget. An animated glow can demand more processing than the attention it saves, so check the cost against the benefit for the target learner.",
+      "misconception_id": "ail606_supplement_3_2_cue_adds_load",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_signaling_and_segmenting_in_practice"
       ]
     },
     {
       "id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_signaling_and_segmenting_in_practice",
+      "stem": "You insert a pause in a four-step procedure simply because the segment felt long, landing the pause between step 2's setup and step 2's result. Why might this hurt learning?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Pauses are never allowed inside a numbered procedure.",
+        "The boundary falls inside one conceptual unit, fragmenting the schema the learner is assembling for step 2.",
+        "Four steps is too many for any single frame.",
+        "The pause makes the total runtime shorter."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_completion_only_model",
+      "explanation": "Segment boundaries belong at conceptual seams. Splitting in the middle of one idea interrupts schema construction, the opposite of what segmenting should do.",
+      "misconception_id": "ail606_supplement_3_2_segment_boundary_arbitrary",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_signaling_and_segmenting_in_practice"
       ]
     }
   ]

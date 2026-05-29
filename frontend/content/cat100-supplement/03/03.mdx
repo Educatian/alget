@@ -35,15 +35,24 @@ Use these anchors as lenses, not as names to drop into a reflection. A useful le
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+Suppose you have quarterly revenue by region and you want a chart that answers one question.
 
-> I made the Excel pivot-table finding with unit labels, source note, and claim-first chart title clearer.
+```
+   A        B
+1  Region   Q1 Revenue
+2  West     48000
+3  East     31000
+4  South    29000
+5  North    22000
+```
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+Step 1. State the question first: "Which region led Q1 revenue?" That is a comparison across separate categories, so the right chart is a bar (or column) chart, not a line or pie chart.
 
-> I revised the Excel pivot-table finding with unit labels, source note, and claim-first chart title so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Step 2. Build the chart from A2:B5. Each region gets one bar. Make sure the value axis starts at 0, so West (48000) reads as roughly twice North (22000), which matches the data. If the axis started at 20000, North's bar would nearly vanish and the gap would look far larger than it is.
 
-The stronger version treats the Excel pivot-table finding with unit labels, source note, and claim-first chart title as evidence. It names what changed, links the change to **ISTE digital citizenship**, and leaves a reader able to audit the decision.
+Step 3. Replace the default title 'Q1 Revenue' with a claim-first title: 'West Led Q1 Revenue at 48K, More Than Double North'. Now the title states the finding and the bars are the evidence.
+
+The auditable decision chain: question -> chart type (bar for category comparison) -> honest axis (start at 0) -> claim-first title. A reader can check each link against the four numbers above.
 
 ## Decision Rule
 

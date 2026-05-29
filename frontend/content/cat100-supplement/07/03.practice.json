@@ -8,74 +8,74 @@
         "cat100_supplement_template_based_productivity",
         "cat100_supplement_productivity_and_workflow_automation"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You open budget_template.xlsx and type this term's real numbers into it. Next week the blank template is gone. What should you have done?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Saved a copy with File > Save As before entering data, keeping the master blank",
+        "Typed faster so the template would not change",
+        "Deleted the numbers after submitting",
+        "Renamed the file to template_final.xlsx"
       ],
-      "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_7_3_template_based_productivity_polish_as_evidence",
+      "correct_index": 0,
+      "explanation": "Edit a copy, not the master. Save As (or an .xltx template) keeps a blank, reusable original.",
+      "misconception_id": "cat100_supplement_7_3_overwrite_master",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_7_3_template_based_productivity_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_template_based_productivity",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_template_based_productivity"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Column B holds item costs in B2:B10. Which entry in the total cell stays correct after you edit a cost?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Type the sum 450 directly",
+        "=SUM(B2:B10)",
+        "Type =450",
+        "Leave the cell blank and add costs in your head"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_7_3_template_based_productivity_annotation_without_signal",
+      "explanation": "=SUM(B2:B10) recalculates whenever a cost changes. A typed 450 goes stale on the next edit.",
+      "misconception_id": "cat100_supplement_7_3_hardcode_instead_of_formula",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_3_template_based_productivity_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_template_based_productivity",
       "concept_ids": [
-        "ai_supported_learning"
+        "cat100_supplement_template_based_productivity"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A status report template should be reused weekly without retyping. What makes it a true template rather than a copied document?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "It is saved as a PDF",
+        "Its fixed structure stays put and the parts that change are marked with placeholders like [WEEK] and [STATUS]",
+        "It uses a colorful font",
+        "It is emailed to yourself each week"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_7_3_template_based_productivity_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "Placeholders flag exactly which fields to fill, so no stale value from last week is left behind.",
+      "misconception_id": "cat100_supplement_7_3_format_without_placeholders",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_3_template_based_productivity_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_template_based_productivity",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_template_based_productivity"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "In D2 you write a formula that multiplies each price in B2 by the tax rate in C1, then copy it down. Which formula copies correctly down the column?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "=B2*C1 (both relative)",
+        "=B2*$C$1 (relative price, absolute tax rate)",
+        "=$B$2*$C$1 (both absolute)",
+        "=$B2*C1 (mixed on the wrong cell)"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_7_3_template_based_productivity_completion_only_model",
-      "difficulty": "medium"
+      "explanation": "B2 must shift to B3, B4 as you copy down; the single tax rate cell must stay locked as $C$1.",
+      "misconception_id": "cat100_supplement_7_3_no_relative_reference",
+      "difficulty": "hard"
     }
   ]
 }

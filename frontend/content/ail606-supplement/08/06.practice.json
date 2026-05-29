@@ -4,16 +4,16 @@
       "id": "ail606_supplement_8_6_prototype_showcase_logistics_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_prototype_showcase_logistics",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A showcase plan is judged a success because 'the room was packed all session.' What is the strongest critique?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is a success; a packed room means engagement.",
+        "Foot traffic is not the goal; the goal is visitors seeing theory-to-screen reasoning and presenters getting substantive questions.",
+        "It would be better with even more visitors.",
+        "Success should be measured by how long visitors stayed."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_8_6_prototype_showcase_logistics_polish_as_evidence",
+      "explanation": "A showcase is an evidence exchange; crowd size does not show that design reasoning was communicated.",
+      "misconception_id": "ail606_supplement_8_6_traffic_equals_success",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_prototype_showcase_logistics"
@@ -23,16 +23,16 @@
       "id": "ail606_supplement_8_6_prototype_showcase_logistics_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Visitors keep asking only 'cool, what is it?' and never see the README traceability matrix. What change surfaces the design reasoning?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Make the prototypes look more impressive.",
+        "Post a per-station card: 'Ask me which screen changed because of which theory.'",
+        "Hand visitors a longer printed program.",
+        "Add background music to the room."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_8_6_prototype_showcase_logistics_annotation_without_signal",
+      "explanation": "A focusing prompt makes the traceability matrix the conversation rather than an afterthought.",
+      "misconception_id": "ail606_supplement_8_6_no_focusing_prompt",
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
@@ -42,16 +42,16 @@
       "id": "ail606_supplement_8_6_prototype_showcase_logistics_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An organizer uses AI to draft the rotation schedule. What is the strongest boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept the AI schedule unchecked because it looks organized.",
+        "Use the AI draft, then verify against the real constraint: 8 stations, 50 minutes, no prototype mobbed or skipped.",
+        "Skip scheduling and let visitors wander.",
+        "Ask AI only to make the schedule look more colorful."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_8_6_prototype_showcase_logistics_ai_as_authority",
+      "explanation": "AI can propose a schedule, but the organizer must check it against the room's actual logistics constraints.",
+      "misconception_id": "ail606_supplement_8_6_unbalanced_stations",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -61,16 +61,16 @@
       "id": "ail606_supplement_8_6_prototype_showcase_logistics_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After switching to timed rotations with staggered starts, which result best shows the change worked?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The session felt busier overall.",
+        "Every prototype received visitors in both rounds and presenters logged questions about specific README matrix rows.",
+        "More visitors signed the guest book.",
+        "The room stayed full until the end."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_8_6_prototype_showcase_logistics_completion_only_model",
+      "explanation": "Balanced visits plus substantive theory-to-screen questions are the auditable evidence of an evidence exchange.",
+      "misconception_id": "ail606_supplement_8_6_unbalanced_stations",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

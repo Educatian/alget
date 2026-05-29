@@ -4,16 +4,16 @@
       "id": "ail606_supplement_4_3_wireframes_that_show_learning_logic_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_wireframes_that_show_learning_logic",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "What distinguishes a wireframe that shows learning logic from one that only shows screen layout?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It uses high-fidelity colors and final fonts.",
+        "Each region is annotated with the learner action it supports and the moment in the learning sequence it serves, so the layout encodes a teaching decision.",
+        "It places the logo and navigation in the expected positions.",
+        "It includes every screen the module will ever have."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_4_3_wireframes_that_show_learning_logic_polish_as_evidence",
+      "explanation": "A learning-logic wireframe maps regions to learner actions and to where they sit in the instructional sequence. Polish and completeness do not show pedagogical reasoning.",
+      "misconception_id": "ail606_supplement_4_3_wireframe_layout_without_logic",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_wireframes_that_show_learning_logic"
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_4_3_wireframes_that_show_learning_logic_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_wireframes_that_show_learning_logic",
+      "stem": "A reviewer says your wireframe is too detailed: it specifies exact pixel widths, final copy, and brand colors. Why is that a problem at the wireframe stage?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "High fidelity is never useful in instructional design.",
+        "Premature visual fidelity pulls review attention to surface choices and discourages changes to the underlying interaction and sequence, which is what the wireframe should still be testing.",
+        "Pixel widths are always wrong this early.",
+        "Brand colors must be approved by a separate team first."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_4_3_wireframes_that_show_learning_logic_annotation_without_signal",
+      "explanation": "Wireframes deliberately stay low-fidelity so reviewers critique flow and learner action, not polish. Over-fidelity locks in the layout before the learning logic is settled.",
+      "misconception_id": "ail606_supplement_4_3_wireframe_premature_fidelity",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_wireframes_that_show_learning_logic"
       ]
     },
     {
       "id": "ail606_supplement_4_3_wireframes_that_show_learning_logic_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "You ask an AI tool to generate a wireframe for a practice screen. It returns a polished layout with placeholder feedback shown only after the learner finishes all items. What is the strongest bounded use?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept the layout because it looks professional and complete.",
+        "Use it as a starting block, then move feedback to appear per item if your sequence needs immediate correction, since the tool optimized for appearance, not for the learning interaction.",
+        "Reject all AI wireframes and draw everything by hand.",
+        "Ask the AI to also decide when feedback should appear and trust its choice."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_4_3_wireframes_that_show_learning_logic_ai_as_authority",
+      "explanation": "AI layouts optimize for plausible appearance, not for the interaction your sequence requires. The designer must place feedback where the learning logic, not the tool, calls for it.",
+      "misconception_id": "ail606_supplement_4_3_wireframe_ai_layout_as_pedagogy",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,17 +60,17 @@
     {
       "id": "ail606_supplement_4_3_wireframes_that_show_learning_logic_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Two wireframes show the same practice screen. Wireframe A places the hint button beside each item; Wireframe B hides all hints behind one button at the bottom. Which annotation would justify choosing B for a mastery-check screen?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "B looks cleaner with fewer buttons.",
+        "On a mastery-check screen the goal is to observe unaided performance, so hints are deliberately made effortful to reach; the layout encodes the assessment intent.",
+        "B saves screen space.",
+        "B matches the brand style guide better."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_4_3_wireframes_that_show_learning_logic_completion_only_model",
+      "explanation": "The right layout depends on the screen's instructional purpose. For a mastery check, making hints harder to reach is a defensible learning-logic decision, not a cosmetic one.",
+      "misconception_id": "ail606_supplement_4_3_wireframe_layout_without_logic",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

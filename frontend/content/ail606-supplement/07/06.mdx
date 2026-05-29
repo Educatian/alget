@@ -35,15 +35,32 @@ The anchors should do work in your artifact. If Mayer multimedia learning or cog
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Trace one artifact package from "looks done" to genuinely reusable by an outsider.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (package contents, first pass):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```
+storyboard_final_v2_FINAL.pdf
+storyboard_final_v2_FINAL (1).pdf
+images/
+notes.txt
+```
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+1. Annotation: two near-identical "final" files with no manifest, reused images with no license, and no statement of intent or how to run anything.
+2. Decision point: could a stranger identify the canonical artifact and reproduce its use from this alone? No.
+3. Revision move: name the canonical files, add provenance, and write a README that states intent and steps.
 
-Notice the shift: the artifact is no longer just polished. The revision points to **cognitive load theory**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+**After (publication-ready package):**
+
+```
+README.md            # intent, decision log, how to view, AI-assist + verification note
+storyboard.pdf       # canonical artifact (single, dated)
+assets/              # each image with source + license recorded in README
+LICENSE              # CC BY 4.0
+CHANGELOG.md         # version history
+```
+
+The after package passes the reuse test: the canonical artifact is unambiguous, every reused asset carries provenance, and the README lets a competent stranger rebuild the work. I rejected including the full AI chat log; instead the README states which sections the AI drafted and how I verified them, which is the provenance a reuser actually needs.
 
 ## Decision Rule
 

@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_8_8_course_readiness_checklist",
   "misconceptions": [
     {
-      "id": "ail606_supplement_8_8_course_readiness_checklist_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_8_8_course_readiness_checklist_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_8_8_course_readiness_checklist_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_8_8_setup_equals_readiness",
+      "pattern": "instructor_setup_mistaken_for_readiness",
+      "description": "Believing instructor-side setup facts (links work, modules visible) prove the course is ready",
+      "trigger": "checklist verifies setup but never tests whether a student can complete the capstone",
+      "feedback": "Check readiness against the student's path, not the setup; a working link is not a usable scaffold.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_8_8_course_readiness_checklist_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_8_8_unscaffolded_capstone",
+      "pattern": "capstone_panel_without_building_activity",
+      "description": "Assigning a capstone panel (evidence, limitations, transfer) with no earlier activity that practiced it",
+      "trigger": "a required capstone sub-skill has no prior building activity in the course",
+      "feedback": "Trace each capstone panel back to a building activity; front-loading new demands at the capstone overloads learners.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_8_8_policy_not_at_point_of_use",
+      "pattern": "policy_present_but_not_linked",
+      "description": "Assuming a policy in the syllabus is effective even when it is never referenced where it applies",
+      "trigger": "an assignment that requires disclosure does not link to the AI-use clause it depends on",
+      "feedback": "Reference the policy at the point of use so students connect the requirement to the rule.",
+      "rail_action": "ask"
     }
   ]
 }

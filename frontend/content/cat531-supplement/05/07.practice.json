@@ -3,17 +3,17 @@
     {
       "id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_peer_review_of_evaluation_briefs",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "peer_review",
+      "stem": "You are peer reviewing a colleague's evaluation brief. Which comment is the most useful review of the brief?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "'Nice work, looks great.'",
+        "'Your recommendation says adopt, but the privacy criterion is left blank; the conclusion outruns the evidence in the brief.'",
+        "'I would have chosen a different font.'",
+        "'I disagree because I prefer the other tool.'"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_polish_as_evidence",
+      "explanation": "A strong peer review checks whether the brief's conclusion is supported by its own evidence, and points to the exact gap. Praise, style preferences, and personal taste do not improve the reasoning.",
+      "misconception_id": "cat531_supplement_5_7_review_is_praise",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
@@ -25,58 +25,61 @@
     {
       "id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "peer_review",
+      "stem": "A reviewer writes 'I would have evaluated a different tool.' Why is this a weak review of an evaluation brief?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Reviewers should never mention other tools.",
+        "It substitutes the reviewer's preference for an assessment of whether the author's reasoning is sound; review evaluates the brief, not the brief the reviewer would have written.",
+        "It is too short to count.",
+        "It is too harsh for a colleague."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_annotation_without_signal",
+      "explanation": "Peer review evaluates the author's reasoning against their own question and evidence. Rewriting the brief in the reviewer's image is not review; it ignores the author's decision context.",
+      "misconception_id": "cat531_supplement_5_7_review_imposes_reviewer_choice",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_educational_technology_evaluation",
+        "peer_review"
       ]
     },
     {
       "id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to peer review a colleague's brief. It returns polished feedback. What is the defensible way to use it?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Forward the AI feedback to your colleague as your review.",
+        "Read the brief yourself, use the AI points as prompts, and only pass on critiques you have verified against the brief's actual evidence.",
+        "Trust the AI review because it is thorough.",
+        "Skip reading the brief since the AI already reviewed it."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_ai_as_authority",
+      "explanation": "An AI may flag generic issues that do not apply or miss context-specific gaps. The reviewer stays responsible for an accurate read, using the AI as a prompt rather than a substitute.",
+      "misconception_id": "cat531_supplement_5_7_ai_review_replaces_reviewer",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "peer_review"
       ]
     },
     {
       "id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A peer review flags that your brief's conclusion is not supported by its evidence. You are confident the conclusion is right. What best honors the review?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Reject the comment because you are confident.",
+        "Either add the missing evidence that justifies the conclusion or revise the conclusion to match what the evidence shows.",
+        "Leave the brief unchanged and note that a reviewer disagreed.",
+        "Soften the wording so the gap is less visible."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_completion_only_model",
+      "explanation": "A reviewer's job is to surface gaps; the author's job is to close them with evidence or to revise the claim. Confidence is not evidence, and hiding the gap defeats the purpose of review.",
+      "misconception_id": "cat531_supplement_5_7_confidence_answers_review",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "peer_review"
       ]
     }
   ]

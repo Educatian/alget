@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_8_6_prototype_showcase_logistics",
   "misconceptions": [
     {
-      "id": "ail606_supplement_8_6_prototype_showcase_logistics_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_8_6_prototype_showcase_logistics_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_8_6_traffic_equals_success",
+      "pattern": "foot_traffic_as_showcase_goal",
+      "description": "Treating crowd size or foot traffic as the goal of a prototype showcase",
+      "trigger": "logistics optimize for milling visitors rather than evidence exchange",
+      "feedback": "Define the goal as visitors seeing theory-to-screen reasoning and presenters getting substantive questions, then design for that.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_8_6_prototype_showcase_logistics_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_8_6_no_focusing_prompt",
+      "pattern": "open_format_without_focusing_prompt",
+      "description": "Running an open house with no prompt that surfaces the README traceability matrix",
+      "trigger": "stations have no card or question directing visitors to the design reasoning",
+      "feedback": "Post a focusing prompt per station so the traceability matrix becomes the conversation, not an afterthought.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_8_6_prototype_showcase_logistics_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_8_6_unbalanced_stations",
+      "pattern": "unstaggered_starts_unbalanced_load",
+      "description": "Letting all visitors start together so popular stations crowd and others sit idle",
+      "trigger": "no rotation or staggered start, so visitor load is uneven across prototypes",
+      "feedback": "Use timed rotations with staggered start stations so every prototype is seen and no presenter is mobbed.",
+      "rail_action": "ask"
     }
   ]
 }

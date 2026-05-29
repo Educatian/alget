@@ -8,73 +8,75 @@
         "cat100_supplement_pivot_tables_as_summaries",
         "cat100_supplement_data_storytelling_with_excel"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You drag the 'Region' field to Rows and the 'Sales' field to Values in a pivot table. By default the Values area shows 'Sum of Sales'. What does each row now report?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The number of orders in each region.",
+        "The total sales added up for each region.",
+        "The largest single sale in each region.",
+        "The alphabetical rank of each region."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_polish_as_evidence",
+      "explanation": "Placing Sales in the Values area with the default Sum aggregation totals the Sales for every row that shares a Region. Each region row shows that subtotal.",
+      "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_count_vs_sum",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_3_4_pivot_tables_as_summaries_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_pivot_tables_as_summaries",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_pivot_tables_as_summaries"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your pivot shows 'Sum of Sales' but you actually wanted the number of orders per region. What is the correct adjustment?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Add the Sales field a second time to Rows.",
+        "Change the Value Field Setting for Sales from Sum to Count so each row reports how many orders occurred.",
+        "Sort the pivot table by region name.",
+        "Drag Region into the Values area instead."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_annotation_without_signal",
+      "explanation": "Sum and Count answer different questions. Switching the value field setting to Count reports the number of records per region instead of their dollar total.",
+      "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_count_vs_sum",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_3_4_pivot_tables_as_summaries_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_pivot_tables_as_summaries",
       "concept_ids": [
+        "cat100_supplement_pivot_tables_as_summaries",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You add 20 new rows to the source range below your pivot table, then click Refresh, but the new rows do not appear in the totals. What is the most likely cause?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Pivot tables cannot be refreshed once created.",
+        "The pivot table's source range was fixed to the old rows and does not include the new data, so the range must be updated (or use a Table source).",
+        "Excel deleted the new rows during refresh.",
+        "The pivot table needs to be deleted and rebuilt every time."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_ai_as_authority",
+      "explanation": "A pivot table summarizes only the source range it was given. If new rows fall outside that fixed range, Refresh will not pull them in. Expand the range or base the pivot on an Excel Table so it grows automatically.",
+      "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_stale_source_range",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_3_4_pivot_tables_as_summaries_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_pivot_tables_as_summaries",
       "concept_ids": [
+        "cat100_supplement_pivot_tables_as_summaries",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You want average sale size per region, not the total. Where do you change this in the pivot table?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "In the worksheet cell formulas outside the pivot.",
+        "In Value Field Settings, set 'Summarize Values By' to Average so each region shows its mean sale.",
+        "By sorting the region rows largest to smallest.",
+        "By adding Region to the Columns area as well as Rows."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_completion_only_model",
+      "explanation": "The Value Field Settings dialog controls how a field is aggregated. Choosing Average makes each region row report the mean sale instead of the sum.",
+      "misconception_id": "cat100_supplement_3_4_pivot_tables_as_summaries_count_vs_sum",
       "difficulty": "medium"
     }
   ]

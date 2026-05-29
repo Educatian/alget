@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_7_5_automation_safety_checks",
   "misconceptions": [
     {
-      "id": "cat100_supplement_7_5_automation_safety_checks_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_7_5_automation_safety_checks_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_7_5_automation_safety_checks_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_7_5_no_dry_run",
+      "pattern": "run_automation_on_real_data_first",
+      "description": "Running a bulk action like a mail merge or rename script on real files before testing on a small sample",
+      "trigger": "learner runs a rename macro on the whole folder and corrupts 200 files at once",
+      "feedback": "Test on a copy of two or three files first. Confirm the result, then run the automation on the full set.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_7_5_automation_safety_checks_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_7_5_filter_then_delete_all",
+      "pattern": "delete_after_filter_without_clearing",
+      "description": "Deleting rows after a spreadsheet filter without realizing hidden rows can be affected or that the filter is still active",
+      "trigger": "learner filters to 'overdue', deletes, then finds the wrong rows gone when the filter clears",
+      "feedback": "Before deleting filtered rows, copy the kept rows to a new sheet, or sort instead of filter, so you can see exactly what goes.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_7_5_inbox_rule_too_broad",
+      "pattern": "overbroad_auto_rule",
+      "description": "Writing an email auto-rule so broad it sweeps important messages into a folder you never check",
+      "trigger": "a rule 'if contains class, move to Archive' also hides advisor and registrar mail",
+      "feedback": "Make rules specific (match sender plus subject) and review the target folder, so a rule never silently buries something you need.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_7_5_no_undo_check",
+      "pattern": "irreversible_action_no_backup",
+      "description": "Triggering an automation that cannot be undone without first making a backup or confirming an undo path",
+      "trigger": "learner empties trash or overwrites a synced file with no copy to recover",
+      "feedback": "Before an irreversible automation, save a backup copy and confirm there is an undo or version history to fall back on.",
       "rail_action": "practice"
     }
   ]

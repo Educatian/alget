@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_6_8_module_6_website_studio",
   "misconceptions": [
     {
-      "id": "cat100_supplement_6_8_module_6_website_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_6_8_module_6_website_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_6_8_mockup_counts_as_published",
+      "pattern": "mockup_mistaken_for_published_site",
+      "description": "Submitting a mockup, document, or screenshots as if it were a published site instead of a real committed file tree at a live URL",
+      "trigger": "learner delivers a docx or screenshots rather than the actual published repo",
+      "feedback": "The deliverable is a real file tree committed to username.github.io and served at a live URL. A mockup or document is not a published site.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_6_8_module_6_website_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_6_8_one_skill_stands_in_for_all",
+      "pattern": "single_skill_substituted_for_integration",
+      "description": "Treating one module skill (for example visual polish) as standing in for the full set of accessibility, privacy, and publishing checks",
+      "trigger": "learner polishes appearance but omits alt text, privacy review, or a verified live URL",
+      "feedback": "The studio integrates accessibility, privacy, and publishing. Show all three: alt text, no committed secrets, and a working live URL you verified.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_6_8_module_6_website_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_6_8_ai_use_left_undisclosed",
+      "pattern": "ai_use_undisclosed",
+      "description": "Omitting any note of where AI assisted, leaving the work's honesty and the learner's ownership unclear",
+      "trigger": "learner used AI for drafting or debugging but includes no AI-use note",
+      "feedback": "Add a short AI-use note: where AI helped, that you verified the output, and that you own the final decisions. Disclosure keeps the work honest.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_6_8_effort_mistaken_for_outcome",
+      "pattern": "effort_mistaken_for_verified_outcome",
+      "description": "Judging the project by hours spent or commit count rather than by an end-to-end test of the live site",
+      "trigger": "learner submits without loading the live URL on another device to confirm it works",
+      "feedback": "Effort is not evidence the site works. Run one end-to-end check on the live URL from a phone, confirming load, alt text, links, and no exposed secrets.",
       "rail_action": "practice"
     }
   ]

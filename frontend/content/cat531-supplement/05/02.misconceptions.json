@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims",
   "misconceptions": [
     {
-      "id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_5_2_number_equals_evidence",
+      "pattern": "vendor_number_treated_as_evidence",
+      "description": "Treating a vendor percentage or statistic as evidence without the comparison group, measure, sample, or funding source",
+      "trigger": "learner cites a vendor figure as proof without asking what it was measured against",
+      "feedback": "Ask what the number compares to, how it was measured, on how many learners, and who funded it. A bare figure is a claim, not evidence.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_5_2_peer_reviewed_removes_conflict",
+      "pattern": "peer_review_erases_conflict_of_interest",
+      "description": "Assuming a peer-reviewed label removes a conflict of interest or a too-small sample",
+      "trigger": "learner gives full weight to a vendor-funded study because it is peer reviewed",
+      "feedback": "Peer review does not erase a funding conflict or a tiny sample. Weight the source by independence and sample size, not the label alone.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_5_2_ai_confirms_vendor_claims",
+      "pattern": "ai_summary_as_verification",
+      "description": "Treating an AI summary of vendor claims as independent verification of those claims",
+      "trigger": "learner accepts an AI 'fact-check' that may echo the vendor's own framing",
+      "feedback": "An AI may repeat the vendor's framing. Use it to find primary sources, then verify each claim against a source you can read yourself.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_5_2_engagement_equals_learning",
+      "pattern": "engagement_proxy_as_learning",
+      "description": "Reading an engagement or time-on-task gain as evidence of learning gains",
+      "trigger": "learner cites an engagement metric to justify a learning claim",
+      "feedback": "Engagement is a proxy that can rise without learning rising. Ask for a learning measure tied to the instructional goal.",
+      "rail_action": "ask"
     }
   ]
 }

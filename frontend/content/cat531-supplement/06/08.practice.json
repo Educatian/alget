@@ -4,16 +4,16 @@
       "id": "cat531_supplement_6_8_module_6_final_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_module_6_final_studio",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "In the Module 6 final studio, a teacher assembles the capstone: a tension map, an implementation plan, a family memo, and a reflection. What turns these from a stapled folder into an integrated capstone?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Putting them in the order they were assigned.",
+        "Showing that the value decision in the tension map drives the implementation plan, which the family memo discloses, which the reflection then tests with evidence.",
+        "Making all four artifacts the same visual length.",
+        "Adding a cover page that lists all four artifacts."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_6_8_module_6_final_studio_polish_as_evidence",
+      "explanation": "An integrated capstone shows the artifacts as one chain of judgment, where each piece follows from the prior decision.",
+      "misconception_id": "cat531_supplement_6_8_module_6_final_studio_stapled_not_integrated",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_final_project_and_professional_vision",
@@ -25,36 +25,37 @@
     {
       "id": "cat531_supplement_6_8_module_6_final_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_module_6_final_studio",
+      "stem": "A reviewer annotates the capstone: \"Your tension map prioritizes equity, but your implementation plan quietly drops the device fallback that equity required.\" What integration failure does this reveal?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "A typo in the implementation plan.",
+        "An internal inconsistency: a later artifact contradicts the value decision an earlier artifact committed to, so the capstone is not coherent.",
+        "The plan is simply too short.",
+        "A missing citation in the tension map."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_6_8_module_6_final_studio_annotation_without_signal",
+      "explanation": "Capstone coherence requires later artifacts to honor the value decisions earlier ones committed to; a dropped commitment breaks integration.",
+      "misconception_id": "cat531_supplement_6_8_module_6_final_studio_internal_contradiction",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_module_6_final_studio",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_6_8_module_6_final_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "A teacher asks BigAL to review the assembled capstone before final submission. What is the defensible use of that review?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept all of the model's edits so the capstone reads consistently.",
+        "Use the model to flag places where the four artifacts may contradict each other, then verify and resolve each flag with the teacher's own judgment.",
+        "Have the model rewrite the value decision so the artifacts agree automatically.",
+        "Ask the model to score the capstone and submit that score."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_6_8_module_6_final_studio_ai_as_authority",
+      "explanation": "AI is well used to surface possible inconsistencies across the capstone; resolving them is the teacher's integrative judgment.",
+      "misconception_id": "cat531_supplement_6_8_module_6_final_studio_ai_resolves_capstone",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -63,19 +64,20 @@
     {
       "id": "cat531_supplement_6_8_module_6_final_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_module_6_final_studio",
+      "stem": "A capstone is highly polished but every artifact reaches a confident positive conclusion about the tool, with no tension ever left unresolved. Why might an experienced reviewer trust this less than a slightly messier capstone?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Polished work is always penalized.",
+        "Uniform confidence with no surfaced tension suggests the hard tradeoffs were hidden rather than reasoned, so the judgment is harder to verify.",
+        "The messier capstone is automatically more correct.",
+        "Reviewers prefer shorter capstones regardless of content."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_6_8_module_6_final_studio_completion_only_model",
+      "explanation": "A capstone that never shows a hard tradeoff likely buried it; visible, reasoned tension is more credible than uniform polish.",
+      "misconception_id": "cat531_supplement_6_8_module_6_final_studio_polish_hides_tradeoffs",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_module_6_final_studio",
         "evidence_based_revision"
       ]
     }

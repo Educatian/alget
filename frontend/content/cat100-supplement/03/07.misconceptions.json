@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_3_7_narrating_a_data_finding",
   "misconceptions": [
     {
-      "id": "cat100_supplement_3_7_narrating_a_data_finding_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_3_7_narrating_a_data_finding_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_3_7_narrating_a_data_finding_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_3_7_narrating_a_data_finding_process_not_finding",
+      "pattern": "narrating_process_not_finding",
+      "description": "Opening a data write-up by describing the data-gathering process instead of stating the finding and its implication",
+      "trigger": "learner leads with 'we collected data' rather than the headline result",
+      "feedback": "Lead with the finding and what it means, then give the supporting numbers, source, and time range. Process belongs in the method note, not the headline.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_3_7_narrating_a_data_finding_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_3_7_narrating_a_data_finding_correlation_as_cause",
+      "pattern": "correlation_stated_as_cause",
+      "description": "Claiming one event caused another just because they happened in sequence, without ruling out other explanations",
+      "trigger": "learner writes 'X went up after Y, so Y caused X'",
+      "feedback": "Sequence is not proof of cause. Note the correlation and name what else (season, ad, holiday) could explain the change.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_3_7_narrating_a_data_finding_overstating_magnitude",
+      "pattern": "overstating_the_magnitude",
+      "description": "Using dramatic language like 'skyrocketed' for a small change, so the narration overstates what the data shows",
+      "trigger": "learner keeps inflated wording that does not match the actual numbers",
+      "feedback": "Match the words to the magnitude. State the actual percentage and reject AI or draft wording that exaggerates the size of the change.",
+      "rail_action": "ask"
     }
   ]
 }

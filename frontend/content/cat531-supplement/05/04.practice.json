@@ -4,16 +4,16 @@
       "id": "cat531_supplement_5_4_cost_and_sustainability_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_cost_and_sustainability",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A tool advertises itself as 'free for teachers.' What does a defensible cost analysis still need to surface?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Only the headline price, which is zero.",
+        "The full cost of ownership: training time, device or storage needs, paid upgrades for full features, and who pays when the free tier ends.",
+        "Whether the logo looks professional.",
+        "How many other teachers have downloaded it."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_5_4_cost_and_sustainability_polish_as_evidence",
+      "explanation": "A zero sticker price is not the total cost. Sustainable adoption accounts for training time, infrastructure, feature-gated upgrades, and the risk that the free tier disappears.",
+      "misconception_id": "cat531_supplement_5_4_free_means_no_cost",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
@@ -25,58 +25,61 @@
     {
       "id": "cat531_supplement_5_4_cost_and_sustainability_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_cost_and_sustainability",
+      "stem": "Tool A costs 1,200 dollars per year. Tool B costs 600 dollars but needs about 30 hours of teacher setup each year. For a sustainability decision, why can the cheaper sticker price mislead?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Sticker price is the only real cost.",
+        "Teacher time has a cost; if 30 hours of setup is worth more than the 600-dollar difference, Tool B is not actually cheaper to sustain.",
+        "Tool B is always better because it costs less per year.",
+        "Setup time is free because teachers are salaried."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_5_4_cost_and_sustainability_annotation_without_signal",
+      "explanation": "Sustainability weighs recurring human time alongside dollars. Unpaid teacher labor is a real, finite resource, and ignoring it understates the true cost of the cheaper-looking option.",
+      "misconception_id": "cat531_supplement_5_4_sticker_price_is_total",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_educational_technology_evaluation",
+        "cat531_supplement_cost_and_sustainability"
       ]
     },
     {
       "id": "cat531_supplement_5_4_cost_and_sustainability_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI assistant to estimate the multi-year cost of adopting a platform. It returns a tidy three-year total. How should you use it?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Submit the AI total to the budget committee as the official figure.",
+        "Treat it as a draft model, then verify each assumption (price tier, renewal increases, headcount) against the real contract and local context.",
+        "Trust it because the math is internally consistent.",
+        "Use it only if it shows the tool is affordable."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_5_4_cost_and_sustainability_ai_as_authority",
+      "explanation": "An AI estimate is only as good as its assumptions, which may not match your contract or enrollment. Use it as scaffolding, then ground every input in the actual quote and local figures.",
+      "misconception_id": "cat531_supplement_5_4_ai_estimate_as_budget",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_cost_and_sustainability"
       ]
     },
     {
       "id": "cat531_supplement_5_4_cost_and_sustainability_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A grant covers a platform fully for one year. Which question most protects against an unsustainable adoption?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Does the tool look good in year one?",
+        "What happens in year two when the grant ends: who pays, can we export our data, and what is the exit cost if we stop?",
+        "How many features does year one include?",
+        "Did students enjoy the first month?"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_5_4_cost_and_sustainability_completion_only_model",
+      "explanation": "Sustainability is a multi-year question. Grant-funded year one can mask a cliff: the defensible brief plans for renewal cost, data portability, and the cost of leaving.",
+      "misconception_id": "cat531_supplement_5_4_year_one_funds_sustainability",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat531_supplement_cost_and_sustainability"
       ]
     }
   ]

@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_2_7_comparative_software_audit",
   "misconceptions": [
     {
-      "id": "ail606_supplement_2_7_comparative_software_audit_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_2_7_comparative_software_audit_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_2_7_comparative_software_audit_more_features_wins",
+      "pattern": "feature_count_as_quality",
+      "description": "Judging tools by how many features they list rather than how well each tool serves the specific learning task",
+      "trigger": "learner recommends the tool with the longest feature list without tying features to the task",
+      "feedback": "Count fit, not features. A tool wins the audit when it best serves the defined task, even if it has fewer features than a rival.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_2_7_comparative_software_audit_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_2_7_comparative_software_audit_no_shared_criteria",
+      "pattern": "comparison_without_common_criteria",
+      "description": "Comparing tools on different dimensions each so no head-to-head judgment is actually possible",
+      "trigger": "learner praises Tool A for price and Tool B for accessibility without scoring both on the same criteria",
+      "feedback": "Define one shared criteria set and score every tool against all of it. Praising each tool on a different axis is not a comparison.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_2_7_comparative_software_audit_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_2_7_comparative_software_audit_context_free_winner",
+      "pattern": "best_tool_independent_of_context",
+      "description": "Naming a single best tool as if it were best for every context, ignoring learners, budget, and setting",
+      "trigger": "learner declares a universal winner without naming the context the recommendation holds for",
+      "feedback": "There is no context-free best tool. State the learners, setting, and constraints your recommendation assumes, so a reader can tell when it would change.",
+      "rail_action": "ask"
     }
   ]
 }

@@ -33,17 +33,19 @@ Three course anchors shape the reasoning here:
 
 Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
 
-## Worked Example
+## Worked Example: Running the Final Submission Checklist
 
-Start with a thin claim that many students write on a first pass:
+A student is ready to submit a capstone with three deliverables: a slide deck, a portfolio link, and a budget spreadsheet. The assignment says, "Submit slides as a PDF and include a public link to your site." They run each checklist item and record the result.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+| Checklist item | Action and result | Status |
+| --- | --- | --- |
+| Correct export format | Exported `presentation.pptx` to PDF; opened the PDF and confirmed fonts and chart did not shift | Pass |
+| Link is public | Opened the GitHub Pages link in an incognito window while signed out; page loaded, no 404 | Pass |
+| Filename convention | Renamed `final.pdf` to `moon_cat100_capstone_v3.pdf` so it is identifiable | Pass |
+| No private data | Reran `git grep -i "key\|password"` on the repo; zero hits | Pass |
+| Spreadsheet totals | Confirmed Total cell B14 reads `=SUM(B2:B13)` = 8,420 with no `#REF!` | Pass |
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
-
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
-
-The stronger version treats the privacy checklist for accounts, data sharing, and AI tool boundaries as evidence. It names what changed, links the change to **ISTE digital citizenship**, and leaves a reader able to audit the decision.
+The checklist is not cosmetic. Each row is a concrete test the student actually performed, including opening the exported file and the link from a signed-out browser. The submission goes out only after every item shows a verifiable pass, not after the work merely "feels done."
 
 ## Decision Rule
 

@@ -8,73 +8,76 @@
         "cat100_supplement_professional_bio_drafting",
         "cat100_supplement_resume_branding_and_ai_brainstorming"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A professional bio for a LinkedIn \"About\" section should usually be written in which voice, and why?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Third person (\"Maria is a junior studying...\") because it always sounds more formal.",
+        "First person (\"I am a junior studying...\") because LinkedIn is a personal profile where readers expect you to speak for yourself.",
+        "Second person (\"You are reading about Maria...\") to address the recruiter directly.",
+        "Whatever the AI tool chooses, since voice does not affect how a bio reads."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_2_3_professional_bio_drafting_polish_as_evidence",
+      "explanation": "A LinkedIn About section is your own profile, so first person reads as natural and direct. Third person is common for speaker bios or website team pages, but on a personal profile it can feel stiff or ghost-written.",
+      "misconception_id": "cat100_supplement_2_3_voice_is_decorative",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_2_3_professional_bio_drafting_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_professional_bio_drafting",
       "concept_ids": [
+        "cat100_supplement_professional_bio_drafting",
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A bio's first sentence reads: \"I am a passionate, results-driven, detail-oriented self-starter.\" What is the main problem with this opening?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It is too short to be a real bio.",
+        "It stacks buzzwords that describe almost anyone and tell the reader nothing concrete about what you do.",
+        "It uses first person, which is wrong for a bio.",
+        "It should begin with your full legal name."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_2_3_professional_bio_drafting_annotation_without_signal",
+      "explanation": "Buzzword stacks (\"passionate, results-driven, detail-oriented\") are interchangeable across thousands of profiles. A strong opening names a role, a field, and one concrete thing you do.",
+      "misconception_id": "cat100_supplement_2_3_buzzword_opening",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_2_3_professional_bio_drafting_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_professional_bio_drafting"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask AI to draft your bio and it produces a polished paragraph describing \"five years of industry experience leading cross-functional teams.\" You are a second-year student. What should you do?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Keep it; a confident bio gets more attention.",
+        "Keep the experience claim but change five years to three.",
+        "Rewrite it to reflect your actual level, such as coursework, a club role, and one project, and note the AI claim you removed.",
+        "Submit it as-is and explain in the interview that AI wrote it."
       ],
-      "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_2_3_professional_bio_drafting_ai_as_authority",
+      "correct_index": 2,
+      "explanation": "A bio is a truthful self-description. AI happily invents seniority you do not have. Replace fabricated experience with real, level-appropriate detail and log what you removed.",
+      "misconception_id": "cat100_supplement_2_3_ai_invents_seniority",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_2_3_professional_bio_drafting_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_professional_bio_drafting",
       "concept_ids": [
+        "cat100_supplement_professional_bio_drafting",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which bio opening best follows the pattern \"who you are + what you focus on + one concrete proof\"?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"I am a hard worker who loves to learn and grow every day.\"",
+        "\"I am a CAT 100 student who is interested in many areas of technology and business.\"",
+        "\"I am a sophomore studying management information systems, focused on data visualization; last semester I built an interactive sales dashboard in Tableau for a 30-person student org.\"",
+        "\"My name is Jordan and I am currently a student at the university.\""
       ],
-      "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_2_3_professional_bio_drafting_completion_only_model",
+      "correct_index": 2,
+      "explanation": "The strong opening names the role (sophomore in MIS), the focus (data visualization), and one concrete proof (a Tableau dashboard for a 30-person org). The others stay generic or never get to evidence.",
+      "misconception_id": "cat100_supplement_2_3_no_concrete_proof",
       "difficulty": "medium"
     }
   ]

@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_1_5_classroom_context_variables",
   "misconceptions": [
     {
-      "id": "cat531_supplement_1_5_classroom_context_variables_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_1_5_evidence_transfers_context_free",
+      "pattern": "evidence_transfers_regardless_of_context",
+      "description": "Assuming evidence that a tool worked in one study or classroom transfers to any other setting regardless of context variables",
+      "trigger": "learner adopts a tool on study evidence without checking whether the study's context matches their own",
+      "feedback": "Compare the context variables. Class size, device ratio, and language profile govern transfer; evidence from a different setting may not carry over.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_1_5_classroom_context_variables_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_1_5_classroom_context_variables_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_1_5_context_as_vague_label",
+      "pattern": "context_described_too_thinly",
+      "description": "Describing classroom context with vague labels instead of the decision-relevant variables",
+      "trigger": "learner characterizes the room as 'a normal class' with no specific variables",
+      "feedback": "Replace the label with decision-relevant variables: class size, device ratio, multilingual proportion, accommodations, and connectivity.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_1_5_classroom_context_variables_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_1_5_ai_recommends_context_free",
+      "pattern": "ai_recommends_without_context",
+      "description": "Accepting an AI tool recommendation that was made without knowing the classroom's context variables",
+      "trigger": "learner takes a context-free AI recommendation as a fit judgment for their specific room",
+      "feedback": "Feed the AI your actual context variables and ask it where the tool might fail for your room, then judge the fit yourself.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_1_5_outcome_generalized_across_contexts",
+      "pattern": "outcome_generalized_ignoring_variables",
+      "description": "Generalizing a tool as good or bad from one section's outcome without diagnosing which context variable changed",
+      "trigger": "learner declares a tool reliable or unreliable based on differing results across periods",
+      "feedback": "Differing results across sections usually mean differing context variables. Identify which variable changed before generalizing about the tool.",
       "rail_action": "practice"
     }
   ]

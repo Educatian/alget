@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_8_5_discussion_prompts_by_module",
   "misconceptions": [
     {
-      "id": "cat531_supplement_8_5_discussion_prompts_by_module_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_8_5_discussion_prompts_by_module_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_8_5_discussion_prompts_by_module_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_8_5_discussion_closed_opinion_prompt",
+      "pattern": "writing_a_closed_opinion_prompt",
+      "description": "Writing a discussion prompt like \"Is AI good or bad?\" that asks for an opinion with no decision to make, producing one-line posts",
+      "trigger": "prompt has no decision, tension, or case for students to engage",
+      "feedback": "Name a specific decision a teacher would face. A good prompt has a tension to negotiate, not a stance to restate.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_8_5_discussion_prompts_by_module_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_8_5_discussion_no_evidence_required",
+      "pattern": "prompt_that_requires_no_evidence",
+      "description": "Asking only for opinion so nothing requires students to cite a course anchor or a case detail",
+      "trigger": "prompt asks what students think with no evidence requirement",
+      "feedback": "Require a course anchor and a case detail so the post is grounded, not just felt.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_8_5_discussion_no_peer_engagement",
+      "pattern": "prompt_with_no_peer_engagement",
+      "description": "Writing a prompt where students post in isolation and never have to engage a peer who reasoned differently",
+      "trigger": "prompt ends after the first post with no reply requirement",
+      "feedback": "Require a reply to a peer who chose the opposite call so students engage other reasoning.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_8_5_discussion_reopening_opinion",
+      "pattern": "follow_up_that_reopens_opinion",
+      "description": "Adding a generic follow-up such as \"What does everyone think?\" that reopens opinion instead of pressing on the tension",
+      "trigger": "facilitator accepts a vague follow-up that drops the named tension",
+      "feedback": "Reject follow-ups that reopen opinion. Press the same tension or escalate the decision.",
       "rail_action": "practice"
     }
   ]

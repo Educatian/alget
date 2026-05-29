@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_5_8_module_5_usability_plan_studio",
   "misconceptions": [
     {
-      "id": "ail606_supplement_5_8_module_5_usability_plan_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_5_8_module_5_usability_plan_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_5_8_module_5_usability_plan_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_5_8_hypothesis_metric_mismatch",
+      "pattern": "hypothesis_metric_mismatch",
+      "description": "Choosing a metric that cannot confirm or disconfirm the plan's stated hypothesis",
+      "trigger": "learner pairs a findability or learning hypothesis with a metric that measures a different construct",
+      "feedback": "Check that the metric can actually test the hypothesis. Re-pair each claim with a metric that can disconfirm it.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_5_8_module_5_usability_plan_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_5_8_parts_dont_align",
+      "pattern": "plan_parts_not_aligned",
+      "description": "Assembling a plan whose sample or tasks do not serve the stated hypothesis",
+      "trigger": "learner's sample, tasks, and hypothesis target different users or test different things",
+      "feedback": "Trace each part back to the goal. Align the sample to the population and the tasks to the behavior the hypothesis predicts.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_5_8_generated_plan_unaudited",
+      "pattern": "complete_looking_plan_unaudited",
+      "description": "Accepting a complete-looking plan without auditing whether its parts cohere",
+      "trigger": "learner submits a generated or polished plan without checking internal alignment",
+      "feedback": "Run the coherence audit: hypothesis, sample, tasks, metrics, and decision rule must all trace to the same goal.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_5_8_decision_rule_disconnected",
+      "pattern": "decision_rule_disconnected_from_evidence",
+      "description": "Writing a decision rule that does not connect to the plan's own metrics or thresholds",
+      "trigger": "learner's decision rule relies on impressions instead of the metrics the plan collects",
+      "feedback": "Tie the decision rule to a metric and threshold the study gathers so the evidence can actually drive the decision.",
       "rail_action": "practice"
     }
   ]

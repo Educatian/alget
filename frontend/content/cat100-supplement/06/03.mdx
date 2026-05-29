@@ -35,15 +35,39 @@ Use these anchors as lenses, not as names to drop into a reflection. A useful le
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+Maria wants her site live at https://mlopez.github.io. Follow the repository setup command by command.
 
-> I made the GitHub Pages file tree with accessibility, privacy, and publishing checks clearer.
+**Step 1. Name the repository to match the target URL.** A user site must use the exact repo name username.github.io:
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```text
+Repository name: mlopez.github.io   (correct)
+Repository name: portfolio          (wrong: would publish at /portfolio)
+```
 
-> I revised the GitHub Pages file tree with accessibility, privacy, and publishing checks so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+**Step 2. Initialize and connect the local folder.**
 
-The stronger version treats the GitHub Pages file tree with accessibility, privacy, and publishing checks as evidence. It names what changed, links the change to **ISTE digital citizenship**, and leaves a reader able to audit the decision.
+```bash
+cd my-portfolio
+git init
+git add index.html about.html assets/
+git commit -m "Initial portfolio"
+git remote add origin https://github.com/mlopez/mlopez.github.io.git
+git push -u origin main
+```
+
+**Step 3. Protect secrets before the first push.** Maria notices a file token.txt in the folder. She adds a .gitignore:
+
+```text
+# .gitignore
+token.txt
+.DS_Store
+```
+
+If the token had already been committed, removing it would not be enough; she would also rotate the key because it now lives in history.
+
+**Step 4. Confirm the entry file.** The root URL serves index.html in lowercase. A file named Index.HTML would return a 404, so she renames it.
+
+The repository is now named correctly, the secret is ignored before it can leak, and the lowercase index.html guarantees the root URL resolves. Each setup choice is traceable to a specific publishing rule.
 
 ## Decision Rule
 

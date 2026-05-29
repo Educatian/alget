@@ -3,78 +3,81 @@
     {
       "id": "cat100_supplement_2_7_peer_review_for_professional_materials_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_peer_review_for_professional_materials",
+      "concept_id": "peer_review",
       "concept_ids": [
         "peer_review",
         "cat100_supplement_resume_branding_and_ai_brainstorming"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your classmate hands you their resume for peer review. Which comment is the most useful professional feedback?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"Looks great, nice job!\"",
+        "\"I'd change some things but it's basically fine.\"",
+        "\"Your second bullet says 'helped with events' but does not say what you did or how many; can you name a task and a number?\"",
+        "\"I don't really like the font.\""
       ],
-      "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_2_7_peer_review_for_professional_materials_polish_as_evidence",
+      "correct_index": 2,
+      "explanation": "Useful peer feedback points to a specific location, names the problem, and suggests a concrete fix. Praise and vague reactions give the writer nothing to act on.",
+      "misconception_id": "cat100_supplement_2_7_praise_is_review",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_2_7_peer_review_for_professional_materials_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "peer_review",
       "concept_ids": [
+        "peer_review",
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "You are reviewing a peer's cover letter and you spot a claim you think is exaggerated. What is the most professional way to raise it?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Rewrite the whole paragraph yourself the way you would say it.",
+        "Mark it 'wrong' and move on.",
+        "Ask a question: \"This says you 'led the team'; were you the formal lead, or one contributor? A recruiter may ask.\"",
+        "Ignore it, since pointing out problems is rude."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_2_7_peer_review_for_professional_materials_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "Good peer review raises concerns as questions that keep ownership with the writer, rather than rewriting their work for them or staying silent about a real risk.",
+      "misconception_id": "cat100_supplement_2_7_rewriting_for_them",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_2_7_peer_review_for_professional_materials_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "peer_review"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A peer reviewer pastes your whole resume into a public AI chatbot to \"get suggestions.\" Your resume includes your home address and phone number. What is the concern?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "No concern; AI tools are private by default.",
+        "Sharing another person's contact details with a third-party tool without permission is a privacy problem; identifying data should be removed first.",
+        "The only concern is whether the suggestions are good.",
+        "It is fine as long as the peer deletes the chat afterward."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_2_7_peer_review_for_professional_materials_ai_as_authority",
+      "explanation": "Peer review carries a duty of care with someone else's data. Pasting a peer's personal contact information into a third-party tool without consent is a privacy violation; strip identifying details first.",
+      "misconception_id": "cat100_supplement_2_7_sharing_peer_data",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_2_7_peer_review_for_professional_materials_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "peer_review",
       "concept_ids": [
+        "peer_review",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You received three peer comments. Which response shows you are using review well, rather than just collecting it?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Apply every comment exactly as written so no reviewer feels ignored.",
+        "Apply none of them because they are only opinions.",
+        "Accept the two that match the job posting, decline the third with a one-line reason, and note all three decisions in your revision log.",
+        "Thank the reviewers and submit the original unchanged."
       ],
-      "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_2_7_peer_review_for_professional_materials_completion_only_model",
+      "correct_index": 2,
+      "explanation": "Using feedback means judging each comment against your goal, acting on the ones that fit, and recording why you declined the rest. Blind acceptance and blanket rejection both skip the judgment.",
+      "misconception_id": "cat100_supplement_2_7_apply_all_comments",
       "difficulty": "medium"
     }
   ]

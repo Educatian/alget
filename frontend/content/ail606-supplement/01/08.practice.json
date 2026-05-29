@@ -4,16 +4,16 @@
       "id": "ail606_supplement_1_8_module_1_synthesis_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_module_1_synthesis_studio",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A synthesis brief must defend one screen using the whole module. Which response best integrates several Module 1 ideas rather than naming one?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The screen uses cognitive load theory because it is clean.",
+        "Narration carries the explanation (dual-channel), the seductive video was cut (coherence), the dense procedure was segmented (intrinsic-load management), and the rationale records why, so the decision is defensible across principles.",
+        "The screen looks polished and matches the brand colors.",
+        "The screen uses every Module 1 term at least once in a caption."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_1_8_module_1_synthesis_studio_polish_as_evidence",
+      "explanation": "Synthesis means several module concepts jointly justify one decision and cohere. Naming a single principle, or listing terms, is not integration.",
+      "misconception_id": "ail606_supplement_1_8_synthesis_is_listing_terms",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_module_1_synthesis_studio"
@@ -22,56 +22,56 @@
     {
       "id": "ail606_supplement_1_8_module_1_synthesis_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_module_1_synthesis_studio",
+      "stem": "When two Module 1 principles point to opposite moves on one screen, what does a strong synthesis do?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Apply both fully and ignore the conflict.",
+        "Name the tension, decide which principle governs given the learner and goal, and justify the tradeoff.",
+        "Pick whichever principle was taught most recently.",
+        "Abandon both principles and rely on intuition."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_1_8_module_1_synthesis_studio_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Principles can compete (for example, adding support versus avoiding redundancy). Synthesis resolves the tension with a reasoned, learner-specific tradeoff rather than ignoring it.",
+      "misconception_id": "ail606_supplement_1_8_synthesis_ignores_tradeoffs",
+      "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_module_1_synthesis_studio"
       ]
     },
     {
       "id": "ail606_supplement_1_8_module_1_synthesis_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_module_1_synthesis_studio",
+      "stem": "A synthesis studio submission restates each Module 1 topic in its own paragraph but never applies them to a single artifact. What is missing?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Nothing; summarizing every topic is the goal of synthesis.",
+        "Integration: the topics must converge on one concrete design decision and explain how they interact, not sit in separate summaries.",
+        "More topics from later modules.",
+        "A longer word count for each summary."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_1_8_module_1_synthesis_studio_ai_as_authority",
-      "difficulty": "medium",
+      "explanation": "A summary places ideas side by side. Synthesis makes them act together on one artifact and shows how they interact, which is the studio's purpose.",
+      "misconception_id": "ail606_supplement_1_8_synthesis_is_summary",
+      "difficulty": "easy",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_module_1_synthesis_studio"
       ]
     },
     {
       "id": "ail606_supplement_1_8_module_1_synthesis_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Which artifact best demonstrates Module 1 synthesis for a single instructional screen?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A glossary of every Module 1 term with definitions.",
+        "A one-page decision brief that names the goal, applies at least three module principles to that screen, resolves any tension between them, and records the rationale and one rejected alternative.",
+        "A polished screenshot with no commentary.",
+        "A reflection on how the module felt to read."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_1_8_module_1_synthesis_studio_completion_only_model",
-      "difficulty": "hard",
+      "explanation": "The integrating artifact applies multiple principles to one decision, handles their interaction, and documents the reasoning, which is exactly what synthesis requires.",
+      "misconception_id": "ail606_supplement_1_8_synthesis_is_summary",
+      "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
       ]

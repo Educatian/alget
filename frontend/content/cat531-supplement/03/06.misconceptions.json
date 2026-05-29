@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_3_6_school_policy_interpretation",
   "misconceptions": [
     {
-      "id": "cat531_supplement_3_6_school_policy_interpretation_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_3_6_school_policy_interpretation_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_3_6_silence_means_allowed",
+      "pattern": "policy_silence_read_as_permission",
+      "description": "Assuming that if a policy does not mention AI then any AI use is permitted",
+      "trigger": "teacher justifies a practice by saying the policy says nothing against it",
+      "feedback": "Silence is not permission. When the written policy is silent, apply the governing principles (FERPA, district data rules) and seek clarification rather than assuming approval.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_3_6_school_policy_interpretation_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_3_6_policy_overrides_judgment",
+      "pattern": "literal_policy_text_overrides_context",
+      "description": "Applying policy language literally without interpreting its intent for the situation at hand",
+      "trigger": "teacher follows the letter of a rule in a way that defeats its purpose",
+      "feedback": "Read for the policy's purpose, not only its words. Interpret ambiguous language toward the goal it protects, such as student privacy or equitable access.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_3_6_school_policy_interpretation_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_3_6_one_policy_covers_all",
+      "pattern": "single_policy_assumed_sufficient",
+      "description": "Believing one school AI policy answers every question without checking overlapping rules",
+      "trigger": "teacher consults only the AI-use memo and ignores privacy, special-education, or consent rules",
+      "feedback": "AI decisions sit at the intersection of several policies. Check the AI memo against FERPA, IEP/504 requirements, consent rules, and acceptable-use terms together.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_3_6_policy_is_static",
+      "pattern": "policy_treated_as_fixed_and_final",
+      "description": "Treating a policy as fixed and not flagging gaps or harms back to decision-makers",
+      "trigger": "teacher applies an outdated or harmful policy without documenting the problem",
+      "feedback": "Policies evolve. When a rule produces an inequitable or unsafe result, document the case and route it to the policy owner so the rule can be revised.",
       "rail_action": "practice"
     }
   ]

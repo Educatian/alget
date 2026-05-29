@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_8_8_future_learning_plan",
   "misconceptions": [
     {
-      "id": "cat100_supplement_8_8_future_learning_plan_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_8_8_future_learning_plan_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_8_8_vague_goal",
+      "pattern": "goal_without_measure",
+      "description": "Writing a learning goal that has no measurable outcome or deadline, so progress cannot be checked",
+      "trigger": "plan says 'get better at coding' or 'learn more about data'",
+      "feedback": "Make goals measurable and dated. 'Build and publish a 3-page portfolio site by August 1' can be checked; 'get better at coding' cannot.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_8_8_future_learning_plan_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_8_8_no_proof_milestone",
+      "pattern": "milestone_without_evidence",
+      "description": "Listing milestones with no artifact or proof that would show the milestone was reached",
+      "trigger": "milestone is 'understand Excel' with no deliverable attached",
+      "feedback": "Attach a proof to each milestone, such as a finished pivot-table file or a live page URL, so a future reviewer or you can confirm it happened.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_8_8_future_learning_plan_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_8_8_unrealistic_scope",
+      "pattern": "all_at_once_no_sequence",
+      "description": "Planning to learn many large skills simultaneously with no sequence or prerequisite order",
+      "trigger": "plan lists ten advanced topics for one month with no ordering",
+      "feedback": "Sequence by prerequisite and pick a realistic next step. Master spreadsheet formulas before databases; one solid, sequenced goal beats ten unordered ones.",
+      "rail_action": "ask"
     }
   ]
 }

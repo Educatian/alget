@@ -8,73 +8,72 @@
         "cat100_supplement_module_5_presentation_studio",
         "cat100_supplement_ai_enhanced_presentation_development"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your Module 5 capstone deck is due. Which submission shows you carried the whole pipeline, not just polish?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A deck with a slick theme and animations but no stated purpose and a failed contrast check.",
+        "A deck that names its audience and purpose, uses assertion headlines, has one verified explanatory chart with a source line, narration that adds reasoning, and passes contrast and alt-text checks.",
+        "Twelve unedited AI-generated slides submitted as is.",
+        "A single resume slide with decorative fonts."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_polish_as_evidence",
-      "difficulty": "easy"
+      "explanation": "The strong capstone integrates every Module 5 layer (purpose, structure, media, narration, citation, accessibility) before polish.",
+      "difficulty": "easy",
+      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_skip_layers"
     },
     {
       "id": "cat100_supplement_5_8_module_5_presentation_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which note gives BigAL a useful capstone-integration problem?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "My capstone is done.",
+        "My deck has purpose, structure, and citations, but slide 3's narration just rereads the chart and slide 5 fails contrast. Which do I fix first for the panel?",
+        "Help with my project.",
+        "I finished it."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "The note names specific pipeline gaps (narration and contrast) and asks for prioritized feedback for the audience.",
+      "difficulty": "medium",
+      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_no_revision_trail"
     },
     {
       "id": "cat100_supplement_5_8_module_5_presentation_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "What is a defensible role for AI in the capstone?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Have AI build and finalize the entire deck for you.",
+        "Use AI for bounded moves (draft alt text, critique the headline arc), then make and document every integration decision yourself.",
+        "Let AI invent the data and citations so the deck looks complete.",
+        "Use AI only to apply a theme and submit."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "AI assists single bounded moves; the capstone must show your own integrated judgment and a revision trail.",
+      "difficulty": "hard",
+      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_ai_does_capstone"
     },
     {
       "id": "cat100_supplement_5_8_module_5_presentation_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which capstone record best supports a fair review of your work?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Only the final .pptx file.",
+        "The before/after of one slide, the issue you noticed, the AI or peer support used, and one suggestion you rejected with the reason.",
+        "Only the submission timestamp.",
+        "Only the slide count."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_5_8_module_5_presentation_studio_completion_only_model",
+      "explanation": "A revision trail with a rejected suggestion makes your decisions across the pipeline inspectable.",
       "difficulty": "medium"
     }
   ]

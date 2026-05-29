@@ -35,15 +35,42 @@ Use these anchors as lenses, not as names to drop into a reflection. A useful le
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+Here is a real workflow write-up published as a GitHub Pages site.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+**The repo (note the homepage name and relative image path):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```
+my-workflow-site/
+  index.html          <- must be index.html to serve at the site root
+  images/
+    audit-chart.png
+```
 
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+**index.html:**
 
-The stronger version treats the privacy checklist for accounts, data sharing, and AI tool boundaries as evidence. It names what changed, links the change to **ISTE digital citizenship**, and leaves a reader able to audit the decision.
+```html
+<!DOCTYPE html>
+<html>
+  <head><title>My CAT 100 Workflow</title></head>
+  <body>
+    <h1>Weekly Workflow Audit</h1>
+    <ul>
+      <li>Log time per step</li>
+      <li>Find the slowest frequent step</li>
+      <li>Fix it, then measure again</li>
+    </ul>
+    <img src="./images/audit-chart.png" alt="Before and after times">
+  </body>
+</html>
+```
+
+**Publish:** in Settings > Pages, set Source = branch `main`, folder `/ (root)`.
+
+Three concrete decisions made it load:
+
+1. **Homepage named `index.html`** so the site root resolves instead of returning 404.
+2. **Relative image path `./images/audit-chart.png`** (not a `C:/Users/...` local path) so it works for every visitor.
+3. **Pages source set in Settings**, because pushing files alone does not enable publishing, and every `<li>` and `<ul>` is closed so the list renders.
 
 ## Decision Rule
 

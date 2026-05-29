@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_3_7_peer_review_of_storyboards",
   "misconceptions": [
     {
-      "id": "ail606_supplement_3_7_peer_review_of_storyboards_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_3_7_peer_review_of_storyboards_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_3_7_praise_is_review",
+      "pattern": "encouragement_mistaken_for_review",
+      "description": "Treating general praise as peer review, rather than feedback tied to specific frames, principles, or learner outcomes",
+      "trigger": "reviewer writes looks great or nice work with no actionable observation",
+      "feedback": "Praise is not review. Point to a specific frame, name the principle at stake, and suggest a concrete change the author can act on.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_3_7_peer_review_of_storyboards_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_3_7_review_taste_not_criteria",
+      "pattern": "feedback_by_personal_taste",
+      "description": "Giving feedback from personal preference rather than against shared design criteria such as Mayer principles or the learning objective",
+      "trigger": "reviewer says I would have used blue instead of the rubric criteria",
+      "feedback": "Anchor feedback in the shared criteria and the learning objective, not personal style. Say which standard the frame meets or misses.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_3_7_peer_review_of_storyboards_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_3_7_reviewer_rewrites_artifact",
+      "pattern": "reviewer_takes_over_authorship",
+      "description": "Rewriting the author's storyboard during review instead of surfacing issues for the author to decide on",
+      "trigger": "reviewer replaces the author's frames with their own version",
+      "feedback": "Review surfaces issues and options; it does not seize authorship. Describe the problem and let the author choose the revision.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_3_7_accept_all_feedback",
+      "pattern": "author_accepts_feedback_uncritically",
+      "description": "As the author, accepting every reviewer comment without judging it against the learning goal and constraints",
+      "trigger": "author applies all comments, including conflicting ones, without deciding which serve the objective",
+      "feedback": "Feedback is input, not instruction. Weigh each comment against the objective and constraints; record which you accept, reject, and why.",
       "rail_action": "practice"
     }
   ]

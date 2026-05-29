@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_8_5_peer_showcase_feedback",
   "misconceptions": [
     {
-      "id": "cat100_supplement_8_5_peer_showcase_feedback_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat100_supplement_8_5_accept_all_suggestions",
+      "pattern": "accept_every_critique",
+      "description": "Treating every peer or AI suggestion as a required change instead of a proposal to judge",
+      "trigger": "learner applies all 10 feedback items without rejecting or modifying any",
+      "feedback": "A critique log records judgment, not obedience. For each item, mark accepted, modified, or rejected, and give the reason. Rejecting a wrong suggestion is evidence of skill.",
       "rail_action": "ask"
     },
     {
-      "id": "cat100_supplement_8_5_peer_showcase_feedback_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_8_5_vague_feedback_given",
+      "pattern": "vague_praise_as_feedback",
+      "description": "Giving or logging peer feedback that is praise or vague reaction with no actionable target",
+      "trigger": "feedback says 'looks great' or 'nice site' with no specific element named",
+      "feedback": "Point to the artifact element. 'The contact form has no label on the email field' is usable; 'looks great' is not loggable as a revision.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_8_5_peer_showcase_feedback_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_8_5_log_no_outcome",
+      "pattern": "log_without_resulting_change",
+      "description": "Recording that feedback was received but not what changed in the artifact as a result",
+      "trigger": "log lists suggestions but the artifact and the log show no resulting edit",
+      "feedback": "Close the loop. Each accepted item should point to the exact edit it produced, such as a changed cell, a renamed file, or an added HTML attribute.",
       "rail_action": "represent"
-    },
-    {
-      "id": "cat100_supplement_8_5_peer_showcase_feedback_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
     }
   ]
 }

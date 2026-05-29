@@ -8,73 +8,75 @@
         "cat100_supplement_narrating_a_data_finding",
         "cat100_supplement_data_storytelling_with_excel"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You found that weekend sales were 40% higher than weekday sales. Which opening sentence narrates the finding best for a manager?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "We collected sales data for several days.",
+        "Weekend sales ran about 40% higher than weekday sales, so staffing should shift toward weekends.",
+        "There is a spreadsheet attached with the numbers.",
+        "Sales happen on many different days of the week."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_polish_as_evidence",
+      "explanation": "A strong data narration leads with the finding and its implication. It states the comparison (40% higher) and what the reader should do with it, rather than describing the process.",
+      "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_process_not_finding",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_3_7_narrating_a_data_finding_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_narrating_a_data_finding",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_narrating_a_data_finding"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your write-up says 'Sales went up after we changed the homepage, so the homepage change caused the increase.' What is the reasoning flaw?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "There is no flaw; the timing proves it.",
+        "It claims causation from timing alone, ignoring that a holiday, ad, or season could explain the rise.",
+        "The sentence is too short.",
+        "It should use a pie chart."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "Two things happening in sequence does not prove one caused the other. An honest narration notes the change is correlated and names what else could explain it.",
+      "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_correlation_as_cause",
+      "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_3_7_narrating_a_data_finding_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_narrating_a_data_finding",
       "concept_ids": [
+        "cat100_supplement_narrating_a_data_finding",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI tool rewrites your finding as 'Sales skyrocketed to record-breaking heights.' Your data shows a 6% rise. What should you do?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Keep it because it sounds exciting.",
+        "Reject the inflated wording and state the actual 6% rise, since the narration must match what the data supports.",
+        "Increase the numbers to match the wording.",
+        "Add more adjectives to make it stronger."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "A 6% rise is not 'skyrocketing.' The narration must stay faithful to the magnitude in the data. Reject AI wording that overstates the finding.",
+      "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_overstating_magnitude",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_3_7_narrating_a_data_finding_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_narrating_a_data_finding",
       "concept_ids": [
+        "cat100_supplement_narrating_a_data_finding",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After stating your finding, what should the next sentence in a strong data narration provide?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "An unrelated anecdote to keep the reader interested.",
+        "The specific evidence behind the finding, such as the numbers, the source, and the time range.",
+        "A longer restatement of the same finding.",
+        "A list of every formula you used."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_completion_only_model",
+      "explanation": "Claim first, then evidence. After the headline finding, the reader needs the supporting numbers, the data source, and the period covered so they can trust the claim.",
+      "misconception_id": "cat100_supplement_3_7_narrating_a_data_finding_process_not_finding",
       "difficulty": "medium"
     }
   ]

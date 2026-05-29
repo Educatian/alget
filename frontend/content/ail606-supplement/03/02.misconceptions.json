@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice",
   "misconceptions": [
     {
-      "id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_3_2_more_signaling_is_better",
+      "pattern": "signaling_as_quantity",
+      "description": "Believing more cues (bold, color, boxes, arrows) always improve learning, rather than that signaling works by directing limited attention to the essential element through contrast",
+      "trigger": "learner highlights most of the screen or stacks several cue types on one element",
+      "feedback": "Signaling works by contrast. When everything is cued, nothing is. Cut cues until only the essential element stands out.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_3_2_signaling_and_segmenting_in_practice_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_3_2_segmenting_is_short_text",
+      "pattern": "segmenting_confused_with_chunking",
+      "description": "Treating segmenting as merely splitting text into shorter paragraphs, rather than giving the learner control over the pace of meaningful units",
+      "trigger": "learner shortens paragraphs but keeps a single continuous auto-advancing animation",
+      "feedback": "Segmenting gives learner-paced units, for example a continue control or a pause. Shorter paragraphs in a non-stop sequence are not segmenting.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_3_2_cue_adds_load",
+      "pattern": "signaling_ignores_load_budget",
+      "description": "Adding a signaling cue without checking whether the cue itself adds extraneous processing for the target learner",
+      "trigger": "learner adds a motion or sound cue that competes with the content it is meant to highlight",
+      "feedback": "Check the load budget. A cue that itself demands processing can cost more than the attention it saves.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_3_2_segment_boundary_arbitrary",
+      "pattern": "segment_boundary_by_length",
+      "description": "Placing segment boundaries by length rather than at the seams between conceptual units",
+      "trigger": "learner inserts a pause mid-explanation because the segment was getting long",
+      "feedback": "Break at conceptual seams, not at arbitrary lengths. A pause inside one idea fragments the schema the learner is building.",
       "rail_action": "practice"
     }
   ]

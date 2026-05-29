@@ -33,17 +33,25 @@ Three course anchors shape the reasoning here:
 
 Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
 
-## Worked Example
+## Worked Example: Building One Row of a Transfer Map
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+A student is mapping a CAT 100 skill to a part-time retail job. The weak first draft is a single word.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+**Before (a tool name, not a skill).**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+| Skill | Transfers to |
+| --- | --- |
+| Excel | My future career |
 
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+A reviewer learns nothing: no capability, no destination task, no proof.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+**After (capability, proof, destination, adaptation).**
+
+| Skill (capability) | Proof artifact | Destination task | What changes in the new context |
+| --- | --- | --- | --- |
+| Summarize data with a pivot table | Unit 5 file pivots 512 order rows into a Region x Month grid | Build the weekly sales recap at the store | Source grows from 512 to ~4,000 rows, so lock the lookup range with an absolute reference like `=VLOOKUP(A2,$D$2:$E$4000,2,FALSE)` |
+
+The capability replaces the brand name. The proof points to a real file. The destination names a concrete job task. The last column shows the transfer is an adaptation, not a copy: the formula that ran over 40 class rows needs an anchored range before it runs over thousands. That adaptation note is the evidence that the student understands the skill rather than just the click sequence.
 
 ## Decision Rule
 

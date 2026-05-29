@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_4_3_stakeholders_in_school_ai",
   "misconceptions": [
     {
-      "id": "cat531_supplement_4_3_stakeholders_in_school_ai_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_4_3_only_visible_stakeholders",
+      "pattern": "stakeholders_limited_to_buyers_and_users",
+      "description": "Listing only the obvious stakeholders (teachers, students, vendor) and missing the silent or most-affected parties",
+      "trigger": "learner names buyers and direct users but omits English learners, parents, or the data officer",
+      "feedback": "Ask who is most affected yet least consulted. The silent stakeholder, often the most-affected group, must appear on the map.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_4_3_stakeholders_in_school_ai_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_4_3_aligned_interests_assumption",
+      "pattern": "assuming_stakeholder_interests_align",
+      "description": "Assuming all stakeholders want the same thing because the tool is described as helpful",
+      "trigger": "learner writes that a tool 'helps everyone' without naming any conflicting interest",
+      "feedback": "Name at least one genuine conflict. Vendor adoption, teacher time, and student equity often pull in different directions.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_4_3_stakeholders_in_school_ai_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_4_3_vendor_neutral",
+      "pattern": "vendor_treated_as_neutral_provider",
+      "description": "Treating the AI vendor as a neutral service rather than a stakeholder with its own data and adoption interests",
+      "trigger": "learner leaves the vendor off the stakeholder map or lists it without an interest",
+      "feedback": "The vendor is a stakeholder. Name its interest in data and adoption, since that interest can shape the design more than student needs.",
       "rail_action": "represent"
-    },
-    {
-      "id": "cat531_supplement_4_3_stakeholders_in_school_ai_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
     }
   ]
 }

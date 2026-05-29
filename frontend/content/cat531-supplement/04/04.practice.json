@@ -4,59 +4,59 @@
       "id": "cat531_supplement_4_4_privacy_and_consent_with_minors_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_privacy_and_consent_with_minors",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A policy memo states: 'Parents will be notified that their child uses the AI chatbot.' Why is this insufficient as a consent provision for minors?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It should be written in a larger font.",
+        "Notification is not consent; collecting a minor's data requires active parental opt-in, not just a notice.",
+        "It does not name the chatbot's vendor.",
+        "It uses the word child instead of student."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_4_4_privacy_and_consent_with_minors_polish_as_evidence",
+      "explanation": "Informing parents is weaker than obtaining consent; minors' data collection needs active opt-in.",
+      "misconception_id": "cat531_supplement_4_4_notification_is_consent",
       "difficulty": "easy",
       "concept_ids": [
-        "cat531_supplement_ai_ethics_and_ethobot_3_2",
         "cat531_supplement_privacy_and_consent_with_minors",
-        "evidence_based_revision",
-        "ai_supported_learning"
+        "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_4_privacy_and_consent_with_minors_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_privacy_and_consent_with_minors",
+      "stem": "A 6th grader clicks 'I agree' on a chatbot's terms screen. What does this action legally provide, and what is still required?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It provides full legal consent, so nothing else is required.",
+        "It provides student assent; legal consent from a parent or guardian is still required for a minor.",
+        "It provides parental consent by proxy.",
+        "It voids the school's responsibility for the data."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_4_4_privacy_and_consent_with_minors_annotation_without_signal",
+      "explanation": "Minors give assent; the legally required consent comes from the parent or guardian.",
+      "misconception_id": "cat531_supplement_4_4_minor_can_consent",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_privacy_and_consent_with_minors",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_4_privacy_and_consent_with_minors_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_privacy_and_consent_with_minors",
+      "stem": "A homework chatbot stores students' question text to 'personalize help.' Which question must the memo answer before approving data collection?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Which color theme the chatbot uses.",
+        "What the data is used for, how long it is retained, who can access it, and whether the vendor trains on it.",
+        "How many students will use it on day one.",
+        "Whether the chatbot has a friendly name."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_4_4_privacy_and_consent_with_minors_ai_as_authority",
+      "explanation": "Purpose, retention, access, and vendor training are the privacy questions a consent clause must resolve.",
+      "misconception_id": "cat531_supplement_4_4_purpose_blind_collection",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_privacy_and_consent_with_minors",
         "ai_supported_learning"
       ]
     },
@@ -64,19 +64,20 @@
       "id": "cat531_supplement_4_4_privacy_and_consent_with_minors_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "The vendor's default retains chat logs for 24 months and trains on them. Which consent clause is the most defensible revision?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Keep the default because the vendor designed it.",
+        "Require parental opt-in, restrict use to a teacher struggling-student alert, bar vendor training, and delete logs at term end.",
+        "Let students opt out individually after the fact.",
+        "Approve the tool but ask the vendor verbally to be careful."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_4_4_privacy_and_consent_with_minors_completion_only_model",
+      "explanation": "The strong clause overrides the unsafe default with specific, auditable limits tied to the evidence.",
+      "misconception_id": "cat531_supplement_4_4_purpose_blind_collection",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_evidence_based_revision",
+        "cat531_supplement_privacy_and_consent_with_minors"
       ]
     }
   ]

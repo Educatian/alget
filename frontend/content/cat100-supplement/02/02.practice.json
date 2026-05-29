@@ -8,73 +8,76 @@
         "cat100_supplement_two_ai_critique_workflow",
         "cat100_supplement_resume_branding_and_ai_brainstorming"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "In a two-AI critique workflow you ask Tool A and Tool B to review the same cover letter. What is the point of using two tools instead of one?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "To get twice as many edits applied automatically so the letter is finished faster.",
+        "To compare where the two tools agree and disagree, then use the disagreements as prompts for your own judgment.",
+        "To average the two outputs into a single rewrite.",
+        "To pick whichever tool writes in a more formal tone."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_2_2_two_ai_critique_workflow_polish_as_evidence",
+      "explanation": "Two tools are useful precisely because they differ. Agreement flags likely-real issues; disagreement is where you must decide, which is the judgment the assignment is testing.",
+      "misconception_id": "cat100_supplement_2_2_more_tools_more_edits",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_2_2_two_ai_critique_workflow_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_two_ai_critique_workflow",
       "concept_ids": [
+        "cat100_supplement_two_ai_critique_workflow",
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Tool A says your resume summary is \"too generic.\" Tool B says it is \"clear and concise.\" The two tools conflict. What is the strongest next move?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Side with Tool B because positive feedback means the summary is done.",
+        "Side with Tool A because negative feedback is always more useful.",
+        "Re-read the summary against the specific job posting, decide which critique fits this audience, and log the reason for your choice.",
+        "Run a third tool and go with the majority vote."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_2_2_two_ai_critique_workflow_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "Neither tool knows your target job. A conflict is a signal to apply your own criterion (fit to the posting) and record why you accepted one critique over the other.",
+      "misconception_id": "cat100_supplement_2_2_tie_breaking_by_tone",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_2_2_two_ai_critique_workflow_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_two_ai_critique_workflow"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Both AI tools recommend the exact same change: \"Add a quantified achievement to the first bullet.\" You have no real number to add. What should your critique log show?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accepted: invented a plausible number since both tools agreed.",
+        "Rejected: both tools flagged a real gap, but I cannot supply a truthful number, so I noted the gap and will seek a real metric before adding one.",
+        "Ignored: agreement between tools is just coincidence.",
+        "Accepted: added the words \"significantly improved\" instead of a number."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_2_2_two_ai_critique_workflow_ai_as_authority",
+      "explanation": "Agreement between tools usually points to a real weakness, so do not dismiss it. But the fix must be truthful. The honest log records the valid critique and the reason you could not yet act on it.",
+      "misconception_id": "cat100_supplement_2_2_agreement_forces_action",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_2_2_two_ai_critique_workflow_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat100_supplement_two_ai_critique_workflow"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which critique-log entry best documents one round of the two-AI workflow?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"Used AI to fix my resume.\"",
+        "\"Tool A: shorten summary. Tool B: keep summary. Decision: shortened from 4 lines to 2 because the posting asks for brevity. Rejected Tool B's 'keep as is.'\"",
+        "\"Both tools made it better.\"",
+        "\"AI gave me lots of good ideas.\""
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_2_2_two_ai_critique_workflow_completion_only_model",
+      "explanation": "A usable log names each tool's suggestion, the decision, the concrete change (4 lines to 2), the reason (posting asks for brevity), and what was rejected. The other options record no traceable judgment.",
+      "misconception_id": "cat100_supplement_2_2_vague_log_entry",
       "difficulty": "medium"
     }
   ]

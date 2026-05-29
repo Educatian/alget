@@ -3,77 +3,89 @@
     {
       "id": "ail606_supplement_7_5_reflection_as_data_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_reflection_as_data",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "learner_reflection",
+      "stem": "You want to treat learner reflections as data about your design. Which reflection excerpt is analytic enough to code as evidence rather than mere description?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "I liked the lesson and learned a lot.",
+        "When the narration and the on-screen text repeated each other, I stopped reading and just listened, so I missed the labels.",
+        "It was a good experience overall.",
+        "The lesson was fine."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_7_5_reflection_as_data_polish_as_evidence",
+      "explanation": "Reflection becomes usable data when it names a specific design feature, a behavior, and a consequence. Global praise cannot be coded against a design decision.",
+      "misconception_id": "ail606_supplement_7_5_reflection_as_data_description_as_analysis",
       "difficulty": "medium",
       "concept_ids": [
-        "learner_reflection"
+        "ail606_supplement_research_translation_for_learning_design",
+        "learner_reflection",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_5_reflection_as_data_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "learner_reflection",
+      "stem": "To treat reflections as data, you build a small coding scheme. Which code is defined well enough to apply consistently?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Positive: the learner seemed happy.",
+        "Redundancy-noticed: the learner reports that narration and on-screen text duplicated each other.",
+        "Engagement: the learner was engaged.",
+        "Good: the reflection was good."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_7_5_reflection_as_data_annotation_without_signal",
+      "explanation": "A codeable category names an observable claim in the text so two coders could agree. Vague valence labels invite inconsistent coding.",
+      "misconception_id": "ail606_supplement_7_5_reflection_as_data_no_coding_scheme",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "learner_reflection",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_5_reflection_as_data_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to help analyze a set of learner reflections. Which use keeps the analysis trustworthy?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Let the AI assign a satisfaction score to each reflection and report it as the finding.",
+        "Ask the AI to suggest candidate codes, then you apply the codebook yourself and spot-check the AI's tags against the raw text.",
+        "Have the AI summarize the reflections into one upbeat paragraph for the report.",
+        "Ask the AI to predict what learners would have said."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_7_5_reflection_as_data_ai_as_authority",
+      "explanation": "The AI can propose codes, but coding decisions and verification against the source text stay with the analyst. Inventing scores or predicted responses fabricates evidence.",
+      "misconception_id": "ail606_supplement_7_5_reflection_as_data_self_report_as_outcome",
       "difficulty": "medium",
       "concept_ids": [
+        "ail606_supplement_research_translation_for_learning_design",
+        "learner_reflection",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_5_reflection_as_data_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "learner_reflection",
+      "stem": "Many reflections say learners felt the simulation \"helped them learn.\" What can you responsibly claim from that pattern?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The simulation caused measurable learning gains.",
+        "Learners perceived the simulation as helpful, which is a self-report signal worth pairing with a performance measure before claiming a learning effect.",
+        "Nothing; reflections are never useful.",
+        "The simulation is effective for all future learners."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_7_5_reflection_as_data_completion_only_model",
+      "explanation": "Reflection is self-report, evidence of perception, not of measured learning. Treating felt helpfulness as proven gain overstates what the data shows.",
+      "misconception_id": "ail606_supplement_7_5_reflection_as_data_self_report_as_outcome",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "learner_reflection",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]
