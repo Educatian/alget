@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import API_BASE from '../lib/apiConfig';
+import { LLM_API_BASE } from '../lib/apiConfig';
 
 export default function IllustrationCard({ data }) {
     const [imageUrl, setImageUrl] = useState(null);
@@ -13,7 +13,7 @@ export default function IllustrationCard({ data }) {
         setError(null);
         try {
             const apiKey = localStorage.getItem('gemini_api_key') || '';
-            const response = await fetch(`${API_BASE}/generate-image`, {
+            const response = await fetch(`${LLM_API_BASE}/generate-image`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

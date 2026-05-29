@@ -12,7 +12,7 @@ import {
 import { logEvent } from '../lib/loggingService'
 import { getAdaptiveRecommendation, recordAdaptiveSignal } from '../lib/knowledgeService'
 import { getArtifactDefinition } from '../lib/artifactTaxonomy'
-import API_BASE from '../lib/apiConfig'
+import { LLM_API_BASE } from '../lib/apiConfig'
 
 const SUPPORT_MOVES = [
     {
@@ -226,7 +226,7 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
     const completionPercent = Math.round((traceScore / 8) * 100)
 
     const scoreRevision = async () => {
-        const response = await fetch(`${API_BASE}/research/artifact-revision/score`, {
+        const response = await fetch(`${LLM_API_BASE}/research/artifact-revision/score`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

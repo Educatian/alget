@@ -1,0 +1,13 @@
+# Cloudflare Worker: alget-llm
+#
+# Dynamic AI layer for ALGET (BigAL rail, chat, grading, generation). The static
+# Pages /api only serves content snapshots, so all LLM endpoints route here.
+#
+# SECRET (NOT stored here): set once via
+#   wrangler secret put GEMINI_API_KEY
+# Optional non-secret override of the proxied FastAPI backend:
+#   set BACKEND_API_BASE in [vars] (defaults to the onrender deploy in code).
+
+name = "alget-llm"
+main = "src/index.js"
+compatibility_date = "2025-05-01"

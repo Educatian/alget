@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import API_BASE from '../lib/apiConfig'
+import { LLM_API_BASE } from '../lib/apiConfig'
 import { getAdaptiveRecommendation, recordAdaptiveSignal } from '../lib/knowledgeService'
 import {
     appendInterventionTrace,
@@ -121,7 +121,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         }
         try {
             const apiKey = localStorage.getItem('gemini_api_key') || ''
-            const res = await fetch(`${API_BASE}/assist/explain`, {
+            const res = await fetch(`${LLM_API_BASE}/assist/explain`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -165,7 +165,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         }
         try {
             const apiKey = localStorage.getItem('gemini_api_key') || ''
-            const res = await fetch(`${API_BASE}/assist/represent`, {
+            const res = await fetch(`${LLM_API_BASE}/assist/represent`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

@@ -12,6 +12,17 @@ const API_BASE = import.meta.env.VITE_API_BASE
 export default API_BASE
 
 /**
+ * Base for DYNAMIC / LLM endpoints (BigAL rail, chat, grading, generation).
+ *
+ * Content + search are served as static JSON under API_BASE (/api) on the Pages
+ * deploy, but the LLM endpoints have no static handler there — so they route to
+ * the alget-llm Cloudflare Worker (Gemini for the rail, proxy to the FastAPI
+ * backend for the rest). In dev we use the Vite proxy (/api -> :8000).
+ */
+export const LLM_API_BASE = import.meta.env.VITE_LLM_API_BASE
+  || (import.meta.env.DEV ? '/api' : 'https://alget-llm.jewoong-moon.workers.dev')
+
+/**
  * Name of the Supabase Edge Function that hosts the low-latency adaptive
  * support-selection policy (supabase/functions/adaptive-recommendation).
  */

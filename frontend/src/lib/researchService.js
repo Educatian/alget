@@ -4,7 +4,7 @@ import {
     safeLocalStorageRemove
 } from './browserStorage'
 import { isSupabaseConfigured, supabase } from './supabase'
-import API_BASE from './apiConfig'
+import { LLM_API_BASE } from './apiConfig'
 import {
     logContentAudit,
     logEvaluationArtifact,
@@ -535,7 +535,7 @@ async function persistEvaluation(evaluation) {
 
 async function validateEvaluationWithBackend(evaluation) {
     try {
-        const response = await fetch(`${API_BASE}/research/evaluation/validate`, {
+        const response = await fetch(`${LLM_API_BASE}/research/evaluation/validate`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
