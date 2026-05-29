@@ -1,8 +1,33 @@
-## Evaluating Impact and Psychometrics
+# Evaluating Impact and Psychometrics
 
-Evaluation is traditionally viewed as the "final" phase of the ADDIE model. However, strong instructional designers understand that evaluation must be continuous. If you only measure at the very end, you have no data to correct course during development.
+> **"Not everything that can be counted counts, and not everything that counts can be counted."**  
+> - attributed to William Bruce Cameron
 
-Evaluation is the empirical backbone of instructional design. It is the only way to show stakeholders that a training intervention actually addressed the performance gap identified in analysis and justified the cost of design, development, delivery, and maintenance.
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Distinguish** formative from summative evaluation and place each correctly in a design timeline
+2. **Map** an evaluation question to the appropriate Kirkpatrick level of evidence
+3. **Calculate** program ROI and adjust it for the isolation problem using a confidence factor
+4. **Interpret** a 2-parameter IRT model to judge the quality of an assessment item, not just the learner
+5. **Diagnose** where an evaluation plan is likely to overclaim or collect the wrong evidence
+
+---
+
+## Opening: The Course That Everybody Loved
+
+A regional hospital rolled out a four-hour patient-safety course. The end-of-session surveys were glowing: 4.8 out of 5, comments praising the facilitator, near-perfect post-test scores. The training team celebrated and the budget was renewed.
+
+Six months later, the infection-control office pulled hand-hygiene compliance logs from the wards. Compliance had not moved. The course that everybody loved had changed almost no behavior on the floor.
+
+Nothing in that story is unusual. It is the single most common failure in instructional evaluation: collecting evidence that is easy to gather (smile sheets, quiz scores) while quietly assuming it stands in for evidence that is hard to gather (real behavior change, organizational results). Evaluation, done well, is the discipline that keeps a design team honest about the difference.
+
+> **The Big Picture:** Evaluation is the empirical backbone of instructional design. It is the only way to show stakeholders that a training intervention actually closed the performance gap identified in analysis and justified the cost of design, development, delivery, and maintenance.
+
+Evaluation is traditionally viewed as the "final" phase of the ADDIE model. However, strong instructional designers understand that evaluation must be continuous. If you only measure at the very end, you have no data to correct course during development, and no baseline against which to claim a change later.
 
 ### A Designer's First Reframe
 
@@ -13,28 +38,28 @@ Evaluation is not only about asking whether learners liked the course. It is abo
 - how performance should be interpreted,
 - and whether observed change can reasonably be attributed to the instruction.
 
-That is why evaluation belongs in design conversations early, not just in end-of-course reporting.
+That last point, attribution, is what separates a persuasive story from a defensible claim. That is why evaluation belongs in design conversations early, not just in end-of-course reporting.
 
-### Formative vs. Summative Evaluation
+---
+
+## Formative vs. Summative Evaluation
 
 - **Formative evaluation:** happens during design and development. It helps teams improve the instruction before full rollout.
 - **Summative evaluation:** happens after implementation. It helps teams judge whether the instruction produced meaningful results.
 
-Typical formative methods include:
+A useful mnemonic from Robert Stake: when the cook tastes the soup, that is formative; when the guests taste the soup, that is summative.
 
-- usability tests,
-- pilot runs,
-- SME reviews,
-- cognitive walkthroughs,
-- and think-aloud sessions with representative learners.
+| Dimension | Formative | Summative |
+| --- | --- | --- |
+| Timing | During design and development | After implementation |
+| Purpose | Improve the instruction | Judge the instruction |
+| Audience | Design team, SMEs | Stakeholders, sponsors |
+| Typical question | "What is confusing or broken?" | "Did it work, and was it worth it?" |
+| Risk if skipped | Costly defects ship to learners | No evidence of value or impact |
 
-Typical summative methods include:
+Typical formative methods include usability tests, pilot runs, SME reviews, cognitive walkthroughs, and think-aloud sessions with representative learners.
 
-- pre and post assessments,
-- transfer checks on the job,
-- learner surveys,
-- manager observations,
-- and business-performance indicators.
+Typical summative methods include pre and post assessments, transfer checks on the job, learner surveys, manager observations, and business-performance indicators.
 
 <formative-summative-diagram></formative-summative-diagram>
 
@@ -76,20 +101,22 @@ This level asks whether behavior change affected meaningful organizational outco
 - common tools: KPI dashboards, operational metrics, longitudinal comparison
 - limitation: many outside variables may influence the result
 
-This progression helps designers avoid overclaiming. A strong Level 1 result does not substitute for Level 3 evidence. A strong Level 2 result does not automatically imply Level 4 impact.
+This progression helps designers avoid overclaiming. A strong Level 1 result does not substitute for Level 3 evidence. A strong Level 2 result does not automatically imply Level 4 impact. Notice that effort and cost rise as you climb the levels, while the directness of business value also rises. Most organizations stop at Level 1 and 2 precisely because they are cheap, which is exactly why so many programs are renewed without proof that they changed anything that matters.
 
 ---
 
 ## A More Practical Selection Guide
 
-When choosing evaluation methods, start with the decision the organization needs to make.
+When choosing evaluation methods, start with the decision the organization needs to make, not with the instrument you happen to have.
 
-- If the team needs to improve the course before launch, prioritize formative evidence.
-- If the team needs to prove learning happened, prioritize Level 2 measures.
-- If the team needs to justify rollout or renewal, include Level 3 and Level 4 measures.
-- If the team needs to compare versions, define a baseline and comparison window early.
+| If the team needs to... | Prioritize | Primary evidence |
+| --- | --- | --- |
+| Improve the course before launch | Formative methods | Usability, think-alouds, SME review |
+| Prove learning happened | Level 2 | Pre/post gains, scored demonstrations |
+| Justify rollout or renewal | Levels 3 and 4 | Transfer observation, KPI shifts |
+| Compare two versions | Baseline + comparison window | Controlled A/B with matched groups |
 
-This framing helps the designer choose evidence that is decision-relevant rather than merely easy to collect.
+This framing helps the designer choose evidence that is decision-relevant rather than merely easy to collect. The guiding rule: the stronger the consequence of the decision, the stronger the evidence should be.
 
 ---
 
@@ -99,25 +126,39 @@ Jack Phillips added a fifth layer focused on return on investment. The logic is 
 
 $$ ROI (\%) = \frac{\text{Net Program Benefits}}{\text{Program Costs}} \times 100 $$
 
-But this raises the central methodological problem in evaluation: **isolation**.
+where net program benefits equal monetized benefits minus program costs.
 
-If sales increase after sales training, what caused the increase?
+But this raises the central methodological problem in evaluation: **isolation**. If sales increase after sales training, what caused the increase: the training, a new marketing campaign, a seasonal trend, a change in incentives, or a weaker competitor?
 
-- the training,
-- a new marketing campaign,
-- a seasonal trend,
-- a change in incentives,
-- or a weaker competitor?
+Phillips' practical answer is the **isolation factor**: ask credible sources (managers, participants, analysts) to estimate what fraction of the improvement the training is responsible for, together with how confident they are. The raw benefit is then discounted before any ROI is reported.
 
-This is why high-quality evaluation often needs:
+$$ \text{Adjusted Benefits} = \text{Raw Benefits} \times (\text{Attribution \%}) \times (\text{Confidence \%}) $$
 
-- control or comparison groups,
-- baseline measures,
-- delayed follow-up,
-- triangulation across multiple evidence sources,
-- and explicit acknowledgment of confounding variables.
+### Worked Example: ROI With and Without Isolation
 
-Without that rigor, ROI claims sound persuasive but remain analytically weak.
+**Problem.** A leadership program costs **\$60,000** to design and deliver. After rollout, the business attributes **\$180,000** in monetized improvement (faster project delivery, lower turnover) to the cohort. Managers estimate the program is responsible for about **70%** of that gain. Compute the naive ROI and the isolation-adjusted ROI.
+
+**Step 1: Naive net benefit.**
+
+$$ \text{Net} = \$180{,}000 - \$60{,}000 = \$120{,}000 $$
+
+**Step 2: Naive ROI.**
+
+$$ ROI = \frac{120{,}000}{60{,}000} \times 100 = \boxed{200\%} $$
+
+This is the number an unrigorous report would headline: every dollar returned three.
+
+**Step 3: Apply the isolation factor.** Only 70% of the \$180,000 is credibly the program's doing.
+
+$$ \text{Adjusted Benefits} = \$180{,}000 \times 0.70 = \$126{,}000 $$
+
+$$ \text{Adjusted Net} = \$126{,}000 - \$60{,}000 = \$66{,}000 $$
+
+**Step 4: Adjusted ROI.**
+
+$$ ROI_{adj} = \frac{66{,}000}{60{,}000} \times 100 = \boxed{110\%} $$
+
+The program is still a good investment, but the defensible figure (110%) is nearly half the headline figure (200%). Reporting the 200% would not be a lie so much as a failure of attribution, and the first sharp CFO will dismantle it. Without control groups, baselines, delayed follow-up, triangulation across sources, and explicit acknowledgment of confounders, ROI claims sound persuasive but remain analytically weak.
 
 <dynamic-scenario topic="Advanced Evaluation" context="A data scientist is trying to prove to the CFO that a new leadership training program produced measurable ROI while controlling for staffing changes and broader market shifts."></dynamic-scenario>
 
@@ -125,31 +166,70 @@ Without that rigor, ROI claims sound persuasive but remain analytically weak.
 
 ## Advanced Evaluation: Item Response Theory
 
-In digital assessment systems, percent-correct scoring is often not enough. **Item Response Theory (IRT)** improves measurement by evaluating both learners and items.
+In digital assessment systems, percent-correct scoring is often not enough. Two learners can both score 7 out of 10 yet have very different ability if one got the hard items right and the other got the easy items right. **Item Response Theory (IRT)** improves measurement by modeling both learners and items on the same latent scale.
 
-In a 2-parameter logistic model, each question is described by:
+In a 2-parameter logistic (2PL) model, each question is described by:
 
 - **Difficulty (b):** how much latent ability a learner needs to have a 50 percent chance of success
 - **Discrimination (a):** how sharply the item separates lower-ability and higher-ability learners
 
-$$ P(X_i = 1 | \theta, a_i, b_i) = \frac{e^{a_i(\theta - b_i)}}{1 + e^{a_i(\theta - b_i)}} $$
+$$ P(X_i = 1 \mid \theta, a_i, b_i) = \frac{e^{a_i(\theta - b_i)}}{1 + e^{a_i(\theta - b_i)}} $$
 
-Where:
+where $\theta$ is learner ability, $a_i$ is item discrimination, $b_i$ is item difficulty, and $P(X_i = 1)$ is the probability of a correct response. Ability and difficulty are on the same scale, so the quantity that drives the probability is the gap $(\theta - b_i)$: a learner well above an item's difficulty is likely to pass it; a learner well below is likely to miss it.
 
-- $\theta$ represents learner ability,
-- $a_i$ represents item discrimination,
-- $b_i$ represents item difficulty,
-- and $P(X_i = 1)$ is the probability of a correct response.
+### Worked Example: Reading an Item With IRT
 
-IRT helps designers do more than score learners. It helps them inspect the **quality of the assessment itself**.
+**Problem.** An item has discrimination $a = 1.2$ and difficulty $b = 0.5$. Find the probability of a correct response for a strong learner at $\theta = 1.0$ and a weaker learner at $\theta = 0.0$.
 
-For example, a poorly written item may:
+**Step 1: Strong learner, $\theta = 1.0$.** Compute the exponent.
 
-- confuse experts,
-- reward guessing,
-- or depend on language complexity unrelated to the intended construct.
+$$ a(\theta - b) = 1.2 \,(1.0 - 0.5) = 0.6 $$
 
-If designers never examine item quality, they may misdiagnose learner performance when the actual problem lies in the assessment instrument.
+**Step 2: Apply the logistic function.** Using $e^{0.6} \approx 1.822$,
+
+$$ P = \frac{1.822}{1 + 1.822} = \frac{1.822}{2.822} = \boxed{0.646} $$
+
+**Step 3: Weaker learner, $\theta = 0.0$.**
+
+$$ a(\theta - b) = 1.2\,(0.0 - 0.5) = -0.6, \qquad e^{-0.6} \approx 0.549 $$
+
+$$ P = \frac{0.549}{1 + 0.549} = \boxed{0.354} $$
+
+**Interpretation.** The same item gives a 64.6% chance of success to the stronger learner and only a 35.4% chance to the weaker one. That spread is what a healthy discrimination value buys you: the item meaningfully separates ability levels. If you reran this with a low discrimination such as $a = 0.2$, the two probabilities would crowd toward 0.5 and the item would barely tell strong and weak learners apart, which is a signal to revise or retire it.
+
+IRT helps designers do more than score learners. It helps them inspect the **quality of the assessment itself**. A poorly written item may confuse experts, reward guessing, or depend on language complexity unrelated to the intended construct. If designers never examine item quality, they may misdiagnose learner performance when the actual problem lies in the assessment instrument.
+
+---
+
+## Common Pitfalls
+
+| Pitfall | Why it happens | Fix |
+| --- | --- | --- |
+| Treating Level 1 as proof of impact | Smile sheets are cheap and flattering | Pre-commit to at least one Level 3 measure |
+| Headline ROI with no isolation | The big number is persuasive | Apply attribution and confidence factors |
+| Measuring only at the end | Evaluation framed as the last ADDIE phase | Build formative checkpoints into development |
+| No baseline | Nobody captured "before" | Define baseline and comparison window in design |
+| Scoring learners but never items | Percent-correct feels objective | Use IRT or item analysis to audit the instrument |
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Program ROI | $ROI(\%) = \dfrac{\text{Net Benefits}}{\text{Costs}} \times 100$ |
+| Adjusted benefits | $\text{Raw} \times \text{Attribution} \times \text{Confidence}$ |
+| 2PL item model | $P = \dfrac{e^{a(\theta - b)}}{1 + e^{a(\theta - b)}}$ |
+
+### Key Takeaways
+
+- Evaluation is continuous, not a final step; formative work prevents costly defects and creates the baseline summative work depends on.
+- Match the evidence to the decision; climb Kirkpatrick's levels as the stakes rise.
+- A glowing Level 1 result tells you nothing reliable about Level 3 behavior or Level 4 results.
+- ROI is only as honest as its isolation; always discount raw benefits for attribution and confidence.
+- IRT evaluates the test as well as the test-taker; an item that fails to discriminate is an item to fix.
 
 ---
 
@@ -164,6 +244,12 @@ Before finalizing an evaluation plan, ask:
 - What alternate explanations could distort the conclusion?
 
 The stronger the consequence of the decision, the stronger the evidence should be.
+
+---
+
+## What's Next?
+
+With evaluation in place, the design loop is complete: analysis defines the gap, design and development build the solution, implementation delivers it, and evaluation tells you whether any of it worked. The next module turns to **rapid prototyping and iteration**, where formative evaluation stops being an end-of-phase audit and becomes the engine that drives each design cycle.
 
 ---
 

@@ -51,6 +51,24 @@ So each member is typically in one of two states:
 
 That is a big simplification. Instead of worrying about bending in every bar, we can focus on axial force paths.
 
+### Why a Two-Force Member Must Be Axial (a Short Derivation)
+
+The two-force-member result is not an arbitrary rule; it follows directly from equilibrium. Isolate a single straight member and suppose the only loads on it are the two pin forces at its ends, $\vec{F}_1$ at end 1 and $\vec{F}_2$ at end 2 (no load is applied along its length, because all loads enter at joints).
+
+Force balance on the member requires
+
+$$
+\sum \vec{F} = \vec{F}_1 + \vec{F}_2 = 0 \;\Rightarrow\; \vec{F}_2 = -\vec{F}_1 .
+$$
+
+So the two end forces are equal in magnitude and opposite in direction. Now take moments about end 1. The moment of $\vec{F}_1$ about end 1 is zero (it acts at that point), so
+
+$$
+\sum M_1 = \vec{r}_{1 \to 2} \times \vec{F}_2 = 0 .
+$$
+
+A cross product is zero only when the two vectors are parallel. Therefore $\vec{F}_2$ must be parallel to $\vec{r}_{1 \to 2}$, the line joining the two ends. The force is forced to lie **along the member axis**. That single fact, equal-and-opposite plus collinear, is what reduces an entire bar to one scalar: its axial force. Everything else in this section is bookkeeping built on that result.
+
 ## Why Triangles Matter
 
 A four-sided frame can distort into a parallelogram unless extra bracing is added. A triangle is different. Once the side lengths are fixed, the shape is geometrically stable.
@@ -95,6 +113,27 @@ $$
 5. Move to the next solvable joint.
 
 A useful convention is to assume every unknown member force is in tension. If a solved value comes out negative, that member is actually in compression.
+
+### Drawing the Joint Free Body Diagram
+
+The method of joints is just **particle equilibrium applied at a point**. Each joint is treated as a particle, and the members and external loads pulling on it are the forces. To set up a joint FBD:
+
+1. **Isolate** the joint as a dot and cut every member meeting it.
+2. **Draw** each member force along its own line, pointing **away** from the joint (the tension assumption).
+3. **Add** any external load or support reaction acting at that joint.
+4. **Resolve** each inclined member force into components using $\cos\theta$ and $\sin\theta$ from the member geometry.
+5. **Write** $\sum F_x = 0$ and $\sum F_y = 0$ and solve.
+
+Because each joint gives only two scalar equations in 2D, you can solve at most two unknown member forces per joint. That is why step 3 of the procedure insists on starting where no more than two members are unknown.
+
+### Zero-Force Members
+
+A frequent and powerful shortcut: some members carry no force at all under a given loading. Two rules cover most cases.
+
+- **Two non-collinear members, no external load at the joint:** both members are zero-force members. With only two unsupported directions, equilibrium forces each to vanish.
+- **Three members where two are collinear, no external load at the joint:** the odd (non-collinear) member is a zero-force member; the two collinear members carry equal force.
+
+Zero-force members are not useless. They brace other members against buckling and stiffen the truss against load cases not currently considered. Spotting them first removes unknowns and speeds up the whole solution.
 
 ## Engineering Intuition
 
@@ -148,6 +187,68 @@ $$\sum F_x = 0: \quad -F_{BA} - F_{BC}\cos 45^\circ = 0 \;\Rightarrow\; F_{BA} =
 
 ---
 
+### Example 3: A Five-Member Truss with a Zero-Force Member
+
+**Problem:** A roof truss has a pin support at $A = (0, 0)$ and a roller at $C = (8, 0)$ m, with a mid-span bottom joint $B = (4, 0)$ m and an apex $D = (4, 3)$ m. The five members are $AB$, $BC$ (bottom chord), $AD$, $DC$ (top chords), and $BD$ (a vertical web member). A load $P = 10$ kN acts downward at the apex $D$. Find every member force, and identify any zero-force member.
+
+**Step 1: Support reactions from global equilibrium.** Taking moments about $A$ (counterclockwise positive), the roller reaction $C_y$ acts up at $x = 8$ and the load acts down at $x = 4$:
+
+$$
+\sum M_A = 0: \quad C_y(8) - P(4) = 0 \;\Rightarrow\; C_y = \frac{10(4)}{8} = 5 \text{ kN}
+$$
+
+$$
+\sum F_y = 0: \quad A_y + C_y - P = 0 \;\Rightarrow\; A_y = 10 - 5 = 5 \text{ kN}
+$$
+
+$$
+\sum F_x = 0: \quad A_x = 0
+$$
+
+**Step 2: Member geometry.** Top chord $AD$ runs from $A(0,0)$ to $D(4,3)$, length $\sqrt{4^2 + 3^2} = 5$ m, so $\cos\theta = 4/5 = 0.8$ and $\sin\theta = 3/5 = 0.6$. By symmetry $DC$ has the same angle. The web $BD$ is vertical.
+
+**Step 3: Joint A** (two unknowns: $F_{AB}$ along $+x$, $F_{AD}$ along the incline). Assume tension.
+
+$$
+\sum F_y = 0: \quad F_{AD}(0.6) + A_y = 0 \;\Rightarrow\; F_{AD} = \frac{-5}{0.6} = \boxed{-8.33 \text{ kN (compression)}}
+$$
+
+$$
+\sum F_x = 0: \quad F_{AB} + F_{AD}(0.8) = 0 \;\Rightarrow\; F_{AB} = -(-8.33)(0.8) = \boxed{+6.67 \text{ kN (tension)}}
+$$
+
+**Step 4: Joint B** (members $BA$ and $BC$ horizontal, $BD$ vertical; no external load here). The vertical balance is the key step:
+
+$$
+\sum F_y = 0: \quad F_{BD}(1) = 0 \;\Rightarrow\; F_{BD} = \boxed{0 \text{ kN (zero-force member)}}
+$$
+
+$$
+\sum F_x = 0: \quad -F_{BA} + F_{BC} = 0 \;\Rightarrow\; F_{BC} = F_{BA} = +6.67 \text{ kN (tension)}
+$$
+
+This matches the zero-force-member rule: at joint $B$ two members are collinear ($BA$ and $BC$) and the third ($BD$) is the odd one out with no external load applied, so $BD$ carries nothing. By symmetry $F_{DC} = -8.33$ kN (compression) and the analysis is complete.
+
+**Step 5: Check at joint D.** As an independent verification, joint $D$ carries $F_{DA} = F_{DC} = -8.33$ kN (compression pushes toward $D$), $F_{DB} = 0$, and the 10 kN load down. The two top chords each push up with a vertical component $8.33(0.6) = 5.0$ kN, totaling $10.0$ kN up, which balances the load exactly. Horizontally, $8.33(0.8) = 6.67$ kN from each chord act in opposite directions and cancel. Both equations close to zero, so the solution is consistent.
+
+> **Why the Zero-Force Member Earns Its Place:** $BD$ carries no load here, but remove it and the long top chords $AD$ and $DC$ lose their midpoint brace against buckling, and any off-center or wind load would have no path through the apex. Zero-force members are insurance, not waste.
+
+---
+
+## Engineering Applications
+
+| Application | Why Truss Force Analysis Matters |
+| --- | --- |
+| Highway and rail bridges | Each member and gusset connection is sized from its axial tension or compression; compression members are checked separately for buckling |
+| Roof and floor systems | Snow, wind, and live loads route through web and chord members; zero-force members brace long compression chords |
+| Tower cranes and booms | Lattice booms carry lifting loads as axial member forces over long, light spans |
+| Transmission and antenna towers | Wind and ice loads are resisted by triangulated lattices designed member by member |
+| Aerospace and lattice frames | Lightweight space frames trade solid material for well-routed axial load paths |
+
+> **Engineering in Action:** The same joint-by-joint balance that solves a classroom triangle also sizes the members of a stadium roof and the gusset plates of a river bridge. Scale and material change; the axial-force bookkeeping does not.
+
+---
+
 ## Summary
 
 ### Key Equations
@@ -189,7 +290,3 @@ In the next section we introduce the **method of sections**, which slices throug
   options='[{"text":"The member is actually in compression, opposite the original tension assumption.","isCorrect":true},{"text":"The equilibrium equations are invalid for trusses with diagonal members.","isCorrect":false},{"text":"The member carries no force because negative structural forces are impossible.","isCorrect":false}]'
   explanation="Correct. The negative sign does not mean the math failed. It means the real member force acts opposite to the assumed pulling direction, so the member is in compression."
 />
-
-## Looking Ahead
-
-As trusses become larger, solving every joint one by one can become inefficient. The next step is to learn how to isolate only the part of the structure you care about and solve strategically.

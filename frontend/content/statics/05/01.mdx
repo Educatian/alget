@@ -49,7 +49,7 @@ The **center of mass** weights position by mass, not area:
 
 $$\bar{x}_{\rm cm} = \frac{\int x\,dm}{\int dm} = \frac{\int x\,\rho\,dV}{\int \rho\,dV}$$
 
-For a body with uniform density, the center of mass coincides with the centroid of the volume. For a body with variable density (composite materials, gradient layers), the two differ — and you must use the mass-weighted form.
+For a body with uniform density, the center of mass coincides with the centroid of the volume. For a body with variable density (composite materials, gradient layers), the two differ, and you must use the mass-weighted form.
 
 The **center of gravity** further weights by the local gravitational field. On Earth's surface, gravity is essentially uniform, so center of gravity coincides with center of mass. For systems extending across significant gravitational gradients (orbital structures), the two diverge.
 
@@ -96,6 +96,18 @@ A central tool: the moment of inertia about any axis equals the moment of inerti
 $$I = I_{\rm c} + A d^2$$
 
 where d is the distance between the two parallel axes. This is the *parallel-axis theorem* (sometimes called the Steiner theorem for masses).
+
+### A Short Derivation
+
+The theorem is not an axiom; it falls out of the definition in two lines. Let the centroidal axis be at $y = 0$ and the new parallel axis be a distance $d$ away, so a strip at centroidal coordinate $y$ sits at distance $(y + d)$ from the new axis. By definition,
+
+$$I = \int_A (y + d)^2\,dA = \int_A y^2\,dA + 2d\int_A y\,dA + d^2\int_A dA$$
+
+Examine the three terms. The first is $\int_A y^2\,dA = I_{\rm c}$, the centroidal moment of inertia. The middle term contains $\int_A y\,dA$, the *first moment of area about the centroidal axis*, which is zero by the very definition of the centroid (that is what makes it the centroid). The last term is $d^2 \int_A dA = A d^2$. The cross term vanishing is the entire reason the formula is so clean:
+
+$$I = I_{\rm c} + 0 + A d^2 = I_{\rm c} + A d^2$$
+
+Because $A d^2 \ge 0$, the centroidal value $I_{\rm c}$ is necessarily the smallest moment of inertia among all parallel axes. The same algebra, with $dA$ replaced by $dm$, produces the mass version $I = I_{\rm cm} + M d^2$.
 
 Two consequences. First, the centroidal axis is always the axis of *minimum* I (the $Ad^2$ term is non-negative). Second, the theorem makes composite-shape problems tractable: compute each piece's centroidal I, then transfer to a common axis with $Ad^2$, and sum.
 
@@ -219,6 +231,23 @@ This single 12 kN force, placed 2.67 m from the left, is statically equivalent t
 - **Using the centroid as the center of mass for non-uniform density.** The two coincide only for uniform density. For composite materials, weight by mass.
 
 <dynamic-scenario topic="Centroids and Moments of Inertia" context="An I-beam has flange dimensions 100 mm × 10 mm (top), 100 mm × 10 mm (bottom), and a web 10 mm × 80 mm. Compute the centroidal moment of inertia about the horizontal axis using the composite-bodies method and the parallel-axis theorem. Compare with a solid 100 mm × 100 mm square of the same total area to show why I-beams resist bending more efficiently."></dynamic-scenario>
+
+---
+
+## Engineering Applications
+
+The three quantities in this section (centroid, equivalent load, moment of inertia) are not academic exercises; each one feeds directly into a downstream design calculation an engineer cannot skip.
+
+| Application | Quantity Used | Why It Matters |
+| --- | --- | --- |
+| Beam selection (steel W-shapes) | Area moment of inertia $I$ | Deflection $\delta \propto 1/I$ and bending stress $\sigma = Mc/I$; sizing a floor joist or crane girder starts here |
+| Welded plate girders and aircraft spars | Composite $I$ via parallel axis | Built-up sections push area to the flanges to maximize $I$ per kilogram of material |
+| Retaining walls and dam faces | Equivalent point load of a triangular pressure | Hydrostatic pressure grows linearly with depth; the resultant acts at $2L/3$ down from the surface, setting the overturning moment |
+| Snow and wind loads on roofs | Equivalent point load of a distributed load | Code loads are given as kN/m²; reactions need the resultant and its line of action |
+| Rotating shafts and flywheels | Mass moment of inertia $I_{\rm mass}$ | $\tau = I\alpha$ sizes the motor torque and sets the stored energy $\tfrac{1}{2}I\omega^2$ |
+| Machine-part balancing | Center of mass | An unbalanced center of mass off the spin axis creates a rotating force that fatigues bearings |
+
+> **Engineering in Action:** When a structural engineer opens a steel manual and reads off $I_x = 4.49 \times 10^6\ \text{mm}^4$ for a section, that number was produced by exactly the composite-bodies and parallel-axis procedure in Example 3. The table just saves you from recomputing it each time.
 
 ---
 

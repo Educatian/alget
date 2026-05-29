@@ -16,6 +16,17 @@
 2. **Apply** work-energy balances to rotational and rolling systems
 3. **Use** rolling constraints without double counting energy
 4. **Interpret** how inertia changes the final speed of a rigid body
+5. **Derive** the closed-form ramp speed and explain why shape (not mass) sets the answer
+
+---
+
+## Opening: The Energy a Spinning Mass Hides
+
+In 2018, an industrial flywheel energy-storage unit in a frequency-regulation plant was rated to deliver a burst of power by trading rotational speed for electrical output. A steel rotor the size of a kitchen table, spinning in vacuum, was storing megajoules of kinetic energy in pure rotation, with its center of mass not moving at all. If you analyzed that rotor with the particle formula $\frac{1}{2}mv^2$, where $v$ of the center is zero, you would conclude it stored no energy. That conclusion would be catastrophically wrong, and it is exactly the kind of error this section exists to prevent.
+
+The same blind spot shows up at the other extreme. A cask of wine and a hollow steel pipe of equal mass, released together down a ramp, do not arrive at the bottom together. A solid disk loses a race to a sliding hockey puck even on a frictionless-sliding comparison. None of this is mysterious once you accept one fact: **a rigid body in plane motion carries kinetic energy in two accounts, translation and rotation, and an honest energy balance must credit both.**
+
+> **The Big Picture:** Work-energy methods let you find a speed without ever solving for acceleration or contact forces. For rigid bodies the prize is even larger, because rotation often dominates the energy budget and force-moment analysis becomes tedious.
 
 ---
 
@@ -30,7 +41,7 @@ Examples:
 - a yo-yo translating downward while spinning faster
 - a robotic arm link sweeping while its center of mass moves
 
-If you omit the rotational term, you generally predict a speed that is too high.
+If you omit the rotational term, you generally predict a speed that is too high, because you have quietly assumed that all of the input energy went into linear motion.
 
 ## Total Kinetic Energy of a Rigid Body
 
@@ -45,7 +56,16 @@ The two pieces mean:
 - $\frac{1}{2}mv_G^2$: translational kinetic energy of the center of mass
 - $\frac{1}{2}I_G\omega^2$: rotational kinetic energy about the center of mass
 
-This split is one of the central ideas of rigid-body dynamics.
+This split is one of the central ideas of rigid-body dynamics. Here $v_G$ is the speed of the mass center, $\omega$ is the angular speed, and $I_G$ is the mass moment of inertia taken about an axis through the mass center. The shape of the body enters only through $I_G$, which is why two bodies of identical mass can have very different energy bookkeeping.
+
+| Body (axis through center) | $I_G$ | $k^2 = I_G/(mr^2)$ |
+| --- | --- | ---: |
+| Thin hoop / ring | $mr^2$ | $1.0$ |
+| Solid disk / cylinder | $\tfrac{1}{2}mr^2$ | $0.5$ |
+| Solid sphere | $\tfrac{2}{5}mr^2$ | $0.4$ |
+| Thin spherical shell | $\tfrac{2}{3}mr^2$ | $0.667$ |
+
+> **Key Insight:** The dimensionless ratio $I_G/(mr^2)$ measures how far the mass sits from the spin axis. The larger it is, the bigger the rotational share of the energy budget.
 
 ## Rolling Without Slipping
 
@@ -71,6 +91,8 @@ $$
 
 That is why rolling bodies usually move more slowly than sliding particles descending the same height: some of the potential-energy drop becomes rotational kinetic energy.
 
+> **Golden Rule:** $v = r\omega$ is a relationship you substitute, never a force or energy term you add. Add it as if it were an extra energy and you will double count.
+
 <dynamic-scenario
   topic="Wheel Selection for a Delivery Robot"
   context="A robotics team must choose between solid aluminum wheels and lighter polymer wheels for a delivery robot descending a loading dock ramp. They care about downhill stability and want to predict how wheel inertia changes the bottom speed."
@@ -85,15 +107,50 @@ $$
 \boxed{T_1 + V_1 + W_{nc} = T_2 + V_2}
 $$
 
-The only difference is that $T$ now includes both translational and rotational pieces.
+The only difference is that $T$ now includes both translational and rotational pieces. A few practical notes for rigid bodies:
 
-## Worked Example
+- **Rolling friction does no work.** In pure rolling without slipping, the contact point has zero velocity, so the static friction force acts through zero displacement at each instant. It enforces the constraint without draining energy.
+- **A force applied at the mass center does work $\vec{F}\cdot \vec{d}_G$**, using the displacement of the center.
+- **A couple moment $M$ does work $M\,\Delta\theta$** through the angle it turns.
+- $W_{nc}$ collects only the genuinely non-conservative effects: bearing drag, hysteresis in a deforming tire, or slipping friction.
+
+## Derivation: The Universal Ramp-Speed Formula
+
+Before working numbers, it pays to derive the result once in symbols so every rolling-body problem becomes a single substitution.
+
+Start from energy conservation for a body that starts at rest and rolls without slipping through a height drop $h$:
+
+$$
+mgh = \frac{1}{2}mv^2 + \frac{1}{2}I_G\omega^2
+$$
+
+Write the inertia in the compact form $I_G = k^2 m r^2$, where $k^2 = I_G/(mr^2)$ is the shape factor from the table above. Apply the rolling constraint $\omega = v/r$:
+
+$$
+mgh = \frac{1}{2}mv^2 + \frac{1}{2}\big(k^2 m r^2\big)\frac{v^2}{r^2}
+$$
+
+The $r^2$ cancels and every term carries $m$, so mass cancels too:
+
+$$
+gh = \frac{1}{2}v^2\big(1 + k^2\big)
+$$
+
+Solving for $v$ gives the formula used throughout this section:
+
+$$
+\boxed{v = \sqrt{\frac{2gh}{1 + I_G/(mr^2)}}}
+$$
+
+Two lessons fall out immediately. First, **mass and radius do not affect the final speed of a rolling body**; only the shape factor $k^2$ does. Second, a sliding particle is just the special case $k^2 = 0$, recovering $v = \sqrt{2gh}$, the fastest any released body can reach for a given drop.
+
+## Worked Examples
 
 ### Example 3.3: Solid Disk Rolling Down a Ramp
 
-**Problem:** A solid disk with mass 5 kg and radius 0.2 m rolls down from a vertical height of 2 m. Find its speed at the bottom.
+**Problem:** A solid disk with mass 5 kg and radius 0.2 m rolls without slipping from a vertical height of 2 m. Find its speed at the bottom. (Refer to a free body / energy diagram: weight $mg$ acting at the center, normal force and static friction at the contact point doing no net work.)
 
-### Step A: Write the initial and final energies
+**Step A: Write the initial and final energies**
 
 - Initial kinetic energy: $T_1 = 0$
 - Initial potential energy: $V_1 = mgh$
@@ -105,7 +162,7 @@ $$
 mgh = \frac{1}{2}mv^2 + \frac{1}{2}I_G\omega^2
 $$
 
-### Step B: Insert the disk inertia
+**Step B: Insert the disk inertia**
 
 For a solid disk,
 
@@ -123,7 +180,7 @@ $$
 mgh = \frac{1}{2}mv^2 + \frac{1}{4}mv^2 = \frac{3}{4}mv^2
 $$
 
-### Step C: Solve for speed
+**Step C: Solve for speed**
 
 $$
 v = \sqrt{\frac{4gh}{3}}
@@ -132,12 +189,12 @@ $$
 Substitute $g = 9.81$ m/s$^2$ and $h = 2$ m:
 
 $$
-v = \sqrt{\frac{4(9.81)(2)}{3}} = 5.11 \text{ m/s}
+v = \sqrt{\frac{4(9.81)(2)}{3}} = \boxed{5.11 \text{ m/s}}
 $$
 
-The disk reaches the bottom more slowly than a frictionless sliding block would, because part of the gravitational energy becomes rotation.
+The disk reaches the bottom more slowly than a frictionless sliding block would, because part of the gravitational energy becomes rotation. As a sanity check, the universal formula with $k^2 = 0.5$ gives $v = \sqrt{2(9.81)(2)/1.5} = 5.11$ m/s, matching exactly.
 
-## Compare Against a Sliding Particle
+### Compare Against a Sliding Particle
 
 If the same object slid without rotation, the speed would come from
 
@@ -148,30 +205,93 @@ $$
 which gives
 
 $$
-v = \sqrt{2gh} = 6.26 \text{ m/s}
+v = \sqrt{2gh} = \boxed{6.26 \text{ m/s}}
 $$
 
-That comparison is pedagogically useful. It makes the rotational energy cost visible.
+That comparison is pedagogically useful. It makes the rotational energy cost visible: about $1 - (5.11/6.26)^2 \approx 33\%$ of the available energy went into spin rather than forward motion.
+
+---
+
+### Example 3.4: Energy Stored in a Flywheel (Pure Rotation)
+
+**Problem:** A solid steel flywheel of mass 40 kg and radius 0.30 m spins about its fixed central axis at 1500 rev/min. Its center of mass does not move. How much kinetic energy is stored?
+
+**Step A: Identify the energy terms**
+
+The center of mass is stationary, so $v_G = 0$ and the translational term vanishes. All energy is rotational:
+
+$$
+T = \frac{1}{2}I_G\omega^2
+$$
+
+This is the trap from the opening: the particle formula would report zero.
+
+**Step B: Compute the inertia and angular speed**
+
+For a solid disk, $I_G = \tfrac{1}{2}mr^2$:
+
+$$
+I_G = \frac{1}{2}(40)(0.30)^2 = 1.80 \text{ kg}\cdot\text{m}^2
+$$
+
+Convert the spin rate to rad/s:
+
+$$
+\omega = 1500 \times \frac{2\pi}{60} = 157.08 \text{ rad/s}
+$$
+
+**Step C: Evaluate the stored energy**
+
+$$
+T = \frac{1}{2}(1.80)(157.08)^2 = \boxed{2.22 \times 10^{4} \text{ J}}
+$$
+
+About 22.2 kJ live entirely in rotation. To appreciate the scale, raising this same 40 kg mass would store $mgh$; the stored energy equals lifting it roughly $T/(mg) = 22{,}200/(40 \times 9.81) \approx 57$ m straight up. That is why high-speed flywheels are taken seriously as short-burst storage, and why containment is a safety requirement.
+
+---
+
+### Example 3.5: Cylinder Driven by a Horizontal Force (Work In, Speed Out)
+
+**Problem:** A solid cylinder of mass 8 kg and radius 0.25 m starts from rest. A constant horizontal force $P = 30$ N is applied at its center while it rolls without slipping on level ground. Find the center speed after the center has moved 4 m.
+
+**Step A: Account for the work**
+
+The applied force acts at the center and moves with it, so it does work $P\,d$. Static friction at the contact does no work in pure rolling. Gravity and the normal force are perpendicular to the horizontal motion, so they do no work either. The work-energy balance is therefore:
+
+$$
+P\,d = \frac{1}{2}mv^2 + \frac{1}{2}I_G\omega^2
+$$
+
+**Step B: Substitute the rolling cylinder energy**
+
+With $I_G = \tfrac{1}{2}mr^2$ and $\omega = v/r$, the right side collapses (just as in Example 3.3) to $\tfrac{3}{4}mv^2$:
+
+$$
+P\,d = \frac{3}{4}mv^2
+$$
+
+**Step C: Solve and evaluate**
+
+$$
+v = \sqrt{\frac{4P\,d}{3m}} = \sqrt{\frac{4(30)(4)}{3(8)}} = \boxed{4.47 \text{ m/s}}
+$$
+
+Check the energy ledger: work in is $P\,d = (30)(4) = 120$ J, and $\tfrac{3}{4}mv^2 = 0.75(8)(4.47)^2 = 120$ J. The books balance. Note that one third of the input work, 40 J, ended up as rotational kinetic energy even though no torque was applied directly; friction quietly converted some of the linear push into spin to keep the rolling constraint satisfied.
 
 ## Quantitative Comparison Across Shapes
 
 The same drop height does not produce the same final speed for every rolling body. Shape matters because inertia distribution matters.
 
-For rolling without slipping from the same height $h$, the speed can be written in the form:
-
-$$
-v = \sqrt{\frac{2gh}{1 + I_G/(mr^2)}}
-$$
-
-Using $h = 2$ m:
+Using the derived formula $v = \sqrt{\dfrac{2gh}{1 + I_G/(mr^2)}}$ with $h = 2$ m:
 
 | Rolling Body | $I_G/(mr^2)$ | Final Speed |
 | --- | ---: | ---: |
 | Hoop | 1.0 | $4.43$ m/s |
 | Solid disk | 0.5 | $5.11$ m/s |
 | Solid sphere | 0.4 | $5.29$ m/s |
+| Sliding particle | 0.0 | $6.26$ m/s |
 
-This is an important engineering comparison. A body with more inertia concentrated away from the axis stores more of the gravitational energy in rotation and therefore reaches a lower translational speed.
+This is an important engineering comparison. A body with more inertia concentrated away from the axis stores more of the gravitational energy in rotation and therefore reaches a lower translational speed. The solid sphere wins every rolling race because it keeps its mass closest to the axis.
 
 ## Comparative Test Mindset
 
@@ -187,22 +307,22 @@ That is where rigid-body energy becomes more than a classroom formula. It suppor
 
 The ideal rolling examples above ignore non-conservative losses. Real wheels do not.
 
-For the same 5 kg solid disk descending from a 2 m height:
+For the same 5 kg solid disk descending from a 2 m height, the balance becomes:
 
 $$
-mgh - E_{loss} = \frac{3}{4}mv^2
+mgh - E_{loss} = \frac{3}{4}mv^2 \quad\Longrightarrow\quad v = \sqrt{\frac{4(mgh - E_{loss})}{3m}}
 $$
 
-If bearing drag, tire deformation, or surface losses consume part of the available energy, the predicted speed changes as follows:
+With $mgh = (5)(9.81)(2) = 98.1$ J, the predicted speed changes as follows:
 
 | Energy Loss | Final Speed |
 | ---: | ---: |
 | 0 J | 5.11 m/s |
 | 5 J | 4.98 m/s |
-| 10 J | 4.84 m/s |
-| 20 J | 4.54 m/s |
+| 10 J | 4.85 m/s |
+| 20 J | 4.56 m/s |
 
-This sensitivity view is often more useful than a single ideal answer. It shows how tolerant the design is to wheel quality, maintenance condition, or manufacturing variability.
+This sensitivity view is often more useful than a single ideal answer. It shows how tolerant the design is to wheel quality, maintenance condition, or manufacturing variability. Notice the speed is fairly forgiving: losing one fifth of the available 98.1 J (20 J) costs only about 11% of the final speed, because speed scales with the square root of energy.
 
 ## Assumption Breakdown Case: Rolling Without Slipping
 
@@ -223,12 +343,25 @@ Once slipping begins, the clean relation $v = r\omega$ no longer acts as a relia
 
 This is a genuine design boundary. A wheel concept that looks excellent under ideal rolling assumptions may behave very differently once traction margins shrink.
 
+## Engineering Applications
+
+| Application | Why Rigid-Body Energy Matters |
+| --- | --- |
+| Flywheel energy storage | Stored energy is purely rotational; $\tfrac{1}{2}I\omega^2$ sets capacity and burst power |
+| Vehicle wheels and rotating drivetrains | Rotational inertia adds an "effective mass" that the engine must accelerate |
+| Robot and rover mobility | Wheel inertia changes downhill speed, braking distance, and motor sizing |
+| Rolling mill and conveyor rollers | Start-up energy and coast-down time depend on $I_G$ |
+| Yo-yo despin and reaction wheels | Spacecraft trade rotation for translation through controlled energy exchange |
+
+> **Engineering in Action:** Designers often quote the "effective mass" of a rolling wheel as $m(1 + k^2)$. A solid disk wheel behaves as if it were 50% heavier than its scale weight when you try to accelerate it, because the drivetrain must spin it up as well as move it forward.
+
 ## Common Mistakes
 
 - forgetting the rotational kinetic-energy term
 - using the wrong inertia formula for the shape
 - treating $v = r\omega$ as optional in rolling problems
 - double counting the same motion by adding extra terms after already substituting the rolling constraint
+- charging energy to rolling friction (it does no work in pure rolling; only slipping friction and drag do)
 
 ## Check Your Understanding
 
@@ -248,12 +381,25 @@ This is a genuine design boundary. A wheel concept that looks excellent under id
 
 ## Summary
 
-- Rigid bodies store kinetic energy in translation and rotation.
-- Rolling constraints connect linear and angular motion.
-- Energy balances often solve rigid-body speed problems faster than force-moment equations.
-- The body's inertia model strongly influences the final answer.
+### Key Equations
 
-## Course Wrap-Up
+| Concept | Equation |
+| --- | --- |
+| Total kinetic energy (plane motion) | $T = \tfrac{1}{2}mv_G^2 + \tfrac{1}{2}I_G\omega^2$ |
+| Rolling constraint | $v_G = r\omega$ |
+| Work-energy balance | $T_1 + V_1 + W_{nc} = T_2 + V_2$ |
+| Universal ramp speed (rolls from rest) | $v = \sqrt{\dfrac{2gh}{1 + I_G/(mr^2)}}$ |
+| Work of a force / couple | $W = \vec{F}\cdot\vec{d}_G$, $\;W = M\,\Delta\theta$ |
+
+### Key Takeaways
+
+- Rigid bodies store kinetic energy in translation and rotation.
+- Rolling constraints connect linear and angular motion; substitute them, never add them.
+- For a body rolling from rest, mass and radius cancel; only the shape factor $I_G/(mr^2)$ sets the speed.
+- Pure rolling friction does no work; only slipping, drag, and deformation dissipate energy.
+- Energy balances often solve rigid-body speed problems faster than force-moment equations.
+
+## What's Next?
 
 You now have the three major problem-solving lenses for introductory dynamics:
 
@@ -261,4 +407,4 @@ You now have the three major problem-solving lenses for introductory dynamics:
 - work and energy
 - impulse and momentum
 
-Together they let you choose the representation that best fits the physics of the problem rather than forcing every problem into one method.
+Together they let you choose the representation that best fits the physics of the problem rather than forcing every problem into one method. The natural next step is **impulse-momentum for rigid bodies**, where angular impulse and angular momentum handle problems involving sudden impacts, spins, and collisions that energy methods alone cannot resolve cleanly.

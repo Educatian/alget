@@ -1,24 +1,53 @@
-## Why Force Vectors Are the Operating System of Statics
+# Force Vectors
 
-Every later topic in statics — equilibrium, moments, structural analysis, friction — runs on top of one prerequisite skill: representing and combining forces as vectors. Beer, Johnston, Mazurek, Cornwell, and Self give force vectors their own chapter ("Statics of Particles") before any equilibrium discussion. Hibbeler does the same in his Chapter 2. The ordering is deliberate. Treating a force as a number with a direction attached, instead of as a properly added vector, is the single most common source of avoidable errors in the entire course.
+> **"Vectors are the language in which the laws of mechanics are most naturally written."**
+> - J. L. Meriam, *Engineering Mechanics: Statics*
 
-This module covers the four force-vector skills you will use in every later problem: **2D resolution, 3D resolution with direction cosines and unit vectors, the dot product, and the cross product**.
+---
+
+## Opening: A Tower That Stayed Up Because the Math Was Right
+
+When the 553 m CN Tower was built in Toronto, its tall mast section was lifted and braced by guy cables anchored at angled ground points. Each cable pulled on the mast in a fully three-dimensional direction, and the riggers could not simply add the cable forces as numbers. A cable pulling 200 kN toward the north-east and one pulling 200 kN toward the south-east do not produce 400 kN of restraint; depending on the angle between them they might produce far less, and in the worst case nearly zero net horizontal hold. Getting the **directions** right, not just the magnitudes, was the difference between a stable lift and a buckled mast.
+
+This is the core idea of the whole course in miniature. Before equilibrium, moments, trusses, or friction make any sense, a force has to be treated as a vector: a quantity with both size and direction that obeys vector addition. Treating a force as a plain number with a direction loosely attached is the single most common source of avoidable error in statics.
+
+> **The Big Picture:** Every later topic in statics, equilibrium, moments, structural analysis, friction, runs on top of one prerequisite skill: representing and combining forces as vectors. Beer, Johnston, Mazurek, Cornwell, and Self give force vectors their own chapter ("Statics of Particles") before any equilibrium discussion, and Hibbeler does the same in his Chapter 2. The ordering is deliberate.
+
+This module covers the four force-vector skills you will use in every later problem: **2D resolution, 3D resolution with direction cosines and unit vectors, the dot product, and the cross product.**
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Explain** why a force is a vector and why magnitudes alone cannot be added
+2. **Resolve** a 2D force into rectangular components and reassemble a resultant from components
+3. **Build** a 3D force vector from a line of action using a position vector and unit vector
+4. **Use** the dot product to find the angle between two lines and the projection of a force onto a direction
+5. **Use** the cross product to compute the moment of a force and to test for parallel or perpendicular directions
 
 ---
 
 ## Forces Are Vectors, Not Scalars
 
-A force has both a magnitude and a direction. Two 100 N forces along the same line add to 200 N. Two 100 N forces at 90° add to ≈ 141 N. Two 100 N forces at 180° add to zero. Adding magnitudes alone discards the direction information that decides the result.
+A force has both a magnitude and a direction. Two 100 N forces along the same line add to 200 N. Two 100 N forces at 90 degrees add to about 141 N. Two 100 N forces at 180 degrees add to zero. Adding magnitudes alone discards the direction information that decides the result.
 
-Vectors are added head-to-tail (the parallelogram rule). For more than two forces, build a polygon. The closed polygon corresponds to a system in equilibrium — a fact that becomes the geometric heart of the next module.
+Vectors are added head-to-tail (the parallelogram rule). For more than two forces, build a polygon. The closed polygon corresponds to a system in equilibrium, a fact that becomes the geometric heart of the next module.
 
 A vector is also unchanged by translation along its line of action when applied to a particle. This is the **principle of transmissibility** for particles. (For rigid bodies a similar principle holds, with the qualification that the line of action must be preserved.)
+
+| Quantity | Type | What it carries |
+| --- | --- | --- |
+| Mass, temperature, time | Scalar | Magnitude only |
+| Force, displacement, moment | Vector | Magnitude and direction |
+| Work, energy | Scalar (from a dot product) | Magnitude only |
 
 ---
 
 ## Resolving a 2D Force into Components
 
-Most planar problems decompose forces into x and y components. If a force F has magnitude F and acts at angle θ measured counter-clockwise from the +x axis:
+Most planar problems decompose forces into x and y components. If a force $F$ has magnitude $F$ and acts at angle $\theta$ measured counter-clockwise from the +x axis:
 
 $$F_x = F \cos\theta, \quad F_y = F \sin\theta$$
 
@@ -26,7 +55,7 @@ The reverse computation reassembles components:
 
 $$F = \sqrt{F_x^2 + F_y^2}, \quad \theta = \tan^{-1}\!\left(\frac{F_y}{F_x}\right)$$
 
-The arctangent must be interpreted with quadrant awareness. A vector with $F_x = -3$, $F_y = -4$ has the same arctangent magnitude as $F_x = 3$, $F_y = 4$, but the angles differ by 180°. Use the signs of both components to place the angle in the correct quadrant.
+The arctangent must be interpreted with quadrant awareness. A vector with $F_x = -3$, $F_y = -4$ has the same arctangent magnitude as $F_x = 3$, $F_y = 4$, but the angles differ by 180 degrees. Use the signs of both components to place the angle in the correct quadrant.
 
 Component arithmetic is the safer route for adding more than two forces:
 
@@ -40,13 +69,13 @@ You sum the components, then re-assemble. This avoids compounded angle errors.
 
 In 3D, a force is given by its magnitude and a direction. The direction is specified either by direction cosines or by a position vector along the line of action.
 
-If a force F makes angles $\alpha$, $\beta$, $\gamma$ with the +x, +y, +z axes:
+If a force $F$ makes angles $\alpha$, $\beta$, $\gamma$ with the +x, +y, +z axes:
 
 $$F_x = F \cos\alpha, \quad F_y = F \cos\beta, \quad F_z = F \cos\gamma$$
 
-with the constraint $\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1$. The three direction cosines are the components of the **unit vector** $\hat{u}$ along F.
+with the constraint $\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1$. The three direction cosines are the components of the **unit vector** $\hat{u}$ along $F$.
 
-When the force acts along a known line — say from point A to point B — the unit vector is built from the position vector:
+When the force acts along a known line, say from point A to point B, the unit vector is built from the position vector:
 
 $$\vec{r}_{AB} = (x_B - x_A)\hat{i} + (y_B - y_A)\hat{j} + (z_B - z_A)\hat{k}$$
 
@@ -96,29 +125,123 @@ where $\vec{r}$ is any position vector from the point O to any point on F's line
 
 The cross product is **anti-commutative**: $\vec{A} \times \vec{B} = -\vec{B} \times \vec{A}$. Confusing the order is the most common cross-product error and produces sign flips in moment calculations.
 
-It is also **zero** when two vectors are parallel — a useful collinearity check.
+It is also **zero** when two vectors are parallel, a useful collinearity check.
 
 <concept-diagram type="3d-force-resolution"></concept-diagram>
 
 ---
 
-## Worked Example: From a 3D Geometry to Resolved Components
+## Worked Examples
 
-A cable in a 3D anchor system pulls from point A(2, 0, 3) m toward point B(5, 4, 0) m with tension 250 N. Resolve the force.
+### Example 5.1: Adding Three Coplanar Forces by Components
 
-Step 1: Position vector A to B.
+**Problem:** Three cables pull on a ring bolt in the same plane: $F_1 = 60$ N along the +x axis, $F_2 = 80$ N at $60^\circ$, and $F_3 = 50$ N at $135^\circ$ (all angles measured counter-clockwise from +x). Find the magnitude and direction of the resultant.
+
+**Step 1: Resolve each force into components.**
+
+| Force | $F_x = F\cos\theta$ | $F_y = F\sin\theta$ |
+| --- | --- | --- |
+| $F_1 = 60$ at $0^\circ$ | $+60.00$ | $0.00$ |
+| $F_2 = 80$ at $60^\circ$ | $+40.00$ | $+69.28$ |
+| $F_3 = 50$ at $135^\circ$ | $-35.36$ | $+35.36$ |
+
+**Step 2: Sum the components.**
+
+$$R_x = 60.00 + 40.00 - 35.36 = 64.64 \text{ N}$$
+
+$$R_y = 0.00 + 69.28 + 35.36 = 104.64 \text{ N}$$
+
+**Step 3: Reassemble the resultant.**
+
+$$R = \sqrt{R_x^2 + R_y^2} = \sqrt{64.64^2 + 104.64^2} = \boxed{123.0 \text{ N}}$$
+
+$$\theta = \tan^{-1}\!\left(\frac{104.64}{64.64}\right) = \boxed{58.3^\circ}$$
+
+Both components are positive, so the resultant lies in the first quadrant and the arctangent needs no quadrant correction. Notice the resultant (123 N) is far below the naive magnitude sum (190 N); direction is doing real work here.
+
+---
+
+### Example 5.2: From a 3D Geometry to Resolved Components
+
+**Problem:** A cable in a 3D anchor system pulls from point A(2, 0, 3) m toward point B(5, 4, 0) m with tension 250 N. Resolve the force into components.
+
+**Step 1: Position vector A to B.**
 $$\vec{r}_{AB} = (5-2)\hat{i} + (4-0)\hat{j} + (0-3)\hat{k} = 3\hat{i} + 4\hat{j} - 3\hat{k} \text{ m}$$
 
-Step 2: Magnitude.
-$$|\vec{r}_{AB}| = \sqrt{9 + 16 + 9} = \sqrt{34} \approx 5.831 \text{ m}$$
+**Step 2: Magnitude.**
+$$|\vec{r}_{AB}| = \sqrt{3^2 + 4^2 + (-3)^2} = \sqrt{34} \approx 5.831 \text{ m}$$
 
-Step 3: Unit vector.
+**Step 3: Unit vector.**
 $$\hat{u}_{AB} = \frac{3}{5.831}\hat{i} + \frac{4}{5.831}\hat{j} - \frac{3}{5.831}\hat{k} \approx 0.514\hat{i} + 0.686\hat{j} - 0.514\hat{k}$$
 
-Step 4: Force vector.
-$$\vec{F} = 250 \,\hat{u}_{AB} \approx 128.6\hat{i} + 171.5\hat{j} - 128.6\hat{k} \text{ N}$$
+Quick check: $0.514^2 + 0.686^2 + 0.514^2 \approx 0.999 \approx 1$, so the unit vector is valid.
 
-That is the only correct workflow. Estimating angles by eye from a 3D drawing produces 5-15° errors that propagate through every subsequent equilibrium equation.
+**Step 4: Force vector.**
+$$\vec{F} = 250 \,\hat{u}_{AB} \approx \boxed{128.6\hat{i} + 171.5\hat{j} - 128.6\hat{k} \text{ N}}$$
+
+That is the only correct workflow. Estimating angles by eye from a 3D drawing produces 5 to 15 degree errors that propagate through every subsequent equilibrium equation.
+
+---
+
+### Example 5.3: Dot Product for Angle and Axial Projection
+
+**Problem:** Two members meet at a joint. Member 1 runs along direction $\vec{A} = 3\hat{i} + 4\hat{j} + 0\hat{k}$ and member 2 along $\vec{B} = 0\hat{i} + 4\hat{j} + 3\hat{k}$ (both in meters of run). (a) Find the angle between them. (b) Find the component of the 250 N cable force from Example 5.2, $\vec{F} = 128.6\hat{i} + 171.5\hat{j} - 128.6\hat{k}$ N, that acts along the line A to B.
+
+**Part (a): Angle between members.**
+
+$$\vec{A} \cdot \vec{B} = (3)(0) + (4)(4) + (0)(3) = 16$$
+
+$$A = \sqrt{3^2+4^2} = 5, \qquad B = \sqrt{4^2+3^2} = 5$$
+
+$$\cos\theta = \frac{16}{(5)(5)} = 0.640 \implies \theta = \cos^{-1}(0.640) = \boxed{50.2^\circ}$$
+
+**Part (b): Projection of the force along its own line.**
+
+The unit vector from Example 5.2 is $\hat{u}_{AB} = 0.514\hat{i} + 0.686\hat{j} - 0.514\hat{k}$. The axial component is the dot product:
+
+$$F_\| = \vec{F} \cdot \hat{u}_{AB} = (128.6)(0.514) + (171.5)(0.686) + (-128.6)(-0.514)$$
+
+$$F_\| = 66.1 + 117.6 + 66.1 = \boxed{249.8 \approx 250 \text{ N}}$$
+
+This is the expected sanity check: a force projected onto its own line of action recovers the full magnitude. The same machinery, applied to a different member direction, would peel off only the part of the load that runs axially.
+
+---
+
+### Example 5.4: Cross Product for the Moment of a Force
+
+**Problem:** A wrench applies a 500 N force in the +x direction at a point located $\vec{r} = 0.4\hat{k}$ m from a bolt at the origin (the handle stands 0.4 m above the bolt along the z axis). Find the moment about the bolt.
+
+**Step 1: Set up the cross product.** With $\vec{r} = 0\hat{i} + 0\hat{j} + 0.4\hat{k}$ m and $\vec{F} = 500\hat{i} + 0\hat{j} + 0\hat{k}$ N:
+
+$$\vec{M}_O = \vec{r} \times \vec{F} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ 0 & 0 & 0.4 \\ 500 & 0 & 0 \end{vmatrix}$$
+
+**Step 2: Expand each component.**
+
+$$M_x = (0)(0) - (0.4)(0) = 0$$
+
+$$M_y = -\big[(0)(0) - (0.4)(500)\big] = -(-200) = +200$$
+
+$$M_z = (0)(0) - (0)(500) = 0$$
+
+**Step 3: State the moment.**
+
+$$\vec{M}_O = \boxed{200\,\hat{j} \text{ N}\cdot\text{m}}$$
+
+The moment points along +y, perpendicular to both the lever arm and the force, as the right-hand rule predicts. Its magnitude $|\vec{M}_O| = rF\sin 90^\circ = (0.4)(500)(1) = 200$ N$\cdot$m confirms the cross-product result. Had we written $\vec{F} \times \vec{r}$ by mistake, every sign would flip and the moment would point the wrong way.
+
+---
+
+## Engineering Applications
+
+| Application | Force-vector skill in play |
+| --- | --- |
+| Guy-cable masts and radio towers | 3D unit vectors to express each cable's pull before equilibrium |
+| Truss and frame joints | Dot product for the angle between members; component resolution |
+| Wrenches, gear shafts, lever arms | Cross product for the moment of an applied force |
+| Cable-stayed and suspension bridges | 2D and 3D resolution of stay/hanger forces into deck and tower loads |
+| Robotics and manipulator arms | Dot product for joint-axis projections; cross product for torques |
+
+> **Engineering in Action:** The same resolve-then-sum logic used on a ring bolt with three cables scales directly to a tower held by a dozen guy lines or a bridge deck carried by a hundred hangers. The number of forces changes; the vector bookkeeping does not.
 
 ---
 
@@ -126,9 +249,39 @@ That is the only correct workflow. Estimating angles by eye from a 3D drawing pr
 
 - **Adding magnitudes instead of components.** A 200 N + 100 N force pair almost never produces a 300 N resultant. Always resolve, then sum.
 - **Quadrant errors in $\tan^{-1}$.** Use both component signs, or use `atan2` if you are computing numerically.
-- **Direction cosines that do not sum in squares to 1.** That is a corruption signal — recompute the unit vector from the position vector.
-- **Applying $\vec{r} \times \vec{F}$ with the wrong $\vec{r}$.** $\vec{r}$ must run *from* the moment point *to* any point on F's line of action, not the other way around.
+- **Direction cosines that do not sum in squares to 1.** That is a corruption signal; recompute the unit vector from the position vector.
+- **Applying $\vec{r} \times \vec{F}$ with the wrong $\vec{r}$.** $\vec{r}$ must run from the moment point to any point on F's line of action, not the other way around.
 - **Treating dot and cross products interchangeably.** Dot is scalar; cross is vector. The two answer different questions.
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| 2D resolution | $F_x = F\cos\theta$, $F_y = F\sin\theta$ |
+| Resultant from components | $R = \sqrt{R_x^2 + R_y^2}$, $\theta = \tan^{-1}(R_y/R_x)$ |
+| 3D unit vector | $\hat{u}_{AB} = \vec{r}_{AB}/|\vec{r}_{AB}|$, $\vec{F} = F\,\hat{u}_{AB}$ |
+| Direction-cosine identity | $\cos^2\alpha + \cos^2\beta + \cos^2\gamma = 1$ |
+| Dot product | $\vec{A}\cdot\vec{B} = A_xB_x + A_yB_y + A_zB_z = AB\cos\theta$ |
+| Projection onto a line | $F_\| = \vec{F}\cdot\hat{u}$ |
+| Cross product (moment) | $\vec{M}_O = \vec{r}\times\vec{F}$, $|\vec{M}_O| = rF\sin\theta$ |
+
+### Key Takeaways
+
+- A force is a vector; its direction is as load-bearing as its magnitude.
+- Resolve into components, sum the components, then reassemble. This beats angle-by-angle addition.
+- In 3D, always build the unit vector from a position vector instead of guessing angles.
+- The dot product answers "what angle?" and "how much along this line?" (scalar).
+- The cross product answers "what moment?" and "which perpendicular direction?" (vector), and its order matters.
+
+---
+
+## What's Next?
+
+In the next module we turn the closed force polygon into algebra: applying $\sum \vec{F} = 0$ to particles, where the vector skills built here become the equilibrium equations that carry the rest of statics.
 
 <dynamic-scenario topic="3D Force Vectors" context="A radio tower is held by three guy cables anchored at ground points A, B, C and meeting at the tower top T(0, 0, 30) m. Cable tensions are unknown. The student is asked to write each cable's force vector in component form before applying equilibrium."></dynamic-scenario>
 

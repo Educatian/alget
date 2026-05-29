@@ -1,10 +1,31 @@
-## Why "We Anonymized the Data" Is Almost Never the End of the Privacy Story
+# Privacy in the Age of AI: Why "We Anonymized the Data" Is Almost Never the End of the Story
 
-For decades, the standard answer to a privacy question was "we removed the names and the social-security numbers." That answer worked when datasets were small, isolated, and queried by humans with manual tools. It does not work for AI systems trained on large, joinable, behavior-rich data, queried at scale by models that learn statistical regularities humans cannot see.
+> **"Anonymized data isn't."**
+> - Cynthia Dwork, co-inventor of differential privacy, paraphrasing a hard-won lesson from a decade of re-identification results.
 
-The privacy landscape under AI has at least four distinct threats, each with its own technical countermeasure and each with its own legal framing. Treating them as one threat (and "anonymization" as the one fix) is the most common privacy failure in AI deployments.
+In October 2006, AOL released what it believed was a harmless research gift: roughly 20 million search queries from 650,000 users, with usernames replaced by random numbers. Within days, *New York Times* reporters had used the searches themselves ("landscapers in Lilburn, GA," "homes sold in shadow lake subdivision," "60 single men") to knock on the door of user No. 4417749, a 62-year-old widow named Thelma Arnold. No name was ever in the file. The behavior was the identifier. AOL pulled the dataset, its CTO resigned, and the episode became the textbook proof that stripping identifiers is not the same as protecting people.
 
-This module covers re-identification, inference attacks, training-data leakage, and the basic toolbox of countermeasures (differential privacy, federated learning, encrypted computation), grounded in the GDPR, the FTC privacy framework, and the NIST Privacy Framework.
+That lesson has only sharpened under AI. The AOL release was queried by humans with manual tools. Modern AI systems are trained on large, joinable, behavior-rich data and queried at scale by models that learn statistical regularities humans cannot see, and that can be coaxed to repeat what they memorized. Treating privacy as a single problem ("anonymization") with a single fix is the most common privacy failure in AI deployments.
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Distinguish** the four structurally different privacy threats AI systems create (re-identification, model inference, generative leakage, surveillance-by-aggregation) and name the countermeasure family that targets each.
+2. **Explain** why removing direct identifiers fails, using the quasi-identifier and auxiliary-data linkage mechanism.
+3. **Interpret** the differential-privacy parameter $\varepsilon$ as a leakage budget and reason about the privacy/utility tradeoff it encodes.
+4. **Apply** the threat taxonomy to a concrete deployment using a stakeholder and tradeoff decision table.
+5. **Argue** why legal compliance (GDPR, CCPA, HIPAA) is necessary but not sufficient for ethical privacy.
+
+---
+
+## The Core Idea: Privacy Is Plural
+
+There is no single "privacy" property to switch on. The privacy landscape under AI has at least four distinct threats, each with its own technical countermeasure and its own legal framing. The rest of this section walks each one, then assembles them into a worked deployment analysis.
+
+This module covers re-identification, inference attacks, training-data leakage, and surveillance-by-aggregation, plus the basic toolbox of countermeasures (differential privacy, federated learning, encrypted computation, synthetic data), grounded in the GDPR, the FTC privacy framework, and the NIST Privacy Framework.
 
 ---
 
@@ -12,11 +33,11 @@ This module covers re-identification, inference attacks, training-data leakage, 
 
 Removing direct identifiers (name, SSN) does not anonymize a dataset that contains many other features. Latanya Sweeney showed in the late 1990s that 87% of US residents could be uniquely identified by zip code, birth date, and gender alone. Modern datasets contain dozens of joinable features.
 
-**Mechanism.** An attacker has auxiliary data (a voter roll, a movie-rental dataset, a hospital release) and links it to the supposedly anonymous dataset using shared features. Once linked, the previously de-identified records become identified.
+**Mechanism.** An attacker has auxiliary data (a voter roll, a movie-rental dataset, a hospital release) and links it to the supposedly anonymous dataset using shared features, called *quasi-identifiers*. Once linked, the previously de-identified records become identified.
 
-**Famous cases.** The Netflix Prize re-identification (Narayanan and Shmatikov, 2008). The AOL search-log release (2006). The MA Group Insurance Commission release that exposed the Massachusetts governor's medical records.
+**Famous cases.** The AOL search-log release (2006, above). The Netflix Prize re-identification (Narayanan and Shmatikov, 2008), which linked anonymized movie ratings to public IMDb reviews. The MA Group Insurance Commission release that Sweeney used to re-identify the medical records of the Massachusetts governor.
 
-**Countermeasure.** *k*-anonymity (each record indistinguishable from at least k-1 others on quasi-identifiers) and its successors *l*-diversity and *t*-closeness. These reduce but do not eliminate re-identification risk; for high-dimensional behavioral data they often fail.
+**Countermeasure.** *k*-anonymity (each record indistinguishable from at least $k-1$ others on quasi-identifiers) and its successors *l*-diversity and *t*-closeness. These reduce but do not eliminate re-identification risk; for high-dimensional behavioral data they often fail, because almost every long behavioral record is unique.
 
 ---
 
@@ -24,13 +45,17 @@ Removing direct identifiers (name, SSN) does not anonymize a dataset that contai
 
 Even if the training data is never released, the **trained model itself** can leak information about training subjects.
 
-**Membership inference attacks** (Shokri et al., 2017): given access to a trained model, an attacker can determine whether a particular individual's record was in the training set. For some medical or rare-disease datasets, just being known to be in the training set is itself a privacy harm.
+**Membership inference attacks** (Shokri et al., 2017): given access to a trained model, an attacker can determine whether a particular individual's record was in the training set. For some medical or rare-disease datasets, just being known to be in the training set is itself a privacy harm (it discloses the diagnosis).
 
-**Attribute inference attacks**: given a model and partial information about a person, infer attributes the person did not disclose. A recommender model can leak political affiliation. A health-risk model can leak diagnosis.
+**Attribute inference attacks**: given a model and partial information about a person, infer attributes the person did not disclose. A recommender model can leak political affiliation; a health-risk model can leak diagnosis.
 
 **Model inversion attacks** (Fredrikson et al., 2015): reconstruct training inputs from model parameters. Demonstrated for face recognition and for genomic data.
 
-**Countermeasure.** *Differential privacy* (Dwork et al., 2006) adds calibrated noise to training so that the trained model's behavior changes only marginally if any one individual is removed from the dataset. The privacy parameter ε quantifies the leakage; smaller ε is stronger privacy at the cost of model utility.
+**Countermeasure.** *Differential privacy* (Dwork et al., 2006) adds calibrated noise to training so that the trained model's behavior changes only marginally if any one individual is removed from the dataset. The privacy parameter $\varepsilon$ quantifies the leakage; smaller $\varepsilon$ is stronger privacy at the cost of model utility.
+
+> **Reading $\varepsilon$.** The formal guarantee bounds how much any single record can shift the model's output distribution:
+> $$ \Pr[M(D) \in S] \le e^{\varepsilon}\,\Pr[M(D') \in S] $$
+> for any two datasets $D, D'$ differing in one person's record and any outcome set $S$. At $\varepsilon = 0$ the two distributions are identical (perfect privacy, useless model); as $\varepsilon \to \infty$ there is no constraint. The factor $e^{\varepsilon}$ is the worst-case multiplicative "tell." For intuition: $\varepsilon = 1$ gives $e^1 \approx 2.72$, so any one person can shift an outcome's probability by at most a factor of about 2.7; $\varepsilon = 0.1$ gives $e^{0.1} \approx 1.11$, a much tighter bound (≈11% shift) but noisier, less accurate training. Apple has historically run telemetry at single-digit $\varepsilon$ per datum; the 2020 US Census used a budget allocated across the whole publication. $\varepsilon$ is a spendable budget, not a setting you get for free.
 
 ---
 
@@ -40,7 +65,7 @@ Large generative models present a distinct threat: they can be **prompted to rep
 
 **Mechanism.** Memorization in over-parameterized models is not a bug; it is part of how they fit rare patterns. The training distribution includes specific phone numbers, copyrighted text, faces, and medical records that the model can be coaxed to emit.
 
-**Countermeasure.** Training-data curation, differential privacy at training, output filtering at inference. None is a complete fix; the field is still working on this. The legal scaffolding (CCPA right to deletion, GDPR right to erasure) creates obligations that current generative model architectures cannot cleanly satisfy.
+**Countermeasure.** Training-data curation, differential privacy at training (DP-SGD), and output filtering at inference. None is a complete fix; the field is still working on this. The legal scaffolding (CCPA right to deletion, GDPR right to erasure) creates obligations that current generative model architectures cannot cleanly satisfy: you cannot easily "delete" one person from a 70-billion-parameter model without retraining.
 
 ---
 
@@ -70,15 +95,78 @@ None of these tools is a drop-in fix. Each has utility costs and threat-model as
 
 ---
 
+## Worked Case Analysis: The "De-Identified" Hospital Dataset
+
+**Scenario.** A health-system vendor proposes to share a "de-identified" patient dataset with an outside research lab to train a readmission-risk model. The vendor has removed names, SSNs, and medical-record numbers. The dataset still contains, per patient: diagnosis codes, admission and discharge dates, 5-digit zip code, age, and gender. The lab will publish the trained model as an API.
+
+**Step 1: Name the threats.** Run the scenario against all four threats rather than asking the single question "is it anonymized?"
+
+| Threat | Exposed here? | Why |
+| --- | --- | --- |
+| Re-identification | **Yes, high** | Zip + date-of-birth-equivalent (age) + gender is exactly Sweeney's 87%-unique combination; admission dates add even more uniqueness. Joinable to voter rolls or news obituaries. |
+| Membership inference | **Yes** | A published model API lets an attacker test whether a known person was in the training set, which itself discloses they had the diagnosis. |
+| Generative/verbatim leakage | **Low** | A tabular risk classifier is not generative; verbatim emission is unlikely (would rise if the lab used a generative model). |
+| Surveillance-by-aggregation | **Moderate** | If the lab joins this with other feeds, the per-patient profile deepens; purpose limitation is the relevant control. |
+
+**Step 2: Map stakeholders and what each stands to lose or gain.**
+
+| Stakeholder | Interest | Primary risk |
+| --- | --- | --- |
+| Patients | Care quality, confidentiality | Re-identification of a sensitive diagnosis; loss of insurability or employment |
+| Research lab | Model accuracy, publishability | Liability if re-identification occurs; weaker model if data is degraded |
+| Hospital/vendor | Reputation, HIPAA compliance, revenue | Regulatory penalty; breach-of-trust headline |
+| Regulator (OCR/FTC) | Enforce HIPAA/Section 5 | Public harm if enforcement fails |
+
+**Step 3: Decide, with the tradeoff made explicit.** The naive plan ("share the de-identified table") fails on Threats 1 and 2. A defensible alternative ranks countermeasures by where they cut risk:
+
+| Option | Privacy gain | Utility cost | Verdict |
+| --- | --- | --- | --- |
+| Ship table as-is | None on Threats 1-2 | None | Reject |
+| Generalize quasi-identifiers (zip → 3-digit, age → 10-yr band) + *k*-anonymity, $k=10$ | Cuts re-identification | Some signal loss | Necessary, not sufficient (model still leaks via Threat 2) |
+| Train with DP-SGD at a stated $\varepsilon$ budget; publish only the API | Bounds membership/attribute inference | Accuracy drop, larger budget needed | Add this |
+| Keep raw data on hospital servers; lab trains via federated learning + DP | Removes raw-data transfer (Threat 4) | Engineering cost, slower | Best if feasible |
+
+**Decision.** Do not transfer the raw table. Generalize quasi-identifiers to clear *k*-anonymity for the worst case, train under differential privacy with a documented $\varepsilon$, and prefer a federated arrangement so the raw records never leave the covered entity. Document a HIPAA business-associate agreement and a purpose-limitation clause forbidding re-joining with other datasets. The point of the table is that no single tool suffices; the four threats require a *layered* response.
+
+---
+
+## Counterarguments and Limitations
+
+- **"Differential privacy is too lossy for medicine."** Sometimes true. Small clinical cohorts can be wrecked by the noise a strict $\varepsilon$ requires. The honest response is not to abandon DP but to negotiate $\varepsilon$ openly, report it, and accept that some studies are too small to do privately at all.
+- **"k-anonymity is enough."** It is not, against an attacker with strong auxiliary data or against the trained model's own leakage; *l*-diversity and *t*-closeness patch some gaps but high-dimensional behavioral data defeats all of them.
+- **"Synthetic data sidesteps the whole problem."** Only if the generator does not overfit. A generator that memorizes can reproduce real records; synthetic data needs its own privacy audit.
+- **"We are GDPR-compliant, so we are fine."** Compliance is a floor, not a ceiling. A GDPR-compliant deployment that produces surveillance-grade profiles can still be ethically wrong, which the next subsection makes precise.
+
+---
+
 ## Legal Floor: GDPR, CCPA, FTC
 
-**GDPR** (EU, 2018) defines data minimization, purpose limitation, lawful basis, and rights to access / rectification / erasure. It treats inferred data the same as collected data — which has direct AI implications.
+**GDPR** (EU, 2018) defines data minimization, purpose limitation, lawful basis, and rights to access, rectification, and erasure. It treats inferred data the same as collected data, which has direct AI implications.
 
 **CCPA / CPRA** (California, 2020 / 2023) gives consumers rights to know, delete, and opt out of sale of personal information. Increasingly relevant for AI training data.
 
-**FTC** has used Section 5 (unfair and deceptive practices) to enforce against companies whose AI deployments produced privacy harms (Rite Aid facial recognition, Everalbum face data).
+**FTC** has used Section 5 (unfair and deceptive practices) to enforce against companies whose AI deployments produced privacy harms (Rite Aid facial recognition, Everalbum face data), including the remedy of *algorithmic disgorgement*: ordering the deletion of models trained on improperly collected data.
 
-These do not exhaust the ethics. A GDPR-compliant deployment that produces surveillance-grade profiles can still be ethically wrong. Compliance is necessary; not sufficient.
+These do not exhaust the ethics. A legally compliant deployment can still be ethically wrong. Compliance is necessary; not sufficient.
+
+---
+
+## Key Takeaways
+
+- **Privacy is plural.** AI creates four structurally different threats (re-identification, model inference, generative leakage, surveillance-by-aggregation); each needs its own countermeasure family.
+- **Identifiers are not the boundary of identity.** Behavior re-identifies people (AOL, Netflix, Sweeney); quasi-identifiers plus auxiliary data defeat naive de-identification.
+- **The model leaks, not just the data.** Membership, attribute, and inversion attacks operate even when training data is never released.
+- **$\varepsilon$ is a budget.** Differential privacy makes the privacy/utility tradeoff explicit and quantifiable; smaller $\varepsilon$ means stronger privacy and a noisier, less accurate model.
+- **Layer the defenses.** Real deployments combine generalization, DP, federation, and contractual purpose limits; no single tool is a fix.
+- **Compliance is the floor, not the goal.** GDPR/CCPA/HIPAA are necessary but not sufficient for ethical privacy.
+
+---
+
+## What's Next?
+
+The next section moves from *protecting* individuals in data to *fairness* in the decisions a model makes about them: how bias enters a pipeline, how to measure it, and why several reasonable fairness definitions provably cannot all hold at once. Privacy and fairness frequently trade off (the noise that protects privacy can degrade accuracy unevenly across groups), so the tools introduced here reappear there as constraints.
+
+---
 
 <dynamic-scenario topic="AI Privacy" context="A health-system vendor proposes to share 'de-identified' patient data with a research lab for AI training. The dataset includes diagnoses, dates, and zip codes. Walk through which of the four privacy threats this proposal exposes patients to, what countermeasures would mitigate each, and what GDPR or HIPAA obligations apply."></dynamic-scenario>
 

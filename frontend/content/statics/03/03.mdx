@@ -4,14 +4,24 @@
 
 ---
 
+## Opening: One Cut Instead of Twelve Joints
+
+When inspectors examined the I-35W Mississippi River bridge after its 2007 collapse in Minneapolis, the investigation centered on a handful of gusset plates at specific panel points, not on every member at once. Engineers rarely need the force in all members of a large truss; they need the force in *the critical few*: the bottom chord at midspan, the diagonal next to a support, the member a retrofit plate must reinforce. Solving such a truss joint by joint can mean grinding through a dozen joints just to reach one interior member.
+
+The **method of sections** is the tool that goes straight to the answer. By slicing the truss with one imaginary plane and treating an entire chunk as a rigid body, you can extract a target member force in a single equilibrium equation, sometimes with arithmetic you can do by hand in under a minute. It is the analytical equivalent of cutting a cable to read the tension instead of tracing the whole rigging.
+
+> **The Big Picture:** The method of joints answers "what is every force?" The method of sections answers "what is *this* force?" Real design questions are almost always the second kind.
+
+---
+
 ## Learning Objectives
 
 By the end of this section, you should be able to:
 
-- apply the method of sections to a planar truss,
-- choose efficient cutting planes,
-- use force and moment equilibrium on the cut section,
-- and decide when the method of sections is preferable to the method of joints.
+1. **Apply** the method of sections to a planar truss using $\sum F_x = 0$, $\sum F_y = 0$, and $\sum M = 0$.
+2. **Choose** efficient cutting planes that expose no more than three unknown member forces.
+3. **Select** moment centers that eliminate unwanted unknowns so a target force falls out directly.
+4. **Decide** when the method of sections is preferable to the method of joints.
 
 ---
 
@@ -23,13 +33,15 @@ The method of sections works by:
 - isolating one side of the cut,
 - and applying rigid-body equilibrium to that side.
 
-Because the isolated section behaves like a rigid body, you can use:
+Because the isolated section behaves like a rigid body, you can use all three planar equilibrium equations:
 
 $$
 \sum F_x = 0,\qquad \sum F_y = 0,\qquad \sum M = 0
 $$
 
-This gives a major advantage: with one well-planned cut, you can often solve for up to three unknown member forces directly.
+This is the key contrast with the method of joints. A single joint is a *particle*, so it gives only two useful equations ($\sum F_x$ and $\sum F_y$), and moment equilibrium is automatic. A *section* is an extended rigid body, so the moment equation carries independent information. Three equations means you can solve for up to three unknown member forces from one cut.
+
+> **Key Insight:** Each cut member force acts along that member's axis. When you remove a member by cutting it, you replace it with its internal axial force. Draw it pulling *away* from the section (assumed tension); a negative result then simply means compression.
 
 ---
 
@@ -66,31 +78,123 @@ Then choose the side of the cut with:
 
 This planning step is the real art of the method of sections.
 
+### Why Three Is the Magic Number
+
+A planar section has exactly three independent equilibrium equations. If your cut exposes four or more unknown member forces, you cannot solve them from that section alone; you would need a second cut or some joints. Counting unknowns *before* cutting is the discipline that keeps the method fast.
+
 ---
 
 ## Why Moment Choice Matters
 
 The most powerful trick in this method is choosing the moment point wisely.
 
-If you take moments about a point where two of the cut-member lines of action intersect, those two unknown forces drop out of the moment equation. That can let you solve the third unknown directly.
+If you take moments about a point where two of the cut-member lines of action intersect, those two unknown forces produce zero moment about that point and drop out of the moment equation. That leaves one equation in one unknown, so you solve the third member force directly, with no simultaneous algebra.
 
-This is often what makes the method of sections feel so efficient: one smart cut and one smart moment point can produce the target answer almost immediately.
+This is what makes the method of sections feel so efficient: one smart cut and one smart moment point can produce the target answer almost immediately.
 
 ---
 
-## Example Structure
+## Worked Example 3.1: Roof Truss With Asymmetric Load
 
-Suppose you want the force in a middle member of a bridge truss.
+**Problem.** A Pratt truss spans 12 m in three 4 m panels and is 3 m tall. The bottom-chord joints are $A(0,0)$, $B(4,0)$, $C(8,0)$, $D(12,0)$; the top-chord joints are $E(4,3)$ and $F(8,3)$. A pin support is at $A$ and a roller at $D$. Vertical downward loads act at the bottom joints: 12 kN at $B$ and 6 kN at $C$. Find the forces in the top chord $EF$, the bottom chord $BC$, and the diagonal $EC$.
 
-A good workflow is:
+**Step 1: Support reactions (whole truss).**
 
-1. Solve support reactions for the whole truss.
-2. Cut through the target member and at most two other unknown members.
-3. Isolate the cleaner side.
-4. Choose a moment point that eliminates two of the cut-member forces.
-5. Solve the remaining member force directly.
+Take moments about $A$ (CCW positive). Only $D_y$ and the two loads contribute:
 
-After that, use sum Fx = 0 or sum Fy = 0 if you want the other cut-member forces too.
+$$
+\sum M_A = 0:\quad D_y(12) - (12)(4) - (6)(8) = 0
+$$
+
+$$
+D_y = \frac{48 + 48}{12} = 8\ \text{kN}
+$$
+
+Vertical force balance gives the pin reaction:
+
+$$
+A_y = (12 + 6) - 8 = 10\ \text{kN}\ (\uparrow), \qquad A_x = 0
+$$
+
+**Step 2: Make the cut.** Slice vertically through the middle panel, cutting three members: top chord $EF$, diagonal $EC$ (from $E(4,3)$ to $C(8,0)$), and bottom chord $BC$. Keep the **left** side, which contains only joints $A$, $B$, $E$. Its external forces are $A_y = 10$ kN up at $A$, the 12 kN load down at $B$, and the three cut-member forces (drawn as tension, pointing away from the section). The diagonal direction $E \to C$ is $(4,-3)/5$, so its unit components are $(0.8,\,-0.6)$.
+
+**Step 3: Bottom chord $BC$ by moment about $E(4,3)$.** Both $EF$ and $EC$ pass through $E$, so they vanish. Taking CCW moments (the 12 kN load at $B$ lies directly below $E$, so it has zero moment about $E$):
+
+$$
+\sum M_E = 0:\quad F_{BC}(3) - (10)(4) = 0
+$$
+
+$$
+F_{BC} = \frac{40}{3} = \boxed{13.33\ \text{kN (tension)}}
+$$
+
+**Step 4: Top chord $EF$ by moment about $C(8,0)$.** Both $BC$ and $EC$ pass through $C$, so they vanish. The horizontal force $F_{EF}$ acts at height 3 m (moment arm 3 m):
+
+$$
+\sum M_C = 0:\quad -F_{EF}(3) - (10)(8) + (12)(4) = 0
+$$
+
+$$
+F_{EF} = \frac{-80 + 48}{3} = -10.67\ \text{kN} = \boxed{10.67\ \text{kN (compression)}}
+$$
+
+**Step 5: Diagonal $EC$ by vertical equilibrium.** Both chords are horizontal, so only the diagonal carries vertical force:
+
+$$
+\sum F_y = 0:\quad 10 - 12 + F_{EC}(-0.6) = 0
+$$
+
+$$
+F_{EC} = \frac{-2}{0.6} = -3.33\ \text{kN} = \boxed{3.33\ \text{kN (compression)}}
+$$
+
+Each target force came from a single equation. Notice how the moment-center choices in Steps 3 and 4 let us skip all simultaneous algebra.
+
+---
+
+## Worked Example 3.2: Bridge Truss, Diagonal Near a Support
+
+**Problem.** A symmetric Pratt bridge truss has four 4 m panels (span 16 m) and is 3 m tall. Deck loads of 20 kN act downward at each interior bottom joint $L_1(4,0)$, $L_2(8,0)$, $L_3(12,0)$. A pin is at $L_0(0,0)$ and a roller at $L_4(16,0)$; top joints are $U_1(4,3)$, $U_2(8,3)$, $U_3(12,3)$. A retrofit engineer needs the force in diagonal $U_1L_2$, plus the adjacent chords $L_1L_2$ and $U_1U_2$.
+
+**Step 1: Reactions.** By symmetry of the three equal 20 kN loads,
+
+$$
+A_y = D_y = \frac{3(20)}{2} = 30\ \text{kN}
+$$
+
+**Step 2: Cut panel 2** (between $x = 4$ and $x = 8$), slicing the top chord $U_1U_2$, the diagonal $U_1L_2$ (direction $U_1 \to L_2 = (4,-3)/5 = (0.8,-0.6)$), and the bottom chord $L_1L_2$. Keep the **left** side: joints $L_0$, $L_1$, $U_1$, with external forces $A_y = 30$ kN up at $L_0$ and the 20 kN load down at $L_1$.
+
+**Step 3: Diagonal $U_1L_2$ by vertical equilibrium.** The chords are horizontal, so the diagonal alone resists net vertical load:
+
+$$
+\sum F_y = 0:\quad 30 - 20 + F_d(-0.6) = 0
+$$
+
+$$
+F_d = \frac{10}{0.6} = \boxed{16.67\ \text{kN (tension)}}
+$$
+
+**Step 4: Bottom chord $L_1L_2$ by moment about $U_1(4,3)$.** Top chord and diagonal pass through $U_1$. The 20 kN load at $L_1(4,0)$ is directly below $U_1$, so its moment is zero:
+
+$$
+\sum M_{U_1} = 0:\quad F_{L_1L_2}(3) - (30)(4) = 0
+$$
+
+$$
+F_{L_1L_2} = \frac{120}{3} = \boxed{40.0\ \text{kN (tension)}}
+$$
+
+**Step 5: Top chord $U_1U_2$ by moment about $L_2(8,0)$.** Bottom chord and diagonal pass through $L_2$. The horizontal force $F_{U_1U_2}$ acts at height 3 m:
+
+$$
+\sum M_{L_2} = 0:\quad -F_{U_1U_2}(3) - (30)(8) + (20)(4) = 0
+$$
+
+$$
+F_{U_1U_2} = \frac{-240 + 80}{3} = -53.33\ \text{kN} = \boxed{53.33\ \text{kN (compression)}}
+$$
+
+**Sanity check.** Bottom chords in tension, top chords in compression, and the support-adjacent diagonal in tension are exactly what we expect for a gravity-loaded Pratt truss; the diagonals are designed to be the tension members. The signs confirm the model.
 
 ---
 
@@ -121,13 +225,26 @@ Use this decision guide:
   - best for all member forces
   - progresses joint by joint
   - uses two equations at each step
-
 - **Method of sections**
   - best for selected member forces
   - jumps directly to the region of interest
   - uses full rigid-body equilibrium on a cut piece
 
 A strong analyst knows both and switches based on efficiency.
+
+---
+
+## Engineering Applications
+
+| Application | Why the Method of Sections Helps |
+| --- | --- |
+| Bridge retrofit | Size a single critical diagonal or chord without re-analyzing the span |
+| Roof truss design | Check the heavily loaded bottom chord at midspan directly |
+| Transmission towers | Extract leg or bracing forces at one elevation of interest |
+| Crane booms and lattice masts | Verify the governing member where a connection is being redesigned |
+| Forensic / failure analysis | Recompute the force in a member at a suspected failure plane |
+
+> **Engineering in Action:** When a gusset plate or weld is being re-evaluated, the engineer cares about the forces meeting *at that plate*, not the whole structure. A cut placed right at that panel point delivers exactly those forces.
 
 ---
 
@@ -153,6 +270,33 @@ Common judgment errors include:
 - and forgetting that the force you solve is only meaningful if the truss model itself is appropriate.
 
 In design work, that last point matters. A member force may be computed correctly but still underestimate reality if connection eccentricity, out-of-plane bracing weakness, or secondary framing effects have been ignored. The method of sections is excellent for targeted force extraction, but engineers still need to ask whether the simplified truss idealization is trustworthy for the design decision at hand.
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Section equilibrium (planar) | $\sum F_x = 0,\ \ \sum F_y = 0,\ \ \sum M = 0$ |
+| Unknowns solvable per cut | up to 3 member forces |
+| Eliminate two unknowns | take moments about the point where their lines of action intersect |
+| Member force convention | assume tension (force away from section); negative result means compression |
+
+### Key Takeaways
+
+- A section is a rigid body, so it gives three equations, not two; that is why one cut can yield three member forces.
+- Always solve the support reactions before cutting.
+- Plan the cut to expose at most three unknown members and keep the simpler side.
+- Choosing the right moment center makes target forces fall out one equation at a time.
+- The method answers targeted design questions, but the truss idealization itself must still be justified.
+
+---
+
+## What's Next?
+
+In the next section we move from determinate trusses to **frames and machines**, where members carry more than axial force and multi-force members require us to track shear and bending at connections, not just tension and compression along an axis.
 
 ---
 

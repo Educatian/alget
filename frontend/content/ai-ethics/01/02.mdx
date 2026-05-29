@@ -1,8 +1,35 @@
-## Why You Need More Than One Ethical Framework
+# Four Ethical Frameworks for AI Decisions
 
-When a deployment question is hard ("should we ship the model?", "should we use this dataset?", "should we let the agent take that action?"), an answer rooted in only one ethical framework is fragile. The frameworks disagree in interesting ways, and using only one means quietly inheriting that framework's blind spots. The defensible move is to triangulate: state what each major framework says, see where they converge, and treat the disagreement points as the live decision.
+> **"There is no view from nowhere. Every evaluation of a technology smuggles in a theory of what matters."**
 
-This module covers four frameworks that dominate the AI ethics literature — **consequentialism, deontology, virtue ethics, and care ethics** — and a workflow for applying them.
+---
+
+## Opening: One Tool, Four Verdicts
+
+In 2018, Amazon quietly scrapped an experimental resume-screening tool after engineers discovered it had taught itself to penalize resumes containing the word "women's" (as in "women's chess club captain") and to downgrade graduates of two all-women colleges (reported by Reuters, October 2018). The model had been trained on a decade of the company's own hiring decisions, which skewed male, so it learned to reproduce that skew.
+
+Now ask the deceptively simple question: *was building that tool wrong?* Notice that your answer depends entirely on what you measure it against.
+
+- If you judge by **outcomes**, the tool was wrong because it produced discriminatory results, full stop.
+- If you judge by **duties and rights**, it was wrong even before any biased hire occurred, because it treated applicants as data points to be sorted rather than persons owed equal consideration.
+- If you judge by **character**, the deeper failure was an engineering culture that treated "automate hiring" as a purely technical optimization problem.
+- If you judge by **relationships and vulnerability**, the wrong fell hardest on a group with little power to contest an opaque automated rejection.
+
+Each of these is a recognizable ethical framework, and each picks out something the others miss. This is why a deployment answer rooted in only one framework is fragile: using a single lens means quietly inheriting that lens's blind spots. The defensible move is to **triangulate**: state what each major framework says, see where they converge, and treat the points of disagreement as the live decision.
+
+> **The Big Picture:** Frameworks are not interchangeable opinions to pick from. They are instruments, each sensitive to a different kind of harm. A complete ethical analysis runs all of them and reports where they conflict, rather than choosing the one that endorses the decision you already wanted.
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Distinguish** the four major ethical frameworks (consequentialism, deontology, virtue ethics, care ethics) by the question each one asks.
+2. **Identify** the characteristic blind spot of each framework.
+3. **Apply** all four frameworks to a concrete AI deployment using a structured stakeholder and tradeoff analysis.
+4. **Locate** the point of disagreement among frameworks and explain why that disagreement, not any single verdict, is the real decision.
+5. **Critique** the triangulation method itself, recognizing its limits.
 
 ---
 
@@ -10,9 +37,9 @@ This module covers four frameworks that dominate the AI ethics literature — **
 
 Consequentialism evaluates an action by its consequences. The most common variant, **utilitarianism** (Bentham, Mill), maximizes aggregate well-being. In AI, consequentialist reasoning shows up whenever someone says "the model is good if it does more good than harm in the population it serves."
 
-**Strengths.** Tractable. You can quantify and aggregate. It scales naturally to the millions of decision subjects an AI system affects.
+**Strengths.** Tractable. You can quantify and aggregate. It scales naturally to the millions of decision subjects an AI system affects, and it forces explicit accounting of real-world effects rather than intentions.
 
-**Weaknesses.** Aggregation hides distribution. A model that helps 95% of users a little and harms 5% catastrophically can score well on aggregate metrics. Consequentialism alone tends to under-weigh concentrated harm to small groups.
+**Weaknesses.** Aggregation hides distribution. A model that helps 95% of users a little and harms 5% catastrophically can score well on aggregate metrics. Consequentialism alone tends to under-weigh concentrated harm to small groups, and it is only as honest as the metric chosen to stand in for "well-being."
 
 **Diagnostic question:** *Whose well-being are we summing, and whose is being averaged out?*
 
@@ -24,7 +51,7 @@ Deontology (Kant and successors) evaluates an action by whether it respects rule
 
 **Strengths.** Protects individuals from being sacrificed to aggregate goals. Resists the consequentialist trap of "5% catastrophic harm is acceptable if 95% benefit." Aligns with rights-based legal frameworks.
 
-**Weaknesses.** Can be rigid. Rules that work in normal cases sometimes produce absurd results in edge cases. Tells you what you cannot do, often without telling you what to do.
+**Weaknesses.** Can be rigid. Rules that work in normal cases sometimes produce absurd results in edge cases. Tells you what you cannot do, often without telling you what to do, and offers little guidance when two duties (say, privacy and safety) genuinely collide.
 
 **Diagnostic question:** *Whose rights or autonomy is the system overriding, and is the override justified by anything other than aggregate benefit?*
 
@@ -36,7 +63,7 @@ Virtue ethics (Aristotle, recently extended to technology by Shannon Vallor in *
 
 **Strengths.** Captures long-term effects on the people who use the technology. Names the worry about deskilling, manipulation, and erosion of judgment that the other frameworks struggle to articulate.
 
-**Weaknesses.** Specifying which virtues matter is itself contested. Different cultural traditions emphasize different virtues. Virtue ethics is harder to operationalize in design reviews.
+**Weaknesses.** Specifying which virtues matter is itself contested. Different cultural traditions emphasize different virtues. Virtue ethics is harder to operationalize in design reviews because it resists checklists.
 
 **Diagnostic question:** *What habits and dispositions does this system cultivate in its users over months and years?*
 
@@ -48,11 +75,22 @@ Care ethics (Gilligan, Noddings, Held, Tronto) evaluates an action by how it att
 
 **Strengths.** Foregrounds power asymmetry and dependency that the other three frameworks treat as background. Aligns with educational ethics, medical ethics, and the special protections for minors that recur in AI deployments.
 
-**Weaknesses.** Less prescriptive than deontology. Risks paternalism if "caring for" slides into "deciding for."
+**Weaknesses.** Less prescriptive than deontology. Risks paternalism if "caring for" slides into "deciding for." Can be hard to scale to anonymous, population-level systems where no concrete relationship exists.
 
 **Diagnostic question:** *Who is most vulnerable in this deployment, and how does the system attend to their needs and to the relationships they depend on?*
 
 <concept-diagram type="ethics-framework-quad"></concept-diagram>
+
+---
+
+## At a Glance: Four Lenses
+
+| Framework | Core Question | What It Catches | Characteristic Blind Spot |
+| --- | --- | --- | --- |
+| Consequentialism | Do the outcomes maximize well-being? | Net real-world harm and benefit | Concentrated harm hidden by averages |
+| Deontology | Are rights and duties respected? | Rights violations, lack of consent | Rigidity; duty conflicts |
+| Virtue Ethics | What character does this cultivate? | Deskilling, dependence, manipulation | Contested, hard to operationalize |
+| Care Ethics | Are the vulnerable attended to? | Power asymmetry, dependency | Paternalism; hard to scale |
 
 ---
 
@@ -67,29 +105,79 @@ For a real deployment decision, run all four lenses and watch where they converg
 
 **Convergence is permission to proceed.** When all four frameworks point the same way, the decision is defensible.
 
-**Disagreement is the live decision.** When frameworks diverge — common in real cases — that disagreement *is* the ethical choice the team must make. It cannot be hidden behind any single framework's verdict.
+**Disagreement is the live decision.** When frameworks diverge, common in real cases, that disagreement *is* the ethical choice the team must make. It cannot be hidden behind any single framework's verdict.
 
 ---
 
 ## A Worked Example: Recommender System for Adolescent Users
 
-Consider a recommender for a video platform with many users aged 13-17.
+Consider a recommender for a video platform with many users aged 13 to 17. We will apply each lens in turn, then summarize in a decision table.
 
-**Consequentialist pass.** Aggregate engagement metrics show the system increases time on platform. Aggregate well-being is harder; some users report better content discovery, others report sleep loss and anxiety.
+**Consequentialist pass.** Aggregate engagement metrics show the system increases time on platform. Aggregate well-being is harder; some users report better content discovery, others report sleep loss and anxiety. The average is mildly positive, but the variance is concentrated: a minority experience serious harm.
 
-**Deontological pass.** Users did not give informed consent to behavioral profiling at the depth the system uses. COPPA does not cover 13+, but the autonomy concerns it codifies arguably do.
+**Deontological pass.** Users did not give informed consent to behavioral profiling at the depth the system uses. COPPA (the US Children's Online Privacy Protection Act) does not cover ages 13 and up, but the autonomy concerns it codifies arguably do. Minors are being treated as a means to an engagement target.
 
-**Virtue pass.** The system cultivates passive consumption habits and shorter attention windows. Whether this counts as a virtue erosion depends on what you think the platform is for.
+**Virtue pass.** The system cultivates passive consumption habits and shorter attention windows. Whether this counts as virtue erosion depends on what you think the platform is for, but at minimum it does not cultivate the discernment the platform's marketing claims.
 
-**Care pass.** Adolescents are developmentally vulnerable. The system's persuasion mechanics, designed for general adult engagement, fail to attend to that vulnerability.
+**Care pass.** Adolescents are developmentally vulnerable. The system's persuasion mechanics, designed and tuned for general adult engagement, fail to attend to that specific vulnerability.
+
+### Stakeholder and Tradeoff Table
+
+| Stakeholder | Primary interest | Helped by shipping as-is? | Most relevant lens |
+| --- | --- | --- | --- |
+| Adolescent user | Well-being, autonomy, healthy habits | Mixed; harmed at the tail | Care, virtue |
+| Parent / guardian | Child safety, informed oversight | No; consent is not meaningful | Deontology, care |
+| Platform (business) | Engagement, ad revenue | Yes | Consequentialism |
+| Advertisers | Reach, attention | Yes | Consequentialism |
+| General adult users | Content discovery | Mostly yes | Consequentialism |
+
+### Where the Frameworks Land
+
+| Framework | Verdict on shipping as-is |
+| --- | --- |
+| Consequentialism | Lean yes (aggregate benefit positive) |
+| Deontology | No (consent not meaningful for minors) |
+| Virtue ethics | Concern (cultivates passive habits) |
+| Care ethics | No (ignores adolescent vulnerability) |
 
 **Where the frameworks converge:** the system needs design changes that limit persuasion mechanics for adolescent accounts.
 
-**Where they disagree:** the consequentialist case for shipping (aggregate benefit positive) collides with the deontological and care-ethics cases for not shipping until consent and vulnerability are addressed. That disagreement is the live decision.
+**Where they disagree:** the consequentialist case for shipping (aggregate benefit positive) collides with the deontological and care-ethics cases for not shipping until consent and vulnerability are addressed. That three-against-one split, with the lone "yes" coming from the framework most prone to hiding concentrated harm, is the live decision.
 
-The four-lens workflow does not produce a single verdict. It produces a structured map of where the team's judgment is being applied, so the judgment can be defended later.
+The workflow does not produce a single verdict. It produces a structured map of where the team's judgment is being applied, so that judgment can be defended later.
 
 <dynamic-scenario topic="Ethics Frameworks Applied" context="A startup is offered access to a hospital system's electronic health records to train an AI triage model. The data includes some unconsented subjects (deceased patients, edge cases). The team must decide whether to proceed. Apply all four frameworks (consequentialist, deontological, virtue, care) and identify where they converge and where they disagree."></dynamic-scenario>
+
+---
+
+## Counterarguments and Limits of Triangulation
+
+Triangulation is powerful, but it is not a verdict machine, and treating it as one introduces its own failure modes.
+
+- **It does not aggregate the lenses for you.** A three-to-one split among frameworks is not a vote. A single framework can outweigh three others if the harm it identifies is severe enough (a clear rights violation can defeat a large but diffuse aggregate benefit). The frameworks structure the argument; they do not settle it.
+- **Frameworks can be gamed.** A team that has already decided to ship can run a shallow pass of each lens and declare "convergence." Honest triangulation requires adversarial effort: actively look for the strongest objection each framework can raise.
+- **The four are not exhaustive.** Justice-based frameworks (Rawls), capability approaches (Sen, Nussbaum), and many non-Western traditions (for example, *Ubuntu* relational ethics) add lenses this set omits. Four is a working minimum, not a complete toolkit.
+- **Disagreement can stall action.** Sometimes a decision must be made under genuine, unresolved framework conflict. The method's honest output in that case is "this is a contested call by a named decision-maker," not silence.
+
+The value of the method is not that it removes hard judgment. It is that it makes the judgment **visible, attributable, and reviewable** instead of hiding it inside one comfortable framework.
+
+---
+
+## Summary
+
+### Key Takeaways
+
+- **One tool can earn four different verdicts.** Each framework is sensitive to a different kind of harm, so a single-lens analysis inherits that lens's blind spots.
+- **Consequentialism** asks about outcomes and misses concentrated harm; **deontology** asks about rights and can be rigid; **virtue ethics** asks about cultivated character and is hard to operationalize; **care ethics** asks about the vulnerable and risks paternalism.
+- **Convergence is permission; disagreement is the decision.** Where the four lenses split is exactly where human judgment must be applied and documented.
+- **Triangulation structures the argument but does not settle it.** Counting frameworks is not voting; a single severe objection can override several mild endorsements.
+- The point of the method is to make ethical judgment **visible and defensible**, not to manufacture a clean answer.
+
+---
+
+## What's Next?
+
+In the next section we move from these foundational frameworks to the **principles** that translate them into operational language for AI teams (fairness, accountability, transparency, and privacy), and we examine how those principles are sometimes used to launder hard tradeoffs into vague commitments.
 
 ---
 
@@ -98,5 +186,5 @@ The four-lens workflow does not produce a single verdict. It produces a structur
 <interactive-quiz
   question="A model helps 95% of its users a little but harms 5% catastrophically. The aggregate utility score is positive. Which framework most strongly resists the conclusion that the model should be deployed?"
   options='[{"text":"Consequentialism, because aggregate utility is the only criterion.","isCorrect":false},{"text":"Deontology and care ethics, both of which resist sacrificing individuals or vulnerable subgroups for aggregate gains. Deontology frames it as a rights violation; care ethics frames it as a failure of attention to the vulnerable.","isCorrect":true},{"text":"None; all four frameworks agree on aggregation.","isCorrect":false}]'
-  explanation="Correct. Consequentialism alone permits the trade. Deontology and care ethics each push back, for different reasons — and that pushback is precisely why triangulation is the defensible workflow."
+  explanation="Correct. Consequentialism alone permits the trade. Deontology and care ethics each push back, for different reasons, and that pushback is precisely why triangulation is the defensible workflow."
 />

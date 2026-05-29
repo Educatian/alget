@@ -16,20 +16,25 @@
 2. **Relate** angular motion to the linear motion of points on a body
 3. **Apply** velocity and acceleration relations for rigid-body kinematics
 4. **Interpret** relative motion between two points on the same body
+5. **Locate** the instantaneous center of zero velocity and use it to find speeds quickly
 
 ---
 
-## Why Rigid-Body Kinematics Feels Different
+## Opening: One Body, Many Velocities
 
-Particle kinematics asks how one point moves. Rigid-body kinematics asks how an entire shape moves while keeping the distance between all of its points fixed.
+Stand next to a moving train and watch a single wheel. The hub glides forward smoothly, yet the point touching the rail is, for an instant, completely stationary, while the point at the very top races forward at twice the train's speed. All three points belong to the same rigid steel disk, no point sliding relative to its neighbor, and yet their speeds range from zero to twice the hub speed. This single observation is the heart of rigid-body kinematics, and getting it wrong has consequences: railway engineers size axle bearings, gear teeth, and brakes around exactly these velocity differences.
 
-That difference matters in engineering:
+Particle kinematics asks how one point moves. Rigid-body kinematics asks how an entire shape moves while keeping the distance between all of its points fixed. That constraint, "distances never change," is what links the motion of every point to a single shared angular velocity.
+
+That difference shows up everywhere in machines:
 
 - the hub and rim of a wheel do not have the same speed
 - the tip of a robot arm moves faster than a point near the motor
 - a door handle has a much larger linear speed than a point near the hinge
 
-So even if a rigid body is "one object," different points on it can have different velocities and accelerations.
+So even if a rigid body is "one object," different points on it can have different velocities and accelerations, and the engineer's job is to relate them precisely.
+
+> **The Big Picture:** Once you can connect the angular motion of a body to the linear motion of any chosen point, you can analyze gears, linkages, rolling wheels, robot arms, and engine mechanisms with the same small set of equations.
 
 ## Three Motion Types
 
@@ -41,15 +46,15 @@ So even if a rigid body is "one object," different points on it can have differe
 
 ### Translation
 
-If a rigid body translates without rotating, all points share the same velocity and acceleration vectors.
+If a rigid body translates without rotating, all points share the same velocity and acceleration vectors. The body's orientation stays constant, so $\omega = 0$ and $\alpha = 0$. A car body moving straight on a level road (ignoring the wheels) is a good example.
 
 ### Rotation about a fixed axis
 
-Every point traces a circle centered on the axis. Points farther from the axis move faster linearly for the same angular speed.
+Every point traces a circle centered on the axis. Points farther from the axis move faster linearly for the same angular speed, because linear speed is the radius multiplied by the shared angular speed. A turbine rotor, a clock hand, and a CD all rotate about a fixed axis.
 
 ### General plane motion
 
-This is the most common real case: a wheel rolling, a connecting rod swinging, or a tool arm sweeping through space while the base moves.
+This is the most common real case: a wheel rolling, a connecting rod swinging, or a tool arm sweeping through space while the base moves. We handle it by splitting the motion into a translation (carried by a reference point) plus a rotation about that point.
 
 <kinematics-diagram />
 
@@ -69,7 +74,11 @@ $$
 \theta = \theta_0 + \omega_0 t + \frac{1}{2}\alpha t^2
 $$
 
-These look just like particle kinematics with $x, v, a$, but now the rotational variables are $\theta, \omega, \alpha$.
+$$
+\omega^2 = \omega_0^2 + 2\alpha(\theta - \theta_0)
+$$
+
+These look just like particle kinematics with $x, v, a$, but now the rotational variables are $\theta, \omega, \alpha$. The mathematical structure is identical, so every constant-acceleration trick you learned for straight-line motion carries over directly to rotation.
 
 ## Relating Angular and Linear Motion
 
@@ -91,9 +100,15 @@ Interpretation:
 
 - $v$ is tangent to the circular path
 - $a_t$ changes the speed
-- $a_n$ points inward and changes the direction of velocity
+- $a_n$ points inward (toward the axis) and changes the direction of velocity
 
-Students often remember the formulas but forget the geometry. Tangential and normal directions are different and should not be combined carelessly.
+The total acceleration of the point combines the two perpendicular pieces:
+
+$$
+a = \sqrt{a_t^2 + a_n^2}
+$$
+
+Students often remember the formulas but forget the geometry. Tangential and normal directions are perpendicular and should not be added as plain numbers; they add as vector components. A point on a fast-spinning body can have almost no tangential acceleration yet an enormous normal acceleration, because $a_n$ grows with the square of the angular speed.
 
 <dynamic-scenario
   topic="Inspection Robot on a Rotating Arm"
@@ -103,45 +118,153 @@ Students often remember the formulas but forget the geometry. Tangential and nor
 
 ## Relative Motion on a Rigid Body
 
+### The velocity equation and why it holds
+
 If A and B are points on the same rigid body,
 
 $$
-\vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A}
+\boxed{\vec{v}_B = \vec{v}_A + \vec{\omega} \times \vec{r}_{B/A}}
 $$
+
+Here is the short derivation. Because the body is rigid, $|\vec{r}_{B/A}|$ never changes; only its direction can rotate. Since $\vec{r}_B = \vec{r}_A + \vec{r}_{B/A}$, differentiating gives $\vec{v}_B = \vec{v}_A + \dot{\vec{r}}_{B/A}$. A vector of fixed length that only rotates has derivative $\dot{\vec{r}}_{B/A} = \vec{\omega} \times \vec{r}_{B/A}$, which yields the boxed equation.
 
 This equation says:
 
-- start with the known velocity of point A
-- add the rotational contribution caused by the body's angular velocity
-- the position vector from A to B determines the direction and magnitude of that extra term
+- start with the known velocity of point A (the translation part)
+- add the rotational contribution $\vec{\omega} \times \vec{r}_{B/A}$ caused by the body spinning about A
+- the position vector from A to B sets the direction and size of that extra term
 
-For acceleration, a similar idea appears, but with both tangential and normal rotational effects.
+The rotational term is always perpendicular to $\vec{r}_{B/A}$ and has magnitude $\omega \, r_{B/A}$. For acceleration, a similar relation holds, but the rotational part splits into a tangential piece $\vec{\alpha} \times \vec{r}_{B/A}$ and a normal (centripetal) piece $-\omega^2 \vec{r}_{B/A}$.
 
-## Worked Example
+### The instantaneous center of zero velocity
+
+There is a powerful shortcut for general plane motion. At any instant, a rigid body in plane motion has one point (possibly off the body) whose velocity is momentarily zero. This is the **instantaneous center of zero velocity (IC)**. Once you locate it, the body is, for that instant, simply rotating about the IC, so the speed of any point P is
+
+$$
+\boxed{v_P = \omega \, d_{P/\text{IC}}}
+$$
+
+where $d_{P/\text{IC}}$ is the straight-line distance from P to the IC. To find the IC, draw a line through each point perpendicular to that point's velocity; the lines intersect at the IC. For a wheel rolling without slipping, the IC is the contact point with the ground, which is exactly why that point is momentarily at rest.
+
+## Worked Examples
 
 ### Example 3.1: Point on a Rotating Disk
 
 **Problem:** A disk rotates at $\omega = 12$ rad/s and has angular acceleration $\alpha = 4$ rad/s$^2$. Find the speed, tangential acceleration, and normal acceleration of a point 0.25 m from the center.
 
-### Step A: Linear speed
+**Step A: Linear speed**
 
 $$
-v = r\omega = 0.25(12) = 3.0 \text{ m/s}
+v = r\omega = 0.25(12) = \boxed{3.0 \text{ m/s}}
 $$
 
-### Step B: Tangential acceleration
+**Step B: Tangential acceleration**
 
 $$
-a_t = r\alpha = 0.25(4) = 1.0 \text{ m/s}^2
+a_t = r\alpha = 0.25(4) = \boxed{1.0 \text{ m/s}^2}
 $$
 
-### Step C: Normal acceleration
+**Step C: Normal acceleration**
 
 $$
-a_n = r\omega^2 = 0.25(12^2) = 36.0 \text{ m/s}^2
+a_n = r\omega^2 = 0.25(12^2) = \boxed{36.0 \text{ m/s}^2}
 $$
 
-The normal acceleration is much larger here because it scales with $\omega^2$ rather than $\alpha$.
+The normal acceleration is much larger here because it scales with $\omega^2$ rather than $\alpha$. The total acceleration magnitude is $a = \sqrt{1.0^2 + 36.0^2} = 36.0$ m/s$^2$, dominated almost entirely by the centripetal term.
+
+---
+
+### Example 3.2: Rolling Wheel Without Slipping
+
+**Problem:** A wheel of radius $r = 0.30$ m rolls without slipping along a flat road. Its center moves at $v_C = 6.0$ m/s and is decelerating (braking) at $a_C = 4.0$ m/s$^2$. Find (a) the angular velocity, (b) the velocity of the contact point and of the top point, and (c) the angular acceleration.
+
+**Step 1: Set up the FBD-style kinematic sketch.** Sketch the wheel with three labeled points: the center $C$, the contact point $G$ at the bottom, and the top point $T$. The center translates horizontally; the wheel spins clockwise as it rolls in the $+x$ direction.
+
+**Step 2: Rolling constraint gives the angular velocity.** Rolling without slipping means the arc length covered equals the distance traveled, so $v_C = r\omega$:
+
+$$
+\omega = \frac{v_C}{r} = \frac{6.0}{0.30} = \boxed{20 \text{ rad/s}}
+$$
+
+**Step 3: Use the IC at the contact point.** For rolling without slipping, the contact point $G$ is the instantaneous center, so its velocity is
+
+$$
+v_G = \omega \, d_{G/\text{IC}} = \omega (0) = \boxed{0 \text{ m/s}}
+$$
+
+The top point $T$ is a distance $2r$ from the IC:
+
+$$
+v_T = \omega \, (2r) = 20 (0.60) = \boxed{12 \text{ m/s}}
+$$
+
+Cross-check with the relative-velocity equation: $v_T = v_C + \omega r = 6.0 + (20)(0.30) = 12$ m/s. The top of a rolling wheel moves at twice the speed of its center, and the contact patch is momentarily at rest.
+
+**Step 4: Angular acceleration.** Differentiating the rolling constraint $v_C = r\omega$ gives $a_C = r\alpha$:
+
+$$
+\alpha = \frac{a_C}{r} = \frac{4.0}{0.30} = \boxed{13.3 \text{ rad/s}^2}
+$$
+
+> **Think About It:** Because the contact patch is instantaneously at rest, static (not kinetic) friction acts there. That is why a properly rolling tire grips far better than a skidding one.
+
+---
+
+### Example 3.3: Sliding Bar by Relative Velocity
+
+**Problem:** A straight bar $AB$ of length 0.5 m has end $A$ on a horizontal floor and end $B$ against a vertical wall. At the instant shown the bar forms a 3-4-5 triangle, so $A = (0.4, 0)$ m and $B = (0, 0.3)$ m. End $A$ slides along the floor at $v_A = 3.0$ m/s in the $+x$ direction. Find the angular velocity of the bar and the velocity of end $B$.
+
+**Step 1: Identify the constraints (FBD of motion).** End $A$ can only move horizontally, so $\vec{v}_A = (3.0, 0)$ m/s. End $B$ can only move vertically, so $\vec{v}_B = (0, v_{By})$ with $v_{By}$ unknown. The bar's angular velocity is $\vec{\omega} = \omega \hat{k}$, also unknown.
+
+**Step 2: Write the position vector and the relative-velocity equation.**
+
+$$
+\vec{r}_{B/A} = B - A = (-0.4, \; 0.3) \text{ m}
+$$
+
+$$
+\vec{v}_B = \vec{v}_A + \omega \hat{k} \times \vec{r}_{B/A}
+$$
+
+The cross product $\omega \hat{k} \times (-0.4\,\hat{i} + 0.3\,\hat{j}) = -0.3\,\omega\,\hat{i} - 0.4\,\omega\,\hat{j}$.
+
+**Step 3: Separate into components.**
+
+$$
+x: \quad 0 = 3.0 - 0.3\,\omega
+$$
+
+$$
+y: \quad v_{By} = 0 - 0.4\,\omega
+$$
+
+**Step 4: Solve.** From the $x$-equation,
+
+$$
+\omega = \frac{3.0}{0.3} = \boxed{10 \text{ rad/s}}
+$$
+
+Then from the $y$-equation,
+
+$$
+v_{By} = -0.4(10) = \boxed{-4.0 \text{ m/s}}
+$$
+
+The negative sign means end $B$ slides **down** the wall at 4.0 m/s while $A$ slides outward at 3.0 m/s.
+
+**Step 5: Cross-check with the instantaneous center.** Since $A$ moves horizontally, the IC lies on the vertical line $x = 0.4$; since $B$ moves vertically, the IC lies on the horizontal line $y = 0.3$. They meet at $\text{IC} = (0.4, 0.3)$. Then $d_{A/\text{IC}} = 0.3$ m and $d_{B/\text{IC}} = 0.4$ m, giving $v_A = \omega(0.3) = 3.0$ m/s and $v_B = \omega(0.4) = 4.0$ m/s. Both speeds match, confirming the answer.
+
+## Engineering Applications
+
+| Application | Rigid-body kinematics at work |
+| --- | --- |
+| Vehicle wheels and tires | Rolling constraint $v = r\omega$ sets wheel speed; contact-point IC governs traction and ABS logic |
+| Engine slider-crank | Relative-velocity equation links piston speed to crankshaft rotation |
+| Robot manipulator arms | Each link's tip velocity from $\vec{v}_B = \vec{v}_A + \vec{\omega}\times\vec{r}_{B/A}$ chained joint to joint |
+| Gear trains | Matching rim speeds at the mesh point relates the angular velocities of meshing gears |
+| Wind-turbine and rotor blades | $a_n = r\omega^2$ sizes the centripetal loads at the blade tips |
+
+> **Engineering in Action:** The same velocity equation that locates a piston in a car engine also positions the gripper on a six-axis industrial robot. The geometry scales up or down, but the relation $\vec{v}_B = \vec{v}_A + \vec{\omega}\times\vec{r}_{B/A}$ does not change.
 
 ## Common Misreads
 
@@ -149,6 +272,7 @@ The normal acceleration is much larger here because it scales with $\omega^2$ ra
 - confusing angular velocity with tangential velocity
 - forgetting that $a_n$ depends on $\omega^2$, not $\alpha$
 - using $v = r\omega$ for a point that is not measured from the correct axis
+- treating the rolling contact point as if it were moving (it is the instantaneous center, so its velocity is zero)
 
 ## Check Your Understanding
 
@@ -168,10 +292,23 @@ The normal acceleration is much larger here because it scales with $\omega^2$ ra
 
 ## Summary
 
-- Rigid-body motion can be translational, rotational, or combined.
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Angular velocity / acceleration | $\omega = d\theta/dt$, $\alpha = d\omega/dt$ |
+| Constant $\alpha$ kinematics | $\omega = \omega_0 + \alpha t$, $\;\theta = \theta_0 + \omega_0 t + \tfrac{1}{2}\alpha t^2$ |
+| Linear from angular | $v = r\omega$, $\;a_t = r\alpha$, $\;a_n = r\omega^2$ |
+| Relative velocity | $\vec{v}_B = \vec{v}_A + \vec{\omega}\times\vec{r}_{B/A}$ |
+| Instantaneous center | $v_P = \omega\, d_{P/\text{IC}}$ |
+
+### Key Takeaways
+
+- Rigid-body motion can be translational, rotational, or combined (general plane motion).
 - Angular variables describe how the body rotates; linear variables describe how specific points move.
-- The relation $v = r\omega$ is geometric and depends on the correct radius.
-- Relative-motion equations let you connect the motion of different points on the same body.
+- The relation $v = r\omega$ is geometric and depends on the correct radius from the axis.
+- Relative-motion equations connect the motion of different points on the same body through a single shared $\omega$.
+- The instantaneous center of zero velocity turns a general plane motion into a momentary pure rotation, giving fast answers.
 
 ## What's Next?
 

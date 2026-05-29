@@ -23,11 +23,13 @@ That is the central lesson of this chapter. Global equilibrium tells you the str
 
 ## From External Equilibrium to What Happens Inside
 
-Up to this chapter, statics has asked the same question: are the external forces on a body in equilibrium? Trusses extended that question to forces in slender two-force members. Real engineering structures — beams, frames, shafts — carry distributed loading, point loads, and moments along their length, and the question that matters becomes different. **At any cross section, what internal forces hold the two halves of the body together?**
+Up to this chapter, statics has asked the same question: are the external forces on a body in equilibrium? Trusses extended that question to forces in slender two-force members. Real engineering structures (beams, frames, shafts) carry distributed loading, point loads, and moments along their length, and the question that matters becomes different. **At any cross section, what internal forces hold the two halves of the body together?**
 
-That is the subject of internal-force analysis. Hibbeler dedicates a full chapter (Ch. 7), Beer and Johnston dedicate Ch. 7, and Meriam dedicates Ch. 5 to this topic, because every later mechanics course — Mechanics of Materials, Structural Analysis, Machine Design — depends on the ability to draw shear and moment diagrams from a beam's loading.
+That is the subject of internal-force analysis. Hibbeler dedicates a full chapter (Ch. 7), Beer and Johnston dedicate Ch. 7, and Meriam dedicates Ch. 5 to this topic, because every later mechanics course (Mechanics of Materials, Structural Analysis, Machine Design) depends on the ability to draw shear and moment diagrams from a beam's loading.
 
 This module covers the three skills that make this analysis defensible: **the section-and-replace logic, sign conventions, and shear/moment diagrams as the most useful summary of an entire beam**.
+
+A useful way to keep the three internal quantities straight is to ask what relative motion each one resists. The normal force $N$ resists the two halves sliding apart along the axis (stretching or crushing). The shear force $V$ resists the two halves sliding past each other transversely. The bending moment $M$ resists the two halves rotating relative to one another (curling the beam). Every cross section must supply all three simultaneously, and any one of them reaching its limit is enough to cause failure. That is precisely why the Hyatt connection failed even though the building as a whole was in equilibrium: global balance never guarantees that the local triplet at a single section stays within safe limits.
 
 ---
 
@@ -47,7 +49,7 @@ $$\sum F_x = 0, \quad \sum F_y = 0, \quad \sum M_{\text{cut}} = 0$$
 
 This yields N(x), V(x), M(x) at that section. Repeat for any other section, or write the expressions as functions of x within each loading region.
 
-The "section both sides should give the same answer" check is real — choosing the right side instead of the left should produce the same N, V, M with the corresponding sign convention.
+The "section both sides should give the same answer" check is real; choosing the right side instead of the left should produce the same N, V, M with the corresponding sign convention.
 
 ---
 
@@ -77,13 +79,15 @@ where w(x) is the distributed load (positive downward). The slope of the shear d
 
 $$\frac{dM}{dx} = V(x)$$
 
-The slope of the moment diagram equals the shear at that point. Where V = 0, M is at a local extremum — exactly where the maximum bending stress concentrates.
+The slope of the moment diagram equals the shear at that point. Where V = 0, M is at a local extremum, exactly where the maximum bending stress concentrates.
 
 **Relation 3 (jumps at point loads and couples):**
 
 A concentrated transverse force P creates a step in V of magnitude $-P$ (downward force ⇒ shear drops). A concentrated couple $M_0$ creates a step in M of magnitude $\pm M_0$ depending on its sense.
 
-These three relations let you sketch shear and moment diagrams without writing piecewise equations every time. You can also work backwards: integrate w to get V (with the support reaction as the integration constant), then integrate V to get M.
+**Where the slope relations come from.** Isolate a differential slice of beam of width $dx$ carrying distributed load $w$ (downward). The left face carries $V$ and $M$; the right face carries $V + dV$ and $M + dM$. Vertical equilibrium of the slice gives $V - w\,dx - (V + dV) = 0$, so $dV = -w\,dx$, which is Relation 1. Taking moments about the right face (and dropping the second-order term $w\,dx \cdot dx/2$) gives $M + V\,dx - (M + dM) = 0$, so $dM = V\,dx$, which is Relation 2. The two relations are therefore not separate rules to memorize; they are direct consequences of applying $\sum F_y = 0$ and $\sum M = 0$ to an infinitesimal element.
+
+These three relations let you sketch shear and moment diagrams without writing piecewise equations every time. You can also work backwards: integrate $w$ to get $V$ (with the support reaction as the integration constant), then integrate $V$ to get $M$. Because $M$ is the integral of $V$, the area under the shear diagram between two sections equals the change in moment between them, a fast graphical check on any diagram you draw.
 
 <concept-diagram type="shear-moment-diagram"></concept-diagram>
 
@@ -181,6 +185,36 @@ Notice the maximum bending moment ($18.75$ kN·m) is larger than for the centere
 
 ---
 
+### Example 5: Simply Supported Beam with an Applied Couple (the Moment Jump)
+
+**Problem:** A simply supported beam spans $L = 6$ m. A concentrated counterclockwise couple $M_0 = 12$ kN·m is applied at the midpoint ($x = 3$ m). There are no transverse loads. Find the reactions, the shear, and the bending moment just to the left and just to the right of the couple. This is the case Relation 3 predicts but that the earlier examples never exercised.
+
+**Step 1: Reactions.** With no vertical applied loads, vertical equilibrium gives $A_y + B_y = 0$, so the two reactions must be equal and opposite. Taking moments about $A$ (counterclockwise positive):
+
+$$\sum M_A = 0: \quad B_y(6) + M_0 = 0 \;\Rightarrow\; B_y = -\frac{12}{6} = -2 \text{ kN}$$
+
+$$A_y = -B_y = +2 \text{ kN downward correction} \;\Rightarrow\; A_y = -2 \text{ kN}$$
+
+So $A_y = -2$ kN (acting downward) and $B_y = +2$ kN (acting upward). The couple is carried by a force *pair* at the two supports, which is why the reactions appear even with no transverse load.
+
+**Step 2: Shear.** Sectioning anywhere and keeping the left side, the only transverse force is $A_y$:
+
+$$V(x) = A_y = \boxed{-2 \text{ kN (constant over the whole span)}}$$
+
+A pure couple produces no jump in $V$; the shear diagram is a flat line.
+
+**Step 3: Moment just left of the couple ($x = 3^-$).** The left segment carries only $A_y$:
+
+$$M(3^-) = A_y \cdot x = (-2)(3) = \boxed{-6 \text{ kN·m}}$$
+
+**Step 4: Moment just right of the couple ($x = 3^+$).** Now the applied couple $M_0$ is inside the left segment and adds directly:
+
+$$M(3^+) = A_y \cdot x + M_0 = (-2)(3) + 12 = \boxed{+6 \text{ kN·m}}$$
+
+The moment jumps by exactly $M_0 = 12$ kN·m at the couple, with no change in shear, which is exactly Relation 3. As a final check, at the right support $M(6) = A_y(6) + M_0 = (-2)(6) + 12 = 0$, as it must be for a free end of a simple span. The takeaway for design is that an applied couple (a motor mount reacting torque, an eccentric column load delivered through a stub) creates a sudden step in the moment diagram, and the larger of the two adjacent values is what the section must be sized for.
+
+---
+
 ## Common Errors and Their Diagnoses
 
 - **Forgetting to solve reactions first.** Sectioning a beam without first finding the supports leads to under-determined free-body equations.
@@ -217,6 +251,8 @@ Notice the maximum bending moment ($18.75$ kN·m) is larger than for the centere
 | Section equilibrium | $\sum F_x = 0,\; \sum F_y = 0,\; \sum M_{\text{cut}} = 0$ |
 | UDL on simple span | $M_{\max} = wL^2/8$ |
 | Central point load on simple span | $M_{\max} = PL/4$ |
+| Step at an applied couple | $\Delta M = \pm M_0$ (no change in $V$) |
+| Moment from shear area | $\Delta M = \int V\,dx$ (area under $V$) |
 
 ### Key Takeaways
 

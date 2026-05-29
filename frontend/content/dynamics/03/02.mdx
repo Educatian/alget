@@ -14,8 +14,19 @@
 
 1. **Apply** $\sum F = ma_G$ to the center of mass
 2. **Apply** $\sum M_G = I_G \alpha$ to planar rotation
-3. **Use** mass moment of inertia correctly
-4. **Recognize** when the reference point changes the algebra but not the physics
+3. **Use** mass moment of inertia correctly, including the parallel-axis shift
+4. **Couple** translation and rotation through kinematic constraints such as rolling
+5. **Recognize** when the reference point changes the algebra but not the physics
+
+---
+
+## Opening: Why Two Equations Instead of One
+
+When the unmanned spacecraft Mariner 1 and, decades later, many spinning satellites tumbled out of control, the failure was rarely a broken part. It was a rotational dynamics problem: torque and inertia were not balanced the way the analysts assumed. A spinning body redistributes its motion in ways that a single force equation can never predict. The same lesson shows up in far humbler hardware. A washing machine that "walks" across the floor during spin, a power tool that twists in your hand when the motor kicks on, and a conveyor drum that will not reach speed fast enough to meet a throughput target are all governed by the same idea.
+
+A particle has one job: move. A rigid body has two: its mass center can translate, and the body can rotate about that center. Forces decide the first. Moments, acting against the body's rotational inertia, decide the second. To analyze any real machine link, flywheel, or rolling wheel, we need both stories at once.
+
+> **The Big Picture:** Rigid-body kinetics is the bridge between "what forces act" and "how the part actually moves and spins." Get the moment equation wrong and your acceleration prediction can be off by a large factor, even when the force balance looks perfect.
 
 ---
 
@@ -26,7 +37,7 @@ For a particle, all the mass is treated as concentrated at one point. For a rigi
 - translate the center of mass
 - rotate the body about its center of mass or another point
 
-That is why rigid-body dynamics needs both force equations and a moment equation.
+That is why rigid-body dynamics needs both force equations and a moment equation. The force equations are inherited directly from Newton's second law; the moment equation is the rotational analog, and it is the new physics in this section.
 
 ## Governing Equations in Plane Motion
 
@@ -50,21 +61,28 @@ where:
 - $I_G$ is the mass moment of inertia about $G$
 - $\alpha$ is angular acceleration
 
-These equations are powerful because they separate translation and rotation cleanly.
+These equations are powerful because they separate translation and rotation cleanly. The two force equations always refer to the acceleration of the mass center $G$, no matter where the forces are applied. The moment equation, written about $G$, holds even when $G$ itself is accelerating, which is a special and very convenient property of the mass center.
+
+> **Critical Check:** $a_G$ is the acceleration of the mass center, not the acceleration of the contact point, the rim, or any other material point. Mixing these up is the single most common error in this topic.
 
 ## What Mass Moment of Inertia Really Means
 
-Mass moment of inertia tells you how difficult it is to angularly accelerate a body about an axis.
+Mass moment of inertia tells you how difficult it is to angularly accelerate a body about an axis. It is the rotational counterpart of mass. Formally it is the sum of every mass element times the square of its distance from the axis:
 
-Two bodies can have the same mass but different rotational response if their mass is distributed differently.
+$$
+I = \int r^2 \, dm
+$$
+
+The $r^2$ weighting is the key insight. Mass placed far from the axis counts much more than mass near it. Two bodies can have the same total mass but very different rotational response if their mass is distributed differently.
 
 | Shape | $I_G$ |
 | --- | --- |
 | Slender rod about center | $\frac{1}{12}mL^2$ |
-| Thin disk or cylinder | $\frac{1}{2}mr^2$ |
+| Thin disk or solid cylinder | $\frac{1}{2}mr^2$ |
 | Solid sphere | $\frac{2}{5}mr^2$ |
+| Thin ring or hoop | $mr^2$ |
 
-Bodies with more mass farther from the axis have larger inertia and therefore smaller angular acceleration for the same applied moment.
+Bodies with more mass farther from the axis have larger inertia and therefore smaller angular acceleration for the same applied moment. This is why a hoop ($mr^2$) is harder to spin than a solid disk ($\frac{1}{2}mr^2$) of the same mass and radius: all of the hoop's mass sits at the maximum radius.
 
 <torque-diagram />
 
@@ -76,13 +94,21 @@ $$
 \boxed{I = I_G + md^2}
 $$
 
-This is one of the most common sources of mistakes in rigid-body dynamics. Students often remember a tabulated $I_G$ value and forget to shift it to the actual rotation axis.
+where $d$ is the distance between the centroidal axis and the actual axis. This is one of the most common sources of mistakes in rigid-body dynamics. Students often remember a tabulated $I_G$ value and forget to shift it to the actual rotation axis.
+
+A quick demonstration: a uniform rod pivoting about one **end** has
+
+$$
+I_O = I_G + m\left(\frac{L}{2}\right)^2 = \frac{1}{12}mL^2 + \frac{1}{4}mL^2 = \frac{1}{3}mL^2,
+$$
+
+which is four times the centroidal value. Forgetting the shift here would underestimate the rod's rotational inertia by a factor of four.
 
 ## A Reliable Solution Strategy
 
-### 1. Draw the rigid-body free body diagram
+### 1. Draw the rigid-body free body diagram (FBD)
 
-Include all applied forces, reactions, and known distances.
+Include all applied forces, reactions, and known distances. On a rigid body, **where** each force acts matters, because that is what produces a moment.
 
 ### 2. Mark the center of mass
 
@@ -98,7 +124,7 @@ Use a point that makes the rotational balance easiest to evaluate. If you use th
 
 ### 5. Connect translation and rotation when needed
 
-Rolling constraints or kinematic relations may couple $a_G$ and $\alpha$.
+Rolling constraints or kinematic relations may couple $a_G$ and $\alpha$. For rolling without slip, $a_G = r\alpha$.
 
 ## Assumption Callout: When the Rigid-Body Model Is Reasonable
 
@@ -126,70 +152,149 @@ In those situations, rigid-body dynamics may still be useful as a first estimate
   course="dynamics"
 />
 
-## Worked Example
+## Worked Examples
 
-### Example 3.2: Disk with a Tangential Force
+### Example 3.2a: Disk with a Tangential Force
 
-**Problem:** A 10 kg disk of radius 0.3 m has a tangential force of 20 N applied at its rim. Find the angular acceleration.
+**Problem:** A 10 kg disk of radius 0.3 m has a tangential force of 20 N applied at its rim. The center is held by a frictionless pin. Find the angular acceleration.
 
-### Step A: Compute the inertia
+**Step A: Draw the FBD.** The 20 N force acts tangent to the rim, a distance $r = 0.3$ m from the center. The pin reaction passes through the center and so produces no moment about $G$.
 
-For a disk about its center:
-
-$$
-I_G = \frac{1}{2}mr^2 = \frac{1}{2}(10)(0.3)^2 = 0.45 \text{ kg*m}^2
-$$
-
-### Step B: Compute the applied moment
-
-Because the force is tangential,
+**Step B: Compute the inertia.** For a disk about its center,
 
 $$
-\sum M_G = Fr = 20(0.3) = 6 \text{ N*m}
+I_G = \frac{1}{2}mr^2 = \frac{1}{2}(10)(0.3)^2 = 0.45 \ \text{kg·m}^2
 $$
 
-### Step C: Apply the rotational equation
+**Step C: Compute the applied moment.** Because the force is tangential, its full magnitude acts at the moment arm $r$:
 
 $$
-\sum M_G = I_G \alpha
+\sum M_G = Fr = 20(0.3) = 6 \ \text{N·m}
+$$
+
+**Step D: Apply the rotational equation.**
+
+$$
+\sum M_G = I_G \alpha \implies 6 = 0.45\,\alpha
 $$
 
 $$
-6 = 0.45\alpha
+\alpha = \frac{6}{0.45} = \boxed{13.3 \ \text{rad/s}^2}
+$$
+
+The disk's angular acceleration is set by both the applied moment and the body's rotational inertia.
+
+---
+
+### Example 3.2b: Solid Cylinder Rolling Down an Incline
+
+**Problem:** A solid cylinder of mass $m = 8$ kg and radius $r = 0.2$ m rolls without slipping down a ramp inclined at $\theta = 20^\circ$. Find the acceleration of its center $a_G$, the friction force $f$, and the minimum coefficient of static friction needed.
+
+**Step A: FBD.** Three forces act: weight $mg$ at $G$, normal force $N$ perpendicular to the ramp, and friction $f$ up the ramp at the contact point. Friction is what supplies the moment that makes the cylinder spin up.
+
+**Step B: Translation along the incline.** Taking the positive axis down the ramp,
+
+$$
+\sum F_x = ma_G: \quad mg\sin\theta - f = m a_G
+$$
+
+**Step C: Rotation about $G$.** Only friction has a moment arm about $G$ (the moment arm is $r$):
+
+$$
+\sum M_G = I_G \alpha: \quad f\,r = \tfrac{1}{2}mr^2 \alpha
+$$
+
+**Step D: Apply the rolling constraint** $a_G = r\alpha$, so $\alpha = a_G/r$. Substituting,
+
+$$
+f\,r = \tfrac{1}{2}mr^2 \cdot \frac{a_G}{r} = \tfrac{1}{2}m r a_G \implies f = \tfrac{1}{2}m a_G
+$$
+
+**Step E: Solve for $a_G$.** Put $f$ back into the translation equation:
+
+$$
+mg\sin\theta - \tfrac{1}{2}m a_G = m a_G \implies g\sin\theta = \tfrac{3}{2}a_G
 $$
 
 $$
-\alpha = 13.3 \text{ rad/s}^2
+a_G = \frac{2}{3}g\sin\theta = \frac{2}{3}(9.81)(\sin 20^\circ) = \frac{2}{3}(9.81)(0.342) = \boxed{2.24 \ \text{m/s}^2}
 $$
 
-The disk's angular acceleration is determined by both the applied moment and the body's rotational inertia.
+**Step F: Friction force.**
 
-## A More Subtle Interpretation
+$$
+f = \tfrac{1}{2}m a_G = \tfrac{1}{2}(8)(2.237) = \boxed{8.95 \ \text{N}}
+$$
 
-If the same 20 N force acted on a larger-radius but much heavier disk, the larger moment arm might help, but the increased inertia could dominate. That tradeoff is why motor sizing, flywheel design, and rotating-machine startup analysis all depend on the same structure:
+**Step G: Required friction coefficient.** With $N = mg\cos\theta = (8)(9.81)\cos 20^\circ = 73.8$ N,
 
-- applied torque creates angular acceleration
-- inertia resists angular acceleration
+$$
+\mu_s \ge \frac{f}{N} = \frac{8.95}{73.8} = \boxed{0.121}
+$$
+
+Notice that the cylinder accelerates at only two-thirds of $g\sin\theta$. The "missing" third is spent spinning the body up; rotational inertia steals acceleration from translation. A frictionless block on the same ramp would accelerate at the full $g\sin\theta = 3.36$ m/s².
+
+> **Think About It:** Replace the solid cylinder with a hoop ($I_G = mr^2$). Reworking Steps C through E gives $a_G = \tfrac{1}{2}g\sin\theta$, even slower, because the hoop's mass is all at the rim and harder to spin up. Mass distribution, not mass, controls the outcome.
+
+---
+
+### Example 3.2c: Slender Rod Released from Horizontal
+
+**Problem:** A uniform slender rod of mass $m = 5$ kg and length $L = 1.2$ m is pinned at one end $O$ and released from rest in the horizontal position. Find the initial angular acceleration.
+
+**Step A: Inertia about the pin.** Using the parallel-axis theorem,
+
+$$
+I_O = \frac{1}{12}mL^2 + m\left(\frac{L}{2}\right)^2 = \frac{1}{3}mL^2 = \frac{1}{3}(5)(1.2)^2 = 2.4 \ \text{kg·m}^2
+$$
+
+**Step B: Moment about the pin.** Weight acts at the center, a distance $L/2$ from $O$. The pin reaction has zero moment arm about $O$:
+
+$$
+\sum M_O = mg\cdot\frac{L}{2} = (5)(9.81)\frac{1.2}{2} = 29.43 \ \text{N·m}
+$$
+
+**Step C: Rotational equation about the fixed pin.** Because $O$ is a fixed point, $\sum M_O = I_O \alpha$:
+
+$$
+\alpha = \frac{\sum M_O}{I_O} = \frac{29.43}{2.4} = \boxed{12.3 \ \text{rad/s}^2}
+$$
+
+This is the cleanest use of the parallel-axis theorem: choosing the pin as the moment center removes the unknown pin reaction from the moment equation entirely, so a single equation gives $\alpha$ directly. Note the compact closed form $\alpha = \frac{3g}{2L}$, independent of mass, which is the rigid-body analog of why all objects fall at the same rate.
+
+---
 
 ## Engineering Trade-Off: Torque Capacity Versus Rotational Inertia
 
-Rotating systems are full of competing goals. Increasing radius, thickness, or added hardware may improve durability, thermal capacity, or energy storage, but those same choices often increase inertia and slow the transient response.
+The structure of every example above is the same: applied torque creates angular acceleration while inertia resists it. That is why rotating systems are full of competing goals. Increasing radius, thickness, or added hardware may improve durability, thermal capacity, or energy storage, but those same choices increase inertia and slow the transient response.
 
 That is why design teams constantly balance:
 
 - fast startup versus smooth, stable rotation,
 - lightweight response versus energy-storage capacity,
-- smaller motors versus acceptable acceleration time,
-- and compact packaging versus favorable inertia distribution.
+- smaller motors versus acceptable acceleration time.
 
 Rigid-body dynamics matters because it turns those trade-offs into quantitative arguments instead of intuition alone.
+
+## Engineering Applications
+
+| Application | Role of $\sum F = ma_G$ and $\sum M_G = I_G\alpha$ |
+| --- | --- |
+| Motor and gearbox sizing | Required torque must overcome load inertia to hit a target acceleration |
+| Flywheel energy storage | Large $I_G$ is desired to store energy and smooth speed, at the cost of slow response |
+| Vehicle wheels and rolling loads | Rolling constraint $a_G = r\alpha$ couples drive torque to forward acceleration |
+| Robotic arm links | Each link's $I_G$ and parallel-axis shift set the joint torques needed |
+| Rotating machinery startup | Transient spin-up time follows directly from $\alpha = M/I$ |
+
+> **Engineering in Action:** The conveyor-drum retrofit in the scenario above is exactly $\alpha = M_{\text{motor}}/I$. Doubling the drum's effective inertia halves its startup angular acceleration for the same motor torque, which is often the difference between meeting and missing a throughput target.
 
 ## Common Mistakes
 
 - using force instead of moment in the rotational equation
 - forgetting the moment arm
-- using a tabulated inertia about the wrong axis
+- using a tabulated inertia about the wrong axis (skipping the parallel-axis shift)
 - mixing translational acceleration of the center of mass with angular acceleration of the body
+- forgetting the kinematic constraint ($a_G = r\alpha$) that couples the equations for rolling bodies
 
 ## Check Your Understanding
 
@@ -209,10 +314,23 @@ Rigid-body dynamics matters because it turns those trade-offs into quantitative 
 
 ## Summary
 
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Translation of mass center | $\sum F_x = m(a_G)_x$, $\sum F_y = m(a_G)_y$ |
+| Rotation about mass center | $\sum M_G = I_G \alpha$ |
+| Mass moment of inertia | $I = \int r^2 \, dm$ |
+| Parallel-axis theorem | $I = I_G + md^2$ |
+| Rolling without slip | $a_G = r\alpha$ |
+
+### Key Takeaways
+
 - Rigid-body dynamics combines translation of the center of mass with rotation about it.
 - The force equations predict translational acceleration; the moment equation predicts angular acceleration.
-- Mass moment of inertia is the rotational analog of mass in particle dynamics.
+- Mass moment of inertia is the rotational analog of mass; mass distribution, not just total mass, sets the response.
 - The reference axis matters, which is why the parallel-axis theorem appears so often.
+- For rolling and other constrained motions, a kinematic relation links $a_G$ and $\alpha$.
 
 ## What's Next?
 

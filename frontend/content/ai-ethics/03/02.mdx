@@ -1,6 +1,33 @@
+# Accountability and Liability
+
+> **"Responsibility cannot be assigned to a machine; it can only be distributed among the people who build, deploy, and rely on it."**
+
+---
+
+## Opening: A Death With No Clear Owner
+
+On the night of March 18, 2018, in Tempe, Arizona, a self-driving Uber test vehicle struck and killed Elaine Herzberg as she crossed a road with her bicycle. It was the first recorded pedestrian fatality involving an autonomous vehicle. The subsequent National Transportation Safety Board (NTSB) investigation did not find a single villain. It found a *fragmented* failure: the perception software detected Herzberg roughly six seconds before impact but cycled through several classifications (vehicle, then bicycle, then unknown) without committing to emergency braking; Uber had disabled the car's factory automatic-emergency-braking system to avoid erratic behavior during testing; the system was designed to rely on the safety driver to intervene, yet the safety driver was looking away; and Uber's safety culture did not include a documented risk-assessment process for exactly this scenario.
+
+Who was responsible? The perception engineer? The system architect who removed the braking fallback? The operator behind the wheel? The company that shipped a test fleet onto public roads? In 2020 the safety driver was charged with negligent homicide, but the NTSB report explicitly faulted Uber's *inadequate safety culture* as a probable cause. The case became the canonical illustration of the **responsibility gap**: a real harm in which traditional notions of who is to blame did not cleanly attach to any one person.
+
+> **The Big Picture:** As AI systems learn, generalize, and act, the chain of human agency that liability law depends on gets stretched and broken. Accountability does not disappear; it has to be deliberately engineered back in. This module is about how.
+
+---
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Explain** the responsibility gap and why it cannot be closed by treating the AI system itself as the responsible party.
+2. **Distribute** accountability across four roles (developer, deployer, operator, user) with role-specific ownership of failure classes.
+3. **Distinguish** meaningful human oversight from rubber-stamping using the capacity / time / authority / information test.
+4. **Identify** the engineering practices (audit trails, model cards, versioning, incident response, whistleblower channels) that make accountability real rather than rhetorical.
+
+---
+
 ## Why "Who Is Responsible?" Is Hard for AI Systems
 
-Traditional liability law assumes a chain of agency that an investigator can walk: the engineer who wrote the code, the manager who approved it, the operator who deployed it. AI systems disrupt that chain in three ways. The system **learns** from data the engineer did not write. The system **generalizes** to inputs no one specified. The system **acts** in environments where the operator did not anticipate every state. When such a system causes harm, the liability question fragments — and the fragmentation is often exploited.
+Traditional liability law assumes a chain of agency that an investigator can walk: the engineer who wrote the code, the manager who approved it, the operator who deployed it. AI systems disrupt that chain in three ways. The system **learns** from data the engineer did not write. The system **generalizes** to inputs no one specified. The system **acts** in environments where the operator did not anticipate every state. When such a system causes harm, the liability question fragments, and the fragmentation is often exploited.
 
 This module covers the **responsibility-gap problem**, the four candidate locations of accountability (developer, deployer, operator, user), the legal frameworks that try to close the gap (EU AI Act, FTC enforcement, product-liability doctrine), and the engineering practices that make accountability tractable rather than illusory.
 
@@ -8,9 +35,17 @@ This module covers the **responsibility-gap problem**, the four candidate locati
 
 ## The Responsibility Gap
 
-Andreas Matthias (2004) named the *responsibility gap*: when an autonomous system causes harm, traditional concepts of responsibility (intent, foresight, control) do not cleanly attach to any single human. The engineer cannot foresee all model behaviors. The deployer cannot inspect all weights. The user cannot understand the decision. Each party has plausible deniability, and the harm has no responsible party — which is morally untenable.
+Andreas Matthias (2004) named the *responsibility gap*: when an autonomous system causes harm, traditional concepts of responsibility (intent, foresight, control) do not cleanly attach to any single human. The engineer cannot foresee all model behaviors. The deployer cannot inspect all weights. The user cannot understand the decision. Each party has plausible deniability, and the harm has no responsible party, which is morally untenable.
 
-The gap is not closed by saying "the AI is responsible." Machines are not moral agents under any major ethical framework. The gap is closed by **distributing responsibility across the human chain so that no link can hide behind another link's opacity**.
+The conceptual structure of the gap rests on three conditions that classical moral responsibility requires, each of which AI strains:
+
+| Condition for responsibility | What it normally requires | How AI breaks it |
+| --- | --- | --- |
+| **Control** | The agent could have acted otherwise | A learned policy executes faster than any human can intervene |
+| **Foresight** | The agent could reasonably anticipate the outcome | Emergent behavior on out-of-distribution inputs was genuinely unforeseen |
+| **Knowledge** | The agent understood what they were doing | Model internals are opaque even to their builders |
+
+The gap is not closed by saying "the AI is responsible." Machines are not moral agents under any major ethical framework: they have no intentions to praise or blame, no interests that punishment could deter, and no standing to make amends. The gap is closed instead by **distributing responsibility across the human chain so that no link can hide behind another link's opacity**. The design goal is that for every class of harm, some identifiable human role has agreed, in advance and in writing, to own it.
 
 ---
 
@@ -26,7 +61,7 @@ For any AI deployment, accountability typically distributes across four roles:
 
 **The user / decision-maker** acts on the system's output. When a human-in-the-loop is part of the design, the user is responsible for the final decision, not for the model's internal mechanism. But "human-in-the-loop" can be a fig leaf if the user has no real ability to override.
 
-A defensible accountability structure names which party owns which class of failure, in advance, in writing.
+A defensible accountability structure names which party owns which class of failure, in advance, in writing. The point is not to find one throat to choke after a disaster; it is to remove ambiguity *before* one, so that each role has both the duty and the means to prevent the failures it owns.
 
 ---
 
@@ -34,16 +69,39 @@ A defensible accountability structure names which party owns which class of fail
 
 A common pattern: a high-stakes AI system is deployed with a human reviewer formally responsible for the final decision. The reviewer sees thousands of cases per week, has 30 seconds per case, and overrides the model 2% of the time. Under any reasonable definition the human is **rubber-stamping**, but the legal documentation says "human-in-the-loop."
 
-Marya Schraut and others have argued that for human oversight to be meaningful, the human must have:
+For human oversight to be meaningful, the human must have four things. When any one is missing, the human-in-the-loop is structurally unable to discharge accountability, and the design is effectively automated:
 
 - **Capacity** to understand the recommendation (interpretable inputs, training).
 - **Time** sufficient to deliberate at the stakes of the decision.
 - **Authority** to override without penalty.
 - **Information** beyond the recommendation itself (counterfactuals, similar cases, confidence).
 
-When any of these is absent, the human-in-the-loop is structurally unable to discharge accountability, and the design is effectively automated. The EU AI Act's Article 14 (human oversight) operationalizes some of these requirements.
+The EU AI Act's Article 14 (human oversight) operationalizes some of these requirements, demanding that natural persons overseeing high-risk systems be enabled to understand the system's capacities and limits, remain aware of automation bias, and be able to disregard or override the output. The Tempe case is a textbook failure here: the safety driver had nominal *authority* to brake, but the design gave no warning that emergency braking had been delegated entirely to a human who had no cue that intervention was needed. Capacity, time, and information were all absent at the moment that mattered.
 
 <concept-diagram type="accountability-distribution"></concept-diagram>
+
+---
+
+## Worked Case Analysis: A Misdiagnosis From a Clinical Triage Model
+
+Frameworks become real only when you run a concrete case through them. Consider the following scenario.
+
+**The scenario.** A hospital network licenses a sepsis-prediction model from a vendor. The vendor trained it on data from a different patient population. The hospital's IT team integrates it into the electronic health record so that a high score raises an alert to the bedside nurse. One night the model fails to flag a deteriorating patient whose presentation differs from the training population; the nurse, who has come to trust the silent system, does not escalate; the patient suffers preventable harm. (This mirrors documented concerns about the Epic Sepsis Model, whose external validation by Wong et al. in 2021 found substantially worse real-world performance than advertised.)
+
+**Step 1: Name the failure class.** This is a *miss* (false negative) caused by **distribution shift**: the deployment population differs from the training population. Hold that label; it tells us which role should have caught it.
+
+**Step 2: Walk the four roles and assign ownership.** For each role we ask: what did this party control, what could they foresee, and what should they have done?
+
+| Role | What they controlled | Did they own this failure? | The duty they breached (or met) |
+| --- | --- | --- | --- |
+| **Developer (vendor)** | Training data, documented limits, validation claims | Yes (primary) | Failed to disclose that performance was unvalidated on outside populations; overstated accuracy |
+| **Deployer (hospital IT)** | Integration, alert threshold, local validation | Yes (shared) | Deployed without local validation or subgroup monitoring on its own population |
+| **Operator (clinical informatics team)** | Monitoring, anomaly escalation | Partly | No process tracked the model's real-world miss rate over time |
+| **User (bedside nurse)** | The final escalation decision | No | Had neither information (no confidence, no "model uncertain" cue) nor time to second-guess a silent system |
+
+**Step 3: Resolve the tradeoff.** Notice the structure: the user is *formally* in the loop but cannot reasonably be assigned the failure, because the design denied her the capacity / time / authority / information needed to override a silent miss. Pushing accountability down to the nurse would be the fig-leaf move. The defensible distribution puts primary ownership on the developer (for the undisclosed validity gap) and shared ownership on the deployer (for skipping local validation), with the operator owning the missing monitoring.
+
+**Step 4: Identify the practices that would have surfaced it earlier.** A *model card* disclosing the training population and the absence of external validation would have warned the deployer. *Local validation plus subgroup monitoring* would have caught the distribution shift before harm. An *audit trail* logging model version, score, threshold, and the absence of a nurse override would have made the post-incident analysis reproducible instead of speculative. The lesson generalizes: accountability is not assigned after the fact by argument; it is *built in* beforehand by documentation and instrumentation.
 
 ---
 
@@ -73,11 +131,42 @@ Five practices distinguish accountable AI systems from systems that merely claim
 
 **Incident response.** A documented procedure for when the system fails, including who is notified, who has authority to roll back, and what compensations are owed to affected users.
 
-**Whistleblower channels.** Engineers and researchers who detect problems must have a path that does not end in retaliation. The Susan Fowler / Frances Haugen / Timnit Gebru cases all illustrate what happens when this channel is broken.
+**Whistleblower channels.** Engineers and researchers who detect problems must have a path that does not end in retaliation. The Frances Haugen (Facebook) and Timnit Gebru (Google) cases both illustrate what happens when this channel is broken: the warning surfaces only after the harm, through the press, instead of internally in time to prevent it.
 
 These practices are not optional in regulated jurisdictions and increasingly not optional in unregulated ones, because the institutional cost of unaccountable failure is rising.
 
+---
+
+## Counterarguments and Limitations
+
+A careful engineer should hold this framework critically. Three honest objections deserve a response.
+
+**"Distributed responsibility is just diffused responsibility."** The worry is that splitting blame four ways means no one feels accountable, the classic problem of collective action. The reply is that *distributed* is not *diffused*: a defensible structure assigns each failure class to a specific named owner, so that for any given harm there is exactly one primary owner, not zero. Diffusion is the failure mode this framework is designed to prevent, not an accident of it.
+
+**"You cannot foresee emergent behavior, so negligence is unfair."** True that specific outputs are unforeseeable. But the *category* of risk (distribution shift, adversarial inputs, automation bias) is well known, and the duty is to test for and monitor known risk categories, not to predict every individual output. Unforeseeability of the instance does not excuse failure to guard the class.
+
+**"Documentation is theater that protects companies, not victims."** A real risk: a model card can be written to manage liability rather than to inform. The defense is that documentation is *necessary but not sufficient*. It must be paired with enforcement (regulators, auditors, litigation) and with instrumentation (audit trails that can contradict the marketing). A model card with no external validation behind it is exactly the failure the worked case above turned on.
+
+A further structural limitation: legal frameworks lag the technology. The EU AI Act and FTC enforcement are early and jurisdiction-specific; in much of the world the responsibility gap remains legally open. Engineering practice often has to set the standard before the law catches up.
+
 <dynamic-scenario topic="AI Accountability" context="An autonomous-driving system causes a fatal collision. The investigation finds the engineer warned about an edge case six months earlier but the deployer shipped without addressing it; the operator was supervising but had no authority to override; the user was relying on the documentation. Distribute accountability across the four roles and identify which engineering practices would have surfaced the failure earlier."></dynamic-scenario>
+
+---
+
+## Key Takeaways
+
+- The **responsibility gap** arises because AI strains the three conditions of moral responsibility: control, foresight, and knowledge.
+- The gap is never closed by blaming the machine. Machines are not moral agents; responsibility is **distributed across the human chain**.
+- Accountability distributes across four roles: **developer, deployer, operator, user**, and a defensible design names which role owns which failure class in advance.
+- **Human-in-the-loop is meaningful only with capacity, time, authority, and information.** Missing any one turns oversight into rubber-stamping.
+- Five practices make accountability real: **audit trails, model cards/datasheets, versioning, incident response, whistleblower channels.**
+- Documentation is **necessary but not sufficient**; it must be paired with instrumentation and enforcement, or it becomes liability theater.
+
+---
+
+## What's Next?
+
+In the next module we connect accountability to its enabling condition: **transparency and explainability**. You cannot assign ownership of a failure you cannot reconstruct, so we turn to the techniques (interpretability methods, decision logs, and disclosure standards) that make an AI decision legible enough to audit in the first place.
 
 ---
 
@@ -85,6 +174,6 @@ These practices are not optional in regulated jurisdictions and increasingly not
 
 <interactive-quiz
   question="A high-volume AI hiring screen is deployed with a human reviewer who sees 1000 applications per week, has 20 seconds per case, and overrides the model 1% of the time. The vendor says 'a human is in the loop.' What is the most defensible critique?"
-  options='[{"text":"The system is fully accountable because a human is involved.","isCorrect":false},{"text":"Human oversight requires capacity, time, authority, and information sufficient for the stakes. With 20 seconds per case and a 1% override rate, the reviewer cannot meaningfully discharge accountability — the design is effectively automated and accountability is illusory.","isCorrect":true},{"text":"Override rate is irrelevant to accountability.","isCorrect":false}]'
+  options='[{"text":"The system is fully accountable because a human is involved.","isCorrect":false},{"text":"Human oversight requires capacity, time, authority, and information sufficient for the stakes. With 20 seconds per case and a 1% override rate, the reviewer cannot meaningfully discharge accountability, so the design is effectively automated and accountability is illusory.","isCorrect":true},{"text":"Override rate is irrelevant to accountability.","isCorrect":false}]'
   explanation="Correct. EU AI Act Art. 14 and the human-oversight literature agree: human-in-the-loop is meaningful only when the human has real capacity to deliberate and override. Insufficient time and low override rates indicate rubber-stamping, not oversight."
 />
