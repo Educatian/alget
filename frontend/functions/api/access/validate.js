@@ -33,7 +33,8 @@ export async function onRequestPost(context) {
     return Response.json({ valid: false, scope: scope ?? null }, { headers: CORS })
   }
   const expected = String((context.env && context.env[envKey]) || FALLBACK[scope] || '').trim()
-  const valid = Boolean(expected) && String(passcode || '').trim() === expected
+  // Case-insensitive + trimmed compare so "EDU123"/" edu123 " also pass.
+  const valid = Boolean(expected) && String(passcode || '').trim().toLowerCase() === expected.toLowerCase()
   return Response.json({ valid, scope }, { headers: CORS })
 }
 
