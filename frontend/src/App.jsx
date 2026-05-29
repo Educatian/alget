@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { supabase } from './lib/supabase'
 import { initSession, endSession } from './lib/loggingService'
 import { replayPendingResearchPersists } from './lib/researchService'
-import { safeSessionStorageGet } from './lib/browserStorage'
+import { safeSessionStorageGet, safeLocalStorageGet, safeLocalStorageRemove } from './lib/browserStorage'
+import { DEMO_SESSION_KEY } from './components/AuthModal'
 import { ToastProvider } from './lib/toast.jsx'
 import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
@@ -25,6 +26,17 @@ const E2E_USER = import.meta.env.VITE_E2E_AUTH_BYPASS === 'true'
   ? { id: 'e2e-user', email: 'e2e@alget.test' }
   : null
 
+// Restore a persisted demo session (set by AuthModal's "Continue in Demo Mode")
+// so the hosted demo survives reloads and direct section URLs.
+function readDemoUser() {
+  try {
+    const raw = safeLocalStorageGet(DEMO_SESSION_KEY)
+    return raw ? JSON.parse(raw) : null
+  } catch {
+    return null
+  }
+}
+
 function RouteFallback() {
   return (
     <div className="editorial-shell flex min-h-screen items-center justify-center px-4">
@@ -40,14 +52,21 @@ function RouteFallback() {
 }
 
 export default function App() {
-  const [user, setUser] = useState(E2E_USER)
-  const [loading, setLoading] = useState(!E2E_USER)
+  const [user, setUser] = useState(() => E2E_USER || readDemoUser())
+  const [loading, setLoading] = useState(() => !(E2E_USER || readDemoUser()))
 
   useEffect(() => {
     // Wake up backend immediately (Render free tier sleeps after inactivity)
     fetch(`${API_BASE}/book/inst-design/toc`, { method: 'GET' }).catch(() => {})
 
     if (E2E_USER) {
+      return undefined
+    }
+
+    // Persisted demo session: stay signed in as the demo user without Supabase,
+    // and do NOT let getSession() overwrite it with null.
+    if (readDemoUser()) {
+      setLoading(false)
       return undefined
     }
 
@@ -89,6 +108,7 @@ export default function App() {
 
   const handleLogout = async () => {
     await endSession()
+    safeLocalStorageRemove(DEMO_SESSION_KEY)
     await supabase.auth.signOut()
     setUser(null)
   }

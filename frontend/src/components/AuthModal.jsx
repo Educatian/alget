@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react'
 import { isSupabaseConfigured, resetPassword, signIn, signUp } from '../lib/supabase'
 import { useFocusTrap } from '../hooks/useFocusTrap'
+import { safeLocalStorageSet } from '../lib/browserStorage'
 
-const DEMO_USER = {
+export const DEMO_SESSION_KEY = 'alget_demo_session'
+export const DEMO_USER = {
     email: 'demo@alget.local',
     id: '00000000-0000-0000-0000-000000000000',
     isDemo: true
@@ -45,6 +47,9 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
     }
 
     const enterDemoMode = () => {
+        // Persist the demo session so it survives reloads and direct section URLs
+        // (the hosted demo is shareable; App restores this on load).
+        safeLocalStorageSet(DEMO_SESSION_KEY, JSON.stringify(DEMO_USER))
         onSuccess?.(DEMO_USER)
     }
 
