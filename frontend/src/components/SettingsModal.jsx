@@ -88,7 +88,7 @@ export default function SettingsModal({ isOpen, onClose }) {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="settings-modal-title"
-                className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-2xl"
+                className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-2xl sm:max-w-lg"
             >
                 <div className="flex items-center justify-between border-b border-[var(--ath-line)] px-6 py-4">
                     <h3 id="settings-modal-title" className="flex items-center gap-2 text-lg font-semibold text-[var(--ath-text)]">
@@ -152,7 +152,7 @@ export default function SettingsModal({ isOpen, onClose }) {
                         Customize how text appears across the app. Changes apply instantly and are saved in your browser.
                     </p>
 
-                    <div className="space-y-5">
+                    <div className="space-y-4">
                         <SegmentedControl
                             label="Text size"
                             name="reading_font_scale"
@@ -201,7 +201,7 @@ export default function SettingsModal({ isOpen, onClose }) {
                     </div>
                 </div>
 
-                <div className="flex items-center justify-end gap-3 bg-[var(--ath-panel-muted)] px-6 py-4">
+                <div className="sticky bottom-0 flex items-center justify-end gap-3 border-t border-[var(--ath-line)] bg-[var(--ath-panel-muted)] px-6 py-4">
                     <button
                         type="button"
                         onClick={onClose}

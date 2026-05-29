@@ -287,7 +287,7 @@ export default function MainApp({ user, onLogout }) {
 
             <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
                 {!unlockedMode ? (
-                    <div className="mx-auto max-w-md">
+                    <div className="mx-auto flex min-h-[60vh] max-w-md flex-col justify-center">
                         <div className="editorial-pill mx-auto w-fit">
                             <Sparkles className="h-3.5 w-3.5" />
                             Pathway access

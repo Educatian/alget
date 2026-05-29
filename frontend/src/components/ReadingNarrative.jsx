@@ -6,6 +6,30 @@ import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import 'katex/dist/katex.min.css'
 import { logTimeOnTask } from '../lib/loggingService'
+import { useTheme } from '../lib/themeContext'
+import { READING_WIDTH_OPTIONS } from '../lib/readingPrefs'
+
+// Map the UDL reading-width preference to a comfortable prose measure (the text
+// line length). index.css consumes --reading-width on .reading-narrative; the
+// preference layer (readingPrefs.js) historically set a different variable name,
+// so the choice did nothing. We bridge it here by setting --reading-width
+// directly from the live preference. Wider defaults than the legacy 76ch let a
+// textbook use more of the viewport at >=1280px while keeping a sane measure.
+const READING_WIDTH_MEASURE = {
+    narrow: '64ch',
+    standard: '78ch',
+    wide: '92ch',
+}
+const DEFAULT_READING_MEASURE = READING_WIDTH_MEASURE.standard
+
+function resolveReadingMeasure(readingWidth) {
+    if (READING_WIDTH_MEASURE[readingWidth]) {
+        return READING_WIDTH_MEASURE[readingWidth]
+    }
+    // Fall back to the option table so a future option still resolves to a value.
+    const option = READING_WIDTH_OPTIONS.find((o) => o.value === readingWidth)
+    return option?.width || DEFAULT_READING_MEASURE
+}
 
 const DynamicScenario = lazy(() => import('./DynamicScenario'))
 const ConceptDiagrams = lazy(() => import('./ConceptDiagrams'))
@@ -58,6 +82,18 @@ function renderLazyMarkdownModule(LazyComponent, props = {}) {
         <Suspense fallback={<MarkdownBlockFallback />}>
             <LazyComponent {...props} />
         </Suspense>
+    )
+}
+
+// Diagrams and worked examples are figure-like blocks: let them use the full
+// content-column width (breakout) instead of being cramped into the prose measure.
+function renderBreakoutLazyModule(LazyComponent, props = {}) {
+    return (
+        <div className="reading-breakout not-prose">
+            <Suspense fallback={<MarkdownBlockFallback />}>
+                <LazyComponent {...props} />
+            </Suspense>
+        </div>
     )
 }
 
@@ -121,6 +157,8 @@ export default function ReadingNarrative({
     sectionDescription,
     onHeadingChange,
 }) {
+    const { readingPrefs } = useTheme()
+    const readingMeasure = resolveReadingMeasure(readingPrefs?.readingWidth)
     const [activeHeading, setActiveHeading] = useState('')
     const [speechState, setSpeechState] = useState('idle') // 'idle' | 'speaking' | 'paused'
     const startTimeRef = useRef(0)
@@ -191,9 +229,17 @@ export default function ReadingNarrative({
             )
         },
         pre: ({ children, ...props }) => (
-            <pre {...props}>
+            <pre className="reading-breakout" {...props}>
                 {children}
             </pre>
+        ),
+        table: ({ children, ...props }) => (
+            // Wide tabular content breaks out of the narrow prose measure up to
+            // the content-column width, and scrolls horizontally on small screens
+            // so it never overflows the viewport.
+            <div className="reading-breakout reading-table-scroll not-prose">
+                <table {...props}>{children}</table>
+            </div>
         ),
         'dynamic-scenario': (props) => (
             <Suspense fallback={<MarkdownBlockFallback />}>
@@ -213,7 +259,7 @@ export default function ReadingNarrative({
                 />
             </Suspense>
         ),
-        'concept-diagram': (props) => renderLazyMarkdownModule(ConceptDiagrams, props),
+        'concept-diagram': (props) => renderBreakoutLazyModule(ConceptDiagrams, props),
         'interactive-quiz': ({ options, ...props }) => (
             <Suspense fallback={<MarkdownBlockFallback />}>
                 <InteractiveQuiz
@@ -235,27 +281,27 @@ export default function ReadingNarrative({
                 />
             </Suspense>
         ),
-        'worked-example': (props) => renderLazyMarkdownModule(RevealedWorkedExample, { ...props, sectionId }),
+        'worked-example': (props) => renderBreakoutLazyModule(RevealedWorkedExample, { ...props, sectionId }),
         glossary: (props) => renderLazyMarkdownModule(Glossary, props),
         'remotion-clip': (props) => renderLazyMarkdownModule(RemotionClip, props),
         'youtube-embed': (props) => renderLazyMarkdownModule(YouTubeEmbed, props),
-        'torque-diagram': (props) => renderLazyMarkdownModule(TorqueDiagram, props),
-        'kinematics-diagram': (props) => renderLazyMarkdownModule(KinematicsDiagram, props),
-        'micro-turbulence-diagram': (props) => renderLazyMarkdownModule(MicroTurbulenceDiagram, props),
-        'fluid-dynamics-diagram': (props) => renderLazyMarkdownModule(FluidDynamicsDiagram, props),
-        'cellular-solid-diagram': (props) => renderLazyMarkdownModule(CellularSolidDiagram, props),
-        'hierarchical-structure-diagram': (props) => renderLazyMarkdownModule(HierarchicalStructureDiagram, props),
-        'directional-adhesion-diagram': (props) => renderLazyMarkdownModule(DirectionalAdhesionDiagram, props),
-        'gecko-adhesion-diagram': (props) => renderLazyMarkdownModule(GeckoAdhesionDiagram, props),
-        'structural-color-diagram': (props) => renderLazyMarkdownModule(StructuralColorDiagram, props),
-        'self-healing-diagram': (props) => renderLazyMarkdownModule(SelfHealingDiagram, props),
-        'swarm-diagram': (props) => renderLazyMarkdownModule(SwarmDiagram, props),
-        'constructivism-diagram': (props) => renderLazyMarkdownModule(ConstructivismDiagram, props),
-        'cognitivism-diagram': (props) => renderLazyMarkdownModule(CognitivismDiagram, props),
-        'behaviorism-diagram': (props) => renderLazyMarkdownModule(BehaviorismDiagram, props),
-        'formative-summative-diagram': (props) => renderLazyMarkdownModule(FormativeSummativeDiagram, props),
-        'rubric-design-diagram': (props) => renderLazyMarkdownModule(RubricDesignDiagram, props),
-        'feedback-models-diagram': (props) => renderLazyMarkdownModule(FeedbackModelsDiagram, props),
+        'torque-diagram': (props) => renderBreakoutLazyModule(TorqueDiagram, props),
+        'kinematics-diagram': (props) => renderBreakoutLazyModule(KinematicsDiagram, props),
+        'micro-turbulence-diagram': (props) => renderBreakoutLazyModule(MicroTurbulenceDiagram, props),
+        'fluid-dynamics-diagram': (props) => renderBreakoutLazyModule(FluidDynamicsDiagram, props),
+        'cellular-solid-diagram': (props) => renderBreakoutLazyModule(CellularSolidDiagram, props),
+        'hierarchical-structure-diagram': (props) => renderBreakoutLazyModule(HierarchicalStructureDiagram, props),
+        'directional-adhesion-diagram': (props) => renderBreakoutLazyModule(DirectionalAdhesionDiagram, props),
+        'gecko-adhesion-diagram': (props) => renderBreakoutLazyModule(GeckoAdhesionDiagram, props),
+        'structural-color-diagram': (props) => renderBreakoutLazyModule(StructuralColorDiagram, props),
+        'self-healing-diagram': (props) => renderBreakoutLazyModule(SelfHealingDiagram, props),
+        'swarm-diagram': (props) => renderBreakoutLazyModule(SwarmDiagram, props),
+        'constructivism-diagram': (props) => renderBreakoutLazyModule(ConstructivismDiagram, props),
+        'cognitivism-diagram': (props) => renderBreakoutLazyModule(CognitivismDiagram, props),
+        'behaviorism-diagram': (props) => renderBreakoutLazyModule(BehaviorismDiagram, props),
+        'formative-summative-diagram': (props) => renderBreakoutLazyModule(FormativeSummativeDiagram, props),
+        'rubric-design-diagram': (props) => renderBreakoutLazyModule(RubricDesignDiagram, props),
+        'feedback-models-diagram': (props) => renderBreakoutLazyModule(FeedbackModelsDiagram, props),
     }), [conceptIds, course, sectionDescription, sectionId])
 
     const remarkPlugins = useMemo(
@@ -349,12 +395,50 @@ export default function ReadingNarrative({
 
     return (
         <article
-            className="prose reading-narrative mb-8"
-            style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px' }}
+            className="prose reading-narrative reading-narrative-fluid mb-8"
+            style={{
+                contentVisibility: 'auto',
+                containIntrinsicSize: '1200px',
+                // Bridge the UDL reading-width preference to the variable index.css
+                // actually consumes, and let the article itself fill the content
+                // column so figure-like blocks can use the full width.
+                '--reading-width': readingMeasure,
+                '--reading-column-max': '74rem',
+            }}
         >
+            {/*
+                The article fills the content column (--reading-column-max). Text
+                elements (paragraphs, list items, headings, blockquotes) stay at a
+                comfortable measure (--reading-width) and are centered, while
+                figure-like blocks (tables, code, formulas, diagrams, worked
+                examples) use the full column width. This overrides index.css's
+                narrow max-width on .reading-narrative without editing that file.
+            */}
+            <style>{`
+                .reading-narrative-fluid {
+                    max-width: min(var(--reading-column-max, 74rem), 100%);
+                }
+                .reading-narrative-fluid > :where(p, ul, ol, blockquote, h1, h2, h3, h4, .reading-readaloud) {
+                    max-width: min(var(--reading-width, 78ch), 100%);
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+                .reading-narrative-fluid .reading-breakout {
+                    width: 100%;
+                    max-width: 100%;
+                }
+                .reading-narrative-fluid .reading-table-scroll {
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+                .reading-narrative-fluid .reading-table-scroll > table {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+            `}</style>
             {speechSupported && (
                 <div
-                    className="not-prose mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-2.5 shadow-sm"
+                    className="reading-readaloud not-prose mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-2.5 shadow-sm"
                     role="group"
                     aria-label="Read this section aloud"
                 >

@@ -122,28 +122,28 @@ export default function GenerativeLab() {
     };
 
     return (
-        <div className="min-h-screen bg-linear-to-b from-slate-50 to-slate-100/50 font-sans selection:bg-[#9E1B32]/20 flex flex-col">
+        <div className="editorial-shell min-h-screen font-sans selection:bg-[color-mix(in_srgb,var(--ath-primary)_20%,transparent)] flex flex-col">
             {/* Premium Header */}
-            <header className="bg-white/70 backdrop-blur-2xl border-b border-white/60 shadow-[0_4px_30px_rgb(0,0,0,0.03)] sticky top-0 z-50 transition-all duration-300">
+            <header className="bg-[color-mix(in_srgb,var(--ath-surface-strong)_82%,transparent)] backdrop-blur-2xl border-b border-[var(--ath-line)] shadow-[0_4px_30px_rgb(0,0,0,0.03)] sticky top-0 z-50 transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
                     <div className="flex items-center justify-between">
                         <button
                             type="button"
                             onClick={() => navigate('/')}
                             aria-label="Back to ALGET home"
-                            className="group flex items-center gap-4 rounded-xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9E1B32]/40"
+                            className="group flex items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_40%,transparent)]"
                         >
-                            <div className="w-11 h-11 bg-linear-to-br from-[#9E1B32] to-[#7A1527] rounded-xl flex items-center justify-center shadow-lg shadow-red-900/20">
+                            <div className="w-11 h-11 bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] rounded-2xl flex items-center justify-center shadow-[0_12px_24px_rgba(9,56,72,0.18)]">
                                 <span className="text-white text-xl font-extrabold tracking-tight">AL</span>
                             </div>
                             <div>
-                                <h1 className="text-xl font-bold text-slate-900 tracking-tight">Generative Bio-Design Lab</h1>
-                                <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-0.5">ALGET Intelligent Platform</p>
+                                <h1 className="text-xl font-bold text-[var(--ath-text)] tracking-tight">Generative Bio-Design Lab</h1>
+                                <p className="text-xs text-[var(--ath-secondary)] font-semibold uppercase tracking-wider mt-0.5">ALGET Intelligent Platform</p>
                             </div>
                         </button>
                         <button
                             onClick={() => navigate('/')}
-                            className="hidden sm:flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-lg"
+                            className="editorial-button-secondary hidden sm:flex items-center gap-2 px-4 py-2 text-sm"
                         >
                             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                             Back to Dashboard
@@ -155,17 +155,17 @@ export default function GenerativeLab() {
             {/* Main Content */}
             <main className="flex-1 max-w-5xl mx-auto w-full p-6 lg:p-8 flex flex-col gap-8">
 
-                {/* Generative Input Area - Glassmorphism */}
-                <div className="glass-panel p-8 lg:p-10 border-slate-200 relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-linear-to-r from-purple-50/30 via-transparent to-blue-50/30 pointer-events-none"></div>
+                {/* Generative Input Area */}
+                <div className="editorial-surface p-8 lg:p-10 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-[linear-gradient(120deg,color-mix(in_srgb,var(--ath-primary-soft)_45%,transparent),transparent_60%)] pointer-events-none"></div>
                     <div className="relative z-10 w-full">
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-xl shadow-sm border border-purple-200">
+                            <div className="w-10 h-10 bg-[var(--ath-primary-soft)] text-[var(--ath-primary)] rounded-xl flex items-center justify-center text-xl shadow-sm border border-[color-mix(in_srgb,var(--ath-primary)_18%,transparent)]">
                                 <Lightbulb className="h-5 w-5" aria-hidden="true" />
                             </div>
-                            <h2 className="text-2xl font-bold text-slate-900 tracking-tight">What do you want to explore?</h2>
+                            <h2 className="text-2xl font-bold text-[var(--ath-text)] tracking-tight">What do you want to explore?</h2>
                         </div>
-                        <p className="text-slate-600 text-[1.05rem] font-medium leading-relaxed mb-6">
+                        <p className="text-[var(--ath-muted)] text-[1.05rem] font-medium leading-relaxed mb-6">
                             Ask a question, propose a design, or ask to brainstorm a biological concept.
                         </p>
 
@@ -175,13 +175,13 @@ export default function GenerativeLab() {
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 placeholder="e.g., How do geckos climb walls? Or brainstorm flight ideas."
-                                className="flex-1 px-5 py-3.5 bg-white border border-slate-300 rounded-xl focus:ring-4 focus:ring-[#9E1B32]/20 focus:border-[#9E1B32] outline-none text-slate-800 shadow-inner font-medium transition-all"
+                                className="editorial-input flex-1 font-medium"
                                 disabled={loading}
                             />
                             <button
                                 type="submit"
                                 disabled={loading || !query.trim()}
-                                className="px-8 py-3.5 bg-linear-to-r from-[#9E1B32] to-[#7A1527] shadow-lg shadow-red-900/20 text-white rounded-xl font-bold hover:shadow-xl hover:shadow-red-900/30 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center justify-center gap-2"
+                                className="editorial-button px-8 py-3.5 font-bold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                             >
                                 {loading ? (
                                     <>
@@ -215,8 +215,8 @@ export default function GenerativeLab() {
                             return (
                                 <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                                     <div className={`px-5 py-4 rounded-2xl max-w-[85%] sm:max-w-[75%] shadow-sm ${msg.role === 'user'
-                                        ? 'bg-slate-800 text-white border border-slate-700'
-                                        : 'glass-panel text-slate-800 prose prose-slate prose-sm max-w-none'
+                                        ? 'bg-[var(--ath-primary-deep)] text-white border border-[var(--ath-primary-deep)]'
+                                        : 'editorial-surface text-[var(--ath-text)] prose prose-sm max-w-none'
                                         }`}>
                                         {msg.role === 'assistant' ? (
                                             <div dangerouslySetInnerHTML={{ __html: (typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)).replace(/\n/g, '<br />') }} />
@@ -236,9 +236,9 @@ export default function GenerativeLab() {
 
                         {/* Intent Badge & Generate Textbook Action */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full">
-                            <div className="flex items-center gap-3 bg-white/60 backdrop-blur-md p-3.5 rounded-xl border border-slate-200 shadow-[0_2px_10px_rgb(0,0,0,0.02)] self-start">
-                                <span className="text-slate-500 font-semibold text-sm">Detected Intent:</span>
-                                <span className="px-3 py-1 bg-indigo-50 text-indigo-700 uppercase tracking-widest text-xs font-bold rounded-lg border border-indigo-100">
+                            <div className="flex items-center gap-3 editorial-surface p-3.5 self-start">
+                                <span className="text-[var(--ath-muted)] font-semibold text-sm">Detected Intent:</span>
+                                <span className="px-3 py-1 bg-[var(--ath-primary-soft)] text-[var(--ath-primary-deep)] uppercase tracking-widest text-xs font-bold rounded-lg border border-[color-mix(in_srgb,var(--ath-primary)_18%,transparent)]">
                                     {result.intent || 'Unknown'}
                                 </span>
                             </div>
@@ -268,23 +268,23 @@ export default function GenerativeLab() {
 
                         {/* Synthesized Output (Tutor / Activity) */}
                         {result.summary && (
-                            <div className="glass-panel p-8 text-slate-800 leading-relaxed max-w-none prose prose-slate prose-lg border-slate-200">
-                                <div className="flex items-center gap-3 border-b border-slate-200 pb-4 mb-5">
+                            <div className="editorial-surface p-8 text-[var(--ath-text)] leading-relaxed max-w-none prose prose-lg">
+                                <div className="flex items-center gap-3 border-b border-[var(--ath-line)] pb-4 mb-5 text-[var(--ath-primary)]">
                                     <FileText className="h-6 w-6" aria-hidden="true" />
-                                    <h3 className="text-xl font-bold text-slate-900 m-0">Synthesis</h3>
+                                    <h3 className="text-xl font-bold text-[var(--ath-text)] m-0">Synthesis</h3>
                                 </div>
                                 <div className="font-medium text-[1.05rem]" dangerouslySetInnerHTML={{ __html: (typeof result.summary === 'string' ? result.summary : (result.summary.synthesis || JSON.stringify(result.summary))).replace(/\n/g, '<br />') }} />
-                                
+
                                 {typeof result.summary === 'object' && result.summary.encouragement && (
-                                    <p className="mt-6 italic text-slate-600 font-medium">{result.summary.encouragement}</p>
+                                    <p className="mt-6 italic text-[var(--ath-muted)] font-medium">{result.summary.encouragement}</p>
                                 )}
-                                
+
                                 {typeof result.summary === 'object' && result.summary.next_steps && result.summary.next_steps.length > 0 && (
-                                    <div className="mt-5 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                                        <p className="font-bold text-slate-800 text-sm tracking-wide uppercase mb-3">Next Steps to Explore:</p>
+                                    <div className="mt-5 bg-[var(--ath-panel-muted)] p-4 rounded-xl border border-[var(--ath-line)]">
+                                        <p className="font-bold text-[var(--ath-text)] text-sm tracking-wide uppercase mb-3">Next Steps to Explore:</p>
                                         <ul className="list-disc pl-5 m-0 space-y-2">
                                             {result.summary.next_steps.map((step, idx) => (
-                                                <li key={idx} className="text-slate-700 text-[0.95rem]">{step}</li>
+                                                <li key={idx} className="text-[var(--ath-muted)] text-[0.95rem]">{step}</li>
                                             ))}
                                         </ul>
                                     </div>
