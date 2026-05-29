@@ -531,7 +531,7 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             type="button"
                             onClick={() => setTocOpen(true)}
-                            className="xl:hidden flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)] md:h-9 md:w-9"
+                            className="lg:hidden flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)] md:h-9 md:w-9"
                             aria-label="Open chapter contents"
                             title="Chapter contents"
                         >
@@ -657,7 +657,7 @@ export default function BookLayout({ user, onLogout }) {
             </header>
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
-                <aside className="hidden xl:block min-h-0 w-64 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
+                <aside className="hidden lg:block lg:w-56 xl:w-64 min-h-0 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
                     {tocError ? (
                         <div className="m-4 rounded-2xl border border-[rgba(220,38,38,0.25)] bg-[rgba(254,242,242,0.85)] p-4 text-sm">
                             <p className="font-semibold text-[var(--ath-text)]">Couldn't load chapter list</p>
@@ -691,7 +691,7 @@ export default function BookLayout({ user, onLogout }) {
                 </aside>
 
                 {tocOpen && (
-                    <div className="fixed inset-0 z-[80] flex xl:hidden">
+                    <div className="fixed inset-0 z-[80] flex lg:hidden">
                         <button
                             type="button"
                             aria-label="Close chapter contents"
@@ -748,7 +748,7 @@ export default function BookLayout({ user, onLogout }) {
                     <main ref={mainScrollRef} id="main-content" tabIndex={-1} className="h-full min-h-0 overflow-y-auto">
                         <div
                             key={sectionPath}
-                            className={`min-h-full ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
+                            className={`mx-auto min-h-full w-full max-w-[var(--ath-container-app)] px-[var(--ath-gutter)] ${transitionDirection === 'backward' ? 'animate-section-backward' : 'animate-section-forward'}`}
                         >
                             <Suspense fallback={<div className="mx-auto max-w-4xl px-8 py-12 xl:max-w-5xl"><SurfaceFallback label="Loading reading surface..." /></div>}>
                                 <HighlightableContent

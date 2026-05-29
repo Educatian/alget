@@ -73,17 +73,17 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
 
     return (
         <div className="p-4">
-            <div className="rounded-[2rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.64)] p-5 shadow-sm">
+            <div className="rounded-[var(--ath-radius-xl)] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.64)] p-5 shadow-sm">
                 <p className="editorial-kicker">Course Navigation</p>
                 <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">
                     {toc?.title || 'Table of Contents'}
                 </h2>
                 <div className="mt-5 grid grid-cols-2 gap-3">
-                    <div className="rounded-[1.4rem] bg-[var(--ath-panel)] px-3 py-3">
+                    <div className="rounded-[var(--ath-radius-lg)] bg-[var(--ath-panel)] px-3 py-3">
                         <p className="editorial-label">Chapters</p>
                         <p className="mt-2 text-2xl font-semibold text-[var(--ath-text)]">{summary.chapterCount}</p>
                     </div>
-                    <div className="rounded-[1.4rem] bg-[var(--ath-panel)] px-3 py-3">
+                    <div className="rounded-[var(--ath-radius-lg)] bg-[var(--ath-panel)] px-3 py-3">
                         <p className="editorial-label">Sections</p>
                         <p className="mt-2 text-2xl font-semibold text-[var(--ath-text)]">{summary.sectionCount}</p>
                     </div>
@@ -101,14 +101,14 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
             </div>
 
             {!toc && (
-                <div className="mt-4 rounded-[1.6rem] border border-dashed border-[var(--ath-line)] bg-[rgba(255,255,255,0.56)] px-4 py-8 text-center text-sm text-[var(--ath-secondary)]">
+                <div className="mt-4 rounded-[var(--ath-radius-xl)] border border-dashed border-[var(--ath-line)] bg-[rgba(255,255,255,0.56)] px-4 py-8 text-center text-sm text-[var(--ath-secondary)]">
                     Loading course structure...
                 </div>
             )}
 
             <nav className="mt-4 space-y-2">
                 {filteredChapters.map((chapter) => (
-                    <div key={chapter.id} className="overflow-hidden rounded-[1.6rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.62)] shadow-sm">
+                    <div key={chapter.id} className="overflow-hidden rounded-[var(--ath-radius-xl)] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.62)] shadow-sm">
                         <button
                             onClick={() => toggleChapter(chapter.id)}
                             className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors hover:bg-[rgba(255,255,255,0.62)]"
@@ -133,7 +133,7 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
                                         <li key={section.id}>
                                             <button
                                                 onClick={() => onNavigate(chapter.id, section.id)}
-                                                className={`flex w-full items-center justify-between rounded-[1rem] px-3 py-2.5 text-left text-sm transition-all ${isActive
+                                                className={`flex w-full min-h-[44px] items-center justify-between rounded-[var(--ath-radius-lg)] px-3 py-2.5 text-left text-sm transition-all sm:min-h-0 ${isActive
                                                     ? 'bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] text-white shadow-[0_16px_30px_rgba(9,56,72,0.18)]'
                                                     : 'text-[var(--ath-muted)] hover:bg-[var(--ath-panel)]'
                                                     }`}
@@ -142,7 +142,7 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
                                                     {chapter.id}.{section.id} {section.title}
                                                 </span>
                                                 {isDone && (
-                                                    <span className={`ml-2 shrink-0 text-xs font-bold ${isActive ? 'text-white' : 'text-emerald-600'}`}>
+                                                    <span className={`ml-2 shrink-0 text-xs font-bold ${isActive ? 'text-white' : 'text-[var(--ath-success)]'}`}>
                                                         Done
                                                     </span>
                                                 )}
@@ -157,7 +157,7 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
             </nav>
 
             {filteredChapters.length === 0 && searchQuery && (
-                <div className="mt-4 rounded-[1.6rem] border border-dashed border-[var(--ath-line)] bg-[rgba(255,255,255,0.56)] px-4 py-8 text-center text-sm text-[var(--ath-secondary)]">
+                <div className="mt-4 rounded-[var(--ath-radius-xl)] border border-dashed border-[var(--ath-line)] bg-[rgba(255,255,255,0.56)] px-4 py-8 text-center text-sm text-[var(--ath-secondary)]">
                     No sections matched "{searchQuery}".
                 </div>
             )}
