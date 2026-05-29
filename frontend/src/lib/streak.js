@@ -7,9 +7,15 @@
 // was missed in between. Read-only consumers call getStreak; the
 // markCompleted hook calls bumpStreak.
 
-import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
+import { safeLocalStorageGet, safeLocalStorageSet, safeLocalStorageRemove } from './browserStorage'
 
 const STREAK_KEY = 'alget_completion_streak'
+
+// Cleared on identity change (login/logout) so a different user on the same
+// browser doesn't inherit the previous user's streak.
+export function clearStreak() {
+    safeLocalStorageRemove(STREAK_KEY)
+}
 
 function todayKey(date = new Date()) {
     const year = date.getFullYear()

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
+import { safeLocalStorageGet, safeLocalStorageSet, safeLocalStorageRemove } from '../lib/browserStorage'
 import { supabase } from '../lib/supabase'
 
 function getScopedKey(prefix, userId) {
@@ -246,6 +246,15 @@ export function useCourseProgress(user) {
                 persistRecentSection(userId, mergedRecent)
             }
             persistBookmarks(userId, mergedBookmarks)
+
+            // Once a real/demo user has CLAIMED the guest-bucket progress (merged
+            // + persisted under their id), clear the guest keys so the next
+            // different user on this browser doesn't inherit the same data.
+            if (userId) {
+                safeLocalStorageRemove(getProgressKey(null))
+                safeLocalStorageRemove(getRecentKey(null))
+                safeLocalStorageRemove(getBookmarkKey(null))
+            }
 
             if (!userId) {
                 setSyncStatus('local')

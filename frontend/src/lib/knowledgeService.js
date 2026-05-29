@@ -7,6 +7,19 @@ const LOCAL_MASTERY_KEY = 'alget_local_mastery_v1';
 const ADAPTIVE_SIGNAL_WINDOW_MS = 1000 * 60 * 90;
 const MAX_ADAPTIVE_SIGNALS = 250;
 
+// Local mastery priors + adaptive signals are unscoped caches; clear them on
+// identity change so a different user on the same browser can't inherit the
+// previous user's mastery/signals (they rebuild from the cloud on next use).
+export function clearLocalLearnerCaches() {
+    try {
+        if (typeof window === 'undefined') return;
+        window.localStorage.removeItem(LOCAL_MASTERY_KEY);
+        window.sessionStorage.removeItem(ADAPTIVE_SIGNAL_KEY);
+    } catch {
+        // ignore storage errors
+    }
+}
+
 const emptyTelemetrySummary = () => ({
     hint_requests: 0,
     stuck_events: 0,

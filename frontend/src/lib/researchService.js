@@ -1,6 +1,7 @@
 import {
     safeLocalStorageGet,
-    safeLocalStorageSet
+    safeLocalStorageSet,
+    safeLocalStorageRemove
 } from './browserStorage'
 import { isSupabaseConfigured, supabase } from './supabase'
 import API_BASE from './apiConfig'
@@ -17,6 +18,16 @@ const INTERVENTION_TRACE_KEY = 'alget_research_traces_v1'
 const EVALUATION_KEY = 'alget_research_evaluations_v1'
 const CONTENT_AUDIT_KEY = 'alget_research_content_audits_v1'
 const RETRY_QUEUE_KEY = 'alget_research_retry_queue_v1'
+
+// Cleared on identity change so a different user on the same browser doesn't
+// inherit the previous user's local learner model / traces / retry queue.
+export function clearResearchCaches() {
+    safeLocalStorageRemove(LEARNER_MODEL_KEY)
+    safeLocalStorageRemove(INTERVENTION_TRACE_KEY)
+    safeLocalStorageRemove(EVALUATION_KEY)
+    safeLocalStorageRemove(CONTENT_AUDIT_KEY)
+    safeLocalStorageRemove(RETRY_QUEUE_KEY)
+}
 
 const MAX_TRACES = 160
 const MAX_EVALUATIONS = 80
