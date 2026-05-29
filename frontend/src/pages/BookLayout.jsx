@@ -552,6 +552,7 @@ export default function BookLayout({ user, onLogout }) {
 
                         <button
                             onClick={toggleRail}
+                            data-onboarding="help-rail-button"
                             className={`flex h-11 w-11 items-center justify-center rounded-lg text-sm font-semibold transition-all duration-200 md:h-9 md:w-9 ${railOpen
                                 ? 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[rgba(200,226,236,0.45)]'
                                 : 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
@@ -591,6 +592,7 @@ export default function BookLayout({ user, onLogout }) {
                             <Popover.Trigger asChild>
                                 <button
                                     type="button"
+                                    data-onboarding="concept-map-button"
                                     className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)] md:h-9 md:w-9"
                                     title="Concept map"
                                     aria-label="Open the concept map for this chapter"
