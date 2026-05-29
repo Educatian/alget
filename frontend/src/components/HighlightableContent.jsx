@@ -143,9 +143,11 @@ export default function HighlightableContent({
                         })
                     }
 
-                    // Hover for notes
+                    // Hover (desktop) AND tap (touch) for notes. Touch devices
+                    // get no mouseenter, so a click also opens the tooltip — making
+                    // peer/popular annotations reachable on phones.
                     if (onHover) {
-                        mark.addEventListener('mouseenter', () => {
+                        const showTooltip = () => {
                             const rect = mark.getBoundingClientRect()
                             onHover({
                                 id: highlightId,
@@ -157,8 +159,17 @@ export default function HighlightableContent({
                                 x: rect.left + rect.width / 2,
                                 y: rect.top - 10
                             })
-                        })
+                        }
+                        mark.addEventListener('mouseenter', showTooltip)
                         mark.addEventListener('mouseleave', () => onHover(null))
+                        // Only bind tap-to-open when there's no dedicated onClick
+                        // (own-highlight marks already handle click for editing).
+                        if (!onClick) {
+                            mark.addEventListener('click', (e) => {
+                                e.stopPropagation()
+                                showTooltip()
+                            })
+                        }
                     }
 
                     wrapper.appendChild(mark)
@@ -626,7 +637,9 @@ export default function HighlightableContent({
                 ancestors, and clamped to BOTH viewport edges so a highlight near
                 the right/bottom margin never renders the popup off-screen. */}
             {(hoveredHighlight?.note || hoveredHighlight?.label || hoveredHighlight?.id) && createPortal(
+                /* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events -- tap-to-dismiss on touch (desktop dismisses via the mark's mouseleave); the Discuss button stops propagation */
                 <div
+                    onClick={() => setHoveredHighlight(null)}
                     className="fixed z-[120] w-[min(20rem,calc(100vw-1.5rem))] rounded-xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.96)] p-3 text-sm shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-xl"
                     style={{
                         left: hoveredHighlight?.x
@@ -654,7 +667,7 @@ export default function HighlightableContent({
                     {hoveredHighlight?.id && (
                         <button
                             type="button"
-                            onClick={() => setDiscussionHighlightId(hoveredHighlight.id)}
+                            onClick={(e) => { e.stopPropagation(); setDiscussionHighlightId(hoveredHighlight.id) }}
                             className="mt-2 inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--ath-primary)] text-[0] font-semibold text-white"
                             aria-label="Discuss highlight"
                             title="Discuss"

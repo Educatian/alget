@@ -940,6 +940,7 @@ export default function BookLayout({ user, onLogout }) {
                     initialQuestion={highlightQuestion}
                     onQuestionSent={() => setHighlightQuestion(null)}
                     userId={user?.id}
+                    railOpen={railOpen}
                     context={{
                         sectionId: sectionPath,
                         pageContent: sectionData?.raw || '',

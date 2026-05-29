@@ -243,6 +243,11 @@ export default function GlobalSearch() {
                         placeholder="Search sections, concepts, courses…"
                         className="flex-1 bg-transparent text-sm font-medium text-[var(--ath-text)] placeholder:text-[var(--ath-secondary)] focus:outline-none"
                         aria-label="Search query"
+                        role="combobox"
+                        aria-expanded={results.length > 0}
+                        aria-controls="globalsearch-listbox"
+                        aria-autocomplete="list"
+                        aria-activedescendant={results.length > 0 ? `gs-opt-${activeIndex}` : undefined}
                     />
                     <span className="hidden items-center gap-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--ath-secondary)] sm:flex">
                         Esc
@@ -277,7 +282,7 @@ export default function GlobalSearch() {
                             No matches for <span className="font-semibold text-[var(--ath-text)]">"{query}"</span>.
                         </div>
                     ) : (
-                        <ul role="listbox" aria-label="Search results">
+                        <ul role="listbox" id="globalsearch-listbox" aria-label="Search results">
                             {results.map((item, idx) => {
                                 const isActive = idx === activeIndex
                                 const courseLabel = formatCourseLabel(item.course)
@@ -285,6 +290,7 @@ export default function GlobalSearch() {
                                     <li key={`${item.course}/${item.chapter}/${item.section}`}>
                                         <button
                                             type="button"
+                                            id={`gs-opt-${idx}`}
                                             onClick={() => openItem(item)}
                                             onMouseEnter={() => setActiveIndex(idx)}
                                             role="option"
