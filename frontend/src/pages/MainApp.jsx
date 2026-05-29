@@ -323,6 +323,10 @@ export default function MainApp({ user, onLogout }) {
                                     placeholder="••••••"
                                     className="editorial-input mt-1.5 tracking-[0.2em]"
                                 />
+                                <p className="mt-1.5 text-[11px] text-[var(--ath-secondary)]">
+                                    Demo code for <span className="font-semibold">{selectedMode === 'engineering' ? 'Engineering' : 'Education'}</span>:
+                                    <span className="ml-1 rounded bg-[var(--ath-panel-muted)] px-1.5 py-0.5 font-mono font-semibold tracking-normal text-[var(--ath-text)]">{selectedMode === 'engineering' ? 'eng123' : 'edu123'}</span>
+                                </p>
                             </div>
 
                             {error && (
