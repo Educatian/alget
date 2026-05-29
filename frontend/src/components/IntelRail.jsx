@@ -448,7 +448,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                                 {loading ? 'Generating...' : 'Get a simpler explanation'}
                             </button>
                         ) : (
-                            <div className="rounded-[1.2rem] border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.28)] p-4">
+                            <div className="rounded-[1.2rem] border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.28)] p-4" role="status" aria-live="polite">
                                 <h4 className="mb-2 font-semibold text-[var(--ath-primary-deep)]">Simplified explanation</h4>
                                 <p className="whitespace-pre-wrap text-sm leading-6 text-[var(--ath-text)]">{explanation}</p>
                             </div>
@@ -477,7 +477,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                         </div>
 
                         {representation && (
-                            <div className="mt-4 rounded-[1.2rem] border border-[rgba(199,137,67,0.18)] bg-[rgba(255,221,187,0.38)] p-4">
+                            <div className="mt-4 rounded-[1.2rem] border border-[rgba(199,137,67,0.18)] bg-[rgba(255,221,187,0.38)] p-4" role="status" aria-live="polite">
                                 <p className="whitespace-pre-wrap text-sm leading-6 text-[var(--ath-text)]">{representation}</p>
                             </div>
                         )}

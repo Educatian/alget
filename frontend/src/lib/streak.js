@@ -26,8 +26,11 @@ function todayKey(date = new Date()) {
 
 function dayDelta(fromKey, toKey) {
     if (!fromKey || !toKey) return Infinity
-    const from = new Date(`${fromKey}T00:00:00`)
-    const to = new Date(`${toKey}T00:00:00`)
+    // Parse the calendar-date keys as UTC midnights so the difference is an exact
+    // whole number of days regardless of DST (local-midnight parsing made a span
+    // crossing a DST boundary 23h/25h, risking a wrong streak reset).
+    const from = new Date(`${fromKey}T00:00:00Z`)
+    const to = new Date(`${toKey}T00:00:00Z`)
     return Math.round((to - from) / 86400000)
 }
 
