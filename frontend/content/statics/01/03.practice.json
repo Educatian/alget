@@ -3,6 +3,8 @@
         {
             "id": "two_force_identify",
             "type": "multiple_choice",
+            "difficulty": "easy",
+            "concept_ids": ["two_force_member"],
             "stem": "Which of the following is a two-force member?",
             "options": [
                 "A beam with a uniformly distributed load",
@@ -11,11 +13,14 @@
                 "A column supporting a moment at the top"
             ],
             "correct_index": 1,
-            "explanation": "A two-force member has forces applied at only two points and no moments. A truss member with pins at both ends and no other loads fits this definition exactly."
+            "explanation": "A two-force member has forces applied at only two points and no moments. A truss member with pins at both ends and no other loads fits this definition exactly.",
+            "misconception_id": "special_member_shortcut_everywhere"
         },
         {
             "id": "three_force_concurrent",
             "type": "conceptual",
+            "difficulty": "medium",
+            "concept_ids": ["three_force_member", "concurrency"],
             "stem": "A rigid body is acted upon by exactly three forces and is in equilibrium. If two of the forces are not parallel, what must be true about all three forces?",
             "expected_answer": "They must be concurrent (pass through a single common point)",
             "explanation": "For three non-parallel coplanar forces to be in equilibrium, they must all pass through a common point. This is necessary to satisfy the moment equilibrium condition."
@@ -23,6 +28,8 @@
         {
             "id": "truss_member_force",
             "type": "numeric",
+            "difficulty": "medium",
+            "concept_ids": ["two_force_member", "truss_analysis", "member_force"],
             "solver_id": "solve_truss_member",
             "stem": "In a simple truss, member AB connects joints A and B, which are 2 meters apart. If the internal force in member AB is 5000 N compression, what is the force component in the direction from A to B?",
             "params": {

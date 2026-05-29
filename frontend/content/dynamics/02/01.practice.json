@@ -11,7 +11,12 @@
         "Its sign depends only on the cart's mass."
       ],
       "correct_index": 1,
-      "explanation": "Velocity describes direction of motion. Acceleration describes how velocity is changing. If the cart is moving right but slowing down, acceleration points left and is negative."
+      "explanation": "Velocity describes direction of motion. Acceleration describes how velocity is changing. If the cart is moving right but slowing down, acceleration points left and is negative.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "newtons_second_law"
+      ],
+      "misconception_id": "sign_of_acceleration"
     },
     {
       "id": "newton_basic_numeric",
@@ -21,7 +26,11 @@
         "value": 4,
         "unit": "m/s^2",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "easy",
+      "concept_ids": [
+        "newtons_second_law"
+      ]
     },
     {
       "id": "newton_incline_numeric",
@@ -31,7 +40,11 @@
         "value": 6.31,
         "unit": "m/s^2",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "medium",
+      "concept_ids": [
+        "newtons_second_law"
+      ]
     },
     {
       "id": "newton_friction_steps",
@@ -64,7 +77,12 @@
         "value": 1.06,
         "unit": "m/s^2",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "hard",
+      "concept_ids": [
+        "newtons_second_law",
+        "kinetic_friction"
+      ]
     },
     {
       "id": "newton_tension_numeric",
@@ -74,7 +92,11 @@
         "value": 3,
         "unit": "m/s^2",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "easy",
+      "concept_ids": [
+        "newtons_second_law"
+      ]
     },
     {
       "id": "newton_two_force_balance",
@@ -87,7 +109,12 @@
         "Because friction acts only perpendicular to the surface."
       ],
       "correct_index": 1,
-      "explanation": "Even in dynamics, acceleration can be zero in one direction. For a block constrained to remain on the surface, the perpendicular acceleration is often zero, which makes the normal-force equation much simpler."
+      "explanation": "Even in dynamics, acceleration can be zero in one direction. For a block constrained to remain on the surface, the perpendicular acceleration is often zero, which makes the normal-force equation much simpler.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "newtons_second_law"
+      ],
+      "misconception_id": "sumf_zero_habit"
     }
   ]
 }

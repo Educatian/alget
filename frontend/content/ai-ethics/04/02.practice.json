@@ -4,6 +4,11 @@
       "id": "consent_four_conditions",
       "type": "multiple_choice",
       "concept_id": "informed_consent",
+      "difficulty": "easy",
+      "concept_ids": [
+        "informed_consent",
+        "voluntariness"
+      ],
       "stem": "Informed consent (Belmont Report) requires four conditions. Which set?",
       "options": [
         "Speed, brevity, color, animation.",
@@ -19,6 +24,12 @@
       "id": "consent_asymmetric_prominence",
       "type": "multiple_choice",
       "concept_id": "dark_patterns",
+      "difficulty": "medium",
+      "concept_ids": [
+        "dark_patterns",
+        "consent_flow_design",
+        "voluntariness"
+      ],
       "stem": "An interface presents 'Accept All' as a large bright button and 'Reject All' as a three-click trail through nested settings. What dark pattern is this and how does the EU treat it?",
       "options": [
         "Misdirection; legal in the EU.",
@@ -34,6 +45,11 @@
       "id": "consent_inappropriate_carry",
       "type": "multiple_choice",
       "concept_id": "informed_consent",
+      "difficulty": "hard",
+      "concept_ids": [
+        "informed_consent",
+        "surrogate_consent"
+      ],
       "stem": "Which scenario most clearly shows that consent alone cannot carry the ethical weight, even when perfectly collected?",
       "options": [
         "A user clicks 'Accept' on a coffee-shop wifi terms page.",
@@ -49,6 +65,11 @@
       "id": "consent_withdrawal",
       "type": "multiple_choice",
       "concept_id": "withdrawal_rights",
+      "difficulty": "medium",
+      "concept_ids": [
+        "withdrawal_rights",
+        "consent_flow_design"
+      ],
       "stem": "Why is a real, easy withdrawal mechanism (account deletion that actually deletes data, including from training sets where feasible) part of a defensible consent flow?",
       "options": [
         "Because GDPR is unrelated.",

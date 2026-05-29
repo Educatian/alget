@@ -2,6 +2,9 @@
   "chapter_title": "AI in Education",
   "title": "AI Literacy for Teachers",
   "description": "CAT 531 textbook section connecting ai literacy for teachers to TeachGen@i prompt transcript with teacher edits and rejected suggestions, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "03",
+  "section": "04",
   "learning_objectives": [
     "Analyze how the TeachGen@i prompt transcript with teacher edits and rejected suggestions shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_ai_in_education",
     "cat531_supplement_ai_literacy_for_teachers",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/03/03"
+  ],
+  "practice_ids": [
+    "cat531_supplement_3_4_ai_literacy_for_teachers_artifact_signal",
+    "cat531_supplement_3_4_ai_literacy_for_teachers_annotation_signal",
+    "cat531_supplement_3_4_ai_literacy_for_teachers_ai_boundary",
+    "cat531_supplement_3_4_ai_literacy_for_teachers_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 4,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

@@ -11,7 +11,12 @@
         "The work cannot be found without mass"
       ],
       "correct_index": 2,
-      "explanation": "Work depends on the force component along the displacement. A perpendicular force has zero dot product with the displacement and therefore does zero work."
+      "explanation": "Work depends on the force component along the displacement. A perpendicular force has zero dot product with the displacement and therefore does zero work.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "work"
+      ],
+      "misconception_id": "perpendicular_force_work"
     },
     {
       "id": "kinetic_energy_numeric",
@@ -21,7 +26,11 @@
         "value": 48,
         "unit": "J",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "easy",
+      "concept_ids": [
+        "kinetic_energy"
+      ]
     },
     {
       "id": "friction_work_numeric",
@@ -31,7 +40,11 @@
         "value": -50,
         "unit": "J",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "medium",
+      "concept_ids": [
+        "work"
+      ]
     },
     {
       "id": "work_energy_speed",
@@ -41,7 +54,12 @@
         "value": 4,
         "unit": "m/s",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "medium",
+      "concept_ids": [
+        "work",
+        "kinetic_energy"
+      ]
     },
     {
       "id": "incline_energy_steps",
@@ -74,7 +92,14 @@
         "value": 5.76,
         "unit": "m/s",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "hard",
+      "concept_ids": [
+        "conservation_of_energy",
+        "potential_energy",
+        "kinetic_energy",
+        "work"
+      ]
     },
     {
       "id": "conservative_force_concept",
@@ -87,7 +112,12 @@
         "Rolling resistance"
       ],
       "correct_index": 2,
-      "explanation": "Gravity is conservative because its work depends only on the change in position, not on the path taken between the two states."
+      "explanation": "Gravity is conservative because its work depends only on the change in position, not on the path taken between the two states.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "potential_energy",
+        "conservation_of_energy"
+      ]
     }
   ]
 }

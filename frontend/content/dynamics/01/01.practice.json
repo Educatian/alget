@@ -11,7 +11,13 @@
                 "Cannot be determined"
             ],
             "correct_index": 1,
-            "explanation": "When an object slows down, acceleration opposes velocity. If velocity is positive (right), acceleration is negative (left)."
+            "explanation": "When an object slows down, acceleration opposes velocity. If velocity is positive (right), acceleration is negative (left).",
+            "difficulty": "easy",
+            "concept_ids": [
+                "acceleration",
+                "velocity"
+            ],
+            "misconception_id": "sign_confusion"
         },
         {
             "id": "rectilinear_concept_2",
@@ -24,7 +30,12 @@
                 "s = ½(v₀ + v)t"
             ],
             "correct_index": 2,
-            "explanation": "The equation v² = v₀² + 2a(s - s₀) relates velocity and position without time."
+            "explanation": "The equation v² = v₀² + 2a(s - s₀) relates velocity and position without time.",
+            "difficulty": "medium",
+            "concept_ids": [
+                "kinematics"
+            ],
+            "misconception_id": "wrong_equation"
         },
         {
             "id": "rectilinear_concept_3",
@@ -37,7 +48,13 @@
                 "Only if v₀ = 0"
             ],
             "correct_index": 1,
-            "explanation": "The constant acceleration kinematic equations are derived assuming a = constant. For variable a, you must integrate."
+            "explanation": "The constant acceleration kinematic equations are derived assuming a = constant. For variable a, you must integrate.",
+            "difficulty": "medium",
+            "concept_ids": [
+                "kinematics",
+                "acceleration"
+            ],
+            "misconception_id": "variable_acceleration"
         },
         {
             "id": "rectilinear_concept_4",
@@ -50,7 +67,13 @@
                 "Same"
             ],
             "correct_index": 1,
-            "explanation": "From v² = v₀² + 2as, with v = 0: s = v₀²/(2a). Doubling v₀ quadruples s."
+            "explanation": "From v² = v₀² + 2as, with v = 0: s = v₀²/(2a). Doubling v₀ quadruples s.",
+            "difficulty": "hard",
+            "concept_ids": [
+                "kinematics",
+                "velocity"
+            ],
+            "misconception_id": "wrong_equation"
         },
         {
             "id": "rectilinear_numeric_1",
@@ -70,7 +93,13 @@
                 "value": 24,
                 "unit": "m/s",
                 "tolerance": 0.1
-            }
+            },
+            "difficulty": "easy",
+            "concept_ids": [
+                "kinematics",
+                "velocity",
+                "acceleration"
+            ]
         },
         {
             "id": "rectilinear_numeric_2",
@@ -90,7 +119,13 @@
                 "value": 75,
                 "unit": "m",
                 "tolerance": 0.5
-            }
+            },
+            "difficulty": "medium",
+            "concept_ids": [
+                "kinematics",
+                "velocity",
+                "acceleration"
+            ]
         },
         {
             "id": "rectilinear_numeric_3",
@@ -111,7 +146,12 @@
                 "value": 4,
                 "unit": "s",
                 "tolerance": 0.1
-            }
+            },
+            "difficulty": "medium",
+            "concept_ids": [
+                "kinematics",
+                "acceleration"
+            ]
         },
         {
             "id": "rectilinear_numeric_4",
@@ -131,7 +171,13 @@
                 "value": 10,
                 "unit": "m/s²",
                 "tolerance": 0.1
-            }
+            },
+            "difficulty": "medium",
+            "concept_ids": [
+                "kinematics",
+                "acceleration",
+                "velocity"
+            ]
         },
         {
             "id": "rectilinear_step_1",
@@ -163,7 +209,13 @@
                 "value": 84,
                 "unit": "m",
                 "tolerance": 0.5
-            }
+            },
+            "difficulty": "hard",
+            "concept_ids": [
+                "kinematics",
+                "velocity",
+                "acceleration"
+            ]
         },
         {
             "id": "rectilinear_step_2",
@@ -209,7 +261,13 @@
                 "value": 250,
                 "unit": "m",
                 "tolerance": 0.5
-            }
+            },
+            "difficulty": "hard",
+            "concept_ids": [
+                "kinematics",
+                "velocity",
+                "acceleration"
+            ]
         }
     ]
 }

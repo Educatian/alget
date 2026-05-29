@@ -1,4 +1,7 @@
 {
+    "course": "bio-inspired",
+    "chapter": "02",
+    "section": "01",
     "title": "Fluid Dynamics",
     "chapter_title": "Locomotion & Kinematics",
     "learning_objectives": [
@@ -11,5 +14,14 @@
         "drag_reduction",
         "shark_skin",
         "vortex_shedding"
+    ],
+    "prereq_section_ids": [
+        "bio-inspired/01/03"
+    ],
+    "practice_ids": [
+        "bio_drag_reduction_riblets",
+        "bio_boundary_layer_logic",
+        "bio_shark_skin_transfer",
+        "bio_vortex_shedding_design"
     ]
 }

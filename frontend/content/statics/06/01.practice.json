@@ -3,7 +3,9 @@
     {
       "id": "statics_truss_intro_determinacy",
       "type": "multiple_choice",
+      "difficulty": "easy",
       "concept_id": "statics_truss_basics",
+      "concept_ids": ["truss_analysis"],
       "stem": "Why are triangular units used so heavily in truss structures?",
       "options": [
         "Because triangles are geometrically stable when member lengths are fixed",
@@ -12,12 +14,15 @@
         "Because trusses cannot include diagonal members"
       ],
       "correct_index": 0,
-      "explanation": "Triangles resist shape change without changing member lengths, which is why they are the fundamental stable unit in trusses."
+      "explanation": "Triangles resist shape change without changing member lengths, which is why they are the fundamental stable unit in trusses.",
+      "misconception_id": "triangles_only_visual_choice"
     },
     {
       "id": "statics_truss_intro_two_force",
       "type": "multiple_choice",
+      "difficulty": "easy",
       "concept_id": "statics_truss_basics",
+      "concept_ids": ["truss_analysis"],
       "stem": "Under the ideal truss assumptions, how does a typical member carry load?",
       "options": [
         "Through axial tension or compression only",
@@ -31,7 +36,9 @@
     {
       "id": "statics_truss_intro_joint_method",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "statics_method_of_joints",
+      "concept_ids": ["method_of_joints"],
       "stem": "Why should the method of joints usually start at a joint with two or fewer unknown member forces?",
       "options": [
         "Because each planar joint provides only two equilibrium equations",
@@ -45,7 +52,9 @@
     {
       "id": "statics_truss_intro_sign",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "statics_method_of_joints",
+      "concept_ids": ["method_of_joints", "member_force"],
       "stem": "A member force is assumed to be tensile during a method-of-joints solution, but the computed value is negative. What does that mean?",
       "options": [
         "The truss is impossible to solve",
@@ -54,7 +63,8 @@
         "The support reactions must be recomputed"
       ],
       "correct_index": 1,
-      "explanation": "A negative result means the actual force direction is opposite the assumed tensile direction, so the member is in compression."
+      "explanation": "A negative result means the actual force direction is opposite the assumed tensile direction, so the member is in compression.",
+      "misconception_id": "negative_member_force_invalid"
     }
   ]
 }

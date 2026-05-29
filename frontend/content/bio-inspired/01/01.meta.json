@@ -1,4 +1,7 @@
 {
+    "course": "bio-inspired",
+    "chapter": "01",
+    "section": "01",
     "title": "Cellular Solids",
     "chapter_title": "Structural Biomimicry",
     "learning_objectives": [
@@ -10,5 +13,14 @@
         "cellular_solids",
         "porosity",
         "strength_to_weight"
+    ],
+    "prereq_section_ids": [],
+    "practice_ids": [
+        "bio_cellular_solids_core_logic",
+        "bio_porosity_tradeoff",
+        "bio_strength_to_weight_application",
+        "bio_cellular_design_choice",
+        "bio_function_first_search",
+        "bio_principle_not_shape"
     ]
 }

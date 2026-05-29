@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "02",
+    "section": "03",
     "chapter_title": "The ADDIE Framework",
     "title": "Module 3: The Evaluation Phase",
     "description": "Use formative and summative evidence to judge whether instruction is working, and interpret Kirkpatrick's model as a layered evaluation framework.",
@@ -13,6 +16,15 @@
         "summative_evaluation",
         "kirkpatrick_model",
         "evidence_collection"
+    ],
+    "prereq_section_ids": [
+        "inst-design/02/02"
+    ],
+    "practice_ids": [
+        "formative_vs_summative",
+        "kirkpatrick_learning",
+        "reaction_not_learning",
+        "evaluation_evidence_choice"
     ],
     "estimated_time_minutes": 10
 }

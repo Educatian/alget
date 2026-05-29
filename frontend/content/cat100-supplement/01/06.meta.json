@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "01",
+  "section": "06",
   "chapter_title": "Digital Citizenship and AI Readiness",
   "title": "Accessibility Basics",
   "description": "CAT 100 textbook section connecting accessibility basics to privacy checklist for accounts, data sharing, and AI tool boundaries, reader notes, support moments, and revision evidence.",
@@ -10,11 +13,20 @@
   ],
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
-    "cat100_supplement_accessibility_basics",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "accessibility",
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 6,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/01/05"
+  ],
+  "practice_ids": [
+    "cat100_supplement_1_6_accessibility_basics_artifact_signal",
+    "cat100_supplement_1_6_accessibility_basics_annotation_signal",
+    "cat100_supplement_1_6_accessibility_basics_ai_boundary",
+    "cat100_supplement_1_6_accessibility_basics_calibration"
+  ]
 }

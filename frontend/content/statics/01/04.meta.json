@@ -19,5 +19,21 @@
         "equilibrium_condition",
         "fbd"
     ],
+    "prereq_section_ids": [
+        "statics/01/02",
+        "statics/01/01"
+    ],
+    "practice_ids": [
+        "friction_direction_conceptual_1",
+        "friction_direction_conceptual_2",
+        "friction_coefficient_conceptual",
+        "friction_impending_conceptual",
+        "friction_common_mistake",
+        "friction_max_force",
+        "friction_impending_force",
+        "friction_incline_angle",
+        "friction_will_slip",
+        "friction_step_based"
+    ],
     "estimated_time_minutes": 50
 }

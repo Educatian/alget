@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "03",
+  "section": "08",
   "chapter_title": "Data Storytelling With Excel",
   "title": "Module 3 Data Story Studio",
   "description": "CAT 100 textbook section connecting module 3 data story studio to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",
     "cat100_supplement_module_3_data_story_studio",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 8,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/03/07"
+  ],
+  "practice_ids": [
+    "cat100_supplement_3_8_module_3_data_story_studio_artifact_signal",
+    "cat100_supplement_3_8_module_3_data_story_studio_annotation_signal",
+    "cat100_supplement_3_8_module_3_data_story_studio_ai_boundary",
+    "cat100_supplement_3_8_module_3_data_story_studio_calibration"
+  ]
 }

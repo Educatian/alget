@@ -1,4 +1,7 @@
 {
+    "course": "bio-inspired",
+    "chapter": "01",
+    "section": "03",
     "title": "Directional Adhesion",
     "chapter_title": "Structural Biomimicry",
     "description": "Understand how gecko-inspired microstructures create strong shear grip, easy peel release, and new classes of reversible dry adhesives.",
@@ -13,5 +16,14 @@
         "van_der_waals",
         "spatial_geometry"
     ],
-    "estimated_time_minutes": 12
+    "estimated_time_minutes": 12,
+    "prereq_section_ids": [
+        "bio-inspired/01/02"
+    ],
+    "practice_ids": [
+        "bio_directional_adhesion_shear",
+        "bio_vdw_area",
+        "bio_dry_adhesive_use_case",
+        "bio_spatial_geometry_contact"
+    ]
 }

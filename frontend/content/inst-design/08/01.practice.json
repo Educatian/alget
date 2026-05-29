@@ -4,6 +4,11 @@
       "id": "bloom_sigma_problem",
       "type": "multiple_choice",
       "concept_id": "future_learning_ecosystems",
+      "difficulty": "easy",
+      "concept_ids": [
+        "future_learning_ecosystems"
+      ],
+      "misconception_id": "bloom_sigma_means_replace_teachers",
       "stem": "Why is Bloom's 2 Sigma Problem so influential in discussions of learning technology?",
       "options": [
         "It showed that tutoring performs slightly worse than classroom teaching",
@@ -18,6 +23,12 @@
       "id": "ai_tutor_strength",
       "type": "multiple_choice",
       "concept_id": "ai_tutors",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ai_tutors",
+        "future_learning_ecosystems"
+      ],
+      "misconception_id": "ai_solves_pedagogy_automatically",
       "stem": "What is one major promise of AI tutors in instructional design?",
       "options": [
         "They permanently eliminate the need for human teachers",
@@ -32,6 +43,10 @@
       "id": "llm_risk_design",
       "type": "multiple_choice",
       "concept_id": "large_language_models",
+      "difficulty": "medium",
+      "concept_ids": [
+        "large_language_models"
+      ],
       "stem": "What is a major design risk when using large language models for learning support?",
       "options": [
         "They always refuse to answer",
@@ -46,6 +61,11 @@
       "id": "human_ai_orchestration",
       "type": "multiple_choice",
       "concept_id": "human_ai_orchestration",
+      "difficulty": "hard",
+      "concept_ids": [
+        "human_ai_orchestration"
+      ],
+      "misconception_id": "personalization_needs_no_audit",
       "stem": "Which statement best reflects a strong human-AI orchestration model for learning?",
       "options": [
         "Let the AI control all pedagogy without human review",

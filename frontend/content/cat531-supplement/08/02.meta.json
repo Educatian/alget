@@ -2,6 +2,9 @@
   "chapter_title": "Instructor Toolkit for CAT 531",
   "title": "TeachGen@i Troubleshooting",
   "description": "CAT 531 textbook section connecting teachgen@i troubleshooting to TeachGen@i prompt transcript with teacher edits and rejected suggestions, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "08",
+  "section": "02",
   "learning_objectives": [
     "Analyze how the TeachGen@i prompt transcript with teacher edits and rejected suggestions shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_instructor_toolkit_for_cat_531",
     "cat531_supplement_teachgen_i_troubleshooting",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/08/01"
+  ],
+  "practice_ids": [
+    "cat531_supplement_8_2_teachgen_i_troubleshooting_artifact_signal",
+    "cat531_supplement_8_2_teachgen_i_troubleshooting_annotation_signal",
+    "cat531_supplement_8_2_teachgen_i_troubleshooting_ai_boundary",
+    "cat531_supplement_8_2_teachgen_i_troubleshooting_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 2,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

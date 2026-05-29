@@ -75,7 +75,7 @@ from module_hooks import (
     get_module_info,
     BIO_INSPIRED_MODULES
 )
-from content_service import load_section, load_section_meta, generate_toc, get_fallback_toc, load_practice_for_section
+from content_service import load_section, load_section_meta, generate_toc, get_fallback_toc, load_practice_for_section, find_misconception
 from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
@@ -2361,6 +2361,45 @@ async def get_practice(practice_id: str):
     }
 
 
+def _resolve_option_misconception_id(problem: dict, selected_index: Optional[int]) -> Optional[str]:
+    """Resolve the misconception id triggered by a chosen wrong MCQ option.
+
+    Preference order (most specific first):
+      1. Per-option mapping the course agents are backfilling in parallel:
+         - ``option_misconceptions``: dict keyed by option index ("1" or 1), or
+         - ``option_misconception_ids``: list parallel to ``options``.
+         A blank/None per-option value means "this option has no authored
+         misconception" and is treated as absent.
+      2. Problem-level ``misconception_id`` (already present on many MCQs).
+
+    Returns None when nothing is authored, so the grade path never regresses.
+    """
+    # 1) Per-option dict (index -> id), tolerant of int or str keys.
+    option_map = problem.get("option_misconceptions")
+    if isinstance(option_map, dict) and selected_index is not None:
+        candidate = option_map.get(selected_index)
+        if candidate is None:
+            candidate = option_map.get(str(selected_index))
+        candidate = (candidate or "").strip() if isinstance(candidate, str) else candidate
+        if candidate:
+            return candidate
+
+    # 1b) Per-option list parallel to options[].
+    option_list = problem.get("option_misconception_ids")
+    if isinstance(option_list, list) and selected_index is not None:
+        if 0 <= selected_index < len(option_list):
+            candidate = option_list[selected_index]
+            candidate = (candidate or "").strip() if isinstance(candidate, str) else candidate
+            if candidate:
+                return candidate
+
+    # 2) Problem-level fallback.
+    problem_level = problem.get("misconception_id")
+    if isinstance(problem_level, str) and problem_level.strip():
+        return problem_level.strip()
+    return None
+
+
 @app.post("/api/grade/{problem_id}")
 async def grade_submission(problem_id: str, request: GradeRequest):
     """Grade a problem submission against the actual practice JSON.
@@ -2370,10 +2409,12 @@ async def grade_submission(problem_id: str, request: GradeRequest):
     """
     try:
         problem: Optional[dict] = None
+        section_parts: Optional[tuple[str, str, str]] = None
         if request.section_id:
             parts = request.section_id.split("/")
             if len(parts) == 3:
                 course, chapter, section = parts
+                section_parts = (course, chapter, section)
                 practice = load_practice_for_section(course, chapter, section) or {}
                 for candidate in practice.get("problems", []):
                     if str(candidate.get("id")) == str(problem_id):
@@ -2411,7 +2452,7 @@ async def grade_submission(problem_id: str, request: GradeRequest):
                 if correct_index is not None and 0 <= int(correct_index) < len(options)
                 else ""
             )
-            return {
+            response: dict[str, Any] = {
                 "is_correct": is_correct,
                 "user_answer": request.answer or (options[selected_index] if selected_index is not None and 0 <= selected_index < len(options) else ""),
                 "expected": expected_text,
@@ -2419,6 +2460,29 @@ async def grade_submission(problem_id: str, request: GradeRequest):
                 "selected_option": selected_index,
                 "correct_index": correct_index,
             }
+
+            # On a WRONG answer, surface authored remediation from the section's
+            # misconceptions.json so the feedback and rail_action reach the
+            # learner. The misconception id can be attached per-option (course
+            # agents are backfilling this: option_misconceptions / a parallel
+            # option_misconception_ids list) or, failing that, at the problem
+            # level (misconception_id). Robust when none is present: no key is
+            # added and the existing response is unchanged (no regression).
+            if not is_correct:
+                misconception_id = _resolve_option_misconception_id(problem, selected_index)
+                if misconception_id and section_parts is not None:
+                    course, chapter, section = section_parts
+                    entry = find_misconception(course, chapter, section, misconception_id)
+                    if entry:
+                        response["misconception"] = {
+                            "id": entry.get("id", misconception_id),
+                            "pattern": entry.get("pattern", ""),
+                            "feedback": entry.get("feedback", ""),
+                            "rail_action": entry.get("rail_action", ""),
+                            "description": entry.get("description", ""),
+                        }
+
+            return response
 
         # Prefer the deterministic reference solver when the problem declares
         # one. The solver recomputes the answer from the givens and grades the

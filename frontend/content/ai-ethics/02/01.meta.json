@@ -1,4 +1,7 @@
 {
+    "course": "ai-ethics",
+    "chapter": "02",
+    "section": "01",
     "chapter_title": "Bias and Fairness",
     "title": "Module 1: Algorithmic Bias and Where It Comes From",
     "description": "Disentangle the six sources of algorithmic bias (historical, representation, measurement, aggregation, evaluation, deployment feedback) and match each to its appropriate intervention.",
@@ -16,6 +19,15 @@
         "aggregation_bias",
         "evaluation_bias",
         "deployment_feedback_bias"
+    ],
+    "prereq_section_ids": [
+        "ai-ethics/01/02"
+    ],
+    "practice_ids": [
+        "bias_face_recog_source",
+        "bias_proxy_problem",
+        "bias_predictive_policing",
+        "bias_debiasing_limit"
     ],
     "estimated_time_minutes": 14,
     "order": 1

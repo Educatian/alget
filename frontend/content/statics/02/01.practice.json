@@ -3,6 +3,8 @@
     {
       "id": "moment_perpendicular",
       "type": "numeric",
+      "difficulty": "easy",
+      "concept_ids": ["moment"],
       "stem": "A 150 N horizontal force acts at a point 3 m directly above point O. Calculate the magnitude of the moment about O.",
       "final_answer": {
         "value": 450,
@@ -14,6 +16,8 @@
     {
       "id": "moment_components",
       "type": "numeric",
+      "difficulty": "medium",
+      "concept_ids": ["moment", "varignon_theorem", "force_components"],
       "stem": "A 200 N force acts at 45 degrees from horizontal at point P located at (2, 3) m from origin O. Calculate the moment about O using components.",
       "final_answer": {
         "value": 141.4,
@@ -25,6 +29,8 @@
     {
       "id": "moment_arm_definition",
       "type": "multiple_choice",
+      "difficulty": "easy",
+      "concept_ids": ["moment"],
       "stem": "What is the moment arm of a force about a point?",
       "options": [
         "The total length of the body",
@@ -33,11 +39,14 @@
         "The magnitude of the force vector"
       ],
       "correct_index": 1,
-      "explanation": "The moment arm is the perpendicular distance from the reference point to the line of action of the force."
+      "explanation": "The moment arm is the perpendicular distance from the reference point to the line of action of the force.",
+      "misconception_id": "use_nonperpendicular_distance"
     },
     {
       "id": "moment_sign_convention",
       "type": "multiple_choice",
+      "difficulty": "easy",
+      "concept_ids": ["moment"],
       "stem": "In standard planar statics convention, which moment sense is usually taken as positive?",
       "options": [
         "Counterclockwise",
@@ -46,7 +55,8 @@
         "Always away from the origin"
       ],
       "correct_index": 0,
-      "explanation": "Most 2D statics solutions use counterclockwise moment as the positive sign convention."
+      "explanation": "Most 2D statics solutions use counterclockwise moment as the positive sign convention.",
+      "misconception_id": "ignore_moment_sign"
     }
   ]
 }

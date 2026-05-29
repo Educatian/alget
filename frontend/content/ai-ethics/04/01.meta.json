@@ -1,4 +1,7 @@
 {
+    "course": "ai-ethics",
+    "chapter": "04",
+    "section": "01",
     "chapter_title": "Privacy, Consent, and Data Governance",
     "title": "Module 1: Privacy Threats from AI Systems",
     "description": "Identify four distinct privacy threats (re-identification, inference attacks, training-data leakage, surveillance-by-aggregation) and match each to its appropriate countermeasure (k-anonymity, differential privacy, federated learning, data minimization).",
@@ -15,6 +18,15 @@
         "differential_privacy",
         "federated_learning",
         "data_minimization"
+    ],
+    "prereq_section_ids": [
+        "ai-ethics/03/02"
+    ],
+    "practice_ids": [
+        "privacy_anonymization_limit",
+        "privacy_membership_inference",
+        "privacy_dp_purpose",
+        "privacy_aggregation_threat"
     ],
     "estimated_time_minutes": 13,
     "order": 1

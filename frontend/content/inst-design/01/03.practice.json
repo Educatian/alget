@@ -4,6 +4,11 @@
       "id": "constructivism_meaning_making",
       "type": "multiple_choice",
       "concept_id": "constructivism",
+      "difficulty": "easy",
+      "concept_ids": [
+        "constructivism"
+      ],
+      "misconception_id": "constructivism_means_no_structure",
       "stem": "Which statement best reflects a constructivist view of learning?",
       "options": [
         "Learning is the passive transfer of facts from expert to novice.",
@@ -18,6 +23,11 @@
       "id": "zpd_identification",
       "type": "multiple_choice",
       "concept_id": "zone_of_proximal_development",
+      "difficulty": "medium",
+      "concept_ids": [
+        "zone_of_proximal_development"
+      ],
+      "misconception_id": "zpd_equals_difficulty_only",
       "stem": "What is the Zone of Proximal Development (ZPD)?",
       "options": [
         "Tasks a learner can already do automatically alone",
@@ -32,6 +42,12 @@
       "id": "scaffolding_function",
       "type": "multiple_choice",
       "concept_id": "scaffolding",
+      "difficulty": "medium",
+      "concept_ids": [
+        "scaffolding",
+        "zone_of_proximal_development"
+      ],
+      "misconception_id": "scaffolding_is_permanent",
       "stem": "What is the main purpose of scaffolding in a constructivist learning environment?",
       "options": [
         "To permanently simplify the task so the learner never struggles",
@@ -46,6 +62,11 @@
       "id": "active_learning_design",
       "type": "multiple_choice",
       "concept_id": "active_learning",
+      "difficulty": "hard",
+      "concept_ids": [
+        "active_learning",
+        "constructivism"
+      ],
       "stem": "Which course design is most aligned with active learning?",
       "options": [
         "A lecture deck followed by no learner action until the final exam",

@@ -13,7 +13,14 @@
       ],
       "correct_index": 1,
       "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_polish_as_evidence"
+      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_polish_as_evidence",
+      "difficulty": "easy",
+      "concept_ids": [
+        "cat531_supplement_foundations_of_cbi_and_design_tensions",
+        "cat531_supplement_portfolio_evidence_setup",
+        "evidence_based_revision",
+        "ai_supported_learning"
+      ]
     },
     {
       "id": "cat531_supplement_1_7_portfolio_evidence_setup_annotation_signal",
@@ -28,7 +35,11 @@
       ],
       "correct_index": 1,
       "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_annotation_without_signal"
+      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_annotation_without_signal",
+      "difficulty": "medium",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     },
     {
       "id": "cat531_supplement_1_7_portfolio_evidence_setup_ai_boundary",
@@ -43,7 +54,11 @@
       ],
       "correct_index": 1,
       "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_ai_as_authority"
+      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_ai_as_authority",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ai_supported_learning"
+      ]
     },
     {
       "id": "cat531_supplement_1_7_portfolio_evidence_setup_calibration",
@@ -58,7 +73,11 @@
       ],
       "correct_index": 1,
       "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_completion_only_model"
+      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_completion_only_model",
+      "difficulty": "hard",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     }
   ]
 }

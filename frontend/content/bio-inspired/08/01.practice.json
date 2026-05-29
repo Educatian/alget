@@ -12,7 +12,12 @@
         "A queen node is always required for control"
       ],
       "correct_index": 1,
-      "explanation": "Swarm systems rely on local interaction rules that scale into coordinated collective behavior."
+      "explanation": "Swarm systems rely on local interaction rules that scale into coordinated collective behavior.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "swarm_intelligence"
+      ],
+      "misconception_id": "swarm_means_chaos"
     },
     {
       "id": "bio_stigmergy_logic",
@@ -26,7 +31,12 @@
         "A method for forcing all agents into one exact path"
       ],
       "correct_index": 1,
-      "explanation": "Stigmergy describes coordination mediated by environmental traces such as pheromone-like markers or other shared signals."
+      "explanation": "Stigmergy describes coordination mediated by environmental traces such as pheromone-like markers or other shared signals.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "stigmergy"
+      ],
+      "misconception_id": "stigmergy_is_direct_chat"
     },
     {
       "id": "bio_local_rules_reynolds",
@@ -40,7 +50,12 @@
         "Authority, punishment, and hierarchy"
       ],
       "correct_index": 0,
-      "explanation": "The classic boids model is built around separation, alignment, and cohesion."
+      "explanation": "The classic boids model is built around separation, alignment, and cohesion.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "local_rules"
+      ],
+      "misconception_id": "swarm_means_chaos"
     },
     {
       "id": "bio_autonomous_robotics_tradeoff",
@@ -54,7 +69,12 @@
         "Because local rules prevent any communication between robots"
       ],
       "correct_index": 0,
-      "explanation": "Distributed swarms can be more robust because failure of some units does not collapse the whole mission."
+      "explanation": "Distributed swarms can be more robust because failure of some units does not collapse the whole mission.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "autonomous_robotics"
+      ],
+      "misconception_id": "more_agents_equals_better_always"
     },
     {
       "id": "bio_swarm_analogical_transfer",
@@ -68,7 +88,12 @@
         "Copying insect body shape even when the task is warehouse routing"
       ],
       "correct_index": 1,
-      "explanation": "The engineering value comes from abstracting principles such as local signaling, redundancy, and distributed task allocation, not from copying biological appearance."
+      "explanation": "The engineering value comes from abstracting principles such as local signaling, redundancy, and distributed task allocation, not from copying biological appearance.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "analogical_transfer"
+      ],
+      "misconception_id": "copy_the_animal_not_the_rule"
     },
     {
       "id": "bio_fixation_avoidance",
@@ -82,7 +107,12 @@
         "Reject engineering metrics until after a biological form is chosen"
       ],
       "correct_index": 1,
-      "explanation": "Fixation drops when teams compare several analogies and translate them into functions and constraints instead of overcommitting to one literal source."
+      "explanation": "Fixation drops when teams compare several analogies and translate them into functions and constraints instead of overcommitting to one literal source.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "design_fixation"
+      ],
+      "misconception_id": "first_analogy_is_best"
     }
   ]
 }

@@ -2,6 +2,9 @@
   "chapter_title": "Educational Technology Evaluation",
   "title": "Peer Review of Evaluation Briefs",
   "description": "CAT 531 textbook section connecting peer review of evaluation briefs to equity-oriented edtech evaluation matrix with context-specific risk notes, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "05",
+  "section": "07",
   "learning_objectives": [
     "Analyze how the equity-oriented edtech evaluation matrix with context-specific risk notes shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -10,11 +13,20 @@
   ],
   "concept_ids": [
     "cat531_supplement_educational_technology_evaluation",
-    "cat531_supplement_peer_review_of_evaluation_briefs",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "peer_review",
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/05/06"
+  ],
+  "practice_ids": [
+    "cat531_supplement_5_7_peer_review_of_evaluation_briefs_artifact_signal",
+    "cat531_supplement_5_7_peer_review_of_evaluation_briefs_annotation_signal",
+    "cat531_supplement_5_7_peer_review_of_evaluation_briefs_ai_boundary",
+    "cat531_supplement_5_7_peer_review_of_evaluation_briefs_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 7,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

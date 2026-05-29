@@ -4,6 +4,11 @@
       "id": "objectives_strongest",
       "type": "multiple_choice",
       "concept_id": "mager_abcd",
+      "difficulty": "medium",
+      "concept_ids": [
+        "mager_abcd",
+        "learning_objectives"
+      ],
       "stem": "Which of the following is the most useful learning objective for guiding assessment design?",
       "options": [
         "Learners will understand network security.",
@@ -19,6 +24,11 @@
       "id": "objectives_bloom_match",
       "type": "multiple_choice",
       "concept_id": "blooms_revised_taxonomy",
+      "difficulty": "hard",
+      "concept_ids": [
+        "blooms_revised_taxonomy",
+        "constructive_alignment"
+      ],
       "stem": "An objective uses the verb 'evaluate' but the planned assessment asks the learner only to recall a definition. What is the defect?",
       "options": [
         "There is no defect; recall always supports evaluation.",
@@ -34,6 +44,11 @@
       "id": "objectives_stacking",
       "type": "multiple_choice",
       "concept_id": "performance_objective",
+      "difficulty": "medium",
+      "concept_ids": [
+        "performance_objective",
+        "learning_objectives"
+      ],
       "stem": "An objective reads: 'The learner will analyze and evaluate a case study and design an intervention plan.' Why is this problematic?",
       "options": [
         "It uses too many words.",
@@ -49,6 +64,10 @@
       "id": "objectives_constructive_alignment",
       "type": "multiple_choice",
       "concept_id": "constructive_alignment",
+      "difficulty": "easy",
+      "concept_ids": [
+        "constructive_alignment"
+      ],
       "stem": "What is the central commitment of constructive alignment?",
       "options": [
         "All objectives must come from a textbook.",

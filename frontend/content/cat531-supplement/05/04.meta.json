@@ -2,6 +2,9 @@
   "chapter_title": "Educational Technology Evaluation",
   "title": "Cost and Sustainability",
   "description": "CAT 531 textbook section connecting cost and sustainability to Design Tension Studio map naming a classroom value conflict and negotiated decision, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "05",
+  "section": "04",
   "learning_objectives": [
     "Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_educational_technology_evaluation",
     "cat531_supplement_cost_and_sustainability",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/05/03"
+  ],
+  "practice_ids": [
+    "cat531_supplement_5_4_cost_and_sustainability_artifact_signal",
+    "cat531_supplement_5_4_cost_and_sustainability_annotation_signal",
+    "cat531_supplement_5_4_cost_and_sustainability_ai_boundary",
+    "cat531_supplement_5_4_cost_and_sustainability_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 4,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

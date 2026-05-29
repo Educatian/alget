@@ -18,5 +18,14 @@
         "truss",
         "two_force_member"
     ],
+    "prereq_section_ids": [
+        "statics/03/01"
+    ],
+    "practice_ids": [
+        "statics_joints_starting_joint",
+        "statics_joint_sign_interpretation",
+        "statics_joint_equations",
+        "statics_member_force_reasoning"
+    ],
     "estimated_time_minutes": 55
 }

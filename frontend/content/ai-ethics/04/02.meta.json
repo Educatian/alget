@@ -1,4 +1,7 @@
 {
+    "course": "ai-ethics",
+    "chapter": "04",
+    "section": "02",
     "chapter_title": "Privacy, Consent, and Data Governance",
     "title": "Module 2: Consent in Algorithmic Contexts",
     "description": "Apply the four conditions of informed consent (disclosure, comprehension, voluntariness, competence) to AI deployments, recognize dark patterns that defeat consent, and design defensible consent flows that meet GDPR and DSA standards.",
@@ -15,6 +18,15 @@
         "voluntariness",
         "withdrawal_rights",
         "surrogate_consent"
+    ],
+    "prereq_section_ids": [
+        "ai-ethics/04/01"
+    ],
+    "practice_ids": [
+        "consent_four_conditions",
+        "consent_asymmetric_prominence",
+        "consent_inappropriate_carry",
+        "consent_withdrawal"
     ],
     "estimated_time_minutes": 12,
     "order": 2

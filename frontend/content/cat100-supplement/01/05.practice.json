@@ -4,6 +4,10 @@
       "id": "cat100_supplement_1_5_privacy_and_account_safety_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_privacy_and_account_safety",
+      "concept_ids": [
+        "cat100_supplement_privacy_and_account_safety",
+        "cat100_supplement_digital_citizenship_and_ai_readiness"
+      ],
       "stem": "Which evidence trace would make this artifact easiest to review and improve?",
       "options": [
         "The artifact is visually polished and complete.",
@@ -13,12 +17,16 @@
       ],
       "correct_index": 1,
       "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_polish_as_evidence"
+      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_polish_as_evidence",
+      "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_1_5_privacy_and_account_safety_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_ids": [
+        "evidence_based_revision"
+      ],
       "stem": "Which reader note would help BigAL give targeted support?",
       "options": [
         "This is interesting.",
@@ -28,12 +36,16 @@
       ],
       "correct_index": 1,
       "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_annotation_without_signal"
+      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_annotation_without_signal",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_1_5_privacy_and_account_safety_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_ids": [
+        "ai_supported_learning"
+      ],
       "stem": "What is the strongest AI-use boundary for this section?",
       "options": [
         "Ask AI to complete the artifact and submit it.",
@@ -43,12 +55,16 @@
       ],
       "correct_index": 1,
       "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_ai_as_authority"
+      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_ai_as_authority",
+      "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_1_5_privacy_and_account_safety_calibration",
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_ids": [
+        "evidence_based_revision"
+      ],
       "stem": "Which detail would make later support more useful?",
       "options": [
         "Only the final artifact file.",
@@ -58,7 +74,8 @@
       ],
       "correct_index": 1,
       "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_completion_only_model"
+      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_completion_only_model",
+      "difficulty": "medium"
     }
   ]
 }

@@ -10,8 +10,8 @@
         "Distinguish elastic and inelastic collisions"
     ],
     "concept_ids": [
-        "momentum",
-        "impulse",
+        "linear_momentum",
+        "impulse_momentum",
         "conservation_of_momentum",
         "collision"
     ],
@@ -30,5 +30,16 @@
         "vector",
         "average_vs_impulse"
     ],
-    "estimated_time_minutes": 55
+    "estimated_time_minutes": 55,
+    "prereq_section_ids": [
+        "dynamics/02/01"
+    ],
+    "practice_ids": [
+        "momentum_numeric_basic",
+        "impulse_numeric_basic",
+        "collision_stick_numeric",
+        "impulse_momentum_steps",
+        "collision_type_concept",
+        "system_boundary_concept"
+    ]
 }

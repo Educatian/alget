@@ -1,4 +1,7 @@
 {
+    "course": "statics",
+    "chapter": "06",
+    "section": "01",
     "title": "6.1 Introduction to Trusses",
     "chapter_title": "Chapter 6: Structural Analysis",
     "description": "Understand why trusses are material-efficient, apply the two-force-member model, and use the method of joints to classify tension and compression.",
@@ -8,8 +11,18 @@
         "Apply the Method of Joints to determine forces in truss members."
     ],
     "concept_ids": [
-        "statics_truss_basics",
-        "statics_method_of_joints"
+        "truss_analysis",
+        "method_of_joints"
+    ],
+    "prereq_section_ids": [
+        "statics/02/03",
+        "statics/01/03"
+    ],
+    "practice_ids": [
+        "statics_truss_intro_determinacy",
+        "statics_truss_intro_two_force",
+        "statics_truss_intro_joint_method",
+        "statics_truss_intro_sign"
     ],
     "estimated_time_minutes": 14
 }

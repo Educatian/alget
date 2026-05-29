@@ -1,4 +1,7 @@
 {
+    "course": "ai-ethics",
+    "chapter": "05",
+    "section": "02",
     "chapter_title": "Safety, Alignment, and Governance",
     "title": "Module 2: Governance Frameworks — NIST AI RMF, EU AI Act, UNESCO",
     "description": "Compare the three dominant AI governance frameworks (NIST AI RMF, EU AI Act, UNESCO Recommendation) and ISO/IEC 42001, identify where they overlap and disagree, and apply a practitioner workflow that uses each in combination.",
@@ -15,6 +18,15 @@
         "iso_42001",
         "ai_governance",
         "risk_tiered_regulation"
+    ],
+    "prereq_section_ids": [
+        "ai-ethics/05/01"
+    ],
+    "practice_ids": [
+        "gov_nist_functions",
+        "gov_eu_act_education",
+        "gov_unesco_distinct",
+        "gov_iso_42001_role"
     ],
     "estimated_time_minutes": 14,
     "order": 2

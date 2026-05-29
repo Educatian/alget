@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "01",
+    "section": "01",
     "chapter_title": "Introduction to Instructional Design",
     "title": "Module 1: What is Instructional Design?",
     "description": "Introduce instructional design as the deliberate planning of learning experiences, then anchor the field in the major learning-theory traditions that shape design decisions.",
@@ -13,6 +16,13 @@
         "behaviorism",
         "cognitivism",
         "constructivism"
+    ],
+    "prereq_section_ids": [],
+    "practice_ids": [
+        "id_foundations_addie_role",
+        "id_foundations_behaviorism",
+        "id_foundations_cognitivism",
+        "id_foundations_constructivism"
     ],
     "estimated_time_minutes": 10
 }

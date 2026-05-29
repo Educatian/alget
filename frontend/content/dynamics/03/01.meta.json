@@ -11,7 +11,7 @@
         "Analyze relative motion on a rigid body"
     ],
     "concept_ids": [
-        "rigid_body_motion",
+        "rigid_body_kinematics",
         "angular_velocity",
         "angular_acceleration",
         "rotation_about_fixed_axis"
@@ -34,5 +34,17 @@
         "direction",
         "radius"
     ],
-    "estimated_time_minutes": 50
+    "estimated_time_minutes": 50,
+    "prereq_section_ids": [
+        "dynamics/01/02",
+        "dynamics/01/04"
+    ],
+    "practice_ids": [
+        "angular_velocity_conversion",
+        "rim_speed_numeric",
+        "tangential_acceleration_numeric",
+        "normal_acceleration_numeric",
+        "radius_speed_concept",
+        "rigid_body_kinematics_steps"
+    ]
 }

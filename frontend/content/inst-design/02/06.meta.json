@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "02",
+    "section": "06",
     "chapter_title": "Instructional Strategies",
     "title": "Module 6: Gagné's Nine Events of Instruction",
     "description": "Use Gagné's information-processing-grounded nine events as a diagnostic frame for the internal architecture of a single lesson.",
@@ -13,6 +16,16 @@
         "lesson_architecture",
         "retention_and_transfer",
         "instructional_diagnosis"
+    ],
+    "prereq_section_ids": [
+        "inst-design/01/02",
+        "inst-design/02/05"
+    ],
+    "practice_ids": [
+        "gagne_event_match_objective",
+        "gagne_recall_purpose",
+        "gagne_practice_vs_paraphrase",
+        "gagne_transfer_signature"
     ],
     "estimated_time_minutes": 13,
     "order": 6

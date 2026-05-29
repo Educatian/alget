@@ -4,6 +4,10 @@
       "id": "edu_monitor_vs_surveil",
       "type": "multiple_choice",
       "concept_id": "educational_surveillance",
+      "difficulty": "medium",
+      "concept_ids": [
+        "educational_surveillance"
+      ],
       "stem": "Which set of properties distinguishes educational surveillance from formative monitoring?",
       "options": [
         "Cost, color scheme, vendor reputation.",
@@ -19,6 +23,11 @@
       "id": "edu_engagement_motivation",
       "type": "multiple_choice",
       "concept_id": "self_determination_theory",
+      "difficulty": "hard",
+      "concept_ids": [
+        "self_determination_theory",
+        "manufactured_social_presence"
+      ],
       "stem": "A learning platform's engagement metrics rise 40% after adding streaks and manufactured peer presence. What does self-determination theory (Deci & Ryan) predict about autonomous motivation?",
       "options": [
         "Autonomous motivation rises in proportion to engagement.",
@@ -34,6 +43,10 @@
       "id": "edu_dark_pattern_recognize",
       "type": "multiple_choice",
       "concept_id": "engagement_dark_patterns",
+      "difficulty": "medium",
+      "concept_ids": [
+        "engagement_dark_patterns"
+      ],
       "stem": "Which engagement mechanism most directly imports slot-machine reinforcement schedules into educational AI?",
       "options": [
         "Daily quiz at fixed time.",
@@ -49,6 +62,11 @@
       "id": "edu_autonomy_design",
       "type": "multiple_choice",
       "concept_id": "learner_autonomy",
+      "difficulty": "easy",
+      "concept_ids": [
+        "learner_autonomy",
+        "self_determination_theory"
+      ],
       "stem": "Which design move most directly respects learner autonomy under SDT?",
       "options": [
         "Hide the system's data collection from learners.",

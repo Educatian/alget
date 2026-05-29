@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "07",
+  "section": "04",
   "chapter_title": "Productivity and Workflow Automation",
   "title": "AI-Assisted Email Drafting",
   "description": "CAT 100 textbook section connecting ai-assisted email drafting to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
     "cat100_supplement_ai_assisted_email_drafting",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 4,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/07/03"
+  ],
+  "practice_ids": [
+    "cat100_supplement_7_4_ai_assisted_email_drafting_artifact_signal",
+    "cat100_supplement_7_4_ai_assisted_email_drafting_annotation_signal",
+    "cat100_supplement_7_4_ai_assisted_email_drafting_ai_boundary",
+    "cat100_supplement_7_4_ai_assisted_email_drafting_calibration"
+  ]
 }

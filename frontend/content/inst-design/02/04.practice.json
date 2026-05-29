@@ -4,6 +4,11 @@
       "id": "id_models_dnc_strength",
       "type": "multiple_choice",
       "concept_id": "dick_and_carey_model",
+      "difficulty": "easy",
+      "concept_ids": [
+        "dick_and_carey_model",
+        "id_models"
+      ],
       "stem": "Which feature most distinguishes the Dick, Carey, and Carey model from a generic ADDIE workflow?",
       "options": [
         "It eliminates the need for evaluation.",
@@ -13,12 +18,17 @@
       ],
       "correct_index": 1,
       "explanation": "Dick and Carey's signature contribution is alignment discipline across objectives, assessment, and strategy — drift between any two is treated as a defect to fix.",
-      "misconception_id": "addie_and_dnc_are_interchangeable"
+      "misconception_id": "addie_is_the_only_model"
     },
     {
       "id": "id_models_kemp_pattern",
       "type": "multiple_choice",
       "concept_id": "kemp_model",
+      "difficulty": "medium",
+      "concept_ids": [
+        "kemp_model",
+        "id_models"
+      ],
       "stem": "What does the oval (rather than linear) layout of the Kemp model communicate about ID work?",
       "options": [
         "That every project must visit every element exactly once.",
@@ -34,6 +44,11 @@
       "id": "id_models_sam_fit",
       "type": "multiple_choice",
       "concept_id": "successive_approximation_model",
+      "difficulty": "hard",
+      "concept_ids": [
+        "successive_approximation_model",
+        "agile_id"
+      ],
       "stem": "Which scenario is the strongest fit for the Successive Approximation Model (SAM)?",
       "options": [
         "A regulated medical certification course where a wrong early prototype could mislead trainees.",
@@ -49,6 +64,11 @@
       "id": "id_models_combine",
       "type": "multiple_choice",
       "concept_id": "id_models",
+      "difficulty": "hard",
+      "concept_ids": [
+        "id_models",
+        "smith_and_ragan_model"
+      ],
       "stem": "What does it mean for a mature designer to 'run two models at once'?",
       "options": [
         "Deliver two separate courses simultaneously.",

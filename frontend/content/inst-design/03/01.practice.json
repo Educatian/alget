@@ -4,6 +4,11 @@
       "id": "multimedia_dual_channel",
       "type": "multiple_choice",
       "concept_id": "dual_channel_processing",
+      "difficulty": "easy",
+      "concept_ids": [
+        "dual_channel_processing",
+        "multimedia_learning"
+      ],
       "stem": "Which statement best matches Mayer's dual-channel assumption?",
       "options": [
         "The brain processes all information through one shared channel",
@@ -18,6 +23,12 @@
       "id": "multimedia_modality",
       "type": "multiple_choice",
       "concept_id": "modality_effect",
+      "difficulty": "medium",
+      "concept_ids": [
+        "modality_effect",
+        "mayer_principles"
+      ],
+      "misconception_id": "text_and_narration_duplicate_good",
       "stem": "Why can spoken narration paired with graphics sometimes outperform graphics plus dense on-screen text?",
       "options": [
         "Because narration uses the auditory channel and can reduce overload in the visual channel",
@@ -32,6 +43,12 @@
       "id": "mayer_coherence_principle",
       "type": "multiple_choice",
       "concept_id": "multimedia_learning",
+      "difficulty": "medium",
+      "concept_ids": [
+        "multimedia_learning",
+        "mayer_principles"
+      ],
+      "misconception_id": "more_media_always_better",
       "stem": "Which design choice best applies the coherence principle?",
       "options": [
         "Adding dramatic music and decorative animations unrelated to the lesson",
@@ -46,6 +63,11 @@
       "id": "multimedia_overload_case",
       "type": "multiple_choice",
       "concept_id": "cognitive_overload",
+      "difficulty": "hard",
+      "concept_ids": [
+        "cognitive_overload",
+        "multimedia_learning"
+      ],
       "stem": "A simulation includes narration, identical on-screen paragraphs, three flashing callouts, and background music. What is the most likely instructional problem?",
       "options": [
         "The content is too constructivist",

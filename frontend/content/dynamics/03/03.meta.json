@@ -12,7 +12,7 @@
     "concept_ids": [
         "rotational_kinetic_energy",
         "rolling_motion",
-        "energy_conservation_rigid"
+        "conservation_of_energy"
     ],
     "physics_prereqs": [
         "work_energy",
@@ -29,5 +29,17 @@
         "rolling_constraint",
         "energy_terms"
     ],
-    "estimated_time_minutes": 50
+    "estimated_time_minutes": 50,
+    "prereq_section_ids": [
+        "dynamics/03/02",
+        "dynamics/02/02"
+    ],
+    "practice_ids": [
+        "rolling_speed_numeric",
+        "rotational_ke_numeric",
+        "rigid_body_total_ke_numeric",
+        "rolling_constraint_concept",
+        "rolling_energy_steps",
+        "translation_rotation_concept"
+    ]
 }

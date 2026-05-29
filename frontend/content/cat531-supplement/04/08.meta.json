@@ -2,6 +2,9 @@
   "chapter_title": "AI Ethics and Ethobot 3.2",
   "title": "Module 4 Ethics Studio",
   "description": "CAT 531 textbook section connecting module 4 ethics studio to Design Tension Studio map naming a classroom value conflict and negotiated decision, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "04",
+  "section": "08",
   "learning_objectives": [
     "Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_ai_ethics_and_ethobot_3_2",
     "cat531_supplement_module_4_ethics_studio",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/04/07"
+  ],
+  "practice_ids": [
+    "cat531_supplement_4_8_module_4_ethics_studio_artifact_signal",
+    "cat531_supplement_4_8_module_4_ethics_studio_annotation_signal",
+    "cat531_supplement_4_8_module_4_ethics_studio_ai_boundary",
+    "cat531_supplement_4_8_module_4_ethics_studio_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 8,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

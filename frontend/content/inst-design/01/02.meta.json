@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "01",
+    "section": "02",
     "chapter_title": "Introduction to Instructional Design",
     "title": "Module 2: Cognitive Load & Schema",
     "description": "Examine how working memory limits, schema development, and instructional presentation choices interact to support or overload learners.",
@@ -13,6 +16,15 @@
         "intrinsic_load",
         "extraneous_load",
         "germane_load"
+    ],
+    "prereq_section_ids": [
+        "inst-design/01/01"
+    ],
+    "practice_ids": [
+        "clt_intrinsic_load",
+        "clt_extraneous_load",
+        "clt_germane_load",
+        "schema_theory_transfer"
     ],
     "estimated_time_minutes": 11
 }

@@ -4,6 +4,12 @@
       "id": "analysis_root_cause",
       "type": "multiple_choice",
       "concept_id": "analysis_phase",
+      "difficulty": "medium",
+      "concept_ids": [
+        "analysis_phase",
+        "learner_analysis"
+      ],
+      "misconception_id": "training_always_solution",
       "stem": "A manager says, 'Our employees keep making safety mistakes, so build a training course immediately.' What should a strong instructional designer do first?",
       "options": [
         "Start storyboarding the module",
@@ -18,6 +24,12 @@
       "id": "design_objectives_alignment",
       "type": "multiple_choice",
       "concept_id": "instructional_objectives",
+      "difficulty": "medium",
+      "concept_ids": [
+        "instructional_objectives",
+        "design_phase"
+      ],
+      "misconception_id": "objectives_after_content",
       "stem": "Why are explicit learning objectives so important during the design phase?",
       "options": [
         "They make the course look more professional but do not affect assessment",
@@ -32,6 +44,11 @@
       "id": "learner_analysis_case",
       "type": "multiple_choice",
       "concept_id": "learner_analysis",
+      "difficulty": "easy",
+      "concept_ids": [
+        "learner_analysis"
+      ],
+      "misconception_id": "learner_analysis_equals_demographics_only",
       "stem": "Which question belongs most directly to learner analysis?",
       "options": [
         "What will the final LMS theme colors be?",
@@ -46,6 +63,10 @@
       "id": "task_analysis_function",
       "type": "multiple_choice",
       "concept_id": "task_analysis",
+      "difficulty": "hard",
+      "concept_ids": [
+        "task_analysis"
+      ],
       "stem": "What is the main purpose of task analysis in instructional design?",
       "options": [
         "To decompose the target performance into the knowledge, decisions, and actions learners must master",

@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "06",
+    "section": "01",
     "title": "Module 6: Collaborative & Social Learning",
     "description": "Exploring Vygotsky's Zone of Proximal Development (ZPD) and Communities of Practice in modern, networked learning environments.",
     "chapter_title": "Motivation and Learner-Centered Design",
@@ -13,6 +16,16 @@
         "zone_of_proximal_development",
         "communities_of_practice",
         "peer_scaffolding"
+    ],
+    "prereq_section_ids": [
+        "inst-design/01/03",
+        "inst-design/05/01"
+    ],
+    "practice_ids": [
+        "social_learning_premise",
+        "zpd_peer_support",
+        "community_of_practice",
+        "collaboration_design_quality"
     ],
     "estimated_time_minutes": 11,
     "order": 6

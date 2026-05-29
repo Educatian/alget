@@ -11,10 +11,22 @@
   "concept_ids": [
     "ail606_supplement_research_translation_for_learning_design",
     "ail606_supplement_publication_ready_artifact_packaging",
-    "ail606_supplement_evidence_based_revision",
-    "ail606_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 6,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "course": "ail606-supplement",
+  "chapter": "07",
+  "section": "06",
+  "prereq_section_ids": [
+    "ail606-supplement/07/05"
+  ],
+  "practice_ids": [
+    "ail606_supplement_7_6_publication_ready_artifact_packaging_artifact_signal",
+    "ail606_supplement_7_6_publication_ready_artifact_packaging_annotation_signal",
+    "ail606_supplement_7_6_publication_ready_artifact_packaging_ai_boundary",
+    "ail606_supplement_7_6_publication_ready_artifact_packaging_calibration"
+  ]
 }

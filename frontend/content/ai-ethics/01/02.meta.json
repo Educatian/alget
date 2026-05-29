@@ -1,4 +1,7 @@
 {
+    "course": "ai-ethics",
+    "chapter": "01",
+    "section": "02",
     "chapter_title": "Foundations of AI Ethics",
     "title": "Module 2: Applying Ethics Frameworks to AI",
     "description": "Triangulate AI deployment decisions across consequentialism, deontology, virtue ethics, and care ethics; recognize where the frameworks converge (permission to proceed) and where they diverge (the live decision).",
@@ -14,6 +17,15 @@
         "virtue_ethics",
         "care_ethics",
         "ethical_triangulation"
+    ],
+    "prereq_section_ids": [
+        "ai-ethics/01/01"
+    ],
+    "practice_ids": [
+        "ethics_aggregation_blindspot",
+        "ethics_virtue_question",
+        "ethics_care_focus",
+        "ethics_triangulation_value"
     ],
     "estimated_time_minutes": 13,
     "order": 2

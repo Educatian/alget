@@ -1,4 +1,7 @@
 {
+    "course": "ai-ethics",
+    "chapter": "03",
+    "section": "02",
     "chapter_title": "Transparency and Accountability",
     "title": "Module 2: Accountability and Liability",
     "description": "Address the responsibility gap by distributing accountability across developer, deployer, operator, and user; recognize when human-in-the-loop is structural fig leaf; and apply engineering practices (audit trails, model cards, versioning, incident response) that make accountability real.",
@@ -15,6 +18,15 @@
         "model_cards",
         "audit_trails",
         "incident_response"
+    ],
+    "prereq_section_ids": [
+        "ai-ethics/03/01"
+    ],
+    "practice_ids": [
+        "accountability_responsibility_gap",
+        "accountability_hitl_test",
+        "accountability_engineering_real",
+        "accountability_documentation"
     ],
     "estimated_time_minutes": 13,
     "order": 2

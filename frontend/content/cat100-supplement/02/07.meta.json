@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "02",
+  "section": "07",
   "chapter_title": "Resume, Branding, and AI Brainstorming",
   "title": "Peer Review for Professional Materials",
   "description": "CAT 100 textbook section connecting peer review for professional materials to privacy checklist for accounts, data sharing, and AI tool boundaries, reader notes, support moments, and revision evidence.",
@@ -10,11 +13,20 @@
   ],
   "concept_ids": [
     "cat100_supplement_resume_branding_and_ai_brainstorming",
-    "cat100_supplement_peer_review_for_professional_materials",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "peer_review",
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 7,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/02/06"
+  ],
+  "practice_ids": [
+    "cat100_supplement_2_7_peer_review_for_professional_materials_artifact_signal",
+    "cat100_supplement_2_7_peer_review_for_professional_materials_annotation_signal",
+    "cat100_supplement_2_7_peer_review_for_professional_materials_ai_boundary",
+    "cat100_supplement_2_7_peer_review_for_professional_materials_calibration"
+  ]
 }

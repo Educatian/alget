@@ -12,7 +12,12 @@
         "It ignores micro-scale geometry"
       ],
       "correct_index": 0,
-      "explanation": "Dry adhesion relies heavily on contact mechanics and surface architecture rather than only on liquid or curing-based chemistry."
+      "explanation": "Dry adhesion relies heavily on contact mechanics and surface architecture rather than only on liquid or curing-based chemistry.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "dry_adhesion"
+      ],
+      "misconception_id": "dry_means_no_physics"
     },
     {
       "id": "bio_nanotech_contact_split",
@@ -26,7 +31,12 @@
         "It replaces all intermolecular forces with magnetic fields"
       ],
       "correct_index": 0,
-      "explanation": "Fine-scale patterning can create many controlled contact points, improving attachment and release behavior."
+      "explanation": "Fine-scale patterning can create many controlled contact points, improving attachment and release behavior.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "nanotech_adhesion"
+      ],
+      "misconception_id": "nano_patterning_always_solves_it"
     },
     {
       "id": "bio_reversible_attachment",
@@ -40,7 +50,12 @@
         "One-time concrete curing"
       ],
       "correct_index": 0,
-      "explanation": "Dry adhesion is especially attractive for systems that need repeated attachment and clean release."
+      "explanation": "Dry adhesion is especially attractive for systems that need repeated attachment and clean release.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "reversible_adhesion"
+      ],
+      "misconception_id": "reversible_equals_weak"
     },
     {
       "id": "bio_surface_engineering_transfer",
@@ -54,7 +69,12 @@
         "Ignoring the target surface roughness"
       ],
       "correct_index": 0,
-      "explanation": "Interface geometry and compliance strongly shape how a dry adhesive actually behaves during attachment and release."
+      "explanation": "Interface geometry and compliance strongly shape how a dry adhesive actually behaves during attachment and release.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "surface_engineering"
+      ],
+      "misconception_id": "nano_patterning_always_solves_it"
     }
   ]
 }

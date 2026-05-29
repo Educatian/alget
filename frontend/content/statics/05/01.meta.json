@@ -1,4 +1,7 @@
 {
+    "course": "statics",
+    "chapter": "05",
+    "section": "01",
     "chapter_title": "Centroids and Moments of Inertia",
     "title": "Module 1: Centroids, Distributed Loads, and Moments of Inertia",
     "description": "Compute centroids of composite shapes, replace distributed loads with equivalent point loads, and find area moments of inertia using the parallel-axis theorem and composite-bodies method. Bridge to mass moment of inertia for dynamics.",
@@ -15,6 +18,16 @@
         "moment_of_inertia",
         "parallel_axis_theorem",
         "composite_bodies"
+    ],
+    "prereq_section_ids": [
+        "statics/04/01",
+        "statics/02/03"
+    ],
+    "practice_ids": [
+        "moi_rectangle_base",
+        "moi_centroid_minimum",
+        "moi_units_distinction",
+        "moi_distributed_to_point"
     ],
     "estimated_time_minutes": 14,
     "order": 1

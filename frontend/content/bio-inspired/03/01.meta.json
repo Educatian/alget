@@ -14,5 +14,14 @@
         "wing_serrations",
         "drone_propellers",
         "turbulence"
+    ],
+    "prereq_section_ids": [
+        "bio-inspired/02/01"
+    ],
+    "practice_ids": [
+        "bio_owl_silent_flight",
+        "bio_aeroacoustics_focus",
+        "bio_microturbulence_breakdown",
+        "bio_propeller_transfer"
     ]
 }

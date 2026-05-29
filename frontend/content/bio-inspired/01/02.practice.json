@@ -12,7 +12,12 @@
         "It is always softer than synthetic materials"
       ],
       "correct_index": 1,
-      "explanation": "Hierarchical materials derive performance from organized structure at several scales, from microstructure up to visible form."
+      "explanation": "Hierarchical materials derive performance from organized structure at several scales, from microstructure up to visible form.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "hierarchical_structures"
+      ],
+      "misconception_id": "hierarchical_means_complicated_only"
     },
     {
       "id": "bio_nacre_toughness",
@@ -26,7 +31,12 @@
         "Because it prevents any deformation from occurring"
       ],
       "correct_index": 1,
-      "explanation": "Nacre's layered architecture and interfaces make crack growth more difficult, increasing toughness."
+      "explanation": "Nacre's layered architecture and interfaces make crack growth more difficult, increasing toughness.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "nacre"
+      ],
+      "misconception_id": "nacre_is_hardness_only"
     },
     {
       "id": "bio_collagen_scales",
@@ -40,7 +50,12 @@
         "Maximum brittleness for easier fracture"
       ],
       "correct_index": 1,
-      "explanation": "Collagen systems organize fibers across scales so that loads can be distributed and redirected rather than concentrated."
+      "explanation": "Collagen systems organize fibers across scales so that loads can be distributed and redirected rather than concentrated.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "collagen"
+      ],
+      "misconception_id": "strongest_material_single_scale"
     },
     {
       "id": "bio_multiscale_engineering_transfer",
@@ -54,7 +69,12 @@
         "Replacing all interfaces with a fully uniform block"
       ],
       "correct_index": 1,
-      "explanation": "Multiscale design treats performance as the product of coordinated structure across several levels, not one level alone."
+      "explanation": "Multiscale design treats performance as the product of coordinated structure across several levels, not one level alone.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "multiscale"
+      ],
+      "misconception_id": "strongest_material_single_scale"
     }
   ]
 }

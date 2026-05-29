@@ -12,7 +12,12 @@
         "Because natural cellular structures are always solid rather than porous"
       ],
       "correct_index": 1,
-      "explanation": "Cellular solids distribute load through geometry, allowing high stiffness and useful strength with much less material than a fully solid part."
+      "explanation": "Cellular solids distribute load through geometry, allowing high stiffness and useful strength with much less material than a fully solid part.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "cellular_solids"
+      ],
+      "misconception_id": "porous_means_weak"
     },
     {
       "id": "bio_porosity_tradeoff",
@@ -26,7 +31,12 @@
         "Guaranteed improvement in every performance metric"
       ],
       "correct_index": 0,
-      "explanation": "Higher porosity usually reduces mass, but the designer must watch how much stiffness, strength, and fatigue resistance are sacrificed."
+      "explanation": "Higher porosity usually reduces mass, but the designer must watch how much stiffness, strength, and fatigue resistance are sacrificed.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "porosity"
+      ],
+      "misconception_id": "less_material_means_no_tradeoff"
     },
     {
       "id": "bio_strength_to_weight_application",
@@ -40,7 +50,12 @@
         "A decorative glass sculpture with no structural function"
       ],
       "correct_index": 1,
-      "explanation": "Aircraft and other mobility systems strongly benefit when structure remains strong but mass is reduced."
+      "explanation": "Aircraft and other mobility systems strongly benefit when structure remains strong but mass is reduced.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "strength_to_weight"
+      ],
+      "misconception_id": "porous_means_weak"
     },
     {
       "id": "bio_cellular_design_choice",
@@ -54,7 +69,12 @@
         "Remove all internal structure because natural materials are random"
       ],
       "correct_index": 1,
-      "explanation": "Biomimetic cellular design keeps internal architecture where loads need support rather than distributing material uniformly."
+      "explanation": "Biomimetic cellular design keeps internal architecture where loads need support rather than distributing material uniformly.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "cellular_solids"
+      ],
+      "misconception_id": "copy_nature_exactly"
     },
     {
       "id": "bio_function_first_search",
@@ -68,7 +88,12 @@
         "Copy a natural structure at the same scale and material"
       ],
       "correct_index": 1,
-      "explanation": "Function-based search starts from what the design must do under real constraints, then looks for biological strategies that achieve something similar."
+      "explanation": "Function-based search starts from what the design must do under real constraints, then looks for biological strategies that achieve something similar.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "function_based_search"
+      ],
+      "misconception_id": "search_by_organism_first"
     },
     {
       "id": "bio_principle_not_shape",
@@ -82,7 +107,12 @@
         "The only useful biomimetic transfer is copying the exact cell dimensions"
       ],
       "correct_index": 1,
-      "explanation": "Useful biomimetic transfer abstracts a functional principle and then re-expresses it in engineering terms, rather than copying surface appearance."
+      "explanation": "Useful biomimetic transfer abstracts a functional principle and then re-expresses it in engineering terms, rather than copying surface appearance.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "analogical_transfer"
+      ],
+      "misconception_id": "visual_similarity_proves_transfer"
     }
   ]
 }

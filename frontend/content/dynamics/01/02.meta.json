@@ -16,5 +16,15 @@
         "kinematics",
         "joints"
     ],
-    "estimated_time_minutes": 14
+    "estimated_time_minutes": 14,
+    "prereq_section_ids": [
+        "dynamics/01/01"
+    ],
+    "practice_ids": [
+        "curvilinear_concept_1",
+        "curvilinear_concept_2",
+        "curvilinear_numeric_1",
+        "curvilinear_numeric_2",
+        "curvilinear_circular"
+    ]
 }

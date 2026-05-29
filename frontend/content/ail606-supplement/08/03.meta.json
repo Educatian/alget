@@ -10,11 +10,24 @@
   ],
   "concept_ids": [
     "ail606_supplement_instructor_implementation_toolkit",
-    "ail606_supplement_rubric_calibration",
-    "ail606_supplement_evidence_based_revision",
-    "ail606_supplement_ai_supported_learning"
+    "rubric_design",
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 3,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "course": "ail606-supplement",
+  "chapter": "08",
+  "section": "03",
+  "prereq_section_ids": [
+    "ail606-supplement/08/02",
+    "inst-design/02/07"
+  ],
+  "practice_ids": [
+    "ail606_supplement_8_3_rubric_calibration_artifact_signal",
+    "ail606_supplement_8_3_rubric_calibration_annotation_signal",
+    "ail606_supplement_8_3_rubric_calibration_ai_boundary",
+    "ail606_supplement_8_3_rubric_calibration_calibration"
+  ]
 }

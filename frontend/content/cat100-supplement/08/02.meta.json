@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "08",
+  "section": "02",
   "chapter_title": "Course Completion and Transfer",
   "title": "Professional Story Across Artifacts",
   "description": "CAT 100 textbook section connecting professional story across artifacts to presentation storyboard with audience constraint and slide-level evidence, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_course_completion_and_transfer",
     "cat100_supplement_professional_story_across_artifacts",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 2,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/08/01"
+  ],
+  "practice_ids": [
+    "cat100_supplement_8_2_professional_story_across_artifacts_artifact_signal",
+    "cat100_supplement_8_2_professional_story_across_artifacts_annotation_signal",
+    "cat100_supplement_8_2_professional_story_across_artifacts_ai_boundary",
+    "cat100_supplement_8_2_professional_story_across_artifacts_calibration"
+  ]
 }

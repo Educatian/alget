@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "07",
+  "section": "08",
   "chapter_title": "Productivity and Workflow Automation",
   "title": "Workflow Studio",
   "description": "CAT 100 textbook section connecting workflow studio to privacy checklist for accounts, data sharing, and AI tool boundaries, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_productivity_and_workflow_automation",
     "cat100_supplement_workflow_studio",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 8,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/07/07"
+  ],
+  "practice_ids": [
+    "cat100_supplement_7_8_workflow_studio_artifact_signal",
+    "cat100_supplement_7_8_workflow_studio_annotation_signal",
+    "cat100_supplement_7_8_workflow_studio_ai_boundary",
+    "cat100_supplement_7_8_workflow_studio_calibration"
+  ]
 }

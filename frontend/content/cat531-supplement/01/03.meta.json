@@ -2,6 +2,9 @@
   "chapter_title": "Foundations of CBI and Design Tensions",
   "title": "DTS Map Reading",
   "description": "CAT 531 textbook section connecting dts map reading to Design Tension Studio map naming a classroom value conflict and negotiated decision, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "01",
+  "section": "03",
   "learning_objectives": [
     "Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_foundations_of_cbi_and_design_tensions",
     "cat531_supplement_dts_map_reading",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/01/02"
+  ],
+  "practice_ids": [
+    "cat531_supplement_1_3_dts_map_reading_artifact_signal",
+    "cat531_supplement_1_3_dts_map_reading_annotation_signal",
+    "cat531_supplement_1_3_dts_map_reading_ai_boundary",
+    "cat531_supplement_1_3_dts_map_reading_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 3,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

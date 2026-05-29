@@ -90,9 +90,15 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
             })
             const result = await response.json()
             const confidenceValue = Number(confidenceByProblem[problemId] || 3)
+            // Prefer the authored misconception pattern the backend returned for
+            // a wrong MCQ option, so the fused signal carries the real tag rather
+            // than only the learner's self-report. Falls back to unit_error and
+            // then the self-report selector when no authored pattern is present.
             const misconceptionType = result.unit_error
                 ? 'unit_error'
-                : misconceptionByProblem[problemId] || 'unknown'
+                : (!result.is_correct && result.misconception?.pattern)
+                    ? result.misconception.pattern
+                    : misconceptionByProblem[problemId] || 'unknown'
 
             setGradeResults((previous) => ({ ...previous, [problemId]: result }))
             recordAdaptiveSignal(
@@ -442,6 +448,22 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                             <p className="mt-3 text-sm text-[var(--ath-muted)]">
                                 Expected target: <code className="rounded bg-white/80 px-2 py-1 text-[var(--ath-text)]">{currentResult.expected}</code>
                             </p>
+                        )}
+
+                        {!currentResult.is_correct && currentResult.misconception?.feedback && (
+                            <div className="mt-4 rounded-[1rem] border border-[rgba(199,137,67,0.22)] bg-[rgba(255,245,233,0.9)] p-4">
+                                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#8a5b1a]">
+                                    Common Misconception
+                                </p>
+                                <p className="mt-2 text-sm leading-7 text-[var(--ath-text)]">
+                                    {currentResult.misconception.feedback}
+                                </p>
+                                {currentResult.misconception.pattern && (
+                                    <p className="mt-2 text-xs text-[var(--ath-muted)]">
+                                        Pattern: <code className="rounded bg-white/80 px-1.5 py-0.5 text-[var(--ath-text)]">{currentResult.misconception.pattern}</code>
+                                    </p>
+                                )}
+                            </div>
                         )}
 
                         {!currentResult.is_correct && (

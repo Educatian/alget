@@ -2,6 +2,9 @@
   "chapter_title": "AI Ethics and Ethobot 3.2",
   "title": "Stakeholders in School AI",
   "description": "CAT 531 textbook section connecting stakeholders in school ai to Design Tension Studio map naming a classroom value conflict and negotiated decision, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "04",
+  "section": "03",
   "learning_objectives": [
     "Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_ai_ethics_and_ethobot_3_2",
     "cat531_supplement_stakeholders_in_school_ai",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/04/02"
+  ],
+  "practice_ids": [
+    "cat531_supplement_4_3_stakeholders_in_school_ai_artifact_signal",
+    "cat531_supplement_4_3_stakeholders_in_school_ai_annotation_signal",
+    "cat531_supplement_4_3_stakeholders_in_school_ai_ai_boundary",
+    "cat531_supplement_4_3_stakeholders_in_school_ai_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 3,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

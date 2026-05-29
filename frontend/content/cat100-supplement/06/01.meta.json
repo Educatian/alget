@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "06",
+  "section": "01",
   "chapter_title": "GitHub Pages Personal Website",
   "title": "Website Purpose and Information Architecture",
   "description": "CAT 100 textbook section connecting website purpose and information architecture to GitHub Pages file tree with accessibility, privacy, and publishing checks, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_github_pages_personal_website",
     "cat100_supplement_website_purpose_and_information_architecture",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 1,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/05/08"
+  ],
+  "practice_ids": [
+    "cat100_supplement_6_1_website_purpose_and_information_architecture_artifact_signal",
+    "cat100_supplement_6_1_website_purpose_and_information_architecture_annotation_signal",
+    "cat100_supplement_6_1_website_purpose_and_information_architecture_ai_boundary",
+    "cat100_supplement_6_1_website_purpose_and_information_architecture_calibration"
+  ]
 }

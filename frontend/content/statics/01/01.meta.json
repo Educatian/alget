@@ -12,7 +12,7 @@
     "concept_ids": [
         "equilibrium",
         "sum_of_forces",
-        "fbd",
+        "free_body_diagram",
         "tension"
     ],
     "prereq_section_ids": [],

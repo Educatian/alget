@@ -2,6 +2,9 @@
   "chapter_title": "Foundations of CBI and Design Tensions",
   "title": "CBI as Pedagogical Judgment",
   "description": "CAT 531 textbook section connecting cbi as pedagogical judgment to Design Tension Studio map naming a classroom value conflict and negotiated decision, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "01",
+  "section": "01",
   "learning_objectives": [
     "Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,17 @@
   "concept_ids": [
     "cat531_supplement_foundations_of_cbi_and_design_tensions",
     "cat531_supplement_cbi_as_pedagogical_judgment",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [],
+  "practice_ids": [
+    "cat531_supplement_1_1_cbi_as_pedagogical_judgment_artifact_signal",
+    "cat531_supplement_1_1_cbi_as_pedagogical_judgment_annotation_signal",
+    "cat531_supplement_1_1_cbi_as_pedagogical_judgment_ai_boundary",
+    "cat531_supplement_1_1_cbi_as_pedagogical_judgment_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 1,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

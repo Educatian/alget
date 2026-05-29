@@ -8,7 +8,11 @@
         "value": 32,
         "unit": "kg*m/s",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "easy",
+      "concept_ids": [
+        "linear_momentum"
+      ]
     },
     {
       "id": "impulse_numeric_basic",
@@ -18,7 +22,11 @@
         "value": 30,
         "unit": "N*s",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "easy",
+      "concept_ids": [
+        "impulse_momentum"
+      ]
     },
     {
       "id": "collision_stick_numeric",
@@ -28,7 +36,12 @@
         "value": 5,
         "unit": "m/s",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "medium",
+      "concept_ids": [
+        "conservation_of_momentum",
+        "collision"
+      ]
     },
     {
       "id": "impulse_momentum_steps",
@@ -61,7 +74,12 @@
         "value": 8,
         "unit": "m/s",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "hard",
+      "concept_ids": [
+        "impulse_momentum",
+        "linear_momentum"
+      ]
     },
     {
       "id": "collision_type_concept",
@@ -74,7 +92,12 @@
         "Glancing"
       ],
       "correct_index": 2,
-      "explanation": "If the objects stick together, the collision is perfectly inelastic and both bodies share one final velocity after impact."
+      "explanation": "If the objects stick together, the collision is perfectly inelastic and both bodies share one final velocity after impact.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "collision"
+      ],
+      "misconception_id": "ke_always_conserved"
     },
     {
       "id": "system_boundary_concept",
@@ -87,7 +110,12 @@
         "Because impulse applies only to isolated systems."
       ],
       "correct_index": 1,
-      "explanation": "Correct. Internal collision forces come in equal and opposite pairs, so when external impulse is negligible the system's total momentum remains constant."
+      "explanation": "Correct. Internal collision forces come in equal and opposite pairs, so when external impulse is negligible the system's total momentum remains constant.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "conservation_of_momentum"
+      ],
+      "misconception_id": "external_impulse_ignored"
     }
   ]
 }

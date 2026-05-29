@@ -13,7 +13,11 @@
       ],
       "correct_index": 1,
       "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_polish_as_evidence"
+      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_polish_as_evidence",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ail606_supplement_design_rationale_as_evidence"
+      ]
     },
     {
       "id": "ail606_supplement_1_7_design_rationale_as_evidence_annotation_signal",
@@ -28,7 +32,11 @@
       ],
       "correct_index": 1,
       "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_annotation_without_signal"
+      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_annotation_without_signal",
+      "difficulty": "easy",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     },
     {
       "id": "ail606_supplement_1_7_design_rationale_as_evidence_ai_boundary",
@@ -43,7 +51,11 @@
       ],
       "correct_index": 1,
       "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_ai_as_authority"
+      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_ai_as_authority",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ai_supported_learning"
+      ]
     },
     {
       "id": "ail606_supplement_1_7_design_rationale_as_evidence_calibration",
@@ -58,7 +70,11 @@
       ],
       "correct_index": 1,
       "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_completion_only_model"
+      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_completion_only_model",
+      "difficulty": "hard",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     }
   ]
 }

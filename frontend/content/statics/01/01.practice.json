@@ -13,6 +13,7 @@
       "expected_unit": "N",
       "tolerance": 0.05,
       "require_unit": true,
+      "concept_ids": ["equilibrium", "tension"],
       "hint": "For a vertically hanging object in equilibrium, tension equals weight."
     },
     {
@@ -29,6 +30,7 @@
       "expected_unit": "N",
       "tolerance": 0.1,
       "require_unit": true,
+      "concept_ids": ["equilibrium", "tension", "force_components"],
       "hint": "Use vertical equilibrium: only the vertical component of the cable tension supports the weight."
     },
     {
@@ -43,7 +45,9 @@
         "Only the largest force matters"
       ],
       "correct_index": 1,
-      "explanation": "In planar particle equilibrium, the net force must be zero in both coordinate directions."
+      "explanation": "In planar particle equilibrium, the net force must be zero in both coordinate directions.",
+      "concept_ids": ["equilibrium", "sum_of_forces"],
+      "misconception_id": "tension_equals_weight_always"
     },
     {
       "id": "statics_eq_second_vertical",
@@ -58,6 +62,7 @@
       "expected_unit": "N",
       "tolerance": 0.05,
       "require_unit": true,
+      "concept_ids": ["equilibrium", "tension"],
       "hint": "For a hanging body at rest, cable tension balances the weight."
     }
   ]

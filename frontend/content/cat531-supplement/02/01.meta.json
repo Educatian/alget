@@ -2,6 +2,9 @@
   "chapter_title": "Teaching in Tech-Rich Classrooms With TeachGen@i",
   "title": "Tech-Rich Classroom Routines",
   "description": "CAT 531 textbook section connecting tech-rich classroom routines to Design Tension Studio map naming a classroom value conflict and negotiated decision, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "02",
+  "section": "01",
   "learning_objectives": [
     "Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
     "cat531_supplement_tech_rich_classroom_routines",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/01/08"
+  ],
+  "practice_ids": [
+    "cat531_supplement_2_1_tech_rich_classroom_routines_artifact_signal",
+    "cat531_supplement_2_1_tech_rich_classroom_routines_annotation_signal",
+    "cat531_supplement_2_1_tech_rich_classroom_routines_ai_boundary",
+    "cat531_supplement_2_1_tech_rich_classroom_routines_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 1,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

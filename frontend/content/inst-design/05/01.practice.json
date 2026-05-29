@@ -4,6 +4,10 @@
       "id": "andragogy_self_concept",
       "type": "multiple_choice",
       "concept_id": "andragogy",
+      "difficulty": "easy",
+      "concept_ids": [
+        "andragogy"
+      ],
       "stem": "What is a core assumption of adult learning in andragogy?",
       "options": [
         "Adults prefer complete dependence on the instructor",
@@ -18,6 +22,12 @@
       "id": "adult_prior_experience",
       "type": "multiple_choice",
       "concept_id": "adult_learning",
+      "difficulty": "medium",
+      "concept_ids": [
+        "adult_learning",
+        "andragogy"
+      ],
+      "misconception_id": "prior_experience_always_helpful",
       "stem": "Why is prior experience especially important in adult learning design?",
       "options": [
         "Because adults arrive with no misconceptions",
@@ -32,6 +42,11 @@
       "id": "problem_centered_design",
       "type": "multiple_choice",
       "concept_id": "problem_centered_learning",
+      "difficulty": "medium",
+      "concept_ids": [
+        "problem_centered_learning",
+        "adult_learning"
+      ],
       "stem": "Which design choice is most aligned with problem-centered adult learning?",
       "options": [
         "A long abstract theory lecture with no workplace examples",
@@ -46,6 +61,12 @@
       "id": "self_directed_learning_case",
       "type": "multiple_choice",
       "concept_id": "self_directed_learning",
+      "difficulty": "hard",
+      "concept_ids": [
+        "self_directed_learning",
+        "andragogy"
+      ],
+      "misconception_id": "adults_need_no_structure",
       "stem": "Which feature best supports self-directed learning for adults?",
       "options": [
         "A fixed path with no choice, no pretest, and no optional review",

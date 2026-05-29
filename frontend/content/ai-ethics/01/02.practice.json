@@ -4,6 +4,12 @@
       "id": "ethics_aggregation_blindspot",
       "type": "multiple_choice",
       "concept_id": "consequentialism",
+      "difficulty": "hard",
+      "concept_ids": [
+        "consequentialism",
+        "deontology",
+        "care_ethics"
+      ],
       "stem": "Which framework most strongly resists deploying a model that helps 95% of users a little while harming 5% catastrophically?",
       "options": [
         "Consequentialism alone, because aggregate utility is positive.",
@@ -19,6 +25,10 @@
       "id": "ethics_virtue_question",
       "type": "multiple_choice",
       "concept_id": "virtue_ethics",
+      "difficulty": "easy",
+      "concept_ids": [
+        "virtue_ethics"
+      ],
       "stem": "What diagnostic question is most characteristic of virtue ethics applied to AI?",
       "options": [
         "Does it maximize aggregate utility?",
@@ -34,6 +44,10 @@
       "id": "ethics_care_focus",
       "type": "multiple_choice",
       "concept_id": "care_ethics",
+      "difficulty": "medium",
+      "concept_ids": [
+        "care_ethics"
+      ],
       "stem": "Care ethics is most distinctive in foregrounding which feature of a deployment context?",
       "options": [
         "Aggregate efficiency.",
@@ -49,6 +63,10 @@
       "id": "ethics_triangulation_value",
       "type": "multiple_choice",
       "concept_id": "ethical_triangulation",
+      "difficulty": "hard",
+      "concept_ids": [
+        "ethical_triangulation"
+      ],
       "stem": "Why should AI ethics decisions triangulate across multiple frameworks rather than commit to one?",
       "options": [
         "Because each framework is objectively true on different days.",

@@ -4,6 +4,12 @@
       "id": "fairness_impossibility",
       "type": "multiple_choice",
       "concept_id": "fairness_impossibility",
+      "difficulty": "hard",
+      "concept_ids": [
+        "fairness_impossibility",
+        "calibration_within_groups",
+        "equalized_odds"
+      ],
       "stem": "A risk-assessment model is calibrated within race groups. The base rate of the outcome differs across groups. Can the model also equalize false-positive rates across groups?",
       "options": [
         "Yes, calibration implies equalized error rates automatically.",
@@ -19,6 +25,11 @@
       "id": "fairness_demographic_parity",
       "type": "multiple_choice",
       "concept_id": "demographic_parity",
+      "difficulty": "easy",
+      "concept_ids": [
+        "demographic_parity",
+        "fairness_definitions"
+      ],
       "stem": "Demographic parity is best described as:",
       "options": [
         "Equal selection rates across protected groups, regardless of ground-truth qualification.",
@@ -34,6 +45,11 @@
       "id": "fairness_match_to_harm",
       "type": "multiple_choice",
       "concept_id": "fairness_definitions",
+      "difficulty": "hard",
+      "concept_ids": [
+        "fairness_definitions",
+        "equalized_odds"
+      ],
       "stem": "In a criminal-risk context where false positives (incorrect high-risk classification) cause concrete harm to defendants, which fairness criterion is most often the louder requirement and why?",
       "options": [
         "Demographic parity, because all groups must be classified the same way.",
@@ -49,6 +65,11 @@
       "id": "fairness_individual_metric",
       "type": "multiple_choice",
       "concept_id": "individual_fairness",
+      "difficulty": "medium",
+      "concept_ids": [
+        "individual_fairness",
+        "counterfactual_fairness"
+      ],
       "stem": "Individual fairness ('similar individuals should be treated similarly') has a key under-specification. What is it?",
       "options": [
         "It requires deep learning.",

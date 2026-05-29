@@ -4,6 +4,11 @@
       "id": "edu_ferpa_scope",
       "type": "multiple_choice",
       "concept_id": "ferpa",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ferpa",
+        "education_ai_ethics"
+      ],
       "stem": "An AI vendor ingests student records under the FERPA 'school official' exception. Which statement is most accurate?",
       "options": [
         "The vendor's terms of service supersede FERPA obligations.",
@@ -19,6 +24,11 @@
       "id": "edu_idea_due_process",
       "type": "multiple_choice",
       "concept_id": "idea_act",
+      "difficulty": "hard",
+      "concept_ids": [
+        "idea_act",
+        "ferpa"
+      ],
       "stem": "An AI early-warning system flags students for special-education-adjacent intervention without producing the procedural notice and parental participation that a human-driven equivalent would require. Which framework does this most clearly violate?",
       "options": [
         "Only FERPA, because data was used.",
@@ -34,6 +44,10 @@
       "id": "edu_equity_question",
       "type": "multiple_choice",
       "concept_id": "ai_equity_in_education",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ai_equity_in_education"
+      ],
       "stem": "When evaluating an educational AI tool, which question is most aligned with the equity concern UNESCO and others raise?",
       "options": [
         "Is the tool's average accuracy high?",
@@ -49,6 +63,10 @@
       "id": "edu_coppa_age",
       "type": "multiple_choice",
       "concept_id": "coppa",
+      "difficulty": "easy",
+      "concept_ids": [
+        "coppa"
+      ],
       "stem": "What is the most accurate description of COPPA's age coverage in relation to ethical AI in education?",
       "options": [
         "COPPA covers all minors up to 18 with strict requirements.",

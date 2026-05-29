@@ -3,7 +3,9 @@
     {
       "id": "moi_rectangle_base",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "parallel_axis_theorem",
+      "concept_ids": ["parallel_axis_theorem", "moment_of_inertia"],
       "stem": "A rectangle has width b and height h. Its centroidal area moment of inertia is bh³/12. What is its moment of inertia about the base?",
       "options": [
         "bh³/12 (same as centroidal).",
@@ -18,7 +20,9 @@
     {
       "id": "moi_centroid_minimum",
       "type": "multiple_choice",
+      "difficulty": "hard",
       "concept_id": "moment_of_inertia",
+      "concept_ids": ["moment_of_inertia", "parallel_axis_theorem", "centroid"],
       "stem": "Among all axes parallel to a given direction, which axis through the body has the minimum moment of inertia?",
       "options": [
         "Any axis at the boundary.",
@@ -33,7 +37,9 @@
     {
       "id": "moi_units_distinction",
       "type": "multiple_choice",
+      "difficulty": "easy",
       "concept_id": "moment_of_inertia",
+      "concept_ids": ["moment_of_inertia"],
       "stem": "Which units distinguish the area moment of inertia from the mass moment of inertia?",
       "options": [
         "Both have units of m⁴.",
@@ -48,7 +54,9 @@
     {
       "id": "moi_distributed_to_point",
       "type": "multiple_choice",
+      "difficulty": "hard",
       "concept_id": "distributed_load",
+      "concept_ids": ["distributed_load", "centroid"],
       "stem": "A triangular distributed load ramps from 0 at one end to w₀ at the other end of a beam of length L. The equivalent concentrated force is:",
       "options": [
         "w₀L at the midpoint.",

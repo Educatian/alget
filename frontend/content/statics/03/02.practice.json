@@ -3,7 +3,9 @@
     {
       "id": "statics_joints_starting_joint",
       "type": "multiple_choice",
+      "difficulty": "easy",
       "concept_id": "method_of_joints",
+      "concept_ids": ["method_of_joints", "joint_equilibrium"],
       "stem": "Which joint is the best starting point for the method of joints?",
       "options": [
         "A joint with four unknown member forces",
@@ -12,12 +14,15 @@
         "Only the center joint of the truss"
       ],
       "correct_index": 1,
-      "explanation": "Each joint in a planar truss gives two equilibrium equations, so you want no more than two unknown member forces."
+      "explanation": "Each joint in a planar truss gives two equilibrium equations, so you want no more than two unknown member forces.",
+      "misconception_id": "start_any_joint"
     },
     {
       "id": "statics_joint_sign_interpretation",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "joint_equilibrium",
+      "concept_ids": ["joint_equilibrium", "member_force"],
       "stem": "A member force was assumed to be in tension, but the solved value is negative. What does that mean?",
       "options": [
         "The member force is zero",
@@ -26,12 +31,15 @@
         "The equations of equilibrium do not apply"
       ],
       "correct_index": 2,
-      "explanation": "With the standard tension-first convention, a negative result means the actual force direction is opposite to the assumed tensile direction, so the member is in compression."
+      "explanation": "With the standard tension-first convention, a negative result means the actual force direction is opposite to the assumed tensile direction, so the member is in compression.",
+      "misconception_id": "negative_force_means_wrong_math"
     },
     {
       "id": "statics_joint_equations",
       "type": "multiple_choice",
+      "difficulty": "easy",
       "concept_id": "joint_equilibrium",
+      "concept_ids": ["joint_equilibrium", "method_of_joints"],
       "stem": "Which equilibrium equations are applied directly at an ideal truss joint in 2D?",
       "options": [
         "sum M = 0 only",
@@ -45,7 +53,9 @@
     {
       "id": "statics_member_force_reasoning",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "member_force",
+      "concept_ids": ["member_force", "method_of_joints"],
       "stem": "Why must support reactions usually be found before joint-by-joint analysis?",
       "options": [
         "Because member forces cannot exist without support reactions being exactly zero",
@@ -54,7 +64,8 @@
         "Because support reactions are used only for drawing diagrams, not equations"
       ],
       "correct_index": 1,
-      "explanation": "Support reactions act as known external forces on the first solvable joints, so they must usually be determined first."
+      "explanation": "Support reactions act as known external forces on the first solvable joints, so they must usually be determined first.",
+      "misconception_id": "skip_support_reactions"
     }
   ]
 }

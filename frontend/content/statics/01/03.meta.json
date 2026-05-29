@@ -19,5 +19,14 @@
         "fbd",
         "equilibrium_condition"
     ],
+    "prereq_section_ids": [
+        "statics/01/02",
+        "statics/01/01"
+    ],
+    "practice_ids": [
+        "two_force_identify",
+        "three_force_concurrent",
+        "truss_member_force"
+    ],
     "estimated_time_minutes": 40
 }

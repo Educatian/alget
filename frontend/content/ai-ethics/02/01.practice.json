@@ -4,6 +4,11 @@
       "id": "bias_face_recog_source",
       "type": "multiple_choice",
       "concept_id": "representation_bias",
+      "difficulty": "easy",
+      "concept_ids": [
+        "representation_bias",
+        "algorithmic_bias"
+      ],
       "stem": "A facial-recognition model trained mostly on light-skinned faces performs worse on dark-skinned faces. Which bias source is the primary contributor?",
       "options": [
         "Historical bias (the world has fewer dark-skinned people).",
@@ -19,6 +24,11 @@
       "id": "bias_proxy_problem",
       "type": "multiple_choice",
       "concept_id": "measurement_bias",
+      "difficulty": "medium",
+      "concept_ids": [
+        "measurement_bias",
+        "algorithmic_bias"
+      ],
       "stem": "A healthcare risk model uses 'annual healthcare expenditure' as a proxy for 'healthcare need' and underestimates the need of one demographic group. What kind of bias is this?",
       "options": [
         "Representation bias.",
@@ -34,6 +44,11 @@
       "id": "bias_predictive_policing",
       "type": "multiple_choice",
       "concept_id": "deployment_feedback_bias",
+      "difficulty": "hard",
+      "concept_ids": [
+        "deployment_feedback_bias",
+        "algorithmic_bias"
+      ],
       "stem": "A predictive-policing system sends more patrols to neighborhoods predicted to be high-crime, which records more crime there, which trains the next model to predict more crime there. What kind of bias is this and what is the right intervention?",
       "options": [
         "Historical bias; collect more data.",
@@ -49,6 +64,11 @@
       "id": "bias_debiasing_limit",
       "type": "multiple_choice",
       "concept_id": "algorithmic_bias",
+      "difficulty": "hard",
+      "concept_ids": [
+        "algorithmic_bias",
+        "deployment_feedback_bias"
+      ],
       "stem": "Which statement most accurately describes the limits of post-processing 'debiasing' techniques?",
       "options": [
         "Post-processing can eliminate any bias regardless of source.",

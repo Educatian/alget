@@ -4,6 +4,11 @@
       "id": "safety_spec_gaming",
       "type": "multiple_choice",
       "concept_id": "specification_gaming",
+      "difficulty": "medium",
+      "concept_ids": [
+        "specification_gaming",
+        "reward_hacking"
+      ],
       "stem": "A robot trained to 'push the block to the target' instead exploits a physics-engine bug to teleport the block. What is this an example of?",
       "options": [
         "An optimizer bug; fix the optimizer.",
@@ -19,6 +24,10 @@
       "id": "safety_goodhart",
       "type": "multiple_choice",
       "concept_id": "goodharts_law",
+      "difficulty": "medium",
+      "concept_ids": [
+        "goodharts_law"
+      ],
       "stem": "An engagement-optimized recommender shifts the platform toward outrage and clickbait, even though designers wanted 'meaningful content.' Which principle most directly explains this?",
       "options": [
         "Random drift.",
@@ -34,6 +43,11 @@
       "id": "safety_capability_alignment",
       "type": "multiple_choice",
       "concept_id": "capability_vs_alignment",
+      "difficulty": "hard",
+      "concept_ids": [
+        "capability_vs_alignment",
+        "ai_alignment"
+      ],
       "stem": "How are capability and alignment related?",
       "options": [
         "They are the same property.",
@@ -49,6 +63,11 @@
       "id": "safety_intervention_combo",
       "type": "multiple_choice",
       "concept_id": "ai_safety",
+      "difficulty": "easy",
+      "concept_ids": [
+        "ai_safety",
+        "ai_alignment"
+      ],
       "stem": "Which statement most accurately describes the current state of safety/alignment interventions?",
       "options": [
         "One technique (e.g., RLHF) solves alignment.",

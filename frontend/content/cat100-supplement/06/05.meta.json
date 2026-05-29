@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "06",
+  "section": "05",
   "chapter_title": "GitHub Pages Personal Website",
   "title": "Debugging With AI Assistance",
   "description": "CAT 100 textbook section connecting debugging with ai assistance to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_github_pages_personal_website",
     "cat100_supplement_debugging_with_ai_assistance",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 5,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/06/04"
+  ],
+  "practice_ids": [
+    "cat100_supplement_6_5_debugging_with_ai_assistance_artifact_signal",
+    "cat100_supplement_6_5_debugging_with_ai_assistance_annotation_signal",
+    "cat100_supplement_6_5_debugging_with_ai_assistance_ai_boundary",
+    "cat100_supplement_6_5_debugging_with_ai_assistance_calibration"
+  ]
 }

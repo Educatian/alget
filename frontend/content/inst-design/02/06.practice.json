@@ -4,6 +4,11 @@
       "id": "gagne_event_match_objective",
       "type": "multiple_choice",
       "concept_id": "gagne_nine_events",
+      "difficulty": "medium",
+      "concept_ids": [
+        "gagne_nine_events",
+        "instructional_diagnosis"
+      ],
       "stem": "A lesson begins with thirty minutes of new content with no statement of what learners are expected to do at the end. Which Gagné event is missing?",
       "options": [
         "Event 1: Gain Attention",
@@ -19,6 +24,11 @@
       "id": "gagne_recall_purpose",
       "type": "multiple_choice",
       "concept_id": "information_processing_model",
+      "difficulty": "easy",
+      "concept_ids": [
+        "information_processing_model",
+        "gagne_nine_events"
+      ],
       "stem": "What is the cognitive purpose of Event 3 — Stimulate Recall of Prior Learning?",
       "options": [
         "To create warm-up trivia so learners are entertained.",
@@ -34,6 +44,11 @@
       "id": "gagne_practice_vs_paraphrase",
       "type": "multiple_choice",
       "concept_id": "lesson_architecture",
+      "difficulty": "hard",
+      "concept_ids": [
+        "lesson_architecture",
+        "gagne_nine_events"
+      ],
       "stem": "An online lesson asks learners to click 'I understand' and paraphrase the rule. Why is this not Event 6 — Elicit Performance?",
       "options": [
         "It is fine; paraphrasing is performance.",
@@ -49,6 +64,11 @@
       "id": "gagne_transfer_signature",
       "type": "multiple_choice",
       "concept_id": "retention_and_transfer",
+      "difficulty": "hard",
+      "concept_ids": [
+        "retention_and_transfer",
+        "instructional_diagnosis"
+      ],
       "stem": "Learners score 90% on the in-lesson assessment but cannot apply the skill the following week. Which Gagné event is most likely missing or weak?",
       "options": [
         "Event 1: Gain Attention",
