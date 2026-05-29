@@ -228,16 +228,28 @@ export default function ReadingNarrative({
                 </h3>
             )
         },
-        p: ({ children, ...props }) => {
-            const text = extractNodeText(children)
-            const hasBlockChild = Array.isArray(children)
-                ? children.some((child) => child && typeof child === 'object' && child.type)
-                : Boolean(children && typeof children === 'object' && children.type)
+        p: ({ node, children, ...props }) => {
+            // react-markdown wraps content in <p>. When a paragraph actually
+            // contains a BLOCK-level element (a raw <div> callout, a table/figure/
+            // list, a nested <p>, or one of our custom hyphen-tag interactives), a
+            // <div>/<p> nested inside <p> is invalid HTML and throws a hydration
+            // error. Detect that via the source hast node and render the children
+            // WITHOUT the <p> wrapper (fragment) so nesting stays valid.
+            const BLOCK_TAGS = new Set([
+                'div', 'section', 'figure', 'figcaption', 'table', 'pre', 'ul', 'ol',
+                'blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'p', 'aside', 'details',
+            ])
+            const hasBlockChild = Array.isArray(node?.children)
+                && node.children.some(
+                    (child) => child?.type === 'element'
+                        && (BLOCK_TAGS.has(child.tagName) || String(child.tagName || '').includes('-')),
+                )
 
-            if (hasBlockChild && !text.trim()) {
+            if (hasBlockChild) {
                 return <>{children}</>
             }
 
+            const text = extractNodeText(children)
             return (
                 <p
                     data-reading-anchor={text.toLowerCase()}

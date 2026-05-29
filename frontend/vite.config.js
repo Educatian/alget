@@ -114,5 +114,15 @@ export default defineConfig({
         changeOrigin: true,
       }
     }
+  },
+  // vite preview (production-build server) needs the same /api proxy as dev so
+  // local QA sweeps against the built app reach the FastAPI backend.
+  preview: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      }
+    }
   }
 })
