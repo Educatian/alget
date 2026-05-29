@@ -33,6 +33,10 @@ for (const course of courses) {
   // toc
   try { await save(`book/${course}/toc`, await get(`/book/${course}/toc`)); ok++ }
   catch (e) { fail++; console.log(`FAIL ${course}/toc`, String(e).slice(0, 50)) }
+  // diagnostic questions (deterministic, content-derived) -> static so the
+  // pathway probe is instant and needs no live backend.
+  try { await save(`diagnostic/questions/${course}`, await get(`/diagnostic/questions/${course}`)); ok++ }
+  catch (e) { fail++; console.log(`FAIL ${course}/diagnostic`, String(e).slice(0, 50)) }
   // sections
   for (const ch of readdirSync(join(CONTENT, course))) {
     const chdir = join(CONTENT, course, ch)
