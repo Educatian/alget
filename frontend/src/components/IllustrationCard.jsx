@@ -1,49 +1,8 @@
-import React, { useState } from 'react';
-import { LLM_API_BASE } from '../lib/apiConfig';
-
 export default function IllustrationCard({ data }) {
-    const [imageUrl, setImageUrl] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
     if (!data) return null;
 
-    const handleGenerateImage = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-            const apiKey = localStorage.getItem('gemini_api_key') || '';
-            const response = await fetch(`${LLM_API_BASE}/generate-image`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    prompt: data.image_prompt || data.conceptual_design,
-                    context: data.conceptual_design,
-                    style: 'diagram',
-                    api_key: apiKey
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to generate image.');
-            }
-
-            const result = await response.json();
-            if (result.success && result.image_data) {
-                setImageUrl(result.image_data);
-            } else {
-                throw new Error(result.error || result.message || 'Error generating image.');
-            }
-        } catch (err) {
-            console.error(err);
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
+    // Image GENERATION has been removed. This card now presents the textual
+    // design (concept, prompt, key elements) only.
     return (
         <div className="glass-panel relative mb-6 w-full overflow-hidden border-fuchsia-200/60 p-6 group">
             <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-fuchsia-50/80 to-purple-50/20"></div>
@@ -93,52 +52,6 @@ export default function IllustrationCard({ data }) {
                             </div>
                         </div>
                     )}
-
-                    <div className="mt-5 flex flex-col gap-4 border-t border-fuchsia-100/50 pt-5">
-                        {!imageUrl ? (
-                            <button
-                                onClick={handleGenerateImage}
-                                disabled={loading}
-                                className={`flex w-full items-center justify-center gap-2 self-start rounded-xl px-6 py-3 font-bold shadow-md transition-all sm:w-auto ${
-                                    loading
-                                        ? 'cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-400'
-                                        : 'bg-linear-to-r from-fuchsia-600 to-purple-600 text-white hover:-translate-y-0.5 hover:shadow-lg hover:shadow-fuchsia-900/20'
-                                }`}
-                            >
-                                {loading ? (
-                                    <>
-                                        <svg className="h-5 w-5 animate-spin text-fuchsia-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                        Generating Image...
-                                    </>
-                                ) : (
-                                    <>Generate Image with AI</>
-                                )}
-                            </button>
-                        ) : (
-                            <div className="w-full">
-                                <h4 className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-fuchsia-700">
-                                    <span className="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></span> Generated Visual
-                                </h4>
-                                <div className="rounded-2xl border border-fuchsia-100 bg-white p-2 shadow-sm">
-                                    <img
-                                        src={imageUrl}
-                                        alt={data.illustration_title || data.image_prompt || 'Generated technical illustration'}
-                                        className="w-full max-w-2xl rounded-xl border border-slate-100 shadow-inner"
-                                    />
-                                </div>
-                            </div>
-                        )}
-
-                        {error && (
-                            <div className="mt-2 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-700 shadow-sm">
-                                <span className="text-xl">!</span>
-                                <div><strong>Image Generation Failed:</strong> {error}</div>
-                            </div>
-                        )}
-                    </div>
                 </div>
             </div>
         </div>
