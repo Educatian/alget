@@ -2,7 +2,7 @@
 
 ![Cognitive Load Diagnosis textbook visual](/course-art/deep-exemplars/ail606-supplement/01-03-cognitive-load-diagnosis.png)
 
-<youtube-embed id="KbzmM30NXNQ" title="Cognitive Load Theory: An Introduction" caption="Use this short overview as a check on your diagnosis: name the load source first, then revise the artifact rather than making it merely cleaner." />
+<youtube-embed id="KbzmM30NXNQ" title="Cognitive Load Theory: An Introduction" caption="Use this short overview as a check on your diagnosis: name the load source first, then revise the artifact rather than making it merely cleaner."></youtube-embed>
 
 ## Why This Section Matters
 
@@ -29,7 +29,7 @@ The design implication follows directly from the inequality. You cannot raise ge
 
 Manipulate the three loads against a fixed capacity and watch the spare capacity available for schema-building. Try cutting extraneous to zero, then see how much germane effort you can add before the total exceeds capacity.
 
-<parameter-explorer config='{"title":"Additive load against working-memory capacity","sliders":[{"name":"intrinsic","label":"Intrinsic load (content for this learner)","min":1,"max":7,"step":1,"unit":"el","default":4},{"name":"extraneous","label":"Extraneous load (presentation waste)","min":0,"max":6,"step":1,"unit":"el","default":3},{"name":"germane","label":"Germane load (schema-building effort)","min":0,"max":6,"step":1,"unit":"el","default":1},{"name":"capacity","label":"Working-memory capacity","min":4,"max":9,"step":1,"unit":"el","default":7}],"outputs":[{"label":"Total load","unit":"el","expr":"intrinsic + extraneous + germane"},{"label":"Spare capacity (negative = overload)","unit":"el","expr":"capacity - (intrinsic + extraneous + germane)"},{"label":"Germane room freed by cutting all extraneous","unit":"el","expr":"capacity - intrinsic - germane"}],"plot":{"x":"extraneous","output":1}}' />
+<parameter-explorer config='{"title":"Additive load against working-memory capacity","sliders":[{"name":"intrinsic","label":"Intrinsic load (content for this learner)","min":1,"max":7,"step":1,"unit":"el","default":4},{"name":"extraneous","label":"Extraneous load (presentation waste)","min":0,"max":6,"step":1,"unit":"el","default":3},{"name":"germane","label":"Germane load (schema-building effort)","min":0,"max":6,"step":1,"unit":"el","default":1},{"name":"capacity","label":"Working-memory capacity","min":4,"max":9,"step":1,"unit":"el","default":7}],"outputs":[{"label":"Total load","unit":"el","expr":"intrinsic + extraneous + germane"},{"label":"Spare capacity (negative = overload)","unit":"el","expr":"capacity - (intrinsic + extraneous + germane)"},{"label":"Germane room freed by cutting all extraneous","unit":"el","expr":"capacity - intrinsic - germane"}],"plot":{"x":"extraneous","output":1}}'></parameter-explorer>
 
 Intrinsic load itself is governed by **element interactivity**, the number of elements that must be held and related simultaneously because they cannot be understood one at a time. A high element-interactivity task for a novice can be low for an expert, because the expert's schema chunks several elements into one. That is why every diagnosis row must name the learner.
 
@@ -69,7 +69,7 @@ The problem is that "too hard" merges three different loads, so no specific fix 
 
 The improvement is that each entry now names which load it is and what evidence places it there, so the next reviewer can challenge a specific cell rather than the whole lesson.
 
-<self-explain prompt="The additivity inequality says total load is bounded by capacity. Using your own words, explain why the order must be cut extraneous first, then sequence intrinsic, then add germane, rather than starting by adding germane prompts." answer="Intrinsic load is fixed by the content for a given learner and germane effort only pays off if there is spare capacity. Extraneous load is the only term you can remove at no cost to the concept, so cutting it first frees the most room. Sequencing intrinsic (pre-training, segmenting) lowers the fixed term without deleting content. Only then is there headroom to spend on germane prompts. Adding germane first risks pushing total load over capacity while extraneous waste is still consuming the budget." />
+<self-explain prompt="The additivity inequality says total load is bounded by capacity. Using your own words, explain why the order must be cut extraneous first, then sequence intrinsic, then add germane, rather than starting by adding germane prompts." answer="Intrinsic load is fixed by the content for a given learner and germane effort only pays off if there is spare capacity. Extraneous load is the only term you can remove at no cost to the concept, so cutting it first frees the most room. Sequencing intrinsic (pre-training, segmenting) lowers the fixed term without deleting content. Only then is there headroom to spend on germane prompts. Adding germane first risks pushing total load over capacity while extraneous waste is still consuming the budget."></self-explain>
 
 ## Decision Rule
 
@@ -85,7 +85,7 @@ A revision that lowers a load without saying which of the three it lowered is no
 
 The first misreading is treating "easier" as the goal. The goal is the *right* total load for the learner, which sometimes means adding germane effort, not removing it. The second is letting a tool optimize the surface (recolor the plot, smooth the prose) while the intrinsic source is never named, so the lesson still fails for the same reason.
 
-<inline-check question="A learner is at capacity and still failing. The tutor proposes removing the predict-the-missing-cell prompt to lighten the load. Diagnose this move." explanation="The prediction prompt is germane load: the productive effort that builds the schema. Removing it lowers total load but also lowers learning. The right move is to cut extraneous load (the rainbow legend) first, freeing capacity so the germane prompt can stay." options='[{"text":"Good move, because any reduction in load helps a saturated learner","correct":false},{"text":"Bad move, it strips germane load; cut the extraneous legend instead to free capacity","correct":true},{"text":"Good move, because prediction prompts are always extraneous","correct":false}]' />
+<inline-check question="A learner is at capacity and still failing. The tutor proposes removing the predict-the-missing-cell prompt to lighten the load. Diagnose this move." explanation="The prediction prompt is germane load: the productive effort that builds the schema. Removing it lowers total load but also lowers learning. The right move is to cut extraneous load (the rainbow legend) first, freeing capacity so the germane prompt can stay." options='[{"text":"Good move, because any reduction in load helps a saturated learner","correct":false},{"text":"Bad move, it strips germane load; cut the extraneous legend instead to free capacity","correct":true},{"text":"Good move, because prediction prompts are always extraneous","correct":false}]'></inline-check>
  The third is forgetting the learner: a row that does not name who the learner is cannot estimate element interactivity and therefore cannot diagnose intrinsic load at all.
 
 ## Textbook Walkthrough
@@ -117,7 +117,7 @@ Hand the same tutorial to a doctoral student who already reads interaction plots
 
 Open the studio packet: [download the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence packet](/downloads/summer2026/ail606-supplement/01-03-cognitive-load-diagnosis-artifact.md).
 
-<artifact-studio artifact="cognitive load diagnosis table with intrinsic/extraneous/germane load evidence" course="AIL 606" section="01.03" />
+<artifact-studio artifact="cognitive load diagnosis table with intrinsic/extraneous/germane load evidence" course="AIL 606" section="01.03"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -130,13 +130,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence for AIL 606 01.03. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence for AIL 606 01.03. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="ail606_supplement_cognitive_load_diagnosis" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="ail606_supplement_cognitive_load_diagnosis"></interactive-quiz>
 
 ## Final Check
 
@@ -146,7 +146,7 @@ Before you move on, check that each row names the learner, decomposes the diffic
 
 Link the three-source load model to the evidence-based revision it drives and the bounded support an AI tutor can offer.
 
-<concept-map concepts='["cognitive_load", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cognitive_load", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

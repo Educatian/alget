@@ -59,11 +59,11 @@ Step 4. Copy the verified formula down. C4 now reads `n/a` instead of an error.
 
 The auditable trace: the error code named the cause, the prompt named the exact formula and expected behavior, and a known-answer row confirmed the AI fix before it shipped.
 
-<step-reveal title="Run the diagnose -> prompt -> verify loop on #DIV/0!" steps='[{"prompt":"Cell C4 shows #DIV/0!. What does the error code tell you to suspect first?","predictType":"choice","choices":["The numerator B4 is wrong","The denominator is blank or zero (division by zero)","A function name is misspelled","A lookup found no match"],"answerIndex":1,"reveal":"#DIV/0! always means divide-by-zero, so the denominator (D4, blank for Sun’s row) is the suspect, not the numerator."},{"prompt":"Which prompt gives the AI enough to return a checkable formula?","predictType":"choice","choices":["fix my Excel error","make my gradebook work","My =B4/D4 returns #DIV/0! because D4 is blank; show n/a when D4 is empty, else divide; give one formula","why is my sheet broken"],"answerIndex":2,"reveal":"A good prompt names the formula, the error, the cause, and the exact behavior including the edge case. That constrains the answer enough to verify."},{"prompt":"The AI returns =IF(D4=0,\"n/a\",B4/D4). Before copying it down, what do you do?","predictType":"choice","choices":["Copy it everywhere immediately","Verify on a known-answer row: David (45/5) must still return 9.0","Trust it because the red error vanished","Paste the whole gradebook into the chat"],"answerIndex":1,"reveal":"Verify on a row whose answer you already know. David’s row returns 45/5 = 9.0, matching the value already there, so the fix did not break working rows."},{"reveal":"Only now copy it down: C4 reads n/a instead of an error. The error disappearing is NOT proof of correctness; a known-answer row is."}]' />
+<step-reveal title="Run the diagnose -> prompt -> verify loop on #DIV/0!" steps='[{"prompt":"Cell C4 shows #DIV/0!. What does the error code tell you to suspect first?","predictType":"choice","choices":["The numerator B4 is wrong","The denominator is blank or zero (division by zero)","A function name is misspelled","A lookup found no match"],"answerIndex":1,"reveal":"#DIV/0! always means divide-by-zero, so the denominator (D4, blank for Sun’s row) is the suspect, not the numerator."},{"prompt":"Which prompt gives the AI enough to return a checkable formula?","predictType":"choice","choices":["fix my Excel error","make my gradebook work","My =B4/D4 returns #DIV/0! because D4 is blank; show n/a when D4 is empty, else divide; give one formula","why is my sheet broken"],"answerIndex":2,"reveal":"A good prompt names the formula, the error, the cause, and the exact behavior including the edge case. That constrains the answer enough to verify."},{"prompt":"The AI returns =IF(D4=0,\"n/a\",B4/D4). Before copying it down, what do you do?","predictType":"choice","choices":["Copy it everywhere immediately","Verify on a known-answer row: David (45/5) must still return 9.0","Trust it because the red error vanished","Paste the whole gradebook into the chat"],"answerIndex":1,"reveal":"Verify on a row whose answer you already know. David’s row returns 45/5 = 9.0, matching the value already there, so the fix did not break working rows."},{"reveal":"Only now copy it down: C4 reads n/a instead of an error. The error disappearing is NOT proof of correctness; a known-answer row is."}]'></step-reveal>
 
 Match each Excel error code to its usual cause so you can diagnose before prompting.
 
-<sequence-builder mode="match" items='[{"term":"#DIV/0!","definition":"Denominator cell is blank or zero"},{"term":"#REF!","definition":"A referenced cell was deleted"},{"term":"#VALUE!","definition":"Text where a number is expected (18 units)"},{"term":"#NAME?","definition":"Misspelled function or undefined range name"},{"term":"#N/A","definition":"A lookup found no match"}]' />
+<sequence-builder mode="match" items='[{"term":"#DIV/0!","definition":"Denominator cell is blank or zero"},{"term":"#REF!","definition":"A referenced cell was deleted"},{"term":"#VALUE!","definition":"Text where a number is expected (18 units)"},{"term":"#NAME?","definition":"Misspelled function or undefined range name"},{"term":"#N/A","definition":"A lookup found no match"}]'></sequence-builder>
 
 ## Decision Rule
 
@@ -101,9 +101,9 @@ A strong reader treats an AI formula the way a careful editor treats a draft: us
 
 When your instinct on receiving any AI formula is "let me test it on a row I can compute," you have internalized the safeguard that makes AI help trustworthy.
 
-<inline-check question="An AI formula replaced #DIV/0! with a real number and the red error is gone. Is the formula now proven correct?" explanation="No. The absence of an error is not the presence of a right answer; an AI fix can compute the wrong number with no error showing. Only running it on a known-answer row, where you already know the correct result, settles whether it is right." options='[{"text":"Yes, the error disappearing means it is correct","correct":false},{"text":"No, verify it on a known-answer row before trusting it","correct":true},{"text":"Yes, as long as the function names look familiar","correct":false}]' />
+<inline-check question="An AI formula replaced #DIV/0! with a real number and the red error is gone. Is the formula now proven correct?" explanation="No. The absence of an error is not the presence of a right answer; an AI fix can compute the wrong number with no error showing. Only running it on a known-answer row, where you already know the correct result, settles whether it is right." options='[{"text":"Yes, the error disappearing means it is correct","correct":false},{"text":"No, verify it on a known-answer row before trusting it","correct":true},{"text":"Yes, as long as the function names look familiar","correct":false}]'></inline-check>
 
-<concept-map concepts='["cat100_supplement_ai_help_for_excel_debugging", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_ai_help_for_excel_debugging", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Stronger Artifact Standard
 
@@ -119,7 +119,7 @@ The same diagnose-prompt-verify loop transfers from formulas to chart and pivot 
 
 Open the studio packet: [download the Excel pivot-table finding with unit labels, source note, and claim-first chart title packet](/downloads/summer2026/cat100-supplement/03-05-ai-help-for-excel-debugging-artifact.md).
 
-<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.05" />
+<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.05"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -132,13 +132,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.05. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.05. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_ai_help_for_excel_debugging" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_ai_help_for_excel_debugging"></interactive-quiz>
 
 ## Final Check
 

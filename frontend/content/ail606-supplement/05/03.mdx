@@ -37,7 +37,7 @@ Realism guards against a subtler failure. A context-free command ("create a modu
 
 Match each property of a usable task scenario to the specific way a weak task violates it. The match is the diagnostic you will use to read any task list.
 
-<sequence-builder mode="match" items='[{"term":"Goal-based framing","definition":"Violated when the task names the controls and their order, so the participant transcribes a click path instead of finding the path"},{"term":"Realistic context","definition":"Violated by a bare command with no role or motive, so the participant behaves like a test-taker rather than a worker"},{"term":"Scorable end-state","definition":"Violated by see if they like it, which the moderator cannot mark consistently without improvising mid-session"},{"term":"Hidden vocabulary","definition":"Violated when the task reuses an interface label such as Template Library, handing over the search term findability was meant to test"}]' />
+<sequence-builder mode="match" items='[{"term":"Goal-based framing","definition":"Violated when the task names the controls and their order, so the participant transcribes a click path instead of finding the path"},{"term":"Realistic context","definition":"Violated by a bare command with no role or motive, so the participant behaves like a test-taker rather than a worker"},{"term":"Scorable end-state","definition":"Violated by see if they like it, which the moderator cannot mark consistently without improvising mid-session"},{"term":"Hidden vocabulary","definition":"Violated when the task reuses an interface label such as Template Library, handing over the search term findability was meant to test"}]'></sequence-builder>
 
 ## Worked Example: Rewriting a Task Scenario So It Does Not Leak the Answer
 
@@ -60,7 +60,7 @@ Walk through why this task cannot test the design:
 
 The after version is defensible because it tests whether the participant can find and complete the goal, which is what usability evidence requires. The before version guaranteed success and produced no evidence, a hidden ceiling effect.
 
-<inline-check question="A dashboard task reads: Use the Filter dropdown to show only last quarter. Why is this not testable evidence?" explanation="Filter is the interface label and use the dropdown is the route, so the task hands over both the search term and the path. The participant only follows directions, and the findability question, can they discover how to narrow the data on their own, is answered for them in the prompt." options='[{"text":"It lacks a realistic deadline for the manager","correct":false},{"text":"It leaks the interface vocabulary and the route, so findability is never tested","correct":true},{"text":"It has no measurable success condition","correct":false},{"text":"Last quarter is ambiguous about which quarter","correct":false}]' />
+<inline-check question="A dashboard task reads: Use the Filter dropdown to show only last quarter. Why is this not testable evidence?" explanation="Filter is the interface label and use the dropdown is the route, so the task hands over both the search term and the path. The participant only follows directions, and the findability question, can they discover how to narrow the data on their own, is answered for them in the prompt." options='[{"text":"It lacks a realistic deadline for the manager","correct":false},{"text":"It leaks the interface vocabulary and the route, so findability is never tested","correct":true},{"text":"It has no measurable success condition","correct":false},{"text":"Last quarter is ambiguous about which quarter","correct":false}]'></inline-check>
 
 ## Decision Rule
 
@@ -103,7 +103,7 @@ The task set is strong when a reviewer who has never seen the prototype can read
 
 A useful closing line reads: "I rewrote the task from a click path into a goal-based scenario because the original named every control and tested only direction-following; I rejected the suggestion to add a hint after thirty seconds, since the prototype's whole point is whether the path is findable unaided."
 
-<self-explain prompt="In your own words, explain why a task that can be completed in many wrong ways before it is completed the right way is a STRONGER usability task than one with a single clear path stated in the prompt. Tie your answer to the gulf of execution." answer="A real user arrives with an intention and must map it onto the interface, the gulf of execution. A task that allows many wrong routes preserves that mapping problem, so the session measures whether the design lets users bridge the gulf unaided. A task that states the one right path bridges the gulf for the participant, erases the measurement, and guarantees a ceiling effect: success no longer indicates a usable design, only a participant who can follow directions." />
+<self-explain prompt="In your own words, explain why a task that can be completed in many wrong ways before it is completed the right way is a STRONGER usability task than one with a single clear path stated in the prompt. Tie your answer to the gulf of execution." answer="A real user arrives with an intention and must map it onto the interface, the gulf of execution. A task that allows many wrong routes preserves that mapping problem, so the session measures whether the design lets users bridge the gulf unaided. A task that states the one right path bridges the gulf for the participant, erases the measurement, and guarantees a ceiling effect: success no longer indicates a usable design, only a participant who can follow directions."></self-explain>
 
 ## Transfer Case
 
@@ -113,7 +113,7 @@ Move the same task-writing discipline to an assessment-design context, where the
 
 Open the studio packet: [download the moderated usability test script with observation-to-revision trace packet](/downloads/summer2026/ail606-supplement/05-03-task-scenarios-for-prototype-testing-artifact.md).
 
-<artifact-studio artifact="moderated usability test script with observation-to-revision trace" course="AIL 606" section="05.03" />
+<artifact-studio artifact="moderated usability test script with observation-to-revision trace" course="AIL 606" section="05.03"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -126,19 +126,19 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the moderated usability test script with observation-to-revision trace for AIL 606 05.03. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the moderated usability test script with observation-to-revision trace for AIL 606 05.03. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="ail606_supplement_task_scenarios_for_prototype_testing" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="ail606_supplement_task_scenarios_for_prototype_testing"></interactive-quiz>
 
 ## Final Check
 
 Before you move on, confirm each task states a goal not a route, gives a realistic motive, hides the interface vocabulary, and carries a pre-agreed success condition.
 
-<concept-map concepts='["ail606_supplement_task_scenarios_for_prototype_testing", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_task_scenarios_for_prototype_testing", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

@@ -161,12 +161,11 @@ function PlotSvg({ plotOutput, plotVar, sliders, baseScope, descId }) {
             <svg
                 viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
                 width="100%"
-                height="auto"
                 preserveAspectRatio="xMidYMid meet"
                 role="img"
                 aria-labelledby={descId}
                 className="max-w-full"
-                style={{ maxHeight: '14rem' }}
+                style={{ height: 'auto', maxHeight: '14rem', display: 'block' }}
             >
                 <desc id={descId}>{desc}</desc>
                 {/* axes */}

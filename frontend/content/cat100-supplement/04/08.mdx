@@ -36,7 +36,7 @@ The distinction the studio enforces is structure versus appearance. A heading is
 
 GitHub Pages serves whatever is in the published branch, so "publishing" is just pushing your `index.html` and opening the live URL. The verification step is non-negotiable: you load the actual URL, not the local file, because a link that works on your disk can break once the site is served from a different root.
 
-<inline-check question="Your page links to an evidence file. It opens fine when you double-click index.html on your laptop, but clicking the same link on the live GitHub Pages URL returns a 404. Where is the fix?" explanation="A link that passes locally and 404s live is a path problem: the file was not committed, or it sits in a subfolder the href does not name. The only test that counts is clicking the link on the served site, so you fix the href (or commit the missing file) and push again, not the local copy." options='[{"text":"Fix the href or commit the missing file, then re-test on the live URL", "correct":true},{"text":"Nothing; if it works locally the page is correctly published", "correct":false},{"text":"Add a background color so the page looks more finished", "correct":false},{"text":"Replace the link text with bigger bold styling", "correct":false}]' />
+<inline-check question="Your page links to an evidence file. It opens fine when you double-click index.html on your laptop, but clicking the same link on the live GitHub Pages URL returns a 404. Where is the fix?" explanation="A link that passes locally and 404s live is a path problem: the file was not committed, or it sits in a subfolder the href does not name. The only test that counts is clicking the link on the served site, so you fix the href (or commit the missing file) and push again, not the local copy." options='[{"text":"Fix the href or commit the missing file, then re-test on the live URL", "correct":true},{"text":"Nothing; if it works locally the page is correctly published", "correct":false},{"text":"Add a background color so the page looks more finished", "correct":false},{"text":"Replace the link text with bigger bold styling", "correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -82,11 +82,11 @@ Step 4. Verify the publish. After pushing to the `gh-pages` branch, you open the
 
 Order the steps that take the page from broken markup to a verified live publish:
 
-<sequence-builder mode="order" items='["Add the structure tags: DOCTYPE, a title in the head, and an h1 heading", "Give each link a real href that points to a committed evidence file", "Commit index.html and every linked file, then push to the published branch", "Open the live GitHub Pages URL, not the local file", "Verify on the live URL: title in the tab, h1 renders, and every link reaches its file"]' />
+<sequence-builder mode="order" items='["Add the structure tags: DOCTYPE, a title in the head, and an h1 heading", "Give each link a real href that points to a committed evidence file", "Commit index.html and every linked file, then push to the published branch", "Open the live GitHub Pages URL, not the local file", "Verify on the live URL: title in the tab, h1 renders, and every link reaches its file"]'></sequence-builder>
 
 Now run the publish checklist one item at a time, predicting each verdict before you reveal it:
 
-<step-reveal title="Run the publish checklist on the live page" steps='[{"prompt":"The first markup is just an html tag, the bare text ’my ai project,’ and an empty link. The browser tab shows a file path instead of a name. Which item failed and what fixes it?","predictType":"choice","choices":["Page title failed: add a title element inside the head, such as ’CAT 100 Module 4: AI Dialogue Studio’","Nothing failed; the page rendered without an error","The heading failed: make the text a larger font","The link failed: change its color"],"answerIndex":0,"reveal":"Page title failed. With no title element the tab shows the file path. Adding a real title in the head makes the page name show in the tab, search results, and bookmarks."},{"prompt":"The main heading is just bare text. Why is making it ’big bold text’ NOT the fix?","predictType":"choice","choices":["A heading is an h1 element that carries meaning; size alone tells a screen reader and search engine nothing","Big bold text is the fix; appearance is all that matters","Headings should never be styled","Bare text is already a valid heading"],"answerIndex":0,"reveal":"Use a real h1. The tag carries the structural meaning (this is the main heading) that assistive tech and search engines read; the large rendering is a side effect, not the point. This is the WCAG idea of semantic markup."},{"reveal":"Finally, give the link a real href to a committed file and verify on the live URL, not the local copy. You reject the AI’s offer of a flashy background color because the checklist values a working link over decoration, and the link is still the part that lets a reviewer reach your evidence."}]' />
+<step-reveal title="Run the publish checklist on the live page" steps='[{"prompt":"The first markup is just an html tag, the bare text ’my ai project,’ and an empty link. The browser tab shows a file path instead of a name. Which item failed and what fixes it?","predictType":"choice","choices":["Page title failed: add a title element inside the head, such as ’CAT 100 Module 4: AI Dialogue Studio’","Nothing failed; the page rendered without an error","The heading failed: make the text a larger font","The link failed: change its color"],"answerIndex":0,"reveal":"Page title failed. With no title element the tab shows the file path. Adding a real title in the head makes the page name show in the tab, search results, and bookmarks."},{"prompt":"The main heading is just bare text. Why is making it ’big bold text’ NOT the fix?","predictType":"choice","choices":["A heading is an h1 element that carries meaning; size alone tells a screen reader and search engine nothing","Big bold text is the fix; appearance is all that matters","Headings should never be styled","Bare text is already a valid heading"],"answerIndex":0,"reveal":"Use a real h1. The tag carries the structural meaning (this is the main heading) that assistive tech and search engines read; the large rendering is a side effect, not the point. This is the WCAG idea of semantic markup."},{"reveal":"Finally, give the link a real href to a committed file and verify on the live URL, not the local copy. You reject the AI’s offer of a flashy background color because the checklist values a working link over decoration, and the link is still the part that lets a reviewer reach your evidence."}]'></step-reveal>
 
 Publish for correctness first and appearance last, and verify on the live URL, not the local file. A page is ready only when the title, heading, and links pass on the served site.
 
@@ -135,13 +135,13 @@ Move the publishing skill from a course project page to a personal resume site, 
 
 See how publishing a correct page connects to the chapter’s wider ideas:
 
-<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_module_4_dialogue_studio", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_module_4_dialogue_studio", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/04-08-module-4-dialogue-studio-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.08" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.08"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -154,13 +154,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.08. A peer comment points to an interface move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.08. A peer comment points to an interface move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What would make this section more useful while you revise?" options='["It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_module_4_dialogue_studio" />
+<interactive-quiz question="What would make this section more useful while you revise?" options='["It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_module_4_dialogue_studio"></interactive-quiz>
 
 ## Final Check
 

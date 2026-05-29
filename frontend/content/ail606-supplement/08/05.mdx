@@ -35,7 +35,7 @@ Two principles govern how you act on findings. First, prioritize by depth of exc
 
 Match each WCAG success criterion to the failure it names and the learner it excludes. These three recur often enough to memorize.
 
-<sequence-builder mode="match" items='[{"term":"1.1.1 Non-text content","definition":"A diagram with no alt text announces only image to a screen-reader user; fix with one sentence naming what it shows and why"},{"term":"1.4.3 Contrast (minimum)","definition":"Light-gray text at 2.9 to 1 falls below the 4.5 to 1 floor and excludes low-vision learners; raise the ratio"},{"term":"1.4.1 Use of color","definition":"A color-only action cue (the red frame is next) is invisible to a color-blind learner; add a label and icon"},{"term":"2.1.1 Keyboard","definition":"A drag-and-drop interaction with no keyboard alternative excludes anyone who cannot operate a mouse"}]' />
+<sequence-builder mode="match" items='[{"term":"1.1.1 Non-text content","definition":"A diagram with no alt text announces only image to a screen-reader user; fix with one sentence naming what it shows and why"},{"term":"1.4.3 Contrast (minimum)","definition":"Light-gray text at 2.9 to 1 falls below the 4.5 to 1 floor and excludes low-vision learners; raise the ratio"},{"term":"1.4.1 Use of color","definition":"A color-only action cue (the red frame is next) is invisible to a color-blind learner; add a label and icon"},{"term":"2.1.1 Keyboard","definition":"A drag-and-drop interaction with no keyboard alternative excludes anyone who cannot operate a mouse"}]'></sequence-builder>
 
 | WCAG criterion | Failure on the screen | Who is excluded | Fix |
 | --- | --- | --- | --- |
@@ -57,7 +57,7 @@ Walk through one concrete accessibility review of a single prototype screen, a n
 
 Decide the fix order by depth of exclusion. Predict which defect to close first before each reveal.
 
-<step-reveal title="Ordering accessibility fixes by who is most excluded" steps='[{"prompt":"Three blockers are open: missing alt text on the diagram (1.1.1), text at 2.9 to 1 contrast (1.4.3), and a color-only next cue (1.4.1). Which do you fix first?","predictType":"choice","choices":["The missing alt text (1.1.1)","The contrast (1.4.3)","Whichever is fastest to type","The color cue (1.4.1)"],"answerIndex":0,"reveal":"The missing alt text. It fully locks out a screen-reader user (the diagram simply does not exist for them), so a total exclusion outranks the contrast strain."},{"prompt":"You fix the color-only cue. A reviewer suggests just using a brighter, more saturated red. Does that satisfy 1.4.1?","predictType":"choice","choices":["No; the information must exist in a non-color channel","Yes; brighter red is easier to see","Only for large text","Yes, if contrast also passes"],"answerIndex":0,"reveal":"No. Brightening color is still color. 1.4.1 requires a second channel, so you add a text label and an arrow icon alongside the color."},{"reveal":"Final order and audit: alt text (1.1.1) first as a total exclusion, then contrast raised 2.9 to 1 -> 4.6 to 1 (1.4.3), then the color cue carried in three channels (1.4.1). Each fix maps to a criterion and a named excluded learner, and the redundant cue fits because the layout had whitespace."}]' />
+<step-reveal title="Ordering accessibility fixes by who is most excluded" steps='[{"prompt":"Three blockers are open: missing alt text on the diagram (1.1.1), text at 2.9 to 1 contrast (1.4.3), and a color-only next cue (1.4.1). Which do you fix first?","predictType":"choice","choices":["The missing alt text (1.1.1)","The contrast (1.4.3)","Whichever is fastest to type","The color cue (1.4.1)"],"answerIndex":0,"reveal":"The missing alt text. It fully locks out a screen-reader user (the diagram simply does not exist for them), so a total exclusion outranks the contrast strain."},{"prompt":"You fix the color-only cue. A reviewer suggests just using a brighter, more saturated red. Does that satisfy 1.4.1?","predictType":"choice","choices":["No; the information must exist in a non-color channel","Yes; brighter red is easier to see","Only for large text","Yes, if contrast also passes"],"answerIndex":0,"reveal":"No. Brightening color is still color. 1.4.1 requires a second channel, so you add a text label and an arrow icon alongside the color."},{"reveal":"Final order and audit: alt text (1.1.1) first as a total exclusion, then contrast raised 2.9 to 1 -> 4.6 to 1 (1.4.3), then the color cue carried in three channels (1.4.1). Each fix maps to a criterion and a named excluded learner, and the redundant cue fits because the layout had whitespace."}]'></step-reveal>
 
 ## Decision Rule
 
@@ -71,7 +71,7 @@ Run every screen through three checks:
 
 A screen that passes all three is accessible by evidence; one that only "looks fine" has not been reviewed, only admired.
 
-<inline-check question="An automated checker reports zero errors on a screen, so a designer marks it accessible. What does the workflow say about this?" explanation="Automated tools catch measurable issues like contrast ratios and missing alt attributes, but they cannot judge whether alt text is meaningful, whether reading order makes sense, or whether a color cue has a real alternative. The checker is one input, not the verdict; the workflow still needs human judgment against the criteria." options='[{"text":"A clean checker is one input, not a verdict; meaningful alt text and real color alternatives still need human judgment.","correct":true},{"text":"A clean automated report certifies full WCAG compliance.","correct":false},{"text":"Automated checkers replace the need for named criteria.","correct":false},{"text":"Zero errors means every learner is included.","correct":false}]' />
+<inline-check question="An automated checker reports zero errors on a screen, so a designer marks it accessible. What does the workflow say about this?" explanation="Automated tools catch measurable issues like contrast ratios and missing alt attributes, but they cannot judge whether alt text is meaningful, whether reading order makes sense, or whether a color cue has a real alternative. The checker is one input, not the verdict; the workflow still needs human judgment against the criteria." options='[{"text":"A clean checker is one input, not a verdict; meaningful alt text and real color alternatives still need human judgment.","correct":true},{"text":"A clean automated report certifies full WCAG compliance.","correct":false},{"text":"Automated checkers replace the need for named criteria.","correct":false},{"text":"Zero errors means every learner is included.","correct":false}]'></inline-check>
 
 ## Common Misreadings
 
@@ -112,7 +112,7 @@ Move the workflow from a single static screen to an interactive simulation with 
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/08-05-accessibility-review-workflow-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="08.05" />
+<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="08.05"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -125,19 +125,19 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 08.05. A peer comment points to an adaptive move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 08.05. A peer comment points to an adaptive move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="ail606_supplement_accessibility_review_workflow" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="ail606_supplement_accessibility_review_workflow"></interactive-quiz>
 
 ## Final Check
 
 Before you move on, make sure your trace links Accessibility Review Workflow, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
 
-<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "accessibility", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "accessibility", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

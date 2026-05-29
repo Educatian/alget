@@ -36,7 +36,7 @@ The reason column is where judgment lives. "Override, too harsh" is weak; "overr
 
 The accept/override ratio is itself evidence. A log that is all accepts suggests you followed without judging; a log that is all overrides may suggest you ignored useful help. A mix, each with a reason, is the signature of someone weighing advice rather than rubber-stamping or reflexively rejecting it.
 
-<inline-check question="A log row reads: AI said ’teach fractions before decimals,’ I decided OVERRIDE, Why: ’it just felt wrong.’ Why does this row fail the reason check?" explanation="The reason ’it felt wrong’ would be equally true if the student had decided ACCEPT instead, so it does not actually distinguish the call. A reason does its job only when it points to a standard (the pasted standards, what you can observe, the audience’s needs) that another reader could apply the same way." options='[{"text":"The reason points to no standard, so it would justify the opposite decision just as well","correct":true},{"text":"OVERRIDE is never a valid decision; the AI should always be accepted","correct":false},{"text":"The row is missing a confidence rating","correct":false},{"text":"Nothing fails; a gut feeling is a sufficient reason in a reflection","correct":false}]' />
+<inline-check question="A log row reads: AI said ’teach fractions before decimals,’ I decided OVERRIDE, Why: ’it just felt wrong.’ Why does this row fail the reason check?" explanation="The reason ’it felt wrong’ would be equally true if the student had decided ACCEPT instead, so it does not actually distinguish the call. A reason does its job only when it points to a standard (the pasted standards, what you can observe, the audience’s needs) that another reader could apply the same way." options='[{"text":"The reason points to no standard, so it would justify the opposite decision just as well","correct":true},{"text":"OVERRIDE is never a valid decision; the AI should always be accepted","correct":false},{"text":"The row is missing a confidence rating","correct":false},{"text":"Nothing fails; a gut feeling is a sufficient reason in a reflection","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -65,11 +65,11 @@ Step 4. Write one sentence the log now supports: "I overrode the AI twice when i
 
 Order the moves that turn a feelings paragraph into an auditable decision log:
 
-<sequence-builder mode="order" items='["Discard the feelings paragraph (’I feel more confident’) because it holds no decisions", "Make one row for every moment the AI actually advised something", "Record each decision explicitly as ACCEPT or OVERRIDE in its own column", "Give each decision a reason that points to a standard, not a mood", "Count the accept/override ratio and read it as evidence of weighing"]' />
+<sequence-builder mode="order" items='["Discard the feelings paragraph (’I feel more confident’) because it holds no decisions", "Make one row for every moment the AI actually advised something", "Record each decision explicitly as ACCEPT or OVERRIDE in its own column", "Give each decision a reason that points to a standard, not a mood", "Count the accept/override ratio and read it as evidence of weighing"]'></sequence-builder>
 
 Now turn one decision at a time into a defensible row, predicting each call before you reveal it:
 
-<step-reveal title="Build the decision log row by row" steps='[{"prompt":"The AI says ’tell the parent their child failed.’ You decide OVERRIDE. Which Why column makes the row auditable?","predictType":"choice","choices":["’Too harsh for a first quiz; I used the observed score and a make-up plan instead’","’I just didn’t like it’","’Overriding shows independence’","Leave the Why blank; the decision speaks for itself"],"answerIndex":0,"reveal":"The reason that names a standard (proportional tone for a single quiz) and the concrete replacement is auditable. A reviewer can agree or disagree with the standard, which is what makes it judgment rather than mood."},{"prompt":"The AI says ’teach fractions before decimals,’ and it matches the standards you pasted. What is the strongest call?","predictType":"choice","choices":["ACCEPT, because it matches the pasted standards and you have no evidence against it","OVERRIDE, to prove you are independent of the AI","ACCEPT, but write Why: ’it felt right’","Skip the row; accepts are not worth logging"],"answerIndex":0,"reveal":"ACCEPT with a standard-based reason. Accepting advice that matches a standard is also a defensible judgment; overriding good advice just to look independent is contrarianism, not judgment."},{"reveal":"With the AI’s ’say the student is unmotivated’ overridden on the observability standard, your log shows 2 overrides and 1 accept, each with a standard-based reason. The ratio itself is evidence that you weighed the advice instead of rubber-stamping or reflexively rejecting it."}]' />
+<step-reveal title="Build the decision log row by row" steps='[{"prompt":"The AI says ’tell the parent their child failed.’ You decide OVERRIDE. Which Why column makes the row auditable?","predictType":"choice","choices":["’Too harsh for a first quiz; I used the observed score and a make-up plan instead’","’I just didn’t like it’","’Overriding shows independence’","Leave the Why blank; the decision speaks for itself"],"answerIndex":0,"reveal":"The reason that names a standard (proportional tone for a single quiz) and the concrete replacement is auditable. A reviewer can agree or disagree with the standard, which is what makes it judgment rather than mood."},{"prompt":"The AI says ’teach fractions before decimals,’ and it matches the standards you pasted. What is the strongest call?","predictType":"choice","choices":["ACCEPT, because it matches the pasted standards and you have no evidence against it","OVERRIDE, to prove you are independent of the AI","ACCEPT, but write Why: ’it felt right’","Skip the row; accepts are not worth logging"],"answerIndex":0,"reveal":"ACCEPT with a standard-based reason. Accepting advice that matches a standard is also a defensible judgment; overriding good advice just to look independent is contrarianism, not judgment."},{"reveal":"With the AI’s ’say the student is unmotivated’ overridden on the observability standard, your log shows 2 overrides and 1 accept, each with a standard-based reason. The ratio itself is evidence that you weighed the advice instead of rubber-stamping or reflexively rejecting it."}]'></step-reveal>
 
 Reflect by logging decisions, not feelings, and give every decision a reason tied to a standard. A reflection counts as evidence of judgment only when a reader can audit each accept and override independently.
 
@@ -118,13 +118,13 @@ Move the decision log from classroom advice to a job-application context, where 
 
 See how decision-log reflection connects to the chapter’s wider ideas:
 
-<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "learner_reflection", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "learner_reflection", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/04-06-reflection-on-teacher-judgment-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.06" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.06"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -137,13 +137,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.06. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.06. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_reflection_on_teacher_judgment" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_reflection_on_teacher_judgment"></interactive-quiz>
 
 ## Final Check
 

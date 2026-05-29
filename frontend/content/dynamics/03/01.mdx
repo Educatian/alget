@@ -56,7 +56,7 @@ Every point traces a circle centered on the axis. Points farther from the axis m
 
 This is the most common real case: a wheel rolling, a connecting rod swinging, or a tool arm sweeping through space while the base moves. We handle it by splitting the motion into a translation (carried by a reference point) plus a rotation about that point.
 
-<kinematics-diagram />
+<kinematics-diagram></kinematics-diagram>
 
 ## Angular Position, Velocity, and Acceleration
 
@@ -108,7 +108,7 @@ $$
 a = \sqrt{a_t^2 + a_n^2}
 $$
 
-<parameter-explorer config='{"title":"Point Kinematics on a Rotating Body (v = r*omega, a_t = r*alpha, a_n = r*omega^2)","sliders":[{"name":"r","label":"Radius from axis","min":0.05,"max":1,"step":0.05,"unit":"m","default":0.25},{"name":"omega","label":"Angular velocity","min":0,"max":30,"step":1,"unit":"rad/s","default":12},{"name":"alpha","label":"Angular acceleration","min":0,"max":20,"step":1,"unit":"rad/s^2","default":4}],"outputs":[{"label":"Linear speed v","unit":"m/s","expr":"r*omega"},{"label":"Tangential accel a_t","unit":"m/s^2","expr":"r*alpha"},{"label":"Normal accel a_n","unit":"m/s^2","expr":"r*omega^2"},{"label":"Total accel a","unit":"m/s^2","expr":"sqrt((r*alpha)^2 + (r*omega^2)^2)"}],"plot":{"x":"omega","output":2}}' />
+<parameter-explorer config='{"title":"Point Kinematics on a Rotating Body (v = r*omega, a_t = r*alpha, a_n = r*omega^2)","sliders":[{"name":"r","label":"Radius from axis","min":0.05,"max":1,"step":0.05,"unit":"m","default":0.25},{"name":"omega","label":"Angular velocity","min":0,"max":30,"step":1,"unit":"rad/s","default":12},{"name":"alpha","label":"Angular acceleration","min":0,"max":20,"step":1,"unit":"rad/s^2","default":4}],"outputs":[{"label":"Linear speed v","unit":"m/s","expr":"r*omega"},{"label":"Tangential accel a_t","unit":"m/s^2","expr":"r*alpha"},{"label":"Normal accel a_n","unit":"m/s^2","expr":"r*omega^2"},{"label":"Total accel a","unit":"m/s^2","expr":"sqrt((r*alpha)^2 + (r*omega^2)^2)"}],"plot":{"x":"omega","output":2}}'></parameter-explorer>
 
 Notice as you raise `omega` how the normal acceleration output climbs far faster than the tangential one: the plot of $a_n$ versus $\omega$ is a parabola, not a line.
 
@@ -117,8 +117,7 @@ Students often remember the formulas but forget the geometry. Tangential and nor
 <dynamic-scenario
   topic="Inspection Robot on a Rotating Arm"
   context="A manufacturing engineer mounts a vision sensor near the end of a rotating inspection arm. The sensor begins missing defects at high speed, and the engineer must decide whether the problem is mostly caused by tangential speed, centripetal acceleration, or both."
-  course="dynamics"
-/>
+  course="dynamics"></dynamic-scenario>
 
 ## Relative Motion on a Rigid Body
 
@@ -140,7 +139,7 @@ This equation says:
 
 The rotational term is always perpendicular to $\vec{r}_{B/A}$ and has magnitude $\omega \, r_{B/A}$. For acceleration, a similar relation holds, but the rotational part splits into a tangential piece $\vec{\alpha} \times \vec{r}_{B/A}$ and a normal (centripetal) piece $-\omega^2 \vec{r}_{B/A}$.
 
-<inline-check question="In the equation v_B = v_A + omega x r_(B/A), what does the cross-product term physically represent?" explanation="The cross product omega x r_(B/A) is the velocity that B picks up purely from the body spinning about A. It is perpendicular to r_(B/A) with magnitude omega times the A-to-B distance, and it vanishes only if omega = 0 (pure translation) or if r_(B/A) = 0 (B is at A)." options='[{"text":"The extra velocity of B due to the body rotating about the reference point A","correct":true},{"text":"The translational velocity that A and B share","correct":false},{"text":"The centripetal acceleration of point B","correct":false}]' />
+<inline-check question="In the equation v_B = v_A + omega x r_(B/A), what does the cross-product term physically represent?" explanation="The cross product omega x r_(B/A) is the velocity that B picks up purely from the body spinning about A. It is perpendicular to r_(B/A) with magnitude omega times the A-to-B distance, and it vanishes only if omega = 0 (pure translation) or if r_(B/A) = 0 (B is at A)." options='[{"text":"The extra velocity of B due to the body rotating about the reference point A","correct":true},{"text":"The translational velocity that A and B share","correct":false},{"text":"The centripetal acceleration of point B","correct":false}]'></inline-check>
 
 ### The instantaneous center of zero velocity
 
@@ -214,7 +213,7 @@ $$
 
 > **Think About It:** Because the contact patch is instantaneously at rest, static (not kinetic) friction acts there. That is why a properly rolling tire grips far better than a skidding one.
 
-<step-reveal title="Reason Through the Rolling Wheel Before Revealing Each Step" steps='[{"prompt":"A wheel of radius 0.30 m rolls without slipping with its center at v_C = 6.0 m/s. What is the angular velocity omega?","predictType":"choice","choices":["omega = v_C * r = 1.8 rad/s","omega = v_C / r = 20 rad/s","omega = v_C = 6.0 rad/s"],"answerIndex":1,"reveal":"Rolling without slipping gives v_C = r*omega, so omega = v_C/r = 6.0/0.30 = 20 rad/s."},{"prompt":"Treating the ground contact point G as the instantaneous center, what is the velocity of the contact point?","predictType":"choice","choices":["0 m/s, because its distance to the IC is zero","6.0 m/s, same as the center","12 m/s, twice the center"],"answerIndex":0,"reveal":"For rolling without slip the contact point IS the IC, so d = 0 and v_G = omega * 0 = 0 m/s. The contact patch is momentarily at rest."},{"prompt":"The top point T sits a distance 2r from the IC. What is its speed?","predictType":"choice","choices":["6.0 m/s","9.0 m/s","12 m/s"],"answerIndex":2,"reveal":"v_T = omega * (2r) = 20 * 0.60 = 12 m/s, exactly twice the center speed. The cross-check v_T = v_C + omega*r = 6.0 + 6.0 = 12 m/s agrees."},{"reveal":"Big idea: once the IC is located, the whole rigid body is momentarily in pure rotation about it, so every speed is just omega times the distance to the IC. No vector equations are needed."}]' />
+<step-reveal title="Reason Through the Rolling Wheel Before Revealing Each Step" steps='[{"prompt":"A wheel of radius 0.30 m rolls without slipping with its center at v_C = 6.0 m/s. What is the angular velocity omega?","predictType":"choice","choices":["omega = v_C * r = 1.8 rad/s","omega = v_C / r = 20 rad/s","omega = v_C = 6.0 rad/s"],"answerIndex":1,"reveal":"Rolling without slipping gives v_C = r*omega, so omega = v_C/r = 6.0/0.30 = 20 rad/s."},{"prompt":"Treating the ground contact point G as the instantaneous center, what is the velocity of the contact point?","predictType":"choice","choices":["0 m/s, because its distance to the IC is zero","6.0 m/s, same as the center","12 m/s, twice the center"],"answerIndex":0,"reveal":"For rolling without slip the contact point IS the IC, so d = 0 and v_G = omega * 0 = 0 m/s. The contact patch is momentarily at rest."},{"prompt":"The top point T sits a distance 2r from the IC. What is its speed?","predictType":"choice","choices":["6.0 m/s","9.0 m/s","12 m/s"],"answerIndex":2,"reveal":"v_T = omega * (2r) = 20 * 0.60 = 12 m/s, exactly twice the center speed. The cross-check v_T = v_C + omega*r = 6.0 + 6.0 = 12 m/s agrees."},{"reveal":"Big idea: once the IC is located, the whole rigid body is momentarily in pure rotation about it, so every speed is just omega times the distance to the IC. No vector equations are needed."}]'></step-reveal>
 
 **Problem:** A straight bar $AB$ of length 0.5 m has end $A$ on a horizontal floor and end $B$ against a vertical wall. At the instant shown the bar forms a 3-4-5 triangle, so $A = (0.4, 0)$ m and $B = (0, 0.3)$ m. End $A$ slides along the floor at $v_A = 3.0$ m/s in the $+x$ direction. Find the angular velocity of the bar and the velocity of end $B$.
 
@@ -284,19 +283,17 @@ The negative sign means end $B$ slides **down** the wall at 4.0 m/s while $A$ sl
   question="If two points lie on the same spinning disk, which point has the larger linear speed?"
   conceptId="angular_velocity"
   options='[{"text":"The point farther from the axis","isCorrect":true},{"text":"The point closer to the axis","isCorrect":false},{"text":"They always have the same linear speed","isCorrect":false}]'
-  explanation="Correct. Both points share the same angular velocity, but linear speed is v = r omega, so the point with the larger radius moves faster."
-/>
+  explanation="Correct. Both points share the same angular velocity, but linear speed is v = r omega, so the point with the larger radius moves faster."></interactive-quiz>
 
 <interactive-quiz
   question="Which term is responsible for changing the direction of velocity in circular motion?"
   conceptId="rotation_about_fixed_axis"
   options='[{"text":"Tangential acceleration only","isCorrect":false},{"text":"Normal acceleration only","isCorrect":true},{"text":"Angular displacement only","isCorrect":false}]'
-  explanation="Exactly. Normal acceleration points toward the center of curvature and changes the direction of velocity, while tangential acceleration changes the speed."
-/>
+  explanation="Exactly. Normal acceleration points toward the center of curvature and changes the direction of velocity, while tangential acceleration changes the speed."></interactive-quiz>
 
 ## Connecting the Concepts
 
-<concept-map concepts='["rigid_body_kinematics","angular_velocity","angular_acceleration","rotation_about_fixed_axis"]' />
+<concept-map concepts='["rigid_body_kinematics","angular_velocity","angular_acceleration","rotation_about_fixed_axis"]'></concept-map>
 
 ## Summary
 

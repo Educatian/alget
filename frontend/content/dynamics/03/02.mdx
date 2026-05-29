@@ -84,13 +84,13 @@ The $r^2$ weighting is the key insight. Mass placed far from the axis counts muc
 
 Bodies with more mass farther from the axis have larger inertia and therefore smaller angular acceleration for the same applied moment. This is why a hoop ($mr^2$) is harder to spin than a solid disk ($\frac{1}{2}mr^2$) of the same mass and radius: all of the hoop's mass sits at the maximum radius.
 
-<parameter-explorer config='{"title":"Spin-Up a Disk: alpha = M / I_G with I_G = (1/2) m r^2","sliders":[{"name":"m","label":"Disk mass","min":1,"max":50,"step":1,"unit":"kg","default":10},{"name":"r","label":"Disk radius","min":0.05,"max":0.6,"step":0.05,"unit":"m","default":0.3},{"name":"M","label":"Applied moment","min":0,"max":40,"step":1,"unit":"N*m","default":6}],"outputs":[{"label":"Inertia I_G","unit":"kg*m^2","expr":"0.5*m*r^2"},{"label":"Angular accel alpha","unit":"rad/s^2","expr":"M/(0.5*m*r^2)"}],"plot":{"x":"r","output":1}}' />
+<parameter-explorer config='{"title":"Spin-Up a Disk: alpha = M / I_G with I_G = (1/2) m r^2","sliders":[{"name":"m","label":"Disk mass","min":1,"max":50,"step":1,"unit":"kg","default":10},{"name":"r","label":"Disk radius","min":0.05,"max":0.6,"step":0.05,"unit":"m","default":0.3},{"name":"M","label":"Applied moment","min":0,"max":40,"step":1,"unit":"N*m","default":6}],"outputs":[{"label":"Inertia I_G","unit":"kg*m^2","expr":"0.5*m*r^2"},{"label":"Angular accel alpha","unit":"rad/s^2","expr":"M/(0.5*m*r^2)"}],"plot":{"x":"r","output":1}}'></parameter-explorer>
 
 Try doubling the radius at fixed moment: $\alpha$ drops by a factor of four, because inertia carries the $r^2$ weighting while the moment is unchanged.
 
-<inline-check question="Two flywheels have equal mass but flywheel B has twice the radius of flywheel A. For the same applied moment, how does B's angular acceleration compare to A's?" explanation="I scales with r^2, so doubling the radius quadruples the inertia. With alpha = M/I, four times the inertia gives one quarter the angular acceleration. Mass distribution, not just mass, sets the rotational response." options='[{"text":"B accelerates one quarter as fast as A","correct":true},{"text":"B accelerates half as fast as A","correct":false},{"text":"B accelerates twice as fast as A","correct":false}]' />
+<inline-check question="Two flywheels have equal mass but flywheel B has twice the radius of flywheel A. For the same applied moment, how does B's angular acceleration compare to A's?" explanation="I scales with r^2, so doubling the radius quadruples the inertia. With alpha = M/I, four times the inertia gives one quarter the angular acceleration. Mass distribution, not just mass, sets the rotational response." options='[{"text":"B accelerates one quarter as fast as A","correct":true},{"text":"B accelerates half as fast as A","correct":false},{"text":"B accelerates twice as fast as A","correct":false}]'></inline-check>
 
-<torque-diagram />
+<torque-diagram></torque-diagram>
 
 ## The Parallel-Axis Theorem
 
@@ -132,7 +132,7 @@ Use a point that makes the rotational balance easiest to evaluate. If you use th
 
 Rolling constraints or kinematic relations may couple $a_G$ and $\alpha$. For rolling without slip, $a_G = r\alpha$.
 
-<sequence-builder mode="order" items='["Draw the rigid-body free body diagram with every force at its actual point of application","Mark the center of mass G and the relevant moment arms","Write the force equations Sum F = m a_G for translation","Write the moment equation Sum M_G = I_G alpha for rotation","Add the kinematic constraint (e.g. a_G = r alpha for rolling) to couple the unknowns","Solve the simultaneous equations for a_G, alpha, and the unknown reactions"]' />
+<sequence-builder mode="order" items='["Draw the rigid-body free body diagram with every force at its actual point of application","Mark the center of mass G and the relevant moment arms","Write the force equations Sum F = m a_G for translation","Write the moment equation Sum M_G = I_G alpha for rotation","Add the kinematic constraint (e.g. a_G = r alpha for rolling) to couple the unknowns","Solve the simultaneous equations for a_G, alpha, and the unknown reactions"]'></sequence-builder>
 
 ## Assumption Callout: When the Rigid-Body Model Is Reasonable
 
@@ -157,8 +157,7 @@ In those situations, rigid-body dynamics may still be useful as a first estimate
 <dynamic-scenario
   topic="Startup Torque for a Conveyor Drum"
   context="A factory retrofit adds a heavier steel drum to a packaging conveyor. The motor torque remains the same, and the controls engineer must predict whether startup acceleration will still meet the required throughput target."
-  course="dynamics"
-/>
+  course="dynamics"></dynamic-scenario>
 
 ## Worked Examples
 
@@ -244,7 +243,7 @@ Notice that the cylinder accelerates at only two-thirds of $g\sin\theta$. The "m
 
 > **Think About It:** Replace the solid cylinder with a hoop ($I_G = mr^2$). Reworking Steps C through E gives $a_G = \tfrac{1}{2}g\sin\theta$, even slower, because the hoop's mass is all at the rim and harder to spin up. Mass distribution, not mass, controls the outcome.
 
-<step-reveal title="Build the Rolling-Cylinder Solution One Decision at a Time" steps='[{"prompt":"Which force on the rolling cylinder produces a moment about the center G?","predictType":"choice","choices":["The weight mg, because it is the largest force","The normal force N","The friction force f at the contact point"],"answerIndex":2,"reveal":"Weight acts through G (zero moment arm) and N passes through the contact line toward G; only friction f has a moment arm of r about G. Friction is what spins the cylinder up."},{"prompt":"After writing f*r = (1/2) m r^2 * alpha and applying a_G = r*alpha, what does friction simplify to?","predictType":"choice","choices":["f = m a_G","f = (1/2) m a_G","f = (3/2) m a_G"],"answerIndex":1,"reveal":"Substituting alpha = a_G/r into f*r = (1/2) m r^2 * alpha gives f = (1/2) m a_G. Friction is tied directly to the translational acceleration."},{"prompt":"Putting f = (1/2) m a_G into mg*sin(theta) - f = m a_G, what is a_G?","predictType":"choice","choices":["a_G = g*sin(theta)","a_G = (2/3) g*sin(theta)","a_G = (1/2) g*sin(theta)"],"answerIndex":1,"reveal":"mg*sin(theta) - (1/2)m a_G = m a_G gives g*sin(theta) = (3/2) a_G, so a_G = (2/3) g*sin(theta). The missing third of g*sin(theta) goes into spinning the body up."},{"reveal":"Pattern: rotational inertia steals a fixed fraction of the available acceleration. A frictionless block would get the full g*sin(theta); the solid cylinder keeps only two thirds; a hoop keeps just one half."}]' />
+<step-reveal title="Build the Rolling-Cylinder Solution One Decision at a Time" steps='[{"prompt":"Which force on the rolling cylinder produces a moment about the center G?","predictType":"choice","choices":["The weight mg, because it is the largest force","The normal force N","The friction force f at the contact point"],"answerIndex":2,"reveal":"Weight acts through G (zero moment arm) and N passes through the contact line toward G; only friction f has a moment arm of r about G. Friction is what spins the cylinder up."},{"prompt":"After writing f*r = (1/2) m r^2 * alpha and applying a_G = r*alpha, what does friction simplify to?","predictType":"choice","choices":["f = m a_G","f = (1/2) m a_G","f = (3/2) m a_G"],"answerIndex":1,"reveal":"Substituting alpha = a_G/r into f*r = (1/2) m r^2 * alpha gives f = (1/2) m a_G. Friction is tied directly to the translational acceleration."},{"prompt":"Putting f = (1/2) m a_G into mg*sin(theta) - f = m a_G, what is a_G?","predictType":"choice","choices":["a_G = g*sin(theta)","a_G = (2/3) g*sin(theta)","a_G = (1/2) g*sin(theta)"],"answerIndex":1,"reveal":"mg*sin(theta) - (1/2)m a_G = m a_G gives g*sin(theta) = (3/2) a_G, so a_G = (2/3) g*sin(theta). The missing third of g*sin(theta) goes into spinning the body up."},{"reveal":"Pattern: rotational inertia steals a fixed fraction of the available acceleration. A frictionless block would get the full g*sin(theta); the solid cylinder keeps only two thirds; a hoop keeps just one half."}]'></step-reveal>
 
 ---
 
@@ -312,19 +311,17 @@ Rigid-body dynamics matters because it turns those trade-offs into quantitative 
   question="Why can two rigid bodies with the same mass respond differently to the same applied moment?"
   conceptId="mass_moment_of_inertia"
   options='[{"text":"Because only the shape matters, not the mass distribution.","isCorrect":false},{"text":"Because mass moment of inertia depends on how the mass is distributed relative to the axis.","isCorrect":true},{"text":"Because moments do not affect angular acceleration.","isCorrect":false}]'
-  explanation="Correct. Rotational response depends on the mass distribution. More mass located farther from the axis increases the mass moment of inertia and reduces angular acceleration for the same moment."
-/>
+  explanation="Correct. Rotational response depends on the mass distribution. More mass located farther from the axis increases the mass moment of inertia and reduces angular acceleration for the same moment."></interactive-quiz>
 
 <interactive-quiz
   question="When should the parallel-axis theorem be used?"
   conceptId="rotational_equation"
   options='[{"text":"Whenever the axis of interest is not through the center of mass.","isCorrect":true},{"text":"Only when the body is translating.","isCorrect":false},{"text":"Only for springs and pulleys.","isCorrect":false}]'
-  explanation="Exactly. Many handbook inertia formulas are given about the centroidal axis. If the actual rotation axis is displaced, you must shift the inertia with I = I_G + md^2."
-/>
+  explanation="Exactly. Many handbook inertia formulas are given about the centroidal axis. If the actual rotation axis is displaced, you must shift the inertia with I = I_G + md^2."></interactive-quiz>
 
 ## Connecting the Concepts
 
-<concept-map concepts='["rigid_body_kinetics","mass_moment_of_inertia","rotational_equation"]' />
+<concept-map concepts='["rigid_body_kinetics","mass_moment_of_inertia","rotational_equation"]'></concept-map>
 
 ## Summary
 

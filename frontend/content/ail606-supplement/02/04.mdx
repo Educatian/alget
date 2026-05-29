@@ -37,9 +37,9 @@ The anchors keep these variables honest:
 
 Hattie and Timperley say effective feedback answers three questions. Match each question to the feedback move that answers it for the paired-data example.
 
-<sequence-builder mode="match" items='[{"term":"Where am I going? (the goal)","definition":"Naming the target: match the statistical design to the right test"},{"term":"How am I doing? (current state)","definition":"Identifying the error: you treated paired observations as if they were independent"},{"term":"Where to next? (the move)","definition":"The corrective step: try again, this time pairing the pre and post scores from the same people"}]' />
+<sequence-builder mode="match" items='[{"term":"Where am I going? (the goal)","definition":"Naming the target: match the statistical design to the right test"},{"term":"How am I doing? (current state)","definition":"Identifying the error: you treated paired observations as if they were independent"},{"term":"Where to next? (the move)","definition":"The corrective step: try again, this time pairing the pre and post scores from the same people"}]'></sequence-builder>
 
-<inline-check question="A practice item returns only 'Incorrect. Score: 0/1. Next.' Which of Hattie and Timperley's three questions does it answer?" explanation="The verdict reports current state ('how am I doing') and even that only as a label. It names no goal and gives no corrective move, so it cannot feed forward. This is why 14 of 20 learners repeated the same wrong test: a verdict diagnoses nothing." options='[{"text":"All three, because the score communicates everything the learner needs","correct":false},{"text":"Only how-am-I-doing, and badly, since it labels the result without naming the goal or the next move","correct":true},{"text":"Only where-to-next, because it says Next","correct":false}]' />
+<inline-check question="A practice item returns only 'Incorrect. Score: 0/1. Next.' Which of Hattie and Timperley's three questions does it answer?" explanation="The verdict reports current state ('how am I doing') and even that only as a label. It names no goal and gives no corrective move, so it cannot feed forward. This is why 14 of 20 learners repeated the same wrong test: a verdict diagnoses nothing." options='[{"text":"All three, because the score communicates everything the learner needs","correct":false},{"text":"Only how-am-I-doing, and badly, since it labels the result without naming the goal or the next move","correct":true},{"text":"Only where-to-next, because it says Next","correct":false}]'></inline-check>
 
 ## Worked Example: Redesigning a Feedback Loop
 
@@ -95,7 +95,7 @@ Finally, watch control get calibrated rather than removed. Skipping is still pos
 
 Work the learner-control dilemma as a decision tree. The pilot shows 9 of 20 first-week novices used the open skip link before finishing the scaffolding.
 
-<branching-scenario tree='{"title":"Calibrating learner control","start":"n1","nodes":{"n1":{"prompt":"Novices are skipping the scaffolding they most need. How do you adjust control?","choices":[{"label":"Remove the skip link entirely to force completion","next":"lock","feedback":"This protects novices but strips the autonomy that supports motivation, and it traps experts who do not need the scaffolding."},{"label":"Leave skipping fully open because more learner control is always better","next":"open","feedback":"The pilot already shows the most open setting fails the learners who need help most."},{"label":"Keep skipping possible but route it through a cue that names what the skipped section teaches","next":"calibrate","feedback":"This is calibrated control: autonomy is preserved while a blind exit becomes an informed choice."}]},"lock":{"prompt":"Completion rises, but advanced reviewers complain the module wastes their time and one novice reports feeling forced.","feedback":"Maximal control and zero control both fail someone. The fix is to calibrate, not to eliminate, choice.","choices":[]},"open":{"prompt":"The skip rate stays high and next-item error rates do not improve; the novices who skipped never met the scaffolding.","feedback":"Autonomy that lets a learner avoid the help that would work is abandonment with a friendly label.","choices":[]},"calibrate":{"prompt":"Skip rate among novices drops and those who still skip do so after seeing what they are giving up. Experts still move freely.","feedback":"Calibrated control highlights the recommended path and names the cost of leaving it, addressing the 9-of-20 problem without locking anyone in.","choices":[]}}}' />
+<branching-scenario tree='{"title":"Calibrating learner control","start":"n1","nodes":{"n1":{"prompt":"Novices are skipping the scaffolding they most need. How do you adjust control?","choices":[{"label":"Remove the skip link entirely to force completion","next":"lock","feedback":"This protects novices but strips the autonomy that supports motivation, and it traps experts who do not need the scaffolding."},{"label":"Leave skipping fully open because more learner control is always better","next":"open","feedback":"The pilot already shows the most open setting fails the learners who need help most."},{"label":"Keep skipping possible but route it through a cue that names what the skipped section teaches","next":"calibrate","feedback":"This is calibrated control: autonomy is preserved while a blind exit becomes an informed choice."}]},"lock":{"prompt":"Completion rises, but advanced reviewers complain the module wastes their time and one novice reports feeling forced.","feedback":"Maximal control and zero control both fail someone. The fix is to calibrate, not to eliminate, choice.","choices":[]},"open":{"prompt":"The skip rate stays high and next-item error rates do not improve; the novices who skipped never met the scaffolding.","feedback":"Autonomy that lets a learner avoid the help that would work is abandonment with a friendly label.","choices":[]},"calibrate":{"prompt":"Skip rate among novices drops and those who still skip do so after seeing what they are giving up. Experts still move freely.","feedback":"Calibrated control highlights the recommended path and names the cost of leaving it, addressing the 9-of-20 problem without locking anyone in.","choices":[]}}}'></branching-scenario>
 
 ## What Strong Reading Looks Like
 
@@ -118,13 +118,13 @@ When you bring this to BigAL, ask it to write the feedback for a *specific* wron
 
 Move the same statistics loop from a self-paced module for first-week novices to a review activity for advanced students preparing for a qualifying exam. The feedback content can stay diagnostic, but the timing and control should change. For experts, the delayed reveal and the single targeted retry that helped novices may now slow them down without adding retrieval benefit, because they can already reconstruct the reasoning; immediate confirmation plus open navigation respects their expertise. The very calibrated control that protected novices becomes friction for experts. This is the expertise-reversal effect: support that helps a novice can hinder an expert. If you can explain why the same loop should tighten control for novices and loosen it for experts, you understand feedback and control as variables tuned to the learner rather than as a single best design.
 
-<concept-map concepts='["ail606_supplement_feedback_loops_and_learner_control", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_feedback_loops_and_learner_control", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/02-04-feedback-loops-and-learner-control-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="02.04" />
+<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="02.04"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -137,13 +137,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 02.04. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 02.04. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_feedback_loops_and_learner_control" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_feedback_loops_and_learner_control"></interactive-quiz>
 
 ## Final Check
 

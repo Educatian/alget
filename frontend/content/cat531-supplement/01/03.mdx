@@ -31,11 +31,11 @@ Reading a DTS map is an audit of three component types, each with a failure mode
 
 The reading test is simple: every edge must name a mechanism, and every decision node must make a trade and its evidence visible. TPACK helps you check that the value nodes are real learning values rather than tool names; critical edtech studies helps you check that the edge names a real cost rather than a vague worry. A map passes when a stranger can reconstruct the conflict and the trade without you explaining it.
 
-<inline-check question="An edge between two value nodes is labeled only the word tension. What is the failure mode?" explanation="A generic label like tension or vs. asserts that a conflict exists but hides the mechanism. The reader cannot tell HOW the two values conflict. A readable edge names the causal link, for example that AutoScore is fast but was trained on native-speaker prose, so it penalizes multilingual phrasing." options='[{"text":"The edge hides the causal mechanism of the conflict","correct":true},{"text":"The edge has too many words","correct":false},{"text":"The edge should point to a tool, not a value","correct":false},{"text":"Nothing is wrong; the bare word tension is a complete edge label","correct":false}]' />
+<inline-check question="An edge between two value nodes is labeled only the word tension. What is the failure mode?" explanation="A generic label like tension or vs. asserts that a conflict exists but hides the mechanism. The reader cannot tell HOW the two values conflict. A readable edge names the causal link, for example that AutoScore is fast but was trained on native-speaker prose, so it penalizes multilingual phrasing." options='[{"text":"The edge hides the causal mechanism of the conflict","correct":true},{"text":"The edge has too many words","correct":false},{"text":"The edge should point to a tool, not a value","correct":false},{"text":"Nothing is wrong; the bare word tension is a complete edge label","correct":false}]'></inline-check>
 
 Match each map component to the specific failure mode you must catch when auditing it.
 
-<sequence-builder mode="match" items='[{"term":"Value node", "definition":"Is actually a tool or a feeling (AutoScore, frustration) rather than a learning value"}, {"term":"Edge", "definition":"Carries a generic label like tension or vs. that hides the causal mechanism of the conflict"}, {"term":"Decision node", "definition":"States a chosen winner but hides what was yielded and the evidence behind it"}]' />
+<sequence-builder mode="match" items='[{"term":"Value node", "definition":"Is actually a tool or a feeling (AutoScore, frustration) rather than a learning value"}, {"term":"Edge", "definition":"Carries a generic label like tension or vs. that hides the causal mechanism of the conflict"}, {"term":"Decision node", "definition":"States a chosen winner but hides what was yielded and the evidence behind it"}]'></sequence-builder>
 
 ## Worked Example
 
@@ -62,7 +62,7 @@ The map is now readable because every edge names a mechanism and the decision no
 
 Predict each audit move before you reveal it. The map under audit has two value nodes ("Faster feedback," "Fair feedback for multilingual writers"), an edge labeled "tension," and a decision node reading "Use AutoScore."
 
-<step-reveal title="Auditing the AutoScore map, node by node" steps='[{"prompt":"You audit the two value nodes first. What should you do with them?","predictType":"choice","choices":["Restate both as tools","Keep both; they are legitimate learning values","Delete the fairness node to simplify"],"answerIndex":1,"reveal":"Both faster feedback and fair feedback for multilingual writers are genuine learning values. Keep both; the conflict between them is real."},{"prompt":"You reach the edge labeled with the bare word tension. What does a readable edge require?","predictType":"choice","choices":["A shorter label","A named causal mechanism of the conflict","A color change"],"answerIndex":1,"reveal":"Annotate the mechanism: AutoScore returns scores in seconds (faster feedback) but was trained on native-speaker prose, so it penalizes multilingual sentence patterns (fairness cost)."},{"prompt":"The decision node says only Use AutoScore. What is missing?","predictType":"choice","choices":["What was yielded and why","A second tool option","The vendor name"],"answerIndex":0,"reveal":"A readable decision node states what was adopted, what was yielded, and the reason: use AutoScore for first-draft turnaround only; teacher re-scores flagged multilingual essays; yielded full automation."},{"reveal":"Finally, cite the evidence that informed the call: a 12-essay spot check showing AutoScore marked 4 of 5 multilingual essays a full band lower than the teacher. Now a stranger can reconstruct both the conflict and the trade from the map alone."}]' />
+<step-reveal title="Auditing the AutoScore map, node by node" steps='[{"prompt":"You audit the two value nodes first. What should you do with them?","predictType":"choice","choices":["Restate both as tools","Keep both; they are legitimate learning values","Delete the fairness node to simplify"],"answerIndex":1,"reveal":"Both faster feedback and fair feedback for multilingual writers are genuine learning values. Keep both; the conflict between them is real."},{"prompt":"You reach the edge labeled with the bare word tension. What does a readable edge require?","predictType":"choice","choices":["A shorter label","A named causal mechanism of the conflict","A color change"],"answerIndex":1,"reveal":"Annotate the mechanism: AutoScore returns scores in seconds (faster feedback) but was trained on native-speaker prose, so it penalizes multilingual sentence patterns (fairness cost)."},{"prompt":"The decision node says only Use AutoScore. What is missing?","predictType":"choice","choices":["What was yielded and why","A second tool option","The vendor name"],"answerIndex":0,"reveal":"A readable decision node states what was adopted, what was yielded, and the reason: use AutoScore for first-draft turnaround only; teacher re-scores flagged multilingual essays; yielded full automation."},{"reveal":"Finally, cite the evidence that informed the call: a 12-essay spot check showing AutoScore marked 4 of 5 multilingual essays a full band lower than the teacher. Now a stranger can reconstruct both the conflict and the trade from the map alone."}]'></step-reveal>
 
 ## Decision Rule
 
@@ -115,7 +115,7 @@ Move the essay-scorer map into a class of confident, monolingual writers prepari
 
 Open the studio packet: [download the Design Tension Studio map naming a classroom value conflict and negotiated decision packet](/downloads/summer2026/cat531-supplement/01-03-dts-map-reading-artifact.md).
 
-<artifact-studio artifact="Design Tension Studio map naming a classroom value conflict and negotiated decision" course="CAT 531" section="01.03" />
+<artifact-studio artifact="Design Tension Studio map naming a classroom value conflict and negotiated decision" course="CAT 531" section="01.03"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -128,13 +128,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the Design Tension Studio map naming a classroom value conflict and negotiated decision for CAT 531 01.03. A peer comment points to a evidence move issue connected to critical edtech studies. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the Design Tension Studio map naming a classroom value conflict and negotiated decision for CAT 531 01.03. A peer comment points to a evidence move issue connected to critical edtech studies. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat531_supplement_dts_map_reading" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat531_supplement_dts_map_reading"></interactive-quiz>
 
 ## Final Check
 
@@ -144,7 +144,7 @@ Before you move on, check that the Design Tension Studio map naming a classroom 
 
 See how auditing nodes and edges connects to evidence-based revision and the reading anchors.
 
-<concept-map concepts='["cat531_supplement_foundations_of_cbi_and_design_tensions", "cat531_supplement_dts_map_reading", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat531_supplement_foundations_of_cbi_and_design_tensions", "cat531_supplement_dts_map_reading", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

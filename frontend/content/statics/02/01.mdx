@@ -79,7 +79,7 @@ $$
 
 This is why the two methods always agree. The cross product is the general statement; $M_O = Fd$ is its 2D shortcut once you have already found the perpendicular arm.
 
-<parameter-explorer config='{"title":"Moment magnitude: M = F r sin(theta)","sliders":[{"name":"F","label":"Force magnitude","min":0,"max":500,"step":5,"unit":"N","default":250},{"name":"r","label":"Distance from O to point of application","min":0,"max":3,"step":0.05,"unit":"m","default":2},{"name":"theta","label":"Angle between r and F","min":0,"max":180,"step":1,"unit":"deg","default":90}],"outputs":[{"label":"Perpendicular arm d = r sin(theta)","unit":"m","expr":"r * sin(theta * 3.14159265 / 180)"},{"label":"Moment M = F r sin(theta)","unit":"N*m","expr":"F * r * sin(theta * 3.14159265 / 180)"}],"plot":{"x":"theta","output":1}}' />
+<parameter-explorer config='{"title":"Moment magnitude: M = F r sin(theta)","sliders":[{"name":"F","label":"Force magnitude","min":0,"max":500,"step":5,"unit":"N","default":250},{"name":"r","label":"Distance from O to point of application","min":0,"max":3,"step":0.05,"unit":"m","default":2},{"name":"theta","label":"Angle between r and F","min":0,"max":180,"step":1,"unit":"deg","default":90}],"outputs":[{"label":"Perpendicular arm d = r sin(theta)","unit":"m","expr":"r * sin(theta * 3.14159265 / 180)"},{"label":"Moment M = F r sin(theta)","unit":"N*m","expr":"F * r * sin(theta * 3.14159265 / 180)"}],"plot":{"x":"theta","output":1}}'></parameter-explorer>
 
 Sweep the angle and watch the moment peak at $\theta = 90^\circ$ and vanish at $0^\circ$ and $180^\circ$: a force aimed straight along $\vec{r}$ (toward or away from $O$) produces zero turning effect because $\sin\theta = 0$.
 
@@ -104,7 +104,7 @@ In 2D analysis, every moment is either clockwise or counterclockwise:
 
 The choice of CCW as positive is a convention, not a law. What matters is that you fix one convention at the start of a problem and apply it to every force, because moments add **algebraically** with their signs.
 
-<inline-check question="A vertical force points straight down and is applied at a point directly to the LEFT of O. What is the sense of its moment about O?" explanation="A downward force applied to the left of O pushes that side down, spinning the body clockwise (negative). If the same downward force were applied to the right of O, it would be counterclockwise." options='[{"text":"Counterclockwise (positive)","correct":false},{"text":"Clockwise (negative)","correct":true},{"text":"Zero, because the force is vertical","correct":false}]' />
+<inline-check question="A vertical force points straight down and is applied at a point directly to the LEFT of O. What is the sense of its moment about O?" explanation="A downward force applied to the left of O pushes that side down, spinning the body clockwise (negative). If the same downward force were applied to the right of O, it would be counterclockwise." options='[{"text":"Counterclockwise (positive)","correct":false},{"text":"Clockwise (negative)","correct":true},{"text":"Zero, because the force is vertical","correct":false}]'></inline-check>
 
 ---
 
@@ -207,7 +207,7 @@ $$
 
 *Cross-check with Method 1.* The perpendicular distance from $O$ to the line of action is $d = M_O / F = 982 / 500 = 1.96$ m, a sensible value smaller than the 5 m straight-line distance $\sqrt{3^2+4^2}=5$ m to P. Consistency confirms the answer.
 
-<step-reveal title="Walk through Varignon's theorem for Example 2.2" steps='[{"prompt":"The 500 N force acts at 30 degrees above horizontal at P = (3, 4) m. What is the horizontal component Fx?","predictType":"choice","choices":["250 N","433 N","500 N","289 N"],"answerIndex":1,"reveal":"Fx = 500 cos(30) = 433.0 N. The cosine of 30 degrees (0.866) takes the horizontal share of the force."},{"prompt":"What is the vertical component Fy?","predictType":"choice","choices":["433 N","500 N","250 N","150 N"],"answerIndex":2,"reveal":"Fy = 500 sin(30) = 250.0 N, since sin(30) = 0.5."},{"prompt":"Fx acts at height y = 4 m. Acting alone, which way does Fx (pointing right, above O) spin the body?","predictType":"choice","choices":["Counterclockwise (positive)","Clockwise (negative)","No moment"],"answerIndex":0,"reveal":"A rightward force applied above O turns the body counterclockwise, contributing +Fx*y = +(433)(4) = +1732 N*m."},{"prompt":"Fy points down at offset x = 3 m. What sign is its moment about O?","predictType":"choice","choices":["Positive (CCW)","Negative (CW)","Zero"],"answerIndex":1,"reveal":"A downward force to the right of O turns clockwise, contributing -Fy*x = -(250)(3) = -750 N*m."},{"reveal":"Summing the signed parts: M_O = +1732 - 750 = +982 N*m (CCW). Varignon let us replace one awkward perpendicular arm with two easy rectangular arms y and x."}]' />
+<step-reveal title="Walk through Varignon's theorem for Example 2.2" steps='[{"prompt":"The 500 N force acts at 30 degrees above horizontal at P = (3, 4) m. What is the horizontal component Fx?","predictType":"choice","choices":["250 N","433 N","500 N","289 N"],"answerIndex":1,"reveal":"Fx = 500 cos(30) = 433.0 N. The cosine of 30 degrees (0.866) takes the horizontal share of the force."},{"prompt":"What is the vertical component Fy?","predictType":"choice","choices":["433 N","500 N","250 N","150 N"],"answerIndex":2,"reveal":"Fy = 500 sin(30) = 250.0 N, since sin(30) = 0.5."},{"prompt":"Fx acts at height y = 4 m. Acting alone, which way does Fx (pointing right, above O) spin the body?","predictType":"choice","choices":["Counterclockwise (positive)","Clockwise (negative)","No moment"],"answerIndex":0,"reveal":"A rightward force applied above O turns the body counterclockwise, contributing +Fx*y = +(433)(4) = +1732 N*m."},{"prompt":"Fy points down at offset x = 3 m. What sign is its moment about O?","predictType":"choice","choices":["Positive (CCW)","Negative (CW)","Zero"],"answerIndex":1,"reveal":"A downward force to the right of O turns clockwise, contributing -Fy*x = -(250)(3) = -750 N*m."},{"reveal":"Summing the signed parts: M_O = +1732 - 750 = +982 N*m (CCW). Varignon let us replace one awkward perpendicular arm with two easy rectangular arms y and x."}]'></step-reveal>
 
 ---
 
@@ -312,12 +312,11 @@ In **Section 2.2: Couple and Moment of a Couple**, we'll learn about a special f
 
 ---
 
-<concept-map concepts='["moment","cross_product","varignon_theorem","torque"]' />
+<concept-map concepts='["moment","cross_product","varignon_theorem","torque"]'></concept-map>
 
-<dynamic-scenario topic="Moment of a Force" context="A product designer is moving the handle location on a manual clamp and must predict how the same hand force will change the clamp's rotational effect about the pivot." />
+<dynamic-scenario topic="Moment of a Force" context="A product designer is moving the handle location on a manual clamp and must predict how the same hand force will change the clamp's rotational effect about the pivot."></dynamic-scenario>
 
 <interactive-quiz
   question="Which distance should be used when computing the scalar moment of a force about a point in 2D?"
   options='[{"text":"The straight-line distance from the point to the force application point.","isCorrect":false},{"text":"The perpendicular distance from the point to the line of action of the force.","isCorrect":true},{"text":"Any distance measured parallel to the x-axis.","isCorrect":false}]'
-  explanation="Correct. The moment arm is the perpendicular distance from the reference point to the line of action of the force."
-/>
+  explanation="Correct. The moment arm is the perpendicular distance from the reference point to the line of action of the force."></interactive-quiz>

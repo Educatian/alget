@@ -34,11 +34,11 @@ AI advice fails in recognizable patterns. Learning the categories lets you predi
 
 The core move is decomposition. A reply is not one claim; it is several claims glued together by confident prose. You separate them into rows, find a source for each, and assign a verdict. A spreadsheet (Excel or Google Sheets) makes this inspectable: one claim per row, a SOURCE column, and a VERDICT column. The verdict matters because the goal is not to throw out the whole reply but to filter it, keeping what survives.
 
-<inline-check question="An AI reply says: 'Students learn 90% of what they teach others (Dale, 1969).' Why is the citation NOT proof the claim is verified?" explanation="A citation is itself a claim. AIs routinely attach real author names to findings those authors never made. Here Dale wrote on the Cone of Experience and assigned no percentages, so the citation is a misattribution. A reference is a place to start verifying, not a stamp of approval." options='[{"text":"A citation is just another claim that must be checked; the author may never have said it","correct":true},{"text":"Citations from before 2000 are always invalid","correct":false},{"text":"It is proof; any named author confirms the number","correct":false},{"text":"The percentage is too round to be wrong","correct":false}]' />
+<inline-check question="An AI reply says: 'Students learn 90% of what they teach others (Dale, 1969).' Why is the citation NOT proof the claim is verified?" explanation="A citation is itself a claim. AIs routinely attach real author names to findings those authors never made. Here Dale wrote on the Cone of Experience and assigned no percentages, so the citation is a misattribution. A reference is a place to start verifying, not a stamp of approval." options='[{"text":"A citation is just another claim that must be checked; the author may never have said it","correct":true},{"text":"Citations from before 2000 are always invalid","correct":false},{"text":"It is proof; any named author confirms the number","correct":false},{"text":"The percentage is too round to be wrong","correct":false}]'></inline-check>
 
 Match each common failure type to the move that catches it:
 
-<sequence-builder mode="match" items='[{"term":"Fabricated statistic","definition":"Search for the number; if it only appears on blogs and slides, it is invented"},{"term":"Misattribution","definition":"Check what the cited source actually says"},{"term":"Myth-as-fact","definition":"Look for peer-reviewed support, not just popularity"},{"term":"Overgeneralization","definition":"Check the original study population and conditions"}]' />
+<sequence-builder mode="match" items='[{"term":"Fabricated statistic","definition":"Search for the number; if it only appears on blogs and slides, it is invented"},{"term":"Misattribution","definition":"Check what the cited source actually says"},{"term":"Myth-as-fact","definition":"Look for peer-reviewed support, not just popularity"},{"term":"Overgeneralization","definition":"Check the original study population and conditions"}]'></sequence-builder>
 
 ## Worked Example
 
@@ -66,7 +66,7 @@ Step 4. Record the bounded outcome. You keep the usable idea ("peer tutoring can
 
 Verify the reply one claim at a time, predicting each verdict before you reveal it:
 
-<step-reveal title="Decompose and verify the tutoring advice" steps='[{"prompt":"Claim 1: \"Students learn 90% of what they teach.\" You search and the figure appears only on a corporate training handout and blog slides, never a peer-reviewed study. Verdict?","predictType":"choice","choices":["FALSE (fabricated statistic), because it traces to no real study","TRUE, because it is a precise number","TRUE, because it sounds like research","Skip it; numbers cannot be checked"],"answerIndex":0,"reveal":"FALSE. A precise-sounding number with no traceable study is a fabricated statistic. Confident formatting is not evidence."},{"prompt":"Claim 2: \"Proven by Edgar Dale (1969).\" You read Dale and find he wrote on the Cone of Experience and assigned no percentages. Verdict?","predictType":"choice","choices":["MISATTRIBUTED, because the cited author never made this claim","TRUE, because Dale is a real author","FALSE, because Dale never existed","Skip it; citations are always reliable"],"answerIndex":0,"reveal":"MISATTRIBUTED. A real author was named to lend false authority to a claim he did not make. The attribution check exposes it."},{"reveal":"Survival check: after cutting the 90% figure and the Dale citation, the only surviving idea is \"peer tutoring can help,\" which has its own independent support. 1 of 3 claims survives, so you keep that one and act on nothing else as stated."}]' />
+<step-reveal title="Decompose and verify the tutoring advice" steps='[{"prompt":"Claim 1: \"Students learn 90% of what they teach.\" You search and the figure appears only on a corporate training handout and blog slides, never a peer-reviewed study. Verdict?","predictType":"choice","choices":["FALSE (fabricated statistic), because it traces to no real study","TRUE, because it is a precise number","TRUE, because it sounds like research","Skip it; numbers cannot be checked"],"answerIndex":0,"reveal":"FALSE. A precise-sounding number with no traceable study is a fabricated statistic. Confident formatting is not evidence."},{"prompt":"Claim 2: \"Proven by Edgar Dale (1969).\" You read Dale and find he wrote on the Cone of Experience and assigned no percentages. Verdict?","predictType":"choice","choices":["MISATTRIBUTED, because the cited author never made this claim","TRUE, because Dale is a real author","FALSE, because Dale never existed","Skip it; citations are always reliable"],"answerIndex":0,"reveal":"MISATTRIBUTED. A real author was named to lend false authority to a claim he did not make. The attribution check exposes it."},{"reveal":"Survival check: after cutting the 90% figure and the Dale citation, the only surviving idea is \"peer tutoring can help,\" which has its own independent support. 1 of 3 claims survives, so you keep that one and act on nothing else as stated."}]'></step-reveal>
 
 ## Decision Rule
 
@@ -117,13 +117,13 @@ Move the method from pedagogy advice to a resume context, since CAT 100 also ask
 
 See how claim-by-claim verification links to the chapter's wider ideas:
 
-<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_checking_ai_pedagogical_advice", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_checking_ai_pedagogical_advice", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the AI critique log showing accepted, modified, and rejected suggestions packet](/downloads/summer2026/cat100-supplement/04-03-checking-ai-pedagogical-advice-artifact.md).
 
-<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="04.03" />
+<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="04.03"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -136,13 +136,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 04.03. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 04.03. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="cat100_supplement_checking_ai_pedagogical_advice" />
+<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="cat100_supplement_checking_ai_pedagogical_advice"></interactive-quiz>
 
 ## Final Check
 

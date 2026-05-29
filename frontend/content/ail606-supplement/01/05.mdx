@@ -33,7 +33,7 @@ The crucial distinction is **construct-relevant versus construct-irrelevant vari
 
 Match each UDL principle to the brain network and design question it answers, so you reach for the right principle for a given barrier.
 
-<sequence-builder mode="match" items='[{"term":"Multiple means of representation","definition":"Recognition (what) network: can every learner access the content, in formats such as text, audio, and diagram?"},{"term":"Multiple means of action and expression","definition":"Strategic (how) network: can every learner demonstrate the goal in a workable form, such as essay, recording, or annotated diagram?"},{"term":"Multiple means of engagement","definition":"Affective (why) network: is the task relevant and sustainable across varied motivations, such as a choice of authentic context?"}]' />
+<sequence-builder mode="match" items='[{"term":"Multiple means of representation","definition":"Recognition (what) network: can every learner access the content, in formats such as text, audio, and diagram?"},{"term":"Multiple means of action and expression","definition":"Strategic (how) network: can every learner demonstrate the goal in a workable form, such as essay, recording, or annotated diagram?"},{"term":"Multiple means of engagement","definition":"Affective (why) network: is the task relevant and sustainable across varied motivations, such as a choice of authentic context?"}]'></sequence-builder>
 
 ## Worked Example
 
@@ -67,7 +67,7 @@ The improvement is that the predictable variability is anticipated in the design
 
 Decide which proposed options are legitimate UDL flexibility and which secretly change the construct of "explain the water-cycle mechanisms."
 
-<branching-scenario tree='{"title":"Holding the construct, flexing the means","start":"n1","nodes":{"n1":{"prompt":"The construct is explaining the water-cycle mechanisms. A learner asks to submit a 3-minute recorded walkthrough instead of a five-paragraph essay. Allow it?","choices":[{"label":"Allow it: format is construct-irrelevant","next":"format_ok","feedback":"Correct. The five-paragraph form tests essay composition, not mechanisms, so expression mode can flex while the rubric still scores mechanism accuracy."},{"label":"Refuse: everyone must write an essay","next":"rigid","feedback":"That fuses the construct to one arbitrary means and adds a barrier unrelated to the goal."}]},"rigid":{"prompt":"What does the rigid essay requirement actually test beyond the construct?","choices":[{"label":"Essay composition, which is a different construct, so allow the walkthrough","next":"format_ok","feedback":"Yes. Format is construct-irrelevant here, so it should flex."}],"feedback":"The rigid path tests composition, not mechanisms."},"format_ok":{"prompt":"Next a learner asks to write about a topic of their own choosing instead of the water cycle. Allow it?","choices":[{"label":"Allow any topic to maximize choice","next":"break","feedback":"That changes the firm goal and makes the construct unassessable; the rubric can no longer judge water-cycle mechanisms."},{"label":"Offer a choice of authentic context (farm, storm drain, watershed) within the water cycle","next":"context_ok","feedback":"Correct: engagement flexes through context choice while the construct stays fixed."}]},"break":{"prompt":"Reconsider: how do you offer engagement choice without breaking the rubric?","choices":[{"label":"Let learners pick the applied context, not the topic","next":"context_ok","feedback":"Yes. Choice lives within the goal, not instead of it."}],"feedback":"Free topic choice admits construct-relevant variance and breaks assessment."},"context_ok":{"prompt":"Resolved. Format and context flex because they are construct-irrelevant; the rubric scores mechanism accuracy only.","feedback":"This is UDL as disciplined subtraction of irrelevant barriers, not generic generosity.","choices":[]}}}' />
+<branching-scenario tree='{"title":"Holding the construct, flexing the means","start":"n1","nodes":{"n1":{"prompt":"The construct is explaining the water-cycle mechanisms. A learner asks to submit a 3-minute recorded walkthrough instead of a five-paragraph essay. Allow it?","choices":[{"label":"Allow it: format is construct-irrelevant","next":"format_ok","feedback":"Correct. The five-paragraph form tests essay composition, not mechanisms, so expression mode can flex while the rubric still scores mechanism accuracy."},{"label":"Refuse: everyone must write an essay","next":"rigid","feedback":"That fuses the construct to one arbitrary means and adds a barrier unrelated to the goal."}]},"rigid":{"prompt":"What does the rigid essay requirement actually test beyond the construct?","choices":[{"label":"Essay composition, which is a different construct, so allow the walkthrough","next":"format_ok","feedback":"Yes. Format is construct-irrelevant here, so it should flex."}],"feedback":"The rigid path tests composition, not mechanisms."},"format_ok":{"prompt":"Next a learner asks to write about a topic of their own choosing instead of the water cycle. Allow it?","choices":[{"label":"Allow any topic to maximize choice","next":"break","feedback":"That changes the firm goal and makes the construct unassessable; the rubric can no longer judge water-cycle mechanisms."},{"label":"Offer a choice of authentic context (farm, storm drain, watershed) within the water cycle","next":"context_ok","feedback":"Correct: engagement flexes through context choice while the construct stays fixed."}]},"break":{"prompt":"Reconsider: how do you offer engagement choice without breaking the rubric?","choices":[{"label":"Let learners pick the applied context, not the topic","next":"context_ok","feedback":"Yes. Choice lives within the goal, not instead of it."}],"feedback":"Free topic choice admits construct-relevant variance and breaks assessment."},"context_ok":{"prompt":"Resolved. Format and context flex because they are construct-irrelevant; the rubric scores mechanism accuracy only.","feedback":"This is UDL as disciplined subtraction of irrelevant barriers, not generic generosity.","choices":[]}}}'></branching-scenario>
 
 Hold the construct, vary the rest, and test each option against the goal:
 
@@ -81,7 +81,7 @@ If an "option" makes the rubric unable to judge the goal, you have varied the co
 
 The first misreading equates UDL with maximal choice; unbounded choice (any topic, any goal) makes the construct unassessable and helps no one. The second treats UDL as retrofitted accommodations for a few; the point is options built in for everyone, so no learner has to disclose a need to get access. The third confuses surface variety with access: three file formats that are all inaccessible to a screen reader add clutter, not representation.
 
-<inline-check question="A designer offers the reading as a PDF, a scanned image of the PDF, and a screenshot of the PDF, calling it multiple means of representation. Does this satisfy UDL?" explanation="All three are images of the same inaccessible format; none is reachable by a screen reader or adjustable text. This is surface variety, not access. Real representation flexibility offers genuinely different access paths, such as tagged HTML and narrated audio." options='[{"text":"Yes, three formats is more than one, so it counts","correct":false},{"text":"No, all three share the same access barrier, so it is clutter not representation","correct":true},{"text":"Yes, because UDL means maximizing the number of choices","correct":false}]' />
+<inline-check question="A designer offers the reading as a PDF, a scanned image of the PDF, and a screenshot of the PDF, calling it multiple means of representation. Does this satisfy UDL?" explanation="All three are images of the same inaccessible format; none is reachable by a screen reader or adjustable text. This is surface variety, not access. Real representation flexibility offers genuinely different access paths, such as tagged HTML and narrated audio." options='[{"text":"Yes, three formats is more than one, so it counts","correct":false},{"text":"No, all three share the same access barrier, so it is clutter not representation","correct":true},{"text":"Yes, because UDL means maximizing the number of choices","correct":false}]'></inline-check>
 
 
 ## Textbook Walkthrough
@@ -113,7 +113,7 @@ Move the task into a licensure exam where the construct must be demonstrated und
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/01-05-learner-variability-and-udl-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="01.05" />
+<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="01.05"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -126,13 +126,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 01.05. A peer comment points to an interface move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 01.05. A peer comment points to an interface move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What would make this section more useful while you revise?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_learner_variability_and_udl" />
+<interactive-quiz question="What would make this section more useful while you revise?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_learner_variability_and_udl"></interactive-quiz>
 
 ## Final Check
 
@@ -142,7 +142,7 @@ Before you move on, check that the artifact states the construct in one sentence
 
 Connect UDL's firm-goal discipline to the evidence-based revision of the artifact and the bounded support AI can give when proposing options.
 
-<concept-map concepts='["universal_design_for_learning", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["universal_design_for_learning", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

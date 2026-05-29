@@ -33,7 +33,7 @@ These map onto two course anchors. UDL's principle of learner variability suppli
 
 A constraint-driven walkthrough runs in a fixed order: build the persona from its three load-bearing parts before you touch the prototype, then drive it into friction, then convert what breaks into a revision. Put the steps in sequence.
 
-<sequence-builder mode="order" items='["Define the goal: the specific outcome the learner is trying to reach", "Add the constraint: the limiting condition the design must survive (device, channel, time)", "Set the context of use: where and how the interaction actually happens", "Drive the persona off the happy path until a constraint collides with a design assumption", "Convert the observed failure into a specific screen revision (or a documented decision to accept it)"]' />
+<sequence-builder mode="order" items='["Define the goal: the specific outcome the learner is trying to reach", "Add the constraint: the limiting condition the design must survive (device, channel, time)", "Set the context of use: where and how the interaction actually happens", "Drive the persona off the happy path until a constraint collides with a design assumption", "Convert the observed failure into a specific screen revision (or a documented decision to accept it)"]'></sequence-builder>
 
 The critical move is to drive the persona off the happy path on purpose. A walkthrough that only confirms success has no evidential value, because a design that works for an unconstrained user on the intended path is the null hypothesis. The check earns its place only when the persona's constraint collides with a design assumption and produces a finding you can convert into a specific screen revision.
 
@@ -57,7 +57,7 @@ That check found nothing because the persona was a demographic label and the wal
 
 The after version names a goal, a constraint, and a context, drives the persona into friction, and converts the finding into a specific screen revision a committee can audit.
 
-<inline-check question="A classmate's persona reads: \"Devin, 35, enjoys hiking and podcasts, prefers dark mode.\" Why will this persona find nothing?" explanation="Hobbies, age, and aesthetic preferences are demographic and stylistic filler. None of them is a goal, a constraint, or a context of use, so nothing in the persona can collide with a design assumption and produce a failure." options='[{"text":"It carries no limiting constraint (device, channel, time, prior knowledge), so it cannot fail","correct":true},{"text":"It is too short to be a real persona","correct":false},{"text":"It names a context of use but no goal","correct":false},{"text":"It will find too many failures to triage","correct":false}]' />
+<inline-check question="A classmate's persona reads: \"Devin, 35, enjoys hiking and podcasts, prefers dark mode.\" Why will this persona find nothing?" explanation="Hobbies, age, and aesthetic preferences are demographic and stylistic filler. None of them is a goal, a constraint, or a context of use, so nothing in the persona can collide with a design assumption and produce a failure." options='[{"text":"It carries no limiting constraint (device, channel, time, prior knowledge), so it cannot fail","correct":true},{"text":"It is too short to be a real persona","correct":false},{"text":"It names a context of use but no goal","correct":false},{"text":"It will find too many failures to triage","correct":false}]'></inline-check>
 
 
 ## Decision Rule
@@ -76,7 +76,7 @@ The most common error is mistaking a richer persona biography for a more useful 
 
 When a constraint-driven persona breaks your module, the next choice separates a robustness fix from a quiet narrowing of your audience. Walk the decision.
 
-<branching-scenario tree='{"title":"The mobile, audio-off persona just broke Frame 2","start":"n1","nodes":{"n1":{"prompt":"Devin lost signal on a commute; the module reset to Frame 1 and the audio-only narration on Frame 2 was inaccessible muted. What is your first move?","choices":[{"label":"Add a \"best viewed on desktop with sound\" warning","next":"n2","feedback":"This converts the design limitation into the learner problem. Devin commuting on a muted phone is the real use context, not an edge case you can warn away."},{"label":"Add per-frame progress persistence and on-screen captions for narrated frames","next":"n3","feedback":"Correct. You designed for the failing context, fixing the two assumptions (no save state, audio-only) the constraint exposed."},{"label":"Mark the walkthrough \"no problems, completes on desktop\" and move on","next":"n4","feedback":"A check that only succeeds on the happy path has no evidential value. You found a real failure; reporting none discards it."}]},"n2":{"prompt":"The warning ships. Devin still has to complete required onboarding on the only device available. What happened to the failure?","feedback":"It did not get fixed; it got reassigned to the learner. The audience narrowed to exclude the actual use context, which a committee will read as avoiding the finding.","choices":[]},"n3":{"prompt":"You re-run the same persona under the same constraint after the fix. What confirms the revision worked?","feedback":"The persona that broke earlier now reaches the goal: state persists across the signal drop and captions make Frame 2 perceivable muted. The failure is gone, and you can log it as a revision to screens 2 and 4.","choices":[]},"n4":{"prompt":"You reported no problems. The real learners hit the reset and the muted narration in week one. What did the weak check cost?","feedback":"It pushed a known, reproducible failure into production. The persona existed precisely to catch this before real learners did.","choices":[]}}}' />
+<branching-scenario tree='{"title":"The mobile, audio-off persona just broke Frame 2","start":"n1","nodes":{"n1":{"prompt":"Devin lost signal on a commute; the module reset to Frame 1 and the audio-only narration on Frame 2 was inaccessible muted. What is your first move?","choices":[{"label":"Add a \"best viewed on desktop with sound\" warning","next":"n2","feedback":"This converts the design limitation into the learner problem. Devin commuting on a muted phone is the real use context, not an edge case you can warn away."},{"label":"Add per-frame progress persistence and on-screen captions for narrated frames","next":"n3","feedback":"Correct. You designed for the failing context, fixing the two assumptions (no save state, audio-only) the constraint exposed."},{"label":"Mark the walkthrough \"no problems, completes on desktop\" and move on","next":"n4","feedback":"A check that only succeeds on the happy path has no evidential value. You found a real failure; reporting none discards it."}]},"n2":{"prompt":"The warning ships. Devin still has to complete required onboarding on the only device available. What happened to the failure?","feedback":"It did not get fixed; it got reassigned to the learner. The audience narrowed to exclude the actual use context, which a committee will read as avoiding the finding.","choices":[]},"n3":{"prompt":"You re-run the same persona under the same constraint after the fix. What confirms the revision worked?","feedback":"The persona that broke earlier now reaches the goal: state persists across the signal drop and captions make Frame 2 perceivable muted. The failure is gone, and you can log it as a revision to screens 2 and 4.","choices":[]},"n4":{"prompt":"You reported no problems. The real learners hit the reset and the muted narration in week one. What did the weak check cost?","feedback":"It pushed a known, reproducible failure into production. The persona existed precisely to catch this before real learners did.","choices":[]}}}'></branching-scenario>
 
 A second error is excluding the failing context instead of designing for it. When a mobile, audio-off persona breaks the module, the weak response is a "best viewed on desktop" warning. That converts the design's limitation into the learner's problem. The persona's context is the real use context, so the finding is a mandate to revise, not a license to narrow the audience.
 
@@ -103,7 +103,7 @@ A strong simulation check is judged by whether it found something. A walkthrough
 
 A final paragraph for the artifact would read like this: "I drove a constrained persona off the happy path, observed a failure caused by that constraint, and revised the specific screens responsible. I rejected the option of warning the learner away from their real context, because the context was the use case, not an edge case."
 
-<concept-map concepts='["ail606_supplement_persona_based_simulation_checks", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]' />
+<concept-map concepts='["ail606_supplement_persona_based_simulation_checks", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]'></concept-map>
 
 ## Transfer Case
 
@@ -113,7 +113,7 @@ Move the technique to a domain where the constraint is cognitive rather than tec
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/06-03-persona-based-simulation-checks-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="06.03" />
+<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="06.03"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -126,13 +126,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 06.03. A peer comment points to an adaptive move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 06.03. A peer comment points to an adaptive move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="ail606_supplement_persona_based_simulation_checks" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="ail606_supplement_persona_based_simulation_checks"></interactive-quiz>
 
 ## Final Check
 

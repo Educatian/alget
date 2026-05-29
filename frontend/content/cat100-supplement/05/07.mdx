@@ -58,9 +58,9 @@ Each fix targets a different viewer. The contrast fix helps anyone with low visi
 
 Work one accessibility check at a time, predicting each move before you reveal it:
 
-<step-reveal title="Run a three-point accessibility check on one slide" steps='[{"prompt":"The title is #BBBBBB on a white background and looks elegant. What do you do first?","predictType":"choice","choices":["Keep it; light gray reads as refined","Measure the contrast ratio; #BBBBBB on white is about 1.7:1, below the 4.5:1 minimum","Make the font larger and leave the color","Add a drop shadow to the text"],"answerIndex":1,"reveal":"Measure, do not eyeball. 1.7:1 fails WCAG for normal text. Darken the title to something like #1A2A4F, which clears 4.5:1. Contrast is a number you check."},{"prompt":"The chart has no alt text. What should the alt text say?","predictType":"choice","choices":["\"chart\" or the file name like image1.png","A description that states the point: \"Bar chart; signups rose from 1,200 to 2,400 after launch\"","Nothing; sighted viewers can see it","\"See chart on slide\""],"answerIndex":1,"reveal":"Alt text must deliver the same information a sighted viewer gets, not name the file type. \"Chart\" is useless to a screen-reader user."},{"reveal":"Status dots use green for on track and red for at risk with no labels. Add a text label to each so meaning survives in grayscale, then re-check all three. Color must never be the only carrier of meaning."}]' />
+<step-reveal title="Run a three-point accessibility check on one slide" steps='[{"prompt":"The title is #BBBBBB on a white background and looks elegant. What do you do first?","predictType":"choice","choices":["Keep it; light gray reads as refined","Measure the contrast ratio; #BBBBBB on white is about 1.7:1, below the 4.5:1 minimum","Make the font larger and leave the color","Add a drop shadow to the text"],"answerIndex":1,"reveal":"Measure, do not eyeball. 1.7:1 fails WCAG for normal text. Darken the title to something like #1A2A4F, which clears 4.5:1. Contrast is a number you check."},{"prompt":"The chart has no alt text. What should the alt text say?","predictType":"choice","choices":["\"chart\" or the file name like image1.png","A description that states the point: \"Bar chart; signups rose from 1,200 to 2,400 after launch\"","Nothing; sighted viewers can see it","\"See chart on slide\""],"answerIndex":1,"reveal":"Alt text must deliver the same information a sighted viewer gets, not name the file type. \"Chart\" is useless to a screen-reader user."},{"reveal":"Status dots use green for on track and red for at risk with no labels. Add a text label to each so meaning survives in grayscale, then re-check all three. Color must never be the only carrier of meaning."}]'></step-reveal>
 
-<inline-check question="A slide uses green dots for on track and red dots for at risk, with no labels. Why does this fail a colorblind viewer even though the colors look distinct to the designer?" explanation="When color is the only thing distinguishing two states, a viewer with color vision deficiency sees the dots as identical. The meaning must be backed by a label, shape, or pattern so it survives in grayscale." options='[{"text":"The dots are simply too small to see","correct":false},{"text":"Color alone carries the meaning, so a colorblind viewer cannot tell the states apart","correct":true},{"text":"Green and red always have enough contrast","correct":false},{"text":"The slide needs a brighter theme","correct":false}]' />
+<inline-check question="A slide uses green dots for on track and red dots for at risk, with no labels. Why does this fail a colorblind viewer even though the colors look distinct to the designer?" explanation="When color is the only thing distinguishing two states, a viewer with color vision deficiency sees the dots as identical. The meaning must be backed by a label, shape, or pattern so it survives in grayscale." options='[{"text":"The dots are simply too small to see","correct":false},{"text":"Color alone carries the meaning, so a colorblind viewer cannot tell the states apart","correct":true},{"text":"Green and red always have enough contrast","correct":false},{"text":"The slide needs a brighter theme","correct":false}]'></inline-check>
 
 ## Decision Rule
 
@@ -88,7 +88,7 @@ Now stress-test with the grayscale conversion. Drop the slide to grayscale and l
 
 Order the accessibility pass so each check depends on the one before it:
 
-<sequence-builder mode="order" items='["Measure text contrast against the 4.5:1 minimum (3:1 for large text)", "Darken or recolor any text that falls below the ratio", "Give every meaningful image alt text that states the point, not the file type", "Find any meaning that rests on color alone", "Back each color-coded element with a label, shape, or pattern", "Run the grayscale test to confirm every distinction still reads"]' />
+<sequence-builder mode="order" items='["Measure text contrast against the 4.5:1 minimum (3:1 for large text)", "Darken or recolor any text that falls below the ratio", "Give every meaningful image alt text that states the point, not the file type", "Find any meaning that rests on color alone", "Back each color-coded element with a label, shape, or pattern", "Run the grayscale test to confirm every distinction still reads"]'></sequence-builder>
 
 ## What Strong Reading Looks Like
 
@@ -115,13 +115,13 @@ Move the same content to a printed handout that may be photocopied in black and 
 
 Connect the ideas this section builds on. See how contrast, alt text, and not-color-alone checks feed evidence-based revision of the storyboard:
 
-<concept-map concepts='["accessibility", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["accessibility", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the presentation storyboard with audience constraint and slide-level evidence packet](/downloads/summer2026/cat100-supplement/05-07-accessibility-checks-for-slides-artifact.md).
 
-<artifact-studio artifact="presentation storyboard with audience constraint and slide-level evidence" course="CAT 100" section="05.07" />
+<artifact-studio artifact="presentation storyboard with audience constraint and slide-level evidence" course="CAT 100" section="05.07"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -134,13 +134,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the three checks to a photo-with-caption slide.
 - If your note makes a **connection**, show where the grayscale test exposed a hidden failure.
 
-<dynamic-scenario prompt="You are revising the presentation storyboard with audience constraint and slide-level evidence for CAT 100 05.07. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the presentation storyboard with audience constraint and slide-level evidence for CAT 100 05.07. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_accessibility_checks_for_slides" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["A before-after artifact record linked to the decision you made and the evidence you used.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="cat100_supplement_accessibility_checks_for_slides"></interactive-quiz>
 
 ## Final Check
 

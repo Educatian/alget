@@ -36,7 +36,7 @@ The deepest of these is the unobservable cause, because it is the easiest to wri
 
 Audience is the frame that decides whether a word is wrong. "Quotient" is fine for a colleague and wrong for a parent with no math background. So the scan is not "find harsh words" in the abstract; it is "find words wrong for this reader," which means you must name the reader before you scan.
 
-<inline-check question="A note to a parent reads: ’Your child is just not a math person yet.’ It sounds gentle. Which bias pattern is still hiding in it?" explanation="’Not a math person’ judges who the child is (a fixed trait) rather than naming a behavior, so it fails the behavior check. Politeness does not remove the label; the word still assigns an identity the parent cannot act on. The fix names an observable behavior instead, such as ’missed 6 of 10 fraction problems.’" options='[{"text":"Person label: it judges the child as a fixed type instead of naming a behavior","correct":true},{"text":"False urgency: it pressures the parent to act now","correct":false},{"text":"Audience mismatch: ’math person’ is jargon a parent cannot read","correct":false},{"text":"No bias; a gentle, polite sentence is automatically fair","correct":false}]' />
+<inline-check question="A note to a parent reads: ’Your child is just not a math person yet.’ It sounds gentle. Which bias pattern is still hiding in it?" explanation="’Not a math person’ judges who the child is (a fixed trait) rather than naming a behavior, so it fails the behavior check. Politeness does not remove the label; the word still assigns an identity the parent cannot act on. The fix names an observable behavior instead, such as ’missed 6 of 10 fraction problems.’" options='[{"text":"Person label: it judges the child as a fixed type instead of naming a behavior","correct":true},{"text":"False urgency: it pressures the parent to act now","correct":false},{"text":"Audience mismatch: ’math person’ is jargon a parent cannot read","correct":false},{"text":"No bias; a gentle, polite sentence is automatically fair","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -69,11 +69,11 @@ Step 4. Log the one rejected change. The AI also suggested replacing "your child
 
 Put the word-level edit into the order that keeps each replacement defensible:
 
-<sequence-builder mode="order" items='["Name the reader first (a parent with no math background), since audience decides which words are wrong", "Scan the draft word by word and flag each loaded or audience-wrong term", "Label each flagged word with its bias pattern (unobservable cause, person label, false urgency, audience mismatch)", "Log a concrete replacement for each flag and the reason in a find-and-replace table", "Apply the replacements and re-read for over-correction into vagueness"]' />
+<sequence-builder mode="order" items='["Name the reader first (a parent with no math background), since audience decides which words are wrong", "Scan the draft word by word and flag each loaded or audience-wrong term", "Label each flagged word with its bias pattern (unobservable cause, person label, false urgency, audience mismatch)", "Log a concrete replacement for each flag and the reason in a find-and-replace table", "Apply the replacements and re-read for over-correction into vagueness"]'></sequence-builder>
 
 Now repair the failed-quiz note one flagged word at a time, predicting each fix before you reveal it:
 
-<step-reveal title="Scan and replace the loaded words" steps='[{"prompt":"The draft says ’your child obviously did not study.’ Which bias pattern is this, and what replaces it?","predictType":"choice","choices":["Unobservable cause: replace with what you can see, ’scored 4/10 on Tuesday’s quiz’","Audience mismatch: replace with a simpler synonym for ’study’","False urgency: add a deadline","No problem: ’obviously’ just adds emphasis"],"answerIndex":0,"reveal":"Unobservable cause. You cannot see whether the child studied; you can only see the score. Swapping the inferred cause for the observed fact is both fairer and something the parent can act on."},{"prompt":"The draft says ’these lazy habits.’ Which fix passes the behavior check?","predictType":"choice","choices":["Name the behavior: ’could use more practice on fractions’","Soften it to ’somewhat lazy habits’","Keep it but add ’please don’t take this personally’","Delete the whole sentence and say nothing"],"answerIndex":0,"reveal":"Name the behavior. ’Lazy’ labels the child; ’could use more practice on fractions’ names an action the parent can support. Softening the label still leaves a label."},{"reveal":"Finally, ’immediately’ is false urgency for a single quiz, so replace it with a proportional window such as ’over the next two weeks.’ You reject the AI’s offer to swap ’your child’ for the student’s first name, because in a parent email the relationship word is clearer and safer for privacy. Every flagged word now has a logged replacement and a reason a reviewer could check."}]' />
+<step-reveal title="Scan and replace the loaded words" steps='[{"prompt":"The draft says ’your child obviously did not study.’ Which bias pattern is this, and what replaces it?","predictType":"choice","choices":["Unobservable cause: replace with what you can see, ’scored 4/10 on Tuesday’s quiz’","Audience mismatch: replace with a simpler synonym for ’study’","False urgency: add a deadline","No problem: ’obviously’ just adds emphasis"],"answerIndex":0,"reveal":"Unobservable cause. You cannot see whether the child studied; you can only see the score. Swapping the inferred cause for the observed fact is both fairer and something the parent can act on."},{"prompt":"The draft says ’these lazy habits.’ Which fix passes the behavior check?","predictType":"choice","choices":["Name the behavior: ’could use more practice on fractions’","Soften it to ’somewhat lazy habits’","Keep it but add ’please don’t take this personally’","Delete the whole sentence and say nothing"],"answerIndex":0,"reveal":"Name the behavior. ’Lazy’ labels the child; ’could use more practice on fractions’ names an action the parent can support. Softening the label still leaves a label."},{"reveal":"Finally, ’immediately’ is false urgency for a single quiz, so replace it with a proportional window such as ’over the next two weeks.’ You reject the AI’s offer to swap ’your child’ for the student’s first name, because in a parent email the relationship word is clearer and safer for privacy. Every flagged word now has a logged replacement and a reason a reviewer could check."}]'></step-reveal>
 
 Replace inferred causes with observed facts, labels with behaviors, and pressure with proportion. A message is audience-fit when every flagged word has a logged replacement and a reason a reviewer could check.
 
@@ -122,13 +122,13 @@ Move the scan from a parent email to a public web page, since CAT 100 students p
 
 See how word-level bias scanning connects to the chapter’s wider ideas:
 
-<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_tone_bias_and_audience", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_tone_bias_and_audience", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/04-05-tone-bias-and-audience-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.05" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.05"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -141,13 +141,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.05. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.05. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_tone_bias_and_audience" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_tone_bias_and_audience"></interactive-quiz>
 
 ## Final Check
 

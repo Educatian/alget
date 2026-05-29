@@ -62,11 +62,11 @@ The auditable package: cleaned data, pivot summary, honest chart, claim-first he
 
 Run the six-order export through the pipeline one stage at a time, predicting each move before it is revealed.
 
-<step-reveal title="Chain the full pipeline on the six-order export" steps='[{"prompt":"The Region column holds west, West, south, and South. Before any pivot or chart, what is the first stage?","predictType":"choice","choices":["Build the bar chart so you can see the shape","Clean: standardize Region case and confirm Sales are numeric","Write the headline from the raw rows","Average the sales across all six orders"],"answerIndex":1,"reveal":"Clean first. Standardize case so west/West and south/South merge into West, East, South, and confirm Sales are numbers, not text. Every later stage assumes this one is correct."},{"prompt":"The question is which region led. What aggregation and chart fit?","predictType":"choice","choices":["Average of Sales, shown as a line chart over time","Sum of Sales by Region, shown as a bar chart with the axis at 0","Count of orders, shown as a pie chart","Sum of Sales, shown with the axis starting at 1000"],"answerIndex":1,"reveal":"A category comparison wants Sum of Sales by Region (West 1200, East 550, South 150) on a bar chart with a zero baseline, so bar length is honest."},{"prompt":"Your headline reads West led at 2,400 but the West pivot row shows 1,200. What does the mismatch mean?","predictType":"choice","choices":["The chart is just rounding differently","A stale pivot range or a leftover filter; fix it before publishing","Both numbers are fine; pick whichever looks better","The raw data must be wrong, so delete a row"],"answerIndex":1,"reveal":"The three-way match failed. Headline, pivot cell, and bar must all read 1,200. A 2,400-vs-1,200 gap almost always means a stale pivot range or an active filter, so reconcile before anything ships."},{"reveal":"The finished story: cleaned regions, Sum-by-Region pivot, zero-baseline bar chart, the claim-first headline \"West led Q1 sales at 1,200, more than double East (550); source: store export, 6 orders,\" and a passing three-way match traceable to the raw rows."}]' />
+<step-reveal title="Chain the full pipeline on the six-order export" steps='[{"prompt":"The Region column holds west, West, south, and South. Before any pivot or chart, what is the first stage?","predictType":"choice","choices":["Build the bar chart so you can see the shape","Clean: standardize Region case and confirm Sales are numeric","Write the headline from the raw rows","Average the sales across all six orders"],"answerIndex":1,"reveal":"Clean first. Standardize case so west/West and south/South merge into West, East, South, and confirm Sales are numbers, not text. Every later stage assumes this one is correct."},{"prompt":"The question is which region led. What aggregation and chart fit?","predictType":"choice","choices":["Average of Sales, shown as a line chart over time","Sum of Sales by Region, shown as a bar chart with the axis at 0","Count of orders, shown as a pie chart","Sum of Sales, shown with the axis starting at 1000"],"answerIndex":1,"reveal":"A category comparison wants Sum of Sales by Region (West 1200, East 550, South 150) on a bar chart with a zero baseline, so bar length is honest."},{"prompt":"Your headline reads West led at 2,400 but the West pivot row shows 1,200. What does the mismatch mean?","predictType":"choice","choices":["The chart is just rounding differently","A stale pivot range or a leftover filter; fix it before publishing","Both numbers are fine; pick whichever looks better","The raw data must be wrong, so delete a row"],"answerIndex":1,"reveal":"The three-way match failed. Headline, pivot cell, and bar must all read 1,200. A 2,400-vs-1,200 gap almost always means a stale pivot range or an active filter, so reconcile before anything ships."},{"reveal":"The finished story: cleaned regions, Sum-by-Region pivot, zero-baseline bar chart, the claim-first headline \"West led Q1 sales at 1,200, more than double East (550); source: store export, 6 orders,\" and a passing three-way match traceable to the raw rows."}]'></step-reveal>
 
 Now order the five pipeline stages plus the reconciliation gate as they must run, since each stage assumes the one before it is correct.
 
-<sequence-builder mode="order" items='["Clean the raw export (consistent labels, numeric values)","Summarize with a pivot using the right aggregation","Chart the real question with an honest axis and chart type","Narrate a claim-first, faithful headline with a source note","Protect the reader with a sample-size caveat when n is small","Reconcile: confirm headline equals pivot cell equals chart bar before sharing"]' />
+<sequence-builder mode="order" items='["Clean the raw export (consistent labels, numeric values)","Summarize with a pivot using the right aggregation","Chart the real question with an honest axis and chart type","Narrate a claim-first, faithful headline with a source note","Protect the reader with a sample-size caveat when n is small","Reconcile: confirm headline equals pivot cell equals chart bar before sharing"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -86,7 +86,7 @@ The most common capstone error is polishing the slide before reconciling the num
 
 A second misreading is assuming that because each stage worked alone, the pipeline works together. The pivot may have been correct yesterday, but if you cleaned a new batch of rows this morning without refreshing, the chart now disagrees with the data. Integration introduces failures no single stage could, which is exactly why the reconciliation gate exists.
 
-<inline-check question="Your slide is polished: the West bar is clearly tallest and the headline reads West led at 2,400. But the West row in the pivot reads 1,200. What should you conclude?" explanation="The three-way match failed: headline, pivot cell, and bar must all show the same figure. A 2,400-vs-1,200 gap signals a stale pivot range or a filter left on, not a finished story. Polish never substitutes for reconciliation, so fix the chain before the slide ships." options='[{"text":"The slide is done; the polish shows the work is careful","correct":false},{"text":"The reconciliation gate failed; a stale range or filter broke the chain, so fix it before publishing","correct":true},{"text":"Use 2,400 since the headline is the most visible number","correct":false}]' />
+<inline-check question="Your slide is polished: the West bar is clearly tallest and the headline reads West led at 2,400. But the West row in the pivot reads 1,200. What should you conclude?" explanation="The three-way match failed: headline, pivot cell, and bar must all show the same figure. A 2,400-vs-1,200 gap signals a stale pivot range or a filter left on, not a finished story. Polish never substitutes for reconciliation, so fix the chain before the slide ships." options='[{"text":"The slide is done; the polish shows the work is careful","correct":false},{"text":"The reconciliation gate failed; a stale range or filter broke the chain, so fix it before publishing","correct":true},{"text":"Use 2,400 since the headline is the most visible number","correct":false}]'></inline-check>
 
 ## Textbook Walkthrough
 
@@ -108,7 +108,7 @@ When you can take any published claim and walk it back to the original rows with
 
 This trace-back discipline ties the capstone pipeline to the module concepts of evidence-based revision and bounded AI support. Map how the stages relate.
 
-<concept-map concepts='["cat100_supplement_module_3_data_story_studio", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_module_3_data_story_studio", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Stronger Artifact Standard
 
@@ -124,7 +124,7 @@ The same pipeline-with-reconciliation transfers to any tool that turns records i
 
 Open the studio packet: [download the Excel pivot-table finding with unit labels, source note, and claim-first chart title packet](/downloads/summer2026/cat100-supplement/03-08-module-3-data-story-studio-artifact.md).
 
-<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.08" />
+<artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.08"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -137,13 +137,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.08. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the Excel pivot-table finding with unit labels, source note, and claim-first chart title for CAT 100 03.08. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="cat100_supplement_module_3_data_story_studio" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="cat100_supplement_module_3_data_story_studio"></interactive-quiz>
 
 ## Final Check
 

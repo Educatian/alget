@@ -33,7 +33,7 @@ A scenario-based dialogue has three structural moves, run in order. Skipping or 
 
 The reason for one job per turn is diagnosis. If you change three things in a single message and the reply gets worse, you cannot tell which change caused it. Isolating one move per turn means every improvement and every regression has a single visible cause. This is the same logic a programmer uses when changing one variable at a time to find a bug.
 
-<inline-check question="In one message you write: 'Make it under 90 seconds, drop the jargon, and add a reassurance line for a nervous student.' The reply gets worse. What is the structural problem?" explanation="The message merges three jobs (a NARROW for length, a NARROW for vocabulary, and a STRESS-TEST for nerves) into one turn. Because three things changed at once, you cannot tell which one caused the regression. One job per turn is what gives every change a single visible cause." options='[{"text":"Three jobs changed in one turn, so no single change has a visible cause","correct":true},{"text":"The turn was too polite","correct":false},{"text":"It needed more adjectives to be specific","correct":false},{"text":"Nothing; merging jobs always speeds up the dialogue","correct":false}]' />
+<inline-check question="In one message you write: 'Make it under 90 seconds, drop the jargon, and add a reassurance line for a nervous student.' The reply gets worse. What is the structural problem?" explanation="The message merges three jobs (a NARROW for length, a NARROW for vocabulary, and a STRESS-TEST for nerves) into one turn. Because three things changed at once, you cannot tell which one caused the regression. One job per turn is what gives every change a single visible cause." options='[{"text":"Three jobs changed in one turn, so no single change has a visible cause","correct":true},{"text":"The turn was too polite","correct":false},{"text":"It needed more adjectives to be specific","correct":false},{"text":"Nothing; merging jobs always speeds up the dialogue","correct":false}]'></inline-check>
 
 Labeling is not decoration. Writing the turn's job ("Turn 2: NARROW") next to the message converts a private chat into a readable record. A reviewer can replay your reasoning turn by turn and check that each move actually did its job, which is the standard this section holds you to.
 
@@ -63,11 +63,11 @@ Step 4. Log the accept/reject. Turn 3 returned two reassurance lines; you kept "
 
 Put the three moves in the order that gives each change a diagnosable cause:
 
-<sequence-builder mode="order" items='["SET CONTEXT: paste the scenario and name the audience (a nervous new student)", "NARROW: add one hard limit (under 90 seconds aloud, no jargon)", "STRESS-TEST: introduce a complication (what if they already feel behind?)"]' />
+<sequence-builder mode="order" items='["SET CONTEXT: paste the scenario and name the audience (a nervous new student)", "NARROW: add one hard limit (under 90 seconds aloud, no jargon)", "STRESS-TEST: introduce a complication (what if they already feel behind?)"]'></sequence-builder>
 
 Now walk one turn at a time, predicting what each turn will and will not fix:
 
-<step-reveal title="Run the three labeled turns" steps='[{"prompt":"After only the SET CONTEXT turn, the reply is 300 words of generic welcome. What does the next turn need to do?","predictType":"choice","choices":["NARROW: add one hard constraint (under 90 seconds, no jargon)","Add three more adjectives in one message","Accept the 300-word reply as final","Start a brand-new chat"],"answerIndex":0,"reveal":"NARROW. Turn 2 adds the single length-and-vocabulary limit, and the reply drops from 300 words to about 70. Because only one thing changed, you can attribute the drop to that turn."},{"prompt":"The welcome is now short but assumes the student feels fine. Which turn tests robustness?","predictType":"choice","choices":["STRESS-TEST: \"What if the student already feels behind? Add one reassurance line.\"","Another NARROW shortening it further","Re-paste the original scenario","Ask for a background color"],"answerIndex":0,"reveal":"STRESS-TEST. Turn 3 introduces the complication, and the reply adds a reassurance sentence. The useful content appeared only after NARROW and STRESS-TEST, not from SET CONTEXT alone."},{"reveal":"Save the full labeled transcript. A reviewer can now see Turn 2 caused the length cut and Turn 3 caused the reassurance line, which is what turns a chat log into evidence of steering."}]' />
+<step-reveal title="Run the three labeled turns" steps='[{"prompt":"After only the SET CONTEXT turn, the reply is 300 words of generic welcome. What does the next turn need to do?","predictType":"choice","choices":["NARROW: add one hard constraint (under 90 seconds, no jargon)","Add three more adjectives in one message","Accept the 300-word reply as final","Start a brand-new chat"],"answerIndex":0,"reveal":"NARROW. Turn 2 adds the single length-and-vocabulary limit, and the reply drops from 300 words to about 70. Because only one thing changed, you can attribute the drop to that turn."},{"prompt":"The welcome is now short but assumes the student feels fine. Which turn tests robustness?","predictType":"choice","choices":["STRESS-TEST: \"What if the student already feels behind? Add one reassurance line.\"","Another NARROW shortening it further","Re-paste the original scenario","Ask for a background color"],"answerIndex":0,"reveal":"STRESS-TEST. Turn 3 introduces the complication, and the reply adds a reassurance sentence. The useful content appeared only after NARROW and STRESS-TEST, not from SET CONTEXT alone."},{"reveal":"Save the full labeled transcript. A reviewer can now see Turn 2 caused the length cut and Turn 3 caused the reassurance line, which is what turns a chat log into evidence of steering."}]'></step-reveal>
 
 ## Decision Rule
 
@@ -118,13 +118,13 @@ Move the dialogue from a low-stakes welcome to a high-stakes message: a note to 
 
 See how scenario dialogue connects to the chapter's wider ideas:
 
-<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_scenario_based_ai_dialogue", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_scenario_based_ai_dialogue", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the AI critique log showing accepted, modified, and rejected suggestions packet](/downloads/summer2026/cat100-supplement/04-02-scenario-based-ai-dialogue-artifact.md).
 
-<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="04.02" />
+<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="04.02"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -137,13 +137,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 04.02. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 04.02. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_scenario_based_ai_dialogue" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_scenario_based_ai_dialogue"></interactive-quiz>
 
 ## Final Check
 

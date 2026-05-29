@@ -36,7 +36,7 @@ A defensible disclosure has four parts.
 
 The rejection line is what turns a disclosure from a formality into evidence of judgment. Anyone can say "I used AI"; only someone who actually controlled the tool can say which suggestion they turned down and why.
 
-<inline-check question="An assignment grades your code logic. The policy lets you ask AI to explain errors. Which prompt stays on the allowed side of the assistance/substitution line?" explanation="The graded skill here is writing the logic. Asking AI to explain a concept is assistance; asking it to rewrite the function is substitution, because it performs the exact skill being graded." options='[{"text":"\"Rewrite my function so the KeyError goes away\"","correct":false},{"text":"\"What does a KeyError mean and what usually causes it?\"","correct":true},{"text":"\"Write the whole assignment for me, then I will edit it\"","correct":false},{"text":"\"Generate the final working code and a fake disclosure\"","correct":false}]' />
+<inline-check question="An assignment grades your code logic. The policy lets you ask AI to explain errors. Which prompt stays on the allowed side of the assistance/substitution line?" explanation="The graded skill here is writing the logic. Asking AI to explain a concept is assistance; asking it to rewrite the function is substitution, because it performs the exact skill being graded." options='[{"text":"\"Rewrite my function so the KeyError goes away\"","correct":false},{"text":"\"What does a KeyError mean and what usually causes it?\"","correct":true},{"text":"\"Write the whole assignment for me, then I will edit it\"","correct":false},{"text":"\"Generate the final working code and a fake disclosure\"","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -57,11 +57,11 @@ Build the disclosure step by step against the policy quoted above.
 
 The note is specific (what tool, what step, what you rejected), so a grader can verify your use stayed inside the policy.
 
-<step-reveal title="Sort each AI use against the policy, then write the note" steps='[{"prompt":"The policy says: AI may brainstorm and check grammar; the argument and final wording must be yours. You ask AI for five thesis angles and pick one. Allowed or prohibited?","predictType":"choice","choices":["Prohibited: any AI use breaks the policy","Allowed: brainstorming angles is explicitly permitted","Prohibited: picking an angle is the graded skill","Allowed only if you cite the chatbot as an author"],"answerIndex":1,"reveal":"Allowed. The policy permits brainstorming, and you still select the angle and write the draft yourself."},{"prompt":"The grammar checker also rewrites your thesis into its own words. What side of the line is that?","predictType":"choice","choices":["Allowed: it is still just a grammar tool","Prohibited: rewriting the thesis is generating the argument, which the policy reserves for you","Allowed if you change two words afterward","Required by the policy"],"answerIndex":1,"reveal":"Prohibited. Rewriting the thesis produces the graded argument, so you reject that suggestion and keep your own wording."},{"prompt":"Which disclosure note matches the policy and shows judgment?","predictType":"choice","choices":["I used AI to help with my essay","AI use: brainstormed 5 thesis angles (selected angle 3, drafted essay myself); used a grammar checker for two comma fixes. Rejected its thesis rewrite to keep the argument my own.","AI wrote most of it but I edited","No AI was used"],"answerIndex":1,"reveal":"The specific note names the tool, the step, your own ownership, and a rejection. That precision is what lets a grader trust the work."},{"reveal":"The rejection line is the heart of the disclosure: anyone can say \"I used AI,\" but only someone who controlled the tool can name the suggestion they turned down and why."}]' />
+<step-reveal title="Sort each AI use against the policy, then write the note" steps='[{"prompt":"The policy says: AI may brainstorm and check grammar; the argument and final wording must be yours. You ask AI for five thesis angles and pick one. Allowed or prohibited?","predictType":"choice","choices":["Prohibited: any AI use breaks the policy","Allowed: brainstorming angles is explicitly permitted","Prohibited: picking an angle is the graded skill","Allowed only if you cite the chatbot as an author"],"answerIndex":1,"reveal":"Allowed. The policy permits brainstorming, and you still select the angle and write the draft yourself."},{"prompt":"The grammar checker also rewrites your thesis into its own words. What side of the line is that?","predictType":"choice","choices":["Allowed: it is still just a grammar tool","Prohibited: rewriting the thesis is generating the argument, which the policy reserves for you","Allowed if you change two words afterward","Required by the policy"],"answerIndex":1,"reveal":"Prohibited. Rewriting the thesis produces the graded argument, so you reject that suggestion and keep your own wording."},{"prompt":"Which disclosure note matches the policy and shows judgment?","predictType":"choice","choices":["I used AI to help with my essay","AI use: brainstormed 5 thesis angles (selected angle 3, drafted essay myself); used a grammar checker for two comma fixes. Rejected its thesis rewrite to keep the argument my own.","AI wrote most of it but I edited","No AI was used"],"answerIndex":1,"reveal":"The specific note names the tool, the step, your own ownership, and a rejection. That precision is what lets a grader trust the work."},{"reveal":"The rejection line is the heart of the disclosure: anyone can say \"I used AI,\" but only someone who controlled the tool can name the suggestion they turned down and why."}]'></step-reveal>
 
 Practice the order in which a defensible disclosure comes together.
 
-<sequence-builder mode="order" items='["List every action you actually took with AI","Sort each action against the policy as allowed, required, or prohibited","Flag and reject anything that crosses into the graded skill","Strip private or identifying data before pasting text","Write the note naming tool, step, ownership, and rejection"]' />
+<sequence-builder mode="order" items='["List every action you actually took with AI","Sort each action against the policy as allowed, required, or prohibited","Flag and reject anything that crosses into the graded skill","Strip private or identifying data before pasting text","Write the note naming tool, step, ownership, and rejection"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -108,7 +108,7 @@ Carry the skill into a setting with no written policy: a group project where tea
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/01-02-responsible-ai-use-in-coursework-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="01.02" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="01.02"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show a vague disclosure. The revised version should name the tool, the step, and the rejected suggestion. The trace should explain why the revised disclosure matches the assignment policy.
 
@@ -121,17 +121,17 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same allowed/prohibited sort to a new assignment policy.
 - If your note makes a **connection**, show where the connection changes which uses you disclose.
 
-<dynamic-scenario prompt="You are writing an AI-use disclosure for CAT 100 01.02. A peer comment says your note does not show whether the argument is your own work. Choose the next revision move and the evidence that would prove the graded thinking stayed yours." />
+<dynamic-scenario prompt="You are writing an AI-use disclosure for CAT 100 01.02. A peer comment says your note does not show whether the argument is your own work. Choose the next revision move and the evidence that would prove the graded thinking stayed yours."></dynamic-scenario>
 
 ## Concept Map
 
-<concept-map concepts='["cat100_supplement_responsible_ai_use_in_coursework", "ai_supported_learning", "evidence_based_revision", "cat100_supplement_digital_citizenship_and_ai_readiness"]' />
+<concept-map concepts='["cat100_supplement_responsible_ai_use_in_coursework", "ai_supported_learning", "evidence_based_revision", "cat100_supplement_digital_citizenship_and_ai_readiness"]'></concept-map>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="cat100_supplement_responsible_ai_use_in_coursework" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="cat100_supplement_responsible_ai_use_in_coursework"></interactive-quiz>
 
 ## Final Check
 

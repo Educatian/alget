@@ -56,7 +56,7 @@ $$
 
 The dot product is the key idea: only the component of force along the displacement does work. A force perpendicular to motion (such as the normal force on a sliding block, or the tension in a string holding a ball in circular motion) does zero work no matter how large it is.
 
-<inline-check question="A 50 N force is applied at 60 degrees above a horizontal floor while a crate slides 4 m horizontally. How much work does the force do on the crate?" explanation="Only the horizontal component does work: W = F*d*cos(theta) = 50 * 4 * cos(60) = 50 * 4 * 0.5 = 100 J. The vertical component of the push is perpendicular to the horizontal displacement and contributes nothing." options='[{"text":"100 J","correct":true},{"text":"200 J","correct":false},{"text":"173 J","correct":false}]' />
+<inline-check question="A 50 N force is applied at 60 degrees above a horizontal floor while a crate slides 4 m horizontally. How much work does the force do on the crate?" explanation="Only the horizontal component does work: W = F*d*cos(theta) = 50 * 4 * cos(60) = 50 * 4 * 0.5 = 100 J. The vertical component of the push is perpendicular to the horizontal displacement and contributes nothing." options='[{"text":"100 J","correct":true},{"text":"200 J","correct":false},{"text":"173 J","correct":false}]'></inline-check>
 
 The sign of work matters:
 
@@ -126,8 +126,7 @@ This is the energy version of cause and effect:
 <dynamic-scenario
   topic="Battery Range on an Electric Scooter"
   context="A mobility engineer is comparing two electric scooters on the same downhill route. One has lower rolling resistance, while the other has regenerative braking. The engineer wants to know how much of the route's potential energy becomes wheel speed and how much is dissipated or recovered."
-  course="dynamics"
-/>
+  course="dynamics"></dynamic-scenario>
 
 ## Conservative and Non-Conservative Forces
 
@@ -174,7 +173,7 @@ $$
 
 This second equation is usually the safer default in engineering problems because real systems often include friction, damping, or external actuators.
 
-<parameter-explorer config='{"title":"Spring-Launched Slider Across a Rough Patch: v = sqrt((k*x^2 - 2*mu_k*m*g*d)/m)","sliders":[{"name":"k","label":"Spring stiffness","min":100,"max":2000,"step":50,"unit":"N/m","default":800},{"name":"x","label":"Spring compression","min":0.02,"max":0.4,"step":0.01,"unit":"m","default":0.15},{"name":"m","label":"Slider mass","min":0.2,"max":3,"step":0.1,"unit":"kg","default":0.5},{"name":"mu_k","label":"Friction on rough patch","min":0,"max":0.6,"step":0.05,"unit":"","default":0.25},{"name":"d","label":"Rough patch length","min":0,"max":1.5,"step":0.05,"unit":"m","default":0.6}],"outputs":[{"label":"Spring work stored/released","unit":"J","expr":"0.5*k*x^2"},{"label":"Friction energy lost","unit":"J","expr":"mu_k*m*9.81*d"},{"label":"Final speed at sensor","unit":"m/s","expr":"sqrt((k*x^2 - 2*mu_k*m*9.81*d)/m)"}],"plot":{"x":"x","output":2}}' />
+<parameter-explorer config='{"title":"Spring-Launched Slider Across a Rough Patch: v = sqrt((k*x^2 - 2*mu_k*m*g*d)/m)","sliders":[{"name":"k","label":"Spring stiffness","min":100,"max":2000,"step":50,"unit":"N/m","default":800},{"name":"x","label":"Spring compression","min":0.02,"max":0.4,"step":0.01,"unit":"m","default":0.15},{"name":"m","label":"Slider mass","min":0.2,"max":3,"step":0.1,"unit":"kg","default":0.5},{"name":"mu_k","label":"Friction on rough patch","min":0,"max":0.6,"step":0.05,"unit":"","default":0.25},{"name":"d","label":"Rough patch length","min":0,"max":1.5,"step":0.05,"unit":"m","default":0.6}],"outputs":[{"label":"Spring work stored/released","unit":"J","expr":"0.5*k*x^2"},{"label":"Friction energy lost","unit":"J","expr":"mu_k*m*9.81*d"},{"label":"Final speed at sensor","unit":"m/s","expr":"sqrt((k*x^2 - 2*mu_k*m*9.81*d)/m)"}],"plot":{"x":"x","output":2}}'></parameter-explorer>
 
 Watch the final speed collapse to zero (and the expression go imaginary) when the friction energy lost exceeds the spring work stored: the slider would stall on the rough patch before reaching the sensor.
 
@@ -304,7 +303,7 @@ $$
 
 The speed is lower than the frictionless case (which would give $v_2 = \sqrt{2gh} = 5.42$ m/s) because some of the gravitational energy was dissipated by friction.
 
-<step-reveal title="Build the Energy Balance for the Sliding Block" steps='[{"prompt":"The 5 kg block slides 3 m down a 30 degree incline. What vertical height does it drop?","predictType":"choice","choices":["h = 3 m (the path length)","h = 3*sin(30) = 1.5 m","h = 3*cos(30) = 2.6 m"],"answerIndex":1,"reveal":"Potential energy depends on the vertical drop, not the path length: h = d*sin(theta) = 3*sin(30) = 1.5 m. Using the full 3 m is the most common energy-method error."},{"prompt":"How much gravitational potential energy is released over that drop? (g = 9.81)","predictType":"choice","choices":["mgh = 5*9.81*1.5 = 73.6 J","mgd = 5*9.81*3 = 147 J","mgh = 5*9.81*1.5*cos(30) = 63.7 J"],"answerIndex":0,"reveal":"V1 - V2 = mgh = 5*9.81*1.5 = 73.6 J. This is the energy available to become kinetic energy minus friction losses."},{"prompt":"Friction is f_k = mu_k*mg*cos(30) = 8.50 N over 3 m. What is the friction work?","predictType":"choice","choices":["W_f = +25.5 J","W_f = -25.5 J","W_f = -73.6 J"],"answerIndex":1,"reveal":"Friction opposes the slide, so its work is negative: W_f = -f_k*d = -8.50*3 = -25.5 J. Forgetting this minus sign is the second classic mistake."},{"reveal":"Closing the balance: T1 + V1 + W_f = T2 + V2 gives 0 + 73.6 - 25.5 = 0.5*5*v^2, so v = sqrt(19.24) = 4.39 m/s. Note we never needed the acceleration or the time, only the start and end states."}]' />
+<step-reveal title="Build the Energy Balance for the Sliding Block" steps='[{"prompt":"The 5 kg block slides 3 m down a 30 degree incline. What vertical height does it drop?","predictType":"choice","choices":["h = 3 m (the path length)","h = 3*sin(30) = 1.5 m","h = 3*cos(30) = 2.6 m"],"answerIndex":1,"reveal":"Potential energy depends on the vertical drop, not the path length: h = d*sin(theta) = 3*sin(30) = 1.5 m. Using the full 3 m is the most common energy-method error."},{"prompt":"How much gravitational potential energy is released over that drop? (g = 9.81)","predictType":"choice","choices":["mgh = 5*9.81*1.5 = 73.6 J","mgd = 5*9.81*3 = 147 J","mgh = 5*9.81*1.5*cos(30) = 63.7 J"],"answerIndex":0,"reveal":"V1 - V2 = mgh = 5*9.81*1.5 = 73.6 J. This is the energy available to become kinetic energy minus friction losses."},{"prompt":"Friction is f_k = mu_k*mg*cos(30) = 8.50 N over 3 m. What is the friction work?","predictType":"choice","choices":["W_f = +25.5 J","W_f = -25.5 J","W_f = -73.6 J"],"answerIndex":1,"reveal":"Friction opposes the slide, so its work is negative: W_f = -f_k*d = -8.50*3 = -25.5 J. Forgetting this minus sign is the second classic mistake."},{"reveal":"Closing the balance: T1 + V1 + W_f = T2 + V2 gives 0 + 73.6 - 25.5 = 0.5*5*v^2, so v = sqrt(19.24) = 4.39 m/s. Note we never needed the acceleration or the time, only the start and end states."}]'></step-reveal>
 
 ---
 
@@ -424,15 +423,13 @@ The difference is small in equation count but meaningful in design interpretatio
   question="A force acts perpendicular to the displacement of a particle. What is the work done by that force?"
   conceptId="work_energy"
   options='[{"text":"Positive because the force is nonzero.","isCorrect":false},{"text":"Negative because the angle is 90 degrees.","isCorrect":false},{"text":"Zero because the dot product is zero.","isCorrect":true},{"text":"It cannot be determined without the mass.","isCorrect":false}]'
-  explanation="Correct. Work depends on the component of force along the displacement. A force perpendicular to motion contributes no work."
-/>
+  explanation="Correct. Work depends on the component of force along the displacement. A force perpendicular to motion contributes no work."></interactive-quiz>
 
 <interactive-quiz
   question="Why is friction treated as negative work in a sliding problem?"
   conceptId="conservation_of_energy"
   options='[{"text":"Because friction always points downward.","isCorrect":false},{"text":"Because friction removes mechanical energy from the moving body over the displacement.","isCorrect":true},{"text":"Because friction has no units.","isCorrect":false}]'
-  explanation="Exactly. Kinetic friction acts opposite the relative motion, so its dot product with displacement is negative and it reduces the body's mechanical energy."
-/>
+  explanation="Exactly. Kinetic friction acts opposite the relative motion, so its dot product with displacement is negative and it reduces the body's mechanical energy."></interactive-quiz>
 
 ## Summary
 
@@ -459,7 +456,7 @@ The difference is small in equation count but meaningful in design interpretatio
 
 ## Concept Map
 
-<concept-map concepts='["work","kinetic_energy","potential_energy","conservation_of_energy"]' />
+<concept-map concepts='["work","kinetic_energy","potential_energy","conservation_of_energy"]'></concept-map>
 
 ## What's Next?
 

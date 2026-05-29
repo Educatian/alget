@@ -35,7 +35,7 @@ Three lenses drive the disaggregation:
 
 A lens has done its work when it produced a specific risk row, not a general worry.
 
-<inline-check question="A vendor page states the tool is 'bias-tested and fair for all learners.' How should the audit treat this claim?" explanation="As an unverified hypothesis, not a finding. The claim names no test population, no data, and no whether your students were represented. The audit logs it as open and records the questions it leaves open: which groups were tested, on what data, and were multilingual learners (or your specific group) represented." options='[{"text":"As an unverified hypothesis, logging the questions it leaves open","correct":true},{"text":"As evidence that satisfies the equity requirement","correct":false},{"text":"As a reason to skip disaggregating your own roster","correct":false}]' />
+<inline-check question="A vendor page states the tool is 'bias-tested and fair for all learners.' How should the audit treat this claim?" explanation="As an unverified hypothesis, not a finding. The claim names no test population, no data, and no whether your students were represented. The audit logs it as open and records the questions it leaves open: which groups were tested, on what data, and were multilingual learners (or your specific group) represented." options='[{"text":"As an unverified hypothesis, logging the questions it leaves open","correct":true},{"text":"As evidence that satisfies the equity requirement","correct":false},{"text":"As a reason to skip disaggregating your own roster","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -72,9 +72,9 @@ A colleague can now trust the recommendation because every risk names who is aff
 
 Build a real audit row from a generic worry. Predict the next part each time before the reveal supplies it.
 
-<step-reveal title="Turning a generic risk into an audit row" steps='[{"prompt":"You start with: \"The tool might not be perfect for every student.\" What does an audit row require first that this sentence lacks?","predictType":"choice","choices":["A more confident tone","A named affected group with a count","A longer description of the tool"],"answerIndex":1,"reveal":"Correct. The first required part is the affected group, named specifically and by count: \"11 multilingual learners (of 27),\" not \"every student.\""},{"reveal":"Add the mechanism, how the tool produces the harm: \"the feedback model was trained mostly on standard-English essays, so it may flag non-standard phrasing as errors.\" A risk with no mechanism cannot be acted on."},{"reveal":"Add the safeguard: \"teacher review of all flagged multilingual phrasing before students see comments.\" The safeguard must address the named mechanism, not your convenience."},{"reveal":"Add the monitoring check with a date: \"compare flag rates for multilingual and monolingual writers two weeks after rollout.\" Now the row is a usable finding: group, mechanism, safeguard, dated check. Only now is \"adopt with safeguards\" defensible."}]' />
+<step-reveal title="Turning a generic risk into an audit row" steps='[{"prompt":"You start with: \"The tool might not be perfect for every student.\" What does an audit row require first that this sentence lacks?","predictType":"choice","choices":["A more confident tone","A named affected group with a count","A longer description of the tool"],"answerIndex":1,"reveal":"Correct. The first required part is the affected group, named specifically and by count: \"11 multilingual learners (of 27),\" not \"every student.\""},{"reveal":"Add the mechanism, how the tool produces the harm: \"the feedback model was trained mostly on standard-English essays, so it may flag non-standard phrasing as errors.\" A risk with no mechanism cannot be acted on."},{"reveal":"Add the safeguard: \"teacher review of all flagged multilingual phrasing before students see comments.\" The safeguard must address the named mechanism, not your convenience."},{"reveal":"Add the monitoring check with a date: \"compare flag rates for multilingual and monolingual writers two weeks after rollout.\" Now the row is a usable finding: group, mechanism, safeguard, dated check. Only now is \"adopt with safeguards\" defensible."}]'></step-reveal>
 
-<self-explain prompt="Your placement is considering an AI attendance system that uses facial recognition, in a class whose roster is majority Black and Latino. Write one audit row: affected group, mechanism, safeguard, and dated check." answer="Affected group: the majority-Black-and-Latino roster, because facial-recognition error rates are documented to be higher for darker-skinned students. Mechanism: the model training data underrepresented these groups, so misidentification is structurally more likely for them. Safeguard: a manual roster check whenever the system fails to match, and no tardy mark triggered by the system alone. Monitoring check: review misidentification logs by student two weeks after rollout and compare rates across groups, reconsidering adoption if a gap appears." />
+<self-explain prompt="Your placement is considering an AI attendance system that uses facial recognition, in a class whose roster is majority Black and Latino. Write one audit row: affected group, mechanism, safeguard, and dated check." answer="Affected group: the majority-Black-and-Latino roster, because facial-recognition error rates are documented to be higher for darker-skinned students. Mechanism: the model training data underrepresented these groups, so misidentification is structurally more likely for them. Safeguard: a manual roster check whenever the system fails to match, and no tardy mark triggered by the system alone. Monitoring check: review misidentification logs by student two weeks after rollout and compare rates across groups, reconsidering adoption if a gap appears."></self-explain>
 
 For each risk, name the group before the harm and the safeguard before the recommendation. A recommendation to adopt is only as good as the safeguards attached to its risks. Sofia's audit follows the rule: she does not write "adopt" until each risk carries an affected group, a safeguard, and a check, which is why "adopt with safeguards" is a defensible recommendation rather than a hopeful one.
 
@@ -121,7 +121,7 @@ Take the same audit to a placement with the opposite profile: a tool that works 
 
 Open the studio packet: [download the equity-oriented edtech evaluation matrix with context-specific risk notes packet](/downloads/summer2026/cat531-supplement/07-04-equity-audit-in-field-contexts-artifact.md).
 
-<artifact-studio artifact="equity-oriented edtech evaluation matrix with context-specific risk notes" course="CAT 531" section="07.04" />
+<artifact-studio artifact="equity-oriented edtech evaluation matrix with context-specific risk notes" course="CAT 531" section="07.04"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -134,13 +134,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the equity-oriented edtech evaluation matrix with context-specific risk notes for CAT 531 07.04. A peer comment points to an adaptive move issue connected to critical edtech studies. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the equity-oriented edtech evaluation matrix with context-specific risk notes for CAT 531 07.04. A peer comment points to an adaptive move issue connected to critical edtech studies. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="cat531_supplement_equity_audit_in_field_contexts" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The combination of the note, artifact evidence, confidence, and revision quality."]' correct-index="3" conceptid="cat531_supplement_equity_audit_in_field_contexts"></interactive-quiz>
 
 ## Final Check
 
@@ -148,7 +148,7 @@ Before you move on, make sure each risk names an actual group and mechanism, eac
 
 ## Concept Map
 
-<concept-map concepts='["cat531_supplement_field_based_transfer_and_coaching", "cat531_supplement_equity_audit_in_field_contexts", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat531_supplement_field_based_transfer_and_coaching", "cat531_supplement_equity_audit_in_field_contexts", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 

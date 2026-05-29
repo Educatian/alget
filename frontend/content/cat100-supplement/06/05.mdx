@@ -33,7 +33,7 @@ Effective AI-assisted debugging has three moving parts.
 
 This is where ISTE digital citizenship becomes concrete: using AI responsibly means verifying its output, not laundering it as your own work. NACE career readiness applies because professionals are expected to supervise tools, owning the result whether the suggestion came from a colleague, a search, or a model.
 
-<inline-check question="Your headshot is a same-folder local file. An AI assistant confidently suggests adding a CORS server configuration to make it display. How should you classify that suggestion?" explanation="CORS governs cross-origin requests between different servers. A same-folder local image is not a cross-origin request, so a CORS server config cannot apply. Fluency is not accuracy: reject the suggestion on the match check and record the reason, which is exactly the judgment the section is testing." options='[{"text":"Reject: CORS governs cross-origin requests and cannot apply to a same-folder local file","correct":true},{"text":"Accept: it sounds technical and the AI is usually right about configs","correct":false},{"text":"Modify: keep the CORS idea but point it at the local folder instead","correct":false}]' />
+<inline-check question="Your headshot is a same-folder local file. An AI assistant confidently suggests adding a CORS server configuration to make it display. How should you classify that suggestion?" explanation="CORS governs cross-origin requests between different servers. A same-folder local image is not a cross-origin request, so a CORS server config cannot apply. Fluency is not accuracy: reject the suggestion on the match check and record the reason, which is exactly the judgment the section is testing." options='[{"text":"Reject: CORS governs cross-origin requests and cannot apply to a same-folder local file","correct":true},{"text":"Accept: it sounds technical and the AI is usually right about configs","correct":false},{"text":"Modify: keep the CORS idea but point it at the local folder instead","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -66,7 +66,7 @@ The fix was a single closing tag. The accepted-modified-rejected log shows judgm
 
 Order the supervised-debugging steps so you read the evidence before you trust any suggestion. Identifying the symptom yourself comes first; verifying in the browser comes last.
 
-<sequence-builder mode="order" items='["Read the symptom in the code: runaway blue means an unclosed anchor tag","Write a verifiable prompt that includes the symptom and the actual nav block","Classify each AI suggestion as accept, modify, or reject with a reason","Apply only the suggestion that passes the match and scope checks","Reload and check the browser console to verify, never assume","Record every decision and reason in the AI critique log"]' />
+<sequence-builder mode="order" items='["Read the symptom in the code: runaway blue means an unclosed anchor tag","Write a verifiable prompt that includes the symptom and the actual nav block","Classify each AI suggestion as accept, modify, or reject with a reason","Apply only the suggestion that passes the match and scope checks","Reload and check the browser console to verify, never assume","Record every decision and reason in the AI critique log"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -80,7 +80,7 @@ A suggestion that passes match and scope gets applied; then the verify check dec
 
 Run the AI suggestion to rewrite the whole nav in a JavaScript framework through the three questions and predict each verdict before you reveal it. The actual bug is one unclosed anchor tag.
 
-<step-reveal title="Judge the framework-rewrite suggestion with the match, scope, and verify checks" steps='[{"prompt":"Match check first: does rewriting the nav in a framework address the observed symptom (runaway blue from one unclosed tag)?","predictType":"choice","choices":["Yes, a framework would re-render the nav and clear the styling","No, the symptom is a single missing close tag, which the rewrite does not target"],"answerIndex":1,"reveal":"The symptom is one unclosed anchor. A framework rewrite does not address that specific cause directly; it replaces working code to chase a one-tag bug."},{"prompt":"Scope check next: is a full framework rewrite proportionate to a one-tag bug?","predictType":"choice","choices":["Yes, modernizing is always worth it","No, it solves far more than was asked and adds large overhead"],"answerIndex":1,"reveal":"A framework is absurd overhead for a missing </a>. The fix should be as small as the bug, so this fails the scope check."},{"reveal":"Verdict: reject the framework rewrite on the scope check (and weakly on match), and log the reason. Accept only the close-tag fix, then run the verify check by reloading and confirming the console is clean."}]' />
+<step-reveal title="Judge the framework-rewrite suggestion with the match, scope, and verify checks" steps='[{"prompt":"Match check first: does rewriting the nav in a framework address the observed symptom (runaway blue from one unclosed tag)?","predictType":"choice","choices":["Yes, a framework would re-render the nav and clear the styling","No, the symptom is a single missing close tag, which the rewrite does not target"],"answerIndex":1,"reveal":"The symptom is one unclosed anchor. A framework rewrite does not address that specific cause directly; it replaces working code to chase a one-tag bug."},{"prompt":"Scope check next: is a full framework rewrite proportionate to a one-tag bug?","predictType":"choice","choices":["Yes, modernizing is always worth it","No, it solves far more than was asked and adds large overhead"],"answerIndex":1,"reveal":"A framework is absurd overhead for a missing </a>. The fix should be as small as the bug, so this fails the scope check."},{"reveal":"Verdict: reject the framework rewrite on the scope check (and weakly on match), and log the reason. Accept only the close-tag fix, then run the verify check by reloading and confirming the console is clean."}]'></step-reveal>
 
 ## Common Misreadings
 
@@ -119,7 +119,7 @@ Take the same supervision method to a different tool and a different bug, say an
 
 Open the studio packet: [download the AI critique log showing accepted, modified, and rejected suggestions packet](/downloads/summer2026/cat100-supplement/06-05-debugging-with-ai-assistance-artifact.md).
 
-<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="06.05" />
+<artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="06.05"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -132,13 +132,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 06.05. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 06.05. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="cat100_supplement_debugging_with_ai_assistance" />
+<interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="cat100_supplement_debugging_with_ai_assistance"></interactive-quiz>
 
 ## Final Check
 
@@ -146,7 +146,7 @@ Before you move on, make sure your trace links claim, evidence, tool boundary, r
 
 ## Concept Map
 
-<concept-map concepts='["cat100_supplement_debugging_with_ai_assistance", "cat100_supplement_github_pages_personal_website", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_debugging_with_ai_assistance", "cat100_supplement_github_pages_personal_website", "ai_supported_learning"]'></concept-map>
 
 ## References
 

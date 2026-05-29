@@ -38,7 +38,7 @@ Logged execution means recording each fix with a timestamp, location, and the ch
 
 The principle underneath is triage under a fixed budget. You are not trying to fix everything; you are maximizing the artifact's correctness and usability within the time you have. Knowing what to leave undone, and recording it as future work rather than starting it, is as much a skill as the fixes themselves.
 
-<inline-check question="You have 30 minutes left. The spreadsheet shows #REF! in the total, and you also want to rebuild the page with CSS grid. What do you do first?" explanation="Correctness outranks cosmetics, and a fix you cannot finish is worse than none. The #REF! is a tier-1 correctness bug; the grid rebuild is out of scope for the budget and should be logged as future work, not started with minutes left." options='[{"text":"Start the CSS grid rebuild because it will look the most impressive.","correct":false},{"text":"Fix the #REF! first; log the grid rebuild as future work.","correct":true},{"text":"Change the font first because it is the quickest visible win.","correct":false}]' />
+<inline-check question="You have 30 minutes left. The spreadsheet shows #REF! in the total, and you also want to rebuild the page with CSS grid. What do you do first?" explanation="Correctness outranks cosmetics, and a fix you cannot finish is worse than none. The #REF! is a tier-1 correctness bug; the grid rebuild is out of scope for the budget and should be logged as future work, not started with minutes left." options='[{"text":"Start the CSS grid rebuild because it will look the most impressive.","correct":false},{"text":"Fix the #REF! first; log the grid rebuild as future work.","correct":true},{"text":"Change the font first because it is the quickest visible win.","correct":false}]'></inline-check>
 
 ## Worked Example: A 30-Minute Revision Sprint with a Changelog
 
@@ -66,15 +66,15 @@ The sprint succeeds because correctness was fixed before cosmetics, and the chan
 
 Run the sprint as a fixed procedure. Predict each step before revealing it:
 
-<step-reveal title="Run a 30-minute revision sprint" steps='[{"prompt":"You open the artifact with 30 minutes left. What is the first move, before any fix?","predictType":"choice","choices":["Fix the first problem you happen to notice","Inventory every known issue before touching anything","Start the most interesting task to build momentum"],"answerIndex":1,"reveal":"Inventory first: list every issue so you choose from the full set instead of reacting to whatever you see first."},{"reveal":"Triage by impact. Label each item correctness, usability, cosmetic, or out-of-scope, and sort so tier-1 bugs rise to the top."},{"reveal":"Execute top-down with a logged changelog: timestamp, location, the change, and a quick verification like checking the total against receipts."},{"reveal":"Defer what you cannot finish. Record the CSS grid rebuild as future work with a one-line reason rather than half-starting it near the deadline."}]' />
+<step-reveal title="Run a 30-minute revision sprint" steps='[{"prompt":"You open the artifact with 30 minutes left. What is the first move, before any fix?","predictType":"choice","choices":["Fix the first problem you happen to notice","Inventory every known issue before touching anything","Start the most interesting task to build momentum"],"answerIndex":1,"reveal":"Inventory first: list every issue so you choose from the full set instead of reacting to whatever you see first."},{"reveal":"Triage by impact. Label each item correctness, usability, cosmetic, or out-of-scope, and sort so tier-1 bugs rise to the top."},{"reveal":"Execute top-down with a logged changelog: timestamp, location, the change, and a quick verification like checking the total against receipts."},{"reveal":"Defer what you cannot finish. Record the CSS grid rebuild as future work with a one-line reason rather than half-starting it near the deadline."}]'></step-reveal>
 
 Now order the sprint moves:
 
-<sequence-builder mode="order" items='["Inventory every known issue before editing","Triage issues into correctness, usability, cosmetic, and out-of-scope","Fix correctness bugs first, logging each with a timestamp","Add usability and cosmetic fixes if budget remains","Record the deferred large task as future work with a reason"]' />
+<sequence-builder mode="order" items='["Inventory every known issue before editing","Triage issues into correctness, usability, cosmetic, and out-of-scope","Fix correctness bugs first, logging each with a timestamp","Add usability and cosmetic fixes if budget remains","Record the deferred large task as future work with a reason"]'></sequence-builder>
 
 These four concepts anchor the section; trace how they connect:
 
-<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_revision_sprint","evidence_based_revision","ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_revision_sprint","evidence_based_revision","ai_supported_learning"]'></concept-map>
 
 ## Decision Rule
 
@@ -125,7 +125,7 @@ Run the same sprint method on a non-coursework deadline: forty-five minutes to c
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/08-06-revision-sprint-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="08.06" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="08.06"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -138,13 +138,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 08.06. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 08.06. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_revision_sprint" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat100_supplement_revision_sprint"></interactive-quiz>
 
 ## Final Check
 

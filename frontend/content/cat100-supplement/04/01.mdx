@@ -34,7 +34,7 @@ A persona is a system prompt: text that defines the assistant's standing instruc
 
 The KNOWLEDGE BOUND and HARD STOP fields are what separate a real persona from a friendly greeting. ROLE and AUDIENCE shape style; KNOWLEDGE BOUND and HARD STOP shape safety and accuracy. A persona that only sets ROLE ("you are a kind teacher") feels good but still hallucinates, because nothing limits what the AI may assert or refuse.
 
-<inline-check question="A persona line reads: 'You are an enthusiastic, caring teacher who loves helping kids.' Which field does this line actually fill?" explanation="The line sets a mood (tone), which is the ROLE/style layer at best. It says nothing about which facts the AI may treat as true (KNOWLEDGE BOUND) or what it must refuse (HARD STOP), so the safety and accuracy fields are still blank and the AI can still invent facts in a cheerful voice." options='[{"text":"ROLE and AUDIENCE only (style); KNOWLEDGE BOUND and HARD STOP are still empty","correct":true},{"text":"HARD STOP, because it tells the AI to be caring","correct":false},{"text":"KNOWLEDGE BOUND, because enthusiasm implies accuracy","correct":false},{"text":"All four fields, because it is a complete persona","correct":false}]' />
+<inline-check question="A persona line reads: 'You are an enthusiastic, caring teacher who loves helping kids.' Which field does this line actually fill?" explanation="The line sets a mood (tone), which is the ROLE/style layer at best. It says nothing about which facts the AI may treat as true (KNOWLEDGE BOUND) or what it must refuse (HARD STOP), so the safety and accuracy fields are still blank and the AI can still invent facts in a cheerful voice." options='[{"text":"ROLE and AUDIENCE only (style); KNOWLEDGE BOUND and HARD STOP are still empty","correct":true},{"text":"HARD STOP, because it tells the AI to be caring","correct":false},{"text":"KNOWLEDGE BOUND, because enthusiasm implies accuracy","correct":false},{"text":"All four fields, because it is a complete persona","correct":false}]'></inline-check>
 
 Save the persona as a plain text file (for example `persona.txt`) for two reasons. First, plain text pastes cleanly into any tool without hidden formatting. Second, a file can be revised and compared: you can keep `persona_v1.txt` and `persona_v2.txt` and show exactly which line you changed and why.
 
@@ -72,7 +72,7 @@ Step 4. Record the one rejected suggestion. The AI offered to add "act friendly 
 
 Work through the same upgrade one decision at a time, predicting each move before you reveal it:
 
-<step-reveal title="Upgrade the weak persona, field by field" steps='[{"prompt":"The draft is: \"You are a helpful 3rd grade teacher. Help me with my lesson.\" Which field is the FIRST to add, given the Opening Case failure (one reply said \"quotient\", another used cartoons)?","predictType":"choice","choices":["AUDIENCE: name who reads the output, so vocabulary stops drifting","A friendlier greeting","More emojis","A longer task description"],"answerIndex":0,"reveal":"AUDIENCE first. The drift between \"quotient\" and cartoons was a reader-vocabulary problem, so AUDIENCE: \"You write notes a parent with no math background can read\" pins the reading level."},{"prompt":"Next you add KNOWLEDGE BOUND. Which version actually constrains the AI?","predictType":"choice","choices":["\"Be accurate and helpful.\"","\"Use only the Grade 3 standards I paste below. If a topic is outside them, say so.\"","\"You know all of math.\"","\"Try your best.\""],"answerIndex":1,"reveal":"The version naming a real source (the pasted Grade 3 standards) is the only one that limits what the AI may assert. \"Be accurate\" is decoration, not control."},{"reveal":"Finally add HARD STOP: \"Never invent a student grade; never give medical or legal advice.\" Now all four fields have concrete values and two of them actively prevent a known failure, so the persona is ready to save as persona.txt."}]' />
+<step-reveal title="Upgrade the weak persona, field by field" steps='[{"prompt":"The draft is: \"You are a helpful 3rd grade teacher. Help me with my lesson.\" Which field is the FIRST to add, given the Opening Case failure (one reply said \"quotient\", another used cartoons)?","predictType":"choice","choices":["AUDIENCE: name who reads the output, so vocabulary stops drifting","A friendlier greeting","More emojis","A longer task description"],"answerIndex":0,"reveal":"AUDIENCE first. The drift between \"quotient\" and cartoons was a reader-vocabulary problem, so AUDIENCE: \"You write notes a parent with no math background can read\" pins the reading level."},{"prompt":"Next you add KNOWLEDGE BOUND. Which version actually constrains the AI?","predictType":"choice","choices":["\"Be accurate and helpful.\"","\"Use only the Grade 3 standards I paste below. If a topic is outside them, say so.\"","\"You know all of math.\"","\"Try your best.\""],"answerIndex":1,"reveal":"The version naming a real source (the pasted Grade 3 standards) is the only one that limits what the AI may assert. \"Be accurate\" is decoration, not control."},{"reveal":"Finally add HARD STOP: \"Never invent a student grade; never give medical or legal advice.\" Now all four fields have concrete values and two of them actively prevent a known failure, so the persona is ready to save as persona.txt."}]'></step-reveal>
 
 ## Decision Rule
 
@@ -88,7 +88,7 @@ If any field reads as a generic compliment ("be helpful," "be clear"), it is dec
 
 Match each persona field to the specific drift it closes off:
 
-<sequence-builder mode="match" items='[{"term":"ROLE","definition":"Without it, the AI picks a default reading level and tone"},{"term":"AUDIENCE","definition":"Without it, the AI guesses at vocabulary and formality"},{"term":"KNOWLEDGE BOUND","definition":"Without it, the AI fills gaps with plausible-sounding invention"},{"term":"HARD STOP","definition":"Without it, the AI offers advice outside its competence (medical, legal, grades)"}]' />
+<sequence-builder mode="match" items='[{"term":"ROLE","definition":"Without it, the AI picks a default reading level and tone"},{"term":"AUDIENCE","definition":"Without it, the AI guesses at vocabulary and formality"},{"term":"KNOWLEDGE BOUND","definition":"Without it, the AI fills gaps with plausible-sounding invention"},{"term":"HARD STOP","definition":"Without it, the AI offers advice outside its competence (medical, legal, grades)"}]'></sequence-builder>
 
 ## Common Misreadings
 
@@ -129,13 +129,13 @@ Move the same persona to a stricter setting: a school that bans pasting any stud
 
 See how the persona skill sits inside the chapter's larger ideas:
 
-<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_teacher_persona_setup", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_teacher_persona_setup", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## Artifact Studio
 
 Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/04-01-teacher-persona-setup-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.01" />
+<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="04.01"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -148,13 +148,13 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.01. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 04.01. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_teacher_persona_setup" />
+<interactive-quiz question="Which clue should guide what support or revision comes next?" options='["The section gives a longer explanation and a more polished visual.", "The combination of the note, artifact evidence, confidence, and revision quality.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_teacher_persona_setup"></interactive-quiz>
 
 ## Final Check
 

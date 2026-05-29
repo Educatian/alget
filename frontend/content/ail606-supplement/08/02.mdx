@@ -45,7 +45,7 @@ A second principle bounds the template: actionability has a ceiling. A draft bur
 
 Classify each template line by the feedback level it operates at. Match the comment to the level that predicts what revision it will provoke.
 
-<sequence-builder mode="match" items='[{"term":"Great start!","definition":"Self level: praise about the person, carries no task information, lowest yield"},{"term":"Tighten this up before final","definition":"Task level but underspecified: names no criterion, produces guessing and cosmetic edits"},{"term":"Frame 4 names the goal but not the learner action; add one action sentence","definition":"Task-to-process with location and move: targets narration-to-action alignment, the design reasoning"},{"term":"Which frame are you least sure aligns, and how would you check?","definition":"Self-regulation level: builds the learner own monitoring rather than requiring endless instructor diagnosis"}]' />
+<sequence-builder mode="match" items='[{"term":"Great start!","definition":"Self level: praise about the person, carries no task information, lowest yield"},{"term":"Tighten this up before final","definition":"Task level but underspecified: names no criterion, produces guessing and cosmetic edits"},{"term":"Frame 4 names the goal but not the learner action; add one action sentence","definition":"Task-to-process with location and move: targets narration-to-action alignment, the design reasoning"},{"term":"Which frame are you least sure aligns, and how would you check?","definition":"Self-regulation level: builds the learner own monitoring rather than requiring endless instructor diagnosis"}]'></sequence-builder>
 
 ## Worked Example
 
@@ -61,7 +61,7 @@ Walk through one concrete revision of a feedback template an instructor uses to 
 
 Work the rewrite one decision at a time. Predict the diagnosis before each reveal.
 
-<step-reveal title="Rewriting one vague feedback line" steps='[{"prompt":"The old line reads \"This is a bit confusing, can you clarify?\" Which part of the criterion-location-action structure does it most clearly lack?","predictType":"choice","choices":["A criterion the student can name","A warmer tone","More comments overall","A grade attached"],"answerIndex":0,"reveal":"It names a feeling (confusing) but no criterion. The student cannot tell what standard the draft missed, so they guess and edit cosmetics."},{"prompt":"You add the criterion and a location: \"Frame 4 states the goal but not the learner action.\" What single piece is still missing for the student to act?","predictType":"choice","choices":["An observable next move","A second praise line","A longer explanation","A holistic score"],"answerIndex":0,"reveal":"The student now knows the criterion and the place but not what to do. Adding \"add one sentence naming what the learner does on this screen\" supplies the observable move."},{"reveal":"Final line: \"Frame 4 states the goal but not the learner action; add one sentence naming what the learner does on this screen.\" Criterion, location, and move are all present, and the template still emits only this one prioritized revision."}]' />
+<step-reveal title="Rewriting one vague feedback line" steps='[{"prompt":"The old line reads \"This is a bit confusing, can you clarify?\" Which part of the criterion-location-action structure does it most clearly lack?","predictType":"choice","choices":["A criterion the student can name","A warmer tone","More comments overall","A grade attached"],"answerIndex":0,"reveal":"It names a feeling (confusing) but no criterion. The student cannot tell what standard the draft missed, so they guess and edit cosmetics."},{"prompt":"You add the criterion and a location: \"Frame 4 states the goal but not the learner action.\" What single piece is still missing for the student to act?","predictType":"choice","choices":["An observable next move","A second praise line","A longer explanation","A holistic score"],"answerIndex":0,"reveal":"The student now knows the criterion and the place but not what to do. Adding \"add one sentence naming what the learner does on this screen\" supplies the observable move."},{"reveal":"Final line: \"Frame 4 states the goal but not the learner action; add one sentence naming what the learner does on this screen.\" Criterion, location, and move are all present, and the template still emits only this one prioritized revision."}]'></step-reveal>
 
 ## Decision Rule
 
@@ -75,7 +75,7 @@ Test every template line against three questions before it ships:
 
 A template whose lines cannot pass these three is producing feelings, not revisions.
 
-<inline-check question="An instructor wants warmer feedback and adds a fourth encouraging line to a template that already emits one prioritized process-level move. What is the main cost?" explanation="Self-level praise carries no task information and does not raise the feedback's level. Worse, the extra line spends part of the actionability budget, competing for the learner's limited working memory against the one revision that mattered." options='[{"text":"It spends the actionability budget on a self-level line that adds no task information.","correct":true},{"text":"Warmth always lowers learning, so any praise is harmful.","correct":false},{"text":"It converts the process-level move into a task-level one.","correct":false},{"text":"Nothing; more lines always mean more help.","correct":false}]' />
+<inline-check question="An instructor wants warmer feedback and adds a fourth encouraging line to a template that already emits one prioritized process-level move. What is the main cost?" explanation="Self-level praise carries no task information and does not raise the feedback's level. Worse, the extra line spends part of the actionability budget, competing for the learner's limited working memory against the one revision that mattered." options='[{"text":"It spends the actionability budget on a self-level line that adds no task information.","correct":true},{"text":"Warmth always lowers learning, so any praise is harmful.","correct":false},{"text":"It converts the process-level move into a task-level one.","correct":false},{"text":"Nothing; more lines always mean more help.","correct":false}]'></inline-check>
 
 ## Common Misreadings
 
@@ -114,7 +114,7 @@ Move the template from instructor-to-student feedback into automated, AI-generat
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/08-02-feedback-templates-for-design-drafts-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="08.02" />
+<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="08.02"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -127,19 +127,19 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 08.02. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 08.02. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
-<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_feedback_templates_for_design_drafts" />
+<interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="ail606_supplement_feedback_templates_for_design_drafts"></interactive-quiz>
 
 ## Final Check
 
 Before you move on, check that the storyboard frame sequence with narration, signaling, and reader-action notes records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
 
-<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "ail606_supplement_feedback_templates_for_design_drafts", "evidence_based_revision", "ai_supported_learning"]' />
+<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "ail606_supplement_feedback_templates_for_design_drafts", "evidence_based_revision", "ai_supported_learning"]'></concept-map>
 
 ## References
 
