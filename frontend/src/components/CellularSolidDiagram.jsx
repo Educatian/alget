@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const CellularSolidDiagram = () => {
     const [density, setDensity] = useState(0.8); // 0.1 to 1.0
@@ -17,10 +18,11 @@ export const CellularSolidDiagram = () => {
                 <div className="w-full md:w-1/3 space-y-6 bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
                     <div>
                         <div className="flex justify-between mb-2">
-                            <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Relative Density</label>
+                            <label htmlFor="cellular-density" className="text-xs font-bold text-slate-600 uppercase tracking-wider">Relative Density</label>
                             <span className="text-xs font-bold text-indigo-600">{density.toFixed(2)}</span>
                         </div>
                         <input
+                            id="cellular-density"
                             type="range" min="0.1" max="1.0" step="0.05" value={density}
                             onChange={(e) => setDensity(Number(e.target.value))}
                             className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
@@ -47,7 +49,12 @@ export const CellularSolidDiagram = () => {
                 </div>
 
                 <div className="w-full md:w-2/3 h-64 bg-white rounded-xl border border-slate-200 shadow-inner flex items-center justify-center overflow-hidden">
-                    <svg viewBox="0 0 200 200" className="w-full h-full p-4">
+                    <AccessibleSvg
+                        viewBox="0 0 200 200"
+                        className="w-full h-full p-4"
+                        title="Cellular solid honeycomb infill"
+                        desc={`A honeycomb-celled block under a downward load. Wall thickness grows with relative density, currently ${density.toFixed(2)}, giving ${mass.toFixed(1)} percent mass and ${strength.toFixed(1)} percent compressive strength.`}
+                    >
                         {/* Define the honeycomb/cellular grid */}
                         <defs>
                             <pattern id="hexagons" width="40" height="69.282" patternUnits="userSpaceOnUse" patternTransform="scale(1.5)">
@@ -76,7 +83,7 @@ export const CellularSolidDiagram = () => {
                                 <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444" />
                             </marker>
                         </defs>
-                    </svg>
+                    </AccessibleSvg>
                 </div>
             </div>
         </div>

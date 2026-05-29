@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const SelfHealingDiagram = () => {
     const [crackProgress, setCrackProgress] = useState(0); // 0 to 100
@@ -53,7 +54,7 @@ export const SelfHealingDiagram = () => {
     return (
         <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
             <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: Vascular Self-Healing Polymer</h3>
-            <p className="text-sm text-slate-500 mb-6 text-center max-w-lg min-h-[40px]">
+            <p aria-live="polite" className="text-sm text-slate-500 mb-6 text-center max-w-lg min-h-[40px]">
                 {crackProgress === 0 && "Click 'Apply Stress' to simulate material shear."}
                 {crackProgress > 0 && crackProgress < 50 && "Crack propagating through the polymer matrix..."}
                 {crackProgress >= 50 && crackProgress < 90 && "Crack ruptures embedded microcapsule! Healing agent released."}
@@ -68,7 +69,12 @@ export const SelfHealingDiagram = () => {
                 {crackProgress === 0 ? "Apply Structural Stress" : (crackProgress >= 100 ? "Reset & Re-stress" : "Fracturing...")}
             </button>
 
-            <svg viewBox="0 0 600 300" className="w-full max-w-2xl drop-shadow-sm rounded-lg overflow-hidden border border-slate-100">
+            <AccessibleSvg
+                viewBox="0 0 600 300"
+                className="w-full max-w-2xl drop-shadow-sm rounded-lg overflow-hidden border border-slate-100"
+                title="Vascular self-healing polymer cross-section"
+                desc={`A polymer matrix embedded with a catalyst grid and liquid-filled microcapsules. ${crackProgress === 0 ? 'No crack is present.' : crackProgress < 50 ? 'A crack is propagating through the matrix.' : crackProgress < 90 ? 'The crack has ruptured a microcapsule, releasing healing agent.' : 'The released agent has met the catalyst and polymerized, sealing the crack.'}`}
+            >
                 {/* Polymer Matrix */}
                 <rect x="0" y="0" width="600" height="300" fill="#f8fafc" />
                 <text x="300" y="30" textAnchor="middle" className="font-bold text-sm fill-slate-400 tracking-widest uppercase">Polymer Matrix</text>
@@ -129,7 +135,7 @@ export const SelfHealingDiagram = () => {
                 {/* Labels */}
                 <text x="130" y="125" textAnchor="middle" className="text-[10px] font-bold fill-sky-700">Liquid Healing Agent</text>
                 <text x="230" y="115" textAnchor="middle" className="text-[10px] font-bold fill-purple-700">Catalyst Grid</text>
-            </svg>
+            </AccessibleSvg>
         </div>
     );
 };

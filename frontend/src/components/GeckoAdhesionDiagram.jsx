@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const GeckoAdhesionDiagram = () => {
     const [distance, setDistance] = useState(50); // 0 to 100
@@ -22,6 +23,7 @@ export const GeckoAdhesionDiagram = () => {
                     type="range"
                     min="0" max="100"
                     value={distance}
+                    aria-label="Distance from surface in nanometers"
                     onChange={(e) => setDistance(Number(e.target.value))}
                     className="w-full accent-lime-600 mb-2"
                 />
@@ -32,7 +34,12 @@ export const GeckoAdhesionDiagram = () => {
                 </div>
             </div>
 
-            <svg viewBox="0 0 600 300" className="w-full max-w-2xl bg-slate-50 rounded-lg overflow-hidden border border-slate-100">
+            <AccessibleSvg
+                viewBox="0 0 600 300"
+                className="w-full max-w-2xl bg-slate-50 rounded-lg overflow-hidden border border-slate-100"
+                title="Gecko spatulae approaching an atomic surface"
+                desc={`Gecko toe setae and their microscopic spatulae are held about ${distance} nanometers from an atomic surface. ${distance <= 60 ? 'At this close proximity, Van der Waals forces are active and the spatulae adhere.' : 'At this distance there is no attractive force.'}`}
+            >
                 {/* Surface */}
                 <rect x="50" y="210" width="500" height="50" fill="#e2e8f0" stroke="#cbd5e1" strokeWidth="2" />
                 <text x="300" y="240" textAnchor="middle" className="font-bold fill-slate-500 text-sm">Atomic Surface (e.g. Glass)</text>
@@ -68,7 +75,15 @@ export const GeckoAdhesionDiagram = () => {
                     <text x="300" y="180" textAnchor="middle" className="font-bold text-slate-400 text-sm">No attractive force</text>
                 </g>
 
-            </svg>
+            </AccessibleSvg>
+
+            {/* Adhesion state surfaced as text + live region so it is not color-only (WCAG 1.4.1) */}
+            <div aria-live="polite" className="mt-4 text-center text-sm">
+                <span className="font-semibold text-slate-500">~{distance} nm: </span>
+                <span className="font-bold text-slate-800">
+                    {distance <= 60 ? 'Van der Waals forces active (adhering)' : 'No attractive force (detached)'}
+                </span>
+            </div>
         </div>
     );
 };

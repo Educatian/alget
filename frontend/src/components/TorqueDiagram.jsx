@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const TorqueDiagram = () => {
     const [force, setForce] = useState(50); // 0 to 100
@@ -32,10 +33,11 @@ export const TorqueDiagram = () => {
                 <div className="w-full md:w-1/3 space-y-6 bg-white p-5 rounded-xl border border-slate-100 shadow-sm">
                     <div>
                         <div className="flex justify-between mb-2">
-                            <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Applied Force</label>
+                            <label htmlFor="torque-force" className="text-xs font-bold text-slate-600 uppercase tracking-wider">Applied Force</label>
                             <span className="text-xs font-bold text-indigo-600">{force} N</span>
                         </div>
                         <input
+                            id="torque-force"
                             type="range" min="10" max="100" value={force}
                             onChange={(e) => setForce(Number(e.target.value))}
                             className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
@@ -43,10 +45,11 @@ export const TorqueDiagram = () => {
                     </div>
                     <div>
                         <div className="flex justify-between mb-2">
-                            <label className="text-xs font-bold text-slate-600 uppercase tracking-wider">Angle (θ)</label>
+                            <label htmlFor="torque-angle" className="text-xs font-bold text-slate-600 uppercase tracking-wider">Angle (θ)</label>
                             <span className="text-xs font-bold text-indigo-600">{angle}°</span>
                         </div>
                         <input
+                            id="torque-angle"
                             type="range" min="0" max="180" value={angle}
                             onChange={(e) => setAngle(Number(e.target.value))}
                             className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
@@ -66,7 +69,12 @@ export const TorqueDiagram = () => {
                     {/* Background Grid */}
                     <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
 
-                    <svg viewBox="0 0 300 250" className="w-full h-full drop-shadow-md">
+                    <AccessibleSvg
+                        viewBox="0 0 300 250"
+                        className="w-full h-full drop-shadow-md"
+                        title="Torque on a wrench"
+                        desc={`A wrench on a nut with a red force vector of ${force} newtons applied at the end at ${angle} degrees to the arm. The blue arc marks the angle and the green circular arrow shows the resulting torque of ${Math.round(torqueAmount)} newton-meters.`}
+                    >
                         {/* The Joint / Nut */}
                         <circle cx={cx} cy={cy} r="12" fill="#475569" />
                         <circle cx={cx} cy={cy} r="6" fill="#94a3b8" />
@@ -119,7 +127,7 @@ export const TorqueDiagram = () => {
                         <text x={endX - 25} y={cy - 15} fill="#3b82f6" fontSize="10" fontWeight="bold">θ</text>
                         <text x={fx + 5} y={fy - 5} fill="#ef4444" fontSize="12" fontWeight="bold">F</text>
                         <text x={cx + 60} y={cy + 20} fill="#64748b" fontSize="12" fontWeight="bold">r</text>
-                    </svg>
+                    </AccessibleSvg>
                 </div>
             </div>
         </div>

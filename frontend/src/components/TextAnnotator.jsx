@@ -41,6 +41,8 @@ export default function TextAnnotator({ content, onAskAi, onAddNote }) {
     }, [])
 
     return (
+        // detects mouse text-selection to surface the annotate menu; not a clickable control
+        /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
         <div
             ref={containerRef}
             className="relative"

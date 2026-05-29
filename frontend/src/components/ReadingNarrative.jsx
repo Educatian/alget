@@ -35,6 +35,20 @@ const FormativeSummativeDiagram = lazy(() => import('./FormativeSummativeDiagram
 const RubricDesignDiagram = lazy(() => import('./RubricDesignDiagram').then((module) => ({ default: module.RubricDesignDiagram })))
 const FeedbackModelsDiagram = lazy(() => import('./FeedbackModelsDiagram').then((module) => ({ default: module.FeedbackModelsDiagram })))
 
+// Strip markdown / MDX syntax down to readable prose for the Web Speech API.
+function markdownToSpeechText(source) {
+    return String(source || '')
+        .replace(/<[^>]+>/g, ' ')              // strip raw / MDX tags
+        .replace(/```[\s\S]*?```/g, ' ')        // fenced code blocks
+        .replace(/`([^`]+)`/g, '$1')            // inline code
+        .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')  // images
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1') // links -> link text
+        .replace(/^#{1,6}\s+/gm, '')            // heading markers
+        .replace(/[*_~>#|]/g, ' ')              // residual markdown punctuation
+        .replace(/\s+/g, ' ')
+        .trim()
+}
+
 function MarkdownBlockFallback() {
     return <div className="my-6 h-44 animate-pulse rounded-[1.75rem] border border-slate-200 bg-slate-100/80" />
 }
@@ -108,7 +122,9 @@ export default function ReadingNarrative({
     onHeadingChange,
 }) {
     const [activeHeading, setActiveHeading] = useState('')
+    const [speechState, setSpeechState] = useState('idle') // 'idle' | 'speaking' | 'paused'
     const startTimeRef = useRef(0)
+    const speechSupported = typeof window !== 'undefined' && 'speechSynthesis' in window
     const normalizedSource = normalizeMarkdownSource(content || sectionDescription || '*No content available*')
     const narrativeSource = normalizedSource.replace(/^#\s+.+(?:\n+|$)/, '')
     const usesMath = /\$[^$\n]+\$|\\\(|\\\[/.test(narrativeSource)
@@ -175,7 +191,7 @@ export default function ReadingNarrative({
             )
         },
         pre: ({ children, ...props }) => (
-            <pre tabIndex={0} {...props}>
+            <pre {...props}>
                 {children}
             </pre>
         ),
@@ -290,11 +306,97 @@ export default function ReadingNarrative({
         onHeadingChange?.(activeHeading)
     }, [activeHeading, onHeadingChange])
 
+    // Read-aloud (UDL Guideline 1: multiple means of representation).
+    // Browser-native speechSynthesis; no backend. Stop narration when the section changes.
+    useEffect(() => {
+        if (!speechSupported) return
+        window.speechSynthesis.cancel()
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- reset read-aloud UI to idle when the section changes (syncs with speechSynthesis external system)
+        setSpeechState('idle')
+        return () => {
+            window.speechSynthesis.cancel()
+        }
+    }, [sectionId, speechSupported])
+
+    const handlePlayPause = () => {
+        if (!speechSupported) return
+        const synth = window.speechSynthesis
+        if (speechState === 'speaking') {
+            synth.pause()
+            setSpeechState('paused')
+            return
+        }
+        if (speechState === 'paused') {
+            synth.resume()
+            setSpeechState('speaking')
+            return
+        }
+        const text = markdownToSpeechText(narrativeSource)
+        if (!text) return
+        synth.cancel()
+        const utterance = new SpeechSynthesisUtterance(text)
+        utterance.onend = () => setSpeechState('idle')
+        utterance.onerror = () => setSpeechState('idle')
+        synth.speak(utterance)
+        setSpeechState('speaking')
+    }
+
+    const handleStopSpeech = () => {
+        if (!speechSupported) return
+        window.speechSynthesis.cancel()
+        setSpeechState('idle')
+    }
+
     return (
         <article
             className="prose reading-narrative mb-8"
             style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px' }}
         >
+            {speechSupported && (
+                <div
+                    className="not-prose mb-6 flex flex-wrap items-center gap-2 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.7)] px-4 py-2.5 shadow-sm"
+                    role="group"
+                    aria-label="Read this section aloud"
+                >
+                    <span className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
+                        Listen
+                    </span>
+                    <button
+                        type="button"
+                        onClick={handlePlayPause}
+                        aria-label={
+                            speechState === 'speaking'
+                                ? 'Pause reading this section aloud'
+                                : speechState === 'paused'
+                                    ? 'Resume reading this section aloud'
+                                    : 'Read this section aloud'
+                        }
+                        className="inline-flex items-center gap-1.5 rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-text)] transition-colors hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                    >
+                        <span aria-hidden="true">{speechState === 'speaking' ? '⏸' : '▶'}</span>
+                        <span>
+                            {speechState === 'speaking' ? 'Pause' : speechState === 'paused' ? 'Resume' : 'Play'}
+                        </span>
+                    </button>
+                    <button
+                        type="button"
+                        onClick={handleStopSpeech}
+                        disabled={speechState === 'idle'}
+                        aria-label="Stop reading this section aloud"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-[var(--ath-line)] bg-white px-3 py-1 text-xs font-semibold text-[var(--ath-text)] transition-colors hover:bg-[var(--ath-panel)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                        <span aria-hidden="true">⏹</span>
+                        <span>Stop</span>
+                    </button>
+                    <span className="sr-only" role="status" aria-live="polite">
+                        {speechState === 'speaking'
+                            ? 'Reading section aloud'
+                            : speechState === 'paused'
+                                ? 'Reading paused'
+                                : 'Reading stopped'}
+                    </span>
+                </div>
+            )}
             <Markdown
                 remarkPlugins={remarkPlugins}
                 rehypePlugins={rehypePlugins}

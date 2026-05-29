@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const DirectionalAdhesionDiagram = () => {
     const [angle, setAngle] = useState(0); // -45 to 45 deg representing angle of applied pull
@@ -14,9 +15,11 @@ export const DirectionalAdhesionDiagram = () => {
                 </div>
 
                 <div className="w-1/3">
-                    <label className="text-xs font-bold text-slate-400 uppercase mb-2 block text-right">Pull Angle ($\theta$)</label>
+                    <label htmlFor="adhesion-pull-angle" className="text-xs font-bold text-slate-400 uppercase mb-2 block text-right">Pull Angle ($\theta$)</label>
                     <input
+                        id="adhesion-pull-angle"
                         type="range" min="-45" max="45" value={angle}
+                        aria-label="Pull angle in degrees"
                         onChange={(e) => setAngle(Number(e.target.value))}
                         className={`w-full h-2 rounded-lg appearance-none cursor-pointer ${isEngaged ? 'bg-emerald-500/30 accent-emerald-500' : 'bg-red-500/30 accent-red-500'}`}
                     />
@@ -24,7 +27,12 @@ export const DirectionalAdhesionDiagram = () => {
             </div>
 
             <div className="w-full h-64 bg-slate-800 rounded-xl border border-slate-700 shadow-inner relative flex items-center justify-center p-4">
-                <svg viewBox="0 0 400 200" className="w-full h-full relative z-10">
+                <AccessibleSvg
+                    viewBox="0 0 400 200"
+                    className="w-full h-full relative z-10"
+                    title="Directional gecko adhesion at pull angle"
+                    desc={`A gecko foot pad on a surface, pulled at ${angle} degrees. ${isEngaged ? 'Van der Waals forces are engaged and the pad is locked to the surface.' : 'The contact is broken and the pad is peeling away from the surface.'}`}
+                >
                     <defs>
                         <radialGradient id="vdw-glow" cx="50%" cy="50%" r="50%">
                             <stop offset="0%" stopColor="#10b981" stopOpacity="0.8" />
@@ -73,7 +81,15 @@ export const DirectionalAdhesionDiagram = () => {
                             <polygon points="0 0, 10 3.5, 0 7" fill={isEngaged ? '#10b981' : '#ef4444'} />
                         </marker>
                     </defs>
-                </svg>
+                </AccessibleSvg>
+            </div>
+
+            {/* Engagement state + pull angle surfaced as text + live region so it is not color-only (WCAG 1.4.1) */}
+            <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
+                <span className="font-semibold text-slate-400">Pull angle {angle}°: </span>
+                <span className="font-bold text-white">
+                    {isEngaged ? 'Adhesion engaged (locked)' : 'Adhesion broken (peeling)'}
+                </span>
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-emerald-500/5 rounded-full blur-[60px] pointer-events-none"></div>
         </div>

@@ -229,6 +229,7 @@ export default function MainApp({ user, onLogout }) {
 
     return (
         <div className="editorial-shell min-h-screen">
+            <a href="#main-content" className="skip-to-content-link">Skip to main content</a>
 
             <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] backdrop-blur-2xl">
                 <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
@@ -284,7 +285,7 @@ export default function MainApp({ user, onLogout }) {
                 </div>
             </header>
 
-            <main className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+            <main id="main-content" tabIndex={-1} className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
                 {!unlockedMode ? (
                     <div className="mx-auto max-w-md">
                         <div className="editorial-pill mx-auto w-fit">
@@ -367,8 +368,17 @@ export default function MainApp({ user, onLogout }) {
                         </section>
 
                         {unlockedMode === 'engineering' && (
-                            <section
+                            <div
+                                role="button"
+                                tabIndex={0}
+                                aria-label="Open the Generative Bio-Design Lab"
                                 onClick={() => navigate('/lab')}
+                                onKeyDown={(event) => {
+                                    if (event.key === 'Enter' || event.key === ' ') {
+                                        event.preventDefault()
+                                        navigate('/lab')
+                                    }
+                                }}
                                 className="group relative mt-10 cursor-pointer overflow-hidden rounded-[2.7rem] border border-[rgba(15,81,103,0.12)] bg-[linear-gradient(135deg,_rgba(17,39,49,0.98),_rgba(10,28,36,0.94))] p-8 shadow-[0_24px_60px_rgba(15,23,42,0.14)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(15,23,42,0.16)]"
                             >
                                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(200,226,236,0.14),_transparent_36%),radial-gradient(circle_at_bottom_left,_rgba(199,137,67,0.12),_transparent_32%)]"></div>
@@ -386,7 +396,7 @@ export default function MainApp({ user, onLogout }) {
                                         <ArrowRight className="h-6 w-6" />
                                     </div>
                                 </div>
-                            </section>
+                            </div>
                         )}
 
                         {(visibleRecentSection || visibleBookmarks.length > 0) && (

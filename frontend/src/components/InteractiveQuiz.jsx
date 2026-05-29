@@ -26,6 +26,28 @@ export default function InteractiveQuiz({ question, options, explanation, concep
         setSelectedOption(idx);
     };
 
+    const handleOptionKeyDown = (event, idx) => {
+        if (isSubmitted) return;
+        const total = parsedOptions.length;
+        if (total === 0) return;
+
+        let nextIdx = null;
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+            nextIdx = ((selectedOption ?? idx) + 1) % total;
+        } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+            nextIdx = ((selectedOption ?? idx) - 1 + total) % total;
+        } else if (event.key === ' ' || event.key === 'Enter') {
+            event.preventDefault();
+            handleSelect(idx);
+            return;
+        }
+
+        if (nextIdx !== null) {
+            event.preventDefault();
+            setSelectedOption(nextIdx);
+        }
+    };
+
     const handleSubmit = () => {
         if (selectedOption === null) return;
         setIsSubmitted(true);
@@ -89,11 +111,26 @@ export default function InteractiveQuiz({ question, options, explanation, concep
             <div className="p-6">
                 <p className="mb-6 text-lg font-medium text-slate-800">{question}</p>
 
-                <div className="mb-6 space-y-3">
-                    {parsedOptions.map((opt, idx) => (
+                <div className="mb-6 space-y-3" role="radiogroup" aria-label="Answer options">
+                    {parsedOptions.map((opt, idx) => {
+                        const isChecked = selectedOption === idx;
+                        const isFocusable = isChecked || (selectedOption === null && idx === 0);
+                        let resultLabel = '';
+                        if (isSubmitted && opt.isCorrect) {
+                            resultLabel = ' (correct answer)';
+                        } else if (isSubmitted && isChecked && !opt.isCorrect) {
+                            resultLabel = ' (your answer, incorrect)';
+                        }
+                        return (
                         <button
                             key={idx}
+                            type="button"
+                            role="radio"
+                            aria-checked={isChecked}
+                            aria-label={`${opt.text}${resultLabel}`}
+                            tabIndex={isSubmitted ? -1 : (isFocusable ? 0 : -1)}
                             onClick={() => handleSelect(idx)}
+                            onKeyDown={(event) => handleOptionKeyDown(event, idx)}
                             disabled={isSubmitted}
                             className={`flex w-full items-start gap-3 rounded-lg border-2 p-4 text-left transition-all duration-200 ${getOptionStyle(idx, opt.isCorrect)}`}
                         >
@@ -105,19 +142,20 @@ export default function InteractiveQuiz({ question, options, explanation, concep
                             `}>
                                 {!isSubmitted && selectedOption === idx && <div className="h-2 w-2 rounded-full bg-white" />}
                                 {isSubmitted && opt.isCorrect && (
-                                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                     </svg>
                                 )}
                                 {isSubmitted && selectedOption === idx && !opt.isCorrect && (
-                                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" focusable="false">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 )}
                             </div>
                             <span className="leading-snug">{opt.text}</span>
                         </button>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 {!isSubmitted ? (
@@ -132,7 +170,10 @@ export default function InteractiveQuiz({ question, options, explanation, concep
                         Check Answer
                     </button>
                 ) : (
-                    <div className={`animate-fade-in flex flex-col gap-4 rounded-lg border p-5
+                    <div
+                        role="status"
+                        aria-live="polite"
+                        className={`animate-fade-in flex flex-col gap-4 rounded-lg border p-5
                         ${isCorrectChoice ? 'border-emerald-200 bg-emerald-50' : 'border-rose-200 bg-rose-50'}
                     `}>
                         <div className="flex items-start gap-3">

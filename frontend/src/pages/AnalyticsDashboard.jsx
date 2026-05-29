@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Activity, ArrowRight, Brain, Flame, Users } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
@@ -103,6 +103,7 @@ function formatSignalLabel(signalId) {
 export default function AnalyticsDashboard() {
     const navigate = useNavigate()
     const [passcode, setPasscode] = useState('')
+    const passcodeInputRef = useRef(null)
     const [isAuthenticated, setIsAuthenticated] = useState(getInitialAuthState)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
@@ -116,6 +117,13 @@ export default function AnalyticsDashboard() {
     const [signalFilter, setSignalFilter] = useState('all')
     const [researchSnapshot, setResearchSnapshot] = useState(() => getResearchDashboardSnapshot())
     const [rctSnapshot, setRctSnapshot] = useState({ interventionOutcomes: [], evaluationGains: [], telemetryProfile: [] })
+
+    // Focus the passcode field when the auth gate is shown (replaces autoFocus for a11y).
+    useEffect(() => {
+        if (!isAuthenticated) {
+            passcodeInputRef.current?.focus()
+        }
+    }, [isAuthenticated])
 
     const filteredMasteryData = useMemo(() => {
         return masteryData.filter((row) => {
@@ -352,12 +360,12 @@ export default function AnalyticsDashboard() {
 
                     <form onSubmit={handleAuthenticate} className="space-y-4">
                         <input
+                            ref={passcodeInputRef}
                             type="password"
                             value={passcode}
                             onChange={(event) => setPasscode(event.target.value)}
                             placeholder="Enter researcher access code"
                             className="editorial-input text-center tracking-[0.18em]"
-                            autoFocus
                         />
                         {error && <p className="text-center text-sm font-medium text-[#8c1d1d]">{error}</p>}
                         <button

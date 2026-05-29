@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { AccessibleSvg } from './AccessibleSvg';
 
 export const FeedbackModelsDiagram = () => {
     const [step, setStep] = useState(0); // 0, 1, 2, 3
@@ -26,7 +27,7 @@ export const FeedbackModelsDiagram = () => {
             <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-200 pb-6">
                 <div>
                     <h3 className="text-xl font-bold text-slate-800 mb-1 flex items-center gap-2">
-                        <span className="text-teal-500">🔄</span> The Feedback Loop
+                        <span className="text-teal-500" aria-hidden="true">🔄</span> The Feedback Loop
                     </h3>
                     <p className="text-sm text-slate-600">Feedback is only effective if it loops back to modify future actions.</p>
                 </div>
@@ -40,7 +41,12 @@ export const FeedbackModelsDiagram = () => {
             </div>
 
             <div className="w-full h-56 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center p-4">
-                <svg viewBox="0 0 400 200" className="w-full h-full relative z-10">
+                <AccessibleSvg
+                    viewBox="0 0 400 200"
+                    className="w-full h-full relative z-10"
+                    title="Feedback loop cycle"
+                    desc={`A learner at the center is surrounded by a four-stage cycle connected by arrows: Action/Performance, Data Collection, Feedback Delivery, and Adjustment (Learning), which loops back to Action. The currently active stage is: ${steps[step].label}.`}
+                >
                     <defs>
                         <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                             <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8" />
@@ -80,7 +86,13 @@ export const FeedbackModelsDiagram = () => {
                         <circle r="4" fill="white" className="animate-[spin_4.8s_linear_infinite]" style={{ transformOrigin: '200px 100px', cy: '25', cx: '200' }} />
                     )}
 
-                </svg>
+                </AccessibleSvg>
+            </div>
+
+            {/* Active stage surfaced as text + live region (WCAG 1.4.1) */}
+            <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
+                <span className="font-semibold text-slate-600">Active stage: </span>
+                <span className="font-bold text-slate-900">{steps[step].label}</span>
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-teal-500/10 rounded-full blur-[80px] pointer-events-none"></div>
         </div>
