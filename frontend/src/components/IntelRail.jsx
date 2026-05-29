@@ -126,6 +126,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     section_id: resolvedSectionId,
+                    section_title: resolvedSectionTitle,
                     problem_id: context?.problemId,
                     stuck_reason: resolvedStuckReason,
                     api_key: apiKey
@@ -170,6 +171,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     section_id: resolvedSectionId,
+                    section_title: resolvedSectionTitle,
                     representation_type: type,
                     api_key: apiKey
                 })

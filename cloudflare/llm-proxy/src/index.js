@@ -89,9 +89,10 @@ export default {
       // --- Rail: simpler explanation ---
       if (path === '/assist/explain') {
         if (!key) return json({ explanation: noKeyMsg })
+        const topic = body.section_title || body.section_id || 'this section'
         const explanation = await openrouter(key, [
-          { role: 'system', content: 'You are BigAL, a warm, concise tutor inside an interactive textbook. Explain clearly for a struggling learner using an everyday analogy and a concrete example. Keep it under 200 words. Markdown allowed. Explain the actual topic of the named section — do not assume a specific subject.' },
-          { role: 'user', content: `Section: "${body.section_id || 'this section'}". Problem: ${body.problem_id || 'general concept'}. The student is stuck (reason: ${body.stuck_reason || 'unknown'}). Give a simpler, step-by-step explanation.` },
+          { role: 'system', content: 'You are BigAL, a warm, concise tutor inside an interactive textbook. Explain clearly for a struggling learner using an everyday analogy and a concrete example. Keep it under 200 words. Markdown allowed. Explain the actual topic given by its TITLE — do not reinterpret it from a URL slug or assume a different subject.' },
+          { role: 'user', content: `Section title: "${topic}" (id: ${body.section_id || 'n/a'}). Problem: ${body.problem_id || 'general concept'}. The student is stuck (reason: ${body.stuck_reason || 'unknown'}). Give a simpler, step-by-step explanation of THIS topic.` },
         ], { model, temperature: 0.7, maxTokens: 500 })
         return json({ explanation })
       }
@@ -106,9 +107,10 @@ export default {
           visual: 'an ASCII / diagram-style sketch with labels',
           formula: 'the key formulas or rules, each with a one-line plain-language explanation',
         }[type] || 'a concise alternate representation'
+        const topic = body.section_title || body.section_id || 'this section'
         const content = await openrouter(key, [
-          { role: 'system', content: 'You produce concise alternate representations of textbook concepts. Be specific to the actual topic of the named section; never assume statics/equilibrium. Markdown allowed.' },
-          { role: 'user', content: `For the section "${body.section_id || 'this section'}", produce ${guide}.` },
+          { role: 'system', content: 'You produce concise alternate representations of textbook concepts. Be specific to the actual topic given by its TITLE; do not reinterpret it from a URL slug, and never assume statics/equilibrium. Markdown allowed.' },
+          { role: 'user', content: `For the section titled "${topic}" (id: ${body.section_id || 'n/a'}), produce ${guide}.` },
         ], { model, temperature: 0.6, maxTokens: 600 })
         return json({ content, type })
       }
@@ -123,8 +125,10 @@ export default {
           { role: 'user', content: String(body.query || '') },
         ]
         const text = await openrouter(key, messages, { model, temperature: 0.6, maxTokens: 900 })
-        // ChatWidget renders { text } via its generic branch.
-        return json({ intent: 'learn', text })
+        // No recognized `intent` -> ChatWidget renders `text` via its generic
+        // <p> branch. (intent:'learn' would route to LearnIntentCard, which
+        // expects structured fields and would drop a plain answer.)
+        return json({ intent: 'answer', text })
       }
 
       // --- Everything else: proxy to the FastAPI backend as-is ---
