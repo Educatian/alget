@@ -25,9 +25,9 @@ import ConceptRef from './ConceptRef'
 // directly from the live preference. Wider defaults than the legacy 76ch let a
 // textbook use more of the viewport at >=1280px while keeping a sane measure.
 const READING_WIDTH_MEASURE = {
-    narrow: '64ch',
-    standard: '78ch',
-    wide: '92ch',
+    narrow: '74ch',
+    standard: '92ch',
+    wide: '118ch',
 }
 const DEFAULT_READING_MEASURE = READING_WIDTH_MEASURE.standard
 

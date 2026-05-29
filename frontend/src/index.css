@@ -37,8 +37,8 @@
      (readingPrefs.js) overrides this live; defaults to the "Standard" option.
      Block-level visuals (tables, figures, worked examples) break out wider via
      --reading-breakout so textbook content is not boxed into the text column. */
-  --reading-width: 78ch;
-  --reading-breakout: 64rem;
+  --reading-width: 92ch;
+  --reading-breakout: 74rem;
   --reading-letter-spacing: 0em;
   --reading-word-spacing: 0em;
   --reading-paragraph-spacing: 1.35rem;
@@ -629,7 +629,7 @@ h6,
 }
 
 .reading-narrative {
-  max-width: min(var(--reading-width, 76ch), 100%);
+  max-width: min(var(--reading-width, 92ch), 100%);
   margin-right: auto;
   margin-left: auto;
   color: var(--ath-text);

@@ -13,7 +13,8 @@ import {
     Network,
     PanelRightClose,
     PanelRightOpen,
-    Search
+    Search,
+    LayoutDashboard
 } from 'lucide-react'
 import { getStreak } from '../lib/streak'
 import { useToast } from '../lib/toastContext'
@@ -479,7 +480,8 @@ export default function BookLayout({ user, onLogout }) {
                                 <button
                                     type="button"
                                     className="hidden md:flex items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.8)] px-2.5 py-1.5 shadow-sm transition-all hover:bg-[var(--ath-panel)] hover:shadow-md"
-                                    aria-label="Open social presence"
+                                    aria-label="See classmates online (live presence)"
+                                    title="Classmates online"
                                 >
                                     <span className={`inline-flex h-2.5 w-2.5 rounded-full ${socialState.connected ? 'bg-emerald-500' : 'bg-slate-300'}`}></span>
                                     <div className="flex -space-x-2">
@@ -554,8 +556,8 @@ export default function BookLayout({ user, onLogout }) {
                                 ? 'bg-[var(--ath-panel-muted)] text-[var(--ath-muted)] hover:bg-[rgba(200,226,236,0.45)]'
                                 : 'border border-[rgba(15,81,103,0.12)] bg-[rgba(200,226,236,0.35)] text-[var(--ath-primary)] hover:bg-[rgba(200,226,236,0.5)]'
                                 }`}
-                            aria-label={railOpen ? 'Close support rail' : 'Open support rail'}
-                            title={railOpen ? 'Close support' : 'Open support'}
+                            aria-label={railOpen ? 'Close the AI help panel' : 'Open the AI help panel (hints, tutor, explanations)'}
+                            title={railOpen ? 'Close AI help' : 'AI help & hints'}
                         >
                             {railOpen ? <PanelRightClose className="h-4 w-4" aria-hidden="true" /> : <PanelRightOpen className="h-4 w-4" aria-hidden="true" />}
                         </button>
@@ -590,8 +592,8 @@ export default function BookLayout({ user, onLogout }) {
                                 <button
                                     type="button"
                                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-secondary)] shadow-sm transition-all hover:bg-[rgba(200,226,236,0.35)] hover:text-[var(--ath-primary)]"
-                                    title="Brain Network"
-                                    aria-label="Open chapter brain network"
+                                    title="Concept map"
+                                    aria-label="Open the concept map for this chapter"
                                 >
                                     <Network className="h-4 w-4" />
                                 </button>
@@ -619,16 +621,16 @@ export default function BookLayout({ user, onLogout }) {
                         <button
                             onClick={() => navigate('/dashboard')}
                             className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"
-                            title="My mastery dashboard"
-                            aria-label="Open my mastery dashboard"
+                            title="My progress"
+                            aria-label="Open my progress dashboard"
                         >
-                            <Home className="h-4 w-4" aria-hidden="true" />
+                            <LayoutDashboard className="h-4 w-4" aria-hidden="true" />
                         </button>
                         <button
                             onClick={() => navigate('/analytics')}
                             className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-secondary)] transition-all hover:bg-[rgba(255,255,255,0.85)] hover:text-[var(--ath-text)]"
-                            title="Research Console"
-                            aria-label="Open research console"
+                            title="Learning analytics"
+                            aria-label="Open learning analytics"
                         >
                             <BarChart3 className="h-4 w-4" aria-hidden="true" />
                         </button>
@@ -653,7 +655,7 @@ export default function BookLayout({ user, onLogout }) {
             </header>
 
             <div className="relative flex min-h-0 flex-1 overflow-hidden">
-                <aside className="hidden xl:block min-h-0 w-72 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
+                <aside className="hidden xl:block min-h-0 w-64 shrink-0 overflow-y-auto border-r border-[var(--ath-line)] bg-[rgba(240,237,230,0.72)] backdrop-blur-3xl">
                     {tocError ? (
                         <div className="m-4 rounded-2xl border border-[rgba(220,38,38,0.25)] bg-[rgba(254,242,242,0.85)] p-4 text-sm">
                             <p className="font-semibold text-[var(--ath-text)]">Couldn't load chapter list</p>

@@ -6,10 +6,10 @@ export default function AffectiveReaction({ sectionId, conceptIds = [] }) {
     const [selected, setSelected] = useState(null);
 
     const reactions = [
-        { id: 'affect_insight', symbol: 'IN', label: 'Got It!', color: 'text-yellow-500', bg: 'bg-yellow-50' },
-        { id: 'affect_engaged', symbol: 'EN', label: 'Interesting', color: 'text-indigo-500', bg: 'bg-indigo-50' },
-        { id: 'affect_confused', symbol: 'CF', label: 'Confusing', color: 'text-rose-500', bg: 'bg-rose-50' },
-        { id: 'affect_disengaged', symbol: 'BR', label: 'Boring', color: 'text-slate-500', bg: 'bg-slate-50' }
+        { id: 'affect_insight', symbol: '💡', label: 'Got it', color: 'text-yellow-500', bg: 'bg-yellow-50' },
+        { id: 'affect_engaged', symbol: '🤔', label: 'Interesting', color: 'text-indigo-500', bg: 'bg-indigo-50' },
+        { id: 'affect_confused', symbol: '❓', label: 'Confusing', color: 'text-rose-500', bg: 'bg-rose-50' },
+        { id: 'affect_disengaged', symbol: '😴', label: 'Boring', color: 'text-slate-500', bg: 'bg-slate-50' }
     ];
 
     const handleSelect = async (reaction) => {
@@ -48,8 +48,8 @@ export default function AffectiveReaction({ sectionId, conceptIds = [] }) {
                             }`}
                             aria-label={reaction.label}
                         >
-                            <span className="text-[11px] font-bold uppercase tracking-[0.18em]">{reaction.symbol}</span>
-                            <span className={`whitespace-nowrap text-sm ${isSelected ? 'block' : 'hidden md:block'}`}>
+                            <span className="text-base leading-none" aria-hidden="true">{reaction.symbol}</span>
+                            <span className="whitespace-nowrap text-sm font-medium">
                                 {reaction.label}
                             </span>
                         </button>
