@@ -2,7 +2,9 @@ import { Suspense, lazy, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { supabase } from './lib/supabase'
 import { initSession, endSession } from './lib/loggingService'
-import { replayPendingResearchPersists } from './lib/researchService'
+import { replayPendingResearchPersists, clearResearchCaches } from './lib/researchService'
+import { clearLocalLearnerCaches } from './lib/knowledgeService'
+import { clearStreak } from './lib/streak'
 import { safeSessionStorageGet, safeLocalStorageGet, safeLocalStorageRemove } from './lib/browserStorage'
 import { DEMO_SESSION_KEY } from './lib/demoSession'
 import { ToastProvider } from './lib/toast.jsx'
@@ -106,6 +108,12 @@ export default function App() {
     // demo identity on reload (readDemoUser would otherwise win and mask it,
     // misattributing all subsequent writes to the demo user id).
     safeLocalStorageRemove(DEMO_SESSION_KEY)
+    // Wipe the previous identity's unscoped local caches (mastery, adaptive
+    // signals, research model/streak) so a new user on a shared browser can't
+    // inherit them; they rebuild from the cloud.
+    clearLocalLearnerCaches()
+    clearResearchCaches()
+    clearStreak()
     setUser(user)
     initSession(user)
   }
@@ -113,6 +121,9 @@ export default function App() {
   const handleLogout = async () => {
     await endSession()
     safeLocalStorageRemove(DEMO_SESSION_KEY)
+    clearLocalLearnerCaches()
+    clearResearchCaches()
+    clearStreak()
     await supabase.auth.signOut()
     setUser(null)
   }
