@@ -4,7 +4,7 @@ import { supabase } from './lib/supabase'
 import { initSession, endSession } from './lib/loggingService'
 import { replayPendingResearchPersists } from './lib/researchService'
 import { safeSessionStorageGet, safeLocalStorageGet, safeLocalStorageRemove } from './lib/browserStorage'
-import { DEMO_SESSION_KEY } from './components/AuthModal'
+import { DEMO_SESSION_KEY } from './lib/demoSession'
 import { ToastProvider } from './lib/toast.jsx'
 import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
@@ -64,9 +64,9 @@ export default function App() {
     }
 
     // Persisted demo session: stay signed in as the demo user without Supabase,
-    // and do NOT let getSession() overwrite it with null.
+    // and do NOT let getSession() overwrite it with null. (loading is already
+    // initialized false when a demo session exists, so no setState needed here.)
     if (readDemoUser()) {
-      setLoading(false)
       return undefined
     }
 
