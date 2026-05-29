@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ToastContext } from './toastContext'
+import { prefersReducedMotion } from './motion'
 
 /**
  * Toast - global ephemeral feedback. Replaces silent `console.warn` for
@@ -17,6 +18,11 @@ import { ToastContext } from './toastContext'
 
 const DEFAULT_DURATION = 5000
 const MAX_VISIBLE = 4
+// Keep the leaving toast mounted long enough for the reversed enter transition
+// (translate + fade out, duration-200) to play before it is removed from state.
+// Under prefers-reduced-motion the global CSS clamps the transition to ~0ms, so
+// we collapse the wait to a single frame and the toast just disappears.
+const EXIT_DURATION = 200
 
 export function ToastProvider({ children }) {
     const [toasts, setToasts] = useState([])
@@ -39,11 +45,8 @@ export function ToastProvider({ children }) {
             onAction: options.onAction || null,
         }
         setToasts((prev) => [...prev.slice(-(MAX_VISIBLE - 1)), toast])
-        if (!toast.persistent && toast.duration > 0) {
-            setTimeout(() => dismiss(id), toast.duration)
-        }
         return id
-    }, [dismiss])
+    }, [])
 
     const api = useMemo(() => ({
         success: (msg, opts) => push(msg, { ...opts, tone: 'success' }),
@@ -79,16 +82,43 @@ function ToastViewport({ toasts, dismiss }) {
 
 function ToastItem({ toast, onDismiss }) {
     const [enter, setEnter] = useState(false)
+    const [leaving, setLeaving] = useState(false)
+    const exitTimerRef = useRef(null)
+
     useEffect(() => {
         const id = requestAnimationFrame(() => setEnter(true))
         return () => cancelAnimationFrame(id)
     }, [])
 
+    useEffect(() => () => {
+        if (exitTimerRef.current) clearTimeout(exitTimerRef.current)
+    }, [])
+
+    // Play the reversed enter transition, then remove the toast from state.
+    // Guard against double-trigger so a quick second click does not stack timers.
+    const requestDismiss = useCallback(() => {
+        if (leaving) return
+        setLeaving(true)
+        const delay = prefersReducedMotion() ? 0 : EXIT_DURATION
+        exitTimerRef.current = setTimeout(onDismiss, delay)
+    }, [leaving, onDismiss])
+
+    // Auto-dismiss lives on the item (not the provider) so it routes through the
+    // same leaving animation instead of snapping the toast out of the array.
+    useEffect(() => {
+        if (toast.persistent || !(toast.duration > 0)) return undefined
+        const id = setTimeout(requestDismiss, toast.duration)
+        return () => clearTimeout(id)
+    }, [toast.persistent, toast.duration, requestDismiss])
+
     const tone = TONE_STYLES[toast.tone] || TONE_STYLES.info
+    // Leaving reuses the same offset/opacity the toast had before it entered, so
+    // the exit is a clean reverse of the entrance rather than a snap-out.
+    const visible = enter && !leaving
     return (
         <div
             className={`pointer-events-auto flex items-start gap-3 rounded-2xl border px-4 py-3 text-sm shadow-lg backdrop-blur-md transition-all duration-200 ${
-                enter ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+                visible ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
             } ${tone.shell}`}
             role={toast.tone === 'error' ? 'alert' : 'status'}
         >
@@ -97,7 +127,7 @@ function ToastItem({ toast, onDismiss }) {
             {toast.actionLabel && toast.onAction && (
                 <button
                     type="button"
-                    onClick={() => { toast.onAction(); onDismiss() }}
+                    onClick={() => { toast.onAction(); requestDismiss() }}
                     className="rounded-full border border-current px-2.5 py-0.5 text-xs font-semibold transition-colors hover:bg-white/40"
                 >
                     {toast.actionLabel}
@@ -105,7 +135,7 @@ function ToastItem({ toast, onDismiss }) {
             )}
             <button
                 type="button"
-                onClick={onDismiss}
+                onClick={requestDismiss}
                 aria-label="Dismiss notification"
                 className="text-xs opacity-60 transition-opacity hover:opacity-100"
             >
@@ -117,7 +147,7 @@ function ToastItem({ toast, onDismiss }) {
 
 const TONE_STYLES = {
     success: {
-        shell: 'border-emerald-300 bg-emerald-50/95 text-emerald-900',
+        shell: 'border-[color-mix(in_srgb,var(--ath-primary)_36%,transparent)] bg-[color-mix(in_srgb,var(--ath-primary)_10%,var(--ath-panel))] text-[var(--ath-primary-deep)]',
         glyph: 'OK',
     },
     error: {

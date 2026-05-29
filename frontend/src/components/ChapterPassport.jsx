@@ -56,7 +56,7 @@ export default function ChapterPassport({
                             <div
                                 key={chapter.id}
                                 className={`flex aspect-square flex-col items-center justify-center rounded-2xl border text-center transition-all ${complete
-                                    ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+                                    ? 'border-[color-mix(in_srgb,var(--ath-success)_35%,transparent)] bg-[var(--ath-success-soft)] text-[var(--ath-success)]'
                                     : active
                                         ? 'border-[var(--ath-primary-soft)] bg-[rgba(200,226,236,0.48)] text-[var(--ath-primary)]'
                                         : 'border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-muted)]'

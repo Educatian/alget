@@ -414,7 +414,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                         )}
                     </div>
                 ) : (
-                    <div className={`mt-6 rounded-[1.3rem] p-5 ${
+                    <div className={`animate-fade-in mt-6 rounded-[1.3rem] p-5 ${
                         currentResult.is_correct
                             ? 'border border-emerald-200 bg-emerald-50/70'
                             : 'border border-[rgba(186,26,26,0.12)] bg-[rgba(255,218,214,0.72)]'

@@ -346,7 +346,7 @@ export default function AnalyticsDashboard() {
     if (!isAuthenticated) {
         return (
             <div className="editorial-shell flex min-h-screen items-center justify-center p-4">
-                <div className="editorial-surface w-full max-w-md p-8">
+                <div className="animate-fade-in editorial-surface w-full max-w-md p-8">
                     <div className="mb-8 text-center">
                         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--ath-primary),var(--ath-primary-deep))] text-white shadow-[0_18px_36px_rgba(9,56,72,0.2)]">
                             <Brain className="h-8 w-8" />

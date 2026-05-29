@@ -281,7 +281,7 @@ export default function OnboardingTour() {
         : { position: 'fixed', top: cardPos.top, left: cardPos.left, width: CARD_WIDTH, maxWidth: 'calc(100vw - 24px)' }
 
     const cardClass = isCentered
-        ? 'w-full max-w-md rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-6 shadow-xl'
+        ? 'animate-fade-in w-full max-w-md rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-6 shadow-xl'
         : 'rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-6 shadow-xl'
 
     const cardInner = (

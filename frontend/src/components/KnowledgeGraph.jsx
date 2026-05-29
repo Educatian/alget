@@ -299,28 +299,31 @@ export default function KnowledgeGraph({
     }, [course, currentSectionId, serializedCurrentConcepts])
 
     if (loading) {
-        return <div className="text-center p-6 text-slate-400 animate-pulse text-xs">Loading brain network…</div>
+        return <div className="text-center p-6 motion-safe:animate-pulse text-xs" style={{ color: 'var(--ath-muted)' }}>Loading brain network…</div>
     }
 
     if (error) {
-        return <div className="text-center p-6 text-red-400 text-xs">Failed to load brain network.</div>
+        return <div className="text-center p-6 text-xs" style={{ color: 'var(--ath-danger)' }}>Failed to load brain network.</div>
     }
 
     if (!graphData || graphData.nodes.length === 0) {
-        return <div className="text-center p-6 text-slate-400 text-xs">No connected concepts found yet.</div>
+        return <div className="text-center p-6 text-xs" style={{ color: 'var(--ath-muted)' }}>No connected concepts found yet.</div>
     }
 
+    // Status -> design token. focus=primary, mastered=success, emerging=warning,
+    // unknown=muted. Strokes are a soft (tinted) ring of the same token so the
+    // nodes read correctly in both light and dark themes.
     const getNodeFill = (node) => {
-        if (node.is_current) return '#6366f1'
-        if (node.status === 'mastered') return '#10b981'
-        if (node.status === 'emerging') return '#fbbf24'
-        return '#94a3b8'
+        if (node.is_current) return 'var(--ath-primary)'
+        if (node.status === 'mastered') return 'var(--ath-success)'
+        if (node.status === 'emerging') return 'var(--ath-warning)'
+        return 'var(--ath-muted)'
     }
     const getNodeStroke = (node) => {
-        if (node.is_current) return 'rgba(199, 210, 254, 0.85)'
-        if (node.status === 'mastered') return 'rgba(167, 243, 208, 0.65)'
-        if (node.status === 'emerging') return 'rgba(254, 215, 170, 0.55)'
-        return 'rgba(203, 213, 225, 0.45)'
+        if (node.is_current) return 'color-mix(in srgb, var(--ath-primary) 55%, transparent)'
+        if (node.status === 'mastered') return 'color-mix(in srgb, var(--ath-success) 45%, transparent)'
+        if (node.status === 'emerging') return 'color-mix(in srgb, var(--ath-warning) 45%, transparent)'
+        return 'color-mix(in srgb, var(--ath-muted) 40%, transparent)'
     }
     const radiusFor = (node) => (node.is_current ? 11 : node.status === 'mastered' ? 9 : node.status === 'emerging' ? 8 : 7)
 
@@ -328,26 +331,32 @@ export default function KnowledgeGraph({
     const focusedChapterTitle = graphData.nodes[0]?.chapter_title || ''
 
     return (
-        <div className="knowledge-graph-mount bg-slate-950 rounded-2xl p-4 shadow-xl overflow-hidden relative border border-slate-800">
-            <div className="mb-3 flex flex-wrap items-center gap-2 text-[11px] text-slate-400">
-                <h3 className="mr-auto text-white font-semibold text-sm">
+        <div className="knowledge-graph-mount rounded-2xl p-4 shadow-xl overflow-hidden relative" style={{ background: 'var(--ath-panel)', border: '1px solid var(--ath-line)' }}>
+            <div className="mb-3 flex flex-wrap items-center gap-2 text-[11px]" style={{ color: 'var(--ath-muted)' }}>
+                <h3 className="mr-auto font-semibold text-sm" style={{ color: 'var(--ath-text)' }}>
                     Brain Network
                     {focusedChapterTitle && (
-                        <span className="ml-1.5 font-medium text-slate-500">· {focusedChapterTitle}</span>
+                        <span className="ml-1.5 font-medium" style={{ color: 'var(--ath-muted)' }}>· {focusedChapterTitle}</span>
                     )}
                 </h3>
-                <span className="rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-semibold text-slate-400">
+                <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold" style={{ background: 'var(--ath-panel-muted)', color: 'var(--ath-muted)' }}>
                     {nodeCount} concept{nodeCount === 1 ? '' : 's'}
                 </span>
                 <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1" title="Current focus"><span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />Focus</span>
-                    <span className="inline-flex items-center gap-1" title="Developing"><span className="h-1.5 w-1.5 rounded-full bg-amber-400" />Dev</span>
-                    <span className="inline-flex items-center gap-1" title="Stable"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />Stable</span>
-                    <span className="inline-flex items-center gap-1" title="Evidence needed"><span className="h-1.5 w-1.5 rounded-full bg-slate-400" />Need</span>
+                    <span className="inline-flex items-center gap-1" title="Current focus"><span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--ath-primary)' }} />Focus</span>
+                    <span className="inline-flex items-center gap-1" title="Developing"><span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--ath-warning)' }} />Dev</span>
+                    <span className="inline-flex items-center gap-1" title="Stable"><span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--ath-success)' }} />Stable</span>
+                    <span className="inline-flex items-center gap-1" title="Evidence needed"><span className="h-1.5 w-1.5 rounded-full" style={{ background: 'var(--ath-muted)' }} />Need</span>
                 </div>
             </div>
 
-            <div className="relative w-full overflow-hidden rounded-xl border border-slate-800 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.10),transparent_40%),linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98))]">
+            <div
+                className="relative w-full overflow-hidden rounded-xl"
+                style={{
+                    border: '1px solid var(--ath-line)',
+                    background: 'radial-gradient(circle at top, color-mix(in srgb, var(--ath-primary) 12%, transparent), transparent 40%), var(--ath-panel-muted)',
+                }}
+            >
                 <svg
                     ref={svgRef}
                     viewBox={`0 0 ${graphData.width} ${graphData.height}`}
@@ -362,7 +371,7 @@ export default function KnowledgeGraph({
                 >
                     <defs>
                         <pattern id="graph-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-                            <path d="M 24 0 L 0 0 0 24" fill="none" stroke="rgba(148,163,184,0.05)" strokeWidth="1" />
+                            <path d="M 24 0 L 0 0 0 24" fill="none" stroke="color-mix(in srgb, var(--ath-muted) 18%, transparent)" strokeWidth="1" />
                         </pattern>
                     </defs>
 
@@ -388,7 +397,7 @@ export default function KnowledgeGraph({
                                     y1={sourceNode.y}
                                     x2={targetNode.x}
                                     y2={targetNode.y}
-                                    stroke={isHighlighted ? 'rgba(129,140,248,0.55)' : 'rgba(148,163,184,0.18)'}
+                                    stroke={isHighlighted ? 'color-mix(in srgb, var(--ath-primary) 55%, transparent)' : 'color-mix(in srgb, var(--ath-muted) 22%, transparent)'}
                                     strokeWidth={isHighlighted ? 1.5 : 0.75}
                                 />
                             )
@@ -417,7 +426,7 @@ export default function KnowledgeGraph({
                                     role="button"
                                     tabIndex={0}
                                     aria-label={`${label} · ${describeNodeStatus(node)}`}
-                                    className={`${dragging?.id === node.id ? 'cursor-grabbing' : 'cursor-pointer'} focus:outline-none focus:[&_circle]:stroke-indigo-200`}
+                                    className={`${dragging?.id === node.id ? 'cursor-grabbing' : 'cursor-pointer'} focus:outline-none focus:[&_circle]:stroke-[var(--ath-primary)]`}
                                 >
                                     <circle
                                         r={radius}
@@ -433,10 +442,10 @@ export default function KnowledgeGraph({
                                                 width={Math.max(60, label.length * 5.4 + 10)}
                                                 height="14"
                                                 rx="3"
-                                                fill="rgba(15,23,42,0.92)"
-                                                stroke="rgba(148,163,184,0.18)"
+                                                fill="var(--ath-surface-strong)"
+                                                stroke="var(--ath-line)"
                                             />
-                                            <text x="4" y="0" fill="#e2e8f0" fontSize="9" fontWeight="600">
+                                            <text x="4" y="0" fill="var(--ath-text)" fontSize="9" fontWeight="600">
                                                 {label}
                                             </text>
                                         </g>
@@ -448,13 +457,14 @@ export default function KnowledgeGraph({
                 </svg>
 
                 {/* Zoom controls */}
-                <div className="absolute right-2 top-2 flex flex-col gap-1 rounded-lg border border-slate-800 bg-slate-900/85 p-1 shadow-md backdrop-blur-sm">
+                <div className="absolute right-2 top-2 flex flex-col gap-1 rounded-lg p-1 shadow-md backdrop-blur-sm" style={{ border: '1px solid var(--ath-line)', background: 'var(--ath-surface-strong)' }}>
                     <button
                         type="button"
                         onClick={() => setZoom((current) => Math.min(3, current * 1.2))}
                         title="Zoom in"
                         aria-label="Zoom in"
-                        className="flex h-6 w-6 items-center justify-center rounded text-slate-300 hover:bg-slate-800 hover:text-white"
+                        className="flex h-6 w-6 items-center justify-center rounded hover:bg-[var(--ath-panel-muted)]"
+                        style={{ color: 'var(--ath-muted)' }}
                     >
                         <Plus className="h-3.5 w-3.5" />
                     </button>
@@ -463,7 +473,8 @@ export default function KnowledgeGraph({
                         onClick={() => setZoom((current) => Math.max(0.4, current * 0.83))}
                         title="Zoom out"
                         aria-label="Zoom out"
-                        className="flex h-6 w-6 items-center justify-center rounded text-slate-300 hover:bg-slate-800 hover:text-white"
+                        className="flex h-6 w-6 items-center justify-center rounded hover:bg-[var(--ath-panel-muted)]"
+                        style={{ color: 'var(--ath-muted)' }}
                     >
                         <Minus className="h-3.5 w-3.5" />
                     </button>
@@ -472,12 +483,13 @@ export default function KnowledgeGraph({
                         onClick={resetView}
                         title="Reset view"
                         aria-label="Reset zoom and pan"
-                        className="flex h-6 w-6 items-center justify-center rounded text-slate-300 hover:bg-slate-800 hover:text-white"
+                        className="flex h-6 w-6 items-center justify-center rounded hover:bg-[var(--ath-panel-muted)]"
+                        style={{ color: 'var(--ath-muted)' }}
                     >
                         <RotateCcw className="h-3 w-3" />
                     </button>
                 </div>
-                <div className="absolute left-2 bottom-2 rounded bg-slate-900/85 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                <div className="absolute left-2 bottom-2 rounded px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.16em]" style={{ background: 'var(--ath-surface-strong)', color: 'var(--ath-muted)' }}>
                     drag · scroll to zoom
                 </div>
             </div>

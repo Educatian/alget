@@ -390,7 +390,7 @@ export default function KnowledgeCheck({
                         })}
 
                         {isAnswered && (
-                            <div role="status" aria-live="polite" className="mt-5 rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
+                            <div role="status" aria-live="polite" className="animate-fade-in mt-5 rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
                                 <p className={`text-sm font-semibold ${selectedOptionId === currentQuestion.correct_option_id ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
                                     {selectedOptionId === currentQuestion.correct_option_id ? 'Correct' : 'Needs Another Pass'}
                                 </p>
@@ -471,7 +471,7 @@ export default function KnowledgeCheck({
                         )}
 
                         {isAnswered && summaryFeedback && (
-                            <div role="status" aria-live="polite" className="rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
+                            <div role="status" aria-live="polite" className="animate-fade-in rounded-[1.3rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-5">
                                 <div className="flex flex-wrap items-start justify-between gap-3">
                                     <p className={`text-sm font-semibold ${summaryFeedback.is_passing ? 'text-emerald-700' : 'text-[#8c1d1d]'}`}>
                                         {summaryFeedback.is_passing ? 'Passing Response' : 'Needs More Specificity'}
