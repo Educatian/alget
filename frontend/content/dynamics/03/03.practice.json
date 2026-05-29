@@ -1,127 +1,127 @@
 {
-  "problems": [
-    {
-      "id": "rolling_speed_numeric",
-      "type": "numeric",
-      "stem": "A solid disk rolls without slipping from rest down a 1.5 m vertical drop. Find its speed at the bottom.",
-      "final_answer": {
-        "value": 4.43,
-        "unit": "m/s",
-        "tolerance": 0.1
-      },
-      "difficulty": "hard",
-      "concept_ids": [
-        "rolling_motion",
-        "conservation_of_energy",
-        "rotational_kinetic_energy"
-      ]
-    },
-    {
-      "id": "rotational_ke_numeric",
-      "type": "numeric",
-      "stem": "A rigid body has I_G = 0.6 kg*m^2 and angular speed 8 rad/s. Find its rotational kinetic energy.",
-      "final_answer": {
-        "value": 19.2,
-        "unit": "J",
-        "tolerance": 0.1
-      },
-      "difficulty": "easy",
-      "concept_ids": [
-        "rotational_kinetic_energy"
-      ]
-    },
-    {
-      "id": "rigid_body_total_ke_numeric",
-      "type": "numeric",
-      "stem": "A 4 kg body moves with center-of-mass speed 3 m/s and has I_G = 0.5 kg*m^2 with omega = 6 rad/s. Find its total kinetic energy.",
-      "final_answer": {
-        "value": 36,
-        "unit": "J",
-        "tolerance": 0.1
-      },
-      "difficulty": "medium",
-      "concept_ids": [
-        "rotational_kinetic_energy",
-        "conservation_of_energy"
-      ]
-    },
-    {
-      "id": "rolling_constraint_concept",
-      "type": "multiple_choice",
-      "stem": "What does the rolling-without-slipping relation v = r omega allow you to do in an energy solution?",
-      "options": [
-        "Ignore rotational energy",
-        "Replace translation with a force balance",
-        "Express both translational and rotational energy in one variable",
-        "Assume the body has zero acceleration"
-      ],
-      "correct_index": 2,
-      "explanation": "Correct. The rolling constraint links the linear and angular motion so that the total kinetic energy can be written in terms of either v or omega.",
-      "difficulty": "medium",
-      "concept_ids": [
-        "rolling_motion",
-        "rotational_kinetic_energy"
-      ],
-      "misconception_id": "rolling_constraint_unused"
-    },
-    {
-      "id": "rolling_energy_steps",
-      "type": "step_based",
-      "stem": "A 3 kg hoop rolls without slipping down a 1.2 m height from rest. Find the final speed. Use I_G = m r^2 for a hoop.",
-      "steps": [
+    "problems": [
         {
-          "step_id": 1,
-          "description": "Write the energy equation m g h = 1/2 m v^2 + 1/2 I_G omega^2.",
-          "expected_value": 35.316,
-          "unit": "J",
-          "tolerance": 0.2
+            "id": "rolling_speed_numeric",
+            "type": "numeric",
+            "stem": "A solid disk rolls without slipping from rest down a 1.5 m vertical drop. Find its speed at the bottom.",
+            "final_answer": {
+                "value": 4.43,
+                "unit": "m/s",
+                "tolerance": 0.1
+            },
+            "difficulty": "hard",
+            "concept_ids": [
+                "rolling_motion",
+                "conservation_of_energy",
+                "rotational_kinetic_energy"
+            ]
         },
         {
-          "step_id": 2,
-          "description": "Substitute I_G = m r^2 and v = r omega to reduce the right side to m v^2.",
-          "expected_value": 35.316,
-          "unit": "J",
-          "tolerance": 0.2
+            "id": "rotational_ke_numeric",
+            "type": "numeric",
+            "stem": "A rigid body has I_G = 0.6 kg*m^2 and angular speed 8 rad/s. Find its rotational kinetic energy.",
+            "final_answer": {
+                "value": 19.2,
+                "unit": "J",
+                "tolerance": 0.1
+            },
+            "difficulty": "easy",
+            "concept_ids": [
+                "rotational_kinetic_energy"
+            ]
         },
         {
-          "step_id": 3,
-          "description": "Solve for v.",
-          "expected_value": 5.94,
-          "unit": "m/s",
-          "tolerance": 0.1
+            "id": "rigid_body_total_ke_numeric",
+            "type": "numeric",
+            "stem": "A 4 kg body moves with center-of-mass speed 3 m/s and has I_G = 0.5 kg*m^2 with omega = 6 rad/s. Find its total kinetic energy.",
+            "final_answer": {
+                "value": 27,
+                "unit": "J",
+                "tolerance": 0.1
+            },
+            "difficulty": "medium",
+            "concept_ids": [
+                "rotational_kinetic_energy",
+                "conservation_of_energy"
+            ]
+        },
+        {
+            "id": "rolling_constraint_concept",
+            "type": "multiple_choice",
+            "stem": "What does the rolling-without-slipping relation v = r omega allow you to do in an energy solution?",
+            "options": [
+                "Ignore rotational energy",
+                "Replace translation with a force balance",
+                "Express both translational and rotational energy in one variable",
+                "Assume the body has zero acceleration"
+            ],
+            "correct_index": 2,
+            "explanation": "Correct. The rolling constraint links the linear and angular motion so that the total kinetic energy can be written in terms of either v or omega.",
+            "difficulty": "medium",
+            "concept_ids": [
+                "rolling_motion",
+                "rotational_kinetic_energy"
+            ],
+            "misconception_id": "rolling_constraint_unused"
+        },
+        {
+            "id": "rolling_energy_steps",
+            "type": "step_based",
+            "stem": "A 3 kg hoop rolls without slipping down a 1.2 m height from rest. Find the final speed. Use I_G = m r^2 for a hoop.",
+            "steps": [
+                {
+                    "step_id": 1,
+                    "description": "Write the energy equation m g h = 1/2 m v^2 + 1/2 I_G omega^2.",
+                    "expected_value": 35.316,
+                    "unit": "J",
+                    "tolerance": 0.2
+                },
+                {
+                    "step_id": 2,
+                    "description": "Substitute I_G = m r^2 and v = r omega to reduce the right side to m v^2.",
+                    "expected_value": 35.316,
+                    "unit": "J",
+                    "tolerance": 0.2
+                },
+                {
+                    "step_id": 3,
+                    "description": "Solve for v.",
+                    "expected_value": 3.43,
+                    "unit": "m/s",
+                    "tolerance": 0.1
+                }
+            ],
+            "final_answer": {
+                "value": 3.43,
+                "unit": "m/s",
+                "tolerance": 0.1
+            },
+            "difficulty": "hard",
+            "concept_ids": [
+                "rolling_motion",
+                "conservation_of_energy",
+                "rotational_kinetic_energy"
+            ]
+        },
+        {
+            "id": "translation_rotation_concept",
+            "type": "multiple_choice",
+            "stem": "Why does a rolling disk typically reach the bottom of a ramp more slowly than a sliding particle descending the same height?",
+            "options": [
+                "Because rolling bodies experience less gravity",
+                "Because some of the potential-energy drop becomes rotational kinetic energy",
+                "Because the disk has no translational kinetic energy",
+                "Because angular speed cancels gravitational effects"
+            ],
+            "correct_index": 1,
+            "explanation": "Exactly. The rolling disk has to pay part of the energy budget into rotation, so the remaining translational speed is lower.",
+            "difficulty": "medium",
+            "concept_ids": [
+                "conservation_of_energy",
+                "rotational_kinetic_energy",
+                "rolling_motion"
+            ],
+            "misconception_id": "missing_rotational_ke"
         }
-      ],
-      "final_answer": {
-        "value": 5.94,
-        "unit": "m/s",
-        "tolerance": 0.1
-      },
-      "difficulty": "hard",
-      "concept_ids": [
-        "rolling_motion",
-        "conservation_of_energy",
-        "rotational_kinetic_energy"
-      ]
-    },
-    {
-      "id": "translation_rotation_concept",
-      "type": "multiple_choice",
-      "stem": "Why does a rolling disk typically reach the bottom of a ramp more slowly than a sliding particle descending the same height?",
-      "options": [
-        "Because rolling bodies experience less gravity",
-        "Because some of the potential-energy drop becomes rotational kinetic energy",
-        "Because the disk has no translational kinetic energy",
-        "Because angular speed cancels gravitational effects"
-      ],
-      "correct_index": 1,
-      "explanation": "Exactly. The rolling disk has to pay part of the energy budget into rotation, so the remaining translational speed is lower.",
-      "difficulty": "medium",
-      "concept_ids": [
-        "conservation_of_energy",
-        "rotational_kinetic_energy",
-        "rolling_motion"
-      ],
-      "misconception_id": "missing_rotational_ke"
-    }
-  ]
+    ]
 }

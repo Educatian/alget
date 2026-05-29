@@ -40,14 +40,14 @@ A good debugging prompt has four parts: the current formula, the error or wrong 
 Suppose a class-average sheet shows an error in C4.
 
 ```
-   A         B        C
-1  Student   Points   Per Item
-2  Maria     45       =A2... 
-3  David     30       9.0
-4  Sun       0        #DIV/0!
+   A         B        C          D
+1  Student   Points   Per Item   ItemCount
+2  Maria     45       9.0        5
+3  David     45       9.0        5
+4  Sun       30       #DIV/0!    (blank)
 ```
 
-The formula in column C is `=B/ItemCount`, where ItemCount sits in a cell that is blank for Sun's row, so Excel divides by zero and shows `#DIV/0!`.
+The formula in column C is `=B2/D2` (Points divided by ItemCount). ItemCount lives in column D, which is blank for Sun's row, so Excel divides by zero and column C shows `#DIV/0!`.
 
 Step 1. Read the error code, do not paper over it. `#DIV/0!` always means a divide-by-zero, so the denominator is the suspect, not the numerator.
 
