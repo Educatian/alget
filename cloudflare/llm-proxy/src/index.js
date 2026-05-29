@@ -55,6 +55,69 @@ async function openrouter(key, messages, { model, temperature = 0.7, maxTokens =
   return (data?.choices?.[0]?.message?.content || '').trim()
 }
 
+// OpenRouter call constrained to a JSON object response (for structured
+// endpoints). Strips markdown fences defensively before parsing.
+async function openrouterJSON(key, messages, { model, temperature = 0.4, maxTokens = 1400 } = {}) {
+  const res = await fetch(OPENROUTER_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${key}`,
+      'content-type': 'application/json',
+      'HTTP-Referer': 'https://alget.pages.dev',
+      'X-Title': 'ALGET Intelligent Textbook',
+    },
+    body: JSON.stringify({
+      model: model || DEFAULT_MODEL,
+      messages,
+      temperature,
+      max_tokens: maxTokens,
+      response_format: { type: 'json_object' },
+    }),
+  })
+  const data = await res.json()
+  if (!res.ok) throw new Error(data?.error?.message || `OpenRouter ${res.status}`)
+  let txt = (data?.choices?.[0]?.message?.content || '').trim()
+  txt = txt.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '')
+  return JSON.parse(txt)
+}
+
+// --- Bayesian Knowledge Tracing (ported from backend/knowledge_tracing.py) ---
+// Deterministic math; no LLM needed.
+function bktUpdate(pKnown, isCorrect, guess = 0.2, slip = 0.1, transit = 0.1) {
+  let posterior
+  if (isCorrect) {
+    const ev = pKnown * (1 - slip) + (1 - pKnown) * guess
+    posterior = ev <= 0 ? 0 : (pKnown * (1 - slip)) / ev
+  } else {
+    const ev = pKnown * slip + (1 - pKnown) * (1 - guess)
+    posterior = ev <= 0 ? 0 : (pKnown * slip) / ev
+  }
+  const next = posterior + (1 - posterior) * transit
+  return Math.max(0.0001, Math.min(0.9999, next))
+}
+function processQMatrix(currentStates, qMatrix, isCorrect) {
+  const out = {}
+  for (const [cid, weight] of Object.entries(qMatrix || {})) {
+    const cur = currentStates && currentStates[cid] != null ? Number(currentStates[cid]) : 0.1
+    const full = bktUpdate(cur, isCorrect)
+    out[cid] = cur + Number(weight) * (full - cur) // weight-blended (partial Q-mapping)
+  }
+  return out
+}
+function applyTelemetryFusion(pSlip, pTransit, type, intensity = 1.0) {
+  let slip = Number(pSlip), transit = Number(pTransit)
+  if (type === 'hint_request') {
+    slip = Math.min(0.5, slip + 0.05 * intensity)
+    transit = Math.min(0.8, transit + 0.02 * intensity)
+  } else if (type === 'chat_engagement') {
+    transit = Math.min(0.9, transit + 0.1 * intensity)
+  } else if (type === 'simulation_play') {
+    slip = Math.max(0.01, slip - 0.05 * intensity)
+    transit = Math.min(0.8, transit + 0.05 * intensity)
+  }
+  return { new_p_slip: slip, new_p_transit: transit }
+}
+
 // Flatten the frontend's chat history (assistant entries can be intent objects)
 // into plain OpenRouter messages.
 function historyToMessages(history) {
@@ -129,6 +192,47 @@ export default {
         // <p> branch. (intent:'learn' would route to LearnIntentCard, which
         // expects structured fields and would drop a plain answer.)
         return json({ intent: 'answer', text })
+      }
+
+      // --- Mastery update (Bayesian Knowledge Tracing) — deterministic math ---
+      if (path === '/grade') {
+        return json({ new_states: processQMatrix(body.current_states, body.q_matrix, !!body.is_correct) })
+      }
+      if (path === '/telemetry_fusion') {
+        return json(applyTelemetryFusion(body.current_p_slip, body.current_p_transit, body.interaction_type, body.intensity ?? 1.0))
+      }
+
+      // --- Knowledge Check: generate a formative assessment (2 MCQ + 1 summary) ---
+      if (path === '/generate_assessment') {
+        if (!key) return json({ assessment: { mcq_questions: [], summary_question: null }, summary: noKeyMsg })
+        const objs = (Array.isArray(body.learning_objectives) ? body.learning_objectives : []).map((o) => `- ${o}`).join('\n') || 'None specified'
+        const concepts = (Array.isArray(body.concept_ids) ? body.concept_ids : []).join(', ') || 'infer from context'
+        const assessment = await openrouterJSON(key, [
+          { role: 'system', content: 'You are an expert educator generating formative assessments aligned to learning objectives. Return ONLY a JSON object — no prose, no markdown.' },
+          { role: 'user', content: `Section title: "${body.section_title || 'this section'}".
+Context: ${(body.biology_context || '') + ' ' + (body.engineering_context || '')}
+Learning objectives:\n${objs}
+Target concepts (use when applicable): [${concepts}]
+
+Return EXACTLY this JSON shape, fitting THIS section's actual topic:
+{"mcq_questions":[{"question":"...","options":[{"id":"A","text":"..."},{"id":"B","text":"..."},{"id":"C","text":"..."},{"id":"D","text":"..."}],"correct_option_id":"A","explanation":"why correct & others wrong","concept_id":"..."}],"summary_question":{"question":"a generative short-answer prompt","concept_id":"...","rubric":"key points expected"}}
+Exactly 2 items in mcq_questions and exactly 1 summary_question.` },
+        ], { model, temperature: 0.5, maxTokens: 1500 })
+        return json({ assessment, summary: 'Assessment generated successfully.' })
+      }
+
+      // --- Knowledge Check: grade a short-answer/summary against a rubric ---
+      if (path === '/grade_summary') {
+        if (!key) return json({ content_score: 0.5, wording_score: 0.5, sub_scores: {}, feedback: noKeyMsg, is_passing: false })
+        const out = await openrouterJSON(key, [
+          { role: 'system', content: 'You are an expert educator grading a student short-answer response against a rubric. Return ONLY a JSON object.' },
+          { role: 'user', content: `Question: ${body.question || ''}
+Rubric / expected key points: ${body.rubric || ''}
+Student answer: ${body.student_answer || ''}
+
+Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"<dimension>":0.0-1.0},"feedback":"2-3 sentences, praise first then what's missing","is_passing":true if content_score>=0.7 else false}` },
+        ], { model, temperature: 0.3, maxTokens: 700 })
+        return json(out)
       }
 
       // --- Everything else: proxy to the FastAPI backend as-is ---
