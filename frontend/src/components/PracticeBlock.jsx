@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Lightbulb } from 'lucide-react'
-import API_BASE from '../lib/apiConfig'
+import { LLM_API_BASE } from '../lib/apiConfig'
 import { useToast } from '../lib/toastContext'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
@@ -80,7 +80,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
         setLoading(true)
 
         try {
-            const response = await fetch(`${API_BASE}/grade/${problemId}`, {
+            const response = await fetch(`${LLM_API_BASE}/grade/${problemId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

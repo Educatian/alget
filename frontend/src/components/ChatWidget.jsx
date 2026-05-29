@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, forwardRef, useImperativeHandle, useEffect
 import { supabase } from '../lib/supabase'
 import { logChatMessage } from '../lib/loggingService'
 import { fuseTelemetry, recordAdaptiveSignal } from '../lib/knowledgeService'
-import API_BASE from '../lib/apiConfig'
+import { LLM_API_BASE } from '../lib/apiConfig'
 import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard, ErrorIntentCard } from './IntentCards'
 
 // Stable per-message id so React keys and the read-aloud "which bubble is
@@ -206,7 +206,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         const isHighlight = userMessage.startsWith('Explain this passage:');
         try {
             const apiKey = localStorage.getItem('gemini_api_key') || '';
-            const res = await fetch(`${API_BASE}/orchestrate`, {
+            const res = await fetch(`${LLM_API_BASE}/orchestrate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

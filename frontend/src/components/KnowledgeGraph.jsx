@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Minus, Plus, RotateCcw } from 'lucide-react'
 import { supabase } from '../lib/supabase'
-import API_BASE from '../lib/apiConfig'
+import { LLM_API_BASE } from '../lib/apiConfig'
 import { getLocalMasteryMap } from '../lib/knowledgeService'
 
 const VIEW_W = 540
@@ -255,7 +255,7 @@ export default function KnowledgeGraph({
                     }
                 }
 
-                const response = await fetch(`${API_BASE}/mastery_graph`, {
+                const response = await fetch(`${LLM_API_BASE}/mastery_graph`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

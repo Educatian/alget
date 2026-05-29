@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AlertTriangle, ArrowLeft, BookOpen, FileText, Lightbulb } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import API_BASE from '../lib/apiConfig';
+import { LLM_API_BASE } from '../lib/apiConfig';
 
 import BiologyCard from '../components/BiologyCard';
 import EngineeringCard from '../components/EngineeringCard';
@@ -36,7 +36,7 @@ export default function GenerativeLab() {
 
         try {
             const apiKey = localStorage.getItem('gemini_api_key') || '';
-            const response = await fetch(`${API_BASE}/orchestrate`, {
+            const response = await fetch(`${LLM_API_BASE}/orchestrate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -91,7 +91,7 @@ export default function GenerativeLab() {
 
         try {
             const apiKey = localStorage.getItem('gemini_api_key') || '';
-            const response = await fetch(`${API_BASE}/book/generate_custom_module`, {
+            const response = await fetch(`${LLM_API_BASE}/book/generate_custom_module`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

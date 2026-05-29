@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import API_BASE from '../lib/apiConfig';
+import { LLM_API_BASE } from '../lib/apiConfig';
 
 export function LearnIntentCard({ data }) {
     const [openSection, setOpenSection] = useState(null);
@@ -198,7 +198,7 @@ export function IllustrateIntentCard({ data }) {
                 setLoadingImage(true);
                 try {
                     const apiKey = localStorage.getItem('gemini_api_key') || '';
-                    const response = await fetch(`${API_BASE}/generate-image`, {
+                    const response = await fetch(`${LLM_API_BASE}/generate-image`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({

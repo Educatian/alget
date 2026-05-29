@@ -1,4 +1,4 @@
-import API_BASE from './apiConfig';
+import { LLM_API_BASE } from './apiConfig';
 import { supabase } from './supabase';
 import { buildLearnerProfileSnapshot, startInterventionTrace } from './researchService';
 
@@ -306,7 +306,7 @@ export function summarizeAdaptiveSignals(sectionId) {
 export const generateAssessment = async (sectionTitle, bioContext, engContext, learningObjectives, conceptIds) => {
     try {
         const apiKey = localStorage.getItem('gemini_api_key') || '';
-        const response = await fetch(`${API_BASE}/generate_assessment`, {
+        const response = await fetch(`${LLM_API_BASE}/generate_assessment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -339,7 +339,7 @@ export const generateAssessment = async (sectionTitle, bioContext, engContext, l
 export const gradeSummary = async (question, studentAnswer, rubric) => {
     try {
         const apiKey = localStorage.getItem('gemini_api_key') || '';
-        const response = await fetch(`${API_BASE}/grade_summary`, {
+        const response = await fetch(`${LLM_API_BASE}/grade_summary`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -409,7 +409,7 @@ export const updateMastery = async (qMatrix, isCorrect, options = {}) => {
             : qMatrix
 
         // 2. Call Python backend BKT engine
-        const response = await fetch(`${API_BASE}/grade`, {
+        const response = await fetch(`${LLM_API_BASE}/grade`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -523,7 +523,7 @@ export const fuseTelemetry = async (conceptId, interactionType, intensity = 1.0)
         let currentSlip = records?.p_slip ?? 0.1;
         let currentTransit = records?.p_transit ?? 0.1;
 
-        const response = await fetch(`${API_BASE}/telemetry_fusion`, {
+        const response = await fetch(`${LLM_API_BASE}/telemetry_fusion`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -595,7 +595,7 @@ export const getAdaptiveRecommendation = async ({
             telemetry
         })
 
-        const response = await fetch(`${API_BASE}/adaptive_recommendation`, {
+        const response = await fetch(`${LLM_API_BASE}/adaptive_recommendation`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

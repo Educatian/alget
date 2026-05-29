@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight, BookOpen, Flame, Target } from 'lucide-react'
-import API_BASE from '../lib/apiConfig'
+import { LLM_API_BASE } from '../lib/apiConfig'
 import { supabase } from '../lib/supabase'
 import { getResearchDashboardSnapshot, getEvaluationStatus } from '../lib/researchService'
 import { ALL_COURSE_IDS } from '../lib/courseCatalog'
@@ -95,7 +95,7 @@ export default function StudentDashboard({ user }) {
         // Best-effort navigation: ask backend which section first introduces
         // this concept. Falls back to the bio-inspired course root.
         try {
-            const res = await fetch(`${API_BASE}/concept/${encodeURIComponent(conceptId)}/origin`)
+            const res = await fetch(`${LLM_API_BASE}/concept/${encodeURIComponent(conceptId)}/origin`)
             if (res.ok) {
                 const data = await res.json()
                 if (data?.section_slug) {
