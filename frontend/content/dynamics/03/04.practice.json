@@ -79,6 +79,26 @@
         "impulse_momentum",
         "angular_impulse_momentum"
       ]
+    },
+    {
+      "id": "rbim_pinned_rod_numeric",
+      "type": "numeric",
+      "difficulty": "hard",
+      "statement": "A uniform rod of mass M = 6 kg and length L = 1.2 m is pinned at its top end. A ball of mass m = 0.5 kg moving horizontally at v = 20 m/s strikes and sticks to the rod at d = 0.9 m below the pin (perfectly plastic). Compute the angular velocity of the rod immediately after impact.",
+      "givens": {
+        "rod_mass": "6 kg",
+        "rod_length": "1.2 m",
+        "ball_mass": "0.5 kg",
+        "ball_speed": "20 m/s",
+        "strike_distance": "0.9 m"
+      },
+      "final_answer": {
+        "value": 2.74,
+        "unit": "rad/s",
+        "tolerance": 0.02
+      },
+      "concept_ids": ["conservation_of_angular_momentum", "angular_impulse_momentum"],
+      "hint": "Conserve angular momentum about the pin: m*v*d = I_O*omega, where I_O = (1/3)*M*L^2 + m*d^2."
     }
   ]
 }

@@ -1,5 +1,26 @@
 # 6.1 Introduction to Trusses
 
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Define** a simple truss and identify its basic elements and the two-force-member model
+2. **State** the assumptions that make classical truss analysis valid
+3. **Apply** the method of joints to determine the force in each member
+4. **Classify** each member as being in tension or compression from the sign of the result
+
+---
+
+## Opening: The Bridge That Pulled Itself Apart
+
+In August 2007 the I-35W bridge over the Mississippi River in Minneapolis collapsed during rush hour, killing 13 people. The investigation traced the failure to undersized gusset plates, the steel connectors at the joints where truss members meet. The members themselves were sound; the *joints* could not carry the axial forces the members delivered to them. Knowing the force in every member, and whether it pulls (tension) or pushes (compression), is exactly what would have flagged those connections.
+
+That is the promise of truss analysis: convert a complicated structure and its loads into a clean list of axial member forces, each one a single number with a sign. A positive number means the member is being stretched; a negative number means it is being squeezed and might buckle. Designers size every member and every joint from that list.
+
+> **The Big Picture:** The method of joints in this section is the workhorse that produces that list of member forces, joint by joint, using nothing more than the particle equilibrium you already know.
+
+---
+
 A **truss** is a structure made from slender members connected at joints so that loads travel primarily as axial tension or compression. This makes trusses one of the most material-efficient structural systems in engineering. Bridges, roof systems, cranes, transmission towers, and aerospace frameworks all rely on the same basic idea:
 
 **use geometry to carry load with as little material as possible**
@@ -87,21 +108,71 @@ This is why truss analysis is not just algebra. It is an early form of structura
 
 <dynamic-scenario topic="Roof Truss Design" context="A civil engineering student must compare two roof-truss layouts for a small gymnasium and explain which members are likely to go into compression when a heavy snow load is applied." />
 
-## Textbook Deepening
+## Worked Examples
 
-The most important move in this section is to treat **6.1 Introduction to Trusses** as a reasoning tool rather than a vocabulary item. A learner who understands the topic can use it to decide what matters, what can be ignored, and what evidence would make the solution defensible. In Engineering Statics, that usually means connecting the visible artifact of work to free-body diagram, equation choice, sign convention, and physical interpretation.
+### Example 1: Symmetric Triangular Truss Under a Peak Load
 
-Read the examples with three questions in mind. First, what is being modeled? Second, what assumption makes the model manageable? Third, where would the solution fail if the assumption were false? Those questions keep the section from becoming a set of isolated facts. They also prepare you to explain your reasoning to another person, which is often the real test of understanding.
+**Problem:** A simple triangle truss has a pin support at $A = (0, 0)$ and a roller at $B = (6, 0)$ m, with an apex joint $C = (3, 4)$ m. A vertical load $P = 12$ kN acts downward at $C$. Find the force in each member and classify it.
 
-## Worked Transfer
+**Step 1: Draw the FBD of the whole truss and find reactions.** With a symmetric geometry and a centered load, vertical equilibrium and symmetry give
 
-Suppose you meet the same idea in a new problem. Do not start by copying the surface steps. Start by naming the structure of the situation: the objects, actors, constraints, evidence, and possible failure points. Then decide which part of this section transfers directly and which part must be adapted.
+$$A_y = B_y = \frac{P}{2} = \frac{12}{2} = 6 \text{ kN}, \qquad A_x = 0$$
 
-A strong transfer explanation has this form: "This looks like **6.1 Introduction to Trusses** because the same underlying relationship appears. I can reuse the reasoning pattern, but I must change the details because the new case has a different constraint."
+**Step 2: Geometry of member AC.** From $A(0,0)$ to $C(3,4)$ the length is $\sqrt{3^2 + 4^2} = 5$ m, so $\cos\theta = 3/5 = 0.6$ and $\sin\theta = 4/5 = 0.8$.
 
-## Common Failure Mode
+**Step 3: Joint A** (only two unknowns, $F_{AB}$ horizontal and $F_{AC}$ along $AC$). Assume both in tension (pulling away from the joint).
 
-The most common failure is premature fluency: the section feels understandable while reading, but the learner cannot use it when the wording, diagram, audience, or context changes. To avoid that, pause after the first example and write one sentence that explains why the method works. Then write one sentence describing when it would not work. Those two sentences are often more diagnostic than a longer summary.
+$$\sum F_y = 0: \quad F_{AC}(0.8) + 6 = 0 \;\Rightarrow\; F_{AC} = \boxed{-7.5 \text{ kN (compression)}}$$
+
+$$\sum F_x = 0: \quad F_{AB} + F_{AC}(0.6) = 0 \;\Rightarrow\; F_{AB} = -(-7.5)(0.6) = \boxed{+4.5 \text{ kN (tension)}}$$
+
+**Step 4: Interpret.** The diagonal $AC$ is in compression (the negative sign flipped our tension assumption), exactly what you expect for a member propping up a downward peak load. By symmetry $F_{BC} = -7.5$ kN (compression) as well, and the bottom chord $AB$ ties the two feet together in tension. The compression diagonals are the members a designer would check for buckling.
+
+---
+
+### Example 2: A Loaded Joint with a Diagonal at 45 Degrees
+
+**Problem:** A wall bracket truss has a loaded joint $B = (3, 0)$ m connected by a horizontal member to $A = (0, 0)$ and by a diagonal member to $C = (0, 3)$ m on the wall above. A load of $5$ kN acts straight down at $B$. Find both member forces.
+
+**Step 1: Geometry.** The diagonal $BC$ runs from $B(3,0)$ to $C(0,3)$, a direction $(-3, 3)$, i.e. $45^\circ$ above the horizontal, so $\cos 45^\circ = \sin 45^\circ = 0.7071$.
+
+**Step 2: Joint B free body diagram.** Two unknowns ($F_{BA}$ horizontal, $F_{BC}$ along the diagonal) plus the 5 kN downward load. Assume tension.
+
+$$\sum F_y = 0: \quad F_{BC}\sin 45^\circ - 5 = 0 \;\Rightarrow\; F_{BC} = \frac{5}{0.7071} = \boxed{+7.07 \text{ kN (tension)}}$$
+
+$$\sum F_x = 0: \quad -F_{BA} - F_{BC}\cos 45^\circ = 0 \;\Rightarrow\; F_{BA} = -(7.07)(0.7071) = \boxed{-5.0 \text{ kN (compression)}}$$
+
+**Step 3: Interpret.** The diagonal pulls up and back toward the wall to carry the load (tension); the horizontal member is pushed (compression) because the diagonal's horizontal pull would otherwise drag joint $B$ toward the wall. Notice the diagonal force (7.07 kN) exceeds the 5 kN load: a member at a shallow angle to the load must carry more than the load itself, the same lesson seen with shallow cables in Chapter 1.
+
+> **Workflow Reminder:** Start at a joint with at most two unknowns, assume every member is in tension, write $\sum F_x = 0$ and $\sum F_y = 0$, and read the sign. Negative means compression.
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Joint equilibrium (2D) | $\sum F_x = 0,\; \sum F_y = 0$ |
+| Member along $(\Delta x, \Delta y)$, length $\ell$ | $\cos\theta = \Delta x/\ell,\; \sin\theta = \Delta y/\ell$ |
+| Sign rule | $F > 0 \Rightarrow$ tension, $F < 0 \Rightarrow$ compression (when assumed tensile) |
+
+### Key Takeaways
+
+- A truss carries load through slender two-force members in pure tension or compression.
+- The assumptions (loads at joints, frictionless pins) make each member a two-force member.
+- Triangular units are geometrically stable; that is why trusses are built from triangles.
+- The method of joints solves one joint at a time, starting where there are at most two unknowns.
+- Assume tension everywhere; a negative result simply means the member is in compression.
+
+---
+
+## What's Next?
+
+In the next section we introduce the **method of sections**, which slices through several members at once so you can solve for a specific member force directly, without marching joint by joint across a large truss.
+
+---
 
 ## Check Your Understanding
 

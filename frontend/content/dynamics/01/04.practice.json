@@ -81,6 +81,24 @@
         "radius_of_curvature",
         "centripetal_acceleration"
       ]
+    },
+    {
+      "id": "curvilinear_combined_acceleration",
+      "type": "numeric",
+      "difficulty": "medium",
+      "statement": "A car rounds a curve of radius rho = 120 m. At the instant of interest its speed is v = 18 m/s and it is speeding up along the path at a_t = 2 m/s^2. Compute the magnitude of the total acceleration.",
+      "givens": {
+        "radius": "120 m",
+        "speed": "18 m/s",
+        "tangential_acceleration": "2 m/s^2"
+      },
+      "final_answer": {
+        "value": 3.36,
+        "unit": "m/s^2",
+        "tolerance": 0.05
+      },
+      "concept_ids": ["normal_tangential_coordinates", "centripetal_acceleration"],
+      "hint": "Find a_n = v^2/rho, then combine with the perpendicular a_t: |a| = sqrt(a_t^2 + a_n^2)."
     }
   ]
 }

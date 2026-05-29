@@ -65,6 +65,24 @@
       "correct_index": 1,
       "explanation": "A negative result means the actual force direction is opposite the assumed tensile direction, so the member is in compression.",
       "misconception_id": "negative_member_force_invalid"
+    },
+    {
+      "id": "statics_truss_intro_diagonal_force",
+      "type": "numeric",
+      "difficulty": "medium",
+      "statement": "A symmetric triangular truss has a pin at A = (0, 0) m, a roller at B = (6, 0) m, and an apex at C = (3, 4) m. A 12 kN load acts straight down at C. By symmetry the support reactions are A_y = B_y = 6 kN. Using the method of joints at A, compute the MAGNITUDE of the force in diagonal member AC.",
+      "givens": {
+        "load": "12 kN down at C",
+        "geometry": "A(0,0), B(6,0), C(3,4) m",
+        "reactions": "A_y = B_y = 6 kN"
+      },
+      "final_answer": {
+        "value": 7.5,
+        "unit": "kN",
+        "tolerance": 0.05
+      },
+      "concept_ids": ["truss_analysis", "method_of_joints"],
+      "hint": "At joint A, vertical equilibrium gives F_AC * sin(theta) + A_y = 0 with sin(theta) = 4/5. The magnitude is 6 / 0.8; the negative sign indicates compression."
     }
   ]
 }

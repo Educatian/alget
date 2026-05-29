@@ -67,6 +67,23 @@
       "correct_index": 1,
       "explanation": "The equivalent force magnitude equals the area under the load curve; its location is the centroid of that area. For a triangle: F = w₀L/2 at x = 2L/3.",
       "misconception_id": "uniform_substitute_for_triangular"
+    },
+    {
+      "id": "moi_rectangle_base_numeric",
+      "type": "numeric",
+      "difficulty": "medium",
+      "statement": "A rectangular cross section has width b = 80 mm and height h = 160 mm. Compute the area moment of inertia about its base (an axis along the bottom edge). Report the answer in 10^6 mm^4.",
+      "givens": {
+        "width": "80 mm",
+        "height": "160 mm"
+      },
+      "final_answer": {
+        "value": 109.23,
+        "unit": "10^6 mm^4",
+        "tolerance": 0.05
+      },
+      "concept_ids": ["moment_of_inertia", "parallel_axis_theorem"],
+      "hint": "For a rectangle about its base, I_base = b*h^3/3 (equivalently I_c + A*(h/2)^2)."
     }
   ]
 }

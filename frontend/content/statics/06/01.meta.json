@@ -22,7 +22,8 @@
         "statics_truss_intro_determinacy",
         "statics_truss_intro_two_force",
         "statics_truss_intro_joint_method",
-        "statics_truss_intro_sign"
+        "statics_truss_intro_sign",
+        "statics_truss_intro_diagonal_force"
     ],
     "estimated_time_minutes": 14
 }

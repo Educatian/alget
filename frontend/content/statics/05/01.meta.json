@@ -27,7 +27,8 @@
         "moi_rectangle_base",
         "moi_centroid_minimum",
         "moi_units_distinction",
-        "moi_distributed_to_point"
+        "moi_distributed_to_point",
+        "moi_rectangle_base_numeric"
     ],
     "estimated_time_minutes": 14,
     "order": 1
