@@ -245,30 +245,10 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
         return json(out)
       }
 
-      // --- Image generation (diagrams / concept illustrations) ---
+      // Image generation has been removed. If anything still calls it, return a
+      // clear disabled response rather than proxying.
       if (path === '/generate-image') {
-        if (!key) return json({ success: false, error: 'Image generation is not configured (no OpenRouter key).' })
-        const kind = body.style === 'diagram' ? 'a clean, labeled educational diagram' : 'a clear educational concept illustration'
-        const prompt = `Generate ${kind} for: ${body.prompt || body.context || 'the concept'}. Minimal, instructional, high-contrast, flat style, legible labels, no watermark, no signature.`
-        const res = await fetch(OPENROUTER_URL, {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${key}`,
-            'content-type': 'application/json',
-            'HTTP-Referer': 'https://alget.pages.dev',
-            'X-Title': 'ALGET Intelligent Textbook',
-          },
-          body: JSON.stringify({
-            model: env.OPENROUTER_IMAGE_MODEL || 'google/gemini-2.5-flash-image',
-            messages: [{ role: 'user', content: prompt }],
-            modalities: ['image', 'text'],
-          }),
-        })
-        const data = await res.json()
-        if (!res.ok) return json({ success: false, error: data?.error?.message || `Image ${res.status}` })
-        const imageUrl = data?.choices?.[0]?.message?.images?.[0]?.image_url?.url
-        if (!imageUrl) return json({ success: false, error: 'No image was returned by the model.' })
-        return json({ success: true, image_data: imageUrl })
+        return json({ success: false, error: 'Image generation has been disabled.' })
       }
 
       // --- Everything else: proxy to the FastAPI backend as-is ---

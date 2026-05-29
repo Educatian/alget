@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { LLM_API_BASE } from '../lib/apiConfig';
+import React, { useState } from 'react';
 
 export function LearnIntentCard({ data }) {
     const [openSection, setOpenSection] = useState(null);
@@ -185,54 +184,11 @@ export function ScaffoldingIntentCard({ data }) {
 }
 
 export function IllustrateIntentCard({ data }) {
-    const [imageUrl, setImageUrl] = useState(null);
-    const [loadingImage, setLoadingImage] = useState(false);
-    const [imageError, setImageError] = useState(null);
     const illData = data?.illustration;
-
-    useEffect(() => {
-        if (!illData) return;
-
-        if (illData.image_prompt && !imageUrl && !loadingImage && !imageError) {
-            const fetchImage = async () => {
-                setLoadingImage(true);
-                try {
-                    const apiKey = localStorage.getItem('gemini_api_key') || '';
-                    const response = await fetch(`${LLM_API_BASE}/generate-image`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            prompt: illData.image_prompt,
-                            context: illData.conceptual_design,
-                            style: 'concept',
-                            api_key: apiKey
-                        })
-                    });
-
-                    if (response.ok) {
-                        const result = await response.json();
-                        if (result.success && result.image_data) {
-                            setImageUrl(result.image_data);
-                        } else {
-                            setImageError(result.error || 'Image generation failed.');
-                        }
-                    } else {
-                        setImageError('Failed to connect to image generation API.');
-                    }
-                } catch (err) {
-                    console.error('Image fetch error:', err);
-                    setImageError('Network error while generating image.');
-                } finally {
-                    setLoadingImage(false);
-                }
-            };
-
-            fetchImage();
-        }
-    }, [illData, imageUrl, loadingImage, imageError]);
-
     if (!illData) return null;
 
+    // Image generation has been removed; this card shows the textual concept
+    // and key visual elements only.
     return (
         <div className="glass-panel p-6 border-purple-200/50 shadow-xl shadow-purple-900/5 mt-2 bg-linear-to-br from-white/80 to-purple-50/30">
             <div className="flex items-center gap-3 mb-4">
@@ -242,37 +198,6 @@ export function IllustrateIntentCard({ data }) {
             <p className="text-slate-700 text-[13px] font-medium leading-relaxed mb-6 bg-white/50 p-4 rounded-xl border border-white">
                 {illData.conceptual_design}
             </p>
-
-            {illData.image_prompt && !imageUrl && !loadingImage && (
-                <div className="bg-slate-900 p-4 rounded-xl shadow-inner mb-4">
-                    <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Image Generation Prompt</h5>
-                    <code className="text-[0.8rem] text-purple-300 font-mono break-all leading-relaxed block">{illData.image_prompt}</code>
-                </div>
-            )}
-
-            {loadingImage && (
-                <div className="bg-slate-900/5 p-8 rounded-xl border border-dashed border-purple-300 mb-4 flex flex-col items-center justify-center gap-3">
-                    <div className="w-8 h-8 rounded-full border-2 border-purple-500 border-t-transparent animate-spin"></div>
-                    <span className="text-sm font-semibold text-purple-700 tracking-wide">Synthesizing visual concept...</span>
-                    <span className="text-xs text-slate-500">This may take 10-15 seconds</span>
-                </div>
-            )}
-
-            {imageError && (
-                <div className="bg-red-50 p-4 rounded-xl border border-red-200 mb-4 text-red-800 text-sm">
-                    Warning: {imageError}
-                    <div className="mt-2 p-2 bg-white rounded border border-red-100 font-mono text-[10px] break-all">{illData.image_prompt}</div>
-                </div>
-            )}
-
-            {imageUrl && (
-                <div className="mb-4 rounded-xl overflow-hidden border-2 border-slate-900 shadow-xl relative aspect-video bg-slate-100 flex items-center justify-center">
-                    <img src={imageUrl} alt={illData.illustration_title} className="w-full h-full object-cover" />
-                    <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-slate-900/80 to-transparent p-3 pt-8">
-                        <span className="text-white text-xs font-semibold tracking-wider uppercase opacity-80">AI Generated Concept</span>
-                    </div>
-                </div>
-            )}
 
             {illData.ui_elements?.length > 0 && (
                 <div className="bg-white/80 backdrop-blur-md p-4 rounded-xl border border-purple-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)]">
