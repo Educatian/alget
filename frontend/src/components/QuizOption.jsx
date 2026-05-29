@@ -49,9 +49,9 @@ import { Check, X } from 'lucide-react'
 
 const STATE_CLASSES = {
     default:
-        'border-[var(--ath-line)] bg-[var(--ath-surface-strong)] text-[var(--ath-text)] hover:border-[var(--ath-primary)] hover:bg-[var(--ath-panel)]',
+        'border-[var(--ath-line)] bg-[var(--ath-surface-strong)] text-[var(--ath-text)] hover:border-[var(--ath-primary)] hover:bg-[var(--ath-panel)] hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(27,34,31,0.08)] active:translate-y-0',
     selected:
-        'border-[var(--ath-primary)] bg-[var(--ath-primary-soft)] text-[var(--ath-text)] shadow-sm',
+        'border-[var(--ath-primary)] bg-[var(--ath-primary-soft)] text-[var(--ath-text)] -translate-y-0.5 shadow-[0_10px_26px_color-mix(in_srgb,var(--ath-primary)_22%,transparent)]',
     correct:
         'border-[var(--ath-success,#2f7d63)] bg-[var(--ath-success-soft,var(--ath-primary-soft))] text-[var(--ath-text)]',
     incorrect:
