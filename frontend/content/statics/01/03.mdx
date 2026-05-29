@@ -66,6 +66,8 @@ $$
 
 A two-force member is therefore either pulled apart (**tension**) or pushed together (**compression**). There is no third option for an ideal straight member.
 
+<inline-check question="A straight pin-ended bar has a 2 kN load hung from a hook welded at its MIDPOINT, in addition to its two end-pin forces. Is it still a two-force member?" explanation="No. A two-force member must be loaded at only two points. The mid-span hook is a third load point, so the end forces are no longer guaranteed collinear with the bar; the bar now carries bending, not just axial force." options='[{"text":"No, the mid-span load is a third force point, so the shortcut is invalid.","correct":true},{"text":"Yes, because it still has only two pins.","correct":false},{"text":"Yes, because the load is vertical.","correct":false}]' />
+
 ### Visual Representation
 
 ```
@@ -166,6 +168,10 @@ F = \frac{P}{2\sin 30^\circ} = \frac{1000}{2(0.5)} = \boxed{1000\ \text{N (compr
 $$
 
 *Step 5: Interpret.* Each member carries $1000\ \text{N}$. The compression sign is correct: the members must push up on $B$ to hold the load, which means $B$ pushes down on them, squeezing each member. Had we found a negative value, the true state would have been tension. Note also that the force per member here equals the full load $P$ because $2\sin 30^\circ = 1$; at shallower angles each member force would grow rapidly.
+
+Push the angle slider toward the horizontal in the explorer below. As $\theta \to 0$, $\sin\theta \to 0$ and the member force blows up: a nearly flat A-frame demands enormous axial force to support even a modest load.
+
+<parameter-explorer config='{"title":"Symmetric A-frame member force: F = P / (2 sin(theta))","sliders":[{"name":"P","label":"Vertical load at joint B","min":100,"max":5000,"step":100,"unit":"N","default":1000},{"name":"theta","label":"Member angle above horizontal","min":5,"max":90,"step":1,"unit":"deg","default":30}],"outputs":[{"label":"Force per member F = P / (2 sin(theta))","unit":"N","expr":"P / (2 * sin(theta * 3.14159265 / 180))"},{"label":"Horizontal thrust per support F cos(theta)","unit":"N","expr":"P * cos(theta * 3.14159265 / 180) / (2 * sin(theta * 3.14159265 / 180))"}],"plot":{"x":"theta","output":0}}' />
 
 ---
 
@@ -296,6 +302,8 @@ $$
 
 *Step 6: Verify against the principle.* The reaction comes out at exactly $60.0^\circ$ above the horizontal, which is the direction of line $AB$. This is the concurrency prediction confirmed by independent calculation: the three forces really do meet at $B$. The agreement is a built-in check on the arithmetic.
 
+<step-reveal title="Rebuild the concurrency solution for Example 3.3" steps='[{"prompt":"The bar is 3 m long at 60 degrees from horizontal. What are the offsets of B from A?","predictType":"choice","choices":["dx = 2.598 m, dy = 1.500 m","dx = 1.500 m, dy = 2.598 m","dx = 3.000 m, dy = 0 m","dx = 1.500 m, dy = 1.500 m"],"answerIndex":1,"reveal":"dx = L cos60 = 3(0.5) = 1.500 m and dy = L sin60 = 3(0.866) = 2.598 m. These are the moment arms for the two forces at B."},{"prompt":"Taking moments about A, the horizontal tension T acts at vertical arm dy and the weight W acts at horizontal arm dx. Which moment balance is correct?","predictType":"choice","choices":["T dx = W dy","T dy = W dx","T = W","T dy = W dy"],"answerIndex":1,"reveal":"T dy = W dx. The cable moment (T times its vertical lever arm) must equal the weight moment (W times its horizontal lever arm) about A."},{"prompt":"Solve for the cable tension T with W = 500 N.","predictType":"choice","choices":["288.7 N","500.0 N","866.0 N","144.3 N"],"answerIndex":0,"reveal":"T = W dx / dy = 500(1.500)/2.598 = 288.7 N."},{"prompt":"Force balance gives R_Ax = T = 288.7 N and R_Ay = W = 500 N. What is the pin reaction magnitude?","predictType":"choice","choices":["788.7 N","577.4 N","500.0 N","406.5 N"],"answerIndex":1,"reveal":"R_A = sqrt(288.7^2 + 500^2) = sqrt(83348 + 250000) = sqrt(333348) = 577.4 N."},{"reveal":"Its direction is atan(500/288.7) = 60.0 degrees above horizontal, exactly along line AB. The independent force balance reproduces the concurrency prediction: all three lines of action meet at B, which is a built-in arithmetic check."}]' />
+
 ---
 
 ## Comparison Table
@@ -367,6 +375,10 @@ $$
 | Two-Force | 2 force points only | Forces along line AB |
 | Three-Force | 3 force points | Lines of action meet at one point |
 
+Match each structural element to the property that the special-case shortcut hands you for free.
+
+<sequence-builder mode="match" items='[{"term":"Truss diagonal, pin-ended, no mid-span load","definition":"Two-force member: force acts along the bar; only magnitude and tension/compression sign remain"},{"term":"Pin-and-roller beam with one transverse point load","definition":"Three-force member: roller and load are parallel, so the pin reaction must also be parallel (vertical)"},{"term":"Inclined bar with a horizontal cable and a hanging weight both at the top end","definition":"Three-force member: the two top forces meet at a point, so the pin reaction is directed along the bar"},{"term":"Bar with a load welded at its midpoint","definition":"Not a two-force member: a third load point introduces bending, voiding the line-of-action shortcut"}]' />
+
 ---
 
 ## What's Next?
@@ -374,6 +386,8 @@ $$
 In **Chapter 2: Rigid Body Equilibrium**, we will extend this analysis to include moments explicitly and solve more complex structural problems where the two-force and three-force shortcuts no longer apply.
 
 ---
+
+<concept-map concepts='["two_force_member","three_force_member","concurrency","truss_analysis"]' />
 
 <dynamic-scenario topic="Special Members" context="A structural intern is checking whether a link in a support frame should be modeled as a two-force member or whether a third external load makes the shortcut invalid." />
 

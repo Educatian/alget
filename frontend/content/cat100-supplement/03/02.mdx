@@ -57,6 +57,12 @@ Step 3. Total the orders with `=SUM(E3:E4)`, which returns `37.00`.
 
 The decision a reader can audit: relative references (`B3`, `C3`) for per-row inputs, an absolute reference (`$F$1`) for the one shared fee. Mixing those up is the single most common formula error in this section.
 
+<step-reveal title="Build and copy the order sheet without the shipping bug" steps='[{"prompt":"In D3 you need the line total for Mug (Qty 3, Price 4.00). Which formula, and why these reference styles?","predictType":"choice","choices":["=B3*C3 (both relative, each row has its own qty and price)","=$B$3*$C$3 (lock both so the total never changes)","=B3*C3*F1 (multiply in shipping here)","Type 12.00 directly"],"answerIndex":0,"reveal":"=B3*C3 with both relative. Each row owns its quantity and price, so when you copy down, D4 correctly becomes =B4*C4 = 15.00."},{"prompt":"In E3 you add the fixed shipping in F1=5. Which formula survives copying down?","predictType":"choice","choices":["=D3+F1","=D3+$F$1","=$D$3+F1","=D3+F$1 only works going sideways"],"answerIndex":1,"reveal":"=D3+$F$1. The absolute $F$1 stays pinned, so E4 becomes =D4+$F$1 = 20.00. Writing =D3+F1 would slide to =D4+F2 (empty), silently dropping shipping to zero."},{"reveal":"Total with =SUM(E3:E4) = 37.00. The auditable pattern: relative for per-row inputs, absolute for the one shared fee."}]' />
+
+The reference decision is only safe if you also test the fill. Order the copy-and-verify procedure a reviewer would follow.
+
+<sequence-builder mode="order" items='["Decide per reference: should it move with the fill or stay fixed?","Lock shared constants with \\$ (the one fee or rate)","Copy the formula down the column","Click the LAST filled cell and read the formula bar","Confirm locked references still point where intended"]' />
+
 ## Decision Rule
 
 Before you copy a formula, ask one question of every reference in it: should this address move with the fill, or stay fixed? Each input that belongs to the row stays relative; each value that is shared by all rows gets locked with dollar signs. Then test the bottom of the column, not just the top, because relative-reference errors hide below the first row.
@@ -92,6 +98,10 @@ A strong reader can look at a formula and narrate what it will become two rows d
 3. `=A2/A$1` copied to row 3 becomes `=A3/A$1` (the locked row stays, the column would still shift if copied sideways).
 
 When you can read a formula and forecast its copied form, you can debug a wrong column in seconds instead of retyping it.
+
+<inline-check question="You copy =B2*(1+$E$1) from row 2 down to row 3. What does row 3 become?" explanation="The relative B2 advances to B3, but the absolute $E$1 stays pinned to the one tax-rate cell. So row 3 reads =B3*(1+$E$1), exactly what you want. Had you written E1 unlocked, it would slide to the blank E2 and the tax would vanish." options='[{"text":"=B3*(1+$E$1) (the rate stays locked, the cost advances)","correct":true},{"text":"=B3*(1+$E$2) (both references shift down)","correct":false},{"text":"=B2*(1+$E$1) (nothing changes when copied)","correct":false}]' />
+
+<concept-map concepts='["cat100_supplement_formulas_for_everyday_analysis", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

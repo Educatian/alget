@@ -34,6 +34,8 @@ Exercising agency well has a recognizable structure:
 
 Documentation is what separates agency from refusal: a logged, evidence-backed deviation is a professional act a colleague can inspect, while an unlogged one is indistinguishable from non-compliance. Critical edtech studies names the harm a default can cause; TPACK keeps the adaptation tied to the content goal; datafication reminds you that the platform's routing logic is itself a designed artifact, not a fact of nature.
 
+<inline-check question="A teacher quietly ignores a mandated platform's sequence for some students but writes nothing down. Is this an exercise of teacher agency?" explanation="No. An unlogged, unevidenced deviation is indistinguishable from non-compliance; it forfeits documentation and the chance to change the policy. Agency is a logged, evidence-backed deviation a colleague can inspect, not covert refusal." options='[{"text":"Yes, any deviation from a mandate is agency","correct":false},{"text":"No; an unlogged deviation is refusal, not agency","correct":true},{"text":"Yes, because the students benefit","correct":false},{"text":"No, because teachers may never deviate from a mandate","correct":false}]' />
+
 ## Worked Example
 
 Scenario: the teacher from the opening case decides what exercising agency looks like inside the math-platform mandate. Walk it in four numbered moves.
@@ -53,6 +55,10 @@ Scenario: the teacher from the opening case decides what exercising agency looks
 
 The decision is defensible because agency is shown as the capacity to adapt and justify deviations within the mandate, backed by evidence, rather than as either blind compliance or covert refusal.
 
+Work the mandate as a live dilemma. Steer between blind compliance and covert refusal: reclaim the decision the default made, back it with evidence, and push it upward.
+
+<branching-scenario tree='{"title":"Inside the mandated adaptive math platform","start":"m1","nodes":{"m1":{"prompt":"The required platform auto-assigns lessons and routes your struggling readers past a fractions-vocabulary step. The platform is mandatory. What is your stance?","choices":[{"label":"Run the default; any struggle is the platform design, not my call","next":"mComply","feedback":"Blind compliance. You handed the sequencing decision to the platform and disowned the result."},{"label":"Ignore the platform for those students and teach my own sequence","next":"mRefuse","feedback":"Covert refusal. Without a record, this is indistinguishable from non-compliance and cannot change the policy."},{"label":"Locate the decision the default made and gather evidence on the harm","next":"mLocate","feedback":"This is where agency lives: reclaim the sequencing decision the default quietly took."}]},"mComply":{"prompt":"Six fast-tracked students score 40 percent on the fractions-vocabulary quiz vs. 80 percent for the class. You attribute it to the platform. What did you give up?","choices":[{"label":"Nothing; the platform owns sequencing","next":"mLoss","feedback":"You surrendered the one decision that was still yours: how the mandate lands for these students."},{"label":"The authority to adapt how the mandate lands for these 6 students","next":"mLocate","feedback":"Right. Reclaim it with a bounded, logged adaptation."}]},"mRefuse":{"prompt":"Your workaround helps, but there is no record and the district never learns the skip setting is harmful. What is the cost?","choices":[{"label":"None; the students are fine","next":"mLoss","feedback":"The policy stays broken for every other class, and your act cannot be defended or audited."},{"label":"You lose documentation and the chance to fix the policy district-wide","next":"mLocate","feedback":"Exactly. Convert the workaround into a logged, evidenced deviation routed upward."}]},"mLocate":{"prompt":"Over two weeks the 6 fast-tracked students score 40 percent vs. 80 percent. What is the smallest justified deviation?","choices":[{"label":"Drop the platform entirely for the whole class","next":"mLoss","feedback":"Larger than the harm requires and abandons the mandate. Make the smallest bounded adaptation."},{"label":"Insert a 10-minute vocabulary mini-lesson for the 6, log it, and send the gap data to the grade team","next":"mWin","feedback":"Bounded, evidenced, logged, and routed to the policy owner to disable the skip setting."}]},"mWin":{"prompt":"You authored how the mandate landed: a logged 10-minute step justified by the 40-vs-80 gap, with the data sent upward to change the skip setting.","feedback":"This is agency as accountable authorship inside a constraint.","choices":[]},"mLoss":{"prompt":"You either disowned the result or acted without a record, so a colleague cannot defend the call and the policy stays unchanged.","feedback":"Revisit: smallest bounded deviation, evidenced, logged, routed upward.","choices":[]}}}' />
+
 ## Decision Rule
 
 Inside a mandate, name the value the default is harming first, weigh the affordance second, and confirm the policy boundary third so your deviation stays within bounds. A tool choice, or a tool adaptation, is justified only when it protects students while improving a specific learning activity, and the deviation is documented.
@@ -64,6 +70,8 @@ A defensible exercise of agency survives three quick tests:
 3. **Revision check:** Did you log the deviation and route the evidence to whoever can change the policy?
 
 If the deviation is unlogged or unevidenced, it is refusal, not agency.
+
+<self-explain prompt="The Transfer Case notes that when a teacher freely chose a tool (no mandate), the 'locate the surrendered decision' step disappears but the evidence and documentation steps remain. Explain why agency still requires evidence and a record even with no mandate to push back against." answer="Agency is accountable authorship, not merely resistance to authority. With no mandate, there is no default someone else set, so nothing was surrendered to reclaim. But the teacher's own free choice still affects named students and still has to be defensible to a reviewer, so it must rest on measured evidence rather than intuition, and it must be documented so a colleague can inspect and challenge it. If your reasoning only disciplines decisions made against a mandate, you learned to push back; agency means the same evidence-and-record discipline governs your own free choices too." />
 
 ## Common Misreadings
 
@@ -128,6 +136,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your trace records evidence source, risk, support choice, and revision quality. That is what separates professional judgment from simple completion.
+
+## Concept Map
+
+See how bounded, documented agency connects to evidence-based revision and the course anchors.
+
+<concept-map concepts='["cat531_supplement_foundations_of_cbi_and_design_tensions", "cat531_supplement_teacher_agency_with_technology", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

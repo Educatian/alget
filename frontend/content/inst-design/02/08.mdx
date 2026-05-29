@@ -61,6 +61,12 @@ Use this table to label what each activity in a course actually *is*, and to spo
 
 > **Key Insight:** "Three forum posts a week" is not automatically learner-learner interaction. If no one responds and no instructor shapes the thread, it is learner-content interaction wearing a costume.
 
+Match each of Moore's three interaction types to the failure symptom that appears when it is absent. Reading the symptom backward to the missing interaction is the core diagnostic skill.
+
+<sequence-builder mode="match" items='[{"term":"Learner-content interaction","definition":"When absent, the course feels like a passive reading list with no retrieval or practice"},{"term":"Learner-instructor interaction","definition":"When absent, learners cannot tell whether they are right; no correction, calibration, or expert feedback"},{"term":"Learner-learner interaction","definition":"When absent, there is no sense of cohort and ideas are never tested socially against peers"}]' />
+
+<inline-check question="An online course consists of recorded videos, auto-graded quizzes, and a discussion board where posts are graded only on word count and nobody is required to reply. By Moore's criteria, how many distinct interaction types does it actually support?" explanation="Only one. Videos and quizzes are learner-content. The length-graded board with no required replies and no instructor shaping is learner-content wearing a costume, not real learner-learner interaction. Learner-instructor and genuine learner-learner interaction are both absent." options='[{"text":"One: it collapses to learner-content interaction","correct":true},{"text":"Two: learner-content and learner-learner","correct":false},{"text":"All three","correct":false}]' />
+
 ---
 
 ## The Community of Inquiry Model
@@ -78,6 +84,8 @@ The intersection of all three is where deep learning happens. A course strong in
 <concept-diagram type="community-of-inquiry"></concept-diagram>
 
 > **Connecting the Two Frameworks:** The frameworks are not rivals; they layer. Moore tells you *which channels of interaction* exist; CoI tells you *what psychological condition* each channel must produce. Learner-instructor interaction is the main carrier of teaching presence. Learner-learner interaction is where social presence either forms or fails. Cognitive presence cuts across all three channels and is the ultimate target.
+
+<self-explain prompt="Moore and CoI are said to 'layer' rather than compete. Explain the relationship using one concrete activity: a rubric-based peer-review task. Which Moore channel is it, and which CoI presence(s) does that channel carry?" answer="A rubric-based peer review is a learner-learner interaction in Moore's terms (peers critique each other's work). In CoI terms that channel is where social presence forms (learners experience each other as real people whose feedback matters) and it also advances cognitive presence by pushing discourse past mere exploration toward integration, because the rubric forces learners to synthesize criteria against a peer's actual artifact. Moore names the channel; CoI names the psychological condition the channel must produce. The rubric is the teaching-presence lever that makes the learner-learner channel actually generate those conditions." />
 
 ---
 
@@ -129,6 +137,10 @@ Map the same activities onto the three presences.
 
 **Step 3: Diagnose the mode-purpose match.**
 The objective is transfer to novel cases, which requires elaboration and argument. That objective is poorly served by one-way recorded video alone and would be well served by structured discourse. The current mode allocation is backwards: maximum effort on passive content, zero on the interaction the objective needs.
+
+Before reading the prescription, work the redesign decisions yourself.
+
+<branching-scenario tree='{"title":"Redesign the failing seminar","start":"n1","nodes":{"n1":{"prompt":"The Moore audit shows all three activities collapse to learner-content. The objective is transfer to novel cases. What does that objective most need?","choices":[{"label":"Structured discourse: elaboration and argument among learners and with an instructor","next":"n2","feedback":"Right. Transfer to novel cases is built by elaboration and argument, not by more passive content."},{"label":"Higher-resolution lecture videos","next":"bad1","feedback":"More polished content is still only learner-content; it does not add the missing interactions."}]},"n2":{"prompt":"You replace the length-graded forum. Which replacement restores learner-learner interaction AND pushes cognitive presence past exploration?","choices":[{"label":"Structured peer review where each learner critiques two peers against a rubric","next":"n3","feedback":"Correct. The rubric forces integration and seeds social presence."},{"label":"Require five forum posts instead of three, still graded on length","next":"bad2","feedback":"More length-graded posts is the same costume; no discourse is shaped."}]},"n3":{"prompt":"The objective also needs discourse that reaches RESOLUTION, and the instructor is invisible. What single addition best fixes both?","choices":[{"label":"A fortnightly recorded synchronous case session with breakouts, plus a weekly instructor synthesis post","next":"good","feedback":"Exactly. Live breakouts drive resolution and social presence; the synthesis post makes teaching presence visible."},{"label":"Convert every lecture to a live mass webinar","next":"bad3","feedback":"A one-way synchronous lecture is the costliest mode for the lowest-value purpose; it adds no discourse."}]},"good":{"prompt":"Your redesign restored all three Moore interactions and gave cognitive presence a path from triggering to resolution, by adding SPECIFIC missing elements rather than undirected volume.","choices":[]},"bad1":{"prompt":"Dead end: polishing content does not add the missing interactions. Restart.","choices":[]},"bad2":{"prompt":"Dead end: more length-graded posts is learner-content in costume. Restart.","choices":[]},"bad3":{"prompt":"Dead end: a one-way webinar wastes the most expensive mode. Restart.","choices":[]}}}' />
 
 **Step 4: Prescribe targeted changes (not "more of everything").**
 
@@ -190,6 +202,8 @@ If several answers are "no," the course will run, but it will under-perform its 
 ---
 
 ## Summary
+
+<concept-map concepts='["online_learning_design","moore_three_interactions","community_of_inquiry","cognitive_presence","social_presence","teaching_presence"]' />
 
 ### Key Frameworks
 

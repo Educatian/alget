@@ -43,6 +43,10 @@ The design move for a draft-feedback template is to push comments up from task a
 
 A second principle bounds the template: actionability has a ceiling. A draft buried under twelve comments cannot be revised; the learner faces the same overload the work was meant to reduce. Prioritizing one process-level revision per draft is itself a load decision, not a generosity decision.
 
+Classify each template line by the feedback level it operates at. Match the comment to the level that predicts what revision it will provoke.
+
+<sequence-builder mode="match" items='[{"term":"Great start!","definition":"Self level: praise about the person, carries no task information, lowest yield"},{"term":"Tighten this up before final","definition":"Task level but underspecified: names no criterion, produces guessing and cosmetic edits"},{"term":"Frame 4 names the goal but not the learner action; add one action sentence","definition":"Task-to-process with location and move: targets narration-to-action alignment, the design reasoning"},{"term":"Which frame are you least sure aligns, and how would you check?","definition":"Self-regulation level: builds the learner own monitoring rather than requiring endless instructor diagnosis"}]' />
+
 ## Worked Example
 
 Walk through one concrete revision of a feedback template an instructor uses to comment on student design drafts. The artifact is the comment template itself, not a single student's draft.
@@ -55,6 +59,10 @@ Walk through one concrete revision of a feedback template an instructor uses to 
 
 **After (the template as criterion-anchored feedback).** Each line follows criterion -> location -> action, with exactly one prioritized revision. Re-used on the next 12 drafts, 10 students changed design reasoning (narration-to-action alignment) rather than only formatting. The change is justified by **cognitive load theory** and is auditable: a reviewer can compare the old line "tighten this up" to the rewritten criterion-located-action line and the shift in what students actually revised.
 
+Work the rewrite one decision at a time. Predict the diagnosis before each reveal.
+
+<step-reveal title="Rewriting one vague feedback line" steps='[{"prompt":"The old line reads \"This is a bit confusing, can you clarify?\" Which part of the criterion-location-action structure does it most clearly lack?","predictType":"choice","choices":["A criterion the student can name","A warmer tone","More comments overall","A grade attached"],"answerIndex":0,"reveal":"It names a feeling (confusing) but no criterion. The student cannot tell what standard the draft missed, so they guess and edit cosmetics."},{"prompt":"You add the criterion and a location: \"Frame 4 states the goal but not the learner action.\" What single piece is still missing for the student to act?","predictType":"choice","choices":["An observable next move","A second praise line","A longer explanation","A holistic score"],"answerIndex":0,"reveal":"The student now knows the criterion and the place but not what to do. Adding \"add one sentence naming what the learner does on this screen\" supplies the observable move."},{"reveal":"Final line: \"Frame 4 states the goal but not the learner action; add one sentence naming what the learner does on this screen.\" Criterion, location, and move are all present, and the template still emits only this one prioritized revision."}]' />
+
 ## Decision Rule
 
 Write each comment to the criterion-location-action structure, and reserve praise for when it is true and specific, never as the carrier of the actual feedback. A line that does not name a criterion, point to a place, and request a move is decoration.
@@ -66,6 +74,8 @@ Test every template line against three questions before it ships:
 3. **Move check:** Does the line request one observable next action, and is it the single highest-leverage revision rather than one of twelve? If the template emits more than one priority per draft, it is overloading the very learner it means to help.
 
 A template whose lines cannot pass these three is producing feelings, not revisions.
+
+<inline-check question="An instructor wants warmer feedback and adds a fourth encouraging line to a template that already emits one prioritized process-level move. What is the main cost?" explanation="Self-level praise carries no task information and does not raise the feedback's level. Worse, the extra line spends part of the actionability budget, competing for the learner's limited working memory against the one revision that mattered." options='[{"text":"It spends the actionability budget on a self-level line that adds no task information.","correct":true},{"text":"Warmth always lowers learning, so any praise is harmful.","correct":false},{"text":"It converts the process-level move into a task-level one.","correct":false},{"text":"Nothing; more lines always mean more help.","correct":false}]' />
 
 ## Common Misreadings
 
@@ -128,6 +138,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the storyboard frame sequence with narration, signaling, and reader-action notes records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+
+<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "ail606_supplement_feedback_templates_for_design_drafts", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

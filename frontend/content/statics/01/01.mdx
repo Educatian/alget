@@ -84,6 +84,8 @@ $$
 
 These are algebraic sums. Forces acting opposite the chosen positive direction must carry a negative sign.
 
+<inline-check question="A particle has only two forces on it: a 40 N pull to the right and a 40 N pull to the left. The particle is at rest. What does the equilibrium condition tell you about its state?" explanation="Both components cancel: the sum of x-forces is +40 - 40 = 0 and there are no y-forces, so the net force is zero. Equilibrium does not require zero forces, only zero net force, so the particle stays at rest." options='[{"text":"It is in equilibrium because the net force is zero even though two real forces act.","correct":true},{"text":"It is not in equilibrium because two nonzero forces are present.","correct":false},{"text":"It must be accelerating because forces are acting on it.","correct":false}]' />
+
 > **Critical Check:** Most statics mistakes are not advanced mistakes. They are usually sign mistakes, missing forces, or sloppy free body diagrams.
 
 ---
@@ -206,6 +208,10 @@ Notice that $T > W$. That is not a mistake. Only part of the cable force acts ve
 
 > **Think About It:** As the cable angle gets closer to horizontal, the required tension increases dramatically. This is one reason shallow cable angles can create very large internal forces.
 
+Use the explorer below to feel that effect directly. Drive the cable angle down toward the horizontal and watch the required tension climb far above the supported weight, while the horizontal pull on the anchor grows even faster.
+
+<parameter-explorer config='{"title":"Single inclined cable: T = mg / sin(theta)","sliders":[{"name":"m","label":"Hanging mass","min":5,"max":200,"step":5,"unit":"kg","default":50},{"name":"theta","label":"Cable angle above horizontal","min":5,"max":90,"step":1,"unit":"deg","default":45}],"outputs":[{"label":"Weight W = mg","unit":"N","expr":"m * 9.81"},{"label":"Cable tension T = mg / sin(theta)","unit":"N","expr":"m * 9.81 / sin(theta * 3.14159265 / 180)"},{"label":"Horizontal anchor pull T cos(theta)","unit":"N","expr":"m * 9.81 * cos(theta * 3.14159265 / 180) / sin(theta * 3.14159265 / 180)"}],"plot":{"x":"theta","output":1}}' />
+
 ---
 
 ### Example 1.3: Two-Cable System
@@ -258,6 +264,8 @@ $$
 
 This result is physically informative. The shallower cable carries the larger force because it contributes less vertical support per unit tension.
 
+<step-reveal title="Reconstruct the two-cable solution step by step" steps='[{"prompt":"Horizontal equilibrium gives T_A cos30 = T_B cos60. Solving for T_A in terms of T_B, which relation is correct?","predictType":"choice","choices":["T_A = 1.732 T_B","T_A = 0.577 T_B","T_A = T_B","T_A = 0.5 T_B"],"answerIndex":1,"reveal":"T_A = T_B (cos60 / cos30) = T_B (0.5 / 0.866) = 0.577 T_B. The shallower cable A must carry more force, so its coefficient relative to T_B will end up larger after the vertical equation closes."},{"prompt":"Vertical equilibrium reads T_A sin30 + T_B sin60 = W, with W = (100)(9.81) = 981 N. After substituting T_A = 0.577 T_B, what single equation in T_B results?","predictType":"choice","choices":["1.155 T_B = 981","0.866 T_B = 981","1.366 T_B = 981","0.577 T_B = 981"],"answerIndex":0,"reveal":"(0.577 T_B)(0.5) + T_B(0.866) = 0.289 T_B + 0.866 T_B = 1.155 T_B = 981."},{"prompt":"Solve for T_B.","predictType":"choice","choices":["490.1 N","981 N","849.4 N","566.2 N"],"answerIndex":2,"reveal":"T_B = 981 / 1.155 = 849.4 N. This is the steeper (60 degree) cable."},{"reveal":"Back-substitute: T_A = 0.577 (849.4) = 490.1 N. The shallower 30 degree cable carries LESS force here because it sits closer to the load line, contradicting a common intuition. The closed form T_A = W cos(beta)/sin(alpha+beta) confirms both numbers."}]' />
+
 **Quick generalization.** For two cables at angles $\alpha$ and $\beta$ measured from the horizontal on opposite sides of a weight $W$, the same two equations solve in closed form:
 
 $$
@@ -307,6 +315,8 @@ Substituting $\alpha = 30^\circ$, $\beta = 60^\circ$, and $W = 981$ N gives $T_A
 In **Section 1.2: Free Body Diagrams**, we will extend this force-balance workflow to more complex support conditions, inclined surfaces, and frictional contacts.
 
 ---
+
+<concept-map concepts='["equilibrium","sum_of_forces","free_body_diagram","tension"]' />
 
 <dynamic-scenario topic="Particle Equilibrium" context="A field engineer must decide whether a suspended sensor package can be safely supported by two angled guide cables after one mounting point is moved during installation." />
 

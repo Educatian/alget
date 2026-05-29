@@ -89,6 +89,12 @@ where $m$ is the number of members and $j$ is the number of joints. Read it as:
 
 This count is **necessary but not sufficient**. Geometry still rules. A truss can satisfy the count and still behave as a mechanism if the members are badly arranged (for example, three members meeting so their lines all pass through one point).
 
+<parameter-explorer config='{"title":"Determinacy Screen: m vs 2j - 3","sliders":[{"name":"m","label":"Members m","min":1,"max":30,"step":1,"unit":"","default":11},{"name":"j","label":"Joints j","min":3,"max":17,"step":1,"unit":"","default":7}],"outputs":[{"label":"Required for determinacy (2j - 3)","unit":"members","expr":"2*j - 3"},{"label":"Surplus members (m - (2j - 3))","unit":"","expr":"m - (2*j - 3)"}],"plot":{"x":"j","output":0}}' />
+
+Drag the joint count and watch the required member count $2j-3$ track it: when the surplus is $0$ the count is determinate, negative means a likely mechanism, and positive means indeterminate (extra members need deformation analysis).
+
+<inline-check question="A planar truss has m = 9 members and j = 6 joints. What does the count test say?" explanation="2j - 3 = 2(6) - 3 = 9, which equals m, so the member count is consistent with a statically determinate planar truss." options='[{"text":"Determinate: 2j - 3 = 9 = m","correct":true},{"text":"A mechanism, because 9 is less than 6","correct":false},{"text":"Indeterminate, because m is greater than j","correct":false}]' />
+
 ---
 
 ## Zero-Force Members
@@ -169,6 +175,8 @@ F_{AB} = \boxed{4.5\ \text{kN (tension)}}
 $$
 
 The bottom chord stretches, tying the two leaning legs together; the inclined chords compress. That tension-bottom, compression-top pattern is the signature of a simply loaded triangle.
+
+<step-reveal title="Rebuild the triangle-truss solution step by step" steps='[{"prompt":"With a vertical 12 kN load at the apex and a pin and roller at the feet, what are the support reactions?","predictType":"choice","choices":["Ax = 0, Ay = By = 6 kN up","Ay = 12 kN up, By = 0","Ax = 12 kN, Ay = By = 0"],"answerIndex":0,"reveal":"By symmetry the load splits evenly: Ay = By = P/2 = 6 kN up, and Ax = 0 because the only applied force is vertical."},{"prompt":"At joint C, vertical equilibrium reads -F(0.8) - F(0.8) - 12 = 0 with F the force in each inclined member. What is F?","predictType":"choice","choices":["F = -7.5 kN, so 7.5 kN compression","F = +7.5 kN, so 7.5 kN tension","F = -15 kN, so 15 kN compression"],"answerIndex":0,"reveal":"-1.6F = 12 gives F = -7.5 kN. The negative sign flips the tension assumption, so AC and BC are each 7.5 kN in compression: the apex squeezes the legs."},{"prompt":"At joint A, horizontal equilibrium gives F_AC(0.6) + F_AB = 0 with F_AC = -7.5 kN. What is the bottom chord force F_AB?","predictType":"choice","choices":["F_AB = +4.5 kN tension","F_AB = -4.5 kN compression","F_AB = +7.5 kN tension"],"answerIndex":0,"reveal":"F_AB = -(-7.5)(0.6) = +4.5 kN. Positive confirms tension: the bottom chord stretches to tie the two leaning legs together."}]' />
 
 ---
 
@@ -294,6 +302,8 @@ The names matter less than the consequence: layout decides which long members ar
   options='[{"text":"The truss is unstable because 13 is less than 2j - 3.","isCorrect":false},{"text":"The truss is statically determinate by the count test because 2(8) - 3 = 13.","isCorrect":true},{"text":"The truss must be indeterminate because every truss with more than 10 members is indeterminate.","isCorrect":false}]'
   explanation="Correct. For 8 joints, the count test gives 2j - 3 = 13, so the member count is consistent with a statically determinate planar truss."
 />
+
+<concept-map concepts='["truss_analysis","joint_equilibrium","member_force","statical_determinacy"]' />
 
 ---
 

@@ -36,6 +36,8 @@ The intellectual core is the difference between near transfer and far transfer. 
 
 This is also why a proof artifact is non-negotiable. A capability claim without a linked file is a wish. The map ties every claim to a real Unit file a reviewer can open, which is the same evidence standard you carry into the resume and portfolio.
 
+<inline-check question="A row reads: a 40-row pivot table transfers unchanged to a 40,000-row job dataset. What is wrong with it?" explanation="That claim describes near transfer only and ignores what scale forces. Far transfer means naming the adaptation: a dragged lookup needs an absolute reference so the range does not drift as the data grows. An empty adaptation note reveals memorized clicks, not understanding." options='[{"text":"Nothing; a pivot table works the same at any size.","correct":false},{"text":"It skips the adaptation: a larger dataset forces an absolute reference in the lookup.","correct":true},{"text":"The destination should say my future career to stay flexible.","correct":false}]' />
+
 ## Worked Example: Building One Row of a Transfer Map
 
 A student is mapping a CAT 100 skill to a part-time retail job. The weak first draft is a single word.
@@ -55,6 +57,18 @@ A reviewer learns nothing: no capability, no destination task, no proof.
 | Summarize data with a pivot table | Unit 5 file pivots 512 order rows into a Region x Month grid | Build the weekly sales recap at the store | Source grows from 512 to ~4,000 rows, so lock the lookup range with an absolute reference like `=VLOOKUP(A2,$D$2:$E$4000,2,FALSE)` |
 
 The capability replaces the brand name. The proof points to a real file. The destination names a concrete job task. The last column shows the transfer is an adaptation, not a copy: the formula that ran over 40 class rows needs an anchored range before it runs over thousands. That adaptation note is the evidence that the student understands the skill rather than just the click sequence.
+
+Build one row of the map as a fixed procedure. Predict each step before revealing it:
+
+<step-reveal title="Promote a tool name into a transferable skill row" steps='[{"prompt":"Your draft row says only Excel. What is the first fix that turns a brand into a capability?","predictType":"choice","choices":["Add the word advanced in front of Excel","Restate it as a verb phrase like summarize data with a pivot table","Link your LinkedIn profile as proof"],"answerIndex":1,"reveal":"Name the verb, not the brand. Summarize data with a pivot table is a capability; Excel is just a product."},{"reveal":"Link a real proof artifact: the specific Unit file, like Unit 5 pivots 512 order rows into a Region by Month grid. No file, no claim."},{"reveal":"Name a concrete destination task, such as the store’s weekly sales recap, not my future career."},{"reveal":"Write the adaptation note: what breaks when data grows. Lock the lookup range with an absolute reference so a dragged formula does not drift past a few thousand rows."}]' />
+
+Now order the four columns a complete row fills:
+
+<sequence-builder mode="order" items='["State the capability as a verb phrase, not a brand name","Link the real Unit file that proves it","Name a concrete destination task outside class","Write the adaptation that scale or stakes force","Confirm all four columns are filled honestly before listing it"]' />
+
+These four concepts anchor the section; trace how they connect:
+
+<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_digital_skills_transfer_map","evidence_based_revision","ai_supported_learning"]' />
 
 ## Decision Rule
 

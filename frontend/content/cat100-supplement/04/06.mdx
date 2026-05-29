@@ -36,6 +36,8 @@ The reason column is where judgment lives. "Override, too harsh" is weak; "overr
 
 The accept/override ratio is itself evidence. A log that is all accepts suggests you followed without judging; a log that is all overrides may suggest you ignored useful help. A mix, each with a reason, is the signature of someone weighing advice rather than rubber-stamping or reflexively rejecting it.
 
+<inline-check question="A log row reads: AI said ’teach fractions before decimals,’ I decided OVERRIDE, Why: ’it just felt wrong.’ Why does this row fail the reason check?" explanation="The reason ’it felt wrong’ would be equally true if the student had decided ACCEPT instead, so it does not actually distinguish the call. A reason does its job only when it points to a standard (the pasted standards, what you can observe, the audience’s needs) that another reader could apply the same way." options='[{"text":"The reason points to no standard, so it would justify the opposite decision just as well","correct":true},{"text":"OVERRIDE is never a valid decision; the AI should always be accepted","correct":false},{"text":"The row is missing a confidence rating","correct":false},{"text":"Nothing fails; a gut feeling is a sufficient reason in a reflection","correct":false}]' />
+
 ## Worked Example
 
 A reflection on teacher judgment is a concrete decision log, not a feelings paragraph. You record each moment where the AI advised something and you decided to accept or override it, with the reason. A freshman writes this as a four-column table so the judgment is countable. Follow the steps.
@@ -61,7 +63,13 @@ Step 3. Count the pattern. Out of 3 AI suggestions, you overrode 2 and accepted 
 
 Step 4. Write one sentence the log now supports: "I overrode the AI twice when its advice assumed a cause I could not observe, and accepted it once when it matched the standards." The decision log plus that count is the evidence: a reader can audit every judgment call, not just a feeling.
 
-## Decision Rule
+Order the moves that turn a feelings paragraph into an auditable decision log:
+
+<sequence-builder mode="order" items='["Discard the feelings paragraph (’I feel more confident’) because it holds no decisions", "Make one row for every moment the AI actually advised something", "Record each decision explicitly as ACCEPT or OVERRIDE in its own column", "Give each decision a reason that points to a standard, not a mood", "Count the accept/override ratio and read it as evidence of weighing"]' />
+
+Now turn one decision at a time into a defensible row, predicting each call before you reveal it:
+
+<step-reveal title="Build the decision log row by row" steps='[{"prompt":"The AI says ’tell the parent their child failed.’ You decide OVERRIDE. Which Why column makes the row auditable?","predictType":"choice","choices":["’Too harsh for a first quiz; I used the observed score and a make-up plan instead’","’I just didn’t like it’","’Overriding shows independence’","Leave the Why blank; the decision speaks for itself"],"answerIndex":0,"reveal":"The reason that names a standard (proportional tone for a single quiz) and the concrete replacement is auditable. A reviewer can agree or disagree with the standard, which is what makes it judgment rather than mood."},{"prompt":"The AI says ’teach fractions before decimals,’ and it matches the standards you pasted. What is the strongest call?","predictType":"choice","choices":["ACCEPT, because it matches the pasted standards and you have no evidence against it","OVERRIDE, to prove you are independent of the AI","ACCEPT, but write Why: ’it felt right’","Skip the row; accepts are not worth logging"],"answerIndex":0,"reveal":"ACCEPT with a standard-based reason. Accepting advice that matches a standard is also a defensible judgment; overriding good advice just to look independent is contrarianism, not judgment."},{"reveal":"With the AI’s ’say the student is unmotivated’ overridden on the observability standard, your log shows 2 overrides and 1 accept, each with a standard-based reason. The ratio itself is evidence that you weighed the advice instead of rubber-stamping or reflexively rejecting it."}]' />
 
 Reflect by logging decisions, not feelings, and give every decision a reason tied to a standard. A reflection counts as evidence of judgment only when a reader can audit each accept and override independently.
 
@@ -105,6 +113,12 @@ A useful closing note for the artifact would read: "I overrode the AI twice wher
 ## Transfer Case
 
 Move the decision log from classroom advice to a job-application context, where AI now suggests resume edits. The same structure applies: each suggested edit is a row, and you ACCEPT or OVERRIDE with a reason. But the standard shifts from "what I can observe about a student" to "what I can defend about myself in an interview." An AI suggestion to add "led a team of ten" gets an OVERRIDE if you cannot back it up, for the same kind of reason an unobservable-cause claim got overridden in the classroom. The log structure and the discipline of standard-based reasons transfer; the standard you measure against changes with the audience.
+
+## Concept Map
+
+See how decision-log reflection connects to the chapter’s wider ideas:
+
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "learner_reflection", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

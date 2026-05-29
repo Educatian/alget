@@ -34,6 +34,8 @@ A readiness check is integration, not repetition. The earlier sections taught ea
 
 Two ideas make the check work. First, you inspect the actual artifact, not your memory of it: open the slide, read the alt text, look at the disclosure, check the 2FA setting. Memory inflates readiness; inspection corrects it. Second, a flagged gap is a feature, not a failure. The whole value of a self-audit is finding the gap while you still have time to fix it; a check that always returns "all pass" is performing readiness rather than measuring it.
 
+<inline-check question="A learner marks all four readiness rows pass in under a minute without opening the slide, the disclosure, or the account settings. What is the most accurate read of that map?" explanation="A readiness check earns its value by surfacing the weak row before a grader does. An all-pass map produced from memory rather than inspection is performing readiness, not measuring it; the honest move is to open each artifact and mark gaps where the evidence is not actually present." options='[{"text":"It is strong: a clean all-pass map is the goal","correct":false},{"text":"It is suspect: statuses came from memory, not inspection, so re-run each row against the actual artifact","correct":true},{"text":"It is fine as long as the learner feels confident","correct":false},{"text":"It is strong because it was completed quickly","correct":false}]' />
+
 ## Worked Example
 
 A first pass at a readiness check often hides the real state behind optimism:
@@ -58,6 +60,12 @@ Test all four module skills against one shared profile slide before moving to Mo
 3. **Request targeted practice** on enabling two-factor authentication, then re-check that one row.
 
 Result: three skills confirmed against real evidence and one gap flagged for practice. That honest readiness map is more useful than checking every box at once.
+
+<step-reveal title="Predict each move as you run the Module 1 readiness check" steps='[{"prompt":"You are auditing the privacy row. What is the correct way to set its status?","predictType":"choice","choices":["Mark pass because you usually keep accounts safe","Open the account settings, check whether 2FA is actually on, and mark the status from what you see","Average it with the other rows","Skip it; three of four is enough"],"answerIndex":1,"reveal":"You inspect the actual artifact, not your memory. Opening the settings shows 2FA is off, so the honest status is gap, even though the other rows pass."},{"prompt":"Privacy comes back as a gap: 2FA is not enabled. What is the right next move?","predictType":"choice","choices":["Mark it good enough and submit","Flag the gap and write the specific fix: enable app-based 2FA on the school email","Hide the row so the map looks clean","Remove the privacy row entirely"],"answerIndex":1,"reveal":"A flagged gap is the point of the audit. You name the concrete fix while you still have time, instead of letting a grader find it."},{"prompt":"After you enable 2FA, can you mark the privacy row pass?","predictType":"choice","choices":["Yes, immediately, because you intended to fix it","Not until you re-inspect the setting and confirm 2FA is actually on","Yes, once the other three rows pass","No, gaps can never become pass"],"answerIndex":1,"reveal":"The loop is inspect, fix, re-inspect. The row is not pass until you confirm the fix on the actual artifact; skipping re-inspection leaves you believing a problem is solved when it may not be."},{"reveal":"Final map: three rows confirmed by inspection, one gap flagged with a concrete fix, then re-checked. An honest map with a well-handled gap shows more skill than a flawless map that is not true."}]' />
+
+To lock the method in, order the steps of one honest readiness pass.
+
+<sequence-builder mode="order" items='["Open the actual artifact for the row you are checking","Mark pass only if the evidence is present, otherwise mark gap","Write a specific fix for every flagged gap","Apply the fix to the gap","Re-inspect that one row and confirm before marking it pass"]' />
 
 ## Decision Rule
 
@@ -118,6 +126,10 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note makes a **connection**, show where the connection changes which row you re-check.
 
 <dynamic-scenario prompt="You are running a readiness check for CAT 100 01.08. A peer comment notes that every row is marked pass without any inspection notes. Choose the next revision move and the evidence that would show each status came from inspecting the artifact." />
+
+## Concept Map
+
+<concept-map concepts='["cat100_supplement_module_1_readiness_studio", "evidence_based_revision", "ai_supported_learning", "cat100_supplement_digital_citizenship_and_ai_readiness"]' />
 
 ## Check Your Understanding
 

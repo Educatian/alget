@@ -51,6 +51,12 @@ Goal: build a 3-minute pitch deck for a campus hiring panel that should leave th
 
 4. Audit against the purpose line. A "favorite class project" slide does not help the panel decide to interview, so it is cut.
 
+Put the worked example in the right order. The whole point of "audience first, evidence second, tool third" is that each step depends on the one before it, so reorder these into the sequence Maya actually followed:
+
+<sequence-builder mode="order" items='["Name the audience and the action they should take in one line", "Size the deck to the audience time budget (about one slide per minute)", "Draft a per-slide question the audience needs answered", "Choose the evidence that answers each question", "Cut any slide that serves no audience question", "Apply theme, font, and layout last"]' />
+
+<inline-check question="Devon opens PowerPoint and picks a theme before writing anything down. Which step of the correct sequence did he skip past?" explanation="Theme selection is the last step. Devon jumped straight to the tool before naming the audience, the action, and the per-slide questions, so nothing constrains what goes on each slide." options='[{"text":"He named the audience but skipped the purpose","correct":false},{"text":"He skipped naming the audience and purpose and jumped to the tool","correct":true},{"text":"He cut a slide too early","correct":false},{"text":"He sized the deck before choosing evidence","correct":false}]' />
+
 The cut is the evidence of judgment. Anyone can add slides; the storyboard shows that you removed a slide because it did not serve the named audience. That is the difference between a deck that is finished and a deck that is aimed.
 
 ## Decision Rule
@@ -77,6 +83,10 @@ Apply this to a real reassignment. Suppose your hiring-panel deck must now be se
 
 You would move the spoken context into the slide itself, so the headline "Cut report time 40 percent" now carries its own one-line proof beneath it, because no narrator will say it. You might add a single closing slide with explicit contact and availability, since the recruiter cannot ask you live. You are not redesigning for taste; you are re-deriving the deck from a changed audience constraint, which is exactly the skill the storyboard is meant to demonstrate.
 
+Walk the reassignment yourself. Your live three-slide panel deck just became a self-running file a busy recruiter skims on a phone. Decide what to re-derive first:
+
+<branching-scenario tree='{"title":"The deck got reassigned to a phone-skimming recruiter","start":"start","nodes":{"start":{"prompt":"The audience changed: no live time budget you control, no voice to carry meaning. What do you re-derive first?","choices":[{"label":"Pick a flashier theme so it grabs attention on a small screen","next":"theme","feedback":"Theme is the last layer. You changed an audience constraint, not a taste preference, so the tool comes after the message is re-derived."},{"label":"Re-check which audience properties changed (time control and narration), then fix the slides they break","next":"rederive","feedback":"Correct. Two audience properties changed, so you re-derive the deck from them rather than redesigning for taste."},{"label":"Add more slides since there is no live time limit","next":"morelides","feedback":"A phone-skimming recruiter has even less patience than a panel. More slides spends attention you no longer control."}]},"rederive":{"prompt":"Good. The narration channel is gone. What concrete move follows from that?","choices":[{"label":"Move the spoken proof into the slide itself, under the headline","next":"win","feedback":"Yes. No narrator will say the proof, so the headline must carry its own one-line evidence."},{"label":"Keep the slides bare and assume the recruiter infers the proof","next":"bare","feedback":"Without a voice, an inferred proof is a missing proof. The slide must now state it."}]},"win":{"prompt":"The headline carries its own proof and a closing slide adds contact and availability. The deck was re-derived from the changed constraint.","feedback":"This is the target: re-derive from the audience, not redesign for taste.","choices":[]},"theme":{"prompt":"Restart and re-derive from the audience instead.","feedback":"Theme never fixes a constraint change.","choices":[]},"morelides":{"prompt":"Restart and re-derive from the audience instead.","feedback":"Coverage is the opposite of purpose.","choices":[]},"bare":{"prompt":"Restart: with no voice, the proof must move onto the slide.","feedback":"A missing narrator means the slide carries the proof.","choices":[]}}}' />
+
 ## What Strong Reading Looks Like
 
 As you read, keep a two-column note: on the left, the audience question; on the right, the slide and evidence that answer it. If a slide has no audience question, flag it as a candidate to cut. By the end of 05.01, your note should let a reviewer reconstruct why each surviving slide exists.
@@ -97,6 +107,12 @@ A useful note for the artifact would sound like this: "I cut the 'favorite proje
 ## Transfer Case
 
 Take the same content to a stricter setting: a 60-second elevator version for a career fair, spoken, with no slides at all. The purpose holds (earn a follow-up), but the constraint collapses from three slides to roughly 150 spoken words. You must now choose the single strongest piece of evidence and drop the rest. If you can explain which slide survives as your one sentence and why, you understand purpose and audience as a relationship you can re-derive, not a template you copied.
+
+## Concept Map
+
+These are the ideas this section asks you to connect. Trace how naming the audience drives evidence-based revision of the storyboard:
+
+<concept-map concepts='["cat100_supplement_presentation_purpose_and_audience", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

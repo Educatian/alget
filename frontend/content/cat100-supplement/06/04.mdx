@@ -33,6 +33,8 @@ Three facts about GitHub Pages explain almost every publishing surprise.
 
 These facts connect to the course anchors. NACE career readiness frames publishing as shipping: professionals are judged on what is live, not on what works locally. data-ink and visual evidence applies to verification itself; the strongest evidence that your fix worked is a screenshot or check of the live URL, not a claim that it looked fine in the editor.
 
+<inline-check question="Your site is a project site served from username.github.io/portfolio/. Your stylesheet link reads <link rel='stylesheet' href='/style.css'>. What happens to the styles on the live URL?" explanation="A leading slash makes the path absolute, resolving from the domain root username.github.io/style.css, which does not exist on a project subpath. The browser silently gets a 404 and renders unstyled. A relative path like assets/style.css resolves under /portfolio/ and loads correctly." options='[{"text":"Styles fail: the absolute path resolves to the domain root, which has no style.css on a project subpath","correct":true},{"text":"Styles load fine: a leading slash always points at the current folder","correct":false},{"text":"Styles load only after the CSS file is rewritten; the path is irrelevant","correct":false}]' />
+
 ## Worked Example
 
 Maria pushed her files but the live page shows unstyled text. Follow the publishing checklist that finds and fixes the break.
@@ -55,6 +57,10 @@ Maria pushed her files but the live page shows unstyled text. Follow the publish
 
 The fix was one character of path logic, not a broken deploy. The lesson is that a project site serves from a subpath, so absolute paths that work locally break online. Verifying on the live URL, not the editor preview, is what exposed it.
 
+Order the publishing-and-verify steps so you diagnose before you rewrite. Enabling Pages and waiting for the build come first, and confirming on the real URL comes last.
+
+<sequence-builder mode="order" items='["Enable Pages: Settings, Pages, Deploy from a branch, Branch main, Save","Wait for the Pages build to finish before judging the result","Reproduce the problem on the live URL, not the editor preview","Inspect the link tag and switch absolute /style.css to relative assets/style.css","Commit and push the fix, then wait for the rebuild","Hard-refresh in a private window on a phone to confirm styles load"]' />
+
 ## Decision Rule
 
 When the live page looks wrong, do not start editing. Diagnose with three checks in order:
@@ -64,6 +70,10 @@ When the live page looks wrong, do not start editing. Diagnose with three checks
 3. **Environment check:** Did you verify on the live URL or only in the editor preview? If only the preview, you have not actually tested publishing.
 
 Most "broken deploy" panics are really a caching delay or one absolute path. Diagnose before you rewrite.
+
+Walk the unstyled-page case through the three checks and predict each verdict before you reveal it. The page is styled locally but plain on the live project URL at /portfolio/.
+
+<step-reveal title="Diagnose the unstyled live page with the build, path, and environment checks" steps='[{"prompt":"Build check first: the Pages dashboard shows the latest build succeeded and a private-window reload still shows no styles. Is build timing or cache the cause?","predictType":"choice","choices":["Yes, wait longer and it will fix itself","No, a fresh private-window load with a finished build rules out build and cache"],"answerIndex":1,"reveal":"A successful build plus a clean private-window load eliminates timing and caching. The cause is elsewhere, so move to the path check."},{"prompt":"Path check next: the link tag reads href=/style.css and the site serves from /portfolio/. Will the stylesheet load?","predictType":"choice","choices":["Yes, the leading slash points into the project folder","No, the absolute path resolves to the domain root, which has no style.css"],"answerIndex":1,"reveal":"The absolute path points to username.github.io/style.css, outside the project, so it 404s. Switch to the relative assets/style.css that resolves under /portfolio/."},{"reveal":"Environment check: prove the fix on the live URL, not the editor. Open the published address in a private window on a phone after the rebuild. Verdict: one path change fixed it, found by ruling out build and cache before touching the CSS."}]' />
 
 ## Common Misreadings
 
@@ -126,6 +136,10 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the GitHub Pages file tree with accessibility, privacy, and publishing checks records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
+
+## Concept Map
+
+<concept-map concepts='["cat100_supplement_publishing_with_github_pages", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]' />
 
 ## References
 

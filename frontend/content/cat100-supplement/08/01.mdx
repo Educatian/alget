@@ -35,6 +35,8 @@ The checklist covers three distinct surfaces, and confusing them is where studen
 
 The reason a checklist beats good intentions is that secrets enter files by accident, during testing, when you are focused on making something work. You will not remember them later. A scan finds them; a memory does not. The output that earns review is not "I was careful," it is a reproducible command and its result.
 
+<inline-check question="You deleted an API key from app.js in a new commit and pushed it. Is the leak fixed?" explanation="Deletion does not remove the value from a public repository’s history; a clone still exposes the old commit. The only safe response to any pushed credential is to rotate it." options='[{"text":"Yes, the current file no longer contains the key, so it is safe.","correct":false},{"text":"No, the key still lives in the commit history; you must rotate it.","correct":true},{"text":"Yes, as long as the commit message does not mention the key.","correct":false}]' />
+
 ## Worked Example: Auditing One Repo Against the Privacy Checklist
 
 A student is about to submit a personal portfolio site hosted on GitHub Pages. Before the capstone review, they run the three-line privacy checklist against the repo.
@@ -62,6 +64,18 @@ Two hits. Both are real secrets sitting in tracked files.
 > Removed weather key from `app.js:14` into `/config/keys.js` (now in `.gitignore`), deleted SMTP comment in `contact.html:32`, rotated both secrets on 2026-05-12, reran `git grep -i key` with zero hits, confirmed the page still loads.
 
 That paragraph names the file, the line, the action, the date, and the re-check, so a reviewer can reproduce every step. Polish (a nicer layout, a hero image) is the last layer; it never substitutes for the secret audit.
+
+Work the scan as a fixed procedure. Reveal each step only after you have predicted what it does:
+
+<step-reveal title="Run the privacy checklist on one repo" steps='[{"prompt":"You are about to publish a GitHub Pages portfolio. What is the first move before you trust the page looks clean?","predictType":"choice","choices":["Add a hero image so the site looks finished","Scan the tracked files for secrets with git grep","Email the link to a friend to check it loads"],"answerIndex":1,"reveal":"Scan first. Run git grep -n -i for key, password, and token against the actual tracked files, not your memory of how careful you were."},{"reveal":"For each hit, decide and act row by row: move the secret out of tracked files, add that path to .gitignore, and note the exact file and line."},{"reveal":"Rotate any secret that was ever pushed. Deletion alone leaves the value in public history, so invalidate the old credential and issue a new one."},{"reveal":"Record verifiable evidence: file, line, action, rotation date, and a clean re-scan that returns zero hits. That paragraph is what earns review."}]' />
+
+Then practice the order itself. Drag these into the sequence a safe audit follows:
+
+<sequence-builder mode="order" items='["Scan tracked files with git grep for key, password, token","Decide accept or remove for each flagged hit","Move secrets out of tracked files and into .gitignore","Rotate every credential that was ever pushed","Re-scan and confirm zero hits, then log file, line, action, and date"]' />
+
+These four concepts anchor the section; trace how they connect:
+
+<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_capstone_artifact_review","evidence_based_revision","ai_supported_learning"]' />
 
 ## Decision Rule
 

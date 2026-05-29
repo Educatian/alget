@@ -31,6 +31,10 @@ An observation protocol enforces a boundary between two kinds of statements that
 | Inference | "Probably confused by ambiguous labels" | Analysis, later |
 | Verdict | "The page is bad" | Nowhere in the raw record |
 
+Match each statement a moderator might write to the layer it belongs in, so the boundary between behavior, inference, and verdict becomes automatic at log time.
+
+<sequence-builder mode="match" items='[{"term":"Moused over Continue and Update Cart three times","definition":"Observation: belongs in the live behavioral log, verifiable on replay"},{"term":"Said which one saves it then clicked Back","definition":"Observation: verbatim speech plus an action, both replayable"},{"term":"Probably confused by ambiguous labels","definition":"Inference: a plausible meaning that belongs in the analysis column, tested against other participants"},{"term":"The cart page is bad and should be removed","definition":"Verdict: belongs nowhere in the raw record; severity is decided after patterns appear"}]' />
+
 The reason to keep observation pure is repeatability. A behavioral entry ("moused over Continue and Update Cart three times") can be verified against the recording and tallied across participants; a verdict cannot. This is also a **cognitive load theory** issue for the moderator: interpreting and judging in real time consumes attention that should be spent watching, so the protocol offloads judgment to a later, calmer pass and frees the moderator to capture more behavior accurately.
 
 Two further mechanics make a protocol trustworthy. First, anchoring: every entry carries a timestamp and the task step it occurred in, so the same event can be located and counted later, turning scattered notes into patterns. Second, non-leading capture: a think-aloud protocol asks the participant to keep talking but never asks "did you find that confusing?", because a leading prompt manufactures the data it pretends to observe. **UDL learner variability** adds a final demand: the protocol must record how different learners behave, not just whether the median learner succeeded, since the edge cases are where the design's real failures live and where a verdict-style note is most likely to erase them.
@@ -56,7 +60,13 @@ Walk through why this note is not usable observation data:
 
 The after version is defensible because another analyst could replay the session and verify the entry, and the same behavior can be tallied across participants. The before version logged a verdict, which is unrepeatable and lets one observer's bias stand in for evidence.
 
+Walk one raw verdict back into a replayable protocol entry, deciding at each step what survives in the behavioral log and what is exiled to the inference column.
+
+<step-reveal title="Rewrite \"confused by the cart page, page is bad\" into a protocol entry" steps='[{"prompt":"The moderator logs: Confused by the cart page, clearly did not understand it, the page is bad. Which words disqualify this as a behavioral entry?","predictType":"choice","choices":["cart and page (interface nouns)","confused, did not understand, bad (unobservable conclusions)","the timestamp is wrong","nothing, it is fine as written"],"answerIndex":1,"reveal":"Confused, did not understand, and bad are inferences and a verdict, none of which a camera could catch. A behavioral entry must contain only what an observer could verify on replay."},{"prompt":"You replay the recording. Which of these is the legitimate behavioral record?","predictType":"choice","choices":["The participant was frustrated by ambiguous labels","Moused over Continue and Update Cart three times, said which one saves it, clicked Update Cart, then clicked Back","The cart page needs a redesign","The participant found it unintuitive"],"answerIndex":1,"reveal":"Only the second option records observable actions and the verbatim question. The others smuggle interpretation or a verdict into the log."},{"reveal":"Final entry: 02:14, cart page: moused over Continue and Update Cart three times, said which one saves it, clicked Update Cart, then clicked browser Back. Task step: proceed to checkout. (Inference, for analysis: possible label ambiguity.) The timestamp and task step anchor it so the same behavior can be counted across participants, and the verdict has moved to where severity is judged later, after patterns appear."}]' />
+
 ## Decision Rule
+
+<inline-check question="During a session the participant pauses at a feedback screen. The moderator says, You found that confusing, right? and the participant nods. Why is the nod unusable as evidence?" explanation="The prompt is leading: it names the feeling and invites agreement, so it manufactures the very data it pretends to observe. A non-leading think-aloud keeps the participant talking (keep telling me what you are thinking) without suggesting what they should feel, leaving the behavior uncontaminated." options='[{"text":"The nod was not timestamped","correct":false},{"text":"A leading prompt manufactured the response, so it records the moderators suggestion not the participants experience","correct":true},{"text":"Nods cannot be logged, only spoken words can","correct":false},{"text":"The participant should have been asked to rate severity","correct":false}]' />
 
 Log what a camera would catch; save what it means for analysis. If an entry contains a word you could not point to in a recording (confused, frustrated, intuitive, bad), it is an inference and belongs in a separate column, not in the behavioral log.
 
@@ -129,6 +139,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, confirm every log entry records verifiable behavior, carries a timestamp and task step, keeps verdicts in a separate inference column, and was captured without leading the participant.
+
+<concept-map concepts='["ail606_supplement_observation_protocols", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

@@ -35,6 +35,8 @@ Three lenses keep the process honest:
 
 A lens has done its work when it changed your decision, such as adding a feature or restoring a dropped critique, not just your reflection.
 
+<inline-check question="An exit form averages 4 of 5 overall. Why is calling that a 'summary' misleading?" explanation="A single average is not a summary; it is a hidden distribution. Splitting the 4-of-5 may reveal that four multilingual learners rated the tool 2 of 5 because the audio ran too fast. Averaging weights the majority's satisfaction over the minority's difficulty, a decision that should be made consciously, not by default." options='[{"text":"It hides a distribution; subgroups can disagree sharply with the mean","correct":true},{"text":"It is misleading only if fewer than half the class responded","correct":false},{"text":"It is not misleading; an average always fairly represents the class","correct":false}]' />
+
 ## Worked Example
 
 Compare two ways of gathering voice. The decoration version is rigged toward agreement:
@@ -47,6 +49,10 @@ This produces a number that cannot change anything. The method version lowers th
 
 The second version surfaces the exact signal the clap would have buried. The decision that follows is concrete: add a half-speed audio option, restore the critical comments an AI theming tool had dropped, and tell the class how their input changed the lesson. That last step, closing the loop, is what teaches students their voice is real.
 
+See for yourself how an average buries a subgroup. Adjust the size of the dissenting subgroup and how negative their experience is, and watch how little the overall mean moves. The overall rating is the count-weighted average; the gap is how far the subgroup sits below the rest of the class.
+
+<parameter-explorer config='{"title":"How averaging buries a critical subgroup","sliders":[{"name":"majority_n","label":"Satisfied majority (count)","min":10,"max":24,"step":1,"unit":"students","default":20},{"name":"majority_rating","label":"Majority rating","min":1,"max":5,"step":0.5,"unit":"of 5","default":4.5},{"name":"minority_n","label":"Dissenting subgroup (count)","min":1,"max":12,"step":1,"unit":"students","default":4},{"name":"minority_rating","label":"Subgroup rating","min":1,"max":5,"step":0.5,"unit":"of 5","default":2}],"outputs":[{"label":"Overall (count-weighted) rating","unit":"of 5","expr":"(majority_n * majority_rating + minority_n * minority_rating) / (majority_n + minority_n)"},{"label":"Gap the average hides","unit":"of 5","expr":"majority_rating - minority_rating"}],"plot":{"x":"minority_n","output":0}}' />
+
 ### Annotated Judgment Call: Gathering Student Voice on an AI Tutor
 
 Marcus wants student voice on whether a new AI tutoring tool helped, without treating feedback as decoration.
@@ -58,6 +64,10 @@ Marcus wants student voice on whether a new AI tutoring tool helped, without tre
 5. **After (voice that shaped a decision):** He added a half-speed audio option, reported the subgroup concern and the fix back to the class, and told students how their input changed the lesson.
 
 The trace runs from feedback to a specific change, and students learned their voice carried weight.
+
+You hold the same exit-form data. Each decision either protects the diagnostic minority signal or averages it away.
+
+<branching-scenario tree='{"title":"Acting on a split exit form","start":"collect","nodes":{"collect":{"prompt":"You want student voice on a new AI tutoring tool. How do you gather it?","choices":[{"label":"Ask the class to clap if they liked the tool","next":"clap","feedback":"A public popularity vote where the cost of dissent is visible."},{"label":"A short anonymous exit form asking which step confused them and which helped","next":"split","feedback":"Anonymous and specific lowers the cost of honesty."}]},"clap":{"prompt":"Most clapped. What do you now know about the students the tool failed?","choices":[{"label":"Nothing; the method suppressed dissent","next":"nodata","feedback":"The clap tells you only what you already wanted to hear."}]},"nodata":{"prompt":"You collected a number that cannot change anything. Restart with a method that lets dissent survive.","feedback":"Public, undifferentiated methods systematically silence the students most likely to have a problem.","choices":[]},"split":{"prompt":"Overall ratings average 4 of 5. Read separately, four multilingual learners rated it 2 of 5 and wrote that the audio was too fast. What do you do?","choices":[{"label":"Report the 4-of-5 average; the tool was a success","next":"nodata","feedback":"You averaged the diagnostic minority signal away."},{"label":"Refuse to average it away and look at what the four wrote","next":"theming","feedback":"You treated the subgroup signal as carrying diagnostic weight."}]},"theming":{"prompt":"You paste the comments into an AI theming tool. It labels them mostly positive and drops several critical ones. What now?","choices":[{"label":"Trust the AI summary; it read everything","next":"nodata","feedback":"It recreated the averaging problem inside the analysis step."},{"label":"Reread the raw comments and restore the dropped critiques","next":"loop","feedback":"You restored the signal worth acting on."}]},"loop":{"prompt":"You add a half-speed audio option. What is the last step that makes this voice rather than opinion?","choices":[{"label":"Report the subgroup concern and the fix back to the class","next":"done","feedback":"Closing the loop teaches students their voice is real."},{"label":"Move on; the change is enough","next":"nodata","feedback":"Without report-back, students never learn their input had weight."}]},"done":{"prompt":"Feedback ran from a minority signal to a concrete change to a report-back. That is student voice.","feedback":"You collected safely, disaggregated before summarizing, acted on the strongest signal, and closed the loop.","choices":[]}}}' />
 
 ## Decision Rule
 
@@ -130,6 +140,10 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the feedback was safe to disagree with, that you read subgroups before the average, that you acted on the strongest signal even from a minority, and that students learned what their input changed.
+
+## Concept Map
+
+<concept-map concepts='["cat531_supplement_field_based_transfer_and_coaching", "cat531_supplement_student_voice_and_feedback", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

@@ -92,6 +92,14 @@ If you take moments about a point where two of the cut-member lines of action in
 
 This is what makes the method of sections feel so efficient: one smart cut and one smart moment point can produce the target answer almost immediately.
 
+For a cut where the bottom chord lies a height $h$ below the moment center, taking moments about the top joint isolates the chord: $F_{chord}\,h = R\,d_R - \sum P\,d_P$. Explore how the chord force scales with truss depth and the loads on the kept side:
+
+<parameter-explorer config='{"title":"Chord force from one moment equation (F = (R*dR - P*dP) / h)","sliders":[{"name":"R","label":"Support reaction R on kept side","min":1,"max":40,"step":0.5,"unit":"kN","default":10},{"name":"dR","label":"Lever arm of R about moment center","min":1,"max":16,"step":0.5,"unit":"m","default":4},{"name":"P","label":"Panel load P on kept side","min":0,"max":30,"step":0.5,"unit":"kN","default":0},{"name":"dP","label":"Lever arm of P about moment center","min":0,"max":16,"step":0.5,"unit":"m","default":0},{"name":"h","label":"Truss depth h (moment arm of chord)","min":1,"max":8,"step":0.25,"unit":"m","default":3}],"outputs":[{"label":"Chord force F (+T / -C)","unit":"kN","expr":"(R*dR - P*dP) / h"}],"plot":{"x":"h","output":0}}' />
+
+Watch the chord force fall as the truss depth $h$ grows: a deeper truss puts the chords on a longer lever arm, so the same applied moment is resisted by smaller axial forces. That is the structural reason deep trusses are efficient for long spans.
+
+<inline-check question="Your cut exposes four unknown member forces. Why is that a problem for a single section?" explanation="A planar section is a rigid body with exactly three independent equilibrium equations, so it can resolve at most three unknown member forces. Four unknowns require a second cut or solving an adjacent joint first." options='[{"text":"A planar section gives only three equations, so four unknowns cannot be solved from it alone","correct":true},{"text":"Cuts may never pass through more than two members","correct":false},{"text":"The moment equation stops working with four members","correct":false}]' />
+
 ---
 
 ## Worked Example 3.1: Roof Truss With Asymmetric Load
@@ -149,6 +157,8 @@ F_{EC} = \frac{-2}{0.6} = -3.33\ \text{kN} = \boxed{3.33\ \text{kN (compression)
 $$
 
 Each target force came from a single equation. Notice how the moment-center choices in Steps 3 and 4 let us skip all simultaneous algebra.
+
+<step-reveal title="Replay the cut: pick each moment center and predict the force" steps='[{"prompt":"After cutting through EF, EC, and BC and keeping the left side (Ay = 10 kN, 12 kN at B), which moment center isolates the bottom chord BC in one equation?","predictType":"choice","choices":["Point E, because EF and EC both pass through it","Point C, because that is where BC ends","Point A, because the reaction acts there"],"answerIndex":0,"reveal":"Take moments about E(4,3): both EF and EC pass through E and vanish, leaving only F_BC and Ay. The 12 kN at B is directly below E, so it contributes no moment either."},{"prompt":"sum M_E = 0 gives F_BC(3) - 10(4) = 0. What is the bottom chord force?","predictType":"choice","choices":["F_BC = 13.33 kN tension","F_BC = -13.33 kN compression","F_BC = 10.0 kN tension"],"answerIndex":0,"reveal":"F_BC = 40/3 = 13.33 kN. Positive means tension, as expected for a gravity-loaded bottom chord."},{"prompt":"To get the top chord EF, which moment center drops the other two cut members?","predictType":"choice","choices":["Point C, because BC and EC both pass through it","Point E, the top joint","The midspan of the truss"],"answerIndex":0,"reveal":"Take moments about C(8,0): both BC and EC pass through C and vanish. sum M_C = 0 gives -F_EF(3) - 10(8) + 12(4) = 0, so F_EF = -10.67 kN, i.e. 10.67 kN compression."}]' />
 
 ---
 
@@ -214,6 +224,10 @@ A quick self-check is:
 - Does my moment center help eliminate unwanted unknowns?
 
 <dynamic-scenario topic="Method of Sections" context="A bridge engineer needs the force in one central diagonal member to size a retrofit plate, but does not want to analyze the entire truss member by member."></dynamic-scenario>
+
+Work through the planning decisions for a real retrofit cut, where each choice compounds into a fast solution or a tangle of simultaneous equations:
+
+<branching-scenario tree='{"title":"Planning a section cut to size one retrofit diagonal","start":"n1","nodes":{"n1":{"prompt":"You need the force in a single interior diagonal of a 16 m Pratt truss. Where do you place the imaginary cut?","choices":[{"label":"Through the panel containing the target diagonal, slicing its two chords and the diagonal (3 members)","next":"n2","feedback":"Good: three cut members match the three section equations, so the cut is solvable."},{"label":"Through two adjacent panels to capture more members at once","next":"nbad1","feedback":"That exposes more than three unknowns, which a single section cannot solve."}]},"nbad1":{"prompt":"The cut crosses five unknown members. What now?","feedback":"With five unknowns and only three equations the section is unsolvable. Re-cut through a single panel exposing exactly three members.","choices":[]},"n2":{"prompt":"Both sides are now separated. Which side do you analyze?","choices":[{"label":"The side with the pin support, two panel loads, and more geometry","next":"nbad2","feedback":"That side has more external forces to track, which adds avoidable arithmetic."},{"label":"The side with fewer external loads and reactions","next":"n3","feedback":"Yes: the simpler free-body diagram keeps the equations short."}]},"nbad2":{"prompt":"The messier side gives a correct but cluttered equation set. Better choice?","feedback":"Switch to the lighter side. The member forces are the same, but the bookkeeping is far cleaner.","choices":[]},"n3":{"prompt":"To isolate the diagonal force directly, which equilibrium equation do you use?","choices":[{"label":"Vertical force balance, since both chords are horizontal and only the diagonal carries vertical force","next":"n4","feedback":"Exactly: sum Fy = 0 isolates the diagonal in one step."},{"label":"Moment about the diagonal itself","next":"nbad3","feedback":"A member produces zero moment about a point on its own line, so this gives no information about it."}]},"nbad3":{"prompt":"Taking moments about a point on the diagonal eliminates the diagonal, not the chords.","feedback":"Use vertical equilibrium instead: with horizontal chords, only the diagonal has a vertical component.","choices":[]},"n4":{"prompt":"You solve F_d in one equation and get a positive value. Interpretation?","feedback":"Positive means tension, the assumed sense. One cut, one equation, one targeted answer: the retrofit plate can now be sized.","choices":[]}}}' />
 
 ---
 
@@ -307,3 +321,5 @@ In the next section we move from determinate trusses to **frames and machines**,
   options='[{"text":"Because the whole truss becomes a particle at that point.","isCorrect":false},{"text":"Because those two unknown forces create zero moment about that point and drop out of the equation.","isCorrect":true},{"text":"Because moment equations can only be written at line intersections.","isCorrect":false}]'
   explanation="Correct. If two unknown force lines pass through the chosen moment center, they contribute no moment there, which can isolate the third unknown."
 />
+
+<concept-map concepts='["method_of_sections","cutting_plane","internal_forces"]' />

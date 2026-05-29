@@ -92,6 +92,8 @@ Use the same sequence every time:
 
 Students often rush to equations before completing the FBD. That usually causes sign mistakes or missing reactions.
 
+<sequence-builder mode="order" items='["Draw the free-body diagram of the whole body","Replace supports with their reaction forces and moments","Choose a coordinate system and sign convention (CCW positive)","Replace any distributed load with its resultant at the centroid","Pick a smart moment point to eliminate unknowns","Write the three equilibrium equations and solve","Check whether the reactions make physical sense"]' />
+
 ---
 
 ## Worked Example 1: Simply Supported Beam
@@ -123,6 +125,12 @@ $$
 $$
 
 The symmetry check holds: equal reactions for a central load, each carrying half the total. Note how choosing A as the moment center turned a three-unknown system into a one-line solution.
+
+<parameter-explorer config='{"title":"Simply supported beam: reactions vs load position","sliders":[{"name":"P","label":"Point load magnitude","min":0,"max":2000,"step":50,"unit":"N","default":1000},{"name":"a","label":"Load distance from pin A","min":0,"max":6,"step":0.1,"unit":"m","default":3},{"name":"L","label":"Span length A to B","min":1,"max":6,"step":0.1,"unit":"m","default":6}],"outputs":[{"label":"Roller reaction By = P a / L","unit":"N","expr":"P * a / L"},{"label":"Pin vertical reaction Ay = P (L - a) / L","unit":"N","expr":"P * (L - a) / L"}],"plot":{"x":"a","output":0}}' />
+
+Slide the load toward B and the roller reaction $B_y$ rises while $A_y$ falls; the support nearer the load always carries more. At midspan ($a = L/2$) they are equal, recovering the symmetric result above.
+
+<inline-check question="On this simply supported beam, you move the point load from midspan toward the roller at B. What happens to the pin reaction Ay at the far support?" explanation="From Ay = P(L - a)/L, increasing a (load nearer B) shrinks (L - a), so Ay decreases while By increases. The support closer to the load takes the larger share." options='[{"text":"Ay decreases","correct":true},{"text":"Ay increases","correct":false},{"text":"Ay stays at P/2 regardless of position","correct":false}]' />
 
 ---
 
@@ -224,6 +232,8 @@ $$
 
 The shallow cable angle forces a large tension (twice the hung weight) and a large horizontal pin thrust. This is the same lesson as shallow guy wires: low angles multiply internal force. A steeper cable would cut both $T$ and $A_x$ sharply.
 
+<step-reveal title="Solve the inclined-cable bracket step by step (Example 4)" steps='[{"prompt":"A 2 m arm is pinned at A; a 500 N weight hangs at the tip; a cable at the tip pulls at 30 deg above horizontal. Which moment point kills BOTH pin unknowns at once?","predictType":"choice","choices":["The tip of the arm","Point A (the pin)","The midpoint of the arm"],"answerIndex":1,"reveal":"Take moments about A: the pin reactions Ax and Ay pass through A, so they drop out, leaving one equation in T."},{"prompt":"Only the vertical forces at the tip (2 m out) create a moment about A. Solve T sin(30)*(2) - 500*(2) = 0 for T.","predictType":"choice","choices":["T = 500 N","T = 866 N","T = 1000 N","T = 250 N"],"answerIndex":2,"reveal":"T(0.5)(2) = 1000, so T = 1000 N. The shallow 30 deg angle makes the tension twice the hung weight."},{"prompt":"Now horizontal balance: the cable pulls the tip toward the wall with T cos(30). What is Ax?","predictType":"choice","choices":["Ax = 0","Ax = 500 N","Ax = 866 N","Ax = 1000 N"],"answerIndex":2,"reveal":"Ax = T cos(30) = 1000 * 0.866 = 866 N. The pin must push outward to balance the cable pull."},{"prompt":"Vertical balance: Ay + T sin(30) - 500 = 0. What is Ay?","predictType":"choice","choices":["Ay = 0","Ay = 500 N","Ay = 1000 N","Ay = 866 N"],"answerIndex":0,"reveal":"Ay = 500 - 1000(0.5) = 0. The cable carries the full vertical load, so the pin supplies only horizontal thrust."},{"reveal":"Final: T = 1000 N, Ax = 866 N, Ay = 0. Choosing A as the moment center reduced a three-unknown system to a single equation for T, then force balance gave the pin reactions directly."}]' />
+
 ---
 
 ## Common Failure Modes
@@ -311,6 +321,8 @@ In the next section we move from finding reactions to finding the **internal** f
 ---
 
 ## Check Your Understanding
+
+<concept-map concepts='["rigid_body_equilibrium","support_reactions","beam_equilibrium"]' />
 
 <interactive-quiz
   question="Why can a beam with zero net horizontal and vertical force still fail to be in equilibrium?"

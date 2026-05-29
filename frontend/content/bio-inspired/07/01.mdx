@@ -46,6 +46,12 @@ Here $\Delta K$ is the stress-intensity range, $\Delta\sigma$ is the applied str
 
 Biology handles this differently. When tissue is damaged, the body does not wait for a technician to inspect every micro-crack. It detects injury, routes repair resources, seals the breach, and rebuilds the structure. That is the inspiration behind self-healing materials.
 
+<parameter-explorer config='{"title":"Paris Law: Why Sealing a Crack Early Pays Off","sliders":[{"name":"a","label":"Crack length a","min":0.1,"max":10,"step":0.1,"unit":"mm","default":1},{"name":"dsigma","label":"Stress range Δσ","min":20,"max":200,"step":5,"unit":"MPa","default":100},{"name":"Y","label":"Geometry factor Y","min":0.8,"max":1.5,"step":0.05,"unit":"","default":1.12},{"name":"m","label":"Paris exponent m","min":2,"max":4.5,"step":0.1,"unit":"","default":3.5},{"name":"C","label":"Coefficient C (x1e-11)","min":1,"max":50,"step":1,"unit":"","default":10}],"outputs":[{"label":"Stress-intensity range ΔK","unit":"MPa·mm^0.5","expr":"Y * dsigma * sqrt(3.14159 * a)"},{"label":"Crack growth per cycle da/dN","unit":"mm/cycle","expr":"C * 1e-11 * (Y * dsigma * sqrt(3.14159 * a))^m"}],"plot":{"x":"a","output":1}}' />
+
+The plot shows the steep, super-linear climb of $da/dN$ with crack length $a$: a crack twice as long does not grow twice as fast, it grows roughly $2^m$ times as fast. That single curve is the quantitative argument for autonomous early sealing. Push the exponent $m$ up and watch how unforgiving large cracks become.
+
+<inline-check question="Using the Paris-law curve, why does biology (and a good self-healing material) act on small cracks first?" explanation="Because da/dN ~ (ΔK)^m and ΔK grows with sqrt(a), the growth rate is super-linear in crack size. Sealing while a is small keeps the part in the slow-growth regime; waiting lets the rate compound toward fracture." options='[{"text":"Small cracks are cosmetically uglier than large ones","correct":false},{"text":"Growth rate rises super-linearly with crack size, so early sealing keeps the part in the slow-growth regime","correct":true},{"text":"The Paris law only applies to cracks under 1 mm","correct":false}]' />
+
 <self-healing-diagram></self-healing-diagram>
 
 ---
@@ -105,6 +111,10 @@ Engineering systems borrow the same logic at different levels:
 
 The deeper lesson is that self-healing is not just a material trick. It is a **design philosophy of resilience**.
 
+<self-explain prompt="Bone uses 'remodeling' to restore load-bearing strength along stress lines, not just to seal the gap. In your own words, what is the engineering function this maps to, and why is a sealed-but-weak repair (clot-like only) insufficient for a load-bearing composite spar?" answer="Bone remodeling maps to strength restoration: a cross-linked, load-bearing repair rather than a mere barrier seal. A clot-like seal closes the breach but does not return stiffness or fatigue resistance, so a structural spar that only seals would still fail under the next load cycle. The function to copy is restoring the mission-critical property (stiffness/strength), not just closing the crack." />
+
+<sequence-builder mode="match" items='[{"term":"Injury detection","definition":"Crack ruptures embedded capsules (damage triggering)"},{"term":"Resource delivery","definition":"Capillary flow or vascular channels carry agent to the crack"},{"term":"Sealing (clot)","definition":"Polymerized agent fills the gap to restore the barrier"},{"term":"Remodeling (bone)","definition":"Cross-linked, load-bearing repair restores strength"},{"term":"Signaling","definition":"Embedded sensors and conductive traces monitor health"}]' />
+
 ---
 
 ## Where Self-Healing Materials Make Sense
@@ -129,6 +139,8 @@ Self-healing materials are most valuable when inspection or replacement is expen
 That final question is crucial. A self-healing material is not automatically better. It is better when the **life-cycle economics** make sense.
 
 <dynamic-scenario topic="Resilient Material Selection" context="A systems engineer must choose between cheaper carbon composite panels and more expensive self-healing polymer panels for a remote offshore sensing platform that is visited only twice a year."></dynamic-scenario>
+
+<branching-scenario tree='{"title":"Specify the Self-Healing Requirement for the Offshore Platform","start":"n1","nodes":{"n1":{"prompt":"The platform sits in cold seawater and is serviced only twice a year. What should you nail down FIRST before comparing panels?","choices":[{"label":"The dominant damage mode (cracking vs puncture vs delamination)","next":"n2","feedback":"Right. The healing chemistry and architecture only matter relative to the damage it must address."},{"label":"The vendor with the lowest unit price","next":"nbad","feedback":"Price-first ignores whether the cheaper option even survives the mission, which can cost far more in lost data."}]},"n2":{"prompt":"Inspection shows fine fatigue micro-cracks from wave loading are the main threat. Does the application need single or repeated healing?","choices":[{"label":"Repeated healing, since cyclic wave loading re-cracks the same regions","next":"n3","feedback":"Correct. Cyclic re-cracking depletes single-use capsules, pointing toward microvascular or reversible-bond chemistry."},{"label":"Single healing is fine for any structure","next":"nbad2","feedback":"A depletable capsule that empties on first rupture will not survive repeated cyclic damage at the same site."}]},"n3":{"prompt":"Cold-water service drops healing rate. The recovery target?","choices":[{"label":"Restore enough stiffness and fatigue resistance to survive until the next biannual visit","next":"nwin","feedback":"Exactly. Tie the recovery target to mission availability, not vague ’it healed’ claims."}],"feedback":""},"nwin":{"prompt":"Decision: a refillable microvascular self-healing panel, specified for repeated stiffness recovery at low temperature, justified by the twice-a-year access cost. You optimized for retained mission function, not raw strength.","feedback":"Resilience reasoning complete.","choices":[]},"nbad":{"prompt":"You optimized cost before mission fit. Restart and specify the damage mode first.","feedback":"Back up: function before price.","choices":[]},"nbad2":{"prompt":"A single-use assumption fails under cyclic offshore loading. Restart and reconsider cycle capability.","feedback":"Capsules deplete; cyclic damage needs refillable architecture.","choices":[]}}}' />
 
 ---
 
@@ -197,6 +209,8 @@ N_{\text{hit}} = n \times 0.10 \approx 95 \times 0.10 \approx \boxed{9.5\ \text{
 $$
 
 **Interpretation.** About 9 to 10 capsules rupture across the crack, comfortably enough to wet the fracture surface. This is why capsule loading is rarely below a few percent: drop $\phi$ too low and a crack can pass between capsules and never trigger healing, just as too few platelets fail to clot a wound.
+
+<step-reveal title="Predict the Sensitivity of Crack-Plane Intersections" steps='[{"prompt":"You keep volume fraction φ = 5% fixed but HALVE the capsule diameter to d = 50 μm. What happens to the expected number of capsules N_hit intersected by the same 1 mm² crack plane?","predictType":"choice","choices":["It roughly doubles","It stays the same","It roughly halves"],"answerIndex":0,"reveal":"It roughly DOUBLES. N_hit = n × A × 2r. Number density n = φ / V_cap scales as 1/r^3, but the slab thickness 2r scales as r, so N_hit scales as 1/r^2. Halving r raises N_hit by about 4x in number density times 0.5x slab, net ~2x. Smaller capsules at fixed φ wet more of the crack plane."},{"prompt":"Now instead keep d = 100 μm but cut φ from 5% to 1%. Should you worry about reliable triggering?","predictType":"choice","choices":["No, 1% is always plenty","Yes, N_hit drops to about 2 capsules, risking a crack that slips between capsules","Only if the crack is larger than 1 mm²"],"answerIndex":1,"reveal":"Yes. N_hit scales linearly with φ, so cutting φ fivefold drops expected intersections from ~9.5 to ~1.9. With so few capsules, a crack can plausibly pass between them and never release agent, the failure mode this calculation is meant to rule out."}]' />
 
 ---
 
@@ -276,6 +290,8 @@ For example, a result such as:
 
 is much more informative than saying "the sample healed well." It tells the engineer exactly which design functions returned and which still need backup margin.
 
+<sequence-builder mode="order" items='["Load identical specimens to create a controlled micro-crack","Measure baseline stiffness and leak rate immediately after damage","Allow healing for a fixed time and temperature window","Re-measure stiffness, strength, and barrier performance","Compare both the recovered property and the unrecovered deficit"]' />
+
 ---
 
 ## Assumption Breakdown Case: One Crack, One Healing Event
@@ -300,6 +316,8 @@ This is where engineers must move from a simple "heals or does not heal" mindset
 ---
 
 ## Summary
+
+<concept-map concepts='["fatigue_failure","self_healing_materials","microvascular_repair","resilient_design"]' />
 
 ### Key Principles
 

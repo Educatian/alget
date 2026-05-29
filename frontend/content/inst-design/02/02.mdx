@@ -49,6 +49,10 @@ A core Development decision is **fidelity**: how polished and production-heavy a
 
 > **Golden Rule of Fidelity:** Never build high fidelity around an idea you have not yet tested at low fidelity. Polishing an unvalidated concept is the most common way to waste a Development budget.
 
+<self-explain prompt="The Golden Rule says never build high fidelity around an untested idea. Restate the underlying economic reason in your own words: WHY is an error caught at low fidelity so much cheaper than the same error caught at high fidelity?" answer="The cost to revise rises with fidelity. A flawed idea in a paper prototype or read-aloud script costs hours to discard and rewrite. The same flaw discovered after a full video shoot or coded SCORM module costs the entire production again, because high-fidelity assets are expensive and slow to change. Testing first means the expensive production happens only once, on validated content, instead of being thrown away and redone." />
+
+<inline-check question="A team has a forklift-safety scenario idea nobody has user-tested yet. Which Development artifact best respects the Golden Rule of Fidelity for the first test?" explanation="A read-aloud script or paper prototype is low fidelity: near-zero cost to produce and trivial to revise, so a flawed idea is caught cheaply before any expensive production. A filmed video or coded module is high fidelity and violates the rule because the idea is still unvalidated." options='[{"text":"A read-aloud branching script or paper prototype","correct":true},{"text":"A multi-camera filmed scenario","correct":false},{"text":"A fully coded SCORM simulation","correct":false}]' />
+
 ---
 
 ## The Shift from Waterfall to Agile ID (SAM)
@@ -76,7 +80,13 @@ Neither model is universally superior. The right choice depends on requirement s
 
 <concept-diagram type="agile-id"></concept-diagram>
 
-<feedback-models-diagram></feedback-models-diagram>
+A SAM project does not start by writing a design document. Put the SAM workflow in the order it actually runs.
+
+<sequence-builder mode="order" items='["Preparation: quickly gather background, goals, and constraints","Savvy Start: stakeholders, SMEs, and learners brainstorm and sketch together","Build a fast, rough low-fidelity prototype of one slice","Test the prototype with real users and observe where load spikes","Discard what failed and rebuild a better version","Repeat the design-prototype-review cycle until performance targets are hit"]' />
+
+You face a real model-selection fork. Walk it.
+
+<branching-scenario tree='{"title":"Waterfall ADDIE or Agile SAM?","start":"n1","nodes":{"n1":{"prompt":"You must build training for a cybersecurity product whose threat landscape and UI change weekly. Which factor dominates the model choice?","choices":[{"label":"Requirement stability: the content is volatile and evolving","next":"n2","feedback":"Right. Volatile content is the strongest single signal in the decision table."},{"label":"Regulatory audit trail of formal sign-offs","next":"bad1","feedback":"There is no stated compliance audit requirement here; volatility is the live factor."}]},"n2":{"prompt":"Given volatile content and a tight timeline, which model do you lead with?","choices":[{"label":"Agile SAM: rapid low-fidelity iteration absorbs change cheaply","next":"n3","feedback":"Correct. SAM pays off precisely when the underlying subject changes fast."},{"label":"Waterfall ADDIE: write the full design document first","next":"bad2","feedback":"A heavy upfront document would be obsolete before launch when content changes weekly."}]},"n3":{"prompt":"Now imagine the SAME company also needs an FAA-audited aviation-safety certification course. Does SAM still lead?","choices":[{"label":"No: high-stakes audited content favors structured ADDIE for its sign-off trail","next":"good","feedback":"Exactly. The model follows the dominant risk, which here is auditability, not speed."},{"label":"Yes: always use SAM once you have adopted it","next":"bad3","feedback":"Loyalty to one model is the trap. Match the model to each project risk."}]},"good":{"prompt":"You used SAM for the volatile product and ADDIE for the audited course: model per project risk, not per habit.","choices":[]},"bad1":{"prompt":"Dead end: no audit requirement was stated; volatility is the active factor. Restart.","choices":[]},"bad2":{"prompt":"Dead end: a heavy upfront doc goes stale when content changes weekly. Restart.","choices":[]},"bad3":{"prompt":"Dead end: a regulated course needs an audit trail; SAM is risky there. Restart.","choices":[]}}}' />
 
 ---
 
@@ -131,6 +141,8 @@ Implementation is where the polished, developed course hits the chaotic reality 
 ---
 
 ## Summary
+
+<concept-map concepts='["development_phase","implementation_phase","storyboarding","instructional_assets","facilitation_logistics"]' />
 
 ### Key Takeaways
 

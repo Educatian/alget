@@ -38,6 +38,12 @@ Three ideas make alignment operational during a migration:
 | Document a bounded AI move | none | Misconception-tagged practice on the AI boundary |
 | Decide next revision | none | Trace plus adaptive-support prompt |
 
+<self-explain prompt="The decision rule says build the alignment table before you migrate a single activity. Why does the table have to come first?" answer="The table is the diagnosis: a two-column objective-to-activity map exposes empty cells where a higher-order objective has no activity. If you migrate activities first, you inherit whatever the old platform happened to contain (here, ten recall items and a dropbox) and reproduce its misalignment faster. Only the table tells you which cells to fill and with what format." />
+
+Match each objective verb to the ALGET activity whose response format actually fits it. A recall item cannot stand in for an analysis objective.
+
+<sequence-builder mode="match" items='[{"term":"Recall definitions","definition":"One or two retained multiple-choice items: a recognition format suited to recall, the only objective the lifted quiz actually served"},{"term":"Analyze a defensible decision","definition":"Artifact-studio before-and-after trace that captures the decision and the revision ALGET adaptive support can read"},{"term":"Document a bounded AI move","definition":"Misconception-tagged practice item that probes the AI-boundary judgment rather than recall"},{"term":"Decide next revision","definition":"Process trace plus an adaptive-support prompt that elicits the learner next move"}]' />
+
 ## Worked Example
 
 Walk through one concrete alignment decision: moving a design module's assessments from Blackboard into ALGET without losing the link between learning objectives and what each activity measures.
@@ -61,6 +67,8 @@ Run any migration plan through three checks:
 3. **Affordance check:** Does the migrated activity use what the new platform can do that the old one could not? If a dropbox stays a dropbox, ALGET's process-reading features have nothing to read, and the migration bought nothing.
 
 A plan that fails these moved the course without improving it, and often disabled the features that justified moving.
+
+<inline-check question="A coordinator replaces the Blackboard dropbox with an artifact-studio block but tells students only to upload their finished storyboard there. Why does this fail the affordance check?" explanation="Adding the new platform's feature is not the same as using it. An artifact-studio that students treat as a second dropbox elicits no process trace, so ALGET's adaptive support receives the same dead-end product. The affordance has to be wired to a task that produces what it can read." options='[{"text":"Treated as a second dropbox, it elicits no process trace, so the process-reading feature has nothing to read.","correct":true},{"text":"Artifact-studio blocks cannot accept storyboards at all.","correct":false},{"text":"The dropbox was already aligned, so no change was needed.","correct":false},{"text":"Uploading a finished file is the strongest evidence of analysis.","correct":false}]' />
 
 ## Common Misreadings
 
@@ -125,6 +133,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your trace links Blackboard-to-ALGET Alignment, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+
+<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "ail606_supplement_blackboard_to_alget_alignment", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

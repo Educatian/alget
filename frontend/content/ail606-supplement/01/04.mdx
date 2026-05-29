@@ -32,6 +32,10 @@ But the advantage is conditional. The **expertise-reversal effect** says that on
 
 Two design refinements matter. **Backward fading** removes the last step first (the step closest to the goal, often the easiest to attempt), so the learner always works from a supported position. And a **self-explanation prompt** on the worked stages converts passive viewing into the germane processing that actually builds the schema.
 
+Order the four support formats from most to least scaffolding, the sequence a true novice should travel as the schema forms.
+
+<sequence-builder mode="order" items='["Fully worked example: study and self-explain a complete solution", "Completion problem with two of four parts faded in", "Completion problem with three of four parts faded in", "Open problem: solve the whole task unaided"]' />
+
 ## Worked Example
 
 A thin claim hides the instructional move:
@@ -63,7 +67,9 @@ The diagnosis: novices have no schema for the parts of an objective (audience, b
 
 The improvement is that support is transferred one part at a time, so the learner moves from studying a model to independent performance rather than being dropped into open problems with no schema.
 
-## Decision Rule
+Reason through the design of this fade one decision at a time, predicting before each reveal.
+
+<step-reveal title="Engineering the objective-writing fade" steps='[{"prompt":"Frame 1 for true novices who have no schema for the parts of an objective. What should it be?","predictType":"choice","choices":["An open problem so they get practice immediately","A fully worked objective with its four parts labeled and a one-line rationale","A multiple-choice quiz on objective parts"],"answerIndex":1,"reveal":"For novices with no schema, the first frame is a complete, self-explained model. An open problem here is a search trap, because the learner must invent the category while producing one."},{"prompt":"What single addition turns the worked frame from passive viewing into schema-building?","predictType":"choice","choices":["A countdown timer","A self-explanation prompt asking why each part is correct","A brighter color scheme"],"answerIndex":1,"reveal":"The self-explanation prompt provokes the germane processing that builds the schema; without it a worked example is just a video to watch."},{"reveal":"Each completion frame then withdraws one part at a time (two parts faded, then three) so the learner is never in unsupported search, and only the final frame is open. The all-open suggestion is rejected because it recreates the original search trap: practice volume was never the constraint."}]' />
 
 Match the support level to the schema, and fade only as the schema grows:
 
@@ -75,7 +81,10 @@ If you cannot say which element each stage withdraws and why now, the sequence i
 
 ## Common Misreadings
 
-The first misreading is "more practice is more learning," which for novices reintroduces the search load the worked example removed. The second is treating a worked example as a video to watch passively; without a self-explanation prompt, the germane processing never happens and the example teaches little. The third is ignoring reversal and keeping fully worked examples for learners who have already formed the schema, where the example is now redundant and a problem would teach more.
+The first misreading is "more practice is more learning," which for novices reintroduces the search load the worked example removed. The second is treating a worked example as a video to watch passively; without a self-explanation prompt, the germane processing never happens and the example teaches little.
+
+<inline-check question="A cohort already writes objectives competently but inconsistently applies the degree criterion. You give them the full four-stage fade starting with a worked example. Is this the right design?" explanation="By the expertise-reversal effect, a fully worked example is redundant for learners who already hold the schema, so it wastes their time and teaches less than a targeted problem. The right move is to drop the early worked and completion frames and give open problems that stress the weak element (degree)." options='[{"text":"Yes, the full fade is always the safest sequence","correct":false},{"text":"No, for learners with a schema the early worked frames are redundant; start higher with targeted open problems","correct":true},{"text":"Yes, because more scaffolding is always better","correct":false}]' />
+ The third is ignoring reversal and keeping fully worked examples for learners who have already formed the schema, where the example is now redundant and a problem would teach more.
 
 ## Textbook Walkthrough
 
@@ -130,6 +139,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure each frame states its support level, the element it withdraws, the schema condition that licenses the withdrawal, and a self-explanation prompt on the worked stages, plus any suggestion you rejected and why.
+
+## Concept Map
+
+Connect the fading sequence to the revision evidence each frame records and the bounded role an AI assistant plays when it proposes changing the support level.
+
+<concept-map concepts='["ail606_supplement_worked_examples_and_fading", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

@@ -32,6 +32,8 @@ Two design principles govern the format:
 
 Two logistical levers turn the principles into a runnable plan: timed rotations (groups move every few minutes so every station gets visitors and presenters give their overview once per rotation rather than continuously) and staggered starts (groups begin at different stations so no prototype is mobbed while another is empty).
 
+<self-explain prompt="The section says the unit of success is evidence exchanged, not visitors counted. Why does optimizing for foot traffic actively work against the showcase's goal?" answer="Foot traffic is easy to maximize but says nothing about understanding. Optimizing for it produces an open house where stations mob or empty, presenters repeat surface overviews to a churn of arrivals, and unprompted visitors default to the lowest-effort question, what is it. The deep evidence, the theory-to-screen reasoning, is exactly what that arrangement never surfaces." />
+
 | Open-house default | Failure it produces | Structured alternative |
 | --- | --- | --- |
 | Visitors roam freely | Stations mob or sit empty | Timed rotations with staggered starts |
@@ -50,6 +52,10 @@ Walk through one concrete logistics decision for a prototype showcase: how visit
 
 **After (the showcase as an evidence exchange).** Timed 6-minute rotations, staggered starts, and a per-station "ask me about theory-to-screen" prompt. In the re-run every prototype received visitors in both rounds and presenters reported questions about specific README matrix rows rather than generic "cool, what is it?" The change is auditable: a reviewer can compare the open-house plan to the rotation schedule and the shift in the kind of questions presenters logged.
 
+Walk the design decisions a coordinator faces converting the failed open house. Trace where each choice sends visitor attention.
+
+<branching-scenario tree='{"title":"Will visitors leave understanding the reasoning?","start":"n1","nodes":{"n1":{"prompt":"Your pilot open house mobbed three stations and emptied two, and visitors left asking only so what is it. What do you fix first?","choices":[{"label":"Add more tables and signage to move people through","next":"traffic","feedback":"This doubles down on throughput. More flow does not make anyone look at the traceability matrix."},{"label":"Redefine success as evidence each visitor can recount","next":"metric","feedback":"Right. Reframing the metric rules out just add more tables and points you at attention, not volume."}]},"metric":{"prompt":"With the metric reframed, an unprompted visitor still defaults to the lowest-effort question. What removes that blank-slate load?","choices":[{"label":"Post a per-station card: ask me which screen changed because of which theory","next":"prompt","feedback":"Yes. A single focusing prompt routes attention to the matrix and upgrades the default question."},{"label":"Give a prize for the most-visited prototype","next":"prize","feedback":"This rewards foot traffic, the wrong metric, and pulls attention further from the reasoning."}]},"traffic":{"prompt":"The room is busier but presenters still log so what is it. What did throughput buy?","feedback":"Energy, not understanding. A busy room is exactly what an open house over-produces; high attendance with zero recountable reasoning is a failed assessment dressed as a hit event.","choices":[]},"prize":{"prompt":"The crowd concentrates on the prize favorite and half the stations sit empty. What happened to coverage?","feedback":"Rewarding visits worsened concentration. The wrong metric starved the stations the audit was meant to reach.","choices":[]},"prompt":{"prompt":"The card works at visited stations, but popularity still concentrates the crowd. What timing lever guarantees even coverage?","choices":[{"label":"Timed six-minute rotations with staggered starts","next":"win","feedback":"Exactly. Rotations and staggered starts ensure every station gets substantive visits in both rounds."},{"label":"Let visitors keep roaming freely","next":"traffic","feedback":"Free roaming reproduces the mob-and-empty pattern you started with."}]},"win":{"prompt":"Post-event, presenters log questions about specific README matrix rows rather than generic curiosity. What does that signal?","feedback":"The observable signal that logistics moved attention to the evidence. The showcase is now an assessment that happens to be public.","choices":[]}}}' />
+
 ## Decision Rule
 
 Design the format around the evidence you want exchanged, then add only the logistics that protect it. A showcase feature earns its place if it raises the chance a visitor encounters the theory-to-screen reasoning; if it only adds spectacle or throughput, cut it.
@@ -61,6 +67,8 @@ Test any showcase plan against three questions:
 3. **Coverage check:** Does the timing guarantee every station gets substantive visits, or will popularity concentrate attention and starve the rest? Rotations and staggered starts exist to answer this.
 
 A plan that fails these is an event; a plan that passes them is an assessment that happens to be public.
+
+<inline-check question="A team is proud of an excellent traceability matrix and assumes a strong matrix will sell itself at the showcase. Why is this a misread?" explanation="Even an excellent matrix is passive. Without a format that points visitors at it, it competes with the visually louder prototype screen and loses. Artifact quality does not substitute for logistics that route attention to it." options='[{"text":"A passive matrix loses to the louder screen unless logistics route attention to it.","correct":true},{"text":"A strong matrix guarantees substantive questions on its own.","correct":false},{"text":"Matrices only matter in online showcases.","correct":false},{"text":"Foot traffic will naturally find the best matrix.","correct":false}]' />
 
 ## Common Misreadings
 
@@ -125,6 +133,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the prototype README traceability matrix connecting theory to screen changes records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+
+<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "ail606_supplement_prototype_showcase_logistics", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

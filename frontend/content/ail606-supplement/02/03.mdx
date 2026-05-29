@@ -33,6 +33,12 @@ Three failure modes recur, and each maps to an anchor:
 
 Use these as a triage. Before adopting a pattern because it looks good, ask which of the three failure modes it risks, and whether the cognitive operation actually needs the richness you are about to add.
 
+Interaction-cognition fit means the pattern's structure mirrors the operation. Match each cognitive operation to the pattern whose structure enacts it.
+
+<sequence-builder mode="match" items='[{"term":"Compare two items","definition":"Side-by-side or overlay pattern, because comparison needs simultaneous access to both items at once"},{"term":"Sequence steps in order","definition":"Drag-to-order pattern, because it externalizes the ordering the learner is building"},{"term":"Decide under consequences","definition":"Branching scenario, because a choice must produce a downstream result the learner can see"},{"term":"Observe a process unfold","definition":"Learner-paced animation, because the operation is tracing change over time"}]' />
+
+<inline-check question="A lesson goal is 'compare two molecular shapes.' A designer picks a rotatable 3D model because it 'feels modern.' Why is this a likely interaction-cognition mismatch?" explanation="A 3D model enacts manipulate the object, but comparison needs simultaneous access to both items. Rotating to a remembered orientation imposes split attention, and the rotation itself is seductive detail for a comparison goal. The structure of the pattern does not mirror the operation the goal requires." options='[{"text":"It is not a mismatch; richer interactions always help comparison","correct":false},{"text":"The pattern enacts manipulation, not simultaneous comparison, so attention goes to the interface instead of the contrast","correct":true},{"text":"The only problem is that 3D is harder to build","correct":false}]' />
+
 ## Worked Example: Choosing an Interaction Pattern
 
 Here is a before-and-after decision about one interaction in a chemistry module whose goal is "compare two molecular shapes and predict which bonds more readily."
@@ -56,6 +62,10 @@ The 3D model was replaced with a familiar tabbed comparison: two tabs, each show
 Designer note (decision level): "I cut the 3D rotation because the **signaling** and split-attention costs pulled effort away from comparison. The tabbed pattern is familiar, so attention goes to the molecules, not the interface, and the ranking step gives the interaction a visible consequence."
 
 The revision is defensible because the new pattern is justified by evidence (eye-tracking, the 2-of-6 result), the cognitive demand of the task (comparison), and a closed loop (the ranking reveals a rationale), not by which pattern looked more impressive.
+
+Diagnose the v1-to-v2 switch one move at a time, predicting each before the reveal.
+
+<step-reveal title="Diagnosing the pattern mismatch" steps='[{"prompt":"Eye-tracking shows learners spend 40 percent of time rotating and only 1 of 6 places the molecules side by side. What does this measure about the pattern?","predictType":"choice","choices":["That the chemistry content is too hard","That the pattern enacts manipulation while the goal requires comparison, so attention lands on the interface","That 3D is simply too slow to render"],"answerIndex":1,"reveal":"The behavior localizes the fault to interaction-cognition fit: the pattern enacts the wrong operation, so the low score reflects the mismatch, not the difficulty of chemistry."},{"prompt":"The replacement is a familiar tabbed side-by-side with an overlay tab. Why does familiarity help here rather than seeming dull?","predictType":"choice","choices":["Familiarity is always preferable to novelty","Because a familiar interface costs almost no attention, so effort goes to the molecules, not to learning the controls","Because tabs render faster than 3D"],"answerIndex":1,"reveal":"Novelty in the interface is a cost the learner pays in attention. A familiar pattern frees that attention for the comparison, which is exactly the germane work the goal requires."},{"reveal":"The added drop-to-rank step closes the loop: ranking bonds-more-readily against bonds-less-readily forces the comparison to produce a commitment, and revealing a one-line rationale gives the action a visible consequence rather than a bare click."}]' />
 
 ## Decision Rule
 
@@ -104,6 +114,10 @@ When you consult BigAL, ask it to argue the opposite pattern. A productive promp
 ## Transfer Case
 
 Keep the cognitive operation (compare two molecular shapes) but change the goal from "predict which bonds more readily" to "explain step by step why one bonds more readily." The operation has shifted from compare to compare-then-explain-a-process, and that should change the pattern. The static side-by-side that served pure comparison may now be too still, because the new goal requires the learner to trace a sequence of interactions over time. Here a controlled, learner-paced animation with the two structures contiguous might earn the richness that the original goal would have rejected as seductive detail. The same content and the same pair of molecules, read against a different operation, can flip your earlier verdict on animation. If you can explain why animation is seductive detail for "predict" but germane for "explain the process," you understand interaction-cognition fit rather than a fixed list of good and bad patterns.
+
+<self-explain prompt="Explain in your own words why the same controlled animation can be seductive detail for one goal and germane processing for another, using the predict-versus-explain-the-process pair." answer="Whether motion helps depends on the cognitive operation, not on the medium. For 'predict which bonds more readily,' the operation is comparison, which needs simultaneous static access; motion adds nothing the operation requires and draws attention away, so it is seductive detail. For 'explain step by step why one bonds more readily,' the operation is tracing a process over time, which motion directly enacts, so the same animation now carries the germane work. The element is identical; its classification flips with the operation it must serve." />
+
+<concept-map concepts='["ail606_supplement_interaction_patterns_for_learning_software", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

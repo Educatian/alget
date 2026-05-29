@@ -27,6 +27,10 @@ Source evaluation in a network rests on three filters: evidence, context, and pr
 
 These filters convert the network from an authority you defer to into a source you interrogate. The same skills make you a better contributor: when you post back, you supply the evidence, the context, and the locatable sources that let colleagues run the same three filters on your claim.
 
+Match each red flag in a viral recommendation to the filter that catches it.
+
+<sequence-builder mode="match" items='[{"term":"The recommender teaches a 1-to-1 device school; your placement shares one cart","definition":"Context filter (does the recommender situation resemble yours?)"},{"term":"An AI summary cites three studies that no search can locate","definition":"Provenance filter (where does the cited fact actually come from?)"},{"term":"The only support offered is that 300 teachers love it","definition":"Evidence filter (what backs the claim beyond enthusiasm?)"},{"term":"The 20 percent score gain has no comparison group or time period","definition":"Evidence filter (outcomes and conditions, not just a number)"}]' />
+
 Three lenses sharpen the filters:
 
 - **Critical edtech studies** asks whose interests a popular tool serves; virality often tracks marketing budget or novelty rather than learning, and the lens keeps you from mistaking reach for quality.
@@ -34,6 +38,8 @@ Three lenses sharpen the filters:
 - **TPACK** supplies the context filter's substance; whether a tool fits depends on the specific intersection of your content, your pedagogy, and your device reality, which a recommender's context may not share.
 
 A lens has done its work when it changed whether or how you adopted a recommendation, not just how you described it.
+
+<inline-check question="'300 teachers use it, so it must be effective for my placement.' What does the count of 300 actually measure?" explanation="It measures reach, not effectiveness, and certainly not fit with your placement. A tool can be popular because it is free, well-marketed, or fun regardless of learning outcomes. Social proof is a heuristic that bypasses evaluation; the vetting move is to ask what the 300 recommendations are made of." options='[{"text":"How far the tool spread, not whether it works in a room like yours","correct":true},{"text":"That the tool is effective, since 300 teachers cannot be wrong","correct":false},{"text":"That the tool fits your grade, subject, and device ratio","correct":false}]' />
 
 ## Worked Example
 
@@ -58,6 +64,10 @@ Lena finds a viral AI lesson-plan generator recommended by 300 teachers in a Fac
 5. **After (contribution back to the network):** She posts what she tried, the context where it worked and where it did not, and a caution about the shared-device constraint, so colleagues can judge fit rather than just reshare.
 
 The judgment is legible: the network was a source she vetted, not an authority she followed.
+
+Now vet a viral tool yourself. Each turn either runs a filter or lets popularity carry the claim into your classroom.
+
+<branching-scenario tree='{"title":"Vetting a viral AI lesson-plan generator","start":"start","nodes":{"start":{"prompt":"A free AI lesson-plan generator is recommended by 300 teachers in a Facebook group. What do you do?","choices":[{"label":"Adopt it; 300 teachers cannot be wrong","next":"popularity","feedback":"You treated reach as evidence and skipped evaluation."},{"label":"Run the evidence filter: ask what backs the claim beyond the count","next":"evidence","feedback":"You interrogated the source instead of deferring to it."}]},"popularity":{"prompt":"You adopt on popularity. A colleague glowing review came from a 1-to-1 school; your placement shares one cart, and the tool stalls. What was skipped?","choices":[{"label":"The context filter; reach said nothing about fit","next":"restart","feedback":"A one-to-one success can be a shared-cart failure."}]},"restart":{"prompt":"Restart and run the filters before adopting.","feedback":"Adopting on popularity alone means you followed the network rather than vetting it.","choices":[]},"evidence":{"prompt":"A colleague glowing strategy came from a 1-to-1 device school. Your placement shares one cart. What next?","choices":[{"label":"Assume it will transfer; a good strategy is a good strategy","next":"restart","feedback":"You assumed away the context gap instead of testing it."},{"label":"Record the gap and plan to test the strategy under your constraint first","next":"provenance","feedback":"You ran the context filter and refused to assume the gap away."}]},"provenance":{"prompt":"An AI summary of best practices cites three studies. You search and none appear. What do you conclude?","choices":[{"label":"They are probably obscure; cite them anyway","next":"restart","feedback":"An unlocatable citation is more likely fabricated than obscure."},{"label":"Treat them as likely fabricated and use only sources you can locate","next":"contribute","feedback":"You ran the provenance filter and discarded the unverifiable citations."}]},"contribute":{"prompt":"You tested the tool. How do you give back to the network?","choices":[{"label":"Reshare it as a success so others can benefit","next":"restart","feedback":"An unconditioned success story just adds to the noise the filters exist to cut."},{"label":"Post what you tried, where it worked and where it did not, and the shared-cart caution","next":"done","feedback":"You contributed a claim colleagues can run the same filters on."}]},"done":{"prompt":"You ran evidence, context, and provenance, then contributed with conditions attached. The network was a source you vetted.","feedback":"Popularity was separated from evidence, the context gap was tested, and only locatable sources survived.","choices":[]}}}' />
 
 ## Decision Rule
 
@@ -130,6 +140,10 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that you asked what backs a recommendation beyond popularity, tested whether the recommender's context matches yours, located every cited source, and contributed back with conditions a colleague could judge. That is what makes a network a source rather than an authority.
+
+## Concept Map
+
+<concept-map concepts='["cat531_supplement_field_based_transfer_and_coaching", "cat531_supplement_professional_learning_network", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

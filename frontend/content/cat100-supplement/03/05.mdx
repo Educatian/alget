@@ -59,6 +59,12 @@ Step 4. Copy the verified formula down. C4 now reads `n/a` instead of an error.
 
 The auditable trace: the error code named the cause, the prompt named the exact formula and expected behavior, and a known-answer row confirmed the AI fix before it shipped.
 
+<step-reveal title="Run the diagnose -> prompt -> verify loop on #DIV/0!" steps='[{"prompt":"Cell C4 shows #DIV/0!. What does the error code tell you to suspect first?","predictType":"choice","choices":["The numerator B4 is wrong","The denominator is blank or zero (division by zero)","A function name is misspelled","A lookup found no match"],"answerIndex":1,"reveal":"#DIV/0! always means divide-by-zero, so the denominator (D4, blank for Sun’s row) is the suspect, not the numerator."},{"prompt":"Which prompt gives the AI enough to return a checkable formula?","predictType":"choice","choices":["fix my Excel error","make my gradebook work","My =B4/D4 returns #DIV/0! because D4 is blank; show n/a when D4 is empty, else divide; give one formula","why is my sheet broken"],"answerIndex":2,"reveal":"A good prompt names the formula, the error, the cause, and the exact behavior including the edge case. That constrains the answer enough to verify."},{"prompt":"The AI returns =IF(D4=0,\"n/a\",B4/D4). Before copying it down, what do you do?","predictType":"choice","choices":["Copy it everywhere immediately","Verify on a known-answer row: David (45/5) must still return 9.0","Trust it because the red error vanished","Paste the whole gradebook into the chat"],"answerIndex":1,"reveal":"Verify on a row whose answer you already know. David’s row returns 45/5 = 9.0, matching the value already there, so the fix did not break working rows."},{"reveal":"Only now copy it down: C4 reads n/a instead of an error. The error disappearing is NOT proof of correctness; a known-answer row is."}]' />
+
+Match each Excel error code to its usual cause so you can diagnose before prompting.
+
+<sequence-builder mode="match" items='[{"term":"#DIV/0!","definition":"Denominator cell is blank or zero"},{"term":"#REF!","definition":"A referenced cell was deleted"},{"term":"#VALUE!","definition":"Text where a number is expected (18 units)"},{"term":"#NAME?","definition":"Misspelled function or undefined range name"},{"term":"#N/A","definition":"A lookup found no match"}]' />
+
 ## Decision Rule
 
 Diagnose with the error code, prompt with exact cells and behavior, and verify on a known-answer row before you copy anything. An AI formula is a suggestion until you have proven it on a value you can compute yourself.
@@ -94,6 +100,10 @@ A strong reader treats an AI formula the way a careful editor treats a draft: us
 3. Always identify a known-answer row to test the fix against.
 
 When your instinct on receiving any AI formula is "let me test it on a row I can compute," you have internalized the safeguard that makes AI help trustworthy.
+
+<inline-check question="An AI formula replaced #DIV/0! with a real number and the red error is gone. Is the formula now proven correct?" explanation="No. The absence of an error is not the presence of a right answer; an AI fix can compute the wrong number with no error showing. Only running it on a known-answer row, where you already know the correct result, settles whether it is right." options='[{"text":"Yes, the error disappearing means it is correct","correct":false},{"text":"No, verify it on a known-answer row before trusting it","correct":true},{"text":"Yes, as long as the function names look familiar","correct":false}]' />
+
+<concept-map concepts='["cat100_supplement_ai_help_for_excel_debugging", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

@@ -34,6 +34,8 @@ Two properties separate a real log from a vague note:
 
 The reason precise location matters is that a reviewer (or future you) must be able to find the exact spot the entry describes. The reason you keep originals rather than overwriting is that a change history only has value if the earlier states still exist; a log that points to versions you deleted is a list of ghosts. Polish does not enter here at all, the log is not meant to be pretty, it is meant to be auditable.
 
+<inline-check question="A log row reads ‘Improved my experience section, sounds stronger now.’ Which load-bearing column is missing?" explanation="The row gives a vague reason but never says WHAT changed or WHERE. ‘Experience section’ is not a locatable spot, and there is no line or bullet a reviewer could open and find. Without ‘what changed,’ the entry is a feeling, not a traceable record." options='[{"text":"The locatable ‘what changed’ column (no section/line named)","correct":true},{"text":"The date column only","correct":false},{"text":"Nothing, it is a complete row","correct":false},{"text":"The font and formatting column","correct":false}]' />
+
 ## Worked Example: Building a Three-Column Revision Log
 
 A revision log turns "I improved my resume" into a record a reader can trace. The reliable shape has three columns: **what changed, why, and what prompted it.**
@@ -53,6 +55,12 @@ A revision log turns "I improved my resume" into a record a reader can trace. Th
 **Step 4. Keep the history, do not overwrite.** Because each version is dated, if the 06/03 number turns out wrong you can trace back to the 06/02 version instead of losing it.
 
 The deliverable is the table itself: three columns, one row per change, AI decisions included.
+
+<step-reveal title="Log three edits the way you would in the moment" steps='[{"prompt":"Career-center feedback flags your summary as vague. You change ‘good with computers’ to ‘proficient in Excel and SQL.’ What is the FIRST thing the log row must pin down?","predictType":"choice","choices":["A nicer adjective for the change","The exact location: ‘Summary, line 2’ plus the old and new wording","Whether the resume font matches","The reviewer’s job title"],"answerIndex":1,"reveal":"Right. ‘Summary, line 2: good with computers to proficient in Excel and SQL’ is locatable. A reviewer can open the file and find the exact spot. ‘Fixed the summary’ cannot be checked."},{"prompt":"You add ‘served ~80 customers per shift’ to a bullet. Beyond location, what else does the row need so it survives a question?","predictType":"choice","choices":["A bigger, rounder number","The prompt and source: needed a measurable result, number pulled from POS reports","An exclamation point","The reviewer’s email"],"answerIndex":1,"reveal":"Yes. Naming the source (POS reports) makes the number defensible. If someone asks ‘where did 80 come from,’ the log already answers."},{"reveal":"Row three is the AI move: an AI tool suggests labeling Word skills as ‘expert.’ You reject the inflated label and remove the line, logging BOTH the suggestion and your rejection."},{"prompt":"Why does logging the rejected AI suggestion matter more than logging only the accepted edits?","predictType":"choice","choices":["It makes the log longer","It shows your judgment over the tool, turning ‘I used AI’ into a defensible decision","It is required by the font","It hides that you used AI at all"],"answerIndex":1,"reveal":"Exactly. The rejected-suggestion row is where your judgment becomes visible. A log of only successes hides the dead ends that prove you were steering."}]' />
+
+After working through those three rows, put them in the order a real-time log records them: each change is captured the moment it happens, then checked for the properties that make it auditable.
+
+<sequence-builder mode="order" items='["Capture the edit as one dated row the moment you make it (location + old/new wording)","State the prompt and reason: what triggered it and why (feedback, a metric, an AI suggestion)","Flag any AI involvement explicitly, recording what you accepted and what you rejected","Preserve the prior version, never overwrite the only copy of a draft you might want back"]' />
 
 ## Decision Rule
 
@@ -86,6 +94,8 @@ A strong reader also writes log entries a stranger could act on, not shorthand o
 ## Transfer Case
 
 The discipline of a dated, located, reasoned change history transfers anywhere edits accumulate over time. A group project benefits from a shared change log so teammates know who changed what and why; a budget spreadsheet benefits from a notes column recording each adjustment's reason; a piece of code benefits from commit messages that a future maintainer can read. The format scales from a plain table to full version-control software, but the three questions, what changed, why, and what prompted it, are the same ones you practiced on a resume here.
+
+<concept-map concepts='["cat100_supplement_revision_logs", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

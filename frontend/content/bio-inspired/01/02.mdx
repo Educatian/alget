@@ -76,6 +76,10 @@ $$
 
 A 30 MPa glue line is leveraged into a 480 MPa tablet stress: a **16x amplification**, set entirely by geometry. This is why platelet shape, not protein chemistry, dominates nacre strength. It also explains why the platelet aspect ratio in real nacre is not arbitrary: too short and the tablets cannot build up stress; too long and they fracture instead of pulling out.
 
+Sweep the aspect ratio and interface strength yourself. The tablet stress is the product $\tau_y\, s$, so geometry and interface trade off directly.
+
+<parameter-explorer config='{"title":"Tension-Shear Chain: Tablet Stress","sliders":[{"name":"s","label":"Aspect ratio s = L/t","min":4,"max":40,"step":1,"unit":"","default":16},{"name":"tau","label":"Interface shear yield tau_y","min":10,"max":60,"step":1,"unit":"MPa","default":30}],"outputs":[{"label":"Tablet stress at yield","unit":"MPa","expr":"tau*s"},{"label":"Amplification vs interface","unit":"x","expr":"s"}],"plot":{"x":"s","output":0}}' />
+
 ---
 
 ### Worked Example 2.2: Stiffness of the brick-and-mortar wall
@@ -103,6 +107,8 @@ $$
 $$
 
 **Interpret.** The simple rule-of-mixtures (Voigt) upper bound would predict $\phi E_m = 95\ \text{GPa}$. Nacre reaches about 88 GPa, more than 90% of the ideal, while remaining far tougher than solid aragonite. Note what the aspect ratio buys: repeating the calculation with $s = 8$ gives only 72 GPa, while $s = 32$ gives 93 GPa. Slender, well-bonded tablets recover nearly the full mineral stiffness; that is the design lever.
+
+<inline-check question="As aspect ratio s grows from 8 to 32, the modulus rises from 72 to 93 GPa but never exceeds the Voigt bound of 95 GPa. Why does it saturate rather than keep climbing?" explanation="The shear-lag compliance term, 4(1-phi)/(phi^2 s^2 G_p), shrinks as 1/s^2, so increasing s removes the soft-phase penalty. Once that term is negligible, the modulus is limited by the mineral tensile compliance 1/(phi*E_m), which sets the Voigt ceiling of phi*E_m = 95 GPa." options='[{"text":"The shear-lag term falls as 1/s^2, so once it is negligible the mineral tensile compliance caps the modulus at the Voigt bound.","correct":true},{"text":"The protein shear modulus increases with s and eventually dominates.","correct":false},{"text":"The mineral fraction phi decreases as tablets get longer.","correct":false}]' />
 
 ---
 
@@ -141,6 +147,10 @@ Spider silk contains highly ordered crystalline domains (tightly hydrogen-bonded
 ### Collagen and Tendon
 
 Collagen molecules twist into triple helices, the helices stagger into fibrils, fibrils bundle into fibers, and fibers into tendon. At each scale a new energy-dissipation mechanism appears: molecular uncoiling, fibrillar sliding, and fiber straightening (the "toe region" of a tendon's stress-strain curve). A tendon can stretch several percent and store, then return, elastic energy efficiently because every scale shares the load and delays fracture.
+
+Reconstruct the collagen hierarchy from the smallest scale up to the whole tissue.
+
+<sequence-builder mode="order" items='["Tropocollagen triple helix","Staggered collagen fibril","Collagen fiber bundle","Whole tendon"]' />
 
 ---
 
@@ -183,6 +193,8 @@ Consider a lightweight wing panel. A solid ceramic skin may be very stiff, but o
 
 The aspect-ratio result is directly actionable: in a nacre-mimetic ceramic, engineers choose platelet length so tablets reach high stress yet still pull out before fracturing, exactly the $s = 16$ sweet spot biology converged on.
 
+<self-explain prompt="Nacre's tablets are not arbitrarily long. Explain in your own words why an engineer designing a nacre-mimetic armor would AVOID making the platelets much longer than the s = 16 sweet spot, even though longer tablets give higher modulus and higher tablet stress." answer="A higher aspect ratio raises both the stiffness (shear-lag term falls as 1/s^2) and the tablet stress at yield (sigma = tau_y * s). But toughness comes from pull-out: the tablet must slide and pull out rather than fracture. If s is too large, the tablet stress tau_y*s exceeds the tablet's own fracture strength, so the platelet snaps instead of pulling out, killing the process zone that supplies toughness. The s = 16 region balances high stiffness/strength against retained pull-out toughness." />
+
 Modern examples include:
 
 - nacre-inspired ceramic-polymer armor that stays intact after multiple strikes
@@ -218,6 +230,10 @@ Modern examples include:
 - Aspect ratio is the central geometric lever; a slender, well-bonded platelet amplifies a weak interface into a strong tablet.
 - Toughness comes from a process zone (sliding, pull-out, deflection), so it is about absorbed energy, not peak strength.
 - Effective bio-inspired transfer copies the damage-management strategy and its design parameters, not the literal shape.
+
+Connect the multiscale ideas of this section before continuing.
+
+<concept-map concepts='["hierarchical_structures","nacre","collagen","multiscale"]' />
 
 ---
 

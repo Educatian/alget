@@ -55,6 +55,14 @@ Step 3. Audit the wording. Do not write "weekend sales skyrocketed"; 40% is a cl
 
 The auditable narration: finding first (40% higher), exact evidence (700 vs 500, March, 4 weeks), faithful magnitude (no inflation), and a correlation flagged as correlation rather than proven cause.
 
+Build the weekend-sales sentence one decision at a time. Predict each choice before the reveal.
+
+<step-reveal title="Write the weekend-sales narration without overreaching" steps='[{"prompt":"Weekend sales average 700 per day, weekdays 500. What is the percentage change, and how is it computed?","predictType":"choice","choices":["40% higher: (700 minus 500) divided by 500","20% higher: (700 minus 500) divided by 1000","140% higher: 700 divided by 500","Nearly double, so call it 90% higher"],"answerIndex":0,"reveal":"Percentage change is (new minus old) divided by old: (700 minus 500) divided by 500 = 0.40, so 40% higher. Anchor the reader on the correct figure, not a rounded-up impression."},{"prompt":"Which opening clause is finding-first rather than process-first?","predictType":"choice","choices":["We pulled four weeks of sales and split them by day type","Weekend sales ran about 40% higher than weekdays","Our method was to compare day types over March","After cleaning the data we built a pivot by day type"],"answerIndex":1,"reveal":"Lead with the result. The reader should meet the finding (40% higher) before any description of how you got there."},{"prompt":"The gap is 40%. Which verb keeps the magnitude faithful?","predictType":"choice","choices":["Weekend sales skyrocketed","Weekend sales ran about 40% higher","Weekends drove a sales explosion","Sales went through the roof on weekends"],"answerIndex":1,"reveal":"40% is a clear lift, not a record-breaking surge. Keep the verb proportionate: higher or rose, never skyrocketed."},{"reveal":"The finished sentence: \"Weekend sales averaged 700 per day versus 500 on weekdays, about 40% higher (4 weeks, March data); a March promotion could explain part of the gap.\" Finding first, exact numbers, honest verb, correlation flagged as correlation."}]' />
+
+Now order the four parts of a trustworthy data narration as a reviewer would assemble them.
+
+<sequence-builder mode="order" items='["Lead with the finding (the result, stated up front)","Attach the exact evidence (numbers, sample size, time window)","Match the verb to the magnitude so it neither inflates nor deflates","Flag correlation as correlation and name a competing explanation"]' />
+
 ## Decision Rule
 
 Lead with the finding, back it with exact numbers, keep the verb honest, and flag correlation as correlation. If your first sentence describes what you did instead of what you found, rewrite it.
@@ -73,6 +81,8 @@ A frequent misreading is mistaking process for finding. "We analyzed four weeks 
 
 A second misreading is treating vivid verbs as harmless polish. "Sales skyrocketed" for a 40% rise, or "weekends drive revenue" for a four-week correlation, each smuggles a claim past the data. The honest verb for 40% is "higher" or "rose," and the honest framing for co-occurrence is "associated with," reserving causal language for when you have actually isolated the cause.
 
+<inline-check question="A workshop write-up reads: Attending the study-skills workshop raised midterm scores by 6 points (82 vs 76, n=30). Attendance was voluntary. Which test does this sentence fail?" explanation="The verb raised asserts cause, but attendance was self-selected, so motivated students may both attend and study more. The numbers and the finding-first wording are fine; the restraint test fails on unsupported causal language. The fix is associated with a 6-point gap, plus a note on self-selection." options='[{"text":"The finding-first test, because it narrates the procedure first","correct":false},{"text":"The evidence test, because the sample size is missing","correct":false},{"text":"The restraint test, because raised claims a cause the voluntary design cannot support","correct":true}]' />
+
 ## Textbook Walkthrough
 
 Apply the four parts to a different finding: a study-skills workshop where attendees averaged a 6-point higher midterm score than non-attendees (82 vs 76, across 30 students). A weak write-up says, "We compared midterm scores between students who attended the workshop and those who did not." It reports the comparison existed, not its result.
@@ -90,6 +100,10 @@ A strong reader audits a data claim the way a fact-checker does, separating what
 3. Flag any sentence that implies cause and ask whether the design could actually support it.
 
 When "sales jumped 50%" makes you immediately check the two numbers and then ask "compared to what baseline, over what period?", you read narration as a claim to be verified, not a story to be enjoyed.
+
+These fact-checking reflexes tie the narration skill back to the module concepts of evidence-based revision and bounded AI support. Map how they connect.
+
+<concept-map concepts='["cat100_supplement_narrating_a_data_finding", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

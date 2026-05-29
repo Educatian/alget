@@ -34,6 +34,8 @@ The core premise is radical but intuitive: **knowledge is actively constructed t
 
 This has a direct design consequence. If interaction is part of the mechanism, then removing interaction (the all-video, all-solo course) does not just make learning slower; it can make certain kinds of learning nearly impossible.
 
+<inline-check question="The onboarding course in the opening had a 95% completion rate yet new hires still could not ship a feature. Under a Social Constructivist reading, what does that gap reveal?" explanation="Social Constructivism says deep, ill-structured competence is built through interaction (defending mental models, negotiating meaning), not transferred by viewing. A high completion rate measures content delivery, which is exactly the part that was never the bottleneck. The missing mechanism was structured social interaction." options='[{"text":"Completion measured delivery, but the constructive mechanism (interaction that repairs mental models) was never present","correct":true},{"text":"The videos were factually wrong and need re-recording","correct":false},{"text":"The learners lacked prior knowledge, so no theory could have helped","correct":false}]' />
+
 ### The Zone of Proximal Development (ZPD)
 
 Vygotsky's most influential contribution to instructional design is the **Zone of Proximal Development (ZPD)**: the gap between what a learner can do alone and what they can do with help.
@@ -50,6 +52,10 @@ The instructional designer's goal is to build environments that keep learners op
 
 > **Key Insight:** The ZPD is a moving target, not a fixed level. Good design continuously re-aims at the edge of the learner's current ability.
 
+<self-explain prompt="Using the three-circle ZPD model, explain why a single fixed difficulty level is guaranteed to be wrong for the same learner over a four-week course, and what 'good design re-aims at the edge' means in practice." answer="On day one a task pitched at the learner's current edge sits in the ZPD: solvable with help, productive struggle. But as the learner practices, the inner circle (can-do-alone) expands, so that same task slides inward and becomes boring busywork. Meanwhile the ZPD itself has shifted outward toward harder material. A static level therefore starts on-target and drifts off-target, or starts in the outer circle (anxiety) and never adjusts. 'Re-aiming at the edge' means the design must continuously raise difficulty and fade support to track the moving boundary, through adaptivity, branching, or a planned weekly escalation, so the learner stays in the productive-struggle band the whole time." />
+
+<concept-map concepts='["zone_of_proximal_development","peer_scaffolding","social_learning","collaborative_learning","communities_of_practice"]' />
+
 ---
 
 ## Choosing a Response: A Diagnostic Decision Table
@@ -64,6 +70,10 @@ The ZPD is only useful if it tells you what to *do* when you observe a learner. 
 | Succeeds alone but cannot explain why | Fragile mastery | Add peer explanation or teaching task | Mark complete and move on |
 
 > **Critical Check:** Most design mistakes here are calibration mistakes. The same hint is excellent for a learner in the ZPD and harmful for a learner who could have struggled productively without it.
+
+Work the table as a live decision. You are watching one learner in your adaptive system and must choose the next move from the signal alone.
+
+<branching-scenario tree='{"title":"Diagnose the Learner, Choose the Move","start":"signal","nodes":{"signal":{"prompt":"A learner has just failed the same factoring problem three times in a row and is starting to type frustrated comments. What zone is this signal pointing to, and what do you do next?","choices":[{"label":"Push a harder problem to build grit","next":"grit","feedback":"Repeated failure with rising frustration is the outer-circle signal: the task is out of reach even with current help."},{"label":"Inject a faded worked example, then a near-peer if it persists","next":"scaffold","feedback":"You read the signal as outer-circle and pulled the task back into the ZPD with temporary support. This is the calibrated move."},{"label":"Mark the section complete and move on","next":"complete","feedback":"Moving on leaves the learner stuck outside the ZPD with no resolution."}]},"grit":{"prompt":"You raised the difficulty. The learner quits the module. What does the ZPD model predict here?","feedback":"Pushing harder when a task is already in the outer circle produces crippling anxiety and dropout, not grit. The fix is to step back one level or scaffold, not escalate.","choices":[]},"scaffold":{"prompt":"The worked example helps and the learner now succeeds with a small hint. The next problem they solve, but cannot explain why it worked. What now?","choices":[{"label":"Mark mastery and advance","next":"fragile","feedback":"Success-without-explanation is the fragile-mastery signal, not true mastery."},{"label":"Assign a peer-explanation or teaching task","next":"win","feedback":"Exactly. Having the learner teach or explain converts fragile, rote success into durable, transferable understanding."}]},"fragile":{"prompt":"Two weeks later the learner fails a near-identical transfer problem. Why?","feedback":"Fragile mastery (correct answers with no underlying schema) does not transfer. The decision table flags this signal precisely so you add explanation rather than advancing.","choices":[]},"complete":{"prompt":"The learner re-enters the same wall on the next unit. What was missed?","feedback":"The frustration-plus-repeated-failure signal needed a scaffolding response, not a completion flag. The block was never resolved.","choices":[]},"win":{"prompt":"The learner now explains the rule in their own words and transfers it to a new problem type. You have moved them through the ZPD into expanding independence.","feedback":"This is the full diagnostic loop: read the signal, pull into the ZPD, scaffold, then convert fragile success into explained mastery.","choices":[]}}}' />
 
 ---
 
@@ -80,6 +90,10 @@ Just as physical scaffolding holds up a building while it is being constructed a
 *   **Peer tutoring:** Pairing a novice with someone just slightly ahead in the ZPD. The near-peer often explains better than an expert because they remember what was confusing.
 
 > **Pitfall: The expert blind spot.** A deep expert can be a poor scaffolder because the steps that confuse a novice have become invisible to them. A learner one step ahead frequently provides better-calibrated help.
+
+Match each scaffolding move to the property that makes it work.
+
+<sequence-builder mode="match" items='[{"term":"Faded support","definition":"Give 3 of 5 steps now, 2 next time, 0 by the final problem; support shrinks as competence grows"},{"term":"Worked example","definition":"Show a fully solved correct case before the learner attempts a similar one, slashing load on the first encounter"},{"term":"Peer tutoring","definition":"Pair the novice with someone just slightly ahead who still remembers what was confusing"},{"term":"Temporary and fading (the defining feature)","definition":"Support that never disappears is not scaffolding but a permanent crutch that blocks independence"},{"term":"Expert blind spot","definition":"Steps that once confused the deep expert have gone invisible, so a near-peer often calibrates help better"}]' />
 
 ---
 
@@ -119,6 +133,10 @@ Borrow the faded-support pattern.
 
 Notice the support column shrinks every week. By week 4 the scaffold is nearly gone, which is the point: the learner is being moved toward the independent inner circle.
 
+Reconstruct the four-week fading ladder yourself, from the most-supported week to the least.
+
+<sequence-builder mode="order" items='["Week 1: sandboxed bug fix with a senior walking through one fix end to end (High support)","Week 2: real low-risk bug, paired with a near-peer hired ~6 months earlier (Medium support)","Week 3: small feature with a reviewer on call and mandatory PR review (Low support)","Week 4: small feature, PR review only, no live help unless requested (Minimal support)"]' />
+
 **Step 4: Use the near-peer deliberately.**  
 The week-2 partner is *not* the most senior engineer. A developer hired six months earlier is closer in the ZPD, remembers the confusing parts, and explains them in newcomer language. This applies the expert-blind-spot pitfall as a design choice.
 
@@ -129,6 +147,10 @@ Add legitimate peripheral participation: new hires join the team Slack and the F
 The redesign trades a clean completion metric for an authentic capability metric. Information coverage is unchanged, but learning is now constructed through scaffolded real work and embedded social participation, exactly the ingredients the original course removed. The day-one assumption ("deliver content, learning follows") is replaced with a calibrated, fading, socially embedded path.
 
 > **Think About It:** The original course was not improved by adding *more* content. It was fixed by changing the *structure of support and interaction* around the same content. That is the social-learning designer's core move.
+
+Predict each redesign decision before you see the rationale.
+
+<step-reveal title="Rebuild the Onboarding, Decision by Decision" steps='[{"prompt":"Day-one hire, target outcome. Which target should the design actually aim at first?","predictType":"choice","choices":["Ship a production feature completely alone","Ship a small feature with a reviewer, with help fading over four weeks","Watch all 40 videos and pass the final quiz"],"answerIndex":1,"reveal":"Ship-alone sits in the outer circle for a day-one hire, so you design toward the assisted version that sits in the ZPD, then fade the assistance. The outcome you build toward is the helped version first."},{"prompt":"What happens to the 40 polished videos?","predictType":"choice","choices":["Delete them; they caused the failure","Keep them as the spine of the course","Keep them but demote them to reference; make real tickets the spine"],"answerIndex":2,"reveal":"The content was never wrong. You demote the videos to reference material and make a sequence of real, small tickets the spine, converting watch-then-test into do-real-work-with-support, which is where construction happens."},{"prompt":"Who should the week-2 partner be?","predictType":"choice","choices":["The most senior architect on the team","A developer hired about six months earlier","No partner; solo work builds independence"],"answerIndex":1,"reveal":"The near-peer is closer in the ZPD, still remembers the confusing parts, and explains them in newcomer language. Using the most senior engineer would trigger the expert blind spot. This applies the pitfall as a deliberate design choice."},{"reveal":"Finally, engineer the Community of Practice: new hires join the team Slack and the Friday debugging huddle from day one (legitimate peripheral participation) and each must add one entry to a lessons-learned wiki, capturing tacit knowledge while signaling that newcomers are real contributors."}]' />
 
 ---
 

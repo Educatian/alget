@@ -24,6 +24,12 @@ After five moderated sessions, a teammate drafts the headline: "Our usability te
 Small-N moderated testing is a formative method. Its logic and its limits both follow from how usability problems are distributed:
 
 - **Why few users find most problems:** a serious usability problem tends to trip many users, so its probability of appearing in a sample rises quickly with each added tester. A handful of users therefore catches most *high-frequency* problems. This is a claim about problem detection, not about effect sizes.
+
+The Nielsen-Landauer model makes this concrete: the expected fraction of a problem set found with `n` testers is \$1 - (1-p)^n\$, where `p` is the probability one tester hits a given problem. Move the sliders and watch why five testers can surface most high-frequency problems yet why no number of testers turns problem-finding into an efficacy claim.
+
+<parameter-explorer config='{"title":"Problem discovery vs. number of testers","sliders":[{"name":"p","label":"Probability one tester hits a given problem","min":0.1,"max":0.6,"step":0.05,"unit":"","default":0.31},{"name":"n","label":"Number of testers","min":1,"max":15,"step":1,"unit":"testers","default":5}],"outputs":[{"label":"Fraction of problems found","unit":"","expr":"1 - (1-p)^n"},{"label":"Fraction still undetected","unit":"","expr":"(1-p)^n"}],"plot":{"x":"n","output":0}}' />
+
+Notice the curve flattens: with p near 0.31, five testers already find roughly 85 percent of problems, but doubling to ten testers adds only a sliver. The model rewards small-N problem-finding and says nothing about whether the redesign improves learning.
 - **Why few users cannot prove outcomes:** an efficacy claim ("the redesign improves learning") is a comparative, population-level statement. It needs a baseline or control, random assignment or matching, and a sample large enough to separate a real effect from noise. None of these is present in a five-person walkthrough.
 - **What the method licenses:** scoped claims of the form "behavior B occurred in k of n sessions, so we revised feature F and will recheck." Frequency drives priority; a 4-of-5 problem is acted on now, a 1-of-5 signal is logged and watched, not yet treated as real.
 
@@ -52,6 +58,8 @@ The revised entry scopes each claim to what five sessions bear: a named behavior
 
 One rejected line: a statement that the lesson "improves learning." I declined it because no outcome comparison was run and the sample cannot support a population claim; keeping it would invite a reviewer to discount the whole report.
 
+<step-reveal title="Scope each observation by its frequency" steps='[{"prompt":"4 of 5 testers clicked Back instead of Next at frame 2. How should this observation be treated?","predictType":"choice","choices":["Act now: relabel the control and recheck next round","Log and watch; too few sessions to act","Report as proof the lesson improves learning"],"answerIndex":0,"reveal":"A 4-of-5 problem is high-frequency and actionable. Relabel the button to \"Continue,\" move it right, and watch the frame-2 path next round. Frequency drives priority."},{"prompt":"1 of 5 testers hovered the glossary popup without using it. How should THIS be treated?","predictType":"choice","choices":["Act now with a redesign","Log it as a low-frequency signal to watch, not yet a finding","Conclude the glossary is broken"],"answerIndex":1,"reveal":"A 1-of-5 signal is logged and watched, not treated as real yet. Acting on every single-occurrence behavior would waste the revision budget and over-fit to one tester."},{"reveal":"The scoped report keeps observation, frequency, revision, and recheck for each finding, and contains no outcome claim, because five sessions with no control cannot license one. Frequency is the unit of trust."}]' />
+
 ## Decision Rule
 
 Before writing any claim from a small-N test, check that the claim type matches the method:
@@ -61,6 +69,10 @@ Before writing any claim from a small-N test, check that the claim type matches 
 3. **Baseline check:** If the claim implies improvement, is there an explicit comparison? If not, remove the comparative language.
 
 A claim that fails the type check is not merely imprecise; it misrepresents the strength of the evidence and undermines the credible findings around it.
+
+<inline-check question="Five testers all liked the redesigned lesson and finished faster than the old one was 'supposed' to take. A teammate writes 'the redesign improves learning.' What is the core problem?" explanation="Liking is a reaction, not an outcome, and there is no baseline or control group, so five participants cannot support a population-level efficacy claim. The honest claim is about problems found and revisions warranted." options='[{"text":"Nothing; satisfaction plus speed proves learning.","correct":false},{"text":"There is no baseline or control, and satisfaction is not a learning outcome.","correct":true},{"text":"The sample is fine; the wording just needs polish.","correct":false}]' />
+
+<self-explain prompt="In your own words, explain why the same five-person test that reliably surfaces most usability PROBLEMS cannot support a claim that the redesign IMPROVES LEARNING. Reference both the problem-discovery model and the requirements of an efficacy claim." answer="Problems are detected because a serious problem trips many users, so its chance of appearing rises fast with each tester (1 minus (1-p)^n approaches 1 quickly); five testers catch most high-frequency problems. An efficacy claim is a comparative, population-level statement that requires a baseline or control, random assignment or matching, and a sample large enough to separate signal from noise. A five-person walkthrough has none of these, so it licenses problem-and-revision claims (observation, frequency, revision, recheck) but not outcome claims." />
 
 ## Common Misreadings
 
@@ -81,6 +93,10 @@ The usability script and trace are strong when every finding is stated as observ
 ## Transfer Case
 
 Carry the scoping discipline into a high-stakes context where a stakeholder wants an efficacy headline you cannot honestly provide. The transfer is to hold the claim line: report the prioritized usability fixes the five sessions support, and explicitly state what a *summative* efficacy study would require (a control group, random assignment, adequate N, a pre-registered outcome). Naming the gap is more credible than papering over it, and it converts pressure for an unsupported claim into a concrete proposal for the study that could actually earn it. The skill transfers because it is about matching claim strength to evidence strength under any amount of stakeholder enthusiasm.
+
+## Concept Map
+
+<concept-map concepts='["ail606_supplement_research_translation_for_learning_design", "ail606_supplement_small_n_testing_and_design_claims", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

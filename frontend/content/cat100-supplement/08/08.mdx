@@ -32,6 +32,8 @@ A future learning plan is a table where each goal carries four parts that togeth
 
 The intellectual core is two ideas from goal-setting and skill-building. The first is the difference between an outcome you can measure and a vibe you cannot: a goal that produces an inspectable artifact can be confirmed, while "get better" cannot. The second is sequencing by prerequisite. You cannot meaningfully write a database query before you can summarize data in a spreadsheet, so the plan orders the database goal after the spreadsheet goal rather than starting both at once. A plan that ignores prerequisites collapses under its own ambition; a sequenced plan moves one verifiable step at a time.
 
+<inline-check question="A goal reads Get better at coding and learn more about data. Why can no one, including you, check it later?" explanation="The goal has no done state, no proof artifact, and no order. The fix is to name the smallest deliverable that would prove progress, such as one working SELECT ... WHERE query with a screenshot, and attach a date and prerequisite." options='[{"text":"It has no measurable proof, date, or prerequisite, so progress cannot be confirmed.","correct":true},{"text":"It is fine; ambition is what matters most in a learning plan.","correct":false},{"text":"It fails only because it does not mention a specific programming language.","correct":false}]' />
+
 ## Worked Example: From a Vague Wish to a Verifiable Learning Plan
 
 A student finishing CAT 100 first writes a vague plan.
@@ -51,6 +53,18 @@ There is no finish line, so progress can never be checked.
 | Try a database query | One `SELECT ... WHERE` query that filters the budget data, with a screenshot | September 1 | Spreadsheet goal complete first |
 
 Each row names a goal, a concrete deliverable that proves it, a date, and the prerequisite that must come first. The database goal is sequenced after spreadsheets rather than attempted all at once. A future advisor, or the student in three months, can check each milestone against its proof instead of guessing whether progress happened.
+
+Build one goal row as a fixed procedure. Predict each step before revealing it:
+
+<step-reveal title="Turn a vague intention into a verifiable goal row" steps='[{"prompt":"You start with get better at spreadsheets. What question converts it into a checkable goal?","predictType":"choice","choices":["How motivated do I feel about it","What would I be able to show if I succeeded","How many hours should I spend"],"answerIndex":1,"reveal":"Ask what you could show. That converts get better at spreadsheets into a budget file using SUMIFS and VLOOKUP across 200 rows, posted as a link."},{"reveal":"Demand a proof artifact: the link, file, or screenshot that would prove completion. No nameable proof means the goal is still too vague."},{"reveal":"Set a target date so someday becomes a commitment you can fall behind on and notice."},{"reveal":"Order by prerequisite. Place the database goal after the spreadsheet goal, because querying data assumes you can already structure and summarize it."}]' />
+
+Now order the steps that build one provable, sequenced goal:
+
+<sequence-builder mode="order" items='["Ask what you could show if the goal succeeded","Restate the goal as a measurable deliverable","Name the proof artifact (link, file, or screenshot)","Attach a concrete target date","Place the goal after any prerequisite it depends on"]' />
+
+These four concepts anchor the section; trace how they connect:
+
+<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_future_learning_plan","evidence_based_revision","ai_supported_learning"]' />
 
 ## Decision Rule
 

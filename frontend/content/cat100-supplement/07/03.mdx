@@ -73,6 +73,12 @@ Three concrete moves made it a template:
 2. **Relative and absolute references.** `=B2*$C$1` copies down so B shifts to B3, B4 while the tax rate stays locked at `$C$1`.
 3. **Edit a copy, keep the master blank.** Save As `budget_2026spring.xlsx` so `budget_template.xlsx` stays reusable next term.
 
+<step-reveal title="Predict what each reference does when you copy the formula down" steps='[{"prompt":"Cell C2 holds =B2*$C$1. You copy it down into C3. The B2 part is a relative reference. What does it become?","predictType":"choice","choices":["It stays B2","It becomes B3","It becomes C2","It becomes $B$3"],"answerIndex":1,"reveal":"Relative references shift with the copy, so B2 becomes B3, picking up each row’s own cost."},{"prompt":"In that same copied formula, the $C$1 part is an absolute reference. What does it become in C3?","predictType":"choice","choices":["It becomes $C$2","It becomes C1","It stays locked at $C$1","It becomes $D$1"],"answerIndex":2,"reveal":"The dollar signs pin both the column and row, so $C$1 stays locked on the single tax-rate cell no matter where you copy it."},{"reveal":"If you had written =B2*C1 with no dollar signs, copying down would give =B3*C2, =B4*C3, and the rate reference would drift off C1 entirely and produce garbage. Lock the shared constant with $C$1."}]' />
+
+<inline-check question="You want a percentage cell to recalculate automatically every time you enter a new graded item. Should it hold a typed number or a formula?" explanation="A typed value is a snapshot frozen at the moment you typed it; a formula like =SUM(B2:B10)/SUM(C2:C10) is a living relationship that updates with its inputs. Results get formulas." options='[{"text":"A formula, so it recomputes whenever an input changes","correct":true},{"text":"A typed number, because it is faster to enter","correct":false},{"text":"A typed number locked with dollar signs","correct":false},{"text":"Either one works identically","correct":false}]' />
+
+<concept-map concepts='["cat100_supplement_template_based_productivity", "cat100_supplement_productivity_and_workflow_automation", "evidence_based_revision", "ai_supported_learning"]' />
+
 ## Decision Rule
 
 Before you type a number into a spreadsheet, ask whether it is an input or a result. Inputs (costs, the tax rate) get typed once; results (totals, taxes) get formulas. Before you copy a formula, ask which references should move and which should stay, and add `$` to the ones that must stay.

@@ -34,6 +34,12 @@ The governing idea is the alignment of affordance with intent. An affordance is 
 
 The reason this matters for evidence is that a wireframe is the earliest point at which a teaching mistake is cheap to fix. Catching a hint-on-a-final-check contradiction in the wireframe costs a sentence; catching it after the prototype is built costs a rebuild.
 
+Before you can label a region with its phase, you have to hold the instructional sequence in order. Arrange the four phases from first encounter to evidence of mastery.
+
+<sequence-builder mode="order" items='["Acquire: present and signal, with affordances that reduce search and load", "Practice with support: make help cheap and visible, with immediate feedback", "Perform unaided: make help costly and logged, with feedback delayed to the end", "Reflect or feedback: make the learner reasoning visible before revealing the answer"]' />
+
+<inline-check question="A region labeled perform-unaided sits next to a prominent per-item Hint button. Why is this a learning-logic contradiction rather than a styling problem?" explanation="The purpose of the screen is to observe what the learner can do without help, but a cheap, prominent hint invites prompting that contaminates exactly that evidence. The affordance fights the intent, which no amount of visual polish fixes." options='[{"text":"A cheap prominent hint invites prompting that contaminates the unaided evidence the screen exists to collect.","correct":true},{"text":"The Hint button uses the wrong color for a mastery screen.","correct":false},{"text":"Hints should never appear anywhere in a module.","correct":false},{"text":"The region label is in the wrong font.","correct":false}]' />
+
 ## Worked Example
 
 Work through one annotated before/after revision of a practice-screen wireframe, the kind you would walk a reviewer through.
@@ -71,6 +77,10 @@ Work through one annotated before/after revision of a practice-screen wireframe,
 ```
 
 **Why the after version is stronger:** each region now names the learner action and its place in the sequence (recall assessment, then optional help, then end-of-set feedback). Moving hints to one effortful bottom button encodes the assessment intent rather than decorating the screen. The reviewer can now critique the teaching decision, not just the look. The change is a clearer learning argument, not a prettier screen.
+
+You are the reviewer for the tidy-but-contradictory mastery-check wireframe. Decide each affordance by the screen's stated purpose: measure unaided recall of Concept 4.2.
+
+<branching-scenario tree='{"title":"Reviewing affordances against the screen purpose","start":"n1","nodes":{"n1":{"prompt":"The wireframe looks clean: four options, a Hint button beside every item, feedback after submission. The stated purpose is to measure unaided recall. What do you check first?","choices":[{"label":"Whether each affordance prominence and feedback timing serves the unaided-recall purpose","next":"n2","feedback":"Right. Annotate intent first, then test the affordances against it."},{"label":"Whether the spacing and alignment look balanced","next":"n3","feedback":"Aesthetics review declares a contradictory screen done. The logic was never checked."}]},"n2":{"prompt":"The per-item Hint buttons invite prompting on a screen meant to be unaided. What is the fix that encodes the intent?","choices":[{"label":"Replace per-item hints with one effortful bottom button that logs the request before scoring","next":"n4","feedback":"Raising the cost of help and logging it preserves an unaided measure."},{"label":"Keep the hints but make them smaller","next":"n3","feedback":"A smaller cheap hint still contaminates the measure; cost and logging are what matter."}]},"n3":{"prompt":"During pilot, mastery scores come back inflated because learners leaned on the hints. What does this prove?","choices":[{"label":"Affordances that fight the purpose produce misleading data, so re-derive them from intent","next":"n2","feedback":"Exactly; the screen collected the wrong evidence."}],"feedback":"The contradiction surfaced as bad data."},"n4":{"prompt":"Now the feedback timing. The screen is summative. Per-item or end-of-set feedback?","choices":[{"label":"End-of-set feedback, so each response stays independent and unaided","next":"end","feedback":"Delayed feedback protects summative measurement."},{"label":"Immediate per-item feedback, since faster is friendlier","next":"end","feedback":"Immediate feedback fits formative practice; on a final check it lets earlier items coach later ones."}]},"end":{"prompt":"Every region now carries a learner action, a phase tag, and an affordance whose prominence and timing serve the unaided-recall purpose. The wireframe is a teaching argument, not a layout.","feedback":"Affordance aligned with intent collects the evidence the screen promises.","choices":[]}}}' />
 
 ## Decision Rule
 
@@ -141,6 +151,10 @@ ALGET uses your annotations and artifact trace to choose support:
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
 <interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="ail606_supplement_wireframes_that_show_learning_logic" />
+
+## Concept Map
+
+<concept-map concepts='["ail606_supplement_wireframes_that_show_learning_logic", "ail606_supplement_design_draft_and_theory_to_prototype_alignment", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Final Check
 

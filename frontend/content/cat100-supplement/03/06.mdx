@@ -58,6 +58,14 @@ Step 3. If you split 'Pick' by Major, several majors have an n of 1. An average 
 
 The auditable decision: anonymize by combinations not just the name, report raw counts on small n, and never publish a group of one. Each step protects a real person in a 7-row table.
 
+Walk the same 7-row club survey and decide each protective move before you reveal it.
+
+<step-reveal title="Make the 7-row club survey safe to share" steps='[{"prompt":"You already deleted the Name column. Row 6 is the only CompSci major in Hall C. Is the table now anonymous?","predictType":"choice","choices":["Yes, removing the name is enough","No, the Major plus Dorm combination still singles out one person","Yes, because nobody else shares row 6 exactly","No, but only if someone has the original sheet"],"answerIndex":1,"reveal":"Deleting the direct identifier does not anonymize. The quasi-identifier combination (CompSci plus Hall C) is unique in 7 rows, so generalize: group dorms into on-campus vs off-campus, or collapse Major into a broad field."},{"prompt":"You want to publish the headline. 4 of 7 picked A. Which wording is honest at this sample size?","predictType":"choice","choices":["57% chose A","A majority chose A","4 of 7 respondents (a small, non-representative sample) chose A","Most members support A"],"answerIndex":2,"reveal":"Report the raw count and name the n. 57% implies a precision seven opinions cannot carry; 4 of 7 with the caveat tells the reader exactly how thin the evidence is."},{"prompt":"You split Pick by Major and several majors have n of 1. What do you do with those cells?","predictType":"choice","choices":["Report each one so the table is complete","Suppress or merge the thin categories","Convert them to percentages to hide the count","Average them together with the larger groups silently"],"answerIndex":1,"reveal":"A value over a group of one both exposes that individual and fakes a pattern. Suppress the cell or merge the category before anything is published."},{"reveal":"The finished move: generalize quasi-identifiers so no row is unique, report 4 of 7 with the sample size named, and suppress every group of one. The 7-row table is now both anonymous and honestly framed."}]' />
+
+Now order the ethics screen a reviewer would run on any small dataset, from layout-level identity protection to the final honesty check.
+
+<sequence-builder mode="order" items='["Delete direct identifiers (names, ID numbers)","Scan combinations of remaining columns for any unique row, then generalize or merge","Suppress or combine any subgroup with n of 1","Report raw counts and name the sample size instead of a bare percentage","State plainly that the sample is small and not representative"]' />
+
 ## Decision Rule
 
 Protect the person and respect the sample size. Before you share any small-dataset finding, check that no row is uniquely identifiable, no group of one is reported, and no percentage hides how few people it represents.
@@ -76,6 +84,8 @@ The most consequential misreading is "I deleted the names, so it's anonymous." D
 
 A second misreading is preferring percentages because they look professional. "57% chose A" sounds like a poll result; "4 of 7 respondents chose A" tells the truth that the whole study was seven people. At small n the raw count is the honest form, and dropping the sample size from the sentence is itself a small deception.
 
+<inline-check question="You publish a six-person internship summary with the Name column deleted. A reader recognizes one row as their friend, the only intern from the marketing department. Which protection failed?" explanation="A direct identifier was removed, but a quasi-identifier (the lone marketing department) still singles out one person. That is the re-identification check failing, not a reporting or sample-size error. The fix is to generalize or aggregate Department rather than leaving the unique value in place." options='[{"text":"The honest-magnitude check, because a percentage was used instead of a count","correct":false},{"text":"The re-identification check, because a unique quasi-identifier still points to one person","correct":true},{"text":"Nothing failed; deleting the name column makes the data anonymous","correct":false}]' />
+
 ## Textbook Walkthrough
 
 Apply the screen to a different small dataset: a six-person internship cohort's exit feedback, with columns Name, Department, Hometown, and a 1-to-5 satisfaction score. You want to publish a short summary for next year's applicants.
@@ -93,6 +103,10 @@ A strong reader of a small-data report instinctively asks who could be identifie
 3. Convert every percentage back to a count over the stated n, and notice when the n is missing.
 
 When a clean-looking "73% agree" makes you immediately ask "out of how many?", you are reading the ethics, not just the result.
+
+These reading reflexes connect the section concept to the module-wide habits of evidence-based revision and bounded AI support. Trace how they relate.
+
+<concept-map concepts='["cat100_supplement_data_ethics_in_small_datasets", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

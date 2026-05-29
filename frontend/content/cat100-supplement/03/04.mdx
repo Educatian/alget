@@ -69,6 +69,12 @@ Step 3. Add a seventh source row (South, 1007, 500) below the data. The totals d
 
 The auditable decision: choose the aggregation that matches the question (Sum for dollars, Count for orders), read region rows rather than the Grand Total, and refresh a range that actually covers the data.
 
+<step-reveal title="Build the region pivot and avoid the two traps" steps='[{"prompt":"You select A1:C7 and insert a pivot. To answer how much money each region brought in, what goes in Rows and Values, and which aggregation?","predictType":"choice","choices":["Sales in Rows, Region in Values, Average","Region in Rows, Sales in Values, Sum","Order in Rows, Sales in Values, Count","Region in Rows, Order in Values, Sum"],"answerIndex":1,"reveal":"Region to Rows, Sales to Values, aggregation Sum. The pivot reports West 1200, East 550, South 150, Grand Total 1900."},{"prompt":"Your boss now asks how many ORDERS each region placed. What single change answers the new question?","predictType":"choice","choices":["Drag a new field into Filters","Open Value Field Settings and switch Sum to Count","Sort the rows alphabetically","Read the Grand Total instead"],"answerIndex":1,"reveal":"Switch the Values aggregation from Sum to Count. Same fields, different question: West 3, East 2, South 1."},{"prompt":"Someone reports the top region sold 1900. Why is that wrong?","predictType":"choice","choices":["1900 is the Grand Total of all regions, not one category; West is 1200","1900 is correct, West is the biggest","The pivot needs refreshing first","1900 is the order count"],"answerIndex":0,"reveal":"1900 is the all-data Grand Total. Quoting it as one region is a category error. West’s actual figure is the named row, 1200."},{"reveal":"Add a 7th row (South, 1007, 500). The totals do NOT move until you click Refresh, and only if the source range reaches the new row. That is the stale-source-range trap."}]' />
+
+Match each business question to the aggregation that answers it.
+
+<sequence-builder mode="match" items='[{"term":"How much money did each region bring in?","definition":"Sum"},{"term":"How many orders did each region place?","definition":"Count"},{"term":"What was the typical order size per region?","definition":"Average"},{"term":"A row was added but the total did not change","definition":"Click Refresh (and check the source range)"}]' />
+
 ## Decision Rule
 
 Match the aggregation to the question, read the category row not the Grand Total, and refresh before you quote any number. A pivot is only as current as its last refresh and only as correct as its chosen aggregation.
@@ -104,6 +110,10 @@ A strong reader interrogates a pivot before believing it, because a pivot can be
 3. When was this pivot last refreshed, and does its source range cover every data row?
 
 When you can look at a summary and immediately ask "sum or count?" and "refreshed when?", you treat a pivot as evidence to be checked rather than an answer to be trusted.
+
+<inline-check question="A colleague added three orders to the bottom of the log this morning, but the pivot’s headline number is unchanged. What happened?" explanation="A pivot caches its source range and is not live like a formula. New rows are ignored until you click Refresh, and if they fall outside the original source range, even a refresh misses them. This is the freshness check failing, not a data-entry error." options='[{"text":"The new orders were entered incorrectly","correct":false},{"text":"The pivot was not refreshed (and the source range may not reach the new rows)","correct":true},{"text":"Pivots automatically ignore the last three rows","correct":false}]' />
+
+<concept-map concepts='["cat100_supplement_pivot_tables_as_summaries", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

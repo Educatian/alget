@@ -35,6 +35,8 @@ Three lenses sharpen the diagnosis:
 
 A lens has done its work when it changed which component you revised, not just how you described the failure.
 
+<inline-check question="17 of 26 students did not watch the at-home video; an exit question shows most cited unreliable home time. Is this a design flaw or a context mismatch?" explanation="A context mismatch: the at-home prep activity assumes a resource (reliable home time) that the students do not have. The cure is to move the same activity to where the resource exists, an in-class viewing, not to redesign the activity itself. Reading non-completion as unwillingness would have misclassified it as a discipline problem and fixed nothing." options='[{"text":"A context mismatch: the activity assumes a resource the students lack","correct":true},{"text":"A design flaw: the video activity itself is poorly built","correct":false},{"text":"Neither: the students simply chose not to do the work","correct":false}]' />
+
 ## Worked Example
 
 Compare two responses to the same disappointing result. The defend-on-principle version protects the whole plan:
@@ -47,6 +49,10 @@ This treats the symptom as a discipline problem and changes nothing structural. 
 
 The second version reads the data to a component, names the cause (access, not laziness), and changes only the broken link. The follow-up confirms it: 24 of 26 reached the problem set, versus 9 before. The AI tool's suggestion to add a gamified points system was rejected, because points address motivation and the diagnosed cause was access.
 
+Model the broken link directly. The reach to the in-class AI-coached set is the students who watched at home, plus, if you relocate the prep into class, the rest of the class who can then watch. Set the prep location to 0 (at home) or 1 (moved in-class) and watch reach climb as you lower home access.
+
+<parameter-explorer config='{"title":"Reach to the AI-coached set: where the prep video lives","sliders":[{"name":"class_size","label":"Class size","min":20,"max":30,"step":1,"unit":"students","default":26},{"name":"home_access_pct","label":"Students with reliable home time","min":0,"max":100,"step":5,"unit":"%","default":35},{"name":"prep_in_class","label":"Prep moved in-class (0 = at home, 1 = in-class)","min":0,"max":1,"step":1,"unit":"","default":0}],"outputs":[{"label":"Students reaching the AI-coached set","unit":"students","expr":"class_size * home_access_pct / 100 + prep_in_class * (class_size - class_size * home_access_pct / 100)"},{"label":"Students locked out of the core activity","unit":"students","expr":"(1 - prep_in_class) * (class_size - class_size * home_access_pct / 100)"}],"plot":{"x":"home_access_pct","output":0}}' />
+
 ### Annotated Judgment Call: Revising a Flipped Lesson After the Data
 
 Aisha planned a flipped lesson: students watch a video at home, then use class time for an AI-coached problem set. After teaching it once, only 9 of 26 students had watched the video.
@@ -58,6 +64,10 @@ Aisha planned a flipped lesson: students watch a video at home, then use class t
 5. **After (evidence-based revision):** Move the video to a 7-minute in-class viewing before the AI-coached set. Follow-up data: 24 of 26 students reached the problem set, versus 9 before.
 
 The record shows the original plan, the prompting data, the change, and the follow-up data, not a hunch that it "felt better."
+
+Now run the diagnosis under pressure. Each turn either isolates the broken link or overcorrects.
+
+<branching-scenario tree='{"title":"Diagnosing a disappointing flipped lesson","start":"start","nodes":{"start":{"prompt":"Only 9 of 26 students watched the at-home video before your AI-coached problem set. Your first move?","choices":[{"label":"Conclude the flipped model failed and scrap it","next":"scrap","feedback":"You reasoned about the whole when the data is about a part."},{"label":"Reassign the video and warn students to watch it next time","next":"defend","feedback":"You treated a symptom as a discipline problem and changed nothing structural."},{"label":"Read the data to a specific link before changing anything","next":"read","feedback":"You located the failing component first."}]},"scrap":{"prompt":"Scrapping discards the in-class AI coaching that worked for the 9 who watched. What did you lose?","choices":[{"label":"A component that worked for everyone who reached it","next":"restart","feedback":"Overcorrecting throws away the links the data exonerated."}]},"defend":{"prompt":"You blamed the students. An exit question shows most non-watchers cited unreliable home time, not unwillingness. Reconsider.","choices":[{"label":"Reread the data as an access barrier, not laziness","next":"read","feedback":"You corrected a misclassification of the cause."}]},"restart":{"prompt":"Restart and read the data to the link first.","feedback":"The evidence points narrower than the conclusion you were tempted to draw.","choices":[]},"read":{"prompt":"The in-class coaching worked for the 9 who watched; 17 non-watchers cited unreliable home time. Which link is broken and what is the cause?","choices":[{"label":"At-home prep, broken by a context mismatch (no reliable home time)","next":"fix","feedback":"You isolated the link and classified the cause correctly."},{"label":"The in-class design, broken by a design flaw","next":"restart","feedback":"The data exonerates the in-class set; it worked for everyone who reached it."}]},"fix":{"prompt":"An AI tool suggests adding a gamified points system. Do you adopt it?","choices":[{"label":"No; points address motivation, but the diagnosed cause is access","next":"relocate","feedback":"You held the fix to the diagnosed cause."},{"label":"Yes; gamification boosts engagement","next":"restart","feedback":"A fix that ignores the cause is not a fix."}]},"relocate":{"prompt":"You move the video to a 7-minute in-class viewing before the AI-coached set. Follow-up: 24 of 26 reach the set, versus 9 before.","feedback":"You read the data to the link, classified the cause, changed only that link, and confirmed with follow-up data.","choices":[]}}}' />
 
 ## Decision Rule
 
@@ -130,6 +140,10 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your revision points the data at a specific component, classifies the cause as flaw or mismatch, changes only that component, and shows before-and-after follow-up data. That is what separates a diagnosis from a guess.
+
+## Concept Map
+
+<concept-map concepts='["cat531_supplement_field_based_transfer_and_coaching", "cat531_supplement_revising_plans_after_field_evidence", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

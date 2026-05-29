@@ -33,6 +33,12 @@ The two principles interact and can collide:
 - Over-segmenting fractures a single idea, raising load instead of lowering it; the break must fall at a seam, not at a sentence boundary.
 - UDL learner variability sets the calibration target: novices need more, larger segments and clearer cues, while experts experience the same cues and breaks as redundant interruptions (the expertise reversal effect). A defensible decision names the learner whose pacing it is tuned to.
 
+Signaling works by contrast, so its routing power is zero-sum across the cued elements. Use the explorer to see why one cue routes attention but five cues route nothing: the contrast a learner perceives on the single element that matters is the salience of one cue divided by the number of elements competing for it. Watch how routed attention collapses as you cue more.
+
+<parameter-explorer config='{"title":"Cue budget: contrast versus over-cuing","sliders":[{"name":"cued","label":"Elements cued on the frame","min":1,"max":10,"step":1,"unit":"elements","default":1},{"name":"salience","label":"Salience strength per cue","min":1,"max":5,"step":1,"unit":"level","default":4},{"name":"background","label":"Quiet background elements","min":0,"max":12,"step":1,"unit":"elements","default":8}],"outputs":[{"label":"Routed attention on the target","unit":"index","expr":"salience / cued"},{"label":"Display proportion cued","unit":"ratio","expr":"cued / (cued + background)"}],"plot":{"x":"cued","output":0}}' />
+
+The first output falls as `cued` rises: cuing the active step alone (cued = 1) keeps routed attention high, while cuing all four step headings (cued = 4) quarters it. The scarcity law is visible in the numbers, not just the slogan.
+
 ## Worked Example: Fixing Over-Cuing and Adding Real Segmenting
 
 Here is a single frame from a four-step lab-safety procedure, shown before and after a signaling-and-segmenting revision.
@@ -68,9 +74,17 @@ For segmenting, run the seam test on every break you insert:
 
 A decision survives only if you can name both the cue you spent and the cue you withheld, and both the seam you cut and the seam you left whole.
 
+Work a live calibration dilemma. A four-stroke-engine animation cues all four strokes in red and auto-plays end to end; novices report they cannot follow it.
+
+<branching-scenario tree='{"title":"Calibrating cues and seams on the engine frame","start":"n1","nodes":{"n1":{"prompt":"Novices cannot tell which stroke the narration is describing. What is your first move?","choices":[{"label":"Add a sixth pulsing arrow to the active stroke for extra emphasis","next":"n2","feedback":"Adding cues raises the cued count, which lowers contrast further. You spent more budget and routed less attention."},{"label":"Cue only the active stroke and gray the other three until reached","next":"n3","feedback":"You restored contrast by withholding three cues. One salient element now routes attention to the active stroke."}]},"n2":{"prompt":"Learners are now more lost, not less. What does the contrast law tell you?","choices":[{"label":"Remove cues until only the active stroke is emphasized","next":"n3","feedback":"Correct: contrast is zero-sum, so the fix is subtraction, not addition."}],"feedback":"Over-cuing destroys the contrast mechanism; more emphasis is not safer."},"n3":{"prompt":"Contrast is fixed, but learners still cannot re-watch compression. Where do you place the learner-paced break?","choices":[{"label":"Auto-advance every two seconds so pacing is consistent","next":"n4","feedback":"Auto-advance is not segmenting: the learner does not control essential processing."},{"label":"Put a Continue control at each between-stroke seam, never mid-stroke","next":"n5","feedback":"Correct: the break falls at the conceptual seam and the learner triggers it."}]},"n4":{"prompt":"Consistent timing still overruns slow learners. What is the governing principle?","choices":[{"label":"Hand pacing to the learner at the seams","next":"n5","feedback":"Segmenting requires learner-controlled advancement at conceptual seams."}],"feedback":"Timed auto-advance manages the clock, not the learner’s processing."},"n5":{"prompt":"You cued one element and broke at three seams. What must your decision record name?","feedback":"It must name both the cue you spent and the three you withheld, both the seams you cut and the mid-stroke seams you left whole, and the novice learner this calibration targets.","choices":[]}}}' />
+
+
 ## Common Misreadings
 
 The most damaging misreading is that more signaling is safer than less. It is not symmetric: under-cuing leaves attention undirected, but over-cuing actively destroys the contrast mechanism, so the over-cued frame can score worse than a frame with no cues at all. A second misreading treats segmenting as "add a Next button between every screen." Pagination is not segmenting unless the page breaks coincide with conceptual seams and the learner controls advancement for the purpose of completing essential processing.
+
+<inline-check question="A designer splits a single continuous explanation of one idea into eleven Continue clicks, one per sentence. Why might this lower learning rather than raise it?" explanation="The breaks fall inside one idea instead of between ideas, so the learner is repeatedly interrupted mid-thought. Over-segmenting fractures essential processing and raises load; the break must sit at a conceptual seam, not at every sentence boundary." options='[{"text":"It helps, because more learner control is always better","correct":false},{"text":"It hurts, because the breaks fall inside one idea rather than at conceptual seams, fracturing processing","correct":true},{"text":"It is neutral, because pagination has no effect on load","correct":false}]' />
+
 
 ## Textbook Walkthrough
 
@@ -122,6 +136,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your trace links Signaling and Segmenting in Practice, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+
+## Concept Map
+
+See how signaling and segmenting in practice depends on evidence-based revision and bounded AI support to stay calibrated rather than over-applied.
+
+<concept-map concepts='["ail606_supplement_multimedia_storyboarding_and_ai_asset_generation","ail606_supplement_signaling_and_segmenting_in_practice","evidence_based_revision","ai_supported_learning"]' />
 
 ## References
 

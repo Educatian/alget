@@ -34,6 +34,12 @@ AI advice fails in recognizable patterns. Learning the categories lets you predi
 
 The core move is decomposition. A reply is not one claim; it is several claims glued together by confident prose. You separate them into rows, find a source for each, and assign a verdict. A spreadsheet (Excel or Google Sheets) makes this inspectable: one claim per row, a SOURCE column, and a VERDICT column. The verdict matters because the goal is not to throw out the whole reply but to filter it, keeping what survives.
 
+<inline-check question="An AI reply says: 'Students learn 90% of what they teach others (Dale, 1969).' Why is the citation NOT proof the claim is verified?" explanation="A citation is itself a claim. AIs routinely attach real author names to findings those authors never made. Here Dale wrote on the Cone of Experience and assigned no percentages, so the citation is a misattribution. A reference is a place to start verifying, not a stamp of approval." options='[{"text":"A citation is just another claim that must be checked; the author may never have said it","correct":true},{"text":"Citations from before 2000 are always invalid","correct":false},{"text":"It is proof; any named author confirms the number","correct":false},{"text":"The percentage is too round to be wrong","correct":false}]' />
+
+Match each common failure type to the move that catches it:
+
+<sequence-builder mode="match" items='[{"term":"Fabricated statistic","definition":"Search for the number; if it only appears on blogs and slides, it is invented"},{"term":"Misattribution","definition":"Check what the cited source actually says"},{"term":"Myth-as-fact","definition":"Look for peer-reviewed support, not just popularity"},{"term":"Overgeneralization","definition":"Check the original study population and conditions"}]' />
+
 ## Worked Example
 
 Checking AI advice is concrete verification work: you put each claim the AI made into a row of a spreadsheet, find the source, and mark a verdict. A freshman builds this as a small table (in Excel or Google Sheets) so the check is inspectable. Follow the steps.
@@ -57,6 +63,10 @@ Step 2. Break the reply into separate checkable claims, one per row, and add a S
 Step 3. Compute the check result. 1 of 3 claims survives, and even that one is weakened. The advice is built on a fabricated number and a wrong citation, so you do not act on it as stated.
 
 Step 4. Record the bounded outcome. You keep the usable idea ("peer tutoring can help") because that part is independently supported, and you reject the 90% statistic and the Dale citation, logging the source you checked. That filled table is the evidence: a reader can see exactly which claim failed and why.
+
+Verify the reply one claim at a time, predicting each verdict before you reveal it:
+
+<step-reveal title="Decompose and verify the tutoring advice" steps='[{"prompt":"Claim 1: \"Students learn 90% of what they teach.\" You search and the figure appears only on a corporate training handout and blog slides, never a peer-reviewed study. Verdict?","predictType":"choice","choices":["FALSE (fabricated statistic), because it traces to no real study","TRUE, because it is a precise number","TRUE, because it sounds like research","Skip it; numbers cannot be checked"],"answerIndex":0,"reveal":"FALSE. A precise-sounding number with no traceable study is a fabricated statistic. Confident formatting is not evidence."},{"prompt":"Claim 2: \"Proven by Edgar Dale (1969).\" You read Dale and find he wrote on the Cone of Experience and assigned no percentages. Verdict?","predictType":"choice","choices":["MISATTRIBUTED, because the cited author never made this claim","TRUE, because Dale is a real author","FALSE, because Dale never existed","Skip it; citations are always reliable"],"answerIndex":0,"reveal":"MISATTRIBUTED. A real author was named to lend false authority to a claim he did not make. The attribution check exposes it."},{"reveal":"Survival check: after cutting the 90% figure and the Dale citation, the only surviving idea is \"peer tutoring can help,\" which has its own independent support. 1 of 3 claims survives, so you keep that one and act on nothing else as stated."}]' />
 
 ## Decision Rule
 
@@ -102,6 +112,12 @@ A useful closing note for the artifact would read: "I rejected the 90% statistic
 ## Transfer Case
 
 Move the method from pedagogy advice to a resume context, since CAT 100 also asks you to write resumes. An AI offers to "strengthen" your resume by adding "increased team productivity by 35%." The same verification applies: that is a fabricated statistic about your own work, and you have no source for it. The verdict is REJECT, not because AI is untrustworthy in general, but because the specific claim has no evidence you can defend in an interview. The skill transfers: any precise claim, about research or about yourself, needs a source before it goes into something a reader will trust.
+
+## Concept Map
+
+See how claim-by-claim verification links to the chapter's wider ideas:
+
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_checking_ai_pedagogical_advice", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

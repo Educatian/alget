@@ -37,6 +37,10 @@ Third, and most important, severity is independent of score. A criterion can sco
 | Major | Degrades the experience but does not defeat purpose | Fix if time allows; disclose if not |
 | Cosmetic | Surface inconsistency with no learning impact | Optional; never blocks a defense |
 
+Severity answers a different question than score, so match each severity tag to its effect on the go/no-go decision before you triage.
+
+<sequence-builder mode="match" items='[{"term":"Blocker","definition":"Defeats the instructional purpose or excludes a learner; must fix before defense"},{"term":"Major","definition":"Degrades the experience but does not defeat purpose; fix if time allows, otherwise disclose"},{"term":"Cosmetic","definition":"Surface inconsistency with no learning impact; optional and never blocks a defense"}]' />
+
 The two course anchors supply the criteria themselves. Mayer's principles define what instructional alignment and signaling quality look like; UDL defines the accessibility criteria (perceivable media, multiple means of representation) whose failure tends to register as a blocker. The error the whole method exists to prevent is letting visual polish, the most salient and least consequential dimension, stand in for instructional quality.
 
 ## Worked Example
@@ -59,6 +63,9 @@ That review is a verdict with no criteria, no evidence, and no severity. Now the
 | Visual polish | 5/5 | Consistent type and spacing throughout | Cosmetic |
 
 Two findings (alignment and captions) are high-severity blockers that the original 9/10 hid behind visual polish. The review now separates what blocks the defense from what is cosmetic, and each score points to a criterion and screen evidence a committee can re-check.
+
+<inline-check question="Navigation consistency scored 4 out of 5 (one screen places Next top-left); accessibility scored 3 out of 5 (two narrated frames lack captions). Which should you fix first, and why?" explanation="Order by severity, not by lowest score. The caption gap excludes some learners, so it is a blocker; the single off-grid Next control degrades the experience but does not defeat purpose, so it is at most major. The higher score (3) outranks the lower-impact 4 in fix priority." options='[{"text":"The navigation item, because 4 is closer to a fixable score","correct":false},{"text":"The captions, because the accessibility gap is a blocker even though its score is lower-numbered urgency","correct":true},{"text":"Neither; average them into one composite first","correct":false},{"text":"The navigation item, because it appears on more screens","correct":false}]' />
+
 
 ## Decision Rule
 
@@ -98,6 +105,10 @@ A strong reader of a final prototype quality review can do four things:
 A strong quality review is judged by whether someone else could re-run it and reach the same profile. That requires fixed criteria, located evidence, and a severity column that survives scrutiny. The standard fails the instant the review collapses into a single number, because a number cannot be re-derived from the artifact and cannot be triaged. When you are unsure whether a finding is a blocker, annotate the screen and request a comparison between a blocker-level and a cosmetic-level instance of the same criterion.
 
 A final paragraph for the artifact would read like this: "I scored the prototype against fixed criteria with screen-level evidence, kept severity separate from quality, and ordered my revisions by severity. The high polish score did not move the go/no-go decision, because the blockers were an alignment gap and a captioning gap, not the surface."
+
+<self-explain prompt="Explain why averaging the four criterion scores into a single composite is the specific operation that lets blockers disappear. Use the worked example numbers (alignment 2, navigation 4, captions 3, polish 5)." answer="Averaging those four scores yields 3.5, a comfortable-looking composite, but the mean blends a failing alignment score (2) and a partial accessibility gap (3) with a perfect polish score (5). The high polish number lifts the failing ones until the profile reads as adequate, which hides the two findings that are actually blockers. A profile keeps each dimension visible so a low-score, high-severity criterion cannot be masked by a high-score, low-severity one; the mean destroys exactly the information triage depends on." />
+
+<concept-map concepts='["ail606_supplement_final_prototype_quality_review", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]' />
 
 ## Transfer Case
 

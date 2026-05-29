@@ -32,6 +32,12 @@ Two distinctions drive the design:
 
 Two failure modes are worth naming because they masquerade as success. The first is convergence by habit: raters who score together long enough start agreeing without shared anchors, so the agreement is brittle and breaks with a new rater. The second is splitting the difference: when A scores 3 and B scores 1, averaging to 2 hides the disagreement instead of resolving it. Genuine calibration finds what the two raters were each looking at and rewrites the descriptor so both look at the same evidence.
 
+<self-explain prompt="The decision rule says: rewrite the descriptor, do not retrain the rater. Why does fixing the rubric text outlast a meeting where two raters discuss and then agree?" answer="Discussion produces convergence by habit: the agreement lives in the room, in two people's privately shared understanding, not in the written descriptor. A new rater who never attended the meeting reopens every split. Rewriting the descriptor into countable evidence puts the shared anchor into the instrument itself, so it survives a new rater." />
+
+Order a calibration session so the gain comes from shared anchors, not from raters converging by habit.
+
+<sequence-builder mode="order" items='["Both raters score the same five drafts independently and record exact-agreement","Locate the splits and read the disagreement rather than averaging it","Trace one split (A=3, B=1) to the exact feature: whether silent frames count","Rewrite the level descriptor as a countable observation instead of an adjective","Re-score the same drafts independently and re-check agreement against the new text"]' />
+
 | Symptom | Diagnosis | Calibration move |
 | --- | --- | --- |
 | Two raters split 3 vs 1 on one draft | A descriptor carries a private definition | Trace the split to the exact criterion; rewrite as observable count |
@@ -61,6 +67,8 @@ Subject every descriptor to three tests before you trust the rubric:
 3. **New-rater check:** Would a rater who never sat in your calibration meeting score the same drafts the same way using only the written descriptors? If not, the agreement lives in the room, not in the instrument.
 
 A rubric that fails any of these can still produce grades; it cannot produce grades that mean the same thing in different hands.
+
+<inline-check question="Two veteran co-teachers agree 95 percent of the time on a rubric whose Level 3 reads only 'Good narration.' Why is this not evidence the rubric is calibrated?" explanation="High agreement among raters who have privately converged over years of co-teaching lives in the room, not in the descriptors. The adjective 'Good' still carries a private definition, so the agreement evaporates the moment a new instructor scores the same drafts. This is convergence by habit, not calibration." options='[{"text":"The agreement is convergence by habit; a new rater using only the written text would reopen the splits.","correct":true},{"text":"95 percent is too low to count as calibrated.","correct":false},{"text":"Veteran raters are biased and should not score together.","correct":false},{"text":"The rubric is holistic, so agreement is impossible to measure.","correct":false}]' />
 
 ## Common Misreadings
 
@@ -125,6 +133,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your trace links Rubric Calibration, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+
+<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "rubric_design", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

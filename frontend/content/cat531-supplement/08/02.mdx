@@ -57,6 +57,10 @@ After (annotated troubleshooting transcript):
 
 The after transcript is stronger because the teacher's reasoning is inspectable: each edit is tied to a named constraint (reading level, equity, policy boundary), and the one rejected suggestion shows where the tool's authority stopped.
 
+<step-reveal title="Troubleshoot the water-cycle quiz, turn by turn" steps='[{"prompt":"Turn 1: TeachGen@i returns a quiz written at a 9th-grade Lexile band, but the class is 5th grade. What is the right move and which constraint does it fix?","predictType":"choice","choices":["Accept it; the model knows reading levels.","Edit the prompt to set a 5th-grade Lexile band (740 to 940), one sentence per stem.","Reject the whole tool as unusable."],"answerIndex":1,"reveal":"This is a teacher edit fixing the reading-level constraint. Name the band concretely (Lexile 740 to 940) so the fix is checkable, not a vague ’make it easier.’"},{"prompt":"Turn 2: Item 3 uses a snow-skiing example. What constraint is at risk and what is the move?","predictType":"choice","choices":["Equity of reference; swap the ski example for a rain-barrel example that does not assume household income.","Reading level; shorten the sentence.","Nothing; skiing is a fine science context."],"answerIndex":0,"reveal":"This is an equity edit. The ski example assumes family ski trips and household income; a rain barrel reaches the same water-cycle idea without excluding students."},{"prompt":"Turn 3: TeachGen@i offers to auto-grade the short answers and email scores to parents. Edit or reject?","predictType":"choice","choices":["Edit the prompt to improve the auto-grading.","Reject it: short-answer science judgment is the teacher’s, and parent contact is governed by district policy.","Accept it to save time."],"answerIndex":1,"reveal":"This is the principled rejection, the most defensible move in the transcript. It marks where the tool’s authority stops and the teacher’s (and policy’s) begins."},{"reveal":"A defensible transcript shows two edits tied to named constraints (reading level, equity) plus one principled rejection, then a verification step: a colleague checks the revised stems against the grade band before students see them."}]' />
+
+<self-explain prompt="Explain why a principled rejection is often the most defensible move in a troubleshooting transcript, even though it adds nothing to the artifact the tool produced." answer="A rejection marks the boundary the teacher refused to let the tool cross, such as auto-grading reasoning or contacting families. It documents where the tool's authority stopped and professional judgment or district policy took over. A transcript full of edits but no rejection usually means the teacher has not yet found the tool's overreach, so the rejection is the clearest evidence that judgment, not just fluency, governed the output." />
+
 ## Decision Rule
 
 When troubleshooting generative output, fix the content and reading-level defaults first, audit the examples for hidden assumptions second, and refuse any suggestion that moves grading judgment or family contact to the tool third. Before you treat a transcript as finished, confirm it answers:
@@ -67,7 +71,10 @@ When troubleshooting generative output, fix the content and reading-level defaul
 
 ## Common Misreadings
 
-One misreading is treating a longer or more detailed prompt as the goal. Prompt length is not the deliverable; the documented chain of corrected assumptions is. A second misreading is recording only the edits and dropping the rejection. The rejection is often the most defensible move in the whole transcript, because it shows the teacher holding a boundary the tool was happy to cross. A transcript with no rejected suggestion usually means the teacher has not yet found the tool's overreach.
+One misreading is treating a longer or more detailed prompt as the goal. Prompt length is not the deliverable; the documented chain of corrected assumptions is.
+
+<inline-check question="A teacher's transcript shows three reading-level edits but no rejected suggestion. What does this most likely indicate?" explanation="A transcript with no rejection usually means the teacher has not yet identified where the tool overreached into a teacher or policy decision. The rejection is the move that shows a held boundary." options='[{"text":"The teacher has fully troubleshot the output.","correct":false},{"text":"The teacher has not yet found the tool overstepping into a teacher or policy decision.","correct":true},{"text":"The edits are invalid because they all target one constraint.","correct":false},{"text":"The prompt is too short to be defensible.","correct":false}]' />
+ A second misreading is recording only the edits and dropping the rejection. The rejection is often the most defensible move in the whole transcript, because it shows the teacher holding a boundary the tool was happy to cross. A transcript with no rejected suggestion usually means the teacher has not yet found the tool's overreach.
 
 ## Textbook Walkthrough
 
@@ -111,6 +118,8 @@ ALGET uses your annotations and artifact trace to choose support:
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
 <interactive-quiz question="Which trace would make the revision easiest to review?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "A before-after artifact record linked to the decision you made and the evidence you used.", "The learner completes the page and receives a generic score."]' correct-index="2" conceptid="cat531_supplement_teachgen_i_troubleshooting" />
+
+<concept-map concepts='["cat531_supplement_instructor_toolkit_for_cat_531", "cat531_supplement_teachgen_i_troubleshooting", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Final Check
 

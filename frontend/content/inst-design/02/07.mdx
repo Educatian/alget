@@ -61,6 +61,12 @@ Three forms of validity matter most for instructional designers.
 
 The validity question is always the same: **what inference about the learner does the score support, and is that inference defensible?**
 
+Match each validity form to the exact question it answers, so you can name which one a given defect violates.
+
+<sequence-builder mode="match" items='[{"term":"Content validity","definition":"Do the items proportionally represent all the objectives and content, or does one topic dominate the inference?"},{"term":"Construct validity","definition":"Do the items measure the intended skill, free of construct-irrelevant variance like incidental reading load?"},{"term":"Face validity","definition":"Does the assessment look credible and relevant to learners and stakeholders (the weakest form, but it drives buy-in)?"}]' />
+
+<inline-check question="An algebra exam wraps each problem in a 200-word word problem. Strong algebra students with weaker reading speed score lower than their algebra skill warrants. Which validity problem is this, by name?" explanation="The reading load is construct-irrelevant variance: an incidental construct (reading comprehension) contaminates the inference about the intended construct (algebraic manipulation). That is a construct validity failure, and it is unfair because it penalizes a skill the objective never claimed to assess." options='[{"text":"Construct validity (construct-irrelevant variance)","correct":true},{"text":"Face validity","correct":false},{"text":"Perfect validity; reading is part of math","correct":false}]' />
+
 ---
 
 ## Reliability: Would the Same Learner Get the Same Result?
@@ -76,6 +82,8 @@ Three threats damage reliability.
 **Construct-irrelevant variance.** Cognitive load from test format, time pressure unrelated to the skill, or interface friction in digital assessment all add noise. Designers should remove every irrelevant friction the format introduces.
 
 > **The relationship that trips people up:** A test can be reliable without being valid (consistently measuring the wrong thing), but it cannot be valid without being reliable. Reliability is necessary, not sufficient. Think of a bathroom scale that always reads 5 kg high: perfectly reliable (same answer every time), perfectly invalid (wrong answer every time).
+
+<self-explain prompt="Explain why a test can be reliable without being valid, but can NEVER be valid without being reliable. Use a concrete example other than the bathroom scale." answer="Reliability is consistency; validity is supporting the right inference. A test can consistently measure the wrong thing: a vocabulary quiz given to certify welding skill would yield stable scores across retakes (reliable) but those scores tell you nothing about welding (invalid). The reverse is impossible because if scores are unreliable they swing randomly for the same learner, so no stable inference about the learner can be drawn at all; without a stable signal there is nothing for validity to be about. Hence reliability is a necessary precondition for validity, not a guarantee of it." />
 
 ---
 
@@ -97,7 +105,9 @@ The only fix is to rebuild one or the other until they match. There is no shortc
 
 ## Worked Example: Auditing and Rebuilding a Real Assessment
 
-Abstract rules are easy to nod along to and hard to apply. Let us run the full audit on a concrete case, the way you would in practice.
+Abstract rules are easy to nod along to and hard to apply. Let us run the full audit on a concrete case, the way you would in practice. Predict each verdict before revealing it.
+
+<step-reveal title="Auditing and rebuilding an assessment" steps='[{"prompt":"The objective verb is REVISE a flawed survey item (open response, with a checklist). The proposed assessment asks the learner to IDENTIFY which option is double-barreled. What is the alignment verdict?","predictType":"choice","choices":["Misaligned: identify is recognition (Remember/Understand), revise is Create/Apply","Aligned: recognizing the flaw proves you can fix it","Aligned: both are about survey items"],"answerIndex":0,"reveal":"Misaligned by about two Bloom levels and by condition. Recognizing a double-barreled item does not demonstrate the ability to fix one, just as recognizing a grammar error differs from writing a correct sentence."},{"prompt":"Which side should you rebuild?","predictType":"choice","choices":["Keep the objective, rebuild the assessment as a performance task","Lower the objective to recognition","Keep the multiple-choice quiz"],"answerIndex":0,"reveal":"The course exists to produce researchers who write better surveys, so recognition is not the real outcome. Keep the objective and rebuild the assessment: give a draft with several flawed items and require the learner to detect, name, and rewrite each."},{"prompt":"The rebuilt task is open-response. What new threat to reliability does that introduce, and what fixes it?","predictType":"choice","choices":["Subjective scoring drift, fixed by an anchored analytic rubric","Nothing; open response is always reliable","Item-pool inadequacy, fixed by adding videos"],"answerIndex":0,"reveal":"Open scoring drifts across graders. Attach an analytic rubric (flaw detection, diagnosis, revision, each 0 to 2) and spot-check inter-grader agreement on real samples before deploying."},{"reveal":"The rebuild did not make the test harder for its own sake; it made the score MEAN what the objective claims: a high score now licenses ’this learner can detect, diagnose, and repair survey-item flaws.’"}]' />
 
 **The setup.** A "Designing Survey Questions" lesson for a research-methods course has this objective:
 
@@ -210,6 +220,8 @@ If any answer is "no," the assessment is not ready.
 ---
 
 ## Key Takeaways
+
+<concept-map concepts='["assessment_design","validity","reliability","constructive_alignment_audit","item_construction","rubric_design"]' />
 
 - **Validity lives in the inference, not the test.** A score is only as good as the claim it licenses about the learner.
 - **The five properties form a chain:** alignment enables validity, validity requires reliability, and reliability for open items requires rubric quality. A break downstream invalidates everything upstream.

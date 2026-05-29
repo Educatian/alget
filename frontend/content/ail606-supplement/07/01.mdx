@@ -32,6 +32,10 @@ The course anchors do specific work here. **Mayer's signaling principle** predic
 
 A practical heuristic: if you cannot describe the two screens a developer would build to test your question, the question is still a preference.
 
+<sequence-builder mode="match" items='[{"term":"Independent variable","definition":"The single design element you change, stated precisely enough to build two versions (a red arrow on frame 3, appearing after narration)."},{"term":"Dependent variable","definition":"The observable learner behavior you can see and record (time to first click on Run), replacing internal states."},{"term":"Comparison","definition":"The baseline the manipulation is measured against, usually an identical no-treatment version, without which any result is uninterpretable."},{"term":"Population and condition","definition":"Who is tested and under what constraint, because the same arrow may help novices and bore experts."}]' />
+
+<inline-check question="A storyboard note reads: 'Make the arrow bigger and a brighter red so it really stands out.' Why is this still a preference, not a study question?" explanation="Adding adjectives sharpens the description of the artifact but supplies no observable measure and no comparison, so no tryout result could confirm or refute it." options='[{"text":"It adds detail about the artifact but names no measurable behavior and no comparison.","correct":true},{"text":"It is testable because a brighter arrow is easier to build.","correct":false},{"text":"It names a population, so it is a complete study question.","correct":false}]' />
+
 ## Worked Example
 
 Follow one storyboard note as it becomes a question a tryout can answer.
@@ -49,6 +53,8 @@ Follow one storyboard note as it becomes a question a tryout can answer.
 > Among first-time learners, does placing a red signaling arrow on frame 3 (appearing after the narration ends) reduce the median time to start the first simulation action, compared with an identical frame without the arrow?
 
 This version names the manipulation (red arrow, frame 3, post-narration), the observable (median time-to-first-action), the comparison (identical no-arrow frame), and the population (first-time learners). A developer could build both screens; a reviewer can see exactly what result would matter. The prespecified decision rule is: if the arrow version does not reduce median time-to-first-action by at least a noticeable margin, the arrow is not earning its place and frame 3 reverts.
+
+<step-reveal title="Diagnose a half-converted note slot by slot" steps='[{"prompt":"A note reads: \"Add a glossary popup so learners on frame 5 understand the term faster, compared with the current frame.\" Which of the four slots is still missing?","predictType":"choice","choices":["Manipulation","Observable","Comparison","Population"],"answerIndex":1,"reveal":"The observable is missing. \"Understand the term faster\" names no recordable behavior. A buildable measure would be time-to-correct on the next item that uses the term, or whether the learner selects the correct definition."},{"prompt":"Once you supply that observable, which slot is STILL unfilled in the note as written?","predictType":"choice","choices":["Manipulation","Observable","Population"],"answerIndex":2,"reveal":"Population. The note never says who is tested. A glossary popup may help first-time learners but bore returning ones, so the question must name the population whose behavior it is really about, for example learners encountering the term for the first time."},{"reveal":"Fully converted: \"Among learners meeting the term for the first time on frame 5, does a glossary popup reduce time-to-correct on the next item using that term, compared with the identical frame without the popup?\" All four slots now hold, and the developer can build both screens."}]' />
 
 One rejected addition: a teammate proposed also measuring overall lesson enjoyment. I excluded it because enjoyment cannot tell me whether *the arrow* reduced search time; a more enjoyable lesson with a slower start would falsely credit the cue. Keeping one primary measure tied to the hypothesized mechanism is what makes the answer actionable.
 
@@ -81,6 +87,10 @@ The artifact is strong when each design note on the storyboard is paired with a 
 ## Transfer Case
 
 Move the same skill to a context with no tryout budget at all. When you cannot run even a five-person test, the conversion still pays off: a precise study question lets you reason from prior evidence. Because Mayer's signaling experiments already show cueing reduces search for novices, a well-scoped question ("would an arrow reduce search for *these* novices on *this* frame?") can be answered provisionally from the literature, with the prediction logged so a later tryout can confirm or overturn it. The preference-to-question discipline is what makes borrowed evidence usable instead of ornamental.
+
+## Concept Map
+
+<concept-map concepts='["ail606_supplement_research_translation_for_learning_design", "ail606_supplement_turning_designs_into_study_questions", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

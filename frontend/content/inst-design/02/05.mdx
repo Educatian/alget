@@ -73,6 +73,12 @@ The first is **assessment alignment**. If your objective uses the verb *evaluate
 
 The second is **scaffolding sequence**. Most courses fail not because they aim too low, but because they aim too high too soon. A learner who has not yet **applied** a concept in a familiar case is rarely ready to **evaluate** competing models of it. The taxonomy gives you a defensible order for moving learners up the rows.
 
+Put the six revised levels in order from the least to the most cognitively demanding. This ordering is the default scaffolding sequence.
+
+<sequence-builder mode="order" items='["Remember: recall facts, terms, or basic procedures","Understand: explain ideas in your own words; classify, summarize, infer","Apply: use a procedure in a familiar situation","Analyze: distinguish components, identify causes, compare structures","Evaluate: judge claims against criteria and defend a decision","Create: produce something new that integrates prior elements"]' />
+
+<inline-check question="An objective says 'the learner will critique two competing project plans against the budget criteria and defend which to fund.' Which Bloom level does the verb commit you to, and therefore what must the assessment require?" explanation="'Critique and defend against criteria' is Evaluate. A valid assessment must require a defended judgment against stated criteria, not merely listing pros and cons (which stops short of a defended decision) and not recalling a definition (Remember)." options='[{"text":"Evaluate: a defended decision against criteria","correct":true},{"text":"Remember: recall the definition of a project plan","correct":false},{"text":"Apply: carry out a single known procedure","correct":false}]' />
+
 A common mistake is treating the levels as a strict ladder where every learner must climb each rung in every lesson. They are not. They are a **vocabulary for naming the cognitive demand** of a given task, so designers and assessors can agree on what the task is actually asking. A single advanced objective (Create) legitimately presumes the lower levels rather than re-teaching them.
 
 <concept-diagram type="blooms-revised-taxonomy"></concept-diagram>
@@ -103,6 +109,10 @@ The transformation is not cosmetic. The second version tells you **exactly what 
 ## Worked Example: Building an Objective End to End
 
 A bank asks for a short course for **newly hired financial analysts** who must read quarterly statements. The stakeholder request arrives as a goal: *"Analysts should be good at financial ratios."* We will convert it into a defensible objective and trace the downstream decisions, step by step.
+
+Predict each conversion step before revealing it.
+
+<step-reveal title="Converting a vague goal into defensible objectives" steps='[{"prompt":"The stakeholder request is: analysts should be good at financial ratios. What is the FIRST move?","predictType":"choice","choices":["Interview to find the real job task being performed","Write the multiple-choice test","Pick a video platform"],"answerIndex":0,"reveal":"Name the real job task. Interviews reveal: from a quarterly balance sheet, compute liquidity and leverage ratios and flag any that breach covenant thresholds."},{"prompt":"The job has two parts: computing ratios, and flagging breaches against thresholds. What Bloom levels are these?","predictType":"choice","choices":["Compute = Apply; flag against criteria = Evaluate","Both are Remember","Both are Create"],"answerIndex":0,"reveal":"Computing a ratio from data is Apply; judging a breach against criteria and defending the flag is Evaluate. Two levels is a signal to write TWO objectives, not one stacked one."},{"prompt":"For the Apply objective, what must the matching assessment hand the learner?","predictType":"choice","choices":["An actual balance sheet, requiring the two numbers be computed","A formula-recall multiple-choice item","A definition-matching quiz"],"answerIndex":0,"reveal":"It must hand over a real balance sheet and require the computed ratios. A ’what is the formula?’ item is Remember-level and therefore invalid for an Apply objective."},{"reveal":"The boxed result is not a number but a course skeleton: two objectives produce two aligned assessment formats and two aligned activity types. The original goal could not have produced any of it."}]' />
 
 **Step 1: Name the real job task.** Talking to the team lead reveals the actual performance: from a company's quarterly balance sheet, the analyst must compute liquidity and leverage ratios and flag any that breach the bank's covenant thresholds. That is the performance the objective must capture, not "be good at ratios."
 
@@ -140,6 +150,8 @@ Three patterns cause most weak objectives.
 
 > **Pitfall Watch:** Stacking is the most dangerous of the three because it can look rigorous. The cure is mechanical: one objective, one verb, one deliverable.
 
+<self-explain prompt="Take the stacked objective: 'The learner will analyze and evaluate a clinical case study and design an intervention plan.' Explain why this cannot be cleanly assessed or sequenced, then split it into separate clean objectives." answer="It packs three different Bloom levels (Analyze, Evaluate, Create) and three deliverables into one sentence, so a single score cannot say which performance the learner mastered, and you cannot sequence them because each presumes the one before it. Split into: (1) Analyze the clinical case to identify the contributing factors; (2) Evaluate the candidate interventions against the case criteria and justify a choice; (3) Create an intervention plan integrating the chosen approach. Each now has one verb, one deliverable, and its own assessment." />
+
 ---
 
 ## Aligning Objectives, Assessment, and Activities
@@ -170,6 +182,8 @@ If any of these answers are *no*, the objective is not yet ready to drive the de
 ---
 
 ## Summary
+
+<concept-map concepts='["learning_objectives","blooms_revised_taxonomy","mager_abcd","constructive_alignment","performance_objective"]' />
 
 ### Key Frameworks
 

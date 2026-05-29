@@ -38,6 +38,8 @@ Logged execution means recording each fix with a timestamp, location, and the ch
 
 The principle underneath is triage under a fixed budget. You are not trying to fix everything; you are maximizing the artifact's correctness and usability within the time you have. Knowing what to leave undone, and recording it as future work rather than starting it, is as much a skill as the fixes themselves.
 
+<inline-check question="You have 30 minutes left. The spreadsheet shows #REF! in the total, and you also want to rebuild the page with CSS grid. What do you do first?" explanation="Correctness outranks cosmetics, and a fix you cannot finish is worse than none. The #REF! is a tier-1 correctness bug; the grid rebuild is out of scope for the budget and should be logged as future work, not started with minutes left." options='[{"text":"Start the CSS grid rebuild because it will look the most impressive.","correct":false},{"text":"Fix the #REF! first; log the grid rebuild as future work.","correct":true},{"text":"Change the font first because it is the quickest visible win.","correct":false}]' />
+
 ## Worked Example: A 30-Minute Revision Sprint with a Changelog
 
 A student has 30 minutes to revise a budget spreadsheet and its GitHub Pages page before submission. They first list every issue, then triage by impact, then log each fix with a timestamp.
@@ -61,6 +63,18 @@ A student has 30 minutes to revise a budget spreadsheet and its GitHub Pages pag
 ```
 
 The sprint succeeds because correctness was fixed before cosmetics, and the changelog lets a reviewer trace every edit by time, location, and reason. The grid rebuild is recorded as future work rather than started with eight minutes left, which would have left the artifact broken.
+
+Run the sprint as a fixed procedure. Predict each step before revealing it:
+
+<step-reveal title="Run a 30-minute revision sprint" steps='[{"prompt":"You open the artifact with 30 minutes left. What is the first move, before any fix?","predictType":"choice","choices":["Fix the first problem you happen to notice","Inventory every known issue before touching anything","Start the most interesting task to build momentum"],"answerIndex":1,"reveal":"Inventory first: list every issue so you choose from the full set instead of reacting to whatever you see first."},{"reveal":"Triage by impact. Label each item correctness, usability, cosmetic, or out-of-scope, and sort so tier-1 bugs rise to the top."},{"reveal":"Execute top-down with a logged changelog: timestamp, location, the change, and a quick verification like checking the total against receipts."},{"reveal":"Defer what you cannot finish. Record the CSS grid rebuild as future work with a one-line reason rather than half-starting it near the deadline."}]' />
+
+Now order the sprint moves:
+
+<sequence-builder mode="order" items='["Inventory every known issue before editing","Triage issues into correctness, usability, cosmetic, and out-of-scope","Fix correctness bugs first, logging each with a timestamp","Add usability and cosmetic fixes if budget remains","Record the deferred large task as future work with a reason"]' />
+
+These four concepts anchor the section; trace how they connect:
+
+<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_revision_sprint","evidence_based_revision","ai_supported_learning"]' />
 
 ## Decision Rule
 

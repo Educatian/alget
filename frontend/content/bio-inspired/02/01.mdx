@@ -43,6 +43,10 @@ $$
 
 This is the origin of the cubic law. A mako shark cruising at $5$ m/s that sprints at $10$ m/s does not double its energy cost, it multiplies it by $2^3 = 8$. Because skin-friction drag accounts for a large fraction of $C_D$ for a streamlined body, even a small percentage cut in friction yields a meaningful range or endurance gain.
 
+Use the explorer below to feel the cubic penalty directly. Push the speed slider and watch how drag force grows with $v^2$ while drag power explodes with $v^3$. The third output shows what an 8% riblet friction cut buys you in saved power at the chosen speed.
+
+<parameter-explorer config='{"title":"Drag Force and Power vs Speed (streamlined swimmer)","sliders":[{"name":"v","label":"Swim speed","min":1,"max":12,"step":0.5,"unit":"m/s","default":5},{"name":"rho","label":"Fluid density","min":1000,"max":1050,"step":5,"unit":"kg/m^3","default":1025},{"name":"Cd","label":"Drag coefficient","min":0.02,"max":0.2,"step":0.01,"unit":"","default":0.06},{"name":"A","label":"Reference area","min":0.05,"max":1,"step":0.05,"unit":"m^2","default":0.2}],"outputs":[{"label":"Drag force F_D","unit":"N","expr":"0.5 * rho * v^2 * Cd * A"},{"label":"Drag power P","unit":"W","expr":"0.5 * rho * Cd * A * v^3"},{"label":"Power saved by 8% friction cut","unit":"W","expr":"0.08 * 0.5 * rho * Cd * A * v^3"}],"plot":{"x":"v","output":1}}' />
+
 ### Laminar vs. Turbulent: the Reynolds Number
 
 Whether the flow near the skin is orderly or chaotic is governed by the **Reynolds number**,
@@ -58,6 +62,8 @@ Re = \frac{(5)(1.5)}{1.05\times 10^{-6}} \approx 7.1 \times 10^{6}
 $$
 
 That is firmly in the **turbulent** regime (transition occurs near $Re \approx 5\times 10^5$). This matters enormously: the polish-it-smooth intuition is only correct in laminar flow. The shark lives in turbulence, and that is exactly where riblets pay off.
+
+<inline-check question="A tiny 2 cm fish larva drifts at 0.05 m/s in the same seawater. Roughly what flow regime does its boundary layer sit in, and would shark-style riblets help it?" explanation="Re = vL/nu = (0.05)(0.02)/(1.05e-6) is about 950, far below the ~5x10^5 transition. The larva lives in laminar flow, where smoothness already minimizes friction and riblets would only add wetted area. Riblets only pay off once the boundary layer is turbulent, which is why they suit large fast swimmers, not microscopic ones." options='[{"text":"Laminar (Re is on the order of 10^3); riblets would not help and could hurt.","correct":true},{"text":"Turbulent (Re exceeds 10^6); riblets would give the same 8-10% benefit.","correct":false},{"text":"Turbulent; smaller bodies always have higher Reynolds numbers.","correct":false},{"text":"Laminar, but riblets still reduce drag because all skin friction is turbulent.","correct":false}]' />
 
 ---
 
@@ -114,6 +120,10 @@ $$
 $$
 
 Decades of experiments (Walsh at NASA Langley, Bechert at DLR) show that drag reduction is maximized when $s^+ \approx 15$, and the benefit disappears or reverses once $s^+ \gtrsim 30$. This is the engineering heart of the section: the shark does not choose a "rough" texture, it chooses a texture tuned to $s^+ \approx 15$.
+
+The explorer below closes the loop from flow conditions to physical geometry. Set the speed and a target $s^+$, and the model walks the full chain (skin-friction correlation, wall shear, friction velocity) to report the physical spacing $s$ you would need to manufacture. Try holding $s^+ = 15$ and sweeping speed: notice the optimal spacing shrinks as the shark swims faster, which is why one fixed texture cannot be optimal at every speed.
+
+<parameter-explorer config='{"title":"From Flow to Geometry: Optimal Riblet Spacing","sliders":[{"name":"v","label":"Swim speed","min":2,"max":12,"step":0.5,"unit":"m/s","default":5},{"name":"L","label":"Body length","min":0.5,"max":4,"step":0.5,"unit":"m","default":1.5},{"name":"splus","label":"Target s+ (wall units)","min":8,"max":30,"step":1,"unit":"","default":15}],"outputs":[{"label":"Reynolds number Re","unit":"","expr":"v * L / 1.05e-6"},{"label":"Wall shear stress tau_w","unit":"Pa","expr":"0.5 * 1025 * v^2 * (0.058 / (v * L / 1.05e-6)^0.2)"},{"label":"Friction velocity u_tau","unit":"m/s","expr":"sqrt(0.5 * 1025 * v^2 * (0.058 / (v * L / 1.05e-6)^0.2) / 1025)"},{"label":"Required spacing s","unit":"m","expr":"splus * 1.05e-6 / sqrt(0.5 * 1025 * v^2 * (0.058 / (v * L / 1.05e-6)^0.2) / 1025)"}],"plot":{"x":"v","output":3}}' />
 
 ---
 
@@ -181,6 +191,10 @@ This lands squarely in the observed $10$ to $100$ micrometer range of real denti
 
 > **Think About It:** Notice $s$ depends on $u_\tau$, and $u_\tau$ depends on speed. A slow-cruising nurse shark and a fast mako will have different optimal $s$. Real sharks vary denticle geometry by body region and species, matching local flow.
 
+Before re-reading the algebra, test whether you can anticipate each link in the chain. Predict at each step, then reveal the reasoning.
+
+<step-reveal title="Predict the riblet-sizing chain" steps='[{"prompt":"We know Re and want wall shear stress. Which intermediate quantity must we compute first?","predictType":"choice","choices":["The local skin-friction coefficient C_f from a turbulent flat-plate correlation","The Reynolds number again at a different length","The viscous length scale directly from speed","The drag coefficient C_D of the whole body"],"answerIndex":0,"reveal":"C_f comes first. The flat-plate correlation C_f = 0.058 / Re^0.2 turns the flow condition into a friction coefficient, which then sets the wall shear stress tau_w = 0.5 rho v^2 C_f."},{"prompt":"Given tau_w is about 31.6 Pa and rho is 1025 kg/m^3, the friction velocity u_tau = sqrt(tau_w/rho) is closest to:","predictType":"choice","choices":["About 0.18 m/s","About 1.8 m/s","About 0.03 m/s","About 5 m/s (it equals the swim speed)"],"answerIndex":0,"reveal":"sqrt(31.6/1025) = sqrt(0.0308) is about 0.176 m/s. Friction velocity is a small fraction of swim speed; it is a measure of near-wall turbulence intensity, not the bulk flow."},{"prompt":"Finally solve s = s+ * nu / u_tau at s+ = 15. Where does the answer land?","predictType":"choice","choices":["About 90 micrometers, inside the observed 10-100 micrometer denticle range","About 9 millimeters, far larger than any denticle","About 9 micrometers, an order of magnitude too small","About 0.9 meters, the body scale"],"answerIndex":0,"reveal":"s = (15)(1.05e-6)/0.176 is about 8.96e-5 m = 89.6 micrometers. The result falls squarely inside the measured denticle range, showing the shark geometry is physically tuned to its own boundary layer rather than chosen arbitrarily."}]' />
+
 ---
 
 ### Example 2.3: Estimating the Fuel Savings of an Airliner Riblet Film
@@ -229,6 +243,10 @@ Biomimetic roughness only works under the right conditions, and the wall-unit fr
 
 This is why engineers obsess over manufacturing tolerance and maintenance. The geometry must be precise enough to shape turbulence, not merely disturb it.
 
+Step into the role of a design engineer facing a real riblet deployment decision. Each choice changes whether your structured roughness still beats a smooth baseline.
+
+<branching-scenario tree='{"title":"Deploying a Riblet Film on an Airliner Fleet","start":"n1","nodes":{"n1":{"prompt":"Wind-tunnel tests at cruise Reynolds number show your film hits s+ near 15 and cuts drag 1.5%. Before fleet rollout, what do you prioritize validating?","choices":[{"label":"Just deploy it; the tunnel result is proof enough.","next":"n2a","feedback":"Tunnel-fresh peaks are best-case. Real surfaces wear and the s+ optimum is narrow, so a single pristine result does not guarantee in-service benefit."},{"label":"Test how worn (rounded) peaks shift the effective s+ over a maintenance cycle.","next":"n2b","feedback":"Good instinct. Wear is the dominant failure mode because it walks s+ off its optimum."},{"label":"Re-polish the fuselage mirror-smooth as a control and compare.","next":"n2c","feedback":"A smooth baseline is exactly the right control; this is how you prove benefit rather than assume it."}]},"n2a":{"prompt":"Six months in, fuel burn rose slightly versus the old smooth skin. What most likely happened?","choices":[{"label":"UV, dust, and rain rounded the peaks, pushing effective s+ up so the film now adds form drag.","next":"win","feedback":"Correct. As peaks erode, s+ drifts toward and past 30, where structured roughness becomes net-harmful."},{"label":"The Reynolds number dropped below transition.","next":"lose","feedback":"Cruise Re stays in the millions; it did not drop into laminar flow. Wear, not regime change, is the culprit."}]},"n2b":{"prompt":"Your wear model predicts s+ climbs from 15 to 32 within one year. What is the right call?","choices":[{"label":"Schedule re-application or laser-etch the geometry into the skin to hold tolerance.","next":"win","feedback":"Right. Holding the geometry near s+ = 15 is the whole game; durable etching or scheduled renewal preserves the benefit."},{"label":"Increase initial spacing so worn s+ ends near 15.","next":"lose","feedback":"Starting above optimum means you spend most of the cycle in the harmful regime before wear brings it down. You lose benefit up front."}]},"n2c":{"prompt":"Against the smooth control, the film wins at fresh condition but you must also vary one more factor for a fair test. Which?","choices":[{"label":"Riblet alignment relative to local flow direction.","next":"win","feedback":"Yes. Misaligned riblets fail to suppress cross-stream motion, so alignment must be controlled alongside wear and Reynolds number."},{"label":"The color of the paint.","next":"lose","feedback":"Paint color is irrelevant to near-wall turbulence. Alignment and wear are the load-bearing variables."}]},"win":{"prompt":"You converged on the function-first lesson: structured roughness helps only when it holds s+ near 15, stays aligned, and beats a smooth baseline under realistic wear.","choices":[]},"lose":{"prompt":"This path drifts s+ away from the optimum or controls the wrong variable, so the riblet film underperforms a simple smooth finish. Revisit which factor actually shapes near-wall turbulence.","choices":[]}}}' />
+
 ### Design Takeaway
 The shark-skin lesson is not that "rough is better." It is that **structured roughness can outperform smoothness when it controls the right instability at the right scale ($s^+ \approx 15$)**. That distinction is what makes biomimetic drag reduction an engineering method instead of a visual imitation.
 
@@ -266,6 +284,12 @@ The shark-skin lesson is not that "rough is better." It is that **structured rou
 - Riblets work by lifting cross-stream vortices off the surface valleys, suppressing turbulent momentum transfer to the wall.
 - The geometry must be sized in viscous wall units, with the drag-reduction optimum near $s^+ \approx 15$.
 - The transferable engineering principle is structured roughness at the right scale, not roughness for its own sake.
+
+Map how the core ideas of this section connect, from the fluid regime down to the named biological strategy and its drag outcome.
+
+<concept-map concepts='["fluid_dynamics","drag_reduction","shark_skin","vortex_shedding"]' />
+
+<self-explain prompt="In your own words, explain the full mechanism-to-engineering chain: why does a turbulent boundary layer create extra wall drag, how do riblets spaced at s+ near 15 counter it, and what single design rule lets an engineer transfer this to an aircraft skin?" answer="In turbulent flow, cross-stream vortices (the vortex-shedding behavior near the wall) sweep fast outer fluid down onto the surface, steepening du/dy and raising shear stress tau = mu du/dy, which is wall drag. Riblets are sharp longitudinal ridges that lift and trap those vortices on their peaks, keeping the slow valley fluid undisturbed and suppressing cross-stream momentum transfer, cutting skin friction by about 8-10%. The transfer rule is to size the ridges in viscous wall units rather than in absolute length: hold s+ = s u_tau / nu near 15, keep them aligned with local flow, and re-validate against a smooth baseline as wear shifts s+. That is the function-first, scale-tuned principle, not mere roughness." />
 
 ---
 

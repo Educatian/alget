@@ -59,6 +59,12 @@ Steps:
 
 Notice that two of the six layers caught problems on a single slide that already looked finished: structure (a label title) and accessibility (failed contrast). A deck that "looks done" routinely fails two or three layers per slide, which is exactly why the pass has to be systematic rather than a final glance.
 
+Walk the capstone pipeline one decision at a time, predicting each move before you reveal it:
+
+<step-reveal title="Run a finished-looking deck through the six layers" steps='[{"prompt":"A deck has a nice theme, smooth animations, and confident narration. Where do you start the capstone pass?","predictType":"choice","choices":["At polish; the surface is already strong","At purpose: confirm who the audience is and what action the deck drives","At accessibility, since it is the strictest check","At narration, since the voice is already recorded"],"answerIndex":1,"reveal":"Start at purpose. It decides which content belongs, so there is no point structuring a slide the audience does not need. The six layers run in dependency order."},{"prompt":"Slide 3’s title is the label \"Results\" and its contrast fails. Which layers caught these, and when do you fix contrast?","predictType":"choice","choices":["Polish caught both; fix them together at the end","Structure caught the label title; accessibility caught contrast, fixed last once content is final","Purpose caught both; fix before anything else","Citation caught both; fix during sourcing"],"answerIndex":1,"reveal":"Structure flags the label title (rewrite to \"Cut report time 40%\"); accessibility flags contrast. Fix contrast last, because re-checking it on a slide you are about to rewrite wastes the check."},{"reveal":"Attach the revision trail: the earlier slide 3, the gap each layer exposed, the support you used (alt-text help from BigAL, disclosed), and one rejected suggestion (an animated transition) with the reason it added no meaning. The trail, not the finish, is the evidence."}]' />
+
+<inline-check question="A student wants to check accessibility first because it feels like the most rigorous layer. Why does the pipeline put accessibility last?" explanation="Accessibility must be re-verified after content is final. Checking contrast or labels on a slide you are about to rewrite means re-checking after every edit; running it last lands the check on stable content." options='[{"text":"Accessibility matters least, so it goes last","correct":false},{"text":"It must be re-verified after content is final, so checking it early forces rework","correct":true},{"text":"Accessibility depends on the theme, which is chosen first","correct":false},{"text":"Screen readers cannot run until narration is recorded","correct":false}]' />
+
 ## Decision Rule
 
 Run every slide through the six layers in order, fix what each one exposes, and attach a revision trail that a reviewer can inspect. A finished-looking deck with no trail is a result without evidence of the work.
@@ -83,6 +89,10 @@ Apply the pipeline to a slide that passes the early layers but fails a late one,
 
 Because you ran the layers in order, this is a cheap fix at the end rather than a redo. The content is final, so you add value labels to the heat strip once and the check passes for good. Had you "done accessibility first," you would have labeled an earlier draft of the strip and then re-labeled it after the content changed. The walkthrough shows the payoff of the order: late checks land on stable content, and the revision trail records one clean fix instead of three.
 
+Order the six capstone layers the way the pipeline runs them, where each depends on the one before it:
+
+<sequence-builder mode="order" items='["Purpose: name the audience and the single action the deck should drive", "Structure: make each title an assertion the evidence proves", "Media: confirm each image explains and is verified", "Narration: ensure the voice adds reasoning instead of rereading the slide", "Citation: verify every source and figure and disclose AI authorship", "Accessibility: check contrast, alt text, and not-color-alone on final content"]' />
+
 ## What Strong Reading Looks Like
 
 As you read, keep a two-column note: on the left, each of the six layers; on the right, the gap it caught on your deck and the fix. Flag any slide where you skipped a layer. By the end of 05.08, your note should be the backbone of the revision trail you submit.
@@ -103,6 +113,12 @@ A useful note would sound like this: "Running the pipeline, structure caught a l
 ## Transfer Case
 
 Suppose the final deliverable changes from a live pitch to a self-running file a recruiter opens alone. Re-run the same six layers and watch which results shift: purpose holds, structure holds, but narration must move into the slides (no live voice), and accessibility gets stricter (no presenter to clarify). The pipeline is the transferable asset; the deck it produces changes with the constraint. If you can re-derive the deck by re-running the layers rather than restarting, you have learned the studio as a process, not a one-time assignment.
+
+## Concept Map
+
+Connect the ideas this capstone pulls together. See how running the full six-layer pipeline feeds evidence-based revision of the storyboard:
+
+<concept-map concepts='["cat100_supplement_module_5_presentation_studio", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

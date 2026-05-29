@@ -32,6 +32,8 @@ Effective AI disclosure rests on four properties, and most bad disclosures fail 
 
 The organizing idea: **disclosure is for the reader, accountability is for the writer.** A disclosure that is vague fails the reader; a disclosure that is treated as a liability shield fails the writer's responsibility. Good disclosure does both jobs at once, telling the reader precisely what they are reading while leaving every error squarely on the human who sent it.
 
+<inline-check question="A teacher labels an AI-assisted recommendation letter This was created with AI assistance. Which disclosure property does that label fail most clearly?" explanation="The label is content-free: it does not name the division of labor (what the AI did versus what the teacher contributed and verified), so it fails specificity. It also reads as a hedge that tries to shift blame, but the most clear-cut failure is that the reader still cannot tell what they are reading." options='[{"text":"Reciprocity, because the teacher did not require it of students","correct":false},{"text":"Specificity, because it does not name what the AI did versus what the teacher did","correct":true},{"text":"Psychological safety, because it punishes honesty","correct":false},{"text":"It fails no property; the label is sufficient","correct":false}]' />
+
 ## Worked Example
 
 Compare two disclosures on the same AI-assisted college recommendation letter, a high-stakes document.
@@ -52,6 +54,10 @@ Follow a teacher's annotated before/after judgment while writing a disclosure no
 
 Step 1 to step 4 captures the section's lesson: disclosure is reciprocal, specific about who did what, framed so honesty is safe, and never a transfer of accountability for accuracy.
 
+Now write the call yourself. The branching scenario below puts you at the moment of sending AI-assisted report-card comments; choose how you disclose and where accountability lands.
+
+<branching-scenario tree='{"title":"Disclosing AI-assisted report-card comments","start":"start","nodes":{"start":{"prompt":"You drafted report-card comments with a chatbot from your gradebook notes. You require students to disclose their AI use. How do you handle your own?","choices":[{"label":"Send them as my own; my use is private","next":"hidden","feedback":"That is the double standard that destroys the norm credibility."},{"label":"Disclose, because reciprocity means I meet the standard I set for students","next":"reciprocal","feedback":"Correct. Transparency cannot be a one-way demand."},{"label":"Add the label some comments were AI-assisted and send","next":"vague","feedback":"Technically disclosed, but it tells the reader nothing about the division of labor."}]},"hidden":{"prompt":"A parent later learns the warm comment was machine-written and was never told. Trust drops. Reconsider?","choices":[{"label":"Disclose my use the way I require of students","next":"reciprocal","feedback":"You restored reciprocity."}]},"vague":{"prompt":"A parent cannot tell whether a machine judged her child or you did. How do you fix the wording?","choices":[{"label":"Name the division of labor: what AI drafted, what I wrote and verified","next":"reciprocal","feedback":"Specificity restored; the reader can now calibrate."}]},"reciprocal":{"prompt":"You write: I drafted a first version from my gradebook notes with AI, then I edited every comment for accuracy and added each child specific examples myself. One AI comment claims growing leadership you cannot place. What now?","choices":[{"label":"Reject the unverifiable comment; accountability stays with me, not the tool","next":"strong","feedback":"Disclosure informs the reader; it never transfers blame."},{"label":"Keep it; the disclosure covers any error","next":"shield","feedback":"Disclosure is not a liability shield; the error is still yours."}]},"shield":{"prompt":"Non-defensible outcome: you treated disclosure as a shield and distributed an unverified, possibly fabricated claim under your name.","choices":[]},"strong":{"prompt":"Defensible outcome: reciprocal, specific about who did what, honest about permitted use, and you kept accountability by rejecting the comment you could not verify.","choices":[]}}}' />
+
 ## Decision Rule
 
 Before sending AI-assisted work, test the disclosure against its four properties:
@@ -62,6 +68,10 @@ Before sending AI-assisted work, test the disclosure against its four properties
 4. **Safety.** Does your classroom norm make disclosing permitted use safe, so honesty is rewarded rather than punished?
 
 Disclose when AI materially shaped what the reader receives, be specific about who did what, and own the result regardless of what the tool produced.
+
+Match each disclosure property to the failure it prevents. Holding the four apart is what lets you diagnose why a given disclosure is weak.
+
+<sequence-builder mode="match" items='[{"term":"Reciprocity","definition":"Prevents the double standard of requiring student disclosure while hiding your own"},{"term":"Specificity","definition":"Prevents the content-free label by naming what AI did versus what you did and verified"},{"term":"Accountability","definition":"Prevents disclosure from being misused as a liability shield for an error"},{"term":"Psychological safety","definition":"Prevents a punitive norm that drives AI use underground and yields less honesty"}]' />
 
 ## Common Misreadings
 
@@ -95,6 +105,8 @@ A useful closing line for the artifact would read: "I disclosed my AI use in the
 ## Transfer Case
 
 Move disclosure from a teacher's own work to designing the disclosure expectation you set for students. The four properties invert into design requirements: the norm you write must be reciprocal (you model it), specific (students know what level of detail to give), accountability-preserving (disclosing AI use does not excuse a student from owning their submitted work), and safe (disclosed, permitted use is not punished). Building a student disclosure policy that embodies the same four properties you apply to yourself, rather than a one-line "you must report AI use," is the test that you understand disclosure as an ethical structure rather than a label.
+
+<concept-map concepts='["cat531_supplement_ai_in_education","ai_use_disclosure","evidence_based_revision","ai_supported_learning"]' />
 
 ## Artifact Studio
 

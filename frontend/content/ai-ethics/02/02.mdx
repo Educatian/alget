@@ -56,6 +56,8 @@ Plain reading: when the model says "70% chance," roughly 70% of those people qua
 
 Each definition formalizes a different ethical intuition. Demographic parity asks for **proportional outcomes**. Equalized odds asks for **proportional errors**. Calibration asks for **trust the score equally**.
 
+<inline-check question="A vendor says 'a score of 0.7 means a 70% chance of the outcome, equally for every group.' Which fairness criterion is the vendor claiming to satisfy?" explanation="That is the definition of calibration within groups: conditioned on the score, the outcome probability is the same across groups. It says nothing about equal selection rates (demographic parity) or equal error rates (equalized odds), and in fact conflicts with equalized odds when base rates differ." options='[{"text":"Demographic parity","correct":false},{"text":"Equalized odds","correct":false},{"text":"Calibration within groups","correct":true}]' />
+
 ---
 
 ## The Impossibility Result
@@ -71,6 +73,12 @@ The cleanest way to see why is an algebraic identity (Chouldechova, 2017) linkin
 $$\text{FPR} = \frac{p}{1-p}\cdot\frac{1-\text{PPV}}{\text{PPV}}\cdot(1-\text{FNR})$$
 
 Hold PPV and FNR equal across two groups (that is what calibration plus equal recall buys you). The only remaining free term is the base-rate factor $p/(1-p)$. If $p$ differs across groups, the FPRs are forced to differ. There is no remaining degree of freedom to rescue them.
+
+Drive the identity yourself. Fix PPV and FNR (shared across both groups), then sweep the base rate and watch the false-positive rate move on its own.
+
+<parameter-explorer config='{"title":"Chouldechova FPR identity: hold PPV and FNR equal, vary the base rate","sliders":[{"name":"p","label":"Base rate (share who truly qualify)","min":0.05,"max":0.9,"step":0.05,"unit":"","default":0.3},{"name":"PPV","label":"Positive predictive value (calibration target)","min":0.5,"max":0.95,"step":0.05,"unit":"","default":0.75},{"name":"FNR","label":"False-negative rate (1 - recall)","min":0.05,"max":0.5,"step":0.05,"unit":"","default":0.2}],"outputs":[{"label":"Forced false-positive rate (FPR)","unit":"","expr":"(p / (1 - p)) * ((1 - PPV) / PPV) * (1 - FNR)"}],"plot":{"x":"p","output":0}}' />
+
+Notice the move: with PPV and FNR pinned (the calibration-plus-equal-recall package), the FPR is a strictly increasing function of the base rate. Two groups with different base rates therefore cannot share an FPR unless you break one of the equalities you pinned. That is the impossibility, made tactile.
 
 ---
 
@@ -107,6 +115,10 @@ Abstract impossibility claims are easy to nod along to and hard to feel. Let us 
 
 This is the COMPAS dispute in miniature. If you announce "calibrated within groups" as your fairness banner, you have silently accepted unequal false-positive exposure. If you instead force equal FPR, you will break calibration and equal recall. The data does not let you have all three.
 
+Reconstruct Group B's confusion matrix step by step, predicting each count before it reveals.
+
+<step-reveal title="Build Group B (base rate 0.60) and read off its FPR" steps='[{"prompt":"Group B has 600 truly qualified out of 1,000. With FNR fixed at 0.20, how many qualified people does the model miss (false negatives)?","predictType":"choice","choices":["60","120","480"],"answerIndex":1,"reveal":"0.20 x 600 = 120 false negatives, so true positives = 600 - 120 = 480."},{"prompt":"To hold PPV at 0.75 with 480 true positives, how many false positives are allowed?","predictType":"choice","choices":["80","160","240"],"answerIndex":1,"reveal":"Predicted positives = 480 / 0.75 = 640, so false positives = 640 - 480 = 160."},{"prompt":"The 400 truly-not-qualified split into 160 FP and 240 TN. What is Group B’s false-positive rate?","predictType":"choice","choices":["0.114","0.250","0.400"],"answerIndex":2,"reveal":"FPR = 160 / 400 = 0.400, versus 0.114 for Group A. Same PPV, same FNR, FPR off by a factor of 3.5."},{"reveal":"That 3.5x ratio equals (0.6/0.4) / (0.3/0.7) exactly. The base-rate gap, not any modeling sloppiness, forced the false-positive disparity once PPV and FNR were pinned."}]' />
+
 > **Critical Check:** Before debating which definition is right, always compute the base-rate gap in your data. If base rates are (nearly) equal, the criteria can largely agree and there is no forced trade-off. The dilemma is created by the gap, not by the math.
 
 ---
@@ -134,6 +146,10 @@ To make the choice concrete, lay the criteria against the stakeholders who bear 
 | Calibration within groups | Decision-makers who must trust scores | The higher-base-rate group's wrongly-approved/flagged share rises | Scores feed many downstream decisions and must mean one thing |
 
 Reading the table for COMPAS: a defendant carries the cost of a false positive (loss of liberty), which is why advocates pressed for equal FPR; a judge needs a score that means one thing, which is why the vendor defended calibration. Naming the stakeholder behind each column is how you convert an abstract impossibility into a defensible decision.
+
+Match each criterion to the harm it best controls.
+
+<sequence-builder mode="match" items='[{"term":"Equalized odds / equal FPR","definition":"A false positive causes concrete asymmetric harm, e.g. wrongful detention in criminal risk"},{"term":"Demographic parity","definition":"Equal access to the resource is the primary justice concern and the labels are distrusted"},{"term":"Calibration within groups","definition":"One score feeds many downstream decisions and must mean the same thing everywhere"},{"term":"Individual fairness","definition":"Near-identical applicants must not receive opposite outcomes regardless of group"},{"term":"Counterfactual fairness","definition":"The decision should be unchanged in a world where only the protected attribute differs"}]' />
 
 <concept-diagram type="fairness-impossibility-trilemma"></concept-diagram>
 
@@ -173,6 +189,12 @@ When stakeholders request "a fair model," walk this checklist:
 
 The goal is not to "achieve fairness." The goal is to **make a defensible, documented, stakeholder-aligned choice among incompatible definitions**, and to monitor the choice's consequences over time.
 
+Now you own the choice. A pretrial risk tool, unequal base rates, two camps in the room.
+
+<branching-scenario tree='{"title":"Choosing a fairness criterion for a pretrial risk tool","start":"n1","nodes":{"n1":{"prompt":"Base rates of re-arrest differ across groups in your historical data. Defense advocates demand equal false-positive rates; the court demands a score that means one thing for every defendant. You measure the base-rate gap first. It is large. What do you commit to?","choices":[{"label":"Calibration within groups, and say nothing about the FPR consequence","next":"calib_silent","feedback":"You picked a defensible criterion but hid its cost. Silence about the forgone criterion is still an ethical choice, just an undocumented one."},{"label":"Equal false-positive rate, because wrongful detention is the asymmetric harm here","next":"eqfpr","feedback":"A liberty-protecting choice. But you must own what it breaks."},{"label":"Insist engineering can satisfy both calibration and equal FPR with enough tuning","next":"deny","feedback":"With unequal base rates this is mathematically impossible, not an engineering gap."}]},"calib_silent":{"prompt":"Months later ProPublica-style reporting shows your tool flags non-reoffending defendants in one group far more often. The court is blindsided. What was the avoidable error?","choices":[{"label":"Choosing calibration","next":"end_calib","feedback":"Calibration was defensible; failing to DOCUMENT the forgone equal-FPR and brief stakeholders was the avoidable error."},{"label":"Not documenting the forgone criterion and its FPR cost","next":"end_doc","feedback":"Exactly. The deliverable is the documented trade-off, not a silent pick."}]},"eqfpr":{"prompt":"Equalizing FPR breaks calibration: a given score now predicts different reoffense rates by group, so the judge cannot read scores uniformly. How do you make this defensible?","choices":[{"label":"Document that calibration is forgone, justify by the asymmetric liberty harm, and add subgroup monitoring","next":"end_good","feedback":"Best practice: deliberate choice, named forgone criterion, harm-based rationale, standing monitor."},{"label":"Hide the calibration loss to avoid alarming the court","next":"calib_silent","feedback":"Concealment recreates the COMPAS controversy from the other side."}]},"deny":{"prompt":"The team burns a sprint trying and fails. Where does that leave you?","choices":[{"label":"Accept the impossibility and make a documented choice","next":"eqfpr","feedback":"Right. The theorem sets the shape of the trade-off; it does not excuse pretending there is none."}]},"end_good":{"prompt":"You shipped a documented, monitored, harm-aligned choice.","feedback":"This is the win: surface the under-specification, measure the base-rate gap, match criterion to the dominant harm, document the forgone criterion, and monitor. The audit trail survives team turnover.","choices":[]},"end_doc":{"prompt":"Lesson locked.","feedback":"The chosen criterion plus the explicitly named forgone criterion and rationale is the actual deliverable.","choices":[]},"end_calib":{"prompt":"Reconsider.","feedback":"Calibration itself was fine; the failure was non-disclosure. Re-run the branch and document the trade-off.","choices":[]}}}' />
+
+<self-explain prompt="A colleague says: 'Just tune the model harder and it will be calibrated AND have equal false-positive rates across groups.' Explain why this is impossible when base rates differ, and what the team should do instead." answer="When the base rate of the positive outcome differs across groups, the Chouldechova / Kleinberg-Mullainathan-Raghavan result proves that calibration within groups and equal false-positive (and false-negative) rates cannot all hold simultaneously except for a trivial classifier. The algebraic identity FPR = [p/(1-p)] x [(1-PPV)/PPV] x (1-FNR) shows that once PPV and FNR are equalized across groups, the FPR is pinned to the base-rate factor p/(1-p); unequal p forces unequal FPR. No amount of tuning removes that term. Instead of chasing the impossible, the team should measure the base-rate gap, decide which error causes the larger concrete harm in this context, pick the matching criterion, and document the criterion deliberately forgone along with the rationale." />
+
 ---
 
 ## Counterarguments and Limitations
@@ -202,6 +224,10 @@ A careful engineer should hold these definitions loosely. Several legitimate obj
 | Calibration within groups | A score means the same thing across groups | Equal error exposure when base rates differ |
 | Individual fairness | Similar people, similar outcomes | Hides the ethics inside the distance metric $d$ |
 | Counterfactual fairness | Same decision if the attribute were different | Requires a contested causal model |
+
+See how the five criteria and the impossibility result relate as one family.
+
+<concept-map concepts='["fairness_definitions","demographic_parity","equalized_odds","calibration_within_groups","fairness_impossibility","individual_fairness","counterfactual_fairness"]' />
 
 ### Key Takeaways
 

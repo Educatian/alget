@@ -58,6 +58,12 @@ Steps:
 
 The strong version never says "doubled" again, because the chart already said it. The voice spends its entire budget on the two things the chart cannot show: what caused the jump and what to do about it. That is complementary narration, and the mispronunciation catch in step 4 is exactly the kind of AI-pathway check your log should record.
 
+Work one narration decision at a time, predicting each move before you reveal it:
+
+<step-reveal title="Turn a slide-reading script into complementary narration" steps='[{"prompt":"Your chart slide says \"Signups doubled after launch\" and your draft narration says \"Signups doubled after launch.\" What is the first move?","predictType":"choice","choices":["Record it as is; repeating the headline reinforces it","Run the delete-the-overlap test and strike the line that only repeats visible text","Add an animation so the line feels less repetitive","Make the voice louder on that line"],"answerIndex":1,"reveal":"Strike it. The chart already states that signups doubled, so reading it aloud triggers the redundancy effect. The narration budget should go to what the slide cannot show."},{"prompt":"You deleted the redundant line. What goes in its place?","predictType":"choice","choices":["A restatement of the headline in different words","The cause of the jump and the recommendation the chart cannot show","A summary of the whole deck","Nothing; leave the slide silent"],"answerIndex":1,"reveal":"Add the why and the so-what: \"The jump came from the week-two referral feature, which is why I recommend funding referrals next quarter.\" That is complementary, not redundant."},{"reveal":"Generate or record the audio, then proofread by ear. The AI voice read \"cache\" as \"kashay,\" so re-record that term and add the required AI-narration disclosure. The log records the redundancy cut, the pronunciation catch, and the disclosure."}]' />
+
+<inline-check question="A student records narration that reads each bullet aloud word for word, reasoning that it is thorough. Why does this lower comprehension?" explanation="Identical audio and on-screen text compete for the same working memory; that is the redundancy effect. Comprehension improves only when the voice carries different, complementary information from the slide." options='[{"text":"Reading every bullet is thorough and aids memory","correct":false},{"text":"Identical audio and text compete for working memory (the redundancy effect)","correct":true},{"text":"The voice is simply too quiet to follow","correct":false},{"text":"The slide has too few bullets to read aloud","correct":false}]' />
+
 ## Decision Rule
 
 Make the voice complementary to the slide, not redundant with it, and own every word the audience hears regardless of how it was produced. If the narration only reads the screen, cut it.
@@ -82,6 +88,10 @@ Apply complementary narration to a slide with no chart, just a single claim: "We
 
 Now suppose you generate that narration with text-to-speech. You run the audio once with your eyes closed and catch that the tool stressed the wrong word, flattening "Friday" into the middle of the sentence so the date got lost. You re-prompt for emphasis or re-record that clause, then add the required disclosure that the narration is AI-generated. The script was complementary; the pathway forced a listen-test and a disclosure that a silent slide never would.
 
+Order the narration pass so each step depends on the one before it:
+
+<sequence-builder mode="order" items='["Draft the narration script (your own words or an AI draft you own)", "Read it aloud against the slide and run the delete-the-overlap test", "Cut every line that only repeats visible on-screen text", "Add the cause, example, or recommendation the slide cannot show", "Proofread the audio by ear for mispronounced terms", "Disclose AI narration where the audience expects to know"]' />
+
 ## What Strong Reading Looks Like
 
 As you read, keep a two-column note: on the left, each narration sentence; on the right, whether it repeats the slide or adds cause, example, or recommendation. Flag every redundant line and every term the AI voice could mispronounce. By the end of 05.04, your note should show that the voice earns its place.
@@ -102,6 +112,12 @@ A useful entry would sound like this: "I cut the line that reread 'signups doubl
 ## Transfer Case
 
 Move the same content to a live, in-person talk with no recorded audio at all. The complementary-narration rule transfers directly: you still do not read your slides, you still speak the cause and the recommendation, and the slide still carries only the what. What drops away is the AI-pathway machinery, the pronunciation check and the disclosure, because there is no synthetic voice. If you can deliver the live version without reading a single bullet, your narration was complementary by design, not by accident.
+
+## Concept Map
+
+Connect the ideas this section builds on. See how making the voice complementary feeds evidence-based revision of the narration log:
+
+<concept-map concepts='["cat100_supplement_ai_narration_pathways", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

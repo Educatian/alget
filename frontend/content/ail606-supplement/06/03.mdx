@@ -31,6 +31,10 @@ A persona-based simulation check is a **constraint-driven walkthrough**, and its
 
 These map onto two course anchors. UDL's principle of learner variability supplies the constraints worth simulating: variability in perception (audio off, screen reader), in physical access (one-handed phone use), and in executive function (interruption, time pressure). Cognitive load theory supplies the failure mechanism: when a constrained learner loses a channel (muted audio) or context (a reset), the design may force them to reconstruct state from working memory, which is exactly the extraneous load that causes drop-off.
 
+A constraint-driven walkthrough runs in a fixed order: build the persona from its three load-bearing parts before you touch the prototype, then drive it into friction, then convert what breaks into a revision. Put the steps in sequence.
+
+<sequence-builder mode="order" items='["Define the goal: the specific outcome the learner is trying to reach", "Add the constraint: the limiting condition the design must survive (device, channel, time)", "Set the context of use: where and how the interaction actually happens", "Drive the persona off the happy path until a constraint collides with a design assumption", "Convert the observed failure into a specific screen revision (or a documented decision to accept it)"]' />
+
 The critical move is to drive the persona off the happy path on purpose. A walkthrough that only confirms success has no evidential value, because a design that works for an unconstrained user on the intended path is the null hypothesis. The check earns its place only when the persona's constraint collides with a design assumption and produces a finding you can convert into a specific screen revision.
 
 ## Worked Example
@@ -53,6 +57,9 @@ That check found nothing because the persona was a demographic label and the wal
 
 The after version names a goal, a constraint, and a context, drives the persona into friction, and converts the finding into a specific screen revision a committee can audit.
 
+<inline-check question="A classmate's persona reads: \"Devin, 35, enjoys hiking and podcasts, prefers dark mode.\" Why will this persona find nothing?" explanation="Hobbies, age, and aesthetic preferences are demographic and stylistic filler. None of them is a goal, a constraint, or a context of use, so nothing in the persona can collide with a design assumption and produce a failure." options='[{"text":"It carries no limiting constraint (device, channel, time, prior knowledge), so it cannot fail","correct":true},{"text":"It is too short to be a real persona","correct":false},{"text":"It names a context of use but no goal","correct":false},{"text":"It will find too many failures to triage","correct":false}]' />
+
+
 ## Decision Rule
 
 Before you trust a simulation check, confirm it was capable of failing. A check that could only succeed tells you nothing about robustness.
@@ -66,6 +73,10 @@ If the check produced no friction and no revision, it has not yet done diagnosti
 ## Common Misreadings
 
 The most common error is mistaking a richer persona biography for a more useful persona. Backstory (hobbies, personality, a stock photo) adds nothing to a simulation; only goals, constraints, and context generate findings. A two-line persona with a sharp constraint outperforms a half-page profile with none.
+
+When a constraint-driven persona breaks your module, the next choice separates a robustness fix from a quiet narrowing of your audience. Walk the decision.
+
+<branching-scenario tree='{"title":"The mobile, audio-off persona just broke Frame 2","start":"n1","nodes":{"n1":{"prompt":"Devin lost signal on a commute; the module reset to Frame 1 and the audio-only narration on Frame 2 was inaccessible muted. What is your first move?","choices":[{"label":"Add a \"best viewed on desktop with sound\" warning","next":"n2","feedback":"This converts the design limitation into the learner problem. Devin commuting on a muted phone is the real use context, not an edge case you can warn away."},{"label":"Add per-frame progress persistence and on-screen captions for narrated frames","next":"n3","feedback":"Correct. You designed for the failing context, fixing the two assumptions (no save state, audio-only) the constraint exposed."},{"label":"Mark the walkthrough \"no problems, completes on desktop\" and move on","next":"n4","feedback":"A check that only succeeds on the happy path has no evidential value. You found a real failure; reporting none discards it."}]},"n2":{"prompt":"The warning ships. Devin still has to complete required onboarding on the only device available. What happened to the failure?","feedback":"It did not get fixed; it got reassigned to the learner. The audience narrowed to exclude the actual use context, which a committee will read as avoiding the finding.","choices":[]},"n3":{"prompt":"You re-run the same persona under the same constraint after the fix. What confirms the revision worked?","feedback":"The persona that broke earlier now reaches the goal: state persists across the signal drop and captions make Frame 2 perceivable muted. The failure is gone, and you can log it as a revision to screens 2 and 4.","choices":[]},"n4":{"prompt":"You reported no problems. The real learners hit the reset and the muted narration in week one. What did the weak check cost?","feedback":"It pushed a known, reproducible failure into production. The persona existed precisely to catch this before real learners did.","choices":[]}}}' />
 
 A second error is excluding the failing context instead of designing for it. When a mobile, audio-off persona breaks the module, the weak response is a "best viewed on desktop" warning. That converts the design's limitation into the learner's problem. The persona's context is the real use context, so the finding is a mandate to revise, not a license to narrow the audience.
 
@@ -91,6 +102,8 @@ A strong reader of persona-based simulation checks can do four things:
 A strong simulation check is judged by whether it found something. A walkthrough that reports "no problems" is either a sign of a flawless design (rare) or, far more often, a sign of a persona too weak to fail. The standard is met when the check documents a constraint-driven failure and the screen revision that resolved it, with a rejected alternative showing you chose to fix rather than to exclude. When you cannot tell whether a persona is strong enough, annotate it and request a comparison between a constraint-driven persona and a demographic one.
 
 A final paragraph for the artifact would read like this: "I drove a constrained persona off the happy path, observed a failure caused by that constraint, and revised the specific screens responsible. I rejected the option of warning the learner away from their real context, because the context was the use case, not an edge case."
+
+<concept-map concepts='["ail606_supplement_persona_based_simulation_checks", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]' />
 
 ## Transfer Case
 

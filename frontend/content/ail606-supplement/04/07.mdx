@@ -35,6 +35,12 @@ Traceability in the README serves the parallel function for design: a matrix map
 
 The reason version control is central is that a commit is tamper-evident evidence with an author and a timestamp. Pointing a disclosure at a commit converts an honor-system statement into something a reviewer can independently confirm, which is the entire difference between claiming integrity and evidencing it.
 
+An auditable disclosure is written from the commit history backward, in a definite order. Arrange the steps so specificity, linkage, and colocation all fall out of the process.
+
+<sequence-builder mode="order" items='["Open the commit log and find each commit where AI output entered or was revised", "For each, write a line naming the tool, the exact location, and what you changed", "End each line with the commit hash so the claim links to a verifiable diff", "Build the traceability table mapping each screen to its controlling principle", "Colocate disclosure and table in the README and clone fresh to confirm every link resolves"]' />
+
+<inline-check question="A README states only that AI was used in the project and that the design follows good learning principles. Why does this satisfy no reviewer even if the author is perfectly honest?" explanation="Honesty that cannot be checked carries no weight in a review. The sentence names no tool, no location, no author edit, and links to no commit, so there is nothing a cloner can verify against the evidence the repository already keeps." options='[{"text":"It names no tool, location, or edit and links to no commit, so nothing in it can be verified.","correct":true},{"text":"It is too short; a longer paragraph would make it auditable.","correct":false},{"text":"It belongs in a separate file rather than the README.","correct":false},{"text":"It is fine; stating that AI was used is the whole obligation.","correct":false}]' />
+
 ## Worked Example
 
 Work through one annotated before/after revision of a README's AI-use disclosure and traceability section.
@@ -70,6 +76,8 @@ The design follows good learning principles.
 ```
 
 **Why the after version is stronger:** every AI claim names the tool, the commit, and the author's follow-up edit, so a reviewer cloning the repo can check each one against the diff. The traceability table ties each screen change to a specific principle. The disclosure and the artifact now live together and are auditable, which is the difference between claiming integrity and evidencing it.
+
+<self-explain prompt="In your own words, explain why colocation (keeping the disclosure inside the README beside the artifact) does work that a specific, commit-linked disclosure in a separate document cannot. What failure does colocation prevent?" answer="A specific, linked disclosure can still be trustworthy on its own, but if it lives in a separate file the claim and its evidence can drift apart: the README can be updated while the separate disclosure goes stale, or a reviewer who clones the repo may never see it. Colocation binds the claim to the artifact in the same place a cloner already opens, so the disclosure travels with the work and the evidence (commits, screens) sits right next to the claims it supports. It prevents the silent divergence between what the project says about its AI use and what the repository actually contains." />
 
 ## Decision Rule
 
@@ -140,6 +148,10 @@ ALGET uses your annotations and artifact trace to choose support:
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
 <interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="ail606_supplement_readme_and_repository_disclosure" />
+
+## Concept Map
+
+<concept-map concepts='["ai_use_disclosure", "ail606_supplement_design_draft_and_theory_to_prototype_alignment", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Final Check
 

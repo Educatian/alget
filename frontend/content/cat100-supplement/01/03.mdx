@@ -33,6 +33,8 @@ A critique log treats every AI suggestion as a proposal that must clear a bar be
 
 The hardest and most important column is **rejected**. A log with only "accepted" rows is indistinguishable from copy-paste; it shows no judgment. The rejected and modified rows are the evidence that a person sat between the tool and the page. This is why the orientation insists you record the rejections: the value you add as a learner lives in the suggestions you did not take.
 
+<inline-check question="A reviewer opens a critique log and every row says \"Accepted: good idea.\" What does that pattern tell them?" explanation="A log with only accepted rows is indistinguishable from copy-paste. The modify and reject rows, with specific reasons, are what show a person evaluated the tutor instead of obeying it." options='[{"text":"The learner exercised strong judgment","correct":false},{"text":"The log shows no judgment and reads like the learner accepted everything","correct":true},{"text":"The tutor must be perfectly accurate","correct":false},{"text":"The rejected rows were correctly deleted to keep it clean","correct":false}]' />
+
 ## Worked Example
 
 A first draft of a log often hides the real decision behind a vague summary:
@@ -54,6 +56,14 @@ You ask ETHOBOT to review one resume bullet and it returns three suggestions. Bu
 Final bullet: `Co-led a 4-person team that raised event attendance from 15 to 40 in one month.`
 
 The log records all three suggestions, not just the ones you used. A reader can see the accepted, modified, and rejected calls and the reason for each.
+
+Work Devon's three tutor suggestions as a decision tree. For each one, pick accept, modify, or reject before you read the feedback.
+
+<branching-scenario tree='{"title":"Routing ETHOBOT three suggestions on the event bullet","start":"s1","nodes":{"s1":{"prompt":"Suggestion 1: Add a number to \"boosted attendance.\" You can verify attendance rose from 15 to 40. What do you log?","choices":[{"label":"Accept and add the verifiable number","next":"s2","feedback":"Correct. The number is true and makes the claim concrete, so it enters the work as-is."},{"label":"Reject it","next":"s2","feedback":"That throws away a truthful improvement. A verifiable number belongs in the bullet, so accept is the better call."}]},"s2":{"prompt":"Suggestion 2: Replace \"helped\" with \"led.\" You actually co-led a 4-person team. What do you log?","choices":[{"label":"Accept \"led\" as written","next":"s3","feedback":"That overstates your role. \"Led\" implies sole leadership, so this needs a truthful tweak, not a straight accept."},{"label":"Modify to \"co-led a 4-person team\"","next":"s3","feedback":"Correct. The direction is right but the wording overreached, so you trim it down to what you can defend."}]},"s3":{"prompt":"Suggestion 3: Add \"expert event planner.\" You have run one event. What do you log?","choices":[{"label":"Accept it: it sounds impressive","next":"end","feedback":"One event does not make you an expert. An impressive but false label is a downgrade to your credibility, so this should be rejected."},{"label":"Reject and log why: one event does not support \"expert\"","next":"end","feedback":"Correct. You reject it and keep the rejection visible in the log as proof you guarded the truth."}]},"end":{"prompt":"Final bullet: \"Co-led a 4-person team that raised event attendance from 15 to 40 in one month.\" The log shows one accept, one modify, one reject.","feedback":"A log that uses all three decision types is the evidence that a person sat between the tool and the page.","choices":[]}}}' />
+
+Now order the loop you just ran so it becomes a reusable habit.
+
+<sequence-builder mode="order" items='["Bring your own draft to the tutor","Capture every suggestion the tutor returns","Check each suggestion for improvement and for truth","Decide accept, modify, or reject with a one-line reason","Keep the rejected rows visible in the log"]' />
 
 ## Decision Rule
 
@@ -114,6 +124,10 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note makes a **connection**, show where the connection changes one of your decisions.
 
 <dynamic-scenario prompt="You are building a critique log for CAT 100 01.03. A peer comment notes that every row is marked accepted, so the log shows no judgment. Choose the next revision move and the evidence that would show you evaluated the tutor's suggestions." />
+
+## Concept Map
+
+<concept-map concepts='["cat100_supplement_ethobot_cat100_orientation", "ai_supported_learning", "evidence_based_revision", "cat100_supplement_digital_citizenship_and_ai_readiness"]' />
 
 ## Check Your Understanding
 

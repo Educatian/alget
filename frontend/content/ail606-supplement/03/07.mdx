@@ -29,6 +29,11 @@ A useful storyboard review comment has three properties, and dropping any one of
 
 The deeper move is recognizing what counts as the design evidence. It is not the reviewer's comment; it is the **author's documented response**, the accept-or-reject decision and its reason. A comment that is accepted without reasoning, or rejected with "I disagree," produces no evidence. A comment that the author rejects with a principled reason ("I kept both diagrams side by side because the objective is to compare them") produces strong evidence of judgment. These map to the course anchors directly: Mayer's coherence and segmenting principles and cognitive load theory supply the standards a comment anchors to, and UDL learner variability is often the basis for an option a reviewer offers ("this works for fluent readers; what about the rest?"). The anchor must change a decision; a comment that names a principle but would not alter the frame is decoration, not review.
 
+Match each property of a useful review comment to the recognizable failure that appears when you drop it.
+
+<sequence-builder mode="match" items='[{"term":"Anchored","definition":"Drop it and you get taste (I would have used blue): a preference with no shared warrant the author can weigh"},{"term":"Actionable","definition":"Drop it and you get vague praise (looks great): nothing concrete the author can do"},{"term":"Authorship-preserving","definition":"Drop it and you get prescription (change it to this): the reviewer seizes the author’s design ownership"}]' />
+
+
 ## Worked Example: Rewriting a Peer Comment Into Real Review
 
 A classmate shares a storyboard whose Frame 4 packs three diagrams and a paragraph onto one screen. Below is the before/after of the peer comment.
@@ -62,9 +67,17 @@ Write every review comment in a fixed three-part shape, observation, anchor, opt
 
 Strip anything that is pure taste ("I'd use blue") unless the criteria support it. Then, as the author receiving review, complete the loop: record each comment as accepted or rejected with a reason, because that response, not the comment, is the design evidence the assignment is really collecting.
 
+Walk the overloaded Frame 4 review from comment to authoring decision.
+
+<branching-scenario tree='{"title":"From peer comment to documented decision","start":"n1","nodes":{"n1":{"prompt":"Frame 4 packs three diagrams and a full paragraph onto one screen. What is the most useful comment to write?","choices":[{"label":"Looks great, though I would have used a blue background","next":"n2","feedback":"Pure praise plus taste. It names no principle, no real issue, and gives the author nothing to decide."},{"label":"Frame 4 may exceed coherence and segmenting; the objective is only to compare two diagrams, so the third diagram and paragraph may be extraneous. Option: move the paragraph to narration; your call.","next":"n3","feedback":"Anchored to a principle and the objective, actionable, and it returns the decision to the author."}]},"n2":{"prompt":"The author changes nothing meaningful. What was missing?","choices":[{"label":"An anchor to a shared standard and a concrete, optional move","next":"n3","feedback":"Right: tone was never the problem; anchoring and actionability were."}],"feedback":"Friendly and worthless: no principle, no decision."},"n3":{"prompt":"The author now responds. She accepts moving the paragraph to narration but rejects splitting the two diagrams because the objective is to compare them side by side. Which response is the stronger design evidence?","choices":[{"label":"The acceptance, because acting on feedback shows responsiveness","next":"n4","feedback":"Accepting all feedback is abdication, not judgment. A quiet acceptance shows less reasoning than a principled rejection."},{"label":"The principled rejection, because it weighs the comment against the objective","next":"n5","feedback":"Correct: the reasoned rejection shows the author decided rather than complied."}]},"n4":{"prompt":"Why is a reasoned rejection often stronger than an acceptance?","choices":[{"label":"It shows the author weighed the comment against the frame objective instead of obeying","next":"n5","feedback":"Right: that weighing is the judgment the assignment collects."}],"feedback":"Responsiveness is not the same as judgment."},"n5":{"prompt":"What exactly is the design evidence here?","feedback":"Not the comment, but the author’s documented accept-or-reject decision and its reason tied to the objective. A single anchored comment produced two pieces of evidence, and the reasoned rejection is the stronger one.","choices":[]}}}' />
+
+
 ## Common Misreadings
 
 The first misreading is that good review means being either nice or harsh. Tone is not the variable; anchoring is. A warm comment with no anchor is as useless as a blunt one, and a blunt comment that cites the objective is valuable. The second misreading is that the author should act on every comment. Accepting all feedback is not responsiveness; it is abdication. A strong author rejects comments that conflict with the objective and records why, and that principled rejection is stronger evidence of design judgment than a quiet acceptance.
+
+<inline-check question="A reviewer writes: 'Looks great! I love the colors, though I'd have used a blue background.' Which property of a useful comment is missing first?" explanation="The comment is unanchored: it cites no shared standard, only personal taste the assignment criteria do not support. It also names no real issue (Frame 4 is overloaded) and gives no actionable decision, but the root failure is that it rests on preference rather than a principle or the frame's objective." options='[{"text":"Nothing is missing; warm feedback is good review","correct":false},{"text":"It is unanchored: it cites taste rather than a shared standard, so the author has no grounds to weigh it","correct":true},{"text":"It is too harsh and should be softened","correct":false}]' />
+
 
 ## Textbook Walkthrough
 
@@ -116,6 +129,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the storyboard frame sequence with narration, signaling, and reader-action notes records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+
+## Concept Map
+
+Connect peer review to the storyboarding work it audits, the evidence-based revision it triggers, and the bounded AI support whose suggestions it weighs.
+
+<concept-map concepts='["ail606_supplement_multimedia_storyboarding_and_ai_asset_generation","peer_review","evidence_based_revision","ai_supported_learning"]' />
 
 ## References
 

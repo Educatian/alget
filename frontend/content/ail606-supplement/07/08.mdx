@@ -33,6 +33,12 @@ A research-translation argument is a chain whose links must all hold:
 
 An argument is only as strong as its weakest link. The two most common breaks are the *back* break (a finding decorates the report but alters no decision) and the *forward* break (a decision is made but never tested). Integration means walking the whole chain and confirming that each link both follows from the one before and supports the one after.
 
+Assemble the translation chain in order, from research to a disclosed, tested decision.
+
+<sequence-builder mode="order" items='["Finding: a research result relevant to the design choice (identical narration plus on-screen text raises extraneous load).", "Principle: the design rule the finding implies (remove duplicate on-screen text where narration carries the content).", "Design decision: the specific change to the artifact (on frames 2 to 5, drop the duplicated caption, keep key labels).", "Evidence: the observation that tests the decision (4 of 5 testers re-read less and started the next action sooner).", "Disclosed revision: the change with AI assistance scoped, verified, and owned."]' />
+
+<inline-check question="A report cites Mayer's redundancy principle, then ships a storyboard that still shows narration AND identical on-screen text. Which link is broken?" explanation="The finding was cited but never altered a decision: the screens still duplicate narration and text, the very thing the principle warns against. This is the back break, a decorative citation that changes nothing." options='[{"text":"The forward link: the decision was tested but the finding is wrong.","correct":false},{"text":"The back link: the finding is cited but changes no design decision.","correct":true},{"text":"No link is broken; citing the principle is enough.","correct":false}]' />
+
 The course anchors are the raw material the chain translates. **Mayer's redundancy principle** is a finding that becomes a principle (remove duplicated on-screen text where narration carries content) and then a concrete decision (drop captions on specific frames). **Cognitive load theory** explains *why* the decision should help (it lowers extraneous load), which is what lets the evidence be interpreted rather than merely collected. **UDL learner variability** keeps the chain honest about scope: a decision that helps the tested learners may need rechecking for others, so the evidence link names whose behavior was observed.
 
 ## Worked Example
@@ -58,6 +64,8 @@ The studio asks you to integrate the whole chapter into one argument. Trace a st
 The revised version is a complete chain: each design decision traces back to a finding and forward to evidence, and the AI support is disclosed. The small-N evidence is scoped honestly (a 4-of-5 friction reduction, not an efficacy claim).
 
 One rejected addition: a second, unrelated theory citation. I left it out because it would not change any decision in this package and would only decorate the argument, reintroducing the very back break the studio exists to eliminate.
+
+<step-reveal title="Hunt the broken link in a feedback-timing package" steps='[{"prompt":"A student cites a finding that immediate feedback can aid skill acquisition, then builds a prototype that delays all feedback to the end of the lesson. Which link breaks first?","predictType":"choice","choices":["Back link: the finding is cited then contradicted by the decision","Forward link: the decision is tested but unsupported","Disclosure link: AI use is hidden"],"answerIndex":0,"reveal":"Back break. The finding implies a principle (deliver feedback immediately after the response on practice items), but the prototype delays it, so the citation changed nothing or was contradicted. Repair: move feedback to immediately after each item so the decision matches the principle."},{"prompt":"After moving feedback to immediately after each item, the report still asserts the prototype \"gives good feedback\" with no observation. Which link is now the weak one?","predictType":"choice","choices":["Back link","Forward link: the decision is never tested","Principle link"],"answerIndex":1,"reveal":"Forward break. An untested decision is a hope, not a result. Repair: add a small moderated check of whether learners use the immediate feedback before the next item, scoped honestly as a usability observation, not an efficacy claim."},{"reveal":"Repaired chain: finding to principle to a decision that matches the principle to evidence that tests it to a disclosed, verified revision. Integration is repair work, finding each break and closing it, not adding more citations."}]' />
 
 ## Decision Rule
 
@@ -85,6 +93,10 @@ Read any design argument as a chain and put your finger on each link in turn, as
 ## Transfer Case
 
 Carry the integration discipline into a full thesis or design-case publication, where the chain must hold across many findings and many decisions at once. The studio's single chain becomes a web: each design decision still traces back to a source and forward to evidence, but now a reviewer can sample any decision in the document and expect both links to hold. The transfer is that the audit scales without changing: instead of checking one chain you spot-check many, and a single back break or untested decision anywhere weakens the whole. Producing work that survives that sampling is the proof that research translation has become a habit rather than a checklist.
+
+## Concept Map
+
+<concept-map concepts='["ail606_supplement_research_translation_for_learning_design", "ail606_supplement_research_translation_studio", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

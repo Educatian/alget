@@ -53,6 +53,12 @@ After (annotated evidence row):
 
 The after row is stronger because another teacher can locate the artifacts, see the baseline and the comparison, and re-check the result, which is the difference between collected evidence and a hopeful claim.
 
+<parameter-explorer config='{"title":"From means to a bounded gain (4-point rubric)","sliders":[{"name":"baseline","label":"Baseline mean (pre-AI)","min":1,"max":4,"step":0.1,"unit":"pts","default":2.4},{"name":"post","label":"Post-AI mean","min":1,"max":4,"step":0.1,"unit":"pts","default":3.1},{"name":"sd","label":"Pooled standard deviation","min":0.3,"max":1.5,"step":0.1,"unit":"pts","default":0.8}],"outputs":[{"label":"Raw gain (post minus baseline)","unit":"pts","expr":"post - baseline"},{"label":"Standardized gain (gain / SD)","unit":"SD","expr":"(post - baseline) / sd"}],"plot":{"x":"post","output":1}}' />
+
+Notice what the explorer makes visible: a raw gain like 3.1 minus 2.4 equals 0.7 points looks identical whether the standard deviation is small or large, but the standardized gain (the same 0.7 divided by the spread) shrinks as the spread widens. A claim of improvement is only meaningful against a baseline measured on the same instrument and read alongside the spread of scores, which is exactly why an evidence row needs the baseline, not just the after number.
+
+<self-explain prompt="Using the explorer, explain why reporting only the post-AI mean (say 3.1) without the baseline and the spread can mislead a department chair about whether the tool helped." answer="The post mean alone has no referent. Without the baseline, there is no before-and-after comparison, so 3.1 could represent a large gain, no change, or even a decline from a higher starting point. And without the spread, even a real raw gain can be tiny relative to how much scores already vary, so it may not be a dependable improvement. Reporting the baseline and the standard deviation lets the chair judge the size and reliability of the gain rather than trusting a single hopeful number." />
+
 ## Decision Rule
 
 When building an evidence row, name the source first, establish the baseline and comparison second, and state the disconfirmation condition third. Before you treat a row as finished, confirm it answers:
@@ -62,6 +68,8 @@ When building an evidence row, name the source first, establish the baseline and
 3. **Disconfirm check:** What would have changed your mind, did you look, and how could someone re-verify the result?
 
 ## Common Misreadings
+
+<inline-check question="A row reports: 'Writing improved: post-AI mean was 3.1 on the rubric.' What single addition would most increase its auditability?" explanation="A baseline measured on the same instrument. Improvement is a before-and-after claim; without the pre-AI mean on the same rubric there is nothing to compare 3.1 against, so the claim cannot be tested." options='[{"text":"A more confident restatement of the claim.","correct":false},{"text":"A baseline (pre-AI mean) scored on the same rubric.","correct":true},{"text":"A second post-AI mean from a different rubric.","correct":false},{"text":"A longer description of the assignment.","correct":false}]' />
 
 The most common error is mistaking a number for evidence. A platform dashboard reporting "85 percent engagement" is a metric, not a finding, until you know the baseline and the population it describes. A second error is reporting only the outcome that confirms the hope and folding away the dimension that stayed flat; honest evidence reports the flat result too. A third is omitting the disconfirmation condition, which is what separates evidence from advocacy: a claim that could never be wrong is not evidence.
 
@@ -107,6 +115,8 @@ ALGET uses your annotations and artifact trace to choose support:
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
 <interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score.", "The learner explains how the same decision rule changes under a new audience or constraint."]' correct-index="3" conceptid="cat531_supplement_evidence_collection_checklist" />
+
+<concept-map concepts='["cat531_supplement_instructor_toolkit_for_cat_531", "cat531_supplement_evidence_collection_checklist", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Final Check
 

@@ -37,6 +37,10 @@ From these assumptions Sweller distinguishes three demands the table must keep s
 
 The single most consequential move in the table is correctly attributing demand. "Too hard" is not a diagnosis; it conflates intrinsic with extraneous and licenses no specific fix. When you write a row, you are forced to ask: is this difficulty in the *material* or in the *presentation*?
 
+The architecture treats each channel as a bounded counter of interacting elements. The explorer below lets you push verbal and visual elements through the two channels and watch the busiest channel approach a novice ceiling of roughly five elements. Notice that moving printed words to narration drains the visual channel without changing the total amount of content.
+
+<parameter-explorer config='{"title":"Channel load: routing elements through two channels","sliders":[{"name":"visual_pictorial","label":"Visual elements (animation, diagram)","min":0,"max":8,"step":1,"unit":"el","default":3},{"name":"printed_words","label":"Printed-text elements (eyes / visual channel)","min":0,"max":8,"step":1,"unit":"el","default":4},{"name":"narrated_words","label":"Narrated-word elements (ears / auditory channel)","min":0,"max":8,"step":1,"unit":"el","default":0}],"outputs":[{"label":"Visual channel load","unit":"el","expr":"visual_pictorial + printed_words"},{"label":"Auditory channel load","unit":"el","expr":"narrated_words"},{"label":"Headroom on busiest channel vs novice ceiling 5","unit":"el","expr":"5 - (visual_pictorial + printed_words)"}],"plot":{"x":"printed_words","output":0}}' />
+
 ## Worked Example
 
 The weak version below sounds plausible, but it does not yet give a reader enough evidence:
@@ -63,6 +67,10 @@ Here is one storyboard frame revised against the dual-channel and limited-capaci
 
 The improvement is not that the frame is prettier. The verbal load now travels through the auditory channel while the visual channel carries only the animation plus minimal labels, keeping the count of interacting elements within working-memory capacity, and the prediction prompt provokes the germane processing that builds the schema.
 
+Work the frame-3 revision one decision at a time, predicting each move before the reveal.
+
+<step-reveal title="Re-routing frame 3 across the two channels" steps='[{"prompt":"The animation and a 90-word printed paragraph both sit on screen. Which channel does the printed paragraph load?","predictType":"choice","choices":["The auditory channel, because the words are verbal","The visual channel, because printed text enters through the eyes","Neither, because text is not an element"],"answerIndex":1,"reveal":"Printed text is verbal in content but enters through the eyes, so it loads the visual channel and competes with the animation for the same limited capacity."},{"prompt":"To relieve the overload without deleting content, what is the governing move?","predictType":"choice","choices":["Shrink the font so the paragraph takes less space","Convert the paragraph to timed narration so it travels through the unused auditory channel","Add a caption track restating the narration"],"answerIndex":1,"reveal":"Offloading the verbal stream to narration uses the idle auditory channel, dropping the visual element count for a novice from roughly nine to four while keeping all the content."},{"reveal":"The intrinsic load (the water-cycle phases) is untouched; only extraneous competition fell. Adding a caption track would have reintroduced a third visual element, undoing the rebalancing, which is why that suggestion is rejected."}]' />
+
 ## Decision Rule
 
 Diagnose before you decorate. For any frame, run the load triage in this order:
@@ -75,7 +83,10 @@ If a revision lowers extraneous load but also strips a prediction or self-explan
 
 ## Common Misreadings
 
-The most common error is treating the architecture as a style guide ("less text, more pictures"). It is a capacity model. A picture-heavy frame can still overload a single channel, and a text-only frame can be fine for an expert whose schema chunks the words. The second error is calling all difficulty "load to be removed." Germane load is difficulty you want; an interface that removes the learner's need to predict, explain, or organize has lowered effort and lowered learning at the same time.
+The most common error is treating the architecture as a style guide ("less text, more pictures"). It is a capacity model. A picture-heavy frame can still overload a single channel, and a text-only frame can be fine for an expert whose schema chunks the words.
+
+<inline-check question="A frame shows a diagram plus on-screen narration captions that print exactly what the audio says. For a novice, is this dual-channel design?" explanation="Captions are printed text, so they load the visual channel alongside the diagram while the audio is redundant. The verbal stream is duplicated across channels rather than split, so the visual channel is overloaded rather than relieved." options='[{"text":"Yes, audio and text use two channels, so load is balanced","correct":false},{"text":"No, the captions reload the visual channel and duplicate the audio, so the visual channel is still overloaded","correct":true},{"text":"Yes, more representations always reduce load","correct":false}]' />
+ The second error is calling all difficulty "load to be removed." Germane load is difficulty you want; an interface that removes the learner's need to predict, explain, or organize has lowered effort and lowered learning at the same time.
 
 ## Textbook Walkthrough
 
@@ -130,6 +141,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that each row of the table names the channel an element loads, an element-count estimate for the target learner, the load type (intrinsic, extraneous, or germane), and the revision that followed, plus any suggestion you rejected and why.
+
+## Concept Map
+
+See how this section's ideas connect: the architecture grounds evidence-based revision of the artifact, and AI support is bounded by what the model can and cannot diagnose.
+
+<concept-map concepts='["ail606_supplement_cognitive_architecture_for_multimedia_learning", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

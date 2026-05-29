@@ -57,6 +57,12 @@ Step 3. Replace the default title 'Q1 Revenue' with a claim-first title: 'West L
 
 The auditable decision chain: question -> chart type (bar for category comparison) -> honest axis (start at 0) -> claim-first title. A reader can check each link against the four numbers above.
 
+Match each question type to the chart it calls for, then work the finishing-move dilemma below.
+
+<sequence-builder mode="match" items='[{"term":"Which region sold the most? (compare categories)","definition":"Bar or column chart"},{"term":"How did sales change over the year? (change over time)","definition":"Line chart"},{"term":"What share of total is each of 3 parts? (parts of a whole)","definition":"Pie chart (sparingly)"},{"term":"Do study hours relate to exam scores? (two numeric variables)","definition":"Scatter plot"}]' />
+
+<branching-scenario tree='{"title":"Finishing the Q1 revenue chart honestly","start":"n1","nodes":{"n1":{"prompt":"You have West 48K, East 31K, South 29K, North 22K and a default column chart titled Q1 Revenue. First decision: where should the value axis start?","choices":[{"label":"Start the axis at 20000 so the differences look bigger","next":"trunc","feedback":"A truncated axis is not styling; it visually triples a real gap."},{"label":"Start the axis at 0 so bar length is proportional","next":"axis0","feedback":"Correct: bar length is the encoding, so it must start at zero."}]},"trunc":{"prompt":"With the axis at 20000, North nearly vanishes and West looks five times East. A reviewer flags it. What now?","choices":[{"label":"Reset the axis to 0","next":"axis0","feedback":"Good recovery: the bars are now proportional to the numbers."},{"label":"Keep it; it makes the story punchier","next":"bad","feedback":"This misleads anyone who trusts the bars. Not defensible."}]},"axis0":{"prompt":"Axis is honest. Now the title. Which one turns the chart into checkable evidence?","choices":[{"label":"Keep Q1 Revenue","next":"caption","feedback":"That is only a caption; it states no finding."},{"label":"West Led Q1 Revenue at 48K, More Than Double North","next":"win","feedback":"A claim-first title the bars can verify."}]},"win":{"prompt":"Done: bar chart, axis at 0, claim-first title. A skeptic can confirm West is roughly twice North from the bars alone.","feedback":"This is the auditable chart: question -> bar -> honest axis -> claim-first title.","choices":[]},"caption":{"prompt":"A caption leaves the viewer to do the analytical work. The chart exists but answers nothing on its own.","feedback":"Restate the title as the finding the bars support.","choices":[]},"bad":{"prompt":"The chart now argues a conclusion the data does not support.","feedback":"A misleading axis fails the honesty check; reset to zero.","choices":[]}}}' />
+
 ## Decision Rule
 
 Write the question before you build the chart, then let the question pick the chart type and the title. If you cannot state the one question your chart answers, you are decorating data, not analyzing it.
@@ -92,6 +98,10 @@ A strong reader audits a chart they did not make by asking what trick, if any, i
 3. Does the title assert a finding the chart actually supports, or does it claim more than the bars show?
 
 When you can spot a misleading axis or a mismatched chart type in someone else's figure, you will stop building those mistakes into your own.
+
+<inline-check question="A colleague’s bar chart shows West towering over North, but you notice the value axis starts at 20000 instead of 0. What is the real relationship?" explanation="West is 48000 and North is 22000, so West is roughly twice North. A truncated axis starting at 20000 exaggerates the gap, making North nearly vanish. The fix is a zero baseline, because bar length is the visual encoding." options='[{"text":"West is about five times North, as the bars show","correct":false},{"text":"West is about twice North; the axis is exaggerating the gap","correct":true},{"text":"The chart is fine; truncating the axis is just zooming in","correct":false}]' />
+
+<concept-map concepts='["cat100_supplement_charts_that_answer_questions", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

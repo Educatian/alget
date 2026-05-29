@@ -39,6 +39,8 @@ The procedure that follows from these ideas is fixed:
 
 The common error is collapsing this to a single step (run on everything and hope), which works until the day it does not, and that day is unrecoverable.
 
+<inline-check question="A rename rule will touch 200 files at once and the tool offers no undo button. Before clicking run, which single safeguard most reduces the blast radius if the pattern is subtly wrong?" explanation="A dry run on a small sample shrinks the blast radius from 200 files to three throwaway copies, so a flawed pattern is caught for free. Reading the rule again cannot reveal output errors, and a faster machine only applies the wrong pattern faster." options='[{"text":"Copy three files into a test folder and run the rule there first","correct":true},{"text":"Read the rename rule one more time to be sure it looks right","correct":false},{"text":"Run it on a faster machine so it finishes before any damage spreads","correct":false},{"text":"Trust the recycle bin to recover anything that goes wrong","correct":false}]' />
+
 ## Worked Example
 
 Here is a real bulk action made safe with a dry run and an undo path.
@@ -72,6 +74,10 @@ Three safety checks did the work:
 2. **A backup copy** in OneDrive gave an undo path for an action the tool cannot reverse.
 3. **Confirm the result on the sample** before scaling, so the full run is verification, not a gamble.
 
+The safe procedure has a fixed order. Drag these five moves into the sequence that limits the blast radius and preserves an undo path.
+
+<sequence-builder mode="order" items='["Copy a small sample (three files) into a separate test location","Run the operation on the sample only, never on the live set","Inspect the sample output against exactly what you expected","Back up the full set to create the undo path the tool does not provide","Run on the full set, treating it as verification of an already-tested rule"]' />
+
 ## Decision Rule
 
 Before running any operation on more than a handful of items, ask: can I test this on a small sample first, and if it goes wrong, can I undo it? If the answer to either is no, do not run it yet; create the test or the backup first.
@@ -96,6 +102,10 @@ Apply this to a bulk delete, the most dangerous common operation. You want to cl
 
 Now adjust the rule (exclude PDFs, or move-to-archive instead of delete), back up `Downloads/` to the cloud as the undo path, and only then run the deletion. The walkthrough shows that the dry run is not a formality: it surfaces the false matches (files that fit the rule but should not be touched) that a careful reading of the rule would miss, and the backup covers the case where you miss one anyway.
 
+Work the bulk-delete case one decision at a time, predicting each safeguard before it is revealed.
+
+<step-reveal title="Make a ’delete everything older than 90 days’ rule safe" steps='[{"prompt":"You plan to delete every file in Downloads older than 90 days. A permanent bulk delete is the operation. What do you do before deleting anything?","predictType":"choice","choices":["Delete immediately to reclaim space","Sort by date and list what the rule would catch, without deleting (a dry run)","Empty the recycle bin first to make room","Delete and check the results afterward"],"answerIndex":1,"reveal":"Dry run first. Listing the matches without deleting lets you scan for false matches, and you spot the syllabus PDF you saved months ago that also fits ’older than 90 days.’"},{"prompt":"The dry-run list includes a PDF you need. The rule has a false match. What is the better next move?","predictType":"choice","choices":["Delete anyway; one file is acceptable loss","Refine the rule (exclude PDFs, or move-to-archive instead of delete)","Lower the age threshold to 30 days and delete more","Run it twice to be thorough"],"answerIndex":1,"reveal":"Fix the false match. Excluding PDFs or moving to an archive folder instead of deleting removes the file you needed from the blast radius."},{"prompt":"The refined rule looks right and the action is a permanent delete. What is the last safeguard before running it?","predictType":"choice","choices":["Nothing; the dry run was enough","Back up Downloads to the cloud as an undo path, then run","Trust the recycle bin to catch mistakes","Run it and watch closely"],"answerIndex":1,"reveal":"Back up for irreversibility. A permanent delete has no built-in undo, so a cloud backup of Downloads covers the case where the refined rule still misses something."},{"reveal":"Dry run surfaced the false match, the refined rule removed it from the blast radius, and the backup covered the residual risk. The same dry-run-then-backup habit makes every irreversible bulk action survivable."}]' />
+
 ## What Strong Reading Looks Like
 
 A strong reader treats every automated action as guilty until proven safe, asking what the worst case is before running it. They mentally separate "this is reversible" from "this is permanent" and apply heavier safeguards to the permanent ones.
@@ -106,6 +116,8 @@ A strong reader of an automated operation can answer four questions:
 2. Did I test it on a sample and inspect the actual output, not just the rule?
 3. Is this action reversible, and if not, where is the backup?
 4. Which items match the rule but should not be touched, and how did I catch them?
+
+<concept-map concepts='["cat100_supplement_automation_safety_checks", "cat100_supplement_productivity_and_workflow_automation", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

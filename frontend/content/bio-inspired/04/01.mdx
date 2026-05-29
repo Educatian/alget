@@ -46,6 +46,10 @@ $$
 
 The strong inverse-sixth-power dependence is the entire story. At a separation of a few nanometers the force is meaningful; at a few tens of nanometers it is essentially gone. This is why **proximity, not chemistry, is the design variable.** The spatula's job is simply to get close enough, over as much real area as possible.
 
+Use the explorer below to feel how brutally the interaction collapses with distance. The relative interaction energy is modeled as $U \propto 1/r^6$ (reported relative to a 0.4 nm reference contact, so $U_{rel} = (0.4/r)^6$), and the attractive force scales even more steeply as $F \propto 1/r^7$. Slide the separation outward and watch a "strong" contact become essentially nothing within a few nanometers.
+
+<parameter-explorer config='{"title":"Van der Waals Energy and Force vs Separation","sliders":[{"name":"r","label":"Spatula-surface separation","min":0.4,"max":10,"step":0.1,"unit":"nm","default":0.5},{"name":"Uref","label":"Reference contact energy (at 0.4 nm)","min":1,"max":100,"step":1,"unit":"zJ","default":40}],"outputs":[{"label":"Relative interaction energy","unit":"x of contact","expr":"(0.4/r)^6"},{"label":"Interaction energy","unit":"zJ","expr":"Uref * (0.4/r)^6"},{"label":"Relative attractive force","unit":"x of contact","expr":"(0.4/r)^7"}],"plot":{"x":"r","output":0}}' />
+
 > **Key Insight:** A single van der Waals contact is laughably weak. The gecko does not strengthen the bond; it multiplies the number of bonds and guarantees each one reaches near-contact distance.
 
 ---
@@ -81,6 +85,10 @@ $$
 So even at the conservative average per-seta force, the gecko can in principle support roughly 80 times its own weight. Using the maximum measured single-seta force (~$200\ \mu\text{N}$ when perfectly aligned) raises the theoretical ceiling to about $400$ N, or enough to hold a 40 kg load. The animal never uses anything close to this; the large margin is what lets it run, not just cling.
 
 > **Why the margin matters:** Locomotion is dynamic. A running gecko must engage and release each foot in milliseconds. A huge static safety factor is what makes fast, reliable attach-release cycling possible without the foot ever slipping.
+
+Before reading on, predict each step of the multiplication estimate yourself. The reveal walks the same logic as the worked example above, one decision at a time.
+
+<step-reveal title="Predict the Force-by-Multiplication Estimate" steps='[{"prompt":"A single seta gives about 20 microN and a Tokay gecko has about 2 million setae. What kind of operation turns per-contact force into total force?","predictType":"choice","choices":["Add the two numbers","Multiply per-contact force by the number of contacts","Take the square root of the count","Divide body weight by per-contact force"],"answerIndex":1,"reveal":"Multiply. F_total = N * F_seta, because each independent contact contributes its own force in parallel. This is the core scale strategy: a weak unit force times an enormous count."},{"prompt":"Estimate F_total = (2e6)(20e-6 N). Which is closest?","predictType":"choice","choices":["0.4 N","4 N","40 N","400 N"],"answerIndex":2,"reveal":"40 N. The two powers of ten cancel cleanly: 2e6 * 20e-6 = 40. That is already ~80x the geckos 0.49 N body weight, which is why it can hang and still have margin to run."},{"prompt":"Now ask: why does the gecko never use this full 40 N?","predictType":"choice","choices":["The setae would overheat","A large static margin is what enables fast, reliable attach-release cycling during locomotion","Van der Waals forces saturate above 1 N","The glue would run out"],"answerIndex":1,"reveal":"The margin is for dynamics, not statics. Running means engaging and releasing each foot in milliseconds, so a huge safety factor keeps every footfall from slipping even though most capacity sits idle."}]' />
 
 ### Worked Example 2: Area Scaling and Stress
 
@@ -126,6 +134,8 @@ To mimic this, engineers manufacture arrays of **angled polymer micro-pillars** 
 
 This switchable contact area, not raw stickiness, is the property that conventional tape and glue cannot replicate.
 
+<inline-check question="A robot foot uses angled polymer micro-pillars. To DETACH the foot cleanly with almost no pulling energy, what should the controller do?" explanation="Release is achieved by collapsing real contact area, not by overpowering the bond. Pushing against the pillar lean angle hyperextends the fibers so contact area drops toward zero, and the van der Waals attraction disappears with it." options='[{"text":"Push in the direction opposite the pillar lean to hyperextend the fibers and shrink contact area","correct":true},{"text":"Increase the normal preload to break the molecular bonds","correct":false},{"text":"Pull harder along the pillar direction until the bond snaps","correct":false},{"text":"Heat the pad to soften the van der Waals forces","correct":false}]' />
+
 ### Quantitative Design Constraints
 
 A gecko-inspired pad is judged by an operating envelope, not a single "stickiness" number. Engineers ask:
@@ -157,6 +167,10 @@ Gecko-inspired systems are powerful but not universal:
 - **Manufacturing tolerance:** uneven pillar geometry concentrates load and drops performance.
 
 So the real design question is rarely "How do we copy the gecko exactly?" It is "Under what surface conditions and load directions does this mechanism beat suction, magnets, hooks, or pressure-sensitive adhesives?"
+
+Work that judgment through a real selection problem. You are choosing an attachment method for a robot end-effector, and each branch tests whether dry adhesion is genuinely the best fit or just the most memorable biological story.
+
+<branching-scenario tree='{"title":"Pick the Attachment Method for a Robot Gripper","start":"n1","nodes":{"n1":{"prompt":"Mission: grip flat, smooth silicon wafers in a clean fab, releasing them residue-free hundreds of times per hour. What do you reach for first?","choices":[{"label":"Gecko-inspired dry adhesive","next":"n2","feedback":"Strong start. Smooth clean surface, reversible, residue-free, high cycle count: this is exactly the dry-adhesion sweet spot."},{"label":"Pressure-sensitive adhesive tape","next":"nbad1","feedback":"Tape leaves residue and loses tack with cycling, contaminating wafers. Wrong tool for a clean fab."},{"label":"Magnetic clamp","next":"nbad2","feedback":"Silicon is not ferromagnetic, so a magnet has nothing to grab."}]},"n2":{"prompt":"Same dry-adhesive gripper is now proposed for a dusty outdoor masonry wall. Keep it?","choices":[{"label":"Keep the dry adhesive as-is","next":"nbad3","feedback":"Dust blocks the microcontacts van der Waals adhesion depends on, and rough masonry exceeds the active microfeature scale. Holding force collapses."},{"label":"Switch mechanism for this surface","next":"n3","feedback":"Right. The architecture that wins on glass is the wrong envelope for rough, dirty stone. Match mechanism to surface condition."}]},"n3":{"prompt":"For the rough, dirty masonry, which alternative mechanism is the better structural fit?","feedback":"Microspine or hook arrays engage the asperities of rough surfaces mechanically, exactly where dry adhesion fails. This is why a serious search compares mechanism families instead of forcing one hero organism onto every mission.","choices":[]},"nbad1":{"prompt":"Residue contaminates the wafers. Reconsider for a clean, reversible, high-cycle task.","choices":[{"label":"Go back and rethink","next":"n1","feedback":"Return to the mission constraints: clean, reversible, residue-free."}]},"nbad2":{"prompt":"No ferromagnetic target. Reconsider.","choices":[{"label":"Go back and rethink","next":"n1","feedback":"Magnets are material-specific; silicon is not magnetic."}]},"nbad3":{"prompt":"Holding force has collapsed on the dusty rough wall. Reconsider.","choices":[{"label":"Go back and rethink","next":"n2","feedback":"The clean-contact assumption broke. Re-evaluate the surface envelope."}]}}}' />
 
 ### Comparative Design Benchmark
 
@@ -192,6 +206,8 @@ Most of the adhesion story assumes the pad forms close, distributed contact. Tha
 > **Research Note: Compare Mechanism Families, Not Just One Hero Organism**
 > Gecko adhesion is an excellent reference case, but a serious search compares it with suction, hooks, capillary adhesion, magnetic fixation, and pressure-sensitive polymers. That broader comparison reduces fixation and shows whether van der Waals dry adhesion is truly best for the mission or merely the most memorable biological story.
 
+<self-explain prompt="In your own words, explain WHY directional angled micro-pillars give engineers both strong holding AND clean release, and connect that to the single design variable the gecko actually controls. Do not just say van der Waals." answer="The gecko never changes the strength of the bond; it changes how much real contact area exists. Angled pillars loaded along their lean flatten and conform, maximizing intimate contact so billions of weak van der Waals interactions sum to a large shear force. Loaded the opposite way, the pillars hyperextend and contact area drops toward zero, so the same weak forces add up to nearly nothing and the pad peels off with little energy. The controlled design variable is real contact area (set by load direction and preload), not stickiness or chemistry. That is the mechanism-to-engineering translation: directional geometry turns a fixed physical attraction into a switchable function." />
+
 | Design Workflow Lens | Gecko-Adhesion Example |
 | --- | --- |
 | Engineering Problem | Reversible attachment without residue |
@@ -217,6 +233,10 @@ Most of the adhesion story assumes the pad forms close, distributed contact. Tha
 | Force by multiplication | $F_{total} = N \cdot F_{seta}$ |
 | Force by stress | $F = \tau A$ |
 | Safety factor | $\text{SF} = F_{total} / W$ |
+
+Map how the core ideas of this section connect: the dry mechanism, its nano-scale architecture, the switchable release behavior, and the surface engineering that decides where it works.
+
+<concept-map concepts='["dry_adhesion","nanotech_adhesion","reversible_adhesion","surface_engineering"]' />
 
 ---
 

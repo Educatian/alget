@@ -60,6 +60,12 @@ Step 4. Confirm Units is numeric. `=SUM(units)` returns `39`. If any cell had be
 
 The clean table is now: three rows, one header, one value per cell, one spelling per region, and a SUM that matches the data. Each step is a decision a reader can re-trace against the raw export.
 
+<step-reveal title="Repair the messy Q3 export, defect by defect" steps='[{"prompt":"The export has a banner in A1 and a blank row 2 above the header. Before you compute anything, what is the first repair?","predictType":"choice","choices":["Run =SUM on the Units column to see the total","Delete rows 1 and 2 so the header becomes row 1","Make a bar chart of the three rows","Rename the Region column"],"answerIndex":1,"reveal":"Fix layout first. Delete rows 1 and 2 so Name | Region | Units sits in row 1 with data directly beneath it and no banner or spacer above."},{"prompt":"The cell Lopez, Maria holds two facts. Which tool splits it into Lopez and Maria?","predictType":"choice","choices":["Find and Replace","Text to Columns on the comma delimiter","Delete the row","SUM"],"answerIndex":1,"reveal":"Text to Columns on the comma delimiter splits one cell into two, satisfying the one-value-per-cell rule."},{"prompt":"Region reads TX, texas, and Tx in three rows. What collapses them to one label?","predictType":"choice","choices":["Text to Columns","Find and Replace texas and Tx with TX","Delete the duplicate rows","AVERAGE"],"answerIndex":1,"reveal":"Find and Replace collapses the spelling variants to a single canonical TX, so a pivot counts one region instead of three."},{"reveal":"Finally confirm Units is numeric (right-aligned). =SUM now returns 39, matching a hand count. If a cell were typed 18 units, it would be skipped and the total would read 21, the visible symptom of numbers-stored-as-text."}]' />
+
+Before computing, the four repairs must run in a deliberate order. Drag them into the sequence a reviewer can re-trace.
+
+<sequence-builder mode="order" items='["Delete the banner and blank spacer rows so the header is row 1","Split comma-joined cells with Text to Columns (one value per cell)","Standardize category spellings with Find and Replace","Confirm the Units column is numeric, then =SUM"]' />
+
 ## Decision Rule
 
 Clean structure before you compute anything. The order is deliberate: fix the layout, then split the cells, then standardize the labels, then confirm the numeric type, and only then sum, count, or chart. Running an analysis first and cleaning afterward means you never know which numbers were wrong.
@@ -96,6 +102,10 @@ A strong reader does not just notice that a sheet is messy; they predict the exa
 4. A number stored as text will silently lower every total it should be part of.
 
 When you can move from "this looks untidy" to "this specific cell will drop \$600 from the total," you are reading the structure, not just the surface.
+
+<inline-check question="A column you believe is numeric returns =SUM of 21, but a hand count of the rows totals 39. Which audit check just failed?" explanation="A SUM lower than the hand count means at least one value is stored as text (left-aligned, like 18 units) and is being silently skipped. That is the type-and-label check, not a layout or atomic problem." options='[{"text":"The layout check (a banner or blank row above the header)","correct":false},{"text":"The type check (a value is stored as text and skipped by SUM)","correct":true},{"text":"Nothing failed; 21 is simply the correct total","correct":false}]' />
+
+<concept-map concepts='["cat100_supplement_spreadsheet_structure_and_clean_data", "cat100_supplement_data_storytelling_with_excel", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

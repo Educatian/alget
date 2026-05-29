@@ -55,6 +55,10 @@ After (strong): "Codes: T1 CL, T2 QU, T3 RE (warrant: cheating now conditioned o
 
 The strong annotation uses a reusable code scheme with warrants, not subjective highlighting, so the judgment is reproducible.
 
+Match each code in the scheme to the observable feature that earns it. A scheme is only reproducible when the definitions are this precise.
+
+<sequence-builder mode="match" items='[{"term":"CL (fixed claim)", "definition":"A stated position with no weighing of competing considerations, e.g. \"Using AI to write is always cheating.\""}, {"term":"QU (reframing question)", "definition":"A prompt that opens a new lens or condition, e.g. \"Does it matter whether the teacher allowed it?\""}, {"term":"RE (reasoning revision)", "definition":"A turn that revises a prior position by adding a condition or dimension, e.g. \"If the teacher allowed it then it is not cheating.\""}, {"term":"Warrant", "definition":"The one-line observable reason a turn earned its code, checkable by a second rater, e.g. \"now conditions cheating on permission.\""}]' />
+
 ## Decision Rule
 
 Before an annotation counts as evidence, it must pass three checks:
@@ -64,6 +68,12 @@ Before an annotation counts as evidence, it must pass three checks:
 3. **Agreement:** Would a colleague using your definitions code the contested turns the same way?
 
 If a code rests on "it felt like reasoning," sharpen the criterion until the feeling becomes a feature.
+
+<inline-check question="Two raters use your scheme. Turn 4 reads: 'But what about a student who cannot afford a tutor and uses AI instead?' Your warrant says 'sounded thoughtful.' Why will this warrant fail the agreement check?" explanation="'Sounded thoughtful' describes how the turn sounded, not what it did. A second rater cannot confirm a tone judgment. A reproducible warrant points to an observable feature, such as 'introduces an equity-of-access dimension,' which a colleague can verify against the line." options='[{"text":"It is fine; tone is an observable feature","correct":false},{"text":"It describes tone, not an observable move a second rater can confirm","correct":true},{"text":"It is too long to be a one-line warrant","correct":false},{"text":"It uses the wrong code letter","correct":false}]' />
+
+A department head now asks both you and a colleague to defend a contested code. The defensibility of your warrant is what is on trial.
+
+<branching-scenario tree='{"title":"Defending a contested code to a department head","start":"n1","nodes":{"n1":{"prompt":"You coded Turn 3 (\"If the teacher allowed it then it is not cheating, so the rule depends on the assignment\") as RE. The department head asks: why RE and not just a restated claim? What do you offer?","choices":[{"label":"\"It felt like a deeper level of thinking\"","next":"n2","feedback":"A feeling is not a criterion. A second rater cannot check it, so the code is not yet reproducible."},{"label":"\"The warrant: it conditions cheating on teacher permission, adding a condition that was not in Turn 1\"","next":"n3","feedback":"This is an observable feature, the addition of a condition, that a second rater can confirm against the line."},{"label":"\"I highlighted it in yellow because it stood out\"","next":"n4","feedback":"Highlighting marks where you looked, not why. It carries no criterion anyone can check."}]},"n2":{"prompt":"Convert the feeling into a checkable feature.","choices":[{"label":"Point to the added condition: cheating now depends on permission","next":"n3","feedback":"Now the code rests on an observable move."}],"feedback":""},"n3":{"prompt":"The head asks a colleague to apply your scheme blind. They also code Turn 3 as RE. What has this established?","choices":[{"label":"Inter-rater agreement: the criterion is reproducible","next":"n5","feedback":"Right. Agreement on a contested turn is the practical meaning of reliability."},{"label":"Nothing; one colleague is not proof","next":"n5","feedback":"It is evidence, not proof, but reproducible agreement on the contested turn is exactly what the scheme is built to produce."}]},"n4":{"prompt":"Replace the highlight with a coded warrant.","choices":[{"label":"State the observable move the turn made","next":"n3","feedback":"Coding records why; highlighting only records where."}],"feedback":""},"n5":{"prompt":"The head asks why you did not build a richer twelve-code scheme to capture more nuance.","choices":[{"label":"\"Three or four well-defined codes are applied consistently; twelve fuzzy ones destroy the agreement the scheme exists to create\"","next":"end","feedback":"Correct. Reproducibility, not taxonomy, is the goal."},{"label":"\"A twelve-code scheme would be more impressive\"","next":"n6","feedback":"Impressiveness is not the standard; consistency is."}]},"n6":{"prompt":"Re-anchor on the standard.","choices":[{"label":"Few mutually exclusive codes beat many fuzzy ones for agreement","next":"end","feedback":"Right."}],"feedback":""},"end":{"prompt":"You defended the code with an observable warrant and a reproducible scheme.","feedback":"A code counts as evidence when its warrant names a feature a second rater can confirm, and the scheme is small enough to apply consistently.","choices":[]}}}' />
 
 ## Common Misreadings
 
@@ -82,6 +92,9 @@ Keep a two-column note: the code on the left, the verbatim warrant on the right,
 A strong annotation includes the code scheme with definitions, codes every turn, warrants the high-value codes with observable reasons, and notes where agreement is shaky. Formatting is the last layer. If a code has no checkable warrant, mark the gap and ask BigAL to compare your definition against a tighter one rather than for a general explanation of coding.
 
 A useful closing line for the artifact sounds like this: "I coded Turn 3 as a reasoning revision with the warrant 'conditions cheating on teacher permission,' an observable feature a second rater can confirm; I rejected color-highlighting because it would have recorded where I looked without a criterion anyone could reproduce."
+
+<self-explain prompt="The section claims reproducibility is an equity safeguard, not just a methodological nicety. Explain why a subjective annotation method can quietly produce unfair credit." answer="If a code rests on taste rather than an observable criterion, then a teacher tends to credit 'reasoning' to the turns whose phrasing matches their own discourse style, which usually favors dominant-culture students. The students whose reasoning arrives in less familiar phrasing get no credit, and because the method is subjective the teacher never sees the pattern and cannot correct it. A defined scheme with written warrants forces the teacher to name, for each coded turn, the observable reasoning move that earned it, so a quiet bias toward eloquence is replaced by a criterion any rater can check, which is what makes the credit fair." />
+
 
 ## Transfer Case
 
@@ -105,6 +118,12 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note makes a **connection**, show where the connection changes the artifact.
 
 <dynamic-scenario prompt="You are revising the Ethobot transcript annotation showing where ethical reasoning changed for CAT 531 04.05. A peer comment points to an adaptive move issue connected to critical edtech studies. Choose the next revision move and the evidence that would show it helped." />
+
+## Concept Map
+
+These are the concepts this section connects. Trace how a reproducible code scheme turns annotation into evidence-based revision.
+
+<concept-map concepts='["cat531_supplement_ai_ethics_and_ethobot_3_2", "cat531_supplement_ethobot_transcript_annotation", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Check Your Understanding
 

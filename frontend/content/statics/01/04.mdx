@@ -101,6 +101,8 @@ $$
 
 This is the single most misused idea in introductory statics. Static friction is a *reaction*: if you push a heavy box with 50 N and it does not move, friction is exactly 50 N, not $\mu_s N$. It only equals $\mu_s N$ at the instant of impending motion.
 
+<inline-check question="A block needs at most 120 N of friction to stay put, and its friction ceiling is mu_s N = 200 N. Right now a 70 N horizontal push is applied and the block is at rest. What is the actual static friction force?" explanation="Static friction is whatever equilibrium demands, up to the ceiling. At rest under a 70 N push, friction is exactly 70 N (balancing the push), not 200 N. The ceiling of 200 N only matters at impending motion." options='[{"text":"70 N, because static friction matches the applied push while at rest.","correct":true},{"text":"200 N, because friction always equals mu_s N.","correct":false},{"text":"120 N, the maximum the block needs.","correct":false}]' />
+
 > ⚠️ **Common Pitfall**: Don't assume $F_s = \mu_s N$ always. The equality holds **only** at impending motion. Before that, friction is whatever value equilibrium requires.
 
 ---
@@ -120,6 +122,10 @@ Before solving, you must **assume a direction** of impending motion:
 1. Guess which way the object tends to slide.
 2. Draw friction opposing that assumed direction.
 3. Solve, then check the sign of the result. A positive required force confirms the assumption; a negative result means the true tendency is the other way.
+
+Walk a real "will it move?" investigation, choosing the friction direction and reading the sign correctly.
+
+<branching-scenario tree='{"title":"A crate on a ramp: assume a slip direction, then check the sign","start":"n1","nodes":{"n1":{"prompt":"A crate sits on a ramp with an external pull P up the slope. You do not yet know if it tends to slide up or down. What do you do first?","choices":[{"label":"Assume a slip direction and draw friction opposing it.","next":"n2","feedback":"Correct. You cannot write the friction term until you commit to an assumed tendency."},{"label":"Set F_s = mu_s N immediately, before checking equilibrium.","next":"bad1","feedback":"Premature. Static friction equals mu_s N only at impending motion; first you must find what equilibrium demands."}]},"bad1":{"prompt":"You forced F_s = mu_s N and got a contradiction with equilibrium. Why?","choices":[{"label":"Because below impending motion, friction is whatever balances the net applied load, not the ceiling.","next":"n2","feedback":"Right. Use the inequality F_s <= mu_s N and treat F_s as an unknown reaction first."}],"feedback":"The ceiling is reached only at the verge of sliding."},"n2":{"prompt":"You assume the crate tends to slide DOWN, so you draw friction pointing UP the slope, then solve and find the required static friction is NEGATIVE.","choices":[{"label":"A negative value means the true tendency is the opposite: it actually tends to slide UP.","next":"n3","feedback":"Correct. The sign flips your assumed direction; friction really acts down the slope."},{"label":"A negative value is impossible, so the problem has no solution.","next":"bad2","feedback":"Not so. A negative result is a valid signal that the assumed direction was wrong; just reverse it."}]},"bad2":{"prompt":"You discarded a perfectly good answer. What does the negative sign actually tell you?","choices":[{"label":"That the crate tends to slide up, so friction acts down; reverse the assumed direction.","next":"n3","feedback":"Exactly. Sign analysis is part of the method, not a failure."}],"feedback":"Negative simply means reverse the assumption."},"n3":{"prompt":"Once you have the correct friction direction, how do you finally decide whether the crate actually slips?","feedback":"Compare the magnitude of the required static friction to the ceiling mu_s N. If the required value is at or above mu_s N, motion impends and the crate slips; if it is below, the crate stays put with friction equal to that required value. The slip direction you settled is the direction motion would take.","choices":[]}}}' />
 
 ---
 
@@ -165,6 +171,10 @@ mg\sin\theta = \mu_s\,mg\cos\theta
 $$
 
 The **angle of repose** equals the angle of friction, and notice the mass cancels out entirely. This is a remarkably useful result: the steepest angle at which a block (or a pile of gravel, or a stack of grain) can rest without sliding depends only on $\mu_s$, not on weight. For $\mu_s = 0.5$, that critical angle is $\tan^{-1}(0.5) = 26.6^\circ$, which is exactly the slope you see in a heap of dry sand.
+
+Compare what the slope *demands* against what friction can *supply*. The demand is $W\sin\theta$ and the ceiling is $\mu_s W\cos\theta$. When the slip margin (ceiling minus demand) goes negative, the block slides, regardless of its mass.
+
+<parameter-explorer config='{"title":"Repose check: demand W sin(theta) vs ceiling mu_s W cos(theta)","sliders":[{"name":"m","label":"Block mass","min":1,"max":100,"step":1,"unit":"kg","default":20},{"name":"theta","label":"Incline angle","min":0,"max":80,"step":1,"unit":"deg","default":30},{"name":"mus","label":"Static friction coefficient","min":0.05,"max":1.2,"step":0.05,"unit":"","default":0.5}],"outputs":[{"label":"Down-slope demand W sin(theta)","unit":"N","expr":"m * 9.81 * sin(theta * 3.14159265 / 180)"},{"label":"Friction ceiling mu_s W cos(theta)","unit":"N","expr":"mus * m * 9.81 * cos(theta * 3.14159265 / 180)"},{"label":"Slip margin (ceiling minus demand; negative means it slides)","unit":"N","expr":"mus * m * 9.81 * cos(theta * 3.14159265 / 180) - m * 9.81 * sin(theta * 3.14159265 / 180)"}],"plot":{"x":"theta","output":2}}' />
 
 ---
 
@@ -298,6 +308,8 @@ $$
 
 The drop from the static ceiling (84.96 N) to the kinetic value (67.97 N) is the lurch effect in action: once the block breaks free, the resisting force falls and the block accelerates.
 
+<step-reveal title="Walk through the slip-and-accelerate decision (Example 1.6)" steps='[{"prompt":"For the 20 kg block on the 30 degree incline, what is the down-slope weight component W_parallel = mg sin30?","predictType":"choice","choices":["169.9 N","98.1 N","196.2 N","84.96 N"],"answerIndex":1,"reveal":"W_parallel = (20)(9.81)(0.5) = 98.1 N. This is the demand friction must meet to keep the block static."},{"prompt":"The normal force is N = mg cos30 = 169.9 N. With mu_s = 0.5, what is the static friction ceiling?","predictType":"choice","choices":["98.1 N","169.9 N","84.96 N","67.97 N"],"answerIndex":2,"reveal":"(F_s)_max = mu_s N = 0.5(169.9) = 84.96 N. This is the most friction the surface can supply."},{"prompt":"Compare demand to ceiling. Does the block slip?","predictType":"choice","choices":["No: 98.1 < 84.96","Yes: demand 98.1 N exceeds ceiling 84.96 N","Cannot tell without the mass"],"answerIndex":1,"reveal":"Yes. The slope demands 98.1 N but friction can only supply 84.96 N, so the block slides. The repose angle atan(0.5) = 26.6 degrees is below 30 degrees, confirming it."},{"prompt":"Now sliding, friction is kinetic: F_k = mu_k N = 0.4(169.9) = 67.97 N. What is the acceleration down the incline?","predictType":"choice","choices":["1.51 m/s^2","4.91 m/s^2","0.85 m/s^2","3.40 m/s^2"],"answerIndex":0,"reveal":"ma = W_parallel - F_k = 98.1 - 67.97 = 30.13 N, so a = 30.13/20 = 1.51 m/s^2 down the incline."},{"reveal":"The resisting force fell from the static ceiling 84.96 N to the kinetic 67.97 N the instant the block broke free. That sudden drop is the lurch effect and is exactly why mu_s > mu_k matters in practice."}]' />
+
 ---
 
 ## Common Pitfall
@@ -391,6 +403,8 @@ The drop from the static ceiling (84.96 N) to the kinetic value (67.97 N) is the
 In **Chapter 2: Force Systems**, we will extend this analysis to include moments and solve rigid body equilibrium problems, where friction at multiple contacts (think of a leaning ladder) must be balanced together with reaction forces.
 
 ---
+
+<concept-map concepts='["static_friction","kinetic_friction","friction_coefficient","impending_motion"]' />
 
 <dynamic-scenario topic="Static Friction" context="A warehouse technician is deciding whether a loaded crate on a rough incline will remain at rest during transport or begin to slide when the ramp angle increases slightly." />
 

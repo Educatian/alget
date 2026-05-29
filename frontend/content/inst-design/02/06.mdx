@@ -93,6 +93,12 @@ Final event. Help the learner consolidate the new schema and apply it in new con
 
 <concept-diagram type="gagne-nine-events"></concept-diagram>
 
+Put the nine events in their logical order. Remember that this is a logical sequence, not a clock with nine equal ticks.
+
+<sequence-builder mode="order" items='["Gain attention","Inform learners of the objective","Stimulate recall of prior learning","Present the content","Provide learning guidance","Elicit performance (practice)","Provide feedback","Assess performance","Enhance retention and transfer"]' />
+
+<inline-check question="A lesson presents content clearly and then jumps straight to a graded assessment. Learners can follow the explanation but cannot do the task themselves. Which TWO adjacent events were skipped between presentation and assessment?" explanation="Between Present the content (4) and Assess performance (8), the design skipped Provide learning guidance (5, showing how to think about it via worked examples) and Elicit performance (6, an actual practice attempt). Following an explanation is not the same as being shown how to reason and then practicing." options='[{"text":"Provide learning guidance (5) and Elicit performance (6)","correct":true},{"text":"Gain attention (1) and Inform of objective (2)","correct":false},{"text":"Provide feedback (7) and Enhance retention (9)","correct":false}]' />
+
 ---
 
 ## What the Events Are Not
@@ -140,6 +146,12 @@ Different failures leave different fingerprints. Learning to read the symptom ba
 | High in-session score, no downstream transfer | 9. Retention and transfer | Add spaced and varied practice plus a transfer prompt |
 | Learners repeat the same error | 7. Feedback | Make feedback name the specific gap, not a checkmark |
 
+Walk a live diagnosis. Read each symptom backward to the responsible event.
+
+<branching-scenario tree='{"title":"Diagnose the failing lesson","start":"n1","nodes":{"n1":{"prompt":"A 30-minute compliance module scores 92% on the immediate post-test, but supervisors report no behavior change at the workstation a week later. What is the signature?","choices":[{"label":"High in-session score plus poor downstream transfer","next":"n2","feedback":"Right. That specific pairing points to one event in particular."},{"label":"Learners zoning out in the first minute","next":"bad1","feedback":"No: they scored 92%, so they attended and learned in-session. The failure is later."}]},"n2":{"prompt":"Which event does that signature most directly implicate?","choices":[{"label":"Event 9: Enhance retention and transfer","next":"n3","feedback":"Correct. Without spaced, varied practice and transfer prompts, schemas decay within days."},{"label":"Event 1: Gain attention","next":"bad2","feedback":"Attention clearly worked: the in-session score is high. Look at the back end of the lesson."}]},"n3":{"prompt":"You also notice the assessment was ’pick the correct label from four options,’ but the objective was to PRODUCE a correct label. What second event failed?","choices":[{"label":"Event 6: Elicit performance was effectively missing; recognition stood in for production","next":"good","feedback":"Exactly. A recognition item can satisfy event 8 while event 6 never happened."},{"label":"Event 2: Inform of objective","next":"bad3","feedback":"The objective was stated; the gap is that learners never performed it."}]},"good":{"prompt":"Diagnosis: weak event 9 plus a missing event 6. The minimum fix adds a real construct-a-label performance task with specific feedback, plus a spaced booster with varied real cases. You did not rebuild the whole module.","choices":[]},"bad1":{"prompt":"Dead end: a 92% in-session score rules out an attention failure. Restart.","choices":[]},"bad2":{"prompt":"Dead end: attention worked. The signature points to the retention-and-transfer end. Restart.","choices":[]},"bad3":{"prompt":"Dead end: the objective was communicated; the real gap is no actual performance. Restart.","choices":[]}}}' />
+
+<self-explain prompt="Gagne's events are not an arbitrary list of teaching tips. Explain how event 3 (stimulate recall of prior learning) maps onto the information-processing model, and why skipping it sabotages the next event." answer="Event 3 corresponds to deliberate retrieval of relevant schemas from long-term memory into working memory. The information-processing model says new content (event 4, selective perception) must be encoded by attaching it to existing schemas. If the right prior knowledge is not first activated in working memory, the incoming content has nothing to bind to, so encoding is shallow or fails and the presentation 'does not stick.' Event 3 is the external support that primes the internal retrieval the next event depends on." />
+
 ---
 
 ## Worked Example: Mapping a Lesson to the Events
@@ -186,6 +198,8 @@ The redesign keeps events 1 through 5 nearly unchanged and adds two things. Firs
 ---
 
 ## Summary
+
+<concept-map concepts='["gagne_nine_events","information_processing_model","lesson_architecture","retention_and_transfer","instructional_diagnosis"]' />
 
 ### Key Takeaways
 

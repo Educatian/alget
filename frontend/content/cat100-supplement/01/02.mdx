@@ -36,6 +36,8 @@ A defensible disclosure has four parts.
 
 The rejection line is what turns a disclosure from a formality into evidence of judgment. Anyone can say "I used AI"; only someone who actually controlled the tool can say which suggestion they turned down and why.
 
+<inline-check question="An assignment grades your code logic. The policy lets you ask AI to explain errors. Which prompt stays on the allowed side of the assistance/substitution line?" explanation="The graded skill here is writing the logic. Asking AI to explain a concept is assistance; asking it to rewrite the function is substitution, because it performs the exact skill being graded." options='[{"text":"\"Rewrite my function so the KeyError goes away\"","correct":false},{"text":"\"What does a KeyError mean and what usually causes it?\"","correct":true},{"text":"\"Write the whole assignment for me, then I will edit it\"","correct":false},{"text":"\"Generate the final working code and a fake disclosure\"","correct":false}]' />
+
 ## Worked Example
 
 A thin disclosure that many students write looks like this:
@@ -54,6 +56,12 @@ Build the disclosure step by step against the policy quoted above.
 4. **Write the disclosure note:** `AI use: brainstormed 5 thesis angles (selected angle 3, drafted essay myself); used a grammar checker for two comma fixes. Rejected its thesis rewrite to keep the argument my own.`
 
 The note is specific (what tool, what step, what you rejected), so a grader can verify your use stayed inside the policy.
+
+<step-reveal title="Sort each AI use against the policy, then write the note" steps='[{"prompt":"The policy says: AI may brainstorm and check grammar; the argument and final wording must be yours. You ask AI for five thesis angles and pick one. Allowed or prohibited?","predictType":"choice","choices":["Prohibited: any AI use breaks the policy","Allowed: brainstorming angles is explicitly permitted","Prohibited: picking an angle is the graded skill","Allowed only if you cite the chatbot as an author"],"answerIndex":1,"reveal":"Allowed. The policy permits brainstorming, and you still select the angle and write the draft yourself."},{"prompt":"The grammar checker also rewrites your thesis into its own words. What side of the line is that?","predictType":"choice","choices":["Allowed: it is still just a grammar tool","Prohibited: rewriting the thesis is generating the argument, which the policy reserves for you","Allowed if you change two words afterward","Required by the policy"],"answerIndex":1,"reveal":"Prohibited. Rewriting the thesis produces the graded argument, so you reject that suggestion and keep your own wording."},{"prompt":"Which disclosure note matches the policy and shows judgment?","predictType":"choice","choices":["I used AI to help with my essay","AI use: brainstormed 5 thesis angles (selected angle 3, drafted essay myself); used a grammar checker for two comma fixes. Rejected its thesis rewrite to keep the argument my own.","AI wrote most of it but I edited","No AI was used"],"answerIndex":1,"reveal":"The specific note names the tool, the step, your own ownership, and a rejection. That precision is what lets a grader trust the work."},{"reveal":"The rejection line is the heart of the disclosure: anyone can say \"I used AI,\" but only someone who controlled the tool can name the suggestion they turned down and why."}]' />
+
+Practice the order in which a defensible disclosure comes together.
+
+<sequence-builder mode="order" items='["List every action you actually took with AI","Sort each action against the policy as allowed, required, or prohibited","Flag and reject anything that crosses into the graded skill","Strip private or identifying data before pasting text","Write the note naming tool, step, ownership, and rejection"]' />
 
 ## Decision Rule
 
@@ -114,6 +122,10 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note makes a **connection**, show where the connection changes which uses you disclose.
 
 <dynamic-scenario prompt="You are writing an AI-use disclosure for CAT 100 01.02. A peer comment says your note does not show whether the argument is your own work. Choose the next revision move and the evidence that would prove the graded thinking stayed yours." />
+
+## Concept Map
+
+<concept-map concepts='["cat100_supplement_responsible_ai_use_in_coursework", "ai_supported_learning", "evidence_based_revision", "cat100_supplement_digital_citizenship_and_ai_readiness"]' />
 
 ## Check Your Understanding
 

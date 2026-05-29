@@ -36,6 +36,8 @@ The deepest of these is the unobservable cause, because it is the easiest to wri
 
 Audience is the frame that decides whether a word is wrong. "Quotient" is fine for a colleague and wrong for a parent with no math background. So the scan is not "find harsh words" in the abstract; it is "find words wrong for this reader," which means you must name the reader before you scan.
 
+<inline-check question="A note to a parent reads: ’Your child is just not a math person yet.’ It sounds gentle. Which bias pattern is still hiding in it?" explanation="’Not a math person’ judges who the child is (a fixed trait) rather than naming a behavior, so it fails the behavior check. Politeness does not remove the label; the word still assigns an identity the parent cannot act on. The fix names an observable behavior instead, such as ’missed 6 of 10 fraction problems.’" options='[{"text":"Person label: it judges the child as a fixed type instead of naming a behavior","correct":true},{"text":"False urgency: it pressures the parent to act now","correct":false},{"text":"Audience mismatch: ’math person’ is jargon a parent cannot read","correct":false},{"text":"No bias; a gentle, polite sentence is automatically fair","correct":false}]' />
+
 ## Worked Example
 
 Tone and bias work is concrete word-level editing: you scan a draft for loaded or audience-wrong words and log a find-and-replace decision for each one. A freshman does this as a two-column edit table so every change is visible. Follow the steps.
@@ -65,7 +67,13 @@ very fixable. Here are two things you can try at home.
 
 Step 4. Log the one rejected change. The AI also suggested replacing "your child" with the student's first name everywhere. You rejected it because in a privacy-sensitive parent email the relationship word "your child" is clearer and safer than repeating the name. The find-and-replace table plus that rejection is the evidence: a reader can see every word you changed and why.
 
-## Decision Rule
+Put the word-level edit into the order that keeps each replacement defensible:
+
+<sequence-builder mode="order" items='["Name the reader first (a parent with no math background), since audience decides which words are wrong", "Scan the draft word by word and flag each loaded or audience-wrong term", "Label each flagged word with its bias pattern (unobservable cause, person label, false urgency, audience mismatch)", "Log a concrete replacement for each flag and the reason in a find-and-replace table", "Apply the replacements and re-read for over-correction into vagueness"]' />
+
+Now repair the failed-quiz note one flagged word at a time, predicting each fix before you reveal it:
+
+<step-reveal title="Scan and replace the loaded words" steps='[{"prompt":"The draft says ’your child obviously did not study.’ Which bias pattern is this, and what replaces it?","predictType":"choice","choices":["Unobservable cause: replace with what you can see, ’scored 4/10 on Tuesday’s quiz’","Audience mismatch: replace with a simpler synonym for ’study’","False urgency: add a deadline","No problem: ’obviously’ just adds emphasis"],"answerIndex":0,"reveal":"Unobservable cause. You cannot see whether the child studied; you can only see the score. Swapping the inferred cause for the observed fact is both fairer and something the parent can act on."},{"prompt":"The draft says ’these lazy habits.’ Which fix passes the behavior check?","predictType":"choice","choices":["Name the behavior: ’could use more practice on fractions’","Soften it to ’somewhat lazy habits’","Keep it but add ’please don’t take this personally’","Delete the whole sentence and say nothing"],"answerIndex":0,"reveal":"Name the behavior. ’Lazy’ labels the child; ’could use more practice on fractions’ names an action the parent can support. Softening the label still leaves a label."},{"reveal":"Finally, ’immediately’ is false urgency for a single quiz, so replace it with a proportional window such as ’over the next two weeks.’ You reject the AI’s offer to swap ’your child’ for the student’s first name, because in a parent email the relationship word is clearer and safer for privacy. Every flagged word now has a logged replacement and a reason a reviewer could check."}]' />
 
 Replace inferred causes with observed facts, labels with behaviors, and pressure with proportion. A message is audience-fit when every flagged word has a logged replacement and a reason a reviewer could check.
 
@@ -109,6 +117,12 @@ A useful closing note for the artifact would read: "I replaced 'obviously did no
 ## Transfer Case
 
 Move the scan from a parent email to a public web page, since CAT 100 students publish to GitHub Pages. On a public page the audience is unknown and permanent, so the audience check tightens: a word that assumes shared context ("as everyone knows") fails because not every visitor shares it, and any word naming a real person raises a privacy flag the moment the page is public. The categories transfer, but the audience-mismatch check becomes stricter because you cannot predict or take back who reads a published page. Understanding the method means raising the bar for the new, wider audience rather than reusing the parent-email standard.
+
+## Concept Map
+
+See how word-level bias scanning connects to the chapter’s wider ideas:
+
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_tone_bias_and_audience", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

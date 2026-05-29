@@ -50,6 +50,10 @@ After (strong): "Six stakeholders, with conflicting interests. The silent stakeh
 
 The strong map names interests, surfaces the silent stakeholder, and states whose interest the design centers, which a colleague can audit.
 
+You are the one teacher in the adoption meeting who sees the students daily. Decide what you say.
+
+<branching-scenario tree='{"title":"Speaking for the silent stakeholder","start":"n1","nodes":{"n1":{"prompt":"In the room: principal, two department heads, the vendor sales engineer. The AI writing-feedback tutor would grade and comment on essays automatically. Everyone present benefits from a yes. Your first move?","choices":[{"label":"Agree it helps students and teachers and move to approve","next":"n2","feedback":"You mapped only the aligned, present parties. That is a list of people who like the tool, not a stakeholder analysis."},{"label":"Ask who is most affected by the tool yet not in this room","next":"n3","feedback":"This is the move that finds the silent stakeholder: the most-affected party least likely to be consulted."},{"label":"Defer entirely to the vendor on accuracy claims","next":"n4","feedback":"The vendor has an adoption-and-data interest; treating its claim as neutral erases the stake that matters most."}]},"n2":{"prompt":"Reconsider: whose interest does a map of only-aligned parties protect by omission?","choices":[{"label":"The students the tool will fail quietly, who are absent","next":"n3","feedback":"Right. Name the absent, most-affected party before the decision hardens."}],"feedback":"A map with no conflict is decoration."},"n3":{"prompt":"You identify English learners as the silent stakeholder: the grammar model may score their phrasing as error rather than dialect or developmental form. Whose interest does the current design center?","choices":[{"label":"The most-affected students; the design already protects them","next":"n5","feedback":"Not yet. Right now the design centers teacher time and vendor adoption, not the EL student."},{"label":"Teacher time and vendor adoption, not the most-affected students","next":"n6","feedback":"Correct, and naming that honestly is what lets you propose a re-centering move."}]},"n4":{"prompt":"Re-anchor: what is the vendor’s actual interest?","choices":[{"label":"Adoption and access to student writing to train on","next":"n3","feedback":"Right. Name it as a stake, then return to finding the silent stakeholder."}],"feedback":""},"n5":{"prompt":"Check the EL student against the design: is there a dialect setting in the grammar model?","choices":[{"label":"No; so the design currently penalizes developmental syntax","next":"n6","feedback":"Exactly. The evidence is the missing dialect setting."}],"feedback":""},"n6":{"prompt":"Propose one concrete re-centering move with evidence, not a hope.","choices":[{"label":"\"Pilot only with a required teacher override on EL essays plus a parent consent step, because the vendor model has no dialect setting\"","next":"end","feedback":"This is a re-centering move a colleague can audit: it names the protected party, the mechanism, and the evidence."},{"label":"\"Trust teachers to be fair when they read the AI feedback\"","next":"n7","feedback":"A hope is not a mechanism. Re-centering needs a concrete move, not goodwill."}]},"n7":{"prompt":"Convert the hope into a mechanism.","choices":[{"label":"Require a teacher override on flagged EL essays before any score stands","next":"end","feedback":"Now the protection is structural, not dependent on individual fairness."}],"feedback":""},"end":{"prompt":"You re-centered the design on English learners with a teacher override and named the evidence.","feedback":"Stakeholder analysis is finished only when it surfaces a silent stakeholder and proposes a concrete, evidence-backed move that shifts the center toward them.","choices":[]}}}' />
+
 ## Decision Rule
 
 Before approving any school AI tool, work the map in this order:
@@ -60,6 +64,12 @@ Before approving any school AI tool, work the map in this order:
 4. **Re-center:** state whose interest the design currently serves and one concrete move that shifts it toward the most-affected student.
 
 If your map has no silent stakeholder, you have not finished; you have listed the people who were already in the room.
+
+Put the four map moves in the order the decision rule requires.
+
+<sequence-builder mode="order" items='["Roster everyone: buyers, operators, subjects, gatekeepers, vendor", "Name each interest honestly, including unspoken data and adoption interests", "Find the silent stakeholder: most affected and least consulted", "Re-center: name whose interest the design serves and one move that shifts it"]' />
+
+<inline-check question="A stakeholder map for an attendance-prediction tool lists 'district, counselors, students, data officer, vendor' and stops there. Why is this map not yet finished?" explanation="The map rosters parties but never asks who is most affected and least consulted. The flagged student, scored without consent and possibly tracked into lowered expectations, is the silent stakeholder, and a finished map surfaces that person and proposes a re-centering move." options='[{"text":"It is finished; all the parties are listed","correct":false},{"text":"It never surfaces a silent stakeholder or a re-centering move","correct":true},{"text":"It should list more vendors for comparison","correct":false},{"text":"It needs a more detailed cost estimate","correct":false}]' />
 
 ## Common Misreadings
 
@@ -78,6 +88,9 @@ Keep a two-column note: each stakeholder on the left, their actual (not stated) 
 A strong stakeholder map names roles distinctly, states interests including the unspoken ones, surfaces a silent stakeholder, and proposes a concrete re-centering move with evidence. Tidy formatting is the last layer. If the map has no conflicting interests, mark the gap and ask BigAL to help you locate the party your list is protecting by omission rather than for a general explanation of stakeholders.
 
 A useful closing line for the artifact sounds like this: "The design currently centers teacher time and vendor adoption; I re-centered it on English learners with a required teacher override on flagged EL essays, because the vendor's model has no dialect setting and would otherwise penalize developmental syntax as error."
+
+<self-explain prompt="The transfer case warns that wanting to adopt a tool makes you a biased mapper. Explain why running a stakeholder analysis on a tool you personally like is the real test of whether you understand the method." answer="When you want the yes, your incentive is to map only the aligned, present parties and to not look too hard for a silent stakeholder, because finding one would reopen a decision you have already made in your head. Running the analysis honestly against your own preference means deliberately asking who is most affected and least consulted even when the answer is inconvenient. If you only find silent stakeholders on tools you already distrust, the analysis is a ritual that confirms what you wanted; if you find them on tools you like, it is a method you actually run." />
+
 
 ## Transfer Case
 
@@ -101,6 +114,12 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note makes a **connection**, show where the connection changes the artifact.
 
 <dynamic-scenario prompt="You are revising the Design Tension Studio map naming a classroom value conflict and negotiated decision for CAT 531 04.03. A peer comment points to a transfer move issue connected to critical edtech studies. Choose the next revision move and the evidence that would show it helped." />
+
+## Concept Map
+
+These are the concepts this section connects. Trace how surfacing the silent stakeholder reshapes the design and drives evidence-based revision.
+
+<concept-map concepts='["cat531_supplement_ai_ethics_and_ethobot_3_2", "cat531_supplement_stakeholders_in_school_ai", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Check Your Understanding
 
