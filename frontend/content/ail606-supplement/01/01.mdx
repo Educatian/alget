@@ -6,34 +6,36 @@
 
 ## Why This Section Matters
 
-Cognitive Architecture for Multimedia Learning sits inside **Foundations of Interactive Multimedia Learning**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Cognitive Architecture for Multimedia Learning as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence is ready for revision.
-
-Read this page as a short decision cycle: understand the idea, apply it to **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+Every choice you make as a multimedia designer, where to put a label, whether to narrate or print a sentence, how fast a frame advances, is ultimately a bet about what the learner's mind can hold and process at that instant. If your mental model of that mind is vague, your design decisions become matters of taste. This section gives you the model that the rest of AIL 606 runs on: the human cognitive architecture proposed by Mayer and by Sweller, with its three memory stores and two sensory channels. The artifact you build against it, a cognitive load diagnosis table separating intrinsic, extraneous, and germane demand, is the instrument that turns "this looks busy" into "this frame pushes seven interacting elements through one channel for a novice."
 
 ## Learning Targets
 
-- Analyze how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
+- Map any multimedia frame onto the dual-channel, limited-capacity, active-processing architecture.
+- Separate intrinsic, extraneous, and germane load and assign each a source in the artifact.
 - Document a bounded AI/software support move with accepted and rejected suggestions.
 - Use annotations, support requests, and revision notes to decide what help or design change should come next.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Cognitive Architecture for Multimedia Learning. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence records that reasoning.
-
-This page is more than a principle summary. Use it to leave a design trace showing how Cognitive Architecture for Multimedia Learning changed what you noticed in the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence.
+A designer opens a finished water-cycle screen: a clean animation on the left, a tidy paragraph on the right, brand colors throughout. It looks professional. But "professional" is not a load claim. The screen says nothing about whether a novice can follow it, and the diagnosis table is still blank where it should read which channel each element enters and how many pieces must be juggled at once. The case is not "make it prettier." It is "decode what this screen demands of working memory, then revise the demand."
 
 ## Core Concept
 
-The core idea in this section is that **Cognitive Architecture for Multimedia Learning** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Multimedia learning theory rests on three empirical assumptions about the human mind, and the whole diagnosis table is just these three assumptions made operational.
 
-Three course anchors shape the reasoning here:
+1. **Dual channels.** People process visual/pictorial material and auditory/verbal material through partially separate systems (Paivio's dual coding, Baddeley's working memory). Printed text is a special case: it enters through the eyes, so it loads the visual channel even though it is verbal in nature.
+2. **Limited capacity.** Each channel can hold only a few elements at once. For genuinely novel material a common working estimate is roughly four to seven interacting elements before the learner saturates and comprehension collapses.
+3. **Active processing.** Meaningful learning requires the learner to select relevant material, organize it into a coherent structure, and integrate it with prior knowledge in long-term memory. Passive exposure does not build a schema.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+From these assumptions Sweller distinguishes three demands the table must keep separate:
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+| Load type | Source | Designer's job |
+| --- | --- | --- |
+| Intrinsic | Element interactivity of the content for *this* learner | Manage by sequencing, pre-training, segmenting; never delete the concept |
+| Extraneous | Poor presentation: split attention, redundancy, clutter | Reduce or remove |
+| Germane | Effort the learner spends building the schema | Protect and provoke |
+
+The single most consequential move in the table is correctly attributing demand. "Too hard" is not a diagnosis; it conflates intrinsic with extraneous and licenses no specific fix. When you write a row, you are forced to ask: is this difficulty in the *material* or in the *presentation*?
 
 ## Worked Example
 
@@ -41,11 +43,11 @@ The weak version below sounds plausible, but it does not yet give a reader enoug
 
 > I made the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence clearer.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+That claim is too thin because "clearer" does not identify the channel, the element count, or which of the three loads moved. A stronger entry would read:
 
-> I revised the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+> Frame 3 routed a 90-word paragraph and an animation through the same visual channel. I moved the paragraph to narration (auditory channel), which dropped the visual element count for a novice from roughly nine to four. The extraneous load fell; the intrinsic load (the water-cycle phases) was untouched.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+The improvement is not longer wording. It names the channel, quantifies the element count, and states which load changed and why.
 
 ### Annotated Before/After: Routing the Two Channels
 
@@ -59,54 +61,46 @@ Here is one storyboard frame revised against the dual-channel and limited-capaci
 
 **After (frame 3).** On-screen: the same animation with brief signaling labels (3 words each) appearing as each phase begins; narration carries the explanation; no competing paragraph. Reader-action note: "predict the next phase before it animates."
 
-The improvement is not that the frame is prettier. It is that the verbal load now travels through the auditory channel while the visual channel carries only the animation plus minimal labels, keeping the count of interacting elements within working-memory capacity.
+The improvement is not that the frame is prettier. The verbal load now travels through the auditory channel while the visual channel carries only the animation plus minimal labels, keeping the count of interacting elements within working-memory capacity, and the prediction prompt provokes the germane processing that builds the schema.
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Diagnose before you decorate. For any frame, run the load triage in this order:
 
-A strong submission should survive three quick tests:
+1. **Channel audit:** List every element and the channel it enters. Two simultaneous demands in one channel is a split-attention or redundancy flag.
+2. **Capacity estimate:** Count interacting elements for the *target* learner, not for yourself. Novices interact more elements than experts because they lack the schema that chunks them.
+3. **Load attribution:** For each demand, is it intrinsic (in the content), extraneous (in the presentation), or germane (the productive struggle)? Cut extraneous, sequence intrinsic, protect germane.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a revision lowers extraneous load but also strips a prediction or self-explanation prompt, you have traded away germane processing and probably made learning worse, not better.
 
 ## Common Misreadings
 
-Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.
-
-In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.
+The most common error is treating the architecture as a style guide ("less text, more pictures"). It is a capacity model. A picture-heavy frame can still overload a single channel, and a text-only frame can be fine for an expert whose schema chunks the words. The second error is calling all difficulty "load to be removed." Germane load is difficulty you want; an interface that removes the learner's need to predict, explain, or organize has lowered effort and lowered learning at the same time.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence**. Then ask what problem the artifact is supposed to solve inside multimedia learning foundations. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Take the screen from the opening case and run it through the architecture row by row. First, the elements: animation (visual), paragraph (visual, because printed text enters the eyes), brand banner (visual, irrelevant). Three demands, all in one channel, one of them extraneous. Limited capacity says a novice cannot hold the animation and a 90-word paragraph simultaneously, so the two compete and selection fails. The architecture predicts the fix before you reach for a tool: offload the verbal stream to the unused auditory channel. Notice what the model did not tell you to do, namely make it prettier. It told you to rebalance the channels and protect the one demand (predicting the next phase) that drives active processing. That is the difference between a design grounded in theory and a design grounded in preference.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 01.01, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+Read this section with the diagnosis table open, not your stylesheet. For each frame you encounter, write three lines: which channel each element loads, your element-count estimate for a novice, and the load type of each demand. A strong reader of cognitive architecture can predict where a learner will saturate before testing it, and can say which of the three assumptions, dual channels, limited capacity, or active processing, a given design choice serves or violates.
 
-A strong reader of Cognitive Architecture for Multimedia Learning can answer four questions:
+A strong reader can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which channel does each element load, and do any compete?
+2. How many interacting elements does a novice face here, and where is the ceiling?
+3. Which difficulty is intrinsic, which extraneous, which germane?
+4. What would the element count become for an expert, and would the design still be justified?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The table is strong when every row attributes a demand to a channel and a load type, with an estimate a reviewer could dispute. "Frame 3 is confusing" is not a row. "Frame 3 routes two verbal-visual elements through one channel; novice count about nine; extraneous, fixable by narration" is a row. Treat brand polish as the last layer. If a row names a load but not its source, mark the gap and ask BigAL for a side-by-side of the same frame under a novice versus an expert capacity estimate, not a general definition of cognitive load.
 
-A useful final paragraph for the artifact would sound like this: "I changed **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful final entry would read: "I rebalanced frame 3 across channels because the visual count exceeded a novice's capacity. I rejected the caption-track suggestion because it reintroduced a third visual element and undid the rebalancing."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Cognitive Architecture for Multimedia Learning deeply enough to adapt it rather than repeat it.
+Now move the same screen to an expert audience: graduate hydrologists reviewing the model for accuracy. The intrinsic load collapses, because their schema chunks the whole water cycle into one element, so the 90-word paragraph is no longer competing with much. The narration you added for novices may now feel slow and become extraneous itself (the expertise reversal effect). The architecture has not changed; the capacity estimate has, because the learner changed. If your only justification was "narration is better than text," you cannot explain why the right answer flips. If your justification was a channel-and-capacity estimate for a named learner, you can.
 
 ## Artifact Studio
 
@@ -135,7 +129,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+Before you move on, check that each row of the table names the channel an element loads, an element-count estimate for the target learner, the load type (intrinsic, extraneous, or germane), and the revision that followed, plus any suggestion you rejected and why.
 
 ## References
 

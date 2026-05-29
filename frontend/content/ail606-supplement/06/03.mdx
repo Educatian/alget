@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Persona-Based Simulation Checks sits inside **Refined Prototype and Capstone Defense**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Persona-Based Simulation Checks as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+You cannot recruit every learner who will use your prototype, but you can simulate the ones most likely to fail. A persona-based simulation check is a structured walkthrough in which you adopt a specific learner's goals, constraints, and context, then drive your prototype the way that learner actually would. Done well, it surfaces failures before real learners hit them; done poorly, it confirms only that a confident, well-resourced user on the happy path succeeds, which you already knew. The technique comes from usability engineering's cognitive walkthrough, where an analyst steps through a task asking at each point whether the user would know what to do and whether the system would tell them they succeeded.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The reason this belongs in a capstone defense is coverage. A committee will ask "who did you test this for," and a real persona check lets you answer with the constraints you deliberately stressed (low bandwidth, audio off, screen reader, time pressure) rather than with a demographic sketch that proves nothing.
 
 ## Learning Targets
 
@@ -17,21 +17,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **sto
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Persona-Based Simulation Checks. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A student writes: "Persona: Maria, 42, marketing director. She completed the module with no problems." This check found nothing because nothing in it could fail. "Marketing director, 42" is a demographic label, not a set of constraints, and "completed the module" means the student walked the happy path. The persona never encountered a condition the design did not already handle.
 
-A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the storyboard frame sequence with narration, signaling, and reader-action notes should make that chain readable.
+Now imagine the student instead drove a persona defined by constraints: finishing required training on a phone, on a commute, with intermittent signal and audio off. Suddenly the check has friction. The signal drops mid-video; the module resets; the audio-only narration is inaccessible muted. None of these are demographic facts; they are conditions of use, and conditions of use are what break designs. This section is about building personas that can fail.
 
 ## Core Concept
 
-The core idea in this section is that **Persona-Based Simulation Checks** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A persona-based simulation check is a **constraint-driven walkthrough**, and its diagnostic power comes entirely from how the persona is constructed. A persona that exists to break the design has three load-bearing parts, none of which is demographic:
 
-Three course anchors shape the reasoning here:
+- **Goal:** the specific outcome the learner is trying to reach, which lets you judge whether each screen advances or blocks it.
+- **Constraint:** the limiting condition (device, bandwidth, sensory channel, time, prior knowledge) that the design must survive. This is the part that produces failures.
+- **Context of use:** where and how the interaction actually happens, which determines whether your assumptions about attention and environment hold.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+These map onto two course anchors. UDL's principle of learner variability supplies the constraints worth simulating: variability in perception (audio off, screen reader), in physical access (one-handed phone use), and in executive function (interruption, time pressure). Cognitive load theory supplies the failure mechanism: when a constrained learner loses a channel (muted audio) or context (a reset), the design may force them to reconstruct state from working memory, which is exactly the extraneous load that causes drop-off.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+The critical move is to drive the persona off the happy path on purpose. A walkthrough that only confirms success has no evidential value, because a design that works for an unconstrained user on the intended path is the null hypothesis. The check earns its place only when the persona's constraint collides with a design assumption and produces a finding you can convert into a specific screen revision.
 
 ## Worked Example
 
@@ -55,50 +55,46 @@ The after version names a goal, a constraint, and a context, drives the persona 
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Before you trust a simulation check, confirm it was capable of failing. A check that could only succeed tells you nothing about robustness.
 
-Before submitting the storyboard frame sequence with narration, signaling, and reader-action notes, slow down and check whether the trace can answer three questions:
+1. **Constraint test:** Does the persona carry a real limiting condition (device, channel, time, prior knowledge), not just an age and job title?
+2. **Off-path test:** Did you drive the persona into at least one condition the design did not obviously anticipate?
+3. **Conversion test:** Did each failure become a specific screen revision, or a documented decision to accept the limitation with a reason?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If the check produced no friction and no revision, it has not yet done diagnostic work; redefine the persona around a sharper constraint and run it again.
 
 ## Common Misreadings
 
-A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.
+The most common error is mistaking a richer persona biography for a more useful persona. Backstory (hobbies, personality, a stock photo) adds nothing to a simulation; only goals, constraints, and context generate findings. A two-line persona with a sharp constraint outperforms a half-page profile with none.
 
-The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.
+A second error is excluding the failing context instead of designing for it. When a mobile, audio-off persona breaks the module, the weak response is a "best viewed on desktop" warning. That converts the design's limitation into the learner's problem. The persona's context is the real use context, so the finding is a mandate to revise, not a license to narrow the audience.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside capstone defense. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Choose the persona most likely to expose your weakest assumption. If your storyboard assumes attentive desktop viewing, build a persona who is mobile, interrupted, and muted, because that is where your assumptions are thinnest. Write only the goal, the constraint, and the context, then put the prototype in front of yourself and act as that learner, narrating every point where you hesitate, lose state, or cannot perceive content.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+When you hit the first failure, stop and record three things: what you were trying to do, what the design did instead, and which constraint caused the gap. Then design the fix at the screen level (progress persistence, captions, a larger touch target) and re-run the same persona to confirm the failure is gone. The walkthrough is complete when the persona that broke the design earlier now reaches the goal under the same constraint.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 06.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, draft the single persona whose constraint your current prototype is least prepared for, then predict where it will fail before you run it. Strong reading here is predictive: you should be able to name the screen that will break and the constraint that will break it, then use the walkthrough to confirm or correct the prediction.
 
-A strong reader of Persona-Based Simulation Checks can answer four questions:
+A strong reader of persona-based simulation checks can do four things:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Build a persona from goal, constraint, and context with no demographic filler.
+2. Predict which screen a given constraint will stress.
+3. Convert an observed failure into a specific, inspectable revision.
+4. Justify designing for a failing context rather than excluding it.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong simulation check is judged by whether it found something. A walkthrough that reports "no problems" is either a sign of a flawless design (rare) or, far more often, a sign of a persona too weak to fail. The standard is met when the check documents a constraint-driven failure and the screen revision that resolved it, with a rejected alternative showing you chose to fix rather than to exclude. When you cannot tell whether a persona is strong enough, annotate it and request a comparison between a constraint-driven persona and a demographic one.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A final paragraph for the artifact would read like this: "I drove a constrained persona off the happy path, observed a failure caused by that constraint, and revised the specific screens responsible. I rejected the option of warning the learner away from their real context, because the context was the use case, not an edge case."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Persona-Based Simulation Checks deeply enough to adapt it rather than repeat it.
+Move the technique to a domain where the constraint is cognitive rather than technical, for example a novice learner with no prior schema for the content. The walkthrough no longer stresses bandwidth or audio; it stresses prior knowledge. You drive a persona who cannot infer the unstated step, and you watch for the moment they stall because the design assumed expertise they lack. The skill that transfers is identifying which constraint matters most for this audience and building the persona around it, rather than reusing the mobile-and-muted persona that mattered for a different design.
 
 ## Artifact Studio
 
@@ -127,7 +123,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links Persona-Based Simulation Checks, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+Before you move on, make sure each persona is built from goal, constraint, and context, that you drove it off the happy path, and that every failure became a specific revision. A check that could not fail is not yet evidence.
 
 ## References
 

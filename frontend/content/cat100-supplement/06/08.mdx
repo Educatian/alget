@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Module 6 Website Studio sits inside **GitHub Pages Personal Website**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Module 6 Website Studio as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the GitHub Pages file tree with accessibility, privacy, and publishing checks.
+This is the capstone where the seven prior sections become one published site. Until now you practiced each skill in isolation: architecture, markup, repo setup, publishing, debugging, evidence, maintenance. The studio asks you to integrate them and prove the result works end to end. Integration is its own skill, because a site can pass each check individually and still fail as a whole, for example a perfectly accessible page that 404s on the live URL, or a clean file tree with a secret quietly sitting in history.
 
-Read this page as a short decision cycle: understand the idea, apply it to **GitHub Pages file tree with accessibility, privacy, and publishing checks**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The work product here is a single, deliberate verification: assemble the publishable file tree, run one combined accessibility, privacy, and publishing checklist, attach an honest AI-use note, and confirm everything on the live URL the way a visitor would. The deliverable is not a mockup or a description; it is a working, inspectable, published site.
 
 ## Learning Targets
 
@@ -17,21 +17,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **Git
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Module 6 Website Studio. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The GitHub Pages file tree with accessibility, privacy, and publishing checks is the place where that verification becomes visible.
+A student believes she is done. Her About page is accessible, her repo is clean, her resume bullet is sharp, her CSS is tidy. She submits a folder of files. But she never enabled Pages on the right branch, so the site is not actually live; she never opened the published URL on a phone, so she did not notice the project links 404 from the subpath; and although she deleted a stray token file, it still sits in commit history. Each individual skill from the module is present, yet the submission fails as a published artifact because nothing tied the pieces together and tested them as a system.
 
-The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.
+The studio exists to prevent exactly this. Passing every section separately is necessary but not sufficient; the capstone is about the integration and the single end-to-end proof.
 
 ## Core Concept
 
-The core idea in this section is that **Module 6 Website Studio** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Integration in this studio means three things working together.
 
-Three course anchors shape the reasoning here:
+**One file tree that satisfies every prior section at once.** The tree must reflect the architecture decision (only pages that serve the purpose), the markup decision (valid HTML with alt text), the repo decision (a `.gitignore`, no secrets), and the publishing decision (lowercase `index.html`, relative asset paths). The tree is the place where all the module's choices become simultaneously visible.
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+**One combined checklist across three dimensions.** Rather than three separate passes, the studio runs accessibility, privacy, and publishing as a single review where each check names its evidence in the artifact. Accessibility: every informative image has descriptive alt, navigation uses real links. Privacy: no keys, address, or phone committed, with `.gitignore` in place. Publishing: Pages source set, lowercase entry file, relative paths. The discipline is that each row points to something concrete in the site, not to a claim that it is fine.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+**One end-to-end verification on the live URL.** The decisive test is a single visit to the published address in a private window on a phone. That one action exercises accessibility (the screen reader announces alt text), privacy (no secrets surface), and publishing (pages load, links resolve, layout holds) at the same time. A live test that passes is worth more than any number of local previews, because it is the environment your audience actually uses.
+
+All three course anchors converge here. NACE career readiness treats shipping a working public artifact as the real outcome. ISTE digital citizenship covers the privacy and accessibility obligations of anything you publish. data-ink and visual evidence applies to your proof: the strongest evidence is the live site itself, demonstrated, not asserted.
 
 ## Worked Example
 
@@ -68,50 +68,46 @@ The submission is now a real published site, not a mockup. One end-to-end test o
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Before you call the studio complete, the submission must pass one integrated test, not three separate ones:
 
-A strong submission should survive three quick tests:
+1. **Tree check:** Does the file tree simultaneously satisfy architecture, markup, repo hygiene, and publishing requirements? Any one missing breaks the whole.
+2. **Live check:** Open the published URL in a private window on a phone. Do pages load, do all links resolve, does alt text announce, does the layout hold?
+3. **History check:** Is the repo clean across its whole history, not just the latest snapshot? A secret in an old commit still fails privacy.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If the live check passes on the real URL, you have a published site. If you only verified locally, you have not finished the studio.
 
 ## Common Misreadings
 
-Another misreading is to write about the tool instead of showing what the tool helped you revise.
+The central misreading at this stage is "I passed every section, so the site is done." Sections passed in isolation can still combine into a broken whole: accessible markup served from a path that 404s, or a tidy current snapshot hiding a leaked key in history. Integration must be tested as integration.
 
-In this course, quality means another reader can verify what changed and why.
+A second misreading is submitting files instead of a live site. A folder of correct files is not a published artifact. The capstone is specifically about the deployed, verifiable result, which is why the live-URL test is non-negotiable.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **GitHub Pages file tree with accessibility, privacy, and publishing checks**. Then ask what problem the artifact is supposed to solve inside website publishing. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the rule to a clean capstone. Maria first confirms the publishable file tree: `index.html` at the root, an `about.html` with headshot and alt text, a `projects/` folder, `resume.pdf`, an `assets/style.css`, and a `.gitignore` excluding `token.txt` and `.DS_Store`. The tree alone shows architecture (only purposeful pages), markup (real pages, not placeholders), repo hygiene (the ignore file), and publishing readiness (lowercase index).
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+She then runs the combined checklist, naming evidence for each row: accessibility is satisfied because every `<img>` has descriptive alt and the nav uses real `<a>` links; privacy is satisfied because no keys, address, or phone are committed and `.gitignore` is in place; publishing is satisfied because the Pages source is set, the entry file is lowercase, and asset paths are relative. She attaches the AI-use note covering the starter HTML draft, the one debugging fix, and the reworded resume bullet, stating she verified every change and owns all factual claims. Finally she runs the single end-to-end test: opening the live URL in a private window on her phone, where the pages load, the headshot announces its alt text, every link resolves, and no secret appears. One visit exercised all three dimensions at once, which is the point of the studio.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 06.08, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader treats the live visit as the experiment that subsumes the others. As you study the worked example, for each checklist row ask what a visitor on the live URL would actually experience if that row failed (an unannounced image, a leaked key, a 404). If you can map every check to a concrete failure a real visitor would hit, you understand why the integrated live test is the decisive one.
 
-A strong reader of Module 6 Website Studio can answer four questions:
+A strong reader of the website studio can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. How does a single file tree make every prior section's decision visible at once?
+2. Why can a site pass each check separately and still fail as a whole?
+3. What does one live-URL visit on a phone verify that a local preview cannot?
+4. Why is a clean latest snapshot not the same as a clean history?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+Your capstone is strong when a reviewer can open your live URL, experience an accessible, working, secret-free site, and trace each quality to concrete evidence in the repo. The AI-use note should make your tool use transparent, and the verification should rest on the live site rather than on a claim that it worked locally.
 
-A useful final paragraph for the artifact would sound like this: "I changed **GitHub Pages file tree with accessibility, privacy, and publishing checks** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A strong submission names the integration failure you caught: "Each section passed on its own, but my project links 404ed on the live subpath until I switched to relative paths; I found it only by opening the published URL on my phone, not in the editor."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **GitHub Pages file tree with accessibility, privacy, and publishing checks** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Module 6 Website Studio deeply enough to adapt it rather than repeat it.
+Carry the integration-and-verify discipline to any capstone deliverable, for example a data report that combines a cleaned spreadsheet, a chart, and a written summary. The components can each be correct while the whole fails: a chart built from an older version of the data, or a summary citing a number the spreadsheet no longer contains. The remedy is the same as in this studio: assemble the pieces into one artifact, run a single combined check that ties each claim to its source, and verify the finished thing in the form the audience will actually receive. Recognizing that "test the integrated result in its real environment" is the portable lesson, not "click the GitHub Pages button," is what shows you finished the module rather than just its last task.
 
 ## Artifact Studio
 

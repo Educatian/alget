@@ -4,38 +4,38 @@
 
 ## Why This Section Matters
 
-Evidence-Centered Design for Prototypes sits inside **Research Translation for Learning Design**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Evidence-Centered Design for Prototypes as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the prototype README traceability matrix connecting theory to screen changes is ready for revision.
+A prototype screen can look finished while quietly failing the one job that justifies it: producing evidence that a learner can do what you claim. Evidence-Centered Design (ECD), articulated by Mislevy and colleagues, gives you a discipline for closing the gap between what you assert and what your screens can actually show. Instead of building tasks and then guessing what they measure, ECD makes you reason backward from the claim to the evidence to the task. For a learning designer, the README traceability matrix is where that backward chain becomes inspectable: every screen must trace to an observable, and every observable must trace to a knowledge claim.
 
-Read this page as a short decision cycle: understand the idea, apply it to **prototype README traceability matrix connecting theory to screen changes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section matters because misalignment is invisible until someone audits it. A drag-the-label task feels like it measures interpretation; on inspection it may only measure whether the learner can read labels. ECD is the tool that surfaces that mismatch before a reviewer, or a real learner, does.
 
 ## Learning Targets
 
-- Analyze how the prototype README traceability matrix connecting theory to screen changes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- State the three ECD layers used here: claim (what the learner knows or can do), evidence (the observable that would reveal it), task (the screen that elicits the observable).
+- Audit a traceability matrix row for the two classic failures: an unobservable evidence cell and a task that cannot elicit the named observable.
+- Rewrite an internal-state evidence cell ("feels confident") as a scorable behavior.
+- Reject task features that produce data unrelated to the claim.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Evidence-Centered Design for Prototypes. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the prototype README traceability matrix connecting theory to screen changes records that reasoning.
-
-A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the prototype README traceability matrix connecting theory to screen changes should make that chain readable.
+A teammate shows you a slick prototype: a drag-the-label screen where learners drag terms onto a residual plot. The matrix row reads: claim, "learner can interpret a residual plot"; evidence, "learner feels confident about the plot"; task, "drag-the-label screen." Every cell is filled, so it looks complete. But the evidence is a feeling no screen can observe, and even if it could, dragging a label onto a plot demonstrates label placement, not interpretation. The screen is polished and the row is wrong. ECD exists to catch exactly this.
 
 ## Core Concept
 
-The core idea in this section is that **Evidence-Centered Design for Prototypes** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Evidence-Centered Design treats assessment, and by extension any prototype that claims to teach or measure, as an argument with three linked layers:
 
-Three course anchors shape the reasoning here:
+| Layer | Question it answers | Failure mode |
+| --- | --- | --- |
+| Claim (student model) | What knowledge or skill are we asserting? | Vague or unmeasurable target |
+| Evidence (evidence model) | What observable behavior would reveal that knowledge? | Internal state instead of an action |
+| Task (task model) | What situation forces the learner to produce the observable? | Task elicits a different behavior than the one named |
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The argument is only valid when the layers connect in both directions: the task must elicit the observable, and the observable must license the claim. A clean screen with a broken link is worse than an ugly screen with an intact one, because the clean screen invites false confidence.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+The course anchors sharpen each layer. **Mayer's principles** inform the task layer: a task that buries the observable behavior under extraneous decoration raises load and contaminates the evidence. **Cognitive load theory** warns that a struggling learner may fail a task for load reasons unrelated to the claim, so a high-load task produces ambiguous evidence. **UDL learner variability** pushes you to ask whether the task elicits the observable for all intended learners or only for those who happen to match the interface's assumptions; a single task may under-represent the claim for some.
 
 ## Worked Example
 
-Watch one row of a prototype README traceability matrix move from misaligned to defensible.
+Watch one matrix row move from misaligned to defensible.
 
 **Before (one matrix row, as first drafted):**
 
@@ -43,64 +43,49 @@ Watch one row of a prototype README traceability matrix move from misaligned to 
 | --- | --- | --- |
 | Learner can interpret a residual plot | Learner feels confident about the plot | Drag-the-label screen |
 
-1. Annotation: the evidence cell holds a feeling, not an observable, and the drag task cannot produce a confidence reading anyway.
-2. Decision point: what action on this screen would actually show interpretation, and does the task elicit it?
-3. Revision move: rewrite the evidence as an observable and align the task to produce it.
+1. The evidence cell holds a feeling, which no screen can observe or score.
+2. The task elicits label placement, not interpretation, so it cannot supply evidence for this claim even in principle.
+3. Both backward links are broken: task does not yield the observable, observable does not license the claim.
 
 **After (same claim, realigned row):**
 
 | Claim | Evidence | Task screen |
 | --- | --- | --- |
-| Learner can interpret a residual plot | Learner selects the correct diagnosis label for three plotted patterns | Diagnosis-selection screen with three residual plots |
+| Learner can interpret a residual plot | Learner selects the correct diagnosis (e.g., "non-constant variance") for three plotted patterns | Diagnosis-selection screen showing three residual plots |
 
-Now each cell traces: the task elicits the named observable, and the observable supports the knowledge claim. A reviewer can audit the row without asking me to narrate it. I rejected a suggestion to add a satisfaction prompt to the screen, because satisfaction is not evidence that the learner can interpret the plot.
+Now the chain holds: the diagnosis-selection task forces the learner to produce a scorable choice, the choice is an observable, and a correct diagnosis on varied patterns licenses the interpretation claim. A reviewer can audit the row without my narration.
+
+One rejected suggestion: adding a "How confident are you?" prompt to the screen. I declined because confidence is not evidence of interpretation; it would add a data column the claim does not need and could tempt a later analyst to treat self-report as competence.
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Build every row backward, claim first, then evidence, then task, and accept the row only when both links survive an audit:
 
-Before submitting the prototype README traceability matrix connecting theory to screen changes, slow down and check whether the trace can answer three questions:
+1. **Observable check:** Is the evidence cell a behavior you could score from a screen recording, with no mind-reading? If it names a feeling or an internal state, rewrite it.
+2. **Elicitation check:** Does the task actually force the learner to produce that observable, or could a learner pass the task by some unrelated route? If the latter, the task is invalid for the claim.
+3. **Relevance check:** Does any data the task collects fail to support the claim? Drop or quarantine it so it cannot masquerade as evidence.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A row that fails any check is not "almost done"; it is producing the wrong evidence, which is worse than producing none.
 
 ## Common Misreadings
 
-A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.
-
-The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.
+The most common misreading equates a more attractive task with a more valid one. Visual polish does not repair a broken elicitation link; a beautiful drag task still cannot measure interpretation. A second misreading treats "the learner completed the task" as evidence for the claim, when completion can be reached by guessing, by interface familiarity, or by a route that bypasses the target skill. ECD asks not whether the task was finished but whether finishing it required the claimed competence.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **prototype README traceability matrix connecting theory to screen changes**. Then ask what problem the artifact is supposed to solve inside research translation. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Apply ECD to a writing prototype. The claim is "learner can write a testable hypothesis." A first draft task is a multiple-choice screen asking which of four hypotheses is best. Audit it: the observable in that task is recognition, not production, so it cannot license a *writing* claim; a learner could recognize a good hypothesis without being able to write one. The fix is a task-layer change, not a polish change: replace recognition with construction. The revised task gives a scenario and asks the learner to type a hypothesis, with the observable defined as "the typed statement names a manipulation, a measure, and a comparison." Now the task elicits production, the observable is scorable against a rubric, and the chain to the claim is intact. The matrix made the recognition/production mismatch visible before any learner saw the screen.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 07.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
-
-A strong reader of Evidence-Centered Design for Prototypes can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+Read each row as an argument and try to break it. In the left column write the claim; in the right column write the single way a learner could satisfy the task *without* having the claimed skill. If you can find such a route, the row is invalid and the task layer needs work. A strong reader of an ECD matrix does not check whether cells are filled; they check whether the easiest path through the task happens to require the competence the claim asserts. When no shortcut exists, the evidence is trustworthy.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
-
-A useful final paragraph for the artifact would sound like this: "I changed **prototype README traceability matrix connecting theory to screen changes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+The traceability matrix is strong when every row survives the elicitation audit and when the README states, for at least one row, the alternative route a learner could have taken and how the task design forecloses it. Polish (typography, color, layout) belongs only after the three links hold. If a link is missing, annotate the cell and request a targeted comparison of a valid versus invalid task for that claim, rather than a general explanation of ECD.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **prototype README traceability matrix connecting theory to screen changes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Evidence-Centered Design for Prototypes deeply enough to adapt it rather than repeat it.
+Carry ECD into a setting where you inherit someone else's prototype and cannot rebuild the tasks. The matrix still earns its place: by reverse-engineering each screen into the claim-evidence-task layers, you can label which existing screens produce trustworthy evidence and which are decorative. That triage lets you spend a limited revision budget on the rows whose links are broken, rather than uniformly polishing screens that already work. The discipline transfers because it is about the logic of the evidence argument, not about who built the screens.
 
 ## Artifact Studio
 

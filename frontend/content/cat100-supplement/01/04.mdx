@@ -4,46 +4,44 @@
 
 ## Why This Section Matters
 
-Prompting With Verification sits inside **Digital Citizenship and AI Readiness**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Prompting With Verification as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the AI critique log showing accepted, modified, and rejected suggestions.
+A language model predicts likely words; it does not look facts up unless told to. That is why it can state a wrong room number, a fake citation, or an out-of-date hour with total confidence. The text reads smoothly whether it is true or invented. This section teaches the one habit that makes AI safe to use for factual work: every factual claim it produces is a hypothesis until you check it against an authoritative source.
 
-Read this page as a short decision cycle: understand the idea, apply it to **AI critique log showing accepted, modified, and rejected suggestions**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The work product is an AI critique log that records, claim by claim, what you kept, corrected, and removed after verification. A good prompt gets you a useful draft; verification turns that draft into something you can stand behind. Without the verification step, you are not using AI, you are repeating it.
 
 ## Learning Targets
 
-- Analyze how the AI critique log showing accepted, modified, and rejected suggestions shows a defensible decision in CAT 100.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use feedback, support requests, and revision notes to improve the artifact before sharing it.
+- Write a prompt specific enough to produce checkable claims, and ask the model to flag uncertainty.
+- Separate the model's output into individual factual claims you can verify one at a time.
+- Confirm, correct, or remove each claim against an official source, and log the result.
+- Recognize a hallucination: a confident, specific claim with no source behind it.
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Prompting With Verification. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The AI critique log showing accepted, modified, and rejected suggestions is the place where that verification becomes visible.
+Priya needs three campus facts for a "new student guide." She asks a chatbot and gets a clean list: the Writing Center is on the second floor of the library, the Health Center is open 24/7, and there are free laptop loans at the Student Union in room 210. The list looks authoritative. But when she checks, the Health Center's posted hours are 8 AM to 6 PM, and there is no room 210 laptop program anywhere on the university site.
 
-The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.
+Two of the three facts were wrong, and nothing in the AI's tone warned her. If she had pasted the list straight into her guide, she would have published confident misinformation under her own name.
 
 ## Core Concept
 
-The core idea in this section is that **Prompting With Verification** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Verification works because of a key property of language models: fluency and accuracy are independent. The model is optimized to produce text that sounds right, not text that is right. A made-up room number and a real room number are written with identical confidence. Therefore you cannot judge a claim by how it reads; you must judge it by whether a trustworthy source confirms it.
 
-Three course anchors shape the reasoning here:
+The reliable procedure is a **prompt-then-verify loop** with three moves.
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+| Move | What you do | Why it matters |
+|------|-------------|----------------|
+| Constrain the prompt | Ask for specifics and request uncertainty flags | Specific claims are checkable; vague claims hide errors |
+| Atomize the output | Split the answer into separate claims | You verify one fact at a time, not a paragraph |
+| Verify each claim | Confirm, correct, or remove against a source | Only checked facts survive into your work |
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+The strongest single tactic is to ask the model to mark anything it is unsure about. Models will often flag their own shaky claims if invited, which tells you where to aim your checking first. But the flag is a hint, not a guarantee; an unflagged claim still needs verification.
 
 ## Worked Example
 
 The weak version below sounds plausible, but it does not yet give a reader enough evidence:
 
-> I made the AI critique log showing accepted, modified, and rejected suggestions clearer.
+> I asked AI and it gave me three campus facts.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
-
-> I revised the AI critique log showing accepted, modified, and rejected suggestions so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
-
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+That sentence is too thin because it does not show that any fact was checked. A reader has no way to know whether the claims are true. A strong record shows the original output, the source you checked each claim against, and what you did with it.
 
 ### Worked Example: prompt, then verify, step by step
 
@@ -58,50 +56,44 @@ Result: one claim kept, one corrected, one cut. The guide now contains only fact
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Treat any specific, factual claim from AI as unverified until a primary or official source confirms it. Numbers, names, dates, locations, hours, prices, and citations are the highest-risk items because they are exactly what models fabricate most convincingly. If you cannot find a source for a claim, you do not get to keep it because it "sounds right"; you correct it or remove it.
 
-A strong submission should survive three quick tests:
-
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+1. **Source check:** Is there an official page, document, or record that confirms this claim?
+2. **Specificity check:** Did you verify the exact number, date, or location, not just the general idea?
+3. **Removal check:** For any claim you could not confirm, did you correct or delete it?
 
 ## Common Misreadings
 
-Another misreading is to write about the tool instead of showing what the tool helped you revise.
+The most damaging misreading is "the AI was confident, so it was probably right." Confidence is a property of the writing style, not of the truth. A fabricated citation is formatted as carefully as a real one. The smoother the lie, the more important the check.
 
-In this course, quality means another reader can verify what changed and why.
+A second misreading is verifying the easy claims and trusting the hard ones. Students often confirm a claim they could already guess and skip the unfamiliar fact, which is the one most likely to be wrong. Aim your verification at the claims you cannot already vouch for, especially anything flagged or anything oddly specific.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **AI critique log showing accepted, modified, and rejected suggestions**. Then ask what problem the artifact is supposed to solve inside digital readiness and AI verification. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Imagine using AI to help with a citation list for a short paper. You ask for "three peer-reviewed sources on study habits." The model returns three entries with authors, journals, years, and page numbers, all perfectly formatted. This is the most dangerous case, because fabricated citations are the model's specialty: the format is real even when the paper is not. Verify by searching each title in the library database or Google Scholar. Two resolve to real articles; one returns nothing, and the "journal" does not exist. You remove the third and replace it with a real source you found and read.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+The walkthrough shows verification is not optional even when the output looks scholarly. The fix is procedural, not clever: split the list, search each entry, keep only what resolves to a real, accessible source, and log what you removed. A reader who opens your citation list should be able to find every source you kept, because you already did.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 01.04, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+When you read AI-generated text, train yourself to underline every specific, checkable claim: a number, a name, a date, a location, a quotation. Those underlines are your verification to-do list. Vague sentences ("study habits are important") need no source; specific ones ("students who sleep 8 hours score 12% higher") demand one before you repeat them.
 
-A strong reader of Prompting With Verification can answer four questions:
+A strong reader of AI output can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which claims here are specific enough to be true or false?
+2. Which of those have I confirmed against a source?
+3. Which claim is the model itself flagging as uncertain?
+4. What did I correct or remove, and why?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+Your verification log is strong when a skeptic could re-check every kept claim using the sources you listed and reach the same conclusions. The earlier layers are the constrained prompt, the atomized claims, and the per-claim verification; the last layer is wording. If a claim is hard to verify, mark it in your trace and ask BigAL to help you locate an authoritative source rather than asking it to reassure you that the claim is fine.
 
-A useful final paragraph for the artifact would sound like this: "I changed **AI critique log showing accepted, modified, and rejected suggestions** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful note would read: "AI gave three campus facts. I confirmed the Writing Center location on the library site, corrected the Health Center hours from a fabricated 24/7 to the posted 8 to 6, and removed the room 210 laptop claim because no official source mentions it."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **AI critique log showing accepted, modified, and rejected suggestions** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Prompting With Verification deeply enough to adapt it rather than repeat it.
+Carry the loop into a spreadsheet task where AI suggests a formula or a data value. The same independence between fluency and accuracy applies: AI will confidently propose `=VLOOKUP(...)` syntax that is subtly wrong, or assert that a column's total is a certain number. You verify a formula by running it on a row you can check by hand, and you verify a claimed total by recomputing it with `=SUM()`. The medium changed from facts to formulas, but the discipline did not: a confident output is a hypothesis, and you keep only what you have independently confirmed. Once verification is a reflex, it protects you in writing, research, data work, and anywhere else a tool hands you a fluent answer.
 
 ## Artifact Studio
 
@@ -109,18 +101,18 @@ Open the studio packet: [download the AI critique log showing accepted, modified
 
 <artifact-studio artifact="AI critique log showing accepted, modified, and rejected suggestions" course="CAT 100" section="01.04" />
 
-Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
+Use the studio to create a before/after trace. The first version should show the raw AI output. The revised version should show which claims you confirmed, corrected, and removed, with the source for each. The trace should explain how you spotted the unverifiable claim.
 
 ## Adaptive Support
 
 ALGET uses your annotations and artifact trace to choose support:
 
 - If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
-- If your note shows **confusion**, compare a weak and strong version of the AI critique log showing accepted, modified, and rejected suggestions.
-- If your note is an **insight**, transfer the same decision rule to a new audience or setting.
-- If your note makes a **connection**, show where the connection changes the artifact.
+- If your note shows **confusion**, compare an unverified AI list with the same list after per-claim checking.
+- If your note is an **insight**, transfer the prompt-then-verify loop to a new kind of factual claim.
+- If your note makes a **connection**, show where the connection changes which claim you check first.
 
-<dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 01.04. A peer comment points to a transfer move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
+<dynamic-scenario prompt="You are building a verification log for CAT 100 01.04. A peer comment says one kept claim has no source listed and may be a hallucination. Choose the next revision move and the evidence that would confirm, correct, or remove the claim." />
 
 ## Check Your Understanding
 
@@ -130,7 +122,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links claim, evidence, tool boundary, revision, and remaining limitation. That is what separates digital fluency from simple completion.
+Before you move on, make sure your log lists each AI claim, the source you checked it against, and whether you confirmed, corrected, or removed it, with nothing kept on confidence alone.
 
 ## References
 

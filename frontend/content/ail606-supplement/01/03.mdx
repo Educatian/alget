@@ -6,46 +6,46 @@
 
 ## Why This Section Matters
 
-Cognitive Load Diagnosis sits inside **Foundations of Interactive Multimedia Learning**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Cognitive Load Diagnosis as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence is ready for revision.
-
-Read this page as a short decision cycle: understand the idea, apply it to **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The previous sections gave you the architecture and the principles. This section is about the clinical skill that uses them: diagnosis. A doctor who can only say "the patient feels unwell" cannot prescribe; a designer who can only say "the lesson is too hard" cannot revise. Diagnosis means decomposing a single felt difficulty into its three sources, intrinsic, extraneous, and germane, and attributing each to something in the artifact a reviewer could point at. The diagnosis table is the chart. Each row is a differential diagnosis: this much of the difficulty is in the content, this much in the presentation, this much is the productive struggle we must not remove.
 
 ## Learning Targets
 
-- Analyze how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
+- Decompose a single difficulty into intrinsic, extraneous, and germane components.
+- Estimate element interactivity for a named learner and tie it to a revision.
 - Document a bounded AI/software support move with accepted and rejected suggestions.
 - Use annotations, support requests, and revision notes to decide what help or design change should come next.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Cognitive Load Diagnosis. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence records that reasoning.
-
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind Cognitive Load Diagnosis so the next revision is based on evidence, not taste.
+A pilot tester says a statistics tutorial on interaction effects is "too hard," and the first instinct is to cut content until it feels easy. But "too hard" is a symptom with at least three possible causes, and the wrong cut deletes the very concept being taught. The diagnostic question is not "how do I make this easier?" It is "of the difficulty this learner feels, how much is the inherent complexity of an interaction effect, how much is a confusing rainbow legend, and how much is the desirable effort of predicting a missing cell?"
 
 ## Core Concept
 
-The core idea in this section is that **Cognitive Load Diagnosis** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Total cognitive load is additive across the three sources and bounded by working-memory capacity. Informally,
 
-Three course anchors shape the reasoning here:
+$$ L_{total} = L_{intrinsic} + L_{extraneous} + L_{germane} \le C_{wm} $$
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The design implication follows directly from the inequality. You cannot raise germane processing (the load that builds the schema) unless there is capacity to spare, and you free capacity mainly by cutting extraneous load, because intrinsic load is fixed by the content for a given learner. So the diagnostic order is forced: cut extraneous first, then sequence intrinsic, then spend the freed capacity on germane effort.
 
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+Intrinsic load itself is governed by **element interactivity**, the number of elements that must be held and related simultaneously because they cannot be understood one at a time. A high element-interactivity task for a novice can be low for an expert, because the expert's schema chunks several elements into one. That is why every diagnosis row must name the learner.
+
+| Source | Diagnostic question | Legitimate remedy |
+| --- | --- | --- |
+| Intrinsic | Must these elements be processed together? For whom? | Pre-train, segment, sequence |
+| Extraneous | Does the presentation add work unrelated to the goal? | Remove or restructure |
+| Germane | Is this effort building the target schema? | Protect; do not optimize away |
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+A first draft hides the real decision behind a vague claim:
 
-> I made the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence clearer.
+> I made the cognitive load diagnosis table clearer.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+A diagnostic entry separates the three sources and names a remedy for each:
 
-> I revised the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+> For a novice who knows main effects but not interactions, the intrinsic load is high (two factors plus their joint effect held at once). The rainbow legend adds extraneous scanning. The predict-the-cell prompt is germane. Remedy: pre-train on a single main effect (intrinsic), label lines on the plot and drop the legend (extraneous), keep the prediction (germane).
 
-Notice the shift: the artifact is no longer just polished. The revision points to **cognitive load theory**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+The improvement is that each entry names which load it is and what evidence places it there, so a reviewer can challenge a specific cell rather than the whole lesson.
 
 ### Annotated Before/After: A Three-Column Diagnosis
 
@@ -67,50 +67,42 @@ The improvement is that each entry now names which load it is and what evidence 
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Diagnose in the order the additivity inequality dictates:
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+1. **Cut extraneous first.** It is free capacity with no cost to the content. Split attention, redundancy, and decorative clutter go here.
+2. **Sequence intrinsic second.** If element interactivity is too high for the learner, lower it by pre-training and segmenting, never by deleting the concept.
+3. **Spend the freed capacity on germane third.** Add or protect the prediction, self-explanation, or comparison that builds the schema.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A revision that lowers a load without saying which of the three it lowered is not a diagnosis; it is a guess.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence while the designer never explains the learning demand.
-
-Treat the artifact as a record of design judgment, not only as a deliverable.
+The first misreading is treating "easier" as the goal. The goal is the *right* total load for the learner, which sometimes means adding germane effort, not removing it. The second is letting a tool optimize the surface (recolor the plot, smooth the prose) while the intrinsic source is never named, so the lesson still fails for the same reason. The third is forgetting the learner: a row that does not name who the learner is cannot estimate element interactivity and therefore cannot diagnose intrinsic load at all.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence**. Then ask what problem the artifact is supposed to solve inside multimedia learning foundations. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Take the "too hard" complaint and run the differential. First ask the extraneous question: is anything in the presentation adding work unrelated to interactions? Yes, the rainbow legend forces eye travel between line and label, so that is extraneous and gets cut by moving labels onto the lines. Now ask the intrinsic question: is the remaining difficulty in the concept itself? Yes, an interaction is irreducibly two factors and their product, high element interactivity for a novice, so you sequence it with pre-training rather than deleting a factor. Finally ask the germane question: is any of the difficulty productive? The predict-the-cell prompt is, so you protect it. One symptom, three sources, three different remedies. That is what diagnosis buys you over "make it easier."
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 01.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+Read every difficulty claim as a symptom awaiting decomposition. A strong reader refuses to accept "hard" or "confusing" as a diagnosis and instead writes three lines, one per source, each tied to something in the artifact and to a named learner. Keep a two-column note: the felt difficulty on the left, its decomposed sources and remedies on the right.
 
-A strong reader of Cognitive Load Diagnosis can answer four questions:
+A strong reader of cognitive load diagnosis can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Of this difficulty, how much is intrinsic, extraneous, and germane?
+2. Who is the learner, and what does that do to the element-interactivity estimate?
+3. Which remedy fits each source, and which remedies would destroy the concept?
+4. Which difficulty here is productive and must be protected?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The table is strong when each row attributes a portion of the difficulty to a named source with artifact evidence and assigns a source-appropriate remedy. "Made it easier" fails; "extraneous scanning from the legend, fixed by on-plot labels; intrinsic interactivity managed by pre-training; germane prediction kept" passes. If a row names a load without evidence, mark the gap and ask BigAL to contrast a novice and an expert estimate of element interactivity for that content rather than to restate the definitions.
 
-A useful final paragraph for the artifact would sound like this: "I changed **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful final entry would read: "I cut the legend (extraneous), pre-trained the single main effect (intrinsic), and kept the cell-prediction prompt (germane). I rejected deleting the second factor because it removes the concept rather than managing its load."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Cognitive Load Diagnosis deeply enough to adapt it rather than repeat it.
+Hand the same tutorial to a doctoral student who already reads interaction plots fluently. The intrinsic load drops sharply, because their schema chunks the two factors and the joint effect into one element, so pre-training that helped the novice now wastes their time and becomes extraneous. The prediction prompt may also be too easy to be germane and could be replaced with a harder transfer item. The three-source framework is unchanged; the estimates move because the learner moved. If your diagnosis named the learner, you can re-run it; if it only said "too hard," you cannot.
 
 ## Artifact Studio
 
@@ -139,7 +131,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+Before you move on, check that each row names the learner, decomposes the difficulty into intrinsic, extraneous, and germane with artifact evidence, assigns a source-appropriate remedy, and records any suggestion you rejected and why.
 
 ## References
 

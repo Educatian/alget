@@ -4,34 +4,36 @@
 
 ## Why This Section Matters
 
-Adapting Ethobot Prompts sits inside **AI Ethics and Ethobot 3.2**. In this part of CAT 531, you are learning to work as a teacher making a defensible technology decision: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Adapting Ethobot Prompts as a professional judgment problem: the learner must connect pedagogy, classroom constraints, and ethics before defending the Ethobot transcript annotation showing where ethical reasoning changed.
+A default AI prompt is written for an imaginary average class that does not exist in any real room. "Conduct a Socratic dialogue probing the ethics of surveillance" assumes students who already know what Socratic means, who can engage an abstraction, and who feel a personal stake in a policy phrased in the third person. Drop that prompt into a 9th-grade class of English learners and you get one-word answers, not because the students lack ideas but because the prompt blocked access to them. Adapting the prompt is how a teacher closes the gap between a tool's defaults and the actual learners in front of her, and doing it well is a precise instructional skill, not a matter of "simplifying."
 
-Read this page as a short decision cycle: understand the idea, apply it to **Ethobot transcript annotation showing where ethical reasoning changed**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The danger that runs alongside adaptation is steering. The easiest way to get richer-looking output is to bake your own opinion into the prompt, at which point the bot stops drawing out student reasoning and starts echoing yours. A defensible adaptation lowers the barrier to participation without tilting the conclusion, and the way you prove you did that is by annotating a before-and-after transcript: the same students, the same topic, with evidence that the change produced their reasoning rather than your answer in their mouths.
 
 ## Learning Targets
 
-- Analyze how the Ethobot transcript annotation showing where ethical reasoning changed shows a defensible decision in CAT 531.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to make a classroom technology decision more defensible.
+- Diagnose why a default prompt failed: jargon, abstraction, or missing personal stakes, each with a different fix.
+- Replace opaque framing with a concrete scenario that gives every student an entry point.
+- Constrain the bot's move (one probing follow-up) and add a language scaffold without scaffolding the verdict.
+- Show the effect with a before-and-after transcript, and name the change you rejected because it would steer the conclusion.
 
 ## Opening Case
 
-Imagine a teacher choosing whether to use a classroom technology for Adapting Ethobot Prompts. The important question is not whether the tool is exciting; it is whether the teacher can name the instructional purpose, the equity risk, the student-data boundary, and the evidence that makes the Ethobot transcript annotation showing where ethical reasoning changed a professional judgment rather than a preference.
-
-This section turns Adapting Ethobot Prompts into a defensible teaching decision. The goal is to make the reasoning public enough that a colleague could inspect and improve it.
+A teacher runs the default Ethobot prompt, "Conduct a Socratic dialogue probing the ethics of surveillance in schools," with a 9th-grade class where most students are English learners. The transcript is a wall of one-word answers. It would be easy to read that as disengagement or low ability. Reading it as a prompt failure points to the actual problem: the words "Socratic" and "probing" are opaque, and "surveillance in schools" is an abstraction with no personal hook. The fix is not to lower expectations but to rewrite the prompt so the same students can reach the same ideas, then to prove with a re-run transcript that the rewrite, not luck, made the difference.
 
 ## Core Concept
 
-The core idea in this section is that **Adapting Ethobot Prompts** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Adapting a prompt is targeted redesign, and the target depends on why the default failed. There are three common failure modes, each with its own remedy:
 
-Three course anchors shape the reasoning here:
+| Failure mode | Symptom | Remedy |
+| --- | --- | --- |
+| Jargon | Students stall on the prompt's own words | Replace academic terms with plain ones |
+| Abstraction | Correct but flat, impersonal answers | Anchor the question in a concrete scenario |
+| No stakes | Polite participation, no investment | Make the prompt name a person who is affected |
 
-- **TPACK** helps you decide what counts as a meaningful learning or performance demand.
-- **critical edtech studies** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **AI and education datafication** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+Two design moves do most of the work. The first is to swap abstraction for a concrete scenario: not "the ethics of surveillance" but "your school is thinking about cameras in the hallway, who would feel safer and who would feel watched." The second is to constrain the bot's behavior, not the student's answer: instruct the bot to ask one follow-up that makes the student name a person affected, then stop, so it deepens reasoning without flooding or leading.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+The line you must not cross is scaffolding the verdict. Adding a language support ("if the student gives a one-word answer, ask for an example from their own school day") helps students reason; adding your opinion ("guide the student to see that surveillance harms trust") tells them what to conclude. The first is adaptation; the second is steering, and a re-run transcript is how you check which one you did.
+
+The course anchors apply sharply. **Critical edtech studies** is the lens that flags the steering risk: a prompt engineered toward a "correct" ethical answer trains compliance, not reasoning. **TPACK** asks whether your adaptation still serves the content goal (ethical reasoning) rather than just producing longer transcripts. **Teacher professional judgment** is what decides which failure mode you are seeing and what to change, since the bot cannot diagnose its own prompt.
 
 ## Worked Example: Adapting a Bot Prompt for a Specific Class
 
@@ -59,50 +61,35 @@ The strong note states the exact prompt edit, shows transcript evidence of the e
 
 ## Decision Rule
 
-Use the classroom value conflict first, the technology affordance second, and the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity.
+Before you keep an adapted prompt, run three checks:
 
-A strong submission should survive three quick tests:
+1. **Diagnosis:** Did you name the failure mode (jargon, abstraction, stakes) before changing the prompt?
+2. **Open, not steered:** Does the change lower the barrier to participation without telling students what to conclude?
+3. **Evidence:** Does a before-and-after transcript show the change, in a student's own words, produced the richer reasoning?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If your evidence is "it felt better," you have a hunch; the re-run transcript is what turns it into a defensible adaptation.
 
 ## Common Misreadings
 
-Teachers can also over-trust a platform recommendation and under-document the classroom constraint that should govern the choice.
-
-In this course, quality means the technology choice can be inspected as a professional judgment.
+The first misreading equates adaptation with simplification, as if shorter words alone fix a flat dialogue; often the real failure is missing stakes, and a simpler abstraction is still an abstraction. The second, more serious error is treating a more agreeable transcript as proof of success when the agreement was manufactured by a prompt that told students what to say. Richer output that all converges on your opinion is a warning sign, not a win.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Ethobot transcript annotation showing where ethical reasoning changed**. Then ask what problem the artifact is supposed to solve inside ethics and Ethobot reasoning. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **TPACK**, **critical edtech studies**, **teacher professional judgment**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Apply the diagnosis to a different misfire. A teacher's default prompt, "Debate the trolley problem and justify your utilitarian reasoning," produces blank stares in a 7th-grade class. Diagnose: the failure is jargon ("utilitarian") plus an abstraction with no personal hook. Adapt: "Your bus can only pick up one of two groups before the bell, the soccer team or the band, and both will be late if you choose wrong. Who do you pick, and what makes it fair?" Constrain the bot to one follow-up that asks the student to name who loses. Add a scaffold for one-word answers. Then re-run and annotate: if Turn 4 moves from "the soccer team" to "the band, because they have a concert tonight and the team just has practice, so the band loses more," the adaptation worked, and the warrant is the student's own comparative reasoning, not a verdict you supplied. The same diagnose-adapt-prove cycle handles any prompt that lands flat.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 531 04.07, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
-
-A strong reader of Adapting Ethobot Prompts can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+Keep a two-column note: the prompt change on the left, the transcript evidence of its effect on the right, quoted from a student. A strong reader of an adaptation can name the failure mode it addressed and point to the line in the re-run that proves the fix, and can also name the tempting change they rejected to avoid steering. If your note claims improvement without a quoted before-and-after, you have not yet shown the adaptation did anything.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a mentor teacher can see the instructional purpose, the classroom constraint, and the reason a revision was made. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong adaptation note states the diagnosed failure mode, the exact prompt edit, transcript evidence of the effect in a student's words, and the steering change you rejected and why. Polish is the last layer. If the note lacks before-and-after evidence, mark the gap and ask BigAL to compare your adapted prompt against one that subtly steers, so you can see the line you are protecting.
 
-A useful final paragraph for the artifact would sound like this: "I changed **Ethobot transcript annotation showing where ethical reasoning changed** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving whether the technology choice serves a specific learning activity for real students."
+A useful closing line for the artifact sounds like this: "I replaced the abstract surveillance framing with a hallway-camera scenario to fix a missing-stakes failure; the re-run shows a student moving from 'cameras bad' to naming who feels watched and who feels safer, and I rejected adding my own opinion to the prompt because it would have produced agreement instead of reasoning."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Ethobot transcript annotation showing where ethical reasoning changed** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Adapting Ethobot Prompts deeply enough to adapt it rather than repeat it.
+Move the adaptation skill to a class on the opposite end: gifted seniors who find the concrete hallway scenario too easy and disengage from its simplicity. Here the failure mode flips from "no access" to "no challenge," and the fix is to add complexity (a budget constraint, a competing legal requirement) rather than to simplify. Working this version tests whether you adapt by diagnosing the specific learners in front of you, or whether "adapt" has quietly come to mean only "make it simpler."
 
 ## Artifact Studio
 

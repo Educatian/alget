@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Publishing With GitHub Pages sits inside **GitHub Pages Personal Website**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Publishing With GitHub Pages as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the GitHub Pages file tree with accessibility, privacy, and publishing checks.
+Publishing is the moment your files stop being a local experiment and become a live URL anyone can open. GitHub Pages does this by taking a branch of your repo, running a build, and serving the result over HTTPS for free. The catch that trips up nearly every first-time publisher is that the live site is not the same environment as your editor preview: paths resolve differently, the build takes a minute, and a project site lives under a subpath. A page that works perfectly on your laptop can appear unstyled or broken the instant it is live.
 
-Read this page as a short decision cycle: understand the idea, apply it to **GitHub Pages file tree with accessibility, privacy, and publishing checks**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches you to enable Pages, understand why local and live differ, and verify on the real URL the way a visitor would. The single most valuable habit here is testing the published address, not the preview, because that is where the truth lives.
 
 ## Learning Targets
 
@@ -17,21 +17,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **Git
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Publishing With GitHub Pages. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The GitHub Pages file tree with accessibility, privacy, and publishing checks is the place where that verification becomes visible.
+A student pushes his finished portfolio, enables Pages, and opens the live link. The text is all there but completely unstyled: black on white, default fonts, no layout. He is sure the stylesheet works because it looks perfect in his editor's preview. He spends an hour rewriting CSS that was never broken. The real cause is one character in the link tag: his stylesheet path starts with a slash, `/style.css`, which means "from the domain root." On a project site served from `username.github.io/portfolio/`, the domain root has no `style.css`, so the browser silently gets a 404 and renders the page with no styles.
 
-In CAT 100, completion is not the same as digital fluency. The section asks you to show how Publishing With GitHub Pages changes the choices you make in the GitHub Pages file tree with accessibility, privacy, and publishing checks.
+The bug was invisible in the editor preview, which serves from the folder root, and visible only on the live subpath. This section is about closing that gap between what you see locally and what visitors actually get.
 
 ## Core Concept
 
-The core idea in this section is that **Publishing With GitHub Pages** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Three facts about GitHub Pages explain almost every publishing surprise.
 
-Three course anchors shape the reasoning here:
+**Pages is a build-and-serve pipeline, not a live file mirror.** When you push, GitHub queues a build and then serves the output. There is a delay (often under a minute, sometimes longer), and a recent change is not live until the build finishes. "I pushed and nothing changed" is usually "the build has not completed and your browser is showing a cached copy."
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+**Absolute versus relative paths.** A path beginning with `/` is absolute: it starts from the domain root, `username.github.io/`. A path with no leading slash is relative: it starts from the current page's folder. On a user site served from the root, absolute paths happen to work. On a project site served from `/portfolio/`, an absolute `/style.css` points outside your project and fails, while a relative `assets/style.css` resolves correctly. This single distinction causes the unstyled-page case.
 
-The anchors should do work in your artifact. If NACE career readiness or ISTE digital citizenship does not change a decision, it is only a citation rather than evidence of judgment.
+**The live URL is the source of truth.** Your editor preview, a local server, and the published site are three different environments. Caching, build timing, and the subpath all mean the only reliable test is opening the actual published address, ideally in a private window (to dodge cache) and on a phone (to catch layout problems).
+
+These facts connect to the course anchors. NACE career readiness frames publishing as shipping: professionals are judged on what is live, not on what works locally. data-ink and visual evidence applies to verification itself; the strongest evidence that your fix worked is a screenshot or check of the live URL, not a claim that it looked fine in the editor.
 
 ## Worked Example
 
@@ -57,50 +57,46 @@ The fix was one character of path logic, not a broken deploy. The lesson is that
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+When the live page looks wrong, do not start editing. Diagnose with three checks in order:
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+1. **Build check:** Did the Pages build finish, and are you looking at a fresh copy? Wait for the build, then hard-refresh or use a private window so caching is not lying to you.
+2. **Path check:** Are your asset links relative (`assets/style.css`) or absolute (`/style.css`)? On a project subpath, absolute paths fail. Match the path style to where the site is actually served.
+3. **Environment check:** Did you verify on the live URL or only in the editor preview? If only the preview, you have not actually tested publishing.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+Most "broken deploy" panics are really a caching delay or one absolute path. Diagnose before you rewrite.
 
 ## Common Misreadings
 
-Students sometimes accept an AI suggestion because it sounds better, without checking whether it protects the claim, audience, or evidence.
+The biggest misreading is trusting the editor preview as proof the published site works. The preview and the live site are different environments; a path or build issue exists only on the live URL. Treating the preview as ground truth is how students rewrite working CSS for an hour.
 
-Your trace should make the judgment visible enough that a reviewer can trust the digital product.
+A second misreading is assuming a push is instant. Pages builds take time, and browsers cache aggressively, so "nothing changed" frequently means "wait and hard-refresh," not "my code is wrong."
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **GitHub Pages file tree with accessibility, privacy, and publishing checks**. Then ask what problem the artifact is supposed to solve inside website publishing. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the rule to the unstyled-page case. The student first runs the build check: the Pages dashboard shows the latest build succeeded, and a private-window reload still shows no styles, so caching and build timing are ruled out. He runs the path check and finds `<link rel="stylesheet" href="/style.css">`. Because his site is a project site at `/portfolio/`, that absolute path resolves to `username.github.io/style.css`, which does not exist. He changes it to the relative `assets/style.css`, which resolves under `/portfolio/`. He runs the environment check by opening the live URL, not the preview, in a private window on his phone; the styles now load.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+The fix was one path, found by diagnosis rather than guesswork. The walkthrough shows the value of the ordered checks: ruling out build and cache first meant he did not waste time, and the path check pointed straight at the real cause.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 06.04, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader treats the live URL as the experiment and the editor as a hypothesis. As you study the worked example, ask at each step which environment is being tested and what a difference between them would imply. If the page works locally but not live, your attention should go immediately to paths, build state, and cache, in that order, rather than to the CSS itself.
 
-A strong reader of Publishing With GitHub Pages can answer four questions:
+A strong reader of GitHub Pages publishing can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Why can a page look perfect in the editor but unstyled on the live URL?
+2. When does an absolute path work and when does it break?
+3. What two browser habits (private window, hard refresh) rule out caching as the cause?
+4. What is the single most reliable way to prove a fix actually shipped?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+Your published site is strong when you can point to evidence from the live URL, not the preview, that it works for a visitor: the styled page loading in a private window, links resolving, layout holding on a phone. Verification on the real address is the artifact, not just the code change.
 
-A useful final paragraph for the artifact would sound like this: "I changed **GitHub Pages file tree with accessibility, privacy, and publishing checks** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A strong submission names the environment difference you resolved: "Locally my CSS loaded; live it 404ed because I used an absolute path on a project subpath. I switched to a relative path and confirmed the fix on the live URL in a private window."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **GitHub Pages file tree with accessibility, privacy, and publishing checks** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Publishing With GitHub Pages deeply enough to adapt it rather than repeat it.
+Move the same publishing logic to a different host, say a Netlify or Cloudflare Pages deploy of the same site. The exact menu to enable the site differs, but the deep facts carry over: there is a build step with a delay, paths must match where the site is served, and the only trustworthy test is the live URL in a clean browser session. A student who learned to diagnose local-versus-live differences on GitHub Pages will diagnose the same class of bug on any static host, because the cause (environment mismatch) is platform-independent. Recognizing that the skill is "verify the deployed environment," not "click the GitHub Pages button," is the sign you understood publishing rather than memorizing one dashboard.
 
 ## Artifact Studio
 

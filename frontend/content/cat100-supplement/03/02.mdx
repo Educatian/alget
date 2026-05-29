@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Formulas for Everyday Analysis sits inside **Data Storytelling With Excel**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Formulas for Everyday Analysis as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the Excel pivot-table finding with unit labels, source note, and claim-first chart title.
+A formula is the difference between a spreadsheet that stores numbers and one that computes with them. The moment you write `=B3*C3` instead of typing the answer, the cell becomes live: change an input and the result updates, copy the formula down and it adapts to each row. That single shift, from typed values to referenced values, is the foundation of every analysis later in this module.
 
-Read this page as a short decision cycle: understand the idea, apply it to **Excel pivot-table finding with unit labels, source note, and claim-first chart title**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The skill that separates a working sheet from a broken one is understanding how references move when you copy a formula. Excel offers two behaviors, relative and absolute, and choosing the wrong one is the most common cause of a sheet that looks right at the top and goes silently wrong further down. This section teaches you to read a reference, predict how it will shift, and lock the parts that must stay fixed.
 
 ## Learning Targets
 
@@ -17,21 +17,25 @@ Read this page as a short decision cycle: understand the idea, apply it to **Exc
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Formulas for Everyday Analysis. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The Excel pivot-table finding with unit labels, source note, and claim-first chart title is the place where that verification becomes visible.
+You build an order sheet. In D3 you write `=B3*C3` for the first line total, it returns the right number, and you copy it down the column. Every line total looks correct. Then you add a shipping fee with `=D3+F1`, copy that down too, and the first row is fine but every row below it is wrong: the shipping silently drops to zero. You did not change the data. The formula moved in a way you did not intend.
 
-The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.
+This is the quiet trap of relative references. When you copy `=D3+F1` from row 3 to row 4, Excel rewrites it to `=D4+F2`, and F2 is empty. The fix is to know when to write `$F$1` so the reference stays put. Learning to see that shift before it bites is what this section is for.
 
 ## Core Concept
 
-The core idea in this section is that **Formulas for Everyday Analysis** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A cell reference like `B3` is an address, and a formula is a recipe written in terms of addresses rather than values. The key mechanic is what happens to those addresses when you copy the formula to another cell. Excel adjusts them by the same offset you moved.
 
-Three course anchors shape the reasoning here:
+There are two reference styles, and the dollar sign is the switch between them:
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+| Reference | Written as | When copied down one row | Use it for |
+| --- | --- | --- | --- |
+| Relative | `B3` | Becomes `B4` | A per-row input that should track each row |
+| Absolute | `$B$3` | Stays `B3` | A single shared value (a tax rate, a fixed fee) |
+| Mixed | `B$3` or `$B3` | Locks only the row or only the column | Filling a grid across both directions |
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+Read the dollar sign as a lock. `$F$1` means "lock the column F and the row 1, never move." A reference with no dollar signs is fully free and shifts in whatever direction you copy.
+
+Beyond references, three functions cover most everyday analysis: `SUM(range)` adds a range, `AVERAGE(range)` means it, and `COUNT(range)` tallies the numeric cells. A useful warning: `AVERAGE` ignores blank cells but a stray zero is counted, so a blank and a zero give different averages. Knowing that distinction keeps your means honest.
 
 ## Worked Example
 
@@ -55,50 +59,49 @@ The decision a reader can audit: relative references (`B3`, `C3`) for per-row in
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Before you copy a formula, ask one question of every reference in it: should this address move with the fill, or stay fixed? Each input that belongs to the row stays relative; each value that is shared by all rows gets locked with dollar signs. Then test the bottom of the column, not just the top, because relative-reference errors hide below the first row.
 
-A strong submission should survive three quick tests:
+Use this check on any column of copied formulas:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Per-row inputs:** Are quantities, prices, and other row-specific values written as relative references so they track each row?
+2. **Shared constants:** Is every value used by all rows (a fee, a rate, a target) locked with `$`, so the fill keeps pointing at the one cell?
+3. **Bottom-row test:** Click the last filled cell and read its formula. Does it still reference the cells you intended, or did a relative reference drift onto a blank cell?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If the last row's formula points somewhere unexpected, you have a reference-locking error, not a data error.
 
 ## Common Misreadings
 
-Another misreading is to write about the tool instead of showing what the tool helped you revise.
+A frequent misreading is believing a formula is correct because the first result is correct. The first row often works by coincidence: `=D3+F1` is right in row 3 because F1 happens to hold the fee. The error only appears in row 4 when the reference slides to the empty F2. Always verify a copied formula at the bottom of its range.
 
-In this course, quality means another reader can verify what changed and why.
+A second misreading is confusing a typed answer with a computed one. If you type `12.00` into a line-total cell instead of `=B3*C3`, the number looks identical but will not update when the quantity changes. Reading the formula bar, not just the cell, tells you whether a value is live or frozen.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Excel pivot-table finding with unit labels, source note, and claim-first chart title**. Then ask what problem the artifact is supposed to solve inside spreadsheet data stories. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the relative-versus-absolute decision to a study-budget sheet. Column B lists item costs, and cell E1 holds the sales-tax rate of 0.08. You want a "cost with tax" column.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+In C2 you write `=B2*(1+$E$1)`. The `B2` is relative because each row has its own cost, and `$E$1` is absolute because every row uses the one tax rate. Copy C2 down: C3 becomes `=B3*(1+$E$1)`, exactly what you want, the cost reference advancing while the rate stays pinned. Had you written `=B2*(1+E1)`, the copy would become `=B3*(1+E2)`, and E2 is blank, so row 3's "tax" would vanish.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Verify at the bottom. Click the last filled cell, read the formula bar, and confirm the rate still says `$E$1`. Then total the column with `=SUM(C2:C20)` so a reader can re-add the line items and reach the same grand total.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 03.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader can look at a formula and narrate what it will become two rows down before pressing copy. Practice predicting the fill:
 
-A strong reader of Formulas for Everyday Analysis can answer four questions:
+1. `=A2+B2` copied to row 3 becomes `=A3+B3` (both shift).
+2. `=A2*$B$1` copied to row 3 becomes `=A3*$B$1` (only the free reference shifts).
+3. `=A2/A$1` copied to row 3 becomes `=A3/A$1` (the locked row stays, the column would still shift if copied sideways).
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+When you can read a formula and forecast its copied form, you can debug a wrong column in seconds instead of retyping it.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong formula artifact does not just show the final totals; it makes the reference logic legible. Label the shared constant clearly (a cell named "Tax rate" or "Shipping fee"), and in your trace note which cells are locked and why. A model line reads: "Shipping is fixed for all orders, so I locked it as `$F$1`; the per-row inputs B and C stay relative so each line total reflects its own quantity and price."
 
-A useful final paragraph for the artifact would sound like this: "I changed **Excel pivot-table finding with unit labels, source note, and claim-first chart title** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+The weak version pastes a screenshot of right-looking numbers. The strong version lets a reviewer click any computed cell, read the formula, and confirm the lock pattern matches the logic you described. The proof lives in the formula bar, not the displayed value.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Excel pivot-table finding with unit labels, source note, and claim-first chart title** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Formulas for Everyday Analysis deeply enough to adapt it rather than repeat it.
+The same locking logic transfers to a multiplication grid, where you lock differently. Suppose row 1 holds prices across columns and column A holds quantities down the rows, and you want each interior cell to be quantity times price. The formula in the first interior cell is `=$A2*B$1`: the column of A is locked (`$A`) so the quantity always comes from column A, and the row of 1 is locked (`B$1`) so the price always comes from row 1. This mixed reference, locking one direction each, is the natural extension of the single-cell absolute reference, and recognizing when you need it shows you understand references rather than memorizing one pattern.
 
 ## Artifact Studio
 

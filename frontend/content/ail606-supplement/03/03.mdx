@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Image Generation for Instruction sits inside **Multimedia Storyboarding and AI Asset Generation**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Image Generation for Instruction as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+Generative image tools have collapsed the cost of producing a striking picture to near zero, which is exactly why they are dangerous in instruction. A text-to-image model optimizes for plausibility and aesthetic appeal, not for instructional accuracy, and it has no model of your learning objective. It will happily render a "lever" that violates physics, a "cell" with the wrong organelles, or a richly detailed scene whose detail is precisely the seductive distraction that depresses learning. The designer's job shifts from making images to commissioning, screening, and verifying them.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section treats image generation as a specification-and-verification problem. The instructional value of an image is set before the prompt, by naming the function the image must perform (what relationship or distinction the learner must be able to read from it), and confirmed after generation by checking the render against the content, not against your taste. A beautiful image that is decorative, inaccurate, or detail-laden is not an asset; it is a liability the tool produced cheaply.
 
 ## Learning Targets
 
@@ -17,21 +17,22 @@ Read this page as a short decision cycle: understand the idea, apply it to **sto
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Image Generation for Instruction. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A designer needs an image of a plant cell for a middle-school biology frame. The first generation is gorgeous: lush green, dramatic lighting, a cell bursting with detail. It is also wrong. The model has rendered animal-cell features inside a structure labeled "plant cell," added several organelles the lesson never covers, and buried the cell wall, the one structure the frame is supposed to teach, behind decorative texture. Accepted on looks, this image would teach a misconception.
 
-A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the storyboard frame sequence with narration, signaling, and reader-action notes should make that chain readable.
+The picture's appeal is the trap. Because it looks authoritative and was free to make, the designer is tempted to ship it. This section asks for the opposite reflex: a generated image is a draft to be interrogated against the content and the objective before it earns a place on the frame.
 
 ## Core Concept
 
-The core idea in this section is that **Image Generation for Instruction** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+An instructional image has a **representational function**: it makes a relationship, structure, or distinction visible so the learner can read it directly rather than inferring it from text. Specifying that function is step one, and it constrains everything downstream. "Show a lever" is not a function; "show that moving the fulcrum toward the load increases mechanical advantage" is, because it tells you the image must contrast two effort-arm lengths, which a single pretty lever cannot do.
 
-Three course anchors shape the reasoning here:
+Two principles govern what to keep out. Mayer's **coherence principle** says removing interesting-but-extraneous material improves learning; the corollary is the **seductive-detail effect**, where vivid, engaging elements (the photorealistic studio, the dramatic light) actively pull attention from the to-be-learned relationship. Generative tools manufacture seductive detail by default, so coherence is usually a subtraction task: re-prompt toward a clean diagram, not a rich scene.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+Two more checks decide whether the image is fit to ship:
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+- **Accuracy verification.** The model has no commitment to truth, so every label, count, proportion, and relationship must be checked against the authoritative content source. Treat the first render as an unverified claim.
+- **UDL and access.** An image that carries meaning by color alone, or that has no functional alt text, excludes learners; representational images create an accessibility obligation handled in 03.05.
+
+Cognitive load theory ties these together: extraneous visual detail and inaccurate elements both spend working memory the learner needs for the actual relationship, so a "better-looking" image can be a worse instructional one.
 
 ## Worked Example: Choosing and Verifying a Generated Instructional Image
 
@@ -58,50 +59,41 @@ The improvement is not a prettier image. It is an image chosen for its instructi
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Commission, then verify, in that order. Before prompting, write the image's function in one sentence: "the learner must be able to read [relationship/structure/distinction] from this image." The prompt then specifies that function (clean diagram, labeled parts, two cases shown side by side) rather than a mood.
 
-Before submitting the storyboard frame sequence with narration, signaling, and reader-action notes, slow down and check whether the trace can answer three questions:
+After generation, run the three-gate screen and reject at the first failure:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Function gate:** Can a learner read the named relationship from this image without reading the caption? If the relationship is not visible, re-prompt; do not patch it with text.
+2. **Coherence gate:** What in this render is decorative or seductive (scenery, lighting, extra figures, ornamental detail)? Strip it; if the model will not strip it, switch to a diagram style.
+3. **Accuracy gate:** Check every label, count, and proportion against the source. Models routinely swap labels (load/effort), miscount items, and invent parts. One verified error means the image is not shippable until corrected.
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+Polish is the last gate, not the first; a striking image that fails any earlier gate is rejected regardless of how good it looks.
 
 ## Common Misreadings
 
-A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.
-
-The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.
+The first misreading is "photorealism equals quality." For most instructional functions a clean line diagram outperforms a photo, because the photo carries surface detail (texture, background, lighting) that competes with the relationship being taught. The second misreading is trusting the model on facts: because the render looks confident and professional, designers skip verification, and ship images with swapped labels or impossible structures. The model is fluent, not accurate; fluency is exactly what makes its errors hard to catch.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside storyboarding and AI asset generation. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Walk a real commission. A frame must teach that series circuits share one current path while parallel circuits split it. Function sentence: "the learner must be able to read, from a side-by-side image, that current has one path in series and multiple paths in parallel." First prompt yields a photorealistic breadboard with tangled jumper wires, beautiful and useless, because the single-versus-multiple-path distinction is invisible under the clutter (function gate fails). Re-prompt: "schematic, two simple circuits side by side, left labeled series with one loop, right labeled parallel with two branches, no breadboard, no photoreal detail." The second render shows the contrast cleanly (function gate passes, coherence gate passes). Accuracy gate: confirm the parallel branches actually rejoin and the battery polarity is consistent; the first draft had drawn the branches without a shared node, which would teach a wrong model, so that is corrected before shipping.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+The walkthrough shows the order doing the work: naming the function ruled out the photoreal style, coherence ruled out the clutter, and verification caught a structural error the eye glides past.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 03.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+Read every generated image as an unverified claim and audit it. For each image in the chapter, name the function it is supposed to perform, then list what in the render is extraneous to that function and what you would check against a source. A strong reader does not ask "is this image good?" but "what relationship must a learner read here, is it readable, and is it true?" Train the habit of finding the one decorative element that, if removed, would lose nothing instructional, and the one factual claim the picture makes that you would not yet trust.
 
-A strong reader of Image Generation for Instruction can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+A strong reader of instructional image generation can, for any image, state its representational function, point to the seductive detail to cut, and name the specific fact to verify.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact reaches the stronger standard when the trace shows the commission-and-verification cycle, not just a final picture. It records the function sentence written before prompting, at least one rejected generation with the gate it failed (decorative, inaccurate, or wrong style), and an explicit verification note ("checked fulcrum, load, effort labels against the physics text; corrected a swapped pair"). Where an AI suggestion added relatable detail (a person, a setting), the trace records rejecting it for failing the coherence gate.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A strong closing note reads: "I re-prompted the lever image away from a photoreal workshop toward a labeled diagram that contrasts two effort-arm lengths, because the original could not show the distance relationship the lesson depends on. I verified the effort, load, and fulcrum labels against the source and corrected a swapped pair. I rejected the tool's suggestion to add a person pushing the lever because it added detail without clarifying the relationship."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Image Generation for Instruction deeply enough to adapt it rather than repeat it.
+Move from a generated diagram to a generated photo for a soft-skills scenario, say a customer-service role-play image. The accuracy gate changes character: there is no physics to check, but there is representation to check, because the model defaults to stereotyped depictions of role, gender, age, and ethnicity that can misteach or alienate. The coherence and function gates still apply (does the image show the interpersonal dynamic the scenario teaches, free of distracting detail?), but verification now means auditing for bias and representativeness against the actual learner population. The transfer test is whether you can keep the commission-then-verify discipline when "accuracy" means social accuracy rather than factual accuracy. If your verification step only knows how to catch a swapped label, it will pass an image that teaches a stereotype.
 
 ## Artifact Studio
 

@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Accessibility Review Workflow sits inside **Instructor Implementation Toolkit**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Accessibility Review Workflow as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+Accessibility is not a finishing pass you run on a polished screen; it is a property of whether a learner can perceive, operate, and understand the material at all. A storyboard frame that looks immaculate can be entirely closed to a screen-reader user, unreadable to someone with low vision, or unusable by a learner who cannot distinguish red from green. An accessibility review workflow is the disciplined procedure that replaces "looks clean" with a checkable list of who is currently excluded and why.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This matters because accessibility failures are invisible to the person who built the screen. The designer who can see the diagram, read the gray text, and notice the red highlight has no native signal that any of those choices excludes someone. A workflow anchored to explicit criteria is what makes the invisible exclusion visible, and turns a vague sense that "we should be accessible" into specific, fixable defects tied to specific learners.
 
 ## Learning Targets
 
@@ -17,21 +17,27 @@ Read this page as a short decision cycle: understand the idea, apply it to **sto
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Accessibility Review Workflow. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A designer presents a finished prototype screen at a critique: clean typography, a labeled diagram, instructions in elegant light-gray text, and a red frame marking the next step. The room nods; it looks done. Then someone runs it through a screen reader, which announces only "image" where the diagram should be, and checks the gray text, which measures 2.9 to 1 against the background, well below the 4.5 to 1 floor. The "next" cue is color alone, invisible to a color-blind learner. Three learners were excluded by a screen everyone in the room called finished.
 
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind Accessibility Review Workflow so the next revision is based on evidence, not taste.
+The case makes the workflow's whole point: "looks clean" is a statement about the reviewer's own perception, not about access. As you read, notice how every finding in a real review is tied to a named criterion and a named excluded learner, which is what separates an accessibility review from an aesthetic reaction.
 
 ## Core Concept
 
-The core idea in this section is that **Accessibility Review Workflow** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+An accessibility review workflow is a repeatable procedure that maps each element of a screen to the Web Content Accessibility Guidelines (WCAG) and produces a prioritized, checkable list of defects. WCAG organizes everything under four principles, abbreviated POUR: content must be Perceivable, Operable, Understandable, and Robust. Each principle decomposes into testable success criteria with identifiers, and those identifiers are what make a review auditable rather than impressionistic.
 
-Three course anchors shape the reasoning here:
+Three of those criteria recur in instructional media often enough to memorize:
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+- **1.1.1 Non-text content.** Every meaningful image needs a text alternative. A diagram without alt text is silence to a screen-reader user. The alt text should convey what the image means in context, not merely that an image exists.
+- **1.4.3 Contrast (minimum).** Normal text needs a contrast ratio of at least 4.5 to 1 against its background (3 to 1 for large text). Light-gray-on-white routinely fails this and excludes low-vision learners.
+- **1.4.1 Use of color.** Information conveyed by color must also be available another way. "The red frame is next" fails; "the frame labeled Next, with an arrow" passes.
 
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+Two principles govern how you act on findings. First, prioritize by depth of exclusion: a missing alt text fully locks out a screen-reader user, so it outranks a marginal contrast miss that merely strains a sighted reader. Second, born-accessible beats retrofit. Universal Design for Learning treats variability as the norm, so designing redundant cues from the start (color plus label plus icon) is cheaper and cleaner than bolting accommodations onto a finished screen.
+
+| WCAG criterion | Failure on the screen | Who is excluded | Fix |
+| --- | --- | --- | --- |
+| 1.1.1 Non-text content | Diagram has no alt text | Screen-reader users | One-sentence alt naming what and why |
+| 1.4.3 Contrast | Text at 2.9 to 1 | Low-vision learners | Raise to at least 4.5 to 1 |
+| 1.4.1 Use of color | Action cue is color-only | Color-blind learners | Add label plus icon as redundant cues |
 
 ## Worked Example
 
@@ -47,50 +53,50 @@ Walk through one concrete accessibility review of a single prototype screen, a n
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Review against named criteria, not against your own impression, and fix in the order of who is most fully excluded. An accessibility finding that cannot be tied to a WCAG criterion is an opinion; a fix that does not say which learner it unblocks has no priority.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+Run every screen through three checks:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Criterion check:** For each potential issue, which specific success criterion does it violate (1.1.1, 1.4.3, 1.4.1, or another)? If you cannot name one, you have a preference, not a defect.
+2. **Exclusion-depth check:** Does this issue fully lock a learner out (no alt text, so the diagram simply does not exist for them) or merely strain them (slightly low contrast)? Full exclusions are fixed first.
+3. **Redundancy check:** After the fix, is the same information available through at least two channels (color and label and icon), and does the added cue fit without crowding the screen?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A screen that passes all three is accessible by evidence; one that only "looks fine" has not been reviewed, only admired.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the storyboard frame sequence with narration, signaling, and reader-action notes while the designer never explains the learning demand.
+The most common misread is that a clean, professional look implies accessibility. Visual polish and access are independent properties; a beautifully typeset screen can fail every relevant criterion, and a plain one can pass them all. Treating aesthetics as evidence of access is how excluded learners stay invisible.
 
-Treat the artifact as a record of design judgment, not only as a deliverable.
+A second misread is that an automated checker certifies accessibility. Automated tools catch contrast ratios and missing alt attributes, but they cannot judge whether alt text is meaningful, whether reading order makes sense, or whether a color cue has a real alternative. The workflow needs human judgment against the criteria, with the checker as one input, not the verdict.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside course readiness and facilitation. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Run the workflow on the critique screen from the opening. Start with Perceivable, because perception failures are total exclusions. The diagram triggers 1.1.1: add a one-sentence alt that says what the diagram shows and why it matters here, not "diagram of process." The gray instructions measure 2.9 to 1, failing 1.4.3; raise the text to 4.6 to 1.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Move to Operable and Understandable. The "next" action is signaled by the red frame alone, failing 1.4.1; add a text label and an arrow so the cue lives in three channels. Now check the fix against UDL: redundant cues must not crowd everyone else. Because the layout had whitespace, color plus label plus icon fits without raising load for sighted learners.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Close the loop with priority and audit. The alt text was fixed first because it fully excluded a screen-reader user, ahead of the contrast strain. Each fix is logged against its criterion (1.1.1, 1.4.3, 1.4.1) and the learner it unblocks. The walkthrough is complete when a reviewer can map every change to a criterion and a person, which is the difference between an accessible screen and one that merely got prettier.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 08.05, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader of this section looks at any screen and mentally walks POUR, asking at each principle "who cannot perceive, operate, or understand this, and which criterion names that gap?" That habit converts a vague worry about inclusion into specific, addressable defects.
 
-A strong reader of Accessibility Review Workflow can answer four questions:
+Read any prototype against these four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. For each non-text element, is there a meaningful text alternative, or only a placeholder (1.1.1)?
+2. Does any text fall below the contrast floor for its size (1.4.3)?
+3. Is any required information carried by color alone, with no second channel (1.4.1)?
+4. When you fix the most-excluding issue first, does the redundant cue you add fit without raising load for other learners?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong accessibility artifact reports each defect by its WCAG criterion, the learner it excluded, the fix, and the post-fix measurement (for example, contrast raised from 2.9 to 1 to 4.6 to 1). A reviewer should be able to map every change to a criterion and a person, and to see that the fixes were ordered by depth of exclusion.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A strong rationale sounds like this: "I added alt text first (1.1.1) because the missing alternative fully excluded a screen-reader user, ahead of the contrast strain. I rejected the suggestion to convey the next step with a brighter red instead of adding a label, because brightening color does not satisfy 1.4.1; the information must exist in a non-color channel."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Accessibility Review Workflow deeply enough to adapt it rather than repeat it.
+Move the workflow from a single static screen to an interactive simulation with drag-and-drop and timed feedback. The POUR criteria still hold, but Operable now dominates: drag-and-drop must have a keyboard-only alternative (criterion 2.1.1), and timed interactions must be adjustable for learners who need more time (criterion 2.2.1), constraints that a static screen never raised. The faithful transfer is to extend the review to the criteria the new interaction introduces rather than reusing the static checklist. Porting only the alt-text-and-contrast pass would certify a simulation that is unusable to anyone who cannot operate a mouse under time pressure.
 
 ## Artifact Studio
 

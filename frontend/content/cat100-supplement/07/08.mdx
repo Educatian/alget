@@ -4,34 +4,40 @@
 
 ## Why This Section Matters
 
-Workflow Studio sits inside **Productivity and Workflow Automation**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Workflow Studio as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the privacy checklist for accounts, data sharing, and AI tool boundaries.
+This capstone section asks you to publish your workflow as a live web page, which means the abstract ideas from the rest of the chapter now have to survive contact with a real server. A page that looks fine on your laptop can return a 404, show a broken image, or fail to render a list once it is on the web, because publishing exposes three concrete requirements that local files hide: the homepage must be named exactly `index.html`, image paths must be relative (not pointing at your hard drive), and publishing must be turned on in the host's settings. This section teaches those mechanics using GitHub Pages.
 
-Read this page as a short decision cycle: understand the idea, apply it to **privacy checklist for accounts, data sharing, and AI tool boundaries**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The skill matters because "it works on my machine" is not the same as "it works for everyone." A published artifact is the strongest evidence of digital fluency precisely because a stranger's browser, with none of your local context, has to render it correctly.
 
 ## Learning Targets
 
-- Analyze how the privacy checklist for accounts, data sharing, and AI tool boundaries shows a defensible decision in CAT 100.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use feedback, support requests, and revision notes to improve the artifact before sharing it.
+- Name the homepage `index.html` so the site resolves at its root instead of returning a 404.
+- Use relative image paths so images load for every visitor, not just on your computer.
+- Enable publishing in the host's settings, since pushing files alone does not make a site live.
+- Close every HTML tag so the browser renders the content as intended.
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Workflow Studio. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The privacy checklist for accounts, data sharing, and AI tool boundaries is the place where that verification becomes visible.
+A student finishes a workflow write-up, pushes the files to GitHub, and visits the site URL, only to see a 404. The HTML is perfect, but the file is named `home.html`, and a web server looks for `index.html` at the root by default. They rename it, and the page appears, but the chart is a broken-image icon because the `<img>` tag points at `C:/Users/student/Desktop/chart.png`, a path that exists only on their laptop. No visitor's browser can reach the student's Desktop.
 
-A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The privacy checklist for accounts, data sharing, and AI tool boundaries is where that trust is built.
+These are not coding mistakes in the usual sense; the markup is valid. They are publishing mistakes: the page assumed a local context that does not exist on the web.
 
 ## Core Concept
 
-The core idea in this section is that **Workflow Studio** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Publishing a static site rests on three rules that local files let you ignore.
 
-Three course anchors shape the reasoning here:
+**The homepage name.** A web server, asked for a site's root, looks for a file named `index.html`. Any other name (`home.html`, `main.html`) leaves the root with nothing to serve, producing a 404. This is a convention, not a choice; the file must be named `index.html`.
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+**Relative versus absolute paths.** An absolute path like `C:/Users/you/chart.png` points to a specific location on your machine that no visitor can reach. A **relative path** like `./images/chart.png` points to a location relative to the HTML file itself, so it works wherever the site is hosted. The table makes the distinction concrete:
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+| Path style | Example | Works for visitors? |
+| --- | --- | --- |
+| Absolute local | `C:/Users/you/chart.png` | No, points to your hard drive |
+| Absolute web | `https://site.com/img/chart.png` | Yes, but brittle if the site moves |
+| Relative | `./images/chart.png` | Yes, travels with the files |
+
+**Publishing must be enabled.** Pushing files to a repository stores them; it does not serve them. GitHub Pages requires you to set the source in Settings (branch and folder) before anything goes live. The files existing is necessary but not sufficient.
+
+Underneath all three is one principle: a published page cannot rely on anything that lives only on your computer, including the file's local name, its disk paths, or your assumption that "saved" means "served." Plus, well-formed HTML (every tag closed) is what lets the browser render structure like lists at all.
 
 ## Worked Example
 
@@ -74,56 +80,54 @@ Three concrete decisions made it load:
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Before declaring a site published, ask three things in order: is the homepage named `index.html`, do all asset paths point to locations a stranger's browser can reach (relative, not local), and is publishing actually turned on in the host's settings.
 
-Before submitting the privacy checklist for accounts, data sharing, and AI tool boundaries, slow down and check whether the trace can answer three questions:
+A live site passes three checks:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Root check:** Is the homepage named `index.html`, so the site root resolves instead of 404?
+2. **Path check:** Do all images and assets use relative paths that load for any visitor?
+3. **Publish check:** Is the Pages source enabled in Settings, so the pushed files are actually served?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any check fails, the files exist but the site does not work for anyone but you.
 
 ## Common Misreadings
 
-A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.
+The most common misreading is "I pushed the files, so the site is live." Pushing stores the files; enabling Pages in Settings is what serves them. The two are separate steps.
 
-The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.
+A second misreading is testing only by opening `index.html` from your hard drive, where local absolute image paths happen to work. Always test the published URL in a fresh browser, because that is the only context that reveals a broken path or a wrong filename.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **privacy checklist for accounts, data sharing, and AI tool boundaries**. Then ask what problem the artifact is supposed to solve inside workflow and collaboration. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the rules to add a second page, a resume, to the same site. You create `resume.html` alongside `index.html` and link to it from the homepage with `<a href="./resume.html">Resume</a>`, a relative link so it works on the live site. The new page embeds a headshot with `<img src="./images/headshot.jpg">`, again relative.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+You push, then visit the live URL and click the link. If the resume 404s, the likely cause is a filename typo (`resume.htm` versus `resume.html`) or a missing push; if the headshot is broken, the path is wrong or the image was not committed. The walkthrough shows the same three rules governing every page you add: each must reach the others through relative links, each asset must use a relative path, and the whole thing only works once Pages is enabled and the files are actually pushed. Testing on the live URL, not the local file, is what catches the failures.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 07.08, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader never trusts a page until it has been opened from its public URL in a browser that has no access to their computer. "It works locally" is treated as untested, because local opening hides exactly the publishing errors that matter.
 
-A strong reader of Workflow Studio can answer four questions:
+A strong reader of a published site can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Is the homepage named `index.html`, and does the root URL load it without a 404?
+2. Does every image and link use a path a stranger's browser can resolve?
+3. Is Pages actually enabled, and have the latest files been pushed?
+4. Does the page render correctly in a fresh browser, not just when opened from disk?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is the live site plus its repository structure. It is strong when a reader can open the public URL on a device that has never touched your files and see the page render fully, images and all, with a short note explaining the three publishing decisions.
 
-A useful final paragraph for the artifact would sound like this: "I changed **privacy checklist for accounts, data sharing, and AI tool boundaries** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful note sounds like this: "I renamed `home.html` to `index.html` so the root URL resolves, switched the chart from a `C:/Users/...` path to `./images/audit-chart.png` so it loads for visitors, and enabled Pages in Settings. I rejected linking the image from my Google Drive because a private-drive link would break for anyone not signed in as me."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **privacy checklist for accounts, data sharing, and AI tool boundaries** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Workflow Studio deeply enough to adapt it rather than repeat it.
+Move from GitHub Pages to a different host, say a university web space or Netlify. The three rules transfer: a default homepage filename (often still `index.html`), relative asset paths, and an explicit publish or deploy step. What adapts is the publishing mechanism: one host reads from a Git branch, another from an uploaded folder, another from a deploy command. Recognizing that the `index.html` and relative-path rules are universal while the "turn on publishing" step is host-specific is what lets you ship a site anywhere, not just on the one platform you learned.
 
 ## Artifact Studio
 
-Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/07-08-workflow-studio-artifact.md).
+Open the studio packet: [download the workflow studio packet](/downloads/summer2026/cat100-supplement/07-08-workflow-studio-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="07.08" />
+<artifact-studio artifact="published GitHub Pages workflow site with relative paths" course="CAT 100" section="07.08" />
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -132,9 +136,9 @@ Use the studio to create a before/after trace. The first version should show you
 ALGET uses your annotations and artifact trace to choose support:
 
 - If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
-- If your note shows **confusion**, compare a weak and strong version of the privacy checklist for accounts, data sharing, and AI tool boundaries.
-- If your note is an **insight**, transfer the same decision rule to a new audience or setting.
-- If your note makes a **connection**, show where the connection changes the artifact.
+- If your note shows **confusion**, compare a weak and strong version of the published GitHub Pages workflow site.
+- If your note is an **insight**, transfer the index-and-relative-path rule to a new setting.
+- If your note makes a **connection**, show where the connection changes the site.
 
 <dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 07.08. A peer comment points to an adaptive move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
 
@@ -146,7 +150,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links claim, evidence, tool boundary, revision, and remaining limitation. That is what separates digital fluency from simple completion.
+Before you move on, confirm your site passes the root, path, and publish checks: the homepage is `index.html`, every asset uses a relative path, Pages is enabled, and the live URL renders correctly in a fresh browser.
 
 ## References
 

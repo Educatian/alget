@@ -4,34 +4,36 @@
 
 ## Why This Section Matters
 
-Observation Protocols sits inside **Usability Testing and Learning Evidence**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Observation Protocols as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the moderated usability test script with observation-to-revision trace is ready for revision.
+What you write down during a session becomes your only memory of it, and a verdict scribbled in the moment ("the page is confusing") destroys the evidence it claims to capture. The discipline of observation is the discipline of recording behavior, the things a camera would catch, separately from inference, the conclusions you draw later. Collapse the two at log time and you have replaced data with opinion before analysis even begins. This section is about building an observation protocol that keeps the raw record clean enough that a second analyst could replay the session and arrive at the same entries, which is the difference between findings and impressions.
 
-Read this page as a short decision cycle: understand the idea, apply it to **moderated usability test script with observation-to-revision trace**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+In AIL 606 the moderated usability test script with observation-to-revision trace must contain a protocol, not just a hope to "pay attention." The protocol decides what gets counted, how it is anchored in time and task, and where the moderator's judgments are allowed to live. A weak protocol lets one observer's bias masquerade as the participant's experience.
 
 ## Learning Targets
 
-- Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Separate observation (what was seen, said, or done) from inference (what it might mean) at the moment of recording.
+- Anchor each entry to a timestamp and a task step so behavior can be tallied across participants.
+- Capture think-aloud and behavioral signals without leading or prompting the participant.
+- Defer severity and interpretation to analysis, keeping the log replayable and bias-resistant.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Observation Protocols. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the moderated usability test script with observation-to-revision trace records that reasoning.
+A moderator watches a participant struggle on a checkout screen and logs: "Confused by the cart page, clearly did not understand it, the page is bad." Three sentences, three verdicts, and not one piece of evidence. When the team meets to prioritize fixes, this note can be argued with but not checked, because nobody can see what the participant actually did.
 
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind Observation Protocols so the next revision is based on evidence, not taste.
+The problem is that the moderator recorded a conclusion and threw away the behavior that might have justified it. Whether the participant hovered, asked a question, clicked the wrong control, or backed out is gone. The note feels like data because it is specific and confident, but it is unrepeatable: a second observer watching the same recording could log something entirely different and neither could be shown wrong.
 
 ## Core Concept
 
-The core idea in this section is that **Observation Protocols** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+An observation protocol enforces a boundary between two kinds of statements that beginners constantly merge.
 
-Three course anchors shape the reasoning here:
+| Layer | Example | Belongs in |
+| --- | --- | --- |
+| Observation | "Hovered between two buttons, said 'which one saves it?'" | The live log |
+| Inference | "Probably confused by ambiguous labels" | Analysis, later |
+| Verdict | "The page is bad" | Nowhere in the raw record |
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The reason to keep observation pure is repeatability. A behavioral entry ("moused over Continue and Update Cart three times") can be verified against the recording and tallied across participants; a verdict cannot. This is also a **cognitive load theory** issue for the moderator: interpreting and judging in real time consumes attention that should be spent watching, so the protocol offloads judgment to a later, calmer pass and frees the moderator to capture more behavior accurately.
 
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+Two further mechanics make a protocol trustworthy. First, anchoring: every entry carries a timestamp and the task step it occurred in, so the same event can be located and counted later, turning scattered notes into patterns. Second, non-leading capture: a think-aloud protocol asks the participant to keep talking but never asks "did you find that confusing?", because a leading prompt manufactures the data it pretends to observe. **UDL learner variability** adds a final demand: the protocol must record how different learners behave, not just whether the median learner succeeded, since the edge cases are where the design's real failures live and where a verdict-style note is most likely to erase them.
 
 ## Worked Example: Revising an Observation Note So It Records Behavior, Not Verdict
 
@@ -56,50 +58,48 @@ The after version is defensible because another analyst could replay the session
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Log what a camera would catch; save what it means for analysis. If an entry contains a word you could not point to in a recording (confused, frustrated, intuitive, bad), it is an inference and belongs in a separate column, not in the behavioral log.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+Before locking the protocol into your moderated usability test script with observation-to-revision trace, check three things:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Behavior check:** Is each log entry something an observer could verify on replay, free of verdicts?
+2. **Anchor check:** Does every entry carry a timestamp and a task step so it can be counted across participants?
+3. **Leading check:** Do your prompts keep the participant talking without suggesting what they should feel?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any check fails, the log will record the moderator's interpretation rather than the participant's behavior.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the moderated usability test script with observation-to-revision trace while the designer never explains the learning demand.
+The most common error is treating a confident note as a clean note; specificity ("clearly confused") is not the same as observability, and confident verdicts are the hardest to dislodge later precisely because they sound like data. A second error is leading capture, where the moderator's reassurance or hint ("most people use the top button") rewrites the behavior being observed. A third is logging only failures and skipping the silent, smooth moments, which removes the baseline that makes a failure interpretable.
 
-Treat the artifact as a record of design judgment, not only as a deliverable.
+The test of a good entry is whether a stranger could replay the recording and write the same line.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **moderated usability test script with observation-to-revision trace**. Then ask what problem the artifact is supposed to solve inside usability and learning evidence. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Trace one moment from a verdict to a protocol entry. A participant testing a quiz-feedback screen pauses, then closes the module. A weak log says "gave up, found it discouraging." Replayability is gone. The protocol entry instead records the behavior with its anchor: "07:41, feedback screen after item 3: read on-screen text for about eight seconds, said nothing, clicked the X to close." The interpretation ("possible discouragement after negative feedback") goes in the inference column, where it can be tested against the other participants rather than asserted.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now read across participants, which is what the anchoring was for. If four of six paused at the same timestamp on the same screen and three closed the module, a pattern emerges that no single verdict could establish, and **cognitive load theory** offers a testable explanation: the feedback may have read as an error rather than as formative guidance, adding a moment of demand at exactly the wrong point. The walkthrough's lesson is that clean, anchored behavioral entries are what let separate moments become a countable finding; verdicts stay forever stuck as one person's opinion.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 05.05, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read a session log, keep one column for verifiable behavior and one for interpretation, and move every entry into the column it actually belongs in. A log that cannot be split this way has fused observation and inference, and its findings inherit whatever bias the moderator brought to the room.
 
-A strong reader of Observation Protocols can answer four questions:
+A strong reader of an observation protocol can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Could a second analyst replay the session and reproduce each entry?
+2. Is every entry anchored to a time and a task step so it can be counted?
+3. Where did a verdict slip into the behavioral log?
+4. Did any prompt lead the participant toward the behavior it recorded?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The protocol is strong when a reviewer could hand your log and the recording to a stranger and have them confirm each behavioral entry without argument. Treat the observation-inference boundary as the load-bearing element; a single verdict in the behavioral column contaminates the count it sits in. Use the annotation tools to flag any entry containing an unobservable word, and ask BigAL to compare your entries against the behavior check rather than to make the notes more readable.
 
-A useful final paragraph for the artifact would sound like this: "I changed **moderated usability test script with observation-to-revision trace** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful closing line reads: "I rewrote the note from 'confused, page is bad' to a timestamped record of the hovering and the question because the original was an unverifiable verdict; I rejected the suggestion to add my severity rating inline, since severity belongs in analysis after patterns appear, not in the raw log."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **moderated usability test script with observation-to-revision trace** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Observation Protocols deeply enough to adapt it rather than repeat it.
+Move the same observation discipline to classroom research, where the protocol governs field notes instead of session logs. The verdict trap returns as the evaluative shorthand ("the students were engaged"), which records the observer's impression and erases the behavior that might support or contradict it. The structure transfers (log observable behavior, anchor it, defer judgment), but the setting is noisier and the temptation to summarize is stronger. A reader who accepts "engaged" as data has made the same move as the moderator who wrote "confused": a feeling logged where a behavior should be.
 
 ## Artifact Studio
 
@@ -128,7 +128,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the moderated usability test script with observation-to-revision trace records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm every log entry records verifiable behavior, carries a timestamp and task step, keeps verdicts in a separate inference column, and was captured without leading the participant.
 
 ## References
 

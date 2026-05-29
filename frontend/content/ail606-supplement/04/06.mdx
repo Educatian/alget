@@ -4,34 +4,37 @@
 
 ## Why This Section Matters
 
-AI-Assisted Authoring With Codex sits inside **Design Draft and Theory-to-Prototype Alignment**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats AI-Assisted Authoring With Codex as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+A code-generating assistant like Codex will happily build whatever you ask for, which is exactly the danger: if you ask it to "make a good flashcard app," it makes the instructional decisions for you, and they will be generic decisions optimized for plausibility, not for your learners. The skill in AI-assisted authoring is not prompting; it is keeping the instructional decisions and delegating only the implementation. AIL 606 frames this as a division of labor: the designer owns what the interaction should be and why, and Codex owns turning that specification into working code, with every accepted and rejected suggestion documented.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches you to specify the pedagogy precisely enough that the AI implements your design rather than substituting its own. You should leave able to rewrite a vague "make me an app" prompt into an instructional specification, and able to recognize when generated code encodes a teaching mistake (rewarding wrong answers, fusing content with logic) that you must reject.
 
 ## Learning Targets
 
-- Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Specify the instructional interaction precisely enough that the tool implements your design, not its defaults.
+- Keep design decisions (sequence, feedback, separation of content) with the human author.
+- Audit generated code for encoded pedagogy errors, not just for whether it runs.
+- Document each accepted and rejected suggestion with the instructional reason.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for AI-Assisted Authoring With Codex. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A student prompts Codex with "Make me a good flashcard app for my module." The tool returns working code: all card data crammed into one global string with answers inline, and a confetti animation that fires on every click, including wrong answers. The code runs and looks done. But the prompt delegated the design ("a good app"), so the tool supplied its own defaults: a data structure no non-coder teammate can edit, answers exposed in the markup, and a reward that celebrates errors. Each of these is a teaching decision the student never consciously made.
 
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind AI-Assisted Authoring With Codex so the next revision is based on evidence, not taste.
+The case shows that the most consequential moment in AI-assisted authoring is the prompt. A prompt that hands over the instructional decision gets generic pedagogy back; a prompt that specifies the interaction gets implementation back.
 
 ## Core Concept
 
-The core idea in this section is that **AI-Assisted Authoring With Codex** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+The governing principle is the division of cognitive labor: the human author holds the instructional decisions, and the generative tool holds the implementation. An instructional decision answers a teaching question, such as when feedback appears, whether the answer is hidden until the learner commits, how content is separated from logic so non-coders can edit it, and which behaviors are rewarded. An implementation detail answers a construction question, such as which loop or data structure realizes that decision. When you let the tool make instructional decisions, you inherit its defaults, which are tuned for a generic average and often violate basic pedagogy (rewarding any click, exposing answers).
 
-Three course anchors shape the reasoning here:
+A precise specification is the instrument that enforces the division. Compare "make a good flashcard app" with "read cards from a separate JSON array, flip on click, reveal the answer only after a flip, show brief feedback, and play no celebratory animation on incorrect responses." The second prompt has already made every instructional decision; Codex is left only with implementation. The separation of content from logic deserves special note, because it is both an architecture choice and a pedagogy choice: when content lives in a separate file, a non-coding subject expert can revise the cards, and answers are not leaked into the markup.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+| Owned by the human author (decisions) | Owned by the tool (implementation) |
+| --- | --- |
+| When feedback appears, and for which responses | The function that renders the feedback |
+| Whether the answer is hidden until a flip | The state variable tracking flip status |
+| That content lives separate from logic | The import statement and file format |
+| Which behaviors earn a reward | The animation library call |
 
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+The reason auditing matters as much as prompting is that even a good prompt can produce code that quietly encodes a mistake. "Runs without errors" is a construction test; "rewards only correct answers, hides answers until commit, keeps content editable" is the pedagogy test, and only the human can run it.
 
 ## Worked Example
 
@@ -65,50 +68,48 @@ import cards from "./cards.json"; // content separated from logic, editable by n
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Decide the pedagogy before you prompt, then audit the output as pedagogy. For each AI-assisted authoring step:
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+1. **Specification check:** Does the prompt state every instructional decision (feedback timing, answer reveal, content separation, reward conditions) so only implementation is left to the tool?
+2. **Encoded-pedagogy check:** Does the generated code encode any teaching mistake (rewarding errors, exposing answers, fusing content with logic)?
+3. **Documentation check:** Is each accepted and rejected suggestion recorded with its instructional reason?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If the prompt left an instructional decision open, the tool made it for you, and you now own a decision you never examined.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the storyboard frame sequence with narration, signaling, and reader-action notes while the designer never explains the learning demand.
+The first error is treating prompting as the skill, when the real skill is deciding the pedagogy before prompting. The second is accepting code because it runs; running is necessary but says nothing about whether the interaction teaches. The third is treating AI assistance as authorship that needs no disclosure, when in fact every generated piece needs an audit and a record of what you kept and changed.
 
-Treat the artifact as a record of design judgment, not only as a deliverable.
+The author's job is to own the instructional decisions and verify the implementation, not to outsource judgment to whatever the tool returns.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside prototype authoring. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Write the specification before opening the tool. List every instructional decision the component embodies: feedback timing, answer reveal, content-logic separation, reward conditions. This list is your prompt and also your audit checklist, which is why writing it first does double duty.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Then prompt with the specification, not the goal. "Implement this interaction" gets you implementation; "make something good" gets you the tool's defaults. The more decisions your prompt fixes, the less room the tool has to substitute its own pedagogy.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, audit against the same list and record the result. Run the pedagogy test (does it reward only correct answers, hide answers until commit, keep content editable), not just the build. For each suggestion the tool offered, note whether you accepted or rejected it and why, because that record is what makes your authoring auditable and feeds directly into the disclosure artifact.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 04.06, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the instructional decision you intended; the evidence is the line of the prompt that specified it and the line of generated code that implemented it. By the end of AIL 606 04.06, your notes should let a reviewer see which decisions stayed with you and which were delegated.
 
-A strong reader of AI-Assisted Authoring With Codex can answer four questions:
+A strong reader of AI-assisted authoring can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which instructional decisions did the prompt fix, and which did it leave open?
+2. Does the generated code encode any pedagogy the author did not intend?
+3. Which suggestion was rejected, and for what instructional reason?
+4. How would the specification change for a different learner or interaction?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is strong when the prompt fixes every instructional decision, the generated code passes the pedagogy audit, and each accepted or rejected suggestion is recorded with its reason. Treat "it runs" as the floor, not the standard. Where you are unsure whether the tool made a decision you should have made, mark it with the annotation tools and ask BigAL to compare a goal-level prompt with a specification-level prompt rather than for general prompting tips.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful final paragraph for the artifact would sound like this: "I specified the flip-then-reveal interaction, separate content file, and reward-only-on-correct rule, and used Codex to implement them. I rejected its confetti-on-every-click default, because rewarding wrong answers contradicts the formative purpose of the deck."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand AI-Assisted Authoring With Codex deeply enough to adapt it rather than repeat it.
+Move the same workflow from a flashcard widget to an auto-graded short-answer question. The implementation Codex can supply changes, but the division of labor does not: you still own the instructional decisions, and they get harder. Now you must specify how strict the matching is (case, whitespace, synonyms), what counts as partial credit, and what feedback a near-miss receives, because a generative tool will default to brittle exact-match grading that fails "Paris" against "paris." Transfer means writing a richer specification for a higher-stakes interaction, not reusing the flashcard prompt. If you understand the division of labor, a higher-stakes interaction visibly demands more decisions from you, not from the tool.
 
 ## Artifact Studio
 
@@ -137,7 +138,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the storyboard frame sequence with narration, signaling, and reader-action notes records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm that your prompt fixed every instructional decision, your audit checked the code as pedagogy rather than as a build, and each suggestion you kept or dropped carries its reason. That record is what makes AI-assisted authoring defensible.
 
 ## References
 

@@ -4,34 +4,36 @@
 
 ## Why This Section Matters
 
-Task Scenarios for Prototype Testing sits inside **Usability Testing and Learning Evidence**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Task Scenarios for Prototype Testing as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the moderated usability test script with observation-to-revision trace is ready for revision.
+The task you hand a participant decides what your test can possibly learn. Tell someone where to click and you will measure whether they can follow directions, which no real user ever does. Give them a goal and a believable reason to pursue it, and you measure whether the design lets them find their own way, which is the only thing usability evidence is about. This section is about writing task scenarios that put the design at risk instead of protecting it: situations realistic enough that the participant's behavior stands in for a real user's, and open enough that failure can actually happen.
 
-Read this page as a short decision cycle: understand the idea, apply it to **moderated usability test script with observation-to-revision trace**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+In AIL 606 the moderated usability test script with observation-to-revision trace lives or dies on its tasks. Strong tasks generate the friction, hesitation, and wrong turns that become revision evidence. Weak tasks (leading, artificial, or solved in the prompt) manufacture a smooth session that proves nothing and quietly flatters the prototype.
 
 ## Learning Targets
 
-- Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Write goal-based scenarios that state a desired end-state and a realistic context, never a click path.
+- Detect and remove embedded solutions, vocabulary leaks, and other cues that hand the participant the answer.
+- Define an observable, promptable-free success condition the moderator can score consistently.
+- Calibrate task difficulty so the design can fail without the task being impossible.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Task Scenarios for Prototype Testing. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the moderated usability test script with observation-to-revision trace records that reasoning.
+A designer wants to test whether instructors can build a course module from a template in a new authoring tool. The draft task reads: "Click the blue New Module button, choose From Template, name it, and Save." A participant follows it perfectly, and the team concludes the feature is usable.
 
-This page is more than a principle summary. Use it to leave a design trace showing how Task Scenarios for Prototype Testing changed what you noticed in the moderated usability test script with observation-to-revision trace.
+It concluded nothing. The task named every control and its order, so the participant was transcribing instructions, not finding anything. The one thing the test was supposed to check (can an instructor locate and recognize the template path on their own?) was answered for them in the prompt. The session produced a ceiling effect by construction: success was guaranteed, so the data is empty.
 
 ## Core Concept
 
-The core idea in this section is that **Task Scenarios for Prototype Testing** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A usable task scenario has three properties, and most weak tasks violate at least one.
 
-Three course anchors shape the reasoning here:
+| Property | What it means | Violation |
+| --- | --- | --- |
+| Goal-based | States an end-state, not the steps | A click path the user just follows |
+| Realistic | Gives a believable role, context, and motive | A bare command with no reason behind it |
+| Scorable | Has an observable success condition | "See if they like it," which cannot be marked |
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The deepest property is goal-based framing. A real user arrives with an intention ("add a module from a template") and must map that intention onto the interface's controls; that mapping is precisely the gulf of execution usability work studies. The moment your task names the control, you have bridged the gulf for the participant and erased the measurement. **Mayer multimedia learning** reinforces this from the learning side: a meaningful task targets a transferable goal, not a button press, because clicking a specific button is not a skill anyone needs to keep.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+Realism guards against a subtler failure. A context-free command ("create a module") gives the participant no stakes, so they behave like a test-taker, not a worker. A scenario with a role and a deadline ("you launch next week and want to reuse a template") recruits the same motivation a real user feels, which surfaces real shortcuts and real frustration. And every scenario needs a scorable end-state, because **cognitive load theory** warns that a moderator who has to interpret "did that count?" in real time adds load to their own observation and lets bias fill the gap. A predefined success condition keeps the scoring clean.
 
 ## Worked Example: Rewriting a Task Scenario So It Does Not Leak the Answer
 
@@ -56,50 +58,48 @@ The after version is defensible because it tests whether the participant can fin
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+State the destination, never the route, and check that a participant who does not know your interface could still fail the task. If your task contains any interface noun the participant could not have known on their own, you have leaked the answer and must rewrite.
 
-A strong submission should survive three quick tests:
+Before locking tasks into your moderated usability test script with observation-to-revision trace, run three checks:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Leak check:** Does the task name any control, label, or step the participant would otherwise have to discover?
+2. **Realism check:** Does the scenario give a role and a motive a real user would actually have?
+3. **Scorability check:** Can the moderator mark success or failure without prompting or interpreting on the fly?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any check fails, the task will either guarantee success or produce data no two observers would score the same way.
 
 ## Common Misreadings
 
-Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.
+The most common error is mistaking task wording for instructions, so the scenario teaches the participant to use the tool instead of testing whether the tool teaches itself. A subtler leak is vocabulary: if your interface labels a feature "Template Library" and your task says "open the template library," you have handed over the search term that findability was supposed to test. Use the user's words, not the interface's.
 
-In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.
+A good task should be answerable in many wrong ways before it is answered in the right one.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **moderated usability test script with observation-to-revision trace**. Then ask what problem the artifact is supposed to solve inside usability and learning evidence. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Trace one task from a leaky draft to a scorable scenario. A team testing a data-dashboard prototype drafts: "Use the Filter dropdown to show only last quarter." The interface word "Filter" is a leak, and "use the dropdown" is a route. Recover the goal: a manager wants to see only last quarter's numbers. The realistic scenario becomes, "Your director just asked how the team did last quarter; using this dashboard, show only that period's results." Notice it never names a control, so the participant must decide whether filtering, a date picker, or a saved view is the path, which is exactly the findability question.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now set the success condition before the session, not during it: success is the dashboard displaying only last-quarter data, regardless of route. With that condition fixed, **cognitive load theory** is respected for the moderator too; they are not improvising judgments mid-session, so their attention stays on behavior. A walkthrough that gets all three (goal, realism, scorable end-state) right turns a session into evidence instead of a guided tour.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 05.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read a task list, keep one column for the goal the task intends and one for every cue that betrays the solution. The betrayal column is the diagnostic: any interface noun, ordinal step, or matching keyword that appears there is a task you must rewrite before the session runs.
 
-A strong reader of Task Scenarios for Prototype Testing can answer four questions:
+A strong reader of a task scenario can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. What goal does this task test, stated without reference to the interface?
+2. Where, if anywhere, does the wording leak the path or the vocabulary?
+3. What is the exact, pre-agreed success condition?
+4. Could a real user plausibly fail this task, and would that failure be informative?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The task set is strong when a reviewer who has never seen the prototype can read each scenario and still not know which buttons to press, yet know exactly what counts as success. Treat each scenario's nouns as load-bearing; a single interface term smuggled in collapses the findability test for that task. Use the annotation tools to highlight every leaked cue, and ask BigAL to compare your wording against the leak check rather than to make the scenario sound more polished.
 
-A useful final paragraph for the artifact would sound like this: "I changed **moderated usability test script with observation-to-revision trace** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful closing line reads: "I rewrote the task from a click path into a goal-based scenario because the original named every control and tested only direction-following; I rejected the suggestion to add a hint after thirty seconds, since the prototype's whole point is whether the path is findable unaided."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **moderated usability test script with observation-to-revision trace** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Task Scenarios for Prototype Testing deeply enough to adapt it rather than repeat it.
+Move the same task-writing discipline to an assessment-design context, where the scenario is the test item itself. The leak problem reappears as the giveaway stem: a question whose wording reveals its own answer measures reading, not knowledge, just as a leaky task measures compliance, not usability. The structure transfers (state the goal, hide the route, fix the scoring), but the stakes shift, because a leaked item inflates scores instead of inflating a usability claim. A reader who treats the two as unrelated has missed that both fail the same way: the prompt does the work the participant was supposed to do.
 
 ## Artifact Studio
 
@@ -128,7 +128,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the moderated usability test script with observation-to-revision trace records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm each task states a goal not a route, gives a realistic motive, hides the interface vocabulary, and carries a pre-agreed success condition.
 
 ## References
 

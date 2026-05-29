@@ -4,46 +4,45 @@
 
 ## Why This Section Matters
 
-Worked Examples and Fading sits inside **Foundations of Interactive Multimedia Learning**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Worked Examples and Fading as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
-
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+There is a counterintuitive result at the center of this section: for novices, studying a fully worked solution produces more learning than solving an equivalent problem, even though solving feels like more learning is happening. This is the worked-example effect, and it follows directly from cognitive load theory. A novice solving an unguided problem spends working memory on search and trial, which is extraneous to building a schema; a novice studying a worked example spends that capacity on the solution structure itself. The design move this section teaches, fading, is how you move a learner from studied examples to independent performance without ever dropping them into the unguided-search trap. Your storyboard sequence is where that fade is engineered, frame by frame.
 
 ## Learning Targets
 
-- Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
+- Explain the worked-example effect in terms of search load versus schema-building load.
+- Engineer a fading sequence (worked, completion, open) matched to the learner's growing schema.
 - Document a bounded AI/software support move with accepted and rejected suggestions.
 - Use annotations, support requests, and revision notes to decide what help or design change should come next.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Worked Examples and Fading. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
-
-This page is more than a principle summary. Use it to leave a design trace showing how Worked Examples and Fading changed what you noticed in the storyboard frame sequence with narration, signaling, and reader-action notes.
+A module asks novices to "write a measurable learning objective" across four open prompts. Learners stare, guess, and produce flailing attempts, because they have no schema for the parts of an objective. The instinct is to add more practice problems. But practice volume is not the constraint; the learners are searching a space they cannot yet navigate. The real decision is where to place a model, and how to withdraw it, so that effort lands on building the schema rather than on blind search.
 
 ## Core Concept
 
-The core idea in this section is that **Worked Examples and Fading** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+The worked-example effect rests on the distinction between two ways a novice can spend working memory. **Problem-solving search** (means-ends analysis: where am I, where is the goal, what reduces the gap?) consumes capacity without leaving a schema behind. **Studying a worked solution** lets the learner attend to the solution's structure and build the schema directly. For novices, search is largely extraneous load, so worked examples win.
 
-Three course anchors shape the reasoning here:
+But the advantage is conditional. The **expertise-reversal effect** says that once a learner has a schema, studying a worked example becomes redundant with what they already know, and now problem-solving is the better use of capacity. So the right design is not "always show examples" or "always make them practice." It is a **fading sequence** that tracks the learner's growth:
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+| Stage | Format | What the learner does |
+| --- | --- | --- |
+| 1 | Worked example | Studies and self-explains a complete solution |
+| 2 | Completion problem | Finishes a partly worked solution (some steps faded) |
+| 3 | Completion problem | Finishes more (more steps faded) |
+| 4 | Open problem | Solves unaided |
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+Two design refinements matter. **Backward fading** removes the last step first (the step closest to the goal, often the easiest to attempt), so the learner always works from a supported position. And a **self-explanation prompt** on the worked stages converts passive viewing into the germane processing that actually builds the schema.
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+A thin claim hides the instructional move:
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+> I made the objective-writing sequence clearer.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+A fading-grounded claim names the stages and the schema target:
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+> I replaced four open prompts with a four-stage fade: a fully worked objective with its four parts labeled, then two completion problems that withdraw parts one at a time, then an open problem. Support is removed as the schema forms, so effort lands on the parts of an objective rather than on guessing.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+The improvement is that support is transferred one part at a time, so the learner moves from studying a model to independent performance rather than being dropped into open problems with no schema.
 
 ### Annotated Before/After: A Faded Sequence
 
@@ -66,50 +65,42 @@ The improvement is that support is transferred one part at a time, so the learne
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Match the support level to the schema, and fade only as the schema grows:
 
-A strong submission should survive three quick tests:
+1. **Start worked for true novices.** If the learner has no schema, the first frame is a complete, self-explained model, not a problem.
+2. **Fade one element at a time.** Each completion stage withdraws a single part so the learner is never in unsupported search.
+3. **Reach open only when the schema can carry it.** The final unaided frame is the assessment of the fade, not its starting point.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If you cannot say which element each stage withdraws and why now, the sequence is a list of tasks, not a fade.
 
 ## Common Misreadings
 
-Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.
-
-In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.
+The first misreading is "more practice is more learning," which for novices reintroduces the search load the worked example removed. The second is treating a worked example as a video to watch passively; without a self-explanation prompt, the germane processing never happens and the example teaches little. The third is ignoring reversal and keeping fully worked examples for learners who have already formed the schema, where the example is now redundant and a problem would teach more.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside multimedia learning foundations. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Trace why the four-open-prompt version failed and why the fade fixes it. A novice at prompt 1 must invent the very category "parts of an objective" while also producing one, that is search load piled on intrinsic load, and capacity saturates. The fade reorders the spend: frame 1 hands the learner the four-part schema as a studied model, so capacity goes to understanding structure, not searching. By frame 2 the learner has the schema and can supply two parts; by frame 3, three; by frame 4 the schema carries an unaided attempt. The withdrawal is gradual and element-wise, so the learner is always working from support rather than from scratch. The rejected "all open" suggestion is exactly the original failure, which is why it is rejected on principle, not preference.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 01.04, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+Read every practice sequence and ask whether the learner has the schema the first task assumes. A strong reader can name, for each frame, the support level, the element being withdrawn, and the schema state that justifies the withdrawal. Keep a two-column note: frame on the left, support level and faded element on the right.
 
-A strong reader of Worked Examples and Fading can answer four questions:
+A strong reader of worked examples and fading can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Does the learner have a schema, or is the first frame a search trap?
+2. Which element does each stage withdraw, and why now?
+3. Where is the self-explanation prompt that makes a worked example generative?
+4. At what expertise level should the worked stages be dropped entirely?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The sequence is strong when each frame states its support level (worked, completion, open), the element it withdraws, and the schema condition that licenses the withdrawal, with a self-explanation prompt on the worked stages. "Four practice frames" is weak; "worked then two completion frames withdrawing one part each then open, with self-explanation on frame 1" is strong. If a frame's support level is unstated, mark the gap and ask BigAL to compare a novice fade with an expert fade for the same skill rather than to define worked examples.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful final entry would read: "I built a four-stage fade that withdraws one objective part per frame and added self-explanation to frame 1. I rejected the all-open version because it recreates the search trap for novices."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Worked Examples and Fading deeply enough to adapt it rather than repeat it.
+Move the sequence to a graduate cohort who already writes objectives competently but inconsistently applies the degree criterion. A full four-stage fade would bore them and, by reversal, teach less than targeted problems. The right transfer is to drop frames 1 and 2 entirely and give two open problems that stress the weak element (degree), with feedback. The fading principle is intact; the starting support level moves up because the schema is already partly built. A designer who engineered the fade by schema state can re-anchor it; one who just sequenced four tasks cannot.
 
 ## Artifact Studio
 
@@ -138,7 +129,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links Worked Examples and Fading, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+Before you move on, make sure each frame states its support level, the element it withdraws, the schema condition that licenses the withdrawal, and a self-explanation prompt on the worked stages, plus any suggestion you rejected and why.
 
 ## References
 

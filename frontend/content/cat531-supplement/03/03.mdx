@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Bias, Data, and Classroom Consequences sits inside **AI in Education**. In this part of CAT 531, you are learning to work as a teacher making a defensible technology decision: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Bias, Data, and Classroom Consequences as a professional judgment problem: the learner must connect pedagogy, classroom constraints, and ethics before defending the Design Tension Studio map naming a classroom value conflict and negotiated decision.
+The most dangerous claim a vendor can make about an AI tool is that it is "objective" or "data-driven," because in a school those words function as permission to stop questioning. A human counselor's referral can be challenged as biased; a model's score arrives wrapped in the authority of mathematics and tends to go unchallenged. But a model is only as fair as the data it learned from and the proxies it uses, and educational data is saturated with the inequities of the systems that produced it. An AI tool trained on that data does not remove bias; it launders it, converting historical discrimination into a number that looks neutral.
 
-Read this page as a short decision cycle: understand the idea, apply it to **Design Tension Studio map naming a classroom value conflict and negotiated decision**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section matters because teachers and teacher-leaders are increasingly asked to adopt these tools (early-warning systems, risk scores, automated placement) and are positioned to be the last human check before a model touches a child. To play that role you need more than discomfort with bias in the abstract. You need to know specifically where bias enters a model, how it hides inside aggregate accuracy numbers, and what evidence to demand before letting any system make or shape a decision about a student.
 
 ## Learning Targets
 
@@ -17,33 +17,29 @@ Read this page as a short decision cycle: understand the idea, apply it to **Des
 
 ## Opening Case
 
-Imagine a teacher choosing whether to use a classroom technology for Bias, Data, and Classroom Consequences. The important question is not whether the tool is exciting; it is whether the teacher can name the instructional purpose, the equity risk, the student-data boundary, and the evidence that makes the Design Tension Studio map naming a classroom value conflict and negotiated decision a professional judgment rather than a preference.
+A district adopts an AI essay-scoring engine to speed up benchmark grading. It correlates well with human raters overall, so it looks trustworthy. A teacher notices something odd: her students who write in African American Vernacular English, even when their arguments are strong, score consistently lower than the model gives to weaker but "standard"-sounding essays. The model learned what high-scoring writing looked like from a training set graded by humans who rewarded a particular dialect, and it now reproduces that preference at scale and at speed.
 
-For a teacher, the important record is not simply that a technology was selected. The Design Tension Studio map naming a classroom value conflict and negotiated decision should show how classroom purpose, student risk, and evidence shaped the decision.
+The aggregate correlation hid this completely. "Agrees with humans 88% of the time" averaged over the whole population, and the disagreements concentrated on exactly the students already underserved. If the teacher trusts the headline number, the tool quietly tells a group of capable writers that their work is weaker than it is, on every benchmark, all year. The bias was always in the data; the AI just made it fast, consistent, and invisible behind a credible-looking statistic.
 
 ## Core Concept
 
-The core idea in this section is that **Bias, Data, and Classroom Consequences** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Bias in educational AI is not a glitch or a bad actor; it is a predictable consequence of how these systems are built. Three mechanisms account for most classroom harm, and naming them lets you find the bias instead of trusting a vendor.
 
-Three course anchors shape the reasoning here:
+- **Training-data bias.** A model learns patterns from historical data. If past human decisions were inequitable (who got referred to gifted programs, whose writing scored well, who was flagged as a discipline risk), the model learns to reproduce those decisions. It is a mirror of the past, not a corrector of it.
+- **Proxy variables.** A model may not use race or income directly, and vendors often advertise this. But it uses features that stand in for them: ZIP code, prior school, attendance, free-lunch status, even name. Removing the protected attribute while keeping its proxies removes the appearance of bias, not the bias. This is why "we don't use race" is not a defense.
+- **Aggregate masking.** A single accuracy number averages performance across all students, so a model can be 90% accurate overall while being 70% accurate for one subgroup and harming it disproportionately. The headline number is designed, intentionally or not, to hide the gap.
 
-- **TPACK** helps you decide what counts as a meaningful learning or performance demand.
-- **critical edtech studies** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **AI and education datafication** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The analytic counter to all three is **disaggregation**: never accept a model's performance as a single number. Demand the results broken out by subgroup (race, language status, disability, income proxy) and look specifically at the **error types**, because not all errors are equal. A false positive in a dropout-risk model (flagging a student who was fine) wastes resources; a false positive in a discipline-risk model (flagging a student as a threat) can change a child's life. **Disparate error rates across subgroups are the signature of harmful bias**, and they are visible only when you break the data apart.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+A final principle keeps the whole thing grounded: **the consequence determines the standard of proof.** A model that recommends a practice worksheet can be allowed to be imperfect. A model that triggers a referral, a placement, or a discipline action must clear a far higher bar, because its errors fall on real children and concentrate on the already-vulnerable.
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+A vendor presents two models for adoption, both advertised as "92% accurate and race-blind." Apply disaggregation.
 
-> I made the Design Tension Studio map naming a classroom value conflict and negotiated decision clearer.
+Model A is a reading-practice recommender; its error means a student gets a slightly mismatched passage. Model B is an early-warning system that flags students for a counselor intervention; its error means a student is labeled at-risk or, by omission, is missed. The same 92% means very different things. You request the subgroup breakdown. Model A is 93% for white students and 90% for English learners, with errors that are low-stakes either way; the gap is small and the cost of being wrong is a worksheet. Model B is 94% for white students and 73% for English learners, and its false-positive rate for English learners is three times higher: it repeatedly flags them as at-risk when they are not. The proxy doing the damage turns out to be "missing assignments," which for English learners reflects a still-developing language load, not disengagement.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
-
-> I revised the Design Tension Studio map naming a classroom value conflict and negotiated decision so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **critical edtech studies**, and I can point to the exact part of the artifact that changed.
-
-The stronger version treats the Design Tension Studio map naming a classroom value conflict and negotiated decision as evidence. It names what changed, links the change to **critical edtech studies**, and leaves a reader able to audit the decision.
+The conclusion is not symmetric even though the headline number was identical. Model A can be piloted; its harms are minor and even across groups. Model B should not trigger any action, because it would systematically pathologize English learners; at most it can be advisory with mandatory teacher review and a per-term subgroup re-audit. The single accuracy number would have rubber-stamped both. Disaggregation, plus weighing the consequence, produced opposite and defensible decisions.
 
 ## Worked Decision: Auditing a Risk Model Before Adoption
 
@@ -59,50 +55,47 @@ Step 1 to step 4 captures the section's lesson: bias hides inside neutral-lookin
 
 ## Decision Rule
 
-Use the classroom value conflict first, the technology affordance second, and the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity.
+Before any AI tool is allowed to score, rank, or flag a student, audit it against the bias mechanisms:
 
-Before submitting the Design Tension Studio map naming a classroom value conflict and negotiated decision, slow down and check whether the trace can answer three questions:
+1. **Refuse the single number.** Demand performance disaggregated by subgroup; an aggregate accuracy figure is not acceptable evidence of fairness.
+2. **Hunt the proxies.** Inspect the feature list for ZIP code, prior school, attendance, and similar stand-ins, and remember that "we don't use race" is not a defense.
+3. **Compare error types across groups.** Disparate false-positive or false-negative rates by subgroup are the signature of harmful bias; weigh the cost of each error type.
+4. **Match the standard to the stakes.** The higher the consequence to a student, the higher the proof required, up to "advisory only with human review" or refusal.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If the vendor cannot provide subgroup data, treat the absence as a finding: a tool whose fairness cannot be audited has not earned access to students.
 
 ## Common Misreadings
 
-A common mistake is to defend a technology because it is engaging. Engagement matters, but it does not replace evidence about learning, access, or risk.
-
-The artifact should show how student need, evidence, and policy boundaries shaped the revision.
+The most common misreading is that "data-driven" means "unbiased"; in practice it usually means "the past, automated." A second is believing that dropping the race variable makes a model fair, when its proxies carry the same signal. A third is reading a high aggregate accuracy as proof of fairness, when that average is precisely what conceals subgroup harm. A subtler error is treating all model errors as equivalent, when a false flag in a discipline system and a false flag in a worksheet recommender carry wildly different human costs. Finally, some teachers assume bias is the vendor's problem to certify; it is the adopter's problem to audit, because the harm lands in your classroom.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Design Tension Studio map naming a classroom value conflict and negotiated decision**. Then ask what problem the artifact is supposed to solve inside AI literacy and student-work policy. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the audit to a concrete adoption. A district wants an AI behavior-tracking system that scores classroom "engagement" from webcam video and flags disengaged students to teachers. It is marketed as objective because "the camera doesn't have opinions."
 
-Next, connect the artifact to the course anchors: **TPACK**, **critical edtech studies**, **teacher professional judgment**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Start with training-data bias: the model learned "engaged" from labeled video, and the labelers' notion of engagement (eye contact, stillness, a particular facial affect) is culturally specific. Students who are attentive but look down, or who stim, or whose cultural norms discourage direct eye contact with adults, will read as disengaged. Now hunt proxies: the model effectively uses facial expression and posture as a proxy for attention, which it is not. Demand disaggregation and you find the flag rate is far higher for Black students and for students with autism, the groups whose attentive behavior least matches the labelers' template.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Weigh the consequence. These flags shape how teachers perceive and treat students every period, a high-stakes, compounding effect. The defensible decision writes itself: do not adopt this system to flag individual students, because its error pattern would systematically mislabel specific groups as inattentive, reinforcing existing bias under a veneer of objectivity. If anything, the only acceptable use is aggregate and anonymous (is the whole class fading at 1pm), never per-student. The audit, not the marketing, set the boundary.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 531 03.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader treats every "objective" or "AI-powered" claim as a prompt to ask three things: what data did it learn from, what proxies does it use, and what do the subgroup error rates look like. As you read, keep a two-column note with the **fairness claim** on the left and the **evidence that would actually test it** on the right. If the right column only contains an aggregate accuracy number, the claim is untested.
 
-A strong reader of Bias, Data, and Classroom Consequences can answer four questions:
+A strong analysis can answer four questions about any educational AI system:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Whose past decisions are encoded in the training data?
+2. What features act as proxies for protected characteristics?
+3. How do error rates differ across subgroups, and which error type is most costly here?
+4. Given the consequence to a student, what standard of proof should this tool clear before it acts?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a mentor teacher can see the instructional purpose, the classroom constraint, and the reason a revision was made. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+Your tension map is strong when it locates bias in a specific mechanism (training data, a named proxy, or aggregate masking) rather than asserting that "the tool might be biased." Show the disaggregated evidence you would demand and the error type that worries you, and tie your verdict to the stakes of the decision. The weakest maps say "AI can be biased, so be careful"; the strongest say "this model uses attendance as a proxy that penalizes my English learners, its false-positive rate for them is triple, and because it triggers referrals I will not allow it as more than advisory."
 
-A useful final paragraph for the artifact would sound like this: "I changed **Design Tension Studio map naming a classroom value conflict and negotiated decision** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving whether the technology choice serves a specific learning activity for real students."
+A useful closing line for the artifact would read: "I rejected this tool as a referral trigger because its disaggregated data shows a threefold false-positive rate for English learners driven by a proxy variable, and a tool that concentrates its errors on already-vulnerable students fails the standard a high-stakes decision requires."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Design Tension Studio map naming a classroom value conflict and negotiated decision** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Bias, Data, and Classroom Consequences deeply enough to adapt it rather than repeat it.
+Move from a flagging system to a generative one: an AI that writes personalized feedback comments for every student. There is no obvious "risk score" to audit, so the bias mechanism transfers into a subtler form. Ask whose writing the model treats as the norm. If it consistently suggests that dialect features are errors, or writes warmer encouragement for some students than others, it is reproducing training-data bias in the language of feedback rather than in a number. The audit method is the same (disaggregate the outputs, look for who is systematically treated worse), but you are now reading prose for patterns instead of reading a confusion matrix. Detecting the same mechanism when it wears a different costume is the test that you understand bias structurally, not just as a property of scoring models.
 
 ## Artifact Studio
 

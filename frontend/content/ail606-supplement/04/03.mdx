@@ -4,34 +4,35 @@
 
 ## Why This Section Matters
 
-Wireframes That Show Learning Logic sits inside **Design Draft and Theory-to-Prototype Alignment**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Wireframes That Show Learning Logic as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+A wireframe is usually treated as a layout document: boxes for where the text, image, and buttons go. In instructional design, that framing is a trap, because a layout can be perfectly arranged and still teach nothing or teach the wrong thing. A wireframe that shows learning logic annotates each region with the learner action it supports and its place in the instructional sequence, so a reviewer critiques the teaching decision rather than the aesthetics. AIL 606 asks for wireframes that expose intent: this region assesses recall, this control logs a help request, this feedback is delayed to keep performance unaided.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches you to annotate a wireframe so its instructional logic is visible before any visual design exists. You should leave able to tell when a layout decision quietly contradicts the screen's pedagogical purpose, as when a hint button undermines a screen meant to observe unaided performance.
 
 ## Learning Targets
 
-- Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Annotate each wireframe region with the learner action it supports and its sequence position.
+- Detect contradictions between a screen's purpose and its interaction affordances.
+- Encode instructional intent through layout choices (button placement, feedback timing).
+- Critique a wireframe as a teaching decision, not as a visual arrangement.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Wireframes That Show Learning Logic. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A designer presents a clean wireframe for a mastery-check screen: four answer options, a Hint button beside every item, and feedback after submission. It looks tidy. But the purpose of a mastery check is to observe what the learner can do unaided, and a hint button next to every item invites prompting that contaminates exactly the evidence the screen exists to collect. The layout is fine; the learning logic is self-contradictory. No amount of visual polish fixes a screen whose affordances fight its purpose.
 
-In multimedia design, a learner can submit something attractive while still hiding the design logic. This section asks you to expose the logic behind Wireframes That Show Learning Logic so the next revision is based on evidence, not taste.
+The case shows that the most dangerous wireframe is the one that looks done. Tidiness hides the contradiction; only annotating each region with its instructional job surfaces it.
 
 ## Core Concept
 
-The core idea in this section is that **Wireframes That Show Learning Logic** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A wireframe shows learning logic when every region carries two labels: the learner action it supports and where that action sits in the instructional sequence (acquire, practice with support, perform unaided, receive feedback). Layout is not neutral; placement and effort encode pedagogy. A help control placed prominently beside each item lowers the cost of seeking help, which is right for guided practice and wrong for a final check. The same control, moved to a single effortful button at the bottom that logs the request, raises the cost of help and preserves an unaided measure.
 
-Three course anchors shape the reasoning here:
+The governing idea is the alignment of affordance with intent. An affordance is what an interface invites the learner to do; intent is what the screen is pedagogically for. When the two align, the screen collects the evidence it promises. When they conflict, the screen produces misleading data: a "mastery" score inflated by hints, or a "practice" screen so bare that struggling learners get no support. Feedback timing is the other lever: immediate per-item feedback supports formative practice, while end-of-set feedback protects summative measurement by keeping each response independent.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+- **Acquire:** present and signal; affordances should reduce search and load.
+- **Practice with support:** make help cheap and visible; immediate feedback.
+- **Perform unaided:** make help costly and logged; delay feedback to the end.
+- **Reflect or feedback:** make the learner's own reasoning visible before revealing the answer.
 
-The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
+The reason this matters for evidence is that a wireframe is the earliest point at which a teaching mistake is cheap to fix. Catching a hint-on-a-final-check contradiction in the wireframe costs a sentence; catching it after the prototype is built costs a rebuild.
 
 ## Worked Example
 
@@ -73,50 +74,48 @@ Work through one annotated before/after revision of a practice-screen wireframe,
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Annotate intent before you arrange boxes, then check that affordances serve it. Run three tests on every wireframe:
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+1. **Action-label check:** Does each region state the learner action it supports?
+2. **Sequence check:** Is each region tagged with its phase (acquire, practice, perform, feedback)?
+3. **Affordance-intent check:** Does every control's prominence and feedback timing match the screen's purpose, or does any of them contradict it?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a control invites behavior the screen's purpose forbids, the wireframe is misaligned regardless of how clean it looks.
 
 ## Common Misreadings
 
-Another misreading is to let the tool optimize the surface of the storyboard frame sequence with narration, signaling, and reader-action notes while the designer never explains the learning demand.
+The usual error is reviewing a wireframe for aesthetics (spacing, alignment, balance) and declaring it done, while the instructional logic was never stated and so was never checked. A second error is assuming that adding helpful affordances (hints, tips, examples) is always good; on an unaided check, help is contamination, not kindness.
 
-Treat the artifact as a record of design judgment, not only as a deliverable.
+A wireframe is an argument about teaching, so review it for whether its affordances collect the evidence the screen promises.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside prototype authoring. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Begin by writing the screen's purpose in one sentence before drawing anything: "this screen measures unaided recall of Concept 4.2." That sentence is the standard every later decision answers to. Skipping it is how contradictions sneak in.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Now label each region with a learner action and a phase tag. The act of labeling forces the contradiction to the surface; a Hint button next to a region labeled "perform unaided" is obviously wrong once both labels exist side by side. This is why annotation, not arrangement, is the real work of an instructional wireframe.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, tune the affordances to the purpose. Decide button prominence by the cost of the behavior you want: cheap and visible for help you encourage, costly and logged for help you want to discourage and measure. Set feedback timing by whether the screen is formative (immediate) or summative (delayed). When every affordance traces back to the one-sentence purpose, the wireframe shows learning logic.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 04.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the learner action you think a region supports; the evidence is the annotation and affordance choice that make the action observable. By the end of AIL 606 04.03, your notes should let a reviewer judge whether each affordance serves the screen's stated purpose.
 
-A strong reader of Wireframes That Show Learning Logic can answer four questions:
+A strong reader of an instructional wireframe can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. What is this screen's one-sentence pedagogical purpose?
+2. Which affordance, if any, contradicts that purpose?
+3. Why is the feedback timing right for this phase?
+4. How would the layout change if the screen moved from practice to a final check?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is strong when a reviewer can read each region's learner action, its sequence phase, and a clear reason every affordance matches the screen's purpose. Treat visual styling as the last layer. Where an affordance and an intent conflict, mark it with the annotation tools and ask BigAL to compare a practice-screen wireframe with a final-check wireframe rather than for generic layout tips.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful final paragraph for the artifact would sound like this: "I moved the per-item hints to one logged bottom button and delayed feedback to the end, because the screen measures unaided recall. I rejected the suggestion to add an example beside each item, since it would have contaminated the measure this screen exists to collect."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Wireframes That Show Learning Logic deeply enough to adapt it rather than repeat it.
+Move the same wireframe from a summative mastery check to a first-attempt guided-practice screen on the same concept. Now the contradiction reverses: the costly, logged help button is wrong, because guided practice wants help to be cheap and immediate, and end-of-set feedback should become per-item. Transfer means re-deriving the affordances from the new phase, not reusing the layout. If you understand learning logic, changing the phase visibly changes where the help lives and when feedback fires.
 
 ## Artifact Studio
 
@@ -145,7 +144,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links Wireframes That Show Learning Logic, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+Before you move on, confirm that every region carries a learner action, a phase tag, and an affordance whose prominence and feedback timing serve the screen's stated purpose. That alignment is what makes a wireframe a teaching argument.
 
 ## References
 

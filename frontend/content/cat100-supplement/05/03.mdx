@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Image Generation for Explaining Ideas sits inside **AI-Enhanced Presentation Development**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Image Generation for Explaining Ideas as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the AI critique log showing accepted, modified, and rejected suggestions.
+AI image generators make it trivial to produce a picture, which is exactly why they are dangerous on a slide. A generated image looks authoritative, but the model does not know your process; it predicts plausible-looking pixels. If you ask for a diagram of your data pipeline, the tool may confidently produce one with the stages in the wrong order, and a viewer will trust the picture precisely because it looks finished.
 
-Read this page as a short decision cycle: understand the idea, apply it to **AI critique log showing accepted, modified, and rejected suggestions**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches the difference between an image that explains and an image that decorates, and the verification habit that keeps a generated diagram honest. The artifact is an AI critique log recording which generated outputs you accepted, modified, and rejected, so a reviewer can see that you checked the picture against reality rather than pasting whatever the model produced.
 
 ## Learning Targets
 
@@ -17,21 +17,18 @@ Read this page as a short decision cycle: understand the idea, apply it to **AI 
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Image Generation for Explaining Ideas. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The AI critique log showing accepted, modified, and rejected suggestions is the place where that verification becomes visible.
-
-The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.
+A student needs a slide that explains how their app moves data: collect, then clean, then analyze. They type "make a cool tech graphic for data" into an image tool and get a glowing brain wired to floating numbers. It looks impressive and explains nothing; a viewer learns the slide is "about data" and stops there. The student who instead prompts for three labeled boxes in a specific order, then checks each label against the real steps, gets a picture that does the teaching the bullets would otherwise have to do.
 
 ## Core Concept
 
-The core idea in this section is that **Image Generation for Explaining Ideas** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+An image on a slide is either **explanatory** or **decorative**, and you should know which one you are placing. An explanatory image carries information the audience needs and that text alone would carry less efficiently: a process flow, a relationship, a before-and-after, a labeled structure. A decorative image carries mood but no information; remove it and the slide loses nothing it needed. Decoration is not banned, but it must never crowd out or impersonate explanation.
 
-Three course anchors shape the reasoning here:
+Generated images add a second axis: correctness. The model produces something that *looks* like an explanation without any guarantee that the content is true. So an explanatory generated image must pass two tests, in order:
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+- **Specification.** Did you tell the model the exact parts, labels, and relationships, rather than asking for a vibe? "Three labeled boxes, Collect then Clean then Analyze, arrows showing flow" is a specification; "a cool data graphic" is a vibe.
+- **Verification.** Does every label, arrow, count, and order in the output match your real process? Generators routinely transpose steps, misspell labels, and invent extra elements.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+The data-ink anchor decides whether the image earns its place (does it carry meaning the slide needs); the verification step decides whether the meaning it carries is true. An unverified explanatory image is worse than no image, because it teaches the audience something false with the full authority of a finished picture.
 
 ## Worked Example
 
@@ -55,54 +52,52 @@ Goal: generate an image that explains a three-stage data pipeline rather than de
 
 4. Verify every label and arrow matches your actual steps before placing the image.
 
-The revision is justified by **data-ink and visual evidence**: the final diagram carries meaning (removing it would lose the explanation), and its labels were checked against the real pipeline rather than trusted blindly.
+The reversed-order output is the teaching moment. The picture looked clean and professional and was still wrong, which is exactly how a generated diagram fails. Your critique log should record that you rejected the first output for transposing two stages, modified the prompt to fix it, and accepted the second only after checking every arrow against your real pipeline.
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Decide whether the image explains or decorates, specify generated explanations precisely, and verify every element against reality before it goes on the slide. A polished image you did not check is a liability, not an asset.
 
-A strong submission should survive three quick tests:
+Run a generated image through three questions before you use it:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Purpose check:** Does this image carry information the audience needs, or is it decoration standing in for content?
+2. **Evidence check:** Does every label, count, order, and arrow match your real process or data, and where did you confirm it?
+3. **Revision check:** Which generated output did you reject or re-prompt, and what was wrong with it?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If you cannot point to where you verified the image, treat it as unverified and do not present it as an explanation.
 
 ## Common Misreadings
 
-Another misreading is to write about the tool instead of showing what the tool helped you revise.
+The first misreading is "the image looks professional, so it must be right." Visual polish and factual correctness are unrelated in generated images; the model optimizes for plausible appearance, not for matching your data.
 
-In this course, quality means another reader can verify what changed and why.
+The second is writing about the tool ("I used AI to make a diagram") instead of showing what you checked. The grade-worthy move is not that you generated an image; it is that you caught the reversed stages and fixed them.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **AI critique log showing accepted, modified, and rejected suggestions**. Then ask what problem the artifact is supposed to solve inside presentation and media authorship. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the two tests to a different content type: a generated icon set meant to label four product features. Specification first: rather than "icons for my app," you name each feature and the concept its icon must signal, so "upload" reads as an arrow into a tray, not a generic cloud. Verification second: you check that the four icons are visually distinct and that none accidentally implies the wrong feature, because a "download" arrow where you meant "upload" silently misleads.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Then weigh explanation against decoration. If the four icons help the audience tell the features apart at a glance, they carry meaning and stay. If they are just pretty thumbnails next to text that already names each feature, they are decoration competing for attention, and the honest move is to drop them. The same discipline that fixed the pipeline order applies here: specify, verify, and keep only what carries meaning.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 05.03, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: on the left, each generated image you considered; on the right, whether it explains or decorates and what you verified. Flag any image you placed without checking its content. By the end of 05.03, your note should show a reviewer that no generated picture went on a slide unverified.
 
-A strong reader of Image Generation for Explaining Ideas can answer four questions:
+A strong reader of this section can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Does this image explain something the audience needs, or just decorate?
+2. What exact parts and relationships did the prompt specify?
+3. What in the output did you check against reality, and what failed?
+4. Which output did you reject or re-prompt, and why?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The critique log is strong when a reviewer can see, for each generated image, the prompt, the flaw you caught, the fix, and the final verification. Treat the polished final image as the least interesting part of the record. The decisions that matter are the rejection and the check.
 
-A useful final paragraph for the artifact would sound like this: "I changed **AI critique log showing accepted, modified, and rejected suggestions** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful entry would sound like this: "I rejected the first pipeline diagram because it ordered the stages Collect, Analyze, Clean, which is impossible since cleaning precedes analysis. I re-prompted to lock the order and accepted the second only after confirming all three labels and both arrows matched my real steps. I rejected a third, flashier version with a glowing background because the glow carried no meaning and reduced contrast on the labels."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **AI critique log showing accepted, modified, and rejected suggestions** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Image Generation for Explaining Ideas deeply enough to adapt it rather than repeat it.
+Suppose the assignment bans generated images entirely and you must explain the same pipeline with a built-in shape tool. The explain-or-decorate test and the verification habit transfer cleanly: you still draw three labeled boxes in the correct order, you still check the labels against your real steps, and you still drop any element that does not carry meaning. The tool changed; the reasoning that makes the image honest did not.
 
 ## Artifact Studio
 
@@ -116,10 +111,10 @@ Use the studio to create a before/after trace. The first version should show you
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
-- If your note shows **confusion**, compare a weak and strong version of the AI critique log showing accepted, modified, and rejected suggestions.
-- If your note is an **insight**, transfer the same decision rule to a new audience or setting.
-- If your note makes a **connection**, show where the connection changes the artifact.
+- If your note is a **question**, ask for a concise explanation of explanatory versus decorative images tied to data-ink reasoning.
+- If your note shows **confusion**, compare a verified pipeline diagram with an unverified one that has stages out of order.
+- If your note is an **insight**, transfer the specify-then-verify habit to a different generated graphic.
+- If your note makes a **connection**, show where verifying an image caught a factual error.
 
 <dynamic-scenario prompt="You are revising the AI critique log showing accepted, modified, and rejected suggestions for CAT 100 05.03. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
 
@@ -131,7 +126,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the AI critique log showing accepted, modified, and rejected suggestions records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm each generated image is labeled explanatory or decorative, every explanatory image has been verified against your real content, and your log records at least one output you rejected and why.
 
 ## References
 

@@ -4,46 +4,40 @@
 
 ## Why This Section Matters
 
-Mayer Principles as Design Constraints sits inside **Foundations of Interactive Multimedia Learning**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Mayer Principles as Design Constraints as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence is ready for revision.
-
-Read this page as a short decision cycle: understand the idea, apply it to **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+Mayer's principles are usually taught as a checklist of good practices. That framing is a trap. A checklist invites you to apply every item every time, but the principles routinely pull in opposite directions, and several reverse depending on the learner's expertise. This section reframes them as *constraints*: conditional rules that license or forbid a specific design move given a stated learner and goal. The artifact, your diagnosis table, becomes the place where you write which principle governs a given frame, which it overrides, and on what condition. A designer who can name the boundary condition of a principle is doing instructional design; a designer who only recites the principle is decorating.
 
 ## Learning Targets
 
-- Analyze how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
+- State each principle you use as a conditional rule with its boundary condition (learner expertise, modality, pacing).
+- Resolve conflicts between principles by naming which one governs and why.
 - Document a bounded AI/software support move with accepted and rejected suggestions.
 - Use annotations, support requests, and revision notes to decide what help or design change should come next.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Mayer Principles as Design Constraints. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence records that reasoning.
-
-A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence should make that chain readable.
+A tutorial slide arrives for review: a pump diagram, a 120-word paragraph that both narration and on-screen text repeat verbatim, a looping factory video in the background, and a corner legend naming the parts. Three of Mayer's principles fire at once here, and they do not all point the same way. Coherence says delete the video. Redundancy says delete the duplicated text. Spatial contiguity says move the legend onto the parts. The decision is not "apply Mayer." It is "which principles apply to *this* learner, in what order, and where do they conflict."
 
 ## Core Concept
 
-The core idea in this section is that **Mayer Principles as Design Constraints** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Mayer's twelve principles cluster into three jobs, and each job answers a different design question.
 
-Three course anchors shape the reasoning here:
+- **Reduce extraneous processing:** coherence (cut the irrelevant), signaling (cue the relevant), redundancy (do not narrate and print the same words), spatial contiguity (put words near their picture), temporal contiguity (sync words and picture in time).
+- **Manage essential processing:** segmenting (let the learner pace chunks), pre-training (teach component names first), modality (offload words to the auditory channel).
+- **Foster generative processing:** multimedia (words plus pictures beat words alone), personalization (conversational voice), voice (human over machine narration).
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
-
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+Two features make these *constraints* rather than tips. First, **boundary conditions.** The modality and redundancy principles are strongest for novices and for fast-paced, system-controlled material; they weaken or reverse for experts and for learner-paced text (the expertise-reversal effect). Second, **conflict.** On the pump slide, the worked-example impulse to show more text collides with redundancy. You cannot satisfy both by default; you must rank them for the stated learner. Writing the rank, and the condition that justifies it, is the work the table records.
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+A thin claim hides which principle did the work:
 
-> I made the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence clearer.
+> I made the slide cleaner.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+A constraint-grounded claim names the rule and its condition:
 
-> I revised the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+> For novice learners on a system-paced slide, the redundancy principle forbids identical narration plus on-screen text, so I deleted the printed paragraph and kept narration. I offered a captions toggle so the redundancy is opt-in for learners who need text, rather than forced on everyone.
 
-The stronger version treats the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence as evidence. It names what changed, links the change to **cognitive load theory**, and leaves a reader able to audit the decision.
+The improvement is that each edit is licensed by a named principle and a stated learner condition, and the exception (the toggle) is justified, not ad hoc.
 
 ### Annotated Before/After: One Slide, Three Principles
 
@@ -63,52 +57,44 @@ The point is not that the slide is cleaner. Each deletion or move is licensed by
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Treat each principle as an if-then with a boundary condition, then resolve conflicts explicitly:
 
-Before submitting the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence, slow down and check whether the trace can answer three questions:
+1. **Name the condition:** Is the learner a novice or expert? Is the material learner-paced or system-paced? Modality and redundancy effects depend on these.
+2. **Apply the governing principle:** Coherence and contiguity rarely backfire, so apply them first. Modality, redundancy, and segmenting are conditional; apply them only when the condition holds.
+3. **Rank on conflict:** When two principles disagree on a frame, write which governs for this learner and the reason. An unranked conflict is an undecided design.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If you cannot state the boundary condition, you are using the principle as a slogan, not a constraint.
 
 ## Common Misreadings
 
-A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.
-
-The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.
+The first misreading is "more principles applied equals better design." Applying personalization, signaling, and segmenting to a frame that only had a redundancy problem adds work without addressing the issue. The second is forgetting reversal: stripping on-screen text for an expert who reads faster than your narrator can speak inserts a new extraneous delay. The third is treating accessibility and redundancy as the same axis; the fix is learner-controlled options (a toggle), not forcing duplication on everyone.
 
 <youtube-embed id="FwSih-S8yOE" title="Mayer's 12 Principles of Multimedia Learning" caption="Use this only after the worked example. Listen for one principle that would force a visible change in your artifact." />
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence**. Then ask what problem the artifact is supposed to solve inside multimedia learning foundations. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Walk the pump slide through the constraints in order. Coherence is unconditional here: the factory video serves no objective, so it goes, no learner condition needed. Spatial contiguity is also robust: the corner legend forces back-and-forth scanning between word and part, a split-attention cost for any learner, so the labels move onto the parts. Now the conditional principle: redundancy. For these novices on a system-paced slide, identical narration plus print is duplication, so the printed paragraph goes and narration stays. But notice you had to check the condition first; for a self-paced reference where learners scan at their own speed, keeping the text could be the better call. The walkthrough shows the discipline: unconditional principles applied freely, conditional principles applied only after naming the learner, conflicts ranked on the page.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 01.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+Read each principle and immediately ask "under what condition does this reverse?" A strong reader never writes a principle without its boundary condition and never resolves a slide without naming which principle governed when two collided. Keep a two-column note: principle on the left, the learner condition that licenses or forbids it on the right.
 
-A strong reader of Mayer Principles as Design Constraints can answer four questions:
+A strong reader of Mayer's principles as constraints can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which principles fire on this frame, and do any conflict?
+2. What learner condition (expertise, pacing, modality) governs each conditional principle?
+3. When two principles disagree, which governs for this learner, and why?
+4. Which of my edits would reverse if the learner became an expert?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The table is strong when each design edit cites the principle that licensed it and the boundary condition under which that principle holds. "Removed text" is weak; "removed duplicated text per the redundancy principle, valid because these learners are novices on a system-paced slide" is strong. Treat polish as the last layer. If an edit names no principle, or names a principle with no condition, mark the gap and ask BigAL to compare the same edit under a novice versus an expert learner rather than to restate the principle.
 
-A useful final paragraph for the artifact would sound like this: "I changed **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful final entry would read: "I deleted the printed paragraph under redundancy for novices and rejected the AI's caption suggestion because it reintroduced the duplication; the captions toggle preserves access without forcing duplication on everyone."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **cognitive load diagnosis table with intrinsic/extraneous/germane load evidence** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Mayer Principles as Design Constraints deeply enough to adapt it rather than repeat it.
+Move the slide into a self-paced job aid for experienced technicians who consult it while servicing a pump. The expertise-reversal effect now bites: these readers scan faster than narration plays, so narration becomes the extraneous delay, and the printed text you deleted for novices is exactly what an expert wants to skim. The redundancy principle has not changed; its boundary condition has flipped because the learner and the pacing changed. A designer who wrote "narration is better" cannot explain the reversal; a designer who wrote "modality governs for novices on system-paced material" can predict it.
 
 ## Artifact Studio
 
@@ -137,7 +123,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links Mayer Principles as Design Constraints, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+Before you move on, make sure every edit in your trace names the governing principle, the boundary condition that licenses it, and, where two principles conflicted, which one you ranked first and why.
 
 ## References
 

@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Blackboard-to-ALGET Alignment sits inside **Instructor Implementation Toolkit**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Blackboard-to-ALGET Alignment as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+Migrating a course from one platform to another tempts you to treat it as a transfer problem: copy the modules, repoint the links, done. But platforms differ in what they can capture, and a faithful copy of the wrong structure carries the original's misalignments into the new system intact. Moving from Blackboard to ALGET is an opportunity to ask the question the original course may have skipped: does every learning objective actually have an activity that develops it and an assessment that measures it?
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This matters because ALGET's adaptive features depend on process evidence (the trace of how a learner reasoned), and a Blackboard dropbox captures only a finished file. A lift-and-shift migration hands ALGET a product with no process to read, disabling the very feature you migrated for. Alignment work is what turns a platform change into a course improvement rather than a more expensive way to deliver the same gaps.
 
 ## Learning Targets
 
@@ -17,21 +17,26 @@ Read this page as a short decision cycle: understand the idea, apply it to **sto
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Blackboard-to-ALGET Alignment. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+A coordinator migrates a design module from Blackboard to ALGET over a weekend by exporting the course package and importing it whole. Everything appears: the Module 8 quiz, the storyboard dropbox, the gradebook columns. It looks like a clean move. Then the team maps the imported activities to the four stated objectives and finds the truth the export hid: all ten quiz items measure Objective 1 (recall of definitions), Objectives 2 through 4 have no activity at all, and the dropbox captures finished files that ALGET's adaptive support cannot read because there is no process trace.
 
-A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the storyboard frame sequence with narration, signaling, and reader-action notes should make that chain readable.
+The case shows that a successful import is not a successful migration. The package transferred faithfully; the alignment never existed to transfer. As you read, treat migration as the moment to build the objective-to-activity-to-assessment map the original course was missing, not as a chance to reproduce its structure faster.
 
 ## Core Concept
 
-The core idea in this section is that **Blackboard-to-ALGET Alignment** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Blackboard-to-ALGET alignment applies constructive alignment, Biggs's principle that learning objectives, learning activities, and assessments must all target the same intended verbs, to a platform migration. In a well-aligned course, if an objective says "analyze a defensible decision," some activity has students analyzing decisions and some assessment captures that analysis. Misalignment is the silent default: courses accumulate quizzes and dropboxes that measure whatever was easy to build, not what the objectives promised.
 
-Three course anchors shape the reasoning here:
+Three ideas make alignment operational during a migration:
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+- **The alignment table is the diagnosis.** A two-column table (objective, then the activity and assessment that target it) exposes empty cells. The lift-and-shift left three of four cells empty; "we moved everything" is an inventory, not an alignment.
+- **Match the response format to the cognitive verb.** A multiple-choice item can test recall (Objective 1) but cannot capture analysis or a documented AI-boundary decision. Forcing a higher-order objective into a recall format measures the wrong construct and adds load on a skill the item was never meant to assess.
+- **Migrate for the new platform's affordances.** ALGET reads process traces, so a storyboard dropbox should become an artifact-studio before-and-after trace that captures the decision and the revision, feeding the adaptive support that motivated the migration.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+| Objective verb | Blackboard activity (lifted) | Aligned ALGET activity |
+| --- | --- | --- |
+| Recall definitions | 10 MC quiz items | One or two MC items retained |
+| Analyze a defensible decision | none | Artifact-studio before/after trace |
+| Document a bounded AI move | none | Misconception-tagged practice on the AI boundary |
+| Decide next revision | none | Trace plus adaptive-support prompt |
 
 ## Worked Example
 
@@ -47,50 +52,50 @@ Walk through one concrete alignment decision: moving a design module's assessmen
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Build the alignment table before you build or migrate a single activity. The table is the diagnosis; activities chosen without it inherit whatever the old platform happened to contain. Migrate toward the new platform's strengths, not toward the old platform's habits.
 
-Before submitting the storyboard frame sequence with narration, signaling, and reader-action notes, slow down and check whether the trace can answer three questions:
+Run any migration plan through three checks:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Coverage check:** Does every objective have at least one activity that develops it and one assessment that measures it, with no empty cells? A lifted course usually fails this on its higher-order objectives.
+2. **Verb-format match check:** Does each assessment's response format fit the objective's cognitive verb? A recall item cannot stand in for an analysis objective, no matter how cleanly it imported.
+3. **Affordance check:** Does the migrated activity use what the new platform can do that the old one could not? If a dropbox stays a dropbox, ALGET's process-reading features have nothing to read, and the migration bought nothing.
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A plan that fails these moved the course without improving it, and often disabled the features that justified moving.
 
 ## Common Misreadings
 
-A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.
+The most common misread is that a complete import equals a complete migration. The export tool copies whatever exists, including the gaps; a flawless transfer of a misaligned course is a flawless transfer of misalignment. Fidelity to the source is not a virtue when the source was never aligned.
 
-The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.
+A second misread is that adding the new platform's features is the same as using them. Replacing a dropbox with an artifact-studio block only helps if the activity actually elicits a process trace; an artifact-studio that students treat as a second dropbox feeds ALGET the same dead-end product. The affordance has to be wired to a task that produces what it can read.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside course readiness and facilitation. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Re-align the lifted module step by step. Start with the table, not the activities: list the four objectives down one column. The import filled only the recall row; three rows are empty, which is the real finding the clean import concealed.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Now fill the cells by matching format to verb. Objective 2 (analyze a defensible decision) and Objective 4 (decide next revision) both need captured reasoning, so the storyboard dropbox becomes an artifact-studio before-and-after trace that records the decision and the revision. Objective 3 (document a bounded AI move) needs a probe of judgment, so one quiz item is rewritten as a misconception-tagged practice item on the AI boundary. Objective 1 keeps a couple of the recall items, which were never the problem.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, re-check the table for coverage and orphans: every objective now maps to an aligned activity, and no activity floats unattached to an objective. The walkthrough is complete when the migration has moved from one of four objectives covered to four of four, and the dropbox has become a trace ALGET's adaptive support can actually read, which is the whole reason the course moved platforms.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 08.07, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader of this section instinctively builds the alignment table when handed any course, looking first for empty cells where an objective has no activity or assessment. Constructive alignment is the lens; the empty cell is the defect it reveals.
 
-A strong reader of Blackboard-to-ALGET Alignment can answer four questions:
+Read any migrated or inherited course against these four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Does every objective map to an activity that develops it and an assessment that measures it?
+2. Does each assessment's format match the cognitive verb of its objective, or does a recall item stand in for higher-order work?
+3. Does the migration exploit the new platform's affordances, or merely reproduce the old structure?
+4. Is any activity orphaned, present in the course but attached to no objective?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong alignment artifact shows the before table (objectives versus lifted activities, with empty cells visible) and the after table (every cell filled with a format-matched activity), plus a note on which dropbox became a process-capturing trace. A reviewer should be able to see coverage move from one of four objectives to four of four and to see why each new activity fits its objective's verb.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A strong rationale sounds like this: "I converted the storyboard dropbox into an artifact-studio trace because Objectives 2 and 4 require captured reasoning that a finished-file upload cannot show, and ALGET's adaptive support needs a process trace to read. I rejected the suggestion to keep all ten quiz items, because nine of them measured recall that only Objective 1 called for and left the higher-order objectives unassessed."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Blackboard-to-ALGET Alignment deeply enough to adapt it rather than repeat it.
+Move the same alignment work to a migration into a platform that, unlike ALGET, cannot capture process traces and supports only quizzes and file uploads. Constructive alignment is unchanged, but the affordance constraint inverts: you cannot rely on a process-reading feature to assess the analysis objectives. The faithful transfer is to meet the higher-order objectives with what the platform can do, perhaps a structured upload whose template forces a documented before-and-after rationale, and to accept heavier instructor reading where automated reading is impossible. Copying the ALGET artifact-studio expectation into a platform that cannot read traces would leave the analysis objectives nominally covered but actually unassessable.
 
 ## Artifact Studio
 

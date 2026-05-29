@@ -4,11 +4,9 @@
 
 <youtube-embed id="aA4AG1LCG0M" title="Easily Learn Pivot Tables in Microsoft Excel" caption="Use this only after reading the section. Then return to the artifact and make the chart claim, unit label, and source note more precise." />
 
-## Why This Section Matters
+A pivot table turns hundreds of raw rows into a short summary without a single formula. Hand it a list of every order and it can answer "how much did each region sell?" or "how many orders did we get per month?" in a few drags. It is the fastest path from a messy log to a finding, which is why it is the workhorse of everyday spreadsheet analysis.
 
-Pivot Tables as Summaries sits inside **Data Storytelling With Excel**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Pivot Tables as Summaries as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the Excel pivot-table finding with unit labels, source note, and claim-first chart title.
-
-Read this page as a short decision cycle: understand the idea, apply it to **Excel pivot-table finding with unit labels, source note, and claim-first chart title**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+The power comes with a responsibility: a pivot summarizes by a rule you choose (sum, count, average), and choosing the wrong rule answers a different question than you asked. This section teaches the anatomy of a pivot, Rows, Values, and the aggregation setting, and the two traps that quietly produce wrong summaries: reading the Grand Total when you wanted a category, and trusting numbers from a source range that no longer covers all the data.
 
 ## Learning Targets
 
@@ -19,21 +17,24 @@ Read this page as a short decision cycle: understand the idea, apply it to **Exc
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Pivot Tables as Summaries. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The Excel pivot-table finding with unit labels, source note, and claim-first chart title is the place where that verification becomes visible.
+You have a log of six orders across three regions and your boss asks two questions: which region brought in the most money, and which region placed the most orders. With raw rows you would be hand-adding and tallying. With a pivot you drag Region to Rows and Sales to Values, and West, East, South appear with their totals in seconds.
 
-In CAT 100, completion is not the same as digital fluency. The section asks you to show how Pivot Tables as Summaries changes the choices you make in the Excel pivot-table finding with unit labels, source note, and claim-first chart title.
+Then the trap springs. You add a new order at the bottom of the log, glance at the pivot, and the totals have not budged; the pivot is reading a frozen snapshot until you refresh it. Or you report the Grand Total of 1900 when the question was about a single region. The pivot was fast, but fast and correct are not the same thing, and the gap between them is exactly what this section trains you to close.
 
 ## Core Concept
 
-The core idea in this section is that **Pivot Tables as Summaries** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A pivot table has a small set of zones, and once you know what each does, you can build almost any summary:
 
-Three course anchors shape the reasoning here:
+| Zone | What you drag here | Effect on the summary |
+| --- | --- | --- |
+| Rows | A category field (Region, Month) | One row per distinct value |
+| Columns | A second category field | Splits each row into sub-columns (a cross-tab) |
+| Values | A number field (Sales) | The cells being aggregated |
+| Filters | Any field | Limits which source rows are included |
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The decisive setting lives inside Values: the aggregation function. Drag Sales to Values and Excel defaults to Sum, which answers "how much money?" Open Value Field Settings and switch to Count and the same layout answers "how many orders?" Switch to Average and it answers "what was the typical order size?" Same fields, different aggregation, different question. Choosing the aggregation is therefore choosing the question your summary answers.
 
-The anchors should do work in your artifact. If NACE career readiness or ISTE digital citizenship does not change a decision, it is only a citation rather than evidence of judgment.
+Two structural facts govern correctness. A pivot reports per-category rows plus a Grand Total; the Grand Total is the all-data figure, so quoting it when you meant one category is a category error. And a pivot reads from a fixed source range captured when it was built, so new rows and edits do not appear until you click Refresh, and only if the source range still covers the data.
 
 ## Worked Example
 
@@ -70,50 +71,49 @@ The auditable decision: choose the aggregation that matches the question (Sum fo
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Match the aggregation to the question, read the category row not the Grand Total, and refresh before you quote any number. A pivot is only as current as its last refresh and only as correct as its chosen aggregation.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+Before you report a pivot figure, confirm three things:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Aggregation check:** Is the Values field set to the function the question needs (Sum for totals, Count for tallies, Average for typical size)?
+2. **Right-cell check:** Are you quoting the specific category row you were asked about, not the Grand Total that combines everything?
+3. **Freshness check:** Have you clicked Refresh since the last data edit, and does the source range still include the newest rows?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a colleague added rows and your headline number did not change, you skipped the freshness check.
 
 ## Common Misreadings
 
-Students sometimes accept an AI suggestion because it sounds better, without checking whether it protects the claim, audience, or evidence.
+The most frequent error is reporting the Grand Total as if it were a single category. If the pivot shows West = 1200, East = 550, South = 150, Grand Total = 1900, then "the top region sold 1900" is wrong; 1900 is the sum of all regions and West's actual figure is 1200. Always read down to the named row.
 
-Your trace should make the judgment visible enough that a reviewer can trust the digital product.
+A second misreading is assuming a pivot is live like a formula. It is not; it caches its source. Add a row and the pivot ignores it until you Refresh, and if the new row falls outside the original source range, even a refresh will miss it. Extending the source to cover all data, or basing the pivot on a Table, prevents this stale-range trap.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **Excel pivot-table finding with unit labels, source note, and claim-first chart title**. Then ask what problem the artifact is supposed to solve inside spreadsheet data stories. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply pivots to a different log: a semester of study-group attendance, one row per session, with columns Course, Week, and Attendees. The question is "which course drew the largest average group?"
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Drag Course to Rows and Attendees to Values. The default aggregation is Sum, which would tell you total attendance, not the size of a typical session, so open Value Field Settings and switch to Average. Now each course row shows its mean group size, which is the question asked. If you had left it on Sum, a course that met twice as often would look more popular per session than it really was.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Read the course rows, never the Grand Total, since an average of averages across courses is not a meaningful figure. Then add last week's sessions to the log and click Refresh; confirm the source range reached the new rows. The reported figure is now both the right statistic and the current one.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 03.04, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader interrogates a pivot before believing it, because a pivot can be confidently wrong. Ask:
 
-A strong reader of Pivot Tables as Summaries can answer four questions:
+1. What aggregation is in the Values box, and does it answer the stated question?
+2. Is the quoted number a category row or the Grand Total?
+3. When was this pivot last refreshed, and does its source range cover every data row?
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+When you can look at a summary and immediately ask "sum or count?" and "refreshed when?", you treat a pivot as evidence to be checked rather than an answer to be trusted.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+A strong pivot artifact states which aggregation it uses and proves the headline against the source. The trace should name the question, the aggregation chosen, and a reconciliation step. A model line reads: "The question was total sales per region, so Values is set to Sum; West shows 1200, which equals 400 plus 600 plus 200 from the three West rows in the source log, and I refreshed after adding the latest order."
 
-A useful final paragraph for the artifact would sound like this: "I changed **Excel pivot-table finding with unit labels, source note, and claim-first chart title** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+The weak version pastes a pivot and quotes a number. The strong version lets a reviewer add the underlying rows by hand and reach the same figure, and shows that the source range and refresh state make the number current.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **Excel pivot-table finding with unit labels, source note, and claim-first chart title** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Pivot Tables as Summaries deeply enough to adapt it rather than repeat it.
+The same pivot logic transfers to a two-dimensional cross-tab, where you use the Columns zone. Suppose the question becomes "how do sales break down by region and by quarter at once?" Drag Region to Rows, Quarter to Columns, and Sales to Values, and the pivot produces a grid: regions down the side, quarters across the top, each cell the sales for that region-quarter pair. The aggregation, Grand Total, and refresh rules all still apply, but now there are row totals and column totals, and confusing a row total (one region across all quarters) with a column total (one quarter across all regions) is the new version of the Grand-Total trap. Handling that grid correctly shows you understand the zones, not just the single-field summary.
 
 ## Artifact Studio
 

@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Capstone Artifact Review sits inside **Course Completion and Transfer**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Capstone Artifact Review as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the privacy checklist for accounts, data sharing, and AI tool boundaries.
+The capstone artifact review is the moment when everything you built across CAT 100 stops being homework and starts being a public record of what you can do. A hiring manager, a transfer advisor, or a scholarship reviewer will not read your weekly assignments; they will open one spreadsheet, one website, or one resume and decide in about thirty seconds whether to trust it. That decision is shaped by something you usually cannot see while you are building: whether your files quietly leak private information.
 
-Read this page as a short decision cycle: understand the idea, apply it to **privacy checklist for accounts, data sharing, and AI tool boundaries**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+A privacy checklist is the discipline of inspecting your own artifacts the way an attacker or a careless search engine would. The most common failure in a student portfolio is not an ugly layout; it is an API key, a password, an email address, or a classmate's name committed into a public GitHub repository where it stays forever. This section teaches you to run a concrete, repeatable scan before review, so the artifact you publish is both useful and safe to share.
 
 ## Learning Targets
 
@@ -17,21 +17,23 @@ Read this page as a short decision cycle: understand the idea, apply it to **pri
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Capstone Artifact Review. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The privacy checklist for accounts, data sharing, and AI tool boundaries is the place where that verification becomes visible.
+Maya is about to share her GitHub Pages portfolio in the capstone showcase. The site looks finished: a clean header, three project cards, a contact form. What she cannot see from the rendered page is that her `app.js` still holds a weather API key she pasted while testing, and her `contact.html` carries a leftover comment with an SMTP password.
 
-A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The privacy checklist for accounts, data sharing, and AI tool boundaries is where that trust is built.
+The rendered website hides both. A reviewer browsing the live page would never notice. But GitHub repositories are public by default, and automated bots scrape new commits for exactly these strings within minutes. Maya's artifact is visually polished and simultaneously a security incident. The privacy checklist exists to catch the gap between "looks done" and "is safe to publish."
 
 ## Core Concept
 
-The core idea in this section is that **Capstone Artifact Review** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A privacy checklist is a fixed set of inspections you run against the actual files you are about to publish, not against your memory of how careful you were. It rests on one hard fact about version control and the open web: once something is committed and pushed to a public repository, it is permanent. Deleting a secret in a later commit does not remove it; the value still lives in the repository history and may already be cached by scrapers. The only safe response to a leaked credential is to rotate it (generate a new one and invalidate the old).
 
-Three course anchors shape the reasoning here:
+The checklist covers three distinct surfaces, and confusing them is where students get hurt:
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+| Surface | What to look for | Why it matters |
+| --- | --- | --- |
+| Accounts and credentials | API keys, passwords, tokens, `.env` contents in tracked files | A live key can be abused to run up charges or send mail in your name |
+| Data sharing | Real names, emails, student IDs, anything tied to a person who did not consent | FERPA-style privacy and basic respect; classmates did not agree to be published |
+| AI tool boundaries | What you pasted into an AI tool, and what it generated that you cannot verify | Pasting private data into a chatbot shares it with a third party |
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+The reason a checklist beats good intentions is that secrets enter files by accident, during testing, when you are focused on making something work. You will not remember them later. A scan finds them; a memory does not. The output that earns review is not "I was careful," it is a reproducible command and its result.
 
 ## Worked Example: Auditing One Repo Against the Privacy Checklist
 
@@ -63,50 +65,48 @@ That paragraph names the file, the line, the action, the date, and the re-check,
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Treat any string that grants access or identifies a person as a leak until you have proven otherwise with a scan. Concretely, before you publish:
 
-Before submitting the privacy checklist for accounts, data sharing, and AI tool boundaries, slow down and check whether the trace can answer three questions:
+1. **Scan, do not recall.** Run `git grep -i` for `key`, `password`, `token`, `secret`, and `@` (to catch emails). Trust the output, not your memory.
+2. **Rotate anything that was ever pushed.** If a secret reached a public commit, deletion is not enough; invalidate the old credential and issue a new one.
+3. **Quarantine third-party data.** Anything you pasted into an AI tool has left your machine; if it included private data, treat that data as shared and disclose it.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a string survives all three checks, it is safe to publish. If you skip the scan, "it looks fine" is a guess, not a decision.
 
 ## Common Misreadings
 
-A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.
+The most damaging misreading is believing that deleting a secret fixes the leak. It does not: the value remains in the commit history of a public repository, retrievable by anyone who clones it. Deletion plus rotation is the fix; deletion alone is theater.
 
-The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.
+A second misreading is treating private data as only passwords. A classmate's full name on a sample invoice, a real email in a contact form's default value, or a teammate's student ID in a test dataset are all data you are publishing without consent. The checklist protects people, not just credentials.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **privacy checklist for accounts, data sharing, and AI tool boundaries**. Then ask what problem the artifact is supposed to solve inside capstone transfer. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Walk a real repository through the checklist in order. Begin with the credentials surface: open every file you wrote, not just the ones you remember editing, and run the grep scan. Treat each hit as guilty until cleared. The weather key in the worked example looks harmless because it is short and "just for testing," but a live key in a public repo is exactly what bots harvest.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Move next to the data surface. Look at sample data, form defaults, comments, and commit messages. A budget spreadsheet you built from a real club roster may carry member names; replace them with placeholders like `Member A` before publishing. This is where the artifact stops being only about you and starts being about the people whose information you handled.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, audit the AI boundary. Reconstruct what you actually pasted into any AI tool while building. If you pasted a code block that contained the API key to ask for help debugging, that key is now known outside your machine and must be rotated, exactly as if you had published it. The walkthrough ends with the evidence paragraph: file, line, action, date, and re-check.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 08.01, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a running list with two columns: the exact string you found and the exact remediation you performed. A strong reader of this section does not summarize "I checked for secrets"; they can point to `app.js:14`, the action taken, the rotation date, and the clean re-scan.
 
-A strong reader of Capstone Artifact Review can answer four questions:
+A strong reader of the capstone privacy checklist can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which exact files and lines did the scan flag?
+2. For each flagged item, was the credential rotated, not just deleted?
+3. What real-person data appears in sample data or form defaults, and how was it removed?
+4. What did you paste into an AI tool, and does any of it now need rotation or disclosure?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is strong when a reviewer can rerun your scan and get zero hits, and when every remediation is dated and verifiable. The standard is not "I believe it is clean," it is a reproducible `git grep` command that returns nothing plus a short log of what was removed and rotated.
 
-A useful final paragraph for the artifact would sound like this: "I changed **privacy checklist for accounts, data sharing, and AI tool boundaries** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful closing note for the artifact would read: "Scanned the repo for credentials and personal data on 2026-05-12; moved one API key out of tracked files and rotated it, removed one password comment and rotated the mail credential, replaced two real member names in the sample budget with placeholders. Re-scan returns zero hits." That sentence proves the decision instead of asserting it.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **privacy checklist for accounts, data sharing, and AI tool boundaries** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Capstone Artifact Review deeply enough to adapt it rather than repeat it.
+Move the same artifact into a stricter setting: a public job application where the repository link goes to a recruiter, or a team project where a partner committed the secrets. The scan does not change, but the stakes and the responsibility do. With a recruiter, a single leaked key signals carelessness about exactly the kind of access an employer would trust you with. With a partner, you must coordinate rotation because the leaked credential may be theirs. Use the change in setting to test whether you treat the checklist as a habit you can run anywhere, or only a one-time CAT 100 task.
 
 ## Artifact Studio
 

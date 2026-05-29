@@ -4,34 +4,36 @@
 
 ## Why This Section Matters
 
-README and Repository Disclosure sits inside **Design Draft and Theory-to-Prototype Alignment**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats README and Repository Disclosure as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the prototype README traceability matrix connecting theory to screen changes is ready for revision.
+"AI was used in this project" is a sentence that satisfies no one. It names no tool, no location, and no human edit, so a reviewer cannot check it, and an instructor cannot tell whether the work demonstrates the author's judgment or the model's defaults. A disclosure earns trust only when it is auditable: tied to the artifact, specific about who did what, and verifiable against the evidence (the commit history) that the repository already keeps. AIL 606 treats the README as the place where two obligations meet, honest disclosure of AI use and a traceability matrix linking each principle to each screen change, both of them checkable by anyone who clones the repo.
 
-Read this page as a short decision cycle: understand the idea, apply it to **prototype README traceability matrix connecting theory to screen changes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches you to write disclosures and traceability that a reviewer can verify against the commit log rather than take on faith. You should leave able to convert a vague integrity claim into evidence, and able to colocate the disclosure with the artifact so the claim and the proof live in the same place.
 
 ## Learning Targets
 
-- Analyze how the prototype README traceability matrix connecting theory to screen changes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Write AI-use disclosures that name the tool, the location, and the author's follow-up edit.
+- Tie each disclosure claim to verifiable evidence (a commit) in the repository.
+- Build a theory-to-screen traceability matrix that a reviewer can audit.
+- Colocate disclosure and artifact so integrity is evidenced, not merely asserted.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for README and Repository Disclosure. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the prototype README traceability matrix connecting theory to screen changes records that reasoning.
+A reviewer clones two AIL 606 prototypes. The first README says "AI was used in this project. The design follows good learning principles." There is nothing to check: no tool named, no screen tied to a principle, no link to the history. The second README lists "Codex generated the flashcard component (commit a3f9c1); I rewrote the scoring to normalize case (commit b7d2e4)," followed by a table mapping each screen to its controlling principle. The reviewer opens the diff for commit b7d2e4 and confirms the scoring change with their own eyes. One README asserts integrity; the other lets the reviewer verify it.
 
-This page is more than a principle summary. Use it to leave a design trace showing how README and Repository Disclosure changed what you noticed in the prototype README traceability matrix connecting theory to screen changes.
+The case shows the gap between claiming and evidencing. The first author may be perfectly honest, but honesty that cannot be checked carries no weight in a review.
 
 ## Core Concept
 
-The core idea in this section is that **README and Repository Disclosure** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Disclosure is the documented, auditable account of how AI tools contributed to an artifact and what the human author did with the output. Three properties make a disclosure auditable. Specificity: it names the tool, the exact location (which component, which figure), and the author's follow-up edit, so a reader knows what was generated versus authored. Linkage: each claim points to a commit, so the assertion can be checked against the diff the version-control system already records. Colocation: the disclosure lives with the artifact in the repository, not in a separate document, so the claim and its evidence cannot drift apart.
 
-Three course anchors shape the reasoning here:
+Traceability in the README serves the parallel function for design: a matrix mapping each screen change to the controlling principle that justified it. This is the public, auditable form of the principle-to-feature work, written so a cloner can read down the table and then open the corresponding screen to check the mapping. Together, disclosure and traceability turn the repository into a self-verifying record: the README states the claims, the commit history and the screens supply the proof.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+| Vague claim | Auditable disclosure |
+| --- | --- |
+| "AI was used" | "Codex generated the flashcard component (commit a3f9c1)" |
+| "I edited it" | "I rewrote the scoring to normalize case (commit b7d2e4) after testing Paris and paris" |
+| "Good learning principles" | A table mapping each screen to its controlling principle |
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+The reason version control is central is that a commit is tamper-evident evidence with an author and a timestamp. Pointing a disclosure at a commit converts an honor-system statement into something a reviewer can independently confirm, which is the entire difference between claiming integrity and evidencing it.
 
 ## Worked Example
 
@@ -71,50 +73,48 @@ The design follows good learning principles.
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Write every disclosure so a stranger with the repo could verify it. For each claim:
 
-A strong submission should survive three quick tests:
+1. **Specificity check:** Does it name the tool, the location, and the author's edit?
+2. **Linkage check:** Does it point to a commit a reviewer can open and confirm?
+3. **Colocation check:** Does the disclosure live with the artifact, and does the traceability table map each screen to its principle?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a claim cannot be checked against the commit history, it is an assertion, not a disclosure.
 
 ## Common Misreadings
 
-Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.
+The first error is the catch-all sentence ("AI was used"), which feels like disclosure but discloses nothing checkable. The second is asserting quality ("follows good principles") without a traceability table that ties principles to actual screens. The third is keeping the disclosure in a separate file from the artifact, so the claim and the evidence can drift apart and neither can be trusted.
 
-In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.
+Disclosure is verifiable evidence colocated with the work, not a polite acknowledgment that a tool was somewhere involved.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **prototype README traceability matrix connecting theory to screen changes**. Then ask what problem the artifact is supposed to solve inside prototype authoring. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Write the disclosure from the commit history backward. Open the log, find each commit where AI output entered or was revised, and write a line that names the tool, the location, and what you changed, ending with the commit hash. Sourcing the disclosure from the actual history guarantees specificity and linkage at once.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Then build the traceability table as the public face of your principle-to-feature work. Each row maps a screen to the one principle that controls its key change, written so a reader can open that screen and check the claim. The table is the bridge between your internal design reasoning and an external reviewer's ability to audit it.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, colocate everything in the README and confirm the links resolve. A disclosure that points to a commit that does not exist, or a table that names a screen that is not in the repo, is worse than none, because it claims verifiability it cannot deliver. Clone your own repo fresh and check every link as a reviewer would.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 04.07, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is a disclosure or traceability statement; the evidence is the commit or screen a reviewer would open to confirm it. By the end of AIL 606 04.07, your notes should let a stranger audit the repository without asking you anything.
 
-A strong reader of README and Repository Disclosure can answer four questions:
+A strong reader of a README disclosure can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which tool did what, where, and what did the author change afterward?
+2. Which commit would a reviewer open to verify each claim?
+3. Does the traceability table map each screen to a checkable principle?
+4. Do the disclosure and the artifact live together so the evidence cannot drift?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is strong when every AI claim is specific, linked to a commit, and colocated with the work, and when the traceability table lets a reviewer audit each principle-to-screen mapping. Treat a catch-all sentence as a non-disclosure. Where a claim lacks a commit link, mark it with the annotation tools and ask BigAL to compare a vague disclosure with an auditable one rather than for a generic statement about academic integrity.
 
-A useful final paragraph for the artifact would sound like this: "I changed **prototype README traceability matrix connecting theory to screen changes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful final paragraph for the artifact would sound like this: "I rewrote the disclosure to name each tool, location, and my follow-up edit with its commit hash, and added a screen-to-principle table. I rejected the suggestion to summarize all AI use in one sentence, because a reviewer could not verify a single specific claim from it."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **prototype README traceability matrix connecting theory to screen changes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand README and Repository Disclosure deeply enough to adapt it rather than repeat it.
+Move the same disclosure obligation from a course prototype to a published open-source educational tool with outside contributors. The properties hold, but the stakes and audience grow: disclosure now serves not just an instructor but every downstream user and contributor, the traceability table becomes part of the project's documentation, and the commit linkage must survive across many authors. Transfer means scaling the same auditable structure to a multi-author repository, not abandoning it because the project got bigger. If you understand disclosure as evidence, a larger audience raises the bar for verifiability rather than lowering it.
 
 ## Artifact Studio
 
@@ -143,7 +143,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, make sure your trace links README and Repository Disclosure, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+Before you move on, confirm that every disclosure names a tool, location, and edit linked to a commit, and that the traceability table maps each screen to a checkable principle, all colocated in the README. That auditability is what evidences integrity rather than asserting it.
 
 ## References
 

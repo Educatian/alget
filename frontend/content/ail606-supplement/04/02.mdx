@@ -4,34 +4,37 @@
 
 ## Why This Section Matters
 
-Principle-to-Feature Traceability sits inside **Design Draft and Theory-to-Prototype Alignment**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Principle-to-Feature Traceability as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the storyboard frame sequence with narration, signaling, and reader-action notes is ready for revision.
+Designers love to cite principles, but a cited principle and an applied principle look completely different in a prototype. Principle-to-feature traceability is the practice of proving that a named learning principle actually produced a specific feature, and that the feature reduces or strengthens a specific processing demand. Without traceability, a storyboard becomes a pile of nice features each justified after the fact by whichever principle sounds plausible. AIL 606 asks you to build a matrix that survives the reverse question: pick any feature, and you can name the one principle that controls it and the demand it addresses.
 
-Read this page as a short decision cycle: understand the idea, apply it to **storyboard frame sequence with narration, signaling, and reader-action notes**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches you to write traceability rows that resist post-hoc justification. You should leave able to spot the tell of a cosmetic change wearing four principles, and able to rewrite a row so it names one controlling principle, the processing demand it targets, and the feature mechanism.
 
 ## Learning Targets
 
-- Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Map one controlling principle to one feature, with the processing demand named explicitly.
+- Detect post-hoc justification (many principles attached to one cosmetic change).
+- Describe features as mechanisms that act on a demand, not as decoration.
+- Defend any feature by tracing it forward from principle to demand to implementation.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Principle-to-Feature Traceability. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the storyboard frame sequence with narration, signaling, and reader-action notes records that reasoning.
+In a design crit, a peer presents a matrix where one row reads "Signaling, Coherence, Modality, Segmenting" all pointing at "added a colored highlight and cleaned up the slide." The crit goes quiet, because everyone recognizes the pattern: the highlight was added first because it looked good, and four principles were stapled on afterward to make it sound rigorous. The fix is not more principles; it is one principle, honestly chosen, with the demand it reduces stated out loud.
 
-A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the storyboard frame sequence with narration, signaling, and reader-action notes should make that chain readable.
+The case shows why traceability runs in both directions. A forward trace (principle to feature) is easy to fake; the reverse trace (here is the feature, name its one controlling principle and the demand) is the one that exposes whether design reasoning actually happened.
 
 ## Core Concept
 
-The core idea in this section is that **Principle-to-Feature Traceability** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Traceability is the documented relationship between an instructional principle, the cognitive demand it acts on, and the feature that implements it. The core move is the one-to-one discipline: each feature should be controlled by a single principle. Mayer's principles are not interchangeable adjectives; each names a distinct processing problem. Signaling solves "the learner cannot tell which element matters." Coherence solves "interesting but irrelevant material is stealing capacity." Modality solves "the visual channel is overloaded because text and graphics compete." Redundancy solves "identical words are presented in two channels at once." When you attach four of these to one change, at least three are decorative.
 
-Three course anchors shape the reasoning here:
+A feature must be written as a mechanism, not an appearance. "Made it cleaner" is appearance; "a yellow highlight appears on exactly the term the narration is speaking, synced to the audio, and clears when narration moves on" is a mechanism, because it states what the feature does to the learner's attention. Only a mechanism can be tested against the demand it claims to reduce.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+| Principle | The processing problem it solves | A mechanism that solves it |
+| --- | --- | --- |
+| Signaling | Learner cannot locate the relevant element | Cue (highlight, arrow, bold) on exactly the active element |
+| Coherence | Extraneous material consumes capacity | Remove decorative images and background music |
+| Modality | Visual channel overloaded by competing text and graphic | Move on-screen text to narration |
+| Segmenting | Continuous presentation outpaces processing | Learner-paced chunks with continue control |
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+The reason one-to-one matters is auditability. A reviewer who can isolate the controlling principle can run a clean test: does this mechanism reduce that demand? With four principles fused, no clean test exists, so the claim is unfalsifiable and therefore worthless as evidence of judgment.
 
 ## Worked Example
 
@@ -59,50 +62,48 @@ Work through one annotated before/after revision of a single traceability row, t
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Build the matrix so it survives the reverse trace. Before the storyboard ships, audit every row with three tests:
 
-Before submitting the storyboard frame sequence with narration, signaling, and reader-action notes, slow down and check whether the trace can answer three questions:
+1. **One-principle check:** Can you cut the row to a single controlling principle? If three drop away with no loss, they were decorative.
+2. **Mechanism check:** Does the feature column say what the feature does to attention or processing, not how it looks?
+3. **Demand check:** Does the row name the specific demand the feature reduces or strengthens, so the claim can be tested?
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a row fails any test, it is a justification, not a trace.
 
 ## Common Misreadings
 
-A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.
+The frequent error is principle inflation: attaching every plausible principle to a feature so the matrix looks thorough. Thoroughness here is a liability, because it signals that the principles were chosen to flatter the feature rather than to control it. A related error is describing features by appearance ("cleaner," "more modern"), which can never be traced to a demand because appearance is not a cognitive event.
 
-The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.
+A matrix is strong when each row is sparse and falsifiable, not when each row is crowded with citations.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **storyboard frame sequence with narration, signaling, and reader-action notes**. Then ask what problem the artifact is supposed to solve inside prototype authoring. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Start from a finished feature and try to delete principles. Take the row, and one at a time, remove each principle and ask whether the feature still makes sense without it. The principle you cannot remove is the controlling one; the ones that fall away without consequence were decorative. This subtractive method is faster and more honest than trying to justify additions.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
+Next, rewrite the feature cell as a mechanism. Replace any appearance word with a verb describing what happens to the learner: directs attention to, removes from the channel, paces, separates. If you cannot write the verb, you do not yet understand what the feature does, which is the real finding.
 
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Finally, name the demand in the learner's terms, not the designer's. "Reduces clutter" is the designer's view; "novices cannot tell which term the narration is on" is the learner's processing problem. The demand cell is where the row becomes testable, because a demand stated from the learner's side can be checked in user testing.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 04.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the single controlling principle you believe governs a feature; the evidence is the mechanism and the demand that make the mapping testable. By the end of AIL 606 04.02, your notes should let a reviewer audit any row by running the reverse trace.
 
-A strong reader of Principle-to-Feature Traceability can answer four questions:
+A strong reader of a traceability matrix can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. For this feature, which one principle survives the subtraction test?
+2. Is the feature written as a mechanism or as an appearance?
+3. What demand, stated from the learner's side, does the row claim to reduce?
+4. How would you test in user data whether the mechanism worked?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is strong when every row is sparse (one controlling principle), mechanistic (a verb acting on attention), and falsifiable (a named demand a reviewer could test). Treat a crowded, citation-heavy matrix as a warning sign, not a strength. Where a row still fuses principles, mark it with the annotation tools and ask BigAL to compare a one-principle row against a four-principle row rather than for a generic definition of signaling.
 
-A useful final paragraph for the artifact would sound like this: "I changed **storyboard frame sequence with narration, signaling, and reader-action notes** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful final paragraph for the artifact would sound like this: "I rewrote the signaling row to name one principle, the demand it reduces, and the synced-highlight mechanism. I dropped Coherence, Modality, and Segmenting from that row because removing them changed nothing about why the highlight exists."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **storyboard frame sequence with narration, signaling, and reader-action notes** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Principle-to-Feature Traceability deeply enough to adapt it rather than repeat it.
+Move the same matrix from a narrated slide deck to a text-only print job aid where there is no audio channel. The signaling row may survive (a bold cue still directs attention), but the Modality and Redundancy rows lose their basis, because there is no second channel to balance or duplicate. Transfer means re-deriving which principles even apply in the new channel mix, not copying the rows. If you understand traceability, removing the audio channel visibly prunes the matrix.
 
 ## Artifact Studio
 
@@ -131,7 +132,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the storyboard frame sequence with narration, signaling, and reader-action notes records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm that every row in your matrix names one controlling principle, a learner-side demand, and a feature mechanism, so a reviewer could run the reverse trace on any row and find it falsifiable.
 
 ## References
 

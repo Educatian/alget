@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Accessibility Checks for Slides sits inside **AI-Enhanced Presentation Development**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Accessibility Checks for Slides as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the presentation storyboard with audience constraint and slide-level evidence.
+A slide that only some of your audience can read is a slide that failed for the rest. Low-contrast text disappears for anyone with reduced vision or on a sun-washed projector. A chart with no alternative text is silent to a screen-reader user. Status dots that mean "red equals risk" are invisible to the roughly one in twelve men with color vision deficiency. None of these problems show up when the designer, who can see the slide perfectly, looks at it; they show up only when you test against specific, measurable criteria.
 
-Read this page as a short decision cycle: understand the idea, apply it to **presentation storyboard with audience constraint and slide-level evidence**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches a concrete, repeatable accessibility pass built on the Web Content Accessibility Guidelines: check contrast against the 4.5:1 ratio, give every meaningful image alternative text, and never let color carry meaning alone. The artifact is a storyboard that records each check and the fix it triggered, so a reviewer can confirm the slide works for varied viewers.
 
 ## Learning Targets
 
@@ -17,21 +17,17 @@ Read this page as a short decision cycle: understand the idea, apply it to **pre
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Accessibility Checks for Slides. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The presentation storyboard with audience constraint and slide-level evidence is the place where that verification becomes visible.
-
-A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The presentation storyboard with audience constraint and slide-level evidence is where that trust is built.
+A team is proud of a sleek slide: light gray headings on white, a clean chart, and green and red dots showing project status. In the room, a reviewer with color blindness asks which projects are at risk, and cannot tell, because to him the dots look identical. A second reviewer squints at the gray heading and gives up. The slide looked elegant to the designers and excluded two people in the first row. Accessibility is not a finishing touch; it is whether the slide reaches its audience at all.
 
 ## Core Concept
 
-The core idea in this section is that **Accessibility Checks for Slides** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Accessibility on slides is not subjective taste; it is a set of testable criteria, and three of them catch the large majority of real problems:
 
-Three course anchors shape the reasoning here:
+- **Contrast.** Text must stand out enough from its background to be legible. WCAG sets a minimum contrast ratio of 4.5:1 for normal text (3:1 for large text). The ratio is computed from the relative luminance of the two colors; you do not eyeball it, you check it. Light gray on white, a common "elegant" choice, often lands near 1.7:1, far below the line.
+- **Text alternatives.** Every image that carries meaning needs alt text that states the point, not the file type. "Chart" is useless; "Bar chart; signups rose from 1,200 to 2,400 after launch" conveys what a sighted viewer gets.
+- **Do not rely on color alone.** If color is the only thing distinguishing two states (green vs. red, used vs. free), viewers with color vision deficiency cannot read it. Add a label, a shape, or a pattern so the meaning survives in grayscale.
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
-
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+These map directly to the data-ink idea but extend it: an element must not only carry meaning, it must carry that meaning to *every* viewer in the room. A useful gut-check is the grayscale test: if you converted the slide to grayscale, would it still be readable and would every distinction still be clear? If contrast collapses or the status dots merge, the slide was relying on something not everyone can perceive.
 
 ## Worked Example
 
@@ -58,54 +54,52 @@ Steps:
 
 4. Re-check all three. Now the slide passes contrast, has alt text, and does not rely on color alone.
 
-The revision is justified by **WCAG accessibility**: each fix maps to a specific success criterion, so the slide works for varied learners.
+Each fix targets a different viewer. The contrast fix helps anyone with low vision or a bad projector; the alt text reaches screen-reader users; the labels reach colorblind viewers. The same "elegant" slide failed three different people in three different ways, which is why a single visual judgment ("looks clean") is not an accessibility check.
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Test contrast against 4.5:1, give every meaningful image alt text that states the point, and never let color be the only carrier of meaning. If a fix would help only some viewers and exclude others, it is not finished.
 
-Before submitting the presentation storyboard with audience constraint and slide-level evidence, slow down and check whether the trace can answer three questions:
+Check a slide against three questions:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Purpose check:** Can every viewer, including those with low vision or color blindness or using a screen reader, get the slide's point?
+2. **Evidence check:** What is the measured contrast ratio, what does the alt text say, and what label backs each color-coded element?
+3. **Revision check:** Which specific failure did you fix, and to which WCAG criterion does it map?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If the slide depends on color, fine print, or an unlabeled image, it has not passed.
 
 ## Common Misreadings
 
-A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.
+The first misreading is treating accessibility as a stylistic preference ("I like high contrast") rather than a measurable threshold. 4.5:1 is a number you check, not a feeling; a slide either clears it or it does not.
 
-The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.
+The second is writing alt text that names the file instead of the meaning. "image1.png" or "chart" tells a screen-reader user nothing; the alt text must deliver the same information a sighted viewer takes from the visual.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **presentation storyboard with audience constraint and slide-level evidence**. Then ask what problem the artifact is supposed to solve inside presentation and media authorship. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the three checks to a slide with a photo and a caption overlaid on it, a common design that quietly fails. Contrast: white caption text over a busy photo can swing from readable to invisible depending on the pixels behind each letter, so you add a solid or darkened band behind the text to guarantee the ratio. Alt text: the photo either carries meaning (then describe it) or is decorative (then mark it as such so the screen reader skips it rather than announcing a filename). Color-only: if the caption uses a colored word to flag something, add a non-color cue.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now stress-test with the grayscale conversion. Drop the slide to grayscale and look again: the caption band keeps the text legible, the decorative photo is correctly skipped by assistive tech, and no meaning was hiding in a color that just turned gray. If the slide survives grayscale and a screen-reader pass, it will survive the actual room, including the viewers the designer cannot see the slide as.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 05.07, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: on the left, each visual element; on the right, its contrast ratio, alt text, and whether any meaning rests on color alone. Flag every element that fails one of the three checks. By the end of 05.07, your note should show that the slide was tested, not just admired.
 
-A strong reader of Accessibility Checks for Slides can answer four questions:
+A strong reader of this section can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. What is the measured contrast ratio of the text against its background?
+2. Does every meaningful image have alt text that states the point?
+3. Does any meaning rest on color alone, and how is it backed up?
+4. Would the slide survive a grayscale and screen-reader pass?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The storyboard is strong when a reviewer can see, for each slide, the contrast ratio, the alt text, and the non-color cue for any coded element, plus the fix each check triggered. Treat "it looks clean to me" as the start of the check, not the result.
 
-A useful final paragraph for the artifact would sound like this: "I changed **presentation storyboard with audience constraint and slide-level evidence** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful note would sound like this: "I changed the title from #BBBBBB (about 1.7:1) to #1A2A4F (above 4.5:1) to meet WCAG contrast, added alt text stating the signup increase, and labeled the status dots so the meaning does not rely on green versus red. I rejected a suggestion to use a lighter, trendier title color, because it would have dropped contrast back below the minimum."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **presentation storyboard with audience constraint and slide-level evidence** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Accessibility Checks for Slides deeply enough to adapt it rather than repeat it.
+Move the same content to a printed handout that may be photocopied in black and white. Two of the three checks transfer immediately and one gets harder: contrast still matters (and copies degrade it further), color-only meaning becomes fatal because the copy is grayscale by definition, and alt text has no role since there is no screen reader for paper. If your slide already passed the grayscale test, the handout works; if it relied on color, the photocopy will strip the meaning out entirely.
 
 ## Artifact Studio
 
@@ -119,10 +113,10 @@ Use the studio to create a before/after trace. The first version should show you
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
-- If your note shows **confusion**, compare a weak and strong version of the presentation storyboard with audience constraint and slide-level evidence.
-- If your note is an **insight**, transfer the same decision rule to a new audience or setting.
-- If your note makes a **connection**, show where the connection changes the artifact.
+- If your note is a **question**, ask for a concise explanation of the 4.5:1 contrast rule, alt text, and color-only meaning tied to WCAG.
+- If your note shows **confusion**, compare a low-contrast color-coded slide with its accessible rebuild.
+- If your note is an **insight**, transfer the three checks to a photo-with-caption slide.
+- If your note makes a **connection**, show where the grayscale test exposed a hidden failure.
 
 <dynamic-scenario prompt="You are revising the presentation storyboard with audience constraint and slide-level evidence for CAT 100 05.07. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped." />
 
@@ -134,7 +128,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the presentation storyboard with audience constraint and slide-level evidence records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm text clears 4.5:1 contrast, every meaningful image has alt text that states the point, and no distinction rests on color alone.
 
 ## References
 

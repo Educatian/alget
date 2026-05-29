@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-TeachGen@i Scenario Setup sits inside **Teaching in Tech-Rich Classrooms With TeachGen@i**. In this part of CAT 531, you are learning to work as a teacher making a defensible technology decision: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats TeachGen@i Scenario Setup as a professional judgment problem: the learner must connect pedagogy, classroom constraints, and ethics before defending the TeachGen@i prompt transcript with teacher edits and rejected suggestions.
+A generative planning tool produces output that is only as grounded as the situation you hand it. "Scenario setup" is the act of writing that situation down: the grade, the time block, the prior lesson, the room's constraints, and the students who must be served. It is the single highest-leverage move in AI-assisted planning, because an AI cannot see your room. It fills every gap you leave with a statistical default, usually an affluent, well-resourced, on-grade-level classroom that does not exist. A teacher who skips scenario setup is not collaborating with the tool; they are accepting the average classroom baked into its training data.
 
-Read this page as a short decision cycle: understand the idea, apply it to **TeachGen@i prompt transcript with teacher edits and rejected suggestions**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section treats scenario setup as the foundation on which every later decision rests. The artifact is a prompt transcript with teacher edits and rejected suggestions, and the transcript begins with the scenario you supplied. A reviewer reading it should be able to tell, from the first prompt alone, that the plan that follows was built for a specific room rather than a generic one.
 
 ## Learning Targets
 
@@ -17,21 +17,20 @@ Read this page as a short decision cycle: understand the idea, apply it to **Tea
 
 ## Opening Case
 
-Imagine a teacher choosing whether to use a classroom technology for TeachGen@i Scenario Setup. The important question is not whether the tool is exciting; it is whether the teacher can name the instructional purpose, the equity risk, the student-data boundary, and the evidence that makes the TeachGen@i prompt transcript with teacher edits and rejected suggestions a professional judgment rather than a preference.
-
-Professional judgment becomes visible when a teacher can explain what was tried, what constraint mattered, and why the TeachGen@i prompt transcript with teacher edits and rejected suggestions changed after evidence was reviewed.
+A first-year teacher opens TeachGen@i and types "Plan a fractions lesson." The result is fluent and confident: a 60-minute block, students working in pairs on laptops, an opening that assumes everyone already understands equivalent fractions. None of it fits her room. Her period is 38 minutes, the laptop cart is checked out that day, a third of her class reads below grade level, and yesterday's lesson only introduced the words numerator and denominator. The plan was not wrong because the tool is bad; it was wrong because she gave it an empty scenario and it filled the emptiness with a default classroom. The fix is not a better tool. It is a better scenario.
 
 ## Core Concept
 
-The core idea in this section is that **TeachGen@i Scenario Setup** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Scenario setup means converting the facts of your room into constraints the tool must honor, and distinguishing the facts that bind from the facts that are merely flavor. A complete scenario carries four kinds of information, and a thin prompt is usually missing three of them.
 
-Three course anchors shape the reasoning here:
+| Scenario element | The binding fact | What the AI defaults to if you omit it |
+| --- | --- | --- |
+| Time and structure | "38-minute single period, no block" | A roomy 60-minute lesson with transitions you do not have |
+| Resources present today | "No student devices; one projector" | One-to-one laptops and reliable bandwidth |
+| Learner profile (de-identified) | "About a third read below grade level" | An on-grade-level, monolingual class |
+| Prior knowledge | "Yesterday we named numerator and denominator only" | Mastery of prerequisites the class has not met |
 
-- **TPACK** helps you decide what counts as a meaningful learning or performance demand.
-- **critical edtech studies** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **AI and education datafication** helps you check whether the artifact works for varied learners, audiences, or use contexts.
-
-The anchors should do work in your artifact. If TPACK or critical edtech studies does not change a decision, it is only a citation rather than evidence of judgment.
+Two disciplines govern how you write these down. TPACK reminds you that the content prerequisite (what students already know) is a scenario fact, not a nicety; an AI that assumes mastery will plan the wrong lesson. Critical edtech studies and datafication remind you to de-identify: you encode "about a third read below grade level" rather than naming students, because the transcript may be stored by a vendor and a real classroom profile should never leave the room attached to names. A scenario is complete when omitting any one element would let the tool substitute a default that does not match your room.
 
 ## Worked Example
 
@@ -51,50 +50,36 @@ Walk through one annotated judgment call on setting up a scenario. A fourth-grad
 
 ## Decision Rule
 
-Use the classroom value conflict first, the technology affordance second, and the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity.
+State the scenario before you state the request, and write every binding fact as a hard limit the tool may not relax. The order matters: a request placed before its constraints invites the tool to optimize for an ideal room and then bolt your room on afterward. Put the room first.
 
-Use the following check when the artifact looks finished but the reasoning may still be hidden:
+When the transcript looks finished, audit the opening scenario against four questions:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Time:** Did I give the real minutes, not a generous estimate?
+2. **Resources:** Did I name what is missing today (devices, bandwidth), not just what exists in theory?
+3. **Learners:** Did I encode the profile in de-identified, actionable terms the tool can plan around?
+4. **Prerequisites:** Did I tell the tool what students do NOT yet know, so it cannot assume mastery?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any answer is no, the plan that follows is built for a room other than yours.
 
 ## Common Misreadings
 
-Another misreading is to write a general teaching reflection after the artifact is finished instead of documenting the decision while it is being revised.
-
-A colleague should be able to see why the tool belongs in this learning activity and where its limits remain.
+The first misreading is to mistake adjectives for constraints. "Plan an engaging, rigorous, differentiated lesson" tells the tool nothing it can act on; engaging is not a number of minutes and differentiated is not a learner profile. The second is to treat a fluent output as a sign the scenario was adequate. Fluency only proves the model wrote confidently; it says nothing about whether the plan fits your 38 minutes or your missing laptops. A polished plan built on a thin scenario is the most dangerous case, because its confidence hides the gap it filled with defaults.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **TeachGen@i prompt transcript with teacher edits and rejected suggestions**. Then ask what problem the artifact is supposed to solve inside technology-rich routines and TeachGen@i planning. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **TPACK**, **critical edtech studies**, **teacher professional judgment**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Take a thin prompt apart and rebuild it. Start with "Make a reading lesson for my class." A reviewer cannot evaluate this because the scenario is invisible. Rebuild it element by element. Time: "in a 45-minute period." Resources: "I have a class set of the novel but no devices." Learners: "five multilingual learners new to academic English, and two students with IEPs allowing extended response time." Prerequisites: "students have read chapters one through three but have not analyzed theme before." The rebuilt prompt is longer, but every clause is a constraint the tool must satisfy and a reviewer can check. The transcript should show this rebuild, not just the final clean prompt, because the rebuild is the evidence of judgment.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 531 02.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
-
-A strong reader of TeachGen@i Scenario Setup can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+As you read, keep a two-column note: in the left column list each scenario fact you supplied; in the right column write the default the AI would have used if you had left that fact out. For the fractions case, the left column says "no devices today" and the right column says "the tool would have assumed one-to-one laptops." A strong reader can look at any AI plan and reverse-engineer the missing scenario by spotting the defaults: a 60-minute structure betrays an unstated time, a laptop activity betrays an unstated resource assumption. Your transcript is strong when a reader can see exactly which defaults you blocked.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a mentor teacher can see the instructional purpose, the classroom constraint, and the reason a revision was made. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
-
-A useful final paragraph for the artifact would sound like this: "I changed **TeachGen@i prompt transcript with teacher edits and rejected suggestions** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving whether the technology choice serves a specific learning activity for real students."
+A strong scenario transcript shows the thin first prompt, not just the polished final one, so the reviewer can see what you fixed. It encodes the learner profile in de-identified terms (counts and needs, never names), proving you protected students while still informing the plan. And it names at least one default the tool reached for and you blocked (the assumed devices, the assumed prerequisite mastery), with the binding fact that ruled it out. Polish is the clean final prompt; evidence is the visible repair from thin to grounded.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **TeachGen@i prompt transcript with teacher edits and rejected suggestions** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand TeachGen@i Scenario Setup deeply enough to adapt it rather than repeat it.
+Move the same setup task from a fourth-grade math lesson to a high-school chemistry lab. The four scenario elements still apply, but their content shifts and a fifth pressure appears: safety constraints (no open flame near the new student who has not completed lab-safety training) become a binding fact the tool will never infer on its own. The skill transfers (state the room before the request, encode what is missing, block the defaults), but the specific facts do not. If you can list the chemistry scenario's binding facts without copying the math example's, you have learned scenario setup as a method rather than as a template.
 
 ## Artifact Studio
 
@@ -123,7 +108,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the TeachGen@i prompt transcript with teacher edits and rejected suggestions captures instructional purpose, equity or privacy boundary, support request, revision rationale, and confidence change.
+Before you move on, check that your transcript opens with all four scenario elements (time, resources today, de-identified learner profile, prior knowledge), shows the thin-to-grounded repair, and blocks at least one tool default with the binding fact that ruled it out.
 
 ## References
 

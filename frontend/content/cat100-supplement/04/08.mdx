@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Module 4 Dialogue Studio sits inside **AI Conversations as a Teacher**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Module 4 Dialogue Studio as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the privacy checklist for accounts, data sharing, and AI tool boundaries.
+The studio is where your Module 4 work stops being files on your laptop and becomes a real web page anyone can open by URL. Publishing to GitHub Pages means writing plain HTML, pushing it to a repository, and letting GitHub serve it as a live site. The skill that matters is not making it pretty; it is making it correct, so the page has a real title, real headings, and links that actually reach your evidence files. A page that "looks fine" in the browser but has no `<title>` and a dead link fails the moment a reviewer tries to use it.
 
-Read this page as a short decision cycle: understand the idea, apply it to **privacy checklist for accounts, data sharing, and AI tool boundaries**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This matters because a public page is the most exposed artifact in the course. There is no instructor standing next to it to explain what you meant. The markup has to carry the meaning on its own: the structure tags tell the browser and any assistive technology what each piece is, and the working link is what lets the evidence behind the page be reached. Getting the HTML right is what makes the publication trustworthy.
 
 ## Learning Targets
 
@@ -17,21 +17,24 @@ Read this page as a short decision cycle: understand the idea, apply it to **pri
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Module 4 Dialogue Studio. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The privacy checklist for accounts, data sharing, and AI tool boundaries is the place where that verification becomes visible.
+A student's first `index.html` is three lines: an `<html>` tag, the bare text "my ai project," and an empty `<a>link</a>`. It loads without error, so the student assumes it is done. But the browser tab shows the file path instead of a name, because there is no `<title>`. The heading is not a heading, just loose text, so a screen reader announces nothing structural. The link goes nowhere, because the `<a>` has no `href`.
 
-A digital product is useful only when another person can understand its purpose and trust the evidence behind it. The privacy checklist for accounts, data sharing, and AI tool boundaries is where that trust is built.
+The page that looks finished is actually broken in every way that counts. A correct version adds a `<title>` in the head, marks the heading with `<h1>`, and gives the link a real `href` pointing to an evidence file. After pushing to GitHub Pages, the student opens the live URL and confirms the title shows in the tab, the heading renders large, and the link downloads the real file.
 
 ## Core Concept
 
-The core idea in this section is that **Module 4 Dialogue Studio** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A publishable page is checked against a small set of structural requirements, each tied to a specific HTML element.
 
-Three course anchors shape the reasoning here:
+| Requirement | Element | Why it matters |
+|-------------|---------|----------------|
+| Page title | `<title>` inside `<head>` | shows in the browser tab, search results, and bookmarks |
+| Document type | `<!DOCTYPE html>` | tells the browser to use standard rendering |
+| Real heading | `<h1>` | gives the page a structural top level for readers and assistive tech |
+| Working link | `<a href="file">` | actually reaches the evidence; an empty `href` is a dead end |
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The distinction the studio enforces is structure versus appearance. A heading is not "big text"; it is an `<h1>` element that means "this is the main heading," which the browser then happens to render large. Using a real `<h1>` instead of bare bold text is what lets a screen reader, a search engine, and a future editor understand the page. This is the WCAG idea of semantic markup: the tag carries the meaning, not the visual size.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+GitHub Pages serves whatever is in the published branch, so "publishing" is just pushing your `index.html` and opening the live URL. The verification step is non-negotiable: you load the actual URL, not the local file, because a link that works on your disk can break once the site is served from a different root.
 
 ## Worked Example
 
@@ -77,50 +80,48 @@ Step 4. Verify the publish. After pushing to the `gh-pages` branch, you open the
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Publish for correctness first and appearance last, and verify on the live URL, not the local file. A page is ready only when the title, heading, and links pass on the served site.
 
-Before submitting the privacy checklist for accounts, data sharing, and AI tool boundaries, slow down and check whether the trace can answer three questions:
+Run these three checks after you push:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Tab check:** Does the browser tab show your `<title>` text rather than a file path?
+2. **Structure check:** Is the main heading a real `<h1>`, so it carries meaning and not just size?
+3. **Link check:** Does each link, clicked on the live URL, actually reach the evidence file it names?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If a link works locally but 404s on the live site, the path is wrong relative to the served root. Fix the `href`, not the local copy.
 
 ## Common Misreadings
 
-A common mistake is to treat digital fluency as finishing the file. A finished file can still hide weak evidence or unclear audience judgment.
+The first misreading is "if it renders, it is correct." A page with no `<title>` and bare text headings renders fine to a sighted user with a fast eye, but it fails for search engines, bookmarks, and screen readers. Rendering is the floor, not the standard.
 
-The artifact should connect audience, evidence, tool use, and limitation in a way that can travel beyond the course.
+The second misreading is reaching for styling before structure. Students often ask the AI for colors and fonts while the link is still dead. Decoration on a broken page is wasted effort; the checklist puts a working link above a background color on purpose, because a reachable artifact is the point of publishing.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **privacy checklist for accounts, data sharing, and AI tool boundaries**. Then ask what problem the artifact is supposed to solve inside teacher-AI dialogue and communication. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the publish checklist to a link that breaks only on the live site. Locally, your page links to `02_factcheck_table.xlsx` and it opens, because the file sits next to `index.html` on your disk. You push to GitHub Pages, open the live URL, click the link, and get a 404. The structure and title pass; the link check fails. The cause is almost always a path mismatch: the file was not committed, or it lives in a subfolder the `href` does not name.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+You fix it by committing the file to the same folder the page expects, or by correcting the `href` to the real served path, then push again and re-test on the live URL. The walkthrough makes the verification step concrete: the only test that counts is clicking the link on the served site, because the served root differs from your laptop's folder. A page that passes locally and fails live has not actually been published in a usable state.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 04.08, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read, keep a two-column note: **requirement** on the left, **the element that satisfies it** on the right. A strong reader does not say "the page looks done"; they say "the heading passes because it uses `<h1>`, not because the text is large." Pointing to the element is what proves the requirement is met.
 
 A strong reader of Module 4 Dialogue Studio can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which element provides the page title, and does it show in the tab?
+2. Is the main heading a real `<h1>`, or just styled text pretending to be one?
+3. Does each link reach its file when clicked on the live URL, not the local copy?
+4. What did you fix for correctness before touching appearance?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The artifact is strong when a reviewer can open the live URL, see the title in the tab, and click a link that reaches a real evidence file, then view source and see correct structural markup. Keep the before and after HTML so the reviewer can see which tags you added and why.
 
-A useful final paragraph for the artifact would sound like this: "I changed **privacy checklist for accounts, data sharing, and AI tool boundaries** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A useful closing note for the artifact would read: "I added a `<title>` and an `<h1>` because the first version had neither, so the tab showed a file path and screen readers found no heading. I rejected the AI's suggestion to add a flashy background color because the checklist values a working link over decoration, and the link was still the part that mattered." That ties each fix to a failed requirement and defends one rejected suggestion.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **privacy checklist for accounts, data sharing, and AI tool boundaries** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Module 4 Dialogue Studio deeply enough to adapt it rather than repeat it.
+Move the publishing skill from a course project page to a personal resume site, which CAT 100 also asks you to build. The same correctness checklist governs: a `<title>` so the tab and search results name you, real `<h1>` and `<h2>` headings so the structure is readable by assistive tech and recruiters' tools, and working links to your projects rather than dead ones. But the stakes raise the bar on verification, because a broken link on a resume site is seen by an employer, not a grader. The structure tags and the live-URL test transfer directly; what changes is that the audience now includes people who will not give you a second chance to fix a 404.
 
 ## Artifact Studio
 
@@ -149,7 +150,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the privacy checklist for accounts, data sharing, and AI tool boundaries records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm on the live URL that the title shows in the tab, the heading is a real `<h1>`, every link reaches its file, and your trace logs one suggestion you rejected with a reason.
 
 ## References
 

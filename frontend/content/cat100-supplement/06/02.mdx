@@ -4,9 +4,9 @@
 
 ## Why This Section Matters
 
-Starter HTML and CSS sits inside **GitHub Pages Personal Website**. In this part of CAT 100, you are learning to work as a student building practical digital evidence: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Starter HTML and CSS as a practical digital fluency problem: the learner must connect audience, evidence, and tool use before publishing or submitting the privacy checklist for accounts, data sharing, and AI tool boundaries.
+HTML and CSS are two different languages with two different jobs, and most beginner errors come from blurring them. HTML (HyperText Markup Language) describes structure and meaning: this is a heading, this is a paragraph, this is an image. CSS (Cascading Style Sheets) describes appearance: this heading is dark blue, the body is centered at 640 pixels wide. Mixing the jobs (using a heading tag just to make text big, for example) produces pages that look acceptable but read poorly to screen readers and search engines.
 
-Read this page as a short decision cycle: understand the idea, apply it to **privacy checklist for accounts, data sharing, and AI tool boundaries**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This section teaches you to write a minimal, valid HTML document and one stylesheet that controls its look, with two specific skills that beginners most often get wrong: writing accessible image markup and predicting which CSS rule wins when two rules conflict. These are the foundation for everything you publish in the rest of the module.
 
 ## Learning Targets
 
@@ -17,21 +17,21 @@ Read this page as a short decision cycle: understand the idea, apply it to **pri
 
 ## Opening Case
 
-Imagine a student preparing a digital artifact for Starter HTML and CSS. The artifact should be useful outside this course: a resume line, spreadsheet claim, presentation slide, AI critique, or website element that another reader can verify. The privacy checklist for accounts, data sharing, and AI tool boundaries is the place where that verification becomes visible.
+A student writes his first About page, opens it in a browser, and it looks fine: a big title, a photo, a short bio. He submits it. The reviewer runs a screen reader and hears: "About Me, heading. Image. First-year data student." The photo announced only the word "image" because the markup had no alt text, so a blind visitor learns nothing about it. Later the student adds a second CSS rule for the heading color and is surprised when the heading turns red instead of the navy he wanted; he did not know the later rule overrode the earlier one.
 
-The important move is to make your thinking visible. A reader should be able to see what you changed, what evidence you used, and what still needs work.
+Both problems are invisible when you only judge a page by how it looks on your own screen. This section makes them visible by teaching you to read markup and the cascade, not just preview the result.
 
 ## Core Concept
 
-The core idea in this section is that **Starter HTML and CSS** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Three mechanics carry most of the weight in starter HTML and CSS.
 
-Three course anchors shape the reasoning here:
+**The minimal valid document.** Every HTML page needs a small, fixed skeleton: a `<!DOCTYPE html>` line, an `<html>` element with a `lang` attribute, a `<head>` for metadata the visitor does not see (the `<title>`, the character set, the stylesheet link), and a `<body>` for the content they do see. The `<title>` lives in the head and controls the browser tab and the bookmark name; it is not visible on the page itself. Getting this skeleton right is what makes a file a web page rather than a text file.
 
-- **NACE career readiness** helps you decide what counts as a meaningful learning or performance demand.
-- **ISTE digital citizenship** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **data-ink and visual evidence** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+**Accessible images.** The `alt` attribute on an `<img>` is the text a screen reader announces and the text a browser shows when an image fails to load. `alt` should describe the image's content or function, not repeat the word "image." A decorative flourish can use empty `alt=""` so screen readers skip it; a meaningful photo needs a real description. WCAG accessibility guidelines treat missing alt text on informative images as a failure, which is why this is not optional polish.
 
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+**The cascade and specificity.** "Cascading" in CSS means rules can conflict, and the browser resolves conflicts with predictable rules. When two rules target the same element with the same specificity, the one written later wins. When specificity differs, the more specific selector wins regardless of order (an id beats a class, a class beats a bare tag). Understanding this is what separates "I changed a color and the whole page broke" from "I know exactly which rule is in charge."
+
+These mechanics connect to the course anchors. ISTE digital citizenship makes the alt-text requirement an equity issue: a page without it excludes blind visitors. NACE career readiness reframes clean, valid markup as a professional habit; sloppy HTML is the kind of thing a technical reviewer notices immediately.
 
 ## Worked Example
 
@@ -75,50 +75,46 @@ The page now sets the correct tab title, gives the image a real alt description,
 
 ## Decision Rule
 
-Use the audience first, the evidence second, and the tool third. A digital product is justified only when another person can see what changed, why it changed, and what evidence supports the change.
+Before you call an HTML page finished, read the markup, not the preview, against three checks:
 
-A strong submission should survive three quick tests:
+1. **Structure check:** Does every visible piece of content sit in a tag that matches its meaning (heading for headings, paragraph for prose, list for lists)? Never reach for a heading tag just to make text bigger; that is what CSS font-size is for.
+2. **Accessibility check:** Does every informative `<img>` have descriptive `alt` text? Read each alt aloud and ask whether a visitor who cannot see the image learns what they need to.
+3. **Cascade check:** For any element you styled, can you name which rule is winning and why? If two rules target it, the later one wins at equal specificity; if you did not intend that, delete or rename one.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If you cannot pass all three by reading the source, the page may look done but is not done.
 
 ## Common Misreadings
 
-Another misreading is to write about the tool instead of showing what the tool helped you revise.
+A frequent misreading is believing that "it looks right in my browser" means the markup is correct. Browsers are forgiving: they will render a page with a missing closing tag or no alt text without complaint. The errors surface only for screen-reader users, on slow connections, or when you add the next rule and the cascade behaves unexpectedly.
 
-In this course, quality means another reader can verify what changed and why.
+A second misreading is treating CSS specificity as random. It is fully deterministic. When a color refuses to change, the cause is almost always a more specific selector elsewhere winning the conflict, not a mysterious bug.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **privacy checklist for accounts, data sharing, and AI tool boundaries**. Then ask what problem the artifact is supposed to solve inside website publishing. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Apply the checks to a real fix. A student's page shows a headshot, but the alt attribute reads `alt="image1"`, the filename from her phone. The accessibility check fails: "image1" tells a screen-reader user nothing. She rewrites it as `alt="Maria Lopez, headshot"`, which names the person and the type of image. That is a content decision, not a style decision, so it belongs in the HTML.
 
-Next, connect the artifact to the course anchors: **NACE career readiness**, **ISTE digital citizenship**, **data-ink and visual evidence**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Next she wants the page title navy. She adds `h1 { color: #1f3a5f; }`. Later, copying a snippet from a tutorial, she pastes `h1 { color: #b00; }` at the bottom of the same stylesheet. The heading turns red. Running the cascade check, she sees two rules of equal specificity targeting `h1`; the later red rule wins. She does not fight it with `!important` (a blunt tool that creates worse conflicts later); she simply deletes the stray rule so only the intended navy remains. The fix is to make the source say exactly one thing about the heading color.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of CAT 100 06.02, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+A strong reader can predict what a browser will do before opening it. As you study the worked example, cover the result and ask: given this markup, what will a screen reader announce for the image? Given these two CSS rules, what color will the heading be? If your predictions match the browser, you are reading the code rather than guessing from the preview.
 
-A strong reader of Starter HTML and CSS can answer four questions:
+A strong reader of starter HTML and CSS can answer four questions about any page:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. Which content belongs in the head (unseen metadata) and which in the body (visible content)?
+2. Does each image's alt text describe its content or function, or does it just repeat the word image?
+3. When two style rules conflict, which one wins, and is that the one you intended?
+4. If you removed the stylesheet entirely, would the bare HTML still be readable and correctly structured?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a future employer, instructor, or peer can see the claim, the evidence, and the revision decision without guessing. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+Your page is strong when the markup alone (with no CSS) is still a clean, ordered document: one main heading, real paragraphs, images with honest alt text, links that say where they go. CSS should improve a page that is already correct, never rescue a page that is structurally wrong. A reviewer who reads your source should be able to understand the page's meaning without seeing it rendered.
 
-A useful final paragraph for the artifact would sound like this: "I changed **privacy checklist for accounts, data sharing, and AI tool boundaries** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what another reader can verify from the finished digital artifact."
+A strong submission notes one cascade decision you made on purpose: "I kept the navy rule and deleted the red one I had pasted, because two h1 color rules conflicted and only the intended one should remain."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **privacy checklist for accounts, data sharing, and AI tool boundaries** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Starter HTML and CSS deeply enough to adapt it rather than repeat it.
+Take the same skills to a different document type: a single landing page for a campus club instead of a personal About page. The HTML skeleton is identical (doctype, lang, head, body), and the cascade rules are unchanged. What shifts is the content and therefore the markup choices: the club page may need a list of meeting times (a real `<ul>`, not paragraphs with dashes) and a logo whose alt text states the club name. The principle that structure should match meaning and that conflicts resolve by specificity and order does not change; only the specific tags you reach for do. Being able to carry the rules to new content is the sign you learned the language and not just one page.
 
 ## Artifact Studio
 

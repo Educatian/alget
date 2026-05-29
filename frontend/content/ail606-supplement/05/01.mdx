@@ -4,34 +4,37 @@
 
 ## Why This Section Matters
 
-From Rationale to Testable Hypotheses sits inside **Usability Testing and Learning Evidence**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats From Rationale to Testable Hypotheses as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the moderated usability test script with observation-to-revision trace is ready for revision.
+Most usability plans fail before a single participant arrives, and they fail at the very first line: the statement of what the test is supposed to find out. Designers who write "we want to confirm the redesign is better" have not written a plan; they have written a hope. A hope cannot be disconfirmed, so the session that follows will appear to succeed no matter what happens. This section teaches the move that converts a design rationale (the reasoning for why you built something a certain way) into a testable hypothesis (a prediction a session can actually contradict). That conversion is the hinge of the whole module: every later choice about participants, tasks, metrics, and analysis only makes sense once you know exactly which prediction you are trying to put at risk.
 
-Read this page as a short decision cycle: understand the idea, apply it to **moderated usability test script with observation-to-revision trace**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+In AIL 606 the deliverable is a moderated usability test script with observation-to-revision trace, and the hypothesis is its spine. Get it right and the rest of the script almost writes itself. Get it wrong and you will collect data that cannot answer your question.
 
 ## Learning Targets
 
-- Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Convert a design rationale into a falsifiable, directional hypothesis with an observable outcome and a stated threshold.
+- Distinguish a prediction the session can disconfirm from a goal it can only restate.
+- Ground each hypothesis in a named mechanism (for example, an extraneous-load reduction) so the test checks a theory, not a preference.
+- Decide when a result should revise the design and when it should revise the rationale.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for From Rationale to Testable Hypotheses. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the moderated usability test script with observation-to-revision trace records that reasoning.
+A team has cut a course-registration flow from five screens to three and writes: "Rationale: fewer steps feel less overwhelming, so completion will improve." A reviewer asks one question: "If you run ten learners and the result comes back the wrong way, what number would you have to see?" The team has no answer, because "improve" has no baseline and no target. The rationale is sound design reasoning, but it is not yet a hypothesis. Nothing the session produces could ever count as evidence against it.
 
-A finished screen is only the visible end of the work. The learning evidence is the chain from theory to media decision to revision, and the moderated usability test script with observation-to-revision trace should make that chain readable.
+The fix is not more polish on the prototype. It is a precise prediction: a baseline completion rate, a direction, and a threshold that a session of a known size could plausibly miss. Until that prediction exists, the moderated script is collecting impressions, not evidence.
 
 ## Core Concept
 
-The core idea in this section is that **From Rationale to Testable Hypotheses** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+A hypothesis in formative usability work has four parts, and a weak hypothesis is almost always missing one of them.
 
-Three course anchors shape the reasoning here:
+| Part | Question it answers | Failure when missing |
+| --- | --- | --- |
+| Mechanism | Why should the change move anything? | "Improvement" with no theory; you cannot interpret a null result |
+| Observable outcome | What behavior will you actually measure? | Feelings ("easier") that no session can score |
+| Direction | Which way should the outcome move? | A two-sided shrug that confirms itself |
+| Threshold | How much movement counts, given your sample? | Any result reads as success |
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
+The mechanism is what links the hypothesis to theory rather than taste. When you predict that trimming a form lowers abandonment, the mechanism is **cognitive load theory**: each extra field adds extraneous processing that competes with the learner's actual goal. **Mayer multimedia learning** sharpens the outcome side by forcing you to name a meaningful performance, not a vanity number; a click is not learning. **UDL learner variability** keeps the threshold honest, because a result that holds for the median learner can still fail learners at the edges of the range, and a single average can hide that.
 
-Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
+A practical test of a good hypothesis: write down, before testing, the exact result that would make you abandon the change. If no such result exists, you have a rationale dressed up as a prediction.
 
 ## Worked Example: Turning a Rationale Into a Testable Hypothesis
 
@@ -56,50 +59,48 @@ The after version is defensible because a moderated session can disconfirm it: i
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+When a result comes back, decide what it revises before you decide what to build. A confirmed hypothesis revises the prototype toward the next risk; a disconfirmed one revises the rationale, because the mechanism you trusted did not hold here. The mistake to avoid is revising the data (explaining away a miss) instead of the reasoning.
 
-Before submitting the moderated usability test script with observation-to-revision trace, slow down and check whether the trace can answer three questions:
+Before locking the hypothesis into your moderated usability test script with observation-to-revision trace, run three checks:
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
+1. **Falsifiability check:** Can you state the exact result that would prove you wrong?
+2. **Mechanism check:** Which named theory predicts the direction, so a null result still teaches you something?
+3. **Calibration check:** Is the threshold reachable but not guaranteed by a sample of your planned size?
 
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+If any check fails, the line is a goal, not a hypothesis, and the test will be unable to surprise you.
 
 ## Common Misreadings
 
-A common mistake is to treat multimedia quality as visual polish. A cleaner screen can still increase extraneous load if the learner action is unclear.
+The most common error is treating the redesign's polish as the hypothesis. "The new screen looks cleaner" predicts nothing about behavior; a cleaner screen can still raise abandonment if the action it asks for is unclear. A second error is the self-confirming wording ("learners will respond to the change"), which is true no matter which way they respond.
 
-The trace should show what cognitive demand was noticed, what support was requested, and which change improved the learner's path.
+A hypothesis earns its place in the script only when it names a number you could fail to reach.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **moderated usability test script with observation-to-revision trace**. Then ask what problem the artifact is supposed to solve inside usability and learning evidence. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
+Trace one rationale from idea to inspectable prediction. Suppose a team argues that adding a worked-example walkthrough before a practice set will raise practice accuracy. The rationale is the **Mayer multimedia learning** worked-example effect; that is your mechanism. The observable outcome is accuracy on the first three practice items, not time spent, because time can rise or fall for reasons unrelated to learning. The direction is upward, and the threshold has to respect your sample: with eight participants, "a 20-percentage-point gain over the no-walkthrough baseline" is a claim eight sessions can actually contradict, while "significantly better" is not.
 
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Now stress-test it against **UDL learner variability**. If the gain is concentrated in high-prior-knowledge participants and disappears for novices, the median number hid an expertise-reversal pattern. A walkthrough strong reading would predict not just the average shift but who is expected to move, so a flat result among novices is recognized as a finding rather than noise.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 05.01, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
+As you read a draft plan, keep one column for the prediction and one for the kill condition: the specific outcome that would force a redesign of the rationale. The kill condition is what separates a hypothesis from a wish, and a reader who cannot find it in your plan has found your weakest point.
 
-A strong reader of From Rationale to Testable Hypotheses can answer four questions:
+A strong reader of a hypothesis can answer four questions:
 
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+1. What behavior, exactly, will the session score?
+2. What baseline is the prediction measured against?
+3. Which theory supplies the direction, and what would a null result mean?
+4. What threshold, given the sample, would count as failure?
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
+The hypothesis is strong when a skeptical reviewer can read it, predict the data table you intend to fill, and name the result that would sink it, all without asking you a question. Treat the wording of the prediction as load-bearing: a vague verb ("improve," "enhance") quietly removes the threshold and makes the test unfalsifiable. Use the annotation tools to flag any outcome you cannot define as a countable behavior, and ask BigAL to compare your wording against the falsifiability check rather than to make the sentence sound more academic.
 
-A useful final paragraph for the artifact would sound like this: "I changed **moderated usability test script with observation-to-revision trace** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+A useful closing line for the artifact reads: "I revised H1 from 'onboarding will feel easier' to 'at least 8 of 10 reach the first task' because the original had no outcome a session could score; I rejected the suggestion to add a satisfaction target, since satisfaction cannot disconfirm a findability claim."
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **moderated usability test script with observation-to-revision trace** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand From Rationale to Testable Hypotheses deeply enough to adapt it rather than repeat it.
+Move the same hypothesis-writing discipline to a high-stakes setting: a compliance course where a failed task is a legal exposure, not a lost click. Here the threshold cannot be a modest majority; the mechanism (load reduction) is the same, but the acceptable failure rate drops toward zero, and the kill condition tightens accordingly. The structure transfers (mechanism, outcome, direction, threshold) but the numbers do not, and a reader who simply copies "8 of 10" into the new context has missed that the constraint, not the form, is what changed.
 
 ## Artifact Studio
 
@@ -128,7 +129,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the moderated usability test script with observation-to-revision trace records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+Before you move on, confirm your hypothesis states a baseline, a direction, an observable outcome, a threshold your sample could miss, and the named mechanism that predicts the direction.
 
 ## References
 

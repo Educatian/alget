@@ -4,46 +4,42 @@
 
 ## Why This Section Matters
 
-Small-N Testing and Design Claims sits inside **Research Translation for Learning Design**. In this part of AIL 606, you are learning to work as a learning designer: someone who can read a messy situation, identify the constraint that matters, and make a justified artifact decision. This module treats Small-N Testing and Design Claims as a design problem: the learner must connect theory, media choices, and prototype evidence before deciding whether the moderated usability test script with observation-to-revision trace is ready for revision.
+A five-person usability test is one of the most useful tools a learning designer has, and one of the most frequently over-interpreted. The classic finding from Nielsen and Landauer is that a handful of testers, often around five, surface the large majority of *usability problems* in an interface, because problems are encountered repeatedly across users. But that same handful supports almost nothing about *learning outcomes*, because outcome claims require a baseline, a comparison group, and enough participants to distinguish signal from noise. The skill this section builds is matching the claim to what the method can bear: small-N moderated testing licenses problem-finding and revision, not efficacy.
 
-Read this page as a short decision cycle: understand the idea, apply it to **moderated usability test script with observation-to-revision trace**, and make the evidence visible enough that another reader can inspect your revision. By the end, you should be able to explain what changed, what evidence justified the change, and why polish alone is not enough.
+This matters because the most common failure in a design report is a claim the method cannot carry: "our test proves the lesson improves learning." The sentence overreaches by a wide margin, and a reviewer will see it immediately. Learning to scope claims to the evidence is what separates a credible design study from a hopeful one.
 
 ## Learning Targets
 
-- Analyze how the moderated usability test script with observation-to-revision trace shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Explain why small-N moderated testing is strong for surfacing usability problems but weak for outcome claims.
+- Convert an overreaching efficacy claim into a scoped problem-and-revision claim the sample can support.
+- Use observation frequency (e.g., 4 of 5) to prioritize revisions and to flag low-frequency signals for watching rather than acting.
+- Reject outcome language ("improves learning") when no comparison or baseline exists.
 
 ## Opening Case
 
-Imagine a designer reviewing a prototype screen for Small-N Testing and Design Claims. The screen may look clean, but the design decision is not yet defensible until the designer can explain which learner action the screen supports, which source of cognitive demand it reduces, and how the moderated usability test script with observation-to-revision trace records that reasoning.
-
-This page is more than a principle summary. Use it to leave a design trace showing how Small-N Testing and Design Claims changed what you noticed in the moderated usability test script with observation-to-revision trace.
+After five moderated sessions, a teammate drafts the headline: "Our usability test proves the redesigned lesson improves learning, since testers did better and liked it." Two things have gone wrong at once. First, "did better" has no baseline; there is nothing the testers were compared against. Second, even with a baseline, five participants and no control condition cannot support a population-level efficacy claim. What the five sessions *can* support is concrete and valuable: which interface moments caused friction, how often, and what revision each one warrants. The task is to throw away the efficacy sentence and keep the problem-and-revision findings.
 
 ## Core Concept
 
-The core idea in this section is that **Small-N Testing and Design Claims** should be treated as a relationship among purpose, constraint, evidence, and revision. Purpose names what the learner or audience needs to accomplish. Constraint names what limits the decision. Evidence names the source that makes the decision defensible. Revision shows what changed after the evidence was considered.
+Small-N moderated testing is a formative method. Its logic and its limits both follow from how usability problems are distributed:
 
-Three course anchors shape the reasoning here:
+- **Why few users find most problems:** a serious usability problem tends to trip many users, so its probability of appearing in a sample rises quickly with each added tester. A handful of users therefore catches most *high-frequency* problems. This is a claim about problem detection, not about effect sizes.
+- **Why few users cannot prove outcomes:** an efficacy claim ("the redesign improves learning") is a comparative, population-level statement. It needs a baseline or control, random assignment or matching, and a sample large enough to separate a real effect from noise. None of these is present in a five-person walkthrough.
+- **What the method licenses:** scoped claims of the form "behavior B occurred in k of n sessions, so we revised feature F and will recheck." Frequency drives priority; a 4-of-5 problem is acted on now, a 1-of-5 signal is logged and watched, not yet treated as real.
 
-- **Mayer multimedia learning** helps you decide what counts as a meaningful learning or performance demand.
-- **cognitive load theory** helps you notice when a design or technology choice creates risk, burden, or unsupported assumptions.
-- **UDL learner variability** helps you check whether the artifact works for varied learners, audiences, or use contexts.
-
-Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
+The course anchors guide interpretation. **Cognitive load theory** helps you read *why* a friction point occurred: a learner who clicks Back instead of Next may be managing load through a mislabeled control, which points to a specific revision. **Mayer's principles** help you distinguish a usability problem (the control is hard to find) from a learning-design problem (the content itself overloads), which warrant different fixes. **UDL learner variability** warns that five testers may all share a background that hides a problem affecting other learners, so absence of a problem in five sessions is not evidence the problem does not exist.
 
 ## Worked Example
 
-Trace one finding from an overreaching claim to a claim a five-person test can actually carry.
+Trace one finding from an overreaching claim to a claim a five-person test can carry.
 
 **Before (claim drafted after five moderated sessions):**
 
 > Our usability test proves the redesigned lesson improves learning, since testers did better and liked it.
 
-1. Annotation: five sessions cannot support an efficacy or population claim, and "did better" has no baseline or measure.
-2. Decision point: what did we actually observe, and what design change does it justify?
-3. Revision move: scope the claim to observed friction and pair it with a revision.
+1. Five sessions with no control cannot support an efficacy or population claim.
+2. "Did better" names no baseline and no measure.
+3. "Liked it" is a satisfaction reaction, not evidence of learning.
 
 **After (observation-to-revision trace entry):**
 
@@ -52,54 +48,39 @@ Trace one finding from an overreaching claim to a claim a five-person test can a
 | Clicked Back instead of Next at frame 2 | 4 of 5 | Relabel button to "Continue" and move it right | Watch frame-2 path next round |
 | Hovered glossary popup with no use | 1 of 5 | None yet; low-frequency signal | Flag to watch |
 
-The after version scopes each claim to what five moderated sessions can bear: it names the observed behavior, its frequency, the design change it triggered, and a recheck. I rejected adding a statement that the lesson "improves learning," because no outcome comparison was run and the sample cannot support it.
+The revised entry scopes each claim to what five sessions bear: a named behavior, its frequency, the revision it triggers, and a recheck. The 4-of-5 navigation problem is acted on immediately; the 1-of-5 glossary hover is logged, not treated as a finding.
+
+One rejected line: a statement that the lesson "improves learning." I declined it because no outcome comparison was run and the sample cannot support a population claim; keeping it would invite a reviewer to discount the whole report.
 
 ## Decision Rule
 
-Use the learning goal first, the media choice second, and the software feature last. A feature is justified only when it reduces unnecessary processing, strengthens useful processing, or makes learner action easier to observe.
+Before writing any claim from a small-N test, check that the claim type matches the method:
 
-A strong submission should survive three quick tests:
+1. **Claim-type check:** Is this a problem-finding claim (supported) or an outcome claim (unsupported without a control and adequate N)? Rewrite any outcome claim as a problem-and-revision claim.
+2. **Frequency check:** Does the claim report how many of n sessions showed the behavior, so a reader can weigh it? Treat high-frequency observations as actionable and low-frequency ones as watch items.
+3. **Baseline check:** If the claim implies improvement, is there an explicit comparison? If not, remove the comparative language.
 
-1. **Purpose check:** What should the audience be able to do after reading or using the artifact?
-2. **Evidence check:** Which exact source, observation, annotation, rubric line, data pattern, or policy boundary justifies the revision?
-3. **Revision check:** What changed in the artifact, and what suggestion did you reject or modify?
-
-If you cannot answer all three questions, the artifact may be complete, but it is not yet ready as evidence of learning.
+A claim that fails the type check is not merely imprecise; it misrepresents the strength of the evidence and undermines the credible findings around it.
 
 ## Common Misreadings
 
-Students sometimes describe the final prototype but skip the design decision that made the prototype worth revising.
-
-In this course, quality means that design reasoning can be traced from learning goal to media choice to revision.
+One misreading inflates satisfaction into learning: testers "liked it," so the lesson must work. Liking is a reaction, not an outcome, and the two often diverge. A second misreading treats absence of a problem in five sessions as proof the problem is gone; five testers who share a background can collectively miss a problem that affects a different group entirely. Small-N testing tells you about the problems your testers hit, with the frequencies you observed, and is silent about both untested learners and untested outcomes.
 
 ## Textbook Walkthrough
 
-Read this section as a small professional decision cycle, not as a list of terms. First, locate the work product: **moderated usability test script with observation-to-revision trace**. Then ask what problem the artifact is supposed to solve inside research translation. A strong reader can explain the artifact in plain language before naming any theory: who will use it, what decision it supports, and what would count as evidence that it improved.
-
-Next, connect the artifact to the course anchors: **Mayer multimedia learning**, **cognitive load theory**, **UDL learner variability**. The point is not to cite every anchor. The point is to let one anchor change the artifact. If the anchor does not change wording, layout, evidence, timing, or feedback, it has not yet become design reasoning.
-
-Finally, inspect the revision trail. A weak submission says the artifact was improved. A strong submission shows the earlier version, the issue noticed, the support requested, the decision accepted or rejected, and the reason the final version is better for the intended learner or audience.
+Apply the method to a quiz-feedback prototype. After five moderated sessions, the raw notes say learners "seemed confused by the feedback." Walk it into scoped claims. First, identify behaviors, not impressions: 3 of 5 learners reread the feedback box twice before answering the next item, and 2 of 5 clicked "Submit" again expecting new feedback. The 3-of-5 rereading is a high-frequency friction point, so the revision is concrete: shorten the feedback to one actionable sentence and recheck rereading next round. The 2-of-5 double-submit is mid-frequency, so disable the button post-submit and watch. Crucially, the report does *not* claim the feedback "improves performance," because no baseline quiz was run. The walkthrough turns a vague impression into prioritized revisions whose strength a reader can judge from the frequencies.
 
 ## What Strong Reading Looks Like
 
-As you read, keep a two-column note: **claim** on the left, **evidence** on the right. The claim is the decision you think the section is teaching. The evidence is the exact phrase, example, annotation, support move, or artifact revision that makes the claim inspectable. By the end of AIL 606 07.04, your notes should make it possible to reconstruct your reasoning without asking you to explain it again.
-
-A strong reader of Small-N Testing and Design Claims can answer four questions:
-
-1. What is the real decision hidden inside this topic?
-2. Which constraint makes the decision difficult?
-3. What evidence would persuade a skeptical reviewer?
-4. What would you revise if the audience, learner, classroom, or tool changed?
+For every sentence in a small-N report, ask: what is the largest claim these five sessions could honestly license? A strong reader instantly flags any comparative or population word ("improves," "proves," "more effective") that lacks a baseline, and rewrites it as an observation-frequency-revision triple. The habit is to read the method section first and let it cap the claims, rather than reading the claims and hoping the method supports them. Frequencies become the unit of trust: a claim without a k-of-n is a claim you cannot yet weigh.
 
 ## Stronger Artifact Standard
 
-For this section, the artifact is strong when a reviewer can connect the design choice to theory, learner need, and visible evidence in the prototype. Treat visual polish as the last layer. The earlier layers are purpose, constraint, evidence, and revision. If one of those layers is missing, use the annotation tools to mark the gap and ask BigAL for a targeted comparison rather than a general explanation.
-
-A useful final paragraph for the artifact would sound like this: "I changed **moderated usability test script with observation-to-revision trace** because the evidence showed a mismatch between the intended purpose and the current design. I kept one suggestion out because it would have made the artifact look better without improving what the learner should be able to do and how the design makes that action easier to observe."
+The usability script and trace are strong when every finding is stated as observation, frequency, revision, and recheck, and when the report contains no outcome claim unbacked by a comparison. The README should note at least one observation you deliberately did *not* act on because its frequency was too low, demonstrating that you let frequency drive priority. Visual polish of the report is the last layer; the load-bearing layer is the claim-to-method match.
 
 ## Transfer Case
 
-Imagine the same artifact is moved to a different setting: a smaller class, a less experienced audience, a stricter privacy rule, or a tool with fewer AI features. The content of **moderated usability test script with observation-to-revision trace** should not simply copy over. The purpose may stay stable, but the constraint changes. Use that change to test whether you understand Small-N Testing and Design Claims deeply enough to adapt it rather than repeat it.
+Carry the scoping discipline into a high-stakes context where a stakeholder wants an efficacy headline you cannot honestly provide. The transfer is to hold the claim line: report the prioritized usability fixes the five sessions support, and explicitly state what a *summative* efficacy study would require (a control group, random assignment, adequate N, a pre-registered outcome). Naming the gap is more credible than papering over it, and it converts pressure for an unsupported claim into a concrete proposal for the study that could actually earn it. The skill transfers because it is about matching claim strength to evidence strength under any amount of stakeholder enthusiasm.
 
 ## Artifact Studio
 
