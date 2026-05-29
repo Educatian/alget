@@ -5,13 +5,21 @@ import { fuseTelemetry, recordAdaptiveSignal } from '../lib/knowledgeService'
 import API_BASE from '../lib/apiConfig'
 import { LearnIntentCard, EvaluateIntentCard, BrainstormIntentCard, ScaffoldingIntentCard, IllustrateIntentCard, SimulateIntentCard, ErrorIntentCard } from './IntentCards'
 
+// Stable per-message id so React keys and the read-aloud "which bubble is
+// speaking" state survive list mutations (history load replacing optimistic
+// messages). Keying by array index mismapped both.
+let _msgSeq = 0
+const nextMsgId = () =>
+    (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `m${++_msgSeq}`)
+const withMsgId = (msg) => (msg && msg.id ? msg : { ...msg, id: nextMsgId() })
+
 const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, onQuestionSent, userId }, ref) {
     const [isOpen, setIsOpen] = useState(false)
     const [messages, setMessages] = useState([])
     const [inputValue, setInputValue] = useState('')
     const [loading, setLoading] = useState(false)
     const [historyLoaded, setHistoryLoaded] = useState(false)
-    const [speakingIdx, setSpeakingIdx] = useState(null)
+    const [speakingId, setSpeakingId] = useState(null)
     const messagesEndRef = useRef(null)
     const lastAutoQuestionRef = useRef(null)
     const inputRef = useRef(null)
@@ -21,20 +29,20 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
     const speechSupported = typeof window !== 'undefined' && 'speechSynthesis' in window
 
     // Read-aloud (UDL multiple means of representation). Browser-native, no backend.
-    const speakText = (text, idx) => {
+    const speakText = (text, id) => {
         if (!speechSupported || !text) return
         const synth = window.speechSynthesis
         // Toggle: clicking the speaking message stops it.
-        if (speakingIdx === idx) {
+        if (speakingId === id) {
             synth.cancel()
-            setSpeakingIdx(null)
+            setSpeakingId(null)
             return
         }
         synth.cancel()
         const utterance = new SpeechSynthesisUtterance(String(text))
-        utterance.onend = () => setSpeakingIdx(null)
-        utterance.onerror = () => setSpeakingIdx(null)
-        setSpeakingIdx(idx)
+        utterance.onend = () => setSpeakingId(null)
+        utterance.onerror = () => setSpeakingId(null)
+        setSpeakingId(id)
         synth.speak(utterance)
     }
 
@@ -61,7 +69,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
         setHistoryLoaded(false)
         lastAutoQuestionRef.current = null
         if (speechSupported) window.speechSynthesis.cancel()
-        setSpeakingIdx(null)
+        setSpeakingId(null)
     }, [context?.sectionId, speechSupported])
 
     // Manage focus for the chat dialog (WCAG 2.4.3 focus order):
@@ -76,7 +84,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
             launcherRef.current?.focus()
             wasOpenRef.current = false
             if (speechSupported) window.speechSynthesis.cancel()
-            setSpeakingIdx(null)
+            setSpeakingId(null)
         }
     }, [isOpen, speechSupported])
 
@@ -94,7 +102,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                     .maybeSingle()
 
                 if (data?.messages) {
-                    setMessages(data.messages)
+                    setMessages(data.messages.map(withMsgId))
                 }
             } catch {
                 // No history yet, that's fine
@@ -179,7 +187,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
         const userMessage = text.trim()
         const turnNumber = messages.length + 1
-        const newMessages = [...messages, { role: 'user', content: userMessage }]
+        const newMessages = [...messages, withMsgId({ role: 'user', content: userMessage })]
         setMessages(newMessages)
         setInputValue('')
         setLoading(true)
@@ -209,7 +217,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
             const data = await res.json()
 
             // The new API returns an intent object, not just a text string
-            const assistantMessage = { role: 'assistant', content: data }
+            const assistantMessage = withMsgId({ role: 'assistant', content: data })
             const finalMessages = [...newMessages, assistantMessage]
             setMessages(finalMessages)
 
@@ -226,10 +234,10 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
 
         } catch (err) {
             console.error(err)
-            const errorMessages = [...newMessages, {
+            const errorMessages = [...newMessages, withMsgId({
                 role: 'assistant',
                 content: 'Sorry, I encountered an error. Please try again.'
-            }]
+            })]
             setMessages(errorMessages)
         } finally {
             setLoading(false)
@@ -356,9 +364,10 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                             </div>
                         )}
                         {messages.map((msg, idx) => {
+                            const msgKey = msg.id || idx
                             if (msg.role === 'user') {
                                 return (
-                                    <div key={idx} className="flex justify-end animate-fade-in">
+                                    <div key={msgKey} className="flex justify-end animate-fade-in">
                                         <div className="max-w-[85%] break-words rounded-2xl rounded-br-sm bg-[var(--ath-primary)] px-3.5 py-2 text-[13px] font-medium leading-6 text-[var(--ath-background)] shadow-md">
                                             {msg.content}
                                         </div>
@@ -372,10 +381,10 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                     .filter((v) => typeof v === 'string' && v.trim())
                                     .join('. ')
                                     || (typeof msg.content === 'string' ? msg.content : '')
-                                const isSpeaking = speakingIdx === idx
+                                const isSpeaking = speakingId === msgKey
 
                                 return (
-                                    <div key={idx} className="flex justify-start animate-fade-in">
+                                    <div key={msgKey} className="flex justify-start animate-fade-in">
                                         <div className="max-w-[92%] rounded-2xl rounded-bl-sm border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3.5 py-2.5 text-[13px] leading-6 text-[var(--ath-text)] shadow-sm">
                                             {data.intent === 'learn' && <LearnIntentCard data={data} />}
                                             {data.intent === 'evaluate' && <EvaluateIntentCard data={data} />}
@@ -391,7 +400,7 @@ const ChatWidget = forwardRef(function ChatWidget({ context, initialQuestion, on
                                                 <div className="mt-2 flex justify-end">
                                                     <button
                                                         type="button"
-                                                        onClick={() => speakText(spokenText, idx)}
+                                                        onClick={() => speakText(spokenText, msgKey)}
                                                         aria-label={isSpeaking ? 'Stop reading this response aloud' : 'Read this response aloud'}
                                                         aria-pressed={isSpeaking}
                                                         className="inline-flex items-center gap-1 rounded-full border border-[var(--ath-line)] px-2 py-0.5 text-[11px] font-medium text-[var(--ath-muted)] transition-colors hover:text-[var(--ath-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"

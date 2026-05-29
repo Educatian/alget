@@ -420,16 +420,18 @@ export default function ReadingNarrative({
     }, [activeHeading, onHeadingChange])
 
     // Read-aloud (UDL Guideline 1: multiple means of representation).
-    // Browser-native speechSynthesis; no backend. Stop narration when the section changes.
+    // Browser-native speechSynthesis; no backend. Stop narration when the section
+    // changes OR its content is replaced (live regeneration) so we never keep
+    // reading stale text after the words under the cursor have changed.
     useEffect(() => {
         if (!speechSupported) return
         window.speechSynthesis.cancel()
-        // eslint-disable-next-line react-hooks/set-state-in-effect -- reset read-aloud UI to idle when the section changes (syncs with speechSynthesis external system)
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- reset read-aloud UI to idle when the section/content changes (syncs with speechSynthesis external system)
         setSpeechState('idle')
         return () => {
             window.speechSynthesis.cancel()
         }
-    }, [sectionId, speechSupported])
+    }, [sectionId, narrativeSource, speechSupported])
 
     const handlePlayPause = () => {
         if (!speechSupported) return
