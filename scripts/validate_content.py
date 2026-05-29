@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Validate the alget content layer against the canonical JSON Schemas.
 
-Schemas live in frontend/content/_schema/ (draft 2020-12). This validator
+Schemas live in frontend/content/_schema/v1/ (draft 2020-12), a versioned
+namespace (see frontend/content/_schema/README.md for the migration policy).
+This validator pins to schema major version v1. This validator
 walks every section's meta / practice / misconceptions file, validates each
 against its schema, and additionally runs cross-file structural checks that
 JSON Schema alone cannot express:
@@ -45,7 +47,11 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTENT_DIR = os.path.join(ROOT, "frontend", "content")
-SCHEMA_DIR = os.path.join(CONTENT_DIR, "_schema")
+# Schemas live under a versioned namespace; this validator pins to v1.
+# A future breaking change introduces _schema/v2/ and a migrator, and this
+# pin is bumped deliberately (see frontend/content/_schema/README.md).
+SCHEMA_VERSION = "v1"
+SCHEMA_DIR = os.path.join(CONTENT_DIR, "_schema", SCHEMA_VERSION)
 
 
 def load_json(path):

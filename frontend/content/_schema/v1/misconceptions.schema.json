@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "alget://schema/misconceptions.schema.json",
+  "$id": "alget://schema/v1/misconceptions.schema.json",
+  "schemaVersion": "1.0.0",
   "title": "Section Misconceptions File",
   "description": "Canonical contract for *.misconceptions.json. The canonical shape is an OBJECT {section_id, misconceptions:[...]}. A bare top-level ARRAY is a legacy defect and is rejected. Each item must carry a non-null rail_action from the allowed rail set. The legacy item variant (claim/reality/whyItHappens/coachPrompt with no rail_action) is rejected so the validator flags the items needing backfill.",
   "type": "object",
