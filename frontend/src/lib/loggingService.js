@@ -143,6 +143,10 @@ export async function initSession(user) {
  */
 export function logEvent(eventType, eventTarget, eventData = {}, sectionId = null) {
     if (!sessionId) return
+    // Offline/demo mode (no Supabase): the no-op stub always returns an error,
+    // so flushEvents would re-queue forever and the queue would grow unbounded.
+    // Drop telemetry instead of accumulating it.
+    if (!isSupabaseConfigured) return
 
     const event = {
         user_id: userId,
@@ -156,6 +160,11 @@ export function logEvent(eventType, eventTarget, eventData = {}, sectionId = nul
     }
 
     eventQueue.push(event)
+    // Hard cap so a prolonged backend outage can't grow the queue without bound;
+    // keep the most recent events.
+    if (eventQueue.length > 500) {
+        eventQueue = eventQueue.slice(-500)
+    }
 
     // Immediate flush for important events
     if (['problem_attempt', 'session_end', 'artifact_studio_trace'].includes(eventType)) {
@@ -420,6 +429,11 @@ export function logContentAudit(sectionId, eventData = {}) {
  */
 async function flushEvents() {
     if (eventQueue.length === 0 || !userId) return
+    // Nothing can persist without Supabase; clear rather than re-queue forever.
+    if (!isSupabaseConfigured) {
+        eventQueue = []
+        return
+    }
 
     // Note: We are no longer skipping the flush for the guest user ('00000000...'), 
     // because we have replaced it with `guestId` in initSession. 

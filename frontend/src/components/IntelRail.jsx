@@ -120,7 +120,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             })
         }
         try {
-            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || ''
+            const apiKey = localStorage.getItem('gemini_api_key') || ''
             const res = await fetch(`${API_BASE}/assist/explain`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -164,7 +164,7 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             })
         }
         try {
-            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || ''
+            const apiKey = localStorage.getItem('gemini_api_key') || ''
             const res = await fetch(`${API_BASE}/assist/represent`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

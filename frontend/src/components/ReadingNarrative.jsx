@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react'
+import { Suspense, lazy, memo, useEffect, useMemo, useRef, useState } from 'react'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
@@ -6,6 +6,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import 'katex/dist/katex.min.css'
 import { logTimeOnTask } from '../lib/loggingService'
+import BlockErrorBoundary from './BlockErrorBoundary'
 import { useTheme } from '../lib/themeContext'
 import { READING_WIDTH_OPTIONS } from '../lib/readingPrefs'
 // Typed SEMANTIC content nodes (PreTeXt semantic blocks + Torus purpose
@@ -99,9 +100,11 @@ function MarkdownBlockFallback() {
 
 function renderLazyMarkdownModule(LazyComponent, props = {}) {
     return (
-        <Suspense fallback={<MarkdownBlockFallback />}>
-            <LazyComponent {...props} />
-        </Suspense>
+        <BlockErrorBoundary>
+            <Suspense fallback={<MarkdownBlockFallback />}>
+                <LazyComponent {...props} />
+            </Suspense>
+        </BlockErrorBoundary>
     )
 }
 
@@ -110,9 +113,11 @@ function renderLazyMarkdownModule(LazyComponent, props = {}) {
 function renderBreakoutLazyModule(LazyComponent, props = {}) {
     return (
         <div className="reading-breakout not-prose">
-            <Suspense fallback={<MarkdownBlockFallback />}>
-                <LazyComponent {...props} />
-            </Suspense>
+            <BlockErrorBoundary>
+                <Suspense fallback={<MarkdownBlockFallback />}>
+                    <LazyComponent {...props} />
+                </Suspense>
+            </BlockErrorBoundary>
         </div>
     )
 }
@@ -169,7 +174,7 @@ function normalizeMarkdownSource(source) {
     return lines.join('\n').trim()
 }
 
-export default function ReadingNarrative({
+function ReadingNarrative({
     content,
     sectionId,
     course,
@@ -275,45 +280,53 @@ export default function ReadingNarrative({
             </div>
         ),
         'dynamic-scenario': (props) => (
-            <Suspense fallback={<MarkdownBlockFallback />}>
-                <DynamicScenario
-                    {...props}
-                    course={course || 'bio-inspired'}
-                />
-            </Suspense>
+            <BlockErrorBoundary>
+                <Suspense fallback={<MarkdownBlockFallback />}>
+                    <DynamicScenario
+                        {...props}
+                        course={course || 'bio-inspired'}
+                    />
+                </Suspense>
+            </BlockErrorBoundary>
         ),
         'artifact-studio': (props) => (
-            <Suspense fallback={<MarkdownBlockFallback />}>
-                <ArtifactStudio
-                    {...props}
-                    sectionId={sectionId}
-                    conceptIds={conceptIds || []}
-                    sectionTitle={sectionDescription || ''}
-                />
-            </Suspense>
+            <BlockErrorBoundary>
+                <Suspense fallback={<MarkdownBlockFallback />}>
+                    <ArtifactStudio
+                        {...props}
+                        sectionId={sectionId}
+                        conceptIds={conceptIds || []}
+                        sectionTitle={sectionDescription || ''}
+                    />
+                </Suspense>
+            </BlockErrorBoundary>
         ),
         'concept-diagram': (props) => renderBreakoutLazyModule(ConceptDiagrams, props),
         'interactive-quiz': ({ options, conceptid, ...props }) => (
-            <Suspense fallback={<MarkdownBlockFallback />}>
-                <InteractiveQuiz
-                    options={options}
-                    sectionId={sectionId}
-                    conceptId={conceptid || conceptIds?.[0] || null}
-                    defaultConceptId={conceptIds?.[0] || null}
-                    {...props}
-                />
-            </Suspense>
+            <BlockErrorBoundary>
+                <Suspense fallback={<MarkdownBlockFallback />}>
+                    <InteractiveQuiz
+                        options={options}
+                        sectionId={sectionId}
+                        conceptId={conceptid || conceptIds?.[0] || null}
+                        defaultConceptId={conceptIds?.[0] || null}
+                        {...props}
+                    />
+                </Suspense>
+            </BlockErrorBoundary>
         ),
         'inline-check': ({ options, question, conceptid, ...props }) => (
-            <Suspense fallback={<MarkdownBlockFallback />}>
-                <InlineCheck
-                    options={options}
-                    question={question}
-                    sectionId={sectionId}
-                    conceptId={conceptid || conceptIds?.[0] || null}
-                    {...props}
-                />
-            </Suspense>
+            <BlockErrorBoundary>
+                <Suspense fallback={<MarkdownBlockFallback />}>
+                    <InlineCheck
+                        options={options}
+                        question={question}
+                        sectionId={sectionId}
+                        conceptId={conceptid || conceptIds?.[0] || null}
+                        {...props}
+                    />
+                </Suspense>
+            </BlockErrorBoundary>
         ),
         'worked-example': (props) => renderBreakoutLazyModule(RevealedWorkedExample, { ...props, sectionId }),
         glossary: (props) => renderLazyMarkdownModule(Glossary, props),
@@ -564,3 +577,7 @@ export default function ReadingNarrative({
         </article>
     )
 }
+
+// Memoized: skips re-render on presence ticks / parent state changes when its
+// per-section props are unchanged, avoiding a full markdown re-parse each tick.
+export default memo(ReadingNarrative)

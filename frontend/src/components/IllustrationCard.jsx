@@ -12,7 +12,7 @@ export default function IllustrationCard({ data }) {
         setLoading(true);
         setError(null);
         try {
-            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const response = await fetch(`${API_BASE}/generate-image`, {
                 method: 'POST',
                 headers: {
@@ -125,7 +125,7 @@ export default function IllustrationCard({ data }) {
                                 <div className="rounded-2xl border border-fuchsia-100 bg-white p-2 shadow-sm">
                                     <img
                                         src={imageUrl}
-                                        alt="Generated Technical Illustration"
+                                        alt={data.illustration_title || data.image_prompt || 'Generated technical illustration'}
                                         className="w-full max-w-2xl rounded-xl border border-slate-100 shadow-inner"
                                     />
                                 </div>

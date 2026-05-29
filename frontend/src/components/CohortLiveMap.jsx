@@ -24,8 +24,13 @@ export default function CohortLiveMap({ windowMinutes = 5, currentSectionId = nu
         let intervalId = null
 
         const load = async () => {
-            // Skip work when tab is hidden — saves Supabase quota + battery.
-            if (typeof document !== 'undefined' && document.hidden) return
+            // Skip the network call when the tab is hidden (saves quota + battery),
+            // but still clear the skeleton so a component mounted in a background
+            // tab doesn't sit on the loading state until the tab is focused.
+            if (typeof document !== 'undefined' && document.hidden) {
+                if (!cancelled) setLoading(false)
+                return
+            }
             try {
                 const data = await fetchLivePresenceSnapshots(windowMinutes)
                 if (!cancelled) {

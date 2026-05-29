@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { useTextSelection } from '../hooks/useTextSelection'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 import { logHighlightCreate } from '../lib/loggingService'
 import API_BASE from '../lib/apiConfig'
 import { Download, Hash, MessageSquarePlus, Sparkles, Highlighter, X } from 'lucide-react'
@@ -34,6 +35,7 @@ export default function HighlightableContent({
     const [editingNoteId, setEditingNoteId] = useState(null)
     const [hoveredHighlight, setHoveredHighlight] = useState(null)
     const [discussionHighlightId, setDiscussionHighlightId] = useState(null)
+    const discussionDialogRef = useFocusTrap(Boolean(discussionHighlightId), () => setDiscussionHighlightId(null))
 
     // Esc-to-close on the discussion modal (a11y).
     useEffect(() => {
@@ -370,11 +372,14 @@ export default function HighlightableContent({
     }, [])
 
     const handleScroll = useCallback(() => {
+        // Cheap early-out on the common case (scrolling with nothing selected),
+        // so this capture-phase global scroll handler doesn't do work every frame.
+        if (!selectionState && !showNoteInput) return
         // Don't close the selection if the user is actively typing a note
         if (!showNoteInput) {
             clearSelection()
         }
-    }, [showNoteInput, clearSelection])
+    }, [selectionState, showNoteInput, clearSelection])
 
     // Focus the note textarea when the note input popup opens (replaces autoFocus for a11y).
     useEffect(() => {
@@ -677,7 +682,7 @@ export default function HighlightableContent({
                 >
                     {/* stops backdrop dismissal when interacting inside the panel; not a user-facing control */}
                     {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-                    <div className="w-full max-w-lg" onClick={(event) => event.stopPropagation()}>
+                    <div ref={discussionDialogRef} className="w-full max-w-lg" onClick={(event) => event.stopPropagation()}>
                         <HighlightDiscussion
                             highlightId={discussionHighlightId}
                             user={{ id: userId }}

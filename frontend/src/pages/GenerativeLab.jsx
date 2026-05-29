@@ -35,7 +35,7 @@ export default function GenerativeLab() {
         setResult(null);
 
         try {
-            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const response = await fetch(`${API_BASE}/orchestrate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -90,7 +90,7 @@ export default function GenerativeLab() {
         setError(null);
 
         try {
-            const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
+            const apiKey = localStorage.getItem('gemini_api_key') || '';
             const response = await fetch(`${API_BASE}/book/generate_custom_module`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -219,7 +219,10 @@ export default function GenerativeLab() {
                                         : 'editorial-surface text-[var(--ath-text)] prose prose-sm max-w-none'
                                         }`}>
                                         {msg.role === 'assistant' ? (
-                                            <div dangerouslySetInnerHTML={{ __html: (typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)).replace(/\n/g, '<br />') }} />
+                                            // Model output is rendered as escaped text with preserved line
+                                            // breaks (whitespace-pre-wrap) instead of raw HTML, so a prompt-
+                                            // injected <img onerror=...> in the response cannot execute (XSS).
+                                            <div className="whitespace-pre-wrap break-words">{typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)}</div>
                                         ) : (
                                             <p className="m-0 text-[15px] font-medium leading-relaxed">{typeof msg.content === 'string' ? msg.content : JSON.stringify(msg.content)}</p>
                                         )}
@@ -273,7 +276,7 @@ export default function GenerativeLab() {
                                     <FileText className="h-6 w-6" aria-hidden="true" />
                                     <h3 className="text-xl font-bold text-[var(--ath-text)] m-0">Synthesis</h3>
                                 </div>
-                                <div className="font-medium text-[1.05rem]" dangerouslySetInnerHTML={{ __html: (typeof result.summary === 'string' ? result.summary : (result.summary.synthesis || JSON.stringify(result.summary))).replace(/\n/g, '<br />') }} />
+                                <div className="font-medium text-[1.05rem] whitespace-pre-wrap break-words">{typeof result.summary === 'string' ? result.summary : (result.summary.synthesis || JSON.stringify(result.summary))}</div>
 
                                 {typeof result.summary === 'object' && result.summary.encouragement && (
                                     <p className="mt-6 italic text-[var(--ath-muted)] font-medium">{result.summary.encouragement}</p>

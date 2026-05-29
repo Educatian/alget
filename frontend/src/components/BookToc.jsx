@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { memo, useMemo, useState } from 'react'
 import { ChevronRight } from 'lucide-react'
 
 const KNOWN_CHAPTER_TITLES = {
@@ -28,7 +28,7 @@ function getCourseSummary(chapters = []) {
     }
 }
 
-export default function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigate, completedSections }) {
+function BookToc({ toc, currentCourse, currentChapter, currentSection, onNavigate, completedSections }) {
     const [searchQuery, setSearchQuery] = useState('')
     const [expandedChapters, setExpandedChapters] = useState([currentChapter])
 
@@ -164,3 +164,5 @@ export default function BookToc({ toc, currentCourse, currentChapter, currentSec
         </div>
     )
 }
+
+export default memo(BookToc)

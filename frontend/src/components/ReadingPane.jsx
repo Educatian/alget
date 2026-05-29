@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState } from 'react'
+import { Suspense, lazy, memo, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { logInteraction } from '../lib/loggingService'
 import PeerPulse from './PeerPulse'
@@ -49,9 +49,11 @@ function formatRecentTimestamp(value) {
     })
 }
 
-export default function ReadingPane({
+function ReadingPane({
     sectionData,
     loading,
+    sectionError,
+    onRetrySection,
     onStuckEvent,
     onNeedsReview,
     isBookmarked,
@@ -92,6 +94,31 @@ export default function ReadingPane({
                     <div className="h-full w-1/2 animate-[progress-indeterminate_2s_ease-in-out_infinite] rounded-full bg-[var(--ath-primary)]"></div>
                 </div>
                 <p className="mt-4 text-xs font-medium uppercase tracking-[0.2em] text-[var(--ath-secondary)]">Loading section</p>
+            </div>
+        )
+    }
+
+    // A load FAILURE (network/server) is recoverable: offer a retry instead of
+    // the dead "Section Not Found" that implies the user navigated wrong.
+    if (!sectionData && sectionError) {
+        return (
+            <div className="flex h-full items-center justify-center px-4">
+                <div className="max-w-md text-center" role="alert">
+                    <div className="mb-4 text-5xl font-semibold text-[var(--ath-secondary)]">AL</div>
+                    <h2 className="text-2xl font-semibold text-[var(--ath-text)]">This section didn&apos;t load</h2>
+                    <p className="mt-2 text-[var(--ath-muted)]">
+                        A network or server hiccup interrupted the load. Your place is saved.
+                    </p>
+                    {onRetrySection && (
+                        <button
+                            type="button"
+                            onClick={onRetrySection}
+                            className="mt-5 rounded-2xl bg-[var(--ath-primary)] px-5 py-3 text-sm font-semibold text-[var(--ath-background)] transition-colors hover:brightness-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                        >
+                            Try again
+                        </button>
+                    )}
+                </div>
             </div>
         )
     }
@@ -394,3 +421,7 @@ export default function ReadingPane({
         </div>
     )
 }
+
+// Memoized so presence ticks in BookLayout don't re-render the whole reading
+// surface; relies on the now-stable peerPulse/markCompleted props.
+export default memo(ReadingPane)

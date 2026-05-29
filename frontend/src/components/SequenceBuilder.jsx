@@ -134,8 +134,7 @@ function OrderActivity({ correct, baseId }) {
                                 tabIndex={0}
                                 role="button"
                                 draggable
-                                aria-grabbed={grabbedIndex === index}
-                                aria-label={`Step ${index + 1} of ${order.length}: ${item.label}`}
+                                aria-label={`Step ${index + 1} of ${order.length}: ${item.label}${grabbedIndex === index ? ' (grabbed)' : ''}`}
                                 onDragStart={onDragStart(index)}
                                 onDragOver={onDragOver}
                                 onDrop={onDrop(index)}

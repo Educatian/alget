@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ChevronRight, Search, X } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
 import { safeLocalStorageGet, safeLocalStorageSet } from '../lib/browserStorage'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 
 /**
  * GlobalSearch — Cmd+K / Ctrl+K modal for fuzzy search across every section
@@ -116,6 +117,7 @@ function formatCourseLabel(course) {
 
 export default function GlobalSearch() {
     const [open, setOpen] = useState(false)
+    const dialogRef = useFocusTrap(open, () => setOpen(false))
     const [index, setIndex] = useState(() => loadCache())
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -226,6 +228,7 @@ export default function GlobalSearch() {
         >
             {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events -- stops backdrop dismissal when interacting inside the panel; not a user-facing control */}
             <div
+                ref={dialogRef}
                 className="w-full max-w-xl overflow-hidden rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] shadow-2xl"
                 onClick={(event) => event.stopPropagation()}
             >
