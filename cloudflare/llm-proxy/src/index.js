@@ -118,6 +118,60 @@ function applyTelemetryFusion(pSlip, pTransit, type, intensity = 1.0) {
   return { new_p_slip: slip, new_p_transit: transit }
 }
 
+// --- Artifact revision scoring (ported from backend score_artifact_revision_payload) ---
+const _ART_STOP = new Set(['the', 'and', 'for', 'with', 'that', 'this', 'from', 'into', 'because', 'about', 'what', 'which', 'when', 'where', 'their', 'there', 'would', 'could', 'should', 'student', 'learner', 'artifact', 'work', 'product'])
+function textTokens(value) {
+  const out = new Set()
+  for (const m of String(value || '').toLowerCase().matchAll(/[a-z][a-z0-9_-]{2,}/g)) {
+    if (!_ART_STOP.has(m[0])) out.add(m[0])
+  }
+  return out
+}
+function clampN(v, min = 0, max = 1) { return Math.max(min, Math.min(max, v)) }
+function boundedRatio(num, den = 1) { if (den <= 0) return 0; return Math.round(clampN(num / den, 0, 1) * 1000) / 1000 }
+function r3(v) { return Math.round(v * 1000) / 1000 }
+function interSize(a, b) { let n = 0; for (const x of a) if (b.has(x)) n++; return n }
+function scoreArtifactRevision(req) {
+  const e = (v) => String(v || '').trim()
+  const initial = e(req.initial_draft), revised = e(req.revised_draft), claim = e(req.claim)
+  const evidence = e(req.evidence), rationale = e(req.judgment_rationale), transfer = e(req.transfer)
+  const iT = textTokens(initial), rT = textTokens(revised), cT = textTokens(claim)
+  const eT = textTokens(evidence), raT = textTokens(rationale), tT = textTokens(transfer)
+  const added = new Set([...rT].filter((x) => !iT.has(x)))
+  const sClaim = interSize(rT, cT), sEv = interSize(rT, eT), sRa = interSize(rT, raT), sTr = interSize(rT, tT)
+  const deltaChars = revised.length - initial.length
+  const revisionDepth = clampN(boundedRatio(added.size, 12) * 0.65 + (Math.abs(deltaChars) >= 40 ? 0.2 : 0) + (rT.size >= Math.max(10, iT.size) ? 0.15 : 0), 0, 1)
+  const claimClarity = clampN(boundedRatio(cT.size, 10) * 0.55 + boundedRatio(sClaim, Math.max(3, cT.size)) * 0.45, 0, 1)
+  const evidenceAlignment = clampN(boundedRatio(eT.size, 12) * 0.35 + boundedRatio(sEv, Math.max(3, eT.size)) * 0.65, 0, 1)
+  const judgmentQuality = clampN(boundedRatio(raT.size, 12) * 0.55 + boundedRatio(sRa, Math.max(2, raT.size)) * 0.25 + ((['modify', 'reject'].includes(req.judgment) && raT.size >= 6) ? 0.2 : 0.1), 0, 1)
+  const transferReadiness = clampN(boundedRatio(tT.size, 10) * 0.55 + boundedRatio(sTr, Math.max(2, tT.size)) * 0.25 + (['audience', 'context', 'setting', 'course', 'role', 'dataset'].some((w) => transfer.toLowerCase().includes(w)) ? 0.2 : 0), 0, 1)
+  const union = new Set([...cT, ...eT, ...raT, ...tT])
+  const addedRelevant = [...added].filter((x) => union.has(x)).length
+  const specificityDelta = clampN(boundedRatio(addedRelevant, 8) * 0.7 + boundedRatio(Math.max(0, deltaChars), 180) * 0.3, 0, 1)
+  const overall = r3(0.2 * claimClarity + 0.22 * evidenceAlignment + 0.18 * revisionDepth + 0.16 * judgmentQuality + 0.12 * transferReadiness + 0.12 * specificityDelta)
+  const errs = []
+  if (!e(req.course)) errs.push('missing_course')
+  if (!e(req.section)) errs.push('missing_section')
+  if (initial.length < 12) errs.push('initial_draft_too_short')
+  if (revised.length < 12) errs.push('revised_draft_too_short')
+  if (evidence.length < 12) errs.push('evidence_too_short')
+  if (rationale.length < 12) errs.push('judgment_rationale_too_short')
+  return {
+    validator_pass: errs.length === 0,
+    validation_errors: errs,
+    policy_version: 'artifact-revision-scorer-v1',
+    scores: {
+      claim_clarity: r3(claimClarity), evidence_alignment: r3(evidenceAlignment), revision_depth: r3(revisionDepth),
+      judgment_quality: r3(judgmentQuality), transfer_readiness: r3(transferReadiness), specificity_delta: r3(specificityDelta),
+      overall_revision_quality: overall,
+    },
+    diagnostics: {
+      initial_token_count: iT.size, revised_token_count: rT.size, added_token_count: added.size,
+      revision_delta_chars: deltaChars, claim_overlap: sClaim, evidence_overlap: sEv,
+    },
+  }
+}
+
 // Flatten the frontend's chat history (assistant entries can be intent objects)
 // into plain OpenRouter messages.
 function historyToMessages(history) {
@@ -249,6 +303,11 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
       // clear disabled response rather than proxying.
       if (path === '/generate-image') {
         return json({ success: false, error: 'Image generation has been disabled.' })
+      }
+
+      // --- Artifact revision scoring (deterministic, ported from backend) ---
+      if (path === '/research/artifact-revision/score') {
+        return json(scoreArtifactRevision(body))
       }
 
       // --- Everything else: proxy to the FastAPI backend as-is ---
