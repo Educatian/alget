@@ -1,21 +1,24 @@
-// Cloudflare Worker: alget-llm
+// Cloudflare Worker: alget-llm  (OpenRouter-backed)
 //
 // The dynamic AI layer for ALGET. On the static Pages deploy, /api only holds
 // content/search snapshots, so every LLM call (BigAL rail, chat, grading,
 // generation) 404/405'd. This Worker is the single dynamic endpoint:
 //
-//   - /assist/explain, /assist/represent  -> answered DIRECTLY via Gemini
-//     (no cold start; the rail's reported "Unable to generate").
-//   - everything else (orchestrate, grade, generate*, diagnostic, research,
-//     generate-image, ...) -> PROXIED to the FastAPI backend, injecting the
-//     server-side Gemini key so the backend's "API Key not found" 500s stop.
+//   - /assist/explain, /assist/represent, /orchestrate  -> answered DIRECTLY
+//     via OpenRouter (no cold start). These are the BigAL rail + chat the
+//     learner actually sees.
+//   - everything else (grade, generate*, diagnostic, research, ...) -> PROXIED
+//     to the FastAPI backend as-is (best effort; needs the backend's own key).
 //
 // SECRET (set via wrangler, NOT committed):
-//   wrangler secret put GEMINI_API_KEY
-// Optional [vars]: ORIGIN backend URL (defaults to the onrender deploy).
+//   wrangler secret put OPENROUTER_API_KEY
+// Optional [vars]:
+//   OPENROUTER_MODEL     (default: google/gemini-2.0-flash-001)
+//   BACKEND_API_BASE     (default: the onrender FastAPI deploy)
 
-const GEMINI_MODEL = 'gemini-2.0-flash'
+const DEFAULT_MODEL = 'google/gemini-2.0-flash-001'
 const DEFAULT_BACKEND = 'https://alget.onrender.com/api'
+const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -30,21 +33,39 @@ function json(obj, status = 200) {
   })
 }
 
-async function gemini(key, prompt, { temperature = 0.7, maxOutputTokens = 500 } = {}) {
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${encodeURIComponent(key)}`,
-    {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature, maxOutputTokens },
-      }),
+async function openrouter(key, messages, { model, temperature = 0.7, maxTokens = 600 } = {}) {
+  const res = await fetch(OPENROUTER_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${key}`,
+      'content-type': 'application/json',
+      // OpenRouter attribution headers (optional but recommended).
+      'HTTP-Referer': 'https://alget.pages.dev',
+      'X-Title': 'ALGET Intelligent Textbook',
     },
-  )
+    body: JSON.stringify({
+      model: model || DEFAULT_MODEL,
+      messages,
+      temperature,
+      max_tokens: maxTokens,
+    }),
+  })
   const data = await res.json()
-  if (!res.ok) throw new Error(data?.error?.message || `Gemini ${res.status}`)
-  return (data?.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('').trim()
+  if (!res.ok) throw new Error(data?.error?.message || `OpenRouter ${res.status}`)
+  return (data?.choices?.[0]?.message?.content || '').trim()
+}
+
+// Flatten the frontend's chat history (assistant entries can be intent objects)
+// into plain OpenRouter messages.
+function historyToMessages(history) {
+  if (!Array.isArray(history)) return []
+  return history.slice(-6).map((m) => {
+    let content = m?.content
+    if (content && typeof content === 'object') {
+      content = content.text || content.summary || content.explanation || content.error || JSON.stringify(content)
+    }
+    return { role: m?.role === 'assistant' ? 'assistant' : 'user', content: String(content || '') }
+  }).filter((m) => m.content)
 }
 
 export default {
@@ -52,58 +73,65 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS })
 
     const url = new URL(request.url)
-    // Accept both "/assist/explain" and "/api/assist/explain".
     const path = url.pathname.replace(/^\/api/, '') || '/'
 
     let body = {}
     if (request.method === 'POST') {
       try { body = await request.json() } catch { body = {} }
     }
-    // Prefer a per-user key from the request (BYOK); else the server secret.
-    const key = (body.api_key && String(body.api_key).trim()) || env.GEMINI_API_KEY || ''
+    // Server key by default; allow a per-user OpenRouter key via the request.
+    const key = (body.api_key && String(body.api_key).trim()) || env.OPENROUTER_API_KEY || ''
+    const model = env.OPENROUTER_MODEL || DEFAULT_MODEL
     const backend = (env.BACKEND_API_BASE || DEFAULT_BACKEND).replace(/\/$/, '')
+    const noKeyMsg = 'AI support is not configured yet (no OpenRouter key). Add your own key in Settings, or ask your instructor to enable it.'
 
     try {
-      // --- Rail: simpler explanation, generated directly (fast path) ---
+      // --- Rail: simpler explanation ---
       if (path === '/assist/explain') {
-        if (!key) {
-          return json({
-            explanation:
-              'Add your Gemini API key in Settings to get an AI-generated explanation. In the meantime: re-read the passage, restate the core idea in your own words, and try the next check.',
-          })
-        }
-        const prompt = `A student is stuck on the textbook section "${body.section_id || 'this section'}".
-Problem: ${body.problem_id || 'general concept'}
-Why they're stuck: ${body.stuck_reason || 'unknown'}
-
-Write a simpler, step-by-step explanation for a struggling learner. Use an everyday analogy and a concrete example. Be warm and encouraging. Keep it under 200 words. Do not assume a specific subject (statics, etc.) — explain THIS section's topic. Markdown allowed.`
-        const explanation = await gemini(key, prompt, { temperature: 0.7, maxOutputTokens: 500 })
+        if (!key) return json({ explanation: noKeyMsg })
+        const explanation = await openrouter(key, [
+          { role: 'system', content: 'You are BigAL, a warm, concise tutor inside an interactive textbook. Explain clearly for a struggling learner using an everyday analogy and a concrete example. Keep it under 200 words. Markdown allowed. Explain the actual topic of the named section — do not assume a specific subject.' },
+          { role: 'user', content: `Section: "${body.section_id || 'this section'}". Problem: ${body.problem_id || 'general concept'}. The student is stuck (reason: ${body.stuck_reason || 'unknown'}). Give a simpler, step-by-step explanation.` },
+        ], { model, temperature: 0.7, maxTokens: 500 })
         return json({ explanation })
       }
 
-      // --- Rail: alternate representation, generated per section/type ---
+      // --- Rail: alternate representation ---
       if (path === '/assist/represent') {
         const type = body.representation_type || 'mindmap'
-        if (!key) {
-          return json({ content: 'Add your Gemini API key in Settings to generate this representation.', type })
-        }
+        if (!key) return json({ content: noKeyMsg, type })
         const guide = {
-          mindmap: 'an indented text concept map (parent → children) of the core idea',
+          mindmap: 'an indented text concept map (parent -> children) of the core idea',
           analogy: 'a vivid real-world analogy that builds intuition',
           visual: 'an ASCII / diagram-style sketch with labels',
           formula: 'the key formulas or rules, each with a one-line plain-language explanation',
         }[type] || 'a concise alternate representation'
-        const prompt = `For the textbook section "${body.section_id || 'this section'}", produce ${guide}.
-Keep it concise and specific to THIS section's actual topic (do not assume statics/equilibrium). Markdown allowed.`
-        const content = await gemini(key, prompt, { temperature: 0.6, maxOutputTokens: 600 })
+        const content = await openrouter(key, [
+          { role: 'system', content: 'You produce concise alternate representations of textbook concepts. Be specific to the actual topic of the named section; never assume statics/equilibrium. Markdown allowed.' },
+          { role: 'user', content: `For the section "${body.section_id || 'this section'}", produce ${guide}.` },
+        ], { model, temperature: 0.6, maxTokens: 600 })
         return json({ content, type })
       }
 
-      // --- Everything else: proxy to the FastAPI backend with the key injected ---
+      // --- BigAL chat ---
+      if (path === '/orchestrate') {
+        if (!key) return json({ intent: 'legacy', text: noKeyMsg })
+        const ctx = body.current_content ? `\n\nSection context (excerpt):\n${String(body.current_content).slice(0, 2000)}` : ''
+        const messages = [
+          { role: 'system', content: `You are BigAL, a friendly, rigorous tutor embedded in an interactive textbook (course: ${body.course || 'general'}). Answer the learner's question clearly and concisely, grounded in the section context when relevant. Use Markdown. If the learner highlighted a passage, explain it.${ctx}` },
+          ...historyToMessages(body.history),
+          { role: 'user', content: String(body.query || '') },
+        ]
+        const text = await openrouter(key, messages, { model, temperature: 0.6, maxTokens: 900 })
+        // ChatWidget renders { text } via its generic branch.
+        return json({ intent: 'learn', text })
+      }
+
+      // --- Everything else: proxy to the FastAPI backend as-is ---
       const proxied = await fetch(`${backend}${path}${url.search}`, {
         method: request.method,
         headers: { 'content-type': 'application/json' },
-        body: request.method === 'POST' ? JSON.stringify({ ...body, api_key: key }) : undefined,
+        body: request.method === 'POST' ? JSON.stringify(body) : undefined,
       })
       const text = await proxied.text()
       return new Response(text, {
