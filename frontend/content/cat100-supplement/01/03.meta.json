@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "01",
+  "section": "03",
   "chapter_title": "Digital Citizenship and AI Readiness",
   "title": "ETHOBOT CAT100 Orientation",
   "description": "CAT 100 textbook section connecting ethobot cat100 orientation to AI critique log showing accepted, modified, and rejected suggestions, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
     "cat100_supplement_ethobot_cat100_orientation",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 3,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/01/02"
+  ],
+  "practice_ids": [
+    "cat100_supplement_1_3_ethobot_cat100_orientation_artifact_signal",
+    "cat100_supplement_1_3_ethobot_cat100_orientation_annotation_signal",
+    "cat100_supplement_1_3_ethobot_cat100_orientation_ai_boundary",
+    "cat100_supplement_1_3_ethobot_cat100_orientation_calibration"
+  ]
 }

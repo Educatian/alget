@@ -1,6 +1,20 @@
 {
+    "course": "bio-inspired",
+    "chapter": "08",
+    "section": "01",
     "title": "Module 8: Swarm Intelligence & Autonomous Robotics",
     "description": "Understanding how ant colonies and bird flocks execute highly complex global tasks using simple local rules, and how this applies to autonomous drone swarms.",
     "order": 8,
-    "chapter_title": "Swarm Intelligence and Distributed Systems"
+    "chapter_title": "Swarm Intelligence and Distributed Systems",
+    "prereq_section_ids": [
+        "bio-inspired/07/01"
+    ],
+    "practice_ids": [
+        "bio_swarm_no_central_commander",
+        "bio_stigmergy_logic",
+        "bio_local_rules_reynolds",
+        "bio_autonomous_robotics_tradeoff",
+        "bio_swarm_analogical_transfer",
+        "bio_fixation_avoidance"
+    ]
 }

@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "06",
+  "section": "06",
   "chapter_title": "GitHub Pages Personal Website",
   "title": "Portfolio Evidence and Reflection",
   "description": "CAT 100 textbook section connecting portfolio evidence and reflection to resume before-after revision with truthful evidence, role fit, and AI-use note, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_github_pages_personal_website",
     "cat100_supplement_portfolio_evidence_and_reflection",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 6,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/06/05"
+  ],
+  "practice_ids": [
+    "cat100_supplement_6_6_portfolio_evidence_and_reflection_artifact_signal",
+    "cat100_supplement_6_6_portfolio_evidence_and_reflection_annotation_signal",
+    "cat100_supplement_6_6_portfolio_evidence_and_reflection_ai_boundary",
+    "cat100_supplement_6_6_portfolio_evidence_and_reflection_calibration"
+  ]
 }

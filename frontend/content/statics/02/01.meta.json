@@ -20,5 +20,14 @@
         "equilibrium_condition",
         "fbd"
     ],
+    "prereq_section_ids": [
+        "statics/01/05"
+    ],
+    "practice_ids": [
+        "moment_perpendicular",
+        "moment_components",
+        "moment_arm_definition",
+        "moment_sign_convention"
+    ],
     "estimated_time_minutes": 50
 }

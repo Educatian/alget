@@ -4,6 +4,11 @@
       "id": "accountability_responsibility_gap",
       "type": "multiple_choice",
       "concept_id": "responsibility_gap",
+      "difficulty": "medium",
+      "concept_ids": [
+        "responsibility_gap",
+        "accountability_distribution"
+      ],
       "stem": "How is the AI 'responsibility gap' (Matthias 2004) most defensibly closed?",
       "options": [
         "By attributing moral responsibility to the AI system itself.",
@@ -19,6 +24,10 @@
       "id": "accountability_hitl_test",
       "type": "multiple_choice",
       "concept_id": "human_in_the_loop",
+      "difficulty": "hard",
+      "concept_ids": [
+        "human_in_the_loop"
+      ],
       "stem": "Under the capacity-time-authority-information test, when is human-in-the-loop oversight meaningful?",
       "options": [
         "Whenever a human is formally part of the workflow.",
@@ -34,6 +43,11 @@
       "id": "accountability_engineering_real",
       "type": "multiple_choice",
       "concept_id": "audit_trails",
+      "difficulty": "easy",
+      "concept_ids": [
+        "audit_trails",
+        "incident_response"
+      ],
       "stem": "Which engineering practice is most directly tied to making accountability survive turnover and lawsuits?",
       "options": [
         "Faster model retraining.",
@@ -49,6 +63,10 @@
       "id": "accountability_documentation",
       "type": "multiple_choice",
       "concept_id": "model_cards",
+      "difficulty": "medium",
+      "concept_ids": [
+        "model_cards"
+      ],
       "stem": "What is the purpose of model cards (Mitchell et al. 2019) and datasheets for datasets (Gebru et al. 2018) in an accountability framework?",
       "options": [
         "Marketing material for the model.",

@@ -2,6 +2,9 @@
   "chapter_title": "Field-Based Transfer and Coaching",
   "title": "Mentor Teacher Conversation Guides",
   "description": "CAT 531 textbook section connecting mentor teacher conversation guides to Design Tension Studio map naming a classroom value conflict and negotiated decision, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "07",
+  "section": "02",
   "learning_objectives": [
     "Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_field_based_transfer_and_coaching",
     "cat531_supplement_mentor_teacher_conversation_guides",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/07/01"
+  ],
+  "practice_ids": [
+    "cat531_supplement_7_2_mentor_teacher_conversation_guides_artifact_signal",
+    "cat531_supplement_7_2_mentor_teacher_conversation_guides_annotation_signal",
+    "cat531_supplement_7_2_mentor_teacher_conversation_guides_ai_boundary",
+    "cat531_supplement_7_2_mentor_teacher_conversation_guides_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 2,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

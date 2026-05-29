@@ -2,6 +2,9 @@
   "chapter_title": "AI in Education",
   "title": "School Policy Interpretation",
   "description": "CAT 531 textbook section connecting school policy interpretation to school AI policy memo with privacy, equity, consent, and learning-purpose checks, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "03",
+  "section": "06",
   "learning_objectives": [
     "Analyze how the school AI policy memo with privacy, equity, consent, and learning-purpose checks shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_ai_in_education",
     "cat531_supplement_school_policy_interpretation",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/03/05"
+  ],
+  "practice_ids": [
+    "cat531_supplement_3_6_school_policy_interpretation_artifact_signal",
+    "cat531_supplement_3_6_school_policy_interpretation_annotation_signal",
+    "cat531_supplement_3_6_school_policy_interpretation_ai_boundary",
+    "cat531_supplement_3_6_school_policy_interpretation_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 6,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

@@ -17,5 +17,18 @@
         "dynamics",
         "velocity",
         "acceleration"
+    ],
+    "prereq_section_ids": [],
+    "practice_ids": [
+        "rectilinear_concept_1",
+        "rectilinear_concept_2",
+        "rectilinear_concept_3",
+        "rectilinear_concept_4",
+        "rectilinear_numeric_1",
+        "rectilinear_numeric_2",
+        "rectilinear_numeric_3",
+        "rectilinear_numeric_4",
+        "rectilinear_step_1",
+        "rectilinear_step_2"
     ]
 }

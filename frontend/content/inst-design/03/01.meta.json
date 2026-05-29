@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "03",
+    "section": "01",
     "title": "Module 3: Multimedia Learning Principles",
     "description": "Understanding how the brain processes multimedia information through Mayer's 12 Principles. Avoiding cognitive overload when combining text, audio, and graphics.",
     "chapter_title": "Multimedia and Message Design",
@@ -13,6 +16,16 @@
         "dual_channel_processing",
         "cognitive_overload",
         "modality_effect"
+    ],
+    "prereq_section_ids": [
+        "inst-design/01/02",
+        "inst-design/02/08"
+    ],
+    "practice_ids": [
+        "multimedia_dual_channel",
+        "multimedia_modality",
+        "mayer_coherence_principle",
+        "multimedia_overload_case"
     ],
     "estimated_time_minutes": 12,
     "order": 3

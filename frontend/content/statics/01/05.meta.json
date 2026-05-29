@@ -1,4 +1,7 @@
 {
+    "course": "statics",
+    "chapter": "01",
+    "section": "05",
     "chapter_title": "Force Vectors",
     "title": "Module 5: Force Vectors — 2D, 3D, Dot and Cross Products",
     "description": "Build the vector toolbox that every later statics topic depends on: 2D resolution, 3D unit vectors via position vectors, the dot product for projection and angles, and the cross product for moments.",
@@ -15,6 +18,15 @@
         "direction_cosines",
         "dot_product",
         "cross_product"
+    ],
+    "prereq_section_ids": [
+        "statics/01/01"
+    ],
+    "practice_ids": [
+        "force_vec_2d_resultant",
+        "force_vec_3d_unit",
+        "force_vec_dot_projection",
+        "force_vec_cross_anticommute"
     ],
     "estimated_time_minutes": 13,
     "order": 5

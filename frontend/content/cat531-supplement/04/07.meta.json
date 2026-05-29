@@ -2,6 +2,9 @@
   "chapter_title": "AI Ethics and Ethobot 3.2",
   "title": "Adapting Ethobot Prompts",
   "description": "CAT 531 textbook section connecting adapting ethobot prompts to Ethobot transcript annotation showing where ethical reasoning changed, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "04",
+  "section": "07",
   "learning_objectives": [
     "Analyze how the Ethobot transcript annotation showing where ethical reasoning changed shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_ai_ethics_and_ethobot_3_2",
     "cat531_supplement_adapting_ethobot_prompts",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/04/06"
+  ],
+  "practice_ids": [
+    "cat531_supplement_4_7_adapting_ethobot_prompts_artifact_signal",
+    "cat531_supplement_4_7_adapting_ethobot_prompts_annotation_signal",
+    "cat531_supplement_4_7_adapting_ethobot_prompts_ai_boundary",
+    "cat531_supplement_4_7_adapting_ethobot_prompts_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 7,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

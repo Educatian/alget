@@ -4,6 +4,11 @@
       "id": "online_moore_balance",
       "type": "multiple_choice",
       "concept_id": "moore_three_interactions",
+      "difficulty": "medium",
+      "concept_ids": [
+        "moore_three_interactions",
+        "online_learning_design"
+      ],
       "stem": "An online course consists entirely of recorded videos plus end-of-module multiple-choice quizzes. Which Moore interactions are present?",
       "options": [
         "All three interaction types are present.",
@@ -19,6 +24,11 @@
       "id": "online_coi_phases",
       "type": "multiple_choice",
       "concept_id": "cognitive_presence",
+      "difficulty": "hard",
+      "concept_ids": [
+        "cognitive_presence",
+        "community_of_inquiry"
+      ],
       "stem": "A discussion forum produces lots of messages but the conversation never moves past sharing examples and articles. Which phase of cognitive presence is the course failing to reach?",
       "options": [
         "Triggering event.",
@@ -34,6 +44,10 @@
       "id": "online_async_vs_sync",
       "type": "multiple_choice",
       "concept_id": "online_learning_design",
+      "difficulty": "hard",
+      "concept_ids": [
+        "online_learning_design"
+      ],
       "stem": "Which scenario most justifies a synchronous (real-time) session over an asynchronous one?",
       "options": [
         "Letting learners read a complex paper at their own pace.",
@@ -49,6 +63,11 @@
       "id": "online_teaching_presence",
       "type": "multiple_choice",
       "concept_id": "teaching_presence",
+      "difficulty": "easy",
+      "concept_ids": [
+        "teaching_presence",
+        "community_of_inquiry"
+      ],
       "stem": "Teaching presence in the Community of Inquiry framework is best described as:",
       "options": [
         "The instructor showing their face on camera.",

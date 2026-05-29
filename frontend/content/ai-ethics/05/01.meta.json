@@ -1,4 +1,7 @@
 {
+    "course": "ai-ethics",
+    "chapter": "05",
+    "section": "01",
     "chapter_title": "Safety, Alignment, and Governance",
     "title": "Module 1: AI Safety and Alignment Foundations",
     "description": "Distinguish near-term safety from long-term alignment, recognize specification gaming and reward hacking, and identify five classes of intervention (better specification, interpretability, oversight, capability control, governance).",
@@ -16,6 +19,15 @@
         "goodharts_law",
         "distributional_shift",
         "capability_vs_alignment"
+    ],
+    "prereq_section_ids": [
+        "ai-ethics/04/02"
+    ],
+    "practice_ids": [
+        "safety_spec_gaming",
+        "safety_goodhart",
+        "safety_capability_alignment",
+        "safety_intervention_combo"
     ],
     "estimated_time_minutes": 14,
     "order": 1

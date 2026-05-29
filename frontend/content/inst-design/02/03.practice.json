@@ -4,6 +4,12 @@
       "id": "formative_vs_summative",
       "type": "multiple_choice",
       "concept_id": "formative_evaluation",
+      "difficulty": "easy",
+      "concept_ids": [
+        "formative_evaluation",
+        "summative_evaluation"
+      ],
+      "misconception_id": "evaluation_only_at_end",
       "stem": "What is the main purpose of formative evaluation?",
       "options": [
         "To judge final impact only after the course is complete",
@@ -18,6 +24,11 @@
       "id": "kirkpatrick_learning",
       "type": "multiple_choice",
       "concept_id": "kirkpatrick_model",
+      "difficulty": "medium",
+      "concept_ids": [
+        "kirkpatrick_model"
+      ],
+      "misconception_id": "kirkpatrick_levels_mixed",
       "stem": "Which Kirkpatrick level asks whether learners actually acquired knowledge or skill?",
       "options": [
         "Level 1: Reaction",
@@ -32,6 +43,12 @@
       "id": "reaction_not_learning",
       "type": "multiple_choice",
       "concept_id": "evaluation_phase",
+      "difficulty": "medium",
+      "concept_ids": [
+        "evaluation_phase",
+        "kirkpatrick_model"
+      ],
+      "misconception_id": "reaction_equals_effectiveness",
       "stem": "Why is a high post-course satisfaction score not enough to prove instructional effectiveness?",
       "options": [
         "Because reaction data can be positive even when real learning or transfer is weak",
@@ -46,6 +63,11 @@
       "id": "evaluation_evidence_choice",
       "type": "multiple_choice",
       "concept_id": "evidence_collection",
+      "difficulty": "hard",
+      "concept_ids": [
+        "evidence_collection",
+        "kirkpatrick_model"
+      ],
       "stem": "Which evidence source best aligns with Level 3 behavior evaluation?",
       "options": [
         "A smile-sheet rating gathered immediately after class",

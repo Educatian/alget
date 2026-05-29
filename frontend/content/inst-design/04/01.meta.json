@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "04",
+    "section": "01",
     "title": "Module 4: Motivation, Engagement & The ARCS Model",
     "description": "Understanding how to generate intrinsic and extrinsic motivation in adult learners using Keller's ARCS model and Game-Based Learning mechanics.",
     "chapter_title": "Motivation and Learner-Centered Design",
@@ -13,6 +16,15 @@
         "engagement_design",
         "intrinsic_motivation",
         "game_based_learning"
+    ],
+    "prereq_section_ids": [
+        "inst-design/03/01"
+    ],
+    "practice_ids": [
+        "arcs_attention",
+        "arcs_relevance_case",
+        "arcs_confidence",
+        "overjustification_effect"
     ],
     "estimated_time_minutes": 12,
     "order": 4

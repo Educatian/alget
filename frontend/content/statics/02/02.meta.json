@@ -17,5 +17,14 @@
     "prerequisites": [
         "moment"
     ],
+    "prereq_section_ids": [
+        "statics/02/01"
+    ],
+    "practice_ids": [
+        "statics_couple_basic_numeric",
+        "statics_couple_distance_choice",
+        "statics_equivalent_system",
+        "statics_force_couple_interpretation"
+    ],
     "estimated_time_minutes": 45
 }

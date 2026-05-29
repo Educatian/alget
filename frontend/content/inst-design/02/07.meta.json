@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "02",
+    "section": "07",
     "chapter_title": "Assessment Design",
     "title": "Module 7: Assessment Design — Validity, Reliability, and Item Construction",
     "description": "Design defensible assessments by aligning to objectives, ensuring validity and reliability, writing diagnostic distractors, and using calibrated rubrics for open-ended performance.",
@@ -15,6 +18,16 @@
         "constructive_alignment_audit",
         "item_construction",
         "rubric_design"
+    ],
+    "prereq_section_ids": [
+        "inst-design/02/05",
+        "inst-design/02/06"
+    ],
+    "practice_ids": [
+        "assessment_validity_inference",
+        "assessment_distractor_quality",
+        "assessment_alignment_audit",
+        "assessment_reliability_relationship"
     ],
     "estimated_time_minutes": 13,
     "order": 7

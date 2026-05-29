@@ -31,5 +31,17 @@
         "sign",
         "reference_point"
     ],
-    "estimated_time_minutes": 60
+    "estimated_time_minutes": 60,
+    "prereq_section_ids": [
+        "dynamics/03/01",
+        "dynamics/02/01"
+    ],
+    "practice_ids": [
+        "disk_alpha_numeric",
+        "rod_inertia_numeric",
+        "parallel_axis_numeric",
+        "torque_balance_concept",
+        "rigid_body_equations_steps",
+        "axis_selection_concept"
+    ]
 }

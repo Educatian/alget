@@ -4,6 +4,11 @@
       "id": "udl_representation",
       "type": "multiple_choice",
       "concept_id": "multiple_means_of_representation",
+      "difficulty": "easy",
+      "concept_ids": [
+        "multiple_means_of_representation",
+        "universal_design_for_learning"
+      ],
       "stem": "Which design move best supports multiple means of representation?",
       "options": [
         "Providing content only as narrated audio",
@@ -18,6 +23,12 @@
       "id": "udl_expression",
       "type": "multiple_choice",
       "concept_id": "multiple_means_of_action_and_expression",
+      "difficulty": "medium",
+      "concept_ids": [
+        "multiple_means_of_action_and_expression",
+        "universal_design_for_learning"
+      ],
+      "misconception_id": "multiple_options_mean_lower_rigor",
       "stem": "What is the strongest example of multiple means of action and expression?",
       "options": [
         "Allowing only a written essay because it is easiest to grade",
@@ -32,6 +43,11 @@
       "id": "udl_engagement",
       "type": "multiple_choice",
       "concept_id": "multiple_means_of_engagement",
+      "difficulty": "medium",
+      "concept_ids": [
+        "multiple_means_of_engagement",
+        "universal_design_for_learning"
+      ],
       "stem": "Why does UDL emphasize multiple means of engagement?",
       "options": [
         "Because every learner is motivated by the same competitive activity",
@@ -46,6 +62,12 @@
       "id": "wcag_contrast_case",
       "type": "multiple_choice",
       "concept_id": "inclusive_design",
+      "difficulty": "hard",
+      "concept_ids": [
+        "inclusive_design",
+        "universal_design_for_learning"
+      ],
+      "misconception_id": "accessibility_is_technical_only",
       "stem": "Why is WCAG-style contrast and keyboard support relevant to instructional design rather than just front-end engineering?",
       "options": [
         "Because accessibility has no impact on whether learning is possible",

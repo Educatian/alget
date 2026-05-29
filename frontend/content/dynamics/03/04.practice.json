@@ -13,7 +13,12 @@
       ],
       "correct_index": 1,
       "explanation": "The impulsive pin reaction breaks linear-momentum conservation. Angular momentum about the pin is preserved because the reaction's moment about the pin is zero.",
-      "misconception_id": "always_conserve_linear_momentum"
+      "misconception_id": "always_conserve_linear_momentum",
+      "difficulty": "medium",
+      "concept_ids": [
+        "conservation_of_angular_momentum",
+        "angular_impulse_momentum"
+      ]
     },
     {
       "id": "rbim_skater",
@@ -28,7 +33,12 @@
       ],
       "correct_index": 1,
       "explanation": "Conservation of angular momentum: I_G ω is fixed. Reducing I_G forces ω to increase. The same logic explains pirouettes and gymnastic skills.",
-      "misconception_id": "moi_does_not_change"
+      "misconception_id": "moi_does_not_change",
+      "difficulty": "medium",
+      "concept_ids": [
+        "conservation_of_angular_momentum",
+        "angular_impulse_momentum"
+      ]
     },
     {
       "id": "rbim_contact_point",
@@ -43,7 +53,12 @@
       ],
       "correct_index": 1,
       "explanation": "Restitution operates at the contact. For rotating bodies, contact-point velocity includes the ω × r term. Using center-of-mass velocity is one of the most common errors in eccentric impact.",
-      "misconception_id": "use_com_velocity_in_restitution"
+      "misconception_id": "use_com_velocity_in_restitution",
+      "difficulty": "hard",
+      "concept_ids": [
+        "coefficient_of_restitution",
+        "eccentric_impact"
+      ]
     },
     {
       "id": "rbim_axis_choice",
@@ -58,7 +73,12 @@
       ],
       "correct_index": 1,
       "explanation": "Angular momentum about a fixed pin uses I_O. I_G ω is the centroidal angular momentum; the additional Md²ω contribution comes from translation of G about the pin and is captured by the parallel-axis theorem.",
-      "misconception_id": "always_use_centroidal_inertia"
+      "misconception_id": "always_use_centroidal_inertia",
+      "difficulty": "hard",
+      "concept_ids": [
+        "impulse_momentum",
+        "angular_impulse_momentum"
+      ]
     }
   ]
 }

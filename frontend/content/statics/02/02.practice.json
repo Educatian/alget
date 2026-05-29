@@ -3,7 +3,9 @@
     {
       "id": "statics_couple_basic_numeric",
       "type": "numeric",
+      "difficulty": "easy",
       "concept_id": "couple",
+      "concept_ids": ["couple"],
       "stem": "Two 80 N forces act in opposite directions, separated by 0.6 m. Find the couple moment magnitude.",
       "final_answer": {
         "value": 48,
@@ -14,7 +16,9 @@
     {
       "id": "statics_couple_distance_choice",
       "type": "multiple_choice",
+      "difficulty": "easy",
       "concept_id": "couple",
+      "concept_ids": ["couple"],
       "stem": "When calculating a couple moment, which distance should be used in M = Fd?",
       "options": [
         "The horizontal distance only",
@@ -23,12 +27,15 @@
         "Any convenient distance measured from the origin"
       ],
       "correct_index": 2,
-      "explanation": "The couple moment uses the perpendicular separation between the lines of action of the two forces."
+      "explanation": "The couple moment uses the perpendicular separation between the lines of action of the two forces.",
+      "misconception_id": "wrong_distance_in_mfd"
     },
     {
       "id": "statics_equivalent_system",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "equivalent_systems",
+      "concept_ids": ["equivalent_systems", "couple", "force_couple_system"],
       "stem": "A 150 N force is moved parallel to itself by 2 m on a rigid body. What must be added for an equivalent system?",
       "options": [
         "A 300 N force in the opposite direction",
@@ -37,12 +44,15 @@
         "Nothing, because all forces are free vectors"
       ],
       "correct_index": 1,
-      "explanation": "Moving a force requires an added couple of magnitude Fd = 150 x 2 = 300 N m."
+      "explanation": "Moving a force requires an added couple of magnitude Fd = 150 x 2 = 300 N m.",
+      "misconception_id": "force_is_free_vector"
     },
     {
       "id": "statics_force_couple_interpretation",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "force_couple_system",
+      "concept_ids": ["force_couple_system", "couple"],
       "stem": "Which statement about a planar couple is correct?",
       "options": [
         "It causes pure rotation with zero net force",
@@ -51,7 +61,8 @@
         "It can exist only if the two forces act at the same point"
       ],
       "correct_index": 0,
-      "explanation": "A couple produces zero resultant force but a nonzero moment, so its effect is pure rotation."
+      "explanation": "A couple produces zero resultant force but a nonzero moment, so its effect is pure rotation.",
+      "misconception_id": "couple_has_net_force"
     }
   ]
 }

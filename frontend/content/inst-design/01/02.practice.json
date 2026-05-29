@@ -4,6 +4,12 @@
       "id": "clt_intrinsic_load",
       "type": "multiple_choice",
       "concept_id": "intrinsic_load",
+      "difficulty": "easy",
+      "concept_ids": [
+        "intrinsic_load",
+        "cognitive_load"
+      ],
+      "misconception_id": "intrinsic_equals_bad_design",
       "stem": "What is the best description of intrinsic cognitive load?",
       "options": [
         "The load caused by poor interface or unnecessary distractions",
@@ -18,6 +24,11 @@
       "id": "clt_extraneous_load",
       "type": "multiple_choice",
       "concept_id": "extraneous_load",
+      "difficulty": "medium",
+      "concept_ids": [
+        "extraneous_load",
+        "cognitive_load"
+      ],
       "stem": "A diagram appears on one slide, but the explanation is buried on another page. Which load problem is this most likely to create?",
       "options": [
         "Intrinsic load",
@@ -32,6 +43,12 @@
       "id": "clt_germane_load",
       "type": "multiple_choice",
       "concept_id": "germane_load",
+      "difficulty": "hard",
+      "concept_ids": [
+        "germane_load",
+        "cognitive_load"
+      ],
+      "misconception_id": "all_load_is_bad",
       "stem": "Which design move is most likely to increase germane load rather than extraneous load?",
       "options": [
         "Adding decorative animation unrelated to the topic",
@@ -46,6 +63,11 @@
       "id": "schema_theory_transfer",
       "type": "multiple_choice",
       "concept_id": "schema_theory",
+      "difficulty": "medium",
+      "concept_ids": [
+        "schema_theory"
+      ],
+      "misconception_id": "schema_is_just_memory",
       "stem": "Why are schemas important in instructional design?",
       "options": [
         "They eliminate the need for prior knowledge",

@@ -4,6 +4,11 @@
       "id": "explain_interp_vs_explain",
       "type": "multiple_choice",
       "concept_id": "interpretability",
+      "difficulty": "easy",
+      "concept_ids": [
+        "interpretability",
+        "explainability"
+      ],
       "stem": "Which statement most accurately distinguishes interpretability from explainability?",
       "options": [
         "They are synonyms.",
@@ -19,6 +24,11 @@
       "id": "explain_counterfactual_value",
       "type": "multiple_choice",
       "concept_id": "counterfactual_explanation",
+      "difficulty": "medium",
+      "concept_ids": [
+        "counterfactual_explanation",
+        "right_to_explanation"
+      ],
       "stem": "Why are counterfactual explanations often considered more meaningful for decision subjects than raw feature attributions?",
       "options": [
         "Because they are always shorter.",
@@ -34,6 +44,10 @@
       "id": "explain_post_hoc_limit",
       "type": "multiple_choice",
       "concept_id": "post_hoc_explanation",
+      "difficulty": "medium",
+      "concept_ids": [
+        "post_hoc_explanation"
+      ],
       "stem": "What is the most important caution about post-hoc explanation methods like LIME or SHAP?",
       "options": [
         "They are always accurate by construction.",
@@ -49,6 +63,10 @@
       "id": "explain_high_stakes_choice",
       "type": "multiple_choice",
       "concept_id": "interpretability",
+      "difficulty": "hard",
+      "concept_ids": [
+        "interpretability"
+      ],
       "stem": "Cynthia Rudin's central argument about high-stakes decisions is best summarized as:",
       "options": [
         "Always use the largest model possible.",

@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "05",
+  "section": "01",
   "chapter_title": "AI-Enhanced Presentation Development",
   "title": "Presentation Purpose and Audience",
   "description": "CAT 100 textbook section connecting presentation purpose and audience to presentation storyboard with audience constraint and slide-level evidence, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_ai_enhanced_presentation_development",
     "cat100_supplement_presentation_purpose_and_audience",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 1,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/04/08"
+  ],
+  "practice_ids": [
+    "cat100_supplement_5_1_presentation_purpose_and_audience_artifact_signal",
+    "cat100_supplement_5_1_presentation_purpose_and_audience_annotation_signal",
+    "cat100_supplement_5_1_presentation_purpose_and_audience_ai_boundary",
+    "cat100_supplement_5_1_presentation_purpose_and_audience_calibration"
+  ]
 }

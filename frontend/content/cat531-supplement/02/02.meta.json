@@ -2,6 +2,9 @@
   "chapter_title": "Teaching in Tech-Rich Classrooms With TeachGen@i",
   "title": "TeachGen@i Scenario Setup",
   "description": "CAT 531 textbook section connecting teachgen@i scenario setup to TeachGen@i prompt transcript with teacher edits and rejected suggestions, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "02",
+  "section": "02",
   "learning_objectives": [
     "Analyze how the TeachGen@i prompt transcript with teacher edits and rejected suggestions shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
     "cat531_supplement_teachgen_i_scenario_setup",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/02/01"
+  ],
+  "practice_ids": [
+    "cat531_supplement_2_2_teachgen_i_scenario_setup_artifact_signal",
+    "cat531_supplement_2_2_teachgen_i_scenario_setup_annotation_signal",
+    "cat531_supplement_2_2_teachgen_i_scenario_setup_ai_boundary",
+    "cat531_supplement_2_2_teachgen_i_scenario_setup_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 2,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

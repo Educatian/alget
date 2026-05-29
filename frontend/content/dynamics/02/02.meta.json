@@ -31,5 +31,16 @@
         "reference_point",
         "conservative_nonconservative"
     ],
-    "estimated_time_minutes": 55
+    "estimated_time_minutes": 55,
+    "prereq_section_ids": [
+        "dynamics/02/01"
+    ],
+    "practice_ids": [
+        "work_zero_concept",
+        "kinetic_energy_numeric",
+        "friction_work_numeric",
+        "work_energy_speed",
+        "incline_energy_steps",
+        "conservative_force_concept"
+    ]
 }

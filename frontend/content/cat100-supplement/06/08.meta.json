@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "06",
+  "section": "08",
   "chapter_title": "GitHub Pages Personal Website",
   "title": "Module 6 Website Studio",
   "description": "CAT 100 textbook section connecting module 6 website studio to GitHub Pages file tree with accessibility, privacy, and publishing checks, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_github_pages_personal_website",
     "cat100_supplement_module_6_website_studio",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 8,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/06/07"
+  ],
+  "practice_ids": [
+    "cat100_supplement_6_8_module_6_website_studio_artifact_signal",
+    "cat100_supplement_6_8_module_6_website_studio_annotation_signal",
+    "cat100_supplement_6_8_module_6_website_studio_ai_boundary",
+    "cat100_supplement_6_8_module_6_website_studio_calibration"
+  ]
 }

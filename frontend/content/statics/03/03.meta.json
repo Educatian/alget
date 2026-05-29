@@ -18,5 +18,15 @@
         "method_of_joints",
         "rigid_body_equilibrium"
     ],
+    "prereq_section_ids": [
+        "statics/03/02",
+        "statics/03/01"
+    ],
+    "practice_ids": [
+        "statics_sections_best_use",
+        "statics_sections_cut_limit",
+        "statics_sections_moment_point",
+        "statics_sections_support_reactions"
+    ],
     "estimated_time_minutes": 50
 }

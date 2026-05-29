@@ -10,11 +10,23 @@
   ],
   "concept_ids": [
     "ail606_supplement_multimedia_storyboarding_and_ai_asset_generation",
-    "ail606_supplement_alt_text_and_accessibility",
-    "ail606_supplement_evidence_based_revision",
-    "ail606_supplement_ai_supported_learning"
+    "accessibility",
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 5,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "course": "ail606-supplement",
+  "chapter": "03",
+  "section": "05",
+  "prereq_section_ids": [
+    "ail606-supplement/03/04"
+  ],
+  "practice_ids": [
+    "ail606_supplement_3_5_alt_text_and_accessibility_artifact_signal",
+    "ail606_supplement_3_5_alt_text_and_accessibility_annotation_signal",
+    "ail606_supplement_3_5_alt_text_and_accessibility_ai_boundary",
+    "ail606_supplement_3_5_alt_text_and_accessibility_calibration"
+  ]
 }

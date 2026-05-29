@@ -12,7 +12,12 @@
         "It repairs only if external welding is applied"
       ],
       "correct_index": 1,
-      "explanation": "Many self-healing materials use embedded capsules or channels that release a repair agent when damage occurs."
+      "explanation": "Many self-healing materials use embedded capsules or channels that release a repair agent when damage occurs.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "self_healing_materials"
+      ],
+      "misconception_id": "healing_replaces_inspection"
     },
     {
       "id": "bio_fatigue_failure_value",
@@ -26,7 +31,12 @@
         "Because healing materials remove all need for inspection"
       ],
       "correct_index": 0,
-      "explanation": "Fatigue often starts with small damage that grows over time, so early repair mechanisms can be valuable."
+      "explanation": "Fatigue often starts with small damage that grows over time, so early repair mechanisms can be valuable.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "fatigue_failure"
+      ],
+      "misconception_id": "self_healing_means_unbreakable"
     },
     {
       "id": "bio_microvascular_logic",
@@ -40,7 +50,12 @@
         "They work only in purely decorative parts"
       ],
       "correct_index": 0,
-      "explanation": "Microvascular systems can support repeated or more distributed repair, unlike single-use capsules."
+      "explanation": "Microvascular systems can support repeated or more distributed repair, unlike single-use capsules.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "microvascular_repair"
+      ],
+      "misconception_id": "repair_has_no_cost"
     },
     {
       "id": "bio_resilience_tradeoff",
@@ -54,7 +69,12 @@
         "Assuming repair mechanisms have no cost"
       ],
       "correct_index": 1,
-      "explanation": "Resilient design considers recovery and continued function, not just initial peak performance."
+      "explanation": "Resilient design considers recovery and continued function, not just initial peak performance.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "resilient_design"
+      ],
+      "misconception_id": "repair_has_no_cost"
     }
   ]
 }

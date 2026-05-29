@@ -2,6 +2,9 @@
   "chapter_title": "Teaching in Tech-Rich Classrooms With TeachGen@i",
   "title": "Prompting for Classroom Constraints",
   "description": "CAT 531 textbook section connecting prompting for classroom constraints to TeachGen@i prompt transcript with teacher edits and rejected suggestions, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "02",
+  "section": "03",
   "learning_objectives": [
     "Analyze how the TeachGen@i prompt transcript with teacher edits and rejected suggestions shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -10,11 +13,20 @@
   ],
   "concept_ids": [
     "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
-    "cat531_supplement_prompting_for_classroom_constraints",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "prompting_practice",
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/02/02"
+  ],
+  "practice_ids": [
+    "cat531_supplement_2_3_prompting_for_classroom_constraints_artifact_signal",
+    "cat531_supplement_2_3_prompting_for_classroom_constraints_annotation_signal",
+    "cat531_supplement_2_3_prompting_for_classroom_constraints_ai_boundary",
+    "cat531_supplement_2_3_prompting_for_classroom_constraints_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 3,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

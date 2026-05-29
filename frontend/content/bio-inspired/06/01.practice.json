@@ -12,7 +12,12 @@
         "A strategy for eliminating all airflow through a structure"
       ],
       "correct_index": 0,
-      "explanation": "The stack effect relies on buoyancy: warmer air rises and can drive passive ventilation if the geometry supports it."
+      "explanation": "The stack effect relies on buoyancy: warmer air rises and can drive passive ventilation if the geometry supports it.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "stack_effect"
+      ],
+      "misconception_id": "passive_means_no_control"
     },
     {
       "id": "bio_thermal_mass_role",
@@ -26,7 +31,12 @@
         "It works only in freezing climates"
       ],
       "correct_index": 0,
-      "explanation": "Thermal mass can buffer temperature variation by absorbing and releasing heat over time."
+      "explanation": "Thermal mass can buffer temperature variation by absorbing and releasing heat over time.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "thermal_mass"
+      ],
+      "misconception_id": "thermal_mass_always_cools"
     },
     {
       "id": "bio_passive_cooling_transfer",
@@ -40,7 +50,12 @@
         "Increase internal heat sources to improve circulation"
       ],
       "correct_index": 1,
-      "explanation": "Termite-inspired passive cooling depends on coordinated airflow paths, geometry, and heat buffering rather than one isolated feature."
+      "explanation": "Termite-inspired passive cooling depends on coordinated airflow paths, geometry, and heat buffering rather than one isolated feature.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "passive_cooling"
+      ],
+      "misconception_id": "passive_means_no_control"
     },
     {
       "id": "bio_architecture_environment_fit",
@@ -54,7 +69,12 @@
         "How can all temperature variation be ignored?"
       ],
       "correct_index": 1,
-      "explanation": "Biomimetic transfer works best when designers adapt the principle to the environmental context rather than copying form without analysis."
+      "explanation": "Biomimetic transfer works best when designers adapt the principle to the environmental context rather than copying form without analysis.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "biomimetic_architecture"
+      ],
+      "misconception_id": "termite_mound_shape_only"
     },
     {
       "id": "bio_problem_to_biology_translation",
@@ -68,7 +88,12 @@
         "Find a natural shape that makes architecture feel organic"
       ],
       "correct_index": 1,
-      "explanation": "Search improves when the design problem is translated into functions such as moving air, buffering heat, and responding to environmental variation."
+      "explanation": "Search improves when the design problem is translated into functions such as moving air, buffering heat, and responding to environmental variation.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "problem_translation"
+      ],
+      "misconception_id": "asknature_is_picture_search"
     },
     {
       "id": "bio_asknature_entry_logic",
@@ -82,7 +107,12 @@
         "A requirement that buildings reproduce the mound geometry exactly"
       ],
       "correct_index": 1,
-      "explanation": "A useful biology entry captures what the system does, how it works, and under what conditions it performs well enough to support transfer."
+      "explanation": "A useful biology entry captures what the system does, how it works, and under what conditions it performs well enough to support transfer.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "asknature_indexing"
+      ],
+      "misconception_id": "asknature_is_picture_search"
     }
   ]
 }

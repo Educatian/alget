@@ -4,6 +4,11 @@
       "id": "id_foundations_addie_role",
       "type": "multiple_choice",
       "concept_id": "instructional_design",
+      "difficulty": "easy",
+      "concept_ids": [
+        "instructional_design"
+      ],
+      "misconception_id": "id_equals_content_packaging",
       "stem": "Which description best captures the role of instructional design?",
       "options": [
         "Presenting information as clearly as possible without changing learner behavior",
@@ -18,6 +23,11 @@
       "id": "id_foundations_behaviorism",
       "type": "multiple_choice",
       "concept_id": "behaviorism",
+      "difficulty": "medium",
+      "concept_ids": [
+        "behaviorism",
+        "learning_theories"
+      ],
       "stem": "A flashcard app gives points and celebratory sounds when a learner chooses the correct definition. Which learning theory is most directly guiding that design choice?",
       "options": [
         "Constructivism",
@@ -32,6 +42,11 @@
       "id": "id_foundations_cognitivism",
       "type": "multiple_choice",
       "concept_id": "cognitivism",
+      "difficulty": "medium",
+      "concept_ids": [
+        "cognitivism",
+        "learning_theories"
+      ],
       "stem": "Why would a cognitivist designer break a complex procedure into smaller, sequenced steps?",
       "options": [
         "To increase punishment when learners fail",
@@ -46,6 +61,11 @@
       "id": "id_foundations_constructivism",
       "type": "multiple_choice",
       "concept_id": "constructivism",
+      "difficulty": "hard",
+      "concept_ids": [
+        "constructivism",
+        "learning_theories"
+      ],
       "stem": "Which instructional activity best reflects a constructivist approach?",
       "options": [
         "A timed memorization drill with points for speed",

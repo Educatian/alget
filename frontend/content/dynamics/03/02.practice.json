@@ -8,7 +8,12 @@
         "value": 13.33,
         "unit": "rad/s^2",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "easy",
+      "concept_ids": [
+        "rigid_body_kinetics",
+        "rotational_equation"
+      ]
     },
     {
       "id": "rod_inertia_numeric",
@@ -18,7 +23,11 @@
         "value": 0.48,
         "unit": "kg*m^2",
         "tolerance": 0.05
-      }
+      },
+      "difficulty": "medium",
+      "concept_ids": [
+        "mass_moment_of_inertia"
+      ]
     },
     {
       "id": "parallel_axis_numeric",
@@ -28,7 +37,11 @@
         "value": 1.28,
         "unit": "kg*m^2",
         "tolerance": 0.05
-      }
+      },
+      "difficulty": "medium",
+      "concept_ids": [
+        "mass_moment_of_inertia"
+      ]
     },
     {
       "id": "torque_balance_concept",
@@ -41,7 +54,12 @@
         "Linear momentum"
       ],
       "correct_index": 2,
-      "explanation": "Mass moment of inertia measures resistance to angular acceleration, just as mass measures resistance to linear acceleration."
+      "explanation": "Mass moment of inertia measures resistance to angular acceleration, just as mass measures resistance to linear acceleration.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "mass_moment_of_inertia",
+        "rigid_body_kinetics"
+      ]
     },
     {
       "id": "rigid_body_equations_steps",
@@ -74,7 +92,13 @@
         "value": 13.33,
         "unit": "rad/s^2",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "hard",
+      "concept_ids": [
+        "rigid_body_kinetics",
+        "rotational_equation",
+        "mass_moment_of_inertia"
+      ]
     },
     {
       "id": "axis_selection_concept",
@@ -87,7 +111,13 @@
         "Because angular acceleration has no sign."
       ],
       "correct_index": 1,
-      "explanation": "Correct. The moment balance is always tied to a reference point or axis, and the matching inertia must correspond to that axis."
+      "explanation": "Correct. The moment balance is always tied to a reference point or axis, and the matching inertia must correspond to that axis.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "rotational_equation",
+        "mass_moment_of_inertia"
+      ],
+      "misconception_id": "wrong_inertia_axis"
     }
   ]
 }

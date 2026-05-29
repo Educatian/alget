@@ -3,7 +3,9 @@
     {
       "id": "statics_rigid_body_support_count",
       "type": "multiple_choice",
+      "difficulty": "easy",
       "concept_id": "support_reactions",
+      "concept_ids": ["support_reactions", "rigid_body_equilibrium"],
       "stem": "Which 2D support provides three reaction unknowns?",
       "options": [
         "Roller",
@@ -12,12 +14,15 @@
         "Fixed support"
       ],
       "correct_index": 3,
-      "explanation": "A fixed support provides horizontal and vertical reactions plus a reaction moment."
+      "explanation": "A fixed support provides horizontal and vertical reactions plus a reaction moment.",
+      "misconception_id": "fixed_support_no_moment"
     },
     {
       "id": "statics_beam_center_load",
       "type": "numeric",
+      "difficulty": "easy",
       "concept_id": "beam_equilibrium",
+      "concept_ids": ["beam_equilibrium", "support_reactions"],
       "stem": "A simply supported 6 m beam carries a 1000 N point load at midspan. Find the vertical reaction at each support.",
       "final_answer": {
         "value": 500,
@@ -28,7 +33,9 @@
     {
       "id": "statics_cantilever_moment",
       "type": "numeric",
+      "difficulty": "medium",
       "concept_id": "rigid_body_equilibrium",
+      "concept_ids": ["rigid_body_equilibrium", "support_reactions"],
       "stem": "A 4 m cantilever carries a 2000 N downward load at the free end. Find the reaction moment at the fixed support.",
       "final_answer": {
         "value": 8000,
@@ -39,7 +46,9 @@
     {
       "id": "statics_choose_moment_point",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "rigid_body_equilibrium",
+      "concept_ids": ["rigid_body_equilibrium", "support_reactions"],
       "stem": "Why is it often smart to take moments about a support point with unknown reactions?",
       "options": [
         "Because moment equations work only at supports",
@@ -48,7 +57,8 @@
         "Because it avoids the need for force equilibrium equations"
       ],
       "correct_index": 1,
-      "explanation": "Choosing a point where unknown reaction lines pass through can eliminate those unknowns from the moment equation."
+      "explanation": "Choosing a point where unknown reaction lines pass through can eliminate those unknowns from the moment equation.",
+      "misconception_id": "force_balance_enough"
     }
   ]
 }

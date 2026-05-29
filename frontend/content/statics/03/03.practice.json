@@ -3,7 +3,9 @@
     {
       "id": "statics_sections_best_use",
       "type": "multiple_choice",
+      "difficulty": "easy",
       "concept_id": "method_of_sections",
+      "concept_ids": ["method_of_sections"],
       "stem": "When is the method of sections usually preferable to the method of joints?",
       "options": [
         "When you need every member force in the truss",
@@ -17,7 +19,9 @@
     {
       "id": "statics_sections_cut_limit",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "cutting_plane",
+      "concept_ids": ["cutting_plane", "method_of_sections"],
       "stem": "Why is a cut through more than three unknown members usually avoided in a planar truss section analysis?",
       "options": [
         "Because a rigid-body section still gives only three independent equilibrium equations in 2D",
@@ -26,12 +30,15 @@
         "Because all cut members must be zero-force members"
       ],
       "correct_index": 0,
-      "explanation": "A planar rigid-body section gives three usable equilibrium equations, so more than three unknown cut-member forces generally makes the section unsolvable directly."
+      "explanation": "A planar rigid-body section gives three usable equilibrium equations, so more than three unknown cut-member forces generally makes the section unsolvable directly.",
+      "misconception_id": "cut_any_number_of_members"
     },
     {
       "id": "statics_sections_moment_point",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "internal_forces",
+      "concept_ids": ["internal_forces", "method_of_sections"],
       "stem": "What is the main purpose of choosing a smart moment center in the method of sections?",
       "options": [
         "To remove known loads from the problem",
@@ -40,12 +47,15 @@
         "To convert the truss into a particle"
       ],
       "correct_index": 1,
-      "explanation": "A strategically chosen moment center can make one target force solvable directly by eliminating others."
+      "explanation": "A strategically chosen moment center can make one target force solvable directly by eliminating others.",
+      "misconception_id": "moment_point_random"
     },
     {
       "id": "statics_sections_support_reactions",
       "type": "multiple_choice",
+      "difficulty": "easy",
       "concept_id": "method_of_sections",
+      "concept_ids": ["method_of_sections"],
       "stem": "What should usually be solved before applying the method of sections to a truss?",
       "options": [
         "The color code of all members",
@@ -54,7 +64,8 @@
         "Only the zero-force members"
       ],
       "correct_index": 1,
-      "explanation": "Support reactions are external loads on the cut section, so they usually need to be known first."
+      "explanation": "Support reactions are external loads on the cut section, so they usually need to be known first.",
+      "misconception_id": "sections_replaces_reactions"
     }
   ]
 }

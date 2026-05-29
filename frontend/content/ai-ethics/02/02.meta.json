@@ -1,4 +1,7 @@
 {
+    "course": "ai-ethics",
+    "chapter": "02",
+    "section": "02",
     "chapter_title": "Bias and Fairness",
     "title": "Module 2: Fairness Definitions and Their Impossibilities",
     "description": "Compare demographic parity, equalized odds, calibration within groups, individual fairness, and counterfactual fairness, and reason about the impossibility theorem that links them when base rates differ.",
@@ -16,6 +19,15 @@
         "fairness_impossibility",
         "individual_fairness",
         "counterfactual_fairness"
+    ],
+    "prereq_section_ids": [
+        "ai-ethics/02/01"
+    ],
+    "practice_ids": [
+        "fairness_impossibility",
+        "fairness_demographic_parity",
+        "fairness_match_to_harm",
+        "fairness_individual_metric"
     ],
     "estimated_time_minutes": 15,
     "order": 2

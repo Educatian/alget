@@ -2,6 +2,9 @@
   "chapter_title": "Educational Technology Evaluation",
   "title": "Usability, Accessibility, and Equity",
   "description": "CAT 531 textbook section connecting usability, accessibility, and equity to equity-oriented edtech evaluation matrix with context-specific risk notes, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "05",
+  "section": "03",
   "learning_objectives": [
     "Analyze how the equity-oriented edtech evaluation matrix with context-specific risk notes shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_educational_technology_evaluation",
     "cat531_supplement_usability_accessibility_and_equity",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/05/02"
+  ],
+  "practice_ids": [
+    "cat531_supplement_5_3_usability_accessibility_and_equity_artifact_signal",
+    "cat531_supplement_5_3_usability_accessibility_and_equity_annotation_signal",
+    "cat531_supplement_5_3_usability_accessibility_and_equity_ai_boundary",
+    "cat531_supplement_5_3_usability_accessibility_and_equity_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 3,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

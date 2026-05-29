@@ -2,6 +2,9 @@
   "chapter_title": "Field-Based Transfer and Coaching",
   "title": "Transferring Online Cases to Field Placements",
   "description": "CAT 531 textbook section connecting transferring online cases to field placements to field-placement transfer note connecting tool choice to classroom constraints, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "07",
+  "section": "01",
   "learning_objectives": [
     "Analyze how the field-placement transfer note connecting tool choice to classroom constraints shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_field_based_transfer_and_coaching",
     "cat531_supplement_transferring_online_cases_to_field_placements",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/06/08"
+  ],
+  "practice_ids": [
+    "cat531_supplement_7_1_transferring_online_cases_to_field_placements_artifact_signal",
+    "cat531_supplement_7_1_transferring_online_cases_to_field_placements_annotation_signal",
+    "cat531_supplement_7_1_transferring_online_cases_to_field_placements_ai_boundary",
+    "cat531_supplement_7_1_transferring_online_cases_to_field_placements_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 1,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

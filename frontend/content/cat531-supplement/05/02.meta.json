@@ -2,6 +2,9 @@
   "chapter_title": "Educational Technology Evaluation",
   "title": "Evidence Claims and Vendor Claims",
   "description": "CAT 531 textbook section connecting evidence claims and vendor claims to Design Tension Studio map naming a classroom value conflict and negotiated decision, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "05",
+  "section": "02",
   "learning_objectives": [
     "Analyze how the Design Tension Studio map naming a classroom value conflict and negotiated decision shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_educational_technology_evaluation",
     "cat531_supplement_evidence_claims_and_vendor_claims",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/05/01"
+  ],
+  "practice_ids": [
+    "cat531_supplement_5_2_evidence_claims_and_vendor_claims_artifact_signal",
+    "cat531_supplement_5_2_evidence_claims_and_vendor_claims_annotation_signal",
+    "cat531_supplement_5_2_evidence_claims_and_vendor_claims_ai_boundary",
+    "cat531_supplement_5_2_evidence_claims_and_vendor_claims_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 2,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

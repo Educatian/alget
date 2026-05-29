@@ -12,7 +12,12 @@
         "To replace the need for aerodynamic shaping entirely"
       ],
       "correct_index": 1,
-      "explanation": "Riblets influence the boundary layer and can reduce drag by changing how near-surface flow develops."
+      "explanation": "Riblets influence the boundary layer and can reduce drag by changing how near-surface flow develops.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "drag_reduction"
+      ],
+      "misconception_id": "rougher_always_better"
     },
     {
       "id": "bio_boundary_layer_logic",
@@ -26,7 +31,12 @@
         "Because biomimicry avoids all surface-flow interactions"
       ],
       "correct_index": 1,
-      "explanation": "Near-surface flow is especially sensitive to geometry, which is why biological microtextures can have large aerodynamic or hydrodynamic effects."
+      "explanation": "Near-surface flow is especially sensitive to geometry, which is why biological microtextures can have large aerodynamic or hydrodynamic effects.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "fluid_dynamics"
+      ],
+      "misconception_id": "drag_only_macro_shape"
     },
     {
       "id": "bio_shark_skin_transfer",
@@ -40,7 +50,12 @@
         "Eliminate the boundary layer entirely"
       ],
       "correct_index": 1,
-      "explanation": "The engineering abstraction is about surface geometry and flow control, not literal biological tissue."
+      "explanation": "The engineering abstraction is about surface geometry and flow control, not literal biological tissue.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "shark_skin"
+      ],
+      "misconception_id": "copy_skin_material_not_pattern"
     },
     {
       "id": "bio_vortex_shedding_design",
@@ -54,7 +69,12 @@
         "How can the fluid be prevented from touching the surface?"
       ],
       "correct_index": 0,
-      "explanation": "Vortex formation and shedding strongly affect drag, noise, and flow stability, so surface features must be designed with those behaviors in mind."
+      "explanation": "Vortex formation and shedding strongly affect drag, noise, and flow stability, so surface features must be designed with those behaviors in mind.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "vortex_shedding"
+      ],
+      "misconception_id": "drag_only_macro_shape"
     }
   ]
 }

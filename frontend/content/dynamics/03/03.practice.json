@@ -8,7 +8,13 @@
         "value": 4.43,
         "unit": "m/s",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "hard",
+      "concept_ids": [
+        "rolling_motion",
+        "conservation_of_energy",
+        "rotational_kinetic_energy"
+      ]
     },
     {
       "id": "rotational_ke_numeric",
@@ -18,7 +24,11 @@
         "value": 19.2,
         "unit": "J",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "easy",
+      "concept_ids": [
+        "rotational_kinetic_energy"
+      ]
     },
     {
       "id": "rigid_body_total_ke_numeric",
@@ -28,7 +38,12 @@
         "value": 36,
         "unit": "J",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "medium",
+      "concept_ids": [
+        "rotational_kinetic_energy",
+        "conservation_of_energy"
+      ]
     },
     {
       "id": "rolling_constraint_concept",
@@ -41,7 +56,13 @@
         "Assume the body has zero acceleration"
       ],
       "correct_index": 2,
-      "explanation": "Correct. The rolling constraint links the linear and angular motion so that the total kinetic energy can be written in terms of either v or omega."
+      "explanation": "Correct. The rolling constraint links the linear and angular motion so that the total kinetic energy can be written in terms of either v or omega.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "rolling_motion",
+        "rotational_kinetic_energy"
+      ],
+      "misconception_id": "rolling_constraint_unused"
     },
     {
       "id": "rolling_energy_steps",
@@ -74,7 +95,13 @@
         "value": 5.94,
         "unit": "m/s",
         "tolerance": 0.1
-      }
+      },
+      "difficulty": "hard",
+      "concept_ids": [
+        "rolling_motion",
+        "conservation_of_energy",
+        "rotational_kinetic_energy"
+      ]
     },
     {
       "id": "translation_rotation_concept",
@@ -87,7 +114,14 @@
         "Because angular speed cancels gravitational effects"
       ],
       "correct_index": 1,
-      "explanation": "Exactly. The rolling disk has to pay part of the energy budget into rotation, so the remaining translational speed is lower."
+      "explanation": "Exactly. The rolling disk has to pay part of the energy budget into rotation, so the remaining translational speed is lower.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "conservation_of_energy",
+        "rotational_kinetic_energy",
+        "rolling_motion"
+      ],
+      "misconception_id": "missing_rotational_ke"
     }
   ]
 }

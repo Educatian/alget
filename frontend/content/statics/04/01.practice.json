@@ -3,7 +3,9 @@
     {
       "id": "internal_max_moment_location",
       "type": "multiple_choice",
+      "difficulty": "hard",
       "concept_id": "shear_moment_diagram",
+      "concept_ids": ["shear_moment_diagram", "bending_moment"],
       "stem": "On a simply supported beam with a single mid-span point load P, where does maximum bending moment occur, and what is its value?",
       "options": [
         "At the supports, M_max = PL/2.",
@@ -18,7 +20,9 @@
     {
       "id": "internal_load_shear_relation",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "beam_loading",
+      "concept_ids": ["beam_loading", "shear_force"],
       "stem": "What is the relationship between distributed load w(x) and shear V(x) along a beam?",
       "options": [
         "dV/dx = +w (positive slope equals load).",
@@ -33,7 +37,9 @@
     {
       "id": "internal_section_consistency",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "section_method",
+      "concept_ids": ["method_of_sections", "internal_forces"],
       "stem": "When computing internal forces at a cross section, why must the answer agree whether you analyze the left or the right portion of the beam?",
       "options": [
         "Because of Newton's third law: the internal forces on the two cut faces are equal and opposite.",
@@ -48,7 +54,9 @@
     {
       "id": "internal_point_load_jump",
       "type": "multiple_choice",
+      "difficulty": "medium",
       "concept_id": "shear_force",
+      "concept_ids": ["shear_force", "beam_loading"],
       "stem": "What does a concentrated transverse point load P (downward) produce in the shear diagram at the load's location?",
       "options": [
         "A smooth slope only.",

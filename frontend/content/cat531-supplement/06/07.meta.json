@@ -2,6 +2,9 @@
   "chapter_title": "Final Project and Professional Vision",
   "title": "Presentation of Professional Vision",
   "description": "CAT 531 textbook section connecting presentation of professional vision to field-placement transfer note connecting tool choice to classroom constraints, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "06",
+  "section": "07",
   "learning_objectives": [
     "Analyze how the field-placement transfer note connecting tool choice to classroom constraints shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_final_project_and_professional_vision",
     "cat531_supplement_presentation_of_professional_vision",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/06/06"
+  ],
+  "practice_ids": [
+    "cat531_supplement_6_7_presentation_of_professional_vision_artifact_signal",
+    "cat531_supplement_6_7_presentation_of_professional_vision_annotation_signal",
+    "cat531_supplement_6_7_presentation_of_professional_vision_ai_boundary",
+    "cat531_supplement_6_7_presentation_of_professional_vision_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 7,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

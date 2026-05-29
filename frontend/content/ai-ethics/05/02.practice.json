@@ -4,6 +4,11 @@
       "id": "gov_nist_functions",
       "type": "multiple_choice",
       "concept_id": "nist_ai_rmf",
+      "difficulty": "easy",
+      "concept_ids": [
+        "nist_ai_rmf",
+        "ai_governance"
+      ],
       "stem": "What are the four core functions of the NIST AI Risk Management Framework?",
       "options": [
         "Predict, Test, Ship, Monitor.",
@@ -19,6 +24,11 @@
       "id": "gov_eu_act_education",
       "type": "multiple_choice",
       "concept_id": "eu_ai_act",
+      "difficulty": "hard",
+      "concept_ids": [
+        "eu_ai_act",
+        "risk_tiered_regulation"
+      ],
       "stem": "An AI system that evaluates students for educational placement, deployed by a US company with EU users, falls under which EU AI Act tier?",
       "options": [
         "Minimal-risk; no obligations.",
@@ -34,6 +44,10 @@
       "id": "gov_unesco_distinct",
       "type": "multiple_choice",
       "concept_id": "unesco_ai_ethics",
+      "difficulty": "medium",
+      "concept_ids": [
+        "unesco_ai_ethics"
+      ],
       "stem": "Which principle is most distinctive to the UNESCO Recommendation on the Ethics of AI compared to the NIST RMF and EU AI Act?",
       "options": [
         "Transparency.",
@@ -49,6 +63,11 @@
       "id": "gov_iso_42001_role",
       "type": "multiple_choice",
       "concept_id": "iso_42001",
+      "difficulty": "medium",
+      "concept_ids": [
+        "iso_42001",
+        "ai_governance"
+      ],
       "stem": "What is the practical role of ISO/IEC 42001 alongside NIST AI RMF and EU AI Act?",
       "options": [
         "It replaces both.",

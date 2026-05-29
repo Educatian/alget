@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "04",
+  "section": "05",
   "chapter_title": "AI Conversations as a Teacher",
   "title": "Tone, Bias, and Audience",
   "description": "CAT 100 textbook section connecting tone, bias, and audience to privacy checklist for accounts, data sharing, and AI tool boundaries, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_ai_conversations_as_a_teacher",
     "cat100_supplement_tone_bias_and_audience",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 5,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/04/04"
+  ],
+  "practice_ids": [
+    "cat100_supplement_4_5_tone_bias_and_audience_artifact_signal",
+    "cat100_supplement_4_5_tone_bias_and_audience_annotation_signal",
+    "cat100_supplement_4_5_tone_bias_and_audience_ai_boundary",
+    "cat100_supplement_4_5_tone_bias_and_audience_calibration"
+  ]
 }

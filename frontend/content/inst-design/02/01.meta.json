@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "02",
+    "section": "01",
     "chapter_title": "The ADDIE Framework",
     "title": "Module 1: Analysis & Design Phases",
     "description": "Trace how instructional designers move from learner and context analysis into concrete learning goals, sequencing, and blueprint-level design decisions.",
@@ -13,6 +16,15 @@
         "learner_analysis",
         "task_analysis",
         "instructional_objectives"
+    ],
+    "prereq_section_ids": [
+        "inst-design/01/01"
+    ],
+    "practice_ids": [
+        "analysis_root_cause",
+        "design_objectives_alignment",
+        "learner_analysis_case",
+        "task_analysis_function"
     ],
     "estimated_time_minutes": 11
 }

@@ -18,5 +18,15 @@
         "moment",
         "couple"
     ],
+    "prereq_section_ids": [
+        "statics/02/02",
+        "statics/02/01"
+    ],
+    "practice_ids": [
+        "statics_rigid_body_support_count",
+        "statics_beam_center_load",
+        "statics_cantilever_moment",
+        "statics_choose_moment_point"
+    ],
     "estimated_time_minutes": 55
 }

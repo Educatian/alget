@@ -12,7 +12,12 @@
         "To make the blade heavier so it vibrates less"
       ],
       "correct_index": 1,
-      "explanation": "Trailing-edge serrations alter how vortices form and mix, which can reduce noise generation."
+      "explanation": "Trailing-edge serrations alter how vortices form and mix, which can reduce noise generation.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "wing_serrations"
+      ],
+      "misconception_id": "serrations_are_mufflers"
     },
     {
       "id": "bio_aeroacoustics_focus",
@@ -26,7 +31,12 @@
         "The relationship between payload mass and GPS accuracy"
       ],
       "correct_index": 0,
-      "explanation": "Aeroacoustics studies how aerodynamic forces and unsteady flow structures generate noise."
+      "explanation": "Aeroacoustics studies how aerodynamic forces and unsteady flow structures generate noise.",
+      "difficulty": "easy",
+      "concept_ids": [
+        "aeroacoustics"
+      ],
+      "misconception_id": "serrations_are_mufflers"
     },
     {
       "id": "bio_microturbulence_breakdown",
@@ -40,7 +50,12 @@
         "Because they eliminate pressure differences across the blade"
       ],
       "correct_index": 1,
-      "explanation": "Smaller, less synchronized structures can reduce strong coherent noise signatures and shift the acoustic profile."
+      "explanation": "Smaller, less synchronized structures can reduce strong coherent noise signatures and shift the acoustic profile.",
+      "difficulty": "medium",
+      "concept_ids": [
+        "turbulence"
+      ],
+      "misconception_id": "more_serrations_always_better"
     },
     {
       "id": "bio_propeller_transfer",
@@ -54,7 +69,12 @@
         "Ignore vortex behavior and focus only on paint color"
       ],
       "correct_index": 1,
-      "explanation": "Biomimicry abstracts the geometric principle behind the biological effect rather than copying the organism literally."
+      "explanation": "Biomimicry abstracts the geometric principle behind the biological effect rather than copying the organism literally.",
+      "difficulty": "hard",
+      "concept_ids": [
+        "drone_propellers"
+      ],
+      "misconception_id": "copy_feather_surface_only"
     }
   ]
 }

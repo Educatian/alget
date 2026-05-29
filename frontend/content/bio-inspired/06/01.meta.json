@@ -1,4 +1,7 @@
 {
+    "course": "bio-inspired",
+    "chapter": "06",
+    "section": "01",
     "title": "Module 6: Thermal Regulation & Architecture",
     "description": "Analyze how termite mounds use thermal mass and pressure-driven airflow, then translate those principles into passive architectural cooling strategies.",
     "order": 6,
@@ -14,5 +17,16 @@
         "passive_cooling",
         "biomimetic_architecture"
     ],
-    "estimated_time_minutes": 13
+    "estimated_time_minutes": 13,
+    "prereq_section_ids": [
+        "bio-inspired/05/01"
+    ],
+    "practice_ids": [
+        "bio_stack_effect_core",
+        "bio_thermal_mass_role",
+        "bio_passive_cooling_transfer",
+        "bio_architecture_environment_fit",
+        "bio_problem_to_biology_translation",
+        "bio_asknature_entry_logic"
+    ]
 }

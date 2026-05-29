@@ -2,6 +2,9 @@
   "chapter_title": "Educational Technology Evaluation",
   "title": "Evaluation Questions Before Ratings",
   "description": "CAT 531 textbook section connecting evaluation questions before ratings to equity-oriented edtech evaluation matrix with context-specific risk notes, reader notes, support moments, and revision evidence.",
+  "course": "cat531-supplement",
+  "chapter": "05",
+  "section": "01",
   "learning_objectives": [
     "Analyze how the equity-oriented edtech evaluation matrix with context-specific risk notes shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat531_supplement_educational_technology_evaluation",
     "cat531_supplement_evaluation_questions_before_ratings",
-    "cat531_supplement_evidence_based_revision",
-    "cat531_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
+  ],
+  "prereq_section_ids": [
+    "cat531-supplement/04/08"
+  ],
+  "practice_ids": [
+    "cat531_supplement_5_1_evaluation_questions_before_ratings_artifact_signal",
+    "cat531_supplement_5_1_evaluation_questions_before_ratings_annotation_signal",
+    "cat531_supplement_5_1_evaluation_questions_before_ratings_ai_boundary",
+    "cat531_supplement_5_1_evaluation_questions_before_ratings_calibration"
   ],
   "estimated_time_minutes": 14,
   "order": 1,
-  "top_tier_hardened": true
+  "top_tier_hardened": false
 }

@@ -30,5 +30,13 @@
         "direction",
         "sign"
     ],
-    "estimated_time_minutes": 15
+    "estimated_time_minutes": 15,
+    "prereq_section_ids": [
+        "dynamics/01/01"
+    ],
+    "practice_ids": [
+        "relative_1d",
+        "relative_approach",
+        "relative_2d"
+    ]
 }

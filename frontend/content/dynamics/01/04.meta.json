@@ -1,4 +1,7 @@
 {
+    "course": "dynamics",
+    "chapter": "01",
+    "section": "04",
     "chapter_title": "Foundational Kinematics",
     "title": "Module 4: Curvilinear Motion — n-t and Polar Coordinates",
     "description": "Choose between normal-tangential coordinates (path-known motion) and polar/cylindrical coordinates (origin-anchored motion); decompose velocity and acceleration in each, including the rotating-unit-vector cross terms.",
@@ -17,5 +20,14 @@
         "radius_of_curvature"
     ],
     "estimated_time_minutes": 14,
-    "order": 4
+    "order": 4,
+    "prereq_section_ids": [
+        "dynamics/01/01"
+    ],
+    "practice_ids": [
+        "curvilinear_constant_speed_circle",
+        "curvilinear_coord_choice",
+        "curvilinear_polar_cross_terms",
+        "curvilinear_normal_direction"
+    ]
 }

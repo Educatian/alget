@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "01",
+  "section": "02",
   "chapter_title": "Digital Citizenship and AI Readiness",
   "title": "Responsible AI Use in Coursework",
   "description": "CAT 100 textbook section connecting responsible ai use in coursework to privacy checklist for accounts, data sharing, and AI tool boundaries, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_digital_citizenship_and_ai_readiness",
     "cat100_supplement_responsible_ai_use_in_coursework",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 2,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/01/01"
+  ],
+  "practice_ids": [
+    "cat100_supplement_1_2_responsible_ai_use_in_coursework_artifact_signal",
+    "cat100_supplement_1_2_responsible_ai_use_in_coursework_annotation_signal",
+    "cat100_supplement_1_2_responsible_ai_use_in_coursework_ai_boundary",
+    "cat100_supplement_1_2_responsible_ai_use_in_coursework_calibration"
+  ]
 }

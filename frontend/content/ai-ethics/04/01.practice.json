@@ -4,6 +4,10 @@
       "id": "privacy_anonymization_limit",
       "type": "multiple_choice",
       "concept_id": "re_identification",
+      "difficulty": "medium",
+      "concept_ids": [
+        "re_identification"
+      ],
       "stem": "Why is removing names and SSNs typically insufficient to anonymize a behavioral dataset?",
       "options": [
         "Because names and SSNs are not personal data.",
@@ -19,6 +23,11 @@
       "id": "privacy_membership_inference",
       "type": "multiple_choice",
       "concept_id": "membership_inference",
+      "difficulty": "easy",
+      "concept_ids": [
+        "membership_inference",
+        "training_data_leakage"
+      ],
       "stem": "What is a membership inference attack?",
       "options": [
         "Stealing a model's weights.",
@@ -34,6 +43,10 @@
       "id": "privacy_dp_purpose",
       "type": "multiple_choice",
       "concept_id": "differential_privacy",
+      "difficulty": "medium",
+      "concept_ids": [
+        "differential_privacy"
+      ],
       "stem": "What does differential privacy formally guarantee?",
       "options": [
         "Perfect anonymity with no utility loss.",
@@ -49,6 +62,10 @@
       "id": "privacy_aggregation_threat",
       "type": "multiple_choice",
       "concept_id": "data_minimization",
+      "difficulty": "hard",
+      "concept_ids": [
+        "data_minimization"
+      ],
       "stem": "What is the surveillance-by-aggregation threat, and which GDPR principles most directly counter it?",
       "options": [
         "A type of brute-force attack; countered by encryption.",

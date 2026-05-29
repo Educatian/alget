@@ -4,6 +4,13 @@
       "id": "ai_ethics_distinctive",
       "type": "multiple_choice",
       "concept_id": "ai_ethics_foundations",
+      "difficulty": "easy",
+      "concept_ids": [
+        "ai_ethics_foundations",
+        "scale_argument",
+        "encoded_decisions",
+        "generative_systems_ethics"
+      ],
       "stem": "Which combination of factors most distinguishes AI ethics from general engineering ethics?",
       "options": [
         "AI is just more complicated than other software.",
@@ -19,6 +26,10 @@
       "id": "ai_ethics_stakeholders",
       "type": "multiple_choice",
       "concept_id": "ai_stakeholders",
+      "difficulty": "medium",
+      "concept_ids": [
+        "ai_stakeholders"
+      ],
       "stem": "A bank deploys an AI loan-decision model trained on past customer data. Who are the stakeholders an ethics review must consider?",
       "options": [
         "Only the customers who interact with the deployed system.",
@@ -34,6 +45,10 @@
       "id": "ai_ethics_encoded_decisions",
       "type": "multiple_choice",
       "concept_id": "encoded_decisions",
+      "difficulty": "medium",
+      "concept_ids": [
+        "encoded_decisions"
+      ],
       "stem": "When does an ethical decision happen in a typical AI project?",
       "options": [
         "Only at the deployment phase, when humans review the output.",
@@ -49,6 +64,10 @@
       "id": "ai_ethics_law_vs_ethics",
       "type": "multiple_choice",
       "concept_id": "ethics_vs_law",
+      "difficulty": "hard",
+      "concept_ids": [
+        "ethics_vs_law"
+      ],
       "stem": "What is the most accurate relationship between AI ethics and AI law?",
       "options": [
         "Ethics and law are identical; if it is legal it is ethical.",

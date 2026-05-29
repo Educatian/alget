@@ -13,7 +13,12 @@
       ],
       "correct_index": 1,
       "explanation": "Constant speed means tangential acceleration is zero. Normal (centripetal) acceleration is v²/ρ and always points to the center of curvature.",
-      "misconception_id": "constant_speed_means_zero_acceleration"
+      "misconception_id": "constant_speed_means_zero_acceleration",
+      "difficulty": "easy",
+      "concept_ids": [
+        "centripetal_acceleration",
+        "normal_tangential_coordinates"
+      ]
     },
     {
       "id": "curvilinear_coord_choice",
@@ -28,7 +33,13 @@
       ],
       "correct_index": 1,
       "explanation": "Match the coordinate system to the geometry. n-t for path-defined motion; polar for origin-anchored motion.",
-      "misconception_id": "any_coords_always_work"
+      "misconception_id": "any_coords_always_work",
+      "difficulty": "medium",
+      "concept_ids": [
+        "curvilinear_motion",
+        "normal_tangential_coordinates",
+        "polar_coordinates"
+      ]
     },
     {
       "id": "curvilinear_polar_cross_terms",
@@ -43,7 +54,12 @@
       ],
       "correct_index": 1,
       "explanation": "Rotating basis vectors are the source of polar-coordinate cross terms. They are not optional.",
-      "misconception_id": "missing_polar_cross_terms"
+      "misconception_id": "missing_polar_cross_terms",
+      "difficulty": "hard",
+      "concept_ids": [
+        "polar_coordinates",
+        "cylindrical_coordinates"
+      ]
     },
     {
       "id": "curvilinear_normal_direction",
@@ -58,7 +74,13 @@
       ],
       "correct_index": 1,
       "explanation": "û_n points toward the center of curvature. On a circular path, this is radially inward. Mistakenly pointing û_n outward flips the sign of the centripetal force equation.",
-      "misconception_id": "normal_points_outward"
+      "misconception_id": "normal_points_outward",
+      "difficulty": "medium",
+      "concept_ids": [
+        "normal_tangential_coordinates",
+        "radius_of_curvature",
+        "centripetal_acceleration"
+      ]
     }
   ]
 }

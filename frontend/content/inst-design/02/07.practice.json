@@ -4,6 +4,11 @@
       "id": "assessment_validity_inference",
       "type": "multiple_choice",
       "concept_id": "validity",
+      "difficulty": "easy",
+      "concept_ids": [
+        "validity",
+        "assessment_design"
+      ],
       "stem": "Validity is most accurately described as a property of:",
       "options": [
         "The test items themselves, regardless of how scores are used.",
@@ -19,6 +24,11 @@
       "id": "assessment_distractor_quality",
       "type": "multiple_choice",
       "concept_id": "item_construction",
+      "difficulty": "medium",
+      "concept_ids": [
+        "item_construction",
+        "assessment_design"
+      ],
       "stem": "What distinguishes a strong multiple-choice distractor from a weak one?",
       "options": [
         "It is grammatically longer than the other options.",
@@ -34,6 +44,11 @@
       "id": "assessment_alignment_audit",
       "type": "multiple_choice",
       "concept_id": "constructive_alignment_audit",
+      "difficulty": "hard",
+      "concept_ids": [
+        "constructive_alignment_audit",
+        "assessment_design"
+      ],
       "stem": "An objective uses the verb 'design.' The assessment is a 4-option MC item asking which existing design is correct. What is the alignment defect?",
       "options": [
         "There is no defect; recognition is the same as design.",
@@ -49,6 +64,11 @@
       "id": "assessment_reliability_relationship",
       "type": "multiple_choice",
       "concept_id": "reliability",
+      "difficulty": "hard",
+      "concept_ids": [
+        "reliability",
+        "validity"
+      ],
       "stem": "Which statement about validity and reliability is correct?",
       "options": [
         "Validity and reliability are independent and either can exist without the other.",

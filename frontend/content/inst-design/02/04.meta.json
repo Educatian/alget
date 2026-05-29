@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "02",
+    "section": "04",
     "chapter_title": "ID Process Models",
     "title": "Module 4: Beyond ADDIE — Comparing ID Process Models",
     "description": "Compare Dick and Carey, the Kemp model, Smith and Ragan, SAM, and Agile/Lean ID, then learn when to choose each.",
@@ -14,6 +17,15 @@
         "smith_and_ragan_model",
         "successive_approximation_model",
         "agile_id"
+    ],
+    "prereq_section_ids": [
+        "inst-design/02/03"
+    ],
+    "practice_ids": [
+        "id_models_dnc_strength",
+        "id_models_kemp_pattern",
+        "id_models_sam_fit",
+        "id_models_combine"
     ],
     "estimated_time_minutes": 12,
     "order": 4

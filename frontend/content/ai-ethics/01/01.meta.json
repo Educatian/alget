@@ -1,4 +1,7 @@
 {
+    "course": "ai-ethics",
+    "chapter": "01",
+    "section": "01",
     "chapter_title": "Foundations of AI Ethics",
     "title": "Module 1: Why AI Needs Ethics",
     "description": "Understand what makes AI ethics distinct from general engineering ethics: scale, encoded decisions, invisible stakeholders, and the shift toward generative and autonomous systems.",
@@ -15,6 +18,13 @@
         "ai_stakeholders",
         "generative_systems_ethics",
         "ethics_vs_law"
+    ],
+    "prereq_section_ids": [],
+    "practice_ids": [
+        "ai_ethics_distinctive",
+        "ai_ethics_stakeholders",
+        "ai_ethics_encoded_decisions",
+        "ai_ethics_law_vs_ethics"
     ],
     "estimated_time_minutes": 12,
     "order": 1

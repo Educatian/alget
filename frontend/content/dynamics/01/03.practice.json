@@ -8,7 +8,12 @@
                 "value": -10,
                 "unit": "m/s",
                 "tolerance": 0.1
-            }
+            },
+            "difficulty": "easy",
+            "concept_ids": [
+                "relative_velocity",
+                "galilean_transform"
+            ]
         },
         {
             "id": "relative_approach",
@@ -18,7 +23,12 @@
                 "value": 75,
                 "unit": "m/s",
                 "tolerance": 0.1
-            }
+            },
+            "difficulty": "medium",
+            "concept_ids": [
+                "relative_velocity",
+                "reference_frame"
+            ]
         },
         {
             "id": "relative_2d",
@@ -28,7 +38,13 @@
                 "value": 262.5,
                 "unit": "m/s",
                 "tolerance": 1
-            }
+            },
+            "difficulty": "hard",
+            "concept_ids": [
+                "relative_velocity",
+                "reference_frame",
+                "galilean_transform"
+            ]
         }
     ]
 }

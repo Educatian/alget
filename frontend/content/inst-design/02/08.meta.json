@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "02",
+    "section": "08",
     "chapter_title": "Online &amp; Distance Learning",
     "title": "Module 8: Online &amp; Distance Learning Design",
     "description": "Design defensible online courses using Moore's three types of interaction and the Community of Inquiry model, and choose modes (asynchronous, synchronous, hybrid) deliberately.",
@@ -14,6 +17,15 @@
         "cognitive_presence",
         "social_presence",
         "teaching_presence"
+    ],
+    "prereq_section_ids": [
+        "inst-design/02/07"
+    ],
+    "practice_ids": [
+        "online_moore_balance",
+        "online_coi_phases",
+        "online_async_vs_sync",
+        "online_teaching_presence"
     ],
     "estimated_time_minutes": 13,
     "order": 8

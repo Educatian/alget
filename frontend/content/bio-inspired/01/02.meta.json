@@ -1,4 +1,7 @@
 {
+    "course": "bio-inspired",
+    "chapter": "01",
+    "section": "02",
     "title": "Hierarchical Structures",
     "chapter_title": "Structural Biomimicry",
     "description": "See how multiscale biological architectures like nacre and collagen use interfaces to increase toughness and inspire composite design.",
@@ -13,5 +16,14 @@
         "collagen",
         "multiscale"
     ],
-    "estimated_time_minutes": 13
+    "estimated_time_minutes": 13,
+    "prereq_section_ids": [
+        "bio-inspired/01/01"
+    ],
+    "practice_ids": [
+        "bio_hierarchical_multiscale",
+        "bio_nacre_toughness",
+        "bio_collagen_scales",
+        "bio_multiscale_engineering_transfer"
+    ]
 }

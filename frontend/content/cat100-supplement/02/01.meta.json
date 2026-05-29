@@ -1,4 +1,7 @@
 {
+  "course": "cat100-supplement",
+  "chapter": "02",
+  "section": "01",
   "chapter_title": "Resume, Branding, and AI Brainstorming",
   "title": "Resume Claims and Evidence",
   "description": "CAT 100 textbook section connecting resume claims and evidence to resume before-after revision with truthful evidence, role fit, and AI-use note, reader notes, support moments, and revision evidence.",
@@ -11,10 +14,19 @@
   "concept_ids": [
     "cat100_supplement_resume_branding_and_ai_brainstorming",
     "cat100_supplement_resume_claims_and_evidence",
-    "cat100_supplement_evidence_based_revision",
-    "cat100_supplement_ai_supported_learning"
+    "evidence_based_revision",
+    "ai_supported_learning"
   ],
   "estimated_time_minutes": 14,
   "order": 1,
-  "top_tier_hardened": true
+  "top_tier_hardened": false,
+  "prereq_section_ids": [
+    "cat100-supplement/01/08"
+  ],
+  "practice_ids": [
+    "cat100_supplement_2_1_resume_claims_and_evidence_artifact_signal",
+    "cat100_supplement_2_1_resume_claims_and_evidence_annotation_signal",
+    "cat100_supplement_2_1_resume_claims_and_evidence_ai_boundary",
+    "cat100_supplement_2_1_resume_claims_and_evidence_calibration"
+  ]
 }

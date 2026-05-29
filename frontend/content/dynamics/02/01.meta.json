@@ -12,8 +12,7 @@
     ],
     "concept_ids": [
         "newtons_second_law",
-        "equation_of_motion",
-        "dynamic_friction"
+        "kinetic_friction"
     ],
     "physics_prereqs": [
         "fbd",
@@ -34,5 +33,17 @@
         "component",
         "mass_weight"
     ],
-    "estimated_time_minutes": 60
+    "estimated_time_minutes": 60,
+    "prereq_section_ids": [
+        "dynamics/01/01",
+        "dynamics/01/04"
+    ],
+    "practice_ids": [
+        "newton_concept_sign",
+        "newton_basic_numeric",
+        "newton_incline_numeric",
+        "newton_friction_steps",
+        "newton_tension_numeric",
+        "newton_two_force_balance"
+    ]
 }

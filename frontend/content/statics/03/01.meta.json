@@ -11,14 +11,24 @@
         "Classify trusses as statically determinate or indeterminate"
     ],
     "concept_ids": [
-        "truss",
-        "joint",
-        "member",
+        "truss_analysis",
+        "joint_equilibrium",
+        "member_force",
         "statical_determinacy"
     ],
     "prerequisites": [
         "two_force_member",
         "rigid_body_equilibrium"
+    ],
+    "prereq_section_ids": [
+        "statics/02/03",
+        "statics/01/03"
+    ],
+    "practice_ids": [
+        "statics_truss_count_check",
+        "statics_members_needed",
+        "statics_zero_force_rule",
+        "statics_two_force_member"
     ],
     "estimated_time_minutes": 40
 }

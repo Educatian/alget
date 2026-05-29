@@ -3,6 +3,8 @@
     {
       "id": "fbd_inclined_block",
       "type": "numeric",
+      "difficulty": "medium",
+      "concept_ids": ["free_body_diagram", "force_components", "reaction_forces"],
       "stem": "A 30 kg block rests on a smooth inclined plane at 40 degrees to the horizontal. Calculate the normal force exerted by the surface on the block.",
       "final_answer": {
         "value": 225.4,
@@ -14,6 +16,8 @@
     {
       "id": "fbd_pulley_tension",
       "type": "numeric",
+      "difficulty": "easy",
+      "concept_ids": ["free_body_diagram", "reaction_forces"],
       "stem": "A 25 kg mass hangs from a rope that passes over a frictionless pulley. What is the tension in the rope?",
       "final_answer": {
         "value": 245.25,
@@ -25,6 +29,8 @@
     {
       "id": "fbd_contact_force_identify",
       "type": "multiple_choice",
+      "difficulty": "easy",
+      "concept_ids": ["free_body_diagram", "force_identification", "reaction_forces"],
       "stem": "A block rests on a smooth horizontal table. Which contact force must appear on its free body diagram?",
       "options": [
         "Only friction",
@@ -38,6 +44,8 @@
     {
       "id": "fbd_weight_direction",
       "type": "multiple_choice",
+      "difficulty": "easy",
+      "concept_ids": ["free_body_diagram", "force_identification"],
       "stem": "Which statement about weight on a free body diagram is correct?",
       "options": [
         "Weight acts perpendicular to the supporting surface",
@@ -46,7 +54,8 @@
         "Weight can be omitted if the object is at rest"
       ],
       "correct_index": 2,
-      "explanation": "Weight always acts vertically downward, regardless of nearby surface orientation."
+      "explanation": "Weight always acts vertically downward, regardless of nearby surface orientation.",
+      "misconception_id": "forget_weight_on_fbd"
     }
   ]
 }

@@ -1,4 +1,7 @@
 {
+    "course": "statics",
+    "chapter": "04",
+    "section": "01",
     "chapter_title": "Internal Forces in Beams",
     "title": "Module 1: Internal Forces and Shear-Moment Diagrams",
     "description": "Use the section-and-replace logic to find internal normal force, shear, and bending moment at any beam cross section, and build shear and moment diagrams using the load-shear-moment slope relations.",
@@ -13,8 +16,18 @@
         "shear_force",
         "bending_moment",
         "shear_moment_diagram",
-        "section_method",
+        "method_of_sections",
         "beam_loading"
+    ],
+    "prereq_section_ids": [
+        "statics/03/03",
+        "statics/02/03"
+    ],
+    "practice_ids": [
+        "internal_max_moment_location",
+        "internal_load_shear_relation",
+        "internal_section_consistency",
+        "internal_point_load_jump"
     ],
     "estimated_time_minutes": 14,
     "order": 1

@@ -144,12 +144,75 @@ def load_section(course: str, chapter: str, section: str) -> dict:
 def load_practice_for_section(course: str, chapter: str, section: str) -> dict:
     """Load practice problems for a section."""
     practice_path = get_content_path(course, chapter, section) / f"{section}.practice.json"
-    
+
     if practice_path.exists():
         with open(practice_path, 'r', encoding='utf-8') as f:
             return json.load(f)
-    
+
     return {"problems": []}
+
+
+# In-memory cache for parsed misconception files, keyed by section slug.
+# Mirrors the lightweight loading pattern used for practice problems so the
+# authored *.misconceptions.json substrate reaches the grade/feedback loop
+# without a per-request disk read.
+_MISCONCEPTIONS_CACHE: dict[str, dict] = {}
+
+
+def load_misconceptions(course: str, chapter: str, section: str) -> dict:
+    """Load and cache the authored misconceptions for a section.
+
+    Returns a normalized object shape:
+        {"section_id": <str>, "misconceptions": [ {...}, ... ]}
+
+    Handles the canonical object shape {section_id, misconceptions:[...]} and,
+    defensively, the legacy bare-array shape (Phase 1 normalized the 2
+    list-shaped files, but a tolerant reader keeps any stragglers from
+    breaking the grade path). Always returns a dict; an empty list of
+    misconceptions when the file is missing or unparseable. All I/O utf-8.
+    """
+    cache_key = f"{course}/{chapter}/{section}"
+    cached = _MISCONCEPTIONS_CACHE.get(cache_key)
+    if cached is not None:
+        return cached
+
+    path = get_content_path(course, chapter, section) / f"{section}.misconceptions.json"
+    result = {"section_id": "", "misconceptions": []}
+
+    if path.exists():
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, OSError):
+            data = None
+
+        if isinstance(data, dict):
+            result = {
+                "section_id": data.get("section_id", ""),
+                "misconceptions": data.get("misconceptions") or [],
+            }
+        elif isinstance(data, list):
+            # Legacy bare-array shape: items are the misconceptions directly.
+            result = {"section_id": "", "misconceptions": data}
+
+    _MISCONCEPTIONS_CACHE[cache_key] = result
+    return result
+
+
+def find_misconception(course: str, chapter: str, section: str, misconception_id: str) -> Optional[dict]:
+    """Look up a single misconception entry by id within a section.
+
+    Returns the matching misconception dict (carrying pattern/feedback/
+    rail_action/etc.) or None when the id is absent. Robust to a missing
+    misconception_id (returns None) so the grade path never regresses.
+    """
+    if not misconception_id:
+        return None
+    data = load_misconceptions(course, chapter, section)
+    for entry in data.get("misconceptions", []):
+        if isinstance(entry, dict) and entry.get("id") == misconception_id:
+            return entry
+    return None
 
 
 def collect_referenced_solver_ids() -> set:

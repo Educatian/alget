@@ -1,4 +1,7 @@
 {
+    "course": "inst-design",
+    "chapter": "05",
+    "section": "01",
     "title": "Module 5: Adult Learning Theory (Andragogy)",
     "description": "Contrasting Pedagogy (teaching children) with Andragogy (teaching adults), focusing on self-direction, prior experience, and problem-centered learning.",
     "order": 5,
@@ -13,6 +16,15 @@
         "adult_learning",
         "self_directed_learning",
         "problem_centered_learning"
+    ],
+    "prereq_section_ids": [
+        "inst-design/04/01"
+    ],
+    "practice_ids": [
+        "andragogy_self_concept",
+        "adult_prior_experience",
+        "problem_centered_design",
+        "self_directed_learning_case"
     ],
     "estimated_time_minutes": 12
 }

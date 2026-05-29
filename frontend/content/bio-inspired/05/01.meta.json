@@ -1,6 +1,18 @@
 {
+    "course": "bio-inspired",
+    "chapter": "05",
+    "section": "01",
     "title": "Module 5: Structural Colors & Optics",
     "description": "How the Morpho butterfly manipulates light through nano-scale architecture rather than chemical pigments to create brilliant colors.",
     "order": 5,
-    "chapter_title": "Structural Color and Optical Surfaces"
+    "chapter_title": "Structural Color and Optical Surfaces",
+    "prereq_section_ids": [
+        "bio-inspired/04/01"
+    ],
+    "practice_ids": [
+        "bio_structural_color_core",
+        "bio_morpho_interference",
+        "bio_optical_design_transfer",
+        "bio_nanostructure_signal"
+    ]
 }

@@ -4,6 +4,12 @@
       "id": "development_phase_scope",
       "type": "multiple_choice",
       "concept_id": "development_phase",
+      "difficulty": "easy",
+      "concept_ids": [
+        "development_phase",
+        "instructional_assets"
+      ],
+      "misconception_id": "development_equals_coding_only",
       "stem": "Which activity belongs most directly to the development phase?",
       "options": [
         "Diagnosing whether the problem is really a training issue",
@@ -18,6 +24,12 @@
       "id": "implementation_phase_focus",
       "type": "multiple_choice",
       "concept_id": "implementation_phase",
+      "difficulty": "medium",
+      "concept_ids": [
+        "implementation_phase",
+        "facilitation_logistics"
+      ],
+      "misconception_id": "implementation_is_just_publish_button",
       "stem": "What is a key concern of the implementation phase?",
       "options": [
         "Whether delivery logistics, facilitator readiness, and platform setup support actual use",
@@ -32,6 +44,12 @@
       "id": "sam_iteration_logic",
       "type": "multiple_choice",
       "concept_id": "storyboarding",
+      "difficulty": "hard",
+      "concept_ids": [
+        "storyboarding",
+        "development_phase"
+      ],
+      "misconception_id": "prototype_means_finished_design",
       "stem": "Why do agile instructional design models such as SAM emphasize rapid prototyping?",
       "options": [
         "Because prototypes replace the need for evaluation",
@@ -46,6 +64,11 @@
       "id": "qa_in_id",
       "type": "multiple_choice",
       "concept_id": "instructional_assets",
+      "difficulty": "medium",
+      "concept_ids": [
+        "instructional_assets",
+        "development_phase"
+      ],
       "stem": "Why is QA in the development phase both technical and pedagogical?",
       "options": [
         "Because only software bugs matter once the script is approved",

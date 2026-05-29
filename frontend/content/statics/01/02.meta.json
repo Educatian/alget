@@ -10,13 +10,22 @@
         "Recognize common FBD errors and how to avoid them"
     ],
     "concept_ids": [
-        "fbd",
+        "free_body_diagram",
         "force_identification",
         "particle_model",
         "reaction_forces"
     ],
     "prerequisites": [
         "equilibrium_condition"
+    ],
+    "prereq_section_ids": [
+        "statics/01/01"
+    ],
+    "practice_ids": [
+        "fbd_inclined_block",
+        "fbd_pulley_tension",
+        "fbd_contact_force_identify",
+        "fbd_weight_direction"
     ],
     "estimated_time_minutes": 45
 }

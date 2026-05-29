@@ -1,6 +1,18 @@
 {
+    "course": "bio-inspired",
+    "chapter": "04",
+    "section": "01",
     "title": "Module 4: Dry Adhesion & Nanotech",
     "description": "Understanding the physics of the Gecko effect, Van der Waals forces, and the engineering of dry adhesives.",
     "order": 4,
-    "chapter_title": "Dry Adhesion and Contact Mechanics"
+    "chapter_title": "Dry Adhesion and Contact Mechanics",
+    "prereq_section_ids": [
+        "bio-inspired/03/01"
+    ],
+    "practice_ids": [
+        "bio_dry_adhesion_core",
+        "bio_nanotech_contact_split",
+        "bio_reversible_attachment",
+        "bio_surface_engineering_transfer"
+    ]
 }

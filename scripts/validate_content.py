@@ -12,6 +12,21 @@ JSON Schema alone cannot express:
   * practice.misconception_id referencing misconception ids that do not exist
     (reported as a soft warning, not a hard error)
 
+It also runs CORPUS-LEVEL checks that span sections:
+
+  * prerequisite graph integrity over meta.prereq_section_ids: dangling target
+    (no meta file at that 'course/chapter/section' slug), self-reference, and
+    cycle detection via topological sort (all HARD errors)
+  * constructive-alignment soft-check: once practice_ids are populated AND a
+    learning-objective linkage convention is present, flag any learning
+    objective with no assessing practice item (soft warning only)
+
+The prerequisite-target slug format is the one the backend engine keys on in
+backend/server.py `_find_concept_origin`: "course/chapter/section", where
+`course` is the top-level content directory, `chapter` is the chapter directory,
+and `section` is the *.meta.json filename stem (e.g. "statics/01/01"). Course
+content agents MUST populate prereq_section_ids using exactly this slug form.
+
 If the `jsonschema` package is installed it is used for schema validation;
 otherwise a small stdlib-only validator (sufficient for the constructs these
 schemas use) is used so the check runs in CI with no extra dependency.
@@ -217,6 +232,148 @@ def cross_checks(section_label, meta, practice, misc):
 
 
 # --------------------------------------------------------------------------
+# Corpus-level checks (span multiple sections).
+# --------------------------------------------------------------------------
+def prereq_graph_checks(section_metas):
+    """Validate the prerequisite graph built from meta.prereq_section_ids.
+
+    `section_metas` maps section slug ('course/chapter/section') -> meta dict.
+    The slug form mirrors backend/server.py `_find_concept_origin`, which is the
+    canonical key the adaptive engine uses to route prerequisite remediation.
+
+    Returns (hard, soft). Hard errors:
+      * dangling edge      -> prereq target slug has no meta in the corpus
+      * self-reference     -> a section lists itself as its own prerequisite
+      * cycle              -> the prereq graph is not a DAG (topological sort fails)
+    The graph is empty today (all prereq_section_ids == []), so this yields zero
+    errors until the course agents populate edges.
+    """
+    hard, soft = [], []
+    known = set(section_metas)
+
+    # adjacency: section -> list of prereq sections it depends on
+    adj = {}
+    for slug, meta in section_metas.items():
+        targets = []
+        if isinstance(meta, dict):
+            raw = meta.get("prereq_section_ids") or []
+            if isinstance(raw, list):
+                for t in raw:
+                    if not isinstance(t, str):
+                        hard.append(
+                            f"{slug} [meta]: prereq_section_ids entry is not a string ({t!r})"
+                        )
+                        continue
+                    if t == slug:
+                        hard.append(
+                            f"{slug} [meta]: prereq_section_ids references itself"
+                        )
+                        continue
+                    if t not in known:
+                        hard.append(
+                            f"{slug} [meta]: prereq_section_ids references nonexistent "
+                            f"section slug '{t}' (expected form 'course/chapter/section')"
+                        )
+                        continue
+                    targets.append(t)
+        adj[slug] = targets
+
+    # cycle detection via Kahn topological sort over the resolvable subgraph
+    indeg = {n: 0 for n in adj}
+    for n, deps in adj.items():
+        for d in deps:
+            # edge d -> n means "d is a prerequisite of n"; n depends on d
+            indeg[n] += 1
+    # Kahn: repeatedly remove nodes with no outstanding prerequisites.
+    remaining = dict(adj)
+    resolved = set()
+    progress = True
+    while progress:
+        progress = False
+        for n in list(remaining):
+            if all(d in resolved for d in remaining[n]):
+                resolved.add(n)
+                del remaining[n]
+                progress = True
+    if remaining:
+        cyc = sorted(remaining)
+        hard.append(
+            "prereq graph: cycle detected among sections "
+            f"{cyc[:8]}{' ...' if len(cyc) > 8 else ''} "
+            "(prereq_section_ids must form a DAG)"
+        )
+
+    return hard, soft
+
+
+def alignment_checks(section_label, meta, practice):
+    """Constructive-alignment soft-check.
+
+    Fires only when (a) practice_ids are populated for the section AND (b) a
+    learning-objective linkage convention is present, so it produces no false
+    positives on the current corpus (LOs are plain strings with no id linkage and
+    most sections have empty practice_ids). Two linkage conventions are accepted:
+
+      * learning_objectives entries are objects carrying an `id`, and practice
+        problems carry `learning_objective_id` / `learning_objective_ids` / `lo_id`.
+      * meta carries an explicit `lo_practice_map` dict {lo_id: [problem_id, ...]}.
+
+    When linkage exists, any learning objective with no assessing practice item is
+    flagged as a soft warning (never a hard error).
+    """
+    soft = []
+    if not isinstance(meta, dict):
+        return soft
+    practice_ids = meta.get("practice_ids") or []
+    if not practice_ids:
+        return soft  # nothing assessed yet -> alignment not yet auditable
+
+    los = meta.get("learning_objectives") or []
+    # collect structured LO ids, if any
+    lo_ids = [lo.get("id") for lo in los if isinstance(lo, dict) and lo.get("id")]
+
+    explicit_map = meta.get("lo_practice_map")
+    if isinstance(explicit_map, dict) and lo_ids:
+        for lo_id in lo_ids:
+            mapped = explicit_map.get(lo_id) or []
+            if not mapped:
+                soft.append(
+                    f"{section_label} [alignment]: learning objective '{lo_id}' has "
+                    f"no assessing practice item (lo_practice_map)"
+                )
+        return soft
+
+    # otherwise look for per-problem LO references in the practice file
+    problems = (practice or {}).get("problems", []) if isinstance(practice, dict) else []
+    assessed = set()
+    have_links = False
+    for p in problems:
+        if not isinstance(p, dict):
+            continue
+        refs = []
+        for key in ("learning_objective_id", "lo_id"):
+            v = p.get(key)
+            if isinstance(v, str):
+                refs.append(v)
+        for key in ("learning_objective_ids", "lo_ids"):
+            v = p.get(key)
+            if isinstance(v, list):
+                refs.extend(x for x in v if isinstance(x, str))
+        if refs:
+            have_links = True
+            assessed.update(refs)
+
+    if have_links and lo_ids:
+        for lo_id in lo_ids:
+            if lo_id not in assessed:
+                soft.append(
+                    f"{section_label} [alignment]: learning objective '{lo_id}' has "
+                    f"no assessing practice item"
+                )
+    return soft
+
+
+# --------------------------------------------------------------------------
 # Driver.
 # --------------------------------------------------------------------------
 def main():
@@ -236,6 +393,7 @@ def main():
 
     hard_errors, soft_errors = [], []
     n_sections = 0
+    section_metas = {}  # slug 'course/chapter/section' -> meta dict (for corpus checks)
 
     for meta_path in metas:
         n_sections += 1
@@ -270,6 +428,18 @@ def main():
         h, s = cross_checks(rel, meta, practice, misc)
         hard_errors.extend(h)
         soft_errors.extend(s)
+
+        # constructive-alignment soft-check (no-op until practice_ids + LO links exist)
+        soft_errors.extend(alignment_checks(rel, meta, practice))
+
+        # record for corpus-level prereq graph check (slug == rel == course/chapter/section)
+        if isinstance(meta, dict):
+            section_metas[rel] = meta
+
+    # corpus-level: prerequisite graph integrity (dangling / self-ref / cycle)
+    gh, gs = prereq_graph_checks(section_metas)
+    hard_errors.extend(gh)
+    soft_errors.extend(gs)
 
     # ---------------------------------------------------------------- report
     backend = "jsonschema" if _HAVE_JSONSCHEMA else "stdlib-fallback"
