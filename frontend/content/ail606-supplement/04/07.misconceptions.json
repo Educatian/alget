@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_4_7_readme_and_repository_disclosure",
   "misconceptions": [
     {
-      "id": "ail606_supplement_4_7_readme_and_repository_disclosure_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_4_7_readme_and_repository_disclosure_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_4_7_disclosure_blanket_statement",
+      "pattern": "blanket_ai_disclosure",
+      "description": "Disclosing AI use with a vague blanket statement that names no tool, location, or author edit",
+      "trigger": "README says AI was used without specifying what, where, or how it was revised",
+      "feedback": "Name the tool, the location (commit or section), and what you changed afterward. A blanket statement is not a usable disclosure.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_4_7_readme_and_repository_disclosure_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_4_7_disclosure_detached_from_artifact",
+      "pattern": "disclosure_detached_from_artifact",
+      "description": "Keeping the disclosure or traceability separate from the repository so a reader cannot check it against the code",
+      "trigger": "design reasoning lives only in an external report, not alongside the code and assets",
+      "feedback": "Co-locate the traceability matrix and disclosure in the repo so each screen change can be audited against the artifact.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_4_7_readme_and_repository_disclosure_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_4_7_disclosure_ai_writes_its_own_record",
+      "pattern": "ai_authored_disclosure",
+      "description": "Letting an AI write the disclosure of its own role, which it cannot truthfully report",
+      "trigger": "learner accepts an AI-written account of what AI did in the project",
+      "feedback": "Use AI only for the format. Supply the actual tools, commits, and edits yourself, since only you know what AI did here.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_4_7_disclosure_unverifiable_claims",
+      "pattern": "unverifiable_disclosure",
+      "description": "Making disclosure claims that cannot be checked because the commit history does not separate generated content from author edits",
+      "trigger": "AI additions and author revisions are squashed or deleted from history",
+      "feedback": "Keep AI-generated additions and your edits as separate commits so the disclosure can be verified against the diff.",
       "rail_action": "practice"
     }
   ]

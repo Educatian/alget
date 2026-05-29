@@ -4,17 +4,17 @@
       "id": "ail606_supplement_6_5_theoretical_defense_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_theoretical_defense",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A defense slide reads: 'My module aligns with cognitive load theory.' A committee member asks why this is not yet a defense. What is the gap?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Cognitive load theory is outdated.",
+        "It cites a theory but never links a specific principle to a specific design element or the mechanism between them.",
+        "It should cite at least three theories.",
+        "The slide needs a reference in APA format."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_6_5_theoretical_defense_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A theoretical defense connects a named principle to a named design element with a mechanism; a bare citation is decoration.",
+      "misconception_id": "ail606_supplement_6_5_citation_as_justification",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_theoretical_defense"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_6_5_theoretical_defense_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_theoretical_defense",
+      "stem": "To check whether a cited theory genuinely informed a design choice, which test is most diagnostic?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Whether the citation is from a peer-reviewed source.",
+        "Whether the theory is mentioned in the introduction.",
+        "Whether removing the theory would change the design; if the design would be identical, the theory was added after the fact.",
+        "Whether the theory is well known to the committee."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_6_5_theoretical_defense_annotation_without_signal",
-      "difficulty": "easy",
+      "correct_index": 2,
+      "explanation": "If the design would be unchanged without the cited theory, the theory was rationalization bolted on at defense time, not a driver.",
+      "misconception_id": "ail606_supplement_6_5_theory_added_after_design",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_theoretical_defense"
       ]
     },
     {
       "id": "ail606_supplement_6_5_theoretical_defense_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_theoretical_defense",
+      "stem": "A student defends adding a paragraph of on-screen text that repeats the narrator word for word by citing 'the redundancy principle.' What is wrong?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The redundancy principle does not exist.",
+        "The redundancy principle predicts the opposite: identical concurrent text and narration increases load, so it argues against the choice.",
+        "On-screen text is never allowed.",
+        "The principle applies only to video, not slides."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_6_5_theoretical_defense_ai_as_authority",
-      "difficulty": "medium",
+      "explanation": "The cited principle predicts the opposite of the choice, so the student has cited theory against their own design.",
+      "misconception_id": "ail606_supplement_6_5_mismatched_principle",
+      "difficulty": "hard",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_theoretical_defense"
       ]
     },
     {
       "id": "ail606_supplement_6_5_theoretical_defense_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_ai_supported_learning",
+      "stem": "You ask an AI to anticipate the toughest theory question your committee might ask. How does this strengthen the defense without outsourcing your judgment?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "By generating a polished answer you read aloud verbatim at the defense.",
+        "By surfacing a competing principle or trade-off to prepare for, which you then verify and decide how your context resolves.",
+        "By confirming that your chosen theory is the only one that matters.",
+        "By writing the entire theoretical defense for you."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_6_5_theoretical_defense_completion_only_model",
-      "difficulty": "hard",
+      "explanation": "AI can surface a likely counter-argument to prepare for; you remain responsible for verifying it and deciding how your context resolves the tension.",
+      "misconception_id": "ail606_supplement_6_5_ignoring_competing_theory",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_ai_supported_learning"
       ]
     }
   ]

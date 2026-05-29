@@ -4,16 +4,16 @@
       "id": "cat531_supplement_2_1_tech_rich_classroom_routines_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_tech_rich_classroom_routines",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher wants to add a daily five-minute entry routine using a polling app. Which justification makes the routine defensible rather than tool-driven?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The app shows a live bar chart, so the class will find it fun.",
+        "The poll surfaces yesterday's most common error so the teacher can open with a targeted re-teach.",
+        "Every student has a district device, so the routine will run smoothly.",
+        "The app can timestamp responses for the gradebook."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_2_1_tech_rich_classroom_routines_polish_as_evidence",
+      "explanation": "The defensible version names the learning move the routine serves (diagnosing and re-teaching a common error). The other options justify the routine by tool features or smooth operation.",
+      "misconception_id": "cat531_supplement_2_1_tech_rich_classroom_routines_tool_first_routine",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_2_1_tech_rich_classroom_routines_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_tech_rich_classroom_routines",
+      "stem": "After running a gamified review routine, a teacher writes in the Tension Studio map: \"Students loved it, leaderboard was packed.\" What is the strongest reason this is not yet evidence that the routine should stay?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Leaderboards are never appropriate in a classroom.",
+        "Enthusiasm and on-task behavior do not show whether the targeted concept was learned.",
+        "The note is too short to count as a portfolio entry.",
+        "The teacher should have used a different app."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_2_1_tech_rich_classroom_routines_annotation_without_signal",
+      "explanation": "Engagement is necessary but not sufficient. The map needs a learning check or artifact, not just evidence of attention, to justify keeping the routine.",
+      "misconception_id": "cat531_supplement_2_1_tech_rich_classroom_routines_engagement_equals_learning",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_tech_rich_classroom_routines",
         "evidence_based_revision"
       ]
     },
@@ -45,18 +46,19 @@
       "id": "cat531_supplement_2_1_tech_rich_classroom_routines_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher asks TeachGen@i to design a tech-rich opening routine. The draft assumes every student logs in from a personal device at home the night before. What is the most defensible teacher move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the routine as written because the AI optimized it for engagement.",
+        "Reject the home-login assumption and add an in-class, non-device fallback so a student without home access still completes the learning move.",
+        "Remove the routine entirely because AI cannot plan equitable routines.",
+        "Keep the assumption but tell students to use the library before school."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_2_1_tech_rich_classroom_routines_ai_as_authority",
+      "explanation": "The teacher names who the routine excludes when access fails and builds a fallback that preserves the learning move, treating the AI draft as a proposal rather than authority.",
+      "misconception_id": "cat531_supplement_2_1_tech_rich_classroom_routines_access_assumed_uniform",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_tech_rich_classroom_routines",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_2_1_tech_rich_classroom_routines_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "On the Design Tension Studio map for a new tech-rich routine, which paired entry best documents a defensible decision a mentor could audit?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"Routine is engaging\" paired with \"students like the app.\"",
+        "Tension named (instructional time vs. device setup) paired with the negotiated decision (move setup to the prior afternoon so the routine reclaims four minutes of instruction).",
+        "\"Used technology\" paired with \"finished on time.\"",
+        "\"Followed the lesson plan\" paired with \"no complaints.\""
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_2_1_tech_rich_classroom_routines_completion_only_model",
+      "explanation": "A defensible map pairs a named value tension with the negotiated decision and its consequence, which is exactly what a mentor can inspect and question.",
+      "misconception_id": "cat531_supplement_2_1_tech_rich_classroom_routines_tool_first_routine",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_tech_rich_classroom_routines",
         "evidence_based_revision"
       ]
     }

@@ -4,59 +4,59 @@
       "id": "cat531_supplement_4_6_moving_from_debate_to_policy_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_moving_from_debate_to_policy",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "After a class debate, a memo states the new rule as 'Students must use AI responsibly and ethically.' Why is this not yet a usable policy?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too short for a formal memo.",
+        "It names no observable behavior, so a teacher cannot tell on Monday what is permitted and what is not.",
+        "It does not mention the textbook.",
+        "It uses two adjectives instead of one."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_4_6_moving_from_debate_to_policy_polish_as_evidence",
+      "explanation": "A policy must convert values into observable rules a teacher can apply consistently.",
+      "misconception_id": "cat531_supplement_4_6_vague_values_as_policy",
       "difficulty": "easy",
       "concept_ids": [
-        "cat531_supplement_ai_ethics_and_ethobot_3_2",
         "cat531_supplement_moving_from_debate_to_policy",
-        "evidence_based_revision",
-        "ai_supported_learning"
+        "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_6_moving_from_debate_to_policy_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_moving_from_debate_to_policy",
+      "stem": "A student in the debate noted 'you cannot really tell who used AI anyway.' How should that point shape the written policy?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Ignore it, since rules should assume detection works.",
+        "Base enforcement on required disclosure rather than detection, because detection is unreliable.",
+        "Ban all take-home essays to remove the problem.",
+        "Add a stricter punishment to deter violations."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_4_6_moving_from_debate_to_policy_annotation_without_signal",
+      "explanation": "When detection is unreliable, a disclosure-based rule is both enforceable and fairer than surveillance.",
+      "misconception_id": "cat531_supplement_4_6_enforcement_by_detection",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_moving_from_debate_to_policy",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_6_moving_from_debate_to_policy_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_moving_from_debate_to_policy",
+      "stem": "The debate raised that some students lack home internet. Which policy element addresses that without abandoning the rule?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Require all work to be done at home regardless.",
+        "Provide class time or school devices so the rule does not penalize students for unequal access.",
+        "Exempt those students from the assignment entirely.",
+        "Remove the disclosure requirement for everyone."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_4_6_moving_from_debate_to_policy_ai_as_authority",
+      "explanation": "An equity exception keeps the rule fair by not punishing a circumstance rather than a choice.",
+      "misconception_id": "cat531_supplement_4_6_policy_ignores_access",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_moving_from_debate_to_policy",
         "ai_supported_learning"
       ]
     },
@@ -64,19 +64,20 @@
       "id": "cat531_supplement_4_6_moving_from_debate_to_policy_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which final policy best converts the debate's fairness and transparency concerns into an applicable rule?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "AI use is encouraged when appropriate.",
+        "AI permitted for brainstorming and grammar but not for generating submitted text; all use disclosed in a footnote; enforced by disclosure; class time provided for students without home access.",
+        "Teachers will decide case by case without a written rule.",
+        "AI is banned and any suspected use results in a zero."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_4_6_moving_from_debate_to_policy_completion_only_model",
+      "explanation": "The strong policy is observable, states enforcement, and includes an equity exception, so it is auditable and applicable.",
+      "misconception_id": "cat531_supplement_4_6_vague_values_as_policy",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_evidence_based_revision",
+        "cat531_supplement_moving_from_debate_to_policy"
       ]
     }
   ]

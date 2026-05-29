@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas",
   "misconceptions": [
     {
-      "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_decorative_image",
+      "pattern": "image_as_decoration",
+      "description": "Generating images that decorate the slide instead of explaining the idea",
+      "trigger": "learner adds an AI image of a generic robot to a slide about data pipelines",
+      "feedback": "Ask what the image must teach; if removing it loses no meaning, it is decoration, not explanation.",
       "rail_action": "ask"
     },
     {
-      "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_vague_prompt",
+      "pattern": "vague_generation_prompt",
+      "description": "Using a vague image prompt and accepting whatever the model returns",
+      "trigger": "learner prompts 'make a nice tech picture' and uses the first result unchanged",
+      "feedback": "Write a prompt that names the concept, the parts to show, and the relationship; iterate until the image matches the idea.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_trust_generated_facts",
+      "pattern": "generated_image_as_evidence",
+      "description": "Treating an AI-generated diagram as factually accurate without checking it",
+      "trigger": "learner uses a generated flowchart whose arrows contradict the real process",
+      "feedback": "Verify every label and arrow against the real artifact; a generated diagram is a draft, not a source of truth.",
+      "rail_action": "explain"
     }
   ]
 }

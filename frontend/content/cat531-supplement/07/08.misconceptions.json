@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_7_8_field_transfer_studio",
   "misconceptions": [
     {
-      "id": "cat531_supplement_7_8_field_transfer_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_7_8_portfolio_as_stack",
+      "pattern": "portfolio_as_stack",
+      "description": "Assembling a capstone as a stack of separate artifacts with no traced decision connecting them",
+      "trigger": "candidate pastes chapter artifacts in order without connecting the reasoning",
+      "feedback": "Trace one decision across the chapter's tools and evidence so the portfolio shows synthesis, not a stack.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_7_8_field_transfer_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_7_8_field_transfer_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_7_8_assume_shared_context",
+      "pattern": "assume_shared_context",
+      "description": "Writing the portfolio as if the reader already knows the placement context",
+      "trigger": "candidate omits the constraint, decision, or evidence an outside reader would need",
+      "feedback": "Make the constraint, decision, evidence, and adaptation explicit for a reader who was not in your placement.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_7_8_field_transfer_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_7_8_ai_smooths_tension",
+      "pattern": "ai_smooths_tension",
+      "description": "Accepting an AI narrative that smooths over the real equity tension the candidate navigated",
+      "trigger": "candidate submits a frictionless AI story that hides the tradeoff she made",
+      "feedback": "Restore the tension and the hard tradeoff. The studio shows real judgment, not a frictionless story.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_7_8_one_success_proves_transfer",
+      "pattern": "one_success_proves_transfer",
+      "description": "Treating one successful lesson as proof of transferable professional judgment",
+      "trigger": "candidate offers a single outcome, grade, or satisfaction note as evidence of transfer",
+      "feedback": "Show the decision rule holding across at least two situations and how you would adapt it under a new constraint.",
       "rail_action": "practice"
     }
   ]

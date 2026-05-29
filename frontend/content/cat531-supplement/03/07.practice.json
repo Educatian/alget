@@ -3,17 +3,17 @@
     {
       "id": "cat531_supplement_3_7_ai_use_disclosure_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_use_disclosure",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "ai_use_disclosure",
+      "stem": "A teacher uses a chatbot to draft personalized comments on report cards and sends them without saying so, while requiring students to disclose any AI help. What principle is being violated?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "None; disclosure rules apply only to students.",
+        "Transparency is reciprocal; if AI substantially shaped the comments families read, the teacher should disclose her use too.",
+        "Teachers should never use AI at all.",
+        "Students should also stop disclosing."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_3_7_ai_use_disclosure_polish_as_evidence",
+      "explanation": "Disclosure norms apply to teachers as well as students. When AI substantially shapes communication to families, the teacher's use should be disclosed.",
+      "misconception_id": "cat531_supplement_3_7_disclosure_only_for_students",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_ai_in_education",
@@ -25,58 +25,67 @@
     {
       "id": "cat531_supplement_3_7_ai_use_disclosure_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ai_use_disclosure",
+      "stem": "A student turns in a project tagged only \"Made with AI.\" Why is this disclosure inadequate, and what would make it meaningful?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It is fine; the label says everything a reader needs.",
+        "It does not say what AI did versus what the student did; meaningful disclosure names the AI's role, the student's role, and what was verified or rejected.",
+        "The label should be larger and bolder.",
+        "The student should remove the label to avoid suspicion."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_3_7_ai_use_disclosure_annotation_without_signal",
+      "explanation": "A blanket label does not let a reader judge the work. Meaningful disclosure specifies the division of labor and the verification done.",
+      "misconception_id": "cat531_supplement_3_7_disclosure_label_is_enough",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "ai_use_disclosure",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_7_ai_use_disclosure_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_use_disclosure",
+      "stem": "An assignment permits AI for outlining. A capable student hides that she used AI to outline because she fears disclosure will look like cheating. What should the teacher's disclosure norm make clear?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "That any disclosed AI use will lower the grade.",
+        "That disclosing permitted AI use is expected honesty and is not penalized, so transparency feels safe rather than incriminating.",
+        "That students should never mention AI.",
+        "That only struggling students need to disclose."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_3_7_ai_use_disclosure_ai_as_authority",
+      "explanation": "If disclosure feels like confessing guilt, students hide allowed use. The norm must frame transparent, permitted use as expected and unpenalized.",
+      "misconception_id": "cat531_supplement_3_7_disclosure_equals_guilt",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ai_in_education",
+        "ai_use_disclosure",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_7_ai_use_disclosure_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ai_use_disclosure",
+      "stem": "A teacher submits an AI-assisted grant narrative that contains a fabricated statistic, then says, \"I disclosed that I used AI, so the error is on the tool.\" What is the most accurate judgment?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Correct; disclosure moves responsibility to the AI.",
+        "Disclosure informs the reader but does not transfer accountability; the teacher who submitted the narrative still owns its accuracy and should have verified the statistic.",
+        "The statistic does not matter once AI is disclosed.",
+        "Only the grant agency is responsible for checking."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_3_7_ai_use_disclosure_completion_only_model",
+      "explanation": "Disclosure is about transparency, not absolution. The human submitter remains accountable for verifying accuracy regardless of disclosure.",
+      "misconception_id": "cat531_supplement_3_7_disclosure_replaces_responsibility",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "ai_use_disclosure",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

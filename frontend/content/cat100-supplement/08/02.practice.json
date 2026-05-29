@@ -8,16 +8,16 @@
         "cat100_supplement_professional_story_across_artifacts",
         "cat100_supplement_course_completion_and_transfer"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your storyboard has three slides: 'My Excel file', 'My website', and 'My resume', each just naming the artifact. A hiring manager asks, 'What problem did you solve?' What is the storyboard missing?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A title slide and a thank-you slide.",
+        "A throughline: open with the problem, then use each artifact as evidence that answers it, instead of listing files.",
+        "More slides, one per file in the project folder.",
+        "A consistent font across all three slides."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_8_2_professional_story_across_artifacts_polish_as_evidence",
+      "explanation": "A storyboard is an argument, not a folder listing. The fix is an opening question that the three artifacts then answer in order.",
+      "misconception_id": "cat100_supplement_8_2_one_slide_per_artifact",
       "difficulty": "easy"
     },
     {
@@ -27,16 +27,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A slide reads only: 'I am strong at data analysis.' Which revision adds slide-level evidence?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Bold the words and add a stock photo of a chart.",
+        "Show the actual pivot table with the formula =SUMIFS(Sales,Region,\"West\") and the result 48,200 highlighted.",
+        "Change the bullet to 'I am very strong at data analysis.'",
+        "Add a second bullet that says 'data analysis is important.'"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_8_2_professional_story_across_artifacts_annotation_without_signal",
+      "explanation": "A claim slide needs one visible artifact. Showing the real pivot output and formula turns an adjective into evidence.",
+      "misconception_id": "cat100_supplement_8_2_bullet_text_no_evidence",
       "difficulty": "medium"
     },
     {
@@ -46,16 +46,16 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You will present the same three artifacts to (a) a marketing hiring manager and (b) a CS peer panel. How should the storyboard change between the two?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "It should not change; one deck fits every audience.",
+        "For the hiring manager, lead with the outcome and fit; for the peer panel, lead with the technique and how it works. Same artifacts, reordered and reframed.",
+        "Make a longer deck for the peer panel and a shorter one for the hiring manager, with no other change.",
+        "Use brighter colors for the hiring manager."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_8_2_professional_story_across_artifacts_ai_as_authority",
+      "explanation": "Audience is the constraint. The artifacts stay; their order and framing shift to match what each room cares about.",
+      "misconception_id": "cat100_supplement_8_2_same_deck_every_audience",
       "difficulty": "hard"
     },
     {
@@ -65,16 +65,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which storyboard note best documents why a slide order changed?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "'Moved slides around to look better.'",
+        "'Moved the resume slide to the end because the peer panel cares about the technique first; the website demo now sits at slide 2 as the proof.'",
+        "'Slides reordered.'",
+        "'The deck is finished.'"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_8_2_professional_story_across_artifacts_completion_only_model",
+      "explanation": "A verifiable note names which slide moved, where, and the audience reason, so a reviewer can judge the storytelling decision.",
+      "misconception_id": "cat100_supplement_8_2_same_deck_every_audience",
       "difficulty": "medium"
     }
   ]

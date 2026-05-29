@@ -4,17 +4,17 @@
       "id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_interaction_patterns_for_learning_software",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A module replaces three static text screens with three flip-card animations containing the same words. What is the most likely effect on learning?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Learning improves because the content is now interactive.",
+        "Learning is unlikely to improve, because the flips add motion but require no new thinking from the learner.",
+        "Learning improves because animation always increases engagement.",
+        "Learning declines only if the cards load slowly."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Interaction is instructional only when it drives generative processing. Flipping a card to reveal identical text adds motion, not cognitive work.",
+      "misconception_id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_clicks_equal_learning",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_interaction_patterns_for_learning_software"
       ]
@@ -22,55 +22,55 @@
     {
       "id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_interaction_patterns_for_learning_software",
+      "stem": "For categorizing 8 examples into 3 groups, a designer invents a custom two-finger swipe gesture instead of using a familiar tabbed sort. When is the custom gesture justified?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Always, because custom interactions make the module memorable.",
+        "Only when the familiar tabbed pattern genuinely fails the task, since a familiar pattern lets learners spend attention on content rather than on learning the interface.",
+        "Never; instructional software must avoid all gestures.",
+        "Whenever the design team finds tabs visually boring."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Familiar interaction patterns reduce extraneous load by reusing prior interface knowledge. Reserve novel patterns for cases where the familiar one cannot do the job.",
+      "misconception_id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_novelty_pattern",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_interaction_patterns_for_learning_software"
       ]
     },
     {
       "id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_interaction_patterns_for_learning_software",
+      "stem": "A drag-and-drop step lets learners place molecules into bonding slots, but after dropping, the screen never changes and no hint appears. What is missing from the interaction pattern?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "A scoreboard showing the class ranking.",
+        "A visible consequence: the loop never closes because the learner sees no result, hint, or change after acting.",
+        "A second drag-and-drop step on the same screen.",
+        "Background music to signal completion."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_ai_as_authority",
+      "explanation": "Every learning interaction needs a visible consequence so the loop closes. Input without response is a decorative pattern, not an instructional one.",
+      "misconception_id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_no_feedback_in_loop",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_interaction_patterns_for_learning_software"
       ]
     },
     {
       "id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "You must defend choosing a simple tabbed comparison over an animated 3D model for showing two protein shapes. Which justification is the strongest evidence-based revision note?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The tabs render faster than the 3D model.",
+        "Pilot eye-tracking showed learners spent 40 percent of time rotating the 3D model and never compared the shapes; the tabs put both shapes side by side so attention went to the comparison the task requires.",
+        "The 3D model looked unprofessional.",
+        "Tabs are the most common pattern on the web."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_completion_only_model",
+      "explanation": "The defensible note ties the pattern choice to evidence (eye-tracking) and to the cognitive demand of the task (comparison), not to speed or appearance.",
+      "misconception_id": "ail606_supplement_2_3_interaction_patterns_for_learning_software_clicks_equal_learning",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

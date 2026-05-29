@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_5_4_cost_and_sustainability",
   "misconceptions": [
     {
-      "id": "cat531_supplement_5_4_cost_and_sustainability_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_5_4_free_means_no_cost",
+      "pattern": "free_tier_treated_as_no_cost",
+      "description": "Treating a free or zero-price tier as having no cost of ownership",
+      "trigger": "learner adopts a tool because the headline price is zero",
+      "feedback": "Free is a price, not a total cost. Surface training time, device and storage needs, feature-gated upgrades, and what happens when the free tier ends.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_5_4_cost_and_sustainability_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_5_4_sticker_price_is_total",
+      "pattern": "sticker_price_as_total_cost",
+      "description": "Comparing only the annual license price and ignoring recurring teacher time and infrastructure",
+      "trigger": "learner ranks options on sticker price alone",
+      "feedback": "Add the recurring human time and infrastructure to the price. The cheaper sticker can be the costlier tool to sustain.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_5_4_cost_and_sustainability_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_5_4_ai_estimate_as_budget",
+      "pattern": "ai_cost_estimate_as_official",
+      "description": "Treating an AI-generated cost projection as the official budget figure without checking its assumptions",
+      "trigger": "learner forwards an AI multi-year total without verifying inputs",
+      "feedback": "An AI estimate is only as good as its assumptions. Verify each input against the real contract and local enrollment before relying on it.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_5_4_cost_and_sustainability_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_5_4_year_one_funds_sustainability",
+      "pattern": "grant_year_mistaken_for_sustainability",
+      "description": "Assuming a fully funded first year means the adoption is sustainable",
+      "trigger": "learner judges sustainability from year-one experience while a grant covers the cost",
+      "feedback": "Plan past year one: who pays at renewal, can you export your data, and what does it cost to leave. That is the sustainability question.",
+      "rail_action": "ask"
     }
   ]
 }

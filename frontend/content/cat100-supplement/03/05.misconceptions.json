@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_3_5_ai_help_for_excel_debugging",
   "misconceptions": [
     {
-      "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_error_codes",
+      "pattern": "ignoring_error_code_meaning",
+      "description": "Treating Excel error codes like #DIV/0! and #N/A as random glitches instead of specific signals about the data or formula",
+      "trigger": "learner sees an error code and tries cosmetic fixes like widening the column",
+      "feedback": "Read the error code as a clue. #DIV/0! means a divide-by-zero, and #N/A from a lookup means no match was found, often from spaces or a text-vs-number mismatch.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_unverified_ai_fix",
+      "pattern": "trusting_unverified_ai_fix",
+      "description": "Accepting an AI-suggested formula rewrite as correct because it sounds confident, without testing it against a known answer",
+      "trigger": "learner pastes an AI rewrite back into the sheet without verifying it",
+      "feedback": "Test the AI rewrite on a row whose correct answer you already know. Confidence is not correctness.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_vague_prompt",
+      "pattern": "vague_debugging_prompt",
+      "description": "Asking an AI tool for help with only a vague description instead of the exact formula, error message, and expected result",
+      "trigger": "learner prompts with 'fix my spreadsheet' and no specifics",
+      "feedback": "Include the exact formula text, the error message, and the expected result for one specific row so the tool can diagnose the real cause.",
+      "rail_action": "ask"
     }
   ]
 }

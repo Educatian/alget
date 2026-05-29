@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_1_8_module_1_readiness_studio",
   "misconceptions": [
     {
-      "id": "cat100_supplement_1_8_module_1_readiness_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_1_8_module_1_readiness_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_1_8_module_1_readiness_studio_checklist_is_busywork",
+      "pattern": "readiness_check_seen_as_busywork",
+      "description": "Treating the module readiness checklist as a formality rather than a real self-check before moving on",
+      "trigger": "learner marks every item complete without testing whether each skill works",
+      "feedback": "Use the checklist to actually test each skill: open the artifact and confirm it meets the standard before checking the box.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_1_8_module_1_readiness_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_1_8_module_1_readiness_studio_skills_dont_connect",
+      "pattern": "module_skills_treated_as_isolated",
+      "description": "Treating the module's skills as separate boxes rather than parts of one digital readiness practice",
+      "trigger": "learner applies one skill without considering related ones in the same artifact",
+      "feedback": "Skills combine: a resume artifact also needs truthful evidence, AI disclosure, accessibility, and privacy care at once.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_1_8_module_1_readiness_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_1_8_module_1_readiness_studio_studio_replaces_judgment",
+      "pattern": "ai_studio_replaces_self_assessment",
+      "description": "Letting the AI studio decide readiness instead of judging your own evidence against the standard",
+      "trigger": "learner asks the tool whether they are ready and accepts the verdict without checking artifacts",
+      "feedback": "The studio supports your self-check; you confirm readiness by inspecting your own artifacts against each target.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_1_8_module_1_readiness_studio_gaps_left_unmarked",
+      "pattern": "weak_areas_hidden_not_flagged",
+      "description": "Hiding weak areas to look finished instead of flagging gaps for targeted practice",
+      "trigger": "learner reports full readiness while one skill is still shaky",
+      "feedback": "Mark the gap honestly and request practice on that specific skill; a flagged weakness is more useful than a false all-clear.",
       "rail_action": "practice"
     }
   ]

@@ -4,17 +4,17 @@
       "id": "ail606_supplement_5_7_prioritizing_iterations_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_prioritizing_iterations",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A team plans to fix a welcome-screen typo and a button color first \"because they are quick,\" leaving a Submit-button findability issue that blocked 3 of 5 users for later. What is the prioritization error?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Typos should never be fixed in usability iterations.",
+        "They ordered work by ease of fix rather than by severity and reach, so the task-blocking defect stays unaddressed.",
+        "Three of five is not enough to act on.",
+        "Button color is always the top priority."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_5_7_prioritizing_iterations_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Prioritization should weigh how much an issue blocks the goal and how many users hit it, not how easy it is to fix.",
+      "misconception_id": "ail606_supplement_5_7_prioritize_by_ease",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_prioritizing_iterations"
       ]
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_5_7_prioritizing_iterations_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_prioritizing_iterations",
+      "stem": "Issue A blocked the core task for 3 of 5 users; Issue B was a cosmetic preference mentioned by 4 of 5. Which should rank higher and why?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Issue B, because more participants mentioned it.",
+        "Issue A, because severity (it blocks the task) outweighs raw mention count for a cosmetic preference.",
+        "They tie, since severity and reach always cancel out.",
+        "Issue B, because cosmetic fixes improve satisfaction scores."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_5_7_prioritizing_iterations_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "A frequent cosmetic comment does not outrank an issue that prevents users from completing the core task.",
+      "misconception_id": "ail606_supplement_5_7_frequency_over_severity",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_prioritizing_iterations"
       ]
     },
     {
       "id": "ail606_supplement_5_7_prioritizing_iterations_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI tool ranks your usability issues by how often each keyword appears in session notes. What is the defensible boundary on using its ranking?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the keyword-frequency ranking as your fix order.",
+        "Use it as one input, but re-rank by severity, reach, and access impact, since frequency of mention is not the same as severity.",
+        "Reject the ranking because AI cannot prioritize anything.",
+        "Fix issues in the exact order the AI lists them to stay objective."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_5_7_prioritizing_iterations_ai_as_authority",
+      "explanation": "Keyword frequency is a weak proxy for severity; the designer must re-rank using how much each issue blocks the learning goal.",
+      "misconception_id": "ail606_supplement_5_7_frequency_over_severity",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,20 +60,20 @@
     {
       "id": "ail606_supplement_5_7_prioritizing_iterations_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_prioritizing_iterations",
+      "stem": "A low-contrast button does not block the task but fails contrast guidelines for some learners. The team deprioritizes it below a typo. Why is that a defensible-reasoning problem?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Contrast issues are purely aesthetic and can always wait.",
+        "An access barrier affecting some learners (a UDL variability concern) should not be ranked below a trivial cosmetic typo.",
+        "Typos are never worth fixing.",
+        "Contrast can only be judged by an automated tool, so it is unrankable."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_5_7_prioritizing_iterations_completion_only_model",
+      "explanation": "Access barriers carry weight beyond task-blocking; deprioritizing them below trivial fixes ignores learner variability.",
+      "misconception_id": "ail606_supplement_5_7_ignore_access_barrier",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_prioritizing_iterations"
       ]
     }
   ]

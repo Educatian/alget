@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_1_7_design_rationale_as_evidence",
   "misconceptions": [
     {
-      "id": "ail606_supplement_1_7_design_rationale_as_evidence_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_1_7_design_rationale_as_evidence_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_1_7_rationale_is_description",
+      "pattern": "rationale_as_description",
+      "description": "Confusing a design rationale with a description of what the artifact contains, listing features instead of giving reasons.",
+      "trigger": "learner writes what the screen has rather than why each decision was made",
+      "feedback": "A rationale states the decision, the motivating problem or evidence, and the expected effect. Replace 'the screen has X' with 'we chose X because the evidence showed Y.'",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_1_7_design_rationale_as_evidence_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "ail606_supplement_1_7_rationale_is_preference",
+      "pattern": "rationale_as_preference",
+      "description": "Grounding a rationale in taste or aesthetics ('looks better', 'more engaging') rather than a principle or observed evidence a reviewer can test.",
+      "trigger": "learner justifies a decision by personal preference",
+      "feedback": "Ground each decision in a learning principle or pilot evidence so a reviewer can evaluate and challenge it. Preference is not evidence.",
+      "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_1_7_design_rationale_as_evidence_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_1_7_rationale_only_final_choice",
+      "pattern": "rationale_omits_alternatives",
+      "description": "Recording only the final decision and omitting the alternatives that were considered and rejected.",
+      "trigger": "learner documents the final choice with no weighed alternatives",
+      "feedback": "Show the alternatives you considered and why you rejected them. The reasoning, not just the outcome, is what makes the rationale auditable evidence.",
+      "rail_action": "represent"
     }
   ]
 }

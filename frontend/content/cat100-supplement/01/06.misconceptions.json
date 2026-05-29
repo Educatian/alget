@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_1_6_accessibility_basics",
   "misconceptions": [
     {
-      "id": "cat100_supplement_1_6_accessibility_basics_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_1_6_accessibility_basics_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_1_6_accessibility_basics_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_1_6_accessibility_basics_filename_as_alt",
+      "pattern": "filename_used_as_alt_text",
+      "description": "Using the image filename or the word 'image' as alt text instead of describing the content",
+      "trigger": "alt text reads 'IMG_2043.jpg' or 'image' or 'photo'",
+      "feedback": "Alt text should describe what the image shows and why it matters, for example 'Bar chart: club membership rose from 20 to 55 over the year.'",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_1_6_accessibility_basics_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_1_6_accessibility_basics_bold_not_heading",
+      "pattern": "bold_text_mistaken_for_heading",
+      "description": "Making text big and bold to look like a heading instead of using a real heading style or tag",
+      "trigger": "learner styles a line as large bold text but does not use a heading level",
+      "feedback": "Use real heading styles or tags (Heading 1, Heading 2, h1, h2). Screen readers and navigation rely on the structure, not the visual size.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_1_6_accessibility_basics_color_only_meaning",
+      "pattern": "color_alone_conveys_meaning",
+      "description": "Relying on color alone to signal meaning, such as marking required fields only in red",
+      "trigger": "learner uses color as the only cue for status or importance",
+      "feedback": "Pair color with a label, icon, or text so the meaning is clear to people who cannot distinguish the colors.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_1_6_accessibility_basics_accessibility_is_extra",
+      "pattern": "accessibility_as_optional_polish",
+      "description": "Treating accessibility as an optional final touch rather than part of the design",
+      "trigger": "learner plans to 'add accessibility later' after the artifact is done",
+      "feedback": "Build accessibility in as you go: headings, alt text, contrast, and captions are part of a correct artifact, not extra polish.",
       "rail_action": "practice"
     }
   ]

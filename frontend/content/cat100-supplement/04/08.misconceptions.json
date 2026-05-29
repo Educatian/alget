@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_4_8_module_4_dialogue_studio",
   "misconceptions": [
     {
-      "id": "cat100_supplement_4_8_module_4_dialogue_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_4_8_module_4_dialogue_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_4_8_loads_means_correct",
+      "pattern": "renders_equals_valid",
+      "description": "Believing that because a page loads in the browser the HTML is complete and correct",
+      "trigger": "learner ships HTML with no title, no real heading, or empty links because it still displays",
+      "feedback": "Loading is not the bar. Run a publish checklist: a page needs a title, real heading tags, and working links even though broken HTML may still render.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_4_8_module_4_dialogue_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_4_8_bare_text_not_heading",
+      "pattern": "visual_size_instead_of_heading_tag",
+      "description": "Making text look like a heading by size alone instead of using an h1 element",
+      "trigger": "the main title is bare text or a styled span, not an h1",
+      "feedback": "Use an h1 for the main heading. A real heading tag is structure a screen reader and a reviewer can rely on; big text is not.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_4_8_module_4_dialogue_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_4_8_empty_href",
+      "pattern": "link_with_no_target",
+      "description": "Writing an anchor with no href, or href pointing to nothing, so the link goes nowhere",
+      "trigger": "an a element has no working href to a real file or URL",
+      "feedback": "Every link needs a target. Point the href at the real artifact file and open the published page to confirm it works.",
+      "rail_action": "ask"
     }
   ]
 }

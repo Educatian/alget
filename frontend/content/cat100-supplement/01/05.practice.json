@@ -8,73 +8,74 @@
         "cat100_supplement_privacy_and_account_safety",
         "cat100_supplement_digital_citizenship_and_ai_readiness"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You use the same strong password for your school portal, email, and a shopping site. The shopping site reports a data breach. What is the real risk?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "No risk, because the password was strong.",
+        "Attackers can try that leaked password on your email and school portal too, so reused passwords expose every linked account.",
+        "Only the shopping account is ever at risk in a breach.",
+        "The password becomes safe again after you log in once."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_polish_as_evidence",
+      "explanation": "A breach on one site exposes every account that reuses the password. Strength does not help once the password is leaked; uniqueness does.",
+      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_reused_password_safe",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_1_5_privacy_and_account_safety_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_privacy_and_account_safety",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_privacy_and_account_safety"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The school portal offers two-factor authentication but it adds a code step at login. Why is turning it on worth the extra step?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It makes your password longer automatically.",
+        "Even if your password leaks, an attacker still cannot log in without the second factor, which blocks most takeovers.",
+        "It removes the need to remember a password.",
+        "It only matters for staff accounts, not students."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_annotation_without_signal",
+      "explanation": "Two-factor authentication stops most account takeovers because the attacker would also need the second factor, not just the password.",
+      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_2fa_unnecessary",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_1_5_privacy_and_account_safety_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_privacy_and_account_safety",
       "concept_ids": [
+        "cat100_supplement_privacy_and_account_safety",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You want an AI tool to help reword a complaint email. The draft contains your student ID and a classmate's full name and phone number. What should you do before pasting it in?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Paste the whole email; AI tools keep everything private.",
+        "Remove your student ID and the classmate's name and number first, then paste only the text you need reworded.",
+        "Paste it but ask the AI to keep it secret.",
+        "Add even more detail so the AI understands the situation."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_ai_as_authority",
+      "explanation": "Redact identifiers and other people's private data before using an AI tool. Share only what is needed for the task.",
+      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_overshare_with_ai",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_1_5_privacy_and_account_safety_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_privacy_and_account_safety",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_privacy_and_account_safety"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You get a text: \"URGENT: your student account will be locked in 1 hour. Verify now: bit.ly/uni-verify.\" What is the safest response?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Click the link quickly so the account is not locked.",
+        "Do not click; open the school portal directly through its known address and check your account there.",
+        "Reply with your password so they can confirm it is you.",
+        "Forward the link to classmates so they verify too."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_completion_only_model",
+      "explanation": "Urgency and shortened links are phishing signals. Never click; reach the real site directly and verify there.",
+      "misconception_id": "cat100_supplement_1_5_privacy_and_account_safety_urgent_email_trusted",
       "difficulty": "medium"
     }
   ]

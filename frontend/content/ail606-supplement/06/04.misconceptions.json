@@ -2,36 +2,36 @@
   "section_id": "ail606_supplement_6_4_final_prototype_quality_review",
   "misconceptions": [
     {
-      "id": "ail606_supplement_6_4_final_prototype_quality_review_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_6_4_final_prototype_quality_review_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_6_4_final_prototype_quality_review_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_6_4_rubric_score_without_criterion",
+      "pattern": "rubric_score_without_criterion",
+      "description": "Assigning a quality rating to the prototype without naming which rubric criterion or heuristic the rating is tied to",
+      "trigger": "review says 'navigation: 4 out of 5' with no criterion or evidence cited",
+      "feedback": "Tie every score to a named criterion and the screen evidence that earned it, so the rating is reproducible.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_6_4_final_prototype_quality_review_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_6_4_polish_mistaken_for_quality",
+      "pattern": "polish_mistaken_for_quality",
+      "description": "Rating a prototype highly because it looks finished, even when instructional alignment or accessibility criteria fail",
+      "trigger": "high overall score driven by visual appeal while objectives-to-assessment alignment is unchecked",
+      "feedback": "Score instructional and accessibility criteria independently of visual polish; a beautiful screen can still fail alignment.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_6_4_review_without_severity",
+      "pattern": "review_without_severity",
+      "description": "Listing all quality issues as equal so a defense cannot tell which problems block readiness from which are cosmetic",
+      "trigger": "issue log treats a broken assessment and a misaligned margin as the same priority",
+      "feedback": "Rate each issue by severity and effect on the learner, so high-severity blockers are clearly separated from cosmetic items.",
       "rail_action": "practice"
+    },
+    {
+      "id": "ail606_supplement_6_4_ai_score_as_verdict",
+      "pattern": "ai_score_as_verdict",
+      "description": "Treating an AI's overall quality score for the prototype as the final review verdict instead of a checklist to verify",
+      "trigger": "learner reports 'the AI rated my prototype 9 out of 10' as the quality finding",
+      "feedback": "Use an AI review as a candidate issue list to confirm against the rubric and the live prototype; the score is not the verdict.",
+      "rail_action": "explain"
     }
   ]
 }

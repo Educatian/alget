@@ -3,18 +3,18 @@
     {
       "id": "ail606_supplement_1_5_learner_variability_and_udl_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_learner_variability_and_udl",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "universal_design_for_learning",
+      "stem": "A module offers a video, an illustrated text, and an audio version of the same content. Which UDL principle does this satisfy, and what is still missing?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Multiple means of action and expression; nothing is missing.",
+        "Multiple means of representation; the module still needs options for engagement and for action and expression.",
+        "Multiple means of engagement; representation is fully covered.",
+        "None; offering formats is not part of UDL."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_1_5_learner_variability_and_udl_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Varied formats of the same content address representation. UDL also calls for multiple means of engagement (the why) and action and expression (the how), which formats alone do not provide.",
+      "misconception_id": "ail606_supplement_1_5_udl_is_just_formats",
+      "difficulty": "easy",
       "concept_ids": [
         "universal_design_for_learning"
       ]
@@ -22,56 +22,56 @@
     {
       "id": "ail606_supplement_1_5_learner_variability_and_udl_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "universal_design_for_learning",
+      "stem": "A learning goal is 'write a persuasive argument.' To honor UDL action and expression while keeping the goal firm, which option is best?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Let learners choose any goal they prefer instead of arguing.",
+        "Keep the goal fixed but let learners express the argument as an essay, a recorded debate, or an annotated infographic.",
+        "Lower the goal to 'list some opinions' so it is easier for everyone.",
+        "Require every learner to submit a five-paragraph essay for fairness."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_1_5_learner_variability_and_udl_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "UDL keeps goals firm and means flexible. The construct (persuasive argument) stays fixed while learners vary how they demonstrate it.",
+      "misconception_id": "ail606_supplement_1_5_udl_means_lower_the_bar",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "universal_design_for_learning"
       ]
     },
     {
       "id": "ail606_supplement_1_5_learner_variability_and_udl_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "universal_design_for_learning",
+      "stem": "A designer says, 'I will add accommodations later for the few students who request them.' How does the UDL stance on designing for the margins differ?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "They are identical; retrofitting and UDL reach the same result.",
+        "UDL designs proactively for predictable variability from the start, so flexible options are built in for everyone rather than bolted on for a few by request.",
+        "UDL says individual accommodations should never be provided.",
+        "UDL requires removing all structure so learners self-organize."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_1_5_learner_variability_and_udl_ai_as_authority",
-      "difficulty": "medium",
+      "explanation": "UDL anticipates variability and builds options up front (design for the margins), rather than retrofitting accommodations reactively for individuals who must ask.",
+      "misconception_id": "ail606_supplement_1_5_udl_is_retrofit_accommodation",
+      "difficulty": "hard",
       "concept_ids": [
-        "ai_supported_learning"
+        "universal_design_for_learning"
       ]
     },
     {
       "id": "ail606_supplement_1_5_learner_variability_and_udl_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "A designer wants to provide multiple means of engagement. Which option targets engagement specifically rather than representation?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Add captions and a transcript to the video.",
+        "Offer learners a choice of authentic scenario topics and make the relevance of the task explicit.",
+        "Provide the reading in both PDF and large-print HTML.",
+        "Let learners answer by typing or by speaking."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_1_5_learner_variability_and_udl_completion_only_model",
-      "difficulty": "hard",
+      "explanation": "Engagement concerns the why of learning: relevance, choice, and motivation. Captions and formats are representation; typing or speaking is action and expression.",
+      "misconception_id": "ail606_supplement_1_5_udl_is_just_formats",
+      "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
       ]

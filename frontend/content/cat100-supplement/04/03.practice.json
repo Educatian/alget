@@ -8,54 +8,55 @@
         "cat100_supplement_checking_ai_pedagogical_advice",
         "cat100_supplement_ai_conversations_as_a_teacher"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your fact-check table has columns Claim, Source you found, and Verdict. One row reads claim '90% of what they teach' with source 'no peer-reviewed study found.' What verdict fits?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "TRUE, because the number is specific.",
+        "FALSE (fabricated statistic), because no source supports it.",
+        "Leave the verdict blank since the number sounds right.",
+        "TRUE-ish, because the AI sounded confident."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_polish_as_evidence",
+      "explanation": "No locatable source means the precise number is fabricated; specificity is not evidence.",
+      "misconception_id": "cat100_supplement_4_3_precise_number_trust",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_checking_ai_pedagogical_advice",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_checking_ai_pedagogical_advice"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The AI says 'proven by Edgar Dale (1969).' You find Dale's actual work assigns no percentages. Which verdict is correct?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "TRUE, because Dale is a real author.",
+        "MISATTRIBUTED, because the real source does not make the claimed point.",
+        "FALSE, because Dale never existed.",
+        "Skip it; the citation makes it trustworthy."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_annotation_without_signal",
+      "explanation": "A real author named for a claim he did not make is a misattribution, a common AI error.",
+      "misconception_id": "cat100_supplement_4_3_citation_means_true",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_checking_ai_pedagogical_advice",
       "concept_ids": [
+        "cat100_supplement_checking_ai_pedagogical_advice",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI reply mixes a usable idea ('peer tutoring can help') with a fabricated 90% statistic. What is the strongest way to record the check?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Mark the whole reply FALSE and discard everything.",
+        "Mark the whole reply TRUE because part of it is fine.",
+        "Split into rows: keep the supported idea, reject the fabricated statistic, and log each source.",
+        "Trust the AI's overall conclusion and move on."
       ],
-      "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_ai_as_authority",
+      "correct_index": 2,
+      "explanation": "Per-claim rows let you keep what is supported and reject what is not; one verdict for a mixed reply hides the truth.",
+      "misconception_id": "cat100_supplement_4_3_whole_reply_one_verdict",
       "difficulty": "hard"
     },
     {
@@ -63,18 +64,19 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_evidence_based_revision",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat100_supplement_checking_ai_pedagogical_advice"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Why give each AI claim its own row in the verification table instead of one verdict for the reply?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "It makes the table longer.",
+        "A reply can be part true and part fabricated; per-claim rows show exactly which claim failed.",
+        "Spreadsheets require at least three rows.",
+        "It hides the weak claims from the reader."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_4_3_checking_ai_pedagogical_advice_completion_only_model",
+      "explanation": "Separating claims surfaces mixed reliability and makes the check inspectable.",
+      "misconception_id": "cat100_supplement_4_3_whole_reply_one_verdict",
       "difficulty": "medium"
     }
   ]

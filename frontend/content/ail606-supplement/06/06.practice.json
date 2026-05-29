@@ -3,18 +3,18 @@
     {
       "id": "ail606_supplement_6_6_peer_scholarly_critique_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_peer_scholarly_critique",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "peer_review",
+      "stem": "A peer review of a classmate's prototype reads in full: 'Great work, very clear and professional. 5/5.' Why does this fall short of scholarly critique?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too short to be polite.",
+        "It is praise with a rating but names no specific element, problem, or criterion the author can act on.",
+        "It should not include a numeric rating.",
+        "It uses the word professional."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_6_6_peer_scholarly_critique_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Scholarly critique identifies a specific element, the problem with it, and the criterion behind the judgment; encouragement alone is not critique.",
+      "misconception_id": "ail606_supplement_6_6_praise_as_critique",
+      "difficulty": "easy",
       "concept_ids": [
         "peer_review"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_6_6_peer_scholarly_critique_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "peer_review",
+      "stem": "Which peer comment gives the author the most actionable, defensible feedback?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "I would have picked a different color scheme; blue feels nicer to me.",
+        "The Module 2 objective says 'evaluate,' but the matching activity only asks learners to recall definitions, so the assessment is misaligned.",
+        "This is not really my style.",
+        "I think most people would prefer a video here."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_6_6_peer_scholarly_critique_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Tying critique to a shared criterion (objective-to-assessment alignment) lets the author judge the point on its merits, unlike a preference statement.",
+      "misconception_id": "ail606_supplement_6_6_opinion_without_criterion",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "peer_review"
       ]
     },
     {
       "id": "ail606_supplement_6_6_peer_scholarly_critique_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI to draft a critique of a peer's storyboard and it lists a 'missing accessibility statement' the storyboard does not actually have a place for. What is the correct move before submitting?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Submit the AI critique as written; it sounds thorough.",
+        "Verify each flagged issue against the peer's actual artifact and remove or correct points that are not real.",
+        "Add even more AI-generated points to look rigorous.",
+        "Tell the peer the AI found the problems, so they are not your responsibility."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_6_6_peer_scholarly_critique_ai_as_authority",
+      "explanation": "An unverified AI critique can fabricate issues; you must confirm each point against the real artifact before it becomes your review.",
+      "misconception_id": "ail606_supplement_6_6_ai_critique_unverified",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_6_6_peer_scholarly_critique_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You received eight peer comments. A reviewer says your response 'shows no judgment' because you applied all eight edits without comment. What practice fixes this?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Apply none of the comments instead.",
+        "Record a disposition for each comment, accept, modify, or reject, with a one-line reason.",
+        "Ask the peers to rewrite their comments.",
+        "Only respond to the comments from the highest-rated peer."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_6_6_peer_scholarly_critique_completion_only_model",
+      "explanation": "Logging a reasoned accept, modify, or reject per comment shows that peer review informed your judgment rather than replacing it.",
+      "misconception_id": "ail606_supplement_6_6_critique_without_disposition",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_evidence_based_revision"
       ]
     }
   ]

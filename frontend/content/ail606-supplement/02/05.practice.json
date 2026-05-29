@@ -4,17 +4,17 @@
       "id": "ail606_supplement_2_5_ai_tutor_boundaries_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_tutor_boundaries",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A learner asks the embedded AI tutor, \"What is the answer to problem 4?\" Which tutor behavior best respects a learning boundary?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Give the final answer so the learner can move on quickly.",
+        "Withhold the final answer and instead ask which step the learner is stuck on, then offer the next move.",
+        "Refuse to respond to any question about problem 4.",
+        "Give the answer but add a disclaimer that the learner should not rely on it."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_2_5_ai_tutor_boundaries_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A learning tutor's boundary keeps the learner doing the thinking. It withholds the final answer and offers a scaffolded next step instead.",
+      "misconception_id": "ail606_supplement_2_5_ai_tutor_boundaries_tutor_should_answer_everything",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_ai_tutor_boundaries"
       ]
@@ -22,55 +22,55 @@
     {
       "id": "ail606_supplement_2_5_ai_tutor_boundaries_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_ai_tutor_boundaries",
+      "stem": "Which AI-use disclosure is auditable rather than a blanket statement?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "AI tools were used during this assignment.",
+        "I asked the tutor to suggest three alternative phrasings for my rubric's top level; I adopted one, reworded it to match my course language, and rejected two for being vague.",
+        "This work is partly AI-assisted.",
+        "AI helped me think about the project."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_2_5_ai_tutor_boundaries_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "An auditable disclosure names the bounded decision the AI touched, what it proposed, and what was accepted or rejected. A blanket sentence cannot be inspected.",
+      "misconception_id": "ail606_supplement_2_5_ai_tutor_boundaries_disclosure_is_blanket",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_ai_tutor_boundaries"
       ]
     },
     {
       "id": "ail606_supplement_2_5_ai_tutor_boundaries_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_ai_tutor_boundaries",
+      "stem": "An AI tutor gives a confident, well-written explanation of a learning theory that a learner has never seen. What boundary should the design enforce before the learner relies on it?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "None; if the explanation is fluent and confident, it is trustworthy.",
+        "A verification step that checks the tutor's claim against the assigned course material, because fluency is not the same as accuracy.",
+        "Block the tutor from explaining any theory at all.",
+        "Require the learner to rate the explanation's writing quality."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_2_5_ai_tutor_boundaries_ai_as_authority",
+      "explanation": "Fluent, confident output can still be wrong. A verification boundary against course evidence protects the learner from authoritative-sounding error.",
+      "misconception_id": "ail606_supplement_2_5_ai_tutor_boundaries_fluent_means_correct",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_ai_tutor_boundaries"
       ]
     },
     {
       "id": "ail606_supplement_2_5_ai_tutor_boundaries_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Your draft disclosure reads: \"I used AI to improve my storyboard.\" An instructor flags it as not auditable. Which revision best fixes it?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Add the brand name of the AI tool you used.",
+        "Rewrite it to name the one bounded decision (the tutor suggested merging two onboarding frames), the evidence you checked it against (the pilot drop-off data), and your verdict (rejected, because merging hid the action cue).",
+        "Delete the disclosure so it no longer draws attention.",
+        "Expand it to a full paragraph describing how impressive the AI is."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_2_5_ai_tutor_boundaries_completion_only_model",
+      "explanation": "A defensible disclosure ties a specific bounded decision to the evidence used to judge the AI's suggestion and records the accept-or-reject verdict.",
+      "misconception_id": "ail606_supplement_2_5_ai_tutor_boundaries_disclosure_is_blanket",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

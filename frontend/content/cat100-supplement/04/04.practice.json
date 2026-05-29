@@ -8,35 +8,35 @@
         "cat100_supplement_classroom_communication_drafts",
         "cat100_supplement_ai_conversations_as_a_teacher"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Which subject line passes the 'names the topic' requirement for a parent email?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Subject: Concern",
+        "Subject: Math homework missing for Maria (week of May 18)",
+        "Subject: Hello",
+        "Subject: Important"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_4_4_classroom_communication_drafts_polish_as_evidence",
+      "explanation": "It names the topic, the student, and the timeframe so the reader knows the content before opening.",
+      "misconception_id": "cat100_supplement_4_4_vague_subject_line",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_4_4_classroom_communication_drafts_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_classroom_communication_drafts",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_classroom_communication_drafts"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The body reads: 'There have been some issues lately.' Which rewrite supplies the missing concrete fact?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Things have not been going great recently.",
+        "Maria has not turned in the three math worksheets due May 18, 19, and 20.",
+        "We are a little worried about some stuff.",
+        "Please reach out when you have time."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_4_4_classroom_communication_drafts_annotation_without_signal",
+      "explanation": "One dated, countable fact replaces vague worry; the reader now knows exactly what happened.",
+      "misconception_id": "cat100_supplement_4_4_no_concrete_fact",
       "difficulty": "medium"
     },
     {
@@ -44,37 +44,39 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_classroom_communication_drafts"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Your draft already passes the Tone check. The AI suggests adding 'this is urgent and serious.' What is the strongest move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept it; stronger words make the email more effective.",
+        "Reject it and log why: the Tone part already passed and the phrase alarms without adding a fact.",
+        "Put it in the subject line instead.",
+        "Add it twice for emphasis."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_4_4_classroom_communication_drafts_ai_as_authority",
+      "explanation": "Rejecting against an already-passing field and recording the reason is the evidence trace.",
+      "misconception_id": "cat100_supplement_4_4_no_concrete_fact",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_4_4_classroom_communication_drafts_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_classroom_communication_drafts",
       "concept_ids": [
+        "cat100_supplement_classroom_communication_drafts",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which closing line gives the reader a clear action with a deadline?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "We should discuss this at some point.",
+        "Could you check her folder this week and reply by Friday so we can set a make-up plan?",
+        "Let me know your thoughts whenever.",
+        "Thanks for being a great parent."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_4_4_classroom_communication_drafts_completion_only_model",
+      "explanation": "It names a specific action (check folder, reply) and a deadline (Friday); the others leave the reader nothing to do.",
+      "misconception_id": "cat100_supplement_4_4_no_clear_action",
       "difficulty": "medium"
     }
   ]

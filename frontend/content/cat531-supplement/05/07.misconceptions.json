@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs",
   "misconceptions": [
     {
-      "id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_5_7_review_is_praise",
+      "pattern": "peer_review_as_praise",
+      "description": "Treating peer review as encouragement or surface praise rather than a check on whether the conclusion is supported by the evidence",
+      "trigger": "reviewer offers approval or style comments instead of testing the reasoning",
+      "feedback": "Check whether the brief's conclusion follows from its own evidence and name the exact gap. Praise and style notes do not strengthen the reasoning.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_5_7_review_imposes_reviewer_choice",
+      "pattern": "reviewer_substitutes_own_preference",
+      "description": "Reviewing a brief by stating which tool or approach the reviewer would have chosen rather than assessing the author's reasoning",
+      "trigger": "reviewer rewrites the decision in their own image",
+      "feedback": "Review the author's reasoning against their own question and evidence, not the brief you would have written.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_5_7_ai_review_replaces_reviewer",
+      "pattern": "ai_review_forwarded_unverified",
+      "description": "Forwarding an AI-generated review as your own without reading the brief and verifying the points",
+      "trigger": "reviewer passes on AI feedback without checking it against the brief",
+      "feedback": "Read the brief yourself and use AI points as prompts. Only pass on critiques you have verified against the brief's actual evidence.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_5_7_peer_review_of_evaluation_briefs_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_5_7_confidence_answers_review",
+      "pattern": "confidence_substituted_for_evidence",
+      "description": "Responding to a peer review flag by asserting confidence rather than supplying evidence or revising the claim",
+      "trigger": "author dismisses a gap because they feel sure of the conclusion",
+      "feedback": "Confidence is not evidence. Add the missing support or revise the conclusion to match what the evidence shows.",
+      "rail_action": "ask"
     }
   ]
 }

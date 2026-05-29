@@ -33,17 +33,29 @@ Three course anchors shape the reasoning here:
 
 Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
 
-## Worked Example
+## Worked Example: Adapting a Bot Prompt for a Specific Class
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+The default Ethobot prompt may not fit every class. Here a teacher adapts a prompt for a 9th-grade class where most students are English learners, then annotates the effect. Work it as numbered before/after steps.
 
-> I made the Ethobot transcript annotation showing where ethical reasoning changed clearer.
+Default Ethobot prompt: "Conduct a Socratic dialogue probing the ethics of surveillance in schools."
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+What went wrong in the first run:
 
-> I revised the Ethobot transcript annotation showing where ethical reasoning changed so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **critical edtech studies**, and I can point to the exact part of the artifact that changed.
+1. Students gave one-word answers; the prompt's vocabulary (Socratic, probing) was opaque.
+2. The abstract framing ("surveillance in schools") drew no personal stakes.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **critical edtech studies**, and the exact revision that followed.
+Step-by-step prompt adaptation:
+
+- Step 1. Replace jargon with a concrete scenario. New opener: "Your school is thinking about cameras in the hallway. Who would feel safer, and who would feel watched?"
+- Step 2. Constrain the move, not the answer. Add: "Ask one follow-up that makes the student name a person affected, then stop."
+- Step 3. Add a scaffold for language, not for the verdict. "If the student gives a one-word answer, ask: can you give an example from your own school day?"
+- Step 4. Annotate the change in a re-run transcript. Mark where richer reasoning appeared compared to the default run.
+
+Before (weak adaptation note): "I simplified the prompt and it worked better."
+
+After (strong): "Adapted the prompt by swapping 'Socratic dialogue probing surveillance' for a concrete hallway-camera scenario and adding a one-follow-up scaffold for one-word answers. Evidence it helped: in the re-run, Turn 3 moved from 'cameras bad' to 'my little brother would feel watched but the front office would feel safer.' The change I rejected was adding the teacher's own opinion to the prompt, because that would steer the verdict."
+
+The strong note states the exact prompt edit, shows transcript evidence of the effect, and records a rejected change, which a colleague can audit.
 
 ## Decision Rule
 

@@ -4,16 +4,16 @@
       "id": "cat531_supplement_7_5_student_voice_and_feedback_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_student_voice_and_feedback",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A candidate wants student voice on whether a new AI tutoring tool helped them. Which method gives student feedback weight in the decision rather than treating it as decoration?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Ask the class to clap if they liked the tool.",
+        "Use a short anonymous exit form asking which step confused them and which helped, then report the patterns back and name what she will change because of them.",
+        "Pick two students who already like technology and quote them.",
+        "Skip student feedback because the candidate already saw the scores rise."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_7_5_student_voice_and_feedback_polish_as_evidence",
+      "explanation": "Student voice has weight when feedback is gathered fairly, patterns are reported, and a change follows. Clapping, cherry-picked quotes, and skipping voice all treat students as decoration.",
+      "misconception_id": "cat531_supplement_7_5_voice_as_decoration",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_field_based_transfer_and_coaching",
@@ -26,16 +26,16 @@
       "id": "cat531_supplement_7_5_student_voice_and_feedback_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Most students rated the tool 4 of 5, but the four multilingual learners rated it 2 of 5 and wrote that the audio was too fast. How should the candidate handle this in her feedback summary?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Report only the 4 of 5 average since that is the majority view.",
+        "Surface the subgroup split, name the audio-speed barrier the multilingual learners reported, and propose a specific fix before averaging away their voice.",
+        "Drop the low ratings as outliers.",
+        "Conclude the tool works because most students were satisfied."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_7_5_student_voice_and_feedback_annotation_without_signal",
+      "explanation": "Averaging away a subgroup's signal silences the students the audit should protect. Strong practice surfaces the split and acts on the named barrier.",
+      "misconception_id": "cat531_supplement_7_5_average_silences_subgroup",
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
@@ -45,16 +45,16 @@
       "id": "cat531_supplement_7_5_student_voice_and_feedback_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The candidate pastes open-ended student comments into an AI tool to theme them. The AI labels most comments positive and quietly drops several critical ones. What is the defensible move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept the positive theme because the AI processed all comments.",
+        "Read the raw comments herself, restore the dropped critical ones, and check the AI themes against what students actually wrote.",
+        "Ask the AI to make the summary sound more balanced without rereading the comments.",
+        "Report only the comments the AI surfaced."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_7_5_student_voice_and_feedback_ai_as_authority",
+      "explanation": "AI theming can suppress minority feedback. The candidate must verify the themes against the raw student voice and restore what was dropped, because student voice cannot be delegated.",
+      "misconception_id": "cat531_supplement_7_5_ai_themes_drop_voice",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -64,16 +64,16 @@
       "id": "cat531_supplement_7_5_student_voice_and_feedback_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "What record best shows that student voice actually shaped the candidate's decision about the tool?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A chart of overall satisfaction.",
+        "The feedback patterns, the subgroup concern, the specific change the candidate made in response, and how she told students their input was used.",
+        "A note that students completed the survey.",
+        "A screenshot of the highest rating received."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_7_5_student_voice_and_feedback_completion_only_model",
+      "explanation": "Voice shapes a decision when there is a traceable line from feedback to a change, and students learn how their input was used. A satisfaction chart or completion note does not show that link.",
+      "misconception_id": "cat531_supplement_7_5_survey_without_response",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

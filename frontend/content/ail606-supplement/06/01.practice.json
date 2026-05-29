@@ -4,16 +4,16 @@
       "id": "ail606_supplement_6_1_evidence_of_iteration_documentation_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_of_iteration_documentation",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A designer's iteration log for a branching storyboard reads: 'v1, v2, v3, v4, v5 - kept refining the screens.' What is the strongest objection a capstone reviewer would raise?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Five versions is too few to count as real iteration.",
+        "The log proves activity but not learning: it never names the problem each version was responding to.",
+        "Version numbers should use semantic versioning such as 1.0.1.",
+        "The designer should have stopped at v3 to save time."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_6_1_evidence_of_iteration_documentation_polish_as_evidence",
+      "explanation": "An iteration log earns credit when each version is tied to a problem-change-result chain, not by the count of versions.",
+      "misconception_id": "ail606_supplement_6_1_version_count_as_iteration",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_evidence_of_iteration_documentation"
@@ -23,57 +23,57 @@
       "id": "ail606_supplement_6_1_evidence_of_iteration_documentation_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Two log entries describe the SAME storyboard frame. Which one documents a design iteration rather than a polish change?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Changed the heading font from Arial to Calibri and recentered the title.",
+        "Recolored the Next button from gray to blue for brand consistency.",
+        "Split one dense narration frame into two and added a reader-action prompt between them after testers skipped the segment.",
+        "Adjusted the slide margins from 0.5 in to 0.75 in."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_6_1_evidence_of_iteration_documentation_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "A design diff changes what the learner must do or process; the other three are styling-only polish diffs.",
+      "misconception_id": "ail606_supplement_6_1_polish_diff_as_design_diff",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_evidence_of_iteration_documentation"
       ]
     },
     {
       "id": "ail606_supplement_6_1_evidence_of_iteration_documentation_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI assistant to help write the rationale column of your iteration log. Which use keeps the documentation defensible?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Have the AI invent plausible-sounding rationales for every change so the log looks complete.",
+        "Paste your tryout notes and rubric lines, then ask the AI to draft rationale wording you verify against those sources before keeping it.",
+        "Let the AI decide which changes were important and delete the rest from the log.",
+        "Ask the AI to rate your storyboard so you can list its score as the evidence."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_6_1_evidence_of_iteration_documentation_ai_as_authority",
+      "explanation": "AI may help phrase a rationale grounded in real sources you supply and verify; it must not manufacture the evidence itself.",
+      "misconception_id": "ail606_supplement_6_1_unsourced_change_rationale",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_6_1_evidence_of_iteration_documentation_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A reviewer says your iteration log 'shows decisions but not judgment.' Which single addition best answers that critique?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A larger thumbnail of each final screen.",
+        "A timestamp on every edit.",
+        "For at least one change, the alternative design you considered and rejected, with the reason it lost.",
+        "A word count for each narration block."
       ],
-      "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_6_1_evidence_of_iteration_documentation_completion_only_model",
+      "correct_index": 2,
+      "explanation": "Keeping a rejected alternative with its reason exposes the trade-off you weighed, which is what makes judgment auditable.",
+      "misconception_id": "ail606_supplement_6_1_iteration_log_hides_rejected_paths",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_evidence_based_revision"
       ]
     }
   ]

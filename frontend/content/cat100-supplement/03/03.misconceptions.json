@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_3_3_charts_that_answer_questions",
   "misconceptions": [
     {
-      "id": "cat100_supplement_3_3_charts_that_answer_questions_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_3_3_charts_that_answer_questions_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_3_3_charts_that_answer_questions_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_3_3_charts_that_answer_questions_pie_for_trend",
+      "pattern": "pie_chart_for_change_over_time",
+      "description": "Using a pie or doughnut chart to show change over time when the question is about a trend across an ordered axis",
+      "trigger": "learner picks a pie chart to display values across months or years",
+      "feedback": "Use a line chart for change over time. Reserve pie charts for parts of a single whole at one moment.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_3_3_charts_that_answer_questions_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_3_3_charts_that_answer_questions_truncated_axis",
+      "pattern": "truncated_value_axis",
+      "description": "Starting a bar or column value axis above 0 so small differences look much larger than they are",
+      "trigger": "learner leaves the value axis truncated on a bar or column chart",
+      "feedback": "Start the value axis of a bar or column chart at 0 so bar heights stay proportional to the actual numbers.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_3_3_charts_that_answer_questions_topic_not_claim_title",
+      "pattern": "topic_title_not_finding",
+      "description": "Titling a chart with its topic or genre rather than the finding the reader should take away",
+      "trigger": "learner labels a chart 'Sales Chart' or 'Figure 3' instead of stating the point",
+      "feedback": "Write a claim-first title that states the finding, then let the chart serve as evidence for that one point.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_3_3_charts_that_answer_questions_line_for_categories",
+      "pattern": "line_chart_for_categories",
+      "description": "Connecting unrelated categories with a line, implying a sequence that does not exist between separate groups",
+      "trigger": "learner uses a line chart to compare discrete categories like separate stores",
+      "feedback": "Compare discrete categories with a bar or column chart. Use a line only when the horizontal axis is an ordered sequence.",
       "rail_action": "practice"
     }
   ]

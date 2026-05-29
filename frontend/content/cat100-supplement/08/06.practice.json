@@ -8,16 +8,16 @@
         "cat100_supplement_revision_sprint",
         "cat100_supplement_course_completion_and_transfer"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You have a 30-minute revision sprint. Your budget sheet shows a #REF! error in the Total cell, and the page also has a plain default font. Which do you fix first and why?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The font, because it is the first thing people see.",
+        "The #REF! error, because a wrong or broken total fails the artifact no matter how it looks; cosmetics come after correctness.",
+        "Neither; 30 minutes is too short to fix anything.",
+        "Both at once by restarting the file."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_8_6_revision_sprint_polish_as_evidence",
+      "explanation": "Triage by impact. A broken total is a correctness failure; fix it before any cosmetic change in a limited time box.",
+      "misconception_id": "cat100_supplement_8_6_polish_before_fix",
       "difficulty": "easy"
     },
     {
@@ -27,16 +27,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "During the sprint you make six edits to your spreadsheet, then overwrite the file each time with no record. A peer asks what you changed. Why is this a problem?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It is not a problem; the final file speaks for itself.",
+        "Without a changelog you cannot show what changed or revert an edit that broke something, so the sprint is not reviewable.",
+        "Six edits is too many for one sprint.",
+        "You should have used a different spreadsheet program."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_8_6_revision_sprint_annotation_without_signal",
+      "explanation": "A short changelog of time, change, and reason makes the sprint traceable and lets you roll back a change that made things worse.",
+      "misconception_id": "cat100_supplement_8_6_no_changelog",
       "difficulty": "medium"
     },
     {
@@ -46,16 +46,16 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "With 20 minutes left in the sprint, an AI tool suggests rebuilding your whole HTML layout with a CSS grid. You have three small known bugs. What is the disciplined move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Start the full grid rebuild; the AI knows best.",
+        "Decline the rebuild for now, fix the three known bugs within the time box, and log the grid idea as a future item.",
+        "Ignore the AI entirely and stop working.",
+        "Rebuild half the layout and leave it unfinished."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_8_6_revision_sprint_ai_as_authority",
+      "explanation": "A sprint revises, it does not rebuild. Use the time for high-impact targeted fixes and defer larger rework so you do not ship something broken.",
+      "misconception_id": "cat100_supplement_8_6_scope_creep",
       "difficulty": "hard"
     },
     {
@@ -65,16 +65,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which changelog entry best documents a sprint edit so a reviewer can trace it?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "'Fixed some stuff.'",
+        "'14:05 - replaced #REF! in Total (B14) with =SUM(B2:B13)=8,420; verified against the receipts tab. Reason: broken reference after a deleted row.'",
+        "'Made it better.'",
+        "'Worked on the file for a while.'"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_8_6_revision_sprint_completion_only_model",
+      "explanation": "A traceable entry gives the time, the exact cell and formula, the verified result, and the reason, so a reviewer can confirm the fix.",
+      "misconception_id": "cat100_supplement_8_6_no_changelog",
       "difficulty": "medium"
     }
   ]

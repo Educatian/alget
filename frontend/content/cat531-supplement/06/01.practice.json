@@ -4,16 +4,16 @@
       "id": "cat531_supplement_6_1_synthesis_across_modules_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_synthesis_across_modules",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher's Design Tension Studio map names the value conflict as \"personalized AI feedback (efficiency) versus equal access for students without reliable home internet (equity).\" Which version best shows synthesis across the CAT 531 modules rather than a single-module answer?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It cites the most modules by listing TPACK, critical edtech studies, and datafication in the introduction.",
+        "It connects the pedagogy module (why the feedback is needed), the equity module (who is excluded), and the ethics module (the consent boundary) into one negotiated decision the teacher will defend.",
+        "It picks whichever module the teacher found easiest and applies only that lens.",
+        "It resolves the tension by choosing the option that needs the least classroom change."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_6_1_synthesis_across_modules_polish_as_evidence",
+      "explanation": "Synthesis means letting multiple module lenses jointly shape one defensible decision, not name-dropping modules or collapsing to a single comfortable lens.",
+      "misconception_id": "cat531_supplement_6_1_synthesis_across_modules_listing_is_synthesis",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_final_project_and_professional_vision",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_6_1_synthesis_across_modules_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_synthesis_across_modules",
+      "stem": "On the tension map, a reviewer leaves the note: \"You named the equity risk in Module 3 and the consent rule in Module 5, but the map never says which one wins when they collide.\" What revision does this note call for?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Add more module citations so both lenses are clearly present.",
+        "Make the map more visually balanced so neither side looks larger.",
+        "State the priority rule the teacher used to negotiate the conflict, and the evidence that justified putting one value ahead of the other in this class.",
+        "Remove the weaker of the two values so the map shows only one position."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_6_1_synthesis_across_modules_annotation_without_signal",
+      "correct_index": 2,
+      "explanation": "Synthesis is not holding two lenses side by side; it is showing how the teacher negotiated the collision and why.",
+      "misconception_id": "cat531_supplement_6_1_synthesis_across_modules_tensions_left_unresolved",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_synthesis_across_modules",
         "evidence_based_revision"
       ]
     },
@@ -45,16 +46,16 @@
       "id": "cat531_supplement_6_1_synthesis_across_modules_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "While building the tension map, the teacher asks BigAL to draft it. The strongest professional boundary is to use AI to:",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Generate the full negotiated decision so every module is covered consistently.",
+        "Surface a competing value the teacher may have missed, which the teacher then accepts or rejects against classroom evidence and records the reason.",
+        "Decide which value should win, since the model has read more cases.",
+        "Rewrite the map in more confident language so it reads as more defensible."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_6_1_synthesis_across_modules_ai_as_authority",
+      "explanation": "AI can widen the field of values to consider, but the teacher owns the negotiated judgment and the recorded rationale.",
+      "misconception_id": "cat531_supplement_6_1_synthesis_across_modules_ai_resolves_tension",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -63,19 +64,20 @@
     {
       "id": "cat531_supplement_6_1_synthesis_across_modules_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_synthesis_across_modules",
+      "stem": "Two students submit tension maps on the same AI-tutor scenario. Map A reaches the same final decision as the answer key; Map B reaches a different decision. Under a synthesis standard, when is Map B the stronger artifact?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Never, because the answer key sets the correct negotiated decision.",
+        "Whenever Map B is longer and names more modules than Map A.",
+        "When Map B traces the value conflict, weighs each module lens, and justifies its different decision with classroom-specific evidence the key did not assume.",
+        "Only if Map B avoids using AI at any step."
       ],
-      "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_6_1_synthesis_across_modules_completion_only_model",
+      "correct_index": 2,
+      "explanation": "A synthesis map is judged on defensible reasoning across lenses for a specific context, not on matching one prescribed outcome.",
+      "misconception_id": "cat531_supplement_6_1_synthesis_across_modules_one_right_decision",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_synthesis_across_modules",
         "evidence_based_revision"
       ]
     }

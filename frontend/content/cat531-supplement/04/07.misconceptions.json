@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_4_7_adapting_ethobot_prompts",
   "misconceptions": [
     {
-      "id": "cat531_supplement_4_7_adapting_ethobot_prompts_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_4_7_adapting_ethobot_prompts_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_4_7_adapting_ethobot_prompts_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_4_7_default_prompt_universal",
+      "pattern": "default_prompt_fits_every_class",
+      "description": "Assuming the default Ethobot prompt works equally well for every class regardless of language, age, or context",
+      "trigger": "learner runs the default prompt with English learners or young students and blames the students when responses are thin",
+      "feedback": "Adapt the prompt to the class. Replace jargon with a concrete scenario and add scaffolds, then check the transcript for richer reasoning.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_4_7_adapting_ethobot_prompts_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_4_7_steering_the_verdict",
+      "pattern": "adapting_prompt_to_steer_conclusion",
+      "description": "Adapting a prompt by inserting the teacher's own opinion, which steers students toward a predetermined verdict",
+      "trigger": "learner edits the prompt to tell students what the right answer is",
+      "feedback": "Adapt the move, not the conclusion. Scaffold how students reason; do not bake the verdict into the prompt.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_4_7_change_without_evidence",
+      "pattern": "claiming_improvement_without_transcript_evidence",
+      "description": "Reporting that a prompt change helped without pointing to evidence of changed reasoning in a re-run transcript",
+      "trigger": "learner writes 'it worked better' with no comparison transcript",
+      "feedback": "Show the evidence. Compare a turn from the default run and the adapted run to demonstrate where reasoning improved.",
+      "rail_action": "ask"
     }
   ]
 }

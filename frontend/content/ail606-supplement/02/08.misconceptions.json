@@ -2,36 +2,36 @@
   "section_id": "ail606_supplement_2_8_module_2_design_memo",
   "misconceptions": [
     {
-      "id": "ail606_supplement_2_8_module_2_design_memo_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_2_8_module_2_design_memo_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_2_8_module_2_design_memo_memo_is_summary",
+      "pattern": "memo_as_activity_log",
+      "description": "Writing the design memo as a chronological summary of what was done instead of an argument for a recommended decision",
+      "trigger": "learner narrates the steps taken across the module without stating a recommendation a reader must act on",
+      "feedback": "A design memo argues, it does not recount. Lead with the recommendation and the decision it answers, then use the module work as supporting evidence.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_2_8_module_2_design_memo_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_2_8_module_2_design_memo_no_named_audience",
+      "pattern": "memo_without_decision_owner",
+      "description": "Writing the memo with no named audience or decision owner, so it is unclear who must decide what",
+      "trigger": "learner addresses the memo to no one and names no decision the reader is being asked to make",
+      "feedback": "Name the audience and the decision they own. A memo to no one, about no decision, cannot be acted on.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_2_8_module_2_design_memo_recommendation_buried",
+      "pattern": "recommendation_buried_in_prose",
+      "description": "Hiding the recommendation in the last paragraph so a busy reader cannot find what is being proposed",
+      "trigger": "learner places the actual recommendation only at the end after several paragraphs of background",
+      "feedback": "Put the recommendation up front (a BLUF, bottom line up front). Background supports the recommendation; it should not bury it.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_2_8_module_2_design_memo_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_2_8_module_2_design_memo_evidence_not_linked",
+      "pattern": "evidence_listed_not_tied",
+      "description": "Listing module evidence without tying each piece to the specific claim it supports in the recommendation",
+      "trigger": "learner appends pilot data or audit results that are never connected to the recommended decision",
+      "feedback": "Tie each evidence item to the claim it backs. Unlinked data is decoration; linked data is the argument.",
+      "rail_action": "ask"
     }
   ]
 }

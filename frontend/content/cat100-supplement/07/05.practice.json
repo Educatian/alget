@@ -8,74 +8,74 @@
         "cat100_supplement_automation_safety_checks",
         "cat100_supplement_productivity_and_workflow_automation"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You wrote a rename rule to add a date prefix to 200 coursework files. What is the safe first step?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Run it on all 200 at once to save time",
+        "Run it on a copy of two or three files, check the result, then run the full set",
+        "Run it twice to be sure",
+        "Rename the folder instead"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_7_5_automation_safety_checks_polish_as_evidence",
+      "explanation": "A small dry run on copies catches a bad pattern before it corrupts all 200 files.",
+      "misconception_id": "cat100_supplement_7_5_no_dry_run",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_7_5_automation_safety_checks_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_automation_safety_checks",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_automation_safety_checks"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "In a spreadsheet you filter to show only 'overdue' rows, delete them, then clear the filter and find other rows missing. What went wrong, and what is safer?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Filtering is never safe; never use it",
+        "Deleting on a live filter can hit unintended rows; copy the rows you want to keep to a new sheet, or sort instead, then delete",
+        "You should have deleted the columns",
+        "The spreadsheet needed to be a PDF"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_7_5_automation_safety_checks_annotation_without_signal",
+      "explanation": "Deleting filtered rows can affect more than what you see. Preserving the kept rows first makes the delete reviewable.",
+      "misconception_id": "cat100_supplement_7_5_filter_then_delete_all",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_5_automation_safety_checks_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_automation_safety_checks",
       "concept_ids": [
-        "ai_supported_learning"
+        "cat100_supplement_automation_safety_checks"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You set an email rule: 'if subject contains class, move to Archive.' A week later you miss an advisor message. What is the fix?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Delete all your email rules",
+        "Make the rule specific (match the sender plus a precise subject) and check the Archive folder regularly",
+        "Move everything to Archive",
+        "Turn off email entirely"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_7_5_automation_safety_checks_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "An overbroad rule silently buries needed mail. Narrow the match and review the destination folder.",
+      "misconception_id": "cat100_supplement_7_5_inbox_rule_too_broad",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_5_automation_safety_checks_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_automation_safety_checks",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_automation_safety_checks"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "An automation will overwrite your synced project file with a generated version and cannot be undone in the app. What must you confirm first?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "That the new file has a nicer name",
+        "That a backup copy exists and there is version history or an undo path to recover the original",
+        "That you run it on a Friday",
+        "That the file is under 1 MB"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_7_5_automation_safety_checks_completion_only_model",
-      "difficulty": "medium"
+      "explanation": "Irreversible automations need a recovery path. A backup plus version history means a bad run is not permanent.",
+      "misconception_id": "cat100_supplement_7_5_no_undo_check",
+      "difficulty": "hard"
     }
   ]
 }

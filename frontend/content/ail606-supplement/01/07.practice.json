@@ -4,17 +4,17 @@
       "id": "ail606_supplement_1_7_design_rationale_as_evidence_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_design_rationale_as_evidence",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Which statement is a design rationale rather than a design description?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The intro screen has a blue header, a title, and a Start button.",
+        "We replaced the autoplay video with a Start button because pilot testers skipped ahead, and learner-controlled pacing reduced that off-task behavior.",
+        "The module contains eight screens and a quiz.",
+        "The font is Arial at 16 points throughout."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A rationale states the decision, the problem or evidence that motivated it, and the expected effect. The others merely describe what the artifact contains.",
+      "misconception_id": "ail606_supplement_1_7_rationale_is_description",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_design_rationale_as_evidence"
       ]
@@ -22,56 +22,56 @@
     {
       "id": "ail606_supplement_1_7_design_rationale_as_evidence_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_design_rationale_as_evidence",
+      "stem": "A rationale reads: 'We added the diagram because it makes the page more engaging and looks better.' Why is this not yet defensible evidence?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Because diagrams should never be added to a page.",
+        "Because it appeals to taste rather than to a learning principle or observed evidence, so a reviewer cannot evaluate or challenge the claim.",
+        "Because engagement is irrelevant to instructional design.",
+        "Because a rationale must always be at least one page long."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Defensible rationale grounds the decision in a principle or evidence a reviewer can test. 'Looks better' is a preference, not inspectable evidence.",
+      "misconception_id": "ail606_supplement_1_7_rationale_is_preference",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_design_rationale_as_evidence"
       ]
     },
     {
       "id": "ail606_supplement_1_7_design_rationale_as_evidence_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_design_rationale_as_evidence",
+      "stem": "Why does a strong design rationale record the alternatives considered and rejected, not only the final choice?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "To make the document longer for grading.",
+        "Because showing what was weighed and why one option was rejected lets a reviewer judge whether the decision was reasoned rather than arbitrary.",
+        "Because rejected options must always be implemented later.",
+        "Because the final choice is never the important part."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_ai_as_authority",
-      "difficulty": "medium",
+      "explanation": "Recording considered-and-rejected alternatives exposes the reasoning, turning the rationale into auditable evidence of judgment rather than an after-the-fact justification.",
+      "misconception_id": "ail606_supplement_1_7_rationale_only_final_choice",
+      "difficulty": "hard",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_design_rationale_as_evidence"
       ]
     },
     {
       "id": "ail606_supplement_1_7_design_rationale_as_evidence_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "A reviewer should be able to do which of the following after reading a strong design rationale?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Admire the visual polish of the final product.",
+        "Reconstruct why each major decision was made, what evidence supported it, and what was traded off, then challenge a specific decision.",
+        "Count the number of screens in the module.",
+        "Identify the designer's favorite color scheme."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_1_7_design_rationale_as_evidence_completion_only_model",
-      "difficulty": "hard",
+      "explanation": "Rationale as evidence makes reasoning inspectable: a reviewer can trace, evaluate, and contest specific decisions, which is the purpose of documenting it.",
+      "misconception_id": "ail606_supplement_1_7_rationale_is_description",
+      "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
       ]

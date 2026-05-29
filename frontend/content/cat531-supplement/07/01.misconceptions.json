@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements",
   "misconceptions": [
     {
-      "id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_7_1_context_identical_transfer",
+      "pattern": "context_identical_transfer",
+      "description": "Assuming an online case transfers to a real placement unchanged because it scored well online",
+      "trigger": "candidate copies the online activity step-for-step without naming a single placement constraint",
+      "feedback": "Name what the placement has that the online case did not (devices, time, roster) and change the activity to fit it before you teach it.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_7_1_fictional_case_equals_real_class",
+      "pattern": "fictional_roster_equals_real_students",
+      "description": "Treating a fictional online roster as if it represented the access needs of real placement students",
+      "trigger": "candidate ignores IEPs, language needs, or access gaps that the fictional case never modeled",
+      "feedback": "Compare the fictional roster to your real roster and let the accommodations the case ignored drive the redesign.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_7_1_ai_invented_context_as_fact",
+      "pattern": "ai_invented_context_as_fact",
+      "description": "Accepting AI-invented class size, device access, or student names as the real placement context",
+      "trigger": "candidate keeps AI-generated placement facts without checking them against observation",
+      "feedback": "Treat AI context as a draft. Replace every invented fact with what you actually observed in the placement.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_7_1_module_grade_proves_field_fit",
+      "pattern": "module_grade_as_field_evidence",
+      "description": "Citing the online module grade as proof that the adaptation worked with real students",
+      "trigger": "candidate offers only the original score, timing, or enjoyment as evidence of fit",
+      "feedback": "Show the assumption, the observed constraint, the change, and what students did differently. A grade is not field evidence.",
       "rail_action": "practice"
     }
   ]

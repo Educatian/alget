@@ -4,17 +4,17 @@
       "id": "ail606_supplement_3_1_storyboard_frames_as_claims_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_storyboard_frames_as_claims",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A storyboard frame caption reads: 'Screen shows a blue diagram of the water cycle with an arrow loop.' Why is this caption not yet a design claim?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It names the color, layout, and content but states no claim about what the learner will do or learn from the frame.",
+        "It does not specify the file format the image should be exported in.",
+        "It uses an arrow, which Mayer's principles forbid.",
+        "It describes a diagram instead of a photograph."
       ],
-      "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_3_1_storyboard_frames_as_claims_polish_as_evidence",
-      "difficulty": "medium",
+      "correct_index": 0,
+      "explanation": "A frame is a testable claim about learner action and learning, not a snapshot of the screen. Rewrite it as: 'Learner traces the loop to predict the next stage; next frame checks the prediction.'",
+      "misconception_id": "ail606_supplement_3_1_frame_is_decoration",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_storyboard_frames_as_claims"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_3_1_storyboard_frames_as_claims_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_storyboard_frames_as_claims",
+      "stem": "Frame 4 claims 'Highlighting the equation reduces search and frees working memory for the relationship.' What turns this into a defensible frame claim rather than an assertion?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Making the highlight a brighter shade of yellow.",
+        "Naming the warrant (signaling principle) and stating the processing it changes, so a reviewer can check the claim against theory.",
+        "Adding more equations to the same frame.",
+        "Moving the equation to a later frame without explanation."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_3_1_storyboard_frames_as_claims_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "A frame claim needs a warrant: the principle invoked plus the specific processing change it predicts. Without that, it is a claim with no theory behind it.",
+      "misconception_id": "ail606_supplement_3_1_no_warrant_for_frame",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_storyboard_frames_as_claims"
       ]
     },
     {
       "id": "ail606_supplement_3_1_storyboard_frames_as_claims_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_storyboard_frames_as_claims",
+      "stem": "You ask an AI tool to critique a storyboard frame. Which use keeps you the designer of record while using the tool well?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept the AI's rewritten caption because the wording sounds more professional.",
+        "Ask the AI to surface any frame whose caption states no observable learner behavior, then you decide which flags are real failures of the claim.",
+        "Have the AI generate all eight frame claims so the storyboard is internally consistent.",
+        "Use the AI only to make the captions shorter."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_3_1_storyboard_frames_as_claims_ai_as_authority",
+      "explanation": "Bounded use means the AI flags candidate weak claims and you judge each against the falsifiability standard. Authority over the claim stays with the designer.",
+      "misconception_id": "ail606_supplement_3_1_unfalsifiable_frame",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_storyboard_frames_as_claims"
       ]
     },
     {
       "id": "ail606_supplement_3_1_storyboard_frames_as_claims_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_storyboard_frames_as_claims",
+      "stem": "You revise Frame 5 to make its claim sharper, but a reviewer says the storyboard now contradicts itself. What did the revision most likely miss?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The export resolution of Frame 5.",
+        "Whether the new claim still inherits the setup from Frame 4 and hands valid evidence to Frame 6 in the claim chain.",
+        "The font used in the caption.",
+        "The total number of frames in the storyboard."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_3_1_storyboard_frames_as_claims_completion_only_model",
+      "explanation": "Frames argue in sequence: setup, claim, evidence. Sharpening one frame's claim can break the chain if the setup it inherits or the evidence it hands off no longer fits.",
+      "misconception_id": "ail606_supplement_3_1_frame_sequence_ignored",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_storyboard_frames_as_claims"
       ]
     }
   ]

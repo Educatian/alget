@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_5_7_prioritizing_iterations",
   "misconceptions": [
     {
-      "id": "ail606_supplement_5_7_prioritizing_iterations_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_5_7_prioritizing_iterations_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_5_7_prioritizing_iterations_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_5_7_prioritize_by_ease",
+      "pattern": "prioritize_by_ease_of_fix",
+      "description": "Ordering revisions by how quick or easy each fix is rather than by impact",
+      "trigger": "learner schedules trivial quick fixes first and defers a task-blocking defect",
+      "feedback": "Rank by severity and reach first. A quick fix that does not unblock the goal should not jump ahead of a blocking issue.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_5_7_prioritizing_iterations_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_5_7_frequency_over_severity",
+      "pattern": "frequency_outranks_severity",
+      "description": "Letting how often an issue is mentioned outrank how badly it blocks the task",
+      "trigger": "learner ranks a frequently mentioned cosmetic issue above a less-mentioned task-blocking one",
+      "feedback": "Weigh severity against reach. A frequent minor complaint does not outrank a barrier that stops users completing the core task.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_5_7_ignore_access_barrier",
+      "pattern": "access_barrier_deprioritized",
+      "description": "Deprioritizing an accessibility barrier because it does not block the task for most users",
+      "trigger": "learner ranks a contrast or access issue below a trivial cosmetic fix",
+      "feedback": "Treat access barriers as carrying weight beyond task completion; do not rank them below trivial fixes.",
+      "rail_action": "ask"
     }
   ]
 }

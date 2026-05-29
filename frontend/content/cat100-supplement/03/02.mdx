@@ -35,15 +35,23 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Suppose an order sheet looks like this. Quantity is in column B, unit price in column C, and the shipping fee for all rows is fixed in cell F1 = 5.
 
-> I made the Excel pivot-table finding with unit labels, source note, and claim-first chart title clearer.
+```
+   A         B    C       D            E
+1  Shipping  5
+2  Item      Qty  Price   Line Total   With Ship
+3  Mug       3    4.00     ?            ?
+4  Pen       10   1.50     ?            ?
+```
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+Step 1. In D3 write `=B3*C3`. That returns `3*4.00 = 12.00`. Copy D3 down to D4. Because B3 and C3 are relative, D4 becomes `=B4*C4 = 10*1.50 = 15.00`.
 
-> I revised the Excel pivot-table finding with unit labels, source note, and claim-first chart title so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Step 2. In E3 write `=D3+$F$1`. The `$F$1` is absolute, so copying E3 down keeps pointing at the one shipping cell. E3 = `12.00 + 5 = 17.00` and E4 = `15.00 + 5 = 20.00`. If you had written `=D3+F1` instead, E4 would read `=D4+F2`, F2 is empty, and the shipping silently drops to 0.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+Step 3. Total the orders with `=SUM(E3:E4)`, which returns `37.00`.
+
+The decision a reader can audit: relative references (`B3`, `C3`) for per-row inputs, an absolute reference (`$F$1`) for the one shared fee. Mixing those up is the single most common formula error in this section.
 
 ## Decision Rule
 

@@ -3,17 +3,17 @@
     {
       "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_prompting_for_classroom_constraints",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "prompting_practice",
+      "stem": "Which addition to a TeachGen@i prompt is an actual constraint the returned plan can be checked against?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"Make it really engaging and rigorous.\"",
+        "\"Keep every direct-instruction segment to four minutes or less and assign no homework.\"",
+        "\"Make sure students enjoy it.\"",
+        "\"Use your best judgment to make it great.\""
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_2_3_prompting_for_classroom_constraints_polish_as_evidence",
+      "explanation": "A constraint is checkable: a time cap and a no-homework rule can be verified in the plan. Adjectives like engaging and rigorous are wishes, not limits.",
+      "misconception_id": "cat531_supplement_2_3_prompting_for_classroom_constraints_more_detail_better",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
@@ -25,57 +25,60 @@
     {
       "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "prompting_practice",
+      "stem": "A prompt lists two requirements: \"a student with an IEP needs extended time\" and \"it would be nice to add a movement break.\" The AI returns a plan that drops extended time to fit the movement break. What is the right teacher move?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Accept it, since the plan now includes the requested movement break.",
+        "Re-prompt and protect the extended-time accommodation as non-negotiable, treating the movement break as optional.",
+        "Drop both requirements to simplify the plan.",
+        "Let students vote on which requirement to keep."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_2_3_prompting_for_classroom_constraints_annotation_without_signal",
+      "explanation": "Extended time is a hard accommodation; a movement break is a soft preference. A defensible prompt never lets a preference override a legal or safety requirement.",
+      "misconception_id": "cat531_supplement_2_3_prompting_for_classroom_constraints_soft_vs_hard",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "prompting_practice",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "A teacher prompts \"no homework,\" the plan looks clean, and the teacher submits it. A colleague later finds a take-home reading buried in the closure. What does this miss?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Nothing; stating the constraint in the prompt is enough.",
+        "The teacher never re-read the returned plan against the no-homework constraint, so a stated constraint went unverified.",
+        "The colleague is being too strict about homework.",
+        "The plan should have been longer to be safe."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_2_3_prompting_for_classroom_constraints_ai_as_authority",
+      "explanation": "A stated constraint is not a satisfied constraint. After each prompt the teacher must re-read the plan against every hard limit.",
+      "misconception_id": "cat531_supplement_2_3_prompting_for_classroom_constraints_unverified_compliance",
       "difficulty": "medium",
       "concept_ids": [
+        "prompting_practice",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_2_3_prompting_for_classroom_constraints_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Which transcript entry best documents disciplined prompting for constraints that a mentor could audit?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A single polished prompt and a finished plan, with no iterations shown.",
+        "Three prompt iterations: the first stated the 38-minute cap, the second re-prompted because the plan ran 52 minutes, and the third confirmed each segment was timed, with a note that an AI-suggested quiz was rejected for adding homework.",
+        "A note saying the prompt worked on the first try.",
+        "The number of words in the final prompt."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_2_3_prompting_for_classroom_constraints_completion_only_model",
+      "explanation": "Disciplined prompting leaves an iteration trail: each constraint stated, checked against the returned plan, and re-prompted until satisfied, with rejections explained.",
+      "misconception_id": "cat531_supplement_2_3_prompting_for_classroom_constraints_unverified_compliance",
       "difficulty": "hard",
       "concept_ids": [
+        "prompting_practice",
         "evidence_based_revision"
       ]
     }

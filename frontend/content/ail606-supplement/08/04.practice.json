@@ -4,16 +4,16 @@
       "id": "ail606_supplement_8_4_ai_policy_language_for_students_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_policy_language_for_students",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A syllabus clause reads 'Use of AI tools is prohibited. Violations are academic dishonesty.' Which revision best protects student design judgment?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Keep the ban but add 'no exceptions.'",
+        "Permit bounded use (brainstorm, self-critique, alternatives), forbid submitting generated work as one's own, and require a one-line disclosure.",
+        "Allow any AI use with no disclosure.",
+        "Ban AI only during the final week of the course."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_8_4_ai_policy_language_for_students_polish_as_evidence",
+      "explanation": "Bounded permission with disclosure keeps the learner's judgment visible instead of driving concealment.",
+      "misconception_id": "ail606_supplement_8_4_ban_ensures_integrity",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_ai_policy_language_for_students"
@@ -23,16 +23,16 @@
       "id": "ail606_supplement_8_4_ai_policy_language_for_students_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which disclosure line follows the policy's required format most completely?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "I used AI a little.",
+        "Used Claude to generate three signaling alternatives for Frame 2; accepted one, rejected two because they added redundant on-screen text.",
+        "AI helped with the project.",
+        "I confirm I did not cheat."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_8_4_ai_policy_language_for_students_annotation_without_signal",
+      "explanation": "A complete disclosure names the tool, the prompt intent, and what was accepted or rejected.",
+      "misconception_id": "ail606_supplement_8_4_disclosure_without_format",
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
@@ -42,16 +42,16 @@
       "id": "ail606_supplement_8_4_ai_policy_language_for_students_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A student uses a screen reader's AI alt-text generator to access course images. Under a well-written policy, this should be:",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "A violation, because any AI use is banned.",
+        "Permitted assistive use, because the policy distinguishes accessibility tools from generating design work.",
+        "Permitted only if the student hides it.",
+        "Decided case by case with no written rule."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_8_4_ai_policy_language_for_students_ai_as_authority",
+      "explanation": "A policy that names what it protects (the learner's design judgment) does not sweep assistive AI into the prohibition.",
+      "misconception_id": "ail606_supplement_8_4_blanket_terms_ignore_access",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -61,16 +61,16 @@
       "id": "ail606_supplement_8_4_ai_policy_language_for_students_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "The instructor wants evidence the revised policy worked. Which result is the strongest signal?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Fewer students mentioned AI at all.",
+        "Disclosures appeared on 11 of 12 AI-assisted drafts, so the boundary of student judgment was visible and assessable.",
+        "The syllabus paragraph got longer.",
+        "No student asked any questions about the policy."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_8_4_ai_policy_language_for_students_completion_only_model",
+      "explanation": "Visible disclosures show the policy produced transparency rather than concealment.",
+      "misconception_id": "ail606_supplement_8_4_disclosure_without_format",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

@@ -8,73 +8,75 @@
         "cat100_supplement_charts_that_answer_questions",
         "cat100_supplement_data_storytelling_with_excel"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You want to show how monthly sales changed across Jan, Feb, Mar, and Apr. Which chart type best answers a 'how did it change over time' question?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A pie chart with one slice per month.",
+        "A line chart with months on the horizontal axis and sales on the vertical axis.",
+        "A doughnut chart of the four months.",
+        "A 3-D exploded pie chart for visual interest."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_polish_as_evidence",
+      "explanation": "A line chart maps a value against an ordered axis like time, so the rise and fall across months is easy to read. Pie charts show parts of a whole at one moment, not change over time.",
+      "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_pie_for_trend",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_3_3_charts_that_answer_questions_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_charts_that_answer_questions",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_charts_that_answer_questions"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A column chart of donations runs from 2018 to 2024. The vertical axis starts at 90 instead of 0, so a rise from 95 to 100 looks like the bars doubled. What is the honest fix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Keep the axis at 90 because it fills the chart nicely.",
+        "Start the value axis at 0 so the bar heights are proportional to the actual numbers.",
+        "Add more gridlines so the change looks smaller.",
+        "Switch to a darker color so the bars stand out."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "A truncated axis exaggerates small differences. For bar and column charts, starting the value axis at 0 keeps the heights proportional to the data so the reader is not misled.",
+      "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_truncated_axis",
+      "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_3_3_charts_that_answer_questions_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_charts_that_answer_questions",
       "concept_ids": [
+        "cat100_supplement_charts_that_answer_questions",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Your chart is titled 'Sales Chart'. The point you actually found is that the West region outsold every other region. Which title best helps the reader?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "'Sales Chart' because it names what the chart is.",
+        "'West Region Led Q1 Sales by a Wide Margin' because it states the finding the reader should take away.",
+        "'Figure 3' because it numbers the figure.",
+        "'Data Visualization' because it describes the genre."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "A claim-first title tells the reader the finding, not just the topic. The chart then becomes the evidence for that one stated point.",
+      "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_topic_not_claim_title",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_3_3_charts_that_answer_questions_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_charts_that_answer_questions",
       "concept_ids": [
+        "cat100_supplement_charts_that_answer_questions",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You need to compare total revenue across five separate stores for one quarter. Which chart answers that comparison most clearly?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A line chart connecting the five stores.",
+        "A bar (or column) chart with one bar per store so heights compare directly.",
+        "A pie chart that hides the exact totals.",
+        "A scatter plot of store number against revenue."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_completion_only_model",
+      "explanation": "A bar chart compares discrete categories like separate stores by bar height. A line chart implies a connected sequence, which the five unrelated stores do not form.",
+      "misconception_id": "cat100_supplement_3_3_charts_that_answer_questions_line_for_categories",
       "difficulty": "medium"
     }
   ]

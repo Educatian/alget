@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_6_1_evidence_of_iteration_documentation",
   "misconceptions": [
     {
-      "id": "ail606_supplement_6_1_evidence_of_iteration_documentation_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "ail606_supplement_6_1_version_count_as_iteration",
+      "pattern": "version_count_as_iteration",
+      "description": "Believing that producing many storyboard versions is itself evidence of iteration, regardless of whether any change responded to a tested problem",
+      "trigger": "learner submits five storyboard drafts but cannot name what observation drove any single change",
+      "feedback": "Iteration evidence is a problem-change-result chain, not a version count. For each change, name the usability or load problem that triggered it.",
       "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_6_1_evidence_of_iteration_documentation_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_6_1_evidence_of_iteration_documentation_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_6_1_polish_diff_as_design_diff",
+      "pattern": "polish_diff_as_design_diff",
+      "description": "Logging cosmetic changes (font, color, alignment) as design iterations while the underlying instructional decision never changed",
+      "trigger": "before/after annotation shows only visual restyling but claims a learning improvement",
+      "feedback": "Separate a polish diff from a design diff. A design diff changes what the learner must do or process; record those separately from styling.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_6_1_evidence_of_iteration_documentation_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_6_1_unsourced_change_rationale",
+      "pattern": "unsourced_change_rationale",
+      "description": "Documenting a revision with a rationale that cites taste or instinct rather than a rubric line, tryout observation, or theory anchor",
+      "trigger": "revision note says the change felt better with no source attached",
+      "feedback": "Anchor each documented change to a source: a learner-tryout note, a rubric criterion, or a Mayer or cognitive-load principle.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_6_1_iteration_log_hides_rejected_paths",
+      "pattern": "iteration_log_hides_rejected_paths",
+      "description": "Recording only the accepted change while omitting the alternative that was considered and rejected, so the log cannot show judgment",
+      "trigger": "log lists final decisions only and never a discarded option",
+      "feedback": "A defensible iteration log keeps at least one rejected alternative with the reason it lost, so a reviewer can audit the judgment.",
       "rail_action": "practice"
     }
   ]

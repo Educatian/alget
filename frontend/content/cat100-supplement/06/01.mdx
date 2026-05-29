@@ -35,15 +35,40 @@ The anchors should do work in your artifact. If NACE career readiness or ISTE di
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+A student is planning the information architecture for a portfolio aimed at one audience: hiring managers for entry-level data roles. Watch the structure move from a dumped list to a navigable map.
 
-> I made the GitHub Pages file tree with accessibility, privacy, and publishing checks clearer.
+**Step 1. Name the audience and the one job.** Audience: hiring manager scanning for evidence I can do the work. Job: reach a relevant project and my resume in under 30 seconds.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+**Step 2. List candidate pages, then cut to fit the job.**
 
-> I revised the GitHub Pages file tree with accessibility, privacy, and publishing checks so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+| Candidate page | Keep? | Reason |
+| --- | --- | --- |
+| Home | Keep | Orients and routes to the rest |
+| About | Keep | One paragraph plus photo, builds trust |
+| Projects | Keep | The evidence the audience came for |
+| Resume | Keep | A reviewer expects to download it |
+| Contact | Keep | The conversion step |
+| Blog | Cut | No posts yet; an empty page reads as neglect |
+| Guestbook | Cut | Serves no hiring-manager goal |
 
-Notice the shift: the artifact is no longer just polished. The revision points to **ISTE digital citizenship**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+**Step 3. Write the file tree that this map implies.**
+
+```text
+my-portfolio/
+  index.html        (Home: one-line intro plus links to Projects, Resume)
+  about.html        (About: short bio)
+  projects/
+    index.html      (project cards, one link each)
+    dashboard.html  (one project detail page)
+  resume.html       (or links to resume.pdf)
+  assets/
+    style.css
+    resume.pdf
+```
+
+**Step 4. Justify one cut in writing.** "I removed Blog because it would have been empty. An empty section signals an unfinished site, which works against the trust the About page is trying to build."
+
+Notice the shift: the architecture is now a path, not a pile. Every kept page maps to the audience's job, and the one removal is documented as a decision rather than an accident.
 
 ## Decision Rule
 

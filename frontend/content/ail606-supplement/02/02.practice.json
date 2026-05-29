@@ -4,17 +4,17 @@
       "id": "ail606_supplement_2_2_platform_affordances_and_constraints_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_platform_affordances_and_constraints",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A designer describes a platform by listing: \"quizzes, discussion forums, gradebook, badges.\" Why is this not yet an affordance analysis?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The list is too short; a real analysis names at least ten features.",
+        "It names features the tool has, not the learner actions those features make easy, hard, or impossible.",
+        "Badges should never appear in an instructional platform.",
+        "Affordance analysis requires screenshots, not text."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_2_2_platform_affordances_and_constraints_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "An affordance is a relationship between the tool and a learner action. A feature list says what exists; an affordance analysis says what the learner can readily do.",
+      "misconception_id": "ail606_supplement_2_2_platform_affordances_and_constraints_affordance_is_button",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_platform_affordances_and_constraints"
       ]
@@ -22,55 +22,55 @@
     {
       "id": "ail606_supplement_2_2_platform_affordances_and_constraints_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_platform_affordances_and_constraints",
+      "stem": "The assigned LMS will not auto-grade open-response essays. A teammate proposes a paid plugin to force auto-grading. What is the stronger first move for the storyboard?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Buy the plugin immediately so the workflow stays fully automated.",
+        "Ask whether the no-auto-grade constraint actually protects a learning purpose, since essay feedback may require human judgment the design should keep.",
+        "Remove the essay task and replace it with a multiple-choice item.",
+        "Ignore the constraint and assume IT will solve it later."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_2_2_platform_affordances_and_constraints_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Not every constraint is a defect. A constraint that forces human review of essays may protect the learning goal, so interrogate it before engineering around it.",
+      "misconception_id": "ail606_supplement_2_2_platform_affordances_and_constraints_constraint_is_flaw",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_platform_affordances_and_constraints"
       ]
     },
     {
       "id": "ail606_supplement_2_2_platform_affordances_and_constraints_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_platform_affordances_and_constraints",
+      "stem": "A storyboard frame calls for drag-to-rank branching with inline video annotation, but the delivery platform is a basic LMS page that only supports linked pages and embedded video. What does this reveal?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The platform is broken and should be replaced.",
+        "The design was authored for an imaginary platform; it must be revised to the affordances the real delivery tool can render.",
+        "Branching is never appropriate in instructional design.",
+        "Video annotation always degrades learning, so removing it is automatically correct."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_2_2_platform_affordances_and_constraints_ai_as_authority",
+      "explanation": "Designing for an idealized tool produces interactions the real platform cannot deliver. Anchor each interaction to the actual delivery affordances.",
+      "misconception_id": "ail606_supplement_2_2_platform_affordances_and_constraints_ideal_tool_fallacy",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_platform_affordances_and_constraints"
       ]
     },
     {
       "id": "ail606_supplement_2_2_platform_affordances_and_constraints_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "You must justify keeping a forum-based reflection even though the LMS forum threads collapse on mobile, where 60 percent of learners read. Which justification is defensible?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The forum looks better than alternatives on a desktop monitor.",
+        "Because 60 percent read on mobile, you redesign the reflection as a single-prompt journal that renders on mobile, accepting the forum's mobile constraint as decisive evidence.",
+        "Keep the forum and tell learners to switch to a laptop.",
+        "Remove reflection entirely to avoid the rendering issue."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_2_2_platform_affordances_and_constraints_completion_only_model",
+      "explanation": "When a platform constraint (mobile thread collapse) collides with a learner reality (60 percent on mobile), the constraint becomes decisive evidence that should reshape the design.",
+      "misconception_id": "ail606_supplement_2_2_platform_affordances_and_constraints_ideal_tool_fallacy",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

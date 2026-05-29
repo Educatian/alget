@@ -8,73 +8,75 @@
         "cat100_supplement_formulas_for_everyday_analysis",
         "cat100_supplement_data_storytelling_with_excel"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Cell D2 holds the formula =B2*C2 and gives the correct line total. You copy D2 down to D3, D4, and D5 and every row recalculates correctly. Why did the formula adjust on its own?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Excel re-typed the formula for each row at random.",
+        "B2 and C2 are relative references, so copying down shifts them to B3*C3, B4*C4, and so on.",
+        "The formula is locked and Excel copied the same result four times.",
+        "You must press F9 in each cell for the answer to change."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_polish_as_evidence",
+      "explanation": "Relative references shift with the cell when copied. Copying =B2*C2 down one row makes it =B3*C3, which is exactly what a per-row calculation needs.",
+      "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_relative_vs_absolute",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_formulas_for_everyday_analysis",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_formulas_for_everyday_analysis"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Tax rate sits in cell F1 (8%). In E2 you write =D2*F1 and it is correct. You copy it down and E3 reads =D3*F2, which is empty, so the tax becomes 0. What is the fix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Re-type the tax rate into every row.",
+        "Lock the rate cell with =D2*$F$1 so the reference to F1 does not shift when copied down.",
+        "Move the tax rate to the bottom of the sheet.",
+        "Use =D2*F1 but copy across instead of down."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_annotation_without_signal",
+      "explanation": "A value reused by every row must be an absolute reference. $F$1 stays fixed when the formula is copied, so each row multiplies its own amount by the same 8% rate.",
+      "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_relative_vs_absolute",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_formulas_for_everyday_analysis",
       "concept_ids": [
+        "cat100_supplement_formulas_for_everyday_analysis",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Column B has scores 80, 90, and a blank cell for a student who was absent. =AVERAGE(B2:B4) returns 85, but =SUM(B2:B4)/3 returns 56.67. Which is the honest class average and why?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "56.67, because every row should count whether or not a score exists.",
+        "85, because AVERAGE ignores the blank cell and divides by the 2 real scores, while dividing by 3 wrongly treats the blank as a zero.",
+        "Both are equal, so it does not matter.",
+        "Neither, because AVERAGE cannot handle blank cells."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_ai_as_authority",
+      "explanation": "AVERAGE skips truly blank cells and divides by the count of real values. Dividing a SUM by a hard-coded 3 treats the blank as a 0 and understates the average.",
+      "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_blank_as_zero",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_formulas_for_everyday_analysis",
       "concept_ids": [
+        "cat100_supplement_formulas_for_everyday_analysis",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You want to count how many orders in B2:B100 are above 500. Which formula does this correctly?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "=COUNT(B2:B100) because it counts the big orders.",
+        "=COUNTIF(B2:B100,\">500\") because it counts only the cells that meet the condition.",
+        "=SUM(B2:B100)>500 because it adds them and checks the total.",
+        "=IF(B2:B100>500) because IF filters the range."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_completion_only_model",
+      "explanation": "COUNTIF with the criterion \">500\" counts only cells meeting the condition. Plain COUNT counts all numbers regardless of value, and the other formulas do not return a count of matching cells.",
+      "misconception_id": "cat100_supplement_3_2_formulas_for_everyday_analysis_count_vs_countif",
       "difficulty": "medium"
     }
   ]

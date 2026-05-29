@@ -8,73 +8,72 @@
         "cat100_supplement_slide_structure_before_decoration",
         "cat100_supplement_ai_enhanced_presentation_development"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You have a 5-slide deck. Which version shows structure was built before decoration?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Every slide has a gradient background and entrance animations, but the titles read 'Slide 1', 'Slide 2'.",
+        "Each slide has an assertion headline (for example 'Sales rose 18% after the redesign') and at most three supporting points; no theme applied yet.",
+        "One slide holds a 9-bullet paragraph copied from the report.",
+        "The deck uses three different fonts and clip art on every slide."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_polish_as_evidence",
-      "difficulty": "easy"
+      "explanation": "Assertion headlines plus limited support are the structure; decoration is deferred until the message arc is clear.",
+      "difficulty": "easy",
+      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_wall_of_bullets"
     },
     {
       "id": "cat100_supplement_5_2_slide_structure_before_decoration_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which note about your draft gives BigAL a structural problem to work on?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "These slides need to pop more.",
+        "Slides 2 and 3 both argue 'the tool saved time', so the headline arc repeats instead of advancing. How do I split them?",
+        "I like the colors.",
+        "Almost done."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "The note names a concrete structural fault (a repeated headline claim) so feedback can target the arc.",
+      "difficulty": "medium",
+      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_decorate_first"
     },
     {
       "id": "cat100_supplement_5_2_slide_structure_before_decoration_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "How can you use AI on slide structure without handing over your judgment?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Ask AI to apply a flashy template and call the deck finished.",
+        "Paste your six slide headlines and ask AI whether the arc has gaps or repeats, then you decide what to reorder.",
+        "Ask AI to write all the body text so you do not have to think about the message.",
+        "Use AI only to add transitions between slides."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "AI critiques the headline arc as a proposal; you keep the decision about ordering and message.",
+      "difficulty": "hard",
+      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_polish_signals_done"
     },
     {
       "id": "cat100_supplement_5_2_slide_structure_before_decoration_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A peer says your slide 'has no point.' Which revision fixes the structure first?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Add an animated chart and a brighter color.",
+        "Rewrite the title from 'Results' to the assertion 'Response time dropped from 4.2s to 1.1s after caching.'",
+        "Add more bullet points to fill the slide.",
+        "Change the slide background image."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_5_2_slide_structure_before_decoration_completion_only_model",
+      "explanation": "An assertion headline gives the slide a single inspectable point before any decoration is considered.",
       "difficulty": "medium"
     }
   ]

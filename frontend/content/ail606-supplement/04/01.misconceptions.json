@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_4_1_problem_statement_and_learner_profile",
   "misconceptions": [
     {
-      "id": "ail606_supplement_4_1_problem_statement_and_learner_profile_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_4_1_problem_statement_and_learner_profile_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_4_1_problem_statement_solution_first",
+      "pattern": "solution_stated_as_problem",
+      "description": "Writing a problem statement that names a desired solution or a vague symptom instead of the evidenced gap and its source of demand",
+      "trigger": "problem statement says make it interesting or needs a refresh rather than locating the observable failure point",
+      "feedback": "State the learner segment, the observable failure point, and the source of demand before any solution. The fix is not the problem.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_4_1_problem_statement_and_learner_profile_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_4_1_problem_statement_generic_persona",
+      "pattern": "flattering_generic_persona",
+      "description": "Building a learner profile from praise adjectives that do not constrain any design decision",
+      "trigger": "profile lists motivated, tech-savvy, or eager without design-relevant variability",
+      "feedback": "Keep only attributes that would change a frame: prior knowledge, access conditions, task context. Drop adjectives that change nothing.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_4_1_problem_statement_ai_persona_as_fact",
+      "pattern": "ai_persona_treated_as_evidence",
+      "description": "Accepting an AI-generated persona as verified learner data instead of a hypothesis to confirm",
+      "trigger": "learner pastes AI demographics into the packet without checking intake or context evidence",
+      "feedback": "Treat AI personas as candidate attributes. Confirm each against real intake or context data and reject fabricated ones.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_4_1_problem_statement_and_learner_profile_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_4_1_problem_statement_unmeasurable_goal",
+      "pattern": "unmeasurable_design_goal",
+      "description": "Setting a problem goal that cannot be tested by a later revision",
+      "trigger": "goal says improve or enhance with no measurable learner action or target",
+      "feedback": "Tie the goal to a measurable learner action so a later storyboard revision can be evaluated against it.",
       "rail_action": "practice"
     }
   ]

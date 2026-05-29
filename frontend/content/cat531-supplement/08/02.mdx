@@ -45,6 +45,28 @@ That claim is too thin because "clearer" does not identify the audience, the pro
 
 Notice the shift: the artifact is no longer just polished. The revision points to **critical edtech studies**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
 
+### Annotated judgment call: troubleshooting a TeachGen@i prompt transcript
+
+Scenario: a teacher used TeachGen@i to generate a quiz on the water cycle and the first prompt produced biased and off-grade items. The troubleshooting transcript should show teacher edits and at least one rejected suggestion, not a clean final prompt.
+
+Before (prompt that hides the troubleshooting):
+
+> Prompt: "Make a 5-question water cycle quiz for my class."
+> Output accepted as-is.
+
+Walk the transcript, turn by turn, and annotate where teacher judgment had to intervene:
+
+1. Turn 1 problem. The output assumed reading at a 9th-grade Lexile band; the class is 5th grade. Teacher edit: add "for 5th-grade readers, Lexile 740 to 940, one sentence per stem."
+2. Turn 2 problem. Item 3 used a snow-skiing example that assumes family ski trips. Teacher edit: replace with a rain-barrel example that does not assume household income.
+3. Rejected suggestion. TeachGen@i offered to auto-grade short answers and email scores to parents. Teacher rejects it: short-answer judgment on science explanations is the teacher's call, and parent contact is governed by district policy, not a tool default.
+
+After (annotated troubleshooting transcript):
+
+> Prompt v3: "Write 5 water-cycle items for 5th-grade readers (Lexile 740 to 940), one sentence per stem, examples that do not assume household income or family trips. Return items only; I will grade short answers myself."
+> Annotation: edited reading level (turn 1), swapped the ski example for a rain barrel (turn 2), rejected auto-grading and auto-email to parents (kept teacher judgment and district consent rules). Evidence to collect next: have a colleague check the 5 revised stems against the 5th-grade band.
+
+The after transcript is stronger because the teacher's reasoning is inspectable: each edit is tied to a named constraint (reading level, equity, policy boundary), and the one rejected suggestion shows where the tool's authority stopped.
+
 ## Decision Rule
 
 Use the classroom value conflict first, the technology affordance second, and the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity.

@@ -2,36 +2,36 @@
   "section_id": "ail606_supplement_6_6_peer_scholarly_critique",
   "misconceptions": [
     {
-      "id": "ail606_supplement_6_6_peer_scholarly_critique_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "ail606_supplement_6_6_praise_as_critique",
+      "pattern": "praise_as_critique",
+      "description": "Submitting peer feedback that is mostly encouragement ('great job, very clear') with no actionable, evidence-based observation",
+      "trigger": "review consists of compliments and a rating with no specific design issue",
+      "feedback": "A scholarly critique names a specific element, the problem with it, and a criterion or principle behind the judgment. Praise is not critique.",
       "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_6_6_peer_scholarly_critique_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_6_6_peer_scholarly_critique_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_6_6_opinion_without_criterion",
+      "pattern": "opinion_without_criterion",
+      "description": "Phrasing critique as personal preference ('I would have used blue') instead of tying it to a shared rubric, principle, or learner outcome",
+      "trigger": "feedback uses 'I don't like' with no criterion the author can act on objectively",
+      "feedback": "Reframe preferences as criteria: name the alignment, usability, or accessibility standard, so the author can judge the point on its merits.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_6_6_peer_scholarly_critique_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_6_6_critique_without_disposition",
+      "pattern": "critique_without_disposition",
+      "description": "Receiving peer critique and either accepting every comment or dismissing it wholesale, rather than recording a reasoned accept, modify, or reject disposition for each point",
+      "trigger": "author makes all suggested edits or none, with no rationale logged per comment",
+      "feedback": "Log a disposition for each comment: accept, modify, or reject, with the reason. Peer review informs judgment; it does not replace it.",
       "rail_action": "practice"
+    },
+    {
+      "id": "ail606_supplement_6_6_ai_critique_unverified",
+      "pattern": "ai_critique_unverified",
+      "description": "Submitting AI-generated critique of a peer's work as your own review without verifying that the issues are real and present in the artifact",
+      "trigger": "learner pastes an AI critique that flags problems not actually in the peer's prototype",
+      "feedback": "If you use AI to draft critique, verify each issue against the peer's actual artifact before submitting; an unchecked AI review can fabricate problems.",
+      "rail_action": "explain"
     }
   ]
 }

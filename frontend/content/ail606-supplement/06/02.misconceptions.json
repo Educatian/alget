@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md",
   "misconceptions": [
     {
-      "id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_6_2_disclosure_as_tool_list",
+      "pattern": "disclosure_as_tool_list",
+      "description": "Treating AI-USE.md as a flat list of tool names rather than a record of where each tool acted and what the designer did with the output",
+      "trigger": "AI-USE.md says 'Used ChatGPT and Midjourney' with no location or decision recorded",
+      "feedback": "A disclosure entry needs three parts: which tool, where it touched the artifact, and what you accepted, edited, or rejected.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_6_2_blanket_disclosure_overclaim",
+      "pattern": "blanket_disclosure_overclaim",
+      "description": "Writing a single blanket statement ('AI was used throughout') that overclaims and prevents a reviewer from locating any specific contribution",
+      "trigger": "disclosure cannot point to a specific section, asset, or line the tool produced",
+      "feedback": "Replace the blanket statement with per-artifact entries so a reviewer can trace each AI contribution to a place in the work.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_6_2_disclosure_omits_human_judgment",
+      "pattern": "disclosure_omits_human_judgment",
+      "description": "Disclosing that a tool generated content but omitting what the designer verified, corrected, or rejected, so authorship of the decision is unclear",
+      "trigger": "entry records the AI output but never the designer's review action",
+      "feedback": "For each AI contribution, log the human judgment that followed: verified against a source, edited for accuracy, or rejected and replaced.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_6_2_disclosure_as_after_the_fact",
+      "pattern": "disclosure_as_after_the_fact",
+      "description": "Reconstructing AI-USE.md from memory at submission time rather than logging tool use as it happens, producing vague or missing entries",
+      "trigger": "learner writes the whole disclosure the night before defense with no per-session notes",
+      "feedback": "Treat AI-USE.md as a running log updated when the tool is used, not a memory exercise at the end.",
       "rail_action": "practice"
     }
   ]

@@ -4,16 +4,16 @@
       "id": "cat531_supplement_8_6_low_tech_fallbacks_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_low_tech_fallbacks",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A policy memo says: \"All students will use the AI writing coach for the persuasive essay unit.\" Why is a low-tech fallback needed?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Because the AI coach is too expensive.",
+        "Because the memo makes the tool a single point of failure: if it is down, consent is declined, or a device fails, learning stops.",
+        "Because students dislike writing essays.",
+        "Because the unit should not include persuasion."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_8_6_low_tech_fallbacks_polish_as_evidence",
+      "explanation": "A defensible memo names a fallback so the AI tool is never the only path to the learning target.",
+      "misconception_id": "cat531_supplement_8_6_fallback_tool_mandatory",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_instructor_toolkit_for_cat_531",
@@ -26,18 +26,19 @@
       "id": "cat531_supplement_8_6_low_tech_fallbacks_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The memo says nothing about families who decline AI use. What problem does this silence create?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It makes the memo shorter.",
+        "It makes the AI tool mandatory by omission, since declining families are left with no equivalent path.",
+        "It is fine because most families agree.",
+        "It means the unit cannot be graded."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_8_6_low_tech_fallbacks_annotation_without_signal",
+      "explanation": "Without a stated opt-out and an equivalent route, the tool becomes required by default for everyone.",
+      "misconception_id": "cat531_supplement_8_6_fallback_consent_by_omission",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_low_tech_fallbacks",
         "evidence_based_revision"
       ]
     },
@@ -45,18 +46,19 @@
       "id": "cat531_supplement_8_6_low_tech_fallbacks_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Which arrangement best protects students without reliable home devices while still allowing AI use?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Assign the AI coach as nightly homework for everyone.",
+        "Keep all AI use in class on school devices, never as required homework, with a printed peer-review fallback for opted-out students.",
+        "Tell students to use a library if they have no device.",
+        "Drop the unit for students without devices."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_8_6_low_tech_fallbacks_ai_as_authority",
+      "explanation": "In-class use on school devices plus a non-AI path keeps home access from becoming a penalty.",
+      "misconception_id": "cat531_supplement_8_6_fallback_homework_access_gap",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_low_tech_fallbacks",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_8_6_low_tech_fallbacks_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A reviewer asks what happens to student essays the AI coach processes. Which memo line answers the privacy check?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The tool is popular with teachers.",
+        "The vendor contract bars retention of student text for model training.",
+        "Students should avoid writing anything personal.",
+        "The essays are graded quickly."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_8_6_low_tech_fallbacks_completion_only_model",
+      "explanation": "Stating the data-retention boundary answers the privacy check a reviewer would raise.",
+      "misconception_id": "cat531_supplement_8_6_fallback_silent_on_privacy",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_low_tech_fallbacks",
         "evidence_based_revision"
       ]
     }

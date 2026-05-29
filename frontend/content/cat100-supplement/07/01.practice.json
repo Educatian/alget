@@ -8,74 +8,74 @@
         "cat100_supplement_file_organization_for_coursework",
         "cat100_supplement_productivity_and_workflow_automation"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You finished a CAT 100 essay. Which file name will still tell you what it is in three weeks?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "final.docx",
+        "document(2).docx",
+        "2026-05-28_cat100_essay_v3.docx",
+        "asdf.docx"
       ],
-      "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_7_1_file_organization_for_coursework_polish_as_evidence",
+      "correct_index": 2,
+      "explanation": "A name with date, course, task, and version (2026-05-28_cat100_essay_v3.docx) stays readable. 'final' and 'document(2)' lose meaning once a fourth version appears.",
+      "misconception_id": "cat100_supplement_7_1_vague_filename",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_7_1_file_organization_for_coursework_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_file_organization_for_coursework",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_file_organization_for_coursework"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which folder structure keeps one assignment's files together and easy to find?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "All coursework saved loose on the Desktop",
+        "CAT100 / Module07 / file-organization / (essay, notes, rubric inside)",
+        "One Downloads folder shared by every class",
+        "An Images folder holding photos from all five courses"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_7_1_file_organization_for_coursework_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "A course-then-module-then-task tree keeps related files in one place. Desktop dumps and type-based folders scatter a single task.",
+      "misconception_id": "cat100_supplement_7_1_desktop_dump",
+      "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_7_1_file_organization_for_coursework_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_file_organization_for_coursework",
       "concept_ids": [
-        "ai_supported_learning"
+        "cat100_supplement_file_organization_for_coursework"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Your only copy of a paper lives on a USB stick that just stopped mounting. What practice would have prevented losing the work?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Renaming the file to FINAL before the deadline",
+        "Keeping two copies in two places, such as local plus OneDrive",
+        "Saving the file as a PDF instead of a DOCX",
+        "Storing the file in a deeper subfolder"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_7_1_file_organization_for_coursework_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "A two-copies-two-places rule survives a single drive failure. File format, depth, and a rename do nothing against a dead drive.",
+      "misconception_id": "cat100_supplement_7_1_no_backup",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_1_file_organization_for_coursework_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_file_organization_for_coursework",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_file_organization_for_coursework"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You have lab1.pdf, lab2.pdf, and slides.pptx for one module. A classmate suggests an 'All PDFs' folder. Why is grouping by task usually better here?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "PDFs and PPTX files cannot share a folder",
+        "Grouping by task keeps the whole module together so nothing is hunted across type folders",
+        "PowerPoint files must always sit on the Desktop",
+        "File type folders load faster than task folders"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_7_1_file_organization_for_coursework_completion_only_model",
-      "difficulty": "medium"
+      "explanation": "The lab PDFs and the slides belong to one module, so a task folder keeps them together. Type folders split one assignment across the disk.",
+      "misconception_id": "cat100_supplement_7_1_folder_by_filetype",
+      "difficulty": "hard"
     }
   ]
 }

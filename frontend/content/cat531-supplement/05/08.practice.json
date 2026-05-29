@@ -4,16 +4,16 @@
       "id": "cat531_supplement_5_8_module_5_evaluation_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_module_5_evaluation_studio",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "The Module 5 studio asks you to assemble a full evaluation brief. What makes the assembled brief coherent rather than a stack of separate parts?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Each part is long and detailed.",
+        "The evaluation question, evidence, equity check, cost, fit matrix, and recommendation all point to the same decision and support one another.",
+        "Every section uses the same template heading.",
+        "The brief includes the maximum number of tools considered."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_5_8_module_5_evaluation_studio_polish_as_evidence",
+      "explanation": "A capstone brief is coherent when its parts are linked: the recommendation answers the original question, and the evidence, equity, cost, and fit sections each justify that answer. Disconnected sections do not make a decision.",
+      "misconception_id": "cat531_supplement_5_8_sections_as_independent",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
@@ -25,58 +25,61 @@
     {
       "id": "cat531_supplement_5_8_module_5_evaluation_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_module_5_evaluation_studio",
+      "stem": "In assembling your brief, the cost section favors Tool A but the equity section flags that Tool A excludes students without devices. What does a strong synthesis do with this tension?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Hide the equity finding so the brief reads cleanly.",
+        "Surface the tension explicitly and explain which consideration was prioritized and why, so the trade-off is visible.",
+        "Average the two sections into one score.",
+        "Drop whichever section is harder to defend."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_5_8_module_5_evaluation_studio_annotation_without_signal",
+      "explanation": "Synthesis is not erasing conflict. A defensible capstone names the tension between sections and shows the reasoned choice, so a reader can see and contest the trade-off.",
+      "misconception_id": "cat531_supplement_5_8_synthesis_hides_tension",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_educational_technology_evaluation",
+        "cat531_supplement_module_5_evaluation_studio"
       ]
     },
     {
       "id": "cat531_supplement_5_8_module_5_evaluation_studio_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to assemble your whole Module 5 brief from your notes. It returns a complete, fluent document. What is the responsible move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Submit it; the studio asked for a complete brief.",
+        "Use it as a draft, then verify that every claim traces to your own evidence and that the recommendation is one you can defend.",
+        "Ask the AI to also grade the brief.",
+        "Trust the AI assembly because it is internally consistent."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_5_8_module_5_evaluation_studio_ai_as_authority",
+      "explanation": "A fluent AI assembly can introduce claims you never verified and a recommendation you cannot defend. The studio assesses your judgment, so each part must be grounded in your own evidence before you own the brief.",
+      "misconception_id": "cat531_supplement_5_8_ai_assembles_brief",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_module_5_evaluation_studio"
       ]
     },
     {
       "id": "cat531_supplement_5_8_module_5_evaluation_studio_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A reviewer notes that your finished brief is polished and complete but never states what evidence would change the recommendation. Why does this weaken the capstone?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A complete brief never needs a reversal condition.",
+        "A defensible decision names what could overturn it; without that, the brief presents a conclusion as fixed rather than evidence-based.",
+        "Reviewers should not ask about evidence after completion.",
+        "Polish already demonstrates the reasoning is sound."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_5_8_module_5_evaluation_studio_completion_only_model",
+      "explanation": "Evidence-based decisions remain open to disconfirming evidence. A brief that cannot say what would change its mind is asserting a position, not documenting a judgment that can be inspected and revised.",
+      "misconception_id": "cat531_supplement_5_8_completion_closes_decision",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat531_supplement_module_5_evaluation_studio"
       ]
     }
   ]

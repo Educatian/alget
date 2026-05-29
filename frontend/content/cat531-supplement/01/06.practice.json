@@ -4,16 +4,16 @@
       "id": "cat531_supplement_1_6_teacher_agency_with_technology_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_teacher_agency_with_technology",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An adaptive platform automatically assigns each student a 'next lesson.' A teacher follows the platform's sequence without change all term. Which statement best describes the state of the teacher's agency?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Agency is maximized because the teacher is using advanced technology.",
+        "Agency has been ceded to the platform's logic; the teacher exercises agency only when she overrides or adapts the sequence based on what she knows about her students.",
+        "Agency is irrelevant once a platform is adopted.",
+        "Agency means the teacher must reject the platform entirely."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_1_6_teacher_agency_with_technology_polish_as_evidence",
+      "explanation": "Teacher agency is the capacity to make and justify deviations, not the act of running a tool as configured. Following the default sequence unchanged hands the instructional decisions to the platform.",
+      "misconception_id": "cat531_supplement_1_6_using_tech_equals_agency",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_1_6_teacher_agency_with_technology_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_teacher_agency_with_technology",
+      "stem": "A district mandates a scripted AI lesson tool. A teacher notices it skips a step her struggling readers need. Which response best exercises professional agency within the constraint?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Quietly stop using the tool and tell no one.",
+        "Use the tool as mandated but document where it underserves her readers, insert the missing step, and bring that evidence to her team to request a revision.",
+        "Follow the script exactly even where it harms students, since it is mandated.",
+        "Complain to students about the district."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_1_6_teacher_agency_with_technology_annotation_without_signal",
+      "explanation": "Agency is not all-or-nothing defiance. It is working within a mandate while documenting harm, adapting where a professional judgment requires it, and feeding evidence back into the policy.",
+      "misconception_id": "cat531_supplement_1_6_mandate_eliminates_agency",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_teacher_agency_with_technology",
         "evidence_based_revision"
       ]
     },
@@ -45,37 +46,39 @@
       "id": "cat531_supplement_1_6_teacher_agency_with_technology_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI lesson planner generates a full unit. A teacher who wants to preserve her agency should treat the output as:",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "A finished unit to deliver as written, since the AI optimized it.",
+        "A draft she interrogates against her students and curriculum, accepting, cutting, or rewriting parts and keeping a record of what she changed and why.",
+        "A reason to stop planning her own units permanently.",
+        "Proof that lesson planning no longer requires a teacher."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_1_6_teacher_agency_with_technology_ai_as_authority",
+      "explanation": "Preserving agency with AI means staying the author of record: the teacher interrogates and revises the draft and can account for every retained or rejected element, rather than delivering generated output unexamined.",
+      "misconception_id": "cat531_supplement_1_6_ai_authorship_replaces_teacher",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_teacher_agency_with_technology"
       ]
     },
     {
       "id": "cat531_supplement_1_6_teacher_agency_with_technology_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_teacher_agency_with_technology",
+      "stem": "A teacher says 'I have full agency because I can turn the AI tutor off whenever I want.' Why is an on/off switch an incomplete account of agency?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Because off switches are unreliable.",
+        "Because meaningful agency is the ongoing capacity to shape HOW the tool operates (its content, pacing, and limits) for her students, not only the binary power to abandon it.",
+        "Because she should never turn the tool off.",
+        "Because agency is only about who bought the tool."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_1_6_teacher_agency_with_technology_completion_only_model",
+      "explanation": "A binary on/off is the weakest form of agency. Real agency is the capacity to configure, override, and direct the tool's behavior in service of specific students, exercised continuously rather than once.",
+      "misconception_id": "cat531_supplement_1_6_agency_as_onoff_switch",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_teacher_agency_with_technology",
         "evidence_based_revision"
       ]
     }

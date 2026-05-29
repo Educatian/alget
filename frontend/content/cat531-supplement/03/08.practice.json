@@ -4,16 +4,16 @@
       "id": "cat531_supplement_3_8_module_3_ai_analysis_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_module_3_ai_analysis_studio",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "For the capstone, a teacher recommends adopting an AI essay-grader because \"students were more engaged.\" Reviewing the whole module, what is the main weakness of this analysis?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is complete; engagement is the only factor that matters.",
+        "It judges a complex decision on one lens and ignores bias, privacy, disclosure, and the assessment's learning purpose.",
+        "Engagement should never be considered.",
+        "It is too long."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_3_8_module_3_ai_analysis_studio_polish_as_evidence",
+      "explanation": "A capstone analysis integrates pedagogy, bias, privacy, policy, and disclosure. A single-lens verdict misses the module's other consequences.",
+      "misconception_id": "cat531_supplement_3_8_single_lens_analysis",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_ai_in_education",
@@ -25,58 +25,67 @@
     {
       "id": "cat531_supplement_3_8_module_3_ai_analysis_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_module_3_ai_analysis_studio",
+      "stem": "A capstone recommendation reads, \"This adaptive math app is excellent in every way and has no downsides.\" What is missing for a defensible analysis?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Nothing; a tool with no downsides is the goal.",
+        "A named tradeoff: the strongest opposing consideration, such as data-privacy cost, and why the recommendation accepts it anyway.",
+        "More praise for the app.",
+        "The app's marketing slogan."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_3_8_module_3_ai_analysis_studio_annotation_without_signal",
+      "explanation": "Every real decision resolves a tension. Naming the rejected consideration and its cost lets a reviewer audit the judgment.",
+      "misconception_id": "cat531_supplement_3_8_recommendation_without_tradeoff",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_module_3_ai_analysis_studio",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_8_module_3_ai_analysis_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_module_3_ai_analysis_studio",
+      "stem": "To support a capstone fairness claim, a teacher asks the AI tool under review, \"Are you fair to all students?\" and quotes its yes as evidence. What is the analysis error?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "None; the tool knows itself best.",
+        "The tool cannot certify itself; fairness must be grounded in independent evidence like disaggregated outcome data and the data policy.",
+        "She should have asked the tool twice.",
+        "She should trust the answer because it was confident."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_3_8_module_3_ai_analysis_studio_ai_as_authority",
+      "explanation": "A tool's self-assessment is not evidence. Independent, disaggregated data and policy review are the legitimate grounds for a fairness claim.",
+      "misconception_id": "cat531_supplement_3_8_ai_self_evaluates",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_module_3_ai_analysis_studio",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_8_module_3_ai_analysis_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_module_3_ai_analysis_studio",
+      "stem": "A capstone submission weighs engagement, bias risk, privacy, and policy across two pages, then ends: \"There are good arguments on both sides.\" Judged against the studio's purpose, what is the strongest critique?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "It is ideal; balance is the final goal.",
+        "It stops before deciding; the studio requires a committed, justified recommendation and a concrete next step, not an open-ended list.",
+        "It considered too many lenses.",
+        "It should remove the privacy analysis."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_3_8_module_3_ai_analysis_studio_completion_only_model",
+      "explanation": "Integrating lenses is necessary but not sufficient. The analysis must resolve into a defensible decision and an actionable next step.",
+      "misconception_id": "cat531_supplement_3_8_analysis_without_action",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_module_3_ai_analysis_studio",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

@@ -3,18 +3,18 @@
     {
       "id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_toolchain_disclosure_and_ai_use_md",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "ail606_supplement_ai_use_disclosure",
+      "stem": "A student's AI-USE.md reads in full: 'Tools used: ChatGPT, Claude, Midjourney.' What is the core problem with this disclosure for a capstone defense?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It names too many tools and looks excessive.",
+        "It is a tool inventory, not a disclosure: it never says where each tool acted or what the designer did with the output.",
+        "It should alphabetize the tool names.",
+        "Midjourney is not an approved tool."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A defensible AI-USE.md maps each tool to a location in the artifact and to the designer's accept, edit, or reject decision.",
+      "misconception_id": "ail606_supplement_6_2_disclosure_as_tool_list",
+      "difficulty": "easy",
       "concept_ids": [
         "ai_use_disclosure"
       ]
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_ai_use_disclosure",
+      "stem": "Which AI-USE.md entry lets a reviewer actually locate and audit the AI contribution?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "AI was used throughout the project to improve quality.",
+        "I leaned on AI heavily during the design phase.",
+        "Claude drafted the first version of the Module 2 quiz feedback text; I rewrote 4 of 6 items because the explanations contradicted the rubric.",
+        "Various generative tools supported the work as needed."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_annotation_without_signal",
-      "difficulty": "easy",
+      "correct_index": 2,
+      "explanation": "A locatable entry names the tool, the exact artifact location, and the human judgment that followed; the others are blanket overclaims.",
+      "misconception_id": "ail606_supplement_6_2_blanket_disclosure_overclaim",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ai_use_disclosure"
       ]
     },
     {
       "id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An entry says: 'ChatGPT generated the learning objectives for Module 3.' A reviewer asks what is missing. What should you add?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The date and time the prompt was sent.",
+        "What you verified, edited, or rejected after the tool produced the objectives, so authorship of the decision is clear.",
+        "The exact prompt wording, character for character.",
+        "A note that ChatGPT is widely used in industry."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_ai_as_authority",
+      "explanation": "Disclosure must show the human judgment that followed the AI output; otherwise the decision's authorship is undocumented.",
+      "misconception_id": "ail606_supplement_6_2_disclosure_omits_human_judgment",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -61,16 +61,16 @@
       "id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A peer writes their entire AI-USE.md the night before defense and finds several entries are guesses about what the tool did weeks earlier. Which practice would have prevented this?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Using a longer file with more headings.",
+        "Asking an AI to reconstruct the history from the final files.",
+        "Updating AI-USE.md as a running log at the moment each tool is used, with a one-line note on the location and decision.",
+        "Disclosing only the tools used in the last week to stay accurate."
       ],
-      "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_6_2_toolchain_disclosure_and_ai_use_md_completion_only_model",
+      "correct_index": 2,
+      "explanation": "A disclosure logged in real time is accurate and auditable; reconstruction from memory produces the vague entries the reviewer flags.",
+      "misconception_id": "ail606_supplement_6_2_disclosure_as_after_the_fact",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

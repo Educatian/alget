@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_4_2_scenario_based_ai_dialogue",
   "misconceptions": [
     {
-      "id": "cat100_supplement_4_2_scenario_based_ai_dialogue_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_4_2_scenario_based_ai_dialogue_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_4_2_scenario_based_ai_dialogue_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_4_2_one_giant_prompt",
+      "pattern": "everything_in_one_turn",
+      "description": "Cramming scenario, constraints, and stress tests into a single huge prompt instead of separate labeled turns",
+      "trigger": "learner writes one long prompt and reads only the final answer",
+      "feedback": "Split the dialogue into labeled turns (SET CONTEXT, NARROW, STRESS-TEST). One turn per job lets a reader see which turn caused which change.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_4_2_scenario_based_ai_dialogue_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_4_2_no_scenario_constraints",
+      "pattern": "scenario_without_constraints",
+      "description": "Describing the situation but never stating the limits (length, audience, what to avoid) that make the output usable",
+      "trigger": "scenario paragraph has no constraint such as time, reading level, or audience",
+      "feedback": "A scenario needs constraints. Add audience, length, and tone limits so the model has something concrete to satisfy.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_4_2_keep_whole_output",
+      "pattern": "accept_entire_ai_output",
+      "description": "Pasting the AI's full reply as the artifact without selecting or cutting any of it",
+      "trigger": "learner keeps every line the AI produced, including duplicates",
+      "feedback": "Select. If a turn returns two lines that say the same thing, keep one and log the cut. The selection is part of the evidence.",
+      "rail_action": "explain"
     }
   ]
 }

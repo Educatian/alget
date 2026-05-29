@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_6_7_capstone_presentation_narrative",
   "misconceptions": [
     {
-      "id": "ail606_supplement_6_7_capstone_presentation_narrative_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_6_7_capstone_presentation_narrative_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_6_7_capstone_presentation_narrative_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_6_7_feature_tour_not_argument",
+      "pattern": "feature_tour_not_argument",
+      "description": "Structuring the capstone talk as a screen-by-screen tour of features instead of an argument that moves from problem to decision to evidence",
+      "trigger": "narrative lists 'here is the home screen, here is the quiz' with no problem driving the order",
+      "feedback": "Organize the narrative as an argument: the problem, the decisions you made, and the evidence they worked. A feature tour is not a defense.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_6_7_capstone_presentation_narrative_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_6_7_slide_text_as_script",
+      "pattern": "slide_text_as_script",
+      "description": "Putting the full spoken script on the slides and reading it aloud, which violates the redundancy principle and overloads the audience",
+      "trigger": "slides are dense paragraphs the presenter reads verbatim",
+      "feedback": "Slides carry the visual evidence; the spoken narrative carries the argument. Identical text in both channels increases load and disengages the committee.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_6_7_claims_without_evidence_beat",
+      "pattern": "claims_without_evidence_beat",
+      "description": "Asserting that the design works without including an evidence beat (tryout result, alignment trace, theory link) for each major claim",
+      "trigger": "narrative says 'learners found it engaging' with no source for the claim",
+      "feedback": "Pair each effectiveness claim with an evidence beat: a tryout observation, an alignment trace, or a theory link the committee can probe.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_6_7_ai_script_unrehearsed",
+      "pattern": "ai_script_unrehearsed",
+      "description": "Having AI generate the entire presentation narrative and reading it without checking that the claims match the actual project and that the presenter can defend them",
+      "trigger": "presenter cannot answer a follow-up because the AI script contained claims the project does not support",
+      "feedback": "AI can outline a narrative arc, but verify every claim against your own project and rehearse so you can defend it, not just recite it.",
       "rail_action": "practice"
     }
   ]

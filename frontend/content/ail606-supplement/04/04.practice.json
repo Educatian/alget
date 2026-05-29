@@ -3,17 +3,17 @@
     {
       "id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_cognitive_load_analysis_in_the_draft",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "cognitive_load",
+      "stem": "A draft screen asks novices to read a dense paragraph while a narrator reads different text aloud. In a cognitive load diagnosis, this is best classified as which kind of load, and why?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Intrinsic load, because the content is inherently hard.",
+        "Extraneous load, because the redundant on-screen text and mismatched narration force the learner to reconcile two sources, which the design could remove.",
+        "Germane load, because the learner is building a schema.",
+        "No load, because narration always helps."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_polish_as_evidence",
+      "explanation": "Redundant or conflicting text and audio is a classic extraneous-load source introduced by the design. It is removable, unlike intrinsic load from the content itself.",
+      "misconception_id": "ail606_supplement_4_4_load_intrinsic_extraneous_confusion",
       "difficulty": "medium",
       "concept_ids": [
         "cognitive_load"
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cognitive_load",
+      "stem": "A teammate proposes \"reducing cognitive load\" by deleting the practice problems from a lesson. Why is this the wrong move in a load diagnosis?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Practice problems never affect load.",
+        "Practice generates germane load, the productive effort of building schemas; cutting it lowers total effort but also removes the learning, so it is not the load you want to reduce.",
+        "Deleting practice always raises extraneous load.",
+        "Practice problems are intrinsic load and cannot be changed."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_annotation_without_signal",
+      "explanation": "Not all load is bad. Germane load is the useful effort of learning. A diagnosis should cut extraneous load, not the germane load that drives schema construction.",
+      "misconception_id": "ail606_supplement_4_4_load_all_load_is_bad",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "cognitive_load"
       ]
     },
     {
       "id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "You ask an AI tool to label each screen of your draft as high, medium, or low cognitive load. It returns confident ratings with no source attribution. What is the strongest bounded use?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the AI ratings as your diagnosis because they are consistent.",
+        "Treat the ratings as prompts to inspect, then assign each load to a type (intrinsic, extraneous, germane) with the specific screen evidence that justifies it.",
+        "Ask the AI to also redesign every high-load screen automatically.",
+        "Average the AI ratings into a single module-level score and report that."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_ai_as_authority",
+      "explanation": "A load diagnosis must name the type of load and point to the screen feature causing it. An undifferentiated high or low rating from AI is not a diagnosis the designer can act on.",
+      "misconception_id": "ail606_supplement_4_4_load_ai_rating_as_diagnosis",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,17 +60,17 @@
     {
       "id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Your draft introduces a complex statistics topic to true beginners and the intrinsic load is high. Which revision most defensibly manages that load without removing the content?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Delete the hardest example so the topic feels easier.",
+        "Use segmenting and worked-example pre-training so the high element interactivity is encountered in smaller, sequenced chunks rather than all at once.",
+        "Speed up the narration so learners spend less time on it.",
+        "Add more decorative visuals to make the topic engaging."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_completion_only_model",
+      "explanation": "Intrinsic load from high element interactivity is managed by sequencing and pre-training, not by deletion or decoration. The content stays; the demand is staged.",
+      "misconception_id": "ail606_supplement_4_4_load_intrinsic_extraneous_confusion",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

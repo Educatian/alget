@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_7_4_equity_audit_in_field_contexts",
   "misconceptions": [
     {
-      "id": "cat531_supplement_7_4_equity_audit_in_field_contexts_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_7_4_generic_risk_for_equity",
+      "pattern": "generic_risk_stands_in_for_equity",
+      "description": "Writing generic worries in the equity column instead of context-specific risks tied to real student groups",
+      "trigger": "candidate lists risks that could apply to any school and any tool",
+      "feedback": "Name a real subgroup in this placement and the mechanism by which the tool could disadvantage them.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_7_4_equity_audit_in_field_contexts_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_7_4_equity_audit_in_field_contexts_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_7_4_vendor_claim_as_audit",
+      "pattern": "vendor_fairness_claim_as_audit",
+      "description": "Recording a vendor's bias-tested claim as settled equity evidence",
+      "trigger": "candidate enters a marketing fairness claim without asking who was tested",
+      "feedback": "Log vendor fairness claims as unverified. Ask which groups were tested, on what data, and whether your students were represented.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_7_4_equity_audit_in_field_contexts_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_7_4_ai_generic_fills_matrix",
+      "pattern": "ai_generic_risk_fills_matrix",
+      "description": "Pasting AI-generated generic risks into the matrix as if they were the context audit",
+      "trigger": "candidate fills the equity column with risks that mention no specific student group or policy",
+      "feedback": "Use AI risks as prompts, then ground each one in this placement's actual students, devices, and policies.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_7_4_filled_grid_equals_equity",
+      "pattern": "completed_grid_equals_equity",
+      "description": "Treating a fully completed matrix as proof of a defensible equity recommendation",
+      "trigger": "candidate offers a filled grid, price, or preference instead of risk, safeguard, and monitoring",
+      "feedback": "Pair each risk with the affected group, the safeguard, and a post-rollout check. A filled grid is not the analysis.",
       "rail_action": "practice"
     }
   ]

@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_1_3_dts_map_reading",
   "misconceptions": [
     {
-      "id": "cat531_supplement_1_3_dts_map_reading_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_1_3_map_decision_without_tradeoff",
+      "pattern": "decision_node_hides_tradeoff",
+      "description": "Reading a DTS decision node as complete even when it states no trade-off between the competing values",
+      "trigger": "learner accepts a decision node that names a choice but not what value was yielded",
+      "feedback": "Check the decision node for the trade-off: which value was favored, which was yielded, and at what cost. A decision with no trade-off note is not yet readable.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_1_3_dts_map_reading_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_1_3_dts_map_reading_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_1_3_edge_label_names_no_mechanism",
+      "pattern": "edge_label_without_mechanism",
+      "description": "Labeling a tension edge with a bare word like 'tension' instead of the mechanism by which the two values conflict",
+      "trigger": "learner reads or writes an edge labeled only 'tension' or 'conflict' with no explanation of how",
+      "feedback": "Name the mechanism on the edge: how does one value pressure the other in this specific classroom situation?",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_1_3_dts_map_reading_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_1_3_ai_certifies_map_correctness",
+      "pattern": "ai_grades_negotiated_map",
+      "description": "Treating an AI's verdict on a DTS map as a correctness certification rather than a prompt to find gaps",
+      "trigger": "learner asks AI whether a map's decision is correct and treats the answer as authoritative",
+      "feedback": "A map is a reasoning trace, not a keyed problem. Use AI to surface unlabeled edges or missing trade-offs, then judge the negotiation yourself.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_1_3_density_read_as_quality",
+      "pattern": "visual_density_as_rigor",
+      "description": "Equating a map's visual density or node count with the rigor of the reasoning it represents",
+      "trigger": "learner judges a denser, more colorful map as stronger regardless of whether trade-offs are explicit",
+      "feedback": "Judge the map by whether a reader can reconstruct the negotiated judgment and its evidence, not by how many nodes or colors it has.",
       "rail_action": "practice"
     }
   ]

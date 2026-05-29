@@ -35,15 +35,36 @@ Use these anchors as lenses, not as names to drop into a reflection. A useful le
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+Here is a real bulk action made safe with a dry run and an undo path.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+**The task:** add a date prefix to 200 coursework files with a rename rule.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+**Unsafe (run on everything at once):**
 
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+```
+Rule:  rename *  ->  2026-05-28_*
+Run on:  CAT100/ (all 200 files)
+Result:  pattern was wrong; 200 files now read 2026-05-28_2026-05-28_essay.docx
+```
 
-The stronger version treats the privacy checklist for accounts, data sharing, and AI tool boundaries as evidence. It names what changed, links the change to **ISTE digital citizenship**, and leaves a reader able to audit the decision.
+One bad pattern just corrupted every file.
+
+**Safe (dry run on copies, then full run with a backup):**
+
+```
+1. Copy 3 files into CAT100/_test/        (sample)
+2. Run rule on _test/ only
+   essay.docx        -> 2026-05-28_essay.docx     OK
+   lab.docx          -> 2026-05-28_lab.docx        OK
+3. Backup CAT100/ to OneDrive              (undo path)
+4. Run rule on the full folder
+```
+
+Three safety checks did the work:
+
+1. **Dry run on a small sample** caught the pattern before it touched all 200 files.
+2. **A backup copy** in OneDrive gave an undo path for an action the tool cannot reverse.
+3. **Confirm the result on the sample** before scaling, so the full run is verification, not a gamble.
 
 ## Decision Rule
 

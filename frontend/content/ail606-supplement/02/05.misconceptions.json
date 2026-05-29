@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_2_5_ai_tutor_boundaries",
   "misconceptions": [
     {
-      "id": "ail606_supplement_2_5_ai_tutor_boundaries_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_2_5_ai_tutor_boundaries_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_2_5_ai_tutor_boundaries_tutor_should_answer_everything",
+      "pattern": "tutor_as_answer_engine",
+      "description": "Designing the AI tutor to give the final answer on demand instead of holding a boundary that keeps the learner doing the thinking",
+      "trigger": "learner specifies a tutor that solves the problem when asked rather than scaffolding the next step",
+      "feedback": "A learning tutor's boundary is to support the learner's thinking, not replace it. Specify what the tutor will withhold (the final answer) and what it will offer (a next step or question).",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_2_5_ai_tutor_boundaries_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_2_5_ai_tutor_boundaries_disclosure_is_blanket",
+      "pattern": "disclosure_as_blanket_statement",
+      "description": "Treating an AI-use disclosure as a generic blanket sentence rather than a specific account of which decision the AI touched",
+      "trigger": "learner writes AI was used in this work without naming the bounded decision, the prompt, and what was accepted or rejected",
+      "feedback": "A useful disclosure names the specific bounded decision the AI informed, what it proposed, and what you accepted or rejected. A blanket sentence is not auditable.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_2_5_ai_tutor_boundaries_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_2_5_ai_tutor_boundaries_fluent_means_correct",
+      "pattern": "fluent_output_assumed_accurate",
+      "description": "Assuming a confident, fluent tutor response is accurate and pedagogically appropriate without checking it against course evidence",
+      "trigger": "learner accepts a tutor explanation because it sounds authoritative, with no verification step in the design",
+      "feedback": "Fluency is not accuracy. Build a verification boundary so the tutor's output is checked against course material before a learner relies on it.",
+      "rail_action": "ask"
     }
   ]
 }

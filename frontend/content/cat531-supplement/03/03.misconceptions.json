@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_3_3_bias_data_and_classroom_consequences",
   "misconceptions": [
     {
-      "id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_3_3_math_cannot_be_biased",
+      "pattern": "algorithm_assumed_objective",
+      "description": "Believing an algorithm or risk score is objective because it is mathematical and therefore free of bias",
+      "trigger": "teacher trusts a flagging or risk model because it is data-driven rather than human",
+      "feedback": "A model inherits the bias of its training data and the choices of its designers. Ask what data it learned from and which groups appear underrepresented before trusting its output.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_3_3_proxy_variable_blindness",
+      "pattern": "proxy_variable_treated_as_neutral",
+      "description": "Failing to notice that a seemingly neutral input feature encodes race, income, or language status",
+      "trigger": "teacher accepts a model's features without checking whether ZIP code, attendance, or prior-school data acts as a proxy",
+      "feedback": "Inspect the inputs for proxies. Features like ZIP code or free-lunch status can stand in for protected characteristics and reproduce inequity even when those characteristics are not named.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_3_3_aggregate_hides_subgroup_harm",
+      "pattern": "aggregate_accuracy_hides_subgroup_harm",
+      "description": "Judging a model good because its overall accuracy is high while ignoring much worse performance for a subgroup",
+      "trigger": "teacher cites a single overall accuracy number to defend a tool",
+      "feedback": "Disaggregate the results. A model that is 90% accurate overall can be 60% accurate for one subgroup. Ask for performance broken out by group before adopting.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_3_3_score_overrides_teacher",
+      "pattern": "model_output_overrides_classroom_evidence",
+      "description": "Letting a model's label override the teacher's direct knowledge of a student's situation",
+      "trigger": "teacher changes a placement or referral to match a model flag despite contradicting classroom evidence",
+      "feedback": "The model is one input. Weigh it against your firsthand classroom evidence and intervene to correct the record when the flag conflicts with what you observe.",
       "rail_action": "practice"
     }
   ]

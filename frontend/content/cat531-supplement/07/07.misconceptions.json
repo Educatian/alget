@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_7_7_professional_learning_network",
   "misconceptions": [
     {
-      "id": "cat531_supplement_7_7_professional_learning_network_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_7_7_popularity_as_evidence",
+      "pattern": "popularity_as_evidence",
+      "description": "Treating how many teachers recommend a tool as proof it is effective or safe",
+      "trigger": "candidate adopts a resource because it is popular or admired, skipping the evidence and data check",
+      "feedback": "Treat the network as a source to vet. Check the evidence, the recommenders' relevance, and the tool's data handling.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_7_7_professional_learning_network_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_7_7_professional_learning_network_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_7_7_borrow_without_context_check",
+      "pattern": "borrow_without_context_check",
+      "description": "Adopting a colleague's strategy without checking whether their context matches the placement",
+      "trigger": "candidate borrows a strategy from a different school context without naming the gap",
+      "feedback": "Name the context gap between the source and your placement, then test whether the strategy survives your constraints.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_7_7_professional_learning_network_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_7_7_ai_citation_unverified",
+      "pattern": "ai_citation_unverified",
+      "description": "Sharing AI-provided citations into a network without verifying they exist",
+      "trigger": "candidate passes on study citations she could not locate",
+      "feedback": "Unverifiable citations are a fabrication signal. Rely only on sources you can locate and check before sharing them.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_7_7_resharing_as_contribution",
+      "pattern": "resharing_as_contribution",
+      "description": "Treating likes, follows, or reshares as a professional contribution to the network",
+      "trigger": "candidate reports engagement metrics instead of tested evidence and context cautions",
+      "feedback": "Contribute by reporting what you tried, where it worked and did not, and the caution colleagues need to judge fit.",
       "rail_action": "practice"
     }
   ]

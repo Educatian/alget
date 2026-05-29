@@ -4,17 +4,17 @@
       "id": "ail606_supplement_5_8_module_5_usability_plan_studio_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_module_5_usability_plan_studio",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A usability plan states a findability hypothesis but its only metric is a satisfaction rating. As a coherence reviewer, what is the core problem?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The plan needs more participants.",
+        "The metric cannot test the hypothesis: a satisfaction rating does not measure whether users can find the feature.",
+        "Satisfaction ratings are never allowed in a plan.",
+        "The hypothesis should have been removed."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_5_8_module_5_usability_plan_studio_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A coherent plan requires the metric to be able to confirm or disconfirm the stated hypothesis; satisfaction cannot test findability.",
+      "misconception_id": "ail606_supplement_5_8_hypothesis_metric_mismatch",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_module_5_usability_plan_studio"
       ]
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_5_8_module_5_usability_plan_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_module_5_usability_plan_studio",
+      "stem": "A plan's hypothesis targets first-time users, but the recruitment line says \"5 expert designers,\" and the tasks list exact click steps. Which two parts are misaligned with the hypothesis?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The metric and the decision rule.",
+        "The participant sample (experts, not first-time users) and the tasks (leading click paths that hide findability).",
+        "Only the title and the references.",
+        "Nothing is misaligned; the plan is fine."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_5_8_module_5_usability_plan_studio_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Coherence means every part serves the hypothesis; an expert sample and leading tasks both undercut a first-time-user findability claim.",
+      "misconception_id": "ail606_supplement_5_8_parts_dont_align",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_module_5_usability_plan_studio"
       ]
     },
     {
       "id": "ail606_supplement_5_8_module_5_usability_plan_studio_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to generate a complete usability plan from a one-line brief. What is the defensible boundary on using the output?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Submit the generated plan as your studio artifact since it is complete.",
+        "Run the coherence audit yourself, checking that the AI's hypothesis, sample, tasks, metrics, and decision rule all trace to the same goal, and fix the mismatches.",
+        "Reject the AI plan entirely; plans must be hand-built end to end.",
+        "Use the AI plan only to make the wording sound more professional."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_5_8_module_5_usability_plan_studio_ai_as_authority",
+      "explanation": "A generated plan can look complete yet be internally incoherent; the designer must audit and reconcile its parts.",
+      "misconception_id": "ail606_supplement_5_8_generated_plan_unaudited",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,20 +60,20 @@
     {
       "id": "ail606_supplement_5_8_module_5_usability_plan_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_module_5_usability_plan_studio",
+      "stem": "A plan's decision rule reads \"ship if participants seem to like it.\" Even with a good hypothesis, sample, and tasks, why does this break the plan's coherence?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Decision rules are optional in a usability plan.",
+        "The decision rule does not connect to the plan's own metrics or thresholds, so the evidence the study gathers cannot actually drive the decision.",
+        "Liking a product is the strongest possible evidence.",
+        "The rule should have come before the hypothesis."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_5_8_module_5_usability_plan_studio_completion_only_model",
+      "explanation": "A coherent plan ties the decision rule to the metrics and thresholds it collects; a vague rule disconnects evidence from the decision.",
+      "misconception_id": "ail606_supplement_5_8_decision_rule_disconnected",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_module_5_usability_plan_studio"
       ]
     }
   ]

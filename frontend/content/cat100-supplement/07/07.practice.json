@@ -8,74 +8,74 @@
         "cat100_supplement_personal_workflow_audit",
         "cat100_supplement_productivity_and_workflow_automation"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You want to audit how you handle weekly coursework. What is the most reliable first step?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Estimate each step's time from memory",
+        "Log the actual steps and how many minutes each takes for a few days",
+        "Ask a friend how long their work takes",
+        "Skip the audit and just work faster"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_7_7_personal_workflow_audit_polish_as_evidence",
+      "explanation": "A real log shows the steps that quietly eat time. Memory tends to undercount the repetitive ones.",
+      "misconception_id": "cat100_supplement_7_7_audit_from_memory",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_7_7_personal_workflow_audit_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_personal_workflow_audit",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_personal_workflow_audit"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your log shows: renaming files (5 min, daily) and formatting a term report (40 min, once a term). Which should you fix first?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The 40-minute report, because it is the longest single task",
+        "The 5-minute daily rename, because frequency times duration makes it the bigger weekly cost",
+        "Neither; both are fine",
+        "Whichever is more fun to fix"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_7_7_personal_workflow_audit_annotation_without_signal",
+      "explanation": "5 min daily is about 35 min a week and grows; the 40-min task happens once a term. Frequency times duration points to the rename.",
+      "misconception_id": "cat100_supplement_7_7_optimize_rare_step",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_7_personal_workflow_audit_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_personal_workflow_audit",
       "concept_ids": [
-        "ai_supported_learning"
+        "cat100_supplement_personal_workflow_audit"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Your file-handling process currently uses inconsistent names and a messy folder. What should you do before automating it?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Automate it as-is so it runs faster",
+        "Fix and simplify the process by hand first, then automate the clean version",
+        "Add more steps to the automation",
+        "Automate it twice"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_7_7_personal_workflow_audit_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "Automating a broken process just makes mistakes faster. Clean it up first, then automate.",
+      "misconception_id": "cat100_supplement_7_7_automate_broken_process",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_7_personal_workflow_audit_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_personal_workflow_audit",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_personal_workflow_audit"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You changed how you submit assignments and want to show it actually helped. What evidence makes the claim defensible?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Saying it feels faster now",
+        "A before baseline (for example 18 min, 2 errors) compared to an after measure (for example 7 min, 0 errors)",
+        "How clean the new folder looks",
+        "The number of files you have"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_7_7_personal_workflow_audit_completion_only_model",
-      "difficulty": "medium"
+      "explanation": "A before-and-after measure of time or errors turns 'feels faster' into evidence anyone can check.",
+      "misconception_id": "cat100_supplement_7_7_no_baseline_measure",
+      "difficulty": "hard"
     }
   ]
 }

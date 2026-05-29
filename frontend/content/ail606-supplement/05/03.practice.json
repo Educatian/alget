@@ -4,17 +4,17 @@
       "id": "ail606_supplement_5_3_task_scenarios_for_prototype_testing_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_task_scenarios_for_prototype_testing",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A task reads: \"Click the blue New Module button, choose From Template, then click Save.\" Why is this a weak usability task?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too long for participants to remember.",
+        "It embeds the solution path, so it tests whether participants can follow directions, not whether they can find and complete the goal.",
+        "It does not mention the participant's name.",
+        "Tasks should never reference buttons at all."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_5_3_task_scenarios_for_prototype_testing_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A leading task hands over the steps, producing a guaranteed success that yields no findability evidence.",
+      "misconception_id": "ail606_supplement_5_3_leading_task_steps",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_task_scenarios_for_prototype_testing"
       ]
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_5_3_task_scenarios_for_prototype_testing_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_task_scenarios_for_prototype_testing",
+      "stem": "Which rewrite turns \"find the gradebook settings\" into a defensible goal-based scenario?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Open the Settings menu and select Gradebook, then toggle weighting.",
+        "You just realized final grades should be weighted by category. Set up your course so category weighting is on before grades post.",
+        "Locate the gradebook as quickly as you possibly can.",
+        "Tell us how intuitive the gradebook feels."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_5_3_task_scenarios_for_prototype_testing_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "A goal-based scenario gives a realistic situation and end-state without naming the controls, so the path is what gets tested.",
+      "misconception_id": "ail606_supplement_5_3_goal_vs_instruction",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_task_scenarios_for_prototype_testing"
       ]
     },
     {
       "id": "ail606_supplement_5_3_task_scenarios_for_prototype_testing_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to generate task scenarios for your prototype test. What is the defensible boundary on using its output?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Use the AI tasks verbatim because they are well written.",
+        "Review each generated task to confirm it states a goal, not a click path, and has an observable success condition before you use it.",
+        "Reject AI-written tasks because scenarios must come from stakeholders only.",
+        "Use AI only to add more steps to each task."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_5_3_task_scenarios_for_prototype_testing_ai_as_authority",
+      "explanation": "AI can draft scenarios, but the designer must verify each one is goal-based and scorable rather than a leading instruction.",
+      "misconception_id": "ail606_supplement_5_3_leading_task_steps",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,20 +60,20 @@
     {
       "id": "ail606_supplement_5_3_task_scenarios_for_prototype_testing_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_task_scenarios_for_prototype_testing",
+      "stem": "A designer writes one task: \"Explore the prototype and tell us what you think.\" After sessions, they cannot say whether any specific workflow is usable. What went wrong?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The task should have been timed.",
+        "An open-ended explore task has no defined goal or success condition, so it produces impressions rather than evidence about a specific workflow.",
+        "Participants were not motivated enough.",
+        "They needed more participants, not a better task."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_5_3_task_scenarios_for_prototype_testing_completion_only_model",
+      "explanation": "Without a bounded goal and success criterion, a task yields opinions, not observable usability evidence tied to a workflow.",
+      "misconception_id": "ail606_supplement_5_3_no_success_condition",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_task_scenarios_for_prototype_testing"
       ]
     }
   ]

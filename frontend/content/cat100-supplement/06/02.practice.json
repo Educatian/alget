@@ -8,35 +8,35 @@
         "cat100_supplement_starter_html_and_css",
         "cat100_supplement_github_pages_personal_website"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You want the page title that shows in the browser tab to read 'Maria Lopez | Portfolio'. Which markup is correct?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "<h1>Maria Lopez | Portfolio</h1> placed inside <body>",
+        "<title>Maria Lopez | Portfolio</title> placed inside <head>",
+        "<header>Maria Lopez | Portfolio</header> placed inside <html>",
+        "<p class=\"title\">Maria Lopez | Portfolio</p> placed anywhere"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_6_2_starter_html_and_css_polish_as_evidence",
+      "explanation": "The browser tab text comes from the <title> element inside <head>. <h1> shows on the page itself; it does not set the tab.",
+      "misconception_id": "cat100_supplement_6_2_h1_sets_tab_title",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_6_2_starter_html_and_css_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_starter_html_and_css",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_starter_html_and_css"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your CSS file has two rules in this order: 'p { color: blue; }' then 'p { color: green; }'. A paragraph with no other styles renders what color?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Blue, because it was defined first",
+        "Green, because for equal specificity the later rule wins",
+        "Black, because the two rules cancel out",
+        "Red, the browser default for conflicts"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_6_2_starter_html_and_css_annotation_without_signal",
+      "explanation": "When two selectors have the same specificity, the rule that appears later in the stylesheet overrides the earlier one, so the text is green.",
+      "misconception_id": "cat100_supplement_6_2_first_rule_wins",
       "difficulty": "medium"
     },
     {
@@ -44,37 +44,39 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_starter_html_and_css"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI assistant gives you CSS that styles your nav bar but targets a class .container that does not exist in your HTML. What should you do before pasting it in?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Paste it as-is; the AI already tested it",
+        "Check which selectors match elements that actually exist in my HTML, then add or remove the .container class so the markup and CSS agree",
+        "Delete all my existing CSS so there are no conflicts",
+        "Keep the unused .container rule because more CSS is safer"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_6_2_starter_html_and_css_ai_as_authority",
+      "explanation": "AI-generated CSS often references classes that are not in your HTML. You stay responsible for making selectors and markup match before the styles will do anything.",
+      "misconception_id": "cat100_supplement_6_2_ai_css_runs_blindly",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_6_2_starter_html_and_css_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_starter_html_and_css",
       "concept_ids": [
+        "cat100_supplement_starter_html_and_css",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You write <img src=\"headshot.jpg\"> for your About page. A reviewer using a screen reader cannot tell what the image is. What is the correct fix?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Make the image larger with width=\"600\"",
+        "Add a descriptive alt attribute: <img src=\"headshot.jpg\" alt=\"Maria Lopez, headshot\">",
+        "Convert the image to PNG",
+        "Wrap the image in a <b> tag"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_6_2_starter_html_and_css_completion_only_model",
+      "explanation": "A screen reader announces the alt text. Adding alt=\"Maria Lopez, headshot\" makes the image meaningful to non-visual users; size and format do not address accessibility.",
+      "misconception_id": "cat100_supplement_6_2_alt_text_optional",
       "difficulty": "medium"
     }
   ]

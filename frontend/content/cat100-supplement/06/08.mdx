@@ -35,15 +35,36 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+This studio integrates the whole module. Maria assembles the final file tree, runs the three-part checklist, and verifies on the live URL.
 
-> I made the GitHub Pages file tree with accessibility, privacy, and publishing checks clearer.
+**Step 1. Confirm the publishable file tree.**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```text
+mlopez.github.io/
+  index.html        (Home, links to all pages)
+  about.html        (bio + headshot)
+  projects/
+    index.html      (project cards)
+    dashboard.html
+  resume.pdf
+  assets/
+    style.css
+  .gitignore        (token.txt, .DS_Store)
+```
 
-> I revised the GitHub Pages file tree with accessibility, privacy, and publishing checks so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+**Step 2. Run the accessibility, privacy, publishing checklist.**
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+| Check | Evidence in the artifact |
+| --- | --- |
+| Accessibility | Every <img> has descriptive alt; nav uses real <a> links |
+| Privacy | No API keys, address, or phone committed; .gitignore in place |
+| Publishing | Settings, Pages source set; lowercase index.html; relative asset paths |
+
+**Step 3. Add the AI-use note.** "AI assisted with drafting starter HTML, debugging one unclosed tag, and rewording one resume bullet. I verified every change in the browser and own all factual claims."
+
+**Step 4. Verify end to end like a visitor.** Open https://mlopez.github.io in a private window on a phone: pages load, the headshot announces its alt text, all nav and project links resolve, and no secrets appear in the repo.
+
+The submission is now a real published site, not a mockup. One end-to-end test on the live URL exercises accessibility, privacy, and publishing together, and the AI-use note keeps the work honest and auditable.
 
 ## Decision Rule
 

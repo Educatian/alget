@@ -4,16 +4,16 @@
       "id": "ail606_supplement_8_7_blackboard_to_alget_alignment_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_blackboard_to_alget_alignment",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A team copies its Blackboard module structure verbatim into ALGET and calls the migration 'aligned.' What is the strongest correction?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is aligned; everything was moved successfully.",
+        "Copying is not aligning; build an objective-to-activity table and check each objective has a matching ALGET activity.",
+        "Alignment just means the links open in ALGET.",
+        "Alignment means the modules appear in the same order."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_8_7_blackboard_to_alget_alignment_polish_as_evidence",
+      "explanation": "Alignment is the mapping of objectives to activities, not the reproduction of the old structure.",
+      "misconception_id": "ail606_supplement_8_7_copy_is_alignment",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_blackboard_to_alget_alignment"
@@ -23,16 +23,16 @@
       "id": "ail606_supplement_8_7_blackboard_to_alget_alignment_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The migrated quiz has 10 recall items, all measuring Objective 1 (define terms). Objectives 2 to 4 ask students to analyze, document, and decide. What does the alignment table reveal?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "All four objectives are covered because there are ten items.",
+        "Three objectives have no aligned activity; recall items cannot measure a design decision.",
+        "The quiz is fine because recall is the foundation.",
+        "Objectives 2 to 4 are optional anyway."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_8_7_blackboard_to_alget_alignment_annotation_without_signal",
+      "explanation": "Recall items cannot show analysis, documentation, or decision; those objective cells are empty.",
+      "misconception_id": "ail606_supplement_8_7_recall_covers_all",
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
@@ -42,16 +42,16 @@
       "id": "ail606_supplement_8_7_blackboard_to_alget_alignment_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An instructor uses AI to suggest which ALGET feature serves each objective. What is the strongest boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the AI mapping without checking it.",
+        "Use the AI suggestions, then verify each objective truly maps to a feature that can show that skill, leaving no orphaned activity.",
+        "Avoid AI and copy the Blackboard structure as-is.",
+        "Ask AI only to rename the activities."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_8_7_blackboard_to_alget_alignment_ai_as_authority",
+      "explanation": "AI can propose mappings, but the instructor must confirm each objective is covered and no activity is orphaned.",
+      "misconception_id": "ail606_supplement_8_7_dropbox_loses_process",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -61,16 +61,16 @@
       "id": "ail606_supplement_8_7_blackboard_to_alget_alignment_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Why replace the single-file storyboard dropbox with an artifact-studio before/after trace during migration?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The trace makes the gradebook simpler.",
+        "The dropbox captures only a finished file, so ALGET's adaptive support has no process evidence to act on.",
+        "Traces are required by Blackboard.",
+        "A trace looks more modern than a dropbox."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_8_7_blackboard_to_alget_alignment_completion_only_model",
+      "explanation": "Adaptive support needs process evidence; a single-file upload records completion but no decision trail.",
+      "misconception_id": "ail606_supplement_8_7_dropbox_loses_process",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

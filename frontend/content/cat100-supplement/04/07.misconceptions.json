@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_4_7_evidence_collection",
   "misconceptions": [
     {
-      "id": "cat100_supplement_4_7_evidence_collection_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_4_7_evidence_collection_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_4_7_evidence_collection_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_4_7_meaningless_filenames",
+      "pattern": "uninformative_file_names",
+      "description": "Saving files as 'Untitled.docx' or 'final final v2' so the name does not say what the file contains or proves",
+      "trigger": "file names do not describe content or the claim they support",
+      "feedback": "Rename each file so the name states the content (for example 02_factcheck_table.xlsx). A reviewer should not have to open it to know what it is.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_4_7_evidence_collection_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_4_7_no_claim_mapping",
+      "pattern": "files_without_claims",
+      "description": "Collecting a pile of files with no manifest linking each file to the specific claim it proves",
+      "trigger": "folder has files but no map from file to claim",
+      "feedback": "Build a manifest: one row per file naming the claim it supports. A claim with no file is unsupported; a file with no claim is clutter.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_4_7_more_is_better",
+      "pattern": "quantity_over_relevance",
+      "description": "Padding the folder with extra files (a stray screenshot) that prove nothing, assuming more files mean stronger evidence",
+      "trigger": "folder includes items that map to no claim",
+      "feedback": "Cut files that prove nothing on their own. Evidence strength comes from each file backing a claim, not from the file count.",
+      "rail_action": "ask"
     }
   ]
 }

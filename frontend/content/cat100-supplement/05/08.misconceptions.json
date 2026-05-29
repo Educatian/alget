@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_5_8_module_5_presentation_studio",
   "misconceptions": [
     {
-      "id": "cat100_supplement_5_8_module_5_presentation_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat100_supplement_5_8_module_5_presentation_studio_skip_layers",
+      "pattern": "skipping_to_polish_in_capstone",
+      "description": "Jumping straight to polish in the capstone instead of carrying audience, structure, media, narration, citation, and access checks through",
+      "trigger": "learner submits a themed deck that never states its purpose or passes a contrast check",
+      "feedback": "Walk the full pipeline: purpose, structure, explanatory media, value-adding narration, verified citations, accessibility. Polish is last.",
+      "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_5_8_module_5_presentation_studio_no_revision_trail",
+      "pattern": "capstone_without_revision_trail",
+      "description": "Submitting the final deck with no record of what changed and why",
+      "trigger": "learner turns in the deck with no before/after or rejected-suggestion note",
+      "feedback": "Attach a revision trail: the earlier version, the issue, the support used, and one suggestion you rejected with a reason.",
       "rail_action": "ask"
     },
     {
-      "id": "cat100_supplement_5_8_module_5_presentation_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_5_8_module_5_presentation_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_5_8_module_5_presentation_studio_ai_does_capstone",
+      "pattern": "ai_authors_the_capstone",
+      "description": "Letting AI assemble the entire capstone deck and submitting it as your own judgment",
+      "trigger": "learner accepts an AI-built deck end to end without deciding anything",
+      "feedback": "Use AI for bounded help on single moves; the capstone must show your decisions across the whole pipeline.",
       "rail_action": "represent"
-    },
-    {
-      "id": "cat100_supplement_5_8_module_5_presentation_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
     }
   ]
 }

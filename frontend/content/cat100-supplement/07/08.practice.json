@@ -8,74 +8,74 @@
         "cat100_supplement_workflow_studio",
         "cat100_supplement_productivity_and_workflow_automation"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You are publishing your workflow write-up as a GitHub Pages site. What must the repo root homepage be named so the site URL works?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "home.html",
+        "index.html",
+        "main.html",
+        "workflow.html"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_7_8_workflow_studio_polish_as_evidence",
+      "explanation": "GitHub Pages serves index.html as the default page at the site root. Another name leaves the root URL showing a 404.",
+      "misconception_id": "cat100_supplement_7_8_wrong_index_name",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_7_8_workflow_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_workflow_studio",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_workflow_studio"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your live page shows a broken image. The tag reads <img src=\"C:/Users/me/diagram.png\">. What is the correct fix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Make the image bigger",
+        "Use a repository-relative path like <img src=\"./images/diagram.png\"> and commit the image into the repo",
+        "Switch the image to a PDF",
+        "Add the image again to the same folder on your desktop"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_7_8_workflow_studio_annotation_without_signal",
+      "explanation": "A C:/Users path only resolves on your own machine. A relative path to a file inside the repo works for every visitor.",
+      "misconception_id": "cat100_supplement_7_8_absolute_local_path",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_8_workflow_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_workflow_studio",
       "concept_ids": [
-        "ai_supported_learning"
+        "cat100_supplement_workflow_studio"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You pushed index.html to the main branch but the site still does not load. What is the most likely missing step?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The file needs to be renamed to readme.html",
+        "In Settings > Pages, the source branch and folder were never selected, so Pages is not publishing",
+        "You must push the file a second time",
+        "GitHub does not host HTML"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_7_8_workflow_studio_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "Pushing files does not enable publishing on its own. Pages must have a source branch and folder set in Settings.",
+      "misconception_id": "cat100_supplement_7_8_no_pages_source_set",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_8_workflow_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_workflow_studio",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_workflow_studio"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Your list of workflow steps renders as one run-on line. The HTML is <ul><li>Log time<li>Find slow step<li>Fix it. What is wrong?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Lists are not allowed in HTML",
+        "The <li> items and the <ul> are not closed; each item needs </li> and the list needs </ul>",
+        "You need to use a table instead",
+        "The text is too short"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_7_8_workflow_studio_completion_only_model",
-      "difficulty": "medium"
+      "explanation": "Unclosed and mis-nested tags break the layout. Closing each <li> and the <ul> renders a proper bulleted list.",
+      "misconception_id": "cat100_supplement_7_8_unclosed_tag",
+      "difficulty": "hard"
     }
   ]
 }

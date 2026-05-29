@@ -3,17 +3,17 @@
     {
       "id": "cat531_supplement_6_6_evidence_based_reflection_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_reflection",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "learner_reflection",
+      "stem": "A reflection on a unit taught with an AI tool reads: \"The lesson went really well and students were engaged.\" Which revision makes it an evidence-based reflection rather than an impression?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"The lesson went really well and students seemed very engaged and happy.\"",
+        "\"Exit-ticket scores rose from 58% to 81%, but the 4 students using the printed fallback averaged 12 points lower, so the tool may have widened a gap I will check next week.\"",
+        "\"I felt confident and the energy in the room was high.\"",
+        "\"Most students said they liked the tool when I asked.\""
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_6_6_evidence_based_reflection_polish_as_evidence",
+      "explanation": "Evidence-based reflection cites specific observed data, including disconfirming evidence, not feelings or general engagement claims.",
+      "misconception_id": "cat531_supplement_6_6_evidence_based_reflection_feelings_as_evidence",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_final_project_and_professional_vision",
@@ -25,36 +25,37 @@
     {
       "id": "cat531_supplement_6_6_evidence_based_reflection_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "learner_reflection",
+      "stem": "A reviewer annotates a reflection: \"You only describe the evidence that supports keeping the tool. What did you see that argued against it?\" What practice does this note ask for?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Add more praise for the tool to balance the tone.",
+        "Seek and report disconfirming evidence, so the reflection weighs both supporting and counter-evidence before concluding.",
+        "Remove the analysis and keep only the conclusion.",
+        "Cite a published study that agrees with the conclusion."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_6_6_evidence_based_reflection_annotation_without_signal",
+      "explanation": "Sound reflection actively looks for evidence against its own conclusion, not just evidence that confirms it.",
+      "misconception_id": "cat531_supplement_6_6_evidence_based_reflection_confirmation_only",
       "difficulty": "medium",
       "concept_ids": [
+        "learner_reflection",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_6_6_evidence_based_reflection_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "A teacher asks BigAL to write a reflection on her own AI-tool lesson. Why does this most undermine the reflection even if the prose is excellent?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The model writes too formally.",
+        "A reflection's purpose is to surface the teacher's own observed evidence and reasoning; a model cannot have observed her classroom, so it can only invent plausible claims.",
+        "The reflection would be longer than required.",
+        "AI reflections are always shorter than human ones."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_6_6_evidence_based_reflection_ai_as_authority",
+      "explanation": "Reflection depends on the practitioner's own situated evidence; an AI-authored reflection has no observed data to ground it.",
+      "misconception_id": "cat531_supplement_6_6_evidence_based_reflection_ai_invents_evidence",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -63,19 +64,20 @@
     {
       "id": "cat531_supplement_6_6_evidence_based_reflection_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "learner_reflection",
+      "stem": "A reflection concludes the AI tool worked because the class average rose 10 points the same week the tool launched. Which reasoning move would make the conclusion more defensible?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Round the gain up to a more impressive number.",
+        "Consider rival explanations (a review day, an easier quiz, test practice) before attributing the gain to the tool.",
+        "Drop the data and rely on how the lesson felt.",
+        "Conclude the tool worked because the gain is large."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_6_6_evidence_based_reflection_completion_only_model",
+      "explanation": "Evidence-based reflection checks rival explanations before attributing an outcome to one cause; correlation in one week is weak evidence.",
+      "misconception_id": "cat531_supplement_6_6_evidence_based_reflection_correlation_as_cause",
       "difficulty": "hard",
       "concept_ids": [
+        "learner_reflection",
         "evidence_based_revision"
       ]
     }

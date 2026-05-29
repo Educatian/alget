@@ -8,54 +8,55 @@
         "cat100_supplement_spreadsheet_structure_and_clean_data",
         "cat100_supplement_data_storytelling_with_excel"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You receive a sales export. Row 1 has the title 'Q3 Report', row 2 is blank, row 3 has the headers (Date, Region, Units), and the data starts in row 4. To build a clean tidy table that Excel features can use, what should you do first?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Leave it as is because the title looks professional at the top.",
+        "Delete rows 1 and 2 so the header row (Date, Region, Units) is row 1 with no blank rows above the data.",
+        "Merge cells A1:C1 so the title spans the table.",
+        "Color the header row so it stands out from the title."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_polish_as_evidence",
+      "explanation": "A tidy table needs one header row at the top with no title or blank rows above it, so Excel reads the column names correctly. The title belongs in a chart or a separate cell, not stacked above the data.",
+      "misconception_id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_title_in_header",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_spreadsheet_structure_and_clean_data",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_spreadsheet_structure_and_clean_data"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Column C holds dollar amounts. Some cells show 1250, others show '$1,250.00', and one shows '1250 USD'. A SUM over the column returns far less than expected. What is the most likely cause?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Excel cannot add more than 100 numbers at once.",
+        "The cells containing '$1,250.00' and '1250 USD' are stored as text, so SUM ignores them.",
+        "The SUM function only works on whole numbers.",
+        "The column is too narrow to hold the values."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_annotation_without_signal",
+      "explanation": "When numbers are entered with currency symbols or unit words inside the cell, Excel may store them as text. Text values are skipped by SUM. Store the raw number and apply currency formatting through cell format instead.",
+      "misconception_id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_text_vs_number",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_spreadsheet_structure_and_clean_data",
       "concept_ids": [
+        "cat100_supplement_spreadsheet_structure_and_clean_data",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A roster has one column 'Name' with values like 'Lopez, Maria'. You need to sort by last name and also greet students by first name. What is the cleanest structural fix?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Re-type every name by hand in the order you prefer.",
+        "Split the one column into two columns, Last and First, using Text to Columns on the comma so each value lives in its own column.",
+        "Sort the column alphabetically and assume last name comes first.",
+        "Hide the Name column and add a note about the order."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_ai_as_authority",
+      "explanation": "One value per cell is a core tidy-data rule. Text to Columns split on the comma gives a Last column and a First column, so each can be sorted or used independently.",
+      "misconception_id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_one_value_per_cell",
       "difficulty": "hard"
     },
     {
@@ -63,18 +64,19 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_evidence_based_revision",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat100_supplement_spreadsheet_structure_and_clean_data"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Your Region column contains 'TX', 'Tx', 'texas', and 'Texas'. A pivot count treats these as four different regions. What is the right clean-up move before summarizing?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Accept the four labels because they all refer to Texas anyway.",
+        "Standardize the values to one consistent spelling and case (for example, all 'TX') so each region groups as one category.",
+        "Add a footnote explaining the four versions mean the same thing.",
+        "Sort the column so the versions sit next to each other."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_completion_only_model",
+      "explanation": "Inconsistent category labels split one real group into several. Standardizing spelling and case before any pivot or chart keeps the counts honest.",
+      "misconception_id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_inconsistent_categories",
       "difficulty": "medium"
     }
   ]

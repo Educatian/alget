@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_7_7_personal_workflow_audit",
   "misconceptions": [
     {
-      "id": "cat100_supplement_7_7_personal_workflow_audit_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_7_7_personal_workflow_audit_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_7_7_personal_workflow_audit_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_7_7_audit_from_memory",
+      "pattern": "audit_without_tracking_time",
+      "description": "Auditing your workflow from memory instead of logging where time and steps actually go",
+      "trigger": "learner guesses 'email takes a few minutes' without ever timing it",
+      "feedback": "Log real steps and durations for a few days first. An audit from memory misses the steps that quietly eat the most time.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_7_7_personal_workflow_audit_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_7_7_optimize_rare_step",
+      "pattern": "optimize_low_impact_step",
+      "description": "Automating or polishing a step that happens rarely while ignoring the daily repeated one",
+      "trigger": "learner builds a fancy shortcut for a once-a-term task but retypes the same weekly header by hand",
+      "feedback": "Target the step that is frequent and slow. Time saved equals frequency times duration, so fix the daily repeat first.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_7_7_automate_broken_process",
+      "pattern": "automate_before_fixing",
+      "description": "Automating a messy process instead of simplifying it first, so the automation just produces mistakes faster",
+      "trigger": "learner scripts a workflow that still uses wrong file names, spreading the error",
+      "feedback": "Fix and simplify the process by hand until it is correct, then automate the clean version.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_7_7_no_baseline_measure",
+      "pattern": "no_before_after_measure",
+      "description": "Claiming a workflow change helped without measuring time or error rate before and after",
+      "trigger": "learner says 'this is faster now' with no before time to compare",
+      "feedback": "Record a baseline (minutes or error count) before the change, then measure again after, so the improvement is evidence not a feeling.",
       "rail_action": "practice"
     }
   ]

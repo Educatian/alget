@@ -8,16 +8,16 @@
         "cat100_supplement_future_learning_plan",
         "cat100_supplement_course_completion_and_transfer"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your future learning plan lists the goal 'Get better at coding.' Why will this goal be hard to act on or check?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too short to be a goal.",
+        "It has no measurable outcome or deadline, so you cannot tell when it is met; 'Publish a 3-page HTML site by August 1' is checkable.",
+        "Coding is not a CAT 100 topic.",
+        "Goals should never mention coding."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_8_8_future_learning_plan_polish_as_evidence",
+      "explanation": "A usable goal is measurable and dated. 'Get better' has no finish line; a concrete deliverable with a date does.",
+      "misconception_id": "cat100_supplement_8_8_vague_goal",
       "difficulty": "easy"
     },
     {
@@ -27,16 +27,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your plan has the milestone 'Understand Excel formulas.' What turns it into a milestone a reviewer can verify?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Add the word 'really' before 'understand'.",
+        "Attach a proof: 'Build a budget file that uses SUMIFS and VLOOKUP across 200 rows and post the file link.'",
+        "Move it to the end of the list.",
+        "Remove the deadline so there is less pressure."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_8_8_future_learning_plan_annotation_without_signal",
+      "explanation": "Each milestone needs an attached deliverable. A finished file using named functions is proof; 'understand Excel' is not checkable.",
+      "misconception_id": "cat100_supplement_8_8_no_proof_milestone",
       "difficulty": "medium"
     },
     {
@@ -46,16 +46,16 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool for a learning plan and it returns ten advanced topics (databases, machine learning, cloud deploy, cybersecurity, and more) all for next month. What is the disciplined response?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept all ten; the AI knows the field better than you.",
+        "Reject the unrealistic scope, sequence by prerequisite, and pick one solid next step such as mastering spreadsheet formulas before databases.",
+        "Do the topics in alphabetical order.",
+        "Drop the plan because it is too hard."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_8_8_future_learning_plan_ai_as_authority",
+      "explanation": "You judge the AI proposal against realism and prerequisites. A sequenced, achievable next step beats ten unordered advanced topics.",
+      "misconception_id": "cat100_supplement_8_8_unrealistic_scope",
       "difficulty": "hard"
     },
     {
@@ -65,16 +65,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which future-learning-plan row is specific, measurable, dated, and tied to proof?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "'Learn data stuff someday.'",
+        "'Goal: publish a portfolio site. Proof: 3 pages live on GitHub Pages with valid HTML. Date: Aug 1. Prereq: finish CAT 100 HTML unit first.'",
+        "'Be good at computers.'",
+        "'Improve over time.'"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_8_8_future_learning_plan_completion_only_model",
+      "explanation": "A strong row names the goal, the measurable proof, the date, and the prerequisite, so progress can be tracked and verified.",
+      "misconception_id": "cat100_supplement_8_8_no_proof_milestone",
       "difficulty": "medium"
     }
   ]

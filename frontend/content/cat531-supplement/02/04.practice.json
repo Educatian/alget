@@ -4,16 +4,16 @@
       "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_comparing_ai_suggestions_to_pedagogy",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "TeachGen@i returns a confident, well-written suggestion to open a fractions lesson with a timed speed drill. What is the strongest basis for accepting or rejecting it?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is written clearly and sounds authoritative, so accept it.",
+        "Whether a timed speed drill serves this lesson's objective of conceptual understanding of equivalence, not just fluency.",
+        "Whether the suggestion is longer than the previous one.",
+        "Whether students will find it exciting."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_polish_as_evidence",
+      "explanation": "Suggestions are judged against the lesson objective and an instructional principle. Fluent, confident phrasing is not pedagogical justification.",
+      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_fluent_equals_sound",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_teaching_in_tech_rich_classrooms_with_teachgen_i",
@@ -25,57 +25,60 @@
     {
       "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_comparing_ai_suggestions_to_pedagogy",
+      "stem": "The objective is \"students will explain why two fractions are equivalent.\" The AI suggests an escape-room game where students race to match equivalent fractions. What should the teacher notice?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The game is engaging, so it clearly meets the objective.",
+        "Matching equivalent fractions quickly does not require explaining why they are equivalent, so the activity does not reach the objective.",
+        "Escape rooms are always inappropriate for math.",
+        "The game should be made longer to add rigor."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_annotation_without_signal",
+      "explanation": "An attractive activity can drift from the objective. Matching is recognition; the objective demands explanation, so the activity is decoration unless redesigned.",
+      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_activity_over_objective",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_comparing_ai_suggestions_to_pedagogy",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "An AI suggestion works well for a typical reader, but a third of this class reads two grade levels below the dense text it assumes. What is the most defensible comparison move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt it; it serves the average student well.",
+        "Test the suggestion against the class's actual reading range and add a scaffold or alternate text before using it.",
+        "Reject all AI suggestions because they cannot know the class.",
+        "Use it but tell struggling students to try harder."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_ai_as_authority",
+      "explanation": "A suggestion that fits the median can still fail the margins. The teacher compares it against real learner variability before adopting.",
+      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_one_size_for_all",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_comparing_ai_suggestions_to_pedagogy",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "On a Design Tension Studio map comparing an AI suggestion to pedagogy, which entry best documents a decision a mentor could audit?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"AI suggestion was good, kept it.\"",
+        "Tension named (AI activity's appeal vs. fit to the explain objective) paired with the decision to keep the activity but add a sentence-stem explanation step, and the reason a competing speed-drill suggestion was rejected as fluency-only.",
+        "\"Used AI, lesson done.\"",
+        "\"Suggestion was well written.\""
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_completion_only_model",
+      "explanation": "A defensible map names the tension between an AI suggestion's appeal and its fit to the objective, records the negotiated change, and explains the rejection.",
+      "misconception_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_activity_over_objective",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_comparing_ai_suggestions_to_pedagogy",
         "evidence_based_revision"
       ]
     }

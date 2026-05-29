@@ -4,16 +4,16 @@
       "id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_transferring_online_cases_to_field_placements",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An online module case asked candidates to debate a deepfake-detection lesson with no real students present. A candidate wants to transfer it to her Tuesday placement. Which sentence in her transfer note shows defensible judgment rather than a copy-over?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "I will run the same deepfake-detection debate I completed online because it earned a high grade in the module.",
+        "The online case assumed reliable home devices; my placement has one shared cart for 28 students, so I will convert the live debate into a station rotation and drop the take-home step.",
+        "I will keep every step identical so my mentor can see I followed the online module exactly.",
+        "I will make the slides look more professional before I bring the case to the placement."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_polish_as_evidence",
+      "explanation": "Transfer is defensible when the candidate names the placement constraint (one shared device cart) that the online case never faced and changes the activity to fit it. The other options copy the case over or treat polish as the decision.",
+      "misconception_id": "cat531_supplement_7_1_context_identical_transfer",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_field_based_transfer_and_coaching",
@@ -26,16 +26,16 @@
       "id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The online case used a fictional roster with no IEPs. Which detail about the real placement most changes how the candidate must adapt the case before teaching it?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The placement classroom has a brighter projector than the online demo showed.",
+        "Three of the 28 students have IEP accommodations for extended time and read-aloud, which the fictional roster never modeled.",
+        "The candidate prefers the font used in the original online slides.",
+        "The mentor teacher also took CAT 531 a few years ago."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_annotation_without_signal",
+      "explanation": "Real accommodations the fictional case ignored are the constraint that forces redesign. The other details are cosmetic or irrelevant to the transfer decision.",
+      "misconception_id": "cat531_supplement_7_1_fictional_case_equals_real_class",
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
@@ -45,16 +45,16 @@
       "id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The candidate asks an AI tool to rewrite the online case for her real placement. The AI invents a class size, names students, and assumes one-to-one laptops. What is the defensible next move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Submit the AI rewrite because it is fluent and already names students.",
+        "Treat the rewrite as a draft, then correct the invented class size, device access, and student details against what she actually observed in the placement.",
+        "Avoid AI entirely because it does not know the placement.",
+        "Ask the AI to add more detail until the case sounds realistic."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_ai_as_authority",
+      "explanation": "The AI cannot know the real placement, so its invented facts must be checked against the candidate's own observation before the case can transfer. Fluency is not faithfulness to the field context.",
+      "misconception_id": "cat531_supplement_7_1_ai_invented_context_as_fact",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -64,16 +64,16 @@
       "id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After teaching the transferred case, the candidate's mentor asks how she knows the adaptation worked in this placement. Which evidence best answers that question?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The online module gave the original case a passing score.",
+        "A side-by-side note showing the online assumption, the placement constraint she observed, the change she made, and what students did differently because of it.",
+        "The lesson finished within the class period.",
+        "Students said the activity was fun."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_7_1_transferring_online_cases_to_field_placements_completion_only_model",
+      "explanation": "Defensible transfer evidence connects the original assumption, the observed constraint, the change, and the student outcome. A module grade, timing, or enjoyment alone does not show the adaptation served learning in this context.",
+      "misconception_id": "cat531_supplement_7_1_module_grade_proves_field_fit",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

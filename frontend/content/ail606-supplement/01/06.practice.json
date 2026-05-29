@@ -4,17 +4,17 @@
       "id": "ail606_supplement_1_6_choosing_a_software_case_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_choosing_a_software_case",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Three teams pitch a software case for their design project. Which selection rationale is strongest for a graduate ID case study?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "We chose the tool with the most features so we have room to grow.",
+        "We chose this tool because its core affordance, branching scenarios, directly supports our learning goal of decision practice, and our learner and time constraints fit its setup cost.",
+        "We chose the newest tool because it is trending.",
+        "We chose the tool our instructor seemed to like."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_1_6_choosing_a_software_case_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A defensible case selection ties a specific affordance of the tool to the learning goal and checks fit against learner and resource constraints, rather than counting features.",
+      "misconception_id": "ail606_supplement_1_6_case_more_features_better",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_choosing_a_software_case"
       ]
@@ -22,56 +22,56 @@
     {
       "id": "ail606_supplement_1_6_choosing_a_software_case_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_choosing_a_software_case",
+      "stem": "A team starts by listing the flashy features of a VR tool, then tries to invent a learning goal that uses them. Why does this sequence weaken the case?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Because VR is never appropriate for instruction.",
+        "Because it reverses the design logic: the learning goal and audience should drive tool selection, not the tool's features driving the goal.",
+        "Because flashy features always improve learning outcomes.",
+        "Because teams should choose tools without considering features at all."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_1_6_choosing_a_software_case_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Goal-first design selects a tool whose affordances serve a defined goal. Feature-first selection produces solutions in search of a problem.",
+      "misconception_id": "ail606_supplement_1_6_case_tool_drives_goal",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_choosing_a_software_case"
       ]
     },
     {
       "id": "ail606_supplement_1_6_choosing_a_software_case_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_choosing_a_software_case",
+      "stem": "Two tools can both reach the learning goal. Tool A needs a 2-week build and paid licenses; Tool B needs 3 days and is free for the cohort. The case study still picks Tool A with no stated reason. What is the selection flaw?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "There is no flaw; the more expensive tool is always more rigorous.",
+        "The case ignores constraint analysis: when goal fit is comparable, cost, time, and access constraints should justify the choice, and an unexamined pick is not defensible.",
+        "Free tools can never meet a learning goal.",
+        "The team should pick whichever tool has more buttons."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_1_6_choosing_a_software_case_ai_as_authority",
-      "difficulty": "medium",
+      "explanation": "When affordance fit is comparable, the defensible case weighs constraints such as time, cost, and learner access. A choice made without that analysis is not justified.",
+      "misconception_id": "ail606_supplement_1_6_case_ignore_constraints",
+      "difficulty": "hard",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_choosing_a_software_case"
       ]
     },
     {
       "id": "ail606_supplement_1_6_choosing_a_software_case_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "What single piece of evidence best demonstrates that a chosen software case actually fits the instructional problem?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A screenshot showing the tool looks modern.",
+        "A short mapping that links each learning objective to the specific tool affordance that supports it, with constraints noted.",
+        "A list of every feature the tool offers.",
+        "A note that the team enjoyed using the tool."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_1_6_choosing_a_software_case_completion_only_model",
-      "difficulty": "hard",
+      "explanation": "An objective-to-affordance mapping with constraints makes the fit inspectable, showing the case was selected for the problem rather than for novelty.",
+      "misconception_id": "ail606_supplement_1_6_case_tool_drives_goal",
+      "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
       ]

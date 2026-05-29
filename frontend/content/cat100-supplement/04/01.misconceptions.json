@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_4_1_teacher_persona_setup",
   "misconceptions": [
     {
-      "id": "cat100_supplement_4_1_teacher_persona_setup_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_4_1_teacher_persona_setup_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_4_1_teacher_persona_setup_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_4_1_persona_is_just_role_line",
+      "pattern": "persona_reduced_to_role",
+      "description": "Believing a persona is finished once a role line like 'you are a teacher' is written, ignoring audience, knowledge bound, and hard stop",
+      "trigger": "learner saves a one-line persona that names only a role",
+      "feedback": "A persona needs four fields: ROLE, AUDIENCE, KNOWLEDGE BOUND, and HARD STOP. A role line alone lets the model guess the other three.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_4_1_teacher_persona_setup_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_4_1_no_hard_stop",
+      "pattern": "missing_hard_stop_constraint",
+      "description": "Omitting an explicit do-not boundary, assuming the model will not invent facts or give out-of-scope advice",
+      "trigger": "persona has no line that names a forbidden action",
+      "feedback": "Add a HARD STOP line. Without an explicit boundary the model will fill gaps by inventing student details or off-topic advice.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_4_1_persona_vs_first_message",
+      "pattern": "confusing_persona_with_question",
+      "description": "Putting the actual task or question inside the saved persona instead of keeping the persona reusable across chats",
+      "trigger": "learner pastes a specific homework question into the persona file",
+      "feedback": "The persona defines who the AI is and stays constant. The task goes in your first message, not in the saved persona.",
+      "rail_action": "ask"
     }
   ]
 }

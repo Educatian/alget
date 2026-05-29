@@ -35,15 +35,25 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Here is one capstone-package consistency check written two ways. Read the before version, then the annotated after version.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (assembly only):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> Submitted: iteration log, AI-USE.md, quality review, theoretical defense, peer responses, slides. All six files complete.
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+That confirms the files exist but never checks whether they agree. Now the same package run through a cross-artifact coherence check:
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+**After (annotated coherence check):**
+
+| Claim source | Claim | Cross-check | Resolution |
+| --- | --- | --- | --- |
+| Slides | "Five rounds of learner testing" | Iteration log records 2 tryouts | Corrected slides to "2 tryouts" to match the log |
+| Theoretical defense | "Segmenting reduced load on screen 3" | Quality review scored screen 3 captions as a blocker | Added the caption fix to the log so the defense and review agree |
+| AI-USE.md | "AI drafted Module 3 objectives, 2 of 5 kept" | Iteration log rationale cites the same 2 objectives | Consistent, no change |
+
+**Synthesis beat (what changed across the module):** Early on I documented version counts; by Module 6 I documented problem-change-evidence chains and learned to keep rejected alternatives. Next time I would log AI use in real time rather than reconstruct it.
+
+The after version treats completion as coherence, not assembly. It reconciles contradictions across components and adds a synthesis of how the designer's judgment changed, which is what makes the package defensible rather than merely complete.
 
 ## Decision Rule
 

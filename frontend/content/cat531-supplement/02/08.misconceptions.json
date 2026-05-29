@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_2_8_module_2_teaching_plan_studio",
   "misconceptions": [
     {
-      "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_assembly_not_integration",
+      "pattern": "stapling_mistaken_for_integration",
+      "description": "Treating the capstone plan as a folder that staples together each module piece rather than a coherent plan where the parts reinforce one objective",
+      "trigger": "candidate submits scenario, prompts, adaptations, and noticing as disconnected sections with no through-line",
+      "feedback": "Show how each module move serves one teaching goal. A coherent plan is integrated, not collated.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_ai_authors_the_plan",
+      "pattern": "ai_authorship_in_capstone",
+      "description": "Letting TeachGen@i generate the whole capstone plan and presenting it as the candidate's professional judgment",
+      "trigger": "the plan shows no teacher edits, no rejected suggestions, and no decisions the candidate can defend as their own",
+      "feedback": "The plan must record where you accepted, edited, and rejected AI input. Undocumented AI authorship is not your judgment.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_2_8_module_2_teaching_plan_studio_no_defense_for_tradeoffs",
+      "pattern": "tradeoffs_left_undefended",
+      "description": "Making the plan's competing demands disappear instead of naming the tradeoff and defending the choice",
+      "trigger": "candidate hides a tension such as coverage vs. depth rather than stating which they chose and why",
+      "feedback": "Surface each tradeoff and defend the call. A plan that pretends there were no hard choices is not yet professional.",
+      "rail_action": "explain"
     }
   ]
 }

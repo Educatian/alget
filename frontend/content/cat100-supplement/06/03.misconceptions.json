@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_6_3_github_repository_setup",
   "misconceptions": [
     {
-      "id": "cat100_supplement_6_3_github_repository_setup_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_6_3_github_repository_setup_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_6_3_repo_name_arbitrary",
+      "pattern": "repo_name_does_not_matter",
+      "description": "Believing any repository name will produce a user site at username.github.io, rather than the exact required name",
+      "trigger": "learner names the repo portfolio or website and expects a root-level user site",
+      "feedback": "A user site requires a repo named exactly username.github.io. Other names publish as project sites at /repo. Match the name to the URL you want.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_6_3_github_repository_setup_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_6_3_filename_case_ignored",
+      "pattern": "filename_case_insensitive",
+      "description": "Assuming GitHub Pages treats Index.HTML and index.html as the same file",
+      "trigger": "learner ships a capitalized entry filename and gets a 404 at the root",
+      "feedback": "GitHub Pages serves index.html in lowercase as the root. Filenames are case sensitive on the server, so match the case exactly.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_6_3_github_repository_setup_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_6_3_force_push_is_safe",
+      "pattern": "force_push_treated_as_harmless",
+      "description": "Treating git push -f as a routine fix for push errors without recognizing it can overwrite teammates' commits",
+      "trigger": "learner is told by AI to force-push a shared branch and does so without pulling first",
+      "feedback": "Force-push rewrites shared history and can delete others' work. On a shared branch, pull and integrate first, then push normally.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_6_3_committed_secret_is_safe",
+      "pattern": "committed_secret_assumed_safe",
+      "description": "Thinking that deleting or renaming a committed secret file removes the exposure, ignoring that the key remains in history and must be rotated",
+      "trigger": "learner removes a leaked key file but does not regenerate the key",
+      "feedback": "A committed secret lives in history. Remove and gitignore the file, then rotate the key. Treat the exposed credential as compromised.",
       "rail_action": "practice"
     }
   ]

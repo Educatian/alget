@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_4_4_privacy_and_consent_with_minors",
   "misconceptions": [
     {
-      "id": "cat531_supplement_4_4_privacy_and_consent_with_minors_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_4_4_privacy_and_consent_with_minors_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_4_4_notification_is_consent",
+      "pattern": "notifying_parents_counts_as_consent",
+      "description": "Treating a notice that students will use an AI tool as equivalent to obtaining consent",
+      "trigger": "learner writes that parents were informed or notified and stops there",
+      "feedback": "Notification is not consent. For minors, require active parental opt-in and student assent on a plain-language screen.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_4_4_privacy_and_consent_with_minors_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_4_4_minor_can_consent",
+      "pattern": "minor_assent_treated_as_legal_consent",
+      "description": "Assuming a student clicking agree provides the legal consent required to collect their data",
+      "trigger": "learner relies on a student check-box and omits the parent or guardian",
+      "feedback": "Minors give assent, not legal consent. Name both the student assent and the guardian consent in the policy.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_4_4_privacy_and_consent_with_minors_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_4_4_purpose_blind_collection",
+      "pattern": "collecting_data_without_stated_purpose_or_retention",
+      "description": "Allowing a tool to collect student data without naming the purpose, the retention period, or who can access it",
+      "trigger": "learner approves a tool that personalizes using stored data but never asks what is kept or for how long",
+      "feedback": "State the specific learning purpose, the retention window, the deletion rule, and whether the vendor may train on the data.",
+      "rail_action": "ask"
     }
   ]
 }

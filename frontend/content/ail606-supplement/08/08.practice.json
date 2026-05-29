@@ -4,16 +4,16 @@
       "id": "ail606_supplement_8_8_course_readiness_checklist_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_course_readiness_checklist",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A readiness checklist has four boxes (syllabus posted, modules visible, gradebook set up, links work), all checked. What is the strongest critique?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The course is ready; all four boxes are checked.",
+        "Those are setup facts; readiness means a student can complete the capstone with the scaffolds they were given.",
+        "Add a fifth box for the course banner image.",
+        "Readiness only requires that the links work."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_8_8_course_readiness_checklist_polish_as_evidence",
+      "explanation": "A working link is a setup fact, not evidence that the student's path through the capstone is supported.",
+      "misconception_id": "ail606_supplement_8_8_setup_equals_readiness",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_course_readiness_checklist"
@@ -23,16 +23,16 @@
       "id": "ail606_supplement_8_8_course_readiness_checklist_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The capstone evidence board has a 'limitations' panel, but no earlier activity ever asked students to state a limitation. What does a path-level review do?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Nothing; students can figure out limitations at the capstone.",
+        "Add a prior activity, such as a Module 6 reflection that asks for one named limitation, so the panel is scaffolded.",
+        "Remove the limitations panel from the capstone.",
+        "Move the capstone earlier in the term."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_8_8_course_readiness_checklist_annotation_without_signal",
+      "explanation": "Each capstone panel needs a prior building activity; front-loading all demands at the capstone overloads learners.",
+      "misconception_id": "ail606_supplement_8_8_unscaffolded_capstone",
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
@@ -42,16 +42,16 @@
       "id": "ail606_supplement_8_8_course_readiness_checklist_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An instructor uses AI to generate a readiness checklist. What is the strongest boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the AI checklist unchanged because it is thorough.",
+        "Use the AI checklist, then trace each capstone panel back to a building activity yourself before going live.",
+        "Skip the checklist and trust the course looks done.",
+        "Ask AI only to format the checklist nicely."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_8_8_course_readiness_checklist_ai_as_authority",
+      "explanation": "AI can list items, but the instructor must verify path-level readiness against the actual course.",
+      "misconception_id": "ail606_supplement_8_8_unscaffolded_capstone",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -61,16 +61,16 @@
       "id": "ail606_supplement_8_8_course_readiness_checklist_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "The AI-use policy is in the syllabus but the disclosure-requiring assignment never links to it. Why does this fail readiness?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "It does not fail; the policy exists somewhere in the course.",
+        "Students will not connect the requirement to the rule unless the policy is referenced at the point of use.",
+        "The policy should simply be deleted from the syllabus.",
+        "Readiness is about links working, not policy placement."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_8_8_course_readiness_checklist_completion_only_model",
+      "explanation": "A policy present but not referenced where it applies is unlikely to shape student behavior.",
+      "misconception_id": "ail606_supplement_8_8_policy_not_at_point_of_use",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

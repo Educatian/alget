@@ -4,16 +4,16 @@
       "id": "cat531_supplement_6_7_presentation_of_professional_vision_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_presentation_of_professional_vision",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A candidate presents her professional vision to a hiring panel and a transfer note explaining how a tool choice survives in a real placement. Which framing best presents defensible judgment rather than enthusiasm?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"I am passionate about using cutting-edge AI to transform every classroom.\"",
+        "\"In my placement with no 1:1 devices and a 40-minute period, I chose a no-login AI demo I run from the front, because the constraint was access, not novelty.\"",
+        "\"My vision is to inspire students with the most advanced technology available.\"",
+        "\"I will adopt whatever AI tools my future school provides.\""
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_6_7_presentation_of_professional_vision_polish_as_evidence",
+      "explanation": "Presenting professional vision means showing tool choices reasoned against real classroom constraints, not stating enthusiasm.",
+      "misconception_id": "cat531_supplement_6_7_presentation_of_professional_vision_enthusiasm_over_judgment",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_final_project_and_professional_vision",
@@ -25,36 +25,37 @@
     {
       "id": "cat531_supplement_6_7_presentation_of_professional_vision_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_presentation_of_professional_vision",
+      "stem": "A panelist annotates a presentation: \"Your slides describe the ideal tool, but my school has shared Chromebook carts and strict data rules. How does your vision transfer here?\" What does this ask the presenter to demonstrate?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Add more visually impressive slides about the ideal tool.",
+        "Show how the underlying judgment (pick tools that fit access and data constraints) transfers to a different, more limited setting, not just restate the ideal.",
+        "Insist the school upgrade its technology to match the vision.",
+        "Remove the constraint discussion to keep the vision aspirational."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_6_7_presentation_of_professional_vision_annotation_without_signal",
+      "explanation": "A professional vision must transfer: it shows the reasoning adapts to a new constraint set, not that the original ideal is repeated.",
+      "misconception_id": "cat531_supplement_6_7_presentation_of_professional_vision_no_transfer",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_presentation_of_professional_vision",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_6_7_presentation_of_professional_vision_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "A candidate uses BigAL to rehearse for the presentation. What is the defensible use of the model here?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Have the model deliver the talk so the wording is flawless.",
+        "Have the model pose hard skeptical questions a panel might ask, then practice answering them with the candidate's own evidence.",
+        "Ask the model to invent placement data the candidate can cite if asked.",
+        "Let the model decide what the candidate's vision should be."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_6_7_presentation_of_professional_vision_ai_as_authority",
+      "explanation": "AI is well used as a sparring partner that surfaces tough questions; the vision and its evidence remain the candidate's own.",
+      "misconception_id": "cat531_supplement_6_7_presentation_of_professional_vision_ai_supplies_vision",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -63,19 +64,20 @@
     {
       "id": "cat531_supplement_6_7_presentation_of_professional_vision_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_presentation_of_professional_vision",
+      "stem": "Two candidates present. One claims her approach works in any classroom; the other names two settings where her approach would not fit and what she would do instead. Why is the second presentation usually stronger to an experienced panel?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "It is shorter and easier to follow.",
+        "Naming the limits of an approach signals professional judgment and makes the claims about where it does fit more credible.",
+        "Admitting limits is required by the rubric.",
+        "Panels prefer candidates who sound less confident."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_6_7_presentation_of_professional_vision_completion_only_model",
+      "explanation": "Stating the boundary conditions of an approach is a mark of judgment and makes the positive claims more trustworthy.",
+      "misconception_id": "cat531_supplement_6_7_presentation_of_professional_vision_works_everywhere",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_presentation_of_professional_vision",
         "evidence_based_revision"
       ]
     }

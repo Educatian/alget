@@ -8,35 +8,35 @@
         "cat100_supplement_maintenance_plan",
         "cat100_supplement_github_pages_personal_website"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Which item belongs in a realistic maintenance plan for a personal portfolio site?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A promise to redesign the entire site every week",
+        "A recurring quarterly check to update the resume PDF, swap in the newest project, and test that all links still resolve",
+        "Nothing; a published site never needs attention",
+        "Deleting the site after one month so it cannot go stale"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_6_7_maintenance_plan_polish_as_evidence",
+      "explanation": "Maintenance is small and recurring: refresh content, add new work, and re-test links on a set cadence. Weekly redesigns and never touching it are both unrealistic.",
+      "misconception_id": "cat100_supplement_6_7_publish_and_forget",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_6_7_maintenance_plan_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_maintenance_plan",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_maintenance_plan"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Six months after launch, a visitor clicks your Projects link and gets a 404 because you renamed the file. What maintenance practice would have caught this?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Hoping no one notices",
+        "A periodic link check (manual click-through or a link-checker tool) listed in the maintenance plan",
+        "Removing the navigation bar entirely",
+        "Making the site password protected"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_6_7_maintenance_plan_annotation_without_signal",
+      "explanation": "Renaming or moving files breaks internal links. A scheduled link check, manual or automated, is the maintenance step that catches broken paths before visitors do.",
+      "misconception_id": "cat100_supplement_6_7_links_never_break",
       "difficulty": "medium"
     },
     {
@@ -44,37 +44,39 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_maintenance_plan"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI to generate a maintenance checklist. It includes 'renew your SSL certificate monthly' and 'update server dependencies.' Your site is a static GitHub Pages site. What is the right response?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Follow all items literally; the AI knows best",
+        "Drop the items that do not apply to static GitHub Pages (it manages HTTPS and has no server dependencies) and keep the items that do, like content and link checks",
+        "Stop using GitHub Pages because it cannot do those things",
+        "Add even more server tasks to be safe"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_6_7_maintenance_plan_ai_as_authority",
+      "explanation": "A generic AI checklist assumes a server you do not run. GitHub Pages handles HTTPS automatically and has no dependencies to patch, so you keep only the items that fit a static site.",
+      "misconception_id": "cat100_supplement_6_7_generic_ai_checklist_applied",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_6_7_maintenance_plan_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_maintenance_plan",
       "concept_ids": [
+        "cat100_supplement_maintenance_plan",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which maintenance-plan entry is specific enough to actually act on later?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Keep the site updated sometime",
+        "On the first of each quarter: replace the oldest project card, refresh resume.pdf, and click every nav and project link",
+        "Make it good",
+        "Update when I feel like it"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_6_7_maintenance_plan_completion_only_model",
+      "explanation": "An actionable plan names the trigger (first of each quarter) and the exact tasks. Vague intentions like sometime or make it good cannot be verified or repeated.",
+      "misconception_id": "cat100_supplement_6_7_vague_plan_is_a_plan",
       "difficulty": "medium"
     }
   ]

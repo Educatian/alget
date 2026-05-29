@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_5_3_usability_accessibility_and_equity",
   "misconceptions": [
     {
-      "id": "cat531_supplement_5_3_usability_accessibility_and_equity_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_5_3_usability_accessibility_and_equity_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_5_3_usability_equals_accessibility",
+      "pattern": "usability_conflated_with_accessibility",
+      "description": "Treating ease of use for typical students as proof that the tool is accessible to all learners",
+      "trigger": "learner cites smooth general use as evidence of accessibility",
+      "feedback": "Usability is the typical-user experience. Accessibility asks whether learners using assistive technology or accommodations can do the same tasks. Check that separately.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_5_3_usability_accessibility_and_equity_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_5_3_wcag_badge_is_proof",
+      "pattern": "conformance_badge_as_proof",
+      "description": "Accepting a WCAG or accessibility marketing badge as proof of conformance for the classroom workflow",
+      "trigger": "learner trusts an accessibility label without a report or task check",
+      "feedback": "A badge is a claim. Ask for a conformance report and check the actual tasks your students perform before trusting it.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_5_3_automated_audit_is_complete",
+      "pattern": "automated_audit_treated_as_complete",
+      "description": "Treating an automated or AI accessibility scan as a complete accessibility clearance",
+      "trigger": "learner reports 'no issues found' from an automated tool as final",
+      "feedback": "Automated scans catch only some barriers. Add a task walkthrough with assistive technology and, where possible, disabled-user testing.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_5_3_usability_accessibility_and_equity_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_5_3_accessible_means_equitable",
+      "pattern": "accessible_assumed_equitable",
+      "description": "Assuming that a tool clearing accessibility standards therefore poses no equity risk",
+      "trigger": "learner stops the equity analysis once accessibility is confirmed",
+      "feedback": "An accessible tool can still impose unequal burdens, such as home connectivity or device requirements. Name those burdens and how the decision addresses them.",
+      "rail_action": "ask"
     }
   ]
 }

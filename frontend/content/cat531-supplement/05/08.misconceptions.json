@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_5_8_module_5_evaluation_studio",
   "misconceptions": [
     {
-      "id": "cat531_supplement_5_8_module_5_evaluation_studio_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_5_8_module_5_evaluation_studio_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_5_8_sections_as_independent",
+      "pattern": "brief_sections_treated_as_independent",
+      "description": "Assembling an evaluation brief as disconnected sections that never link back to one decision",
+      "trigger": "learner stacks sections without showing how they support the recommendation",
+      "feedback": "Link the parts: the recommendation should answer the original question, and the evidence, equity, cost, and fit sections should each justify it.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_5_8_module_5_evaluation_studio_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_5_8_synthesis_hides_tension",
+      "pattern": "synthesis_erases_conflict",
+      "description": "Treating synthesis as hiding the conflict between sections rather than naming and resolving it",
+      "trigger": "learner drops or buries a section that conflicts with the preferred conclusion",
+      "feedback": "Surface the tension between sections and explain which consideration was prioritized and why. A visible trade-off is stronger than a clean-looking brief.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_5_8_ai_assembles_brief",
+      "pattern": "ai_assembled_brief_unverified",
+      "description": "Submitting an AI-assembled capstone brief without verifying each claim against the learner's own evidence",
+      "trigger": "learner forwards a fluent AI assembly as their brief",
+      "feedback": "Use the AI assembly as a draft. Verify that every claim traces to your own evidence and that the recommendation is one you can defend.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_5_8_module_5_evaluation_studio_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_5_8_completion_closes_decision",
+      "pattern": "completed_brief_treated_as_closed",
+      "description": "Treating a polished, complete brief as a closed decision with no stated condition that would change the recommendation",
+      "trigger": "learner omits what evidence would overturn the conclusion",
+      "feedback": "Name what could change the recommendation. A decision that cannot say what would change its mind is an assertion, not an inspectable judgment.",
+      "rail_action": "ask"
     }
   ]
 }

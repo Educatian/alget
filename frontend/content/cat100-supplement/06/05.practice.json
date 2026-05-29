@@ -8,35 +8,35 @@
         "cat100_supplement_debugging_with_ai_assistance",
         "cat100_supplement_github_pages_personal_website"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your nav links render as plain text and the page below them is also blue and underlined. You forgot to close an anchor tag: <a href=\"about.html\">About<a href=\"projects.html\">Projects</a>. What is the actual bug?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The browser is broken",
+        "The first <a> was never closed with </a>, so the link wraps everything until the next close tag",
+        "GitHub Pages does not allow links",
+        "You used the wrong color in CSS"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_6_5_debugging_with_ai_assistance_polish_as_evidence",
+      "explanation": "A missing </a> leaves the first link open, so following content is swallowed into the anchor. Closing the tag fixes the runaway styling.",
+      "misconception_id": "cat100_supplement_6_5_browser_blamed_for_markup_bug",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_6_5_debugging_with_ai_assistance_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_debugging_with_ai_assistance",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_debugging_with_ai_assistance"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which prompt to an AI debugging assistant is most likely to get a useful, verifiable answer?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "My website is broken, fix it",
+        "My nav links show as plain text. Here is my index.html nav block and my style.css 'nav a' rule. What in this code prevents the styles from applying?",
+        "Make my site better",
+        "Why does HTML hate me"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_6_5_debugging_with_ai_assistance_annotation_without_signal",
+      "explanation": "A good debugging prompt states the symptom, pastes the relevant code, and asks a specific question. That lets you check the answer against your own files.",
+      "misconception_id": "cat100_supplement_6_5_vague_prompt_expectation",
       "difficulty": "medium"
     },
     {
@@ -44,37 +44,39 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_debugging_with_ai_assistance"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI says your image will not load because of a CORS policy and gives you a long server config. Your image is a local file headshot.jpg in the same folder. What is the most likely real cause, and the right response?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Apply the server config; the AI must be right",
+        "Distrust the off-target answer: a same-folder local image has no CORS issue, so check the filename, case, and src path first",
+        "Remove all images from the site",
+        "Move the whole project to a different country"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_6_5_debugging_with_ai_assistance_ai_as_authority",
+      "explanation": "AI sometimes diagnoses a problem you do not have. A local same-folder image cannot trigger CORS, so the realistic cause is a path or filename typo. Judge the suggestion against your context.",
+      "misconception_id": "cat100_supplement_6_5_ai_diagnosis_unverified",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_6_5_debugging_with_ai_assistance_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_debugging_with_ai_assistance",
       "concept_ids": [
+        "cat100_supplement_debugging_with_ai_assistance",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After AI suggests a fix, what single tool best confirms whether the fix actually resolved the error before you commit it?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Reading the AI response again more carefully",
+        "Opening the browser developer console to see whether the error message is gone after reloading",
+        "Asking the AI if it is sure",
+        "Counting the lines of code"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_6_5_debugging_with_ai_assistance_completion_only_model",
+      "explanation": "The browser console shows real errors. Reloading and confirming the message disappeared is direct evidence the fix worked, independent of the AI's confidence.",
+      "misconception_id": "cat100_supplement_6_5_fix_assumed_without_check",
       "difficulty": "medium"
     }
   ]

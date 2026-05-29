@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_6_1_website_purpose_and_information_architecture",
   "misconceptions": [
     {
-      "id": "cat100_supplement_6_1_website_purpose_and_information_architecture_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_6_1_website_purpose_and_information_architecture_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_6_1_more_pages_is_better",
+      "pattern": "more_pages_equals_better_site",
+      "description": "Believing a personal site is improved by adding more pages and sections rather than by matching pages to a single audience and purpose",
+      "trigger": "learner proposes blog, gallery, guestbook, and other pages a hiring-manager audience did not need",
+      "feedback": "Start from one audience and one goal. Keep only the pages that help that reader reach the evidence they came for. Extra pages dilute the path, they do not strengthen it.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_6_1_website_purpose_and_information_architecture_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_6_1_label_clarity_optional",
+      "pattern": "vague_navigation_labels",
+      "description": "Using vague labels like Stuff, Things, or Click Here instead of descriptive labels that let a visitor predict the content",
+      "trigger": "learner names a section with a non-orienting word",
+      "feedback": "Rename the label so a scanning reader can predict what is behind it. A good label answers What will I find here before the click.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_6_1_website_purpose_and_information_architecture_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_6_1_ai_sitemap_as_authority",
+      "pattern": "ai_sitemap_as_authority",
+      "description": "Adopting an AI-generated sitemap wholesale even when it was built for a business rather than a single-author student portfolio",
+      "trigger": "learner keeps AI-suggested pages such as Pricing or Careers that do not fit the actual purpose",
+      "feedback": "Treat the AI sitemap as a proposal. Judge each page against your audience and purpose, keep what fits, and write down why you cut the rest.",
+      "rail_action": "ask"
     }
   ]
 }

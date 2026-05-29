@@ -8,35 +8,36 @@
         "cat100_supplement_website_purpose_and_information_architecture",
         "cat100_supplement_github_pages_personal_website"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You are sketching the page list for a one-person portfolio site aimed at hiring managers. Which top-level navigation best matches that single audience and purpose?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Home, About, Projects, Resume, Contact",
+        "Home, Blog, Photo Gallery, Fan Mail, Guestbook, Webring",
+        "index.html only, with every section stacked and no links",
+        "A single Downloads page that links to a 40 MB ZIP of everything"
       ],
-      "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_6_1_website_purpose_and_information_architecture_polish_as_evidence",
+      "correct_index": 0,
+      "explanation": "A hiring-manager audience needs to reach evidence of your work fast: a short, predictable set of pages (About, Projects, Resume, Contact) maps directly to what they came to verify.",
+      "misconception_id": "cat100_supplement_6_1_more_pages_is_better",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_6_1_website_purpose_and_information_architecture_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_website_purpose_and_information_architecture",
       "concept_ids": [
+        "cat100_supplement_website_purpose_and_information_architecture",
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your project page currently reads: 'Stuff I made.' Which heading is the strongest information-architecture revision for a reader scanning for relevant work?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Things",
+        "Selected Projects: Data Dashboards and Web Builds",
+        "Click Here",
+        "Untitled Section 2"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_6_1_website_purpose_and_information_architecture_annotation_without_signal",
+      "explanation": "A descriptive heading that names the category of work lets a scanner predict the content and decide to read on. 'Stuff' and 'Things' carry no orienting information.",
+      "misconception_id": "cat100_supplement_6_1_label_clarity_optional",
       "difficulty": "medium"
     },
     {
@@ -44,37 +45,38 @@
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_website_purpose_and_information_architecture"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI tool to propose a sitemap. It returns Home, About, Services, Pricing, Team, Careers. What is the right next move for your personal student portfolio?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the full sitemap because the AI is more experienced at web design",
+        "Keep only the pages that fit a single-author student portfolio (drop Services, Pricing, Team, Careers) and justify the cut",
+        "Add even more pages so the site looks like a real company",
+        "Reject the whole idea of a sitemap because AI suggested it"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_6_1_website_purpose_and_information_architecture_ai_as_authority",
+      "explanation": "The AI proposal is a draft for a business, not a student. You judge it against your purpose and audience, keep the fitting pages, and document why you removed the rest.",
+      "misconception_id": "cat100_supplement_6_1_ai_sitemap_as_authority",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_6_1_website_purpose_and_information_architecture_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_website_purpose_and_information_architecture",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_website_purpose_and_information_architecture"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A visitor lands on your Projects page from a search result. Which structure best supports their need to reach one specific project quickly?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "One long page where all six projects run together with no headings or anchors",
+        "Each project as a card with a title, one-line summary, and a link to its own detail page",
+        "A page that auto-plays a slideshow of all projects with no way to pause",
+        "A page listing project titles only, with the details available by emailing you"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_6_1_website_purpose_and_information_architecture_completion_only_model",
+      "explanation": "Cards with titles, summaries, and per-project links let a visitor scan, predict, and jump straight to the one project they want, which is the core job of information architecture.",
+      "misconception_id": "cat100_supplement_6_1_more_pages_is_better",
       "difficulty": "medium"
     }
   ]

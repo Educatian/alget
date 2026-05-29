@@ -8,73 +8,75 @@
         "cat100_supplement_publishing_with_github_pages",
         "cat100_supplement_github_pages_personal_website"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "In repository Settings, under Pages, which Source setting publishes the site directly from your committed files?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Deploy from a branch, then choose main and / (root)",
+        "Disable Pages",
+        "Source set to None",
+        "Upload a ZIP each time you change a file"
       ],
-      "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_6_4_publishing_with_github_pages_polish_as_evidence",
+      "correct_index": 0,
+      "explanation": "Choosing Deploy from a branch with main and the root folder tells GitHub Pages to build the live site from the files already committed on that branch.",
+      "misconception_id": "cat100_supplement_6_4_pages_source_unnecessary",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_6_4_publishing_with_github_pages_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_publishing_with_github_pages",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_publishing_with_github_pages"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your page links the stylesheet as <link rel=\"stylesheet\" href=\"/style.css\"> and works locally, but on the published project site at username.github.io/portfolio the styles disappear. What is the fix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Use a relative path like href=\"assets/style.css\" (or include the /portfolio/ prefix) so the link resolves under the project subpath",
+        "Delete the stylesheet",
+        "Switch the whole site to a paid host",
+        "Rename style.css to style.txt"
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_6_4_publishing_with_github_pages_annotation_without_signal",
-      "difficulty": "medium"
+      "correct_index": 0,
+      "explanation": "A leading-slash path points at the domain root, not the /portfolio subpath, so the CSS 404s online. A relative path resolves correctly under the project site.",
+      "misconception_id": "cat100_supplement_6_4_root_paths_always_work",
+      "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_6_4_publishing_with_github_pages_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat100_supplement_ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_publishing_with_github_pages"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You push a change but the live page still shows the old version. An AI tool says 'the deploy is broken, recreate the repo.' Before doing anything drastic, what is the best check?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Recreate the repo immediately as the AI said",
+        "Hard-refresh the browser to clear the cache and check the Actions or Pages build status, since deploys take a minute and browsers cache",
+        "Push the same commit ten more times",
+        "Email GitHub support to reset your account"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_6_4_publishing_with_github_pages_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "Stale live pages are usually a build delay or a cached browser copy, not a broken repo. Verify the build finished and clear the cache before any destructive AI-suggested fix.",
+      "misconception_id": "cat100_supplement_6_4_publish_is_instant",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_6_4_publishing_with_github_pages_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_publishing_with_github_pages",
       "concept_ids": [
+        "cat100_supplement_publishing_with_github_pages",
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After publishing, what is the strongest evidence that your site actually works for a visitor, not just for you?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "It looks fine in your own editor preview",
+        "You open the live username.github.io URL in a private window on another device and confirm every link and image loads",
+        "The commit succeeded with no error",
+        "A friend says the idea sounds good"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_6_4_publishing_with_github_pages_completion_only_model",
+      "explanation": "Local previews hide path and caching problems. Loading the live URL in a fresh private window on another device tests what a real visitor receives.",
+      "misconception_id": "cat100_supplement_6_4_local_preview_equals_live",
       "difficulty": "medium"
     }
   ]

@@ -4,16 +4,16 @@
       "id": "cat531_supplement_7_4_equity_audit_in_field_contexts_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_equity_audit_in_field_contexts",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A candidate is auditing an AI writing-feedback tool for equity before her placement adopts it. Which entry in the audit matrix is a context-specific equity risk rather than a generic worry?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The tool might not be perfect for every student.",
+        "The tool's feedback model was trained mostly on standard-English essays, and 11 of the 27 students in this placement are multilingual learners whose phrasing it may flag as errors.",
+        "Some teachers do not like new technology.",
+        "The tool could be slow if the internet is down."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_7_4_equity_audit_in_field_contexts_polish_as_evidence",
+      "explanation": "A context-specific equity risk names a real subgroup in this placement and the mechanism by which the tool could disadvantage them. The other entries are generic, off-topic, or about reliability rather than equity.",
+      "misconception_id": "cat531_supplement_7_4_generic_risk_for_equity",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_field_based_transfer_and_coaching",
@@ -26,16 +26,16 @@
       "id": "cat531_supplement_7_4_equity_audit_in_field_contexts_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The vendor's equity page says the tool is bias-tested and fair for all learners. How should that claim enter the audit matrix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "As a settled fact in the equity column, since the vendor tested it.",
+        "As an unverified vendor claim that needs evidence: which groups were tested, on what data, and whether the candidate's multilingual learners were represented.",
+        "As a reason to skip the audit for this tool.",
+        "As proof the tool needs no monitoring in this classroom."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_7_4_equity_audit_in_field_contexts_annotation_without_signal",
+      "explanation": "A vendor's fairness claim is a marketing statement until the audit asks who was tested and whether this classroom's students were represented. Recording it as settled fact hides the equity question.",
+      "misconception_id": "cat531_supplement_7_4_vendor_claim_as_audit",
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
@@ -45,16 +45,16 @@
       "id": "cat531_supplement_7_4_equity_audit_in_field_contexts_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The candidate asks an AI assistant to generate the equity risk column for the matrix. It returns risks that apply to any school. What is the defensible use of that output?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Paste the generic risks into the matrix because the column is now filled.",
+        "Use the generic risks as prompts, then replace each with a risk tied to this placement's specific student groups, devices, and policies.",
+        "Trust the AI risks because they cover many districts.",
+        "Remove the equity column since AI already addressed it."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_7_4_equity_audit_in_field_contexts_ai_as_authority",
+      "explanation": "Generic AI risks are prompts, not the audit. An equity audit only does its job when each risk is grounded in this placement's actual context. The other options either accept generic output or drop the analysis.",
+      "misconception_id": "cat531_supplement_7_4_ai_generic_fills_matrix",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -64,16 +64,16 @@
       "id": "cat531_supplement_7_4_equity_audit_in_field_contexts_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "What evidence would let a colleague trust the candidate's recommendation to adopt the tool with safeguards?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The matrix has every cell filled in.",
+        "Each named risk is paired with the affected student group, the safeguard chosen, and a monitoring check the candidate will run after rollout.",
+        "The tool was the cheapest option reviewed.",
+        "The candidate liked the tool's interface."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_7_4_equity_audit_in_field_contexts_completion_only_model",
+      "explanation": "A trustworthy equity recommendation links each risk to who is affected, the safeguard, and a post-rollout check. A fully filled grid, price, or preference does not show the reasoning held up.",
+      "misconception_id": "cat531_supplement_7_4_filled_grid_equals_equity",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

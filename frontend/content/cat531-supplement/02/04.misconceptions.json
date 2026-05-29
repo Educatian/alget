@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy",
   "misconceptions": [
     {
-      "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_fluent_equals_sound",
+      "pattern": "fluency_read_as_pedagogical_soundness",
+      "description": "Judging an AI suggestion by how confident and well-written it sounds rather than against a learning theory or standard",
+      "trigger": "teacher accepts a suggestion because it reads professionally, without checking it against the objective",
+      "feedback": "Hold each suggestion against the lesson objective and an instructional principle. Fluent phrasing is not pedagogical justification.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_activity_over_objective",
+      "pattern": "activity_swapped_for_objective",
+      "description": "Letting an attractive AI activity replace the lesson objective instead of serving it",
+      "trigger": "teacher keeps a fun AI-suggested activity that does not assess or build the stated objective",
+      "feedback": "Trace the activity back to the objective. If it does not move students toward the target, it is decoration, however engaging.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_one_size_for_all",
+      "pattern": "suggestion_assumed_universal",
+      "description": "Assuming an AI suggestion that suits the median student also serves the range of learners in the room",
+      "trigger": "teacher adopts a suggestion without checking it against the class's reading levels, accommodations, or language needs",
+      "feedback": "Compare the suggestion against your actual learner variability, not a generic class. A good median move can still fail the margins.",
+      "rail_action": "explain"
     }
   ]
 }

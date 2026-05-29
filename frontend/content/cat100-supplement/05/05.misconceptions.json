@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_5_5_self_recording_with_ai_coaching",
   "misconceptions": [
     {
-      "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_metric_chasing",
+      "pattern": "optimizing_only_metrics",
+      "description": "Chasing AI-reported metrics (pace, filler count) while ignoring whether the message lands",
+      "trigger": "learner cuts every pause to hit a words-per-minute target and the talk becomes rushed and unclear",
+      "feedback": "Use metrics as cues, not goals. A pause that aids understanding beats a perfect pace number.",
       "rail_action": "ask"
     },
     {
-      "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
-    },
-    {
-      "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_one_take",
+      "pattern": "first_take_is_final",
+      "description": "Treating the first recording as final because re-recording feels tedious",
+      "trigger": "learner submits take one despite an AI flag of 14 filler words and a missed key point",
+      "feedback": "Plan at least two takes: review the AI feedback, fix one specific issue, then re-record that section.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_5_5_self_recording_with_ai_coaching_coach_as_judge",
+      "pattern": "ai_coach_as_final_judge",
+      "description": "Accepting the AI coaching score as the final verdict on the delivery",
+      "trigger": "learner trusts a high clarity score even though a human peer was confused",
+      "feedback": "The AI score is one signal. Check it against a human listener and your own playback before trusting it.",
+      "rail_action": "explain"
     }
   ]
 }

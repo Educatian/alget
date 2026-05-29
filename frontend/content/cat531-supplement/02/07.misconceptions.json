@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_2_7_evidence_for_portfolio_entry",
   "misconceptions": [
     {
-      "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_artifact_is_evidence",
+      "pattern": "artifact_mistaken_for_evidence",
+      "description": "Treating the finished lesson plan or screenshot as the portfolio evidence, without the reasoning and outcome that make it claim-worthy",
+      "trigger": "entry includes a polished artifact but no claim, standard, or result it is meant to demonstrate",
+      "feedback": "An artifact becomes evidence only when paired with the claim it supports and the outcome it produced. Attach the reasoning.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_claim_without_warrant",
+      "pattern": "claim_without_warrant",
+      "description": "Asserting that a competency was met without pointing to the specific part of the artifact that shows it",
+      "trigger": "reflection claims a standard was demonstrated but cites no concrete location or moment in the evidence",
+      "feedback": "Point to the exact line, decision, or student-work moment that warrants the claim. A claim with no warrant is an assertion.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_one_artifact_all_standards",
+      "pattern": "single_artifact_overclaimed",
+      "description": "Stretching one artifact to claim it demonstrates many unrelated standards at once",
+      "trigger": "a single lesson plan is tagged to five competencies it does not all evidence",
+      "feedback": "Match each claim to the artifact that genuinely shows it. Overclaiming weakens the entries that are real.",
+      "rail_action": "explain"
     }
   ]
 }

@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_4_5_accessibility_and_wcag_checks",
   "misconceptions": [
     {
-      "id": "ail606_supplement_4_5_accessibility_and_wcag_checks_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_4_5_accessibility_and_wcag_checks_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_4_5_a11y_contrast_as_taste",
+      "pattern": "contrast_treated_as_style",
+      "description": "Treating text contrast as an aesthetic preference rather than a measurable WCAG threshold",
+      "trigger": "learner defends low-contrast text as a clean look without checking the ratio",
+      "feedback": "Measure the contrast ratio against the AA threshold (4.5:1 for body text). Contrast is a pass or fail check, not a taste call.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_4_5_accessibility_and_wcag_checks_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_4_5_a11y_alt_text_presence_only",
+      "pattern": "alt_text_presence_mistaken_for_quality",
+      "description": "Assuming an image is accessible because any alt text exists, regardless of whether it conveys the content",
+      "trigger": "alt text is generic such as image or photo and carries none of the informational content",
+      "feedback": "Write alt text that conveys the information the image carries in context. Presence is not the same as a usable description.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_4_5_a11y_ai_alt_text_unchecked",
+      "pattern": "ai_alt_text_accepted_unchecked",
+      "description": "Accepting AI-generated alt text that describes appearance but misses the image's instructional role",
+      "trigger": "learner pastes AI alt text without checking it against why the image is on the page",
+      "feedback": "Check each AI description against what the image must communicate in the lesson. Appearance is not the same as instructional meaning.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_4_5_accessibility_and_wcag_checks_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_4_5_a11y_color_only_meaning",
+      "pattern": "meaning_carried_by_color_alone",
+      "description": "Using color as the only channel for status or meaning, excluding users with color vision deficiency",
+      "trigger": "correct and incorrect or other states differ only by color",
+      "feedback": "Pair color with text or a distinct shape so the meaning is perceivable without color discrimination.",
       "rail_action": "practice"
     }
   ]

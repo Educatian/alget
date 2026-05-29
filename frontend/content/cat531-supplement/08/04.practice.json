@@ -4,16 +4,16 @@
       "id": "cat531_supplement_8_4_rubric_language_for_ai_use_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_rubric_language_for_ai_use",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A rubric row reads: \"AI Use (10 pts): full points if no AI was used, zero if any AI was used.\" What is the core flaw?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The point value should be 20, not 10.",
+        "It scores tool presence rather than the quality of the student's judgment about using AI, which is the actual learning target.",
+        "It should not mention AI at all.",
+        "The row is fine because it is simple to grade."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_8_4_rubric_language_for_ai_use_polish_as_evidence",
+      "explanation": "The course target is judgment about tools, not abstinence. Scoring no AI rewards the wrong behavior and is unverifiable.",
+      "misconception_id": "cat531_supplement_8_4_rubric_presence_as_misconduct",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_instructor_toolkit_for_cat_531",
@@ -26,18 +26,19 @@
       "id": "cat531_supplement_8_4_rubric_language_for_ai_use_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which equity risk should a context-specific note flag about a blanket no-AI rubric rule?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It makes grading take longer.",
+        "It advantages students who already write fluently and penalizes ELL students or students who use AI as an accommodation.",
+        "It uses too many points.",
+        "It is hard to print."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_8_4_rubric_language_for_ai_use_annotation_without_signal",
+      "explanation": "A blanket ban creates an unequal effect the rubric should name, especially for students who rely on AI as support.",
+      "misconception_id": "cat531_supplement_8_4_rubric_blanket_ban_equity",
       "difficulty": "medium",
       "concept_ids": [
+        "rubric_design",
         "evidence_based_revision"
       ]
     },
@@ -45,18 +46,19 @@
       "id": "cat531_supplement_8_4_rubric_language_for_ai_use_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Which rubric language gives a grader an observable signal of student judgment about AI use?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Student certifies that no AI was used at any point.",
+        "Student names where AI was used, shows one accepted and one rejected suggestion, and explains the reason against course evidence.",
+        "Student writes a long reflection about technology in general.",
+        "Student submits the most polished final draft."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_8_4_rubric_language_for_ai_use_ai_as_authority",
+      "explanation": "Accept and reject decisions are observable in the work; a no-AI certification is unverifiable and points to nothing.",
+      "misconception_id": "cat531_supplement_8_4_rubric_unobservable_criterion",
       "difficulty": "medium",
       "concept_ids": [
+        "rubric_design",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_8_4_rubric_language_for_ai_use_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Two submissions: A is smoothly written with no disclosed reasoning; B discloses AI use with clear accept and reject decisions but is less polished. If the rubric measures judgment about AI use, which should score higher and why?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A, because the writing is more polished.",
+        "B, because the rubric measures judgment about tool use and B makes that judgment visible, while polish is not the construct.",
+        "They must score the same to be fair.",
+        "A, because it did not need a disclosure."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_8_4_rubric_language_for_ai_use_completion_only_model",
+      "explanation": "When the construct is judgment about AI use, the top score follows visible reasoning, not surface fluency.",
+      "misconception_id": "cat531_supplement_8_4_rubric_polish_over_construct",
       "difficulty": "hard",
       "concept_ids": [
+        "rubric_design",
         "evidence_based_revision"
       ]
     }

@@ -4,17 +4,17 @@
       "id": "ail606_supplement_3_4_narration_and_modality_decisions_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_narration_and_modality_decisions",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A frame shows an animation of cell division while the narrator reads, word for word, the full paragraph of text already printed on the same screen. Which principle does this violate?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The personalization principle, because the tone is too formal.",
+        "The redundancy principle, because identical on-screen text and narration force the learner to process the same words in two channels.",
+        "The pre-training principle, because key terms were not defined.",
+        "No principle; reading the text aloud always helps."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_3_4_narration_and_modality_decisions_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Verbatim on-screen text plus narration is redundant and splits the visual channel between the animation and the text. Narrate over the visual, or show the text, but not both saying the same words.",
+      "misconception_id": "ail606_supplement_3_4_read_screen_aloud",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_narration_and_modality_decisions"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_3_4_narration_and_modality_decisions_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_narration_and_modality_decisions",
+      "stem": "A designer converts a multi-row reference table of conversion factors into audio-only narration, citing the modality principle. Why is this a misapplication?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Audio is always lower quality than text.",
+        "Reference content that learners must inspect and re-check belongs as durable text; transient audio forces re-listening and overloads memory.",
+        "The modality principle applies only to children.",
+        "Tables can never be narrated."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_3_4_narration_and_modality_decisions_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "The modality benefit assumes transient, learner-paced explanatory content alongside a graphic. Reference or complex material that must be re-inspected is better as text the learner can scan.",
+      "misconception_id": "ail606_supplement_3_4_narration_always_better",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_narration_and_modality_decisions"
       ]
     },
     {
       "id": "ail606_supplement_3_4_narration_and_modality_decisions_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_narration_and_modality_decisions",
+      "stem": "An AI tool offers to auto-add narration to a frame that already has dense on-screen text over a busy diagram. What design judgment must you apply before accepting?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Accept it, since more channels always means more learning.",
+        "Recognize that modality offloads words to audio so the eyes can read the graphic; stacking text, audio, and a busy image overloads rather than offloads.",
+        "Accept it only if the narrator voice is female.",
+        "Reject all AI narration on principle."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_3_4_narration_and_modality_decisions_ai_as_authority",
+      "explanation": "The modality principle works by moving words off the crowded visual channel. Keeping the text and adding narration on top of a busy diagram defeats the purpose and overloads both channels.",
+      "misconception_id": "ail606_supplement_3_4_text_with_picture_is_modality",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_narration_and_modality_decisions"
       ]
     },
     {
       "id": "ail606_supplement_3_4_narration_and_modality_decisions_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_narration_and_modality_decisions",
+      "stem": "You decide narration over animation is the right modality for a process frame. To make the decision defensible across your learner population, what must accompany the narration?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A louder default volume.",
+        "A synchronized caption or transcript, so learners who are deaf, hard of hearing, or in audio-off contexts still get the content.",
+        "A faster playback option only.",
+        "Nothing; narration alone is sufficient."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_3_4_narration_and_modality_decisions_completion_only_model",
+      "explanation": "A modality choice is only defensible when it includes an equivalent. Captions or a transcript keep the audio channel from gating access for part of the audience.",
+      "misconception_id": "ail606_supplement_3_4_ignore_accessibility_in_modality",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_narration_and_modality_decisions"
       ]
     }
   ]

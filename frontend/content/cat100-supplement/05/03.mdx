@@ -35,15 +35,27 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Goal: generate an image that explains a three-stage data pipeline rather than decorates the slide.
 
-> I made the AI critique log showing accepted, modified, and rejected suggestions clearer.
+1. Write a precise prompt that names the parts and their relationship:
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+   ```
+   Flat diagram, three labeled boxes left to right:
+   "Collect" -> "Clean" -> "Analyze", connected by arrows
+   showing data flow. No people, no robots, white background.
+   ```
 
-> I revised the AI critique log showing accepted, modified, and rejected suggestions so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+2. Generate and inspect the result against the real process. First output reversed two stages:
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+   `Collect -> Analyze -> Clean`  (wrong: analysis cannot precede cleaning).
+
+3. Revise the prompt to lock the order, then regenerate:
+
+   `... in this exact order: Collect, then Clean, then Analyze ...`
+
+4. Verify every label and arrow matches your actual steps before placing the image.
+
+The revision is justified by **data-ink and visual evidence**: the final diagram carries meaning (removing it would lose the explanation), and its labels were checked against the real pipeline rather than trusted blindly.
 
 ## Decision Rule
 

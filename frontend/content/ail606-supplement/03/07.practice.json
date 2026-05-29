@@ -4,17 +4,17 @@
       "id": "ail606_supplement_3_7_peer_review_of_storyboards_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_peer_review_of_storyboards",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A peer review of a classmate's storyboard reads, in full: 'This looks great, nice work!' Why is this not yet peer review?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too short to count as a sentence.",
+        "It offers no observation tied to a specific frame, principle, or learner outcome that the author could act on.",
+        "Praise is forbidden in graduate courses.",
+        "It does not mention the reviewer's name."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_3_7_peer_review_of_storyboards_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Review is actionable feedback anchored to specifics. General praise gives the author nothing to revise.",
+      "misconception_id": "ail606_supplement_3_7_praise_is_review",
+      "difficulty": "easy",
       "concept_ids": [
         "peer_review"
       ]
@@ -22,58 +22,58 @@
     {
       "id": "ail606_supplement_3_7_peer_review_of_storyboards_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_peer_review_of_storyboards",
+      "stem": "A reviewer writes: 'I would have made the background blue and used a different font.' Why is this comment weak as design feedback?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Blue is a poor color choice.",
+        "It rests on personal taste rather than the shared criteria, such as Mayer principles or the stated learning objective.",
+        "Reviewers may not comment on color at all.",
+        "Fonts are never part of a storyboard."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_3_7_peer_review_of_storyboards_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "Useful feedback is anchored in the shared rubric and the objective. Preference comments do not tell the author whether a design standard was met or missed.",
+      "misconception_id": "ail606_supplement_3_7_review_taste_not_criteria",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "peer_review"
       ]
     },
     {
       "id": "ail606_supplement_3_7_peer_review_of_storyboards_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_peer_review_of_storyboards",
+      "stem": "While reviewing a peer's storyboard, you notice Frame 4 is overloaded. You ask an AI tool to help. Which use respects the author's authorship?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Have the AI rewrite Frame 4 and paste its version into the peer's storyboard.",
+        "Use the AI to help you describe the overload precisely and name an option, then leave the revision choice to the author.",
+        "Ask the AI to grade the whole storyboard for the author.",
+        "Replace all of the peer's frames with AI-generated ones."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_3_7_peer_review_of_storyboards_ai_as_authority",
+      "explanation": "Review surfaces issues and options; it does not take over authorship. The reviewer (and any tool the reviewer uses) describes the problem and lets the author decide.",
+      "misconception_id": "ail606_supplement_3_7_reviewer_rewrites_artifact",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "peer_review"
       ]
     },
     {
       "id": "ail606_supplement_3_7_peer_review_of_storyboards_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_peer_review_of_storyboards",
+      "stem": "As the author, you receive eight peer comments, two of which contradict each other. What is the most defensible way to handle them?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Apply all eight comments exactly as written.",
+        "Weigh each comment against the learning objective and constraints, then record which you accept, which you reject, and why.",
+        "Ignore all comments, since they conflict.",
+        "Apply only the comment from the highest-graded peer."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_3_7_peer_review_of_storyboards_completion_only_model",
+      "explanation": "Feedback is input, not instruction. The author judges each comment against the objective and documents the accept or reject decision, which is the design evidence.",
+      "misconception_id": "ail606_supplement_3_7_accept_all_feedback",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "peer_review"
       ]
     }
   ]

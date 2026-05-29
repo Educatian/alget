@@ -35,15 +35,32 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Maria's nav links render as plain blue underlined text, and everything below them is blue too. She debugs with AI as a partner, not an oracle, and logs each suggestion.
 
-> I made the AI critique log showing accepted, modified, and rejected suggestions clearer.
+**Step 1. Read the symptom in the code.**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```html
+<nav>
+  <a href="about.html">About
+  <a href="projects.html">Projects</a>
+</nav>
+```
 
-> I revised the AI critique log showing accepted, modified, and rejected suggestions so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+The first <a> is never closed. The open link swallows the following content.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+**Step 2. Write a verifiable prompt.** Not "fix my site." Instead: "My nav links show as plain text and content below is also blue. Here is my nav block. What prevents my 'nav a' CSS from applying?"
+
+**Step 3. Log the AI critique with a decision.**
+
+| AI suggestion | Decision | Reason |
+| --- | --- | --- |
+| Close the first anchor: add </a> after About | Accept | Matches the missing-close-tag symptom exactly |
+| Also add a CORS server config for the headshot | Reject | The image is a same-folder local file; CORS cannot apply here |
+| Rewrite the whole nav in a framework | Reject | Out of scope; the bug is one tag |
+
+**Step 4. Verify, do not assume.** Add </a>, reload, and check the browser console: the runaway styling is gone and no errors remain.
+
+The fix was a single closing tag. The accepted-modified-rejected log shows judgment: Maria kept the suggestion that fit the evidence and rejected the off-target CORS advice because it could not apply to a local file.
 
 ## Decision Rule
 

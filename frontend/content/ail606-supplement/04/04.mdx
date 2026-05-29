@@ -35,15 +35,29 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Work through one annotated before/after revision of a cognitive load diagnosis table for a single draft screen.
 
-> I made the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence clearer.
+**Before (diagnosis table, screen 3):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+| Screen | Load rating |
+| --- | --- |
+| 3 (intro to standard deviation) | High, should reduce |
 
-> I revised the cognitive load diagnosis table with intrinsic/extraneous/germane load evidence so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+**Annotations a reviewer would leave:**
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+1. "High" is one undifferentiated rating. It does not say whether the difficulty is intrinsic (the statistics itself) or extraneous (something the design added).
+2. "Should reduce" gives no target and no mechanism, so any later revision is untestable.
+3. The proposed fix in the margin, "delete the practice set," would cut germane load, which is the effort that actually builds the schema.
+
+**After (revised diagnosis table, screen 3):**
+
+| Screen | Source of demand | Load type | Action |
+| --- | --- | --- | --- |
+| 3 | High element interactivity: mean, deviation, squaring, and averaging introduced at once | Intrinsic | Segment into 3 worked steps with pre-training on the mean before the full formula |
+| 3 | Definition paragraph on screen while narration reads different wording | Extraneous | Remove the redundant on-screen paragraph; keep narration plus the labeled diagram |
+| 3 | Two practice items after the worked steps | Germane | Keep; this is the productive effort and should not be cut |
+
+**Why the after version is stronger:** it separates the three load types, attributes each to a specific screen feature, and prescribes the right move for each (stage intrinsic, remove extraneous, protect germane). A reviewer can now test whether segmenting and removing the redundant text lowered total demand without removing the learning. The change is a diagnosis, not a one-word rating.
 
 ## Decision Rule
 

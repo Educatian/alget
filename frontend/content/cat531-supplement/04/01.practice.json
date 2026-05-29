@@ -4,40 +4,39 @@
       "id": "cat531_supplement_4_1_ethical_dialogue_as_learning_activity_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ethical_dialogue_as_learning_activity",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher annotates an Ethobot ethics dialogue with: 'Lively discussion, every student spoke.' What is the main weakness of this annotation as evidence of learning?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too short to count as a grade.",
+        "It records participation but never identifies where a student's ethical reasoning actually shifted.",
+        "It should have used more formal academic vocabulary.",
+        "It names a stakeholder but not the data-retention rule."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_4_1_ethical_dialogue_as_learning_activity_polish_as_evidence",
+      "explanation": "An ethical dialogue becomes a learning activity when you can point to the turn where reasoning changed, not just that talk happened.",
+      "misconception_id": "cat531_supplement_4_1_participation_as_reasoning",
       "difficulty": "easy",
       "concept_ids": [
-        "cat531_supplement_ai_ethics_and_ethobot_3_2",
         "cat531_supplement_ethical_dialogue_as_learning_activity",
-        "evidence_based_revision",
-        "ai_supported_learning"
+        "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_1_ethical_dialogue_as_learning_activity_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_ethical_dialogue_as_learning_activity",
+      "stem": "In a transcript, Student A says 'Ban the tracking app' then later says 'A ban is not neutral either, it hurts kids who need it for accessibility.' Which annotation best captures the reasoning move?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Student A changed their mind, which shows they were unsure.",
+        "Student A moved from a categorical ban to weighing a competing stakeholder burden; the shift is the phrase 'not neutral either.'",
+        "Student A reached the correct answer that bans are bad.",
+        "Student A engaged well and should receive full participation credit."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_4_1_ethical_dialogue_as_learning_activity_annotation_without_signal",
+      "explanation": "The strong annotation names the exact reasoning shift and quotes the trigger phrase, so a colleague can inspect the judgment.",
+      "misconception_id": "cat531_supplement_4_1_one_right_answer_ethics",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ethical_dialogue_as_learning_activity",
         "evidence_based_revision"
       ]
     },
@@ -45,38 +44,40 @@
       "id": "cat531_supplement_4_1_ethical_dialogue_as_learning_activity_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The Ethobot prompt 'Who benefits and who is burdened if the app is banned?' shaped how students reasoned. What is the most defensible way to treat that prompt when annotating?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Ignore the bot prompt because only student turns count as learning.",
+        "Note that the prompt introduced a stakeholder lens, and judge whether that framing was appropriate for this class.",
+        "Treat the prompt as a neutral question with no influence on the dialogue.",
+        "Replace the bot prompt with the teacher's own preferred verdict."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_4_1_ethical_dialogue_as_learning_activity_ai_as_authority",
+      "explanation": "An Ethobot prompt is a design choice that frames the value conflict, so the teacher must evaluate its framing rather than assume neutrality.",
+      "misconception_id": "cat531_supplement_4_1_bot_prompt_as_neutral",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "cat531_supplement_ai_supported_learning",
+        "cat531_supplement_ethical_dialogue_as_learning_activity"
       ]
     },
     {
       "id": "cat531_supplement_4_1_ethical_dialogue_as_learning_activity_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You decide to reuse Turns 2 to 3 of a transcript as a model exchange and cut Turn 1. What makes this a defensible revision rather than mere editing?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Turn 1 was the longest, so removing it shortens the activity.",
+        "Turn 1 was a fixed position with no reasoning, while Turns 2 to 3 contain the prompt and the documented reasoning shift.",
+        "Turns 2 to 3 used nicer phrasing than Turn 1.",
+        "Cutting any turn always improves a transcript."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_4_1_ethical_dialogue_as_learning_activity_completion_only_model",
+      "explanation": "The revision is justified by what each turn contributes to reasoning, which is the evidence a reviewer can check.",
+      "misconception_id": "cat531_supplement_4_1_participation_as_reasoning",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_evidence_based_revision",
+        "cat531_supplement_ethical_dialogue_as_learning_activity"
       ]
     }
   ]

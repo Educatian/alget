@@ -33,17 +33,26 @@ Three course anchors shape the reasoning here:
 
 Use these anchors as lenses, not as names to drop into a reflection. A useful lens changes what you notice, what you question, and what you revise.
 
-## Worked Example
+## Worked Example: Turning a Rationale Into a Testable Hypothesis
 
-Start with a thin claim that many students write on a first pass:
+A designer has redesigned the onboarding screen of a mobile tutoring prototype. The first usability-test plan states only a rationale.
 
-> I made the moderated usability test script with observation-to-revision trace clearer.
+**Before (rationale only):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> Rationale: We simplified the onboarding screen so it is easier to use. Plan: Show it to learners and confirm it is better.
 
-> I revised the moderated usability test script with observation-to-revision trace so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+This cannot be tested. "Easier" names a feeling, not a measurable behavior, so a moderated session cannot confirm or disconfirm it. Walk through the conversion in numbered steps:
 
-The stronger version treats the moderated usability test script with observation-to-revision trace as evidence. It names what changed, links the change to **cognitive load theory**, and leaves a reader able to audit the decision.
+1. **Name the design claim behind the rationale.** The claim is that reducing the onboarding screen from 7 fields to 3 will lower first-task abandonment (a **cognitive load theory** prediction about extraneous load).
+2. **Choose an observable outcome.** First-task abandonment is observable: did the participant reach the first tutoring task without quitting?
+3. **State a direction and a threshold.** Predict the change moves the outcome in a specific direction by a stated amount.
+4. **Write the falsifiable hypothesis.**
+
+**After (testable hypothesis):**
+
+> H1: With the 3-field onboarding screen, at least 8 of 10 first-time participants will reach the first tutoring task without abandoning, versus the 4 of 10 baseline observed on the 7-field screen.
+
+The after version is defensible because a moderated session can disconfirm it: if only 5 of 10 succeed, the hypothesis fails and the rationale must be revised, not the data. The change is anchored in **cognitive load theory** (fewer fields, less extraneous load) and leaves an auditable threshold.
 
 ## Decision Rule
 

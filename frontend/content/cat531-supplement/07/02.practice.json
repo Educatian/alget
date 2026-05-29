@@ -4,16 +4,16 @@
       "id": "cat531_supplement_7_2_mentor_teacher_conversation_guides_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_mentor_teacher_conversation_guides",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A candidate is drafting a conversation guide to raise a disagreement with her mentor, who bans all student phone use including a free polling app the candidate wants to try. Which opening line keeps the guide a professional negotiation rather than a complaint?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "I think your phone ban is outdated and hurts engagement.",
+        "I would like to understand the reason behind the phone policy, then share one bounded use I am considering and the safeguard I would add.",
+        "Other mentor teachers let candidates use phones, so I should be allowed to as well.",
+        "Can I just use the app once without telling the class it is against the rules?"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_7_2_mentor_teacher_conversation_guides_polish_as_evidence",
+      "explanation": "A defensible guide opens by surfacing the mentor's reasoning, then proposes one bounded use with a safeguard. The other lines attack the policy, appeal to other classrooms, or hide the decision.",
+      "misconception_id": "cat531_supplement_7_2_guide_as_persuasion_script",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_field_based_transfer_and_coaching",
@@ -26,16 +26,16 @@
       "id": "cat531_supplement_7_2_mentor_teacher_conversation_guides_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "The mentor says the polling app worried her because last year a similar app stored student responses on an outside server. What should the candidate add to the conversation guide in response?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "A note that the mentor is being too cautious about a free tool.",
+        "A question that names the real concern: where student responses are stored and whether the district has approved the vendor.",
+        "A reminder that the candidate only needs to use it for one lesson.",
+        "A statement that students like the app, so the concern is minor."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_7_2_mentor_teacher_conversation_guides_annotation_without_signal",
+      "explanation": "A strong guide records the mentor's actual concern (data storage and vendor approval) as a question to resolve together, not as an obstacle to argue past.",
+      "misconception_id": "cat531_supplement_7_2_mentor_concern_as_obstacle",
       "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
@@ -45,16 +45,16 @@
       "id": "cat531_supplement_7_2_mentor_teacher_conversation_guides_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The candidate asks an AI tool to draft the whole mentor conversation, including the mentor's likely replies. How should she use the output?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Read the AI script aloud in the meeting so the conversation stays on track.",
+        "Use the AI prompts as a starting list, then revise them around what she actually knows about this mentor's stated values and prior comments.",
+        "Trust the AI's predicted mentor replies because they sound reasonable.",
+        "Let the AI decide which classroom rule to challenge first."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_7_2_mentor_teacher_conversation_guides_ai_as_authority",
+      "explanation": "A real mentor conversation depends on this person's stated values, which AI cannot know. The AI draft is a starting list to revise, not a script to perform.",
+      "misconception_id": "cat531_supplement_7_2_ai_scripts_the_mentor",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -64,16 +64,16 @@
       "id": "cat531_supplement_7_2_mentor_teacher_conversation_guides_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After the conversation, what record best shows the candidate exercised professional judgment rather than just getting permission?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A note that the mentor said yes.",
+        "A summary of the mentor's concern, the safeguard they agreed on, the one use they ruled out, and how the candidate will check it during the lesson.",
+        "A copy of the polling app's marketing page.",
+        "A note of how long the meeting lasted."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_7_2_mentor_teacher_conversation_guides_completion_only_model",
+      "explanation": "Professional judgment is visible in the negotiated boundary: the concern, the agreed safeguard, the ruled-out use, and the check. A yes alone does not show reasoning.",
+      "misconception_id": "cat531_supplement_7_2_permission_equals_judgment",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

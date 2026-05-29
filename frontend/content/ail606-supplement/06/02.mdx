@@ -35,15 +35,23 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Here is the same AI-USE.md disclosure written two ways. Read the before version, then the annotated after version.
 
-> I made the prototype README traceability matrix connecting theory to screen changes clearer.
+**Before (weak disclosure):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> AI tools (ChatGPT, Claude, Midjourney) were used throughout this capstone to support design and writing.
 
-> I revised the prototype README traceability matrix connecting theory to screen changes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+A reviewer cannot locate a single contribution in that sentence. Now the same project disclosed as an auditable table:
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+**After (annotated disclosure entries):**
+
+| Tool | Where it acted | What I did with the output |
+| --- | --- | --- |
+| ChatGPT | Draft of Module 3 learning objectives | Kept 2 of 5; rejected 3 because they targeted recall, not the analyze-level goal in my rubric |
+| Claude | First pass of Module 2 quiz feedback text | Rewrote 4 of 6 items; the AI explanations contradicted the answer key |
+| Midjourney | Banner image for the welcome screen | Used as-is; logged the prompt and flagged it as decorative, not instructional |
+
+Notice the three columns: tool, location, and the human judgment that followed. The decorative-image row is honest about a low-stakes use. The two text rows show where I overrode the tool and why. A defense committee can now audit each AI contribution to a specific place in the work, which is exactly what a blanket "used throughout" statement hides.
 
 ## Decision Rule
 

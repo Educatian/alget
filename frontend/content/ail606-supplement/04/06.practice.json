@@ -4,16 +4,16 @@
       "id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_assisted_authoring_with_codex",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You prompt Codex to scaffold an interactive flashcard widget for your prototype. It generates working code that stores all card data in a single global variable and hardcodes the answers in the HTML. As an instructional designer, what is the first thing to evaluate?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Whether the code runs without errors, since that is the only thing that matters.",
+        "Whether the generated structure supports the learning interaction you designed, such as separating content from logic so non-coders can edit cards and so answers are not exposed to the learner.",
+        "Whether the variable names match a style guide.",
+        "Whether Codex used the newest JavaScript syntax."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_polish_as_evidence",
+      "explanation": "Codex optimizes for code that runs, not for instructional or maintainability requirements. The designer evaluates whether the structure serves the intended learning interaction and authoring workflow.",
+      "misconception_id": "ail606_supplement_4_6_codex_runs_means_correct",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_ai_assisted_authoring_with_codex"
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_ai_assisted_authoring_with_codex",
+      "stem": "Which prompt to Codex reflects sound design-first authoring rather than handing over the design decision?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "\"Make me a good quiz for my module.\"",
+        "\"Generate a 5-item single-select quiz component that shows per-item feedback immediately, keyboard-navigable, with answers stored separately from the markup; I will write the items and feedback text.\"",
+        "\"Build whatever quiz you think works best and pick the questions too.\"",
+        "\"Write a quiz and make it look impressive.\""
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_annotation_without_signal",
+      "explanation": "The strong prompt specifies the learning interaction and constraints the designer already decided, leaving Codex to implement, not to make the pedagogical choices.",
+      "misconception_id": "ail606_supplement_4_6_codex_design_handover",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_ai_assisted_authoring_with_codex"
       ]
     },
     {
       "id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "Codex suggests adding an animated confetti burst every time a learner answers, including on wrong answers. What is the strongest bounded response?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Keep it, because positive feedback is always motivating.",
+        "Reject it for wrong answers and reconsider its frequency, since celebrating errors and constant animation can mislead learners and add extraneous load; accept the suggestion only where it supports the learning goal.",
+        "Remove all feedback animations to be safe.",
+        "Ask Codex whether the confetti is pedagogically sound and follow its answer."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_ai_as_authority",
+      "explanation": "An AI authoring suggestion is a proposal to judge against learning goals. Confetti on wrong answers conflicts with accurate feedback, so the designer accepts it selectively or rejects it.",
+      "misconception_id": "ail606_supplement_4_6_codex_suggestion_as_requirement",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,17 +60,17 @@
     {
       "id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "After Codex generates your prototype's scoring logic, you notice it marks an answer correct only if the casing matches exactly. Which revision note best documents an evidence-based fix?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "\"Fixed the bug.\"",
+        "\"Codex used a case-sensitive string match; I changed it to normalize case and trim whitespace because learners typed 'Paris' and 'paris' and both are correct, verified against three test inputs.\"",
+        "\"Made the scoring better.\"",
+        "\"Asked Codex to improve scoring and accepted the result.\""
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_4_6_ai_assisted_authoring_with_codex_completion_only_model",
+      "explanation": "A strong revision note names what the generated code did, what you changed, the learner evidence that motivated it, and how you verified it. Vague notes leave the decision unauditable.",
+      "misconception_id": "ail606_supplement_4_6_codex_runs_means_correct",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

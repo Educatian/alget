@@ -4,59 +4,59 @@
       "id": "cat531_supplement_4_3_stakeholders_in_school_ai_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_stakeholders_in_school_ai",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher's stakeholder map for an AI essay-feedback pilot lists only 'students and teachers.' Which addition most improves the map?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A nicer title and a legend.",
+        "The English learners whose phrasing the AI may misread, since they are the most affected yet least consulted group.",
+        "The room number where the pilot runs.",
+        "A second copy of the teacher entry."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_4_3_stakeholders_in_school_ai_polish_as_evidence",
+      "explanation": "A stakeholder map must surface the silent, most-affected party, not just the visible users.",
+      "misconception_id": "cat531_supplement_4_3_only_visible_stakeholders",
       "difficulty": "easy",
       "concept_ids": [
-        "cat531_supplement_ai_ethics_and_ethobot_3_2",
         "cat531_supplement_stakeholders_in_school_ai",
-        "evidence_based_revision",
-        "ai_supported_learning"
+        "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_3_stakeholders_in_school_ai_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_stakeholders_in_school_ai",
+      "stem": "A map states that the AI tutor 'helps everyone involved.' Why is this claim weak as stakeholder analysis?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It is grammatically incorrect.",
+        "It hides real conflicts of interest, such as vendor data goals versus student privacy versus teacher time.",
+        "It does not mention the price of the tool.",
+        "It uses the word everyone, which is informal."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_4_3_stakeholders_in_school_ai_annotation_without_signal",
+      "explanation": "Stakeholder analysis exists to surface conflicting interests, not to declare universal benefit.",
+      "misconception_id": "cat531_supplement_4_3_aligned_interests_assumption",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_stakeholders_in_school_ai",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_3_stakeholders_in_school_ai_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_stakeholders_in_school_ai",
+      "stem": "Which stakeholder is a teacher most likely to leave off the map, even though its interests can shape the tool's design?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The students in the class.",
+        "The AI vendor, whose interest in adoption and data collection can drive design choices.",
+        "The classroom teacher.",
+        "The principal who approved the schedule."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_4_3_stakeholders_in_school_ai_ai_as_authority",
+      "explanation": "The vendor is a stakeholder with data and adoption interests that often outweigh stated student benefits.",
+      "misconception_id": "cat531_supplement_4_3_vendor_neutral",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_stakeholders_in_school_ai",
         "ai_supported_learning"
       ]
     },
@@ -64,19 +64,20 @@
       "id": "cat531_supplement_4_3_stakeholders_in_school_ai_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After mapping six stakeholders, which conclusion is best supported as a defensible judgment?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The pilot is fine because most stakeholders benefit.",
+        "The current design centers teacher time and vendor adoption, so a teacher override on English-learner essays and a parent consent step are needed before piloting.",
+        "The pilot should be cancelled because vendors are untrustworthy.",
+        "Stakeholders will sort themselves out during the pilot."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_4_3_stakeholders_in_school_ai_completion_only_model",
+      "explanation": "The strong judgment names whose interest the design centers and proposes a concrete, evidence-linked adjustment.",
+      "misconception_id": "cat531_supplement_4_3_only_visible_stakeholders",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_evidence_based_revision",
+        "cat531_supplement_stakeholders_in_school_ai"
       ]
     }
   ]

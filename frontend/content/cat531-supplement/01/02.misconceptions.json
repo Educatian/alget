@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_1_2_design_tensions_before_tool_choice",
   "misconceptions": [
     {
-      "id": "cat531_supplement_1_2_design_tensions_before_tool_choice_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_1_2_tool_first_then_rationalize",
+      "pattern": "tool_precedes_tension",
+      "description": "Selecting a technology first and then searching for a problem it solves, instead of naming the value tension before the tool",
+      "trigger": "learner adopts a tool and only afterward asks what classroom problem it addresses",
+      "feedback": "Reverse the order. Surface the competing classroom values first, then choose a tool to negotiate that named tension.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_1_2_design_tensions_before_tool_choice_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_1_2_design_tensions_before_tool_choice_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_1_2_constraint_mistaken_for_tension",
+      "pattern": "constraint_labeled_as_tension",
+      "description": "Mislabeling a logistical constraint such as teacher workload as the design tension, instead of the competing learning values",
+      "trigger": "learner frames the tension around convenience rather than two values that both have a claim on the learning",
+      "feedback": "Restate the tension as two learning values in conflict (for example, feedback speed vs. feedback depth), keeping workload as a constraint, not the tension itself.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_1_2_design_tensions_before_tool_choice_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_1_2_ai_recommendation_skips_tension",
+      "pattern": "ai_recommendation_replaces_analysis",
+      "description": "Letting an AI tool recommendation stand in for the work of surfacing the value tension first",
+      "trigger": "learner accepts an AI 'best tool' suggestion without naming the competing values it must negotiate",
+      "feedback": "Use AI to help enumerate the competing values, then evaluate any candidate tool against that named tension.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_1_2_resolution_means_eliminate_one_side",
+      "pattern": "resolution_as_elimination",
+      "description": "Believing a design tension is resolved by eliminating one value rather than negotiating a defensible position between both",
+      "trigger": "learner declares a tension 'gone' after adopting a tool, hiding the value that was traded away",
+      "feedback": "Show the negotiated position: what each value gained, what was given up, and why the trade is defensible here.",
       "rail_action": "practice"
     }
   ]

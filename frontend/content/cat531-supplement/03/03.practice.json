@@ -4,16 +4,16 @@
       "id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_bias_data_and_classroom_consequences",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A vendor says its dropout-risk model is \"purely data-driven, so it removes human bias from referrals.\" What is the most accurate response?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Agree, because math cannot be biased.",
+        "The model can still be biased, because it learns patterns from historical data that already reflect unequal treatment.",
+        "Agree, because it replaces teachers with numbers.",
+        "The model is unbiased as long as it runs automatically."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_polish_as_evidence",
+      "explanation": "Being data-driven does not make a model objective. It inherits the inequities embedded in its training data and design choices.",
+      "misconception_id": "cat531_supplement_3_3_math_cannot_be_biased",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_ai_in_education",
@@ -25,58 +25,67 @@
     {
       "id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_bias_data_and_classroom_consequences",
+      "stem": "A reading-placement model uses prior school, ZIP code, and attendance as inputs, but no race field. Why might it still produce racially unequal placements?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It cannot, because race is not an input.",
+        "ZIP code and prior school can act as proxies for race and income, so the model can reproduce segregation patterns without naming race.",
+        "Attendance is always a fair measure for every student.",
+        "Removing the race field guarantees fairness."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_annotation_without_signal",
+      "explanation": "Proxy variables encode protected characteristics indirectly. Dropping the race field does not remove racial patterns carried by correlated inputs.",
+      "misconception_id": "cat531_supplement_3_3_proxy_variable_blindness",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_bias_data_and_classroom_consequences",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_bias_data_and_classroom_consequences",
+      "stem": "A behavior-flagging tool is reported as \"91% accurate.\" Before recommending it to your school, which question most directly tests for classroom harm?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Does the dashboard look professional?",
+        "Is 91% higher than last year's tool?",
+        "What is the accuracy and false-flag rate broken out by race, language status, and disability, not just the overall number?",
+        "How many schools already bought it?"
       ],
-      "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_ai_as_authority",
+      "correct_index": 2,
+      "explanation": "High aggregate accuracy can hide severe subgroup harm. Disaggregated performance reveals whether one group is flagged unfairly.",
+      "misconception_id": "cat531_supplement_3_3_aggregate_hides_subgroup_harm",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_bias_data_and_classroom_consequences",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_bias_data_and_classroom_consequences",
+      "stem": "A gifted-screening model flags Dana as \"low potential,\" but you have watched her solve open-ended problems above grade level all term. What is the most defensible teacher action?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Follow the model and skip her nomination, since the score is data-driven.",
+        "Treat the flag as one input, document your firsthand classroom evidence, and nominate her while requesting a review of the screening data.",
+        "Ignore your observations because the model used more data than you.",
+        "Lower your expectations of Dana to match the score."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_3_3_bias_data_and_classroom_consequences_completion_only_model",
+      "explanation": "A model label is one input, not the final word. When it conflicts with direct classroom evidence, the teacher should document the discrepancy and act to correct the record.",
+      "misconception_id": "cat531_supplement_3_3_score_overrides_teacher",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_bias_data_and_classroom_consequences",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

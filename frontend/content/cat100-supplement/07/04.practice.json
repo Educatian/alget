@@ -8,74 +8,74 @@
         "cat100_supplement_ai_assisted_email_drafting",
         "cat100_supplement_productivity_and_workflow_automation"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An AI email draft to your professor names her 'Dr. Smith' but your professor is Dr. Lee, and it invents office hours. What is the right move before sending?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Send it; the AI usually gets names right",
+        "Read and verify the recipient name, dates, and any claimed facts, then fix them",
+        "Forward it to yourself first",
+        "Add more exclamation points so it sounds friendly"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_7_4_ai_assisted_email_drafting_polish_as_evidence",
+      "explanation": "AI does not know your real professor or schedule. Always check names, dates, and facts before the email leaves your outbox.",
+      "misconception_id": "cat100_supplement_7_4_send_unedited_ai",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_7_4_ai_assisted_email_drafting_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_ai_assisted_email_drafting",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_ai_assisted_email_drafting"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "You want to ask for a two-day extension. Which prompt gives the AI enough to draft a usable email?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Write an email to my professor",
+        "Write a short, polite email to Prof. Lee for CAT 100 requesting a 2-day extension on the Module 7 lab, due Friday, because I was ill",
+        "Make it sound smart",
+        "Email about my class"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_7_4_ai_assisted_email_drafting_annotation_without_signal",
+      "explanation": "The specific prompt names the recipient, course, exact request, deadline, and reason. A one-line prompt yields a generic draft you cannot use.",
+      "misconception_id": "cat100_supplement_7_4_no_specifics_in_prompt",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_4_ai_assisted_email_drafting_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_ai_assisted_email_drafting",
       "concept_ids": [
-        "ai_supported_learning"
+        "cat100_supplement_ai_assisted_email_drafting"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Which opening best fits an email to a professor about a grade question?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Hey can u bump my grade thx",
+        "Subject: CAT 100 Lab 3 grade question -- Dear Dr. Lee, I have a question about the rubric points on Lab 3",
+        "yo prof whats up with this grade",
+        "TO WHOM IT MAY CONCERN: I DEMAND A REVIEW"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_7_4_ai_assisted_email_drafting_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "A professor audience needs a clear subject line, a named greeting, and a specific, calm request. Casual or aggressive tone undercuts the ask.",
+      "misconception_id": "cat100_supplement_7_4_tone_mismatch",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_4_ai_assisted_email_drafting_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_ai_assisted_email_drafting",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_ai_assisted_email_drafting"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You ask a public AI tool to draft an email about a missed exam. What should you keep out of the prompt?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The fact that you missed an exam",
+        "Your full student ID number and a private medical note; use a placeholder like [STUDENT ID] instead",
+        "The course name",
+        "The professor's title"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_7_4_ai_assisted_email_drafting_completion_only_model",
-      "difficulty": "medium"
+      "explanation": "Sensitive identifiers and medical details should not go into a public tool. Draft with a placeholder, then fill the private value in yourself.",
+      "misconception_id": "cat100_supplement_7_4_leak_private_info",
+      "difficulty": "hard"
     }
   ]
 }

@@ -4,17 +4,17 @@
       "id": "ail606_supplement_2_7_comparative_software_audit_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_comparative_software_audit",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A software audit recommends Tool A because \"it has 30 features versus Tool B's 12.\" What is wrong with this conclusion?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Thirty features is too many for any learning tool.",
+        "It counts features rather than fit; the audit never asks which features actually serve the defined learning task.",
+        "Tool B should win because simpler is always better.",
+        "Feature counts are fine as long as both numbers are verified."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "A comparative audit judges fit to the task. A long feature list can include capabilities irrelevant to the learning goal.",
+      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_more_features_wins",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_comparative_software_audit"
       ]
@@ -22,55 +22,55 @@
     {
       "id": "ail606_supplement_2_7_comparative_software_audit_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_comparative_software_audit",
+      "stem": "An audit praises Tool A for low price and Tool B for strong accessibility, then picks Tool A. Why is the comparison unsound?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Price should never be an audit criterion.",
+        "The tools were scored on different axes, so no head-to-head judgment was made; each must be scored on the same shared criteria set.",
+        "Tool B should automatically win on accessibility alone.",
+        "Two criteria are too few for any audit."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "A real comparison requires one common criteria set applied to every tool. Praising each on a different dimension prevents an actual head-to-head verdict.",
+      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_no_shared_criteria",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_comparative_software_audit"
       ]
     },
     {
       "id": "ail606_supplement_2_7_comparative_software_audit_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_comparative_software_audit",
+      "stem": "An audit concludes \"Tool C is the best authoring tool.\" What does a defensible audit add to that claim?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "A trophy graphic to emphasize the winner.",
+        "The context the recommendation assumes: the learners, setting, budget, and constraints under which Tool C wins, so a reader knows when the verdict would change.",
+        "A statement that Tool C is best for everyone everywhere.",
+        "The release date of Tool C."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_ai_as_authority",
+      "explanation": "There is no context-free best tool. Naming the assumed learners, setting, and constraints makes the recommendation falsifiable and transferable.",
+      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_context_free_winner",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_comparative_software_audit"
       ]
     },
     {
       "id": "ail606_supplement_2_7_comparative_software_audit_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Your audit scored three tools on the same five criteria and Tool B won overall but failed the accessibility criterion outright. What is the strongest evidence-based revision to the recommendation?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Keep Tool B as the flat winner because it had the best total score.",
+        "Flag accessibility as a non-negotiable gate: if your learners include screen-reader users, Tool B is disqualified despite its total, and the recommendation shifts to the next tool that passes the gate.",
+        "Drop the accessibility criterion so Tool B can win cleanly.",
+        "Average the scores again to smooth out the accessibility failure."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_completion_only_model",
+      "explanation": "Some criteria are gates, not weights. A defensible audit lets a non-negotiable failure override a high total when the context requires it.",
+      "misconception_id": "ail606_supplement_2_7_comparative_software_audit_context_free_winner",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

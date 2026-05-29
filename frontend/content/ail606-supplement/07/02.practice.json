@@ -4,76 +4,88 @@
       "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_centered_design_for_prototypes",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "In evidence-centered design, a prototype README traceability matrix should connect three layers. Which ordering matches the ECD logic?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Screen layout, then color palette, then font size.",
+        "Claim about what the learner knows or can do, then the observable evidence that would show it, then the task or screen that elicits that evidence.",
+        "Task screen, then a generic learning goal, then a deadline.",
+        "Evidence, then polish, then submission."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_polish_as_evidence",
+      "explanation": "ECD runs claim then evidence then task. The matrix is defensible only when each screen change traces up to an observable behavior and a knowledge claim.",
+      "misconception_id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_task_before_claim",
       "difficulty": "medium",
       "concept_ids": [
-        "ail606_supplement_evidence_centered_design_for_prototypes"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_evidence_centered_design_for_prototypes",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_evidence_centered_design_for_prototypes",
+      "stem": "A matrix row reads: claim = \"learner can interpret a residual plot\"; evidence = \"clicks the correct diagnosis button\"; task = \"drag-the-label screen.\" What is the alignment defect?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Nothing is wrong; all three cells are filled.",
+        "The task (drag-the-label) does not elicit the stated evidence (clicking a diagnosis button), so the task and evidence do not match.",
+        "The claim is too short.",
+        "The evidence should be a survey instead."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_annotation_without_signal",
+      "explanation": "Evidence-centered design fails when the task cannot produce the observable named in the evidence cell. The drag task yields a different observable than the diagnosis click.",
+      "misconception_id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_filled_not_aligned",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_evidence_centered_design_for_prototypes",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You use an AI tool while building the traceability matrix. Which use keeps your design judgment in charge?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Let the AI fill every claim, evidence, and task cell and ship the matrix.",
+        "Ask the AI to flag rows where the task could not actually produce the listed evidence, then decide each flagged row yourself against the prototype screen.",
+        "Skip the AI because traceability must be done by hand.",
+        "Use the AI only to reformat the table so it looks cleaner."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_ai_as_authority",
+      "explanation": "Bounded use targets one checkable property (task-elicits-evidence). You still judge each flag against the real screen, which is the ECD reasoning that cannot be delegated.",
+      "misconception_id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_task_before_claim",
       "difficulty": "medium",
       "concept_ids": [
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_evidence_centered_design_for_prototypes",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_evidence_centered_design_for_prototypes",
+      "stem": "Your matrix lists five screen changes but only two trace up to a knowledge claim. What does that pattern tell a reviewer, and what should you do?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "It means the prototype is mostly done; submit it.",
+        "Three changes are unjustified by the evidence model, so either add the claim and observable each one serves or remove the change.",
+        "It means you need more screens.",
+        "It means the matrix should be deleted."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_completion_only_model",
+      "explanation": "Screen changes with no upward trace are decoration, not evidence-bearing design. ECD asks you to justify or cut each one.",
+      "misconception_id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_filled_not_aligned",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_evidence_centered_design_for_prototypes",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

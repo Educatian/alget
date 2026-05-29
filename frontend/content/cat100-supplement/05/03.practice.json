@@ -8,73 +8,72 @@
         "cat100_supplement_image_generation_for_explaining_ideas",
         "cat100_supplement_ai_enhanced_presentation_development"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You need an image that explains a three-stage data pipeline (collect, clean, analyze). Which choice explains the idea rather than decorates the slide?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A glossy AI image of a humanoid robot holding a tablet.",
+        "A generated diagram with three labeled boxes 'Collect -> Clean -> Analyze' and an arrow showing data flow, checked against your real steps.",
+        "A stock photo of people in a meeting room.",
+        "An abstract swirl of blue lines that looks technical."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_polish_as_evidence",
-      "difficulty": "easy"
+      "explanation": "The labeled three-stage diagram carries the meaning; removing it would lose the explanation, so it is explanatory not decorative.",
+      "difficulty": "easy",
+      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_decorative_image"
     },
     {
       "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which note tells BigAL exactly what to help you fix in your generated image?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "This picture is cool.",
+        "The generated pipeline diagram puts 'Analyze' before 'Clean', which reverses my real process. How do I prompt for the correct order?",
+        "I need a better image.",
+        "Make it prettier."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "The note names a specific accuracy fault (reversed stages) so feedback can target the prompt revision.",
+      "difficulty": "medium",
+      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_vague_prompt"
     },
     {
       "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "What is a sound boundary for using AI image generation here?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Generate any image and trust its labels as accurate.",
+        "Generate a draft diagram, then verify each label and arrow against your real pipeline before using it.",
+        "Generate ten images and pick the prettiest regardless of meaning.",
+        "Avoid generated images entirely even when a diagram would explain the idea."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "The generated diagram is a draft you must verify against the real artifact before it counts as an explanation.",
+      "difficulty": "hard",
+      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_trust_generated_facts"
     },
     {
       "id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Your first prompt gave a vague image. Which revised prompt is most likely to explain the concept?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "'Make a nice picture about computers.'",
+        "'Diagram three labeled boxes Collect, Clean, Analyze connected left to right by arrows, flat style, no people.'",
+        "'Something tech and modern.'",
+        "'A cool robot.'"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_5_3_image_generation_for_explaining_ideas_completion_only_model",
+      "explanation": "A precise prompt naming the parts, labels, and relationship is far more likely to produce an explanatory image.",
       "difficulty": "medium"
     }
   ]

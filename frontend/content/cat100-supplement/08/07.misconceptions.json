@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_8_7_final_submission_checklist",
   "misconceptions": [
     {
-      "id": "cat100_supplement_8_7_final_submission_checklist_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_8_7_final_submission_checklist_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_8_7_wrong_export_format",
+      "pattern": "submit_editable_instead_of_required",
+      "description": "Submitting the working file format when the assignment requires a fixed or exported format",
+      "trigger": "learner uploads a .pptx or .docx when a PDF was required, or shares an editable link instead of a published one",
+      "feedback": "Read the format requirement. Export to the required type (often PDF for layout fidelity) and open the exported file once to confirm it looks right before submitting.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_8_7_final_submission_checklist_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "cat100_supplement_8_7_untested_link",
+      "pattern": "assume_link_works",
+      "description": "Submitting a GitHub Pages or shared-doc link without opening it in a fresh, signed-out browser",
+      "trigger": "learner pastes a link that works on their machine but is private or 404 to others",
+      "feedback": "Test the link in an incognito or signed-out window. A page that loads for you may be private, a localhost address, or a 404 for the grader.",
+      "rail_action": "ask"
     },
     {
-      "id": "cat100_supplement_8_7_final_submission_checklist_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_8_7_meaningless_filename",
+      "pattern": "ambiguous_file_naming",
+      "description": "Naming the submission 'final.docx' or 'untitled' so it cannot be identified among many submissions",
+      "trigger": "file is named 'final' or 'document1' with no name, course, or assignment",
+      "feedback": "Use a clear convention like lastname_cat100_capstone.pdf. A meaningful, consistent name makes the file identifiable and avoids overwrite collisions.",
+      "rail_action": "represent"
     }
   ]
 }

@@ -4,16 +4,16 @@
       "id": "ail606_supplement_4_8_module_4_design_draft_clinic_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_module_4_design_draft_clinic",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "In a design clinic, a peer presents a polished prototype and asks for feedback. Which clinic question pushes the critique toward design reasoning rather than surface polish?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"What font and color scheme did you use?\"",
+        "\"Walk me through one screen: what learner action does it support, which principle drove the layout, and what did you change after testing?\"",
+        "\"How long did it take you to build?\"",
+        "\"Does it look finished to you?\""
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_4_8_module_4_design_draft_clinic_polish_as_evidence",
+      "explanation": "A productive clinic surfaces the chain from learner action to principle to revision. Questions about fonts, time, or finishedness stay on the surface.",
+      "misconception_id": "ail606_supplement_4_8_clinic_polish_over_reasoning",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_module_4_design_draft_clinic"
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_4_8_module_4_design_draft_clinic_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_module_4_design_draft_clinic",
+      "stem": "A clinic reviewer gives feedback: \"I would have used a different color.\" Why is this weak clinic feedback for a Module 4 draft?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Color feedback is never allowed in a clinic.",
+        "It states a personal preference without tying the change to a learner need, a principle, or evidence, so the author cannot act on it as a design decision.",
+        "The reviewer should have given more compliments first.",
+        "Color is the designer's job, not the reviewer's."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_4_8_module_4_design_draft_clinic_annotation_without_signal",
+      "explanation": "Actionable clinic feedback names the learner consequence and the reasoning behind a suggested change. Preference statements give the author nothing to evaluate.",
+      "misconception_id": "ail606_supplement_4_8_clinic_preference_as_feedback",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_module_4_design_draft_clinic"
       ]
     },
     {
       "id": "ail606_supplement_4_8_module_4_design_draft_clinic_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "Before the clinic, you ask an AI tool to critique your prototype. It returns ten generic suggestions. What is the strongest bounded use of that critique in the clinic?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Read all ten suggestions aloud as your self-critique.",
+        "Select the one or two suggestions that match a real weakness you can verify in your draft, and bring those with your own evidence, since generic AI critique does not know your learners or goals.",
+        "Implement all ten before the clinic so there is nothing left to discuss.",
+        "Ask the AI to rank the suggestions and follow its top choice."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_4_8_module_4_design_draft_clinic_ai_as_authority",
+      "explanation": "Generic AI critique is a prompt for self-review, not a verdict. The designer brings only the points they can substantiate against their own draft and learners.",
+      "misconception_id": "ail606_supplement_4_8_clinic_ai_critique_as_verdict",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,17 +60,17 @@
     {
       "id": "ail606_supplement_4_8_module_4_design_draft_clinic_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Across Module 4 you produced a problem statement, a traceability matrix, a wireframe, a load diagnosis, and an accessibility pass. What makes a clinic revision plan coherent rather than a list of unrelated fixes?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Listing every possible improvement you could make.",
+        "Prioritizing the changes whose evidence shows the largest effect on the named learner outcome, and showing how each fix connects back to the original problem statement.",
+        "Choosing the fixes that take the least time.",
+        "Doing the accessibility fixes only, since they are objective."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_4_8_module_4_design_draft_clinic_completion_only_model",
+      "explanation": "A coherent plan ties each revision to the problem statement and ranks by evidenced impact on the learner outcome, integrating the module's artifacts rather than treating them as a checklist.",
+      "misconception_id": "ail606_supplement_4_8_clinic_unprioritized_fix_list",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

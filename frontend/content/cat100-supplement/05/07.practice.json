@@ -3,78 +3,77 @@
     {
       "id": "cat100_supplement_5_7_accessibility_checks_for_slides_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_accessibility_checks_for_slides",
+      "concept_id": "accessibility",
       "concept_ids": [
         "accessibility",
         "cat100_supplement_ai_enhanced_presentation_development"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Which slide choice passes a basic accessibility check?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Light gray (#BBBBBB) body text on a white (#FFFFFF) background.",
+        "Dark navy (#1A2A4F) text on white, alt text on every chart, and status shown by label plus color not color alone.",
+        "Red and green status dots with no labels.",
+        "A chart image with no alt text because it 'looks self-explanatory'."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_polish_as_evidence",
-      "difficulty": "easy"
+      "explanation": "Strong contrast, alt text, and non-color-only encoding together meet the core accessibility requirements.",
+      "difficulty": "easy",
+      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_low_contrast"
     },
     {
       "id": "cat100_supplement_5_7_accessibility_checks_for_slides_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which note gives BigAL a concrete accessibility fault to fix?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Is this accessible?",
+        "My slide marks 'on track' green and 'at risk' red with only dots, so a colorblind viewer cannot tell them apart. How should I label them?",
+        "Make it accessible.",
+        "I think it is fine."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "The note names a specific color-only encoding problem so feedback can target a labeling fix.",
+      "difficulty": "medium",
+      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_color_only_meaning"
     },
     {
       "id": "cat100_supplement_5_7_accessibility_checks_for_slides_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "What is a sound boundary for using AI on accessibility?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Ask AI to declare the deck accessible and skip checking.",
+        "Ask AI to draft alt text for each chart, then verify each draft actually matches what the chart shows.",
+        "Let AI pick any color theme without checking contrast.",
+        "Avoid AI and also skip the manual contrast check."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "AI can draft alt text, but you must verify it describes the real image and still confirm contrast yourself.",
+      "difficulty": "hard",
+      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_no_alt_text"
     },
     {
       "id": "cat100_supplement_5_7_accessibility_checks_for_slides_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A reviewer flags 'low contrast' on your title. Which revision is the real fix?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Make the title font larger but keep it light gray.",
+        "Darken the title color until it reaches at least a 4.5:1 contrast ratio against the background.",
+        "Add an animation to the title.",
+        "Center the title."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_5_7_accessibility_checks_for_slides_completion_only_model",
+      "explanation": "Contrast is fixed by adjusting the color values to meet the ratio, not by resizing or animating the text.",
       "difficulty": "medium"
     }
   ]

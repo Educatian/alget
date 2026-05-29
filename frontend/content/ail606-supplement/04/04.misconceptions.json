@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft",
   "misconceptions": [
     {
-      "id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_4_4_load_intrinsic_extraneous_confusion",
+      "pattern": "intrinsic_extraneous_conflation",
+      "description": "Failing to separate load that comes from the content itself (intrinsic) from load the design adds (extraneous)",
+      "trigger": "learner labels a removable design flaw as inherent difficulty, or calls inherent difficulty a design flaw",
+      "feedback": "Ask whether the load comes from the material or from the presentation. Extraneous load is removable; intrinsic load is staged, not deleted.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "ail606_supplement_4_4_load_all_load_is_bad",
+      "pattern": "all_load_treated_as_harmful",
+      "description": "Assuming every form of mental effort should be minimized, including the germane load that produces learning",
+      "trigger": "learner proposes cutting practice or elaboration to reduce load",
+      "feedback": "Distinguish germane load, the productive effort of building schemas, from extraneous load. Reduce the wasteful kind, protect the productive kind.",
+      "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_4_4_cognitive_load_analysis_in_the_draft_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_4_4_load_ai_rating_as_diagnosis",
+      "pattern": "ai_rating_mistaken_for_diagnosis",
+      "description": "Accepting an undifferentiated AI high or low load rating as a usable diagnosis",
+      "trigger": "learner adopts AI load labels without naming a load type or the screen evidence behind it",
+      "feedback": "A diagnosis names the load type and the screen feature causing it. Use AI ratings only as prompts to inspect, then evidence each one.",
+      "rail_action": "represent"
     }
   ]
 }

@@ -3,18 +3,18 @@
     {
       "id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_mayer_principles_as_design_constraints",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "concept_id": "mayer_principles",
+      "stem": "A lesson slide places each label and its matching diagram part on opposite sides of the screen, forcing the learner to scan back and forth. Which Mayer principle names the violated constraint, and what is the fix?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Coherence principle: delete the diagram entirely.",
+        "Spatial contiguity principle: place each label next to the diagram part it describes.",
+        "Personalization principle: rewrite the labels in conversational style.",
+        "Redundancy principle: read the labels aloud while they stay on the opposite side."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Spatial contiguity says corresponding words and pictures should be placed near each other so the learner does not spend limited capacity scanning to connect them.",
+      "misconception_id": "ail606_supplement_1_2_mayer_principles_are_absolute",
+      "difficulty": "easy",
       "concept_ids": [
         "mayer_principles"
       ]
@@ -22,55 +22,55 @@
     {
       "id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "mayer_principles",
+      "stem": "A designer narrates a diagram AND prints the identical narration text on screen at the same time, expecting that 'more access' will help novices. Which principle predicts this hurts learning, and why?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Signaling principle, because the printed text is a helpful cue.",
+        "Redundancy principle, because identical on-screen text plus narration adds visual load and a reconciliation cost beyond the graphic plus narration alone.",
+        "Segmenting principle, because the narration is too long.",
+        "Multimedia principle, because words should never accompany pictures."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "The redundancy principle: for novices, adding on-screen text identical to narration overloads the visual channel. Graphic plus narration alone is generally better.",
+      "misconception_id": "ail606_supplement_1_2_mayer_redundancy_means_more_is_safer",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "mayer_principles"
       ]
     },
     {
       "id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "mayer_principles",
+      "stem": "A stakeholder asks you to add a looping background video and motivational music to a procedure tutorial. Treating Mayer principles as design constraints, what is the defensible response?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Add both, because engaging media always increases motivation and learning.",
+        "Cite the coherence principle and decline or minimize them, because interesting-but-extraneous material competes for limited capacity and can depress learning.",
+        "Add the music but not the video, since audio never affects the visual channel.",
+        "Add the video but mute it, since silent video is always coherent."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_ai_as_authority",
+      "explanation": "The coherence principle says excluding extraneous material, even when appealing, generally improves learning by protecting capacity for essential and generative processing.",
+      "misconception_id": "ail606_supplement_1_2_mayer_engaging_extras_help",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "mayer_principles"
       ]
     },
     {
       "id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "An expert engineer reports that on-screen text alongside narration actually helps her, contradicting the redundancy principle for novices. What does this boundary condition teach about applying Mayer's principles?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The redundancy principle is wrong and should be discarded.",
+        "Principles are constraints with boundary conditions: redundancy effects weaken or reverse for high-knowledge learners and short slow-paced labels, so the designer must specify the learner and conditions before applying a principle.",
+        "All principles apply identically to every learner regardless of prior knowledge.",
+        "Expertise means the learner no longer uses working memory at all."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_1_2_mayer_principles_as_design_constraints_completion_only_model",
+      "explanation": "Mayer's principles carry boundary conditions, including the expertise-reversal effect. A defensible design states the target learner and pacing rather than applying a principle as an absolute rule.",
+      "misconception_id": "ail606_supplement_1_2_mayer_principles_are_absolute",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

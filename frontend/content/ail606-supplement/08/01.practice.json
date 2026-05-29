@@ -4,16 +4,16 @@
       "id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_facilitating_asynchronous_design_work",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A ten-day asynchronous storyboard sprint has a single milestone: upload the finished storyboard on Day 10. Which change best facilitates the distributed cohort?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Move the single deadline later so students have more total time.",
+        "Add a Day 3 three-frame skeleton and a Day 6 signaling pass that post to a shared thread, keeping the Day 10 final.",
+        "Schedule one mandatory live critique that all four time zones must attend.",
+        "Tell students to upload whenever the storyboard looks polished."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_polish_as_evidence",
+      "explanation": "Distributing checkpoints lets stalled storyboards surface early instead of all design reasoning bursting at one deadline.",
+      "misconception_id": "ail606_supplement_8_1_async_single_deadline",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_facilitating_asynchronous_design_work"
@@ -23,16 +23,16 @@
       "id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A student in the async studio is stuck. Which stuck-note lets the instructor reply with targeted help?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The whole storyboard is confusing.",
+        "Frame 4: I cannot decide whether the narration should name the learner action before or after the on-screen prompt.",
+        "I am behind on the sprint.",
+        "Can you look at my work?"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_annotation_without_signal",
+      "explanation": "Pinning the note to one frame and one unresolved decision lets the reply target that frame instead of the whole artifact.",
+      "misconception_id": "ail606_supplement_8_1_async_stuck_note_vague",
       "difficulty": "easy",
       "concept_ids": [
         "evidence_based_revision"
@@ -42,16 +42,16 @@
       "id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Two storyboards stall by Day 4. What is the strongest asynchronous facilitation move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Call an emergency synchronous session that all four time zones must join.",
+        "Reply asynchronously to each stalled student's tagged frame with one targeted prompt within 24 hours.",
+        "Wait until the Day 10 deadline to see if they recover on their own.",
+        "Lower the requirements so the stalled storyboards still pass."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_ai_as_authority",
+      "explanation": "Asynchronous facilitation relies on visible artifacts and targeted async support, not a synchronous fallback that excludes off-hours learners.",
+      "misconception_id": "ail606_supplement_8_1_async_synchronous_default",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -61,16 +61,16 @@
       "id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_calibration",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "The instructor wants evidence that the added checkpoints actually improved facilitation. Which comparison shows it?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The Day 10 storyboards look more polished than last term's.",
+        "Stalled storyboards were caught on Day 4 with checkpoints versus only on Day 10 without them.",
+        "More students submitted in the final 36 hours.",
+        "The total page count of the storyboards increased."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_completion_only_model",
+      "explanation": "The auditable evidence is the earlier detection of stalled work that the distributed checkpoints made possible.",
+      "misconception_id": "ail606_supplement_8_1_async_single_deadline",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

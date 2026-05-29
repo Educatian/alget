@@ -4,16 +4,16 @@
       "id": "cat531_supplement_8_3_ethobot_setup_and_debrief_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ethobot_setup_and_debrief",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An Ethobot debrief note reads: \"Good engagement. Students enjoyed arguing about facial recognition.\" What does this debrief fail to capture?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "How many students spoke during the activity.",
+        "Where in the transcript a student's ethical reasoning actually changed.",
+        "Whether the teacher liked the activity.",
+        "How long the activity lasted."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_8_3_ethobot_setup_and_debrief_polish_as_evidence",
+      "explanation": "A debrief annotation should mark where reasoning moved, not just that students were engaged.",
+      "misconception_id": "cat531_supplement_8_3_ethobot_engagement_not_reasoning",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_instructor_toolkit_for_cat_531",
@@ -26,18 +26,19 @@
       "id": "cat531_supplement_8_3_ethobot_setup_and_debrief_annotation_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "At turn 4 a student says, \"If it stops people sneaking in, just use facial recognition.\" Which annotation best names the limit of this reasoning?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The student is wrong and should be corrected.",
+        "This is an efficiency-only frame; it weighs whether the tool works but not who bears the error cost when it misidentifies a student.",
+        "The student is engaged, so the reasoning is strong.",
+        "The comment is too short to annotate."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_8_3_ethobot_setup_and_debrief_annotation_without_signal",
+      "explanation": "Judging an ethical dilemma only on effectiveness ignores rights and disparate error costs, which is the reasoning gap the debrief should mark.",
+      "misconception_id": "cat531_supplement_8_3_ethobot_efficiency_only_frame",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ethobot_setup_and_debrief",
         "evidence_based_revision"
       ]
     },
@@ -45,18 +46,19 @@
       "id": "cat531_supplement_8_3_ethobot_setup_and_debrief_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "What is the defensible way to treat Ethobot's questions during the dilemma?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Whatever position Ethobot argues is the correct ethical answer.",
+        "Ethobot raises questions to provoke student judgment; students still weigh its prompts against the rights and costs in the case.",
+        "Students should not respond to Ethobot at all.",
+        "Ethobot should be used only to grade the discussion."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_8_3_ethobot_setup_and_debrief_ai_as_authority",
+      "explanation": "Ethobot prompts reasoning but does not settle the ethics. Students judge its prompts rather than adopt them.",
+      "misconception_id": "cat531_supplement_8_3_ethobot_treating_output_as_verdict",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ethobot_setup_and_debrief",
         "ai_supported_learning"
       ]
     },
@@ -64,18 +66,19 @@
       "id": "cat531_supplement_8_3_ethobot_setup_and_debrief_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Which debrief annotation gives the strongest evidence that ethical reasoning changed?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Reasoning improved overall during the lesson.",
+        "Shift located at turn 7: the disparate false-positive prompt moved the student from an efficiency-only frame (turn 4) to weighing who bears the error cost (turn 9).",
+        "Students grew a lot this unit.",
+        "The discussion went better than last time."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_8_3_ethobot_setup_and_debrief_completion_only_model",
+      "explanation": "The strongest annotation pins the change to a specific turn and the question that caused it, so another teacher can see what reasoning move did the work.",
+      "misconception_id": "cat531_supplement_8_3_ethobot_no_pivot_located",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_ethobot_setup_and_debrief",
         "evidence_based_revision"
       ]
     }

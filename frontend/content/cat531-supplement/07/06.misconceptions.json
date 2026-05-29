@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_7_6_revising_plans_after_field_evidence",
   "misconceptions": [
     {
-      "id": "cat531_supplement_7_6_revising_plans_after_field_evidence_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_7_6_ignore_field_evidence",
+      "pattern": "ignore_field_evidence",
+      "description": "Keeping a plan unchanged because the design is sound in principle despite field data showing it failed",
+      "trigger": "candidate defends the original plan or adds penalties instead of addressing the observed barrier",
+      "feedback": "Let the field data drive the change. If most students hit a barrier, revise the plan toward that barrier.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_7_6_revising_plans_after_field_evidence_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_7_6_revising_plans_after_field_evidence_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_7_6_overcorrect_on_one_lesson",
+      "pattern": "overcorrect_on_one_lesson",
+      "description": "Scrapping an entire plan after one rough lesson without isolating what actually failed",
+      "trigger": "candidate discards working and failing components together based on one session",
+      "feedback": "Separate the part that failed from the part that worked, then revise only the cause.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_7_6_revising_plans_after_field_evidence_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_7_6_ai_reframes_the_cause",
+      "pattern": "ai_reframes_the_cause",
+      "description": "Adopting an AI revision that reframes an access problem as an engagement problem",
+      "trigger": "candidate follows an AI suggestion that ignores the cause she observed",
+      "feedback": "When AI reframes the cause, hold to your field evidence and revise toward the barrier you actually observed.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_7_6_feeling_replaces_followup",
+      "pattern": "feeling_replaces_followup_data",
+      "description": "Treating a sense that the next lesson felt better as proof the revision worked",
+      "trigger": "candidate records an impression instead of follow-up data",
+      "feedback": "Show the original plan, the prompting data, the change, and follow-up data on whether participation rose.",
       "rail_action": "practice"
     }
   ]

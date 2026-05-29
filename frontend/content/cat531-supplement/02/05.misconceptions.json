@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_2_5_adapting_plans_for_learner_variability",
   "misconceptions": [
     {
-      "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_differentiation_is_volume",
+      "pattern": "differentiation_as_amount",
+      "description": "Equating adapting for variability with giving advanced students more work and struggling students less of the same work",
+      "trigger": "teacher's adaptation only changes quantity, leaving the cognitive demand and access identical",
+      "feedback": "Adapt the path to the objective, not the page count. More or fewer items rarely changes who can reach the goal.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_lower_the_goal",
+      "pattern": "accommodation_confused_with_lowered_expectation",
+      "description": "Treating an accommodation as a reason to lower the learning goal rather than to change the route to the same goal",
+      "trigger": "teacher swaps the grade-level objective for an easier one when providing support",
+      "feedback": "An accommodation changes access, not the target. Keep the objective; change the scaffold, format, or time.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_2_5_adapting_plans_for_learner_variability_label_drives_plan",
+      "pattern": "deficit_label_as_plan",
+      "description": "Adapting based on a category label such as ELL or IEP rather than the specific barrier the student faces in this task",
+      "trigger": "teacher applies a generic accommodation tied to a label without naming the task-specific barrier",
+      "feedback": "Name the barrier this task creates for this student, then adapt to that barrier. Labels are not lesson plans.",
+      "rail_action": "explain"
     }
   ]
 }

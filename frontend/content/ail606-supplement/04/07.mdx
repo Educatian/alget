@@ -35,15 +35,39 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Work through one annotated before/after revision of a README's AI-use disclosure and traceability section.
 
-> I made the prototype README traceability matrix connecting theory to screen changes clearer.
+**Before (README excerpt):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```markdown
+## About
+This is my AIL 606 prototype. AI was used in this project.
+The design follows good learning principles.
+```
 
-> I revised the prototype README traceability matrix connecting theory to screen changes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+**Annotations a reviewer would leave:**
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+1. "AI was used" names no tool, no location, and no author edit, so it cannot be verified or audited.
+2. "Good learning principles" asserts quality without tracing any principle to any screen change.
+3. The disclosure lives only in prose with no link to the commit history, so a cloner cannot check it.
+
+**After (revised README excerpt):**
+
+```markdown
+## AI Use Disclosure
+- Codex generated the flashcard component (commit a3f9c1). I rewrote the
+  scoring to normalize case (commit b7d2e4) after testing "Paris" and "paris".
+- ChatGPT drafted alt text for Figures 1 to 3; I revised each to match the
+  diagram content (commit c1a8f0).
+
+## Theory-to-Screen Traceability
+| Screen | Principle | Change |
+| --- | --- | --- |
+| Practice 1 | Signaling | Highlight synced to the prompt term |
+| Quiz | Feedback timing | Per-item feedback for formative items |
+```
+
+**Why the after version is stronger:** every AI claim names the tool, the commit, and the author's follow-up edit, so a reviewer cloning the repo can check each one against the diff. The traceability table ties each screen change to a specific principle. The disclosure and the artifact now live together and are auditable, which is the difference between claiming integrity and evidencing it.
 
 ## Decision Rule
 

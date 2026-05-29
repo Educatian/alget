@@ -4,16 +4,16 @@
       "id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_lxd_as_a_decision_discipline",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A designer writes: \"I moved the Continue button to the bottom-right because that looks more modern.\" What turns this into a defensible LXD decision rather than a taste call?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Keep the rationale but add that several colleagues agreed it looked better.",
+        "Name the learner constraint (novices scanned past the button when it floated mid-frame) and the evidence (3 of 5 pilot users missed it) that the move resolves.",
+        "Replace the button with an animated arrow so the frame feels livelier.",
+        "Cite a recent design-trend article that recommends bottom-right placement."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_polish_as_evidence",
+      "explanation": "LXD as a decision discipline means a choice is justified by a named learner constraint and inspectable evidence, not by appearance or popularity.",
+      "misconception_id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_taste_over_constraint",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_lxd_as_a_decision_discipline"
@@ -22,55 +22,55 @@
     {
       "id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_lxd_as_a_decision_discipline",
+      "stem": "In what order should a learning designer settle a storyboard frame so the result is a decision and not a stack of features?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Feature first, then media, then purpose, so the tool capabilities lead.",
+        "Purpose first (what the learner should be able to do), media choice second, software feature last.",
+        "Media first, then purpose, then feature, because the medium is the message.",
+        "All three at once, since they are equally important."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_annotation_without_signal",
+      "explanation": "Purpose-first sequencing keeps the feature accountable to a learner action instead of reverse-justifying a feature you already added.",
+      "misconception_id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_feature_first",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_lxd_as_a_decision_discipline"
       ]
     },
     {
       "id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Two storyboard drafts are identical except the second one cites cognitive load theory in its rationale note. What is the problem with the second draft?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Citing theory in a rationale note is always inappropriate for a storyboard.",
+        "The anchor is named but changed nothing in the frame, so it is decoration, not design reasoning.",
+        "Cognitive load theory cannot apply to storyboards, only to finished software.",
+        "The second draft is stronger because it references a peer-reviewed source."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_ai_as_authority",
+      "explanation": "An anchor counts as evidence of judgment only when it alters a concrete element. Identical frames with a citation show name-dropping, not reasoning.",
+      "misconception_id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_anchor_as_citation",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "evidence_based_revision"
       ]
     },
     {
       "id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "A reviewer says your storyboard \"reads like there was only ever one option.\" Which addition best repairs the design memo?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A longer paragraph praising the chosen frame.",
+        "A rejected alternative (single-column narration) and the constraint that ruled it out (it doubled reading time for the slowest learners).",
+        "A second polished mockup of the same chosen frame.",
+        "A note that the deadline left no time for alternatives."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_completion_only_model",
+      "explanation": "A decision implies a road not taken. Recording the rejected option and the constraint that eliminated it lets a reviewer audit the trade-off.",
+      "misconception_id": "ail606_supplement_2_1_lxd_as_a_decision_discipline_no_revision_trail",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

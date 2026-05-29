@@ -8,35 +8,35 @@
         "cat100_supplement_ethobot_cat100_orientation",
         "cat100_supplement_digital_citizenship_and_ai_readiness"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "You finish a draft and ask ETHOBOT, \"Did I pass?\" Why is this the wrong question for the tutor?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "ETHOBOT only answers questions typed in all capital letters.",
+        "ETHOBOT is a practice and feedback tutor; your instructor and the rubric assign the official grade, so ask for feedback instead.",
+        "ETHOBOT can grade but charges for it.",
+        "Passing questions must be emailed, not typed."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_polish_as_evidence",
+      "explanation": "The tutor helps you prepare and revise; it does not set the official grade. Ask for actionable feedback, not a verdict.",
+      "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_tutor_grades",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_1_3_ethobot_cat100_orientation_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_ethobot_cat100_orientation",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_ethobot_cat100_orientation"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which request gives ETHOBOT enough to give you useful, specific feedback?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "help",
+        "Here is my resume bullet: \"Helped with events.\" Does it have an action verb and a measurable result, and how would you tighten it?",
+        "is this good?",
+        "fix it"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_annotation_without_signal",
+      "explanation": "A useful request states the goal, includes the artifact, and names what you want checked. Vague prompts get vague answers.",
+      "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_vague_request",
       "difficulty": "medium"
     },
     {
@@ -46,16 +46,16 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Which message keeps your use of ETHOBOT inside its intended role as a tutor?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Write my whole discussion post and I will paste it in.",
+        "Point out two places where my discussion post lacks supporting evidence so I can fix them myself.",
+        "Submit this post to the gradebook for me.",
+        "Tell me the exact grade I will receive."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_ai_as_authority",
+      "explanation": "Asking for targeted feedback you then act on keeps the work and judgment yours. Asking the tutor to author or submit it does not.",
+      "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_answer_machine",
       "difficulty": "hard"
     },
     {
@@ -65,16 +65,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "ETHOBOT gives you three suggestions. You apply two and ignore one because it would make a false claim. What does a complete critique log record?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Only the two changes you made.",
+        "All three: the two you accepted (with what you changed) and the one you rejected, with a one-line reason for each.",
+        "Just a note that you talked to the tutor.",
+        "Only the suggestion you rejected, since that was the hard call."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_completion_only_model",
+      "explanation": "A complete log shows accepted, modified, and rejected suggestions with reasons, so a reader can audit your judgment.",
+      "misconception_id": "cat100_supplement_1_3_ethobot_cat100_orientation_log_skips_rejections",
       "difficulty": "medium"
     }
   ]

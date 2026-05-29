@@ -35,15 +35,43 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+You are building the starter page for your About section. Follow the markup from a broken first pass to a working, accessible version.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+**Step 1. Lay out the minimum valid document.**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Maria Lopez | Portfolio</title>
+    <link rel="stylesheet" href="assets/style.css">
+  </head>
+  <body>
+    <h1>About Me</h1>
+    <img src="headshot.jpg">
+    <p>First-year data student at CAT 100.</p>
+  </body>
+</html>
+```
 
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+**Step 2. Find the two problems.** The browser tab reads correctly because <title> sits in <head>, but the image fails accessibility: <img src="headshot.jpg"> has no alt text, so a screen reader announces only "image".
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+**Step 3. Fix the image and add one CSS rule.**
+
+```html
+<img src="headshot.jpg" alt="Maria Lopez, headshot">
+```
+
+```css
+/* assets/style.css */
+body { font-family: system-ui, sans-serif; max-width: 640px; margin: 2rem auto; }
+h1 { color: #1f3a5f; }
+```
+
+**Step 4. Confirm the cascade.** If a later rule said h1 { color: #b00; } it would win over #1f3a5f at equal specificity, so keep only the rule you intend.
+
+The page now sets the correct tab title, gives the image a real alt description, and applies a stylesheet whose single h1 rule is unambiguous. Every change is visible in the markup, not just in how the page looks.
 
 ## Decision Rule
 

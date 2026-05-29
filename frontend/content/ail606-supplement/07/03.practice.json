@@ -4,76 +4,88 @@
       "id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_telemetry_and_privacy_boundaries",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your prototype can log many learner events. Which logging plan best reflects data minimization tied to a stated design question?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Capture everything available (keystrokes, full screen video, location) in case it is useful later.",
+        "Log only the events your study question needs, such as time-on-task per item, and store them under a pseudonymous id rather than a name.",
+        "Log nothing, because any telemetry violates privacy.",
+        "Log full names alongside answers so the data is easy to read."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_polish_as_evidence",
+      "explanation": "Minimization means collecting only what a specific question requires and reducing identifiability. Capturing everything or naming learners expands risk with no design justification.",
+      "misconception_id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_collect_everything",
       "difficulty": "medium",
       "concept_ids": [
-        "ail606_supplement_telemetry_and_privacy_boundaries"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_telemetry_and_privacy_boundaries",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_telemetry_and_privacy_boundaries",
+      "stem": "A teammate says, \"We removed names, so the telemetry is fully anonymous.\" Why might this be wrong?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It is correct; removing names always anonymizes data.",
+        "Combining timestamps, section, and rare answer patterns can still re-identify a learner, so removing the name alone does not guarantee anonymity.",
+        "Anonymity does not matter for prototypes.",
+        "The data should not have been collected at all."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_annotation_without_signal",
+      "explanation": "De-identification is not the same as anonymization. Quasi-identifiers in combination can single out an individual even without a name.",
+      "misconception_id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_deid_equals_anon",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_telemetry_and_privacy_boundaries",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You consider sending raw learner telemetry to an external AI service to summarize behavior. What is the defensible boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Send all raw logs with identifiers, since the AI gives better summaries with more data.",
+        "Send only the minimized, pseudonymous fields your consent language covers, and confirm the service does not retain them beyond the stated purpose.",
+        "Never use any AI on learner data under any circumstance.",
+        "Send the data and decide about consent afterward if anyone asks."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_ai_as_authority",
+      "explanation": "The boundary is set by consent scope, minimization, and retention. The tool may help, but only on data the disclosure covers and only with controlled retention.",
+      "misconception_id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_consent_after_the_fact",
       "difficulty": "medium",
       "concept_ids": [
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_telemetry_and_privacy_boundaries",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_telemetry_and_privacy_boundaries",
+      "stem": "Your consent form promised data only for improving the lesson. Mid-study, a colleague asks to reuse the logs for a separate marketing model. What is the principled response?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Share it; the data already exists, so reuse is free.",
+        "Decline or seek fresh consent, because the new purpose falls outside the boundary learners agreed to.",
+        "Share it but remove names first, which makes any reuse acceptable.",
+        "Delete all data to avoid the question."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_completion_only_model",
+      "explanation": "Purpose limitation binds use to what learners consented to. A new purpose requires new consent, not just de-identification.",
+      "misconception_id": "ail606_supplement_7_3_telemetry_and_privacy_boundaries_consent_after_the_fact",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_research_translation_for_learning_design",
+        "ail606_supplement_telemetry_and_privacy_boundaries",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]

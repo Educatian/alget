@@ -4,16 +4,16 @@
       "id": "ail606_supplement_4_1_problem_statement_and_learner_profile_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_problem_statement_and_learner_profile",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A storyboard packet opens with the problem statement: \"Learners do not engage with the onboarding module.\" Which revision makes this a designer-grade problem statement rather than a complaint?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "\"Learners do not engage with the onboarding module, so we should make it more interesting.\"",
+        "\"New hires (0 to 30 days, low domain vocabulary) abandon the onboarding module after screen 2, where an unexplained acronym list creates a 9-item recall demand before any practice.\"",
+        "\"The onboarding module needs a refresh because engagement is low.\"",
+        "\"Stakeholders feel the onboarding module is outdated and want it modernized.\""
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_4_1_problem_statement_and_learner_profile_polish_as_evidence",
+      "explanation": "A defensible problem statement names the specific learner segment, the observable failure point, and the source of demand. The other options state a symptom or a solution without an evidenced learner profile.",
+      "misconception_id": "ail606_supplement_4_1_problem_statement_solution_first",
       "difficulty": "medium",
       "concept_ids": [
         "ail606_supplement_problem_statement_and_learner_profile"
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_4_1_problem_statement_and_learner_profile_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_problem_statement_and_learner_profile",
+      "stem": "Your learner profile says \"adult learners who are motivated and tech-savvy.\" Why will a reviewer flag this as insufficient for storyboard decisions?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "It is too short and should be at least one paragraph.",
+        "It uses flattering adjectives instead of design-relevant variability such as prior knowledge, access conditions, or task context that would change a frame decision.",
+        "It does not name the instructor.",
+        "It should list the learners by name."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_4_1_problem_statement_and_learner_profile_annotation_without_signal",
+      "explanation": "A learner profile earns its place only when each attribute could change a design choice. Generic praise like motivated and tech-savvy does not constrain any storyboard frame.",
+      "misconception_id": "ail606_supplement_4_1_problem_statement_generic_persona",
       "difficulty": "easy",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_problem_statement_and_learner_profile"
       ]
     },
     {
       "id": "ail606_supplement_4_1_problem_statement_and_learner_profile_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ai_supported_learning",
+      "stem": "You ask an AI tool to draft a learner profile for your storyboard. What is the strongest bounded use of that output?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Paste the AI persona directly into the packet because it reads smoothly.",
+        "Treat the AI persona as a hypothesis, then keep only the attributes you can confirm against your intake survey or context evidence and reject the invented ones.",
+        "Avoid AI because learner profiles must be fully original.",
+        "Ask the AI to also pick the storyboard frames so the profile and frames stay consistent."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_4_1_problem_statement_and_learner_profile_ai_as_authority",
+      "explanation": "AI can propose candidate attributes, but the designer must verify each against real evidence and discard fabricated demographics. Accepting it whole or letting it drive frame choices removes designer judgment.",
+      "misconception_id": "ail606_supplement_4_1_problem_statement_ai_persona_as_fact",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,17 +60,17 @@
     {
       "id": "ail606_supplement_4_1_problem_statement_and_learner_profile_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "Two problem statements target the same module. Statement A: \"Improve the module.\" Statement B: \"Reduce the time-to-first-correct-action for novice users from 4 minutes to under 90 seconds.\" Why is B the stronger design anchor?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "B is longer and uses more numbers.",
+        "B states a measurable target tied to a specific learner action, so a later storyboard revision can be tested against it.",
+        "B avoids naming the learner, which keeps it flexible.",
+        "B sounds more professional."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_4_1_problem_statement_and_learner_profile_completion_only_model",
+      "explanation": "A bounded, measurable target lets you decide later whether a revision actually moved the design outcome. Vague improvement claims cannot be evaluated.",
+      "misconception_id": "ail606_supplement_4_1_problem_statement_unmeasurable_goal",
       "difficulty": "hard",
       "concept_ids": [
         "evidence_based_revision"

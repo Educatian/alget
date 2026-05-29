@@ -2,36 +2,28 @@
   "section_id": "cat100_supplement_1_4_prompting_with_verification",
   "misconceptions": [
     {
-      "id": "cat100_supplement_1_4_prompting_with_verification_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_1_4_prompting_with_verification_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_1_4_prompting_with_verification_confident_means_correct",
+      "pattern": "fluent_output_assumed_true",
+      "description": "Treating a confident, well-written AI answer as factually correct without checking it",
+      "trigger": "learner accepts an AI claim because it sounds authoritative",
+      "feedback": "Fluency is not accuracy. Verify each factual claim against a trustworthy source before you use it.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_1_4_prompting_with_verification_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "cat100_supplement_1_4_prompting_with_verification_fake_citation",
+      "pattern": "unverified_ai_citation",
+      "description": "Using a source, author, or link the AI produced without confirming it actually exists",
+      "trigger": "learner cites an AI-generated reference without opening or finding it",
+      "feedback": "Open every AI-supplied citation. If you cannot find the real source, do not use the claim or the citation.",
+      "rail_action": "ask"
     },
     {
-      "id": "cat100_supplement_1_4_prompting_with_verification_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat100_supplement_1_4_prompting_with_verification_vague_prompt",
+      "pattern": "vague_prompt_no_constraints",
+      "description": "Writing a one-line prompt with no role, task, format, or constraints and expecting a usable result",
+      "trigger": "learner submits a broad prompt like 'write about technology'",
+      "feedback": "State the role, the task, the audience, and the format. Specific prompts make the output easier to verify and revise.",
+      "rail_action": "represent"
     }
   ]
 }

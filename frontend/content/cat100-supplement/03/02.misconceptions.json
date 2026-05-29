@@ -2,35 +2,27 @@
   "section_id": "cat100_supplement_3_2_formulas_for_everyday_analysis",
   "misconceptions": [
     {
-      "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_relative_vs_absolute",
+      "pattern": "missing_absolute_reference",
+      "description": "Treating every cell reference as relative, so a shared value like a tax rate shifts and breaks when the formula is copied down",
+      "trigger": "learner copies a formula that reuses one fixed cell without locking it with dollar signs",
+      "feedback": "Lock a reused value with an absolute reference such as $F$1 so it stays fixed when copied. Leave per-row inputs relative so they shift correctly.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_blank_as_zero",
+      "pattern": "blank_counted_as_zero",
+      "description": "Assuming AVERAGE treats blank cells as zeros, or dividing a SUM by a hard-coded row count that includes empty cells",
+      "trigger": "learner divides a SUM by a fixed number instead of using AVERAGE on a range with blanks",
+      "feedback": "AVERAGE skips truly blank cells and divides by the count of real values. Do not divide by a hard-coded count that treats blanks as zeros.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_3_2_formulas_for_everyday_analysis_count_vs_countif",
+      "pattern": "count_instead_of_countif",
+      "description": "Using COUNT to answer a how-many-meet-this-condition question, so every value is counted regardless of the criterion",
+      "trigger": "learner reaches for COUNT when the question asks for a conditional count",
+      "feedback": "Use COUNTIF with a criterion such as \">500\" to count only matching cells. COUNT counts all numbers, not just the ones that meet the condition.",
       "rail_action": "practice"
     }
   ]

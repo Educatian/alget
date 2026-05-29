@@ -4,16 +4,16 @@
       "id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_claims_and_vendor_claims",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A vendor brochure states: 'Students who use our app improve reading by 40 percent.' What is missing before a teacher can treat this as evidence?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A more colorful chart of the 40 percent figure.",
+        "The comparison group, the measure, the sample, and who funded the study.",
+        "A testimonial from another school.",
+        "Confirmation that 40 percent sounds large."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_polish_as_evidence",
+      "explanation": "A percentage with no comparison group, outcome measure, sample, or funding disclosure is a marketing claim, not evidence. Those details determine whether the number means anything.",
+      "misconception_id": "cat531_supplement_5_2_number_equals_evidence",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
@@ -25,58 +25,61 @@
     {
       "id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_evidence_claims_and_vendor_claims",
+      "stem": "A vendor cites 'a peer-reviewed study' showing gains. The study was conducted by the company's own research division on a 9-student pilot. How should a teacher weight this?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "As strong independent evidence because it is peer reviewed.",
+        "As a low-weight, conflicted source; small internal pilots need independent replication before they carry decision weight.",
+        "As irrelevant because all vendor studies are worthless.",
+        "As decisive because the company has expertise in the product."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_annotation_without_signal",
+      "explanation": "Peer review does not erase a conflict of interest or a tiny sample. The claim can stay on the table but carries little weight until an independent study with adequate sample replicates it.",
+      "misconception_id": "cat531_supplement_5_2_peer_reviewed_removes_conflict",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_educational_technology_evaluation",
+        "cat531_supplement_evidence_claims_and_vendor_claims"
       ]
     },
     {
       "id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You paste a vendor's claims into an AI tool and ask it to 'check if these are true.' The AI returns a confident summary saying the claims are well supported. What is the defensible next step?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Record the AI summary as verification and adopt the tool.",
+        "Treat the AI summary as a lead, then trace each claim to a primary source you can read and weigh yourself.",
+        "Ask the AI to rate the vendor out of 10.",
+        "Trust the AI because it has read more studies than any teacher."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_ai_as_authority",
+      "explanation": "An AI cannot confirm a vendor claim it has not independently sourced, and it may echo the vendor's framing. Use it to locate sources, then verify the primary evidence yourself.",
+      "misconception_id": "cat531_supplement_5_2_ai_confirms_vendor_claims",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_evidence_claims_and_vendor_claims"
       ]
     },
     {
       "id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A vendor reports that 'engagement rose 3x.' A teacher wants to know whether this predicts learning. What distinction must the teacher hold?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Engagement and learning are the same outcome.",
+        "Engagement is a proxy; a rise in time-on-task does not by itself show that targeted learning improved.",
+        "Three times is always meaningful regardless of measure.",
+        "Engagement metrics are the only reliable classroom evidence."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_5_2_evidence_claims_and_vendor_claims_completion_only_model",
+      "explanation": "Engagement is a proxy outcome that can move without learning moving. A defensible brief keeps the distinction and asks for a learning measure tied to the instructional goal.",
+      "misconception_id": "cat531_supplement_5_2_engagement_equals_learning",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat531_supplement_evidence_claims_and_vendor_claims"
       ]
     }
   ]

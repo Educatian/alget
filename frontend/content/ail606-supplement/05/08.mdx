@@ -33,17 +33,26 @@ Three course anchors shape the reasoning here:
 
 The anchors should do work in your artifact. If Mayer multimedia learning or cognitive load theory does not change a decision, it is only a citation rather than evidence of judgment.
 
-## Worked Example
+## Worked Example: Auditing a Full Usability Plan for Internal Coherence
 
-A first draft often hides the real decision behind a vague improvement claim:
+This studio assembles the whole chapter into one plan. The failure mode here is not a single weak part; it is a plan whose parts do not line up. Audit a draft plan section by section.
 
-> I made the moderated usability test script with observation-to-revision trace clearer.
+**Before (parts that do not align):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> Hypothesis: The redesigned navigation will feel more modern. Participants: 5 expert designers. Tasks: "Click Settings, then Profile, then Save." Metric: satisfaction rating. Plan: if satisfaction is high, ship it.
 
-> I revised the moderated usability test script with observation-to-revision trace so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+Walk the coherence audit, step by step:
 
-Notice the shift: the artifact is no longer just polished. The revision points to **cognitive load theory**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+1. **Hypothesis to metric.** "Feel more modern" is untestable and satisfaction cannot confirm a navigation-findability claim. Mismatch (chapter 05.01, 05.04).
+2. **Participants to population.** Expert designers do not represent the real audience. Mismatch (05.02).
+3. **Tasks to hypothesis.** The tasks spell out the click path, so findability is never tested. Mismatch (05.03).
+4. **Decision rule to evidence.** "Ship if satisfaction is high" lets an attitude metric drive a launch the data cannot justify (05.06).
+
+**After (an aligned plan):**
+
+> Hypothesis: With the redesigned navigation, at least 8 of 10 target users will reach Profile settings unaided, versus a 4 of 10 baseline. Participants: 8 real instructors screened by LMS experience, spanning novice to frequent. Tasks: goal-based ("Update your display name so students see it"). Metrics: task completion and time on task (usability) plus a brief findability error count; satisfaction logged but not decisive. Decision rule: revise the navigation if fewer than 8 of 10 succeed, then re-test.
+
+The after version is defensible because every part traces to the same goal: the metric can test the hypothesis, the sample matches the population, the tasks expose findability, and the decision rule follows the evidence. The studio's job is to catch the before-version mismatches before a single session runs.
 
 ## Decision Rule
 

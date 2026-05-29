@@ -4,59 +4,59 @@
       "id": "cat531_supplement_4_5_ethobot_transcript_annotation_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ethobot_transcript_annotation",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher annotates a transcript by highlighting two turns in yellow and writing 'good thinking here.' What is the core methodological weakness?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Yellow is hard to read on screen.",
+        "There is no defined code scheme, so another rater could not reproduce which turns count as reasoning.",
+        "The note is too short to earn full marks.",
+        "The teacher highlighted two turns instead of one."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_4_5_ethobot_transcript_annotation_polish_as_evidence",
+      "explanation": "Annotation is a method; without a reproducible code scheme the judgment is just subjective highlighting.",
+      "misconception_id": "cat531_supplement_4_5_highlighting_is_coding",
       "difficulty": "easy",
       "concept_ids": [
-        "cat531_supplement_ai_ethics_and_ethobot_3_2",
         "cat531_supplement_ethobot_transcript_annotation",
-        "evidence_based_revision",
-        "ai_supported_learning"
+        "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_5_ethobot_transcript_annotation_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_ethobot_transcript_annotation",
+      "stem": "A turn is coded RE (reasoning). What must accompany that code to make the annotation defensible?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The time the turn was spoken.",
+        "A warrant naming the specific phrase or move in the turn that justifies the reasoning label.",
+        "The student's name and grade.",
+        "A count of how many words the student used."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_4_5_ethobot_transcript_annotation_annotation_without_signal",
+      "explanation": "A code without a warrant cannot be inspected; the warrant ties the label to evidence in the turn.",
+      "misconception_id": "cat531_supplement_4_5_no_warrant",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ethobot_transcript_annotation",
         "evidence_based_revision"
       ]
     },
     {
       "id": "cat531_supplement_4_5_ethobot_transcript_annotation_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_ethobot_transcript_annotation",
+      "stem": "Before reporting an annotation as evidence, which check tells you the code scheme is sound rather than personal?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Whether the colors look professional.",
+        "Whether a colleague applying the same code definitions would code the same turns the same way.",
+        "Whether the transcript is at least ten turns long.",
+        "Whether the AI generated the transcript quickly."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_4_5_ethobot_transcript_annotation_ai_as_authority",
+      "explanation": "Inter-rater agreement is the test of a reproducible annotation method.",
+      "misconception_id": "cat531_supplement_4_5_ignoring_reliability",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ethobot_transcript_annotation",
         "ai_supported_learning"
       ]
     },
@@ -64,19 +64,20 @@
       "id": "cat531_supplement_4_5_ethobot_transcript_annotation_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Using the CL/QU/RE scheme, a student says 'If the teacher allowed it, it is not cheating, so the rule depends on the assignment.' Which coding and warrant is most defensible?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "CL, because the student stated an opinion.",
+        "RE, with the warrant that the student now conditions cheating on teacher permission, revising the earlier categorical claim.",
+        "QU, because the sentence contains the word if.",
+        "No code, because the turn is too long to classify."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_4_5_ethobot_transcript_annotation_completion_only_model",
+      "explanation": "The turn revises the prior fixed claim by adding a condition, which is reasoning (RE) with a clear warrant.",
+      "misconception_id": "cat531_supplement_4_5_no_warrant",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_evidence_based_revision",
+        "cat531_supplement_ethobot_transcript_annotation"
       ]
     }
   ]

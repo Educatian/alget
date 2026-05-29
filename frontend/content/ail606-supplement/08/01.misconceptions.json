@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_8_1_facilitating_asynchronous_design_work",
   "misconceptions": [
     {
-      "id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_8_1_async_single_deadline",
+      "pattern": "single_final_deadline_for_async_work",
+      "description": "Believing one end-of-sprint deadline is sufficient to facilitate asynchronous design work",
+      "trigger": "learner plans only a final upload with no intermediate checkpoints for distributed students",
+      "feedback": "Distribute checkpoints (skeleton, signaling pass, final) so stalled work surfaces early instead of all reasoning bursting at the deadline.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_8_1_facilitating_asynchronous_design_work_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_8_1_async_synchronous_default",
+      "pattern": "synchronous_critique_as_default_fix",
+      "description": "Assuming a live meeting is the only way to give just-in-time studio feedback",
+      "trigger": "learner proposes scheduling a synchronous session to fix an asynchronous facilitation gap",
+      "feedback": "Asynchronous facilitation needs visible artifacts and targeted async support moves, not a synchronous fallback that excludes off-hours learners.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_8_1_async_stuck_note_vague",
+      "pattern": "unfocused_help_request",
+      "description": "Tagging a whole storyboard as confusing instead of naming the specific frame and decision",
+      "trigger": "stuck-note points to the entire artifact rather than one frame and one unresolved decision",
+      "feedback": "Pin the stuck-note to one frame and the exact decision you cannot resolve so the reply targets that frame.",
+      "rail_action": "ask"
     }
   ]
 }

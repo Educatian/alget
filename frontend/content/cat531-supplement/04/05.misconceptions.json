@@ -2,36 +2,28 @@
   "section_id": "cat531_supplement_4_5_ethobot_transcript_annotation",
   "misconceptions": [
     {
-      "id": "cat531_supplement_4_5_ethobot_transcript_annotation_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_4_5_ethobot_transcript_annotation_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_4_5_ethobot_transcript_annotation_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_4_5_highlighting_is_coding",
+      "pattern": "subjective_highlighting_mistaken_for_coding",
+      "description": "Treating highlighting interesting lines as transcript annotation, with no defined code scheme another rater could reproduce",
+      "trigger": "learner marks lines as 'good thinking' without a defined code or warrant",
+      "feedback": "Define a small code scheme (for example claim, question, reasoning) and write a warrant for each code so another rater could reproduce your annotation.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_4_5_ethobot_transcript_annotation_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_4_5_no_warrant",
+      "pattern": "code_applied_without_warrant",
+      "description": "Tagging a turn with a code but not stating the evidence in the turn that justifies the code",
+      "trigger": "learner labels a turn 'reasoning' but does not quote or paraphrase what changed",
+      "feedback": "Beside each code, write the warrant: the specific phrase or move in that turn that justifies the label.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_4_5_ignoring_reliability",
+      "pattern": "ignoring_inter_rater_reliability",
+      "description": "Assuming a personal annotation is valid without checking whether another teacher would code the same turns the same way",
+      "trigger": "learner never asks whether the codes are reproducible by a colleague",
+      "feedback": "Check inter-rater agreement. If a colleague using your scheme would code differently, tighten the code definitions.",
+      "rail_action": "ask"
     }
   ]
 }

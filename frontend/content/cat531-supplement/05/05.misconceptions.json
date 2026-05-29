@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_5_5_classroom_fit_matrix",
   "misconceptions": [
     {
-      "id": "cat531_supplement_5_5_classroom_fit_matrix_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_5_5_classroom_fit_matrix_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_5_5_matrix_is_universal",
+      "pattern": "fit_matrix_as_universal_checklist",
+      "description": "Treating a classroom fit matrix as a universal feature checklist rather than a context-specific instrument",
+      "trigger": "learner reuses generic criteria and weights without tying them to this classroom",
+      "feedback": "Tie the criteria and weights to your learners, unit, and constraints. A fit matrix is contextual, not a universal checklist.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_5_5_classroom_fit_matrix_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_5_5_total_overrides_dealbreaker",
+      "pattern": "aggregate_score_hides_dealbreaker",
+      "description": "Letting an aggregate fit score override a non-negotiable constraint that should gate the decision",
+      "trigger": "learner picks the higher total even though it fails a must-have criterion",
+      "feedback": "Make hard constraints gate the decision. A deal-breaker should remove a tool before scoring, not be averaged into the total.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_5_5_ai_fills_matrix",
+      "pattern": "ai_scores_treated_as_classroom_evidence",
+      "description": "Accepting AI-assigned fit-matrix cells as verified classroom evidence",
+      "trigger": "learner adopts AI-filled scores without verifying them against the tool and the room",
+      "feedback": "AI scores are hypotheses. Verify each cell against the actual tool and your classroom before trusting it.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_5_5_classroom_fit_matrix_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_5_5_fit_transfers_unchanged",
+      "pattern": "fit_score_assumed_transferable",
+      "description": "Assuming a fit-matrix verdict transfers unchanged to a different classroom",
+      "trigger": "learner reuses another room's matrix without revisiting weights or criteria",
+      "feedback": "Fit is relative to context. Re-examine the criteria and weights for the new learners and constraints before reusing the verdict.",
+      "rail_action": "ask"
     }
   ]
 }

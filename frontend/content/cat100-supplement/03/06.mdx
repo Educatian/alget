@@ -35,15 +35,27 @@ Use these anchors as lenses, not as names to drop into a reflection. A useful le
 
 ## Worked Example
 
-Start with a thin claim that many students write on a first pass:
+Suppose you survey 7 club members and start with this sheet.
 
-> I made the Excel pivot-table finding with unit labels, source note, and claim-first chart title clearer.
+```
+   A        B     C        D            E
+1  Name     Age   Major    Dorm         Pick
+2  removed  19    Nursing  Hall B       A
+3  removed  20    Biology  Hall A       A
+4  removed  19    History  Off-campus   B
+5  removed  21    Nursing  Hall B       A
+6  removed  22    CompSci  Hall C       A
+7  removed  20    Biology  Hall A       B
+8  removed  19    Art      Hall B       B
+```
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+Step 1. The name column is blank, but row 6 is still re-identifiable: only one CompSci major lives in Hall C. Deleting the name did not make the dataset anonymous. Combine or generalize the major and dorm columns (for example, group dorms into 'on-campus' vs 'off-campus') so no single combination points to one person.
 
-> I revised the Excel pivot-table finding with unit labels, source note, and claim-first chart title so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Step 2. Report the headline honestly. 4 of 7 picked A. Writing '57% chose A' hides that the whole survey was 7 people. The honest statement is '4 of 7 respondents (a small, non-representative sample) chose A'.
 
-The stronger version treats the Excel pivot-table finding with unit labels, source note, and claim-first chart title as evidence. It names what changed, links the change to **ISTE digital citizenship**, and leaves a reader able to audit the decision.
+Step 3. If you split 'Pick' by Major, several majors have an n of 1. An average or percentage over a group of one both exposes that individual and pretends a single answer is a pattern. Suppress those cells or merge the categories.
+
+The auditable decision: anonymize by combinations not just the name, report raw counts on small n, and never publish a group of one. Each step protects a real person in a 7-row table.
 
 ## Decision Rule
 

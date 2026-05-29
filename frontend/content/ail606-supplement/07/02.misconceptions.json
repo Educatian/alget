@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes",
   "misconceptions": [
     {
-      "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_task_before_claim",
+      "pattern": "task_designed_before_claim",
+      "description": "Building the prototype screen or task first and then back-filling a claim, so the task drives the evidence model instead of the reverse",
+      "trigger": "learner starts the matrix from the task column and invents a claim to justify a screen they already built",
+      "feedback": "Start from the claim about what the learner should know or do, derive the observable evidence, then design the task. The task is last in the ECD chain.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_filled_not_aligned",
+      "pattern": "filled_cells_treated_as_alignment",
+      "description": "Treating a fully populated traceability matrix as aligned without checking that each task actually elicits the evidence its row names",
+      "trigger": "learner points to completed cells but never checks whether the task could produce the listed observable",
+      "feedback": "A complete matrix is not an aligned matrix. Check each row: can this task produce exactly the evidence named, for this claim?",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_7_2_evidence_centered_design_for_prototypes_evidence_as_opinion",
+      "pattern": "evidence_cell_holds_opinion",
+      "description": "Writing a subjective impression in the evidence column instead of an observable learner behavior",
+      "trigger": "evidence cell says learners will feel confident or find it useful rather than naming an action that can be recorded",
+      "feedback": "The evidence cell must name something observable in the prototype, such as a selection, a sequence, or a constructed response, not a feeling.",
+      "rail_action": "explain"
     }
   ]
 }

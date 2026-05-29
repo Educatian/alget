@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_5_1_evaluation_questions_before_ratings",
   "misconceptions": [
     {
-      "id": "cat531_supplement_5_1_evaluation_questions_before_ratings_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_5_1_rate_before_question",
+      "pattern": "rating_before_evaluation_question",
+      "description": "Scoring or ranking a tool before naming the instructional decision, learners, and constraint the tool must serve",
+      "trigger": "learner assigns stars or points without stating what the rating is supposed to answer",
+      "feedback": "State the evaluation question first: which decision, which learners, which constraint. A rating only means something as an answer to that question.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_5_1_evaluation_questions_before_ratings_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_5_1_ratings_are_comparable",
+      "pattern": "ratings_comparable_across_questions",
+      "description": "Treating identical scores as comparable even when they answer different evaluation questions",
+      "trigger": "learner averages or ranks scores that were assigned against different criteria",
+      "feedback": "Two equal numbers can mean different things. Compare the questions behind the ratings before comparing the ratings.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_5_1_evaluation_questions_before_ratings_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_5_1_ai_questions_as_final",
+      "pattern": "ai_generated_criteria_as_final",
+      "description": "Adopting an AI-generated list of evaluation questions without filtering for the actual classroom decision",
+      "trigger": "learner pastes AI-suggested criteria as the final rubric without context check",
+      "feedback": "Treat AI-suggested questions as candidates. Keep only those tied to your real decision and context, and discard the rest.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_5_1_evaluation_questions_before_ratings_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_5_1_high_rating_overrides_question",
+      "pattern": "high_rating_overrides_constraint",
+      "description": "Letting a high overall rating override the specific constraint named in the evaluation question",
+      "trigger": "learner adopts a tool because its rating is high even though it fails the named constraint",
+      "feedback": "A high overall score does not answer a targeted question. If the tool fails the constraint you asked about, the rating is beside the point.",
+      "rail_action": "ask"
     }
   ]
 }

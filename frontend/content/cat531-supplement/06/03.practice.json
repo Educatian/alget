@@ -4,16 +4,16 @@
       "id": "cat531_supplement_6_3_portfolio_artifact_selection_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_portfolio_artifact_selection",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A candidate must select 3 artifacts for a professional portfolio that claims the competency \"uses technology to support equitable learning.\" Which selection best evidences that specific claim?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The three assignments that received the highest grades, regardless of topic.",
+        "A lesson plan with a UDL access plan, a sample of differentiated AI-feedback settings, and a reflection on a tool she rejected for excluding students without devices.",
+        "Three polished slide decks that look the most professional.",
+        "The three most recent assignments, since they show current skill."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_6_3_portfolio_artifact_selection_polish_as_evidence",
+      "explanation": "Artifacts are selected to evidence a named competency claim, not for grade, polish, or recency.",
+      "misconception_id": "cat531_supplement_6_3_portfolio_artifact_selection_grade_proxy",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_final_project_and_professional_vision",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_6_3_portfolio_artifact_selection_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_portfolio_artifact_selection",
+      "stem": "A reviewer annotates a portfolio: \"You included this artifact but never said what it proves. I cannot tell which standard it is evidence for.\" What is the missing element?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "A higher-resolution image of the artifact.",
+        "A rationale tag connecting the artifact to the specific competency or standard it evidences and how.",
+        "More artifacts so the section looks complete.",
+        "A statement that the artifact earned a good grade."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_6_3_portfolio_artifact_selection_annotation_without_signal",
+      "explanation": "Each portfolio artifact needs an explicit rationale linking it to the claim it supports; selection without a rationale is just a file.",
+      "misconception_id": "cat531_supplement_6_3_portfolio_artifact_selection_no_rationale",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_portfolio_artifact_selection",
         "evidence_based_revision"
       ]
     },
@@ -45,16 +46,16 @@
       "id": "cat531_supplement_6_3_portfolio_artifact_selection_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A candidate asks BigAL to recommend which artifacts to include. What is the defensible way to use that recommendation?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Include exactly the set the model ranks highest, since it compared them objectively.",
+        "Use the model to cluster artifacts by which competency each could evidence, then the candidate decides the final set against the actual rubric and removes a strong-looking artifact that duplicates a claim.",
+        "Ask the model to write the rationale tags so they sound consistent.",
+        "Let the model decide because it removes personal bias from selection."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_6_3_portfolio_artifact_selection_ai_as_authority",
+      "explanation": "AI can organize candidate evidence, but the curatorial judgment about what each artifact proves stays with the teacher.",
+      "misconception_id": "cat531_supplement_6_3_portfolio_artifact_selection_ai_curates",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -63,19 +64,20 @@
     {
       "id": "cat531_supplement_6_3_portfolio_artifact_selection_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_portfolio_artifact_selection",
+      "stem": "A portfolio includes one artifact that documents a lesson that went poorly, with the candidate's analysis of what she changed. A peer says to cut it because it shows failure. What is the strongest reason to keep it?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Failure artifacts are required by the rubric.",
+        "It pads the portfolio to the expected length.",
+        "It evidences reflective judgment and growth, which is itself a target competency, as long as the rationale names what the revision shows.",
+        "Reviewers will not read it closely anyway."
       ],
-      "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_6_3_portfolio_artifact_selection_completion_only_model",
+      "correct_index": 2,
+      "explanation": "An artifact's value is what claim it can defensibly evidence; a documented improvement can be strong evidence of professional judgment.",
+      "misconception_id": "cat531_supplement_6_3_portfolio_artifact_selection_only_successes_count",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_portfolio_artifact_selection",
         "evidence_based_revision"
       ]
     }

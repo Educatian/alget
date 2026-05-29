@@ -8,73 +8,72 @@
         "cat100_supplement_ai_narration_pathways",
         "cat100_supplement_ai_enhanced_presentation_development"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A slide shows a bar chart titled 'Signups doubled after launch.' Which narration script adds value instead of reading the slide?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "'Signups doubled after launch. This slide shows signups doubled after launch.'",
+        "'The jump you see came from the referral feature we shipped in week two, which is why I recommend funding it next quarter.'",
+        "'Here is a chart. It has bars. The bars go up.'",
+        "'As you can see on the slide, signups doubled after launch.'"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_5_4_ai_narration_pathways_polish_as_evidence",
-      "difficulty": "easy"
+      "explanation": "Strong narration supplies the cause and the recommendation the chart cannot show, rather than repeating the headline.",
+      "difficulty": "easy",
+      "misconception_id": "cat100_supplement_5_4_ai_narration_pathways_narration_repeats_slide"
     },
     {
       "id": "cat100_supplement_5_4_ai_narration_pathways_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which note gives BigAL a precise narration problem to solve?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "My audio is fine.",
+        "The AI voice says 'cache' as 'kashay', and my narration just rereads slide 3's bullets. How do I fix pronunciation and add the missing reasoning?",
+        "Make my voice better.",
+        "I recorded something."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_5_4_ai_narration_pathways_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "The note names two concrete faults (mispronunciation and slide-reading) so feedback can target both.",
+      "difficulty": "medium",
+      "misconception_id": "cat100_supplement_5_4_ai_narration_pathways_voice_clone_no_disclosure"
     },
     {
       "id": "cat100_supplement_5_4_ai_narration_pathways_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "What is a defensible way to use an AI voice or script for narration?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Generate a synthetic voiceover and submit it without listening to it.",
+        "Use an AI script as a first draft, edit it for accuracy and timing, and disclose AI narration where the assignment requires it.",
+        "Let AI invent statistics for the narration to sound confident.",
+        "Use AI narration only to make the deck longer."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_5_4_ai_narration_pathways_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "You keep responsibility for accuracy, timing, and disclosure; the AI output is an editable draft.",
+      "difficulty": "hard",
+      "misconception_id": "cat100_supplement_5_4_ai_narration_pathways_autoscript_as_final"
     },
     {
       "id": "cat100_supplement_5_4_ai_narration_pathways_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A reviewer says your narration 'just reads the slides.' Which revision is the real fix?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Increase the audio volume.",
+        "Rewrite each line to add the reason, example, or implication the slide text does not state.",
+        "Add background music.",
+        "Speed up the playback."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_5_4_ai_narration_pathways_completion_only_model",
+      "explanation": "Narration earns its place by adding meaning beyond the visible text, not by being louder or faster.",
       "difficulty": "medium"
     }
   ]

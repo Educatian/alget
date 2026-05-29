@@ -4,17 +4,17 @@
       "id": "ail606_supplement_1_4_worked_examples_and_fading_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_worked_examples_and_fading",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A storyboard for novices gives ten open practice problems and zero worked examples. Citing the worked-example effect, what redesign is best justified?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Keep all ten as open problems; novices learn best by struggling unaided.",
+        "Replace the first several problems with fully worked examples studied step by step, then move toward open problems.",
+        "Add more open problems so learners get more practice.",
+        "Give the answers only at the end so learners can check themselves."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_1_4_worked_examples_and_fading_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "The worked-example effect: for novices, studying worked examples produces better learning and less wasted effort than unguided problem solving, because it shows the solution schema directly.",
+      "misconception_id": "ail606_supplement_1_4_we_practice_always_beats_examples",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_worked_examples_and_fading"
       ]
@@ -22,56 +22,56 @@
     {
       "id": "ail606_supplement_1_4_worked_examples_and_fading_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_worked_examples_and_fading",
+      "stem": "A designer plans a sequence of fully worked example, then completion problem, then open problem. What is the design purpose of the middle completion problem?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "To add length so the lesson feels more substantial.",
+        "It is a fading step: the learner completes the remaining steps of a partly worked solution, bridging from studying to independent solving.",
+        "To test the learner before any instruction is given.",
+        "To repeat the worked example exactly so learners memorize it."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_1_4_worked_examples_and_fading_annotation_without_signal",
-      "difficulty": "easy",
+      "explanation": "A completion problem fades support by giving a partial solution and asking the learner to finish it, scaffolding the transition from worked example to independent problem.",
+      "misconception_id": "ail606_supplement_1_4_we_fading_is_removing_examples",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_worked_examples_and_fading"
       ]
     },
     {
       "id": "ail606_supplement_1_4_worked_examples_and_fading_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "ail606_supplement_worked_examples_and_fading",
+      "stem": "After several modules, an advanced cohort still receives only fully worked examples and reports boredom and weaker gains. Which effect explains this, and what should the designer do?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "The novelty effect; add more worked examples.",
+        "The expertise-reversal effect; fade the worked support and shift these now-experienced learners toward open problem solving.",
+        "The redundancy effect; narrate the worked examples aloud.",
+        "Nothing; worked examples are best for all learners at all times."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_1_4_worked_examples_and_fading_ai_as_authority",
-      "difficulty": "medium",
+      "explanation": "Expertise reversal: as learners gain schemas, continued full worked support becomes redundant and can depress learning. The designer should fade support toward independent solving.",
+      "misconception_id": "ail606_supplement_1_4_we_examples_always_best",
+      "difficulty": "hard",
       "concept_ids": [
-        "ai_supported_learning"
+        "ail606_supplement_worked_examples_and_fading"
       ]
     },
     {
       "id": "ail606_supplement_1_4_worked_examples_and_fading_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "evidence_based_revision",
+      "stem": "A worked example for a multi-step calculation shows only the final answer with the note 'steps omitted for brevity.' Why does this undercut the worked-example effect?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Because worked examples should never show the final answer.",
+        "Because the benefit comes from studying the intermediate solution steps and their rationale; hiding them leaves the learner with no schema to study.",
+        "Because brevity always improves learning.",
+        "Because learners should compute the final answer themselves first."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_1_4_worked_examples_and_fading_completion_only_model",
-      "difficulty": "hard",
+      "explanation": "The learning value of a worked example lies in the visible, explained intermediate steps. Omitting them turns it back into an answer key, removing the modeled schema.",
+      "misconception_id": "ail606_supplement_1_4_we_answer_is_the_example",
+      "difficulty": "medium",
       "concept_ids": [
         "evidence_based_revision"
       ]

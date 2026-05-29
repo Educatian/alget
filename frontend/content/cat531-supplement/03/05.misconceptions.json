@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_3_5_responsible_prompting_with_students",
   "misconceptions": [
     {
-      "id": "cat531_supplement_3_5_responsible_prompting_with_students_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_3_5_pasting_student_pii",
+      "pattern": "student_identifiable_data_pasted_into_prompts",
+      "description": "Entering student names, grades, or identifiable details into a public AI tool to get help",
+      "trigger": "teacher or student pastes a named student's record or work into a consumer chatbot",
+      "feedback": "Strip identifiers before prompting. Public tools may store and train on inputs, so describe the situation without names, IDs, or other personally identifiable information.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_3_5_responsible_prompting_with_students_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat531_supplement_3_5_responsible_prompting_with_students_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_3_5_vague_prompt_good_enough",
+      "pattern": "vague_prompt_treated_as_sufficient",
+      "description": "Believing a short vague prompt is fine because the model will fill in the right intent",
+      "trigger": "student submits a one-line prompt and accepts whatever generic output returns",
+      "feedback": "Model how to specify audience, purpose, grade level, and constraints in the prompt. Responsible prompting is a teachable skill, not a guess the model corrects.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_3_5_responsible_prompting_with_students_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_3_5_first_output_is_answer",
+      "pattern": "first_ai_output_accepted_uncritically",
+      "description": "Teaching students to copy the first AI response rather than evaluate and iterate on it",
+      "trigger": "students paste the first output as their final answer without checking it",
+      "feedback": "Build an iterate-and-verify routine: read the output critically, check it against a source, and refine the prompt. The first response is a draft, not the answer.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat531_supplement_3_5_age_appropriateness_ignored",
+      "pattern": "developmental_appropriateness_overlooked",
+      "description": "Assigning open-ended chatbot use without considering students' age, consent, and developmental readiness",
+      "trigger": "teacher gives young students unsupervised access to a general-purpose chatbot",
+      "feedback": "Match the prompting activity to age and policy: check terms-of-service minimum ages, supervision needs, and content risk before letting students prompt freely.",
+      "rail_action": "explain"
     }
   ]
 }

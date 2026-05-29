@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_6_6_evidence_based_reflection",
   "misconceptions": [
     {
-      "id": "cat531_supplement_6_6_evidence_based_reflection_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_6_6_evidence_based_reflection_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_6_6_evidence_based_reflection_feelings_as_evidence",
+      "pattern": "impressions_treated_as_evidence",
+      "description": "Reporting feelings, energy, or general engagement as if they were evidence of learning",
+      "trigger": "reflection says the lesson went well or students were engaged with no observed data",
+      "feedback": "Cite specific observed evidence such as scores, work samples, or subgroup results, not impressions.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_6_6_evidence_based_reflection_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_6_6_evidence_based_reflection_confirmation_only",
+      "pattern": "confirmation_only_reflection",
+      "description": "Reporting only evidence that supports the preferred conclusion and ignoring counter-evidence",
+      "trigger": "reflection lists supporting data but no disconfirming observation",
+      "feedback": "Actively report what you saw that argued against your conclusion before deciding.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_6_6_evidence_based_reflection_ai_invents_evidence",
+      "pattern": "reflection_authored_by_ai",
+      "description": "Letting AI write a reflection it cannot ground in observed classroom evidence",
+      "trigger": "reflection on the teacher's own lesson is generated wholesale by a model",
+      "feedback": "Write from your own observed evidence; use AI only to question your reasoning, not to supply the observations.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_6_6_evidence_based_reflection_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_6_6_evidence_based_reflection_correlation_as_cause",
+      "pattern": "correlation_attributed_as_cause",
+      "description": "Attributing an outcome to the tool because they co-occurred, without checking rival explanations",
+      "trigger": "reflection credits the tool for a gain that has obvious alternative causes",
+      "feedback": "List and rule out rival explanations before attributing the outcome to the tool.",
       "rail_action": "practice"
     }
   ]

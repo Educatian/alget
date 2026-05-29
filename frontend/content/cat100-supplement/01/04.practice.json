@@ -8,54 +8,55 @@
         "prompting_practice",
         "cat100_supplement_digital_citizenship_and_ai_readiness"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An AI answer states confidently: \"The library closes at 9 PM on weekends.\" You need this for an assignment. What is the right next step?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Use it directly; the answer is clearly stated.",
+        "Check the library's official hours page before relying on the time, because fluent wording is not proof of accuracy.",
+        "Ask the AI again to see if it repeats the same time.",
+        "Add the time to your work and note that AI is usually right."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_1_4_prompting_with_verification_polish_as_evidence",
+      "explanation": "Confident phrasing does not make a claim true. Verify factual details against a trustworthy source such as the official page.",
+      "misconception_id": "cat100_supplement_1_4_prompting_with_verification_confident_means_correct",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_1_4_prompting_with_verification_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_prompting_with_verification",
       "concept_ids": [
-        "evidence_based_revision"
+        "prompting_practice"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which prompt is most likely to produce output you can actually verify and revise?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Write about study skills.",
+        "Act as a peer tutor. List three time-management tips for a first-year student studying 10 hours a week, each in one sentence, and mark which ones you are unsure about.",
+        "Tell me something useful.",
+        "Make this good."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_1_4_prompting_with_verification_annotation_without_signal",
+      "explanation": "A strong prompt names the role, task, audience, format, and even asks the model to flag uncertainty, all of which make verification easier.",
+      "misconception_id": "cat100_supplement_1_4_prompting_with_verification_vague_prompt",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_1_4_prompting_with_verification_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_prompting_with_verification",
       "concept_ids": [
+        "prompting_practice",
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI gives you a perfect-looking citation: \"Reed, J. (2019). Digital Habits. Journal of Campus Life, 12(4), 33-50.\" You search the library and the web and cannot find this article anywhere. What do you do?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Cite it anyway; the format looks correct.",
+        "Do not use the claim or the citation, because an unverifiable source may be fabricated.",
+        "Change the year to 2020 and cite it.",
+        "Ask the AI to confirm the citation is real and trust the reply."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_1_4_prompting_with_verification_ai_as_authority",
+      "explanation": "AI can invent realistic but fake citations. If you cannot locate the real source, drop both the citation and the claim it supports.",
+      "misconception_id": "cat100_supplement_1_4_prompting_with_verification_fake_citation",
       "difficulty": "hard"
     },
     {
@@ -65,16 +66,16 @@
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "You used AI to draft a paragraph with two factual claims. Which verification record best supports a defensible artifact?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "A note that says \"checked with AI.\"",
+        "For each claim: the source you checked, whether it confirmed or contradicted the claim, and what you kept or cut.",
+        "The total number of words the AI wrote.",
+        "A screenshot of the AI chat with no notes."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_1_4_prompting_with_verification_completion_only_model",
+      "explanation": "A defensible verification record ties each claim to a checked source and shows what survived. Counts and screenshots alone do not show your judgment.",
+      "misconception_id": "cat100_supplement_1_4_prompting_with_verification_confident_means_correct",
       "difficulty": "medium"
     }
   ]

@@ -2,35 +2,35 @@
   "section_id": "ail606_supplement_5_2_participant_profiles_and_sampling",
   "misconceptions": [
     {
-      "id": "ail606_supplement_5_2_participant_profiles_and_sampling_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "ail606_supplement_5_2_convenience_equals_representative",
+      "pattern": "convenience_sample_as_representative",
+      "description": "Assuming an available, easy-to-reach group represents the target population",
+      "trigger": "learner recruits colleagues or experts because they are available and treats them as the real audience",
+      "feedback": "Ask who the design actually serves. A convenient sample of experts hides the friction your real, less-experienced users would hit.",
       "rail_action": "ask"
     },
     {
-      "id": "ail606_supplement_5_2_participant_profiles_and_sampling_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_5_2_participant_profiles_and_sampling_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_5_2_screen_on_wrong_trait",
+      "pattern": "screening_on_irrelevant_trait",
+      "description": "Screening participants on a trait unrelated to the design risk being tested",
+      "trigger": "learner screens on availability, age, or general interest rather than the experience that drives the usability risk",
+      "feedback": "Identify the design risk first, then screen on the trait that exposes it (for example, prior tool experience for an onboarding test).",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_5_2_participant_profiles_and_sampling_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_5_2_synthetic_for_real_users",
+      "pattern": "synthetic_personas_replace_users",
+      "description": "Treating AI-generated personas or simulated sessions as a substitute for observing real users",
+      "trigger": "learner reports usability evidence drawn from synthetic personas instead of real participants",
+      "feedback": "Use personas to design the screener and profiles, but collect usability evidence from real members of the target population.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_5_2_one_slice_generalization",
+      "pattern": "single_slice_generalization",
+      "description": "Generalizing to the whole population from a sample that covers only one slice of learner variability",
+      "trigger": "learner claims the design works for all learners after testing only frequent or only novice users",
+      "feedback": "Bound the claim to the slice you observed, or recruit across the variability before claiming the design works for everyone.",
       "rail_action": "practice"
     }
   ]

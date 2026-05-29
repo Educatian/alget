@@ -2,35 +2,35 @@
   "section_id": "cat531_supplement_3_7_ai_use_disclosure",
   "misconceptions": [
     {
-      "id": "cat531_supplement_3_7_ai_use_disclosure_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat531_supplement_3_7_ai_use_disclosure_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_3_7_disclosure_only_for_students",
+      "pattern": "disclosure_seen_as_student_only_duty",
+      "description": "Believing disclosure of AI use is a rule only students must follow, not teachers",
+      "trigger": "teacher uses AI to write feedback or recommendation letters without disclosing it",
+      "feedback": "Transparency runs both ways. If AI substantially shaped feedback, grades, or a recommendation, disclose your use to the affected reader, just as you ask students to disclose theirs.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_3_7_ai_use_disclosure_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat531_supplement_3_7_disclosure_label_is_enough",
+      "pattern": "generic_label_treated_as_full_disclosure",
+      "description": "Assuming a blanket label like \"AI was used\" satisfies meaningful disclosure",
+      "trigger": "student or teacher tags work \"made with AI\" without saying what AI did",
+      "feedback": "Meaningful disclosure states what the AI did, what the human did, and what was verified or rejected. A bare label is not enough for a reader to judge the work.",
       "rail_action": "represent"
     },
     {
-      "id": "cat531_supplement_3_7_ai_use_disclosure_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat531_supplement_3_7_disclosure_equals_guilt",
+      "pattern": "disclosure_conflated_with_admitting_wrongdoing",
+      "description": "Treating disclosure of allowed AI use as a confession that lowers the grade",
+      "trigger": "student hides permitted AI assistance because disclosure feels like admitting cheating",
+      "feedback": "Disclosing allowed use is honesty, not guilt. Make clear that transparent, permitted use is expected and is not penalized, so students do not hide it.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat531_supplement_3_7_disclosure_replaces_responsibility",
+      "pattern": "disclosure_mistaken_for_accountability_transfer",
+      "description": "Believing that disclosing AI use shifts responsibility for errors onto the tool",
+      "trigger": "author blames the AI for a mistake because the AI was disclosed",
+      "feedback": "Disclosure does not transfer accountability. The human who submits the work still owns its accuracy; disclosure informs the reader, it does not excuse errors.",
       "rail_action": "practice"
     }
   ]

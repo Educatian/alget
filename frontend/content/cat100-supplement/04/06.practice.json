@@ -3,78 +3,80 @@
     {
       "id": "cat100_supplement_4_6_reflection_on_teacher_judgment_artifact_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_reflection_on_teacher_judgment",
+      "concept_id": "learner_reflection",
       "concept_ids": [
         "learner_reflection",
         "cat100_supplement_ai_conversations_as_a_teacher"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Which reflection actually shows teacher judgment a reader can inspect?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "I learned a lot and feel more confident using AI this week.",
+        "A decision log: 3 AI suggestions, 2 overridden and 1 accepted, each with a reason.",
+        "AI is really helpful and I will keep using it.",
+        "This week went well overall."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_4_6_reflection_on_teacher_judgment_polish_as_evidence",
+      "explanation": "A decision log records choices and reasons; a feelings paragraph shows no judgment.",
+      "misconception_id": "cat100_supplement_4_6_feelings_not_decisions",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_4_6_reflection_on_teacher_judgment_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "learner_reflection",
       "concept_ids": [
-        "evidence_based_revision"
+        "learner_reflection"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "A student's decision log shows 4 AI suggestions and 4 accepts, with no overrides. What does this reveal?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The student judged each suggestion carefully.",
+        "The log shows following, not judging; at least one override with a reason should appear.",
+        "Nothing; accepting everything is ideal.",
+        "The AI must have been perfect."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_4_6_reflection_on_teacher_judgment_annotation_without_signal",
+      "explanation": "All-accepts with no override means no independent judgment is visible in the log.",
+      "misconception_id": "cat100_supplement_4_6_only_accepts",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_4_6_reflection_on_teacher_judgment_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "learner_reflection"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "Your log row reads: AI said 'tell the parent the student is unmotivated' and you decided OVERRIDE. Which 'why' makes the override defensible?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "I just did not like the AI's wording.",
+        "I cannot observe motivation, so I reported the missing assignments instead.",
+        "The AI is usually wrong.",
+        "I left the why blank because the override is obvious."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_4_6_reflection_on_teacher_judgment_ai_as_authority",
+      "explanation": "The reason ties the override to something you could not observe, which a reader can check.",
+      "misconception_id": "cat100_supplement_4_6_override_without_reason",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_4_6_reflection_on_teacher_judgment_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "learner_reflection"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Why does the override-to-accept count (for example 2 of 3 overridden) belong in a judgment reflection?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "It makes the reflection longer.",
+        "The ratio is itself evidence that you were judging the AI, not just following it.",
+        "Counts are required by the rubric only.",
+        "It hides the accepts from the reader."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_4_6_reflection_on_teacher_judgment_completion_only_model",
+      "explanation": "A visible accept/override ratio lets a reader gauge how much independent judgment occurred.",
+      "misconception_id": "cat100_supplement_4_6_only_accepts",
       "difficulty": "medium"
     }
   ]

@@ -4,16 +4,16 @@
       "id": "cat531_supplement_1_7_portfolio_evidence_setup_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_portfolio_evidence_setup",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher's module-1 portfolio entry is a single line: 'I learned a lot about design tensions this week.' What makes this fail as portfolio EVIDENCE rather than reflection?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "It is too short to count.",
+        "It asserts learning but includes no artifact, decision, or trace a reviewer could inspect to verify the claim.",
+        "It mentions design tensions, which are off-topic.",
+        "It should have used the word 'evidence.'"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_polish_as_evidence",
+      "explanation": "Portfolio evidence must point to something inspectable: an artifact, a documented decision, a before/after trace. A bare claim of learning is reflection, not evidence.",
+      "misconception_id": "cat531_supplement_1_7_reflection_mistaken_for_evidence",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_1_7_portfolio_evidence_setup_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_portfolio_evidence_setup",
+      "stem": "A teacher uploads 14 lesson files to her portfolio with no labels or rationale, expecting volume to demonstrate competence. Why does this weaken the portfolio as evidence?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Fourteen files is too many to store.",
+        "Unlabeled artifacts force the reviewer to guess what each one demonstrates; evidence requires each artifact to be tied to a specific claim or competency it supports.",
+        "Lesson files can never be portfolio evidence.",
+        "The files should have been combined into one document."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_annotation_without_signal",
+      "explanation": "Quantity is not evidence. Each artifact must be linked to the claim it supports so a reviewer can see what competency it demonstrates, not infer it from a pile of files.",
+      "misconception_id": "cat531_supplement_1_7_volume_mistaken_for_evidence",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_portfolio_evidence_setup",
         "evidence_based_revision"
       ]
     },
@@ -45,37 +46,39 @@
       "id": "cat531_supplement_1_7_portfolio_evidence_setup_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A teacher asks an AI to 'write my portfolio reflection on this lesson.' The AI produces a fluent paragraph she submits unchanged. What is the integrity problem for a competency portfolio?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "AI text is always grammatically wrong.",
+        "The portfolio is meant to be evidence of HER reasoning and growth; submitting AI-authored reflection misrepresents whose judgment the evidence reflects.",
+        "She should have asked the AI for two paragraphs.",
+        "Portfolios may never mention AI at all."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_ai_as_authority",
+      "explanation": "A portfolio certifies the teacher's own competency. AI may help organize or prompt thinking, but submitting AI-authored reflection as one's own evidence misrepresents the source of the judgment being assessed.",
+      "misconception_id": "cat531_supplement_1_7_ai_authored_evidence",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_portfolio_evidence_setup"
       ]
     },
     {
       "id": "cat531_supplement_1_7_portfolio_evidence_setup_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_portfolio_evidence_setup",
+      "stem": "A teacher wants her portfolio to show GROWTH in technology decision-making, not just a finished product. Which setup best supports that goal?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Include only her best final artifact so the portfolio looks strong.",
+        "Pair an early decision artifact with a later revised one and annotate what changed in her reasoning and what evidence drove the change.",
+        "Include a long list of tools she has heard of.",
+        "Write one summary at the end describing how much she improved."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_1_7_portfolio_evidence_setup_completion_only_model",
+      "explanation": "Growth is demonstrated by a documented trajectory: an early and a later artifact with an annotated account of the reasoning change. A single polished product or a self-report of improvement does not show the trajectory.",
+      "misconception_id": "cat531_supplement_1_7_best_work_mistaken_for_growth",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_portfolio_evidence_setup",
         "evidence_based_revision"
       ]
     }

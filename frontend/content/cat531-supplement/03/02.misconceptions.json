@@ -2,36 +2,36 @@
   "section_id": "cat531_supplement_3_2_generative_ai_and_student_work",
   "misconceptions": [
     {
-      "id": "cat531_supplement_3_2_generative_ai_and_student_work_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
+      "id": "cat531_supplement_3_2_detector_as_proof",
+      "pattern": "ai_detector_score_treated_as_proof",
+      "description": "Treating an AI-text-detector percentage as proof that a student cheated",
+      "trigger": "teacher issues an academic-integrity consequence based on a detector score alone",
+      "feedback": "AI detectors produce probabilistic guesses with documented false positives, especially for multilingual and neurodivergent writers. Use process evidence, drafts, and a conversation, not a percentage, to make an integrity judgment.",
       "rail_action": "ask"
     },
     {
-      "id": "cat531_supplement_3_2_generative_ai_and_student_work_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat531_supplement_3_2_any_ai_use_is_cheating",
+      "pattern": "all_generative_ai_use_equated_with_cheating",
+      "description": "Assuming every use of generative AI on student work is academic dishonesty regardless of the assignment's allowed use",
+      "trigger": "teacher penalizes brainstorming or grammar help that the assignment permitted",
+      "feedback": "Define allowed, assisted, and prohibited uses for the specific assignment before judging. Cheating is doing what the task forbade, not using a tool the task allowed.",
       "rail_action": "explain"
     },
     {
-      "id": "cat531_supplement_3_2_generative_ai_and_student_work_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
-      "rail_action": "represent"
+      "id": "cat531_supplement_3_2_product_only_assessment",
+      "pattern": "grading_only_the_final_product",
+      "description": "Assessing only the polished final text, which makes generative-AI shortcuts invisible and unteachable",
+      "trigger": "teacher collects only the finished essay with no drafts, notes, or process artifacts",
+      "feedback": "Collect process evidence: outlines, annotated drafts, and a short reflection on what AI did and did not do. Process makes both learning and shortcuts visible.",
+      "rail_action": "practice"
     },
     {
-      "id": "cat531_supplement_3_2_generative_ai_and_student_work_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "cat531_supplement_3_2_fluent_means_understood",
+      "pattern": "fluent_ai_prose_mistaken_for_understanding",
+      "description": "Reading polished AI-assisted prose as evidence that the student understands the content",
+      "trigger": "teacher assigns a high grade to fluent work without checking for the student's own reasoning",
+      "feedback": "Generative AI produces fluent text without comprehension. Probe with a quick oral question or an in-class write to see whether the student can reconstruct the reasoning.",
+      "rail_action": "represent"
     }
   ]
 }

@@ -4,16 +4,16 @@
       "id": "cat531_supplement_1_3_dts_map_reading_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_dts_map_reading",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A DTS map shows two value nodes ('Personalized pacing' and 'Shared class discussion') connected to a single decision node ('Adopt self-paced AI tutor'). The decision node lists no trade-off note. What is a reader's first concern?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "The map has too many nodes.",
+        "The map asserts a decision but does not show how the two competing values were negotiated, so the reader cannot tell what was traded away.",
+        "Personalized pacing is not a real value.",
+        "Maps should never connect two values to one decision."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_1_3_dts_map_reading_polish_as_evidence",
+      "explanation": "Reading a DTS map means checking that the decision node makes the negotiation visible. A decision with no trade-off note hides which value was favored and at what cost.",
+      "misconception_id": "cat531_supplement_1_3_map_decision_without_tradeoff",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_foundations_of_cbi_and_design_tensions",
@@ -25,19 +25,20 @@
     {
       "id": "cat531_supplement_1_3_dts_map_reading_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_dts_map_reading",
+      "stem": "On a peer's DTS map, an edge is labeled only with the word 'tension' between 'Equity' and 'Efficiency.' What annotation would most improve the map's readability?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Replace the edge label with a specific claim about HOW efficiency pressures equity here, for example 'auto-grading speeds feedback but flags multilingual phrasing as errors.'",
+        "Delete the edge so the two values are not connected.",
+        "Add five more value nodes to balance the map.",
+        "Change the word 'tension' to 'conflict' with no other change."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_1_3_dts_map_reading_annotation_without_signal",
+      "correct_index": 0,
+      "explanation": "A readable DTS edge names the mechanism of the tension, not just that one exists. Specifying how efficiency pressures equity lets a reader evaluate the actual conflict.",
+      "misconception_id": "cat531_supplement_1_3_edge_label_names_no_mechanism",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_dts_map_reading",
         "evidence_based_revision"
       ]
     },
@@ -45,37 +46,39 @@
       "id": "cat531_supplement_1_3_dts_map_reading_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A learner asks an AI to 'read this DTS map and tell me if my decision is correct.' The AI returns 'Your decision is correct.' Why is this an unreliable way to read a map?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "AI cannot process images of maps at all.",
+        "DTS maps externalize a teacher's negotiated reasoning; correctness is not a property an AI can certify, so the AI output should be used to probe the map's gaps, not to grade it.",
+        "The AI should have said 'incorrect' to be useful.",
+        "Maps should only be read by the person who drew them."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_1_3_dts_map_reading_ai_as_authority",
+      "explanation": "A DTS map is a reasoning trace, not a problem with a key. AI is defensibly used to surface gaps (an unlabeled edge, a missing trade-off) rather than to declare a negotiated judgment correct.",
+      "misconception_id": "cat531_supplement_1_3_ai_certifies_map_correctness",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_dts_map_reading"
       ]
     },
     {
       "id": "cat531_supplement_1_3_dts_map_reading_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_dts_map_reading",
+      "stem": "Two DTS maps describe the same classroom dilemma. Map A is dense, colorful, and has 14 nodes; Map B has 4 nodes but each decision node states the value favored, the value yielded, and the evidence. A reviewer should judge Map B stronger because:",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Map B uses fewer colors.",
+        "Readability of a DTS map comes from making the negotiation and evidence inspectable, not from node count or visual density.",
+        "Map A has too many nodes to be legal.",
+        "Map B is shorter to read."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_1_3_dts_map_reading_completion_only_model",
+      "explanation": "A well-read or well-built DTS map is judged by whether a reviewer can reconstruct the negotiated judgment and its evidence, not by visual richness. Density can hide that the trade-offs were never made explicit.",
+      "misconception_id": "cat531_supplement_1_3_density_read_as_quality",
       "difficulty": "hard",
       "concept_ids": [
+        "cat531_supplement_dts_map_reading",
         "evidence_based_revision"
       ]
     }

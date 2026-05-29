@@ -8,73 +8,75 @@
         "cat100_supplement_module_4_dialogue_studio",
         "cat100_supplement_ai_conversations_as_a_teacher"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your page loads in the browser but has no <title> and no <h1>. On the four-item publish checklist, what is the verdict?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "PASS, because it loads.",
+        "FAIL on Page title and Real heading, even though it renders.",
+        "PASS, because browsers ignore missing tags.",
+        "It cannot load without a title."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_4_8_module_4_dialogue_studio_polish_as_evidence",
+      "explanation": "Rendering is not the bar; missing title and heading are checklist failures even when the page displays.",
+      "misconception_id": "cat100_supplement_4_8_loads_means_correct",
       "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_4_8_module_4_dialogue_studio_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_module_4_dialogue_studio",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_module_4_dialogue_studio"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Which line correctly makes 'My Teacher-AI Dialogue Project' the main heading?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "<p style=\"font-size:40px\">My Teacher-AI Dialogue Project</p>",
+        "<h1>My Teacher-AI Dialogue Project</h1>",
+        "My Teacher-AI Dialogue Project",
+        "<title>My Teacher-AI Dialogue Project</title>"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_4_8_module_4_dialogue_studio_annotation_without_signal",
+      "explanation": "An h1 is a real heading element; big text or a title tag in the head is not the page heading.",
+      "misconception_id": "cat100_supplement_4_8_bare_text_not_heading",
       "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_4_8_module_4_dialogue_studio_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat100_supplement_module_4_dialogue_studio"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "The AI suggests adding a flashy background color, but your link still reads <a>link</a> with no href. What is the strongest move?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Add the background color first; it looks more finished.",
+        "Reject the decoration for now and fix the empty href so the link points to the real file.",
+        "Delete the link so the color stands out.",
+        "Keep both as they are."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_4_8_module_4_dialogue_studio_ai_as_authority",
+      "explanation": "The publish checklist values a working link over decoration; fixing the href is the substantive move.",
+      "misconception_id": "cat100_supplement_4_8_empty_href",
       "difficulty": "hard"
     },
     {
       "id": "cat100_supplement_4_8_module_4_dialogue_studio_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat100_supplement_module_4_dialogue_studio"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "After pushing to GitHub Pages, what confirms the publish actually worked?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The file exists on your laptop.",
+        "Opening the live URL and seeing the title in the tab, the heading rendered, and the link downloading the real file.",
+        "The HTML was long enough.",
+        "The AI said it looked good."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_4_8_module_4_dialogue_studio_completion_only_model",
+      "explanation": "Verification means loading the published URL and checking each checklist item live, not trusting the local copy.",
+      "misconception_id": "cat100_supplement_4_8_loads_means_correct",
       "difficulty": "medium"
     }
   ]

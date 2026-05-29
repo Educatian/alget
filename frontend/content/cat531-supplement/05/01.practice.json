@@ -4,16 +4,16 @@
       "id": "cat531_supplement_5_1_evaluation_questions_before_ratings_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evaluation_questions_before_ratings",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A team is comparing three reading apps. Before scoring any of them, what should the evaluation brief establish first?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "A five-star rating scale so the apps can be ranked quickly.",
+        "The evaluation question: which decision the tool must support, for which learners, under which constraint.",
+        "A list of the most popular features each vendor advertises.",
+        "The total number of downloads each app reports."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_5_1_evaluation_questions_before_ratings_polish_as_evidence",
+      "explanation": "Ratings are only meaningful once the evaluation question names the instructional decision, the learners, and the constraint the tool must respect. Scoring before that produces numbers without a referent.",
+      "misconception_id": "cat531_supplement_5_1_rate_before_question",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_educational_technology_evaluation",
@@ -25,58 +25,61 @@
     {
       "id": "cat531_supplement_5_1_evaluation_questions_before_ratings_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_evaluation_questions_before_ratings",
+      "stem": "Two teachers each rated a math app 4 out of 5. One had asked 'Does it help multilingual learners attempt word problems?' and the other had asked 'Is it fun?' Why are these two 4-ratings not comparable?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "They used different star icons.",
+        "A rating only carries meaning relative to the evaluation question behind it, and the two questions target different outcomes.",
+        "One teacher has more experience than the other.",
+        "Four out of five is too high for any classroom tool."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_5_1_evaluation_questions_before_ratings_annotation_without_signal",
+      "explanation": "A score is an answer to a specific question. Identical numbers attached to different evaluation questions cannot be averaged or compared, because they measure different things.",
+      "misconception_id": "cat531_supplement_5_1_ratings_are_comparable",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_educational_technology_evaluation",
+        "cat531_supplement_evaluation_questions_before_ratings"
       ]
     },
     {
       "id": "cat531_supplement_5_1_evaluation_questions_before_ratings_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "You ask an AI assistant to draft evaluation questions for a new grading tool. What is the defensible way to use its output?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Adopt the AI list as the final criteria because it is comprehensive.",
+        "Treat each AI-suggested question as a candidate, then keep only those tied to your actual instructional decision and discard the rest.",
+        "Skip writing questions and let the AI score the tool directly.",
+        "Use the AI questions only if they produce a higher star rating."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_5_1_evaluation_questions_before_ratings_ai_as_authority",
+      "explanation": "The AI can surface candidate questions, but the teacher must judge each one against the real decision and context. Unfiltered adoption imports questions that do not fit the classroom.",
+      "misconception_id": "cat531_supplement_5_1_ai_questions_as_final",
       "difficulty": "medium",
       "concept_ids": [
-        "ai_supported_learning"
+        "ai_supported_learning",
+        "cat531_supplement_evaluation_questions_before_ratings"
       ]
     },
     {
       "id": "cat531_supplement_5_1_evaluation_questions_before_ratings_calibration",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A principal asks why a teacher rejected a highly rated app. Which response best shows the evaluation question did its job?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "'The reviews online were mostly positive.'",
+        "'Our question was whether it supports IEP read-aloud accommodations; it does not, so the high overall rating did not answer our question.'",
+        "'It scored 4.7 stars in the app store.'",
+        "'The interface looked modern and the students liked it.'"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_5_1_evaluation_questions_before_ratings_completion_only_model",
+      "explanation": "A defensible decision points back to the evaluation question and shows the score was beside the point. The rating was high but irrelevant to the constraint that mattered.",
+      "misconception_id": "cat531_supplement_5_1_high_rating_overrides_question",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "evidence_based_revision",
+        "cat531_supplement_evaluation_questions_before_ratings"
       ]
     }
   ]

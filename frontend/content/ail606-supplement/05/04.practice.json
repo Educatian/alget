@@ -4,17 +4,17 @@
       "id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_learning_metrics_and_usability_metrics",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A team reports 90% satisfaction and concludes \"learners are learning.\" Which classification error did they make?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Satisfaction is too small a percentage to report.",
+        "They used a usability or attitude metric (satisfaction) to support a learning-outcome claim it cannot measure.",
+        "Satisfaction should be reported as a mean, not a percentage.",
+        "They needed more than 10 participants for satisfaction."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_polish_as_evidence",
-      "difficulty": "medium",
+      "explanation": "Satisfaction measures how the experience felt, not whether knowledge or skill changed; a learning claim needs a learning metric.",
+      "misconception_id": "ail606_supplement_5_4_satisfaction_as_learning",
+      "difficulty": "easy",
       "concept_ids": [
         "ail606_supplement_learning_metrics_and_usability_metrics"
       ]
@@ -22,36 +22,36 @@
     {
       "id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "ail606_supplement_learning_metrics_and_usability_metrics",
+      "stem": "Which pairing correctly matches a claim to a metric that can measure it?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Claim: the menu is findable. Metric: pre/post quiz gain.",
+        "Claim: learners mastered the concept. Metric: average time on task.",
+        "Claim: learners can apply the concept to new items. Metric: accuracy on transfer items not seen in the lesson.",
+        "Claim: the interface is efficient. Metric: self-reported confidence."
       ],
-      "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_annotation_without_signal",
-      "difficulty": "easy",
+      "correct_index": 2,
+      "explanation": "A transfer claim is supported by performance on novel items; the other pairings attach a metric that measures a different construct.",
+      "misconception_id": "ail606_supplement_5_4_construct_mismatch",
+      "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_learning_metrics_and_usability_metrics"
       ]
     },
     {
       "id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_ai_boundary",
       "type": "multiple_choice",
       "concept_id": "ail606_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "An AI dashboard auto-summarizes your session data into a single \"effectiveness score\" blending satisfaction, time, and quiz gain. What is the defensible boundary?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Report the blended score because it is convenient and looks rigorous.",
+        "Keep the metrics disaggregated; a single blended score hides whether a usability or a learning claim is actually supported.",
+        "Trust the AI score over your own metrics.",
+        "Delete the quiz data so the score is purely usability."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_ai_as_authority",
+      "explanation": "Blending distinct constructs into one number obscures which claim the evidence supports; keep usability and learning metrics separate.",
+      "misconception_id": "ail606_supplement_5_4_blended_score",
       "difficulty": "medium",
       "concept_ids": [
         "ai_supported_learning"
@@ -60,20 +60,20 @@
     {
       "id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_calibration",
       "type": "multiple_choice",
-      "concept_id": "ail606_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "ail606_supplement_learning_metrics_and_usability_metrics",
+      "stem": "Post-test scores rose, but participants also took the test immediately after viewing the answers in the lesson. Why is the learning gain claim still shaky?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "The sample size was too small.",
+        "Without a delay or transfer measure, the gain may reflect short-term recall of just-seen answers rather than durable learning.",
+        "Post-tests are never valid learning metrics.",
+        "Satisfaction should have been measured instead."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "ail606_supplement_5_4_learning_metrics_and_usability_metrics_completion_only_model",
+      "explanation": "An immediate post-test can capture recall of fresh content; durable or transferable learning needs a delayed or novel-item measure.",
+      "misconception_id": "ail606_supplement_5_4_immediate_recall_as_learning",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "ail606_supplement_learning_metrics_and_usability_metrics"
       ]
     }
   ]

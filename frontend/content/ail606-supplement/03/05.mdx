@@ -33,17 +33,29 @@ Three course anchors shape the reasoning here:
 
 Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
 
-## Worked Example
+## Worked Example: Rewriting Alt Text for a Bar Chart
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+A frame presents a bar chart comparing test scores across three teaching methods. Below is the before/after of its accessibility treatment.
 
-> I made the storyboard frame sequence with narration, signaling, and reader-action notes clearer.
+**Before (appearance, not function):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+> alt = "A colorful bar chart with blue, green, and orange bars on a white background." The series are distinguished by color only. No transcript.
 
-> I revised the storyboard frame sequence with narration, signaling, and reader-action notes so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **cognitive load theory**, and I can point to the exact part of the artifact that changed.
+Problems: the alt text describes pixels, not the comparison the chart teaches. A screen-reader user learns nothing about the result, and a color-blind learner cannot tell the series apart.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **cognitive load theory**, and the exact revision that followed.
+**After (function carried in words, color not load-bearing):**
+
+> alt = "Bar chart: average score was highest for inquiry (82), then lecture (74), then lab (70); inquiry led by 8 points." Each bar is also labeled with its method name and value, so color is decorative, not the only cue. A short data table sits beside the chart.
+
+Annotated decision trail:
+
+1. Rewrote alt to convey the instructional function (the ranking and the 8-point gap), not the colors.
+2. Removed color-only coding: added on-bar labels so the distinction survives color blindness and grayscale.
+3. Classified the image as meaningful, so it earns content-bearing alt, unlike the page's decorative header rule, which takes empty alt.
+4. Handled complexity: kept the alt brief and added a nearby data table for learners who need every value.
+5. Rejected suggestion: the AI proposed a 200-word alt attribute listing all values. Rejected, because alt should stay brief; the full data belongs in the adjacent table.
+
+The improvement is access carried by structure, brief functional alt plus a readable equivalent, not a longer color description.
 
 ## Decision Rule
 

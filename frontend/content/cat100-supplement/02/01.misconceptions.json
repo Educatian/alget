@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_2_1_resume_claims_and_evidence",
   "misconceptions": [
     {
-      "id": "cat100_supplement_2_1_resume_claims_and_evidence_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_2_1_resume_claims_and_evidence_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_2_1_resume_claims_and_evidence_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_2_1_adjectives_as_evidence",
+      "pattern": "adjectives_as_evidence",
+      "description": "Believing that strong adjectives (hard-working, passionate, detail-oriented) count as evidence on a resume",
+      "trigger": "learner fills a bullet with personality adjectives but no action, number, or scope",
+      "feedback": "Adjectives describe you; evidence shows what you did. Replace \"hard-working volunteer\" with a verb, a number, and a scope a reader can check.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_2_1_resume_claims_and_evidence_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_2_1_inflating_scope",
+      "pattern": "inflating_scope_of_contribution",
+      "description": "Claiming team or whole-organization outcomes as if they were the student's solo work",
+      "trigger": "learner writes \"built the entire\" or \"single-handedly\" for work that was shared",
+      "feedback": "State exactly your part. \"Wrote the copy for a five-page team site\" is more credible than \"built the entire web presence.\"",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_2_1_ai_invents_metrics",
+      "pattern": "accepting_ai_invented_metrics",
+      "description": "Pasting AI-generated percentages or achievements that the student cannot defend in an interview",
+      "trigger": "learner keeps an AI-suggested metric with no source in their actual experience",
+      "feedback": "If you cannot defend a number when a recruiter asks \"how did you measure that?\", reject it and write a truthful claim instead.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_2_1_reword_not_revise",
+      "pattern": "rewording_mistaken_for_revising",
+      "description": "Changing the wording of a bullet without adding an action or measurable result",
+      "trigger": "learner submits a before-after pair where both versions are equally vague",
+      "feedback": "Revision means new information, not new synonyms. Add what you did and how much, not just a different phrasing of \"responsible for.\"",
       "rail_action": "practice"
     }
   ]

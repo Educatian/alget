@@ -8,73 +8,72 @@
         "cat100_supplement_presentation_purpose_and_audience",
         "cat100_supplement_ai_enhanced_presentation_development"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "Your slide deck must persuade a campus hiring panel to invite you to interview in a 3-minute slot. Which storyboard line shows the deck is built for that audience and purpose?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Slide 1: 'About Me' with a full-screen photo and a decorative title font.",
+        "Slide 1 takeaway: 'Invite this candidate.' Slide 2: one quantified project result. Slide 3: skill-to-role match. Total 3 slides for 3 minutes.",
+        "Twelve slides covering every course project in chronological order.",
+        "A single slide of bullet points copied from the resume."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_polish_as_evidence",
-      "difficulty": "easy"
+      "explanation": "The audience (hiring panel) and purpose (earn an interview) drive a tight 3-slide scope sized to the 3-minute limit.",
+      "difficulty": "easy",
+      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_one_size_deck"
     },
     {
       "id": "cat100_supplement_5_1_presentation_purpose_and_audience_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "You ask BigAL for help on this deck. Which note names the audience-purpose decision well enough for targeted feedback?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "This deck looks good to me.",
+        "My audience is a hiring panel and my purpose is an interview invite, but slide 4 explains a class assignment they will not care about. Should I cut it?",
+        "I am stuck.",
+        "Make it more professional."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "The strong note names audience, purpose, and the specific slide that may not serve them, so feedback can be exact.",
+      "difficulty": "medium",
+      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_audience_mismatch"
     },
     {
       "id": "cat100_supplement_5_1_presentation_purpose_and_audience_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "ai_supported_learning",
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "What is a defensible way to use AI while setting purpose and audience for this deck?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Ask AI to generate the whole deck and present it unchanged.",
+        "Ask AI to list questions a hiring panel might have, then you decide which one each slide answers.",
+        "Let AI invent an audience for you so you do not have to.",
+        "Use AI only to pick a slide theme color."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "AI surfaces candidate audience questions; you keep authorship of which question each slide actually serves.",
+      "difficulty": "hard",
+      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_polish_over_fit"
     },
     {
       "id": "cat100_supplement_5_1_presentation_purpose_and_audience_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "evidence_based_revision",
       "concept_ids": [
         "evidence_based_revision"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "A reviewer says your purpose statement is vague. Which revision makes the purpose inspectable?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "'My purpose is to talk about my work.'",
+        "'After 3 minutes the hiring panel should be able to say why my data project qualifies me for the analyst internship.'",
+        "'My purpose is to use nice slides.'",
+        "'My purpose is to finish the assignment.'"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_5_1_presentation_purpose_and_audience_completion_only_model",
+      "explanation": "A testable purpose names the audience, the time, and the exact judgment they should be able to make.",
       "difficulty": "medium"
     }
   ]

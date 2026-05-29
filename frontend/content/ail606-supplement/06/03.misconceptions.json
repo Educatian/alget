@@ -2,36 +2,36 @@
   "section_id": "ail606_supplement_6_3_persona_based_simulation_checks",
   "misconceptions": [
     {
-      "id": "ail606_supplement_6_3_persona_based_simulation_checks_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_6_3_persona_based_simulation_checks_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_6_3_persona_based_simulation_checks_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_6_3_persona_as_demographic_label",
+      "pattern": "persona_as_demographic_label",
+      "description": "Building personas from demographics (age, job title) instead of from goals, constraints, and contexts that would actually stress the design",
+      "trigger": "persona reads '34-year-old manager' with no goal, barrier, or access condition that the prototype must serve",
+      "feedback": "A simulation-useful persona names a goal, a constraint, and a context of use, not just demographics. Otherwise it cannot reveal a failure.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_6_3_persona_based_simulation_checks_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "ail606_supplement_6_3_happy_path_only_walkthrough",
+      "pattern": "happy_path_only_walkthrough",
+      "description": "Running every persona down the ideal path so the simulation never encounters an error, interruption, or unsupported branch",
+      "trigger": "all persona walkthroughs succeed on the first try with no friction logged",
+      "feedback": "Drive at least one persona into an interruption, wrong turn, or low-bandwidth condition. A check that never fails has tested nothing.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_6_3_finding_without_design_consequence",
+      "pattern": "finding_without_design_consequence",
+      "description": "Recording a persona walkthrough observation but never converting it into a specific change to the prototype",
+      "trigger": "simulation notes list problems but the prototype is unchanged afterward",
+      "feedback": "Pair each persona finding with the exact screen or step you will revise, or a justified decision not to.",
       "rail_action": "practice"
+    },
+    {
+      "id": "ail606_supplement_6_3_ai_persona_as_real_user",
+      "pattern": "ai_persona_as_real_user",
+      "description": "Treating an AI role-playing a persona as equivalent to a real user test and reporting its reactions as user data",
+      "trigger": "learner cites 'the AI persona said the navigation was confusing' as a usability finding",
+      "feedback": "An AI persona can generate candidate failure modes to check, but its reactions are hypotheses, not user data. Verify against the design and, where possible, a real user.",
+      "rail_action": "explain"
     }
   ]
 }

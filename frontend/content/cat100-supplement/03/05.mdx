@@ -35,15 +35,27 @@ Read the anchors as competing checks on quality. One may highlight the learning 
 
 ## Worked Example
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+Suppose a class-average sheet shows an error in C4.
 
-> I made the Excel pivot-table finding with unit labels, source note, and claim-first chart title clearer.
+```
+   A         B        C
+1  Student   Points   Per Item
+2  Maria     45       =A2... 
+3  David     30       9.0
+4  Sun       0        #DIV/0!
+```
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+The formula in column C is `=B/ItemCount`, where ItemCount sits in a cell that is blank for Sun's row, so Excel divides by zero and shows `#DIV/0!`.
 
-> I revised the Excel pivot-table finding with unit labels, source note, and claim-first chart title so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+Step 1. Read the error code, do not paper over it. `#DIV/0!` always means a divide-by-zero, so the denominator is the suspect, not the numerator.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **ISTE digital citizenship**, and the exact revision that followed.
+Step 2. Write a precise prompt for the AI assistant: "My formula `=B4/D4` returns #DIV/0! because D4 is blank. I want it to show 'n/a' when D4 is empty and otherwise divide normally. Give me one formula."
+
+Step 3. The AI returns `=IF(D4=0,"n/a",B4/D4)`. Do not trust it blindly. Verify on David's row, where D3 = 5 and B3 = 45 should give 9.0. The new formula returns `45/5 = 9.0`, which matches the value already there. Now it is verified, not assumed.
+
+Step 4. Copy the verified formula down. C4 now reads `n/a` instead of an error.
+
+The auditable trace: the error code named the cause, the prompt named the exact formula and expected behavior, and a known-answer row confirmed the AI fix before it shipped.
 
 ## Decision Rule
 

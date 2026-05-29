@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_5_5_observation_protocols",
   "misconceptions": [
     {
-      "id": "ail606_supplement_5_5_observation_protocols_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_5_5_observation_protocols_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_5_5_observation_protocols_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_5_5_inference_as_observation",
+      "pattern": "inference_logged_as_observation",
+      "description": "Recording the observer's interpretation (confused, frustrated) as if it were observed data",
+      "trigger": "learner's note states a mental state or verdict rather than an observable action or utterance",
+      "feedback": "Log what was seen or heard. Move interpretations like 'confused' to a separate inference field for later analysis.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_5_5_observation_protocols_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_5_5_verdict_in_log",
+      "pattern": "design_verdict_during_observation",
+      "description": "Writing a design verdict (this page is bad) into the live observation log",
+      "trigger": "learner's protocol entry judges the design instead of capturing behavior anchored to a moment",
+      "feedback": "Keep verdicts out of the log. Timestamp the moment and record the action; severity decisions come after patterns emerge.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "ail606_supplement_5_5_unstructured_inconsistent_coding",
+      "pattern": "no_shared_observation_codes",
+      "description": "Using free-form notes with no shared, predefined categories, making entries non-comparable across moderators",
+      "trigger": "learner cannot tally an event consistently because notes lack shared codes anchored to task steps",
+      "feedback": "Define shared observation categories tied to task steps before the session so events are counted the same way.",
+      "rail_action": "ask"
     }
   ]
 }

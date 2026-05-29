@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_8_2_feedback_templates_for_design_drafts",
   "misconceptions": [
     {
-      "id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_8_2_praise_as_feedback",
+      "pattern": "encouragement_treated_as_actionable_feedback",
+      "description": "Treating praise such as 'Great start!' as feedback that drives design revision",
+      "trigger": "feedback line carries tone or encouragement but names no criterion, location, or action",
+      "feedback": "Rewrite each line as criterion then location then action so the student knows what to change and where.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_8_2_feedback_templates_for_design_drafts_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_8_2_vague_directive",
+      "pattern": "vague_directive_without_location",
+      "description": "Using directives like 'tighten this up' that never point to a part of the draft",
+      "trigger": "comment tells the student to improve but does not locate the issue in the draft",
+      "feedback": "Name the exact frame or element and the observable next move, not a general instruction to improve.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "ail606_supplement_8_2_overloaded_comments",
+      "pattern": "too_many_priorities_per_draft",
+      "description": "Stacking many equal-weight comments so the student cannot tell what to fix first",
+      "trigger": "template lists multiple revisions with no priority order",
+      "feedback": "Cap the template at one prioritized revision so the feedback itself does not overload the learner.",
+      "rail_action": "explain"
     }
   ]
 }

@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_1_5_privacy_and_account_safety",
   "misconceptions": [
     {
-      "id": "cat100_supplement_1_5_privacy_and_account_safety_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_1_5_privacy_and_account_safety_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_1_5_privacy_and_account_safety_reused_password_safe",
+      "pattern": "password_reuse_is_safe",
+      "description": "Believing one strong password reused across accounts is safe",
+      "trigger": "learner uses the same password for email, school portal, and social media",
+      "feedback": "If one site is breached, every account sharing that password is exposed. Use a unique password per account, ideally with a password manager.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_1_5_privacy_and_account_safety_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_1_5_privacy_and_account_safety_2fa_unnecessary",
+      "pattern": "two_factor_seen_as_optional_hassle",
+      "description": "Skipping two-factor authentication because it adds an extra step",
+      "trigger": "learner declines 2FA to log in faster",
+      "feedback": "Two-factor authentication blocks most account takeovers even when a password leaks. Turn it on for email and the school portal first.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_1_5_privacy_and_account_safety_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_1_5_privacy_and_account_safety_urgent_email_trusted",
+      "pattern": "urgency_signals_legitimacy",
+      "description": "Trusting an email or text because it sounds urgent and official",
+      "trigger": "learner clicks a link in a message demanding immediate action",
+      "feedback": "Urgency is a phishing tactic. Do not click the link; go to the official site directly and verify the sender address.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_1_5_privacy_and_account_safety_overshare_with_ai",
+      "pattern": "pasting_sensitive_data_into_ai",
+      "description": "Pasting personal or others' private data into an AI tool without checking what it is allowed to keep",
+      "trigger": "learner enters a full name, ID number, or private message into a public AI tool",
+      "feedback": "Do not paste identifiers, passwords, or other people's private data into AI tools. Redact or summarize before sharing.",
       "rail_action": "practice"
     }
   ]

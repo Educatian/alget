@@ -2,36 +2,28 @@
   "section_id": "ail606_supplement_1_5_learner_variability_and_udl",
   "misconceptions": [
     {
-      "id": "ail606_supplement_1_5_learner_variability_and_udl_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "ail606_supplement_1_5_learner_variability_and_udl_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "ail606_supplement_1_5_udl_is_just_formats",
+      "pattern": "udl_equals_representation",
+      "description": "Reducing UDL to offering the same content in several formats, ignoring the engagement and action-and-expression principles.",
+      "trigger": "learner claims a design is UDL because it provides video, text, and audio of the same material",
+      "feedback": "Multiple formats address representation only. Add options for engagement (the why) and for action and expression (the how) to cover all three UDL principles.",
       "rail_action": "explain"
     },
     {
-      "id": "ail606_supplement_1_5_learner_variability_and_udl_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "ail606_supplement_1_5_udl_means_lower_the_bar",
+      "pattern": "flexibility_lowers_the_goal",
+      "description": "Believing UDL flexibility means lowering or changing the learning goal for some learners rather than varying the means to a firm goal.",
+      "trigger": "learner reduces the standard or swaps the construct instead of varying how it is demonstrated",
+      "feedback": "Keep goals firm and means flexible. Vary how learners engage, access, and demonstrate the same construct; do not lower the goal.",
       "rail_action": "represent"
     },
     {
-      "id": "ail606_supplement_1_5_learner_variability_and_udl_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
-      "rail_action": "practice"
+      "id": "ail606_supplement_1_5_udl_is_retrofit_accommodation",
+      "pattern": "udl_is_retrofit",
+      "description": "Treating UDL as reactive individual accommodations added later by request, rather than proactive design for predictable variability.",
+      "trigger": "learner plans to add options later only for students who ask",
+      "feedback": "UDL designs for the margins from the start. Build flexible options into the design proactively rather than retrofitting them for individuals.",
+      "rail_action": "ask"
     }
   ]
 }

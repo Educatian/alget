@@ -2,36 +2,36 @@
   "section_id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data",
   "misconceptions": [
     {
-      "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
-      "rail_action": "explain"
-    },
-    {
-      "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_title_in_header",
+      "pattern": "title_rows_above_data",
+      "description": "Leaving title rows, blank rows, or banner text above the header row so the data range does not start cleanly",
+      "trigger": "learner keeps a report title or blank row stacked on top of the header row",
+      "feedback": "Put a single header row at the top with no title or blank rows above it. Move the title to a chart or a cell off to the side so features read the columns correctly.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_text_vs_number",
+      "pattern": "numbers_stored_as_text",
+      "description": "Typing currency symbols or unit words inside number cells so values are stored as text and skipped by SUM and AVERAGE",
+      "trigger": "learner enters values like '$1,250.00' or '1250 USD' directly in the cell",
+      "feedback": "Store the raw number and apply currency or unit formatting through cell format. Text values are ignored by math functions.",
+      "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_one_value_per_cell",
+      "pattern": "multiple_values_one_cell",
+      "description": "Packing more than one fact into a single cell, such as last and first name together, so columns cannot be sorted or used independently",
+      "trigger": "learner keeps combined values like 'Lopez, Maria' in one column",
+      "feedback": "Split combined values so each cell holds one fact. Use Text to Columns so each piece can be sorted, filtered, or referenced on its own.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_3_1_spreadsheet_structure_and_clean_data_inconsistent_categories",
+      "pattern": "inconsistent_category_labels",
+      "description": "Letting the same category appear under several spellings or cases so summaries split one group into many",
+      "trigger": "learner summarizes a column with values like 'TX', 'Tx', 'texas', and 'Texas'",
+      "feedback": "Standardize category labels to one spelling and case before any pivot or chart so each real group counts as one category.",
+      "rail_action": "ask"
     }
   ]
 }

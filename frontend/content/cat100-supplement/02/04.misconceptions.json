@@ -2,35 +2,35 @@
   "section_id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment",
   "misconceptions": [
     {
-      "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_polish_as_evidence",
-      "pattern": "artifact_polish_as_evidence",
-      "description": "Treating fluent or visually complete artifacts as sufficient evidence of learning",
-      "trigger": "learner points to polish but not to a constraint, evidence source, or revision decision",
-      "feedback": "Name the claim, evidence source, support move, and revision. Polish is not the evidence trail.",
-      "rail_action": "ask"
-    },
-    {
-      "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_annotation_without_signal",
-      "pattern": "low_information_annotation",
-      "description": "Writing reader notes that do not name a concept, constraint, confusion, or connection",
-      "trigger": "note is generic agreement or interest",
-      "feedback": "Rewrite the annotation so it names what you need, what confused you, or what decision it changes.",
+      "id": "cat100_supplement_2_4_platforms_independent",
+      "pattern": "platforms_treated_as_independent",
+      "description": "Assuming a resume, LinkedIn profile, and portfolio can describe the same role differently because recruiters see only one",
+      "trigger": "learner lists a different title or scope for the same role on different platforms",
+      "feedback": "Recruiters cross-check. Keep the same role, dates, and top accomplishment consistent across all three platforms.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_ai_as_authority",
-      "pattern": "ai_output_as_authority",
-      "description": "Accepting AI output as authoritative rather than judging it against course evidence",
-      "trigger": "learner accepts AI suggestion without a rejection or evidence check",
-      "feedback": "Use the AI output as a proposal. Accept or reject it using the course constraint and artifact evidence.",
+      "id": "cat100_supplement_2_4_screenshots_without_links",
+      "pattern": "screenshots_instead_of_verifiable_links",
+      "description": "Believing screenshots alone are sufficient evidence of a project in a portfolio",
+      "trigger": "learner's project page has images but no live link or code repository",
+      "feedback": "Screenshots cannot be inspected. Add a live demo or repository link so a reviewer can verify the work and your role.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_2_4_linkedin_and_portfolio_alignment_completion_only_model",
-      "pattern": "completion_only_learner_model",
-      "description": "Assuming completion alone is enough for useful follow-up support",
-      "trigger": "learner or system records only a finished artifact",
-      "feedback": "ALGET needs process evidence: annotation, support request, confidence, practice, and revision quality.",
+      "id": "cat100_supplement_2_4_ai_inflated_headline",
+      "pattern": "accepting_ai_inflated_headline",
+      "description": "Keeping an AI headline that claims awards, titles, or status the student has not earned",
+      "trigger": "learner uses a headline that contradicts what the resume and portfolio can prove",
+      "feedback": "Your headline must survive a cross-check. Replace inflated claims with a truthful headline that matches your other platforms.",
+      "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_2_4_alignment_is_visual",
+      "pattern": "alignment_mistaken_for_visual_consistency",
+      "description": "Thinking alignment means matching colors or fonts rather than matching the facts of your record",
+      "trigger": "learner audits design polish but never checks that titles, dates, and accomplishments agree",
+      "feedback": "Alignment is about consistent facts, not matching color schemes. Check that titles, dates, and key accomplishments agree.",
       "rail_action": "practice"
     }
   ]

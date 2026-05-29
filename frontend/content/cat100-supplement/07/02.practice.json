@@ -8,74 +8,74 @@
         "cat100_supplement_calendar_and_task_systems",
         "cat100_supplement_productivity_and_workflow_automation"
       ],
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "An essay is due Friday 11:59 PM. Which split correctly uses a calendar versus a task list?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "Both go on the calendar as all-day events",
+        "Calendar: a Thursday 6 to 8 PM 'draft essay' block; Task list: 'submit CAT100 essay' due Fri 11:59 PM",
+        "Both go in the task list with no date",
+        "Calendar: the 11:59 PM deadline only; nothing in the task list"
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat100_supplement_7_2_calendar_and_task_systems_polish_as_evidence",
-      "difficulty": "easy"
+      "explanation": "Fixed-time work (the draft block) belongs on the calendar; the deliverable with a due date and done state belongs in the task list.",
+      "misconception_id": "cat100_supplement_7_2_calendar_equals_todo",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_2_calendar_and_task_systems_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_calendar_and_task_systems",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_calendar_and_task_systems"
       ],
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "stem": "Your task list shows 'read chapter 7', 'email advisor', and 'lab report' with no dates. Why do you keep missing things?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "The list is too short",
+        "Tasks have no due dates, so nothing can surface or sort before it is late",
+        "The tasks should be calendar events instead",
+        "The list needs a different color theme"
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat100_supplement_7_2_calendar_and_task_systems_annotation_without_signal",
-      "difficulty": "medium"
+      "explanation": "Without due dates the system cannot tell you what is next. Adding a date to each task lets it sort and remind.",
+      "misconception_id": "cat100_supplement_7_2_no_due_date",
+      "difficulty": "easy"
     },
     {
       "id": "cat100_supplement_7_2_calendar_and_task_systems_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_ai_supported_learning",
+      "concept_id": "cat100_supplement_calendar_and_task_systems",
       "concept_ids": [
-        "ai_supported_learning"
+        "cat100_supplement_calendar_and_task_systems"
       ],
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "stem": "A project is due in 10 days and needs about 6 hours of work. You only scheduled the due date. What should you add?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Nothing; the deadline is enough",
+        "Two or three work blocks across the 10 days that total about 6 hours before the due date",
+        "A second copy of the deadline",
+        "An all-day event on the due date"
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat100_supplement_7_2_calendar_and_task_systems_ai_as_authority",
-      "difficulty": "hard"
+      "explanation": "The deadline is when it must be done. Scheduling work blocks ahead of it is how the 6 hours actually get spent.",
+      "misconception_id": "cat100_supplement_7_2_deadline_as_workblock",
+      "difficulty": "medium"
     },
     {
       "id": "cat100_supplement_7_2_calendar_and_task_systems_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat100_supplement_evidence_based_revision",
+      "concept_id": "cat100_supplement_calendar_and_task_systems",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat100_supplement_calendar_and_task_systems"
       ],
-      "stem": "Which detail would make later support more useful?",
+      "stem": "Class starts at 10:00 AM and you need 15 minutes to walk there plus 5 minutes to open materials. When should the reminder fire?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "At 10:00 AM when class starts",
+        "At 9:40 AM, about 20 minutes before, matching travel plus prep",
+        "At 11:00 AM after class",
+        "No reminder is needed for a recurring class"
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat100_supplement_7_2_calendar_and_task_systems_completion_only_model",
-      "difficulty": "medium"
+      "explanation": "Reminder lead time should cover what you must do first. A 'class now' alert gives no time to travel or prepare.",
+      "misconception_id": "cat100_supplement_7_2_no_reminder_lead",
+      "difficulty": "hard"
     }
   ]
 }

@@ -33,17 +33,24 @@ Three course anchors shape the reasoning here:
 
 Read the anchors as competing checks on quality. One may highlight the learning demand, another may expose a risk, and another may help you test transfer.
 
-## Worked Example
+## Worked Example: A Consent Clause for a Minors' AI Tool
 
-The weak version below sounds plausible, but it does not yet give a reader enough evidence:
+A teacher drafts the consent section of a policy memo for a 6th-grade class chatbot. Minors cannot give legal consent, so the design of the consent step is a judgment call. Work it in numbered steps.
 
-> I made the school AI policy memo with privacy, equity, consent, and learning-purpose checks clearer.
+The tool: an AI homework chatbot that stores each student's questions to "personalize" help.
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+Step-by-step consent decision:
 
-> I revised the school AI policy memo with privacy, equity, consent, and learning-purpose checks so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **critical edtech studies**, and I can point to the exact part of the artifact that changed.
+- Step 1. Separate assent from consent. Students (minors) can assent; the parent or guardian gives legal consent. The memo must name both.
+- Step 2. State what data is collected and why. Question text and timestamps, used only to surface a struggling-student alert to the teacher, not to train the vendor model.
+- Step 3. Set the default. Default to opt-in with parental consent, not opt-out, because silence from a minor's family is not consent.
+- Step 4. Name the retention and deletion rule. Delete chat logs at the end of the grading term; do not let the vendor retain them.
 
-The improvement is not longer wording. It is a better trace. The reader can now see the artifact, the constraint from **critical edtech studies**, and the exact revision that followed.
+Before (weak): "Parents will be notified that students use the chatbot." Notification is not consent, and it omits data use and retention.
+
+After (strong): "Consent clause: parental opt-in required before any student account is created. Collected data = question text and timestamps, used only for a teacher struggling-student alert, never for vendor model training. Logs deleted at term end. Students give assent on a plain-language screen. Evidence the clause is needed = the vendor's default setting retains logs for 24 months and trains on them."
+
+The strong clause separates assent from consent, names data use and retention, defaults to opt-in, and points to the vendor setting that made the clause necessary.
 
 ## Decision Rule
 

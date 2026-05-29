@@ -35,15 +35,37 @@ The anchors should do work in your artifact. If NACE career readiness or ISTE di
 
 ## Worked Example
 
-A first draft often hides the real decision behind a vague improvement claim:
+Here is a real spreadsheet template turned from a retyped document into a reusable one.
 
-> I made the privacy checklist for accounts, data sharing, and AI tool boundaries clearer.
+**Before (a copied report with a hand-typed total):**
 
-That claim is too thin because "clearer" does not identify the audience, the problem, or the evidence. A stronger claim would read:
+```
+       A            B
+1  Item         Cost
+2  Books        120
+3  Lab fee      45
+4  Software     85
+5  TOTAL        250        <- typed by hand, now wrong after edits
+```
 
-> I revised the privacy checklist for accounts, data sharing, and AI tool boundaries so that the intended audience can see the decision, the constraint, and the evidence source. The revision is justified by **ISTE digital citizenship**, and I can point to the exact part of the artifact that changed.
+If you change the lab fee to 60, cell B5 still says 250. The value is stale.
 
-Notice the shift: the artifact is no longer just polished. The revision points to **ISTE digital citizenship**, names the evidence source, and preserves the reason a suggestion was accepted or rejected.
+**After (fixed structure, formulas, and a locked rate):**
+
+```
+       A            B            C
+1  Item         Cost         Tax rate: 0.08
+2  Books        120          =B2*$C$1
+3  Lab fee      60           =B3*$C$1
+4  Software     85           =B4*$C$1
+5  TOTAL        =SUM(B2:B4)   =SUM(C2:C4)
+```
+
+Three concrete moves made it a template:
+
+1. **Formula instead of a typed total.** `=SUM(B2:B4)` recalculates the moment a cost changes.
+2. **Relative and absolute references.** `=B2*$C$1` copies down so B shifts to B3, B4 while the tax rate stays locked at `$C$1`.
+3. **Edit a copy, keep the master blank.** Save As `budget_2026spring.xlsx` so `budget_template.xlsx` stays reusable next term.
 
 ## Decision Rule
 

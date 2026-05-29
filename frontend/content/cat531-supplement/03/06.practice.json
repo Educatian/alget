@@ -4,16 +4,16 @@
       "id": "cat531_supplement_3_6_school_policy_interpretation_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "cat531_supplement_school_policy_interpretation",
-      "stem": "Which evidence trace would make this artifact easiest to review and improve?",
+      "stem": "A teacher says, \"Our district AI policy never mentions chatbots for grading, so I am free to upload student essays to one.\" What is the interpretation error?",
       "options": [
-        "The artifact is visually polished and complete.",
-        "You identify a claim, evidence source, bounded support move, accepted suggestion, rejected suggestion, and revision.",
-        "The learner uses AI for every step so the artifact is consistent.",
-        "The learner writes a generic reflection after submitting."
+        "No error; if the policy is silent, anything is allowed.",
+        "Silence is not permission; FERPA and the district's data-sharing rules still govern uploading identifiable student work to a third-party tool.",
+        "The teacher should upload the essays faster.",
+        "The policy must list every tool by name to apply."
       ],
       "correct_index": 1,
-      "explanation": "Strong evidence shows your judgment and a traceable revision decision.",
-      "misconception_id": "cat531_supplement_3_6_school_policy_interpretation_polish_as_evidence",
+      "explanation": "A gap in the written policy does not authorize the practice. Governing privacy law and broader data rules still apply, and clarification should be sought.",
+      "misconception_id": "cat531_supplement_3_6_silence_means_allowed",
       "difficulty": "easy",
       "concept_ids": [
         "cat531_supplement_ai_in_education",
@@ -25,58 +25,67 @@
     {
       "id": "cat531_supplement_3_6_school_policy_interpretation_annotation_signal",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which reader note would help BigAL give targeted support?",
+      "concept_id": "cat531_supplement_school_policy_interpretation",
+      "stem": "A policy states \"AI tools may not be used to complete student assessments.\" A teacher reads this to mean she cannot use an AI tool to generate accessibility supports, like read-aloud, for a student with an IEP during a test. What is the better interpretation?",
       "options": [
-        "This is interesting.",
-        "I am confused about which constraint should override the AI suggestion in this artifact.",
-        "I agree.",
-        "The page is long."
+        "Her literal reading is correct; ban all AI on assessments.",
+        "Read for purpose: the rule targets students offloading the thinking, not removing a documented accessibility accommodation, which the IEP requires.",
+        "Ignore the IEP because the AI policy is newer.",
+        "The two rules cancel out, so do nothing."
       ],
       "correct_index": 1,
-      "explanation": "A useful annotation tells BigAL what concept, constraint, or decision needs attention.",
-      "misconception_id": "cat531_supplement_3_6_school_policy_interpretation_annotation_without_signal",
+      "explanation": "Interpreting toward the policy's intent, integrity of the assessment, preserves a required accommodation that a literal reading would wrongly block.",
+      "misconception_id": "cat531_supplement_3_6_policy_overrides_judgment",
       "difficulty": "medium",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_school_policy_interpretation",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_6_school_policy_interpretation_ai_boundary",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_ai_supported_learning",
-      "stem": "What is the strongest AI-use boundary for this section?",
+      "concept_id": "cat531_supplement_school_policy_interpretation",
+      "stem": "Before letting students use an AI tutoring app, which set of rules must a teacher check together?",
       "options": [
-        "Ask AI to complete the artifact and submit it.",
-        "Use AI for one bounded critique or revision option, then judge it against course evidence.",
-        "Avoid AI even when the assignment asks for critique.",
-        "Use AI only to make the artifact sound more polished."
+        "Only the school's AI-use memo.",
+        "The AI-use memo plus FERPA, the app's terms of service and minimum age, parental-consent rules, and any IEP/504 obligations.",
+        "Only the vendor's marketing page.",
+        "Only whether other teachers use it."
       ],
       "correct_index": 1,
-      "explanation": "The learner remains responsible for judgment; the tool provides bounded support.",
-      "misconception_id": "cat531_supplement_3_6_school_policy_interpretation_ai_as_authority",
+      "explanation": "AI decisions sit at the intersection of several policies. One memo rarely answers privacy, consent, age, and special-education questions on its own.",
+      "misconception_id": "cat531_supplement_3_6_one_policy_covers_all",
       "difficulty": "medium",
       "concept_ids": [
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_school_policy_interpretation",
+        "evidence_based_revision",
         "ai_supported_learning"
       ]
     },
     {
       "id": "cat531_supplement_3_6_school_policy_interpretation_calibration",
       "type": "multiple_choice",
-      "concept_id": "cat531_supplement_evidence_based_revision",
-      "stem": "Which detail would make later support more useful?",
+      "concept_id": "cat531_supplement_school_policy_interpretation",
+      "stem": "A two-year-old acceptable-use policy requires an AI plagiarism detector that you have documented falsely flags multilingual students. You must apply policy this week. What is the most defensible action?",
       "options": [
-        "Only the final artifact file.",
-        "Your confidence, question type, support request, practice result, and revision quality.",
-        "Only the time of day.",
-        "Only the number of words in the note."
+        "Apply the detector as written and accept the false flags, since policy is final.",
+        "Follow the policy minimally while documenting the false-positive cases and formally routing the evidence to the policy owner to request revision.",
+        "Quietly ignore the policy and tell no one.",
+        "Stop teaching the affected students."
       ],
       "correct_index": 1,
-      "explanation": "Useful support depends on visible evidence, not only completion.",
-      "misconception_id": "cat531_supplement_3_6_school_policy_interpretation_completion_only_model",
+      "explanation": "Policies are not static. A teacher applies the current rule while documenting demonstrated harm and routing it to decision-makers so the policy can be revised.",
+      "misconception_id": "cat531_supplement_3_6_policy_is_static",
       "difficulty": "hard",
       "concept_ids": [
-        "evidence_based_revision"
+        "cat531_supplement_ai_in_education",
+        "cat531_supplement_school_policy_interpretation",
+        "evidence_based_revision",
+        "ai_supported_learning"
       ]
     }
   ]
