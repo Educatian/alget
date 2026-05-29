@@ -1,3 +1,26 @@
+# Curvilinear Motion: n-t and Polar Coordinates
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Decide** when normal-tangential ($n$-$t$) coordinates or polar coordinates simplify a curvilinear-motion problem
+2. **Decompose** velocity and acceleration in $n$-$t$ coordinates with $a_t = dv/dt$ and $a_n = v^2/\rho$
+3. **Compute** polar-coordinate acceleration including the cross terms $a_r = \ddot{r} - r\dot{\theta}^2$ and $a_\theta = r\ddot{\theta} + 2\dot{r}\dot{\theta}$
+4. **Identify** the centripetal direction and apply it correctly in force-balance problems
+
+---
+
+## Opening: Why Race Cars Skid on the Exit, Not the Apex
+
+A car can be traveling at perfectly constant speed and still slide off a curve. Drivers feel this every time a highway ramp tightens: the car has zero tangential acceleration (the speedometer is steady) yet a very real sideways pull. That pull is the normal acceleration $a_n = v^2/\rho$, and it grows as the radius $\rho$ shrinks. When the tires cannot supply the friction force $m a_n$ demands, the car skids, regardless of whether the driver is speeding up.
+
+The lesson is that on a curved path, "not accelerating" in the everyday sense (constant speed) is not the same as zero acceleration. Direction is changing, and changing direction requires acceleration toward the center of the turn. Choosing the right coordinate system makes this physics obvious instead of buried in messy $xy$ derivatives.
+
+> **The Big Picture:** Pick coordinates that match the geometry and a curvilinear problem collapses to two lines. Pick poorly and even a simple curve becomes painful algebra.
+
+---
+
 ## Why Coordinates Choose Themselves
 
 Most undergraduate dynamics begins with rectilinear motion in Cartesian coordinates. Real motion in machines, vehicles, and orbital mechanics is rarely rectilinear and rarely well-described in xy. The choice of coordinate system is part of the analysis: pick well and the equations simplify; pick poorly and even simple problems become algebraically painful.
@@ -68,17 +91,64 @@ The vertical component is a clean Cartesian-style derivative because $\hat{u}_z$
 
 ---
 
-## Worked Example: A Car on a Banked Curve
+## Worked Examples
 
-A car travels at constant speed $v = 30$ m/s around a horizontal curve of radius $\rho = 200$ m.
+### Example 1: Constant Speed Around a Curve
 
-n-t analysis:
+**Problem:** A car travels at constant speed $v = 30$ m/s around a horizontal curve of radius $\rho = 200$ m. Find its acceleration.
+
+**$n$-$t$ analysis:**
+
 - Tangential acceleration: $a_t = dv/dt = 0$ (constant speed).
-- Normal acceleration: $a_n = v^2/\rho = (30)^2/200 = 4.5$ m/s², directed toward the center of curvature.
+- Normal acceleration: $a_n = v^2/\rho = (30)^2/200 = \boxed{4.5 \text{ m/s}^2}$, directed toward the center of curvature.
 
-The centripetal force required to produce this acceleration is $F_n = m a_n$, supplied by friction (or by friction + banking-normal-force component on a banked road). The dynamics step that follows ($\sum F = m\vec{a}$ in the n direction) gives you the friction or banking angle requirement.
+The centripetal force required to produce this is $F_n = m a_n$, supplied by friction (or by friction plus the banking-normal-force component on a banked road). The dynamics step that follows ($\sum F = m\vec{a}$ in the $n$ direction) gives the friction or banking-angle requirement.
 
-This problem in xy-coordinates would require parameterizing position by time and differentiating. In n-t the answer is two lines.
+This problem in $xy$-coordinates would require parameterizing position by time and differentiating. In $n$-$t$ the answer is one line.
+
+---
+
+### Example 2: Speeding Up While Turning (Combined $a_t$ and $a_n$)
+
+**Problem:** A car rounds a curve of radius $\rho = 300$ m. At the instant of interest its speed is $v = 25$ m/s and it is accelerating along the path at $a_t = 3$ m/s². Find the magnitude of the total acceleration.
+
+**Step 1: Normal component.**
+
+$$a_n = \frac{v^2}{\rho} = \frac{(25)^2}{300} = 2.083 \text{ m/s}^2 \text{ (toward the center of curvature)}$$
+
+**Step 2: Tangential component** is given: $a_t = 3$ m/s² (along the path).
+
+**Step 3: The two components are perpendicular**, so the magnitude is the hypotenuse:
+
+$$|\vec{a}| = \sqrt{a_t^2 + a_n^2} = \sqrt{(3)^2 + (2.083)^2} = \sqrt{9 + 4.34} = \boxed{3.65 \text{ m/s}^2}$$
+
+The total acceleration tilts forward-and-inward: forward because the car is speeding up, inward because the path is curving. Neither component alone tells the full story, which is exactly why the $n$-$t$ split is so useful.
+
+---
+
+### Example 3: Polar Coordinates with Rotating Basis Vectors
+
+**Problem:** A radar at the origin tracks a drone. At one instant the drone is at radius $r = 10$ m with $\dot{r} = 2$ m/s and $\ddot{r} = 0$; the bearing angle has $\dot{\theta} = 0.5$ rad/s and $\ddot{\theta} = 0.2$ rad/s². Find the velocity and acceleration in polar coordinates.
+
+**Step 1: Velocity components.**
+
+$$v_r = \dot{r} = 2 \text{ m/s}, \qquad v_\theta = r\dot{\theta} = (10)(0.5) = 5 \text{ m/s}$$
+
+$$|\vec{v}| = \sqrt{2^2 + 5^2} = \boxed{5.39 \text{ m/s}}$$
+
+**Step 2: Radial acceleration** (note the $-r\dot{\theta}^2$ term survives even though $\ddot{r} = 0$):
+
+$$a_r = \ddot{r} - r\dot{\theta}^2 = 0 - (10)(0.5)^2 = -2.5 \text{ m/s}^2$$
+
+**Step 3: Transverse acceleration** (the $2\dot{r}\dot{\theta}$ Coriolis-like term is present):
+
+$$a_\theta = r\ddot{\theta} + 2\dot{r}\dot{\theta} = (10)(0.2) + 2(2)(0.5) = 2 + 2 = 4 \text{ m/s}^2$$
+
+**Step 4: Magnitude.**
+
+$$|\vec{a}| = \sqrt{(-2.5)^2 + (4)^2} = \sqrt{6.25 + 16} = \boxed{4.72 \text{ m/s}^2}$$
+
+If you had forgotten the cross terms, you would have reported $a_r = 0$ and $a_\theta = 2$ m/s², missing more than half the true acceleration. The cross terms exist because $\hat{u}_r$ and $\hat{u}_\theta$ rotate as the drone moves; they are never optional.
 
 ---
 
@@ -94,23 +164,32 @@ This problem in xy-coordinates would require parameterizing position by time and
 
 ---
 
-#
+## Summary
 
-## Textbook Deepening
+### Key Equations
 
-The most important move in this section is to treat **Why Coordinates Choose Themselves** as a reasoning tool rather than a vocabulary item. A learner who understands the topic can use it to decide what matters, what can be ignored, and what evidence would make the solution defensible. In Engineering Dynamics, that usually means connecting the visible artifact of work to motion diagram, governing equation, assumption, and units check.
+| Concept | Equation |
+| --- | --- |
+| $n$-$t$ velocity | $\vec{v} = v\,\hat{u}_t$ |
+| $n$-$t$ acceleration | $\vec{a} = \dot{v}\,\hat{u}_t + \dfrac{v^2}{\rho}\,\hat{u}_n$ |
+| Polar velocity | $\vec{v} = \dot{r}\,\hat{u}_r + r\dot{\theta}\,\hat{u}_\theta$ |
+| Polar acceleration | $\vec{a} = (\ddot{r} - r\dot{\theta}^2)\,\hat{u}_r + (r\ddot{\theta} + 2\dot{r}\dot{\theta})\,\hat{u}_\theta$ |
 
-Read the examples with three questions in mind. First, what is being modeled? Second, what assumption makes the model manageable? Third, where would the solution fail if the assumption were false? Those questions keep the section from becoming a set of isolated facts. They also prepare you to explain your reasoning to another person, which is often the real test of understanding.
+### Key Takeaways
 
-## Worked Transfer
+- Use $n$-$t$ coordinates when the path is known; use polar when motion is measured from a fixed origin.
+- Tangential acceleration changes speed; normal acceleration $v^2/\rho$ changes direction and always points to the center of curvature.
+- Constant speed does not mean zero acceleration on a curve.
+- The polar cross terms $-r\dot{\theta}^2$ and $2\dot{r}\dot{\theta}$ come from the rotating basis vectors and are never optional.
+- The transverse velocity is $r\dot{\theta}$, not $\dot{\theta}$ alone; the lever arm $r$ matters.
 
-Suppose you meet the same idea in a new problem. Do not start by copying the surface steps. Start by naming the structure of the situation: the objects, actors, constraints, evidence, and possible failure points. Then decide which part of this section transfers directly and which part must be adapted.
+---
 
-A strong transfer explanation has this form: "This looks like **Why Coordinates Choose Themselves** because the same underlying relationship appears. I can reuse the reasoning pattern, but I must change the details because the new case has a different constraint."
+## What's Next?
 
-## Common Failure Mode
+With velocity and acceleration in hand for any path, the next chapter applies **Newton's second law** $\sum \vec{F} = m\vec{a}$ in these same coordinate systems, turning the kinematic $a_n = v^2/\rho$ into the centripetal-force requirement that sizes guardrails, sets banking angles, and keeps satellites in orbit.
 
-The most common failure is premature fluency: the section feels understandable while reading, but the learner cannot use it when the wording, diagram, audience, or context changes. To avoid that, pause after the first example and write one sentence that explains why the method works. Then write one sentence describing when it would not work. Those two sentences are often more diagnostic than a longer summary.
+---
 
 ## Check Your Understanding
 

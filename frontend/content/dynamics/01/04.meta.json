@@ -28,6 +28,7 @@
         "curvilinear_constant_speed_circle",
         "curvilinear_coord_choice",
         "curvilinear_polar_cross_terms",
-        "curvilinear_normal_direction"
+        "curvilinear_normal_direction",
+        "curvilinear_combined_acceleration"
     ]
 }

@@ -27,7 +27,8 @@
         "internal_max_moment_location",
         "internal_load_shear_relation",
         "internal_section_consistency",
-        "internal_point_load_jump"
+        "internal_point_load_jump",
+        "internal_cantilever_udl_moment"
     ],
     "estimated_time_minutes": 14,
     "order": 1

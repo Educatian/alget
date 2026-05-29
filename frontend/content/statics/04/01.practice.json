@@ -67,6 +67,23 @@
       "correct_index": 1,
       "explanation": "Concentrated transverse loads produce step discontinuities in V. A point couple (moment) produces a step in M. Continuous w gives smooth slopes only.",
       "misconception_id": "shear_is_continuous_under_point_load"
+    },
+    {
+      "id": "internal_cantilever_udl_moment",
+      "type": "numeric",
+      "difficulty": "medium",
+      "statement": "A cantilever beam of length L = 3 m is fixed at the wall and free at the tip. It carries a uniform distributed load w = 5 kN/m over its full length. Compute the magnitude of the maximum bending moment, which occurs at the fixed wall.",
+      "givens": {
+        "length": "3 m",
+        "distributed_load": "5 kN/m"
+      },
+      "final_answer": {
+        "value": 22.5,
+        "unit": "kN·m",
+        "tolerance": 0.1
+      },
+      "concept_ids": ["shear_moment_diagram", "bending_moment", "beam_loading"],
+      "hint": "For a cantilever under a full-length UDL, the maximum moment magnitude at the wall is w*L^2/2."
     }
   ]
 }

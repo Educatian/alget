@@ -28,6 +28,7 @@
         "rbim_pin_conservation",
         "rbim_skater",
         "rbim_contact_point",
-        "rbim_axis_choice"
+        "rbim_axis_choice",
+        "rbim_pinned_rod_numeric"
     ]
 }

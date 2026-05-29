@@ -1,3 +1,26 @@
+# Rigid Body Impulse and Angular Momentum
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Apply** linear impulse-momentum to the center of mass of a rigid body
+2. **Apply** angular impulse-momentum about the center of mass and about a fixed point, choosing the correct moment of inertia
+3. **Identify** when linear or angular momentum is conserved during an impact, recognizing impulsive constraint reactions
+4. **Solve** eccentric-impact problems using contact-point velocities and the coefficient of restitution along the impact line
+
+---
+
+## Opening: How a Diver Adds a Somersault in Mid-Air
+
+A platform diver leaves the board with a fixed amount of angular momentum, set the instant their feet lose contact. Nothing in the air can change that total. Yet divers routinely speed up to whip through somersaults and then slow down to enter the water clean. They do it by changing their moment of inertia: tucking pulls mass toward the spin axis, which shrinks $I_G$, and since $I_G\,\omega$ is conserved, $\omega$ shoots up. Opening into a layout reverses it.
+
+That is angular momentum conservation made visible, and it is the heart of this section. When external forces act only briefly or have no moment about a chosen point, the time-integrated form of the laws of motion, impulse and momentum, becomes the cleanest tool available. It is the only convenient framework for collisions, impacts, and the short, violent forces that ordinary $F = ma$ cannot capture.
+
+> **The Big Picture:** Impulse-momentum is the third leg of the kinetics triangle. It turns "an unbounded force acting for an instant" into a finite, solvable change in momentum.
+
+---
+
 ## Why Rigid Body Impulse-Momentum Completes the Kinetics Trio
 
 For particles, dynamics offers three equivalent kinetics frameworks: Newton's second law (force-acceleration), work-energy (energy bookkeeping), and impulse-momentum (time-integrated force). Each one shines for a different class of problem. The rigid-body extension of impulse-momentum is the missing leg of the triangle for rotating and translating bodies — and is the only convenient tool for problems involving **collisions, impacts, and short-duration forces** in rigid-body dynamics.
@@ -82,31 +105,63 @@ This last point is the most common error in eccentric impact problems: students 
 
 ---
 
-## Worked Example: Pinned Rod Struck by a Ball
+## Worked Examples
 
-A uniform rod of mass M and length L is pinned at its top end. A ball of mass m moving horizontally with speed v strikes the rod at distance d below the pin. What is the rod's angular velocity immediately after impact, assuming a perfectly plastic collision?
+### Example 1: Pinned Rod Struck by a Ball (Symbolic)
 
-Step 1: Identify conserved quantity. The pin exerts an impulsive reaction during impact. Linear momentum is **not** conserved (the pin reaction has horizontal component). Angular momentum **about the pin** is conserved (the pin's reaction has zero moment about itself).
+A uniform rod of mass $M$ and length $L$ is pinned at its top end. A ball of mass $m$ moving horizontally with speed $v$ strikes the rod at distance $d$ below the pin. What is the rod's angular velocity immediately after a perfectly plastic impact?
 
-Step 2: Initial angular momentum about the pin.
+**Step 1: Identify the conserved quantity.** The pin exerts an impulsive reaction during impact. Linear momentum is **not** conserved (the pin reaction has a horizontal component). Angular momentum **about the pin** is conserved (the pin's reaction has zero moment about itself).
+
+**Step 2: Initial angular momentum about the pin** (only the ball contributes; the rod is at rest):
 
 $$H_{O,1} = m v d$$
 
-(only the ball contributes; the rod is at rest).
+**Step 3: After the plastic impact** the ball sticks at the strike point. The combined system rotates about the pin with $\omega'$. Moment of inertia about the pin:
 
-Step 3: After perfectly plastic impact, the ball sticks to the rod at the strike point. The combined system rotates about the pin with angular velocity $\omega'$. Moment of inertia about the pin:
+$$I_O = I_{O,\text{rod}} + m d^2 = \frac{1}{3}ML^2 + md^2$$
 
-$$I_O = I_{O,{\rm rod}} + m d^2 = \frac{1}{3}ML^2 + md^2$$
+**Step 4: Conservation** $H_{O,1} = H_{O,2} = I_O\,\omega'$ gives
 
-Step 4: Final angular momentum.
+$$\boxed{\omega' = \frac{m v d}{\frac{1}{3}ML^2 + md^2}}$$
 
-$$H_{O,2} = I_O \omega' = \left(\frac{1}{3}ML^2 + md^2\right)\omega'$$
+This problem in $F = ma$ form would require integrating impulsive forces over an indefinite short interval. Impulse-momentum gives the answer in four lines.
 
-Step 5: Conservation gives
+---
 
-$$\omega' = \frac{m v d}{\frac{1}{3}ML^2 + md^2}$$
+### Example 2: Pinned Rod Struck by a Ball (Numbers)
 
-This problem in F = ma form would require integrating impulsive forces over an indefinite short interval. Impulse-momentum gives the answer in five lines.
+**Problem:** A uniform rod of mass $M = 6$ kg and length $L = 1.2$ m is pinned at its top. A ball of mass $m = 0.5$ kg moving horizontally at $v = 20$ m/s strikes and sticks to the rod at $d = 0.9$ m below the pin. Find the angular velocity immediately after impact.
+
+**Step 1: Moment of inertia about the pin.**
+
+$$I_O = \frac{1}{3}ML^2 + md^2 = \frac{1}{3}(6)(1.2)^2 + (0.5)(0.9)^2 = 2.88 + 0.405 = 3.285 \text{ kg·m}^2$$
+
+**Step 2: Conservation of angular momentum about the pin.**
+
+$$m v d = I_O\,\omega' \;\Rightarrow\; \omega' = \frac{(0.5)(20)(0.9)}{3.285} = \frac{9.0}{3.285}$$
+
+$$\boxed{\omega' = 2.74 \text{ rad/s}}$$
+
+The combined rod-plus-ball system swings up about the pin at 2.74 rad/s. If you had wrongly used $I_G$ of the rod (about its own center) instead of $I_O$ about the pin, you would have badly overstated $\omega'$, because the rod's mass also has to swing about the offset pin.
+
+---
+
+### Example 3: Spinning Skater (Conservation of Angular Momentum)
+
+**Problem:** A skater spins on near-frictionless ice with arms extended, moment of inertia $I_1 = 4.0$ kg·m² and angular velocity $\omega_1 = 2.0$ rad/s. The skater pulls their arms in, reducing the moment of inertia to $I_2 = 1.5$ kg·m². Find the new angular velocity.
+
+**Step 1: No external angular impulse** about the vertical spin axis (ice is frictionless, gravity has no moment about the vertical axis), so angular momentum is conserved:
+
+$$I_1\,\omega_1 = I_2\,\omega_2$$
+
+**Step 2: Solve.**
+
+$$\omega_2 = \frac{I_1\,\omega_1}{I_2} = \frac{(4.0)(2.0)}{1.5} = \boxed{5.33 \text{ rad/s}}$$
+
+The angular velocity more than doubles, purely from redistributing mass. This is the diver's tuck of the opening, and the same principle that lets a collapsing star spin up into a pulsar.
+
+> **Workflow Reminder:** Choose a point about which the troublesome (impulsive or constraint) forces have zero moment, write angular momentum before and after, and set them equal. Use $I_O$ about a fixed point, $I_G$ about the mass center.
 
 ---
 
@@ -118,6 +173,34 @@ This problem in F = ma form would require integrating impulsive forces over an i
 - **Choosing the moment-of-inertia axis incorrectly.** When using angular impulse-momentum about a fixed point O, use $I_O$, not $I_G$. The parallel-axis theorem connects them.
 
 <dynamic-scenario topic="Rigid Body Impulse-Momentum" context="A bullet of mass m and speed v embeds in the end of a uniform rod of mass M and length L pinned at the other end. The student must compute the rod's angular velocity immediately after impact, justifying the choice of conservation principle, the choice of moment-of-inertia axis, and the treatment of the pin reaction."></dynamic-scenario>
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Linear impulse-momentum | $\displaystyle\int \sum \vec{F}\,dt = m\vec{v}_{G,2} - m\vec{v}_{G,1}$ |
+| Angular (about G) | $\displaystyle\int \sum M_G\,dt = I_G(\omega_2 - \omega_1)$ |
+| Angular (about fixed O) | $\displaystyle\int \sum M_O\,dt = I_O(\omega_2 - \omega_1)$ |
+| Parallel-axis | $I_O = I_G + Md^2$ |
+| Coefficient of restitution | $e = \dfrac{v'_{B,n} - v'_{A,n}}{v_{A,n} - v_{B,n}}$ |
+
+### Key Takeaways
+
+- Impulse-momentum is the right tool for impacts and short-duration forces, where $F = ma$ fails.
+- Linear momentum of the center of mass changes by the external linear impulse; internal forces cancel.
+- For a struck pinned body, linear momentum is not conserved (impulsive pin reaction) but angular momentum about the pin is.
+- Use $I_O$ about a fixed point and $I_G$ about the mass center; the parallel-axis theorem connects them.
+- In eccentric impact, the coefficient of restitution uses contact-point velocities, which include the $\omega \times r$ term for rotating bodies.
+
+---
+
+## What's Next?
+
+This completes the kinetics trio (force-acceleration, work-energy, impulse-momentum) for rigid bodies. Subsequent chapters extend these planar tools toward three-dimensional rigid-body motion and vibrations, where the same conservation reasoning continues to pay off.
 
 ---
 

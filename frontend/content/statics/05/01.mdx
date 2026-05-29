@@ -1,3 +1,26 @@
+# Centroids, Distributed Loads, and Moments of Inertia
+
+## Learning Objectives
+
+By the end of this section, you will be able to:
+
+1. **Locate** the centroid of a composite area using the area-weighted average, with negative areas for cutouts
+2. **Replace** a distributed load along a beam with an equivalent point load at the load's centroid
+3. **Compute** area moments of inertia for composite shapes using the parallel-axis theorem and composite-bodies method
+4. **Distinguish** area moment of inertia ($\text{m}^4$, statics bending) from mass moment of inertia ($\text{kg·m}^2$, dynamics rotation)
+
+---
+
+## Opening: Why an I-Beam Beats a Square
+
+Take two steel beams that use the *exact same amount of material* per meter of length. One is a solid square; the other rolls that material into an I-shape, pushing most of it into a top and bottom flange far from the center. Load them identically and the I-beam deflects a fraction as much and carries far more before it yields. Nothing changed but *where* the area sits.
+
+That single fact, that bending resistance depends on the distribution of area and not just its amount, is why centroids and moments of inertia exist as a topic. The centroid tells you where the area's "first moment" balances; the moment of inertia (the "second moment") tells you how effectively that area resists bending about an axis. Engineers spend the rest of their careers exploiting the gap between the I-beam and the square.
+
+> **The Big Picture:** Every cross section you will ever size in Mechanics of Materials enters the stress formula as a moment of inertia. This section is where you learn to compute it.
+
+---
+
 ## Why Distributed Quantities Need Their Own Toolkit
 
 Up to this chapter, statics has lived in the world of point forces and rigid-body equilibrium. Real engineering geometry is not concentrated at points. The weight of a beam is distributed along its length. The pressure on a dam is distributed across its face. The mass of a rotating shaft is distributed across its cross section. To analyze these systems, you replace the distribution with a **single equivalent point** that captures its first moment (centroid) or its second moment (moment of inertia).
@@ -103,6 +126,91 @@ For undergraduate statics, the area moment of inertia is the working concept. Th
 
 ---
 
+## Worked Examples
+
+### Example 1: Centroid of a Rectangle with a Circular Hole
+
+**Problem:** A rectangular plate is 120 mm wide and 80 mm tall, with the origin at its lower-left corner. A circular hole of radius 20 mm is drilled with its center at $(90, 40)$ mm. Find the centroid $(\bar{x}, \bar{y})$ of the remaining material.
+
+**Step 1: List the pieces** (the hole enters with *negative* area).
+
+| Piece | Area $A_i$ (mm²) | $\bar{x}_i$ (mm) | $\bar{y}_i$ (mm) |
+| --- | --- | --- | --- |
+| Full rectangle | $120 \times 80 = 9600$ | 60 | 40 |
+| Hole (negative) | $-\pi (20)^2 = -1256.6$ | 90 | 40 |
+
+**Step 2: Total area.**
+
+$$A = 9600 - 1256.6 = 8343.4 \text{ mm}^2$$
+
+**Step 3: Area-weighted average.**
+
+$$\bar{x} = \frac{(9600)(60) + (-1256.6)(90)}{8343.4} = \frac{576000 - 113094}{8343.4} = \boxed{55.48 \text{ mm}}$$
+
+$$\bar{y} = \frac{(9600)(40) + (-1256.6)(40)}{8343.4} = \boxed{40.0 \text{ mm}}$$
+
+The hole pulls the centroid from $x = 60$ mm toward the solid side, landing at $55.48$ mm. The $y$-coordinate stays at 40 mm because the hole sits on the horizontal centerline. Removing material always shifts the centroid *away* from the removed region.
+
+---
+
+### Example 2: Rectangle Moment of Inertia, Centroidal and About the Base
+
+**Problem:** A rectangular cross section has width $b = 60$ mm and height $h = 120$ mm. Find the area moment of inertia about its horizontal centroidal axis and about its base.
+
+**Step 1: Centroidal axis** (standard result $I_c = bh^3/12$).
+
+$$I_c = \frac{(60)(120)^3}{12} = \frac{60 \times 1{,}728{,}000}{12} = \boxed{8.64 \times 10^6 \text{ mm}^4}$$
+
+**Step 2: About the base, by the parallel-axis theorem** $I = I_c + A d^2$, with $d = h/2 = 60$ mm and $A = bh = 7200$ mm²:
+
+$$I_{\text{base}} = 8.64 \times 10^6 + (7200)(60)^2 = 8.64 \times 10^6 + 25.92 \times 10^6 = \boxed{34.56 \times 10^6 \text{ mm}^4}$$
+
+As a check, the closed form is $I_{\text{base}} = bh^3/3 = (60)(120)^3/3 = 34.56 \times 10^6$ mm⁴. They agree, and $I_{\text{base}} = 4 I_c$ exactly, the signature of the $Ad^2$ correction for a rectangle.
+
+---
+
+### Example 3: I-Beam Moment of Inertia vs. a Solid Square
+
+**Problem:** An I-beam has a top flange 100 mm × 10 mm, a bottom flange 100 mm × 10 mm, and a web 10 mm × 80 mm, total height 100 mm. Compute the centroidal moment of inertia $I_x$ about the horizontal axis, and compare it to a solid square of equal area.
+
+**Step 1: Centroid.** By symmetry, the centroidal axis is at mid-height, $\bar{y} = 50$ mm.
+
+**Step 2: Composite-bodies + parallel axis.** Measure each piece's centroid from the bottom: top flange at $y = 95$, web at $y = 50$, bottom flange at $y = 5$.
+
+| Piece | $I_{c,i} = bh^3/12$ (mm⁴) | $A_i$ (mm²) | $d_i$ (mm) | $A_i d_i^2$ (mm⁴) |
+| --- | --- | --- | --- | --- |
+| Top flange | $100(10)^3/12 = 8{,}333$ | 1000 | 45 | $2{,}025{,}000$ |
+| Web | $10(80)^3/12 = 426{,}667$ | 800 | 0 | 0 |
+| Bottom flange | $8{,}333$ | 1000 | 45 | $2{,}025{,}000$ |
+
+**Step 3: Sum.**
+
+$$I_x = (8333 + 426667 + 8333) + (2025000 + 0 + 2025000) = \boxed{4.49 \times 10^6 \text{ mm}^4}$$
+
+**Step 4: Compare to a solid square of equal area.** Total area $= 1000 + 800 + 1000 = 2800$ mm², so the square side is $s = \sqrt{2800} = 52.9$ mm, giving $I_{\text{sq}} = s^4/12 = 0.65 \times 10^6$ mm⁴.
+
+The I-beam delivers about **seven times** the bending stiffness of a square using the same material, purely by moving area to the flanges where $d^2$ is large. This is Example 0's "why I-beams win" made quantitative.
+
+<concept-diagram type="moment-of-inertia-shapes"></concept-diagram>
+
+---
+
+### Example 4: Equivalent Point Load for a Triangular Distribution
+
+**Problem:** A beam carries a triangular distributed load that ramps from 0 at the left to $w_0 = 6$ kN/m at the right over a length $L = 4$ m. Find the magnitude and location of the equivalent point load.
+
+**Step 1: Magnitude = area under the load curve** (area of the triangle).
+
+$$F_{\text{eq}} = \frac{1}{2} w_0 L = \frac{1}{2}(6)(4) = \boxed{12 \text{ kN}}$$
+
+**Step 2: Location = centroid of the triangle.** For a triangle with its apex (peak) at the right end, the centroid sits $2L/3$ from the zero end:
+
+$$x_{\text{eq}} = \frac{2L}{3} = \frac{2(4)}{3} = \boxed{2.67 \text{ m from the left (zero) end}}$$
+
+This single 12 kN force, placed 2.67 m from the left, is statically equivalent to the entire distribution for the purpose of finding reactions, the bridge between "the beam carries a 6 kN/m triangular load" and the equilibrium equations you can actually solve.
+
+---
+
 ## Common Errors and Their Diagnoses
 
 - **Confusing area moment with mass moment.** Both have the symbol $I$ in different contexts. Read the units: area moment is m⁴, mass moment is kg·m².
@@ -111,6 +219,34 @@ For undergraduate statics, the area moment of inertia is the working concept. Th
 - **Using the centroid as the center of mass for non-uniform density.** The two coincide only for uniform density. For composite materials, weight by mass.
 
 <dynamic-scenario topic="Centroids and Moments of Inertia" context="An I-beam has flange dimensions 100 mm × 10 mm (top), 100 mm × 10 mm (bottom), and a web 10 mm × 80 mm. Compute the centroidal moment of inertia about the horizontal axis using the composite-bodies method and the parallel-axis theorem. Compare with a solid 100 mm × 100 mm square of the same total area to show why I-beams resist bending more efficiently."></dynamic-scenario>
+
+---
+
+## Summary
+
+### Key Equations
+
+| Concept | Equation |
+| --- | --- |
+| Composite centroid | $\bar{x} = \dfrac{\sum A_i \bar{x}_i}{\sum A_i}$ |
+| Equivalent point load | $F_{\text{eq}} = \displaystyle\int w(x)\,dx$ at the load's centroid |
+| Rectangle (centroidal) | $I_c = bh^3/12$ |
+| Rectangle (base) | $I_{\text{base}} = bh^3/3$ |
+| Parallel-axis theorem | $I = I_c + A d^2$ |
+
+### Key Takeaways
+
+- The centroid is the area-weighted average of geometry; cutouts enter with negative area.
+- A distributed load is equivalent to a point load equal to the area under the curve, applied at that area's centroid.
+- The area moment of inertia ($\text{m}^4$) governs bending stiffness; the mass moment of inertia ($\text{kg·m}^2$) governs rotational dynamics.
+- The parallel-axis theorem $I = I_c + Ad^2$ makes the centroidal axis the minimum-$I$ axis.
+- Pushing area far from the neutral axis (the I-beam strategy) maximizes $I$ for a fixed amount of material.
+
+---
+
+## What's Next?
+
+In **Chapter 6: Structural Analysis**, we turn from cross-section properties back to whole structures, analyzing trusses member by member with the method of joints. The equilibrium habits from Chapters 1 to 4 and the centroid reasoning from this chapter both reappear there.
 
 ---
 
