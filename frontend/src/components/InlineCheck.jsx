@@ -1,4 +1,4 @@
-import { useId, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 import { Check, X } from 'lucide-react'
 import { logEvent } from '../lib/loggingService'
 import { recordAdaptiveSignal } from '../lib/knowledgeService'
@@ -31,6 +31,7 @@ export default function InlineCheck({
     const parsedOptions = typeof options === 'string' ? safeParse(options) : options || []
     const [selectedIndex, setSelectedIndex] = useState(null)
     const [revealed, setRevealed] = useState(false)
+    const optionRefs = useRef([])
 
     const optionIsCorrect = (option) => Boolean(option?.correct || option?.isCorrect)
 
@@ -73,6 +74,9 @@ export default function InlineCheck({
         if (nextIndex !== null) {
             event.preventDefault()
             setSelectedIndex(nextIndex)
+            // Move DOM focus to the newly selected radio (roving tabindex), so a
+            // keyboard/SR user's focus tracks the selection instead of being stranded.
+            optionRefs.current[nextIndex]?.focus()
         }
     }
 
@@ -123,6 +127,7 @@ export default function InlineCheck({
                     return (
                         <button
                             key={index}
+                            ref={(el) => { optionRefs.current[index] = el }}
                             type="button"
                             role="radio"
                             aria-checked={isSelected}

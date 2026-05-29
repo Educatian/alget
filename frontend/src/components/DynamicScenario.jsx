@@ -162,7 +162,7 @@ export default function DynamicScenario({ topic, prompt, context, userContext, c
                         </div>
                     </div>
 
-                    <div className="rounded-lg border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-4">
+                    <div className="rounded-lg border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] p-4" role="status" aria-live="polite">
                         <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Feedback</p>
                         <p className="mt-2 text-sm font-semibold leading-6 text-[var(--ath-text)]">{activeChoice?.tradeoff}</p>
                         <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">{activeChoice?.feedback}</p>

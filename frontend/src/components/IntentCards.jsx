@@ -197,7 +197,7 @@ export function IllustrateIntentCard({ data }) {
             const fetchImage = async () => {
                 setLoadingImage(true);
                 try {
-                    const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
+                    const apiKey = localStorage.getItem('gemini_api_key') || '';
                     const response = await fetch(`${API_BASE}/generate-image`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -324,7 +324,9 @@ export function SimulateIntentCard({ data }) {
                     <iframe
                         srcDoc={simData.html_code}
                         className="w-full h-full border-none pt-6"
-                        sandbox="allow-scripts allow-same-origin"
+                        // Drop allow-same-origin: model-generated p5.js doesn't need it, and
+                        // combined with allow-scripts it would let the frame escape the sandbox.
+                        sandbox="allow-scripts"
                         title="Interactive Simulation"
                     />
                 </div>

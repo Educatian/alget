@@ -136,6 +136,8 @@ export default function BookLayout({ user, onLogout }) {
     const [tocError, setTocError] = useState(null)
     const [sectionData, setSectionData] = useState(null)
     const [loadedSectionPath, setLoadedSectionPath] = useState('')
+    const [sectionError, setSectionError] = useState(null)
+    const [sectionReloadKey, setSectionReloadKey] = useState(0)
     const [railOpen, setRailOpen] = useState(false)
     const [tocOpen, setTocOpen] = useState(false)
     const [railContext, setRailContext] = useState(null)
@@ -202,6 +204,37 @@ export default function BookLayout({ user, onLogout }) {
         ],
     )
 
+    // Stable handler + object so React.memo on ReadingPane actually skips
+    // presence-tick re-renders (a fresh arrow/object each render would defeat it).
+    const handleSectionComplete = useCallback(() => {
+        const alreadyCompleted = isCompleted(course, chapter, section)
+        markCompleted(course, chapter, section)
+        if (!alreadyCompleted) {
+            void socialState.recordCompletion()
+        }
+    }, [course, chapter, section, isCompleted, markCompleted, socialState])
+
+    const peerPulse = useMemo(
+        () => ({
+            connected: socialState.connected,
+            peers: socialState.peers,
+            sameHeadingPeers: socialState.sameHeadingPeers,
+            sameConceptPeers: socialState.sameConceptPeers,
+            signalSummary: socialState.signalSummary,
+            activeHeading,
+            onReaction: socialState.sendReaction,
+        }),
+        [
+            socialState.connected,
+            socialState.peers,
+            socialState.sameHeadingPeers,
+            socialState.sameConceptPeers,
+            socialState.signalSummary,
+            socialState.sendReaction,
+            activeHeading,
+        ],
+    )
+
     const [tocReloadKey, setTocReloadKey] = useState(0)
     const retryToc = useCallback(() => {
         setTocError(null)
@@ -258,23 +291,37 @@ export default function BookLayout({ user, onLogout }) {
         recordAdaptiveSignal(sectionPath, 'page_view')
 
         fetch(`${API_BASE}/book/${course}/${chapter}/${section}`)
-            .then((res) => res.json())
+            .then((res) => {
+                // Distinguish a transient network/server failure from a genuinely
+                // missing section: 404 is "not found", anything else thrown is a
+                // load error that gets a retry affordance (not a dead "Not Found").
+                if (!res.ok) throw new Error(res.status === 404 ? 'not-found' : `Section ${res.status}`)
+                return res.json()
+            })
             .then((data) => {
                 if (cancelled) return
                 setSectionData(data)
+                setSectionError(null)
                 setLoadedSectionPath(sectionPath)
             })
             .catch((error) => {
                 if (cancelled) return
                 console.error(error)
                 setSectionData(null)
+                setSectionError(error?.message === 'not-found' ? null : (error?.message || 'Could not load this section'))
                 setLoadedSectionPath(sectionPath)
             })
 
         return () => {
             cancelled = true
         }
-    }, [course, chapter, section, sectionPath])
+    }, [course, chapter, section, sectionPath, sectionReloadKey])
+
+    const retrySection = useCallback(() => {
+        setSectionError(null)
+        setLoadedSectionPath('')
+        setSectionReloadKey((k) => k + 1)
+    }, [])
 
     useEffect(() => {
         if (!mainScrollRef.current) return
@@ -784,32 +831,20 @@ export default function BookLayout({ user, onLogout }) {
                                         section={section}
                                         sectionData={sectionData}
                                         loading={loading}
+                                        sectionError={sectionError}
+                                        onRetrySection={retrySection}
                                         onStuckEvent={handleStuckEvent}
                                         onHeadingChange={setActiveHeading}
                                         onNeedsReview={handleNeedsReview}
                                         isBookmarked={currentBookmarked}
                                         toggleBookmark={handleBookmarkToggle}
                                         isCompleted={isCompleted(course, chapter, section)}
-                                        markCompleted={() => {
-                                            const alreadyCompleted = isCompleted(course, chapter, section)
-                                            markCompleted(course, chapter, section)
-                                            if (!alreadyCompleted) {
-                                                void socialState.recordCompletion()
-                                            }
-                                        }}
+                                        markCompleted={handleSectionComplete}
                                         previousSection={previousSection}
                                         nextSection={nextSection}
                                         recentSection={recentSection}
                                         onNavigate={handleNavigate}
-                                        peerPulse={{
-                                            connected: socialState.connected,
-                                            peers: socialState.peers,
-                                            sameHeadingPeers: socialState.sameHeadingPeers,
-                                            sameConceptPeers: socialState.sameConceptPeers,
-                                            signalSummary: socialState.signalSummary,
-                                            activeHeading,
-                                            onReaction: socialState.sendReaction
-                                        }}
+                                        peerPulse={peerPulse}
                                     />
                                 </HighlightableContent>
                             </Suspense>

@@ -54,7 +54,10 @@ export default function SimulationFrame({ htmlCode, description, concepts }) {
                     ref={iframeRef}
                     title="Generated Physics Simulation"
                     className="absolute top-0 left-0 w-full h-full border-0 bg-slate-50"
-                    sandbox="allow-scripts allow-same-origin"
+                    // p5.js runs without same-origin; granting both allow-scripts AND
+                    // allow-same-origin would let the framed model-generated script escape
+                    // the sandbox and reach the parent origin (Supabase session, localStorage).
+                    sandbox="allow-scripts"
                 />
             </div>
 

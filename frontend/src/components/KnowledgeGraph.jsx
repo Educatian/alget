@@ -330,6 +330,10 @@ export default function KnowledgeGraph({
     const nodeCount = graphData.nodes.length
     const focusedChapterTitle = graphData.nodes[0]?.chapter_title || ''
 
+    // O(1) node lookups for the link loop below (was O(nodes) find per link, i.e.
+    // O(nodes*links) every render — and the graph re-renders on every pan/drag/hover).
+    const nodesById = new Map(graphData.nodes.map((node) => [node.id, node]))
+
     return (
         <div className="knowledge-graph-mount rounded-2xl p-4 shadow-xl overflow-hidden relative" style={{ background: 'var(--ath-panel)', border: '1px solid var(--ath-line)' }}>
             <div className="mb-3 flex flex-wrap items-center gap-2 text-[11px]" style={{ color: 'var(--ath-muted)' }}>
@@ -380,8 +384,8 @@ export default function KnowledgeGraph({
 
                     <g transform={`translate(${pan.x}, ${pan.y}) scale(${zoom})`}>
                         {graphData.links.map((link, index) => {
-                            const sourceNode = graphData.nodes.find((node) => node.id === link.source)
-                            const targetNode = graphData.nodes.find((node) => node.id === link.target)
+                            const sourceNode = nodesById.get(link.source)
+                            const targetNode = nodesById.get(link.target)
                             if (!sourceNode || !targetNode) return null
 
                             const isHighlighted =

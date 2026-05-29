@@ -32,6 +32,7 @@ export default function HighlightDiscussion({ highlightId, user, onClose }) {
     const [replyText, setReplyText] = useState('')
     const [parentReplyId, setParentReplyId] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [submitting, setSubmitting] = useState(false)
     const replyInputRef = useRef(null)
 
     const identity = useMemo(() => getSocialIdentity(user), [user])
@@ -129,7 +130,8 @@ export default function HighlightDiscussion({ highlightId, user, onClose }) {
 
     const submitReply = async () => {
         const body = replyText.trim()
-        if (!body || !userId) return
+        if (!body || !userId || submitting) return // guard against double-submit
+        setSubmitting(true)
         try {
             const { data } = await supabase
                 .from('highlight_replies')
@@ -154,6 +156,8 @@ export default function HighlightDiscussion({ highlightId, user, onClose }) {
         } catch (err) {
             console.warn('[HighlightDiscussion] reply post failed:', err)
             toast.error('Could not post reply. Your text is preserved - try again.')
+        } finally {
+            setSubmitting(false)
         }
     }
 
@@ -250,10 +254,10 @@ export default function HighlightDiscussion({ highlightId, user, onClose }) {
                     <button
                         type="button"
                         onClick={submitReply}
-                        disabled={!replyText.trim() || !userId}
+                        disabled={!replyText.trim() || !userId || submitting}
                         className="editorial-button px-3 py-1 text-xs disabled:opacity-50"
                     >
-                        Post
+                        {submitting ? 'Posting…' : 'Post'}
                     </button>
                 </div>
             </div>

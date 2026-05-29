@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Lightbulb } from 'lucide-react'
 import API_BASE from '../lib/apiConfig'
+import { useToast } from '../lib/toastContext'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
 
@@ -22,6 +23,7 @@ function buildReviewPayload(problem, reason, preferredTab = 'explain') {
 }
 
 export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, sectionId }) {
+    const toast = useToast()
     const [currentIndex, setCurrentIndex] = useState(0)
     const [answers, setAnswers] = useState({})
     const [gradeResults, setGradeResults] = useState({})
@@ -88,6 +90,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                     selected_option: selectedIndex,
                 })
             })
+            if (!response.ok) throw new Error(`Grade ${response.status}`)
             const result = await response.json()
             const confidenceValue = Number(confidenceByProblem[problemId] || 3)
             // Prefer the authored misconception pattern the backend returned for
@@ -171,6 +174,8 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
             }
         } catch (error) {
             console.error('Grading error:', error)
+            // Don't leave the learner staring at a cleared spinner with no result.
+            toast?.error?.('Could not check your answer right now. Please try again.')
         } finally {
             setLoading(false)
         }

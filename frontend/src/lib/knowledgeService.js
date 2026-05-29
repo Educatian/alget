@@ -292,7 +292,7 @@ export function summarizeAdaptiveSignals(sectionId) {
  */
 export const generateAssessment = async (sectionTitle, bioContext, engContext, learningObjectives, conceptIds) => {
     try {
-        const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
+        const apiKey = localStorage.getItem('gemini_api_key') || '';
         const response = await fetch(`${API_BASE}/generate_assessment`, {
             method: 'POST',
             headers: {
@@ -325,7 +325,7 @@ export const generateAssessment = async (sectionTitle, bioContext, engContext, l
  */
 export const gradeSummary = async (question, studentAnswer, rubric) => {
     try {
-        const apiKey = localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '';
+        const apiKey = localStorage.getItem('gemini_api_key') || '';
         const response = await fetch(`${API_BASE}/grade_summary`, {
             method: 'POST',
             headers: {

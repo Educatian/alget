@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Award, Check, Flame } from 'lucide-react'
 
 function sectionKey(course, chapterId, sectionId) {
@@ -17,7 +18,7 @@ function getChapterProgress(course, chapter, completedSections = []) {
     }
 }
 
-export default function ChapterPassport({
+function ChapterPassport({
     toc,
     currentCourse,
     currentChapter,
@@ -100,3 +101,5 @@ export default function ChapterPassport({
         </section>
     )
 }
+
+export default memo(ChapterPassport)
