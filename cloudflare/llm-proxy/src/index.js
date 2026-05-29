@@ -132,11 +132,21 @@ function historyToMessages(history) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS })
 
     const url = new URL(request.url)
     const path = url.pathname.replace(/^\/api/, '') || '/'
+    const backendEarly = (env.BACKEND_API_BASE || DEFAULT_BACKEND).replace(/\/$/, '')
+
+    // On-demand warm-up: the app pings this on load so the (free-tier, sleepy)
+    // FastAPI backend is booting while the learner reads, eliminating the cold
+    // start before they hit a proxied deterministic endpoint (grade, etc.).
+    // Returns immediately; the wake request continues in the background.
+    if (path === '/warmup') {
+      ctx.waitUntil(fetch(`${backendEarly}/book/inst-design/toc`).catch(() => {}))
+      return json({ ok: true, warming: true })
+    }
 
     let body = {}
     if (request.method === 'POST') {

@@ -12,7 +12,7 @@ import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
 import AppErrorBoundary from './components/AppErrorBoundary'
 import GlobalSearch from './components/GlobalSearch'
-import API_BASE from './lib/apiConfig'
+import { LLM_API_BASE } from './lib/apiConfig'
 import './index.css'
 
 const LandingPage = lazy(() => import('./pages/LandingPage'))
@@ -58,8 +58,12 @@ export default function App() {
   const [loading, setLoading] = useState(() => !(E2E_USER || readDemoUser()))
 
   useEffect(() => {
-    // Wake up backend immediately (Render free tier sleeps after inactivity)
-    fetch(`${API_BASE}/book/inst-design/toc`, { method: 'GET' }).catch(() => {})
+    // Wake up the FastAPI backend immediately (free tier sleeps after ~15min).
+    // The previous ping hit the STATIC /api content snapshot, so it never woke
+    // the real backend; the LLM worker's /warmup boots it in the background so
+    // proxied deterministic endpoints (grade, mastery_graph, ...) are warm by
+    // the time the learner reaches them. Fire-and-forget.
+    fetch(`${LLM_API_BASE}/warmup`, { method: 'GET' }).catch(() => {})
 
     if (E2E_USER) {
       return undefined
