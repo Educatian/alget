@@ -37,8 +37,10 @@ const STEPS = [
     },
     {
         title: 'Help rail',
-        body: 'Stuck? Try Explain, Reframe, Practice, or Ask.',
-        target: '.intel-rail',
+        body: 'Stuck? This button opens the AI help rail: Explain, Reframe, Practice, or Ask.',
+        // Target the always-present toolbar button (the rail panel itself is only
+        // rendered once opened), so the spotlight has something to land on.
+        target: '[data-onboarding="help-rail-button"]',
     },
     {
         title: 'Tutor chat',
@@ -46,9 +48,10 @@ const STEPS = [
         target: '[data-onboarding="chat-widget-button"]',
     },
     {
-        title: 'Brain network',
-        body: 'Header minimap. Click any concept to jump. Blue: focus / green: stable / amber: developing',
-        target: '.knowledge-graph-mount',
+        title: 'Concept map',
+        body: 'This header button opens the chapter concept map. Click any concept to jump. Blue: focus / green: stable / amber: developing.',
+        // Target the toolbar button; the graph itself only mounts inside its popover.
+        target: '[data-onboarding="concept-map-button"]',
     },
 ]
 
@@ -147,42 +150,63 @@ export default function OnboardingTour() {
             highlightedElRef.current = null
         }
 
-        const el = current?.target ? document.querySelector(current.target) : null
-
-        if (!el) {
-            // Centered fallback (Welcome step, or target not on the page yet).
+        if (!current?.target) {
+            // Welcome step: centered, no spotlight.
             const raf = requestAnimationFrame(() => setRect(null))
             return () => cancelAnimationFrame(raf)
         }
 
-        el.scrollIntoView({
-            block: 'center',
-            inline: 'nearest',
-            behavior: reducedMotion ? 'auto' : 'smooth',
-        })
+        let raf = 0
+        let settle = 0
+        let poll = 0
+        let tries = 0
 
-        // Lift the target above the scrim (z-[200]) and ring it.
-        el.style.outline = '2px solid var(--ath-primary)'
-        el.style.outlineOffset = '4px'
-        el.style.zIndex = '201'
-        // Only force a stacking context when the element is statically
-        // positioned; never clobber an existing positioned layout.
-        if (getComputedStyle(el).position === 'static') {
-            el.style.position = 'relative'
+        const applySpotlight = (el) => {
+            el.scrollIntoView({
+                block: 'center',
+                inline: 'nearest',
+                behavior: reducedMotion ? 'auto' : 'smooth',
+            })
+            // Lift the target above the scrim (z-[200]) and ring it.
+            el.style.outline = '2px solid var(--ath-primary)'
+            el.style.outlineOffset = '4px'
+            el.style.zIndex = '201'
+            // Only force a stacking context when the element is statically
+            // positioned; never clobber an existing positioned layout.
+            if (getComputedStyle(el).position === 'static') {
+                el.style.position = 'relative'
+            }
+            highlightedElRef.current = el
+            // Initial measure next frame, then a second measure after the
+            // (possibly smooth) scroll settles so the card and cutout track the
+            // element's final on-screen position.
+            raf = requestAnimationFrame(() => setRect(el.getBoundingClientRect()))
+            settle = setTimeout(() => setRect(el.getBoundingClientRect()), reducedMotion ? 0 : 320)
         }
-        highlightedElRef.current = el
 
-        // Initial measure next frame, then a second measure after the
-        // (possibly smooth) scroll settles so the card and cutout track the
-        // element's final on-screen position.
-        const raf = requestAnimationFrame(() => setRect(el.getBoundingClientRect()))
-        const settle = setTimeout(() => {
-            setRect(el.getBoundingClientRect())
-        }, reducedMotion ? 0 : 320)
+        // Some targets (lazy-mounted ChatWidget, etc.) may not be in the DOM the
+        // instant the step activates. Poll briefly before falling back to the
+        // centered card, so a real target gets spotlighted instead of just
+        // popping a context-free window.
+        const tryFind = () => {
+            const el = document.querySelector(current.target)
+            if (el) {
+                applySpotlight(el)
+                return
+            }
+            tries += 1
+            if (tries <= 8) {
+                poll = setTimeout(tryFind, 150)
+            } else {
+                setRect(null) // give up after ~1.2s -> centered fallback
+            }
+        }
+        tryFind()
 
         return () => {
             cancelAnimationFrame(raf)
             clearTimeout(settle)
+            clearTimeout(poll)
         }
     }, [active, current, reducedMotion])
 
