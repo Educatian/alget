@@ -25,3 +25,18 @@ export const ADAPTIVE_EDGE_FUNCTION = 'adaptive-recommendation'
 export function isAdaptiveEdgeEnabled() {
   return Boolean(import.meta.env.VITE_ADAPTIVE_EDGE)
 }
+
+/**
+ * Deployed Cloudflare Worker URL for the low-latency adaptive policy
+ * (cloudflare/adaptive-recommendation). When set, adaptivity routes here first
+ * (with automatic fallback to the Supabase edge fn / FastAPI). Unset by default
+ * so existing behavior is unchanged.
+ */
+export const ADAPTIVE_WORKER_URL = import.meta.env.VITE_ADAPTIVE_WORKER_URL || ''
+
+/**
+ * True when a Cloudflare Worker URL is configured for adaptivity.
+ */
+export function isAdaptiveWorkerEnabled() {
+  return Boolean(ADAPTIVE_WORKER_URL)
+}

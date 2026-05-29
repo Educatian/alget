@@ -23,7 +23,12 @@
  */
 
 import { supabase, isSupabaseConfigured } from './supabase'
-import API_BASE, { ADAPTIVE_EDGE_FUNCTION, isAdaptiveEdgeEnabled } from './apiConfig'
+import API_BASE, {
+  ADAPTIVE_EDGE_FUNCTION,
+  isAdaptiveEdgeEnabled,
+  ADAPTIVE_WORKER_URL,
+  isAdaptiveWorkerEnabled,
+} from './apiConfig'
 
 const DEFAULT_EDGE_TIMEOUT_MS = 2500
 
@@ -31,6 +36,23 @@ function timeout(ms) {
   return new Promise((_, reject) => {
     setTimeout(() => reject(new Error('adaptive_edge_timeout')), ms)
   })
+}
+
+async function callWorker(payload, timeoutMs) {
+  // Plain fetch to the Cloudflare Worker, raced against a timeout so a slow
+  // edge can never stall the UI. On any non-2xx / timeout the caller falls back.
+  const fetchPromise = fetch(ADAPTIVE_WORKER_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  }).then(async (res) => {
+    if (!res.ok) {
+      const text = await res.text().catch(() => '')
+      throw new Error(`adaptive_worker_${res.status}${text ? `: ${text}` : ''}`)
+    }
+    return res.json()
+  })
+  return Promise.race([fetchPromise, timeout(timeoutMs)])
 }
 
 async function callEdge(payload, timeoutMs) {
@@ -68,12 +90,24 @@ async function callFastApi(payload) {
  *     artifact_revision_scores?, annotation_signals?, learner_profile?, ... }
  * @param {object} [opts]
  * @param {number} [opts.timeoutMs] Edge timeout before falling back (default 2500ms).
- * @param {boolean} [opts.forceFastApi] Bypass the edge entirely (testing / opt-out).
- * @returns {Promise<{ data: object|null, error: Error|null, source: 'edge'|'fastapi' }>}
+ * @param {boolean} [opts.forceFastApi] Bypass the edge/worker entirely (testing / opt-out).
+ * @returns {Promise<{ data: object|null, error: Error|null, source: 'worker'|'edge'|'fastapi' }>}
  */
 export async function getAdaptiveRecommendation(payload, opts = {}) {
   const { timeoutMs = DEFAULT_EDGE_TIMEOUT_MS, forceFastApi = false } = opts
+  const useWorker = !forceFastApi && isAdaptiveWorkerEnabled()
   const useEdge = !forceFastApi && isAdaptiveEdgeEnabled() && isSupabaseConfigured
+
+  // Prefer the Cloudflare Worker when its URL is configured. On ANY
+  // error/timeout, fall back to the Supabase edge fn (if enabled) then FastAPI.
+  if (useWorker) {
+    try {
+      const data = await callWorker(payload, timeoutMs)
+      return { data, error: null, source: 'worker' }
+    } catch {
+      // fall through to edge/fastapi below
+    }
+  }
 
   if (useEdge) {
     try {

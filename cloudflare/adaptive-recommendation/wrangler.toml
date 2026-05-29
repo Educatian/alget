@@ -1,0 +1,17 @@
+# Cloudflare Worker: alget-adaptive-recommendation
+#
+# Low-latency adaptive support-selection policy endpoint. The response is pure
+# policy compute + return (no per-request DB reads); the only Supabase
+# interaction is a best-effort, fire-and-forget provenance write.
+#
+# SECRETS (NOT stored here): set via `wrangler secret put`:
+#   wrangler secret put SUPABASE_URL
+#   wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+# Only NON-secret config belongs in [vars].
+
+name = "alget-adaptive-recommendation"
+main = "src/index.ts"
+compatibility_date = "2025-05-01"
+
+# No [vars] needed for v1: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are
+# provided as secrets. If non-secret config is added later, declare it here.
