@@ -1,0 +1,884 @@
+
+
+########## Sosnovsky_2025.pdf  pages=20 ##########
+
+---- page 1 ----
+Int J Artif Intell Educ (2025) 35:967–986
+https://doi.org/10.1007/s40593-024-00451-9
+EDITORIAL
+Intelligent Textbooks
+Sergey Sosnovsky1 · Peter Brusilovsky2 · Andrew Lan3
+Published online: 11 February 2025
+© International Artiﬁcial Intelligence in Education Society 2025
+Introduction
+Textbooks remain one of the main methods of instruction, but—just like other educa-
+tional tools—they have been evolving over the last several decades in many aspects
+(how they are created, published, formatted, accessed, and maintained). Most text-
+books today have digital versions and can be accessed online. A large number of
+textbooks (and other structured instructional texts, such as tutorials) are freely avail-
+able as open educational resources (e.g., Baraniuk et al., 2017). Many textbooks come
+with libraries of supplementary educational resources (Ericson & Miller, 2020; Gor-
+don et al., 2021) or even distributed as parts of online educational services built on
+top of them (Ritter et al., 2019). The transition of textbooks from printed copies to
+digital and online formats has facilitated numerous attempts to enrich them with var-
+ious kinds of interactive functionalities including search and annotation, interactive
+content modules, automated assessments, question ans, chatbots, etc.
+As a result of these enrichments, new research challenges and opportunities emerge
+that call for the application of artiﬁcial intelligence (AI) methods to enhance digital
+textbooks and learners’ interaction with them. There are many research questions
+associated with this new area of research; examples include:
+• How can we facilitate access to textbooks and improve the reading process?
+Peter Brusilovsky and Andrew Lan contributed equally to this work.
+B Sergey Sosnovsky
+s.a.sosnovsky@uu.nl
+Peter Brusilovsky
+peterb@pitt.edu
+Andrew Lan
+andrewlan@cs.umass.edu
+1
+Department of Information and Computing Sciences, Utrecht University, Princetonplein 5,
+Utrecht 3584 CC, Netherlands
+2
+School of Computing and Information, University of Pittsburgh, 135 North Belleﬁeld ave.,
+Pittsburgh, PA 15260, USA
+3
+Manning College of Information and Computer Sciences, University of Massachusetts Amherst, 140
+Governors Dr., Amherst, MA 01002, USA
+123
+
+---- page 2 ----
+968
+Int J Artif Intell Educ (2025) 35:967–986
+• How can we process textbook content to infer knowledge underlying the text and
+use it to improve learning support?
+• How can we process increasingly more detailed logs of students interacting with
+digital textbooks and extract insights on learning?
+• How can we ﬁnd and retrieve relevant content “in the wild”, i.e., on the web, that
+can enrich the textbooks?
+• How can we leverage advanced language technology, such as chatbots, to make
+textbooks more interactive?
+• How can we better understand both textbooks and student behaviors as they learn
+within the textbook and create personalized learner experiences?
+The Evolution of Intelligent Textbooks
+Our previous analyses of the ﬁeld of Intelligent Textbooks have identiﬁed several top-
+ical trends (Rodrigo et al., 2023) and historic milestones (Brusilovsky et al., 2022) that
+help us understand how the ﬁeld has developed over the years and which challenges
+have remained the focus of the community. In this section, we present an updated
+overview of the evolution of the research on Intelligent Textbooks, including more
+recent developments in the ﬁeld. We hope that this overview helps the readers under-
+stand the “big picture” of research in this fast-developing ﬁeld.
+Generation 1: Intelligence Engineered
+The ﬁrst generation of research on intelligent textbooks was born at the crossroads of
+intelligent tutoring systems (Reggia et al., 1980) and adaptive educational hypermedia
+(Brusilovsky et al., 1993). Interfaces of ﬁrst prototypes did not utilize the familiar text-
+book layout; instead, they provided students with adaptive access to information items
+or hyper-cards as a response to students’ performance with accompanying exercises.
+After the Web (with its hypertext core) became the main platform for the deployment
+of educational tools, ﬁrst-generation intelligent textbooks adopted the common struc-
+tured textbook organization with its tree of sections, a table of contents, and glossaries.
+On the top of this common structure, these intelligent textbooks implemented a range
+of personalization techniques to support the readers, such as navigation support (Henze
+et al., 1999; Weber & Brusilovsky, 2016), adaptive page manipulation (Hohl et al.,
+1996), content recommendation (Kavcic, 2004), content sequencing (Ullrich, 2008),
+or a combination of different techniques (Sosnovsky, 2014). These textbooks were
+developed as closed-corpus environments that provided access to limited collections
+of carefully crafted of instructional texts and learning exercises (see Fig. 1). The intel-
+ligence in ﬁrst-generation intelligent textbooks was based on traditional knowledge
+engineering approaches, which required engagement of human domain experts. As
+illustrated in Fig. 1, these experts helped structure the learning domain as a set of
+concepts (nodes), connect textbook sections and activities (documents) with domain
+concepts (edges), and develop personalization approaches based on these domain
+and content models (gears). Students’ interaction with the elements of the textbook
+123
+
+---- page 3 ----
+Int J Artif Intell Educ (2025) 35:967–986
+969
+Fig. 1 Intelligent textbooks of the ﬁrst generation are closed-box adaptive educational systems, which rely
+on carefully-engineered models of domain knowledge and textbook material. They also enrich textbook
+reading experience with interactivity, served by exercises and assessments that provide students with various
+kinds of adaptive support
+content (texts and exercises) was traced to model the growth of student knowledge
+about domain concepts and use by its personalization technologies to help students
+master the textbook knowledge in an individually optimized manner.
+Generation 2: Intelligence Integrated
+For the next generation of intelligent textbooks, the focus initially shifted to more
+practical aspects of implementing textbook environments, such as open architectures
+(De Bra & Calvi, 1998; Brusilovsky, 2004), integration of textbooks with external
+educational resources (Dolog et al., 2004a), and standardization of semantic mod-
+els that support such architectures and integration (Dolog et al., 2004b; Melis et al.,
+2006). Illustrated in Fig. 2, this integration enabled researchers to address one of the
+Fig. 2 Intelligent textbooks of the second generation beneﬁt from open architectures and open standards for
+knowledge representation. They integrate external otologies and interactive learning objects from shared
+repositories to assemble the adaptive functionality of intelligent textbooks of the previous generation
+123
+
+---- page 19 ----
+Int J Artif Intell Educ (2025) 35:967–986
+985
+Pursel, B., Ramsay, C. M., Dave, N., Liang, C., & Giles, C. L. (2019). Bbookx: Creating semi-automated
+textbooks to support student learning and decrease student costs. In Proceedings of the First Workshop
+on Intelligent Textbooks at 20th International Conference on Artiﬁcial Intelligence in Education (AIED
+2019) (pp. 81–86).
+Rahdari, B., Brusilovsky, P., Thaker, K., & Barria-Pineda, J. (2020). Using knowledge graph for explainable
+recommendation of external content in electronic textbooks. In Proceedings of the Second Workshop
+on Intelligent Textbooks at 21st International Conference on Artiﬁcial Intelligence in Education (AIED
+2020) (pp. 50–61).
+Reggia, J. A., Pula, T. P., Price, T. R., & Perricone, B. T. (1980). Towards an intelligent textbook of neurology.
+In Computer-Assisted Medical Decision Making (pp. 214–238). Springer.
+Ritter, S., Fisher, J., Lewis, A., Finocchi, S. B., Hausmann, B., & Fancsali, S. (2019). What’s a textbook?
+envisioning the 21st century k-12 text. In Proceedings of the First Workshop on Intelligent Textbooks
+at 20th International Conference on Artiﬁcial Intelligence in Education (AIED 2019) (pp. 87–94).
+Rodrigo, M. M. T., Vassileva, J., Lane, H. C., Brusilovsky, P., Sosnovsky, S., Biswas, G., Lester, J. C.,
+Mizoguchi, R., Prihar, E., Heffernan, N., Mostow, J., Frasson, C., & Dmitro, V. (2023) The great
+challenges and opportunities of the next 20 years. In: B. du Boulay, A. Mitrovic, & K. Yacef (Eds.),
+Handbook of Artiﬁcial Intelligence in Education (pp. 606–649). Edward Elgar Publishing.
+Saindane, D., Prajapati, S. P., & Das, S. (2023). Converting physical textbooks into interactive and immersive
+“phygital” textbooks: A proposed system architecture design for textbook companion apps. In Pro-
+ceedings of the Fifth Workshop on Intelligent Textbooks at 24nd International Conference on Artiﬁcial
+Intelligence in Education (AIED 2023) (pp. 88–93).
+Seidel, N., & Menze, D. (2022). Interactions of reading and assessment activities. In Proceedings of the
+Fourth Workshop on Intelligent Textbooks at 23nd International Conference on Artiﬁcial Intelligence
+in Education (AIED 2022) (pp. 64–76).
+Sonkar, S., Liu, N., Mallick, D., & Baraniuk, R. G. (2023). Class: A design framework for building intelligent
+tutoring systems based on learning science principles. In Findings of the Association for Computational
+Linguistics: EMNLP 2023 (pp. 1941–1961). ACL.
+Sosnovsky, S. (2014). Math-Bridge: Closing gaps in European remedial mathematics with technology-
+enhanced learning. Springer Fachmedien Wiesbaden, pp. 437–451.
+Sosnovsky, S., Brusilovsky, P., & Lan, A. (Eds.) (2022). Proceedings of the Fourth International Workshop
+on Intelligent Textbooks, CEUR-WS. Available at https://ceur-ws.org/Vol-3192/
+Sosnovsky, S., Brusilovsky, P., & Lan, A. (Eds.) (2023). Proceedings of the Fifth International Workshop
+on Intelligent Textbooks, CEUR-WS. Available at https://ceur-ws.org/Vol-3444/
+Sosnovsky, S., Brusilovsky, P., Baraniuk, R., et al, (Eds.) (2020). Proceedings of the Second International
+Workshop on Intelligent Textbooks, CEUR-WS. Available at https://ceur-ws.org/Vol-2674/
+Sosnovsky, S., Brusilovsky, P., Baraniuk, R., et al. (Eds.) (2019). Proceedings of the First International
+Workshop on Intelligent Textbooks, CEUR-WS. Available at https://ceur-ws.org/Vol-2384/
+Sosnovsky, S., Brusilovsky, P., Baraniuk, R., et al. (Eds.) (2021). Proceedings of the Third International
+Workshop on Intelligent Textbooks, CEUR-WS. Available at https://ceur-ws.org/Vol-2895/
+Sosnovsky, S., Hsiao, I. H., & Brusilovsky, P. (2012). Adaptation “in the wild”: Ontology-based personaliza-
+tion of open-corpus learning material. In Proceedings of the 7th European Conference of Technology
+Enhanced Learning (EC-TEL 2012) (pp. 425–431). Springer.
+Sovrano, F., Ashley, K., & Bacchelli, A. (2023). Toward eliminating hallucinations: GPT-based explanatory
+ai for intelligent textbooks and documentation. In Proceedings of the Fifth International Workshop
+on Intelligent Textbooks at the 24th International Conference on Artiﬁcial Intelligence in Education
+(AIED 2023) (pp. 54–65).
+Sovrano, F., Ashley, K., Brusilovsky, P., & Vitali, F. (2022). Yai4edu: An explanatory ai to generate inter-
+active e-books for education. In Proceedings of the Fourth Workshop on Intelligent Textbooks at 23nd
+International Conference on Artiﬁcial Intelligence in Education (AIED 2022) (pp. 31–39).
+Sovranom, F., Ashley, K., Brusilovsky, P., & Vitali, F. (2024). How to improve the explanatory power of an
+intelligent textbook: A case study in legal writing. International Journal of Artiﬁcial Intelligence in
+Education (This Special Issue).
+Tauqeer, F., Raza, M. K., Yin, M. S., et al. (2021). Dental tutorbot: Bringing dental textbooks to life. In
+Proceedings of the Third Workshop on Intelligent Textbooks at 22nd International Conference on
+Artiﬁcial Intelligence in Education (AIED 2021) (pp. 19–26).
+123
+
+---- page 20 ----
+986
+Int J Artif Intell Educ (2025) 35:967–986
+123
+Thaker, K., Brusilovsky, P., & He, D. (2019). Student modeling with automatic knowledge component
+extraction for adaptive textbooks. In Proceedings of the First Workshop on Intelligent Textbooks at
+20th International Conference on Artiﬁcial Intelligence in Education (AIED 2019) (pp. 95–102).
+Thaker, K., Zhang, L., He, D., & Brusilovsky, P. (2020). Recommending remedial readings using student’s
+knowledge state. In Proceedings of the 13th International Conference on Educational Data Mining
+(EDM 2020) (pp. 233–244).
+Ullrich, C. (2008). Pedagogically founded courseware generation for web-based learning: An HTN-
+planning-based approach implemented in PAIGOS. Springer Science & Business Media.
+Van Campenhout, R., Dittel, J. S., Jerome, B., & Johnson, B. (2021). Transforming textbooks into learning by
+doing environments: An evaluation of textbook-based automatic question generation. In Proceedings of
+the Third Workshop on Intelligent Textbooks at 22nd International Conference on Artiﬁcial Intelligence
+in Education (AIED 2021) (pp. 60–73).
+Wang, S., Liang, C., Wu, Z., Williams, K., Pursel, B., Brautigam, B., Saul, S., Williams, H., Bowen, K., &
+Giles, C. L. (2015). Concept hierarchy extraction from textbooks. In Proceedings of the 2015 ACM
+Symposium on Document Engineering (pp. 147–156)
+Wang, R., Zhang, Q., Robinson, C., Loeb, S., & Demszky, D. (2024). Bridging the novice-expert gap via
+models of decision-making: A case study on remediating math mistakes. In Proceedings of the 2024
+Conference of the North American Chapter of the Association for Computational Linguistics: Human
+Language Technologies (Volume 1: Long Papers) (pp. 2174–2199).
+Waters, A., Chaudhri, V., Mallick, D., et al. (2021). A relationship selection task. In Proceedings of the
+Third Workshop on Intelligent Textbooks at 22nd International Conference on Artiﬁcial Intelligence
+in Education (AIED 2021) (pp. 88–92).
+Weber, G., & Brusilovsky, P. (2016). ELM-ART - an interactive and intelligent web-based electronic text-
+book. International Journal of Artiﬁcial Intelligence in Education, 26, 72–81.
+Winchell, A., Mozer, M., Lan, A., Grimaldi, P., & Pashler, H. (2018). Can textbook annotations serve
+as an early predictor of student learning? In Proceedings of the 11th International Conference on
+Educational Data Mining (EDM 2018) (pp. 431–437).
+Yarbro, J. T., & Olney, A. M. (2021). Contextual deﬁnition generation. In Proceedings of the Third Workshop
+on Intelligent Textbooks at 22nd International Conference on Artiﬁcial Intelligence in Education (AIED
+2021) (pp. 74–83).
+Yin, C., Yamada, M., Oi, M., et al. (2019). Exploring the relationships between reading behavior patterns and
+learning outcomes based on log data from e-books: A human factor approach. International Journal
+of Human-Computer Interaction, 35(4–5), 313–322.
+Zhang, A., Igo, M., Facciotti, M., & Karger, D. (2017). Using student annotated hashtags and emojis to
+collect nuanced affective states. In Proceedings of the Fourth (2017) ACM Conference on Learning @
+Scale (pp. 319–322). ACM.
+Zhong J,Yuan G,Zhang J,et al (2020) Using digital textbooksasknowledge base to detect student idea devel-
+opment in collaborative discourse. In Proceedings of the Second Workshop on Intelligent Textbooks at
+21st International Conference on Artiﬁcial Intelligence in Education (AIED 2020) (pp. 62–66).
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps
+and institutional afﬁliations.
+
+
+########## Morris_2025_AQG.pdf  pages=22 ##########
+
+---- page 1 ----
+ARTICLE
+International Journal of Artificial Intelligence in Education (2025) 35:1022–1043
+https://doi.org/10.1007/s40593-024-00395-0
+Abstract
+As intelligent textbooks become more ubiquitous in classrooms and educational 
+settings, the need to make them more interactive arises. An alternative is to ask stu­
+dents to generate knowledge in response to textbook content and provide feedback 
+about the produced knowledge. This study develops Natural Language Processing 
+models to automatically provide feedback to students about the quality of sum­
+maries written at the end of intelligent textbook sections. The study builds on the 
+work of Botarleanu et al. (2022), who used a Longformer Large Language Model 
+(LLM) to develop a summary grading model. Their model explained around 55% 
+of holistic summary score variance as assigned by human raters. This study uses a 
+principal component analysis to distill summary scores from an analytic rubric into 
+two principal components – content and wording. This study uses two encoder-only 
+classification large language models finetuned from Longformer on the summaries 
+and the source texts using these principal components explained 82% and 70% of 
+the score variance for content and wording, respectively. On a dataset of summaries 
+collected on the crowd-sourcing site Prolific, the content model was shown to be 
+robust although the accuracy of the wording model was reduced compared to the 
+training set. The developed models are freely available on HuggingFace and will 
+allow formative feedback to users of intelligent textbooks to assess reading com­
+prehension through summarization in real time. The models can also be used for 
+other summarization applications in learning systems.
+Keywords  Intelligent textbooks · Large language models · Automated summary 
+scoring · Transformers
+Accepted: 5 February 2024 / Published online: 28 March 2024
+© The Author(s) 2024
+Formative Feedback on Student-Authored Summaries in 
+Intelligent Textbooks Using Large Language Models
+Wesley Morris1
+ · Scott Crossley1 · Langdon Holmes1 · Chaohua Ou2 · 
+Mihai Dascalu3 · Danielle McNamara4
+Extended author information available on the last page of the article
+1 3
+
+---- page 2 ----
+International Journal of Artificial Intelligence in Education (2025) 35:1022–1043
+Introduction
+Intelligent textbooks have become increasingly popular in recent years as the 
+COVID-19 pandemic pushed many learners into online classes (Seaman & Sea­
+man, 2020) combined with advances in Natural Language Processing (NLP) that 
+have made human-machine interaction more accessible (Brusilovsky et al., 2022; 
+Wang et al., 2021). Intelligent textbooks have many advantages over print textbooks, 
+including the integration of multimedia elements such as video, audio, and hyper­
+links. While some studies have demonstrated no significant difference in learning 
+between digital and print textbooks (Rockinson-Szapkiw et al., 2013), a more recent 
+and comprehensive meta-analysis of 26 studies reported that interactive features such 
+as those in intelligent textbooks improve reading performance with a moderate effect 
+size across multiple knowledge domains (Clinton-Lisell et al., 2021). Additionally, 
+college students prefer the lower cost and ease of use of intelligent textbooks (Ji et 
+al., 2014; Chulkov & VanAlstine, 2013).
+A textbook should be more than a static web-based version of a traditional paper 
+textbook to be considered intelligent. Instead, an intelligent textbook should be inter­
+active and adapt to the individual user’s needs. Various forms of artificial intelligence 
+techniques can be employed to accomplish the goal of interactivity, including the use 
+of Transformer-based Large Language Models (LLMs). LLMs have been used for a 
+variety of purposes, including summary generation (Khandelwal et al., 2019), ques­
+tion answering (Shao et al., 2019), text classification (Wolf et al., 2020), validation 
+of peer-assigned scores in massive open online courses (Morris et al., 2023b), and 
+question generation tasks (Lopez et al., 2021).
+Previous research indicates that writing about textbook content in tasks such as 
+summarization can increase learning outcomes in various content domains (Graham 
+et al., 2020; Silva & Limongi, 2019). However, scoring summaries is time-intensive 
+for instructors, paving the way for automatic approaches to summary scoring (Laga­
+kis & Demetriadis, 2021). This study is part of a larger project called Intelligent 
+Textbook for Enhanced Language Learning (iTELL) to develop a computational 
+framework that converts static, web-based textbooks into interactive, intelligent text­
+books. iTELL converts any type of machine-readable text into an interactive web-
+app, and students can write summaries directly in the application. These summaries 
+can be scored automatically by LLMs specifically trained to generate scores which 
+inform qualitative feedback to students related to content and wording. Students can 
+use the feedback from these models in different ways, including to reflect on and 
+guide their learning, identify and correct misconceptions, review missed topics, and 
+prepare for upcoming materials. As such, while iTELL is being developed in the con­
+text of intelligent textbooks, it also has multiple applications outside of that context.
+The goal of this current study is to report on the automated summary evaluation 
+models integrated into iTELL and discuss how feedback is automatically provided 
+to the users of intelligent textbooks. Based on pretrained encoder-only LLMs, our 
+models can help students develop their knowledge while providing important infor­
+mation about reading comprehension to teachers and material developers (Phillips 
+Galloway, & Uccelli, 2019). Specifically, we provide an overview of LLMs that pro­
+vide a formative assessment of summaries. These include models based on RoBERTa 
+1 3
+1023
+
+---- page 3 ----
+International Journal of Artificial Intelligence in Education (2025) 35:1022–1043
+(Liu et al., 2019) that predict scores based only on the summary due to constraints 
+on the maximum sequence length, and models using Longformer (Beltagy et al., 
+2020), which are capable of an increased max sequence length, allowing them to 
+predict summary scores while including considerably more text from the textbook as 
+context. Because iTELL is designed to be domain agnostic, the models must provide 
+accurate feedback to users regardless of the textbook topic. To that end, the models 
+were trained on a dataset comprising source texts on a wide range of informative top­
+ics. The research questions that guide this study are the following:
+1.	 To what extent does the inclusion of source text from the textbook improve the 
+accuracy of the LLMs in automatically scoring summaries?
+2.	 Does unsupervised pretraining on a large dataset of texts in the target language 
+domain improve performance on the LLMs?
+3.	 How well do automated summary evaluation LLMs perform when they are used 
+outside of the context of the dataset and labels considered during their training?
+Related Work
+Intelligent Textbooks
+The earliest intelligent textbooks were designed in the 1990s using the principles 
+of knowledge engineering, in which the textbook would be designed and produced 
+by domain experts (Brusilovsky et al., 2022). Early work in designing intelligent 
+textbooks included the development of hypertext (Bareiss & Osgood, 1993), which 
+allowed students to navigate the book efficiently (Brusilovsky & Pesin, 1998). One 
+of the first web-based interactive textbooks included ELM-ART, an intelligent, inter­
+active textbook to teach programming introduced in 1996 (Weber & Brusilovsky, 
+2016).
+The development of intelligent textbooks has increased in the past decade as com­
+putational tools become more sophisticated and accessible (Sosnovsky et al., 2023). 
+More recent research has included mining student behaviors in intelligent textbooks 
+and using those data to provide an individualized learning experience. For instance, 
+Lan and Baraniuk (2016) developed a muti-armed bandit algorithm that uses results 
+from previous assessments to identify and recommend pedagogical activities opti­
+mally individualized for each student. Learner behavior such as failure to correctly 
+answer comprehension questions can also be used to adaptively modify the content of 
+textbooks, thus recommending materials to remediate comprehension gaps (Thaker 
+et al., 2020). Other research has shown that student behaviors in intelligent text­
+books, such as annotation and highlighting, can predict student success in the course 
+(Winchell et al., 2018) and that concept or keyphrase extraction using annotation by 
+trained experts can be used as training data for machine learning algorithms (Wang 
+et al., 2021).
+Researchers have also used NLP techniques to construct semantic maps of text­
+books which can be used to integrate the textbook with resources available on the 
+1 3
+1024
+
+---- page 21 ----
+International Journal of Artificial Intelligence in Education (2025) 35:1022–1043
+Ramasesh, V. V., Lewkowycz, A., & Dyer, E. (2021). Effect of scale on catastrophic forgetting in neu­
+ral networks. In International Conference on Learning Representations. https://openreview.net/
+pdf?id=GhVS8_yPeEa
+Rockinson-Szapkiw, A. J., Courduff, J., Carter, K., & Bennett, D. (2013). Electronic versus traditional 
+print textbooks: A comparison study on the influence of university students’ learning. Computers & 
+Education, 63, 259–266.
+Scialom, T., Lamprier, S., Piwowarski, B., & Staiano, J. (2019). Answers Unite! Unsupervised Metrics for 
+Reinforced Summarization Models. https://doi.org/10.48550/ARXIV.1909.01610.
+Seaman, J. E., & Seaman, J. (2020). Digital texts in the time of COVID: Educational resources in U.S. 
+Higher Education. Bay View Analytics.
+Shao, T., Guo, Y., Chen, H., & Hao, Z. (2019). Transformer-based neural network for answer selection in 
+question answering. Ieee Access: Practical Innovations, Open Solutions, 7, 26146–26156. https://
+doi.org/10.1109/ACCESS.2019.2900753.
+Shorten, C., Khoshgoftaar, T. M., & Furht, B. (2021). Text Data Augmentation for Deep Learning. Journal 
+of Big Data, 8(1), 101. https://doi.org/10.1186/s40537-021-00492-0.
+Silva, M., A., & Limongi, R. (2019). Writing to learn increases long-term memory consolidation: A 
+Mental-Chronometry and computational-modeling study of Epistemic writing. Journal of Writing 
+Research, 11(vol(11 issue 1), 211–243. https://doi.org/10.17239/jowr-2019.11.01.07.
+Sosnovsky, S., Brusilovsky, P., & Lan, A. (2023). Intelligent textbooks: The fifth international workshop. 
+In international conference on artificial intelligence in education (pp. 97–102). Cham: Springer 
+Nature Switzerland. https://link.springer.com/chapter/10.1007/978-3-031-36336-8_15
+Thaker, K., Zhang, L., He, D., & Brusilovsky, P. (2020). Recommending Remedial Readings Using Stu­
+dent Knowledge State. Educational Data Mining Society.
+Touvron, H., Lavril, T., Izacard, G., Martinet, X., Lachaux, M. A., Lacroix, T., & Lample, G. (2023). 
+Llama: Open and efficient foundation language models. arXiv preprint arXiv:2302.13971.
+Tunstall, L., Von Werra, L., & Wolf, T. (2022). Natural Language Processing with transformers. O’Reilly 
+Media, Inc.
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N.,... & Polosukhin, I. (2017). 
+Attention is all you need. Advances in neural information processing systems, 30. https://proceed­
+ings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
+Wang, M., Chau, H., Thaker, K., Brusilovsky, P., & He, D. (2021). Knowledge annotation for Intelligent 
+textbooks. Technology Knowledge and Learning. https://doi.org/10.1007/s10758-021-09544-z.
+Weber, G., & Brusilovsky, P. (2016). ELM-ART– An Interactive and Intelligent web-based Electronic 
+Textbook. International Journal of Artificial Intelligence in Education, 26(1), 72–81. https://doi.
+org/10.1007/s40593-015-0066-8.
+Winchell, A., Mozer, M., Lan, A., Grimaldi, P., & Pashler, H. (2018). Can Textbook Annotations Serve as 
+an Early Predictor of Student Learning? International Data Mining Society.
+Wolf, T., Debut, L., Sanh, V., Chaumond, J., Delangue, C., Moi, A., Cistac, P., Rault, T., Louf, R., Fun­
+towicz, M., Davison, J., Shleifer, S., von Platen, P., Ma, C., Jernite, Y., Plu, J., Xu, C., Le Scao, T., 
+Gugger, S., & Rush, A. (2020). Transformers: State-of-the-Art Natural Language Processing. Pro­
+ceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System 
+Demonstrations, 38–45. https://doi.org/10.18653/v1/2020.emnlp-demos.6.
+Yarbro, J. T., & Olney, A. M. (2021). Contextual Definition Generation. Proceedings of the Third Interna­
+tional Workshop on Intelligent Textbooks, 2895.
+Publisher’s Note  Springer Nature remains neutral with regard to jurisdictional claims in published maps 
+and institutional affiliations.
+1 3
+1042
+
+---- page 22 ----
+International Journal of Artificial Intelligence in Education (2025) 35:1022–1043
+Authors and Affiliations
+Wesley Morris1
+ · Scott Crossley1 · Langdon Holmes1 · Chaohua Ou2 · 
+Mihai Dascalu3 · Danielle McNamara4
+	
+ Wesley Morris
+wesley.g.morris@vanderbilt.edu
+1	
+Vanderbilt University, Nashville, TN, USA
+2	
+Georgia Institute of Technology, Atlanta, GA, USA
+3	
+Polytechnic University of Bucharest, Bucharest, Romania
+4	
+Arizona State University, Tempe, AZ, USA
+1 3
+1043
+
+
+########## Blobstein_2025_Emoji.pdf  pages=32 ##########
+
+---- page 1 ----
+Int J Artif Intell Educ (2025) 35:1064–1095
+https://doi.org/10.1007/s40593-024-00401-5
+ARTICLE
+#let’s-discuss: Analyzing Students’ Use of Emoji
+when Interacting with Course Readings
+Ariel Blobstein1
+· Marc T. Facciotti3,4 · Michele Igo5 · David Karger6 ·
+Prerna Ravi6 · Kamali Sripathi4 · Kobi Gal1,2
+Accepted: 11 March 2024 / Published online: 8 May 2024
+© The Author(s) 2024
+Abstract
+Emoji are commonly used in social media to convey affects, emotions, and attitudes.
+While popular in social media, their use in educational contexts has been sparsely
+studied even though emoji can be a natural way for students to express what they are
+feeling about the learning material. This paper studies how students use instructor-
+selected emoji when relating to and engaging with educational content. We use an
+online platform for collaborative annotations where discussions are embedded into
+the readings for the course. We also make it possible for students to use 11 unique
+emoji-hashtag pairings to express their thoughts and feelings about the readings and
+the ongoing discussion. We provide an empirical analysis of the usage of these emoji-
+hashtag pairs by over 1,800 students enrolled in different offerings of an introductory
+biology course from multiple academic terms. We also introduce a heat map, which
+allows the instructional team to visualize the distribution and types of emoji used
+by students in different parts of the reading material. To evaluate the heat map, we
+conducted a user study with ﬁve instructors/TAs. We found that instructors/TAs use
+the heat map as a tool for identifying textbook sections that students ﬁnd difﬁcult
+and/or interesting and plan to use it to help them design the online content for future
+classes. Finally, we introduce a computational analysis for predicting emoji/hashtag
+pairs based on the content of a given student post. We use pre-trained deep learning
+language models (BERT) to predict the emoji attached to a student’s post and then
+study the extent to which this model generated in an introductory biology course can
+be generalized to predict student emoji usage in other courses.
+Keywords Course forums · Affect recognition in course readings ·
+Natural language processing · Supervised learning
+B Ariel Blobstein
+arielblo@post.bgu.ac.il
+Extended author information available on the last page of the article
+123
+
+---- page 2 ----
+Int J Artif Intell Educ (2025) 35:1064–1095
+1065
+Introduction
+Students’ interactions with learning materials can elicit a broad range of reactions that
+may include emotional, cognitive, affective, and behavioral elements. Collectively,
+these reactions can contribute positively or negatively to students’ learning (Boekaerts
+& Pekrun, 2015). Identifying and mapping student responses onto speciﬁc course con-
+tent can help instructors to better understand their students and empower teaching staff
+to optimize course design and materials for better learning outcomes (Sylwester, 1994;
+Kort et al., 2001; Baker et al., 2010; D’Mello & Graesser, 2012). Unfortunately, these
+tasks can be logistically challenging for instructors, particularly in large-enrollment
+courses.
+Recent studies have shown ways to address these logistical challenges by using
+machine learning to predict students’ emotions, affects, and attitudes (Kastrati et al.,
+2021). Prior studies created labeled data sets from discussion forums in a MOOC
+platform (Agrawal et al., 2015; Yang et al., 2015). The labels were collected by man-
+ually assigning reactions to student posts using crowd workers hired from platforms
+like Mechanical Turk. Confusion, emotion, and urgency are some of the annotated
+categories studied in prior work. However, paid crowd workers are far removed from
+the course material and can fail to identify student reactions that may be useful to
+instructors. A better solution to the labeling problem would be to let students annotate
+their reactions themselves and to provide ways for them to distinguish between issues
+related to speciﬁc course content versus more general feelings about the course.
+The premise of this paper is that students can use emoji to communicate their reac-
+tions while commenting on the course material, thus creating a useful tool for students
+to report their reactions to speciﬁc parts of course content. Since emoji are conven-
+tionally used in social media to enhance the meaning of the text or as a substitute for
+words (Kerslake & Wegerif, 2017), emoji can be a natural way for students to express
+how they are reacting to the learning materials, which would otherwise be difﬁcult
+for instructors to infer. A body of work in the social and computational sciences has
+studied people’s use of emoji as a tool for conveying reactions and used them to facil-
+itate computational tasks such as sentiment analysis and emotion recognition (Kralj
+Novak et al., 2015; Felbo et al., 2017). However, there is sparse research on the use of
+emoji for self-reporting reactions by students in educational forums. Our work directly
+addresses this gap by providing an empirical and computational analysis of students’
+use of emoji when they discuss speciﬁc sections of course material from an online
+textbook.
+Our empirical investigations involve NotaBene (NB) (Zyto et al., 2012), a collab-
+orative annotation-based forum, which allows students to anchor messages directly
+to reading material in online course textbooks. We worked closely with the course
+instructors of a large enrollment introductory biology course offered to ∼3500 stu-
+dents per year at a large public research university in the western United States. Course
+instructors designed a set of 11 emoji-hashtag pairs (Shown in Fig.1) that allow stu-
+dents to communicate reactions to the course textbook during their discussions on NB.
+Example of emoji-hashtag are to express curiosity, confusion, or interest about topics
+in the course, or inviting discussion about a topic, or ﬂagging a passage as pertinent
+to a learning goal or real-world problem. Limiting students to using only these 11
+123
+
+---- page 3 ----
+1066
+Int J Artif Intell Educ (2025) 35:1064–1095
+emoji-hashtags pairs rather than allowing them to insert their hashtags was important
+for helping us standardize what students meant to convey when they selected to use a
+speciﬁc emoji-hashtag pair. Considering the diversity of response types represented by
+our emoji-hashtag pairs, we use the term reactions throughout this paper to inclusively
+refer to emotions, affects, attitudes, epistemic states, and/or requests for interaction.
+Here, we provide an empirical analysis of students’ use of emoji in two offerings
+of the course. This includes measuring the frequency of use of each individual emoji
+and the number of different emoji used in the same post. We found that the most
+common use of emoji was to request discussion and assistance from instructors or
+peers. We further investigated the use of emoji among different students and found
+that most students tended to have a favorite sub-set of the emoji set that they used
+in their posts rather than the full emoji set. We also analyzed the correlation between
+emoji frequency as used by the students. We ﬁnd that speciﬁc pairs of emoji frequently
+appear together in posts relating to the same paragraph or portion of the text.
+Our second step was to provide instructors with a “birds eye view” of students’
+emoji use in the course. To this end, we integrated a heat map (shown in Fig. 6), the
+heat map can provide a visual representation of either a speciﬁc emoji or an entire
+set of emoji, depicting the frequency of their usage by students. The heat map also
+shows how emoji are utilized by students about course content, emphasizing their
+engagement with posts related to that content.
+We conducted a user study with ﬁve experienced instructors to investigate what
+types of information instructors can glean from the heat map, and how they might use
+this information in their instruction.
+The results of the user study revealed that the heat map helped instructors identify
+areas of interest or difﬁculty in the course material that would have been much harder
+for instructors to discover by other means. Participants stated that without the heat
+map, it would have been more time-consuming and difﬁcult to identify sections of the
+reading material that students found difﬁcult or interesting, without the help of the
+tool and thus letting them refocus their lectures or revise content to enhance students
+learning.Ourworkcanhelpinstructors,particularlyinhigh-enrollmentcourses,decide
+where and how to intervene in discussions.
+The work we describe shows that emoji offer useful insights to instructors. However,
+students don’t always include emoji in their comments. Therefore, our third step was to
+explore how information generated from the use of emoji by other students could help
+develop a supervised learning model for inferring speciﬁc emoji for a post without
+emoji. A predictive model that can infer key components of a student’s reactions to
+course content could be used to better represent course-wide reactions to content and
+potentially be used for courses that incorporate student posts but don’t provide an easy
+way for students to indicate their reactions to the material.
+An important contribution of this work is the way we leveraged the annotated
+content to improve inference accuracy. We use a pre-trained deep-learning language
+model (BERT (Devlin et al., 2018)) to predict emoji from students’ posts and the
+course material that the post addressed. Since students using NB link their annotations
+directly to a speciﬁc part of the textbook, we can use the context derived from the
+reading material to further enhance the model. Thus the resulting model takes into
+consideration both students’ posts and the context of the reading. The model was
+123
+
+---- page 31 ----
+1094
+Int J Artif Intell Educ (2025) 35:1064–1095
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps
+and institutional afﬁliations.
+123
+Sun, C., Hwang, G.-J., Yin, Z., Wang, Z., & Wang, Z. (2023). Trends and issues of social annotation in
+education: A systematic review from 2000 to 2020. Journal of Computer Assisted Learning, 39(2),
+329–350.
+Sylwester, R. (1994). How emotions affect learning. Educational Leadership, 52(2), 60–65.
+Sylwester, R. (1994). How emotions affect learning. Educational leadership, 52(2), 60–65.
+Vandergriff, I. (2013). Emotive communication online: A contextual analysis of computer-mediated com-
+munication (cmc) cues. Journal of Pragmatics, 51, 1–12.
+Watters, D. J., & Watters, J. J. (2006). Student understanding of ph:“i don’t know what the log actually is,
+i only know where the button is on my calculator”. Biochemistry and Molecular Biology Education,
+34(4), 278–284.
+Winchell, A., Lan, A., & Mozer, M. (2020). Highlights as an early predictor of student comprehension and
+interests. Cognitive Science, 44(11), 12901.
+Yang, D., Wen, M., Howley, I., Kraut, R., & Rose, C. (2015). Exploring the effect of confusion in discussion
+forums of massive open online courses. In: Proceedings of the Second (2015) ACM Conference on
+Learning@ Scale, pp. 121–130
+Yogev, E., Gal, K., Karger, D., Facciotti, M. T., & Igo, M. (2018). Classifying and visualizing students’
+cognitive engagement in course readings. In: Proceedings of the Fifth Annual ACM Conference on
+Learning at Scale, pp. 1–10
+Zhang, A. X., Igo, M., Facciotti, M., & Karger, D. (2017). Using student annotated hashtags and emojis to
+collect nuanced affective states. In: Proceedings of the Fourth (2017) ACM Conference on Learning@
+Scale, pp. 319–322
+Zhang, L., Zhou, Y., Erekhinskaya, T., & Moldovan, D. (2020). Emoji prediction: A transfer learning
+approach. In K. Arai, S. Kapoor, & R. Bhatia (Eds.), Advances in Information and Communication
+(pp. 864–872). Cham: Springer.
+Zyto, S., Karger, D., Ackerman, M., & Mahajan, S. (2012). Successful classroom deployment of a social doc-
+ument annotation system. In: Proceedings of the Sigchi Conference on Human Factors in Computing
+Systems, pp. 1883–1892
+
+---- page 32 ----
+Int J Artif Intell Educ (2025) 35:1064–1095
+1095
+Authors and Aﬃliations
+Ariel Blobstein1
+· Marc T. Facciotti3,4 · Michele Igo5 · David Karger6 ·
+Prerna Ravi6 · Kamali Sripathi4 · Kobi Gal1,2
+Marc T. Facciotti
+mtfacciotti@ucdavis.edu
+Michele Igo
+mmigo@ucdavis.edu
+David Karger
+karger@mit.edu
+Prerna Ravi
+prernar@mit.edu
+Kamali Sripathi
+ksripathi@ucdavis.edu
+Kobi Gal
+kobig@bgu.ac.il
+1
+Software and Information Systems Engineering, Ben-Gurion University, Be’er Sheva, Israel
+2
+School of Informatics, University of Edinburgh, Edinburgh, United Kingdom
+3
+Biomedical Engineering, University of California-Davis, Davis, CA, USA
+4
+Genome Center, University of California-Davis, Davis, CA, USA
+5
+Microbiology and Molecular Genetics, University of California-Davis, Davis, CA, USA
+6
+Computer Science and Artiﬁcial Intelligence Laboratory, Massachusetts Institute of Technology,
+Cambridge, US, USA
+123
+
+
+########## Sovrano_2025_LegalWriting.pdf  pages=35 ##########
+
+---- page 1 ----
+Int J Artif Intell Educ (2025) 35:987–1021
+https://doi.org/10.1007/s40593-024-00399-w
+ARTICLE
+How to Improve the Explanatory Power of an Intelligent
+Textbook: a Case Study in Legal Writing
+Francesco Sovrano 1,2
+· Kevin Ashley 3 · Peter Leonid Brusilovsky 4 ·
+Fabio Vitali 1
+Accepted: 29 February 2024 / Published online: 6 May 2024
+© The Author(s) 2024
+Abstract
+Explanatory processes are at the core of scientiﬁc investigation, legal reasoning, and
+education. However, effectively explaining complex or large amounts of information,
+such as that contained in a textbook or library, in an intuitive, user-centered way is still
+an open challenge. Indeed, different people may search for and request different types
+of information, even though texts typically have a predeﬁned exposition and content.
+With this paper, we investigate how explanatory AI can better exploit the full potential
+of the vast and rich content library at our disposal. Based on a recent theory of expla-
+nations from Ordinary Language Philosophy, which frames the explanation process
+as illocutionary question-answering, we have developed a new type of interactive and
+adaptive textbook. Using the latest question-answering technology, our e-book soft-
+ware (YAI4Edu, for short) generates on-demand, expandable explanations that can
+help readers effectively explore teaching materials in a pedagogically productive way.
+It does this by extracting a specialized knowledge graph from a collection of books
+or other resources that helps identify the most relevant questions to be answered for
+a satisfactory explanation. We tested our technology with excerpts from a textbook
+that teaches how to write legal memoranda in the U.S. legal system. Then, to see
+whether YAI4Edu-enhanced textbooks are better than random and existing, general-
+purpose explanatory tools, we conducted a within-subjects user study with more than
+100 English-speaking students. The students rated YAI4Edu’s explanations the high-
+est. According to the students, the explanatory content generated by YAI4Edu is, on
+average, statistically better than two baseline alternatives (P values below .005).
+Keywords Intelligent textbooks · Education · Explanatory artiﬁcial intelligence ·
+Answer retrieval · Automated question extraction
+B Francesco Sovrano
+francesco.sovrano@uzh.ch
+Extended author information available on the last page of the article
+123
+
+---- page 2 ----
+988
+Int J Artif Intell Educ (2025) 35:987–1021
+Introduction
+As pointed out by UNESCO, the United Nations specialized agency for education,
+in one of its recent publications (Miao et al., 2021), the opportunities and challenges
+that Artiﬁcial Intelligence (AI) offers for education in the AI era are yet to be fully
+understood. Nonetheless, the expectations are high given the potential of AI to foster
+our ability to acquire and convey knowledge. Indeed, since the invention of writing,
+we have collected a vast amount of written content that now forms the basis of our
+collective wisdom and industriousness.
+However, fully harnessing the potential of such written knowledge by automati-
+cally explaining it in an intuitive and user-centered way is still an open problem. For
+instance, different explainees1 may search for and request different types of infor-
+mation, even though, usually, the exposition and content of an explanatory document
+(e.g., a book, an article, a web page, or technical documentation) are predetermined
+and static.
+Different books on the same subject expound the same knowledge in different ways
+and with different levels of detail. Additionally, this type of static representation is
+sub-optimal and time-consuming in the most generic scenario because helpful infor-
+mation may be sparse and scattered over hundreds or thousands of pages. As a result,
+explaining to a person can be an extremely challenging task, regardless of whether the
+explanandum2 is from technical documentation, a scientiﬁc article, a regulation or a
+textbook. Additionally, the complexity of this task is increased by the elusiveness of
+the notion of explanation.
+To address the problem of automatically explaining, we study how to automatically
+enhance static educational books by making them more interactive. We do this by
+reducingthesparsityofrelevantinformation,therebyincreasingtheexplanatorypower
+of the medium while also linking it to a knowledge graph extracted from a collection
+of supplementary materials.
+The approach is based on a recent theory from Ordinary Language Philosophy
+(Sovrano & Vitali, 2022a, explained in section “Explanations According to Ordinary
+Language Philosophy”), which views explaining as more than just providing answers
+to questions. It emphasizes that explaining involves answering unspoken or implicit
+questions in a meaningful and relevant way to the individual seeking understanding.
+For instance, if you ask “How are you doing?” and the response is “I am ﬁne”,
+this is not an explanation. However, if the response is “I am okay because I was
+worried I could have tested positive for COVID-19, but I am not, and [...]”, it becomes
+an explanation. The reason: this response intends to create an understanding of the
+person’s state of being.
+This concept of responding to implicit questions is called illocution (Sovrano &
+Vitali, 2022a). It makes the explanation process more focused on the individual seeking
+understanding. By anticipating these implicit questions, both the person explaining
+1 An explainee is a person receiving an explanation.
+2 The word explanandum means “what has to be explained” in Latin.
+123
+
+---- page 3 ----
+Int J Artif Intell Educ (2025) 35:987–1021
+989
+and the person seeking understanding can communicate more efﬁciently, resulting in
+a reduction of steps required to explain something3.
+Hence,assumingthatthegoalofaneducationale-bookistoexplainsomethingtothe
+reader and consistent with the abovementioned deﬁnition of explanations (Sovrano &
+Vitali, 2022a,b), we built an explanatory process capable, through question-answering,
+of organizing a textbook’s explanatory space4 to enable a reader to more efﬁciently and
+effectively retrieve helpful information. Speciﬁcally, our proposed solution consists
+of a pipeline of Explanatory AI (YAI) algorithms and heuristics to build, on top of
+textbooks, intelligent interfaces for:
+• answering explicit questions asked by a user;
+• automatically identifying the topics that can be explained by the contents of a
+textbook (or any collection of texts);
+• generating explanations by anticipating a set of useful (implicit) questions a user
+might have about the textbook.
+Assuming that the content of a textbook (or a collection of texts integrating it) properly
+explains a given explanandum, our work relies on the following hypothesis:
+Hypothesis 1 The most useful implicit questions a user may have about a collection of
+texts are those best answered in the collection as a whole. These questions are neither
+too detailed (because they would otherwise only be answered in a minor part of the
+collection) nor too general (because they would be answered inaccurately in the more
+detailed textual content).
+If the assumption mentioned above holds, we believe that the hypothesis is correct
+for the following reasons:
+• any question falling outside the scope of the collection of documents could not be
+answered, thus not being useful;
+• whoever wrote the textbook tried to explain as well as possible (for her/his narrative
+purposes) the most important topics at hand, thus (according to the adopted deﬁ-
+nition of explanation) implicitly identifying the most important questions whose
+answers provide a good overview of the topics.
+Consequently, our main contribution is a novel pipeline of YAI software for
+enhancing the explanatory power of a textbook based on an algorithm (called Intelli-
+gentExplanationGenerator)foridentifyingthequestionsbestansweredbyacollection
+of texts. Indeed, according to theory, what makes a YAI good at explaining is its ability
+to identify implicit and relevant questions to answer, somehow anticipating the needs
+of the explainee.
+As a case study for our proposed YAI for education (YAI4Edu, for short), we
+considered a teaching scenario where the excerpts of a textbook, “United States Legal
+3 This theory has been supported by various experiments and studies involving over 190 participants
+(Sovrano & Vitali, 2022a,b).
+4 The explanatory space is the space of all possible bits of explanation about an explanandum. A more
+formal deﬁnition is given by Sovrano and Vitali (2022a).
+123
+
+---- page 34 ----
+1020
+Int J Artif Intell Educ (2025) 35:987–1021
+123
+2019), chicago, il, usa, june 25, 2019 (Vol. 2384, pp. 81–86). CEUR-WS.org. Retrieved from http://
+ceur-ws.org/Vol-2384/paper08.pdf
+Pyatkin, V., Klein, A., Tsarfaty, R., & Dagan, I. (2020). Qadiscourse - discourse relations as QA pairs:
+Representation, crowdsourcing and baselines. B. Webber, T. Cohn, Y. He, & Y. Liu (Eds.), Proceedings
+of the 2020 conference on empirical methods in natural language processing, EMNLP 2020, online,
+november 16-20, 2020 (pp. 2804–2819). Association for Computational Linguistics. Retrieved from
+https://doi.org/10.18653/v1/2020.emnlp-main.224
+Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena, M., . . . & Liu, P. J. (2020). Exploring
+the limits of transfer learning with a uniﬁed textto- text transformer. Journal of Machine Learning
+Research, 21(140), 1–140:67. Retrieved from http://jmlr.org/papers/v21/20-074.html
+Reimers, N., & Gurevych, I. (2019). Sentence-bert: Sentence embeddings using siamese bert-networks. K.
+Inui, J. Jiang, V. Ng, & X. Wan (Eds.), Proceedings of the 2019 conference on empirical methods in
+natural language processing and the 9th international joint conference on natural language processing,
+EMNLP-IJCNLP 2019, hong kong, china, november 3-7, 2019 (pp. 3980–3990). Association for
+Computational Linguistics. Retrieved from https://doi.org/10.18653/v1/D19-1410
+Rivers, M.L. (2021). Metacognition about practice testing: a review of learners’beliefs, monitoring, and
+control of test-enhanced learning. Educational Psychology Review, 33(3), 823–862. Retrieved from
+https://doi.org/10.1007/s10648-020-09578-2
+Salmon, W. (1984). Scientiﬁc explanation and the causal structure of the world. Princeton University Press.
+Retrieved from https://books.google.it/books?id=2ug9DwAAQBAJ
+Shimmei, M., & Matsuda, N. (2022). Automatic question generation for evidence-based online courseware
+engineering. S.A. Sosnovsky, P. Brusilovsky, & A.S. Lan (Eds.), Proceedings of the fourth international
+workshop on intelligent textbooks 2022 co-located with 23d international conference on artiﬁcial
+intelligence in education (AIED 2022), durham, uk, july 27, 2022 (Vol. 3192, pp. 18–25). CEUR-
+WS.org. Retrieved from http://ceur-ws.org/Vol-3192/itb22_p2_short1338.pdf
+Sovrano, F., Ashley, K., & Bacchelli, A. (2023). Toward eliminating hallucinations: Gpt-based explanatory
+ai for intelligent textbooks and documentation. S. A. Sosnovsky, P. Brusilovsky, & A. S. Lan (Eds.),
+Proceedings of the ﬁfth international workshop on intelligent textbooks 2023 co-located with 24th
+international conference on artiﬁcial intelligence in education (AIED 2023), tokyo, japan, july 3-7,
+2023. CEUR-WS.org
+Sovrano, F., Palmirani, M., & Vitali, F. (2020). Legal knowledge extraction for knowledge graph based
+question-answering. S. Villata, J. Harasta, & P. Kremen (Eds.), Legal knowledge and information
+systems - JURIX 2020: The thirty-third annual conference, brno, czech republic, december 9-11, 2020
+(Vol. 334, pp. 143–153). IOS Press. Retrieved from https://doi.org/10.3233/FAIA200858
+Sovrano, F., Raymond, A., & Prorok, A. (2022). Explanation-aware experience replay in rule-dense envi-
+ronments. IEEE Robotics and Automation Letters, 7(2), 898–905.
+Sovrano, F., & Vitali, F. (2021). From philosophy to interfaces: an explanatory method and a tool inspired by
+achinstein’stheoryofexplanation.T.Hammond,K.Verbert,D.Parra,B.P.Knijnenburg,J.O’Donovan,
+& P. Teale (Eds.), IUI ’21: 26th international conference on intelligent user interfaces, college station,
+tx, usa, april 13-17, 2021 (pp. 81–91). ACM. Retrieved from https://doi.org/10.1145/3397481.3450655
+Sovrano, F., & Vitali, F. (2022). Explanatory artiﬁcial intelligence (yai): human-centered explanations of
+explainable ai and complex data. Data Mining and Knowledge Discovery: Retrieved from. https://doi.
+org/10.1007/s10618-022-00872-x
+Sovrano, F., & Vitali, F. (2022b, nov). Generating user-centred explanations via illocutionary question
+answering: From philosophy to interfaces. ACM Transactions on Interactive Intelligent Systems,
+12, (4). Retrieved from https://doi.org/10.1145/3519265
+Sovrano, F., & Vitali, F. (2022c). How to quantify the degree of explainability: Experiments and practical
+implications. 31th IEEE international conference on fuzzy systems, FUZZ-IEEE 2022, padova, july
+18-23, 2022 (pp. 1–9). IEEE
+Sovrano, F., Vitali, F., & Palmirani, M. (2020). Making things explainable vs explaining: Requirements
+and challenges under the GDPR. V. Rodríguez-Doncel, M. Palmirani, M. Araszkiewicz, P. Casanovas,
+U. Pagallo, & G. Sartor (Eds.), AI approaches to the complexity of legal systems XI-XII - AICOL
+international workshops 2018 and 2020: Aicol-xi@jurix 2018, aicol-xii@jurix 2020, xaila@jurix
+2020, revised selected papers (Vol. 13048, pp. 169–182). Springer. Retrieved from https://doi.org/10.
+1007/978-3-030-89811-3_12
+Stein, N. (2011). Causation and explanation in aristotle. Philosophy Compass, 6 (10), 699-
+707. Retrieved from https://compass.onlinelibrary.wiley.com/doi/abs/10.1111/j.1747-9991.2011.
+
+---- page 35 ----
+Int J Artif Intell Educ (2025) 35:987–1021
+1021
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps
+and institutional afﬁliations.
+Authors and Aﬃliations
+Francesco Sovrano 1,2
+· Kevin Ashley 3 · Peter Leonid Brusilovsky 4 ·
+Fabio Vitali 1
+Kevin Ashley
+ashley@pitt.edu
+Peter Leonid Brusilovsky
+peterb@pitt.edu
+Fabio Vitali
+fabio.vitali@unibo.it
+1
+Department of Informatics, University of Zurich, Rämistrasse 71, 8006, Zürich, Switzerland
+2
+Department of Computer Science and Engineering, University of Bologna, Bologna, Italy
+3
+School of Law, University of Pittsburgh, Pittsburgh, PA, USA
+4
+School of Computing and Information, University of Pittsburgh, Pittsburgh, PA, USA
+123
+00436.x https://arxiv.org/abs/https://compass.onlinelibrary.wiley.com/doi/pdf/10.1111/j.1747-9991.
+2011.00436.x
+Thaker, K., Brusilovsky, P., & He, D. (2019). Student modeling with automatic knowledge component
+extraction for adaptive textbooks. S.A. Sosnovsky, P. Brusilovsky, R.G. Baraniuk, R. Agrawal, &
+A. S. Lan (Eds.), Proceedings of the ﬁrst workshop on intelligent textbooks co-located with 20th
+international conference on artiﬁcial intelligence in education (AIED 2019), chicago, il, usa, june 25,
+2019 (Vol. 2384, pp. 95–102). CEURWS. org. Retrieved from http://ceur-ws.org/Vol-2384/paper10.
+pdf
+van Fraassen, B.C. (1980). The scientiﬁc image. Clarendon Press. Retrieved from https://books.google.it/
+books?id=VLz2F1zMr9QC
+Wang, M., Chau, H., Thaker, K., Brusilovsky, P., & He, D. (2021). Knowledge annotation for intelligent
+textbooks. Technology, Knowledge and Learning: Retrieved from. https://doi.org/10.1007/s10758-
+021-09544-z
+Wang, W., Bao, H., Huang, S., Dong, L., & Wei, F. (2021). Minilmv2: Multi-head self-attention relation
+distillation for compressing pretrained transformers. C. Zong, F. Xia, W. Li, & R. Navigli (Eds.),
+Findings of the association for computational linguistics: ACL/IJCNLP 2021, online event, august 1-6,
+2021 (Vol. ACL/IJCNLP 2021, pp. 2140–2151). Association for Computational Linguistics. Retrieved
+from https://doi.org/10.18653/v1/2021.ﬁndings-acl.188
+Wang, Z., Valdez, J., Mallick, D.B., & Baraniuk, R.G. (2022). Towards human-like educational question
+generation with large language models. M.M.T. Rodrigo, N. Matsuda, A.I. Cristea, & V. Dimitrova
+(Eds.), Artiﬁcial intelligence in education - 23rd international conference, AIED 2022, durham, uk,
+july 27-31, 2022, proceedings, part I (Vol. 13355, pp. 153–166). Springer. Retrieved from https://doi.
+org/10.1007/978-3-031-11644-5_13

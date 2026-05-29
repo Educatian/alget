@@ -1,23 +1,29 @@
-[
-  {
-    "id": "subtract-speeds-only",
-    "claim": "Relative motion can always be solved by subtracting speeds without considering direction.",
-    "reality": "Relative motion is a vector relationship. Direction and sign determine whether velocities add, subtract, or change heading.",
-    "whyItHappens": "Many early examples are one-dimensional, so learners overgeneralize scalar subtraction.",
-    "coachPrompt": "If one object moves east and another moves north, can one signed number describe their full relative velocity?"
-  },
-  {
-    "id": "frames-are-interchangeable",
-    "claim": "A boat's speed through water is the same as its speed relative to the shore.",
-    "reality": "Those are different reference frames. Current or platform motion must be combined to get the ground-relative velocity.",
-    "whyItHappens": "Reference frames often feel like labels instead of physically meaningful choices.",
-    "coachPrompt": "What extra motion appears when the river itself is moving?"
-  },
-  {
-    "id": "rest-for-one-rest-for-all",
-    "claim": "If one observer sees an object at rest, the object must be at rest for everyone.",
-    "reality": "Rest and motion are frame-dependent. An object can be stationary in one frame and moving quickly in another.",
-    "whyItHappens": "Everyday language tends to treat motion as absolute unless the frame is stated explicitly.",
-    "coachPrompt": "How can a passenger feel still on a train while a platform observer measures a large speed?"
-  }
-]
+{
+  "section_id": "dynamics_0103",
+  "misconceptions": [
+    {
+      "id": "subtract-speeds-only",
+      "trigger": "Many early examples are one-dimensional, so learners overgeneralize scalar subtraction.",
+      "pattern": "Relative motion can always be solved by subtracting speeds without considering direction.",
+      "description": "Relative motion is a vector relationship. Direction and sign determine whether velocities add, subtract, or change heading.",
+      "feedback": "If one object moves east and another moves north, can one signed number describe their full relative velocity?",
+      "rail_action": "ask"
+    },
+    {
+      "id": "frames-are-interchangeable",
+      "trigger": "Reference frames often feel like labels instead of physically meaningful choices.",
+      "pattern": "A boat's speed through water is the same as its speed relative to the shore.",
+      "description": "Those are different reference frames. Current or platform motion must be combined to get the ground-relative velocity.",
+      "feedback": "What extra motion appears when the river itself is moving?",
+      "rail_action": "ask"
+    },
+    {
+      "id": "rest-for-one-rest-for-all",
+      "trigger": "Everyday language tends to treat motion as absolute unless the frame is stated explicitly.",
+      "pattern": "If one observer sees an object at rest, the object must be at rest for everyone.",
+      "description": "Rest and motion are frame-dependent. An object can be stationary in one frame and moving quickly in another.",
+      "feedback": "How can a passenger feel still on a train while a platform observer measures a large speed?",
+      "rail_action": "ask"
+    }
+  ]
+}

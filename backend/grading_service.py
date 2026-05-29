@@ -110,20 +110,25 @@ def grade_numeric_answer(
     user_unit: str,
     expected_value: float,
     expected_unit: str,
-    tolerance: float = 0.01,  # 1% relative tolerance
-    require_unit: bool = True
+    tolerance: float = 0.01,  # relative tolerance (fraction) unless absolute=True
+    require_unit: bool = True,
+    tolerance_is_absolute: bool = False,
 ) -> dict:
     """
     Grade a numeric answer with optional unit.
-    
+
     Args:
         user_answer: User's numeric answer as string
         user_unit: User's unit (can be empty)
         expected_value: Expected numeric value
         expected_unit: Expected unit
-        tolerance: Relative tolerance (e.g., 0.01 = 1%)
+        tolerance: Tolerance. Relative fraction (e.g. 0.01 = 1%) by default; an
+            absolute amount expressed in ``expected_unit`` when
+            ``tolerance_is_absolute`` is True (the convention used by
+            ``final_answer.tolerance`` in practice.json and by the solvers).
         require_unit: Whether unit is required
-    
+        tolerance_is_absolute: Interpret ``tolerance`` as an absolute amount.
+
     Returns:
         Dict with is_correct, value_correct, unit_correct, unit_error, explanation
     """
@@ -162,7 +167,18 @@ def grade_numeric_answer(
     result["unit_correct"] = normalize_unit(user_unit or "") == normalize_unit(expected_unit or "") or check_units_compatible(user_unit, expected_unit)
     
     # Check value within tolerance
-    if expected_base_value == 0:
+    if tolerance_is_absolute:
+        # Absolute tolerance is stated in the EXPECTED unit's own scale
+        # (e.g. "1 N", "0.5 m", "0.1 deg"). Compare the user's value converted
+        # into the expected unit, not base SI, so degree tolerances stay sane.
+        user_in_expected = user_value
+        if user_unit and expected_unit and check_units_compatible(user_unit, expected_unit):
+            ub, _ = convert_to_base_unit(user_value, user_unit)
+            eb_factor, _ = convert_to_base_unit(1.0, expected_unit)
+            if eb_factor:
+                user_in_expected = ub / eb_factor
+        result["value_correct"] = abs(user_in_expected - expected_value) <= tolerance
+    elif expected_base_value == 0:
         result["value_correct"] = abs(user_base_value) < tolerance
     else:
         relative_error = abs(user_base_value - expected_base_value) / abs(expected_base_value)
@@ -195,38 +211,112 @@ def grade_multiple_choice(user_answer: str, correct_answer: str) -> dict:
     }
 
 
+# Sentinel so we can tell "key absent" from "key present and falsy (e.g. 0)".
+_MISSING = object()
+
+DEFAULT_TOLERANCE = 0.01
+
+
+def normalize_expected_answer(problem: dict) -> Optional[dict]:
+    """
+    Normalize a problem's expected-answer shape into a flat dict.
+
+    Supports two on-disk shapes:
+      * nested ``final_answer``: {"value", "unit", "tolerance"}
+      * flat: ``expected_value`` / ``expected_unit`` / ``tolerance``
+
+    Returns a dict {expected_value, expected_unit, tolerance} or ``None`` when
+    NEITHER shape carries an explicit value. Returning None (rather than
+    defaulting to 0) lets the caller produce an explicit ungradable result
+    instead of silently grading every correct answer as WRONG against 0.
+    """
+    final_answer = problem.get("final_answer")
+    if isinstance(final_answer, dict) and final_answer.get("value", _MISSING) is not _MISSING:
+        # final_answer tolerances are absolute amounts in the answer's unit.
+        return {
+            "expected_value": final_answer.get("value"),
+            "expected_unit": final_answer.get("unit", "") or "",
+            "tolerance": final_answer.get("tolerance", DEFAULT_TOLERANCE),
+            "tolerance_is_absolute": True,
+        }
+
+    if problem.get("expected_value", _MISSING) is not _MISSING:
+        # Flat legacy shape: tolerance is a relative fraction (e.g. 0.02 = 2%).
+        return {
+            "expected_value": problem.get("expected_value"),
+            "expected_unit": problem.get("expected_unit", "") or "",
+            "tolerance": problem.get("tolerance", DEFAULT_TOLERANCE),
+            "tolerance_is_absolute": False,
+        }
+
+    return None
+
+
+def _ungradable_result(reason: str, extra: Optional[dict] = None) -> dict:
+    """Explicit 'not auto-graded' result. Never a false 'incorrect'."""
+    result = {
+        "is_correct": None,
+        "auto_graded": False,
+        "explanation": reason,
+    }
+    if extra:
+        result.update(extra)
+    return result
+
+
 def grade_problem(problem: dict, user_answer: str, user_unit: str = "") -> dict:
     """
     Grade a problem based on its type.
-    
+
     Args:
         problem: Problem definition dict with solver_id, expected_value, etc.
         user_answer: User's answer
         user_unit: User's unit (for numeric problems)
-    
+
     Returns:
-        Grading result dict
+        Grading result dict. ``is_correct`` is True/False when auto-graded and
+        ``None`` when the problem cannot be auto-graded (never a false False).
     """
     problem_type = problem.get("type", "numeric")
-    
+
     if problem_type == "multiple_choice":
         return grade_multiple_choice(user_answer, problem.get("correct_answer", ""))
-    
-    elif problem_type == "numeric":
-        return grade_numeric_answer(
+
+    # Conceptual / short-answer: not numerically gradable here. Route to the
+    # LLM/rubric grader (/api/grade_summary) or mark self-assessed. Never fall
+    # through to the numeric path (which would always mark it incorrect).
+    if problem_type == "conceptual":
+        return _ungradable_result(
+            "This is a short-answer question and is not auto-graded here. "
+            "Compare your response with the model answer, or submit it for "
+            "rubric-based feedback.",
+            {"expected": problem.get("expected_answer", "")},
+        )
+
+    if problem_type in ("numeric", "step_based"):
+        expected = normalize_expected_answer(problem)
+        if expected is None:
+            return _ungradable_result(
+                "This problem has no machine-checkable answer key, so it is "
+                "not auto-graded."
+            )
+
+        result = grade_numeric_answer(
             user_answer=user_answer,
             user_unit=user_unit,
-            expected_value=problem.get("expected_value", 0),
-            expected_unit=problem.get("expected_unit", ""),
-            tolerance=problem.get("tolerance", 0.01),
-            require_unit=problem.get("require_unit", True)
+            expected_value=expected["expected_value"],
+            expected_unit=expected["expected_unit"],
+            tolerance=expected["tolerance"],
+            require_unit=problem.get("require_unit", True),
+            tolerance_is_absolute=expected["tolerance_is_absolute"],
         )
-    
-    else:
-        return {
-            "is_correct": False,
-            "explanation": f"Unknown problem type: {problem_type}"
-        }
+        result["auto_graded"] = True
+        # Surface the worked steps as feedback for step_based problems.
+        if problem_type == "step_based" and problem.get("steps"):
+            result["steps"] = problem["steps"]
+        return result
+
+    return _ungradable_result(f"Problem type '{problem_type}' is not auto-graded.")
 
 
 # =============================================================================
@@ -254,32 +344,42 @@ def grade_problem_with_solver(
         Grading result dict with solver steps included
     """
     try:
-        from solvers import statics_equilibrium
-        
-        # Get the correct answer from solver
-        solver_result = statics_equilibrium.run_solver(solver_id, solver_params)
-        
-        if not solver_result:
-            return {
-                "is_correct": False,
-                "explanation": f"Solver '{solver_id}' not found."
-            }
-        
-        # Grade using the solver's expected values
+        # Aggregate registry spanning every solver module (kinematics,
+        # friction, truss, statics_equilibrium).
+        import solvers as solver_registry
+
+        if solver_registry.get_solver(solver_id) is None:
+            return _ungradable_result(
+                f"Solver '{solver_id}' is not registered, so this problem "
+                f"could not be auto-graded."
+            )
+
+        # Compute the reference answer deterministically from the givens.
+        solver_result = solver_registry.run_solver(solver_id, solver_params)
+
+        if not solver_result or solver_result.get("expected_value") is None:
+            return _ungradable_result(
+                f"Solver '{solver_id}' did not produce a checkable answer."
+            )
+
+        # Grade the learner answer against the solver's computed value.
         grade_result = grade_numeric_answer(
             user_answer=user_answer,
             user_unit=user_unit,
-            expected_value=solver_result.get("expected_value", 0),
+            expected_value=solver_result.get("expected_value"),
             expected_unit=solver_result.get("expected_unit", ""),
             tolerance=solver_result.get("tolerance", 0.02),
-            require_unit=True
+            require_unit=True,
+            tolerance_is_absolute=True,
         )
-        
+
+        grade_result["auto_graded"] = True
+        grade_result["solver_id"] = solver_id
         # Add solver steps to result for feedback
         grade_result["steps"] = solver_result.get("steps", [])
-        
+
         return grade_result
-        
+
     except Exception as e:
         return {
             "is_correct": False,

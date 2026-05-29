@@ -91,6 +91,20 @@ async def app_lifespan(_app: FastAPI):
         rag_service.load_curriculum(content_dir)
     else:
         print(f"[ERROR] Curriculum directory not found: {content_dir}")
+
+    # Guard: every solver_id referenced by content must resolve in the
+    # solver registry, otherwise a practice problem would silently fall
+    # through to a wrong grader.
+    try:
+        from content_service import assert_content_solver_ids_resolve
+        assert_content_solver_ids_resolve()
+        print("[INFO] Solver registry check passed: all content solver_ids resolve.")
+    except AssertionError as exc:
+        print(f"[ERROR] Solver registry check FAILED: {exc}")
+        raise
+    except Exception as exc:  # pragma: no cover - non-fatal if solvers unimportable
+        print(f"[WARN] Solver registry check skipped: {exc}")
+
     yield
 
 
@@ -2406,7 +2420,27 @@ async def grade_submission(problem_id: str, request: GradeRequest):
                 "correct_index": correct_index,
             }
 
-        # Numeric / short-answer fall through to the existing grader.
+        # Prefer the deterministic reference solver when the problem declares
+        # one. The solver recomputes the answer from the givens and grades the
+        # learner answer against it (rank-3 dead-solver-layer fix).
+        solver_id = problem.get("solver_id")
+        if solver_id:
+            from grading_service import grade_problem_with_solver
+
+            result = grade_problem_with_solver(
+                solver_id=solver_id,
+                solver_params=problem.get("params") or {},
+                user_answer=request.answer,
+                user_unit=request.unit,
+            )
+            # If the solver could not be resolved or produced no answer, fall
+            # back to the static answer key rather than a false "incorrect".
+            if result.get("auto_graded"):
+                return result
+
+        # Numeric / step_based / conceptual fall through to the shape-aware
+        # grader, which normalizes final_answer vs flat expected_value and
+        # returns an explicit ungradable result when no key exists.
         result = grade_problem(problem, request.answer, request.unit)
         return result
 

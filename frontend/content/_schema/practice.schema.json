@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "alget://schema/practice.schema.json",
+  "title": "Section Practice File",
+  "description": "Canonical contract for *.practice.json. The corpus legitimately varies in problem shape per `type`; this schema accepts every valid problem variant observed in the corpus while requiring the genuinely-required keys.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["problems"],
+  "properties": {
+    "problems": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/problem" }
+    }
+  },
+  "$defs": {
+    "problem": {
+      "type": "object",
+      "description": "Every problem needs an id, a type, and a prompt. The prompt is `stem` in the dominant generation and `statement` in the legacy flat-numeric generation, so at least one of the two is required.",
+      "required": ["id", "type"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": {
+          "type": "string",
+          "enum": ["multiple_choice", "numeric", "step_based", "conceptual"]
+        },
+        "stem": { "type": "string", "minLength": 1 },
+        "statement": { "type": "string", "minLength": 1 }
+      },
+      "anyOf": [
+        { "required": ["stem"] },
+        { "required": ["statement"] }
+      ],
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "multiple_choice" } } },
+          "then": {
+            "required": ["options", "correct_index", "explanation"],
+            "properties": {
+              "options": {
+                "type": "array",
+                "minItems": 2,
+                "items": { "type": "string" }
+              },
+              "correct_index": { "type": "integer", "minimum": 0 },
+              "explanation": { "type": "string" },
+              "concept_id": { "type": "string" },
+              "misconception_id": { "type": "string" },
+              "difficulty": { "type": "string" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "numeric" } } },
+          "then": {
+            "description": "Two answer shapes are accepted: nested final_answer (dominant) OR flat expected_value/expected_unit (legacy). At least one must be present.",
+            "anyOf": [
+              { "required": ["final_answer"] },
+              { "required": ["expected_value"] }
+            ],
+            "properties": {
+              "final_answer": { "$ref": "#/$defs/final_answer" },
+              "expected_value": { "type": "number" },
+              "expected_unit": { "type": "string" },
+              "require_unit": { "type": "boolean" },
+              "tolerance": { "type": "number" },
+              "statement": { "type": "string" },
+              "givens": { "type": "object" },
+              "params": { "type": "object" },
+              "solver_id": { "type": "string" },
+              "concept_id": { "type": "string" },
+              "difficulty": { "type": "string" },
+              "hint": { "type": "string" },
+              "hints": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "step_based" } } },
+          "then": {
+            "required": ["steps", "final_answer"],
+            "properties": {
+              "steps": { "type": "array", "minItems": 1 },
+              "final_answer": { "$ref": "#/$defs/final_answer" },
+              "params": { "type": "object" },
+              "solver_id": { "type": "string" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "type": { "const": "conceptual" } } },
+          "then": {
+            "required": ["expected_answer", "explanation"],
+            "properties": {
+              "expected_answer": { "type": "string" },
+              "explanation": { "type": "string" }
+            }
+          }
+        }
+      ]
+    },
+    "final_answer": {
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": { "type": ["number", "string"] },
+        "unit": { "type": "string" },
+        "tolerance": { "type": "number" }
+      }
+    }
+  }
+}
