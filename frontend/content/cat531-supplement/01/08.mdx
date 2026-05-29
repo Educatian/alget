@@ -32,6 +32,8 @@ A synthesis reflection demonstrates transfer: it takes principles built in earli
 
 The deep point is that transfer, not coverage, is the evidence of learning. A reflection that recites the eight section titles has demonstrated attendance; one that runs a principle through a fresh dilemma has demonstrated a capability. The three course anchors function here as named lenses you can show changing a new decision, not as terms to list.
 
+<inline-check question="A reflection ends: 'Now I know how to handle any tool decision.' Why is this LESS credible than naming an unresolved question?" explanation="Manufactured closure reads as less honest and less learned than an honest open tension. Claiming the module resolved everything signals that no real grappling happened; naming what is still unresolved (for example, how to verify a vendor's retention claim without legal support) shows reasoning that engaged the limits of the material." options='[{"text":"It claims manufactured closure instead of an honest open tension","correct":true},{"text":"It is too short to be a reflection","correct":false},{"text":"It fails to mention all eight section titles","correct":false},{"text":"It is more credible, not less","correct":false}]' />
+
 ## Worked Example
 
 Scenario: the teacher from the opening case rewrites the reflection that synthesizes the eight sections. The question is what separates a vague recap from a reflection that shows reasoning. Walk it in four numbered moves.
@@ -50,6 +52,10 @@ Scenario: the teacher from the opening case rewrites the reflection that synthes
 > The principle that changed my practice is naming the design tension before the tool (1.2). Section 1.4 also shifted me from 'equal access is fair' to 'equal is not equitable when starting conditions differ.' Applying both to a proposed AI homework helper: the tension is 24/7 help vs. widening the gap for device-poor students, so I would not adopt it school-wide without a device-equity plan. Open question I still carry: how to verify a vendor's retention claim without legal support.
 
 The reflection is defensible because it names specific principles, shows a view that changed, transfers the reasoning to a new dilemma, and surfaces an honest open tension, rather than reporting that the topic is complicated.
+
+Predict each synthesis move before you reveal it. The starting draft is the empty recap: "Module 1 was complicated and I feel more prepared."
+
+<step-reveal title="Turning a recap into a synthesis reflection" steps='[{"prompt":"Move 1: replace the mood with a specific, sourced principle. Which qualifies?","predictType":"choice","choices":["It is complicated","Name the design tension before the tool (1.2)","I feel more prepared"],"answerIndex":1,"reveal":"A principle has a source you can point to: name the design tension before the tool (1.2). Saying it is complicated is a mood, the default conclusion of paying no attention."},{"prompt":"Move 2: show a belief that was revised. Which is a genuine revision with a cause?","predictType":"choice","choices":["I always knew equity mattered","Section 1.4 shifted me from equal-access-is-fair to equal-is-not-equitable when starting conditions differ","Tools are useful"],"answerIndex":1,"reveal":"Cite the prior belief and what changed it. The home-internet example in 1.4 revised equal access is fair into equal is not equitable when starting conditions differ. A reflection with no revised belief reports that nothing happened."},{"prompt":"Move 3: transfer the principle to a NEW dilemma. Which counts as transfer?","predictType":"choice","choices":["Reapply it to the same gamified-points example from 1.2","Apply it to a proposed school-wide AI homework helper the module never used","Restate the principle"],"answerIndex":1,"reveal":"Transfer requires new ground: a proposed AI homework helper. Tension first: 24/7 help vs. widening the gap for device-poor students. Reusing the original case tests memory, not understanding."},{"reveal":"Move 4: leave one honest open tension. For example, that you still cannot verify a vendor data-retention claim without district legal support. An honest unresolved question is more credible than manufactured closure."}]' />
 
 ## Decision Rule
 
@@ -76,6 +82,10 @@ Name a principle and run it. From 1.5, "a result does not transfer unless the co
 Show a revised belief at work. Earlier you might have treated "it saves planning time" as sufficient (the efficiency-only error from 1.4); now you weigh that gain against the equity cost of plans that assume a register your students do not share.
 
 Transfer and leave a tension open. Decide: pilot the generator as a first draft each teacher must localize, never as a ready plan, accepting some time cost to protect fit. Then name the honest open tension: you do not yet know whether localized drafts still drift toward the tool's defaults over a semester, which would quietly re-impose the mismatch. The walkthrough shows synthesis as principles from 1.4 and 1.5 doing live work on a case none of those sections discussed, with closure honestly withheld.
+
+A peer reviewer reads your draft reflection and pushes back at each turn. Choose the move that demonstrates transfer rather than recall.
+
+<branching-scenario tree='{"title":"Defending a synthesis reflection to a peer reviewer","start":"r1","nodes":{"r1":{"prompt":"Your reviewer reads: \"Module 1 taught me decisions are complicated and I feel more prepared.\" She asks what specifically you can now do. What do you offer?","choices":[{"label":"Restate that there is a lot to consider before choosing a tool","next":"rRecap","feedback":"Still a mood. ’It is complicated’ is the starting condition of the field, not an insight earned in it."},{"label":"Name a sourced principle: name the design tension before the tool (1.2)","next":"rPrinciple","feedback":"Specificity is the first guard against the comfortable summary."}]},"rRecap":{"prompt":"She presses: could someone who skipped the module have written your sentence? You realize they could. What now?","choices":[{"label":"Add more adjectives about how much you grew","next":"rLoss","feedback":"More words about confidence do not make a recap into synthesis."},{"label":"Name a principle and a belief the module actually revised","next":"rPrinciple","feedback":"Now the reflection could only be written by someone who did the work."}]},"rPrinciple":{"prompt":"She accepts the principle but asks you to prove you can USE it. Where do you run it?","choices":[{"label":"Reapply it to the gamified-points example from 1.2","next":"rLoss","feedback":"False transfer: reusing the module’s own case tests memory, not understanding."},{"label":"Run it on a fresh dilemma: a proposed school-wide AI homework helper","next":"rTransfer","feedback":"Transfer to new ground. Tension first: 24/7 help vs. widening the gap for device-poor students."}]},"rTransfer":{"prompt":"Your reviewer asks for honesty: what is still unresolved? What is the strongest close?","choices":[{"label":"Claim the module resolved everything; you can handle any tool now","next":"rLoss","feedback":"Manufactured closure reads as less learned than an honest open question."},{"label":"Name a real open tension: how to verify a vendor retention claim without legal support","next":"rWin","feedback":"An honest unresolved question is the credible close to a synthesis reflection."}]},"rWin":{"prompt":"Sourced principle, revised belief, transfer to a new dilemma, and one honest open tension. The reflection survives peer review.","feedback":"This is synthesis: transfer, not coverage, is the evidence of learning.","choices":[]},"rLoss":{"prompt":"The reflection would survive having slept through the module. It is a recap, not synthesis.","feedback":"Revisit: name a sourced principle, show what it revised, run it on new ground, and leave one honest tension open.","choices":[]}}}' />
 
 ## What Strong Reading Looks Like
 
@@ -126,6 +136,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your trace records evidence source, risk, support choice, and revision quality. That is what separates professional judgment from simple completion.
+
+## Concept Map
+
+See how synthesis and transfer connect to evidence-based revision and the course anchors.
+
+<concept-map concepts='["cat531_supplement_foundations_of_cbi_and_design_tensions", "cat531_supplement_module_1_reflection_studio", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

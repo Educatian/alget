@@ -32,6 +32,10 @@ Two design ideas make the audit substantive:
 
 The unifying principle is that readiness is judged from the student's path, not the instructor's setup. "Links work" is a setup fact; "a student can complete the capstone with the scaffolds they were given" is a readiness fact, and only the second predicts whether the course will succeed.
 
+Match each surface setup check to the readiness check that catches what it misses. The setup box verifies the instructor's task; the readiness check verifies the student's path.
+
+<sequence-builder mode="match" items='[{"term":"Links work","definition":"Misses stale targets; the readiness check is that each link resolves to this term resource, not last term dropbox"},{"term":"Capstone assignment posted","definition":"Misses missing scaffolds; the readiness check is that each capstone panel traces to a prior building activity"},{"term":"AI policy in syllabus","definition":"Misses point-of-use; the readiness check is that the disclosure assignment references the policy it depends on"},{"term":"Modules visible","definition":"Misses path completability; the readiness check is that a student reaching the module has practiced what it now demands"}]' />
+
 | Surface (setup) check | What it misses | Path (readiness) check |
 | --- | --- | --- |
 | Links work | Link points to stale content | Link resolves to this term's resource |
@@ -50,6 +54,10 @@ Walk through one concrete readiness review of a course before it opens, using a 
 
 **After (the checklist as a readiness audit).** The checklist now verifies path-level readiness: 3 of 3 capstone panels traced to a building activity (was 2 of 3), 0 stale links (was 2), and the AI policy referenced at point of use. The change is auditable: a reviewer can compare the four-box surface list to the panel-to-activity trace and see which readiness gap each addition closed.
 
+Walk the night-before audit. Each choice either certifies a setup fact or tests the student's path.
+
+<branching-scenario tree='{"title":"Is this course set up, or actually ready?","start":"n1","nodes":{"n1":{"prompt":"All four surface boxes pass: syllabus posted, modules visible, gradebook set, links work. What question do you ask next?","choices":[{"label":"Declare the course ready and open it","next":"strand","feedback":"Setup completeness is necessary but not sufficient. A flawlessly assembled course can still strand learners."},{"label":"Ask: can a student complete the capstone with the scaffolds they were given?","next":"trace","feedback":"Right. Reframing from the instructor task list to the student path makes the hidden gaps appear."}]},"strand":{"prompt":"Week 8, students hit the capstone limitations panel with no prior practice, two links open to last term, and no one connected the AI policy to the disclosure task. What did the green checklist prove?","feedback":"That the building exists, not that anyone can get through it. A fully checked setup list is not readiness.","choices":[]},"trace":{"prompt":"You trace each capstone panel backward. Evidence has a Module 4 activity, transfer has a Module 7 activity, but the limitations panel has nothing. What do you do?","choices":[{"label":"Add a Module 6 reflection that requires naming one limitation","next":"links","feedback":"Yes. Distributing that sub-skill keeps the capstone from front-loading three new demands at once."},{"label":"Leave it; the capstone instructions explain limitations","next":"strand","feedback":"Introducing the sub-skill cold at the capstone is exactly the stranding the audit exists to prevent."}]},"links":{"prompt":"Two module links open fine but point to last term dropbox, and the AI policy sits in the syllabus unreferenced by the disclosure assignment. What is the readiness move?","choices":[{"label":"Repoint the links to this term and link the assignment text to the policy clause","next":"ready","feedback":"Right. Readiness checks function at point of use, not point of existence."},{"label":"Count the links as working and the policy as present","next":"strand","feedback":"Existence is not function. A link that opens to stale content and an unreferenced policy both fail the student path."}]},"ready":{"prompt":"The audit now reports 3 of 3 panels traced to a building activity, 0 stale links, and the policy referenced where used. What has the checklist become?","feedback":"A readiness audit reporting path-level facts rather than setup facts: the difference between a course that looks ready and one that is.","choices":[]}}}' />
+
 ## Decision Rule
 
 Check readiness by walking the student's path, not the instructor's setup list. Every checklist item should test whether a learner can do something, not whether the instructor has posted something. A box that verifies presence rather than function is a setup box wearing a readiness label.
@@ -61,6 +69,8 @@ Run each readiness item through three questions:
 3. **Point-of-use check:** Does each link resolve to the current resource, and is each governing policy referenced where it actually applies? Existence is not function.
 
 A checklist that passes setup questions but fails these is the one that lets a course look ready and strand students anyway.
+
+<inline-check question="A coordinator argues the capstone is a single deliverable to assign in Module 8, not a set of sub-skills to build. Why does a readiness audit reject this view?" explanation="The evidence board's panels (evidence, limitations, transfer) each require practice. Treating the capstone as one big task posted at the end ignores that scaffolding theory builds a complex performance from distributed sub-skills. An audit that does not trace those sub-skills backward declares the course ready while the hardest panel has no scaffold anywhere before it." options='[{"text":"Each panel is a sub-skill that needs prior practice; tracing them backward exposes the unscaffolded one.","correct":true},{"text":"Capstones are always too large to assess for readiness.","correct":false},{"text":"Posting the capstone in Module 8 guarantees students are prepared.","correct":false},{"text":"Sub-skills only matter for setup checks, not readiness checks.","correct":false}]' />
 
 ## Common Misreadings
 
@@ -125,6 +135,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the capstone defense evidence board with limitations and transfer claims records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+
+<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "ail606_supplement_course_readiness_checklist", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

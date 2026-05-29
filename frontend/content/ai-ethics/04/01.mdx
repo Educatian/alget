@@ -39,6 +39,8 @@ Removing direct identifiers (name, SSN) does not anonymize a dataset that contai
 
 **Countermeasure.** *k*-anonymity (each record indistinguishable from at least $k-1$ others on quasi-identifiers) and its successors *l*-diversity and *t*-closeness. These reduce but do not eliminate re-identification risk; for high-dimensional behavioral data they often fail, because almost every long behavioral record is unique.
 
+<inline-check question="A dataset has direct identifiers removed but retains 5-digit zip, full birth date, and gender. Why does this still permit re-identification?" explanation="Right. Sweeney showed zip + birth date + gender uniquely identifies about 87% of US residents. These are quasi-identifiers: not identifying alone, but jointly linkable to an auxiliary dataset (voter rolls, obituaries) to pin down a record." options='[{"text":"Those three fields are themselves direct identifiers like names.","correct":false},{"text":"They are quasi-identifiers whose combination is near-unique and can be linked to an auxiliary dataset to re-identify records.","correct":true},{"text":"Zip codes are public, so the whole record becomes public.","correct":false}]' />
+
 ---
 
 ## Threat 2: Inference Attacks Against the Model
@@ -56,6 +58,12 @@ Even if the training data is never released, the **trained model itself** can le
 > **Reading $\varepsilon$.** The formal guarantee bounds how much any single record can shift the model's output distribution:
 > $$ \Pr[M(D) \in S] \le e^{\varepsilon}\,\Pr[M(D') \in S] $$
 > for any two datasets $D, D'$ differing in one person's record and any outcome set $S$. At $\varepsilon = 0$ the two distributions are identical (perfect privacy, useless model); as $\varepsilon \to \infty$ there is no constraint. The factor $e^{\varepsilon}$ is the worst-case multiplicative "tell." For intuition: $\varepsilon = 1$ gives $e^1 \approx 2.72$, so any one person can shift an outcome's probability by at most a factor of about 2.7; $\varepsilon = 0.1$ gives $e^{0.1} \approx 1.11$, a much tighter bound (≈11% shift) but noisier, less accurate training. Apple has historically run telemetry at single-digit $\varepsilon$ per datum; the 2020 US Census used a budget allocated across the whole publication. $\varepsilon$ is a spendable budget, not a setting you get for free.
+
+Manipulate the leakage budget directly. The worst-case multiplicative "tell" is $e^{\varepsilon}$; a rough utility proxy is how much calibrated noise you must inject, which scales with the query sensitivity divided by the budget. Watch how a tighter budget shrinks the privacy tell but blows up the noise:
+
+<parameter-explorer config='{"title":"Differential Privacy: budget vs. leakage vs. noise","sliders":[{"name":"epsilon","label":"Privacy budget (epsilon)","min":0.05,"max":5,"step":0.05,"unit":"","default":1},{"name":"sensitivity","label":"Query sensitivity (delta-f)","min":1,"max":20,"step":1,"unit":"","default":5}],"outputs":[{"label":"Worst-case multiplicative tell e^epsilon","unit":"x","expr":"2.718281828^epsilon"},{"label":"Laplace noise scale b = sensitivity/epsilon","unit":"","expr":"sensitivity/epsilon"},{"label":"Max probability shift","unit":"%","expr":"(2.718281828^epsilon - 1)*100"}],"plot":{"x":"epsilon","output":0}}' />
+
+Notice the asymmetry: pushing $\varepsilon$ from 1 down to 0.1 only tightens the tell modestly, but the noise scale grows tenfold. That nonlinearity is exactly why small clinical cohorts get wrecked by strict budgets.
 
 ---
 
@@ -99,6 +107,10 @@ None of these tools is a drop-in fix. Each has utility costs and threat-model as
 
 **Scenario.** A health-system vendor proposes to share a "de-identified" patient dataset with an outside research lab to train a readmission-risk model. The vendor has removed names, SSNs, and medical-record numbers. The dataset still contains, per patient: diagnosis codes, admission and discharge dates, 5-digit zip code, age, and gender. The lab will publish the trained model as an API.
 
+Before reading the analysis, predict the threat profile yourself. Each step asks you to commit to an answer, then reveals the reasoning:
+
+<step-reveal title="Diagnose the de-identified hospital dataset" steps='[{"prompt":"The vendor kept diagnosis codes, admission/discharge dates, 5-digit zip, age, and gender. Which single threat is MOST acutely exposed?","predictType":"choice","choices":["Generative verbatim leakage","Re-identification via quasi-identifiers","No threat: identifiers were removed"],"answerIndex":1,"reveal":"Re-identification. Zip + age + gender is Sweeney 87%-unique combination, and admission dates add further uniqueness, all joinable to voter rolls or obituaries."},{"prompt":"The lab will publish the trained model as a public API. What NEW threat does publishing the model (not the data) create?","predictType":"choice","choices":["Membership inference","Surveillance-by-aggregation","None: the data stays private"],"answerIndex":0,"reveal":"Membership inference. A queryable model API lets an attacker test whether a known person was in the training set, which itself discloses they had the diagnosis, even though the raw table was never shared."},{"reveal":"Generative/verbatim leakage is LOW here: a tabular risk classifier is not generative. Surveillance-by-aggregation is MODERATE and depends on whether the lab joins this feed with others; purpose limitation is the relevant control. The lesson: run the scenario against all four threats, not the single question is it anonymized."}]' />
+
 **Step 1: Name the threats.** Run the scenario against all four threats rather than asking the single question "is it anonymized?"
 
 | Threat | Exposed here? | Why |
@@ -128,6 +140,10 @@ None of these tools is a drop-in fix. Each has utility costs and threat-model as
 
 **Decision.** Do not transfer the raw table. Generalize quasi-identifiers to clear *k*-anonymity for the worst case, train under differential privacy with a documented $\varepsilon$, and prefer a federated arrangement so the raw records never leave the covered entity. Document a HIPAA business-associate agreement and a purpose-limitation clause forbidding re-joining with other datasets. The point of the table is that no single tool suffices; the four threats require a *layered* response.
 
+Now you make the calls. You are the privacy engineer on this project and the deadline is tight. Trace your choices to their consequences:
+
+<branching-scenario tree='{"title":"You are the privacy engineer for the hospital data share","start":"n1","nodes":{"n1":{"prompt":"The research lab asks for the de-identified table today so it can hit a grant deadline. What do you do first?","choices":[{"label":"Ship the table as-is; identifiers were removed","next":"ship","feedback":"You treated de-identification as anonymization."},{"label":"Refuse to transfer raw records and propose a layered plan","next":"layer","feedback":"Good: you recognized the four threats need a layered response."},{"label":"Generalize zip and age, then ship the table","next":"kanon","feedback":"k-anonymity helps Threat 1 but ignores the model leak."}]},"ship":{"prompt":"Six months later a journalist links a published readmission record to an obituary and names a patient. What now?","choices":[{"label":"Invoke algorithmic disgorgement and delete the model","next":"disgorge","feedback":"The FTC remedy you should have avoided needing."}],"feedback":"Re-identification via quasi-identifiers (Threat 1) was foreseeable and high; shipping unprotected breached HIPAA and trust."},"kanon":{"prompt":"The published model API is now live. An attacker runs membership-inference queries. What did generalization miss?","choices":[{"label":"Add DP-SGD training and re-release the API","next":"layer","feedback":"Correct: the model itself leaks (Threat 2); k-anonymity on the table cannot bound that."}],"feedback":"Generalizing quasi-identifiers cut Threat 1 but left Threat 2 (membership inference) wide open because the leak is in the trained model, not the table."},"layer":{"prompt":"You propose: generalize quasi-identifiers to k=10, train with DP-SGD at a documented epsilon, keep raw data on hospital servers via federated learning, and sign a purpose-limitation BAA. The lab says DP noise hurts accuracy. Your call?","choices":[{"label":"Negotiate epsilon openly, report it, and accept some cohorts are too small to do privately","next":"win","feedback":"This is the honest tradeoff: transparency over a hidden compromise."},{"label":"Quietly raise epsilon to whatever the lab wants for accuracy","next":"win","feedback":"Tempting, but an undocumented budget defeats the point; the principled move is to report it."}]},"win":{"prompt":"Outcome: raw records never left the covered entity, membership inference is bounded, and the epsilon budget is documented and auditable. No single tool did this; the layers did.","feedback":"You delivered a defensible, layered deployment.","choices":[]},"disgorge":{"prompt":"The model is deleted, the lab loses its work, and the hospital faces an OCR inquiry. Every layered control you skipped would have been cheaper than this.","feedback":"Layered prevention beats post-hoc disgorgement.","choices":[]}}}' />
+
 ---
 
 ## Counterarguments and Limitations
@@ -148,6 +164,14 @@ None of these tools is a drop-in fix. Each has utility costs and threat-model as
 **FTC** has used Section 5 (unfair and deceptive practices) to enforce against companies whose AI deployments produced privacy harms (Rite Aid facial recognition, Everalbum face data), including the remedy of *algorithmic disgorgement*: ordering the deletion of models trained on improperly collected data.
 
 These do not exhaust the ethics. A legally compliant deployment can still be ethically wrong. Compliance is necessary; not sufficient.
+
+---
+
+## Concept Map
+
+The six load-bearing ideas of this section: three of the threat families and the three countermeasure families they call for. Trace which countermeasure answers which threat.
+
+<concept-map concepts='["re_identification","membership_inference","training_data_leakage","differential_privacy","federated_learning","data_minimization"]' />
 
 ---
 

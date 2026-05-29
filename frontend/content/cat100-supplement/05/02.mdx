@@ -63,6 +63,12 @@ Steps:
 
 Notice what the structure forced out. "People liked it" had no number and supported no claim, so it could not survive once the title became a real assertion. The headline now carries the message, and a reader gets the point even if the projector renders the slide in plain black and white.
 
+Work the rewrite one decision at a time, predicting each move before you reveal it:
+
+<step-reveal title="Rebuild the buried slide, message first" steps='[{"prompt":"The slide title is the single word \"Results.\" What is the first thing to do?","predictType":"choice","choices":["Pick a cleaner theme","Rewrite the title as a complete claim with a number","Add an icon to the title bar","Animate the bullets in one at a time"],"answerIndex":1,"reveal":"Rewrite the label into an assertion: \"Response time dropped from 4.2s to 1.1s after caching.\" The title now states a claim a reader can agree or disagree with."},{"prompt":"You now have six vague bullets. What should happen to them?","predictType":"choice","choices":["Keep all six so the slide looks thorough","Cut to at most three that directly support the new claim","Bold the most important one","Move them into the speaker notes"],"answerIndex":1,"reveal":"Cut to three supporting points: 4,000 requests measured, same hardware and script, recommendation to ship. \"People liked it\" supports no claim and cannot survive."},{"reveal":"Only now consider a theme. Because the message already works in plain black on white, any styling is the last coat, not the rescue."}]' />
+
+<inline-check question="A teammate says the slide is weak and suggests applying a bolder theme to fix it. Why is that the wrong first move?" explanation="A theme is decoration, the last layer. The slide is weak because its title is a label, not a claim. Styling cannot make a reader understand a point the structure never stated." options='[{"text":"The theme is the right fix; bolder colors clarify the point","correct":false},{"text":"The structure problem (a label title) must be fixed before any styling","correct":true},{"text":"The slide just needs more bullets","correct":false},{"text":"Animation would carry the missing meaning","correct":false}]' />
+
 ## Decision Rule
 
 Build the message before the look: write the title as a complete claim, attach only the evidence that supports it, and apply styling last. If stripping the theme breaks the slide, the slide was never structured; it was decorated.
@@ -87,6 +93,10 @@ Apply the pattern across a sequence, not just one slide. Take a five-slide deck 
 
 Now rewrite the title row alone: "Our reports took two days, so analysts fell behind" leading to "Caching cut response time to 1.1s" leading to "We recommend shipping caching this sprint." You have not touched a single theme or image, yet the deck now makes its case from the titles down. That is the order the work belongs in: structure that stands on its own first, decoration on top of it second.
 
+Order the assertion-evidence build so each step depends on the one before it:
+
+<sequence-builder mode="order" items='["Write the title as a complete claim a reader could agree or disagree with", "Attach only the evidence that directly supports that claim", "Cut every bullet that supports no claim", "Strip all styling and confirm the slide still makes its point", "Apply theme and font as the final coat"]' />
+
 ## What Strong Reading Looks Like
 
 As you read, keep a two-column note: on the left, each slide's title; on the right, whether it is a claim or a label and what evidence supports it. Flag every label title and every bullet that supports nothing. By the end of 05.02, your note should let a reader see the deck's argument from the titles alone.
@@ -107,6 +117,12 @@ A useful note for the artifact would sound like this: "I changed slide 3's title
 ## Transfer Case
 
 Move the same content to a one-page printed handout with no slide software and no animation at all. The assertion-evidence structure transfers directly: the headline becomes the section heading, the supporting points become the body, and there is no theme to hide behind. If your slide collapses into a clear handout without losing anything, the structure was real. If it falls apart without its visual styling, the decoration was doing work the structure should have done.
+
+## Concept Map
+
+Connect the ideas this section builds on. See how an assertion headline feeds evidence-based revision of the structure:
+
+<concept-map concepts='["cat100_supplement_slide_structure_before_decoration", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

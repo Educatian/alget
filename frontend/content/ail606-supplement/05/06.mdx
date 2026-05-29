@@ -56,7 +56,15 @@ Walk through how to scale the claim to the evidence:
 
 The after version is defensible because the claim does not exceed what five sessions can show, and it names a verification step. The before version overgeneralized a small qualitative signal into proof and a product decision, the central failure this section guards against.
 
+A count only licenses a claim as strong as the proportion and the sample behind it. Adjust how many of how many participants commented, and how many actually failed the task, to see why the same complaint reads as a candidate signal at five participants but never as proof.
+
+<parameter-explorer config='{"title":"How much can this count actually license?","sliders":[{"name":"sample","label":"Participants tested","min":3,"max":30,"step":1,"unit":"people","default":5},{"name":"commented","label":"Participants who commented negatively","min":0,"max":30,"step":1,"unit":"people","default":2},{"name":"failed","label":"Participants who FAILED the task because of it","min":0,"max":30,"step":1,"unit":"people","default":0}],"outputs":[{"label":"Share commenting","unit":"%","expr":"100 * commented / sample"},{"label":"Share with task failure","unit":"%","expr":"100 * failed / sample"},{"label":"One participant is worth","unit":"%","expr":"100 / sample"}],"plot":{"x":"sample","output":2}}' />
+
+Read the third output: at five participants one person swings the share by 20 points, so a 40 percent comment rate is two people, far too thin to support hate or fails. Drive failures to zero and notice that no proportion of comments converts a candidate issue into a confirmed defect; only a larger, varied re-test with actual task failures could do that.
+
 ## Decision Rule
+
+<inline-check question="Two of five participants commented that the progress-bar labels were ambiguous and nobody failed the task. Which write-up is calibrated to that evidence?" explanation="Five participants in a formative test surface candidate problems, not population-level proof, and two negative comments with zero failures is a signal to verify, not a verdict. Users hate it and proves it fails both upgrade the verb past the count; deleting on this evidence skips the re-test the honest response requires." options='[{"text":"Users hate the progress bar; we proved it fails","correct":false},{"text":"Candidate label issue: two of five flagged it, none failed; clarify the label and re-test before removing","correct":true},{"text":"The progress bar is the products main problem and should be cut now","correct":false},{"text":"No issue exists since nobody failed the task","correct":false}]' />
 
 State only what the count supports, then name the verification a stronger claim would require before you act on it. If a finding uses "proves," "all," "hate," or any verdict, replace it with the number behind it and ask whether that number licenses the action you are about to take.
 
@@ -101,6 +109,10 @@ A useful closing line reads: "I rewrote 'users hate the progress bar' as 'two of
 
 Move the same calibration discipline to interpreting student course evaluations, where a handful of strong comments tempt the same overreach. Three pointed complaints about an assignment are a candidate issue worth examining, not proof that "students hate the course," exactly as two progress-bar comments were a signal, not a verdict. The structure transfers (count it, calibrate the verb, name the verification), but the emotional pull of a sharp negative comment is even stronger in evaluations. A reader who lets the loudest comment set policy has made the same mistake as the designer who deleted a feature on five sessions.
 
+Work the evaluation-overreach dilemma below. A 28-student course returns three vivid complaints about one assignment, and every choice tests whether you calibrate the verb to the count.
+
+<branching-scenario tree='{"title":"Reading three sharp course-eval complaints","start":"n1","nodes":{"n1":{"prompt":"Three of 28 students wrote pointed complaints that an assignment was confusing. A colleague says, students hate this assignment, cut it. Do you act on that reading?","choices":[{"label":"Yes, the complaints are vivid and specific, cut the assignment","next":"n2","feedback":"Three of 28 is a candidate signal, and hate is emotion replacing a count. Cutting on this overweights the loudest voices and may remove a productive task."},{"label":"No, restate it as a count and look for a mechanism","next":"n3","feedback":"Correct: 3 of 28 flagged it is a candidate issue to investigate, not proof. Calibrate the verb before deciding anything."}]},"n2":{"prompt":"You cut the assignment. The next cohort scores lower on the linked outcome. What went wrong?","feedback":"You let three vivid comments set policy and removed a task that may have carried germane load. The honest move was to investigate and revise, not delete on a thin signal.","choices":[]},"n3":{"prompt":"You reread the three comments: all three found the instructions ambiguous, none said the work was pointless. What is the calibrated finding and next step?","choices":[{"label":"The assignment fails; replace it","next":"n4","feedback":"Fails outruns the count. Ambiguous instructions are a fixable signal, not a verdict that the assignment is broken."},{"label":"Candidate instruction-clarity issue; clarify the prompt and watch next cohort","next":"n5","feedback":"Correct: the verb matches the evidence and you name the verification before any costly change."}]},"n4":{"prompt":"You replaced a working assignment over an instruction-wording problem. Was that proportional?","feedback":"No. The evidence supported clarifying the instructions, not replacing the task. You spent effort the count could not justify.","choices":[]},"n5":{"prompt":"State the finding you would record.","feedback":"In this 28-student cohort, 3 students found the assignment instructions ambiguous; none called the task itself unhelpful. Candidate clarity issue: revise the prompt wording and monitor the next cohorts comments and outcome before larger changes.","choices":[]}}}' />
+
 ## Artifact Studio
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/05-06-analyzing-feedback-without-overclaiming-artifact.md).
@@ -129,6 +141,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, confirm each finding is backed by a count, uses a verb calibrated to that count, names frequency and severity, and states the verification any costly change would need.
+
+<concept-map concepts='["ail606_supplement_analyzing_feedback_without_overclaiming", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

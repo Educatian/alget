@@ -51,6 +51,12 @@ $$
 
 Splitting one contact into 100 gives a 10x gain; into 10,000 gives 100x. This is precisely why the smallest, most numerous animals (and the gecko in particular) evolved the finest, most subdivided contact structures. Geometry, not stickier material, does the work.
 
+Push the subdivision count and see the square-root payoff (and its diminishing returns) for yourself.
+
+<parameter-explorer config='{"title":"Contact Splitting Gain","sliders":[{"name":"n","label":"Number of subdivided contacts n","min":1,"max":10000,"step":1,"unit":"","default":100}],"outputs":[{"label":"Adhesion gain Fn/F1","unit":"x","expr":"sqrt(n)"},{"label":"Each contact radius (frac of original)","unit":"","expr":"1/sqrt(n)"}],"plot":{"x":"n","output":0}}' />
+
+<inline-check question="If a designer subdivides a single contact into 400 micropillars, what is the approximate adhesion gain over the single contact?" explanation="Contact splitting gives Fn/F1 = sqrt(n) = sqrt(400) = 20. The footprint is unchanged, but the adhesion force is multiplied by 20 purely from geometry." options='[{"text":"About 20x","correct":true},{"text":"About 400x","correct":false},{"text":"About 2x","correct":false}]' />
+
 ---
 
 ## Why It Is Directional
@@ -89,6 +95,10 @@ F = \frac{G\,w}{1 - \cos\theta}
 $$
 
 The term $(1-\cos\theta)$ is the key. At a shallow angle it is tiny, so detachment force is huge; at a steep angle it approaches its maximum, so detachment force is small. Directional adhesion is not a material trick. It is this geometric factor exploited deliberately.
+
+Sweep the peel angle and watch detachment force collapse as $\theta$ steepens. The expression converts degrees to radians explicitly inside the cosine.
+
+<parameter-explorer config='{"title":"Kendall Peel: Detachment Force vs Angle","sliders":[{"name":"theta","label":"Peel angle theta","min":5,"max":150,"step":1,"unit":"deg","default":30},{"name":"G","label":"Work of adhesion G","min":0.2,"max":3,"step":0.1,"unit":"J/m^2","default":1},{"name":"w","label":"Patch width w","min":0.5,"max":5,"step":0.5,"unit":"mm","default":1}],"outputs":[{"label":"Detachment force F","unit":"N","expr":"(G*w/1000)/(1-cos(theta*3.14159265/180))"},{"label":"Geometric factor (1-cos theta)","unit":"","expr":"1-cos(theta*3.14159265/180)"}],"plot":{"x":"theta","output":0}}' />
 
 <remotion-clip name="bio_inspired/directional_adhesion"></remotion-clip>
 
@@ -206,6 +216,10 @@ Gecko-inspired surfaces are powerful, but not universal. Common limitations incl
 
 A climbing robot for polished glass and a reusable gripper for textured composites may need very different adhesive architectures, even when both are inspired by the same biological mechanism.
 
+Walk a real design decision: you are speccing a gecko-inspired gripper and each choice has consequences rooted in the physics above.
+
+<branching-scenario tree='{"title":"Speccing a Reversible Dry Adhesive Gripper","start":"n1","nodes":{"n1":{"prompt":"Your robot must climb a smooth, clean glass facade and also detach quickly between steps. Which design priority comes first?","choices":[{"label":"Maximize shear capacity with angled setae, and orient the load near shear during grip","next":"n2","feedback":"Right. Strong shear plus easy peel is the gecko strategy; loading near shear keeps the (1-cos theta) factor tiny."},{"label":"Maximize raw normal pull-off stickiness in every direction","next":"n3","feedback":"This makes detachment slow and unreliable. Universal stickiness fights the need for clean, fast release."}]},"n2":{"prompt":"To detach between steps, how should the toe move?","choices":[{"label":"Reorient toward a steep peel angle (near 90 deg) to spike the (1-cos theta) term","next":"n4","feedback":"Correct. A steep peel makes detachment force collapse, enabling millisecond release."},{"label":"Pull straight back at a shallow 5 deg angle","next":"n5","feedback":"That is near-shear loading; detachment becomes hundreds of times harder, so the foot stays stuck."}]},"n3":{"prompt":"Field test: the gripper sticks but cannot release cleanly. What do you change?","choices":[{"label":"Switch to angled, directional setae so peel release is easy","next":"n4","feedback":"Right. Directionality, not maximum stickiness, is the actual design target."}]},"n4":{"prompt":"Now the client wants the same gripper used on a dusty, rough turbine blade. What is the realistic outcome?","feedback":"Performance drops: roughness reduces real contact and contamination fouls the tips. A different adhesive architecture (or cleaning/preload strategy) is needed; the glass-tuned design does not transfer directly.","choices":[]},"n5":{"prompt":"The foot will not release and the robot stalls mid-climb. Lesson?","feedback":"Shallow-angle loading is the GRIP mode, not the RELEASE mode. Detachment must reorient toward a steep peel angle.","choices":[]}}}' />
+
 ---
 
 ## What Designers Learn from the Gecko
@@ -215,6 +229,10 @@ A climbing robot for polished glass and a reusable gripper for textured composit
 - Design for the load case you care about; many systems need strong shear grip far more than universal stickiness.
 - Make detachment a first-class design objective, governed by peel angle, not an afterthought.
 - Treat contamination, roughness, and cycle life as primary design constraints rather than late-stage test failures.
+
+Connect the geometry, forces, and mechanism of gecko adhesion.
+
+<concept-map concepts='["directional_adhesion","gecko","van_der_waals","spatial_geometry"]' />
 
 ---
 

@@ -35,6 +35,10 @@ The deepest property is goal-based framing. A real user arrives with an intentio
 
 Realism guards against a subtler failure. A context-free command ("create a module") gives the participant no stakes, so they behave like a test-taker, not a worker. A scenario with a role and a deadline ("you launch next week and want to reuse a template") recruits the same motivation a real user feels, which surfaces real shortcuts and real frustration. And every scenario needs a scorable end-state, because **cognitive load theory** warns that a moderator who has to interpret "did that count?" in real time adds load to their own observation and lets bias fill the gap. A predefined success condition keeps the scoring clean.
 
+Match each property of a usable task scenario to the specific way a weak task violates it. The match is the diagnostic you will use to read any task list.
+
+<sequence-builder mode="match" items='[{"term":"Goal-based framing","definition":"Violated when the task names the controls and their order, so the participant transcribes a click path instead of finding the path"},{"term":"Realistic context","definition":"Violated by a bare command with no role or motive, so the participant behaves like a test-taker rather than a worker"},{"term":"Scorable end-state","definition":"Violated by see if they like it, which the moderator cannot mark consistently without improvising mid-session"},{"term":"Hidden vocabulary","definition":"Violated when the task reuses an interface label such as Template Library, handing over the search term findability was meant to test"}]' />
+
 ## Worked Example: Rewriting a Task Scenario So It Does Not Leak the Answer
 
 A designer is writing the task a participant will attempt in a usability session for a course-authoring prototype.
@@ -55,6 +59,8 @@ Walk through why this task cannot test the design:
 > Scenario: You are an instructor with one week before your course launches. You want to add a new module built from an existing template so you do not start from scratch. Using this prototype, create that module. (Success: a template-based module is created and saved; moderator records the path taken and any wrong turns.)
 
 The after version is defensible because it tests whether the participant can find and complete the goal, which is what usability evidence requires. The before version guaranteed success and produced no evidence, a hidden ceiling effect.
+
+<inline-check question="A dashboard task reads: Use the Filter dropdown to show only last quarter. Why is this not testable evidence?" explanation="Filter is the interface label and use the dropdown is the route, so the task hands over both the search term and the path. The participant only follows directions, and the findability question, can they discover how to narrow the data on their own, is answered for them in the prompt." options='[{"text":"It lacks a realistic deadline for the manager","correct":false},{"text":"It leaks the interface vocabulary and the route, so findability is never tested","correct":true},{"text":"It has no measurable success condition","correct":false},{"text":"Last quarter is ambiguous about which quarter","correct":false}]' />
 
 ## Decision Rule
 
@@ -97,6 +103,8 @@ The task set is strong when a reviewer who has never seen the prototype can read
 
 A useful closing line reads: "I rewrote the task from a click path into a goal-based scenario because the original named every control and tested only direction-following; I rejected the suggestion to add a hint after thirty seconds, since the prototype's whole point is whether the path is findable unaided."
 
+<self-explain prompt="In your own words, explain why a task that can be completed in many wrong ways before it is completed the right way is a STRONGER usability task than one with a single clear path stated in the prompt. Tie your answer to the gulf of execution." answer="A real user arrives with an intention and must map it onto the interface, the gulf of execution. A task that allows many wrong routes preserves that mapping problem, so the session measures whether the design lets users bridge the gulf unaided. A task that states the one right path bridges the gulf for the participant, erases the measurement, and guarantees a ceiling effect: success no longer indicates a usable design, only a participant who can follow directions." />
+
 ## Transfer Case
 
 Move the same task-writing discipline to an assessment-design context, where the scenario is the test item itself. The leak problem reappears as the giveaway stem: a question whose wording reveals its own answer measures reading, not knowledge, just as a leaky task measures compliance, not usability. The structure transfers (state the goal, hide the route, fix the scoring), but the stakes shift, because a leaked item inflates scores instead of inflating a usability claim. A reader who treats the two as unrelated has missed that both fail the same way: the prompt does the work the participant was supposed to do.
@@ -129,6 +137,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, confirm each task states a goal not a route, gives a realistic motive, hides the interface vocabulary, and carries a pre-agreed success condition.
+
+<concept-map concepts='["ail606_supplement_task_scenarios_for_prototype_testing", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

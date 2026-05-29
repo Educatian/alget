@@ -105,11 +105,21 @@ The first relation gives the relative Young's modulus (stiffness); the second gi
 
 A second deep point is that geometry, not just density, controls direction-dependence. A **regular hexagonal honeycomb** has relative density $\bar{\rho} \approx \tfrac{2}{\sqrt{3}}\,(t/\ell)$, where $t$ is wall thickness and $\ell$ is wall length. Loaded **along the prism axis** the walls stretch, so stiffness scales linearly, $E_3^*/E_s = \bar{\rho}$. Loaded **in-plane** the walls bend, so stiffness scales with the cube, $E_1^*/E_s \approx 2.3\,(t/\ell)^3$. That difference is the quantitative reason honeycombs are called anisotropic, as the next worked example makes concrete.
 
+Drive the Gibson-Ashby scaling yourself. Slide the relative density and watch the **square law** punish stiffness far faster than the gentler $3/2$ strength law, then plot stiffness against $\bar{\rho}$ to see the parabola.
+
+<parameter-explorer config='{"title":"Gibson-Ashby Open-Cell Foam Scaling","sliders":[{"name":"rho","label":"Relative density (rho-bar)","min":0.05,"max":0.6,"step":0.01,"unit":"","default":0.3}],"outputs":[{"label":"Relative stiffness E*/Es","unit":"","expr":"rho^2"},{"label":"Relative strength sigma*/sigma_ys","unit":"","expr":"0.3*rho^(3/2)"},{"label":"Porosity (void fraction)","unit":"","expr":"1-rho"},{"label":"Specific stiffness ratio","unit":"","expr":"rho"}],"plot":{"x":"rho","output":0}}' />
+
+<inline-check question="At a relative density of 0.3, why is the relative stiffness (0.09) so much smaller than the relative strength (about 0.16)?" explanation="Stiffness follows the square law (0.3^2 = 0.09) because bending struts lose stiffness quadratically, while strength follows the gentler 3/2 power (0.3 raised to 1.5 is about 0.164, times 0.3 gives about 0.05 in raw terms but the exponent alone falls more slowly than the square). The key takeaway: cutting density penalizes stiffness faster than strength." options='[{"text":"Stiffness scales with the square of relative density while strength scales with the 3/2 power, so stiffness drops faster as density falls.","correct":true},{"text":"Strength does not depend on relative density at all.","correct":false},{"text":"The base material changes between the two calculations.","correct":false}]' />
+
 ---
 
 ## Worked Example 1.1: Honeycomb Anisotropy
 
 **Problem:** A regular hexagonal aluminum honeycomb has wall thickness-to-length ratio $t/\ell = 0.10$. Find its relative density, and compare its stiffness loaded along the prism axis versus loaded in-plane. By what factor is it stiffer in the strong direction?
+
+Before reading the solution, work through the logic one step at a time and predict each result.
+
+<step-reveal title="Predict the Honeycomb Anisotropy" steps='[{"prompt":"For t/L = 0.10, the relative density is (2/sqrt(3))(t/L). Roughly what fraction air is this honeycomb?","predictType":"choice","choices":["About 12 percent air","About 50 percent air","About 88 percent air","About 99 percent air"],"answerIndex":2,"reveal":"rho-bar = 1.155 * 0.10 = 0.1155, so only 11.5 percent is solid and about 88 percent is air."},{"prompt":"Along the prism axis the walls STRETCH. Which scaling applies to E3*/Es?","predictType":"choice","choices":["Linear in rho-bar","Square of rho-bar","Cube of t/L"],"answerIndex":0,"reveal":"Stretching-dominated walls give linear scaling: E3*/Es = rho-bar = 0.1155."},{"prompt":"In-plane the walls BEND. Which scaling applies to E1*/Es?","predictType":"choice","choices":["Linear in rho-bar","Cube of t/L","Square root of rho-bar"],"answerIndex":1,"reveal":"Bending-dominated walls give cubic scaling: E1*/Es = 2.3*(0.10)^3 = 0.0023."},{"reveal":"Anisotropy ratio = 0.1155 / 0.0023 = about 50. The honeycomb is roughly 50 times stiffer along its prism axis than across it, from geometry alone at a single relative density."}]' />
 
 **Step 1: Relative density.**
 
@@ -150,6 +160,10 @@ The sandwich panel reveals the deeper lesson of the book: successful bio-inspire
 - and use internal architecture to stabilize the section without filling it solid.
 
 That move from organism to transferable design rule is what makes biology usable as an engineering knowledge base rather than just a source of inspiration.
+
+Now make the design call yourself. You are selecting a cellular core for a structure and each branch commits you to a geometry-versus-load decision with real consequences.
+
+<branching-scenario tree='{"title":"Selecting a Cellular Core","start":"n1","nodes":{"n1":{"prompt":"You must design a lightweight panel that carries through-thickness shear from bending, and the load direction is fixed and known. Which cellular architecture do you choose?","choices":[{"label":"2D hexagonal honeycomb with the prism axis through the thickness","next":"n2","feedback":"Good. The stiff stretching-dominated axis carries the through-thickness shear, exactly the sandwich-panel logic."},{"label":"Isotropic 3D open-cell foam","next":"n3","feedback":"This works but wastes the known load direction; an isotropic foam spreads stiffness evenly instead of concentrating it where you need it."}]},"n2":{"prompt":"To save more mass you drop t/L from 0.10 to 0.05. What is the trade-off?","choices":[{"label":"Lighter, but anisotropy ratio jumps to about 200, so misaligned loads become catastrophic","next":"n4","feedback":"Correct. Thinner walls multiply direction sensitivity; alignment tolerance shrinks."},{"label":"Lighter with no downside","next":"n5","feedback":"Not quite. Stiffness in the weak in-plane direction falls with the cube of t/L, so misalignment is now far more dangerous."}]},"n3":{"prompt":"Your reviewer notes the load is single-direction. What should you reconsider?","choices":[{"label":"Switch to a honeycomb to exploit the fixed load path","next":"n4","feedback":"Right. When direction is known and fixed, anisotropy is an asset, not a liability."}]},"n4":{"prompt":"Final design lock-in: you accept the honeycomb at t/L = 0.05 with strict alignment control. Outcome?","feedback":"Sound engineering: maximum specific stiffness in the known direction, with alignment treated as a first-class manufacturing constraint.","choices":[]},"n5":{"prompt":"A misaligned load arrives in-plane and the panel collapses. Lesson?","feedback":"Thinner walls buy mass savings but amplify anisotropy; the weak in-plane direction (cubic in t/L) becomes the failure mode.","choices":[]}}}' />
 
 ---
 
@@ -208,6 +222,10 @@ The lattice keeps only 9 percent of the solid's bulk stiffness. That sounds seve
 - Stiffness of open-cell foams scales with the **square** of relative density, so light foams lose stiffness fast but strength more slowly.
 - Honeycombs are strongly anisotropic: stiff (linear) along the prism axis, soft (cubic) in-plane.
 - Good bio-inspired design transfers the **function-structure principle**, not the literal organism shape.
+
+Map how this section's core ideas connect before moving on.
+
+<concept-map concepts='["cellular_solids","porosity","strength_to_weight"]' />
 
 ---
 

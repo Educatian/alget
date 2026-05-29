@@ -63,6 +63,10 @@ $$\vec{R} = \sum_i \vec{F}_i, \quad R_x = \sum_i F_{ix}, \quad R_y = \sum_i F_{i
 
 You sum the components, then re-assemble. This avoids compounded angle errors.
 
+Two equal forces meet at an angle. Slide that angle and watch the resultant: at 0 degrees they reinforce fully, at 180 degrees they cancel, and the magnitude follows the law of cosines, never the naive sum. This is the CN-tower lesson made interactive.
+
+<parameter-explorer config='{"title":"Resultant of two forces at an angle: R = sqrt(A^2 + B^2 + 2AB cos(phi))","sliders":[{"name":"A","label":"Force A magnitude","min":0,"max":300,"step":10,"unit":"N","default":100},{"name":"B","label":"Force B magnitude","min":0,"max":300,"step":10,"unit":"N","default":100},{"name":"phi","label":"Angle between A and B","min":0,"max":180,"step":1,"unit":"deg","default":90}],"outputs":[{"label":"Naive magnitude sum A + B (wrong)","unit":"N","expr":"A + B"},{"label":"True resultant R","unit":"N","expr":"sqrt(A^2 + B^2 + 2 * A * B * cos(phi * 3.14159265 / 180))"}],"plot":{"x":"phi","output":1}}' />
+
 ---
 
 ## 3D Forces: Direction Cosines and Unit Vectors
@@ -106,6 +110,8 @@ $$F_\| = \vec{F} \cdot \hat{u}$$
 When you need the force component parallel to a member's axis, this is the operation. The parallel component contributes axial loading; the perpendicular complement (computed by Pythagoras or by vector subtraction) contributes shear or bending.
 
 The dot product is commutative ($\vec{A} \cdot \vec{B} = \vec{B} \cdot \vec{A}$) and produces zero when two vectors are perpendicular.
+
+<inline-check question="The dot product of two nonzero force vectors comes out to exactly zero. What does that tell you about them?" explanation="Since A dot B = AB cos(theta), a zero result with nonzero magnitudes forces cos(theta) = 0, meaning theta = 90 degrees. The vectors are perpendicular, so neither has any component along the other." options='[{"text":"They are perpendicular to each other.","correct":true},{"text":"They are parallel and point the same way.","correct":false},{"text":"They are equal in magnitude.","correct":false}]' />
 
 ---
 
@@ -181,6 +187,8 @@ $$\vec{F} = 250 \,\hat{u}_{AB} \approx \boxed{128.6\hat{i} + 171.5\hat{j} - 128.
 
 That is the only correct workflow. Estimating angles by eye from a 3D drawing produces 5 to 15 degree errors that propagate through every subsequent equilibrium equation.
 
+<step-reveal title="Build the 3D force vector from geometry (Example 5.2)" steps='[{"prompt":"The cable runs from A(2,0,3) to B(5,4,0). What is the position vector r_AB?","predictType":"choice","choices":["3 i + 4 j - 3 k","7 i + 4 j + 3 k","-3 i - 4 j + 3 k","3 i + 4 j + 3 k"],"answerIndex":0,"reveal":"r_AB = (5-2) i + (4-0) j + (0-3) k = 3 i + 4 j - 3 k. Always subtract the tail (A) from the head (B)."},{"prompt":"What is the magnitude |r_AB|?","predictType":"choice","choices":["sqrt(34) = 5.831 m","sqrt(50) = 7.071 m","10 m","sqrt(25) = 5 m"],"answerIndex":0,"reveal":"|r_AB| = sqrt(3^2 + 4^2 + (-3)^2) = sqrt(9 + 16 + 9) = sqrt(34) = 5.831 m."},{"prompt":"The unit vector is u = r_AB / 5.831. Which is correct?","predictType":"choice","choices":["0.514 i + 0.686 j - 0.514 k","0.600 i + 0.800 j - 0.600 k","0.300 i + 0.400 j - 0.300 k","0.514 i + 0.514 j - 0.686 k"],"answerIndex":0,"reveal":"u = (3/5.831) i + (4/5.831) j - (3/5.831) k = 0.514 i + 0.686 j - 0.514 k. Check: 0.514^2 + 0.686^2 + 0.514^2 = 0.999, valid."},{"prompt":"Multiply by the 250 N tension. What is the force vector?","predictType":"choice","choices":["128.6 i + 171.5 j - 128.6 k N","125 i + 167 j - 125 k N","150 i + 200 j - 150 k N","75 i + 100 j - 75 k N"],"answerIndex":0,"reveal":"F = 250 u = 128.6 i + 171.5 j - 128.6 k N. Write the line, build the unit vector, multiply by magnitude: that is the whole 3D workflow."}]' />
+
 ---
 
 ### Example 5.3: Dot Product for Angle and Axial Projection
@@ -253,6 +261,8 @@ The moment points along +y, perpendicular to both the lever arm and the force, a
 - **Applying $\vec{r} \times \vec{F}$ with the wrong $\vec{r}$.** $\vec{r}$ must run from the moment point to any point on F's line of action, not the other way around.
 - **Treating dot and cross products interchangeably.** Dot is scalar; cross is vector. The two answer different questions.
 
+<self-explain prompt="In your own words, explain why the dot product is the right tool to find the axial (parallel) component of a force on a member, while the cross product is the right tool to find that force's moment about a point. Tie each to its geometric output." answer="The dot product F . u = F cos(theta) extracts the part of the force that lies ALONG the unit vector u, which is exactly the axial component a member carries. Its output is a single scalar because a projection is just a length along a line, and it vanishes when the force is perpendicular to u. The cross product r x F = rF sin(theta) instead measures the turning effect: it uses the PERPENDICULAR part of the force times the lever arm, and its output is a vector whose direction (by the right-hand rule) gives the axis of rotation. Moments are inherently directional in 3D, so a vector output is required, and the cross product is zero when r and F are parallel because a force aimed straight at the point produces no turning." />
+
 ---
 
 ## Summary
@@ -282,6 +292,8 @@ The moment points along +y, perpendicular to both the lever arm and the force, a
 ## What's Next?
 
 In the next module we turn the closed force polygon into algebra: applying $\sum \vec{F} = 0$ to particles, where the vector skills built here become the equilibrium equations that carry the rest of statics.
+
+<concept-map concepts='["force_vector","force_components","unit_vector","direction_cosines","dot_product","cross_product"]' />
 
 <dynamic-scenario topic="3D Force Vectors" context="A radio tower is held by three guy cables anchored at ground points A, B, C and meeting at the tower top T(0, 0, 30) m. Cable tensions are unknown. The student is asked to write each cable's force vector in component form before applying equilibrium."></dynamic-scenario>
 

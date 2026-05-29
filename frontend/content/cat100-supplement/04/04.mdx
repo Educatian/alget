@@ -34,6 +34,12 @@ A classroom message is built from four parts, and each part has a pass condition
 
 The two parts AI fails most often are the specific fact and the clear action, because both require committing to a concrete detail the model does not actually have. The model knows the genre of a concerned email but not the dates of the missing worksheets, so it hedges. Your job is to supply the concrete values the structure demands.
 
+<inline-check question="A parent email reads: 'There have been some issues lately we should discuss at some point.' Which two of the four parts have failed?" explanation="'Some issues lately' gives no dated, concrete detail, so the specific-fact part fails. 'At some point' gives no action with a deadline, so the clear-action part fails. These are exactly the two parts AI hedges on because it lacks the concrete values only you can supply." options='[{"text":"Specific fact and clear action","correct":true},{"text":"Subject line and tone","correct":false},{"text":"Tone and clear action","correct":false},{"text":"None; the email is polite enough to send","correct":false}]' />
+
+Match each part of a classroom message to its pass condition:
+
+<sequence-builder mode="match" items='[{"term":"Subject line","definition":"Names the topic in a few words, not a vague label like Concern"},{"term":"Specific fact","definition":"One dated, concrete detail the reader can repeat back"},{"term":"Clear action","definition":"What the reader should do, with a deadline"},{"term":"Tone","definition":"Respectful and proportional to the actual stakes"}]' />
+
 Tone is a constraint, not a goal. The aim is not to sound warm; it is to be proportional. A missed-homework email should not read like an emergency, and an emergency should not read like a routine note. Scoring tone against the actual situation prevents both the false-alarm and the buried-lede failures.
 
 ## Worked Example
@@ -76,6 +82,10 @@ J. Rivera
 ```
 
 Step 4. Log the one rejected AI suggestion. The AI offered to add "this is urgent and serious." You rejected it because the tone field already passed and that phrase would alarm the parent without adding a fact. The before/after plus the structure score is the evidence: a reader can see which part failed and exactly how you fixed it.
+
+Score and fix the draft one part at a time, predicting each repair before you reveal it:
+
+<step-reveal title="Score the parent email part by part" steps='[{"prompt":"The subject line is \"Concern.\" PASS or FAIL, and why?","predictType":"choice","choices":["FAIL: it is a vague label that raises alarm without naming the topic","PASS: any subject is fine","FAIL: it is too long","PASS: short subjects are always best"],"answerIndex":0,"reveal":"FAIL. \"Concern\" names no topic and signals alarm. Fix: \"Math homework missing for Maria (week of May 18).\""},{"prompt":"The body says \"some issues lately.\" Which fix makes the specific-fact part pass?","predictType":"choice","choices":["Name the dated detail: \"the three math worksheets due May 18, 19, and 20\"","Add the word \"seriously\"","Make the sentence longer and warmer","Apologize twice"],"answerIndex":0,"reveal":"Name the dated, concrete detail. The reader can now repeat back exactly what happened, which is the fact-check standard."},{"prompt":"The body says \"discuss at some point.\" Which fix makes the clear-action part pass?","predictType":"choice","choices":["Give an action with a deadline: \"check her folder and reply by Friday\"","Say \"whenever you can\"","Remove the action entirely","Mark it urgent"],"answerIndex":0,"reveal":"An action plus a deadline. Tone already passed, so adding \"urgent and serious\" would fail the proportion check; you reject that suggestion. Three of four parts are now fixed and the email does its job."}]' />
 
 ## Decision Rule
 
@@ -121,6 +131,12 @@ A useful closing note for the artifact would read: "The first draft failed subje
 ## Transfer Case
 
 Move the message from a parent to a course instructor, the audience CAT 100 students email most. The four parts still apply, but the tone constraint shifts. With a parent you protect against alarm; with an instructor you protect against sounding entitled or vague. The fact part might become "I missed the May 18 quiz because of a documented medical appointment," and the action part becomes a specific request ("may I take the make-up before Friday?") rather than an open-ended one. The structure transfers intact; what changes is which tone failure you are guarding against in the new audience.
+
+## Concept Map
+
+See how the four-part message check connects to the chapter’s wider ideas:
+
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_classroom_communication_drafts", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

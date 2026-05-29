@@ -25,6 +25,10 @@ Mayer's twelve principles cluster into three jobs, and each job answers a differ
 - **Manage essential processing:** segmenting (let the learner pace chunks), pre-training (teach component names first), modality (offload words to the auditory channel).
 - **Foster generative processing:** multimedia (words plus pictures beat words alone), personalization (conversational voice), voice (human over machine narration).
 
+Match each principle to the processing job it does, so you can name the job a principle serves before you apply it.
+
+<sequence-builder mode="match" items='[{"term":"Coherence","definition":"Reduce extraneous processing by cutting material that serves no instructional objective"},{"term":"Redundancy","definition":"Reduce extraneous processing by not narrating and printing the same words at once"},{"term":"Spatial contiguity","definition":"Reduce extraneous processing by placing words next to the picture part they describe"},{"term":"Segmenting","definition":"Manage essential processing by letting the learner pace the chunks"},{"term":"Modality","definition":"Manage essential processing by offloading words to the auditory channel"},{"term":"Personalization","definition":"Foster generative processing by using a conversational rather than formal voice"}]' />
+
 Two features make these *constraints* rather than tips. First, **boundary conditions.** The modality and redundancy principles are strongest for novices and for fast-paced, system-controlled material; they weaken or reverse for experts and for learner-paced text (the expertise-reversal effect). Second, **conflict.** On the pump slide, the worked-example impulse to show more text collides with redundancy. You cannot satisfy both by default; you must rank them for the stated learner. Writing the rank, and the condition that justifies it, is the work the table records.
 
 ## Worked Example
@@ -55,6 +59,10 @@ Here is a single tutorial slide revised by applying Mayer's principles as constr
 
 The point is not that the slide is cleaner. Each deletion or move is licensed by a named principle and a stated learner condition.
 
+Walk the pump-slide decisions yourself, choosing which principle governs each conflict for the stated learner.
+
+<branching-scenario tree='{"title":"Resolving the pump slide as constraints","start":"n1","nodes":{"n1":{"prompt":"The learners are novices on a system-paced slide. Narration and an identical 120-word paragraph both deliver the explanation. Which move does the redundancy principle license here?","choices":[{"label":"Keep both so learners can read and listen","next":"keepboth","feedback":"For novices on system-paced material, identical narration plus print duplicates the verbal stream and overloads the visual channel."},{"label":"Delete the printed paragraph and keep narration","next":"deltext","feedback":"Correct for this condition: redundancy forbids identical narration plus on-screen text for novices on a system-paced slide."}]},"keepboth":{"prompt":"The visual channel is now carrying the diagram plus a 120-word paragraph. What is the consequence?","choices":[{"label":"Reconsider and remove the duplicated paragraph","next":"deltext","feedback":"Yes. Returning to the redundancy fix relieves the overloaded visual channel."}],"feedback":"The split-attention and redundancy costs remain; this is the original problem."},"deltext":{"prompt":"A reviewer asks for numbered captions restating the narration for accessibility. What honors both access and redundancy?","choices":[{"label":"Add the captions for everyone","next":"forced","feedback":"That reintroduces the redundancy you just removed and forces duplication on all learners."},{"label":"Offer a captions-on toggle so text is opt-in","next":"toggle","feedback":"Correct: access becomes learner-controlled without forcing duplication on novices who do not need it."}]},"forced":{"prompt":"Reconsider: how do you give access without recreating redundancy?","choices":[{"label":"Make the captions an opt-in toggle","next":"toggle","feedback":"Yes. A toggle separates the accessibility axis from the redundancy axis."}],"feedback":"Forced duplication undoes the redundancy fix."},"toggle":{"prompt":"Resolved. Each edit is now licensed by a named principle and the novice, system-paced condition, with access handled by learner-controlled options.","feedback":"This is constraint-based design: conditional principles applied only after naming the learner.","choices":[]}}}' />
+
 ## Decision Rule
 
 Treat each principle as an if-then with a boundary condition, then resolve conflicts explicitly:
@@ -68,6 +76,9 @@ If you cannot state the boundary condition, you are using the principle as a slo
 ## Common Misreadings
 
 The first misreading is "more principles applied equals better design." Applying personalization, signaling, and segmenting to a frame that only had a redundancy problem adds work without addressing the issue. The second is forgetting reversal: stripping on-screen text for an expert who reads faster than your narrator can speak inserts a new extraneous delay. The third is treating accessibility and redundancy as the same axis; the fix is learner-controlled options (a toggle), not forcing duplication on everyone.
+
+<inline-check question="You apply the modality principle (narrate, do not print) to a self-paced reference that expert technicians skim while servicing equipment. Is this the right call?" explanation="Modality and redundancy are strongest for novices on system-paced material. Experts skimming a self-paced reference read faster than narration plays, so forced narration becomes an extraneous delay and the printed text they want is gone. The boundary condition has flipped." options='[{"text":"Yes, narration always beats printed text","correct":false},{"text":"No, for self-paced experts the condition flips, so printed text they can skim is better","correct":true},{"text":"Yes, because modality is one of the twelve Mayer principles","correct":false}]' />
+
 
 <youtube-embed id="FwSih-S8yOE" title="Mayer's 12 Principles of Multimedia Learning" caption="Use this only after the worked example. Listen for one principle that would force a visible change in your artifact." />
 
@@ -124,6 +135,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure every edit in your trace names the governing principle, the boundary condition that licenses it, and, where two principles conflicted, which one you ranked first and why.
+
+## Concept Map
+
+Connect Mayer's principles to the revision evidence they license and the bounded role AI support plays in checking conditions.
+
+<concept-map concepts='["mayer_principles", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

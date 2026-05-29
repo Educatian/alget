@@ -46,6 +46,12 @@ This is the **scale argument**. The same fairness defect that would be a persona
 
 Scale also amplifies error. A 2% misclassification rate sounds tolerable until you realize 2% of a million users is twenty thousand people, and the twenty thousand are not random; they are systematically the people whose data the model fit least well, who tend to be the people already underserved.
 
+The scale argument is quantitative, so make it move. The slider below turns an abstract "small" error rate into a headcount of harmed people, and shows how a higher error rate concentrated on an underserved subgroup compounds. Watch how a rate you would shrug off in a code review becomes thousands of real people once it is wired into a deployed system.
+
+<parameter-explorer config='{"title":"Scale Turns a Small Error Rate Into Many People","sliders":[{"name":"users","label":"People the system decides about","min":1000,"max":2000000,"step":1000,"unit":"people","default":1000000},{"name":"error","label":"Overall misclassification rate","min":0.5,"max":10,"step":0.5,"unit":"%","default":2},{"name":"skew","label":"Error multiplier on the worst-served subgroup","min":1,"max":5,"step":0.5,"unit":"x","default":3}],"outputs":[{"label":"People misclassified overall","unit":"people","expr":"users * error / 100"},{"label":"Effective error rate for the worst-served subgroup","unit":"%","expr":"error * skew"},{"label":"Harmed in that subgroup (assume 15% of users)","unit":"people","expr":"users * 0.15 * error * skew / 100"}],"plot":{"x":"error","output":0}}' />
+
+<inline-check question="You cut the overall error rate from 2% to 1% but the subgroup multiplier stays at 3x. Has the structural-injustice concern been resolved?" explanation="No. Halving the aggregate rate halves the headcount, but the worst-served subgroup is still hit at three times the base rate. Scale plus a skewed error distribution is the structural-injustice pattern; lowering the average alone does not flatten the distribution." options='[{"text":"Yes, halving the average error fixes it.","correct":false},{"text":"No, the subgroup is still harmed at 3x the base rate; the distribution, not just the average, is the concern.","correct":true},{"text":"Yes, because 1% is below any reasonable threshold.","correct":false}]' />
+
 ---
 
 ## Distinctive 2: Ethical Choices Are Encoded in Technical Choices
@@ -106,6 +112,10 @@ A user-only frame would ask "is the recruiter happy with the tool?" That questio
 
 The team optimized for the only stakeholder it could see. Three of the four groups bore the cost.
 
+Before reading the answer table as a finished product, predict it yourself. The reveal below walks the stakeholder map one decision at a time so you practice the analysis rather than memorizing the result.
+
+<step-reveal title="Build the stakeholder map for the hiring screen" steps='[{"prompt":"A user-only frame asks one question about this tool. Which question is it, and why is it dangerous?","predictType":"choice","choices":["Is the recruiter happy with the tool?","Is the model accurate on held-out data?","Is the code well tested?"],"answerIndex":0,"reveal":"The user-only frame asks only \"is the recruiter happy?\" It is dangerous because the recruiter is the single visible stakeholder; centering them hides the three groups who actually bear the harm."},{"prompt":"Who is the decision SUBJECT here, and are they visible to the team?","predictType":"choice","choices":["Amazon recruiters; visible","Every applicant scored by the tool; invisible","The framework vendor; visible"],"answerIndex":1,"reveal":"The decision subjects are every applicant the tool scores. They are invisible to the team and absorb the core harm: qualified women silently downranked with no notice that a decision was even made."},{"reveal":"Distinct from decision subjects are the DATA subjects: past applicants whose resumes formed the training set. Their historical treatment was frozen into a rule applied to strangers. BYSTANDERS (the wider labor pool, public trust in algorithmic hiring) round out the four. The team optimized for one of four groups; the other three paid."}]' />
+
 ### Step 2: Trace the Encoded Choices
 
 Applying Distinctive 2, we locate exactly where the ethics entered the technical pipeline:
@@ -132,6 +142,14 @@ The most expensive lesson here is about timing. Bias was not introduced at deplo
 
 This is Distinctive 2 made concrete: the cheapest, most effective intervention is at the earliest phase, and a deployment-time patch is the weakest and most expensive option. Amazon's engineers reached for the patch, could not trust it, and abandoned the system, the correct call once the problem had been allowed to reach that stage.
 
+Put the project phases in the order they occur, earliest to latest. The earlier a phase sits in this sequence, the cheaper and more effective an ethics intervention placed there is, which is the whole point of catching harm early.
+
+<sequence-builder mode="order" items='["Problem framing: choose what to predict and what label counts as merit","Data selection: choose whose resumes train the model","Model training: fit weights and measure disparate scoring","Deployment-time patch: strip flagged words from inputs"]' />
+
+A clean way to internalize each phase is to pair it with the question it answers and the kind of intervention it allows.
+
+<sequence-builder mode="match" items='[{"term":"Problem framing","definition":"Ask: is past hiring a valid label for merit? (cheapest, most effective)"},{"term":"Data selection","definition":"Audit the training distribution for skew before any model exists"},{"term":"Model training","definition":"Measure disparate scoring, but the cause is already upstream"},{"term":"Deployment-time patch","definition":"Remove flagged tokens; the model rebuilds the proxy (weakest)"}]' />
+
 ### Step 4: The Tradeoff That Has No Free Answer
 
 A common reaction is "just remove gender from the data." But the case shows why that is not a clean fix, and it previews the kind of tradeoff later frameworks must adjudicate:
@@ -141,6 +159,10 @@ A common reaction is "just remove gender from the data." But the case shows why 
 - Keep the human recruiter as the final decision-maker, and you reintroduce the very human bias the tool was meant to remove, now laundered through a number that looks objective.
 
 There is no setting of the dials that makes every concern vanish at once. The job of an ethics framework, introduced in the next module, is to make these competing claims explicit and to produce a defensible choice among them, not to pretend the tension does not exist.
+
+Now sit in the engineer's chair. You inherited this hiring screen and a directive to make it fair. Each move below has a consequence the case has already taught you to anticipate. Trace where each path actually leads.
+
+<branching-scenario tree='{"title":"You inherit the biased hiring screen. Make it fair.","start":"start","nodes":{"start":{"prompt":"Your manager says \"just make the tool fair before launch.\" The model still downranks women. What is your first move?","choices":[{"label":"Delete the gender field and any explicit gender words from inputs","next":"proxy","feedback":"You strip explicit gender, ship, and the disparity barely moves."},{"label":"Question whether the target label (resembles past hires) is valid at all","next":"reframe","feedback":"You escalate a problem-framing question instead of a quick patch."},{"label":"Keep the model but let a human recruiter make the final call","next":"launder","feedback":"You add a human in the loop on top of the model score."}]},"proxy":{"prompt":"Two weeks post-launch, audit shows women are still downranked. Why?","choices":[{"label":"The model rebuilt gender from proxies: college names, hobbies, word choice","next":"proxy_end","feedback":"Correct. Removing the explicit signal only hid the bias; the model relearned it indirectly."}]},"proxy_end":{"prompt":"Lesson: a deployment-time patch is the weakest, most expensive intervention. Fairness was hidden, not achieved. The cheapest fix was upstream at problem framing.","feedback":"This is exactly the trap Amazon fell into and why they abandoned the tool.","choices":[]},"reframe":{"prompt":"You ask: is \"resembles people we hired\" a valid definition of merit? Leadership pushes back that retraining the concept will delay launch a quarter. Do you hold the line?","choices":[{"label":"Yes: a model trained on biased labels canonizes bias as merit; relabeling is the real fix","next":"reframe_end","feedback":"You absorb a schedule cost to fix the root cause."},{"label":"No: ship the patched version now, fix it later","next":"proxy","feedback":"You defer to the schedule and fall back to the patch path."}]},"reframe_end":{"prompt":"Lesson: the cheapest, most effective intervention is at problem framing. Challenging the target label reframes the whole project before a single biased weight is learned. This is Distinctive 2 in action.","feedback":"Slower up front, but it is the only move that actually removes the encoded injustice.","choices":[]},"launder":{"prompt":"The recruiter sees an \"objective\" score next to each candidate and tends to defer to it. What new problem appears?","choices":[{"label":"Human bias returns, now laundered through a number that looks neutral","next":"launder_end","feedback":"Correct. The score gives biased human judgment a veneer of objectivity."}]},"launder_end":{"prompt":"Lesson: a human-in-the-loop is not automatically a fairness fix. An authoritative-looking score can amplify, not check, human bias. The encoded choice still drives the outcome.","feedback":"This is the third horn of the Step 4 tradeoff: no single dial setting satisfies every concern.","choices":[]}}}' />
 
 ---
 
@@ -155,6 +177,10 @@ Two implications.
 **Ethics is not law.** Laws encode some ethical commitments and ignore others. The EU AI Act, the GDPR, FERPA, and COPPA each formalize specific ethical concerns into legal language. But many ethical questions (about fairness trade-offs, about long-term effects, about power) are not yet in any law, and engineering practice still has to answer them.
 
 The next module introduces the ethics frameworks (consequentialist, deontological, virtue, care) that give those answers structure.
+
+The slogan that opens this section, "the model is the policy," is the whole module compressed into four words. Try articulating it in your own terms before you read on.
+
+<self-explain prompt="In your own words, explain what is meant by \"the model is the policy, the training data is the politics,\" and why this implies AI ethics cannot be a final review step bolted on after the model is built." answer="A deployed model does not merely advise a policy; it enacts one. Its target variable defines what counts as success, its training distribution decides whose reality is represented, and its threshold decides who pays for errors. Those are political and ethical choices made during specification and data assembly, not after. By the time the model has weights, the ethically loaded decisions are already frozen in; a later review can only audit or patch them, not unmake them. That is why ethics has to live inside problem framing and data selection rather than as an end-of-pipeline gate." />
 
 ---
 
@@ -179,6 +205,10 @@ Before moving on, four misframings to dismiss:
 - **Catch harm early.** Problem framing and data selection are the cheapest, most effective places to intervene; a deployment-time patch is the weakest and most expensive (and may simply hide bias behind proxies).
 - **Ethics is not preferences and not law.** Ethical claims require argument, not assertion, and many ethical questions are not yet encoded in any statute.
 - **Reject the four misframings:** "just a tool," "fix it after deployment," "ethics slows innovation," and "no objective answer, so anything goes." Each one ends an analysis that should have continued.
+
+The six core ideas of this module are not a list; they connect. Trace how the scale argument and encoded decisions feed the stakeholder picture, how generative systems shift the locus of action, and how all of it sits apart from law.
+
+<concept-map concepts='["ai_ethics_foundations","scale_argument","encoded_decisions","ai_stakeholders","generative_systems_ethics","ethics_vs_law"]' />
 
 ---
 

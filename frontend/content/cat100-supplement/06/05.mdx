@@ -33,6 +33,8 @@ Effective AI-assisted debugging has three moving parts.
 
 This is where ISTE digital citizenship becomes concrete: using AI responsibly means verifying its output, not laundering it as your own work. NACE career readiness applies because professionals are expected to supervise tools, owning the result whether the suggestion came from a colleague, a search, or a model.
 
+<inline-check question="Your headshot is a same-folder local file. An AI assistant confidently suggests adding a CORS server configuration to make it display. How should you classify that suggestion?" explanation="CORS governs cross-origin requests between different servers. A same-folder local image is not a cross-origin request, so a CORS server config cannot apply. Fluency is not accuracy: reject the suggestion on the match check and record the reason, which is exactly the judgment the section is testing." options='[{"text":"Reject: CORS governs cross-origin requests and cannot apply to a same-folder local file","correct":true},{"text":"Accept: it sounds technical and the AI is usually right about configs","correct":false},{"text":"Modify: keep the CORS idea but point it at the local folder instead","correct":false}]' />
+
 ## Worked Example
 
 Maria's nav links render as plain blue underlined text, and everything below them is blue too. She debugs with AI as a partner, not an oracle, and logs each suggestion.
@@ -62,6 +64,10 @@ The first <a> is never closed. The open link swallows the following content.
 
 The fix was a single closing tag. The accepted-modified-rejected log shows judgment: Maria kept the suggestion that fit the evidence and rejected the off-target CORS advice because it could not apply to a local file.
 
+Order the supervised-debugging steps so you read the evidence before you trust any suggestion. Identifying the symptom yourself comes first; verifying in the browser comes last.
+
+<sequence-builder mode="order" items='["Read the symptom in the code: runaway blue means an unclosed anchor tag","Write a verifiable prompt that includes the symptom and the actual nav block","Classify each AI suggestion as accept, modify, or reject with a reason","Apply only the suggestion that passes the match and scope checks","Reload and check the browser console to verify, never assume","Record every decision and reason in the AI critique log"]' />
+
 ## Decision Rule
 
 For every AI suggestion, run it through three questions before touching your code:
@@ -71,6 +77,10 @@ For every AI suggestion, run it through three questions before touching your cod
 3. **Verify check:** After applying, did I confirm the result in the browser (and console), or did I just assume it worked?
 
 A suggestion that passes match and scope gets applied; then the verify check decides whether it stays. Anything failing match or scope is rejected with a reason, and the reason goes in your log.
+
+Run the AI suggestion to rewrite the whole nav in a JavaScript framework through the three questions and predict each verdict before you reveal it. The actual bug is one unclosed anchor tag.
+
+<step-reveal title="Judge the framework-rewrite suggestion with the match, scope, and verify checks" steps='[{"prompt":"Match check first: does rewriting the nav in a framework address the observed symptom (runaway blue from one unclosed tag)?","predictType":"choice","choices":["Yes, a framework would re-render the nav and clear the styling","No, the symptom is a single missing close tag, which the rewrite does not target"],"answerIndex":1,"reveal":"The symptom is one unclosed anchor. A framework rewrite does not address that specific cause directly; it replaces working code to chase a one-tag bug."},{"prompt":"Scope check next: is a full framework rewrite proportionate to a one-tag bug?","predictType":"choice","choices":["Yes, modernizing is always worth it","No, it solves far more than was asked and adds large overhead"],"answerIndex":1,"reveal":"A framework is absurd overhead for a missing </a>. The fix should be as small as the bug, so this fails the scope check."},{"reveal":"Verdict: reject the framework rewrite on the scope check (and weakly on match), and log the reason. Accept only the close-tag fix, then run the verify check by reloading and confirming the console is clean."}]' />
 
 ## Common Misreadings
 
@@ -133,6 +143,10 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your trace links claim, evidence, tool boundary, revision, and remaining limitation. That is what separates digital fluency from simple completion.
+
+## Concept Map
+
+<concept-map concepts='["cat100_supplement_debugging_with_ai_assistance", "cat100_supplement_github_pages_personal_website", "ai_supported_learning"]' />
 
 ## References
 

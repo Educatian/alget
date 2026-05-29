@@ -31,6 +31,8 @@ The second is slide-level evidence: every claim slide must sit next to something
 
 A storyboard also makes ordering deliberate. Summary artifacts like a resume belong last, because they recap proof the audience has already seen. Leading with the resume asks the audience to trust a list; leading with the artifacts lets them verify, then accept the summary.
 
+<inline-check question="A slide is titled My Excel project with the body Spreadsheet with formulas. Why does it fail the storyboard test?" explanation="A storyboard slide must carry a claim the audience cares about, backed by inspectable evidence. Naming a file is a table-of-contents entry, not an argument; the fix is a claim like I cut paid-channel spend 18% next to the SUMIFS pivot." options='[{"text":"It names a file instead of stating a claim the audience cares about.","correct":true},{"text":"It uses the wrong font for a marketing audience.","correct":false},{"text":"It should come last because the resume always leads.","correct":false}]' />
+
 ## Worked Example: Turning a File List into a Storyboard
 
 A student has three capstone artifacts: an Excel budget model, a GitHub Pages portfolio site, and a one-page resume. The audience for the showcase is a marketing-internship hiring manager.
@@ -55,6 +57,18 @@ The hiring manager asks, "So what did you actually do for me?" The deck cannot a
 | 4 | "Here is the one-page summary" | Resume line: "Reduced paid-channel spend 18% with a pivot-table model" |
 
 The resume slide moves last because it summarizes proof the manager already saw. Each claim now sits next to a visible artifact, not an adjective. That ordering is the storytelling decision a reviewer can inspect.
+
+Build the storyboard as a procedure that starts from the audience, not the file list. Predict each step before revealing it:
+
+<step-reveal title="Storyboard three artifacts for one audience" steps='[{"prompt":"You have an Excel model, a website, and a resume for a marketing recruiter. Where does the storyboard start?","predictType":"choice","choices":["With slide one naming My Excel project","With the audience’s opening question the recruiter wants answered","With the resume so they trust your list first"],"answerIndex":1,"reveal":"Start from the audience’s question: Can this candidate turn data into a decision? Every later slide answers that one question."},{"reveal":"Assign each artifact one claim that advances the answer. The Excel model becomes I cut paid-channel spend 18%, not I know pivot tables."},{"reveal":"Pin inspectable evidence to each claim: the SUMIFS pivot result, the live site link, the resume bullet that recaps the number."},{"reveal":"Order proof before summary. Place the resume last because it restates results the audience already verified, then add styling sparingly."}]' />
+
+Now order the storyboard moves yourself:
+
+<sequence-builder mode="order" items='["Write the audience’s opening question at the top of the page","Assign each artifact one claim that advances the answer","Pin one inspectable piece of evidence to each claim","Order the slides so proof precedes the summary resume","Add styling last so one number per slide stays the focus"]' />
+
+These four concepts anchor the section; trace how they connect:
+
+<concept-map concepts='["cat100_supplement_course_completion_and_transfer","cat100_supplement_professional_story_across_artifacts","evidence_based_revision","ai_supported_learning"]' />
 
 ## Decision Rule
 

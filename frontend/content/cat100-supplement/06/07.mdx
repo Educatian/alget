@@ -42,6 +42,8 @@ The table shows that filtering applied to a typical AI checklist:
 
 This is ISTE digital citizenship in its quiet form: maintaining what you publish is part of publishing responsibly, and a neglected site misleads the people who rely on it. NACE career readiness frames the routine as professionalism; keeping a public artifact current is the kind of follow-through employers value.
 
+<inline-check question="A generic AI checklist tells you to renew the SSL certificate monthly for your static GitHub Pages portfolio. Keep this item?" explanation="GitHub Pages provides HTTPS automatically, so certificate renewal is GitHub's job, not yours. Keeping the item would have you chasing a task you cannot perform. The platform check drops server and certificate tasks for a static site and keeps content freshness and link integrity." options='[{"text":"Drop it: Pages provides HTTPS automatically, so certificate renewal is not your task","correct":true},{"text":"Keep it: every website needs its certificate renewed monthly by the owner","correct":false},{"text":"Keep it but change monthly to yearly to reduce the workload","correct":false}]' />
+
 ## Worked Example
 
 Maria's site is live. Now she writes a maintenance plan she can actually follow, and she filters a generic AI checklist down to what fits a static GitHub Pages site.
@@ -70,6 +72,10 @@ Trigger: first day of each quarter (Jan 1, Apr 1, Jul 1, Oct 1)
 
 The plan now matches the platform (no server tasks), names a concrete cadence, and lists steps a future Maria can perform without guessing. Maintenance became a repeatable routine instead of a good intention.
 
+Order the steps that turn a generic AI checklist into a triggered, platform-fit routine. Filter for the platform before you write any steps, and add the trigger before you call it a plan.
+
+<sequence-builder mode="order" items='["Start from the AI checklist and run the platform check on each item","Drop server patching and SSL renewal: a static site has neither","Keep content freshness and link integrity: these apply to a static site","Rewrite each kept item as a specific verifiable action","Attach a concrete trigger such as the first day of each quarter","Record why the vague keep it updated sometime draft was rejected"]' />
+
 ## Decision Rule
 
 Test any maintenance plan against three questions before you call it done:
@@ -79,6 +85,10 @@ Test any maintenance plan against three questions before you call it done:
 3. **Platform check:** Does every task actually apply to a static GitHub Pages site? Drop server and certificate tasks; keep content and link tasks.
 
 A plan that passes all three is a routine. A plan that fails the trigger check is a wish, and one that fails the platform check sends you chasing problems you do not have.
+
+Walk the maintenance note Keep the site updated sometime through the three checks and predict each verdict before you reveal it. The site is a static GitHub Pages portfolio.
+
+<step-reveal title="Test the vague note with the trigger, specificity, and platform checks" steps='[{"prompt":"Trigger check first: is there a concrete date or event that starts the routine?","predictType":"choice","choices":["Yes, sometime counts as a schedule","No, sometime never arrives, so the plan will never run"],"answerIndex":1,"reveal":"Sometime is not a trigger. Without a concrete date or event such as the first day of each quarter, the routine never actually fires."},{"prompt":"Specificity check next: can keep the site updated be performed and confirmed as done?","predictType":"choice","choices":["Yes, you just update whatever needs it","No, it cannot be checked off; it needs named actions"],"answerIndex":1,"reveal":"Updated is not a verifiable step. Replace it with named actions like export the current resume to assets/resume.pdf and click every link, fixing any 404."},{"reveal":"Verdict: the note fails the trigger and specificity checks (the platform check is moot until there are real tasks). Rewrite it as a dated routine with named, checkable steps so a future you can run it cold."}]' />
 
 ## Common Misreadings
 
@@ -141,6 +151,10 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your trace links claim, evidence, tool boundary, revision, and remaining limitation. That is what separates digital fluency from simple completion.
+
+## Concept Map
+
+<concept-map concepts='["cat100_supplement_maintenance_plan", "cat100_supplement_github_pages_personal_website", "evidence_based_revision"]' />
 
 ## References
 

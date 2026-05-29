@@ -35,6 +35,8 @@ Three lenses keep the conversation defensible:
 
 A lens has done its work when it changes what you propose, not just how you argue for what you already wanted.
 
+<inline-check question="A mentor says 'no phones in my room.' In positions-and-interests terms, what is 'no phones'?" explanation="'No phones' is a position: the demand someone states. The interest is the underlying concern it protects, which you do not yet know (off-task behavior, a past data incident, a district directive). Surfacing that interest is what lets a third option appear that serves both sides." options='[{"text":"A position that compresses an unstated interest you have not surfaced yet","correct":true},{"text":"An interest, because it names exactly what the mentor is worried about","correct":false},{"text":"An arbitrary rule you should argue against directly","correct":false}]' />
+
 ## Worked Example
 
 Compare two openers for the same request. The grievance version frames the mentor as an obstacle:
@@ -58,6 +60,12 @@ Devon wants to try a free polling app for quick formative checks, but his mentor
 5. **Check during the lesson:** Devon will confirm no names are entered and report back whether the warm-up surfaced misconceptions worth reteaching.
 
 The record shows the concern, the agreed safeguard, the use ruled out, and the check. That is professional judgment, not just getting a yes.
+
+Now sit in the conversation yourself. Each turn either surfaces the mentor's real interest or hardens the standoff.
+
+<branching-scenario tree='{"title":"Negotiating a phone policy with your mentor","start":"open","nodes":{"open":{"prompt":"You want to try a free polling app for quick formative checks. Your mentor bans all student phone use. How do you open?","choices":[{"label":"Your phone ban is outdated; other candidates get to use phones, so I should too","next":"grievance","feedback":"You framed the mentor as an obstacle. This surfaces no information."},{"label":"Can you walk me through the reason behind the phone policy? I have one bounded use I would like to think through with you","next":"inquiry","feedback":"You framed the mentor as a source and signaled a bounded use."}]},"grievance":{"prompt":"The mentor responds defensively and the conversation closes. What did you learn about the rule?","choices":[{"label":"Nothing; the interest stayed hidden","next":"closed","feedback":"A position-versus-position clash with no interests named."}]},"closed":{"prompt":"You got a no and never learned the real concern. Restart with inquiry.","feedback":"Arguing positions with someone who holds authority loses. Ask for the rationale first.","choices":[]},"inquiry":{"prompt":"The mentor explains: last year a similar app stored student responses on an outside server with no district agreement. What do you do with this?","choices":[{"label":"Record it as the real constraint, then propose a use that addresses it","next":"safeguard","feedback":"You treated the mentor reason as data, not an obstacle."},{"label":"Argue that this app is different and probably fine","next":"closed","feedback":"You dismissed the surfaced interest instead of designing around it."}]},"safeguard":{"prompt":"How do you propose using the app so it addresses the outside-server concern?","choices":[{"label":"The district-approved version for one ungraded warm-up, responses on the school server, no named data","next":"agreement","feedback":"Your safeguard maps directly onto the mentor actual interest."},{"label":"Any version, but you promise to be careful with the data","next":"closed","feedback":"A promise is not a safeguard; it does not address the server mechanism."}]},"agreement":{"prompt":"You agree on one bounded use with a safeguard and a check (confirm no names entered, report whether the warm-up surfaced misconceptions). This is agreement, not just permission.","feedback":"You surfaced the interest, named a bounded use, and proposed a safeguard that resolved the mentor concern.","choices":[]}}}' />
+
+<self-explain prompt="A mentor refuses to let you use an AI essay-feedback tool because last year it flattened the voice of multilingual writers and a parent complained. Your interest is faster feedback. State a bounded use plus a safeguard that serves both interests at once." answer="Bound the AI to flag only mechanics while you handle voice and content. Add the safeguard that any flagged work from multilingual students is reviewed by you before any AI comment is shown to the student. This serves your interest (faster feedback on mechanics) and the mentor interest (protecting multilingual students voice), and it is specific enough to record and audit later." />
 
 ## Decision Rule
 
@@ -130,6 +138,10 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your guide records the mentor's actual concern, the bounded use agreed to, the use explicitly ruled out, and the check you will run during the lesson. That is what separates a negotiation from a request for permission.
+
+## Concept Map
+
+<concept-map concepts='["cat531_supplement_field_based_transfer_and_coaching", "cat531_supplement_mentor_teacher_conversation_guides", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

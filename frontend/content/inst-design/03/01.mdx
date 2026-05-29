@@ -38,6 +38,10 @@ If a design violates these constraints, working memory overflows. This is **Cogn
 
 > **Why this matters:** The dual-channel and limited-capacity assumptions together explain why narration can succeed where on-screen text fails. Narration routes language to the underused auditory channel; on-screen text piles it onto the already-busy visual channel alongside the graphic.
 
+The model below treats each channel as a separate bucket with a fixed chunk ceiling. Push items into the visual channel (the graphic, plus any on-screen text) and watch how fast it overflows, then route the language to the auditory channel instead and see the visual load drop. "Headroom" is how many chunks of capacity remain in the busier channel; once it goes negative you have cognitive overload.
+
+<parameter-explorer config='{"title":"Dual-Channel Load Calculator","sliders":[{"name":"graphic","label":"Graphic / animation streams (visual)","min":0,"max":4,"step":1,"unit":"chunks","default":1},{"name":"onscreen_text","label":"On-screen text blocks (visual)","min":0,"max":4,"step":1,"unit":"chunks","default":2},{"name":"narration","label":"Narration streams (auditory)","min":0,"max":3,"step":1,"unit":"chunks","default":0},{"name":"capacity","label":"Per-channel chunk ceiling","min":3,"max":7,"step":1,"unit":"chunks","default":4}],"outputs":[{"label":"Visual channel load","unit":"chunks","expr":"graphic + onscreen_text"},{"label":"Auditory channel load","unit":"chunks","expr":"narration"},{"label":"Visual-channel headroom","unit":"chunks","expr":"capacity - graphic - onscreen_text"}],"plot":{"x":"onscreen_text","output":2}}' />
+
 <concept-diagram type="cognitive-load"></concept-diagram>
 
 ---
@@ -52,7 +56,13 @@ The twelve principles only make sense once you can name *which kind of processin
 | **Essential** | Effort required by the intrinsic complexity of the content itself | **Manage** and scaffold | Segmenting, Pre-training, Modality |
 | **Generative** | Effort the learner invests to build and connect new schemas | **Encourage** | Multimedia, Personalization, Voice, Image |
 
+<inline-check question="A designer adds a decorative looping background animation that has nothing to do with the content. Which processing type does it add, and what is the designer's job for that type?" explanation="A decorative, goal-irrelevant animation is extraneous processing, and the designer's job for extraneous load is to reduce it to zero. It is not essential (it carries none of the content's intrinsic complexity) and it is not generative (it does not help the learner build a schema)." options='[{"text":"Extraneous load, so reduce it to zero","correct":true},{"text":"Essential load, so scaffold it with segmenting","correct":false},{"text":"Generative load, so encourage more of it","correct":false}]' />
+
 > **Decision heuristic:** When you find yourself debating whether to add a feature, first ask which processing type it touches. If it adds *extraneous* load, cut it. If it raises *essential* load past capacity, scaffold it (segment, pre-train). Only features that promote *generative* processing earn their place freely.
+
+Before moving on, lock in the mapping from each processing type to the designer's job and a signature principle. Match each processing type to what it means in practice.
+
+<sequence-builder mode="match" items='[{"term":"Extraneous processing","definition":"Effort wasted on goal-irrelevant material; reduce it to zero (Coherence, Redundancy)"},{"term":"Essential processing","definition":"Effort demanded by the intrinsic complexity of the content; manage and scaffold it (Segmenting, Pre-training)"},{"term":"Generative processing","definition":"Effort the learner invests to build and connect new schemas; encourage it (Personalization, Voice)"}]' />
 
 ---
 
@@ -80,6 +90,10 @@ Generative load is the brain power used to build the new schema and map it to lo
 10. **Personalization Principle:** People learn better when words are in a conversational style (using "you" and "I") rather than a strictly formal tone.
 11. **Voice Principle:** People learn better from a standard human-sounding voice than from a robotic, synthetic voice.
 12. **Image Principle:** People do NOT necessarily learn better when the speaker's talking head is added to the screen. (The talking head often becomes an extraneous distraction.)
+
+Notice that the Modality and Redundancy principles look like they conflict (one says use narration, the other says do not duplicate it as text), yet both fall straight out of the same two assumptions. Reason it through in your own words first.
+
+<self-explain prompt="Using only the dual-channel and limited-capacity assumptions, explain why graphics + narration beats graphics + on-screen text (Modality), and why adding the on-screen script back in hurts (Redundancy)." answer="On-screen text enters through the visual channel, the same channel already carrying the graphic, so text plus graphic competes for one limited bucket and overloads it. Narration enters through the separate auditory channel, which sits nearly empty, so it spreads the load across both channels instead of piling it onto one. That is the Modality advantage. Redundancy is the same logic in reverse: if you keep the narration and ALSO put the script on screen, you re-add the language to the busy visual channel, recreating the overload narration was meant to relieve, and the learner's eyes split between reading and the graphic." />
 
 ---
 
@@ -131,6 +145,10 @@ Rewrite the narration into a conversational second-person voice ("When *you* see
 **Step 5: Estimate the payoff.**
 Count the items now competing in the visual channel during the core "Reading the zones" segment. Before: animated gauge + scrolling script + decorative backdrop + off-screen legend = roughly four visual streams, well past a 3-to-4 chunk ceiling. After: animated gauge with embedded labels = one coherent visual stream, with language carried by the auditory channel. We moved from an over-capacity visual channel to a balanced dual-channel load without cutting a single piece of *content*. That redistribution, not the production budget, is what predicts a higher post-test score.
 
+Walk the redesign one decision at a time. For each starting feature, predict the fix before revealing it.
+
+<step-reveal title="Redesigning the Hydraulic Gauge Module, Decision by Decision" steps='[{"prompt":"The draft duplicates the full narration script on screen while the narrator speaks. What should you do?","predictType":"choice","choices":["Bold the on-screen script so it stands out","Delete the on-screen script and keep only the narration","Speed up the narration to match the reading pace"],"answerIndex":1,"reveal":"Delete the on-screen script. Spoken words plus identical on-screen words force the same language through two paths and split attention. This is the Redundancy + Modality fix: let narration carry the words so the visual channel is free for the gauge."},{"prompt":"The color legend (A=Safe, B=Caution, C=Shutdown) sits off to the side of the gauge. What should you do?","predictType":"choice","choices":["Move the Safe / Caution / Shutdown labels directly onto the colored zones","Make the legend font larger","Put the legend on its own separate slide first"],"answerIndex":0,"reveal":"Relocate the labels onto the zones. The separate legend adds no new information, only search cost as the eye shuttles back and forth. Embedding the labels is the Spatial Contiguity fix and drops that extraneous load toward zero."},{"prompt":"Terms like deadband and hysteresis first appear, unexplained, mid-procedure. What should you do?","predictType":"choice","choices":["Add a 90-second pre-training segment defining the terms before the procedure","Add a glossary link learners can click during the procedure","Leave them; context will make them clear"],"answerIndex":0,"reveal":"Front-load the terms with a short pre-training segment. Learning the names and characteristics of components first lowers the essential load during the harder procedural part. This is the Pre-training fix."},{"reveal":"Net effect: during the core Reading the Zones segment the visual channel drops from roughly four competing streams (animation + script + backdrop + legend) to one coherent stream with embedded labels, while language now rides the auditory channel. Same content, balanced load, higher predicted post-test."}]' />
+
 ---
 
 ## Common Pitfalls
@@ -145,6 +163,10 @@ Count the items now competing in the visual channel during the core "Reading the
 
 <dynamic-scenario topic="Mayer's Principles" context="A junior designer who insists on putting extremely loud, dramatic Hans Zimmer music behind a tutorial on how to fill out a tax form."></dynamic-scenario>
 
+Work the same dilemma as a decision tree. You are reviewing the tax-form tutorial; each choice commits you to a design stance and shows the CTML consequence.
+
+<branching-scenario tree='{"title":"The Dramatic Music Dilemma","start":"n1","nodes":{"n1":{"prompt":"The junior designer wants loud orchestral music under a tax-form tutorial to make it feel premium. What is your first move as the reviewer?","choices":[{"label":"Approve it; production polish raises perceived quality","next":"n2","feedback":"Perceived quality and measured learning are different metrics. Polish that competes for working memory can lift ratings while lowering post-test scores."},{"label":"Ask which processing type the music adds before deciding","next":"n3","feedback":"Right instinct: classify the feature first. The music carries none of the tax-form content, so it is extraneous."}]},"n2":{"prompt":"Pilot data comes back: learners loved it but made more errors filling the form. What now?","choices":[{"label":"Cut the music, citing the Coherence Principle","next":"n4","feedback":"Correct, just later than ideal. The errors trace to extraneous auditory load competing with the narrated steps."},{"label":"Keep the music but turn it down slightly","next":"n5","feedback":"Lowering the volume reduces but does not remove goal-irrelevant load. Coherence says exclude it, not soften it."}]},"n3":{"prompt":"You have classified the music as extraneous. What is the designer rule for extraneous load?","choices":[{"label":"Reduce it to zero (Coherence Principle)","next":"n4","feedback":"Exactly. Extraneous processing should be cut entirely so capacity is reserved for essential and generative work."},{"label":"Scaffold it with segmenting","next":"n5","feedback":"Segmenting manages ESSENTIAL load. It does not apply to goal-irrelevant music, which should simply be removed."}]},"n4":{"prompt":"Music removed. The designer worries the tutorial now feels sterile. Best response?","feedback":"Cut the extraneous, but keep cues, examples, and structure that serve the goal. Add a signaling arrow on the field being discussed rather than reintroducing decorative audio. This respects Coherence without over-applying it.","choices":[]},"n5":{"prompt":"Reflect: this path treated extraneous load as something to soften or scaffold.","feedback":"Extraneous load is not managed or scaffolded, it is eliminated. Return to the rule: reduce extraneous to zero, manage essential, encourage generative.","choices":[]}}}' />
+
 ---
 
 ## Summary: Key Takeaways
@@ -154,6 +176,10 @@ Count the items now competing in the visual channel during the core "Reading the
 - Sort every design decision by processing type: **reduce** extraneous, **manage** essential, **encourage** generative.
 - The fastest wins are usually subtractive (remove music, scripts, decoration) and relocational (move labels onto the figure), not additive.
 - The principles are evidence-based defaults, not absolutes; calibrate them to learner expertise.
+
+Here is how this section's core ideas connect: the constraints of the mind drive the failure mode, which the principles are designed to prevent.
+
+<concept-map concepts='["multimedia_learning","mayer_principles","dual_channel_processing","cognitive_overload","modality_effect"]' />
 
 ---
 

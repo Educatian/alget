@@ -33,6 +33,12 @@ The course anchors decide which criteria deserve gate status:
 - **Cognitive load theory** informs the "novice learnability" criterion, since a tool that demands heavy interface learning taxes designers before they reach the design work.
 - **Mayer's principles** inform criteria about how the tool lets you build (signaling, contiguity, control), connecting the audit back to what the tool must afford for good multimedia design.
 
+A defensible comparative audit is built in a fixed order, and the order is what makes it fair. Put the five steps in sequence.
+
+<sequence-builder mode="order" items='["Define the task precisely, including the learners and constraints (novice designers, branching scenario, screen-reader support, fixed budget)","Derive the criteria from the task, not from the tools, so dimensions exist before any candidate is scored","Separate the criteria into weighted dimensions and pass-or-fail gates","Score every tool on every criterion using the same scale","Apply the gates before reading the totals, removing any tool that fails a gate"]' />
+
+<inline-check question="In the audit, Tool B has the highest template count and a strong total but scores 0 on screen-reader support, which is marked as a gate for a cohort that includes screen-reader users. Can its template lead rescue it?" explanation="A gate is categorical, not tradeable. Accessibility for screen-reader users is a pass-or-fail requirement, so a 0 there removes Tool B before totals are read. Treating accessibility as one weight among five is the technical mistake that lets a strength elsewhere buy back a fatal flaw." options='[{"text":"Yes, because the highest total should win","correct":false},{"text":"No, a failed gate disqualifies the tool before totals matter, regardless of any other strength","correct":true},{"text":"Yes, if the template advantage is large enough to offset the gap","correct":false}]' />
+
 ## Worked Example: Building a Comparative Audit Matrix
 
 Here is a before-and-after of an audit comparing three authoring tools for a task defined as "let novice designers build a branching scenario with screen-reader support, on a fixed budget."
@@ -85,6 +91,10 @@ Read the worked example's matrix as a machine for producing a defensible verdict
 
 Watch how the recommendation is then stated with its boundary conditions. Tool A wins "for novice designers on this budget with screen-reader users," and the audit explicitly notes that "if that context changed, Tool B could re-enter." That clause is not hedging; it is the mark of a rigorous audit, because it tells a future reader exactly which assumption would overturn the verdict. A recommendation without its conditions cannot be reused safely.
 
+Work the gate-versus-weight decision as a tree. A stakeholder pushes back on your audit.
+
+<branching-scenario tree='{"title":"Gate versus weight under pressure","start":"n1","nodes":{"n1":{"prompt":"A manager says: Tool B has far more templates and scores well overall, so let us pick it; treat accessibility as just one more criterion. How do you respond?","choices":[{"label":"Agree and average accessibility in as a fifth weighted criterion","next":"weight","feedback":"This lets a template lead buy back a 0 on accessibility, recommending a tool a class of learners cannot use."},{"label":"Explain that accessibility is a gate for this cohort: pass-or-fail, applied before totals","next":"gate","feedback":"Correct: a categorical requirement is not tradeable against template count."},{"label":"Pick the highest total and note the accessibility concern in a footnote","next":"footnote","feedback":"A footnote does not enforce a gate; the inaccessible tool still gets recommended."}]},"gate":{"prompt":"The manager asks: is there ANY condition under which Tool B could win?","choices":[{"label":"Yes, name the re-entry condition: if the cohort no longer includes screen-reader users, accessibility relaxes to a weight and Tool B competes","next":"reentry","feedback":"Naming the re-entry condition shows the verdict is reasoned, not a fixed preference."},{"label":"No, Tool B can never be chosen","next":"reentry","feedback":"Overstated: the verdict is a function of the task and gates, so a changed task can change the winner."}],"feedback":""},"reentry":{"prompt":"Resolved: Tool A wins for this cohort and budget, with a stated re-entry condition for Tool B if the context changes.","feedback":"Gates enforce categorical requirements; the named context makes the verdict portable and falsifiable.","choices":[]},"weight":{"prompt":"Tool B is selected, and at launch screen-reader users cannot complete the branching step.","feedback":"Collapsing a gate into a weight is exactly how a tool with a fatal flaw wins on points.","choices":[]},"footnote":{"prompt":"The footnote is overlooked in approval, and the inaccessible tool ships.","feedback":"A gate that is not enforced before totals is not a gate.","choices":[]}}}' />
+
 The walkthrough's lesson is that the structure carries the defensibility. Shared criteria make the comparison fair, the gate makes a categorical requirement categorical, and the named context makes the verdict portable to anyone who shares those conditions and falsifiable for anyone who does not.
 
 ## What Strong Reading Looks Like
@@ -107,6 +117,8 @@ When you use BigAL on an audit, ask it to attack your criteria, not to rank the 
 ## Transfer Case
 
 Take the same three tools and change the task: the cohort no longer includes screen-reader users, but the deliverable must integrate with a strict student-data-privacy regime. The audit's machinery is unchanged, but two things move. The accessibility gate relaxes from a gate to a weight, which is exactly the "re-entry condition" the original audit named, so Tool B's template lead now counts. Meanwhile a new gate appears, data-privacy compliance, and whichever tool fails it is removed regardless of its template count. The same comparison, re-run with a different gate, can crown a different winner. If you can predict that Tool B re-enters when accessibility stops being a gate, but is removed again if it fails the privacy gate, you understand that an audit's verdict is a function of its task and gates, not a fixed ranking of tools.
+
+<concept-map concepts='["ail606_supplement_comparative_software_audit", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

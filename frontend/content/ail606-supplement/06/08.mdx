@@ -33,6 +33,10 @@ Coherence checking treats every quantitative and qualitative claim as something 
 | Theoretical defense | A principle applied to a screen | Quality review of that screen | Reconcile so the defense and the review tell one story |
 | AI-USE.md | What a tool produced and you kept | Iteration log rationale | Confirm the same decision appears in both, or fix the gap |
 
+A reconciliation pass means knowing which component to cross-check each claim against. Match each claim source to the component that can confirm or contradict it.
+
+<sequence-builder mode="match" items='[{"term":"Slides: testing counts and completion rates","definition":"Cross-check against the iteration log; correct the slide to match the recorded data"},{"term":"Theoretical defense: a principle applied to a screen","definition":"Cross-check against the quality review of that screen; reconcile so they tell one story"},{"term":"AI-USE.md: what a tool produced and you kept","definition":"Cross-check against the iteration log rationale; confirm the same decision appears in both"}]' />
+
 The principle is that completion means coherence, not assembly. A package where the slides and the log disagree on how many tryouts you ran is not complete at any number of files, because the contradiction is itself a defect the committee will treat as carelessness or, worse, as inflation.
 
 Reflective synthesis is the second operation and the one that distinguishes a capstone from a course assignment. It is a metacognitive account of how your design judgment changed across the module: what you documented in the first iteration entry (often raw version counts) versus the last (problem-change-evidence chains with rejected alternatives), and what you would do differently next time (log AI use in real time rather than reconstruct it). This is the demonstration that you internalized the practice, not just performed it, which is the actual outcome a capstone certifies.
@@ -59,6 +63,9 @@ That confirms the files exist but never checks whether they agree. Now the same 
 
 The after version treats completion as coherence, not assembly. It reconciles contradictions across components and adds a synthesis of how the designer's judgment changed, which is what makes the package defensible rather than merely complete.
 
+<step-reveal title="Run the reconciliation pass on the contradiction your slides hide" steps='[{"prompt":"Your slides say \"five rounds of learner testing\" but the iteration log records 2 tryouts. What is the correct resolution?","predictType":"choice","choices":["Leave both; each file was internally fine","Change the log to say five rounds to match the slides","Correct the slides to \"2 tryouts\" to match the recorded data","Delete the slide claim entirely"],"answerIndex":2,"reveal":"Reconcile toward the recorded evidence: the log documents what actually happened, so the slide is the inaccurate component. Inflating the log to match the slide would be fabrication, not reconciliation."},{"prompt":"Your theoretical defense praises the segmenting on screen 3, but your quality review flagged screen 3 captions as a blocker. How do you reconcile?","predictType":"choice","choices":["Drop the screen 3 defense so nothing conflicts","Add the caption fix to the log so the defense and review tell one story","Remove the caption finding from the quality review","Leave them; they discuss different things"],"answerIndex":1,"reveal":"Both touch screen 3, so they must agree. Logging the caption fix makes the defense (segmenting helped) and the review (captions were a blocker, now fixed) consistent: one story about one screen."},{"prompt":"With the numbers and claims reconciled, what does the synthesis beat add that the coherence pass cannot?","predictType":"choice","choices":["A longer file list","A metacognitive account of how your documentation moved from version counts to evidence chains","A second copy of the quality review","More polish on the slides"],"answerIndex":1,"reveal":"Coherence makes the files agree; synthesis makes your growth explicit. Naming how your judgment changed across the module is what turns a reconciled folder into evidence of a designer who developed."}]' />
+
+
 ## Decision Rule
 
 Before you call the capstone done, run the package as one document, not six. Existence of files is the lowest bar; agreement among them is the real one.
@@ -68,6 +75,9 @@ Before you call the capstone done, run the package as one document, not six. Exi
 3. **Synthesis test:** Have you named how your design judgment changed across the module and what you would do differently?
 
 If any test fails, the package is assembled but not complete. Reconcile the contradictions and write the synthesis before submitting.
+
+<inline-check question="A student says: \"All six files are submitted and each one passed its own check, so the capstone is complete.\" Which distinction does this confuse?" explanation="Each file being internally fine is assembly. Completion requires that claims appearing in more than one component agree across all of them. A package can be fully submitted and still indefensible if the slides and the log disagree on tryout counts." options='[{"text":"It confuses submission (files exist and each is internally fine) with completion (files agree across components)","correct":true},{"text":"Nothing; six passing files is completion","correct":false},{"text":"It confuses coherence with reflective synthesis","correct":false},{"text":"It confuses a blocker with a cosmetic flaw","correct":false}]' />
+
 
 ## Common Misreadings
 
@@ -97,6 +107,8 @@ A strong reader of a completion studio can do four things:
 A strong completed capstone is judged by whether a committee reading all six components finds one consistent story and a clear account of growth. That requires a coherence pass that reconciled every shared claim and a synthesis that names what changed in the designer's judgment. The standard fails when the package is merely assembled, because internal contradictions read as either carelessness or inflated claims, both of which a defense will expose. When you are unsure whether two components agree, annotate the shared claim and request a comparison between a reconciled package and an assembled one.
 
 A final paragraph for the artifact would read like this: "I read the six components as one document, reconciled every claim that appeared in more than one, and corrected the slides to match the log where they disagreed. I closed with a synthesis of how my documentation moved from version counts to evidence chains, which is the growth this capstone is meant to demonstrate."
+
+<concept-map concepts='["ail606_supplement_module_6_completion_studio", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]' />
 
 ## Transfer Case
 

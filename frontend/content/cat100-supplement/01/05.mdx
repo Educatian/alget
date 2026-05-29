@@ -33,6 +33,8 @@ Account safety rests on a simple idea: do not let one failure become total failu
 
 Why unique passwords matter is concrete: attackers take email-and-password pairs leaked from one breach and try them on hundreds of other sites automatically. Reuse means one leak unlocks everything. Why two-factor authentication matters is that it breaks the value of a stolen password: even with your password, an attacker also needs the code on your phone, which they do not have. Why phishing awareness matters is that the strongest password and second factor do not help if you type them into a fake login page yourself. The three layers cover the three main ways accounts fall: a leak elsewhere, a guessed or stolen password, and a tricked user.
 
+<inline-check question="Sam uses one very strong password (lots of symbols) on every site, and one of those sites suffers a data breach. What happens to his other accounts?" explanation="Strength does not defend against reuse. Once the shared password leaks, attackers try it everywhere automatically, so uniqueness matters more than complexity." options='[{"text":"They are safe because the password is strong","correct":false},{"text":"They are all exposed, because the same leaked password unlocks every account","correct":true},{"text":"Only the breached site is affected","correct":false},{"text":"Nothing happens unless he clicks a phishing link","correct":false}]' />
+
 ## Worked Example
 
 The weak version below sounds responsible, but a reviewer cannot confirm it:
@@ -51,6 +53,14 @@ Walk through securing your school email, checking each item against the privacy 
 4. **Check AI data boundary.** Before asking AI to reword an email, remove your student ID and a classmate's phone number, then paste only the text to revise.
 
 Checklist result: 4 of 4 items addressed, each with a concrete action a reviewer can confirm, not just "I made my account safer."
+
+A message lands in your inbox. Walk the decision tree before you touch anything.
+
+<branching-scenario tree='{"title":"Responding to a verify-or-lose-access message","start":"p1","nodes":{"p1":{"prompt":"You receive: \"Verify in 1 hour or lose access: bit.ly/uni-verify.\" What is your first move?","choices":[{"label":"Click the link quickly to avoid losing access","next":"caught","feedback":"The urgency and shortened link are classic phishing tells. Clicking hands your credentials to whoever built the fake page."},{"label":"Do not click; open the portal at its known address yourself","next":"p2","feedback":"Correct. You verify through a channel you already trust instead of the link in the message."}]},"caught":{"prompt":"The link opens a login page that looks exactly like the real portal and asks for your password. What now?","choices":[{"label":"Type your password; it looks legitimate","next":"breach","feedback":"Modern phishing copies real logos and wording. Looking real is not the same as being real."},{"label":"Stop, close it, and go to the portal directly instead","next":"p2","feedback":"Good recovery. The reliable tell is the request itself, not the visual quality of the page."}]},"breach":{"prompt":"Your password is now in an attacker hand. What single setting would still have blocked the login?","choices":[{"label":"A longer password","next":"p2","feedback":"Length alone would not help once the password is stolen. Two-factor authentication is what blocks a login made with a stolen password."},{"label":"Two-factor authentication on the account","next":"p2","feedback":"Correct. Even with your password, the attacker lacks the second-factor code on your phone."}]},"p2":{"prompt":"You safely reach the real portal and there is no such verification request. You mark the email as phishing. What checklist habit did this confirm?","feedback":"Verify before you act through a known-good channel, and rely on a second factor so one stolen credential is not total failure.","choices":[]}}}' />
+
+Now put the hardening steps in the order that makes the safe behavior the easy behavior.
+
+<sequence-builder mode="order" items='["Replace any reused password with a unique passphrase","Turn on app-based two-factor authentication","Treat urgent verify-or-lose messages as phishing and verify directly","Strip personal and others data before pasting text into AI","Record each item as an action a reviewer could confirm"]' />
 
 ## Decision Rule
 
@@ -111,6 +121,10 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note makes a **connection**, show where the connection changes one of your settings.
 
 <dynamic-scenario prompt="You are revising an account-safety checklist for CAT 100 01.05. A peer comment says one item just says 'made it safer' with no verifiable action. Choose the next revision move and the concrete setting or action that a reviewer could confirm." />
+
+## Concept Map
+
+<concept-map concepts='["cat100_supplement_privacy_and_account_safety", "evidence_based_revision", "ai_supported_learning", "cat100_supplement_digital_citizenship_and_ai_readiness"]' />
 
 ## Check Your Understanding
 

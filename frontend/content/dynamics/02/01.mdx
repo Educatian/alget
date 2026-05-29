@@ -53,6 +53,8 @@ Three subtleties are worth making explicit, because most early mistakes trace ba
 
 1. **It is a vector equation.** $\sum \vec{F} = m\vec{a}$ is really three scalar equations bundled together. The force and the acceleration point in the *same* direction, but neither has to point along your motion. A car rounding a curve at constant speed still accelerates (the velocity direction changes), so there must be a net sideways force from the tires.
 2. **Mass is the resistance to acceleration.** Rewriting as $\vec{a} = \vec{F}_{net}/m$ shows that for a fixed net force, doubling the mass halves the acceleration. Mass is *inertia*, the quantitative measure of how stubbornly a body resists a change in its motion.
+
+<inline-check question="A 2 kg cart and a 6 kg cart feel the same 12 N net force. How do their accelerations compare?" explanation="From a = F_net/m, acceleration is inversely proportional to mass. The 2 kg cart gets 12/2 = 6 m/s^2 while the 6 kg cart gets 12/6 = 2 m/s^2, so the lighter cart accelerates three times as fast under the identical net force." options='[{"text":"The 2 kg cart accelerates three times as fast as the 6 kg cart","correct":true},{"text":"Both accelerate equally because the force is the same","correct":false},{"text":"The 6 kg cart accelerates faster because it has more inertia","correct":false}]' />
 3. **Only external forces count.** Internal forces between parts of the chosen system cancel in pairs (Newton's third law), so they never appear in the net force of the system as a whole. This is why isolating the right body is the whole game.
 
 ### A One-Line Derivation of the Component Form
@@ -204,6 +206,8 @@ $$
 
 The block accelerates down the incline because gravity's downhill component is still larger than friction.
 
+<step-reveal title="Predict Each Step of the Rough-Incline Solution" steps='[{"prompt":"For the 10 kg block on the 30 degree incline, what is the normal force N? (g = 9.81 m/s^2)","predictType":"choice","choices":["N = mg = 98.1 N","N = mg*cos(30) = 84.9 N","N = mg*sin(30) = 49.05 N"],"answerIndex":1,"reveal":"Since the block stays on the surface, the perpendicular balance gives N = mg*cos(30) = 98.1 * 0.866 = 84.9 N. Only the cosine component of weight presses into the slope."},{"prompt":"With mu_k = 0.2, what is the kinetic friction force?","predictType":"choice","choices":["f_k = mu_k*N = 17.0 N","f_k = mu_k*mg = 19.6 N","f_k = mu_k*mg*sin(30) = 9.81 N"],"answerIndex":0,"reveal":"Friction depends on the normal force, not the full weight: f_k = mu_k*N = 0.2 * 84.9 = 17.0 N, acting up the slope because the block slides down."},{"prompt":"Taking positive down the slope, which equation gives the acceleration?","predictType":"choice","choices":["mg*sin(30) - f_k = ma","mg - f_k = ma","mg*cos(30) - f_k = ma"],"answerIndex":0,"reveal":"Along the slope only the sine component of weight drives the motion and friction opposes it: 49.05 - 17.0 = 10a, so a = 3.21 m/s^2."},{"reveal":"Big idea: always solve the perpendicular (normal-force) equation first, because f_k = mu_k*N cannot be computed until N is known. Then apply F = ma along the slope."}]' />
+
 ## A Quick Check for Physical Sense
 
 Before moving on, ask:
@@ -341,6 +345,10 @@ That form makes the parameter sensitivity visible immediately.
 
 This is not just algebra. A change of 0.1 in friction coefficient shifts the predicted acceleration by roughly 0.85 m/s² in this example. For a docking ramp, stop gate, or product-handling line, that difference can be operationally significant.
 
+<parameter-explorer config='{"title":"Sliding Down a Rough Incline: a = g(sin(theta) - mu_k*cos(theta))","sliders":[{"name":"theta","label":"Incline angle","min":0,"max":60,"step":1,"unit":"deg","default":30},{"name":"mu_k","label":"Kinetic friction coefficient","min":0,"max":0.8,"step":0.05,"unit":"","default":0.2},{"name":"g","label":"Gravity","min":1.6,"max":9.81,"step":0.01,"unit":"m/s^2","default":9.81}],"outputs":[{"label":"Weight component along slope per unit mass","unit":"m/s^2","expr":"g*sin(theta*3.14159265/180)"},{"label":"Friction deceleration per unit mass","unit":"m/s^2","expr":"mu_k*g*cos(theta*3.14159265/180)"},{"label":"Net acceleration down slope","unit":"m/s^2","expr":"g*sin(theta*3.14159265/180) - mu_k*g*cos(theta*3.14159265/180)"}],"plot":{"x":"theta","output":2}}' />
+
+A negative net acceleration in the explorer means friction wins: the downhill weight component is too small to overcome friction, so a block at rest would not start sliding (and a moving block would decelerate).
+
 ## Assumption Breakdown Case: When Constant Friction Stops Being Trustworthy
 
 The simple incline model assumes kinetic friction can be represented by a constant $\mu_k$. That assumption starts to weaken when:
@@ -364,7 +372,7 @@ At that point, the model may still be useful as a first estimate, but it stops b
 <interactive-quiz
   question="Why do many incline problems use axes parallel and perpendicular to the surface?"
   conceptId="newtons_second_law"
-  options='[{"text":"Because gravity becomes larger in those axes.","isCorrect":false},{"text":"Because the normal force and acceleration constraints become easier to express.","isCorrect":true},{"text":"Because Newton''s second law only works in rotated axes.","isCorrect":false}]'
+  options='[{"text":"Because gravity becomes larger in those axes.","isCorrect":false},{"text":"Because the normal force and acceleration constraints become easier to express.","isCorrect":true},{"text":"Because Newton’s second law only works in rotated axes.","isCorrect":false}]'
   explanation="Exactly. Rotating the axes does not change the physics, but it often simplifies the equations because the normal force lies entirely in one direction and the motion often lies in the other."
 />
 
@@ -402,6 +410,10 @@ The force-to-acceleration workflow scales from a single block to systems worth m
 - For connected particles, add the per-block equations to cancel the internal cord tension, then back-substitute.
 - Friction opposes the direction of *sliding*, so its sign flips when the motion reverses; redraw the FBD for each phase of motion.
 - Use sign and magnitude checks to verify the answer makes physical sense.
+
+## Concept Map
+
+<concept-map concepts='["newtons_second_law","kinetic_friction"]' />
 
 ## What's Next?
 

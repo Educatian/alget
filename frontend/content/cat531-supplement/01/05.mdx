@@ -34,6 +34,12 @@ The variables that most often break transfer fall into four families:
 
 The disciplined comparison is variable by variable, not impression by impression. Where a variable matches, the borrowed evidence carries weight; where it diverges sharply, the evidence is suspended until you test it locally. Critical edtech studies is the lens for who a context mismatch excludes; datafication is the lens for whether the tool's model was built for learners like yours; TPACK keeps the comparison tied to the actual content goal rather than novelty.
 
+<inline-check question="A study reports a large effect size under conditions you do not share. What does the large effect tell you about transfer to your room?" explanation="A large effect under conditions you do not share is a large effect you may never see. Effect size measures how strong the result was in the study's context; it says nothing about whether the load-bearing context variables hold for you. Transfer is decided by graded variable-by-variable comparison, not by the magnitude of the original effect." options='[{"text":"A bigger effect guarantees stronger transfer","correct":false},{"text":"Nothing about transfer; it is a strong effect you may never see","correct":true},{"text":"Effect size replaces the need to compare contexts","correct":false},{"text":"It means the tool is universally effective","correct":false}]' />
+
+The study reported its 30 percent result with 12 students, a 1:1 device ratio, and 0 multilingual learners. Set your own room's variables and watch the divergence on each load-bearing dimension. The wider the gap, the more the borrowed result must be suspended and tested locally.
+
+<parameter-explorer config='{"title":"Context divergence: the discussion-bot 30-percent study vs. your room","sliders":[{"name":"my_size","label":"Your class size","min":8,"max":40,"step":1,"unit":"students","default":34},{"name":"my_devices","label":"Your shared devices","min":4,"max":40,"step":1,"unit":"devices","default":10},{"name":"my_ml","label":"Your multilingual learners","min":0,"max":20,"step":1,"unit":"students","default":9}],"outputs":[{"label":"Your student-to-device ratio","unit":"per device","expr":"my_size / my_devices"},{"label":"Class-size gap vs. study (12)","unit":"students","expr":"my_size - 12"},{"label":"Multilingual gap vs. study (0)","unit":"students","expr":"my_ml"}],"plot":{"x":"my_size","output":0}}' />
+
 ## Worked Example
 
 Scenario: the teacher from the opening case decides whether the discussion-bot's 30 percent result applies to her. The judgment turns on whether her classroom context matches the study's. Walk it in four numbered moves.
@@ -52,6 +58,10 @@ Scenario: the teacher from the opening case decides whether the discussion-bot's
 > The 30 percent study ran with 12 students, 1:1 devices, and no multilingual learners. My section has 34 students, a 1:3.4 device ratio, and 9 multilingual learners. I am not assuming the result transfers. I will pilot one section with device rotation and a voice-input fallback, then check my own participation data before scaling.
 
 The decision is defensible because the context variables that govern transfer were listed and compared, so the borrowed evidence is tested against this room rather than assumed to apply.
+
+Work the rollout decision as a branching judgment. At each branch, decide whether the borrowed result has earned the right to scale in your room.
+
+<branching-scenario tree='{"title":"Should the 30-percent discussion-bot roll out next week?","start":"c1","nodes":{"c1":{"prompt":"You have a published 30-percent participation gain and a deadline. What is your first move?","choices":[{"label":"Roll it out to all sections; the study is published and the number is real","next":"cBlind","feedback":"The number is real, but you imported the result without its conditions. The 30 percent was produced under a context you have not examined."},{"label":"Pull the context variables the study reported and lay yours beside them","next":"cCompare","feedback":"Right move. Treat the finding as conditional: this effect, under these conditions. Now check whether the conditions hold."}]},"cBlind":{"prompt":"Three weeks in, participation has not moved and your multilingual learners are barely posting. What went wrong?","choices":[{"label":"The study was flawed","next":"cLoss","feedback":"More likely the load-bearing variables (class size, device ratio, language profile) never matched your room."},{"label":"The text-only, fast-typing model never fit a 34-student, 1:3.4-device, 9-multilingual class","next":"cWin","feedback":"Exactly the mismatch a variable-by-variable comparison would have caught before rollout."}]},"cCompare":{"prompt":"Study: 12 students, 1:1 laptops, 0 multilingual. You: 34 students, 10 shared tablets, 9 multilingual. The class-size, device-ratio, and language variables all diverge. What follows?","choices":[{"label":"Scale anyway; the gaps are minor","next":"cLoss","feedback":"All three diverging variables are load-bearing for a text-only, fast-typing tool. Scaling on faith ignores the mismatch."},{"label":"Suspend the borrowed result and pilot one section with device rotation and a voice-input fallback","next":"cWin","feedback":"You suspended the claim where variables broke and planned a local test that protects multilingual learners."}]},"cWin":{"prompt":"You measured participation in YOUR room before scaling, with safeguards for the diverging variables.","feedback":"This is graded transfer: keep the evidence where variables match, test it where they break.","choices":[]},"cLoss":{"prompt":"You scaled a result whose conditions you did not share, and a concentrated group paid for the mismatch.","feedback":"Revisit: name the reported class size, device ratio, and language profile, then decide where the gap is large enough to break the claim.","choices":[]}}}' />
 
 ## Decision Rule
 
@@ -128,6 +138,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the Design Tension Studio map naming a classroom value conflict and negotiated decision captures instructional purpose, equity or privacy boundary, support request, revision rationale, and confidence change.
+
+## Concept Map
+
+See how context-variable comparison connects to evidence-based revision and the transfer anchors.
+
+<concept-map concepts='["cat531_supplement_foundations_of_cbi_and_design_tensions", "cat531_supplement_classroom_context_variables", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

@@ -35,6 +35,12 @@ Three theoretical anchors give you the vocabulary to fill in those parts with su
 
 An anchor has done its job only when it changes a concrete element of the artifact: a word, a timing, a layout, a feedback line. Naming a theory in a reflection without a corresponding change in the storyboard is citation, not reasoning.
 
+Match each part of a defensible decision to what it actually contributes, so you can spot which part a weak rationale is missing.
+
+<sequence-builder mode="match" items='[{"term":"Purpose","definition":"The single learner action the choice serves, stated as a performable behavior rather than the word engaging"},{"term":"Constraint","definition":"The limit or pressure (time budget, platform cap, slowest learner) that made this a real choice rather than an obvious one"},{"term":"Evidence","definition":"The source (pilot number, principle, observation) that favors this option over the alternative you abandoned"},{"term":"Revision","definition":"What changed from the prior version, stated as a delta, plus one suggestion you considered and rejected"}]' />
+
+<inline-check question="A designer writes: 'I made Frame 3 more engaging by adding a short animation.' Which of the four parts is most clearly missing?" explanation="The note gives a vague purpose (engagement) and names a revision (added animation) but cites no evidence that the animation beats the alternative and names no constraint that made it a real choice. Without evidence the claim is unfalsifiable, which is the defining failure of taste dressed as a decision." options='[{"text":"Purpose, because it never mentions a learning goal at all","correct":false},{"text":"Evidence, because no source is given that this option beats the alternative, so the claim cannot be challenged","correct":true},{"text":"Revision, because no change to the frame is described","correct":false}]' />
+
 ## Worked Example: An Annotated LXD Decision
 
 Below is one storyboard frame for a 5-minute onboarding module, shown before and after a defensible design decision. Read the annotations, not just the change.
@@ -58,6 +64,10 @@ Designer note (taste level): "Looks clean and professional."
 Designer note (decision level): "I cut the duplicated text because **cognitive load theory** treats identical audio plus text as redundant processing (the redundancy effect). The trimmed narration serves the purpose, the 4-word cue signals the action, and I rejected the auto-advance suggestion because it removes the learner's control of pacing."
 
 The difference between v1 and v2 is not polish. It is a named constraint (redundant channels overloaded the slowest learners), an evidence source (the 3-of-5 pilot result), an anchor that changed a concrete element (CLT cut the duplicated text), and a recorded rejection (auto-advance). That is what makes v2 a decision a reviewer can audit, rather than a preference.
+
+Walk the v1-to-v2 reasoning one move at a time, predicting each step before the reveal.
+
+<step-reveal title="Reconstructing the Frame 3 decision" steps='[{"prompt":"The pilot shows 3 of 5 learners click nothing for the full 42 seconds. In the four-part frame, what is this observation?","predictType":"choice","choices":["The purpose, because it names the learner action","The constraint surfacing, because it reveals the limit (passive waiting) that makes a real choice","The revision, because something must change"],"answerIndex":1,"reveal":"The behavior is the constraint becoming visible: passive waiting is the pressure that turns Frame 3 from a finished screen into a real decision point."},{"prompt":"Cognitive load theory is invoked. For it to count as reasoning rather than citation, what must it do?","predictType":"choice","choices":["Appear by name in the designer note","Change a concrete element, here cutting the duplicated audio-plus-text channel","Justify keeping the frame as it was"],"answerIndex":1,"reveal":"CLT earns its place only by pointing at a specific element to cut: the redundant text channel. Naming the redundancy effect without cutting anything would be citation, not a decision."},{"reveal":"The recorded rejection (declining auto-advance to preserve learner pacing control) is the proof of judgment. A trail of only accepted changes reads like luck; a reasoned rejection reads like a designer who weighed an alternative and had grounds to refuse it."}]' />
 
 ## Decision Rule
 
@@ -106,6 +116,10 @@ When you ask BigAL for help, ask it to attack the decision, not to admire the sc
 ## Transfer Case
 
 Take the onboarding frame from the worked example and move it from a self-paced web module to a live, instructor-led webinar. The purpose holds: the learner still must perform one action. But the constraint inverts. In the self-paced version the danger was passive waiting, so you trimmed narration and gave control to the learner. In the live version the instructor controls pacing, so trimming narration matters less, while the redundant on-screen text might now help learners who join late or have audio trouble. The same purpose, read against a new constraint, can justify the opposite move on the very element you cut before. If you can explain why the redundancy effect recommends cutting text in one context and keeping it in another, you understand LXD as a decision discipline rather than as a list of rules to apply uniformly.
+
+<self-explain prompt="In your own words, why is a recorded rejection (an alternative the designer considered and declined) more diagnostic of design judgment than a list of accepted changes?" answer="A list of accepted changes is consistent with luck or with never having considered an alternative, so it cannot show that judgment was exercised. A reasoned rejection proves the designer held more than one option in view and had grounds, tied to the goal and evidence, to refuse one. It makes the decision falsifiable, because a reviewer can challenge the stated reason. That is why the auto-advance rejection, not the trimmed narration, is the strongest evidence that v2 was a decision rather than a preference." />
+
+<concept-map concepts='["ail606_supplement_lxd_as_a_decision_discipline", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

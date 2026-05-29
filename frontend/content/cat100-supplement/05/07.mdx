@@ -56,6 +56,12 @@ Steps:
 
 Each fix targets a different viewer. The contrast fix helps anyone with low vision or a bad projector; the alt text reaches screen-reader users; the labels reach colorblind viewers. The same "elegant" slide failed three different people in three different ways, which is why a single visual judgment ("looks clean") is not an accessibility check.
 
+Work one accessibility check at a time, predicting each move before you reveal it:
+
+<step-reveal title="Run a three-point accessibility check on one slide" steps='[{"prompt":"The title is #BBBBBB on a white background and looks elegant. What do you do first?","predictType":"choice","choices":["Keep it; light gray reads as refined","Measure the contrast ratio; #BBBBBB on white is about 1.7:1, below the 4.5:1 minimum","Make the font larger and leave the color","Add a drop shadow to the text"],"answerIndex":1,"reveal":"Measure, do not eyeball. 1.7:1 fails WCAG for normal text. Darken the title to something like #1A2A4F, which clears 4.5:1. Contrast is a number you check."},{"prompt":"The chart has no alt text. What should the alt text say?","predictType":"choice","choices":["\"chart\" or the file name like image1.png","A description that states the point: \"Bar chart; signups rose from 1,200 to 2,400 after launch\"","Nothing; sighted viewers can see it","\"See chart on slide\""],"answerIndex":1,"reveal":"Alt text must deliver the same information a sighted viewer gets, not name the file type. \"Chart\" is useless to a screen-reader user."},{"reveal":"Status dots use green for on track and red for at risk with no labels. Add a text label to each so meaning survives in grayscale, then re-check all three. Color must never be the only carrier of meaning."}]' />
+
+<inline-check question="A slide uses green dots for on track and red dots for at risk, with no labels. Why does this fail a colorblind viewer even though the colors look distinct to the designer?" explanation="When color is the only thing distinguishing two states, a viewer with color vision deficiency sees the dots as identical. The meaning must be backed by a label, shape, or pattern so it survives in grayscale." options='[{"text":"The dots are simply too small to see","correct":false},{"text":"Color alone carries the meaning, so a colorblind viewer cannot tell the states apart","correct":true},{"text":"Green and red always have enough contrast","correct":false},{"text":"The slide needs a brighter theme","correct":false}]' />
+
 ## Decision Rule
 
 Test contrast against 4.5:1, give every meaningful image alt text that states the point, and never let color be the only carrier of meaning. If a fix would help only some viewers and exclude others, it is not finished.
@@ -80,6 +86,10 @@ Apply the three checks to a slide with a photo and a caption overlaid on it, a c
 
 Now stress-test with the grayscale conversion. Drop the slide to grayscale and look again: the caption band keeps the text legible, the decorative photo is correctly skipped by assistive tech, and no meaning was hiding in a color that just turned gray. If the slide survives grayscale and a screen-reader pass, it will survive the actual room, including the viewers the designer cannot see the slide as.
 
+Order the accessibility pass so each check depends on the one before it:
+
+<sequence-builder mode="order" items='["Measure text contrast against the 4.5:1 minimum (3:1 for large text)", "Darken or recolor any text that falls below the ratio", "Give every meaningful image alt text that states the point, not the file type", "Find any meaning that rests on color alone", "Back each color-coded element with a label, shape, or pattern", "Run the grayscale test to confirm every distinction still reads"]' />
+
 ## What Strong Reading Looks Like
 
 As you read, keep a two-column note: on the left, each visual element; on the right, its contrast ratio, alt text, and whether any meaning rests on color alone. Flag every element that fails one of the three checks. By the end of 05.07, your note should show that the slide was tested, not just admired.
@@ -100,6 +110,12 @@ A useful note would sound like this: "I changed the title from #BBBBBB (about 1.
 ## Transfer Case
 
 Move the same content to a printed handout that may be photocopied in black and white. Two of the three checks transfer immediately and one gets harder: contrast still matters (and copies degrade it further), color-only meaning becomes fatal because the copy is grayscale by definition, and alt text has no role since there is no screen reader for paper. If your slide already passed the grayscale test, the handout works; if it relied on color, the photocopy will strip the meaning out entirely.
+
+## Concept Map
+
+Connect the ideas this section builds on. See how contrast, alt text, and not-color-alone checks feed evidence-based revision of the storyboard:
+
+<concept-map concepts='["accessibility", "cat100_supplement_ai_enhanced_presentation_development", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

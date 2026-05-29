@@ -65,15 +65,28 @@ Run every image through the accessibility sequence in order:
 
 A defensible image decision can answer all three: how it was classified, what function its alt carries, and how it avoids color-only coding. The right test is the cover test: hide the image and read only the alt, can a learner still get the point?
 
+Put the accessibility decisions in the order this section runs them.
+
+<sequence-builder mode="order" items='["Classify: is the image decorative or meaningful?","Decorative gets empty alt; meaningful earns content-bearing alt","Write meaningful alt to function in one tight sentence, not to appearance","If data-dense, give the headline in alt and move full values to an adjacent table","Audit color: add a non-color cue wherever a distinction rides on color alone","Run the cover test: hide the image and confirm the alt alone still teaches the point"]' />
+
+
 ## Common Misreadings
 
 The first misreading is "more alt text is better alt text." Long, exhaustive alt is itself a barrier, because screen-reader output is linear and unskimmable, so a 200-word alt forces the learner to listen through everything to find the point; brevity plus an adjacent data table serves them far better. The second misreading is "passing the checker means it is accessible." Automated tools verify that alt exists and flag a few color-contrast ratios, but they cannot tell whether the alt carries the instructional function or whether a distinction depends on color, the two failures that matter most. Human judgment, not the checker, is the standard.
+
+<inline-check question="An automated checker passes a bar chart whose alt reads 'a colorful bar chart with blue, green, and orange bars.' Why is the frame still inaccessible in practice?" explanation="The checker only verifies that alt exists and is non-empty; it cannot judge function. The alt describes appearance, so a screen-reader user learns no ranking or result, and the series are distinguished by color alone, so a color-blind learner cannot tell them apart either. Passing the checker is not the goal; delivering the instructional meaning through a non-visual path is." options='[{"text":"It is accessible, because the checker passed and alt is present","correct":false},{"text":"The alt describes appearance not function, and color-only coding fails color-blind learners, neither of which the checker can detect","correct":true},{"text":"The only problem is that the alt is too short","correct":false}]' />
+
 
 ## Textbook Walkthrough
 
 Walk a real frame with mixed images. The frame has a decorative banner photo of a lab, a meaningful line graph of reaction rate versus temperature, and a small "click here" arrow icon. Classify each: the banner is decorative (`alt=""`), the graph is meaningful, the arrow is functional UI whose alt should name its action ("expand the data table"), not its shape. Write the graph's alt to function: "reaction rate rises slowly up to 40C, then climbs sharply, doubling between 40 and 60C," with the precise values placed in a table beside it. Audit color: the graph plotted two reactions in red and green only, so add direct end-of-line labels so the two curves are distinguishable without color.
 
 Apply the cover test: hide the graph and read the alt plus the table, a non-visual learner gets the trend and the numbers; a color-blind learner reading the visible graph gets the labels. The walkthrough shows the three decisions are separable: classification fixed the banner, function fixed the alt, and the color audit fixed a defect the alt alone would have missed.
+
+Work the three images on this frame one decision at a time.
+
+<step-reveal title="Classifying and writing alt for a mixed frame" steps='[{"prompt":"The frame opens with a decorative banner photo of a lab. What alt should it carry?","predictType":"choice","choices":["A full description of the lab scene","Empty alt so the screen reader skips it","The word decorative so the learner knows to ignore it"],"answerIndex":1,"reveal":"A decorative image takes empty alt. Announcing ’decorative lab photo’ is noise that wastes a non-visual learner’s linear attention; empty alt lets the reader skip it."},{"prompt":"The meaningful line graph plots reaction rate versus temperature. Which alt carries its function?","predictType":"choice","choices":["A red and green line chart on a white grid","Reaction rate rises slowly to 40C, then climbs sharply, doubling between 40 and 60C","A graph with two curves and an x-axis"],"answerIndex":1,"reveal":"Function over appearance: the alt must deliver the trend the learner should take away, not the colors. Precise values go in an adjacent table so the alt stays brief."},{"reveal":"The color audit then catches what the alt alone would miss: the two reactions were told apart by red and green only, so add direct end-of-line labels. Color blindness no longer hides the distinction, and the meaning survives grayscale."}]' />
+
 
 ## What Strong Reading Looks Like
 
@@ -119,6 +132,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the storyboard frame sequence with narration, signaling, and reader-action notes records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+
+## Concept Map
+
+Connect accessibility to the storyboarding work, the evidence-based revision that runs the cover test, and the bounded AI support whose verbose alt you must trim.
+
+<concept-map concepts='["ail606_supplement_multimedia_storyboarding_and_ai_asset_generation","accessibility","evidence_based_revision","ai_supported_learning"]' />
 
 ## References
 

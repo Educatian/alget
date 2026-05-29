@@ -33,6 +33,12 @@ The course anchors are the instruments that let you classify:
 - **UDL learner variability** is the defense against efficiency edits, since usage-weighted metrics systematically undervalue features that serve learners with disabilities or atypical paths.
 - **Mayer's principles** tell you when a "shorten it" suggestion crosses from the coherence principle (cut the irrelevant) into deleting the explanatory core.
 
+Every optimizer suggestion falls into one of three categories by its relationship to the learning goal. Match each category to the right verdict and to the example from the report.
+
+<sequence-builder mode="match" items='[{"term":"Goal-aligned","definition":"Improves the proxy and the learning, like adding alt text; accept it, treating the metric gain as a side effect"},{"term":"Goal-neutral","definition":"Improves the proxy without touching learning; accept only for a stated side benefit"},{"term":"Goal-opposed","definition":"Improves the proxy by harming learning, like cutting a worked example to two steps; reject regardless of the gain"},{"term":"Predicted gain size","definition":"Information about the proxy only; carries no weight in the verdict until the category is known"}]' />
+
+<inline-check question="An optimizer reports that shortening a worked example from six steps to two will raise completion by 14 percent, the largest gain on the report. How should the size of the gain affect your verdict?" explanation="The magnitude is irrelevant until you know the mechanism. The completion gain here comes from learners finishing a worse artifact, because the cut removes the germane modeled reasoning the example exists to teach. A +14% from gutting the example is worse than a +3% from adding alt text. Read mechanism first, magnitude never first." options='[{"text":"A larger gain is a stronger reason to accept, so apply it first","correct":false},{"text":"The size is irrelevant until the mechanism is known; this gain comes from a worse artifact, so reject it","correct":true},{"text":"Accept it because completion is the most important learning metric","correct":false}]' />
+
 ## Worked Example: Triaging an Optimizer Report
 
 An LXD optimizer scanned one module and returned four suggestions. Here is the before-and-after of how a critical user handled them.
@@ -57,6 +63,10 @@ The designer applied one of four edits, kept a one-line reason for each verdict,
 Designer note (decision level): "I refused to treat the optimizer's proxies as learning. I accepted only the edit that served both a learner need and the goal, and I logged why I rejected the three that moved a metric without serving learning, including one that would have cut an accessibility feature."
 
 The revision is defensible because each optimizer suggestion was judged against the learning goal and learner variability, not accepted as a batch because the dashboard turned green.
+
+Triage the report one row at a time, predicting the verdict before the reveal.
+
+<step-reveal title="Triaging the optimizer report" steps='[{"prompt":"Row 2: move the self-check above the reading, predicted +9% time-on-page. What does the rising time-on-page most likely mean here?","predictType":"choice","choices":["Deeper engagement, so accept it","Confused learners lingering because the check precedes the content, so reject it","Faster completion, so accept it"],"answerIndex":1,"reveal":"Time-on-page is ambiguous by design: it rises with both engagement and confusion. With the check before the content, the gain reflects confusion, not learning, so the suggestion is goal-opposed and rejected."},{"prompt":"Row 4: remove the rarely played audio-description track, predicted +6% efficiency. On what grounds is this rejected?","predictType":"choice","choices":["It is accepted, since few learners use it","UDL: an efficiency metric structurally cannot see the value of a provision used by a few learners with high need","It is neutral, so accept for the side benefit"],"answerIndex":1,"reveal":"Usage-weighted metrics systematically undervalue accessibility provisions. The track serves a minority of learners whose need the proxy cannot measure, so removing it is goal-opposed regardless of the efficiency arrow."},{"reveal":"Only the alt-text row survives, and the designer notes the completion gain is a side effect, not the reason. The defensible output is a per-row log of verdicts plus a transfer quiz before and after the accepted edit to confirm understanding did not drop. The green dashboard is an input, never the output."}]' />
 
 ## Decision Rule
 
@@ -105,6 +115,10 @@ When you bring an optimizer suggestion to BigAL, ask it to expose the proxy and 
 ## Transfer Case
 
 Take the same four-suggestion report and change the optimizer's objective from completion and efficiency to a different proxy: predicted exam score from an embedded item bank. The triage logic survives, but the verdicts can move. Now the "shorten the worked example" suggestion might be reported as *lowering* predicted score, because the optimizer's new proxy partly captures the understanding the example builds; the metric and the goal are better aligned, so the tool's recommendation is more trustworthy, though still not authoritative. The lesson is that an optimizer is only as good as the distance between its proxy and your real goal. If you can explain why the audio-description edit is still rejected even under a learning-aligned proxy (because exam score still cannot see accessibility need), you understand that critical use is permanent, not a workaround for bad metrics.
+
+<self-explain prompt="State Goodhart's law in your own words and explain why it makes optimizer dashboards permanently in need of critical use rather than fixable by a better metric." answer="Goodhart's law says that when a measure becomes a target, it stops being a good measure, because people and tools optimize the proxy itself rather than the underlying goal it once tracked. An optimizer that targets completion or efficiency will find edits that move those numbers (shorter, easier modules) even when they harm learning. No metric fully captures understanding, transfer, or accessibility need, so any proxy made into a target drifts from the goal. That gap never closes, which is why critical use, judging each suggestion by its effect on the real goal, is permanent rather than a temporary patch for bad metrics." />
+
+<concept-map concepts='["ail606_supplement_lxd_optimizer_critical_use", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

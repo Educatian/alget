@@ -34,6 +34,8 @@ Two boundaries govern professional-materials review specifically:
 
 The hardest feedback to give well is on a risky claim, a line like "Led the team" that the writer may not be able to defend. The move is not to correct it silently but to raise it as a question ("were you the formal lead, or one contributor?"), because only the writer knows the truth and only the writer will be in the interview. Polishing a peer's wording while leaving an indefensible claim, or exposing their data to fix a comma, both miss the point.
 
+<inline-check question="Your peer asks you to ‘run my whole resume through an AI and tell me what is wrong.’ Their resume includes their full name, phone, and home address. What is the right move?" explanation="The phrasing feedback may be useful, but pasting a peer’s contact block into a tool you cannot audit exposes data that is theirs, not yours. The fix is cheap: strip the personal details first, or review it yourself. The privacy boundary holds even when the feedback would be good." options='[{"text":"Strip the name, phone, and address first (or review it yourself), then check phrasing","correct":true},{"text":"Paste the whole thing in, the feedback is what matters","correct":false},{"text":"Rewrite their resume for them so they do not have to","correct":false},{"text":"Tell them it ‘looks good’ to avoid the issue","correct":false}]' />
+
 ## Worked Example: Turning a Vague Reaction Into Usable Peer Feedback
 
 You are reviewing a classmate's resume bullet:
@@ -69,6 +71,12 @@ interview, which answer can you defend?
 
 **Step 5. Hand back a decision-ready set.** The writer ends with three located comments they can accept or decline, ownership intact, and their private data never exposed.
 
+<step-reveal title="Turn a reaction into feedback the writer can act on" steps='[{"prompt":"A classmate’s bullet reads ‘Helped with events for the student government.’ Your first instinct is to write ‘Looks good!’ Why is that comment worthless to them?","predictType":"choice","choices":["It is too short to fit the margin","It names no location, no problem, and no fix, so the writer leaves with what they came with","It uses the wrong tone","It mentions the student government"],"answerIndex":1,"reveal":"Right. ‘Looks good’ performs reviewing without improving anything. The writer cannot act on praise that points to nothing."},{"prompt":"You rewrite it as ‘Experience, bullet 2: helped with events does not say what you did or the scale.’ What turns this from a correction into usable peer feedback?","predictType":"choice","choices":["Adding a stronger verb yourself","Ending with a question only they can answer: what was your task, and how many events?","Rewriting the whole bullet for them","Marking it with a red flag"],"answerIndex":1,"reveal":"Yes. Location + problem + question hands the decision back to the writer. You surface the issue; they keep the pen."},{"reveal":"Another line reads ‘Led the team.’ You do NOT rewrite it. You raise it as a question: ‘Were you the formal lead, or one contributor? If a recruiter asks, which answer can you defend?’ Only the writer knows the truth."},{"prompt":"Before you use any AI tool to polish phrasing on their document, what must you do first?","predictType":"choice","choices":["Ask for their grade","Remove their name, phone, address, and employer details, or review it yourself","Add your own name as co-author","Make the font match yours"],"answerIndex":1,"reveal":"Correct. A resume carries exactly the data that fuels identity theft. Strip it before any tool touches it, or do the review yourself."}]' />
+
+The same review, reduced to its order: be specific and located first, then protect the writer’s ownership and their data, then hand the decision back.
+
+<sequence-builder mode="order" items='["Name the location, the problem, and a question or specific fix (not ‘looks good’)","Raise any risky claim as a question, not a silent correction","Strip personal data (name, phone, address, employer) before any tool use, or review it yourself","Hand back comments the writer can accept or decline, ownership intact"]' />
+
 ## Decision Rule
 
 Before you hand back peer feedback, check both the usefulness and the privacy of how you produced it.
@@ -101,6 +109,8 @@ A strong reader also treats the privacy boundary as a default, not a special cas
 ## Transfer Case
 
 The location-problem-question shape and the data boundary transfer to every review you will ever do of someone else's work. Editing a friend's grad-school essay, commenting on a coworker's draft proposal, or reviewing a teammate's slide deck all reward specific, located, question-framed feedback that leaves ownership with the author. And any document holding someone else's personal information, a colleague's contract, a customer's form, demands the same data restraint you practiced on a peer's resume. The content changes; the dual obligation to be useful and to be careful with others' data does not.
+
+<concept-map concepts='["peer_review", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

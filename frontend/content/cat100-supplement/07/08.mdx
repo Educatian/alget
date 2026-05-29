@@ -39,6 +39,8 @@ Publishing a static site rests on three rules that local files let you ignore.
 
 Underneath all three is one principle: a published page cannot rely on anything that lives only on your computer, including the file's local name, its disk paths, or your assumption that "saved" means "served." Plus, well-formed HTML (every tag closed) is what lets the browser render structure like lists at all.
 
+<inline-check question="Your page renders perfectly when you double-click the file on your laptop, with the chart image showing. After pushing to GitHub Pages, the live URL shows a broken-image icon. What is the most likely cause?" explanation="Opening the file locally lets an absolute path like C:/Users/you/chart.png resolve, because your hard drive is right there. On the web no visitor can reach your Desktop, so the image breaks. The fix is a relative path such as ./images/chart.png that travels with the files. Local testing hides exactly this class of error." options='[{"text":"The image uses an absolute local path that only resolves on your own machine","correct":true},{"text":"GitHub Pages cannot display PNG images","correct":false},{"text":"The image file is too large to load over the web","correct":false},{"text":"The browser needs the homepage renamed before any image will show","correct":false}]' />
+
 ## Worked Example
 
 Here is a real workflow write-up published as a GitHub Pages site.
@@ -78,6 +80,10 @@ Three concrete decisions made it load:
 2. **Relative image path `./images/audit-chart.png`** (not a `C:/Users/...` local path) so it works for every visitor.
 3. **Pages source set in Settings**, because pushing files alone does not enable publishing, and every `<li>` and `<ul>` is closed so the list renders.
 
+Putting a static site live follows a fixed order. Drag these five steps into the sequence that takes the page from a local folder to a working public URL.
+
+<sequence-builder mode="order" items='["Name the homepage index.html so the server resolves the site root instead of returning a 404","Write asset references as relative paths like ./images/chart.png so they load for every visitor","Confirm every HTML tag is closed so the browser renders lists and structure as intended","Push the files to the repository, which stores them but does not yet serve them","Enable the source in Settings then Pages (branch and folder) and open the live URL in a fresh browser to verify"]' />
+
 ## Decision Rule
 
 Before declaring a site published, ask three things in order: is the homepage named `index.html`, do all asset paths point to locations a stranger's browser can reach (relative, not local), and is publishing actually turned on in the host's settings.
@@ -102,6 +108,10 @@ Apply the rules to add a second page, a resume, to the same site. You create `re
 
 You push, then visit the live URL and click the link. If the resume 404s, the likely cause is a filename typo (`resume.htm` versus `resume.html`) or a missing push; if the headshot is broken, the path is wrong or the image was not committed. The walkthrough shows the same three rules governing every page you add: each must reach the others through relative links, each asset must use a relative path, and the whole thing only works once Pages is enabled and the files are actually pushed. Testing on the live URL, not the local file, is what catches the failures.
 
+Debug a failing deploy one symptom at a time, predicting the cause before it is revealed.
+
+<step-reveal title="Diagnose a GitHub Pages site that does not work" steps='[{"prompt":"You pushed your files and the root URL returns a 404. Your homepage file is named home.html. What is the fix?","predictType":"choice","choices":["Push the files a second time","Rename home.html to index.html so the server can resolve the root","Wait an hour for the server to find the file","Add the filename to the end of the URL"],"answerIndex":1,"reveal":"The server looks for index.html at the root by default. Renaming home.html to index.html lets the root resolve instead of returning a 404."},{"prompt":"The page now loads but the chart is a broken-image icon. The tag reads img src set to C:/Users/student/Desktop/chart.png. Why does it fail online?","predictType":"choice","choices":["The PNG format is unsupported on the web","The path points to your hard drive, which no visitor can reach","The image is committed but not pushed","The alt text is missing"],"answerIndex":1,"reveal":"An absolute local path resolves only on your machine. Switch it to a relative path like ./images/chart.png so the image travels with the files and loads for every visitor."},{"prompt":"You fixed both and re-pushed, but the live site still shows the old broken version. What did you most likely skip?","predictType":"choice","choices":["Nothing; the site will update on its own eventually","Verify the change on the live URL in a fresh browser rather than trusting the local file","Rename the repository","Delete and recreate the images folder"],"answerIndex":1,"reveal":"Opening the local file hides publishing errors because absolute paths resolve there. Always confirm on the public URL in a fresh browser, the only context with none of your local files."},{"reveal":"Index-named homepage, relative asset paths, and verification on the live URL: the same three checks that make a deploy work are the ones that diagnose it when it breaks."}]' />
+
 ## What Strong Reading Looks Like
 
 A strong reader never trusts a page until it has been opened from its public URL in a browser that has no access to their computer. "It works locally" is treated as untested, because local opening hides exactly the publishing errors that matter.
@@ -112,6 +122,8 @@ A strong reader of a published site can answer four questions:
 2. Does every image and link use a path a stranger's browser can resolve?
 3. Is Pages actually enabled, and have the latest files been pushed?
 4. Does the page render correctly in a fresh browser, not just when opened from disk?
+
+<concept-map concepts='["cat100_supplement_workflow_studio", "cat100_supplement_productivity_and_workflow_automation", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

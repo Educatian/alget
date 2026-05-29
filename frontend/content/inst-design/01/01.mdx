@@ -55,6 +55,10 @@ Most instructional design models, however branded, are variations on the foundat
 | **I**mplementation | How does it reach the learner? | LMS deployment, facilitator guide, pilot |
 | **E**valuation | Did the objectives actually get met? | Kirkpatrick-style data, revision list |
 
+Before going further, fix the order of the five phases in your head. Drag them into the sequence a designer actually works through, from understanding the gap to proving it closed.
+
+<sequence-builder mode="order" items='["Analysis: who is the audience and what exactly is the performance gap?","Design: what counts as success, and what is the blueprint?","Development: build the slides, video, job aids, and practice items","Implementation: deploy to the learner and pilot","Evaluation: did the objectives get met, and what feeds the next cycle?"]' />
+
 The most common failure is treating ADDIE as a one-way assembly line. In practice the arrows run backward too: a confusing pilot in Implementation sends you back to Design, and Evaluation feeds the next cycle of Analysis. Evaluation is also frequently misunderstood as the final "smile sheet." Donald Kirkpatrick's four levels make the distinction sharp:
 
 - **Level 1, Reaction:** Did they like it? (the hospital's 94% lived here)
@@ -63,6 +67,8 @@ The most common failure is treating ADDIE as a one-way assembly line. In practic
 - **Level 4, Results:** Did the organizational metric (charting errors, near-misses) improve?
 
 The records training was a Level 1 triumph and a Level 3 disaster. Mature designers instrument for Level 3 and 4 from the Analysis phase forward.
+
+<inline-check question="A leadership team is thrilled that 94% of nurses rated the records training 'clear and helpful' on the post-session survey. At which Kirkpatrick level does that evidence live, and what does it actually prove about on-the-job competence?" explanation="A satisfaction survey is pure Level 1 (Reaction). It measures whether learners liked the session, which is uncorrelated with whether they can perform the task at the bedside (Level 3). The near-miss came from a Level 3 failure that a Level 1 metric is blind to." options='[{"text":"Level 1 (Reaction); it proves they liked it but says nothing about on-the-job behavior","correct":true},{"text":"Level 2 (Learning); it proves they can demonstrate the skill in training","correct":false},{"text":"Level 3 (Behavior); it proves they are charting correctly weeks later","correct":false}]' />
 
 ---
 
@@ -152,6 +158,10 @@ No single theory is "correct." The skill is matching the theory to the objective
 
 > **Key Insight:** Most real courses blend all three across a single arc. You might use behaviorist drill to automate vocabulary, cognitivist worked examples to teach the procedure, then a constructivist project to force transfer. The theory is chosen per objective, not per course.
 
+Walk a real selection decision. You are designing onboarding for a tax-prep firm and must pick a theory for one specific objective at a time.
+
+<branching-scenario tree='{"title":"Match the theory to the objective","start":"n1","nodes":{"n1":{"prompt":"Objective 1: new hires must instantly recognize 30 IRS form codes by sight. Which theory leads?","choices":[{"label":"Behaviorism: drill the code-to-name response with immediate feedback","next":"n2","feedback":"Right. A fixed stimulus (the code) maps to a fixed response (the name); reinforcement automates the reflex."},{"label":"Constructivism: have them invent their own coding system through open exploration","next":"bad1","feedback":"No. There is one correct convention to memorize; open discovery wastes effort and risks learning the wrong mapping."}]},"n2":{"prompt":"Objective 2: execute the multi-step deduction-calculation procedure without error. Which theory leads?","choices":[{"label":"Cognitivism: chunk the procedure and use faded worked examples to manage load","next":"n3","feedback":"Right. A multi-step procedure has high element interactivity; chunking and worked examples keep working memory under its ceiling."},{"label":"Behaviorism: reward each correct final answer and punish wrong ones","next":"bad2","feedback":"Reinforcing only the final answer ignores the steps; learners cannot transfer the procedure to a new return."}]},"n3":{"prompt":"Objective 3: advise a client whose situation matches no template and requires judgment. Which theory leads?","choices":[{"label":"Constructivism: a messy case, an initial commitment, then scaffolded peer comparison","next":"good","feedback":"Exactly. Judgment and transfer demand active meaning-making within the ZPD, not a drilled response."},{"label":"Behaviorism: drill the single correct script for the situation","next":"bad3","feedback":"No script exists for a novel case; drilling a script produces brittle, non-transferable behavior."}]},"good":{"prompt":"You chose behaviorism, then cognitivism, then constructivism across one course: theory per objective, not per course. That is the elite pragmatic move.","choices":[]},"bad1":{"prompt":"Dead end: rote conventions are a behaviorist job. Restart and match the objective type.","choices":[]},"bad2":{"prompt":"Dead end: complex procedures need cognitive load management, not reinforcement of outcomes only. Restart.","choices":[]},"bad3":{"prompt":"Dead end: judgment under novelty needs constructivist transfer, not a drilled script. Restart.","choices":[]}}}' />
+
 ---
 
 ## Worked Example: Redesigning the Hospital Records Training
@@ -180,6 +190,8 @@ Do not stop at a smile sheet. Measure on-floor allergy-entry error rates and rec
 
 > **The payoff:** The original design optimized Level 1 (reaction). The redesign optimizes Level 3 (on-the-job behavior), which is the only level that would have prevented the near-miss.
 
+<self-explain prompt="The redesign deliberately uses three different theories for three objectives inside one short training. In your own words, explain WHY a single theory (say, just behaviorism, or just constructivism) applied to all three objectives would have produced a worse design than the mixed approach." answer="Each objective has a different cognitive demand, so a single theory mismatches at least two of them. Pure behaviorism would drill the icons well but would reduce the multi-step reconciliation to rote final-answer reinforcement (no transferable procedure) and would offer a brittle script for the messy handoff (no judgment). Pure constructivism would force novices to discover the fixed icon meanings and the standard procedure, wasting effort and risking wrong learning, while only the handoff genuinely needs open meaning-making. Because the theory must match the objective's demand (rote recall vs. procedural chunking vs. judgment and transfer), choosing per objective lets each task use the engine that fits it, which a one-size theory cannot do." />
+
 ---
 
 ## Common Pitfalls
@@ -203,6 +215,8 @@ Do not stop at a smile sheet. Measure on-floor allergy-entry error rates and rec
 ---
 
 ## Summary & Key Takeaways
+
+<concept-map concepts='["instructional_design","learning_theories","behaviorism","cognitivism","constructivism"]' />
 
 - **Instructional Design** is the intentional, systematic architecture of learning that bridges a measured performance gap, not the attractive presentation of content.
 - **ADDIE** (Analysis, Design, Development, Implementation, Evaluation) is the process backbone; it tells you the order of decisions and where to put evidence. It loops, it does not march in a straight line.

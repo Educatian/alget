@@ -42,6 +42,8 @@ When white light (which contains all colors) hits these "tree" structures, the l
 
 The result is that only incredibly pure, intense blue light escapes the structure and reaches the predator's (or mate's) eye.
 
+<inline-check question="Constructive interference for blue light happens because the spacing between the lamellae is tuned to blue's wavelength. What happens to red and green light in the same structure?" explanation="The same fixed spacing that brings blue waves into phase puts red and green waves out of phase. Their crests meet troughs and cancel by destructive interference, so almost no red or green escapes. One geometry simultaneously amplifies one band and suppresses the others." options='[{"text":"It is reinforced by constructive interference along with the blue.","correct":false},{"text":"It is knocked out of phase and cancelled by destructive interference.","correct":true},{"text":"It passes straight through without any interference at all.","correct":false}]' />
+
 <structural-color-diagram></structural-color-diagram>
 
 ### Quantifying the Mechanism
@@ -66,6 +68,10 @@ Stacking roughly ten such layers does two things: it pushes the reflected intens
 
 > **Key Insight:** Color from geometry is set by *distance*, not *chemistry*. Change the spacing and you change the color; the material can stay the same clear cuticle throughout.
 
+Drag the cuticle thickness, air gap, and cuticle index below to watch the Bragg peak $\lambda_{\text{peak}} = 2\,(n_c t_c + n_a t_a)$ sweep across the visible spectrum. Try to land the peak inside the blue band (450 to 490 nm) the way the real Morpho does, then push it into the green or violet to feel how few nanometers separate one color from the next.
+
+<parameter-explorer config='{"title":"Multilayer Bragg Peak vs Layer Geometry","sliders":[{"name":"tc","label":"Cuticle layer thickness","min":40,"max":160,"step":1,"unit":"nm","default":74},{"name":"ta","label":"Air gap thickness","min":40,"max":200,"step":1,"unit":"nm","default":110},{"name":"nc","label":"Cuticle refractive index","min":1.3,"max":1.8,"step":0.01,"unit":"","default":1.56}],"outputs":[{"label":"Optical period (n_c t_c + n_a t_a)","unit":"nm","expr":"nc*tc + 1.00*ta"},{"label":"Reflected peak wavelength","unit":"nm","expr":"2*(nc*tc + 1.00*ta)"},{"label":"Cuticle volume fraction","unit":"fraction","expr":"tc/(tc+ta)"}],"plot":{"x":"tc","output":1}}' />
+
 ---
 
 ## Worked Example 1: Predicting the Color from the Spacing
@@ -89,6 +95,10 @@ $$
 $$
 
 **Interpretation.** A wavelength near 451 nm is squarely in the blue band of the visible spectrum (roughly 450 to 490 nm). Two clear, colorless materials, cuticle and air, combine to produce a vivid blue purely because their stacked thickness is tuned to half the optical period of blue light.
+
+Work the same calculation yourself before checking each step.
+
+<step-reveal title="Build the Bragg Peak One Term at a Time" steps='[{"prompt":"First compute the optical contribution of the cuticle layer alone: n_c times t_c, with n_c = 1.56 and t_c = 74 nm. Which is closest?","predictType":"choice","choices":["74 nm","115 nm","225 nm","450 nm"],"answerIndex":1,"reveal":"n_c t_c = 1.56 x 74 = 115.4 nm. The high-index cuticle stretches the optical path well beyond its physical 74 nm thickness, because light slows down inside it."},{"prompt":"Now add the air gap term n_a t_a, with n_a = 1.00 and t_a = 110 nm, to get the full optical period inside the parentheses.","predictType":"choice","choices":["110.0 nm","115.4 nm","225.4 nm","450.9 nm"],"answerIndex":2,"reveal":"n_a t_a = 1.00 x 110 = 110.0 nm, so the optical period is 115.4 + 110.0 = 225.4 nm. Air contributes its full geometric thickness because n_a = 1."},{"prompt":"Finally apply the factor of 2 from the round trip through one period. What is the reflected peak wavelength?","predictType":"choice","choices":["225 nm (ultraviolet)","451 nm (blue)","564 nm (green)","676 nm (red)"],"answerIndex":1,"reveal":"lambda_peak = 2 x 225.4 = 450.9 nm. The factor of 2 comes from light traversing the period on the way down and back up. The result lands in the blue, matching the real butterfly."}]' />
 
 ---
 
@@ -150,6 +160,10 @@ $$
 
 **Interpretation.** As your eye moves off-axis, the reflected wavelength gets shorter: the blue shifts toward deep violet. This blue-to-violet shimmer is exactly what you see when a Morpho tilts in flight, and it is the unavoidable signature of any interference-based color. (The butterfly partly tames this with curved, slightly disordered ridges that spread the reflection over a wider angle, a trick engineers copy when they want structural color that stays "blue enough" across viewing angles.)
 
+Sweep the viewing angle below and watch the reflected peak blue-shift. The model first refracts the ray into the stack with Snell's law, $\sin\theta_{\text{air}} = n_{\text{eff}}\sin\theta_{\text{film}}$, then scales the on-axis peak by $\cos\theta_{\text{film}}$. Notice how a higher effective index $n_{\text{eff}}$ bends the ray more steeply and so flattens the shift, which is exactly why engineers raise the index contrast when they want color that holds across angles.
+
+<parameter-explorer config='{"title":"Iridescent Blue-Shift vs Viewing Angle","sliders":[{"name":"a","label":"Viewing angle off normal","min":0,"max":60,"step":1,"unit":"deg","default":20},{"name":"lam0","label":"On-axis peak wavelength","min":380,"max":520,"step":1,"unit":"nm","default":450},{"name":"neff","label":"Effective refractive index","min":1.05,"max":1.6,"step":0.01,"unit":"","default":1.224}],"outputs":[{"label":"Sine of internal ray angle","unit":"","expr":"sin(a*3.14159265/180)/neff"},{"label":"Reflected peak wavelength","unit":"nm","expr":"lam0*sqrt(1 - (sin(a*3.14159265/180)/neff)^2)"},{"label":"Blue-shift from on-axis","unit":"nm","expr":"lam0 - lam0*sqrt(1 - (sin(a*3.14159265/180)/neff)^2)"}],"plot":{"x":"a","output":1}}' />
+
 ---
 
 ## The Engineering Translation
@@ -197,6 +211,10 @@ The brighter the sun shines on a structural display, the more brilliant and read
 
 <dynamic-scenario topic="Structural Color Engineering" context="A materials engineer tasked with creating a highly visible, zero-power reflective sign for highway construction that won't fade after 10 years in the desert sun."></dynamic-scenario>
 
+Walk a real design decision for that desert sign and see where each choice leads.
+
+<branching-scenario tree='{"title":"Specifying a Zero-Fade Desert Highway Sign","start":"start","nodes":{"start":{"prompt":"The sign must stay vivid for 10 years under intense UV with no power. What do you specify for the color system?","choices":[{"label":"A high-grade chemical blue pigment, applied thickly for durability","next":"pigment","feedback":"Thickness does not stop photochemistry."},{"label":"A structural-color multilayer that selects wavelength by geometry","next":"structural","feedback":"No chemical bond carries the color, so UV cannot bleach it."}]},"pigment":{"prompt":"Two summers in, the blue has visibly faded toward gray. Why?","choices":[{"label":"UV photons broke the pigment molecular bonds (photobleaching)","next":"redo","feedback":"Exactly the failure mode structural color avoids."},{"label":"The pigment was simply applied too thin","next":"pigment","feedback":"No. Even a thick layer photobleaches; the color lives in degradable bonds."}]},"redo":{"prompt":"Restart with a structural multilayer. Now your biggest worry is the spacing. Why does spacing dominate?","choices":[{"label":"Peak wavelength is 2 times the optical period, so a few nm of drift shifts the hue","next":"structural","feedback":"Right. Color is set by distance, demanding nanometer control."}]},"structural":{"prompt":"You commit to a multilayer. A reviewer warns the sign looks blue head-on but violet from a car approaching at an angle. What design move tames this iridescence?","choices":[{"label":"Add curved or slightly disordered ridges to spread the reflection over more angles","next":"win","feedback":"This is the butterfly trick: trade a little purity for angular robustness."},{"label":"Increase the number of layers to 100 to brighten it","next":"layers","feedback":"More layers sharpen and brighten but do not fix the angle shift."},{"label":"Switch back to pigment to avoid the angle problem","next":"pigment","feedback":"That reintroduces fading, the original deal-breaker."}]},"layers":{"prompt":"More layers gave a brighter, purer blue but the violet-at-angle complaint remains. What actually addresses angle dependence?","choices":[{"label":"Disordered or curved structure to broaden the angular reflection","next":"win","feedback":"Correct. Angle robustness comes from geometry disorder, not layer count."}]},"win":{"prompt":"You ship a structural-color sign with engineered ridge disorder: zero-power, UV-stable, and legible across approach angles. Mission accomplished.","choices":[]}}}' />
+
 ---
 
 ## Summary
@@ -217,6 +235,12 @@ The brighter the sun shines on a structural display, the more brilliant and read
 - **Stacking sets the purity.** Many layers drive reflection toward total at the tuned wavelength and narrow the band, giving the saturated, glowing look.
 - **Interference color is inherently angle-dependent.** Off-axis viewing blue-shifts the peak (the shimmer of iridescence), a tradeoff engineers must manage with disordered or curved structures.
 - **Structural color is durable.** Because no chemical bond carries the color, it does not photobleach, which is its decisive advantage over pigments for outdoor and long-life applications.
+
+These ideas form one tightly linked web: the Morpho's nanostructure produces optical interference, which produces structural color. Map how they connect.
+
+<concept-map concepts='["structural_color","morpho_butterfly","optical_interference","nanostructure_optics"]' />
+
+<self-explain prompt="In your own words, explain the single sentence that turns this biology into an engineering specification: what physical quantity does a designer control, and what does it replace from the pigment world?" answer="A designer controls the optical period, the layer spacing times refractive index, summed over the stack, because the reflected peak is twice that period. Tuning spacing to a few nanometers selects the wavelength the surface reflects. This geometric control replaces the chemical dye molecule of the pigment world: instead of choosing a blue compound, you choose a blue distance. The payoff is durability, since geometry cannot photobleach the way molecular bonds do." />
 
 ---
 

@@ -27,6 +27,10 @@ An **affordance** is what a tool lets a learner *do*, not what features it lists
 
 Two ideas keep this honest. The **least-capable-sufficient** heuristic says pick the simplest tool that affords the action, because unused capability is cost and complexity with no learning return. And the **constraint filter** is non-negotiable: a tool that fails an access or time constraint is disqualified no matter how well it affords the action.
 
+Order the selection discipline correctly, the sequence that keeps tool choice goal-first instead of feature-first.
+
+<sequence-builder mode="order" items='["State the learning objective and the verb the learner must perform", "Derive the required affordance from that verb, named independently of any product", "List every tool that provides the affordance, including the humble ones", "Choose the least capable tool that still affords the action", "Apply the constraint filter (access, cost, time, support, accessibility) as a veto"]' />
+
 ## Worked Example
 
 A thin claim sells features:
@@ -59,7 +63,9 @@ Decision: select Tool Y. The eye tracking and spatial audio of Tool X are real f
 
 The improvement is that every retained capability now maps to an objective, and the choice is justified against the cohort's real constraints.
 
-## Decision Rule
+Run the corrective-feedback selection memo through the discipline yourself, choosing goal-first at each step.
+
+<branching-scenario tree='{"title":"Selecting a tool for the corrective-feedback module","start":"n1","nodes":{"n1":{"prompt":"A vendor pitches a VR platform with avatars, spatial audio, hand tracking, and eye tracking as the most advanced option. Where do you start?","choices":[{"label":"Adopt it because it is the most capable tool","next":"feature","feedback":"Starting from the tool is technology determinism: you cannot tell which features earn their cost without naming the objective first."},{"label":"State what the learner must do: deliver feedback and read a reaction that changes with their choice","next":"affordance","feedback":"Correct: name the objective first, then derive the affordance."}]},"feature":{"prompt":"Reconsider: what must the manager actually be able to do?","choices":[{"label":"Deliver corrective feedback and read a reaction that changes with the choice","next":"affordance","feedback":"Yes. That sentence yields the required affordance."}],"feedback":"Feature-first reasoning runs backward and never reaches the objective."},"affordance":{"prompt":"The required affordance is conditional branching with visible reaction states. Which tools afford it?","choices":[{"label":"Only the VR platform","next":"onlyvr","feedback":"A browser-based branching-scenario tool also affords conditional branching at far lower cost."},{"label":"Both the VR platform and a browser branching-scenario tool","next":"both","feedback":"Correct: the affordance does not by itself select VR."}]},"onlyvr":{"prompt":"Reconsider: does any cheaper tool also provide conditional branching?","choices":[{"label":"Yes, a browser branching-scenario tool does too","next":"both","feedback":"Right. Now the constraint filter decides."}],"feedback":"Branching is not unique to VR."},"both":{"prompt":"Cohort: 30 part-time learners, no headsets, 2-week build, free license required. Apply the constraint filter.","choices":[{"label":"Pick VR for immersion","next":"immersion","feedback":"VR fails the access (no headsets) and time constraints, and immersion is not the construct."},{"label":"Pick the browser tool: it affords branching and meets every constraint","next":"resolved","feedback":"Correct: least capable sufficient tool that survives the veto."}]},"immersion":{"prompt":"Reconsider: which constraints does VR fail, and is immersion the construct?","choices":[{"label":"VR fails access and time; reading a reaction is the construct, so pick the browser tool","next":"resolved","feedback":"Yes. The eye tracking served no objective here."}],"feedback":"Immersion is not a construct and cannot justify an affordance."},"resolved":{"prompt":"Resolved. Objective then affordance then constraint selected the browser tool, with VR vetoed on access and time.","feedback":"Every retained capability maps to an objective.","choices":[]}}}' />
 
 Select in the order objective, affordance, constraint, never feature-first:
 
@@ -72,6 +78,9 @@ If a feature in your chosen tool maps to no objective, it is decoration you are 
 ## Common Misreadings
 
 The first misreading is equating "advanced" with "appropriate"; the most capable tool is rarely the best fit and often fails a constraint. The second is letting a tool optimize the surface of a deliverable while the underlying objective-to-affordance mapping is never written, so no one can say why the tool was chosen. The third is treating "immersion" or "engagement" as objectives; they are not constructs, and they cannot justify an affordance on their own.
+
+<inline-check question="The objective shifts to performing a hands-on equipment calibration with correct spatial positioning, and the site already owns headsets. Does the VR platform now become the right choice?" explanation="The required affordance changed to spatial, embodied manipulation, which a browser tool cannot provide, and the access constraint that vetoed VR (no hardware) no longer holds. The same objective-affordance-constraint procedure now selects VR, because the objective and constraints changed, not because VR is inherently better." options='[{"text":"No, the browser tool is always the cheaper and therefore correct choice","correct":false},{"text":"Yes, the affordance now requires spatial manipulation and the hardware constraint no longer vetoes VR","correct":true},{"text":"Yes, because VR is the most advanced option available","correct":false}]' />
+
 
 ## Textbook Walkthrough
 
@@ -126,6 +135,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure the case derives the affordance from the objective, names the least sufficient tool, shows the constraint filter vetoing at least one candidate, and records any feature or suggestion you rejected for mapping to no objective.
+
+## Concept Map
+
+Link the objective-to-affordance discipline to the evidence-based revision of the software case and the bounded support AI can give in mapping features to objectives.
+
+<concept-map concepts='["ail606_supplement_choosing_a_software_case", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

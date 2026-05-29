@@ -57,6 +57,11 @@ Annotated decision trail:
 
 The improvement is not a prettier image. It is an image chosen for its instructional function and verified against the content.
 
+Work the screening of the first lever render one gate at a time, predicting each verdict before the reveal.
+
+<step-reveal title="Screening the first generated lever image" steps='[{"prompt":"The first render is a photorealistic studio with a crowbar among many tools. Apply the function gate: can a learner read the rule that moving the fulcrum toward the load increases mechanical advantage from this image?","predictType":"choice","choices":["Yes, a crowbar is clearly a lever","No, a single lever cannot show two effort-arm lengths, so the relationship is invisible","Yes, the caption explains it"],"answerIndex":1,"reveal":"The function requires contrasting two effort-arm lengths. One pretty lever cannot show a comparison, so the relationship is not readable and the image fails the function gate. You do not patch a failed function gate with caption text."},{"prompt":"Suppose you re-prompt to a clean diagram that does show the relationship. Apply the coherence gate: what should you strip?","predictType":"choice","choices":["The labels for fulcrum, load, and effort","The studio scenery, dramatic lighting, and any extra figures","The two effort-arm lengths"],"answerIndex":1,"reveal":"Strip the seductive detail (scenery, lighting, added people) that competes with the geometry. The labels and the two arm lengths are the function and must stay."},{"reveal":"The accuracy gate then catches what the eye glides past: the first diagram had swapped the load and effort labels. One verified error means the image is not shippable until corrected. Polish is the last gate, never the first."}]' />
+
+
 ## Decision Rule
 
 Commission, then verify, in that order. Before prompting, write the image's function in one sentence: "the learner must be able to read [relationship/structure/distinction] from this image." The prompt then specifies that function (clean diagram, labeled parts, two cases shown side by side) rather than a mood.
@@ -69,9 +74,17 @@ After generation, run the three-gate screen and reject at the first failure:
 
 Polish is the last gate, not the first; a striking image that fails any earlier gate is rejected regardless of how good it looks.
 
+Put the commission-then-verify workflow in the order a defensible image decision follows.
+
+<sequence-builder mode="order" items='["Write the image function in one sentence before prompting","Prompt for that function (clean diagram, labeled parts, side-by-side cases) not a mood","Function gate: confirm the relationship is readable without the caption","Coherence gate: strip decorative and seductive detail","Accuracy gate: verify every label, count, and proportion against the source","Polish: refine style only after the earlier gates pass"]' />
+
+
 ## Common Misreadings
 
 The first misreading is "photorealism equals quality." For most instructional functions a clean line diagram outperforms a photo, because the photo carries surface detail (texture, background, lighting) that competes with the relationship being taught. The second misreading is trusting the model on facts: because the render looks confident and professional, designers skip verification, and ship images with swapped labels or impossible structures. The model is fluent, not accurate; fluency is exactly what makes its errors hard to catch.
+
+<inline-check question="A generated 'plant cell' image is gorgeous but renders animal-cell organelles and buries the cell wall under decorative texture. Which gate catches this, and why is its appeal a trap?" explanation="The accuracy gate catches it: the model has no commitment to truth, so its confident, professional render is an unverified claim with wrong structures. The polish that makes it tempting is exactly what hides the error, so appeal must never substitute for verification against the content source." options='[{"text":"No gate, because the image looks authoritative and was free to make","correct":false},{"text":"The accuracy gate, because the render is an unverified claim and its polish hides the structural errors","correct":true},{"text":"The polish gate, because the texture should be smoother","correct":false}]' />
+
 
 ## Textbook Walkthrough
 
@@ -123,6 +136,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the storyboard frame sequence with narration, signaling, and reader-action notes records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.
+
+## Concept Map
+
+Connect image generation for instruction to the evidence-based revision that verifies it and the bounded AI support that produced the draft.
+
+<concept-map concepts='["ail606_supplement_multimedia_storyboarding_and_ai_asset_generation","ail606_supplement_image_generation_for_instruction","evidence_based_revision","ai_supported_learning"]' />
 
 ## References
 

@@ -112,6 +112,8 @@ $$
 
 5. Move to the next solvable joint.
 
+<sequence-builder mode="order" items='["Draw the FBD of the entire truss","Compute support reactions from global equilibrium","Pick a joint with at most two unknown members","Apply sum Fx = 0 and sum Fy = 0 at that joint","Move to the next solvable joint and repeat"]' />
+
 A useful convention is to assume every unknown member force is in tension. If a solved value comes out negative, that member is actually in compression.
 
 ### Drawing the Joint Free Body Diagram
@@ -125,6 +127,12 @@ The method of joints is just **particle equilibrium applied at a point**. Each j
 5. **Write** $\sum F_x = 0$ and $\sum F_y = 0$ and solve.
 
 Because each joint gives only two scalar equations in 2D, you can solve at most two unknown member forces per joint. That is why step 3 of the procedure insists on starting where no more than two members are unknown.
+
+For the classic loaded joint with one inclined member at angle $\theta$ and one horizontal member carrying a vertical load $P$ (as in Example 2), the two joint equations close to $F_{diag} = P/\sin\theta$ and $F_{horiz} = P/\tan\theta$. Drag the angle and watch how a shallow diagonal is punished: as $\theta$ drops toward the horizontal, the diagonal force blows up far past the applied load.
+
+<parameter-explorer config='{"title":"Member Force vs Diagonal Angle at a Loaded Joint","sliders":[{"name":"P","label":"Applied vertical load","min":1,"max":20,"step":0.5,"unit":"kN","default":5},{"name":"theta","label":"Diagonal angle above horizontal","min":10,"max":80,"step":1,"unit":"deg","default":45}],"outputs":[{"label":"Diagonal member force P/sin(theta)","unit":"kN","expr":"P / sin(theta * 3.14159265 / 180)"},{"label":"Horizontal member force P/tan(theta)","unit":"kN","expr":"P * cos(theta * 3.14159265 / 180) / sin(theta * 3.14159265 / 180)"}],"plot":{"x":"theta","output":0}}' />
+
+<inline-check question="Using the explorer relation, what happens to the diagonal member force as the diagonal angle theta gets very small (the diagonal becomes nearly horizontal)?" explanation="As theta approaches 0, sin(theta) approaches 0, so P/sin(theta) grows without bound. A shallow diagonal must carry a force far larger than the load it supports, which is exactly the shallow-cable lesson from Chapter 1." options='[{"text":"It grows much larger than P because sin(theta) approaches zero.","correct":true},{"text":"It approaches zero because the member becomes horizontal.","correct":false},{"text":"It stays exactly equal to P regardless of angle.","correct":false}]' />
 
 ### Zero-Force Members
 
@@ -144,6 +152,8 @@ When you solve a truss, you are really asking:
 - Which members might buckle because they are in compression?
 
 This is why truss analysis is not just algebra. It is an early form of structural design judgment.
+
+<branching-scenario tree='{"title":"Where do you start, and what does the sign mean?","start":"n1","nodes":{"n1":{"prompt":"You must solve a planar truss with eight members. Which joint do you analyze first?","choices":[{"label":"A joint with four unknown members meeting it","next":"bad1","feedback":"Each joint gives only two equations in 2D, so four unknowns cannot be solved there yet."},{"label":"A joint with only two unknown member forces","next":"good1","feedback":"Correct: two equations can resolve at most two unknowns, so this joint is solvable."},{"label":"Any joint at random; the order does not matter","next":"bad2","feedback":"Order matters. Picking an over-determined joint stalls the whole march."}]},"good1":{"prompt":"You assume every unknown is in tension and solve a diagonal as F = -9 kN. What do you conclude?","choices":[{"label":"The member is in compression and should be checked for buckling","next":"win","feedback":"Exactly. A negative tensile result means compression, and compression members are buckling-critical."},{"label":"The math failed because force cannot be negative","next":"bad3","feedback":"The sign is meaningful, not an error: it reports the true direction of the force."}]},"win":{"prompt":"Resolved: start at a two-unknown joint, assume tension, and read the sign. A negative diagonal is a compression member flagged for buckling.","choices":[]},"bad1":{"prompt":"Stuck: four unknowns, two equations. Restart and choose a solvable joint.","choices":[{"label":"Go back","next":"n1","feedback":"Pick a joint with at most two unknowns."}]},"bad2":{"prompt":"You hit an over-determined joint and cannot proceed. Restart.","choices":[{"label":"Go back","next":"n1","feedback":"Sequence by solvability."}]},"bad3":{"prompt":"Treating the sign as an error loses the buckling warning. Reconsider.","choices":[{"label":"Reinterpret the sign","next":"good1","feedback":"Negative tensile force = compression."}]}}}' />
 
 <dynamic-scenario topic="Roof Truss Design" context="A civil engineering student must compare two roof-truss layouts for a small gymnasium and explain which members are likely to go into compression when a heavy snow load is applied." />
 
@@ -166,6 +176,8 @@ $$\sum F_y = 0: \quad F_{AC}(0.8) + 6 = 0 \;\Rightarrow\; F_{AC} = \boxed{-7.5 \
 $$\sum F_x = 0: \quad F_{AB} + F_{AC}(0.6) = 0 \;\Rightarrow\; F_{AB} = -(-7.5)(0.6) = \boxed{+4.5 \text{ kN (tension)}}$$
 
 **Step 4: Interpret.** The diagonal $AC$ is in compression (the negative sign flipped our tension assumption), exactly what you expect for a member propping up a downward peak load. By symmetry $F_{BC} = -7.5$ kN (compression) as well, and the bottom chord $AB$ ties the two feet together in tension. The compression diagonals are the members a designer would check for buckling.
+
+<step-reveal title="Predict each step of the joint-A solution before revealing it" steps='[{"prompt":"With a symmetric truss and a centered 12 kN load, what is the vertical reaction at the pin A?","predictType":"choice","choices":["3 kN","6 kN","12 kN","24 kN"],"answerIndex":1,"reveal":"Symmetry splits the 12 kN load evenly: A_y = B_y = P/2 = 6 kN, and A_x = 0."},{"prompt":"Member AC runs from (0,0) to (3,4). What is sin(theta) used in the vertical equation?","predictType":"choice","choices":["0.6","0.8","1.0","0.5"],"answerIndex":1,"reveal":"Length = sqrt(3^2 + 4^2) = 5, so cos(theta) = 3/5 = 0.6 and sin(theta) = 4/5 = 0.8."},{"prompt":"From sum F_y = 0 at joint A: F_AC(0.8) + 6 = 0. What is F_AC?","predictType":"choice","choices":["+7.5 kN (tension)","-7.5 kN (compression)","-6.0 kN (compression)","+4.5 kN (tension)"],"answerIndex":1,"reveal":"F_AC = -6 / 0.8 = -7.5 kN. The negative sign flips the tension assumption, so AC is in compression."},{"reveal":"Finally sum F_x = 0: F_AB + F_AC(0.6) = 0, so F_AB = -(-7.5)(0.6) = +4.5 kN. The bottom chord AB is in tension, tying the feet together."}]' />
 
 ---
 
@@ -276,6 +288,8 @@ In the next section we introduce the **method of sections**, which slices throug
 ---
 
 ## Check Your Understanding
+
+<concept-map concepts='["truss_analysis", "method_of_joints"]' />
 
 <interactive-quiz
   question="Why is a truss member often modeled as a two-force member in introductory statics?"

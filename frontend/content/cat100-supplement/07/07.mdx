@@ -37,6 +37,8 @@ The loop has three stages:
 
 The distinction the audit enforces is between a **felt** improvement and a **measured** one. Only the measured kind tells you whether the fix was worth doing, and by how much.
 
+<inline-check question="A 5-minute file rename done daily and a 40-minute term report done once. Your gut says the report is the bigger drain, so it feels like the obvious thing to optimize. Which one actually has the higher weekly cost?" explanation="Weekly cost is frequency times duration. The daily rename costs about 25 minutes a week; the term report spread across a 13-week term costs roughly 3 minutes a week. Small times large frequency beats large times once, which is why the audit ranks by measured cost, not by how painful a task feels." options='[{"text":"The daily rename, at about 25 minutes a week versus roughly 3 for the report","correct":true},{"text":"The term report, because 40 minutes is far longer than 5","correct":false},{"text":"They cost the same once you add them up","correct":false},{"text":"Whichever one feels more stressful in the moment","correct":false}]' />
+
 ## Worked Example
 
 Here is a real workflow audit with a before-and-after measure.
@@ -66,6 +68,10 @@ Three audit moves did the work:
 1. **Logged real time** instead of guessing, so the hidden daily cost showed up.
 2. **Ranked by frequency times duration**, targeting the daily repeat over the rare big task.
 3. **Recorded a before baseline and an after measure**, so "it is faster now" is evidence, not a feeling.
+
+Run the audit loop one decision at a time, predicting each move before it is revealed.
+
+<step-reveal title="Audit a week of tasks and prove the fix worked" steps='[{"prompt":"You feel overwhelmed and want to optimize something. What is the first move, before choosing any target?","predictType":"choice","choices":["Optimize the term report, since it feels like the biggest burden","Log actual time and frequency for every task across a real week","Estimate from memory which task takes longest","Ask a friend what they would fix"],"answerIndex":1,"reveal":"Measure first. Memory underweights small frequent tasks because each instance is forgettable, so you log real time and frequency rather than guessing."},{"prompt":"Your log shows: rename files 5 min daily, format a status note 8 min weekly, format the term report 40 min once. How do you pick the target?","predictType":"choice","choices":["Pick the term report; 40 minutes is the longest single task","Compute weekly cost (frequency times duration) and target the highest","Pick the task you dislike the most","Fix all three at once"],"answerIndex":1,"reveal":"Rank by weekly cost. The daily rename costs about 25 minutes a week, far more than the term report’s roughly 3, so the formula overrides the intuition and you fix the rename first."},{"prompt":"You automate the rename and it feels quicker. What turns ’it feels faster’ into proof the fix was worth doing?","predictType":"choice","choices":["Trust the feeling; it is obviously better","Re-measure: record the new time and error rate against the before baseline","Move on to the next task immediately","Ask whether teammates also feel it is faster"],"answerIndex":1,"reveal":"Re-measure. Logging that 5 minutes a day dropped to 1 and mislabels went from 2 a week to 0 makes the gain a number, not an impression."},{"reveal":"Measure, rank by weekly cost, then re-measure. The loop redirects effort from the task that felt heavy to the one that actually cost the most, and the before-and-after numbers prove the improvement was real."}]' />
 
 ## Decision Rule
 
@@ -101,6 +107,8 @@ A strong reader of a workflow audit can answer four questions:
 2. Is the time data measured from real instances or estimated from memory?
 3. What is the before baseline, and what is the after measure?
 4. How many minutes did the fix actually save, stated as a number?
+
+<concept-map concepts='["cat100_supplement_personal_workflow_audit", "cat100_supplement_productivity_and_workflow_automation", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Stronger Artifact Standard
 

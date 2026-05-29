@@ -103,6 +103,8 @@ For each body, the velocity of the **contact point** (not the center of mass) en
 
 This last point is the most common error in eccentric impact problems: students use the center-of-mass velocity in the restitution equation instead of the contact-point velocity.
 
+<sequence-builder mode="match" items='[{"term":"Conservation of momentum along the impact line","definition":"m*v = m*v1 + M*V, because no external impulse acts along the line during the brief impact"},{"term":"Angular impulse-momentum about G","definition":"J*d = I_G*omega, linking the contact impulse offset from G to the body spin"},{"term":"Coefficient of restitution at the contact point","definition":"e = ((V + omega*d) - v1) / (v - 0), using the contact-point velocity, not the center velocity"},{"term":"Velocity perpendicular to the impact line","definition":"Unchanged by an idealized frictionless impact"},{"term":"Contact-point velocity of a rotating body","definition":"Center velocity plus omega cross r from G to the contact point"}]' />
+
 ---
 
 ## Worked Examples
@@ -126,6 +128,12 @@ $$I_O = I_{O,\text{rod}} + m d^2 = \frac{1}{3}ML^2 + md^2$$
 $$\boxed{\omega' = \frac{m v d}{\frac{1}{3}ML^2 + md^2}}$$
 
 This problem in $F = ma$ form would require integrating impulsive forces over an indefinite short interval. Impulse-momentum gives the answer in four lines.
+
+<parameter-explorer config='{"title":"Plastic Strike on a Pinned Rod: omega = m v d / ( (1/3) M L^2 + m d^2 )","sliders":[{"name":"M","label":"Rod mass","min":1,"max":12,"step":0.5,"unit":"kg","default":6},{"name":"L","label":"Rod length","min":0.5,"max":2,"step":0.1,"unit":"m","default":1.2},{"name":"m","label":"Ball mass","min":0.1,"max":2,"step":0.1,"unit":"kg","default":0.5},{"name":"v","label":"Ball speed","min":0,"max":40,"step":1,"unit":"m/s","default":20},{"name":"d","label":"Strike distance below pin","min":0.1,"max":2,"step":0.1,"unit":"m","default":0.9}],"outputs":[{"label":"Rod inertia about pin I_O","unit":"kg*m^2","expr":"(1/3)*M*L^2 + m*d^2"},{"label":"Post-impact omega","unit":"rad/s","expr":"m*v*d/((1/3)*M*L^2 + m*d^2)"}],"plot":{"x":"d","output":1}}' />
+
+Sweep the strike distance `d`: omega is not maximized at the very tip, because moving the ball outward raises both the incoming angular momentum (the $m v d$ numerator) and the inertia (the $m d^2$ term in the denominator).
+
+<inline-check question="In this pinned-rod impact, why is angular momentum about the pin conserved while linear momentum is NOT?" explanation="During impact the pin exerts a large impulsive reaction with a horizontal component, so the system's linear momentum changes. But that reaction acts AT the pin, giving it zero moment arm about the pin, so it contributes no angular impulse about that point. Angular momentum about the pin is therefore conserved." options='[{"text":"The impulsive pin reaction has zero moment about the pin but a nonzero linear component","correct":true},{"text":"The ball is much lighter than the rod","correct":false},{"text":"Gravity is conserved during the impact","correct":false}]' />
 
 ---
 
@@ -201,6 +209,8 @@ $$\omega = \frac{M d}{I_G}V = \frac{(4)(0.5)}{0.48}(1.64) = \boxed{6.84 \text{ r
 
 $$v_1 = v - \frac{M}{m}V = 10 - (6.667)(1.64) = \boxed{-0.94 \text{ m/s}}$$
 
+<step-reveal title="Work the Eccentric Impact Decision by Decision" steps='[{"prompt":"For the free rod struck off-center on frictionless ice, which momentum statement is valid for the ball-plus-rod system along the impact line?","predictType":"choice","choices":["Linear momentum is conserved: m*v = m*v1 + M*V","Linear momentum is not conserved because of an impulsive reaction","Only angular momentum about the contact point is conserved"],"answerIndex":0,"reveal":"The rod is free (no pin), so no external impulsive reaction acts along the line. Linear momentum along the impact line is conserved: m*v = m*v1 + M*V."},{"prompt":"In the restitution equation, which rod velocity must appear?","predictType":"choice","choices":["The mass-center velocity V alone","The contact-point velocity V + omega*d","The angular velocity omega alone"],"answerIndex":1,"reveal":"Restitution operates on contact-point velocities. The struck point moves at V + omega*d (translation plus rotation), so e*v = (V + omega*d) - v1."},{"prompt":"Collecting terms gives (1+e)v = V*(1 + M d^2/I_G + M/m). With the bracket equal to 9.75 and (1+e)v = 16, what is V?","predictType":"choice","choices":["1.64 m/s","6.84 m/s","16 m/s"],"answerIndex":0,"reveal":"V = 16/9.75 = 1.64 m/s. Then omega = (M d/I_G) V = 6.84 rad/s and v1 = v - (M/m)V = -0.94 m/s (the ball rebounds)."},{"reveal":"If you had used V alone (ignoring omega*d) in the restitution step, the rotation would drop out, underpredicting both omega and the kinetic-energy loss. The contact-point velocity is the crux of every eccentric-impact problem."}]' />
+
 **Step 6: Sanity checks.** The negative $v_1$ means the ball rebounds, which is reasonable for a light ball off a heavier rod. Linear momentum balances: $m v_1 + M V = (0.6)(-0.94) + (4)(1.64) = 6.0 = m v$. Kinetic energy drops from $\tfrac{1}{2}m v^2 = 30$ J to $\tfrac{1}{2}m v_1^2 + \tfrac{1}{2}M V^2 + \tfrac{1}{2}I_G \omega^2 \approx 16.9$ J; the 13.1 J loss is consistent with $e = 0.6 < 1$. Had we (wrongly) used the rod's mass-center velocity instead of the contact-point velocity $V + \omega d$ in Step 4, the restitution equation would have ignored the rotation entirely and badly underpredicted both $\omega$ and the energy loss.
 
 ---
@@ -232,6 +242,10 @@ Impulse-momentum is the design-level tool wherever forces are large but brief, o
 > **Engineering in Action:** A reaction wheel and a diver's tuck obey the identical law. With no external moment, total angular momentum is fixed, so changing $I$ changes $\omega$, and spinning an internal wheel one way turns the body the other. The scale spans from a 60 kg gymnast to a multi-tonne satellite; the conservation statement does not change.
 
 ---
+
+## Connecting the Concepts
+
+<concept-map concepts='["impulse_momentum","angular_impulse_momentum","conservation_of_angular_momentum","eccentric_impact","coefficient_of_restitution"]' />
 
 ## Summary
 

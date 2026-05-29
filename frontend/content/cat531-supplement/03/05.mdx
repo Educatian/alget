@@ -31,6 +31,8 @@ Responsible prompting with students has three components, and they are best taug
 
 A simple way to hold the routine: **strip, specify, verify.** Strip private information out, specify the request precisely, verify the output before using it. The teacher's job is to make this sequence automatic, the way "look both ways" is automatic, so that it operates even when no one is watching the screen.
 
+<inline-check question="A student types: Tell me about Maria Lopez in my class who is failing, and write the water cycle for me. Which strip-specify-verify move is the most urgent first action?" explanation="Strip comes first and is non-negotiable: a named classmate plus a sensitive judgment about her must never enter a public tool, because the text can be stored and used to train a commercial model. The behavior question goes to a human; specification and verification address only the legitimate academic part afterward." options='[{"text":"Specify the water-cycle request first to improve output quality","correct":false},{"text":"Strip the named classmate out and route the behavior question to a human","correct":true},{"text":"Verify the output, since that is where learning happens","correct":false},{"text":"Nothing; the prompt is fine as written","correct":false}]' />
+
 Underneath the routine is a pedagogical point: a well-specified prompt is evidence of understanding. When you coach a student from a vague prompt to a precise one, you are not teaching tool use; you are walking them through the analysis the assignment was supposed to provoke. The prompt becomes a thinking instrument.
 
 ## Worked Example
@@ -53,6 +55,10 @@ Follow a teacher's annotated before/after judgment on a sixth-grader's research 
 
 Step 1 to step 4 captures the section's lesson: responsible prompting protects student data, specifies the request, and verifies the output rather than copying the first response.
 
+Now coach the prompt yourself. In the branching scenario below, a sixth grader types an unsafe, vague prompt; your job is to apply strip, specify, and verify in the right order rather than confiscate the laptop.
+
+<branching-scenario tree='{"title":"Coaching a student prompt in real time","start":"start","nodes":{"start":{"prompt":"A student types: Tell me about Maria Lopez who is failing, and write the water cycle for me. What is your first coaching move?","choices":[{"label":"Specify the water-cycle request to get better output","next":"premature","feedback":"Quality matters, but a named classmate is in the prompt; safety comes first."},{"label":"Strip the classmate name and route the behavior question to a human","next":"stripped","feedback":"Correct. The most important prompting decision here is what not to type."},{"label":"Confiscate the laptop and ban the tool for the day","next":"ban","feedback":"Banning skips the coaching; the student learns nothing transferable."}]},"premature":{"prompt":"Before sending, you notice the classmate name is still in the prompt. What now?","choices":[{"label":"Remove the name and handle the conflict offline first","next":"stripped","feedback":"You applied the strip filter before anything was sent."}]},"ban":{"prompt":"The student still has a legitimate water-cycle task. How do you re-engage?","choices":[{"label":"Coach the prompt: strip the name, then specify the request","next":"stripped","feedback":"Coaching the prompt teaches the habit the ban would have skipped."}]},"stripped":{"prompt":"The name is gone. The remaining request is still vague: write the water cycle for me. What do you do next?","choices":[{"label":"Specify: audience, length, purpose, and one constraint","next":"verify","feedback":"Right. Specifying is where the student does the assignment thinking."},{"label":"Let the student copy whatever the tool returns","next":"copy","feedback":"Copying the first response is both an integrity and a learning failure."}]},"verify":{"prompt":"The improved output explains the water cycle in five sentences. What is the final step before the student uses it?","choices":[{"label":"Have the student check a key claim against the textbook and rewrite it in their own words","next":"responsible","feedback":"The verify step keeps the tool a scaffold, not a substitute."},{"label":"Submit the output as-is; it reads well","next":"copy","feedback":"Confident output still needs checking; reading well is not being correct."}]},"copy":{"prompt":"Non-defensible outcome: the student copied unverified output, so the learning and the integrity both lapsed.","choices":[]},"responsible":{"prompt":"Defensible outcome: no student data leaked, the request was specified so the student did the thinking, and the work ended checked and student-authored.","choices":[]}}}' />
+
 ## Decision Rule
 
 When students prompt an AI tool, coach the prompt through the strip-specify-verify routine:
@@ -63,6 +69,10 @@ When students prompt an AI tool, coach the prompt through the strip-specify-veri
 4. **Make it a habit, not a poster.** Coach the routine repeatedly until students apply it unprompted, because the goal is responsible use when you are not watching.
 
 A prompt is responsible when it leaks no one's data, directs the tool precisely, and ends in checked, student-authored work.
+
+Match each routine move to the specific job it does. This keeps strip, specify, and verify from collapsing into a single vague "be careful."
+
+<sequence-builder mode="match" items='[{"term":"Strip","definition":"Remove names of others and sensitive personal data before sending, and route conflicts to a human"},{"term":"Specify","definition":"Name the audience, length, purpose, and constraint so the student does the assignment thinking"},{"term":"Verify","definition":"Check key claims against a real source and rewrite the result in the student own words"},{"term":"Make it a habit","definition":"Coach the routine repeatedly so students apply it when no one is watching the screen"}]' />
 
 ## Common Misreadings
 
@@ -96,6 +106,10 @@ A useful closing line for the artifact would read: "I removed the classmate's na
 ## Transfer Case
 
 Move the routine to a tool that is not a chatbot: an AI image generator a student wants to use for a project. The verify step transforms, because the risk is no longer a false fact but a fabricated or biased depiction, and "checking against a source" becomes "checking whether this image misrepresents real people or events." The strip step stays critical (no real classmates' likenesses or names in prompts), and specify still drives quality. Carrying strip-specify-verify into a generative-image context, and correctly re-interpreting what "verify" means there, is the test that you hold the principle rather than a single chatbot script.
+
+<self-explain prompt="Explain why a well-specified prompt is itself evidence of student understanding, not just a way to get better output. Use the World War 2 example or one of your own." answer="To write a specific prompt the student must already grasp the task: in the World War 2 case the student had to recall his actual assignment question (why the US entered the war), identify his audience (a seventh-grade reader), and commit to a structure (three paragraphs, two main causes). Each of those decisions is the analysis the assignment was meant to provoke. A vague prompt skips that thinking and outsources it to the model, so the act of specifying is where the learning happens, which is why coaching specification is teaching the subject, not just tool use." />
+
+<concept-map concepts='["cat531_supplement_ai_in_education","prompting_practice","evidence_based_revision","ai_supported_learning"]' />
 
 ## Artifact Studio
 

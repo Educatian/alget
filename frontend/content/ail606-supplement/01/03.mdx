@@ -27,6 +27,10 @@ $$ L_{total} = L_{intrinsic} + L_{extraneous} + L_{germane} \le C_{wm} $$
 
 The design implication follows directly from the inequality. You cannot raise germane processing (the load that builds the schema) unless there is capacity to spare, and you free capacity mainly by cutting extraneous load, because intrinsic load is fixed by the content for a given learner. So the diagnostic order is forced: cut extraneous first, then sequence intrinsic, then spend the freed capacity on germane effort.
 
+Manipulate the three loads against a fixed capacity and watch the spare capacity available for schema-building. Try cutting extraneous to zero, then see how much germane effort you can add before the total exceeds capacity.
+
+<parameter-explorer config='{"title":"Additive load against working-memory capacity","sliders":[{"name":"intrinsic","label":"Intrinsic load (content for this learner)","min":1,"max":7,"step":1,"unit":"el","default":4},{"name":"extraneous","label":"Extraneous load (presentation waste)","min":0,"max":6,"step":1,"unit":"el","default":3},{"name":"germane","label":"Germane load (schema-building effort)","min":0,"max":6,"step":1,"unit":"el","default":1},{"name":"capacity","label":"Working-memory capacity","min":4,"max":9,"step":1,"unit":"el","default":7}],"outputs":[{"label":"Total load","unit":"el","expr":"intrinsic + extraneous + germane"},{"label":"Spare capacity (negative = overload)","unit":"el","expr":"capacity - (intrinsic + extraneous + germane)"},{"label":"Germane room freed by cutting all extraneous","unit":"el","expr":"capacity - intrinsic - germane"}],"plot":{"x":"extraneous","output":1}}' />
+
 Intrinsic load itself is governed by **element interactivity**, the number of elements that must be held and related simultaneously because they cannot be understood one at a time. A high element-interactivity task for a novice can be low for an expert, because the expert's schema chunks several elements into one. That is why every diagnosis row must name the learner.
 
 | Source | Diagnostic question | Legitimate remedy |
@@ -65,6 +69,8 @@ The problem is that "too hard" merges three different loads, so no specific fix 
 
 The improvement is that each entry now names which load it is and what evidence places it there, so the next reviewer can challenge a specific cell rather than the whole lesson.
 
+<self-explain prompt="The additivity inequality says total load is bounded by capacity. Using your own words, explain why the order must be cut extraneous first, then sequence intrinsic, then add germane, rather than starting by adding germane prompts." answer="Intrinsic load is fixed by the content for a given learner and germane effort only pays off if there is spare capacity. Extraneous load is the only term you can remove at no cost to the concept, so cutting it first frees the most room. Sequencing intrinsic (pre-training, segmenting) lowers the fixed term without deleting content. Only then is there headroom to spend on germane prompts. Adding germane first risks pushing total load over capacity while extraneous waste is still consuming the budget." />
+
 ## Decision Rule
 
 Diagnose in the order the additivity inequality dictates:
@@ -77,7 +83,10 @@ A revision that lowers a load without saying which of the three it lowered is no
 
 ## Common Misreadings
 
-The first misreading is treating "easier" as the goal. The goal is the *right* total load for the learner, which sometimes means adding germane effort, not removing it. The second is letting a tool optimize the surface (recolor the plot, smooth the prose) while the intrinsic source is never named, so the lesson still fails for the same reason. The third is forgetting the learner: a row that does not name who the learner is cannot estimate element interactivity and therefore cannot diagnose intrinsic load at all.
+The first misreading is treating "easier" as the goal. The goal is the *right* total load for the learner, which sometimes means adding germane effort, not removing it. The second is letting a tool optimize the surface (recolor the plot, smooth the prose) while the intrinsic source is never named, so the lesson still fails for the same reason.
+
+<inline-check question="A learner is at capacity and still failing. The tutor proposes removing the predict-the-missing-cell prompt to lighten the load. Diagnose this move." explanation="The prediction prompt is germane load: the productive effort that builds the schema. Removing it lowers total load but also lowers learning. The right move is to cut extraneous load (the rainbow legend) first, freeing capacity so the germane prompt can stay." options='[{"text":"Good move, because any reduction in load helps a saturated learner","correct":false},{"text":"Bad move, it strips germane load; cut the extraneous legend instead to free capacity","correct":true},{"text":"Good move, because prediction prompts are always extraneous","correct":false}]' />
+ The third is forgetting the learner: a row that does not name who the learner is cannot estimate element interactivity and therefore cannot diagnose intrinsic load at all.
 
 ## Textbook Walkthrough
 
@@ -132,6 +141,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that each row names the learner, decomposes the difficulty into intrinsic, extraneous, and germane with artifact evidence, assigns a source-appropriate remedy, and records any suggestion you rejected and why.
+
+## Concept Map
+
+Link the three-source load model to the evidence-based revision it drives and the bounded support an AI tutor can offer.
+
+<concept-map concepts='["cognitive_load", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

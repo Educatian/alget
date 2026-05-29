@@ -51,6 +51,8 @@ This is the load generated solely by the *manner* in which information is presen
 - **The Modality Effect:** Reading massive walls of text while a narrator reads the *exact same text* out loud actually causes overload, because the visual and auditory channels clash trying to parse redundant data. (This is also called the **Redundancy Effect**.)
 - **Designer's Role (Eliminate It):** Ruthlessly eliminate it. Integrate labels directly onto diagrams, pair visuals with audio narration (instead of visuals with on-screen text), and remove any background music or flashy animations that do not directly contribute to the learning objective.
 
+<inline-check question="A slide shows a wiring diagram while the narrator reads aloud a paragraph that is ALSO printed in full beside the diagram. Which specific effect is sabotaging the learner, and which load does it inflate?" explanation="Two channels (eye reading text, ear hearing identical text) are forced to parse the same words, which clash rather than reinforce. This is the redundancy effect, a form of extraneous load. The fix is to keep narration and drop the duplicated on-screen text, or vice versa, never both verbatim." options='[{"text":"The redundancy effect, inflating extraneous load","correct":true},{"text":"High element interactivity, inflating intrinsic load","correct":false},{"text":"Contrasting cases, inflating germane load","correct":false}]' />
+
 #### 3. Germane Cognitive Load (the Good Load)
 This is the mental effort devoted to actually processing the core information, constructing meaning, and automating *schemas* (packaging the data and storing it into long-term memory).
 - **Example:** After teaching a concept, asking a student to generate their own original example, or asking them to contrast two highly similar case studies. This forces deep analytical synthesis. It feels like "hard work" to the brain, but it is the exact work required to build permanent neural pathways.
@@ -67,6 +69,14 @@ Use this table as a fast diagnostic when you audit a lesson. Identify the load, 
 | Germane | Effort spent building and automating schemas | High (this is learning) | **Maximize** with the freed capacity | Worked-example fading, self-explanation, contrasting cases, varied practice |
 
 > **The conservation principle.** The three loads share one finite budget. Total load = intrinsic + extraneous + germane, and that total cannot exceed working-memory capacity. Every unit of extraneous load you cut is a unit of germane load you can spend on real learning. This is why "remove the bad load" must come *before* "add the hard thinking."
+
+Treat the budget as a real equation and push on it. Set the working-memory capacity, the inherent intrinsic load of your topic, and the extraneous load your current design wastes; watch how much germane capacity is left for actual learning. (Headroom is what remains; spendable germane load is whatever fits before total hits capacity. If headroom goes negative, you are in overload.)
+
+<parameter-explorer config='{"title":"Working-memory budget: total = intrinsic + extraneous + germane (in element-units, cap about 4)","sliders":[{"name":"cap","label":"Working-memory capacity","min":3,"max":7,"step":1,"unit":"elements","default":4},{"name":"intr","label":"Intrinsic load of the content","min":1,"max":7,"step":0.5,"unit":"elements","default":3},{"name":"extr","label":"Extraneous load wasted by the design","min":0,"max":5,"step":0.5,"unit":"elements","default":2.5}],"outputs":[{"label":"Headroom for learning after the bad load = cap - intrinsic - extraneous","unit":"elements","expr":"cap - intr - extr"},{"label":"Germane capacity recovered if you cut extraneous to zero = cap - intrinsic","unit":"elements","expr":"cap - intr"}],"plot":{"x":"extr","output":0}}' />
+
+Lock in the accountant's job for each load type: match every load to its source, its educational value, and the action a designer must take.
+
+<sequence-builder mode="match" items='[{"term":"Intrinsic load","definition":"Inherent element interactivity of the content; manage by segmenting and sequencing"},{"term":"Extraneous load","definition":"Waste created by presentation (split-attention, redundancy); minimize to near zero"},{"term":"Germane load","definition":"Effort that builds and automates schemas; maximize with the freed capacity"},{"term":"Working memory","definition":"The 3-to-4 element bottleneck that all three loads must share"},{"term":"Schema","definition":"A long-term-memory construct that working memory treats as a single item"}]' />
 
 <concept-diagram type="cognitive-load"></concept-diagram>
 
@@ -111,6 +121,10 @@ Theory becomes useful only when you can apply it to a real artifact. Let us take
 
 **Step 5: Predict the result and state the principle.** The redesign did not make warehouse logistics simpler (intrinsic load is fixed by the domain) and did not add time. It removed waste and reinvested the savings in thinking. The governing equation is the conservation principle: with extraneous load near zero, the same total budget now funds genuine schema formation, and post-test scores should climb.
 
+Now put numbers on the rescue. Predict at each step before revealing the diagnosis.
+
+<step-reveal title="Quantify the pick-ticket rescue with the budget equation (cap = 4 elements)" steps='[{"prompt":"The novice budget is about 4 elements. The current module shows all 18 ticket fields at once. What happens to working memory?","predictType":"choice","choices":["18 fields fit fine; nurses are experts","18 >> 4, so intrinsic load alone overloads and learning stops","Only extraneous load is the problem here","Germane load is automatically maximized"],"answerIndex":1,"reveal":"18 simultaneous interacting fields vastly exceeds the 3-to-4 ceiling, so the lesson overloads on intrinsic load before any design polish is even considered."},{"prompt":"You segment the ticket into 3 groups (header, item lines, special handling) and teach one group at a time. About how many fields now compete in working memory per segment?","predictType":"choice","choices":["Still 18","About 6 per segment","About 0","About 12"],"answerIndex":1,"reveal":"18 / 3 = about 6 per segment, and with pre-training the vocabulary first, each segment fits inside the budget. The TOTAL content is unchanged; only the momentary intrinsic load was managed."},{"prompt":"You cut the redundant on-screen paragraph, the separate glossary, and the music bed. What does the budget equation say you have just done?","predictType":"choice","choices":["Lowered intrinsic load","Freed capacity by driving extraneous load toward zero","Lowered working-memory capacity","Removed germane load"],"answerIndex":1,"reveal":"Redundancy + split-attention + seductive details are all extraneous. Cutting them to near zero frees real capacity, since total = intrinsic + extraneous + germane is conserved."},{"reveal":"Final move: spend the freed capacity on germane load with a contrasting-cases task (two near-identical tickets, which causes a mis-pick and why). Same budget, same runtime, no new content, but the savings now fund genuine schema formation, so the 45% post-test should climb."}]' />
+
 > **The transfer test.** Notice that none of these moves required new content or a bigger budget. Re-sequencing, integrating, and de-duplicating are *free*. The most expensive lessons are often the most overloaded, because polish (animation, music, dense slides) tends to add extraneous load.
 
 ---
@@ -138,6 +152,8 @@ Consider fully worked examples. For a novice with no schema, a complete step-by-
 
 The design implication is profound: **there is no universally "good" lesson, only a lesson well matched to a learner's current schema.** As learners gain expertise, you should *fade* the scaffolding, shifting from worked examples to completion problems to fully independent practice. What counts as germane load for a novice can become extraneous load for an expert.
 
+<self-explain prompt="The expertise-reversal effect says the SAME worked example is germane load for a novice but extraneous load for an expert. Using schema theory and the conservation principle, explain in your own words HOW one identical artifact can flip its load type depending on the learner." answer="Load type is not a property of the artifact; it depends on what the learner's long-term memory already holds. A novice has no schema, so the worked example supplies the structure their working memory needs to build one, which is germane (schema-constructing) effort. An expert already owns an automated schema that handles the whole procedure as a single item, so the step-by-step explanation is redundant guidance they must still read and reconcile against their faster internal procedure. That extra processing fills budget without building anything new, so by the conservation principle it has become extraneous load that crowds out genuine work. Same artifact, different schema state, opposite load classification, which is exactly why scaffolding must fade as expertise grows." />
+
 <dynamic-scenario topic="Schema Theory" context="Teaching a complex concept like Object-Oriented Programming (OOP) in Python to absolute beginners who have never coded before"></dynamic-scenario>
 
 ---
@@ -155,6 +171,8 @@ Even designers who know the theory routinely make these mistakes. Watch for them
 ---
 
 ### Key Takeaways
+
+<concept-map concepts='["cognitive_load","schema_theory","intrinsic_load","extraneous_load","germane_load"]' />
 
 - Working memory is a hard architectural bottleneck (about 3 to 4 novel elements, lasting 15 to 30 seconds). Overload is a structural limit, not a motivation problem.
 - The three loads share one finite budget: **intrinsic (manage), extraneous (minimize), germane (maximize).** Cut the bad load first, then reinvest the freed capacity in real thinking.

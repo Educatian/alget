@@ -31,6 +31,12 @@ Evidence-Centered Design treats assessment, and by extension any prototype that 
 
 The argument is only valid when the layers connect in both directions: the task must elicit the observable, and the observable must license the claim. A clean screen with a broken link is worse than an ugly screen with an intact one, because the clean screen invites false confidence.
 
+ECD reasons backward, from what you want to claim to the screen that will prove it. Put the design steps in that backward order.
+
+<sequence-builder mode="order" items='["State the claim: what knowledge or skill are we asserting (interpret a residual plot)?", "Specify the evidence: what scorable behavior would reveal that knowledge (select the correct diagnosis)?", "Design the task: what screen forces the learner to produce that observable (diagnosis-selection screen)?", "Audit both backward links: does the task elicit the observable, and does the observable license the claim?"]' />
+
+<inline-check question="A row reads: claim 'learner can interpret a residual plot'; evidence 'learner completes the drag-the-label task'; task 'drag-the-label screen'. Which link is broken?" explanation="Task completion is reachable by guessing or by interface familiarity, so completion does not license the interpretation claim. The observable should be a scorable judgment that requires the claimed skill, such as choosing the correct diagnosis." options='[{"text":"None; every cell is filled, so the row is valid.","correct":false},{"text":"The observable-to-claim link: completing the task does not require interpreting the plot.","correct":true},{"text":"The claim is too specific to be testable.","correct":false}]' />
+
 The course anchors sharpen each layer. **Mayer's principles** inform the task layer: a task that buries the observable behavior under extraneous decoration raises load and contaminates the evidence. **Cognitive load theory** warns that a struggling learner may fail a task for load reasons unrelated to the claim, so a high-load task produces ambiguous evidence. **UDL learner variability** pushes you to ask whether the task elicits the observable for all intended learners or only for those who happen to match the interface's assumptions; a single task may under-represent the claim for some.
 
 ## Worked Example
@@ -67,6 +73,8 @@ Build every row backward, claim first, then evidence, then task, and accept the 
 
 A row that fails any check is not "almost done"; it is producing the wrong evidence, which is worse than producing none.
 
+<branching-scenario tree='{"title":"Audit an inherited ECD row","start":"n1","nodes":{"n1":{"prompt":"The row claims \"learner can write a testable hypothesis.\" The task is a four-option multiple-choice screen asking which hypothesis is best. The screen looks clean. What is your first move?","choices":[{"label":"Approve it; all three cells are filled and the screen is polished.","next":"approve","feedback":"Filled cells are not a valid argument. The task elicits recognition, not production."},{"label":"Run the elicitation check: could a learner pass without the claimed skill?","next":"elicit","feedback":"Right. This is the load-bearing audit for any ECD row."}]},"approve":{"prompt":"A reviewer later asks how a recognition task licenses a writing claim. You have no answer. Back up and audit.","choices":[{"label":"Run the elicitation check.","next":"elicit","feedback":"This is where you should have started."}]},"elicit":{"prompt":"You find that a learner can recognize a good hypothesis without being able to write one, so the observable is recognition, not production. What fix do you make?","choices":[{"label":"Make the multiple-choice options prettier and add a confidence slider.","next":"polish","feedback":"Polish does not repair a broken elicitation link, and confidence is not evidence of the claim."},{"label":"Change the task layer: give a scenario and ask the learner to type a hypothesis, scored for naming a manipulation, measure, and comparison.","next":"fix","feedback":"Correct. Replacing recognition with construction restores the link to the writing claim."}]},"polish":{"prompt":"The screen is now attractive but still measures recognition. The claim is still unsupported. What is the real fix?","choices":[{"label":"Switch to a construction task scored against a rubric.","next":"fix","feedback":"Yes, the task layer, not the visual layer, is what was broken."}]},"fix":{"prompt":"The construction task elicits a scorable typed hypothesis, the observable licenses the writing claim, and the matrix made the recognition/production mismatch visible before any learner saw the screen. The row is now defensible.","feedback":"You repaired the row by fixing the task layer, not by polishing it.","choices":[]}}}' />
+
 ## Common Misreadings
 
 The most common misreading equates a more attractive task with a more valid one. Visual polish does not repair a broken elicitation link; a beautiful drag task still cannot measure interpretation. A second misreading treats "the learner completed the task" as evidence for the claim, when completion can be reached by guessing, by interface familiarity, or by a route that bypasses the target skill. ECD asks not whether the task was finished but whether finishing it required the claimed competence.
@@ -86,6 +94,10 @@ The traceability matrix is strong when every row survives the elicitation audit 
 ## Transfer Case
 
 Carry ECD into a setting where you inherit someone else's prototype and cannot rebuild the tasks. The matrix still earns its place: by reverse-engineering each screen into the claim-evidence-task layers, you can label which existing screens produce trustworthy evidence and which are decorative. That triage lets you spend a limited revision budget on the rows whose links are broken, rather than uniformly polishing screens that already work. The discipline transfers because it is about the logic of the evidence argument, not about who built the screens.
+
+## Concept Map
+
+<concept-map concepts='["ail606_supplement_research_translation_for_learning_design", "ail606_supplement_evidence_centered_design_for_prototypes", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

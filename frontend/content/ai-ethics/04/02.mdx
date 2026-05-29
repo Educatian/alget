@@ -40,6 +40,10 @@ Informed consent in research ethics (Belmont Report, 1979) requires four conditi
 
 These four conditions evolved for face-to-face medical research where a clinician could check each one in person. AI deployments break each condition in characteristic ways.
 
+Before reading how they break, articulate the principle in your own words:
+
+<self-explain prompt="A clicked 'I Agree' on a privacy policy can be perfectly legal yet ethically empty. Using the four conditions, explain WHY documented consent can still lack moral force. Name which condition a thousand-word policy at a graduate reading level most directly defeats." answer="Documented consent satisfies disclosure on a technicality (the information was presented) but the other three conditions can all fail. A graduate-level thousand-word policy most directly defeats COMPREHENSION: the subject is exposed to the disclosure but cannot translate it into operational understanding. If refusal also costs access to the service, voluntariness fails; if the user is a minor or in distress, competence fails. Consent loses its moral force when any one condition is weakened, even if the paperwork is perfect, because the four conditions must hold together." />
+
 ---
 
 ## How Each Condition Breaks Under AI
@@ -71,6 +75,12 @@ Harry Brignull catalogued the *dark patterns* that interfaces use to nudge users
 **Roach motel**: easy to opt in, hard to opt out. Account deletion that requires a phone call to a department open four hours per day is the canonical example.
 
 **Forced action**: tying access to a core feature to consent for unrelated data uses, in violation of GDPR's purpose-limitation principle.
+
+<inline-check question="A signup flow ties consent for unrelated marketing-data uses to access of the app's core feature, so you cannot use the app without agreeing to the extra use. Which dark pattern is this, and which GDPR principle does it violate?" explanation="Correct. Forced action bundles consent for an unrelated use with access to the core feature, violating GDPR purpose-limitation (consent must be specific and freely given, not coerced by withholding the service)." options='[{"text":"Confirmshaming, violating the right to erasure.","correct":false},{"text":"Forced action, violating GDPR purpose limitation.","correct":true},{"text":"Roach motel, violating data minimization.","correct":false}]' />
+
+Match each dark pattern to its operational definition before moving on:
+
+<sequence-builder mode="match" items='[{"term":"Asymmetric prominence","definition":"Accept All is a large bright button; Reject All hides behind three clicks of nested settings."},{"term":"Confirmshaming","definition":"Refusal is framed as self-harm, e.g. No thanks, I do not want better recommendations."},{"term":"Roach motel","definition":"Easy to opt in, deliberately hard to opt out, e.g. deletion requires a phone call to a 4-hour-a-day desk."},{"term":"Forced action","definition":"Access to a core feature is tied to consent for unrelated data uses."},{"term":"Misdirection","definition":"Prominent privacy promises while the consequential settings are buried."}]' />
 
 The Norwegian Consumer Council's *Deceived by Design* (2018) documented these patterns at major platforms. The EU Digital Services Act (in force 2024) explicitly prohibits dark patterns on online platforms. The FTC has used Section 5 authority against deceptive consent designs in several U.S. enforcement actions.
 
@@ -114,6 +124,10 @@ Three of four conditions fail outright and the fourth is only partial. The click
 
 The defensible decision is the middle option at minimum: separate the required-use consent from the optional model-training consent, route the training-use decision through a parent or guardian, name the use in plain language, and let students use the platform fully even if training use is declined. This removes the forced-action coupling and restores voluntariness and surrogate competence.
 
+Now you are the district's ed-tech director facing the live decision. Each choice has consequences for students, parents, and the contract:
+
+<branching-scenario tree='{"title":"You are the district ed-tech director","start":"n1","nodes":{"n1":{"prompt":"The platform is being rolled out Monday. Its single I Agree gate bundles required coursework use with the vendor right to train AI on student work. What do you do?","choices":[{"label":"Approve it; the click is documented consent","next":"approve","feedback":"You accepted documented but ethically thin consent from minors."},{"label":"Halt and demand separation of required use from training use","next":"separate","feedback":"Good: you targeted the forced-action coupling."},{"label":"Quietly add a buried opt-out link in the footer","next":"buried","feedback":"That is asymmetric prominence, a dark pattern, not a fix."}]},"approve":{"prompt":"A parent files a complaint that their child never agreed to have schoolwork used for AI training and the child cannot opt out without failing assignments. What broke?","choices":[{"label":"Voluntariness and competence both failed","next":"separate","feedback":"Correct: refusal was penalized (voluntariness) and the users are minors (competence)."}],"feedback":"Three of four conditions failed: comprehension (graduate-level terms for minors), voluntariness (refusal penalized), competence (minors). The click carried almost no ethical weight."},"buried":{"prompt":"Auditors find the opt-out is technically present but practically undiscoverable. Which dark pattern did you reproduce?","choices":[{"label":"Replace with symmetric, equally prominent controls","next":"separate","feedback":"Right: a buried control is asymmetric prominence; symmetric controls are required."}],"feedback":"A footer opt-out that nobody finds is asymmetric prominence; the DSA and FTC target exactly this."},"separate":{"prompt":"You split the gate: required-use consent stands alone; model-training use is optional, named in plain language, and routed through a parent or guardian. The vendor protests it will lose training data. Your move?","choices":[{"label":"Hold the line; let students use the platform fully even if training is declined","next":"win","feedback":"This restores voluntariness and surrogate competence without withholding the service."},{"label":"Cave and re-bundle to keep the vendor happy","next":"approve","feedback":"Re-bundling reinstates the forced-action coupling you just removed."}]},"win":{"prompt":"Outcome: coursework access is unconditional, training use is a separate plain-language opt-in routed to guardians, and declining it does not reduce the service. The forced-action coupling is gone.","feedback":"You cleared the ethics floor without breaking the tool.","choices":[]}}}' />
+
 ---
 
 ## Special Cases Where Consent Cannot Carry the Weight
@@ -144,6 +158,10 @@ Five practices distinguish defensible consent flows.
 
 **Surrogate and granular consent for vulnerable users.** Parental consent for minors, separate consent for sensitive uses (biometrics, location), and the right to use the service with reduced features rather than refused service.
 
+Order these five practices as a user actually encounters them across the lifecycle, from first contact to leaving the service:
+
+<sequence-builder mode="order" items='["Layered notice: short plain-language summary at first contact, with progressive disclosure on demand","Just-in-time disclosure: ask consent at the moment a specific data use is triggered","Symmetric controls: present accept and refuse as equally prominent and equally easy","Surrogate and granular consent: route sensitive or minor-user decisions to guardians, allow reduced-feature use","Withdrawal that is real: deletion actually removes the data, including from training sets where feasible"]' />
+
 A consent flow that meets these five conditions clears the legal floor and most of the ethical floor. It is rarely the cheapest design choice, which is why dark patterns proliferate in deployments where regulatory pressure is weak.
 
 ---
@@ -157,6 +175,14 @@ A fair treatment has to engage the objections.
 **"Strong consent will break free services."** Some argue that ethical consent flows make ad-supported and data-supported products unviable. The honest reply is that some business models depend on consent being thin; the GDPR and DSA reflect a democratic judgment that those models must change rather than that the protections must yield.
 
 **"Comprehension is an impossible standard."** No layperson fully understands a deep model's data flows, so perfect comprehension is unattainable. True, which is exactly why consent should not be the only safeguard. The remedy is to pair achievable comprehension (of consequences, not internals) with structural limits on deployment, as in the special-case contexts above.
+
+---
+
+## Concept Map
+
+The six load-bearing ideas of this module: the consent principle, the failure mode that attacks it, the structural conditions that fail, and the design responses. Trace how each design idea answers a specific failure.
+
+<concept-map concepts='["informed_consent","dark_patterns","consent_flow_design","voluntariness","withdrawal_rights","surrogate_consent"]' />
 
 ---
 

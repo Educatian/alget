@@ -44,6 +44,8 @@ It is accomplished biologically through highly specialized **wing serrations** (
 
    As the high-pressure air stream from the bottom of the wing tries to meet the low-pressure air stream from the top, the trailing edge fringe acts as an aerodynamic gradient. It forces the two high-velocity streams to mix gradually and softly through the teeth of the comb, dampening the acoustic signature and preventing the violent, correlated vortex shedding that causes noise.
 
+<inline-check question="Of the owl's three features, which one most directly targets the correlated trailing-edge vortex shedding that the Strouhal relation describes?" explanation="The trailing-edge fringe replaces one thick, correlated shedding edge with many tiny staggered ones. The leading-edge comb pre-conditions the inflow and the velvety down absorbs broadband surface noise, but it is the fringe that de-correlates the shedding itself." options='[{"text":"The leading-edge comb (stiff pennulae)","correct":false},{"text":"The velvety down structure","correct":false},{"text":"The trailing-edge fringe (the mixer)","correct":true},{"text":"None of them touch vortex shedding","correct":false}]' />
+
 > **Reflect:** Think about a car driving down the highway at 70 mph with a single rear window slightly cracked open. It makes a terrible throbbing, helicopter-like noise inside the cabin. This is **Helmholtz resonance**. If you open the window all the way, the throbbing stops and changes to a steady rush. How is changing the physical geometry of the opening altering the turbulent shedding of the vortices?
 
 ---
@@ -68,6 +70,12 @@ Two facts fall out immediately. First, **faster flow raises the pitch** ($f \pro
 
 The acoustic source itself is a **dipole** (a fluctuating force on the surface), so its radiated power scales steeply with flow speed, roughly as $U^6$. That sixth-power law is why even a modest reduction in the effective edge velocity or in the correlation of the shedding pays off dramatically in radiated sound power.
 
+Manipulate the relation directly. Drag the flow speed and feature size and watch the shedding tone move, and notice how the dipole power index responds to speed far more violently than the tone does.
+
+<parameter-explorer config='{"title":"Strouhal Shedding Tone and Dipole Power","sliders":[{"name":"U","label":"Local flow speed U","min":20,"max":120,"step":1,"unit":"m/s","default":72},{"name":"D","label":"Shedding feature size D","min":0.5,"max":6,"step":0.1,"unit":"mm","default":4},{"name":"St","label":"Strouhal number St","min":0.15,"max":0.25,"step":0.01,"unit":"","default":0.2}],"outputs":[{"label":"Shedding frequency f","unit":"Hz","expr":"St * U / (D / 1000)"},{"label":"Relative dipole power (U^6)","unit":"x ref","expr":"(U / 72) ^ 6"}],"plot":{"x":"U","output":0}}' />
+
+Sweeping $D$ from 4 mm toward the owl-fringe scale near 1 mm pushes the same airflow into a far higher tone, exactly the move that drives the noise out of both human and rodent hearing.
+
 ---
 
 ## Concept Abstraction for Engineering
@@ -83,6 +91,8 @@ The key move is **function-based abstraction**. The biology gives three transfer
 | Trailing-edge fringe | De-correlate and stagger vortex shedding | Sawtooth or sinusoidal serrations at the trailing edge |
 
 <micro-turbulence-diagram />
+
+<self-explain prompt="A naive design team proposes 3D-printing an exact replica of an owl feather, barbs and all, and bolting it to a carbon-fiber drone blade. Using the function-based abstraction idea, explain why this is the wrong move and what they should transfer instead." answer="Bio-inspiration is function-based, not literal. The owl feather's value is the function each structure performs: the leading-edge comb pre-conditions inflow and delays separation, the velvety down absorbs broadband surface noise, and the trailing-edge fringe de-correlates and staggers vortex shedding. A literal feather replica would be fragile, hard to manufacture in carbon fiber, and tuned to the owl's slow, low-Reynolds flight rather than a fast spinning propeller. The team should instead graft function-equivalent geometry: boundary-layer tripping geometry on the leading edge, a porous or compliant skin treatment, and sawtooth or sinusoidal serrations at the trailing edge, each sized for the drone's own flow speed and Strouhal target." />
 
 ### The Physics of Micro-Serrations
 
@@ -138,6 +148,10 @@ That 9 dB represents the drop in the dominant tonal peak when the energy is smea
 
 **Step 5: Engineering judgment.** Adding the air-absorption gain (about 6 dB) and the de-correlation gain (about 9 dB) suggests an order-10-to-15 dB reduction in the offending peak is physically plausible, which matches the single-digit-to-low-teens dB reductions reported in serrated-blade CFD and wind-tunnel studies. The caveat: the tooth geometry that delivers this also slightly trims the lift near the trailing edge, so the design must be checked for a thrust penalty (see heuristics below).
 
+Predict each step of this redesign before you reveal the reasoning. The numbers here are the same physics you just manipulated in the explorer.
+
+<step-reveal title="Reasoning Through the Serration Redesign" steps='[{"prompt":"The stock edge thickness is D = 4 mm at U = 72 m/s with St = 0.2. What is the baseline shedding tone?","predictType":"choice","choices":["360 Hz","3600 Hz","14400 Hz","36000 Hz"],"answerIndex":1,"reveal":"f1 = St*U/D = 0.2 * 72 / 0.004 = 3600 Hz, right in the band where human hearing is most sensitive, which is why residents call it a piercing whine."},{"prompt":"The owl-inspired fringe sets the shedding scale by tooth spacing instead of edge thickness, so the effective feature shrinks from 4 mm to 1 mm. Which direction does the tone move?","predictType":"choice","choices":["It drops, because smaller features are quieter","It rises by 4x, because f is proportional to 1/D","It stays the same, because U is unchanged","It doubles only, because spacing halves twice"],"answerIndex":1,"reveal":"Since f proportional to 1/D, cutting the feature from 4 mm to 1 mm multiplies the tone by 4: f2 = 0.2 * 72 / 0.001 = 14400 Hz, near the upper edge of adult hearing."},{"prompt":"Why does shifting the tone from 3.6 kHz up to 14.4 kHz help even before any phase cancellation?","predictType":"choice","choices":["High frequencies travel faster so they arrive sooner","Air absorbs high frequencies far faster, so more energy is lost over the 50 m slant range","High frequencies carry less energy at the source","It does not help on its own"],"answerIndex":1,"reveal":"Atmospheric absorption climbs steeply with frequency. Over 50 m the 14.4 kHz tone loses about 6.5 dB versus only 0.5 dB for the 3.6 kHz tone, a 6 dB swing purely from the upward shift."},{"reveal":"Layering the de-correlation gain (10*log10(8) about 9 dB) on top of the 6 dB absorption gain points to a 10-to-15 dB drop in the offending peak, consistent with reported serrated-blade studies, provided the thrust penalty stays acceptable."}]' />
+
 ---
 
 ### Practical Design Heuristics
@@ -149,6 +163,10 @@ Engineers usually tune three serration variables first:
 - **material flexibility:** compliant tips reduce harsh shedding, while rigid tips are easier to manufacture.
 
 That is why quiet-blade design is never just a biology copy. It is a balancing act among acoustics, durability, manufacturability, and aerodynamic efficiency.
+
+Walk the tradeoff yourself. You lead the quiet-blade team and must balance the noise win against thrust, durability, and manufacturing.
+
+<branching-scenario tree='{"title":"Tuning the Serrated Delivery Blade","start":"n1","nodes":{"n1":{"prompt":"Residents complain about a 3.6 kHz evening buzz. Your first design lever is the trailing-edge feature. What do you change first?","choices":[{"label":"Cut effective feature size D toward 1 mm with fine teeth","next":"n2","feedback":"Good instinct. Since f is proportional to 1/D, shrinking the effective feature shifts the tone up where air absorbs it faster."},{"label":"Increase blade RPM to push past the resonance","next":"nbad1","feedback":"Faster flow raises f but radiated dipole power scales like U^6, so you would make the drone far louder overall."}]},"n2":{"prompt":"Fine 1 mm teeth shift the tone to 14.4 kHz, but bench tests show the thin tips chip after a week of flight. What now?","choices":[{"label":"Add modest tooth depth and a compliant tip material","next":"n3","feedback":"Compliant tips soften harsh shedding and survive impacts; depth boosts mixing without over-thinning the edge."},{"label":"Make teeth deeper and tighter to maximize mixing","next":"nbad2","feedback":"Over-deep, over-tight teeth weaken the edge and trim trailing-edge lift, risking a thrust penalty and worse durability."}]},"n3":{"prompt":"Acoustic tests confirm about a 12 dB peak drop, but thrust is down 3 percent. How do you sign off?","choices":[{"label":"Verify SPL, spectrum, thrust, and durability together before release","next":"nwin","feedback":"Exactly. A rigorous comparison weighs the acoustic gain against propulsive efficiency and maintenance, not perceived loudness alone."},{"label":"Ship immediately since it sounds quieter","next":"nbad3","feedback":"Sounding quieter is not enough; an unverified thrust or durability regression can sink the product."}]},"nwin":{"prompt":"You shipped a verified design: ~12 dB quieter peak with an acceptable 3 percent thrust cost. The function-based abstraction paid off.","feedback":"This is the balancing act in practice: acoustics, durability, manufacturability, and aerodynamics all checked together.","choices":[]},"nbad1":{"prompt":"The drone is now louder and still annoying. Back to the drawing board.","feedback":"Remember the U^6 dipole law: raising flow speed is the wrong knob for noise.","choices":[]},"nbad2":{"prompt":"The edge cracks and thrust drops sharply. Reconsider depth and spacing limits.","feedback":"Deeper and tighter is not always better; the edge must survive and still produce lift.","choices":[]},"nbad3":{"prompt":"Field returns reveal a thrust shortfall and shortened range. A recall follows.","feedback":"Always measure more than perceived loudness before release.","choices":[]}}}' />
 
 > **Method Card: Translate the Noise Problem Precisely**
 > In a computational biomimicry workflow, the useful search query is not "owl wing." It is closer to: reduce trailing-edge vortex noise while preserving thrust and manufacturability. That formulation makes it easier to compare owl serrations with other biological or engineered noise-control strategies and helps the team isolate which acoustic mechanism is actually being transferred.
@@ -173,6 +191,10 @@ That is why quiet-blade design is never just a biology copy. It is a balancing a
 ---
 
 ## Summary
+
+Before the recap, lay out how the section's core concepts connect: how aeroacoustics, turbulence, wing serrations, and drone propellers chain from the owl's biology to the engineered blade.
+
+<concept-map concepts='["aeroacoustics","turbulence","wing_serrations","drone_propellers"]' />
 
 ### Key Principles
 

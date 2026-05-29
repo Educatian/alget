@@ -68,6 +68,8 @@ tracked event sales for a 30-person student organization.
 
 **Step 5. Note the AI boundary.** If an AI draft had added "five years leading cross-functional teams," the student strikes it (a sophomore has no such record) and logs the removed claim.
 
+<step-reveal title="Build a bio with role-focus-proof" steps='[{"prompt":"Draft: \"I am a passionate, results-driven student who loves technology and is always looking to grow.\" What is wrong with it?","predictType":"choice","choices":["It is too formal","Nothing is checkable; swap any name in and it still fits","It is too long","It names a focus"],"answerIndex":1,"reveal":"It fails the swap test. With only adjectives and no role, focus, or proof, it describes no one in particular."},{"prompt":"You fill the three slots from real facts. Which set is correct for this student?","predictType":"choice","choices":["Role: passionate; Focus: technology; Proof: hardworking","Role: sophomore in MIS; Focus: data visualization; Proof: built a Tableau dashboard for a 30-person org","Role: expert; Focus: everything; Proof: years of experience","Role: student; Focus: growth; Proof: eager to learn"],"answerIndex":1,"reveal":"Role situates you, focus names one narrow area, and proof is one concrete accomplishment a reader can ask about."},{"reveal":"Assembled: \"I am a sophomore studying Management Information Systems, focused on data visualization. Last semester I built an interactive Tableau dashboard that tracked event sales for a 30-person student organization.\""},{"prompt":"An AI adds \"five years leading cross-functional teams.\" What do you do?","predictType":"choice","choices":["Keep it, it sounds senior","Strike it and log the removed claim, because a sophomore has no such record","Reduce it to three years","Move it to the focus slot"],"answerIndex":1,"reveal":"Strike and log. Keep the tool’s smoother phrasing only where it stays true; any claim your real record cannot back gets cut."}]' />
+
 ## Decision Rule
 
 Before you publish a bio, test it against the three slots and one honesty check.
@@ -78,6 +80,10 @@ Before you publish a bio, test it against the three slots and one honesty check.
 4. **Swap test:** Could a classmate paste their name over yours and have it still read true? If yes, it is too generic, and the proof slot is doing no work.
 
 A bio that passes all four can stay short; that is a feature, not a shortfall. Padding a passing bio with extra adjectives moves it backward.
+
+<sequence-builder mode="match" items='[{"term":"Role","definition":"Situates you right now: year, major, or current position"},{"term":"Focus","definition":"Exactly one named area, narrow enough that a reader can picture it"},{"term":"Proof","definition":"One concrete, checkable accomplishment, not a category of them"},{"term":"Swap test","definition":"If a classmate could paste their name over yours and it still reads true, it is too generic"}]' />
+
+<inline-check question="Which phrase belongs in the FOCUS slot rather than being cut as generic?" explanation="\"Front-end accessibility\" names a real, narrow subfield a reader can picture and ask about. \"Passionate about tech,\" \"hardworking,\" and \"results-driven\" are intensifiers that stand in for a fact instead of naming one." options='[{"text":"\"focused on front-end accessibility\"","correct":true},{"text":"\"passionate about tech\"","correct":false},{"text":"\"hardworking and dedicated\"","correct":false},{"text":"\"results-driven team player\"","correct":false}]' />
 
 ## Common Misreadings
 
@@ -129,6 +135,10 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your trace links claim, evidence, tool boundary, revision, and remaining limitation. That is what separates digital fluency from simple completion.
+
+## Concept Map
+
+<concept-map concepts='["cat100_supplement_professional_bio_drafting", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

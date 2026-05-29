@@ -34,6 +34,10 @@ A useful frame is the gradient of human involvement, adapted from authorship and
 | Generated and rejected | Tool output considered and declined | Highest evidence of expertise; the rejection is the contribution |
 | Tool-assisted process | Tool used to brainstorm or critique, not to produce final text | Discloses influence on thinking, not on the artifact surface |
 
+Match each disposition to the signal it sends a committee. The same tool output can sit at very different points on this gradient depending on what you did next.
+
+<sequence-builder mode="match" items='[{"term":"Generated and kept as-is","definition":"Lowest human contribution; acceptable only for low-stakes or decorative content if flagged"},{"term":"Generated and edited","definition":"Human curation; you must show what changed and why"},{"term":"Generated and rejected","definition":"Highest evidence of expertise; the rejection itself is the contribution"},{"term":"Tool-assisted process","definition":"Discloses influence on your thinking, not on the artifact surface"}]' />
+
 Two norms govern the record. First, locate every contribution: "used throughout" is a non-disclosure because it cannot be checked against any specific element. Second, disclose rejections, not just acceptances; an entry showing you discarded three of five AI-drafted objectives is stronger evidence of instructional expertise than an entry showing you wrote them alone, because it demonstrates you can recognize a misaligned objective when a fluent tool produces one. The danger the file guards against is automation bias: accepting plausible-sounding output (a quiz explanation that contradicts the answer key) because it reads smoothly. The disclosure of an override is the trace that you resisted that bias.
 
 ## Worked Example
@@ -66,11 +70,17 @@ Before you finalize the AI-USE.md, audit it for locatability and for honest reje
 
 If you cannot answer all three, the disclosure is not yet defensible, even if every tool is named.
 
+<inline-check question="Your AI-USE.md row reads: \"Claude: used throughout for quiz feedback; kept the good ones.\" Which decision-rule test does this row fail first?" explanation="\"Throughout\" cannot be pointed at a specific item, so it fails locatability. Splitting it into per-item rows (which items, kept vs rewritten, and why) is the fix, before you even get to disposition clarity." options='[{"text":"Locatability, because \"throughout\" names no specific item a reviewer could check","correct":true},{"text":"Responsibility match, because you cannot defend kept output","correct":false},{"text":"None, because the tool and disposition are both named","correct":false},{"text":"Disposition clarity only, because \"good ones\" is vague","correct":false}]' />
+
+
 ## Common Misreadings
 
 The most damaging misreading is that more disclosure looks worse. Designers sometimes minimize AI mentions to seem more independent, which backfires: an under-disclosed capstone that a committee later suspects of AI authorship is far weaker than one that openly documents and bounds its tool use. Transparency about a rejection is a credential, not a confession.
 
-A second misreading is treating disclosure as separate from the prototype README traceability matrix connecting theory to screen changes. The two documents should agree. If your matrix attributes a screen's design to a named principle but the AI-USE.md shows that screen's text was generated and kept unchanged, the committee will want to know who actually applied the principle. Keep the provenance record and the rationale record consistent.
+A second misreading is treating disclosure as separate from the prototype README traceability matrix connecting theory to screen changes. The two documents should agree.
+
+<branching-scenario tree='{"title":"The under-disclosure temptation","start":"n1","nodes":{"n1":{"prompt":"An AI drafted your Module 3 objectives. You rejected 3 of 5 because they targeted recall, not your analyze-level goal. The deadline is close and you worry that disclosing AI use will make the capstone look less independent. What do you do?","choices":[{"label":"Omit the AI mention entirely so the work reads as fully yours","next":"n2","feedback":"Under-disclosure is the high-risk move. If a committee later suspects AI authorship, an undocumented capstone is far weaker than a documented one."},{"label":"Log a vague \"AI tools were used throughout\" line to cover yourself","next":"n3","feedback":"This satisfies a box but is non-disclosure: nothing is locatable, so the reviewer must treat the whole artifact as potentially AI-authored."},{"label":"Log the rejection explicitly: 3 of 5 objectives declined, with the alignment reason","next":"n4","feedback":"Correct. The rejection is your strongest credential because it shows you can catch a misaligned objective a fluent tool produced."}]},"n2":{"prompt":"You omitted it. In the defense a committee member notes the objectives read like generated text and asks who wrote them. What does the omission cost you now?","feedback":"You now look like you hid AI use rather than reasoned about it. The rejection that was your best evidence of expertise is invisible, and trust is spent.","choices":[]},"n3":{"prompt":"The vague line is in the file. A reviewer asks which specific objectives the tool produced and which you kept. Can the line answer?","feedback":"No. \"Throughout\" cannot be checked against any element, so the reviewer cannot locate your authorship boundary and the disclosure does no work.","choices":[]},"n4":{"prompt":"The explicit rejection is logged. How does the committee read it?","feedback":"As evidence of instructional judgment: you recognized recall-level objectives masquerading as analyze-level ones and overrode the tool. Disclosing more made the capstone read as more rigorous, not less.","choices":[]}}}' />
+ If your matrix attributes a screen's design to a named principle but the AI-USE.md shows that screen's text was generated and kept unchanged, the committee will want to know who actually applied the principle. Keep the provenance record and the rationale record consistent.
 
 ## Textbook Walkthrough
 
@@ -94,6 +104,8 @@ A strong reader of toolchain disclosure can do four things:
 A strong AI-USE.md is judged by whether a reviewer could reconstruct your authorship boundary from it alone. That boundary is the line between what you decided and what a tool produced. The standard fails when the file is a list of tool names with no locations or dispositions, because such a list moves the authorship question to the reviewer instead of answering it. When an entry's disposition is unclear, annotate the underlying element and request a comparison of a defensible versus an under-disclosed entry rather than a generic explanation of citation.
 
 A final paragraph for the artifact would read like this: "I disclosed each AI contribution to a specific element and stated whether I kept, edited, or rejected it. I am prepared to defend every kept-as-is output as my own, and the rejections I logged are part of my evidence of design judgment."
+
+<concept-map concepts='["ai_use_disclosure", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]' />
 
 ## Transfer Case
 

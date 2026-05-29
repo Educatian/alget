@@ -145,13 +145,21 @@ Agile is most powerful in **digital learning at scale** where instrumentation is
 | SAM | Rapid prototyping | Unclear stakeholder needs | Risky for regulated content |
 | Agile / Lean | Validated iteration | Large-scale digital products | Needs telemetry and scale |
 
+Before you choose a model, prove you can tell them apart by their defining emphasis. Match each model to the one phrase that distinguishes it from the others.
+
+<sequence-builder mode="match" items='[{"term":"Dick and Carey","definition":"Systems alignment: objectives, assessment, and strategy designed in lockstep, drift treated as a defect"},{"term":"Kemp","definition":"Non-linear oval: start at any element, with project management and formative evaluation running continuously"},{"term":"Smith and Ragan","definition":"Splits strategy into organizational, delivery, and management decisions that novices tend to conflate"},{"term":"SAM","definition":"Three iterative phases where decisions are made by testing prototypes, not signing off documents"},{"term":"Agile / Lean","definition":"Ships small learning chunks in sprints and treats each design choice as a hypothesis validated by learner data"}]' />
+
+<inline-check question="A K-12 teacher redesigning a unit starts at 'content sequencing' because the textbook changed, then loops back to 'objectives' when the new sequence exposes a missing prerequisite. Which model explicitly legitimizes that loop instead of treating it as a process violation?" explanation="The Kemp model arranges its nine elements in an oval, so you can start at any element where you have new information and revisit earlier ones whenever a downstream decision exposes a gap. Dick and Carey enforces a deliberate forward ordering; SAM is iterative but organized around prototyping, not classroom redesign." options='[{"text":"The Kemp model","correct":true},{"text":"Dick and Carey","correct":false},{"text":"Pure Agile","correct":false}]' />
+
 ---
 
 ## Worked Example: Selecting a Model Under Real Constraints
 
 **The brief.** A learning-and-development team must redesign a 4-week leadership pipeline for a regulated healthcare provider. Stakeholders cannot agree on requirements. The final assessment must be defensible to external auditors. The team has 6 weeks and a small pool of subject-matter experts (SMEs). Which model, or combination, should they use?
 
-Work the decision the way a mature designer would, one constraint at a time.
+Work the decision the way a mature designer would, one constraint at a time. Predict each step before revealing it.
+
+<step-reveal title="Selecting a model under conflicting constraints" steps='[{"prompt":"Two risks compete: a regulated assessment auditors will inspect, and stakeholders who cannot specify requirements. Can a single pure model serve both well?","predictType":"choice","choices":["No, the two risks pull toward opposite model families","Yes, ADDIE covers everything","Yes, SAM covers everything"],"answerIndex":0,"reveal":"No. Defensibility pulls toward an alignment model (Dick and Carey); ambiguity pulls toward an iterative model (SAM). One pure model serves only one risk."},{"prompt":"Which requirement is non-negotiable and therefore governs the assessment and objectives?","predictType":"choice","choices":["Defensibility to auditors","Speed of iteration","Stakeholder comfort"],"answerIndex":0,"reveal":"Defensibility is non-negotiable (auditors), so objectives and assessment must be built with alignment discipline (Dick and Carey)."},{"prompt":"Where does the genuine ambiguity actually live, so iteration is safe there?","predictType":"choice","choices":["In the experience design: activities, scenarios, sequencing","In the assessment blueprint","In the compliance sign-off"],"answerIndex":0,"reveal":"In the experience design. So run that part as SAM iterations against the frozen objective-and-assessment backbone."},{"reveal":"Final answer: Dick and Carey as the alignment/governance model, SAM as the delivery model, with the objective-and-assessment backbone frozen before iteration begins. The hidden constraint, a small SME pool, is what makes SAM-style short cycles ration scarce SME attention better than a heavy linear process."}]' />
 
 **Step 1: Name the dominant risks.**
 Two risks compete. (a) *Accuracy/defensibility:* a regulated assessment that auditors will inspect. (b) *Ambiguity:* stakeholders cannot specify requirements. A single pure model serves only one of these well.
@@ -193,6 +201,8 @@ No model is universally best. Use this frame to choose:
 
 Mature designers usually run **two models at once**: a defensible alignment model (often Dick and Carey or Smith and Ragan) for evidence and accountability, and a flexible delivery model (SAM or Agile) for execution speed. The worked example above is exactly that pattern in action.
 
+<self-explain prompt="Explain in your own words why freezing the objective-and-assessment backbone BEFORE iteration begins is what makes the combined Dick-and-Carey-plus-SAM pattern work. What goes wrong if you skip the freeze?" answer="The frozen backbone is the alignment anchor every prototype is checked against, so iteration on activities and scenarios cannot quietly drift away from what the objectives and assessment demand. Without the freeze, SAM iteration has no fixed target: each cycle can redefine what success means, the assessment loses traceability, and the audit defensibility (the whole reason Dick and Carey was chosen) is lost. The freeze lets you iterate safely on the uncertain parts while keeping the auditable parts stable." />
+
 ---
 
 ## Common Pitfalls
@@ -214,6 +224,8 @@ A designer who knows several models can match the model to the project's risk, a
 ---
 
 ## Key Takeaways
+
+<concept-map concepts='["id_models","dick_and_carey_model","kemp_model","smith_and_ragan_model","successive_approximation_model","agile_id"]' />
 
 - ID process models are **lenses**, not recipes; each foregrounds a different concern.
 - Two axes organize the field: **how much is specified up front** and **how change is treated**.

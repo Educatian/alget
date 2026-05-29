@@ -32,6 +32,10 @@ A theoretical defense is a **principled-design argument** with four obligatory m
 | Pass the counterfactual test | Shows the design would differ without the principle | "Did the theory drive this, or just describe it?" |
 | Address the competing principle | Acknowledges a trade-off and justifies your resolution | "What about the cost of that choice?" |
 
+The four moves run in a fixed order, because each preempts the question the previous one raises: locate the element, explain the mechanism, prove the theory did work, then own the trade-off. Put the chain in sequence.
+
+<sequence-builder mode="order" items='["Locate the element: name the specific design feature being defended", "Name principle and mechanism: state how it changes the learner processing", "Pass the counterfactual test: show the design would differ without the principle", "Address the competing principle: acknowledge the trade-off and justify your resolution"]' />
+
 The mechanism step is where most defenses are won or lost. It is not enough to invoke the segmenting principle; you must say what it does to cognition (learner-paced pauses allow schema consolidation, reducing the transient load of holding multiple interacting elements at once). Cognitive load theory supplies these mechanisms, element interactivity, intrinsic versus extraneous load, the expertise reversal effect, and naming the right one is what turns a citation into an explanation.
 
 The fourth move, addressing the competing principle, is what distinguishes a master's-level defense from an undergraduate one. Mature design reasoning knows that principles conflict: segmenting reduces transient load but adds navigation overhead; signaling directs attention but can become redundant cueing. A defense that cites only the principle supporting your choice, and ignores the one that complicates it, invites the committee to raise the trade-off you should have raised yourself. Pre-empting it is the difference between defending a decision and merely asserting one.
@@ -55,6 +59,9 @@ That is a citation, not a defense. It names a theory but never links a principle
 
 The after version connects a specific principle to a specific element, passes the "did the theory do work" test, and pre-empts the obvious counter-question instead of citing only the confirming side.
 
+<step-reveal title="Interrogate the segmenting defense the way a committee would" steps='[{"prompt":"You claim segmenting reduced load. The committee asks: through what mechanism? Which answer is a real mechanism rather than a restatement?","predictType":"choice","choices":["Segmenting aligns with cognitive load theory","Learner-controlled pauses let working memory consolidate one step before the next arrives, reducing transient load","Segmenting is best practice for video","The segments are shorter and cleaner"],"answerIndex":1,"reveal":"A mechanism says what the principle does to cognition. Pauses allow schema consolidation, which lowers the transient load of holding interacting elements at once. The other options restate the choice without explaining it."},{"prompt":"Now the counterfactual: would you have segmented without the principle? Which response keeps the defense alive?","predictType":"choice","choices":["I would have shipped one continuous 9-minute video; the principle changed the design","I would have segmented anyway because it looks nicer","I read several papers on segmenting","Segmenting is in my literature review"],"answerIndex":0,"reveal":"If the design would have been identical without the theory, the citation is decorative. Naming the different design you would have shipped proves the principle did causal work."},{"prompt":"Finally the trade-off. A member notes segmenting adds navigation overhead. What is the master-level move?","predictType":"choice","choices":["Insist segmenting has no downside","Concede the navigation cost and justify that for a sequential, error-prone procedure the consolidation benefit outweighs it","Cite a second source that supports segmenting","Change the subject to a different screen"],"answerIndex":1,"reveal":"Naming the competing principle yourself and resolving it for this content converts a vulnerability into evidence of mature judgment, instead of leaving the trade-off for the committee to raise."}]' />
+
+
 ## Decision Rule
 
 Test each defense statement against the counterfactual before you put it on the evidence board. A statement that survives without the theory is not a defense.
@@ -64,6 +71,9 @@ Test each defense statement against the counterfactual before you put it on the 
 3. **Trade-off test:** Have you named the competing principle and justified your resolution, rather than citing only the supporting side?
 
 If any test fails, the statement is a citation in defense clothing. Rewrite it to show the principle doing work.
+
+<inline-check question="A student defends an on-screen label with: \"I added the label next to the diagram because the signaling principle applies, and the literature supports signaling.\" Which test does this defense fail?" explanation="The statement asserts the principle applies and cites support, but it never runs the counterfactual: would the label placement have been the same without the principle? Citing that the literature \"supports signaling\" is advocacy, not proof the theory drove this specific element." options='[{"text":"The counterfactual test, because nothing shows the design would differ without the principle","correct":true},{"text":"No test; naming the principle and citing support is a complete defense","correct":false},{"text":"The mechanism test only, because signaling has no mechanism","correct":false},{"text":"The trade-off test only, because it cites support","correct":false}]' />
+
 
 ## Common Misreadings
 
@@ -93,6 +103,8 @@ A strong reader of theoretical defense can do four things:
 A strong theoretical defense is judged by whether each major decision survives a committee member's counterfactual question. That requires a mechanism, a counterfactual, and an acknowledged trade-off for every defended element. The standard fails when the defense is a citation list, because a list cannot answer "why this element, in this form." When you suspect a decision is under-defended, annotate it and request a comparison between a mechanism-grounded defense and a citation-only one.
 
 A final paragraph for the artifact would read like this: "I defended each major design element by naming the principle, the mechanism, and the prediction it made, then showed the design would differ without it and named the trade-off I accepted. The defense is the argument that my choices were principled, not the list of sources I read."
+
+<concept-map concepts='["ail606_supplement_theoretical_defense", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]' />
 
 ## Transfer Case
 

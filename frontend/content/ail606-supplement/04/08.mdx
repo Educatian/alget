@@ -36,6 +36,12 @@ Filtering AI critique is the second discipline. A generative critique produces t
 
 The reason prioritization is the real work is that revision time is finite. A plan that does not rank cannot tell you where to spend it, so it defaults to spending it on whatever is easiest or loudest (the AI's ten suggestions), which is rarely where the outcome lives.
 
+Order the four candidates the way the clinic plan should read: highest evidenced impact on the 90-second outcome first, with low-effort must-dos kept in and unverified critique dropped last.
+
+<sequence-builder mode="order" items='["Segment screen 3 intro: highest impact, backed by the load diagnosis and a 2-minute pilot stall", "Move quiz to per-item feedback: medium impact, testers could not tell which item they missed", "Fix body-text contrast: low impact but must-do, computed 2.8 to 1 fails WCAG AA at trivial effort", "Nine AI cosmetic suggestions: rejected, not grounded in these learners"]' />
+
+<inline-check question="Two revisions remain: segmenting screen 3 (load diagnosis plus a 2-minute pilot stall both implicate it) and recoloring the theme (an AI suggestion you cannot tie to your learners). Why does segmenting outrank the recolor?" explanation="Ranking is by evidenced impact on the named outcome, not by effort or by how a suggestion sounds. Segmenting is backed by two pieces of your own evidence pointing at the main barrier to the 90-second target; the recolor is an unverified, unanchored preference." options='[{"text":"Segmenting has evidence tying it to the main barrier to the 90-second outcome; the recolor is unverified and unanchored.","correct":true},{"text":"The recolor is harder to implement, so it should wait.","correct":false},{"text":"Both are equal because each is a single change.","correct":false},{"text":"The recolor wins because the AI suggested it.","correct":false}]' />
+
 ## Worked Example
 
 Work through one annotated before/after revision of a Module 4 design-clinic revision plan, the document you bring to the clinic table.
@@ -64,6 +70,10 @@ Work through one annotated before/after revision of a Module 4 design-clinic rev
 > AI critique: of ten suggestions, I kept only "shorten the intro narration," which I verified against the load diagnosis; I rejected the rest as not grounded in my learners.
 
 **Why the after version is stronger:** each revision is tied to the original problem statement, ranked by evidenced impact on the named learner outcome, and integrates the module's own artifacts (load diagnosis, accessibility pass, pilot evidence). The AI critique is filtered to the one point the author could substantiate. The plan now reasons across the module rather than listing unrelated fixes.
+
+You are at the clinic table with the student's list. Anchor it, rank it, and filter the AI critique, one decision at a time.
+
+<branching-scenario tree='{"title":"Turning a wish list into a prioritized plan","start":"n1","nodes":{"n1":{"prompt":"The student brings: change colors, add animations, bigger font, implement all ten AI suggestions. What is your first question?","choices":[{"label":"Which of these moves the 90-second outcome the problem statement named, and how do you know?","next":"n2","feedback":"Right. The anchor converts a pile of fixes into a plan."},{"label":"Which color scheme do you prefer?","next":"n3","feedback":"That accepts an unanchored preference as a revision item."}]},"n2":{"prompt":"You write the target at the top: novices reach first correct action in under 90 seconds. Which artifact nominates the top-priority revision?","choices":[{"label":"The load diagnosis plus the 2-minute pilot stall, both pointing at the screen 3 intro","next":"n4","feedback":"Two pieces of evidence converge on the main barrier; that is the rank-1 candidate."},{"label":"The longest AI suggestion, since it is the most detailed","next":"n3","feedback":"Detail is not evidence; a generic suggestion is a hypothesis, not a verdict."}]},"n3":{"prompt":"You spend the session on cosmetics and the 90-second stall is untouched at re-test. What went wrong?","choices":[{"label":"The plan was ranked by preference or volume instead of evidenced impact on the outcome","next":"n2","feedback":"Re-anchor to the outcome and rank by evidence."}],"feedback":"Unanchored, unranked plans spend finite time in the wrong place."},"n4":{"prompt":"The contrast fix is low impact on the 90-second goal but computes 2.8 to 1 and fails WCAG AA at trivial effort. Where does it go?","choices":[{"label":"Kept as a low-effort must-do, ranked below the high-impact items","next":"n5","feedback":"Must-do, low-cost accessibility fixes stay in regardless of impact rank."},{"label":"Dropped, because it does not move the 90-second outcome","next":"n5","feedback":"Impact ranking governs order, but a trivial-cost WCAG failure is still a must-do."}]},"n5":{"prompt":"Now the ten AI suggestions. How do you handle them?","choices":[{"label":"Treat each as a hypothesis; keep only the one your evidence substantiates, reject the rest with a reason","next":"end","feedback":"Filtering critique against your own evidence is the same accept-or-reject-with-reason logic from the authoring section."},{"label":"Implement all ten to be thorough","next":"end","feedback":"That lets the tool set your priorities; plausible is not grounded in your learners."}]},"end":{"prompt":"The plan now anchors every revision to the outcome, ranks by cited evidence, keeps low-effort must-dos, and filters the AI critique to one substantiated point.","feedback":"Seven artifacts have become one defensible prioritization.","choices":[]}}}' />
 
 ## Decision Rule
 
@@ -134,6 +144,10 @@ ALGET uses your annotations and artifact trace to choose support:
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
 <interactive-quiz question="What would make this section more useful while you revise?" options='["It asks you to name a decision, point to evidence, and choose support that helps the revision.", "The section gives a longer explanation and a more polished visual.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="0" conceptid="ail606_supplement_module_4_design_draft_clinic" />
+
+## Concept Map
+
+<concept-map concepts='["ail606_supplement_module_4_design_draft_clinic", "ail606_supplement_design_draft_and_theory_to_prototype_alignment", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Final Check
 

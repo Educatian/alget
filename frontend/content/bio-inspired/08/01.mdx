@@ -43,6 +43,8 @@ Three properties define a genuine swarm, and they are exactly the properties tha
 
 > **Key Insight:** Emergence does not mean magic. It means a global pattern that no single rule explicitly encodes, produced reliably by the repeated application of local rules.
 
+<inline-check question="A swarm of 1,000 drones doubles to 2,000. Each drone still senses only its 3 to 4 nearest neighbors. What happens to the compute load on each individual drone chip?" explanation="Because each agent reacts only to a fixed-size local neighborhood, per-agent cost stays roughly constant no matter how large the swarm grows. That constant local cost is exactly what makes swarm rules scale to millions of agents." options='[{"text":"It stays roughly constant, because each drone only processes its handful of local neighbors.","correct":true},{"text":"It doubles, because each drone must now track twice as many agents.","correct":false},{"text":"It quadruples, because every drone must compare itself to every other drone.","correct":false}]' />
+
 ---
 
 ## Mechanism 1: Reynolds Boids (Flocking as Local Vectors)
@@ -68,6 +70,12 @@ $$
 $$
 
 The crucial computational fact: the sums run only over local neighbors. Per-agent cost depends on neighborhood density, not on total swarm size. That is why the same rule scales from 10 boids to 10 million.
+
+Tune the three blend weights below and watch how the magnitude of the steering vector $\|\vec{a}\|$ shifts. The explorer models a one-dimensional slice of the worked example: a single crowding neighbor pushing with separation strength $s_{\text{sep}}=0.949$ while cohesion pulls back with $s_{\text{coh}}=0.333$ and alignment adds $s_{\text{ali}}=1.333$. Notice that pushing $w_{\text{sep}}$ up flips the net steering from "draw in" to "back off," which is precisely the attraction-repulsion competition that prevents collisions.
+
+<parameter-explorer config='{"title":"Boid Steering Blend: who wins, attraction or repulsion?","sliders":[{"name":"wsep","label":"Separation weight w_sep","min":0,"max":2,"step":0.05,"unit":"","default":1.0},{"name":"wcoh","label":"Cohesion weight w_coh","min":0,"max":1,"step":0.01,"unit":"","default":0.05},{"name":"wali","label":"Alignment weight w_ali","min":0,"max":1,"step":0.05,"unit":"","default":0.3}],"outputs":[{"label":"Net x-steering (toward = +, away = -)","unit":"","expr":"wcoh * 0.333 + wali * 1.333 - wsep * 0.949"},{"label":"Separation contribution","unit":"","expr":"wsep * 0.949"}],"plot":{"x":"wsep","output":0}}' />
+
+When the net x-steering plot crosses zero, separation has exactly cancelled the inward pull. To the right of that crossing the boid retreats from the crowd; to the left it keeps closing in. Reynolds picked weights that sit safely on the retreat side at close range so flocks never collapse into a pile.
 
 ### Worked Example 8.1: Computing a Single Boid's Steering Vector
 
@@ -135,6 +143,12 @@ $$
 
 This is the core of **Ant Colony Optimization (ACO)**, a real algorithm used for routing and scheduling.
 
+The shortest-path advantage is a genuine scaling law you can drive yourself. With two paths of lengths $L_s$ and $L_l$ over a time window $T$, each ant makes $T/(2L)$ round trips and deposits $Q/L$ per trip, so the pheromone collected on a path is proportional to $T \cdot Q / (2L^2)$. The advantage of the short path therefore scales with the **square** of the length ratio.
+
+<parameter-explorer config='{"title":"Stigmergy Scaling Law: short-path pheromone advantage","sliders":[{"name":"Ls","label":"Short path length L_s","min":5,"max":40,"step":1,"unit":"u","default":10},{"name":"Ll","label":"Long path length L_l","min":5,"max":60,"step":1,"unit":"u","default":30},{"name":"T","label":"Time window T","min":20,"max":200,"step":10,"unit":"s","default":60},{"name":"Q","label":"Pheromone per trip Q","min":10,"max":200,"step":10,"unit":"","default":100}],"outputs":[{"label":"Pheromone on short path","unit":"","expr":"T * Q / (2 * Ls * Ls)"},{"label":"Pheromone on long path","unit":"","expr":"T * Q / (2 * Ll * Ll)"},{"label":"Short:long advantage ratio","unit":"x","expr":"(Ll * Ll) / (Ls * Ls)"}],"plot":{"x":"Ll","output":2}}' />
+
+Slide the long path out and the advantage ratio climbs as $(L_l/L_s)^2$, not linearly. That squared term, more trips multiplied by more pheromone per unit length, is the quantitative engine behind ant convergence.
+
 ### Worked Example 8.2: Why the Short Path Wins
 
 **Problem:** Two paths connect nest and food: a short path $L_s = 10$ and a long path $L_l = 30$ (same units). Ants travel at constant speed, deposit $Q = 100$ per trip spread as $Q/L$, and we observe a 60-unit time window. Show quantitatively why the swarm converges on the short path, then run one evaporation update with $\rho = 0.5$.
@@ -167,7 +181,9 @@ $$
 
 **Interpretation:** after a single window the colony already picks the short path about 96% of the time, and the positive feedback (more ants then reinforce it further) drives convergence. Evaporation is what keeps it honest: if the food moves or a shortcut opens, the old trail decays and the swarm re-optimizes.
 
-<swarm-diagram></swarm-diagram>
+Work through the same logic one step at a time, committing to a prediction before each reveal:
+
+<step-reveal title="Trace the shortest-path convergence" steps='[{"prompt":"In a 60-unit window, the short path (L=10) and long path (L=30) each cost 2L per round trip. How many MORE round trips does the short path get?","predictType":"choice","choices":["The same number","2x as many","3x as many","9x as many"],"answerIndex":2,"reveal":"3x. Trips scale as T/(2L): short = 60/20 = 3 trips, long = 60/60 = 1 trip. A 3:1 ratio purely from being shorter."},{"prompt":"Each trip also deposits Q/L, so the short path lays MORE per trip too. Combine the trip-count edge with the per-trip edge. What is the total pheromone advantage?","predictType":"choice","choices":["3x (3 trips, equal deposit)","6x (3 + 3)","9x (3 trips times 3x deposit)","27x"],"answerIndex":2,"reveal":"9x. Two compounding 3:1 effects multiply: 3 trips x (100/10 vs 100/30) = 30 vs 3.33. This is the squared length-ratio law in action."},{"reveal":"Now feed those into the choice rule p = (tau * eta) over the sum, with eta = 1/L. The short path wins about 96% of pulls after just one window, and every subsequent ant reinforces it further. Evaporation (the (1 - rho) factor) is the safety valve that lets the trail decay if a better route appears."}]' />
 
 ---
 
@@ -182,9 +198,19 @@ Swarm intelligence is one of the clearest cases where biomimicry copies no shape
 
 The implementation channel can change completely while the strategy is preserved. A drone swarm may replace pheromones with radio packets or a shared occupancy grid, and replace antennae with cameras, yet keep the deeper logic of decentralized coordination with decaying shared memory.
 
+The four steps must be applied in order, never skipped: you cannot pick a representation before you have abstracted the principle. Put the template back in sequence:
+
+<sequence-builder mode="order" items='["Biological observation: ants and flocks coordinate through purely local interaction","Abstract principle: global order emerges from decentralized rules plus a feedback channel","Computational representation: define state, neighborhood, update rule, and decaying environment","Engineering implementation: run the rules on drones, robots, or distributed software"]' />
+
+Then match each transfer step to a concrete swarm-design artifact:
+
+<sequence-builder mode="match" items='[{"term":"Biological observation","definition":"Field note: foraging ants reliably shorten their trail to food over time"},{"term":"Abstract principle","definition":"Decentralized agents + a shared decaying signal yield robust global optimization"},{"term":"Computational representation","definition":"State tau per edge, neighbor set N, update tau <- (1-rho)tau + Q/L"},{"term":"Engineering implementation","definition":"ACO routing daemon that decays packet-cost markers on network links"}]' />
+
 ### Avoiding Fixation
 
 Bio-inspired design fails when designers fixate on the source organism and copy surface details instead of the transferable principle. For swarms, fixation sounds like *"make the robots behave exactly like ants."* Better analogical transfer sounds like *"what local information, update timing, and feedback rule gave the ants robust search, and how should those be simplified for underwater drones or emergency mapping?"*
+
+<self-explain prompt="An ant pheromone trail is a chemical that evaporates over time. When this mechanism is translated into a warehouse robot fleet, the robots leave no chemicals at all, yet engineers still call it stigmergy. Explain what is actually being preserved in the translation, and why the evaporation step matters as much as the deposition step." answer="What transfers is the strategy, not the substance: decentralized agents coordinate by writing to and reading from a shared, decaying memory rather than by direct command. The warehouse version replaces the chemical with a digital marker (a value on a shared occupancy grid or floor map), but keeps two essentials. Deposition lets good routes reinforce themselves through use, and evaporation (the (1 - rho) decay) erases stale information so an early lucky choice cannot lock the system in. Without decay the swarm would freeze on its first guess and could never re-optimize when a shelf moves or an aisle is blocked. The medium changes; the decentralized-feedback-with-decay logic is the load-bearing part." />
 
 ---
 
@@ -208,6 +234,10 @@ Consider the **10,000-drone** version of the opening problem. Instead of one \$1
 
 Engineers never deploy local rules without guardrails. In practice they ask how local each sensing decision can remain before coordination breaks down, what communication failures the swarm must survive, how much redundancy is needed before agent loss becomes acceptable, and when a human supervisor should override purely local behavior. Those questions keep swarm intelligence from becoming a vague metaphor and turn it into an actionable systems-engineering method.
 
+Walk the design decision tree for the collapsed-building search. Each choice exposes a different swarm tradeoff:
+
+<branching-scenario tree='{"title":"Designing the collapsed-building search swarm","start":"arch","nodes":{"arch":{"prompt":"You must search a collapsed skyscraper with unstable comms. Pick your control architecture.","choices":[{"label":"One powerful central rover that maps everything and dispatches sub-bots","next":"central","feedback":"Maximum global awareness, but you just created a single point of failure."},{"label":"5,000 cheap bots running local boid + stigmergy rules","next":"swarm","feedback":"No commander to lose. Now you must decide how they share information."}]},"central":{"prompt":"Rubble blocks the central rover uplink for 4 minutes. What happens to the search?","feedback":"The whole fleet stalls the instant the central link drops. This is exactly the fragility biological collectives evolved away from. Restart and try the decentralized branch.","choices":[]},"swarm":{"prompt":"The bots cannot reliably radio each other through concrete. How should they coordinate?","choices":[{"label":"Leave decaying digital markers (acoustic or chalk tags) in the environment","next":"stig","feedback":"Stigmergy: indirect coordination through the shared environment, no direct link needed."},{"label":"Force a full peer-to-peer mesh broadcast every second","next":"mesh","feedback":"Bandwidth and power blow up, and concrete kills the radio anyway."}]},"stig":{"prompt":"Half the bots are crushed mid-search. What does the surviving swarm do?","feedback":"Survivors keep reading the environment markers and recompute local neighbor vectors, so coverage degrades gracefully instead of collapsing. The decentralized + decaying-memory strategy is preserved even as the medium (chalk tags, not pheromones) changes. This is the robust design.","choices":[]},"mesh":{"prompt":"Comms saturate and batteries drain in minutes.","feedback":"Insisting on direct global communication recreates the fragility you were avoiding. Back up and choose environment-mediated coordination instead.","choices":[]}}}' />
+
 ---
 
 ## A Computational Design Checklist
@@ -225,6 +255,14 @@ Before claiming a system is truly swarm-inspired, an engineer should be able to 
 | Biological Strategy | Local sensing, stigmergy, and distributed task allocation |
 | Transfer Rule | Encode simple update rules that scale into robust collective behavior |
 | Validation Check | Stress-test density, communication loss, sensing error, and mission recovery |
+
+---
+
+## Connecting the Ideas
+
+These are the load-bearing concepts of this section. Select any node to see how decentralization, local sensing, stigmergy, and emergence link into the boid and ACO mechanisms.
+
+<concept-map concepts='["swarm_intelligence","decentralization","local_sensing","emergence","stigmergy","reynolds_boids","ant_colony_optimization","single_point_of_failure"]' />
 
 ---
 

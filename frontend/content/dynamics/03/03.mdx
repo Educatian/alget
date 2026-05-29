@@ -144,6 +144,12 @@ $$
 
 Two lessons fall out immediately. First, **mass and radius do not affect the final speed of a rolling body**; only the shape factor $k^2$ does. Second, a sliding particle is just the special case $k^2 = 0$, recovering $v = \sqrt{2gh}$, the fastest any released body can reach for a given drop.
 
+<parameter-explorer config='{"title":"Universal Ramp Speed: v = sqrt( 2 g h / (1 + k2) )","sliders":[{"name":"h","label":"Drop height","min":0.5,"max":5,"step":0.5,"unit":"m","default":2},{"name":"k2","label":"Shape factor I_G/(m r^2)","min":0,"max":1,"step":0.1,"unit":"","default":0.5},{"name":"g","label":"Gravity","min":1.6,"max":9.81,"step":0.01,"unit":"m/s^2","default":9.81}],"outputs":[{"label":"Bottom speed v","unit":"m/s","expr":"sqrt(2*g*h/(1+k2))"},{"label":"Rotational energy fraction","unit":"","expr":"k2/(1+k2)"}],"plot":{"x":"k2","output":0}}' />
+
+Set `k2 = 0` to recover the sliding particle $\sqrt{2gh}$, then slide it to `1.0` (a hoop) and watch the bottom speed fall while the rotational energy fraction climbs to one half.
+
+<inline-check question="Two wheels of the same mass and radius roll from the same height, but wheel A is a solid disk (k2 = 0.5) and wheel B is a thin hoop (k2 = 1.0). Which reaches the bottom faster?" explanation="The bottom speed v = sqrt(2gh/(1+k2)) decreases as k2 grows. The disk (k2=0.5) gives v = sqrt(2gh/1.5), faster than the hoop (k2=1.0) at v = sqrt(2gh/2.0). Mass and radius cancel; only the shape factor matters." options='[{"text":"The solid disk, because its smaller shape factor stores less energy in rotation","correct":true},{"text":"The hoop, because all its mass is at the rim","correct":false},{"text":"They tie, because mass and radius are equal","correct":false}]' />
+
 ## Worked Examples
 
 ### Example 3.3: Solid Disk Rolling Down a Ramp
@@ -193,6 +199,8 @@ v = \sqrt{\frac{4(9.81)(2)}{3}} = \boxed{5.11 \text{ m/s}}
 $$
 
 The disk reaches the bottom more slowly than a frictionless sliding block would, because part of the gravitational energy becomes rotation. As a sanity check, the universal formula with $k^2 = 0.5$ gives $v = \sqrt{2(9.81)(2)/1.5} = 5.11$ m/s, matching exactly.
+
+<step-reveal title="Predict Each Move of the Energy Balance" steps='[{"prompt":"For a solid disk rolling from rest, which energy accounts must the gravitational drop mgh split into?","predictType":"choice","choices":["Only translational kinetic energy (1/2) m v^2","Translational plus rotational kinetic energy","Translational kinetic energy plus rolling-friction heat"],"answerIndex":1,"reveal":"mgh = (1/2) m v^2 + (1/2) I_G omega^2. Pure rolling friction does no work, so all of mgh becomes kinetic energy split between translation and rotation."},{"prompt":"After inserting I_G = (1/2) m r^2 and omega = v/r, what does the right-hand side collapse to?","predictType":"choice","choices":["(1/2) m v^2","(3/4) m v^2","(5/4) m v^2"],"answerIndex":1,"reveal":"(1/2) m v^2 + (1/2)(1/2 m r^2)(v/r)^2 = (1/2) m v^2 + (1/4) m v^2 = (3/4) m v^2. The radius cancels and so does mass."},{"prompt":"Solving mgh = (3/4) m v^2 for v with h = 2 m gives what bottom speed?","predictType":"choice","choices":["4.43 m/s","5.11 m/s","6.26 m/s"],"answerIndex":1,"reveal":"v = sqrt(4 g h / 3) = sqrt(4*9.81*2/3) = 5.11 m/s. A sliding block (no rotation) would reach 6.26 m/s; the difference is the rotational energy cost."},{"reveal":"Takeaway: substitute the rolling constraint v = r*omega into the energy terms, never add it as a separate term. Doing so once turns the two-variable balance into a single equation in v."}]' />
 
 ### Compare Against a Sliding Particle
 
@@ -303,6 +311,8 @@ If an engineer were selecting a wheel for a delivery robot, a simple comparison 
 
 That is where rigid-body energy becomes more than a classroom formula. It supports direct comparison among competing geometries before a prototype is even built.
 
+<branching-scenario tree='{"title":"Choose a Wheel for the Delivery Robot Descending the Ramp","start":"n1","nodes":{"n1":{"prompt":"The robot must descend a loading-dock ramp with the most controllable (lowest) bottom speed for the same drop height. You can change only the wheel geometry, keeping mass and radius fixed. Which mass distribution do you specify?","choices":[{"label":"Concentrate mass at the rim (hoop-like, k2 near 1.0)","next":"n2","feedback":"Good instinct for low speed: a larger shape factor stores more energy in rotation, leaving less translational speed."},{"label":"Concentrate mass near the axle (solid-disk-like, k2 = 0.5)","next":"n3","feedback":"This gives a faster, less controllable descent because less energy is diverted into rotation."},{"label":"Make the wheel as light as possible","next":"n4","feedback":"Mass cancels in the rolling-from-rest speed, so lightening the wheel does not change the bottom speed at all."}]},"n2":{"prompt":"You picked the rim-loaded wheel. The test ramp then gets wet and the traction margin shrinks. What new risk dominates?","choices":[{"label":"The rolling-without-slipping assumption may fail, so v = r*omega no longer holds","next":"n5","feedback":"Exactly. Low traction can break the rolling constraint, dissipating energy as slipping-friction heat and invalidating the clean energy solution."},{"label":"The wheel inertia suddenly changes","next":"n6","feedback":"Inertia is a geometric property; it does not change with surface conditions."}]},"n3":{"prompt":"You picked the axle-loaded wheel for speed, but the spec actually wanted the LOWEST controllable speed. What is the consequence?","feedback":"The robot arrives faster and is harder to stop on the dock. Re-read the design goal: a higher shape factor would have served the stability requirement better.","choices":[]},"n4":{"prompt":"Lightening the wheel did not change bottom speed. What single quantity DOES set the rolling-from-rest speed?","feedback":"Only the shape factor k2 = I_G/(m r^2) sets the bottom speed when a body rolls from rest. Mass and radius both cancel in v = sqrt(2gh/(1+k2)).","choices":[]},"n5":{"prompt":"Correct design boundary identified. What is the right mitigation in the analysis?","feedback":"Once slipping is possible, switch from the ideal rolling-energy model to one that includes kinetic-friction losses, or add traction margin so static friction keeps v = r*omega valid.","choices":[]},"n6":{"prompt":"Reconsider: inertia is fixed by geometry. What actually changed when the ramp got wet?","feedback":"The available static friction dropped, threatening the rolling constraint, not the wheel inertia.","choices":[]}}}' />
+
 ## Sensitivity Analysis: Effect of Energy Losses
 
 The ideal rolling examples above ignore non-conservative losses. Real wheels do not.
@@ -378,6 +388,10 @@ This is a genuine design boundary. A wheel concept that looks excellent under id
   options='[{"text":"It adds a new force equation.","isCorrect":false},{"text":"It links translation and rotation so the energy equation can be written in one variable.","isCorrect":true},{"text":"It replaces the moment equation in every rigid-body problem.","isCorrect":false}]'
   explanation="Exactly. The rolling constraint is a kinematic relation. It helps express the translational and rotational kinetic-energy terms consistently."
 />
+
+## Connecting the Concepts
+
+<concept-map concepts='["rotational_kinetic_energy","rolling_motion","conservation_of_energy"]' />
 
 ## Summary
 

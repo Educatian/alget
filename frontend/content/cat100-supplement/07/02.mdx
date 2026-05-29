@@ -33,6 +33,10 @@ Three rules make the system work:
 
 The underlying logic is that time is a finite resource you allocate in advance. A due date is a constraint; a work block is the allocation that satisfies it.
 
+<sequence-builder mode="order" items='["Enter the fixed event: put the Tuesday 10:00 AM lecture on the calendar at its set time","Capture the task: add Write the lab report to the task list with its Friday 11:59 PM deadline","Reserve a work block: place a Wednesday 6 to 8 PM event that is the time you will actually do the task","Set a reminder with lead time: have it fire before the start so travel and setup are covered, not at the deadline itself"]' />
+
+<inline-check question="A student puts 'submit lab report, Friday 11:59 PM' on their calendar at 11:59 PM and feels organized. What did they actually reserve?" explanation="Putting the due time on the calendar reserves the instant work is due, not the hours it takes to produce. The work still has no home; it needs a separate work block." options='[{"text":"The moment the work is due, but no time to actually do the work","correct":true},{"text":"A full work block plus a reminder","correct":false},{"text":"Both the deadline and the allocation","correct":false},{"text":"Nothing, because tasks cannot go on a calendar","correct":false}]' />
+
 ## Worked Example
 
 Here is one week's CAT 100 load turned from a vague list into a working calendar plus task split.
@@ -91,6 +95,8 @@ Apply the system to a real conflict. You have a lecture Tuesday at 10 AM, a lab 
 
 The walkthrough exposes a hidden risk: if you had only written "lab due Wed," you would not have noticed that the shift consumed your obvious work time until Wednesday evening. By allocating the work block in advance, you discovered the squeeze on Sunday, when you could still adjust (start a day earlier or trade the shift). The system's value is catching the collision before it becomes a missed deadline.
 
+<step-reveal title="Resolve the Tuesday-lecture, Wednesday-shift, Wednesday-deadline conflict" steps='[{"prompt":"Three obligations: lecture Tue 10 AM, lab report due Wed 11:59 PM, shift Wed 1 to 5 PM. Step one is to SORT. Which item is the task?","predictType":"choice","choices":["The lecture","The shift","The lab report","All three are tasks"],"answerIndex":2,"reveal":"Lecture and shift are fixed-time events; the lab report is work with a deadline, so it is the only task that needs a work block."},{"prompt":"The shift eats Wednesday 1 to 5 PM. Where is the only viable work block before the deadline?","predictType":"choice","choices":["Wednesday 1 to 5 PM, during the shift","Wednesday 6 to 8 PM, after the shift and before 11:59 PM","Thursday morning, after the deadline","No block is needed"],"answerIndex":1,"reveal":"After the shift, before the deadline: Wednesday 6 to 8 PM is the only window. Allocating it on Sunday surfaces the squeeze while you can still adjust."},{"reveal":"Discovering the collision early is the whole payoff. With only ’lab due Wed’ written down, you would notice the shift ate your work time on Wednesday evening, far too late to recover."}]' />
+
 ## What Strong Reading Looks Like
 
 A strong reader looks at a week and can tell instantly whether it is executable, not just populated. A calendar full of deadlines with no work blocks is a warning sign, not a plan. The reader asks where the actual hours of work will come from.
@@ -136,6 +142,10 @@ ALGET uses your annotations and artifact trace to choose support:
 Before moving on, use the check to separate surface completion from a decision that another reader can inspect, question, and revise.
 
 <interactive-quiz question="What best shows transfer rather than completion?" options='["The section gives a longer explanation and a more polished visual.", "The learner explains how the same decision rule changes under a new audience or constraint.", "The AI tool generates the artifact without requiring learner revision.", "The learner completes the page and receives a generic score."]' correct-index="1" conceptid="cat100_supplement_calendar_and_task_systems" />
+
+## Concept Map
+
+<concept-map concepts='["cat100_supplement_calendar_and_task_systems", "cat100_supplement_productivity_and_workflow_automation", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Final Check
 

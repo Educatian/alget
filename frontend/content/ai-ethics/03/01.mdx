@@ -56,6 +56,10 @@ A useful taxonomy comes from Rudin (2019, *Nature Machine Intelligence*):
 
 Rudin's central argument: **for high-stakes decisions, prefer inherently interpretable models when their accuracy is competitive.** Many published comparisons that justify black-box use overstate the accuracy gap and ignore the cost of unauditable explanations. The choice is not "accuracy versus interpretability" by default; it is a tradeoff that must be measured, not assumed.
 
+To make the tradeoff concrete, model a deployment as a single "defensibility" score that combines the accuracy you gain from a black box against the audit cost you take on. Let `acc_gap` be the measured percentage-point accuracy advantage of the black box over the best glass-box model, `stakes` a 1-to-10 severity of a wrong decision, and `audit_cost` the per-decision cost (in effort units) of validating a post-hoc explanation. A net defensibility of choosing the black box can be written as the accuracy benefit minus the stakes-weighted audit burden. Push the accuracy gap toward zero (Rudin's empirical claim for tabular high-stakes tasks) and watch the black box stop paying for itself.
+
+<parameter-explorer config='{"title":"Black-Box vs Glass-Box Defensibility","sliders":[{"name":"acc_gap","label":"Black-box accuracy advantage","min":0,"max":10,"step":0.5,"unit":"pp","default":2},{"name":"stakes","label":"Decision severity","min":1,"max":10,"step":1,"unit":"/10","default":8},{"name":"audit_cost","label":"Per-decision audit cost","min":0,"max":5,"step":0.5,"unit":"units","default":3}],"outputs":[{"label":"Net defensibility of black box","unit":"score","expr":"acc_gap - stakes * audit_cost / 5"},{"label":"Stakes-weighted audit burden","unit":"score","expr":"stakes * audit_cost / 5"}],"plot":{"x":"acc_gap","output":0}}' />
+
 ---
 
 ## Post-Hoc Explanation Methods and Their Limits
@@ -69,6 +73,8 @@ Three families of post-hoc explanation are widely used.
 **Example-based explanations** retrieve similar training examples ("the model treated you like these other cases"). Intuitive, but easily misleading if the retrieved examples do not actually drive the decision.
 
 A key warning: **post-hoc methods can be wrong.** They approximate the model's behavior locally; they do not reveal the model's mechanism. An explanation that satisfies a stakeholder is not the same as an explanation that is accurate.
+
+<inline-check question="A SHAP report says feature X drove a denial. You re-run it after nudging one input by a rounding error and a different feature now ranks first. What does this instability most directly threaten?" explanation="Instability under tiny input perturbations attacks faithfulness: if the attribution flips on a rounding error, it is not reliably reflecting the model's actual decision process. The lever might still be actionable and the format still context-appropriate, but you can no longer trust that it describes the model." options='[{"text":"The faithfulness of the explanation","correct":true},{"text":"The actionability of the explanation","correct":false},{"text":"The contextual appropriateness of the explanation","correct":false},{"text":"Nothing; SHAP is exact by construction","correct":false}]' />
 
 <concept-diagram type="explainability-stack"></concept-diagram>
 
@@ -114,6 +120,14 @@ Return to the lending setting. A black-box model denies an applicant a loan. The
 
 > **Key Insight:** The most defensible explanation is rarely the most technical-looking one. "Faithful and actionable" beats "rigorous-sounding," and an explanation that names protected proxies in writing can be worse than no explanation at all.
 
+Now put yourself in the compliance seat. The denial has gone out, the applicant has filed a complaint, and you must choose what to ship and how to back it up. Each choice carries a downstream consequence the prior table only hinted at.
+
+<branching-scenario tree='{"title":"Shipping the Adverse-Action Notice","start":"start","nodes":{"start":{"prompt":"A black-box model denied an applicant. Engineering hands you three candidate notices. Which do you ship in the FCRA adverse-action letter?","choices":[{"label":"A: \"Did not meet our internal credit criteria.\"","next":"boiler","feedback":"This is the Apple Card failure: no decision-specific reason."},{"label":"B: \"Top SHAP features: zip code, age, income.\"","next":"shap","feedback":"You just put protected proxies in an official legal notice."},{"label":"C: \"Debt-to-income is 43%; below 38% would change the outcome.\"","next":"counter","feedback":"Counterfactual and actionable, but you owe one more step."}]},"boiler":{"prompt":"The regulator reviews the file. The notice states no specific, accurate reason.","feedback":"Outcome: FCRA non-compliance. A vague notice is exactly the gap the Apple Card episode exposed. Go back and choose a notice that names a specific, checkable reason.","choices":[]},"shap":{"prompt":"Plaintiff counsel reads the notice aloud in the complaint: the lender named zip code (a race proxy) and age (a protected credit characteristic) as the operative reasons.","feedback":"Outcome: you converted an opaque problem into a documented one. Surfacing protected proxies in writing raises disparate-impact exposure rather than reducing it. The technical-looking choice was the most dangerous.","choices":[]},"counter":{"prompt":"You chose the faithful-and-actionable lever. Before you sign, what must you verify?","choices":[{"label":"Nothing; a counterfactual is self-justifying","next":"unfaithful","feedback":"Counterfactuals are not automatically faithful to a nonlinear model."},{"label":"That moving DTI below 38% with all else fixed actually flips THIS model’s output","next":"validated","feedback":"Exactly: faithfulness must be tested per case."}]},"unfaithful":{"prompt":"The model is entangled; no clean single threshold exists. The applicant lowers DTI to 37% and is still denied.","feedback":"Outcome: actionable-but-unfaithful, the dangerous quadrant. You promised a lever that does not control the decision. Validate the counterfactual against the model, or follow Rudin and ask whether a glass-box model was competitive here.","choices":[]},"validated":{"prompt":"You validate the threshold against the model per case and document it.","feedback":"Outcome: faithful, actionable, contextually appropriate, and FCRA-compliant. This is the defensible path: the lever is real, the subject controls it, and no protected proxy appears in the notice.","choices":[]}}}' />
+
+After working that decision tree, articulate the underlying principle in your own words.
+
+<self-explain prompt="Wachter et al. argue a meaningful explanation should be counterfactual and actionable. In your own words, why does 'we did not use the protected attribute' fail to satisfy a right to explanation even when it is literally true?" answer="A right to explanation is about giving the decision subject a faithful, decision-specific reason they can act on, not about the inputs the model formally excluded. 'We did not use gender' is a statement about the feature list, not about why THIS decision came out as it did, and protected attributes can still be reconstructed through proxies like zip code. So the claim can be true and still leave the subject with no actionable, faithful reason, which is precisely the gap GDPR Recital 71 and the counterfactual framing try to close." />
+
 ---
 
 ## Legal Scaffolding: GDPR, EU AI Act, FCRA
@@ -142,6 +156,10 @@ A rigorous treatment has to take the strongest objections seriously rather than 
 ---
 
 ## Key Takeaways
+
+Before the bullet summary, map how this module's core ideas connect: which concepts are properties of the model versus the explanation surface, and which legal duties attach to which.
+
+<concept-map concepts='["interpretability","explainability","post_hoc_explanation","counterfactual_explanation","right_to_explanation","gdpr_article_22"]' />
 
 - **Interpretability** is about the model; **explainability** is about the explanation layer wrapped around it. A black box can be explainable but never interpretable.
 - For high-stakes structured decisions, **prefer an inherently interpretable model when its accuracy is competitive** (Rudin 2019), and measure the gap rather than assume it.

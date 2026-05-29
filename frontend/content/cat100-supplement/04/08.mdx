@@ -36,6 +36,8 @@ The distinction the studio enforces is structure versus appearance. A heading is
 
 GitHub Pages serves whatever is in the published branch, so "publishing" is just pushing your `index.html` and opening the live URL. The verification step is non-negotiable: you load the actual URL, not the local file, because a link that works on your disk can break once the site is served from a different root.
 
+<inline-check question="Your page links to an evidence file. It opens fine when you double-click index.html on your laptop, but clicking the same link on the live GitHub Pages URL returns a 404. Where is the fix?" explanation="A link that passes locally and 404s live is a path problem: the file was not committed, or it sits in a subfolder the href does not name. The only test that counts is clicking the link on the served site, so you fix the href (or commit the missing file) and push again, not the local copy." options='[{"text":"Fix the href or commit the missing file, then re-test on the live URL", "correct":true},{"text":"Nothing; if it works locally the page is correctly published", "correct":false},{"text":"Add a background color so the page looks more finished", "correct":false},{"text":"Replace the link text with bigger bold styling", "correct":false}]' />
+
 ## Worked Example
 
 The Module 4 studio is where you publish the work as a real web page on GitHub Pages, so the dialogue artifact and its evidence are public and linkable. A freshman writes plain HTML, then checks it against a publish checklist. Follow the steps.
@@ -78,7 +80,13 @@ Step 3. Rewrite the markup so every item passes:
 
 Step 4. Verify the publish. After pushing to the `gh-pages` branch, you open the live URL and confirm the title shows in the browser tab, the heading renders large, and the link downloads the real file. You also rejected the AI's suggestion to add a flashy background color, because the publish checklist values a working link over decoration. The before/after markup plus the passing checklist is the evidence: a reader can view source and see exactly what you fixed.
 
-## Decision Rule
+Order the steps that take the page from broken markup to a verified live publish:
+
+<sequence-builder mode="order" items='["Add the structure tags: DOCTYPE, a title in the head, and an h1 heading", "Give each link a real href that points to a committed evidence file", "Commit index.html and every linked file, then push to the published branch", "Open the live GitHub Pages URL, not the local file", "Verify on the live URL: title in the tab, h1 renders, and every link reaches its file"]' />
+
+Now run the publish checklist one item at a time, predicting each verdict before you reveal it:
+
+<step-reveal title="Run the publish checklist on the live page" steps='[{"prompt":"The first markup is just an html tag, the bare text ’my ai project,’ and an empty link. The browser tab shows a file path instead of a name. Which item failed and what fixes it?","predictType":"choice","choices":["Page title failed: add a title element inside the head, such as ’CAT 100 Module 4: AI Dialogue Studio’","Nothing failed; the page rendered without an error","The heading failed: make the text a larger font","The link failed: change its color"],"answerIndex":0,"reveal":"Page title failed. With no title element the tab shows the file path. Adding a real title in the head makes the page name show in the tab, search results, and bookmarks."},{"prompt":"The main heading is just bare text. Why is making it ’big bold text’ NOT the fix?","predictType":"choice","choices":["A heading is an h1 element that carries meaning; size alone tells a screen reader and search engine nothing","Big bold text is the fix; appearance is all that matters","Headings should never be styled","Bare text is already a valid heading"],"answerIndex":0,"reveal":"Use a real h1. The tag carries the structural meaning (this is the main heading) that assistive tech and search engines read; the large rendering is a side effect, not the point. This is the WCAG idea of semantic markup."},{"reveal":"Finally, give the link a real href to a committed file and verify on the live URL, not the local copy. You reject the AI’s offer of a flashy background color because the checklist values a working link over decoration, and the link is still the part that lets a reviewer reach your evidence."}]' />
 
 Publish for correctness first and appearance last, and verify on the live URL, not the local file. A page is ready only when the title, heading, and links pass on the served site.
 
@@ -122,6 +130,12 @@ A useful closing note for the artifact would read: "I added a `<title>` and an `
 ## Transfer Case
 
 Move the publishing skill from a course project page to a personal resume site, which CAT 100 also asks you to build. The same correctness checklist governs: a `<title>` so the tab and search results name you, real `<h1>` and `<h2>` headings so the structure is readable by assistive tech and recruiters' tools, and working links to your projects rather than dead ones. But the stakes raise the bar on verification, because a broken link on a resume site is seen by an employer, not a grader. The structure tags and the live-URL test transfer directly; what changes is that the audience now includes people who will not give you a second chance to fix a 404.
+
+## Concept Map
+
+See how publishing a correct page connects to the chapter’s wider ideas:
+
+<concept-map concepts='["cat100_supplement_ai_conversations_as_a_teacher", "cat100_supplement_module_4_dialogue_studio", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

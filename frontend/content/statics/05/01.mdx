@@ -85,6 +85,12 @@ $$I_{\rm c} = \frac{bh^3}{12}$$
 
 The area moment of inertia is the geometric quantity that determines how a beam resists bending. Higher $I$ means stiffer beam, lower stress for the same load. This is why I-beams have most of their material far from the neutral axis: they maximize $I$ for a given amount of material.
 
+Notice the cubic dependence on height: $I_c = bh^3/12$. Doubling the width $b$ doubles $I$, but doubling the height $h$ multiplies $I$ by eight. Drag the sliders to feel how steeply height dominates bending stiffness, and watch the base value track $bh^3/3$.
+
+<parameter-explorer config='{"title":"Rectangle Moment of Inertia: width vs height (note the cube on h)","sliders":[{"name":"b","label":"Width b","min":10,"max":120,"step":5,"unit":"mm","default":60},{"name":"h","label":"Height h","min":10,"max":200,"step":5,"unit":"mm","default":120}],"outputs":[{"label":"Centroidal I_c = b h^3 / 12","unit":"mm^4","expr":"b*h^3/12"},{"label":"Base I = b h^3 / 3","unit":"mm^4","expr":"b*h^3/3"},{"label":"Area A = b h","unit":"mm^2","expr":"b*h"}],"plot":{"x":"h","output":0}}' />
+
+<inline-check question="A designer needs more bending stiffness from a rectangular beam but can only add material in one direction. Which change buys the most extra I_c?" explanation="Because I_c = bh^3/12, height enters as a cube while width enters linearly. Increasing h by 50% multiplies I by 1.5^3 = 3.375; increasing b by 50% only multiplies I by 1.5. Adding depth wins decisively, which is exactly why beams are oriented with their tall dimension vertical." options='[{"text":"Increase the height h by 50%.","correct":true},{"text":"Increase the width b by 50%.","correct":false},{"text":"Either change adds the same I.","correct":false}]' />
+
 <concept-diagram type="moment-of-inertia-shapes"></concept-diagram>
 
 ---
@@ -109,6 +115,10 @@ $$I = I_{\rm c} + 0 + A d^2 = I_{\rm c} + A d^2$$
 
 Because $A d^2 \ge 0$, the centroidal value $I_{\rm c}$ is necessarily the smallest moment of inertia among all parallel axes. The same algebra, with $dA$ replaced by $dm$, produces the mass version $I = I_{\rm cm} + M d^2$.
 
+The transfer term $A d^2$ is what makes flanges so powerful: it grows with the *square* of the offset. Hold the piece fixed and slide the offset $d$ to watch how quickly the transferred inertia overwhelms the small centroidal contribution.
+
+<parameter-explorer config='{"title":"Parallel-Axis Transfer: I = I_c + A d^2 for one rectangular piece","sliders":[{"name":"Ic","label":"Centroidal I_c of piece","min":1000,"max":500000,"step":1000,"unit":"mm^4","default":8333},{"name":"A","label":"Piece area A","min":100,"max":2000,"step":50,"unit":"mm^2","default":1000},{"name":"d","label":"Offset d to reference axis","min":0,"max":100,"step":5,"unit":"mm","default":45}],"outputs":[{"label":"Transfer term A d^2","unit":"mm^4","expr":"A*d^2"},{"label":"Total I = I_c + A d^2","unit":"mm^4","expr":"Ic+A*d^2"}],"plot":{"x":"d","output":1}}' />
+
 Two consequences. First, the centroidal axis is always the axis of *minimum* I (the $Ad^2$ term is non-negative). Second, the theorem makes composite-shape problems tractable: compute each piece's centroidal I, then transfer to a common axis with $Ad^2$, and sum.
 
 For composite shapes (I-beam built from three rectangles, or a circle with a hole) the workflow is:
@@ -119,6 +129,10 @@ For composite shapes (I-beam built from three rectangles, or a circle with a hol
 4. Sum $I_{\rm total} = \sum_i (I_i + A_i d_i^2)$, with cutouts entering as negative $A_i$.
 
 This is the workflow. It does not change with shape; only the table values change.
+
+Reorder the steps below into the correct composite-bodies sequence. The reference axis must be chosen before offsets can be measured, and the summation comes last.
+
+<sequence-builder mode="order" items='["Pick a common reference axis","Look up each piece&apos;s centroidal I_i from standard tables","Measure each offset d_i from the piece centroid to the reference axis","Compute each transfer term A_i d_i^2 (cutouts use negative A_i)","Sum I_total = sum of (I_i + A_i d_i^2)"]' />
 
 ---
 
@@ -203,6 +217,10 @@ $$I_x = (8333 + 426667 + 8333) + (2025000 + 0 + 2025000) = \boxed{4.49 \times 10
 
 The I-beam delivers about **seven times** the bending stiffness of a square using the same material, purely by moving area to the flanges where $d^2$ is large. This is Example 0's "why I-beams win" made quantitative.
 
+Work the I-beam solution one decision at a time. Predict each step before revealing the result.
+
+<step-reveal title="Building the I-Beam I_x step by step" steps='[{"prompt":"Where does the centroidal axis sit for this symmetric I-beam (total height 100 mm)?","predictType":"choice","choices":["At the bottom flange, y = 5 mm","At mid-height, y = 50 mm","At the top flange, y = 95 mm"],"answerIndex":1,"reveal":"By top-bottom symmetry the centroid is at mid-height, y = 50 mm. The web centroid coincides with this axis, so the web has zero offset (d = 0)."},{"prompt":"What is the offset d for each flange from the mid-height axis?","predictType":"choice","choices":["10 mm","45 mm","50 mm"],"answerIndex":1,"reveal":"Each flange centroid is 45 mm from mid-height: the flange center sits at 95 mm (top) or 5 mm (bottom), so d = 95 - 50 = 45 mm. The transfer term per flange is A d^2 = 1000 x 45^2 = 2,025,000 mm^4."},{"prompt":"Which contribution dominates the web&apos;s total I: its own centroidal I_c or its transfer term?","predictType":"choice","choices":["Its transfer term A d^2","Its centroidal I_c","They are equal"],"answerIndex":1,"reveal":"The web sits on the axis (d = 0), so its transfer term is zero. Its entire contribution is the centroidal I_c = 10(80)^3/12 = 426,667 mm^4, the largest single centroidal term."},{"reveal":"Summing: I_x = (8333 + 426667 + 8333) + (2025000 + 0 + 2025000) = 4.49 x 10^6 mm^4. Against the equal-area square (s = 52.9 mm, I = 0.65 x 10^6 mm^4), the I-beam is about 7x stiffer using identical material."}]' />
+
 <concept-diagram type="moment-of-inertia-shapes"></concept-diagram>
 
 ---
@@ -221,6 +239,10 @@ $$x_{\text{eq}} = \frac{2L}{3} = \frac{2(4)}{3} = \boxed{2.67 \text{ m from the 
 
 This single 12 kN force, placed 2.67 m from the left, is statically equivalent to the entire distribution for the purpose of finding reactions, the bridge between "the beam carries a 6 kN/m triangular load" and the equilibrium equations you can actually solve.
 
+Vary the peak intensity and span of the triangular load and watch how the resultant magnitude scales, while the line of action stays locked at $2L/3$ from the zero end regardless of $w_0$.
+
+<parameter-explorer config='{"title":"Triangular Distributed Load: resultant and its line of action","sliders":[{"name":"w0","label":"Peak intensity w_0","min":1,"max":20,"step":0.5,"unit":"kN/m","default":6},{"name":"L","label":"Span L","min":1,"max":12,"step":0.5,"unit":"m","default":4}],"outputs":[{"label":"Equivalent point load F_eq = w_0 L / 2","unit":"kN","expr":"w0*L/2"},{"label":"Location x_eq = 2L/3 from zero end","unit":"m","expr":"2*L/3"},{"label":"Overturning moment about zero end F_eq * x_eq","unit":"kN*m","expr":"(w0*L/2)*(2*L/3)"}],"plot":{"x":"L","output":0}}' />
+
 ---
 
 ## Common Errors and Their Diagnoses
@@ -237,6 +259,10 @@ This single 12 kN force, placed 2.67 m from the left, is statically equivalent t
 ## Engineering Applications
 
 The three quantities in this section (centroid, equivalent load, moment of inertia) are not academic exercises; each one feeds directly into a downstream design calculation an engineer cannot skip.
+
+Walk a real sizing decision: a floor joist deflects too much. Choose how to fix it and see the consequences of each path.
+
+<branching-scenario tree='{"title":"A floor joist deflects too much: how do you stiffen it?","start":"n1","nodes":{"n1":{"prompt":"A simply supported timber joist sags beyond the allowable limit under its distributed floor load. You may change the cross section but must keep material cost roughly fixed. What is your first move?","choices":[{"label":"Reorient the same rectangular section so the tall dimension is vertical","next":"n2","feedback":"Smart first check. Since I_c = bh^3/12, putting the larger dimension as the height h (cubed) maximizes I for free."},{"label":"Add width b, keeping height h the same","next":"n3","feedback":"This helps only linearly. Width enters I to the first power, so you spend a lot of material for little stiffness."},{"label":"Switch to a built-up I-section of equal area","next":"n4","feedback":"Aggressive but effective: moving area to flanges raises I via the A d^2 transfer terms."}]},"n2":{"prompt":"Reorienting helped but you are still slightly over the deflection limit. Material budget is nearly the same. Next?","choices":[{"label":"Move some area to top and bottom flanges (toward an I-shape)","next":"n4","feedback":"Correct instinct. The parallel-axis A d^2 term rewards area placed far from the neutral axis."},{"label":"Increase width further","next":"n3","feedback":"Still only linear payoff. You are leaving the cubic-in-height and squared-in-offset levers on the table."}]},"n3":{"prompt":"Stiffness barely improved per kilogram added. What does the math tell you to do instead?","choices":[{"label":"Exploit height (cubed) and offset (squared), i.e. go to a deeper or flanged section","next":"n4","feedback":"Yes. The two big levers are h^3 in I_c and d^2 in the transfer term, not width."}]},"n4":{"prompt":"You adopt an I-section: most area in flanges far from the neutral axis. Result?","feedback":"Deflection drops sharply. For the same area, the flanges sit at large d, so each contributes A d^2 to I. This is the I-beam advantage from Example 3 (roughly 7x a solid square), now applied to a real joist. Deflection scales as 1/I, so a 7x I cuts sag to about one-seventh.","choices":[]}}}' />
 
 | Application | Quantity Used | Why It Matters |
 | --- | --- | --- |
@@ -262,6 +288,14 @@ The three quantities in this section (centroid, equivalent load, moment of inert
 | Rectangle (centroidal) | $I_c = bh^3/12$ |
 | Rectangle (base) | $I_{\text{base}} = bh^3/3$ |
 | Parallel-axis theorem | $I = I_c + A d^2$ |
+
+### How the Ideas Connect
+
+These six concepts form one chain: the centroid (first moment) locates where area balances, which is also where a distributed load resolves to a point and the axis about which the moment of inertia (second moment) is minimized; the parallel-axis theorem then transfers that inertia, and the composite-bodies method assembles real cross sections from the pieces.
+
+<concept-map concepts='["centroid","center_of_mass","distributed_load","moment_of_inertia","parallel_axis_theorem","composite_bodies"]' />
+
+<self-explain prompt="In your own words, explain why the parallel-axis theorem guarantees that the centroidal axis is the axis of minimum moment of inertia, and connect this to why I-beams place material in the flanges." answer="Because I = I_c + A d^2 and the term A d^2 is never negative (A is positive area, d^2 is squared distance), any non-centroidal axis adds a strictly positive amount to I_c, so I_c is the smallest possible value. The centroidal first moment integral equals zero, which is what kills the cross term in the derivation. I-beams exploit the opposite direction of this same fact: by placing flange area at large distance d from the neutral axis, each flange contributes a large A d^2, maximizing the section I for a fixed amount of material." />
 
 ### Key Takeaways
 

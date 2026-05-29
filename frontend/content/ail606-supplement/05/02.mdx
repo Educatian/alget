@@ -54,9 +54,15 @@ Walk through why this sample threatens the evidence, step by step:
 
 The after version is defensible because the sample is chosen for the trait that drives usability risk and deliberately spans learner variability, so a problem found in the session plausibly transfers to the real audience. The before version would have produced a clean session that overclaims, because experts hid the real friction.
 
+The four moves above are not interchangeable; they have a logical order, because you cannot screen for a trait before you have named it, and you cannot size the sample before you know which subgroups must appear. Put the recruitment-design steps in the order a defensible plan follows.
+
+<sequence-builder mode="order" items='["Name the target population by the real audience, not by who is available", "Identify the single trait that drives the usability risk", "Write a screener question that recruits for that trait and excludes maskers", "Set per-subgroup counts that span the relevant variability", "Let availability decide only among people who already pass the screener"]' />
+
 ## Decision Rule
 
 Recruit for the trait that breaks the design, then cover its range; let availability decide only among people who already pass the screener. If you find yourself justifying a participant by "they were free" rather than "they match the risk profile," stop and rewrite the screener.
+
+<inline-check question="Your warehouse-staff course needs testers. A design colleague who is fluent in every LMS volunteers and is free today. What does adding them to the sample do?" explanation="Their expertise absorbs the extraneous load that overwhelms novice warehouse staff, so they will glide past the exact friction the test exists to find. They are not extra data, they are contamination that masks the problem and manufactures a clean, overclaiming session." options='[{"text":"Adds useful expert benchmarking data","correct":false},{"text":"Masks the novice friction the test is meant to surface, contaminating the result","correct":true},{"text":"Improves coverage of learner variability","correct":false},{"text":"Has no effect as long as the other six testers are warehouse staff","correct":false}]' />
 
 Before locking the sample into your moderated usability test script with observation-to-revision trace, check three things:
 
@@ -99,6 +105,10 @@ A useful closing line reads: "I changed the sample from five available colleague
 
 Move the same sampling logic to a classroom field test where you cannot screen freely and must take the students enrolled. The discipline does not disappear; it shifts from recruitment to interpretation. You now document which subgroups your fixed roster happens to cover and which it misses, and you scope every claim to the segments actually present. A reader who treats "the whole class participated" as automatic representativeness has missed that an intact class is itself a convenience sample, with its own blind spots to name.
 
+Work the recruitment dilemma below. You are staffing a six-slot test of a first-generation-student tutoring portal, and every choice trades coverage against convenience.
+
+<branching-scenario tree='{"title":"Staffing a six-slot tutoring-portal test","start":"n1","nodes":{"n1":{"prompt":"Your risk-driving trait is unfamiliarity with academic-jargon navigation labels. Two peer tutors who know the portal volunteer. Do you take them to fill slots fast?","choices":[{"label":"Yes, they are knowledgeable and available","next":"n2","feedback":"Peer tutors already own the jargon, so they will never hit the label-confusion the test targets. They are maskers, not data."},{"label":"No, exclude tutors and recruit first-gen non-users","next":"n3","feedback":"Correct: you recruit for the trait that drives risk and exclude the participants whose insider knowledge would hide the problem."}]},"n2":{"prompt":"The session runs smoothly and everyone finds every label. What did you actually learn?","feedback":"Almost nothing transferable. A clean expert session is evidence the wrong people tried it, not that the design works. Re-screen for first-gen non-users.","choices":[]},"n3":{"prompt":"Among first-gen non-users you can take confident readers or also include slower, multilingual readers. You have six slots. What do you do?","choices":[{"label":"Fill all six with confident readers for clean data","next":"n4","feedback":"This clusters in the comfortable middle and erases the edge where jargon load is heaviest, the very finding worth keeping."},{"label":"Span the range: some confident, some slower multilingual readers","next":"n5","feedback":"Correct: spanning learner variability surfaces the label that confuses the slower reader, which is the credible, transferable finding."}]},"n4":{"prompt":"No label confused your confident readers. You report the portal is usable. Is the claim safe?","feedback":"No. The claim covers only confident readers; you engineered a clean result by excluding the learners most at risk. The finding does not transfer to the real first-gen audience.","choices":[]},"n5":{"prompt":"Read your roster back as one sentence.","feedback":"Six first-generation students, none prior portal users, spanning confident to slower readers. That sentence makes any problem they hit credible for the real audience, which is what a defensible sample buys you.","choices":[]}}}' />
+
 ## Artifact Studio
 
 Open the studio packet: [download the moderated usability test script with observation-to-revision trace packet](/downloads/summer2026/ail606-supplement/05-02-participant-profiles-and-sampling-artifact.md).
@@ -127,6 +137,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your sampling plan names the risk-driving trait, screens for it, spans the relevant variability, and excludes participants who would mask the problem.
+
+<concept-map concepts='["ail606_supplement_participant_profiles_and_sampling", "ail606_supplement_usability_testing_and_learning_evidence", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

@@ -33,6 +33,12 @@ The course anchors do real work in setting these boundaries:
 - **UDL learner variability** flags when an AI's efficiency optimization quietly removes an accessibility provision, since usage-based proposals systematically undervalue features used by a minority of learners.
 - **Mayer's principles** give you the evidence base to push back on a confident but wrong suggestion, replacing "the AI said so" with "the redundancy principle says otherwise."
 
+A defensible disclosure makes three boundaries visible. Match each boundary to what it actually fixes.
+
+<sequence-builder mode="match" items='[{"term":"Role boundary","definition":"Fixes whether the AI proposes or decides; in learning design the AI stays a proposer and critic, never the final authority"},{"term":"Verification boundary","definition":"Fixes who is accountable for the truth of the AI claim; every factual claim is checked against course evidence before it justifies a decision"},{"term":"Disclosure boundary","definition":"Fixes the granularity of the record; it names the one decision the AI touched, the proposal, the evidence checked, and the accept-or-reject reason"}]' />
+
+<inline-check question="A learner writes only: 'I used AI to help improve my storyboard.' Which boundary does this disclosure fail to make visible?" explanation="The blanket statement is not false, but it names no single decision, no proposal, no evidence check, and no verdict, so a reviewer cannot re-trace what the AI touched or where the human judgment was. It fails the disclosure boundary (granularity), and by omission obscures the role and verification boundaries too." options='[{"text":"None; the statement is honest, so the boundary is met","correct":false},{"text":"The disclosure boundary, because it names no specific decision, proposal, evidence, or verdict a reviewer could check","correct":true},{"text":"Only the role boundary, because it does not say the AI decided","correct":false}]' />
+
 ## Worked Example: An Annotated AI-Use Disclosure
 
 Here is a before-and-after of one AI-use disclosure excerpt tied to a single bounded design-support decision.
@@ -50,6 +56,10 @@ This is not auditable. It does not say which decision the AI touched, what it pr
 > AI-use note: I asked the tutor for one way to shorten my onboarding flow. It proposed merging Frames 2 and 3 to cut a click. I checked this against my pilot drop-off data, which showed Frame 3 is where 5 of 12 learners first interacted. I rejected the merge because it would hide that action cue, and I verified the tutor's claim about click count against the actual frame map rather than taking it as authoritative.
 
 Notice the boundaries this disclosure makes visible: the tutor offered a proposal, not a verdict (it did not get to decide); the learner held the verification boundary (checking the claim against course evidence); and the disclosure names the one bounded decision, the evidence, and the reject reason. That is what turns "I used AI" into an account a reviewer can audit.
+
+Work the upgrade from blanket to bounded disclosure one boundary at a time, predicting each before the reveal.
+
+<step-reveal title="Upgrading the AI-use disclosure" steps='[{"prompt":"The tutor says merging Frames 2 and 3 will cut a click and sounds authoritative. Before acting, what does the verification boundary require?","predictType":"choice","choices":["Accept it, since reducing clicks is generally good","Check the click-reduction claim against the actual frame map and the learning evidence","Ask the tutor to confirm it is sure"],"answerIndex":1,"reveal":"Fluency carries no information about accuracy. The verification boundary requires checking the claim against course evidence: here, the drop-off data showing Frame 3 is where 5 of 12 learners first act."},{"prompt":"The data shows merging would bury the first interaction cue. What does recording the rejection demonstrate?","predictType":"choice","choices":["That the learner was uncooperative with the tool","That the human held the role boundary, keeping the AI a proposer rather than a decider","That AI suggestions should never be used"],"answerIndex":1,"reveal":"A logged rejection proves the AI proposed and the human decided. A record of only accepted AI input cannot show the boundary was held; the rejection is the proof of judgment."},{"reveal":"The bounded disclosure is longer than the blanket one not because it confesses more, but because it makes the human judgment legible: one decision, one proposal, one evidence check, one verdict, each re-traceable by a reviewer."}]' />
 
 ## Decision Rule
 
@@ -98,6 +108,10 @@ When you use BigAL here, use it deliberately as the proposer so you can practice
 ## Transfer Case
 
 Move the same boundary practice from a graduate design course, where disclosure is mostly about academic integrity, to a workplace where you ship learning products under a client contract and a privacy regulation. The role and verification boundaries hold, but the stakes and the verification sources change. In the workplace, an AI suggestion to "personalize using learner data" is not just possibly wrong about learning; it may violate the contract or the privacy rule, so the verification boundary now includes legal and policy evidence, not only pedagogical evidence. A disclosure that satisfied a professor ("I checked it against drop-off data") may be insufficient for a client who needs to know whether learner data left the system. If you can explain why the same three boundaries require a wider evidence base in the regulated workplace, you understand AI tutor boundaries as a transferable accountability discipline rather than a course formality.
+
+<self-explain prompt="Explain in your own words why an AI suggestion's fluency carries no information about its accuracy, and what the learner must therefore do before acting on it." answer="Generative tools produce equally fluent, confident text whether the underlying claim is true or false, because fluency is a property of how the text is generated, not of whether it matches reality. A polished suggestion to 'merge frames to cut a click' reads identically whether or not it harms learning. So fluency cannot be used as evidence. The learner must hold the verification boundary: check the factual or empirical claim against course evidence (here, the drop-off data) before letting it justify a decision, and record that check in the disclosure." />
+
+<concept-map concepts='["ail606_supplement_ai_tutor_boundaries", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## Artifact Studio
 

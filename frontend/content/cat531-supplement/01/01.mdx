@@ -40,6 +40,8 @@ Three scholarly anchors keep this from collapsing into opinion, and they are del
 
 A choice that satisfies one anchor while ignoring the others is not yet a judgment. The friction between them is the work.
 
+<inline-check question="A teacher writes: 'I will adopt QuizGenAI because it saves three hours a week.' Which element of judgment is she treating a benefit as?" explanation="Time saved is a real benefit, but it is not the instructional purpose. The purpose names what a learner should be able to do (surface misconceptions before the summative); a benefit cannot justify the tool unless the purpose is also met." options='[{"text":"She is naming the Constraint","correct":false},{"text":"She is collapsing a benefit into the Purpose","correct":true},{"text":"She is citing Evidence","correct":false},{"text":"She is documenting a Revision","correct":false}]' />
+
 ## Worked Example
 
 Scenario: the 9th-grade biology teacher from the opening case decides whether to adopt the free AI quiz-generator. Walk the judgment in four numbered moves.
@@ -59,6 +61,10 @@ Scenario: the 9th-grade biology teacher from the opening case decides whether to
 
 The improvement is not a longer note. It is an inspectable trace: a colleague can now see the purpose, the constraint, the evidence, and the alternative that was set aside, and can challenge the call on its merits.
 
+Work the same decision as a live dilemma. At each branch, choose the move that protects students first and keeps the reasoning inspectable.
+
+<branching-scenario tree='{"title":"The 9-day deadline: adopting QuizGenAI","start":"n1","nodes":{"n1":{"prompt":"Nine days to the unit test. QuizGenAI would save three grading hours a week, but two of your 28 students carry third-party-processor opt-outs and the tool has no stated retention period. What do you lead with?","choices":[{"label":"Pilot it now for the whole class because the time saving is urgent","next":"nA","feedback":"You led with the benefit and skipped the constraint. The two opt-out flags and the unstated retention clause are unresolved, so the call is convenient, not defensible."},{"label":"Name the instructional purpose and the binding constraint before judging the feature","next":"nB","feedback":"Correct order: purpose (surface misconceptions early) and constraint (two opt-out flags, no retention clause) come before the affordance."}]},"nA":{"prompt":"A colleague asks how you protected the two flagged students. You realize their responses would sit on an unvetted server. What now?","choices":[{"label":"Keep going; most students benefit","next":"nLoss","feedback":"Averaging the benefit across the class hides a concentrated, non-consenting harm to two students."},{"label":"Stop and route flagged students through a vetted in-house tool","next":"nWin","feedback":"You recovered the judgment by protecting students first."}]},"nB":{"prompt":"The district vetted-tools list does not include QuizGenAI, and a vetted but slower district tool keeps data in-house. Which call is inspectable?","choices":[{"label":"Adopt QuizGenAI for everyone; revisit privacy later","next":"nLoss","feedback":"Deferring the privacy check after adoption is exactly the move that surrenders authority to the vendor."},{"label":"Decline QuizGenAI for whole-class use, route quizzes through the vetted tool, and name the rejected alternative","next":"nWin","feedback":"Purpose met, constraint honored, evidence cited, road-not-taken named. A peer can reconstruct this call."}]},"nWin":{"prompt":"Your note now states purpose, constraint, evidence, and the rejected faster option with its reason. The decision is reconstructable without you in the room.","feedback":"This is CBI as judgment: a visible trace, not just an outcome.","choices":[]},"nLoss":{"prompt":"The decision documents an outcome but hides the trade. A reviewer cannot tell whether you reasoned it through or just complied with convenience.","feedback":"Revisit: protect students first, then make the rejected alternative visible.","choices":[]}}}' />
+
 ## Decision Rule
 
 When a CBI choice forces a value against an affordance, order your reasoning so students are protected first. Name the classroom value conflict before you discuss what the tool can do, weigh the technology affordance second, and confirm the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity.
@@ -70,6 +76,8 @@ A defensible CBI decision should survive three quick tests:
 3. **Revision check:** What did you decide against, and why did you reject it?
 
 If you cannot answer all three, you have a preference dressed as a decision.
+
+<self-explain prompt="In your own words, explain why a decision documented after the fact is NOT the same as a decision reasoned through, even when both produce the same final choice." answer="In this course, judgment is the visible trace, not the eventual outcome. A decision reasoned through shows the purpose, constraint, evidence, and rejected alternative as it was made, so a colleague can audit and challenge the reasoning. A post-hoc justification can reverse-engineer a tidy rationale for a choice that was actually made on convenience or habit, hiding whether students were ever protected. Two identical outcomes can rest on very different reasoning, and only the inspectable trace lets a reviewer tell them apart." />
 
 ## Common Misreadings
 
@@ -134,6 +142,12 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, check that the Design Tension Studio map naming a classroom value conflict and negotiated decision captures instructional purpose, equity or privacy boundary, support request, revision rationale, and confidence change.
+
+## Concept Map
+
+See how the four judgment elements and the three scholarly anchors connect for this section.
+
+<concept-map concepts='["cat531_supplement_foundations_of_cbi_and_design_tensions", "cat531_supplement_cbi_as_pedagogical_judgment", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 

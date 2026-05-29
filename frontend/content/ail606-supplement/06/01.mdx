@@ -33,6 +33,10 @@ Evidence-of-iteration documentation is a structured **design rationale**: a reco
 | Result | Did the change move the observed behavior? | Unverified change (no evidence it worked) |
 | Rejected alternative | What did you consider and decline, and why? | Hides that you reasoned about trade-offs |
 
+The five elements only carry meaning in order: an observation comes before its interpreting principle, the change follows the diagnosis, the result tests the change, and the rejected alternative defends the path taken. Reconstruct that chain so the linkage is explicit.
+
+<sequence-builder mode="order" items='["Triggering observation: 3 of 3 testers skipped the lower half of Frame 3", "Interpretive principle: split-attention names why the skip happened", "Change made: split Frame 3 into 3a (diagram + short narration) and 3b (prompt)", "Result: in re-test, 3 of 3 completed both subframes", "Rejected alternative: shortening narration alone, declined because the pause point was the lever"]' />
+
 Two theory anchors do the interpretive work in this genre. Mayer's multimedia principles tell you whether an observation reflects a real learning demand (for example, learners not encoding a step because the diagram and narration competed for attention). Cognitive load theory names the mechanism (split attention, redundancy, transient information) so the revision targets the cause rather than the surface. The discipline rule is strict: if a cited theory did not change a wording, a layout, a timing, or a sequence, it is decoration, not rationale. The "rejected alternative" line is the single most diagnostic field, because it is the only one that proves you weighed options instead of accepting the first idea.
 
 ## Worked Example
@@ -55,6 +59,9 @@ That entry cannot be reviewed. It names no problem, no source, and no rejected o
 
 The after version is not longer for its own sake. Each numbered line is a thing a reviewer can audit: a problem, a source, a change, a result, and a path not taken.
 
+<step-reveal title="Audit the Frame 3 entry one element at a time" steps='[{"prompt":"The entry opens with \"all 3 skipped the second half of Frame 3.\" Which element is this, and is it auditable?","predictType":"choice","choices":["A feeling about the screen","A triggering observation a peer can verify","A rejected alternative","The interpretive principle"],"answerIndex":1,"reveal":"It is the triggering observation: a quoted learner behavior, not an intuition. A skeptical peer could re-run the tryout and check it."},{"prompt":"The entry names split-attention and segmenting. What work is that line doing?","predictType":"choice","choices":["Decorating the entry with a citation","Naming the mechanism so the fix targets the cause, not the symptom","Proving the change worked","Listing a path not taken"],"answerIndex":1,"reveal":"It is the interpretive principle. It diagnoses why the skip happened (narration and diagram competed in working memory), so the change can target the cause."},{"prompt":"The final line says shortening narration to 50 words was considered and declined. Why is this the most diagnostic line?","predictType":"choice","choices":["It makes the entry longer","It is the only line proving options were weighed instead of accepting the first idea","It restates the observation","It polishes the prose"],"answerIndex":1,"reveal":"The rejected alternative is the single field that proves you reasoned about trade-offs. Drop it and the entry cannot show you chose among options."}]' />
+
+
 ## Decision Rule
 
 When you finish an iteration entry, run it through a falsifiability test before you trust it: could a skeptical peer disagree with this entry using your own evidence? If the entry only contains praise of the new version, there is nothing to disagree with, which means there is nothing to verify.
@@ -64,6 +71,9 @@ When you finish an iteration entry, run it through a falsifiability test before 
 3. **Counterfactual test:** Is there a rejected alternative that shows you chose among options rather than accepting the first?
 
 If any test fails, the artifact may be finished, but the iteration record is not yet evidence. Add the missing line before you move on.
+
+<inline-check question="An entry reads: \"Learners hesitated on Frame 2, so I redesigned it and it tests much better now.\" Which falsifiability test does this entry fail hardest?" explanation="It quotes a behavior (hesitation) but never names a principle, so the change has no diagnosis. The mechanism test fails: nothing explains why the hesitation is a problem, so the fix cannot be shown to target the cause." options='[{"text":"The observation test, because no learner behavior is named","correct":false},{"text":"The mechanism test, because no named principle explains why the behavior is a problem","correct":true},{"text":"No test, the entry is already evidence","correct":false},{"text":"The counterfactual test only, because the result is missing","correct":false}]' />
+
 
 ## Common Misreadings
 
@@ -93,6 +103,10 @@ A strong reader of evidence-of-iteration documentation can do four things:
 A strong iteration record is judged by reproducibility, not by length. A peer should be able to read your entry, look at the two versions, and arrive at the same change you made. That standard fails the moment an entry asserts an improvement the evidence does not show, so treat every "better" as a claim that needs an observation attached. If a frame has visible polish but no triggering observation, mark it with an annotation and request a targeted before/after comparison rather than a general critique.
 
 A final paragraph for the artifact would read like this: "I changed the storyboard frame sequence with narration, signaling, and reader-action notes because a tryout showed learners skipping content I assumed they were reading, and a named principle told me why. I declined a competing fix because it would have changed the surface without addressing the cause the evidence identified."
+
+<self-explain prompt="In your own words, explain why recorded rationale (captured in the moment) is stronger evidence than reconstructed rationale (written from memory after the design is done). Tie your answer to the rejected-alternative element specifically." answer="Recorded rationale captures the triggering observation and the alternatives you actually weighed while they were still in front of you. Memory smooths over the paths not taken, so a reconstructed entry tends to keep only the change that worked and quietly drops the rejected alternative, which is the single most diagnostic field. Without that field the entry cannot show you chose among options, so it collapses back toward a changelog even if the surrounding prose is fluent." />
+
+<concept-map concepts='["ail606_supplement_evidence_of_iteration_documentation", "evidence_based_revision", "ai_supported_learning", "ail606_supplement_refined_prototype_and_capstone_defense"]' />
 
 ## Transfer Case
 

@@ -33,6 +33,10 @@ Three of those criteria recur in instructional media often enough to memorize:
 
 Two principles govern how you act on findings. First, prioritize by depth of exclusion: a missing alt text fully locks out a screen-reader user, so it outranks a marginal contrast miss that merely strains a sighted reader. Second, born-accessible beats retrofit. Universal Design for Learning treats variability as the norm, so designing redundant cues from the start (color plus label plus icon) is cheaper and cleaner than bolting accommodations onto a finished screen.
 
+Match each WCAG success criterion to the failure it names and the learner it excludes. These three recur often enough to memorize.
+
+<sequence-builder mode="match" items='[{"term":"1.1.1 Non-text content","definition":"A diagram with no alt text announces only image to a screen-reader user; fix with one sentence naming what it shows and why"},{"term":"1.4.3 Contrast (minimum)","definition":"Light-gray text at 2.9 to 1 falls below the 4.5 to 1 floor and excludes low-vision learners; raise the ratio"},{"term":"1.4.1 Use of color","definition":"A color-only action cue (the red frame is next) is invisible to a color-blind learner; add a label and icon"},{"term":"2.1.1 Keyboard","definition":"A drag-and-drop interaction with no keyboard alternative excludes anyone who cannot operate a mouse"}]' />
+
 | WCAG criterion | Failure on the screen | Who is excluded | Fix |
 | --- | --- | --- | --- |
 | 1.1.1 Non-text content | Diagram has no alt text | Screen-reader users | One-sentence alt naming what and why |
@@ -51,6 +55,10 @@ Walk through one concrete accessibility review of a single prototype screen, a n
 
 **After (the screen as an accessible artifact).** Three named WCAG blockers closed: alt text added (1.1.1), contrast 2.9:1 raised to 4.6:1 (1.4.3), action cue no longer color-only (1.4.1). The change is auditable: a reviewer can map each fix to its success criterion and to the specific learner who was previously excluded, justified by **UDL learner variability**.
 
+Decide the fix order by depth of exclusion. Predict which defect to close first before each reveal.
+
+<step-reveal title="Ordering accessibility fixes by who is most excluded" steps='[{"prompt":"Three blockers are open: missing alt text on the diagram (1.1.1), text at 2.9 to 1 contrast (1.4.3), and a color-only next cue (1.4.1). Which do you fix first?","predictType":"choice","choices":["The missing alt text (1.1.1)","The contrast (1.4.3)","Whichever is fastest to type","The color cue (1.4.1)"],"answerIndex":0,"reveal":"The missing alt text. It fully locks out a screen-reader user (the diagram simply does not exist for them), so a total exclusion outranks the contrast strain."},{"prompt":"You fix the color-only cue. A reviewer suggests just using a brighter, more saturated red. Does that satisfy 1.4.1?","predictType":"choice","choices":["No; the information must exist in a non-color channel","Yes; brighter red is easier to see","Only for large text","Yes, if contrast also passes"],"answerIndex":0,"reveal":"No. Brightening color is still color. 1.4.1 requires a second channel, so you add a text label and an arrow icon alongside the color."},{"reveal":"Final order and audit: alt text (1.1.1) first as a total exclusion, then contrast raised 2.9 to 1 -> 4.6 to 1 (1.4.3), then the color cue carried in three channels (1.4.1). Each fix maps to a criterion and a named excluded learner, and the redundant cue fits because the layout had whitespace."}]' />
+
 ## Decision Rule
 
 Review against named criteria, not against your own impression, and fix in the order of who is most fully excluded. An accessibility finding that cannot be tied to a WCAG criterion is an opinion; a fix that does not say which learner it unblocks has no priority.
@@ -62,6 +70,8 @@ Run every screen through three checks:
 3. **Redundancy check:** After the fix, is the same information available through at least two channels (color and label and icon), and does the added cue fit without crowding the screen?
 
 A screen that passes all three is accessible by evidence; one that only "looks fine" has not been reviewed, only admired.
+
+<inline-check question="An automated checker reports zero errors on a screen, so a designer marks it accessible. What does the workflow say about this?" explanation="Automated tools catch measurable issues like contrast ratios and missing alt attributes, but they cannot judge whether alt text is meaningful, whether reading order makes sense, or whether a color cue has a real alternative. The checker is one input, not the verdict; the workflow still needs human judgment against the criteria." options='[{"text":"A clean checker is one input, not a verdict; meaningful alt text and real color alternatives still need human judgment.","correct":true},{"text":"A clean automated report certifies full WCAG compliance.","correct":false},{"text":"Automated checkers replace the need for named criteria.","correct":false},{"text":"Zero errors means every learner is included.","correct":false}]' />
 
 ## Common Misreadings
 
@@ -126,6 +136,8 @@ Before moving on, use the check to separate surface completion from a decision t
 ## Final Check
 
 Before you move on, make sure your trace links Accessibility Review Workflow, evidence source, support choice, and revision quality. That is what separates design learning from simple completion.
+
+<concept-map concepts='["ail606_supplement_instructor_implementation_toolkit", "accessibility", "evidence_based_revision", "ai_supported_learning"]' />
 
 ## References
 
