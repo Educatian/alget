@@ -151,3 +151,70 @@ latency before defaulting the flag on.
   shape the inputs.
 - Per-section static-feature caching keyed by `content_version` (isolate-level), per the Caching section.
 - The `.../outcome` label-attach endpoint mirrored on the edge.
+
+## Cloudflare Worker (v1 shipped)
+
+A second, even-lower-latency deployment target landed alongside the Supabase edge fn: a Cloudflare
+Worker that serves the SAME parity-verified policy from Cloudflare's global edge. The Supabase edge fn
+**remains as an alternative**; both run identical decision logic.
+
+### Design (client-signal v1, best-effort write)
+
+- `cloudflare/adaptive-recommendation/src/policy.ts` is a **verbatim copy** of the parity-verified
+  Supabase `policy.ts` (do NOT hand-edit the logic — parity must be preserved; Python remains the source
+  of truth at `backend/knowledge_tracing.py`).
+- `cloudflare/adaptive-recommendation/src/index.ts` is the Worker
+  (`export default { async fetch(request, env, ctx) {...} }`). It accepts the same client-sent request
+  contract as the Supabase `index.ts` (`learner_id, course, section_id, annotation_adaptive?,
+  artifact_revision_scores?, annotation_signals?, learner_profile?, features?, content_version?`), runs
+  the identical `assembleFeatures` -> `select_support_move`, generates `decision_id` via
+  `crypto.randomUUID()`, enforces the faithfulness invariant, and returns the same response shape
+  (`decision_id, selected_action, candidate_actions, rejected_actions, action_scores, reason_codes,
+  evidence_snapshot, policy_mode, content_version`).
+- **Latency = pure policy compute + return.** There are NO per-request DB reads. The ONLY Worker ->
+  Supabase interaction is a **best-effort, fire-and-forget provenance WRITE** of the decision record to
+  `${SUPABASE_URL}/rest/v1/adaptive_decisions` (apikey + `Authorization: Bearer <service role>`,
+  `Prefer: return=minimal`), dispatched via `ctx.waitUntil(...)` so it runs AFTER the response is sent.
+  Wrapped in try/catch; a failed write NEVER affects the response, and if `SUPABASE_URL` /
+  `SUPABASE_SERVICE_ROLE_KEY` are unset the write is skipped silently.
+- CORS: `OPTIONS` preflight -> 204; all responses carry `Access-Control-Allow-Origin` (echoes `Origin`,
+  else `*`), `-Methods POST,OPTIONS`, `-Headers content-type`.
+- `wrangler.toml` sets `name = "alget-adaptive-recommendation"` and a `compatibility_date`; **no secrets**
+  live in it (secrets are set via `wrangler secret put`).
+
+### Parity (Cloudflare Worker == Python)
+
+`cloudflare/adaptive-recommendation/parity/` holds copies of `fixtures.json` + `golden.json` and a Node
+runner `run_parity.mjs` that transpiles the Worker's `src/policy.ts` via the frontend's bundled `esbuild`
+and deep-compares every field to the Python golden. **Result: 13/13 fixtures IDENTICAL.** Regenerate the
+golden with the existing `supabase/functions/adaptive-recommendation/parity/gen_golden.py` if backend
+logic changes, then re-copy + re-run.
+
+```bash
+node cloudflare/adaptive-recommendation/parity/run_parity.mjs
+```
+
+### Deploy
+
+```bash
+cd cloudflare/adaptive-recommendation
+npx wrangler deploy
+npx wrangler secret put SUPABASE_URL
+npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+```
+
+### Point the frontend at the Worker
+
+`frontend/src/lib/apiConfig.js` exports `ADAPTIVE_WORKER_URL` (`VITE_ADAPTIVE_WORKER_URL`) and
+`isAdaptiveWorkerEnabled()`. In `frontend/src/lib/adaptiveClient.js`, `getAdaptiveRecommendation` POSTs to
+the Worker (plain `fetch` with a timeout, default 2500ms) when the URL is set, and on ANY error/timeout
+falls back to the Supabase edge fn (if `VITE_ADAPTIVE_EDGE` is on) then FastAPI. It returns
+`{ data, error, source }` where `source` is `'worker' | 'edge' | 'fastapi'`. When `VITE_ADAPTIVE_WORKER_URL`
+is unset, behavior is unchanged. Set it to the deployed Worker URL to route adaptivity to the edge.
+
+### v2 follow-up
+
+Same as the Supabase deferral: **DB-side feature mining** (mastery reads, telemetry aggregation,
+misconception clustering, SM-2 `forgetting_risk`, content-version hashing). If per-request learner-state
+reads are later needed from the Worker, mine them edge-side via **Hyperdrive / PostgREST** so the client
+cannot shape the inputs. The Supabase edge fn stays as an alternative deployment.

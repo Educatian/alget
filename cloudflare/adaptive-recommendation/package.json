@@ -1,0 +1,16 @@
+{
+  "name": "alget-adaptive-recommendation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker serving the parity-verified adaptive support-selection policy (1:1 port of backend/knowledge_tracing.py).",
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "dry-run": "wrangler deploy --dry-run",
+    "parity": "node parity/run_parity.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

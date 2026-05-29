@@ -1,0 +1,758 @@
+[
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.02,
+        "ask": 0.429,
+        "explain": 0.818,
+        "practice": 0.285,
+        "represent": 0.531
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.4,
+        "annotation_friction": 0.5,
+        "annotation_momentum": 0.1,
+        "annotation_section_overlap": 0.8,
+        "artifact_gap": 0.5,
+        "artifact_quality": 0.4,
+        "artifact_revision_delta": -0.2,
+        "average_mastery": 0.28,
+        "calibration_drift": 0.2,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.35,
+        "engagement_signal": 0.3,
+        "forgetting_risk": 0.4,
+        "friction_signal": 0.66,
+        "frustration_index": 0.5,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.72,
+        "misconception_pressure": 0.4,
+        "no_stuck_reason": 0.0,
+        "predicted_next_correct": 0.3,
+        "predicted_retention": 0.3,
+        "stability_index": 0.2,
+        "support_fatigue": 0.1,
+        "transfer_readiness": 0.1,
+        "uncertainty_signal": 0.3,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "low_mastery",
+        "high_friction",
+        "misconception_pattern",
+        "annotation_friction",
+        "artifact_quality_gap",
+        "artifact_revision_regression"
+      ],
+      "rejected_actions": [
+        "represent",
+        "ask",
+        "practice",
+        "advance"
+      ],
+      "selected_action": "explain"
+    },
+    "name": "low_mastery_high_friction_explain"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.961,
+        "ask": 0.107,
+        "explain": 0.02,
+        "practice": 0.99,
+        "represent": 0.094
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.05,
+        "annotation_friction": 0.0,
+        "annotation_momentum": 0.6,
+        "annotation_section_overlap": 0.2,
+        "artifact_gap": 0.05,
+        "artifact_quality": 0.85,
+        "artifact_revision_delta": 0.1,
+        "average_mastery": 0.9,
+        "calibration_drift": 0.05,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.92,
+        "engagement_signal": 0.8,
+        "forgetting_risk": 0.1,
+        "friction_signal": 0.05,
+        "frustration_index": 0.0,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.05,
+        "misconception_pressure": 0.0,
+        "no_stuck_reason": 1.0,
+        "predicted_next_correct": 0.88,
+        "predicted_retention": 0.85,
+        "stability_index": 0.9,
+        "support_fatigue": 0.1,
+        "transfer_readiness": 0.85,
+        "uncertainty_signal": 0.05,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "artifact_annotation_momentum",
+        "transfer_ready"
+      ],
+      "rejected_actions": [
+        "advance",
+        "ask",
+        "represent",
+        "explain"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "high_mastery_transfer_ready_advance"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.75,
+        "ask": 0.143,
+        "explain": 0.021,
+        "practice": 0.916,
+        "represent": 0.125
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.1,
+        "annotation_friction": 0.0,
+        "annotation_momentum": 0.4,
+        "annotation_section_overlap": 0.1,
+        "artifact_gap": 0.1,
+        "artifact_quality": 0.7,
+        "artifact_revision_delta": 0.05,
+        "average_mastery": 0.78,
+        "calibration_drift": 0.1,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.8,
+        "engagement_signal": 0.6,
+        "forgetting_risk": 0.15,
+        "friction_signal": 0.1,
+        "frustration_index": 0.0,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.2,
+        "misconception_pressure": 0.05,
+        "no_stuck_reason": 1.0,
+        "predicted_next_correct": 0.75,
+        "predicted_retention": 0.7,
+        "stability_index": 0.7,
+        "support_fatigue": 0.05,
+        "transfer_readiness": 0.72,
+        "uncertainty_signal": 0.1,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "artifact_annotation_momentum",
+        "transfer_ready"
+      ],
+      "rejected_actions": [
+        "advance",
+        "ask",
+        "represent",
+        "explain"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "high_mastery_prefer_advance_gate"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.335,
+        "ask": 0.202,
+        "explain": 0.496,
+        "practice": 0.582,
+        "represent": 0.2
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.3,
+        "annotation_friction": 0.1,
+        "annotation_momentum": 0.2,
+        "annotation_section_overlap": 0.2,
+        "artifact_gap": 0.3,
+        "artifact_quality": 0.5,
+        "artifact_revision_delta": 0.0,
+        "average_mastery": 0.55,
+        "calibration_drift": 0.1,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.5,
+        "engagement_signal": 0.4,
+        "forgetting_risk": 0.2,
+        "friction_signal": 0.3,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.3,
+        "misconception_pressure": 0.2,
+        "no_stuck_reason": 0.0,
+        "predicted_next_correct": 0.5,
+        "predicted_retention": 0.5,
+        "stability_index": 0.4,
+        "support_fatigue": 0.1,
+        "transfer_readiness": 0.3,
+        "uncertainty_signal": 0.2,
+        "unit_signal": 1.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "unit_mismatch"
+      ],
+      "rejected_actions": [
+        "explain",
+        "advance",
+        "ask",
+        "represent"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "unit_mismatch_explain"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.169,
+        "ask": 0.344,
+        "explain": 0.398,
+        "practice": 0.444,
+        "represent": 0.62
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.45,
+        "annotation_friction": 0.2,
+        "annotation_momentum": 0.2,
+        "annotation_section_overlap": 0.3,
+        "artifact_gap": 0.4,
+        "artifact_quality": 0.4,
+        "artifact_revision_delta": -0.1,
+        "average_mastery": 0.5,
+        "calibration_drift": 0.1,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.45,
+        "engagement_signal": 0.3,
+        "forgetting_risk": 0.3,
+        "friction_signal": 0.35,
+        "idle_signal": 0.8,
+        "mastery_gap": 0.3,
+        "misconception_pressure": 0.4,
+        "no_stuck_reason": 0.0,
+        "predicted_next_correct": 0.4,
+        "predicted_retention": 0.4,
+        "stability_index": 0.3,
+        "support_fatigue": 0.2,
+        "transfer_readiness": 0.2,
+        "uncertainty_signal": 0.5,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "idle_reengagement",
+        "misconception_pattern",
+        "artifact_quality_gap"
+      ],
+      "rejected_actions": [
+        "practice",
+        "explain",
+        "ask",
+        "advance"
+      ],
+      "selected_action": "represent"
+    },
+    "name": "idle_reengagement_represent"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.33,
+        "ask": 0.207,
+        "explain": 0.303,
+        "practice": 0.614,
+        "represent": 0.208
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.2,
+        "annotation_friction": 0.0,
+        "annotation_momentum": 0.2,
+        "annotation_section_overlap": 0.1,
+        "artifact_gap": 0.2,
+        "artifact_quality": 0.6,
+        "artifact_revision_delta": 0.0,
+        "average_mastery": 0.6,
+        "calibration_drift": 0.1,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.6,
+        "engagement_signal": 0.5,
+        "forgetting_risk": 0.85,
+        "friction_signal": 0.2,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.4,
+        "misconception_pressure": 0.1,
+        "no_stuck_reason": 1.0,
+        "predicted_next_correct": 0.5,
+        "predicted_retention": 0.4,
+        "stability_index": 0.4,
+        "support_fatigue": 0.1,
+        "transfer_readiness": 0.4,
+        "uncertainty_signal": 0.2,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "retrieval_risk"
+      ],
+      "rejected_actions": [
+        "advance",
+        "explain",
+        "represent",
+        "ask"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "forgetting_risk_retrieval"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.395,
+        "ask": 0.329,
+        "explain": 0.368,
+        "practice": 0.655,
+        "represent": 0.366
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.25,
+        "annotation_friction": 0.7,
+        "annotation_momentum": 0.5,
+        "annotation_section_overlap": 0.9,
+        "artifact_gap": 0.25,
+        "artifact_quality": 0.55,
+        "artifact_revision_delta": -0.05,
+        "average_mastery": 0.55,
+        "calibration_drift": 0.1,
+        "chat_signal": 0.1,
+        "correct_ratio": 0.55,
+        "engagement_signal": 0.45,
+        "forgetting_risk": 0.2,
+        "friction_signal": 0.3,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.35,
+        "misconception_pressure": 0.15,
+        "no_stuck_reason": 0.0,
+        "predicted_next_correct": 0.55,
+        "predicted_retention": 0.5,
+        "stability_index": 0.45,
+        "support_fatigue": 0.15,
+        "transfer_readiness": 0.35,
+        "uncertainty_signal": 0.25,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "annotation_friction"
+      ],
+      "rejected_actions": [
+        "advance",
+        "explain",
+        "represent",
+        "ask"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "annotation_friction_ablation_on"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.355,
+        "ask": 0.209,
+        "explain": 0.275,
+        "practice": 0.605,
+        "represent": 0.273
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.25,
+        "annotation_friction": 0.0,
+        "annotation_momentum": 0.0,
+        "annotation_section_overlap": 0.0,
+        "artifact_gap": 0.25,
+        "artifact_quality": 0.55,
+        "artifact_revision_delta": -0.05,
+        "average_mastery": 0.55,
+        "calibration_drift": 0.1,
+        "chat_signal": 0.1,
+        "correct_ratio": 0.55,
+        "engagement_signal": 0.45,
+        "forgetting_risk": 0.2,
+        "friction_signal": 0.3,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.35,
+        "misconception_pressure": 0.15,
+        "no_stuck_reason": 0.0,
+        "predicted_next_correct": 0.55,
+        "predicted_retention": 0.5,
+        "stability_index": 0.45,
+        "support_fatigue": 0.15,
+        "transfer_readiness": 0.35,
+        "uncertainty_signal": 0.25,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_ablated",
+      "reason_codes": [
+        "balanced_profile"
+      ],
+      "rejected_actions": [
+        "advance",
+        "explain",
+        "represent",
+        "ask"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "annotation_friction_ablation_off"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.148,
+        "ask": 0.241,
+        "explain": 0.444,
+        "practice": 0.522,
+        "represent": 0.349
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.3,
+        "annotation_friction": 0.1,
+        "annotation_momentum": 0.1,
+        "annotation_section_overlap": 0.2,
+        "artifact_gap": 0.6,
+        "artifact_quality": 0.3,
+        "artifact_revision_delta": -0.45,
+        "average_mastery": 0.5,
+        "calibration_drift": 0.15,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.5,
+        "engagement_signal": 0.4,
+        "forgetting_risk": 0.2,
+        "friction_signal": 0.3,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.4,
+        "misconception_pressure": 0.2,
+        "no_stuck_reason": 0.0,
+        "predicted_next_correct": 0.45,
+        "predicted_retention": 0.45,
+        "stability_index": 0.4,
+        "support_fatigue": 0.1,
+        "transfer_readiness": 0.3,
+        "uncertainty_signal": 0.2,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "artifact_quality_gap",
+        "artifact_revision_regression"
+      ],
+      "rejected_actions": [
+        "explain",
+        "represent",
+        "ask",
+        "advance"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "artifact_regression_repair"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.13,
+        "ask": 0.667,
+        "explain": 0.47,
+        "practice": 0.486,
+        "represent": 0.472
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.2,
+        "annotation_friction": 0.2,
+        "annotation_momentum": 0.2,
+        "annotation_section_overlap": 0.4,
+        "artifact_gap": 0.4,
+        "artifact_quality": 0.4,
+        "artifact_revision_delta": 0.0,
+        "average_mastery": 0.5,
+        "calibration_drift": 0.6,
+        "chat_signal": 0.7,
+        "correct_ratio": 0.5,
+        "engagement_signal": 0.3,
+        "forgetting_risk": 0.2,
+        "friction_signal": 0.4,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.3,
+        "misconception_pressure": 0.5,
+        "no_stuck_reason": 1.0,
+        "predicted_next_correct": 0.4,
+        "predicted_retention": 0.4,
+        "stability_index": 0.3,
+        "support_fatigue": 0.4,
+        "transfer_readiness": 0.3,
+        "uncertainty_signal": 0.6,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "calibration_gap",
+        "misconception_pattern",
+        "artifact_quality_gap"
+      ],
+      "rejected_actions": [
+        "practice",
+        "represent",
+        "explain",
+        "advance"
+      ],
+      "selected_action": "ask"
+    },
+    "name": "calibration_misconception_ask"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.34,
+        "ask": 0.02,
+        "explain": 0.02,
+        "practice": 0.63,
+        "represent": 0.02
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.0,
+        "annotation_friction": 0.0,
+        "annotation_momentum": 0.0,
+        "annotation_section_overlap": 0.0,
+        "artifact_gap": 0.0,
+        "artifact_quality": 0.0,
+        "artifact_revision_delta": 0.0,
+        "average_mastery": 0.5,
+        "calibration_drift": 0.0,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.5,
+        "engagement_signal": 0.0,
+        "forgetting_risk": 0.0,
+        "friction_signal": 0.0,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.0,
+        "misconception_pressure": 0.0,
+        "no_stuck_reason": 0.0,
+        "predicted_next_correct": 0.5,
+        "predicted_retention": 0.5,
+        "stability_index": 0.5,
+        "support_fatigue": 0.0,
+        "transfer_readiness": 0.0,
+        "uncertainty_signal": 0.0,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "balanced_profile"
+      ],
+      "rejected_actions": [
+        "advance",
+        "explain",
+        "represent",
+        "ask"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "balanced_empty_profile"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.687,
+        "ask": 0.143,
+        "explain": 0.04,
+        "practice": 0.922,
+        "represent": 0.134
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.1,
+        "annotation_friction": 0.0,
+        "annotation_momentum": 0.55,
+        "annotation_section_overlap": 0.2,
+        "artifact_gap": 0.1,
+        "artifact_quality": 0.78,
+        "artifact_revision_delta": 0.05,
+        "average_mastery": 0.72,
+        "calibration_drift": 0.05,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.78,
+        "engagement_signal": 0.55,
+        "forgetting_risk": 0.15,
+        "friction_signal": 0.15,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.15,
+        "misconception_pressure": 0.05,
+        "no_stuck_reason": 1.0,
+        "predicted_next_correct": 0.8,
+        "predicted_retention": 0.65,
+        "stability_index": 0.7,
+        "support_fatigue": 0.05,
+        "transfer_readiness": 0.5,
+        "uncertainty_signal": 0.1,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "artifact_annotation_momentum"
+      ],
+      "rejected_actions": [
+        "advance",
+        "ask",
+        "represent",
+        "explain"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "annotation_momentum_practice"
+  },
+  {
+    "decision": {
+      "action_scores": {
+        "advance": 0.282,
+        "ask": 0.275,
+        "explain": 0.328,
+        "practice": 0.551,
+        "represent": 0.357
+      },
+      "candidate_actions": [
+        "explain",
+        "represent",
+        "practice",
+        "advance",
+        "ask"
+      ],
+      "evidence_snapshot": {
+        "accuracy_gap": 0.3,
+        "annotation_friction": 0.2,
+        "annotation_momentum": 0.2,
+        "annotation_section_overlap": 0.7,
+        "artifact_gap": 0.3,
+        "artifact_quality": 0.5,
+        "artifact_revision_delta": -0.05,
+        "average_mastery": 0.5,
+        "calibration_drift": 0.1,
+        "chat_signal": 0.0,
+        "correct_ratio": 0.5,
+        "engagement_signal": 0.4,
+        "forgetting_risk": 0.2,
+        "friction_signal": 0.4,
+        "idle_signal": 0.0,
+        "mastery_gap": 0.3,
+        "misconception_pressure": 0.2,
+        "no_stuck_reason": 0.0,
+        "predicted_next_correct": 0.5,
+        "predicted_retention": 0.5,
+        "stability_index": 0.4,
+        "support_fatigue": 0.2,
+        "transfer_readiness": 0.3,
+        "uncertainty_signal": 0.3,
+        "unit_signal": 0.0
+      },
+      "policy_mode": "annotation_adaptive",
+      "reason_codes": [
+        "annotation_section_focus"
+      ],
+      "rejected_actions": [
+        "represent",
+        "explain",
+        "advance",
+        "ask"
+      ],
+      "selected_action": "practice"
+    },
+    "name": "section_focus_no_friction_threshold"
+  }
+]
