@@ -59,9 +59,9 @@ export default function LandingPage({ onLogin, user, onLogout }) {
     return (
         <div className="editorial-shell relative flex min-h-screen flex-col overflow-hidden text-[var(--ath-text)]">
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="glow-orb left-[-8rem] top-6 h-72 w-72 bg-[rgba(15,81,103,0.18)]"></div>
-                <div className="glow-orb right-[-7rem] top-[8%] h-80 w-80 bg-[rgba(199,137,67,0.12)]"></div>
-                <div className="glow-orb-dark bottom-[-8rem] left-[18%] h-96 w-96 bg-[rgba(15,81,103,0.16)]"></div>
+                <div className="glow-orb left-[-8rem] top-6 h-72 w-72 bg-[color-mix(in_srgb,var(--ath-primary)_18%,transparent)]"></div>
+                <div className="glow-orb right-[-7rem] top-[8%] h-80 w-80 bg-[color-mix(in_srgb,var(--ath-accent)_12%,transparent)]"></div>
+                <div className="glow-orb-dark bottom-[-8rem] left-[18%] h-96 w-96 bg-[color-mix(in_srgb,var(--ath-primary)_16%,transparent)]"></div>
             </div>
 
             <nav className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.82)] backdrop-blur-2xl">
@@ -70,14 +70,14 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         type="button"
                         onClick={() => navigate('/')}
                         aria-label="Go to ALGET home"
-                        className="flex min-w-0 items-center gap-3 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                        className="flex min-w-0 items-center gap-3 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_30%,transparent)]"
                     >
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-[rgba(15,81,103,0.12)] bg-[var(--ath-primary)] text-sm font-bold text-white shadow-[0_12px_24px_rgba(9,56,72,0.16)]">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--ath-radius-xl)] border border-[color-mix(in_srgb,var(--ath-primary)_14%,transparent)] bg-[var(--ath-primary)] text-sm font-bold text-white shadow-[0_12px_24px_color-mix(in_srgb,var(--ath-primary-deep)_22%,transparent)]">
                             AL
                         </div>
                         <div className="min-w-0 leading-tight">
                             <p className="text-base font-semibold tracking-tight text-[var(--ath-primary-deep)]">ALGET</p>
-                            <p className="hidden text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--ath-secondary)] sm:block">Alabama Generative Intelligent Textbook</p>
+                            <p className="hidden text-[length:var(--ath-text-2xs)] font-medium uppercase tracking-[0.18em] text-[var(--ath-secondary)] sm:block">Alabama Generative Intelligent Textbook</p>
                         </div>
                     </button>
 
@@ -158,19 +158,19 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         <div className="mt-10 grid gap-3 sm:grid-cols-3">
                             {platformSignals.map((item) => (
                                 <div key={item.label} className="editorial-surface p-5">
-                                    <p className="editorial-kicker">{item.value}</p>
-                                    <p className="mt-3 text-base leading-7 text-[var(--ath-muted)]">{item.label}</p>
+                                    <p className="editorial-label">{item.value}</p>
+                                    <p className="mt-3 text-[length:var(--ath-text-lg)] font-semibold leading-7 text-[var(--ath-text)]">{item.label}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     <div className="relative">
-                        <div className="absolute -inset-6 rounded-[2.7rem] bg-[radial-gradient(circle_at_top_right,_rgba(200,226,236,0.85),_transparent_42%),radial-gradient(circle_at_bottom_left,_rgba(199,137,67,0.14),_transparent_36%)] blur-2xl"></div>
-                        <div className="relative overflow-hidden rounded-[2.7rem] border border-[rgba(15,81,103,0.14)] bg-[linear-gradient(180deg,_rgba(18,41,51,0.98),_rgba(10,28,36,0.95))] p-6 shadow-[0_30px_80px_rgba(15,23,42,0.24)]">
+                        <div className="absolute -inset-6 rounded-[2.7rem] bg-[radial-gradient(circle_at_top_right,_color-mix(in_srgb,var(--ath-primary-soft)_85%,transparent),_transparent_42%),radial-gradient(circle_at_bottom_left,_color-mix(in_srgb,var(--ath-accent)_14%,transparent),_transparent_36%)] blur-2xl"></div>
+                        <div className="relative overflow-hidden rounded-[2.7rem] border border-[color-mix(in_srgb,var(--ath-primary)_14%,transparent)] bg-[linear-gradient(180deg,_rgba(18,41,51,0.98),_rgba(10,28,36,0.95))] p-6 shadow-[0_30px_80px_rgba(15,23,42,0.24)]">
                             <div className="mb-3 flex items-center gap-2">
                                 <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" aria-hidden />
-                                <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/55">Live preview</span>
+                                <span className="text-[length:var(--ath-text-2xs)] font-bold uppercase tracking-[0.22em] text-white/55">Live preview</span>
                             </div>
                             <div className="rounded-[2rem] border border-white/10 bg-white/5 p-4">
                                 <GenerativeIllustration />
@@ -196,7 +196,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                                         key={feature.title}
                                         className="editorial-surface group p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_rgba(15,23,42,0.08)]"
                                     >
-                                        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[rgba(15,81,103,0.08)] text-[var(--ath-primary)]">
+                                        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[color-mix(in_srgb,var(--ath-primary)_8%,transparent)] text-[var(--ath-primary)]">
                                             <Icon className="h-6 w-6" />
                                         </div>
                                         <h3 className="mt-6 text-2xl font-semibold tracking-tight text-[var(--ath-text)]">{feature.title}</h3>

@@ -57,11 +57,11 @@ export const KinematicsDiagram = () => {
     const speed = Math.sqrt(vxComponent * vxComponent + vyComponent * vyComponent);
 
     return (
-        <div className="my-8 p-6 bg-white rounded-2xl border border-slate-200 shadow-sm max-w-2xl mx-auto font-sans relative overflow-hidden">
-            <div className="flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-100 pb-4">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] rounded-2xl border border-[var(--ath-line)] shadow-sm max-w-2xl mx-auto font-sans relative overflow-hidden">
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-[var(--ath-line)] pb-4">
                 <div>
-                    <h3 className="text-xl font-bold text-slate-800">Particle Kinematics</h3>
-                    <p className="text-sm text-slate-500">Tracing position ($s$), velocity ($v$), and acceleration ($a$).</p>
+                    <h3 className="text-xl font-bold text-[var(--ath-text)]">Particle Kinematics</h3>
+                    <p className="text-sm text-[var(--ath-muted)]">Tracing position ($s$), velocity ($v$), and acceleration ($a$).</p>
                 </div>
 
                 <button
@@ -86,7 +86,7 @@ export const KinematicsDiagram = () => {
             {/* Manual time scrubber: keeps the simulation interactive while paused. */}
             <div className="mb-4">
                 <div className="flex items-baseline justify-between gap-2">
-                    <label htmlFor="kinematics-scrub" className="text-xs font-bold uppercase tracking-wider text-slate-600">
+                    <label htmlFor="kinematics-scrub" className="text-xs font-bold uppercase tracking-wider text-[var(--ath-muted)]">
                         Scrub time {isPlaying ? '(stop to drag)' : ''}
                     </label>
                     <span className="text-xs font-bold text-indigo-600">t = {tSeconds.toFixed(1)} s</span>
@@ -101,17 +101,17 @@ export const KinematicsDiagram = () => {
                     disabled={isPlaying}
                     onChange={(event) => setScrub(Number(event.target.value))}
                     aria-valuetext={`t = ${tSeconds.toFixed(1)} seconds`}
-                    className="mt-2 h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 accent-indigo-600 disabled:opacity-50"
+                    className="mt-2 h-2 w-full cursor-pointer appearance-none rounded-lg bg-[var(--ath-line)] accent-indigo-600 disabled:opacity-50"
                 />
-                <p className="mt-2 rounded-lg bg-slate-50 px-3 py-2 text-xs text-slate-600" aria-live="polite">
+                <p className="mt-2 rounded-lg bg-[var(--ath-panel-muted)] px-3 py-2 text-xs text-[var(--ath-muted)]" aria-live="polite">
                     At t = {tSeconds.toFixed(1)} s the speed is {speed.toFixed(1)} m/s
                     {' '}(v_x {vxComponent.toFixed(1)} m/s, v_y {vyComponent.toFixed(1)} m/s); acceleration stays a constant 9.8 m/s downward.
                 </p>
             </div>
 
-            <div className="w-full h-64 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center">
+            <div className="w-full h-64 bg-[var(--ath-panel-muted)] rounded-xl border border-[var(--ath-line)] shadow-inner relative flex items-center justify-center">
                 {/* Background Grid */}
-                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(#94a3b8 1px, transparent 1px), linear-gradient(90deg, #94a3b8 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)', backgroundSize: '20px 20px', color: 'var(--ath-muted)' }}></div>
 
                 <AccessibleSvg
                     viewBox="0 0 400 150"
@@ -129,17 +129,17 @@ export const KinematicsDiagram = () => {
                     </defs>
 
                     {/* The Path (Trajectory) */}
-                    <path d={`M 50 110 Q 200 10 350 110`} fill="none" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="6 4" />
+                    <path d={`M 50 110 Q 200 10 350 110`} fill="none" stroke="var(--ath-line-strong)" strokeWidth="2" strokeDasharray="6 4" />
 
                     {/* The Reference Frame (Axis) */}
-                    <line x1="30" y1="130" x2="370" y2="130" stroke="#94a3b8" strokeWidth="2" />
-                    <line x1="30" y1="130" x2="30" y2="20" stroke="#94a3b8" strokeWidth="2" />
-                    <text x="360" y="145" fill="#64748b" fontSize="10" fontWeight="bold">x</text>
-                    <text x="15" y="30" fill="#64748b" fontSize="10" fontWeight="bold">y</text>
+                    <line x1="30" y1="130" x2="370" y2="130" stroke="var(--ath-muted)" strokeWidth="2" />
+                    <line x1="30" y1="130" x2="30" y2="20" stroke="var(--ath-muted)" strokeWidth="2" />
+                    <text x="360" y="145" fill="var(--ath-muted)" fontSize="10" fontWeight="bold">x</text>
+                    <text x="15" y="30" fill="var(--ath-muted)" fontSize="10" fontWeight="bold">y</text>
 
                     {/* Active Variables Display */}
                     <g transform="translate(150, 140)">
-                        <text x="0" y="0" fill="#64748b" fontSize="10" fontWeight="bold">t = {(displayedTime / 10).toFixed(1)}s</text>
+                        <text x="0" y="0" fill="var(--ath-muted)" fontSize="10" fontWeight="bold">t = {(displayedTime / 10).toFixed(1)}s</text>
                     </g>
 
                     {/* Dynamic Moving System */}
@@ -178,8 +178,8 @@ export const KinematicsDiagram = () => {
                             <line x1={x} y1={y} x2={x} y2={vy} stroke="#93c5fd" strokeWidth="1" strokeDasharray="2 2" />
 
                             {/* The Particle */}
-                            <circle cx={x} cy={y} r="8" fill="#475569" className="drop-shadow-md" />
-                            <circle cx={x} cy={y} r="3" fill="#94a3b8" />
+                            <circle cx={x} cy={y} r="8" fill="var(--ath-text)" className="drop-shadow-md" />
+                            <circle cx={x} cy={y} r="3" fill="var(--ath-muted)" />
 
                             {/* Labels floating near particle */}
                             <text x={vx + 5} y={vy - 5} fill="#3b82f6" fontSize="10" fontWeight="bold">v</text>
@@ -189,17 +189,17 @@ export const KinematicsDiagram = () => {
 
                     {!showParticle && (
                         <g>
-                            <circle cx="50" cy="110" r="8" fill="#475569" className="drop-shadow-md" />
-                            <text x="35" y="90" fill="#475569" fontSize="12" fontWeight="bold">START</text>
+                            <circle cx="50" cy="110" r="8" fill="var(--ath-text)" className="drop-shadow-md" />
+                            <text x="35" y="90" fill="var(--ath-text)" fontSize="12" fontWeight="bold">START</text>
                         </g>
                     )}
                 </AccessibleSvg>
             </div>
 
             <div className="mt-4 flex gap-6 px-2 justify-center">
-                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#10b981]" aria-hidden="true"></span><span className="text-xs font-bold text-slate-500 uppercase">Position (s)</span></div>
-                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#3b82f6]" aria-hidden="true"></span><span className="text-xs font-bold text-slate-500 uppercase">Velocity (v)</span></div>
-                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#ef4444]" aria-hidden="true"></span><span className="text-xs font-bold text-slate-500 uppercase">Acceleration (a)</span></div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#10b981]" aria-hidden="true"></span><span className="text-xs font-bold text-[var(--ath-muted)] uppercase">Position (s)</span></div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#3b82f6]" aria-hidden="true"></span><span className="text-xs font-bold text-[var(--ath-muted)] uppercase">Velocity (v)</span></div>
+                <div className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#ef4444]" aria-hidden="true"></span><span className="text-xs font-bold text-[var(--ath-muted)] uppercase">Acceleration (a)</span></div>
             </div>
         </div>
     );

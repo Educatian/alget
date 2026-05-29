@@ -46,14 +46,14 @@ export const SwarmDiagram = () => {
                 baseY += (Math.random() - 0.5) * 100;
             }
 
-            return <circle key={`${path}-${i}`} cx={baseX + xOffset} cy={baseY + yOffset} r="4" fill="#1e293b" />
+            return <circle key={`${path}-${i}`} cx={baseX + xOffset} cy={baseY + yOffset} r="4" fill="var(--ath-text)" />
         });
     };
 
     return (
-        <div className="my-8 p-6 bg-white border border-slate-200 rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
-            <h3 className="text-lg font-bold text-slate-800 mb-2">Interactive: Stigmergy Simulation</h3>
-            <p aria-live="polite" className="text-sm text-slate-500 mb-6 text-center max-w-lg min-h-[40px]">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] border border-[var(--ath-line)] rounded-xl drop-shadow-sm font-sans flex flex-col items-center">
+            <h3 className="text-lg font-bold text-[var(--ath-text)] mb-2">Interactive: Stigmergy Simulation</h3>
+            <p aria-live="polite" className="text-sm text-[var(--ath-muted)] mb-6 text-center max-w-lg min-h-[40px]">
                 {step === 0 && "Click Start to watch ant exploration."}
                 {earlyStage && step > 0 && "1. Random Exploration: Ants mapping paths."}
                 {midStage && "2. Pheromone Dropping: Both paths found, but short path takes less time."}
@@ -70,7 +70,7 @@ export const SwarmDiagram = () => {
                 </button>
                 <button
                     onClick={resetSimulation}
-                    className="px-4 py-2 rounded-lg font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors"
+                    className="px-4 py-2 rounded-lg font-bold text-[var(--ath-muted)] bg-[var(--ath-panel-muted)] hover:bg-[var(--ath-line)] transition-colors"
                 >
                     Reset
                 </button>
@@ -78,7 +78,7 @@ export const SwarmDiagram = () => {
 
             <AccessibleSvg
                 viewBox="0 0 600 300"
-                className="w-full max-w-2xl bg-slate-50 rounded-lg overflow-hidden border border-slate-100"
+                className="w-full max-w-2xl bg-[var(--ath-panel-muted)] rounded-lg overflow-hidden border border-[var(--ath-line)]"
                 title="Ant colony stigmergy path optimization"
                 desc={`Ants travel between a Nest on the left and Food on the right along two routes: a long upper route and a short lower route. ${earlyStage ? 'Early stage: ants explore randomly.' : midStage ? 'Mid stage: both paths carry pheromone, but the short route accumulates more.' : 'Late stage: pheromone has converged on the short route, the stigmergic winner.'}`}
             >
@@ -98,7 +98,7 @@ export const SwarmDiagram = () => {
                 {calcAnts('long', earlyStage ? 10 : (lateStage ? 1 : 5))}
                 {calcAnts('short', earlyStage ? 10 : (lateStage ? 15 : 8))}
 
-                <text x="300" y="30" textAnchor="middle" className="text-sm font-bold fill-slate-400">Long Route</text>
+                <text x="300" y="30" textAnchor="middle" className="text-sm font-bold" fill="var(--ath-muted)">Long Route</text>
                 <text x="300" y="260" textAnchor="middle" className="text-sm font-bold fill-red-600 drop-shadow-sm">Short Route (Stigmergic Winner)</text>
             </AccessibleSvg>
         </div>

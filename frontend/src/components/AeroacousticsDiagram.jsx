@@ -5,20 +5,20 @@ export const MicroTurbulenceDiagram = () => {
     const [serrationEnabled, setSerrationEnabled] = useState(false);
 
     return (
-        <div className="my-8 p-6 bg-slate-900 rounded-2xl border border-slate-700 shadow-[0_10px_40px_rgba(0,0,0,0.2)] max-w-2xl mx-auto font-sans relative overflow-hidden">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] rounded-2xl border border-[var(--ath-line)] shadow-[0_10px_40px_rgba(0,0,0,0.2)] max-w-2xl mx-auto font-sans relative overflow-hidden">
 
-            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-800 pb-6">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-[var(--ath-line)] pb-6">
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-[var(--ath-text)] mb-1 flex items-center gap-2">
                         <span className="text-purple-400" aria-hidden="true">✧</span> Vortex Shredding Analysis
                     </h3>
-                    <p className="text-sm text-slate-400">Observe how trailing edge wing serrations break up large acoustic vortices.</p>
+                    <p className="text-sm text-[var(--ath-muted)]">Observe how trailing edge wing serrations break up large acoustic vortices.</p>
                 </div>
 
                 <button
                     onClick={() => setSerrationEnabled(!serrationEnabled)}
                     className={`px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg flex items-center gap-2
-                        ${serrationEnabled ? 'bg-purple-600 hover:bg-purple-500 text-white shadow-purple-900/30' : 'bg-slate-800 hover:bg-slate-700 text-slate-300'}`}
+                        ${serrationEnabled ? 'bg-purple-600 hover:bg-purple-500 text-white shadow-purple-900/30' : 'bg-[var(--ath-panel-muted)] hover:bg-[var(--ath-line)] text-[var(--ath-text)]'}`}
                 >
                     {serrationEnabled ? 'Serrations Active' : 'Enable Serrations'}
                 </button>
@@ -94,8 +94,8 @@ export const MicroTurbulenceDiagram = () => {
 
             {/* Airflow regime surfaced as text + live region (WCAG 1.4.1) */}
             <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
-                <span className="font-semibold text-slate-400">Airflow: </span>
-                <span className="font-bold text-white">
+                <span className="font-semibold text-[var(--ath-muted)]">Airflow: </span>
+                <span className="font-bold text-[var(--ath-text)]">
                     {serrationEnabled ? 'Micro-turbulence (silent flight)' : 'Coherent vortex (loud noise)'}
                 </span>
             </div>

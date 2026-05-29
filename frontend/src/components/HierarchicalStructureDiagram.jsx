@@ -5,26 +5,26 @@ export const HierarchicalStructureDiagram = () => {
     const [stressLevel, setStressLevel] = useState(0);
 
     return (
-        <div className="my-8 p-6 bg-slate-900 rounded-2xl border border-slate-700 shadow-[0_10px_40px_rgba(0,0,0,0.2)] max-w-2xl mx-auto font-sans relative overflow-hidden">
-            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-800 pb-6">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] rounded-2xl border border-[var(--ath-line)] shadow-[0_10px_40px_rgba(0,0,0,0.2)] max-w-2xl mx-auto font-sans relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-[var(--ath-line)] pb-6">
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-1">Brick-and-Mortar Hierarchy (Nacre)</h3>
-                    <p className="text-sm text-slate-400">Increase stress to observe how brittle "bricks" and polymer "mortar" arrest crack propagation.</p>
+                    <h3 className="text-xl font-bold text-[var(--ath-text)] mb-1">Brick-and-Mortar Hierarchy (Nacre)</h3>
+                    <p className="text-sm text-[var(--ath-muted)]">Increase stress to observe how brittle "bricks" and polymer "mortar" arrest crack propagation.</p>
                 </div>
 
                 <div className="w-1/3">
-                    <label htmlFor="hierarchical-stress" className="text-xs font-bold text-slate-400 uppercase mb-2 block text-right">Applied Stress</label>
+                    <label htmlFor="hierarchical-stress" className="text-xs font-bold text-[var(--ath-muted)] uppercase mb-2 block text-right">Applied Stress</label>
                     <input
                         id="hierarchical-stress"
                         type="range" min="0" max="100" value={stressLevel}
                         aria-label="Applied stress percentage"
                         onChange={(e) => setStressLevel(Number(e.target.value))}
-                        className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
+                        className="w-full h-2 bg-[var(--ath-line)] rounded-lg appearance-none cursor-pointer accent-orange-500"
                     />
                 </div>
             </div>
 
-            <div className="w-full h-56 bg-slate-800 rounded-xl border border-slate-700 shadow-inner relative flex items-center justify-center p-4">
+            <div className="w-full h-56 bg-[var(--ath-panel-muted)] rounded-xl border border-[var(--ath-line)] shadow-inner relative flex items-center justify-center p-4">
                 <AccessibleSvg
                     viewBox="0 0 500 200"
                     className="w-full h-full drop-shadow-lg"
@@ -90,7 +90,7 @@ export const HierarchicalStructureDiagram = () => {
                 </AccessibleSvg>
             </div>
 
-            <div aria-live="polite" className="mt-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-500">
+            <div aria-live="polite" className="mt-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-[var(--ath-muted)]">
                 <span>Material Status:</span>
                 {stressLevel < 30 ? (
                     <span className="text-emerald-400">Intact (Solid)</span>

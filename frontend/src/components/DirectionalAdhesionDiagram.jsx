@@ -7,15 +7,15 @@ export const DirectionalAdhesionDiagram = () => {
     const isEngaged = angle >= -10 && angle <= 20; // Engaged effectively when pulling straight or slightly forward
 
     return (
-        <div className="my-8 p-6 bg-slate-900 rounded-2xl border border-slate-700 shadow-lg max-w-2xl mx-auto font-sans relative overflow-hidden">
-            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-800 pb-6">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] rounded-2xl border border-[var(--ath-line)] shadow-lg max-w-2xl mx-auto font-sans relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-[var(--ath-line)] pb-6">
                 <div>
-                    <h3 className="text-xl font-bold text-white mb-1">Directional Adhesion</h3>
-                    <p className="text-sm text-slate-400">Change the pull angle to see the van der Waals forces engage (sticking) or disengage (peeling).</p>
+                    <h3 className="text-xl font-bold text-[var(--ath-text)] mb-1">Directional Adhesion</h3>
+                    <p className="text-sm text-[var(--ath-muted)]">Change the pull angle to see the van der Waals forces engage (sticking) or disengage (peeling).</p>
                 </div>
 
                 <div className="w-1/3">
-                    <label htmlFor="adhesion-pull-angle" className="text-xs font-bold text-slate-400 uppercase mb-2 block text-right">Pull Angle ($\theta$)</label>
+                    <label htmlFor="adhesion-pull-angle" className="text-xs font-bold text-[var(--ath-muted)] uppercase mb-2 block text-right">Pull Angle ($\theta$)</label>
                     <input
                         id="adhesion-pull-angle"
                         type="range" min="-45" max="45" value={angle}
@@ -26,7 +26,7 @@ export const DirectionalAdhesionDiagram = () => {
                 </div>
             </div>
 
-            <div className="w-full h-64 bg-slate-800 rounded-xl border border-slate-700 shadow-inner relative flex items-center justify-center p-4">
+            <div className="w-full h-64 bg-[var(--ath-panel-muted)] rounded-xl border border-[var(--ath-line)] shadow-inner relative flex items-center justify-center p-4">
                 <AccessibleSvg
                     viewBox="0 0 400 200"
                     className="w-full h-full relative z-10"
@@ -42,7 +42,7 @@ export const DirectionalAdhesionDiagram = () => {
 
                     {/* The Surface (Glass/Wall) */}
                     <rect x="0" y="160" width="400" height="40" fill="#334155" />
-                    <line x1="0" y1="160" x2="400" y2="160" stroke="#64748b" strokeWidth="2" />
+                    <line x1="0" y1="160" x2="400" y2="160" stroke="var(--ath-line-strong)" strokeWidth="2" />
 
                     {/* The Spatulae (Gecko foot pad) */}
                     <g transform={`translate(200, 150) rotate(${angle}) translate(-200, -150)`}>
@@ -86,8 +86,8 @@ export const DirectionalAdhesionDiagram = () => {
 
             {/* Engagement state + pull angle surfaced as text + live region so it is not color-only (WCAG 1.4.1) */}
             <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
-                <span className="font-semibold text-slate-400">Pull angle {angle}°: </span>
-                <span className="font-bold text-white">
+                <span className="font-semibold text-[var(--ath-muted)]">Pull angle {angle}°: </span>
+                <span className="font-bold text-[var(--ath-text)]">
                     {isEngaged ? 'Adhesion engaged (locked)' : 'Adhesion broken (peeling)'}
                 </span>
             </div>

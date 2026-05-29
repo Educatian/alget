@@ -24,25 +24,29 @@ export default function ConfidenceFeedback({ confidence, isCorrect }) {
     let tone = ''
     let advice = ''
 
+    // Tone classes derive entirely from the semantic --ath-* ramp (success /
+    // warning / info) instead of raw emerald/amber/sky literals, so every state
+    // inverts in dark mode. The "slightly" variants use a lighter color-mix wash
+    // of the same token to read as a softer signal than the strong variant.
     if (absDrift < 0.2) {
         label = 'Calibration on point'
-        tone = 'border-emerald-200 bg-emerald-50 text-emerald-900'
+        tone = 'border-[var(--ath-success)] bg-[var(--ath-success-soft)] text-[var(--ath-text)]'
         advice = 'Your confidence matched the outcome. That metacognitive accuracy is the harder skill - keep noticing what you know.'
     } else if (drift > 0.4) {
         label = 'Overconfident'
-        tone = 'border-amber-200 bg-amber-50 text-amber-900'
+        tone = 'border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] text-[var(--ath-text)]'
         advice = 'You said you were confident but the answer was wrong. The most common cause is glossing over a step. Re-read the relevant passage before the next attempt.'
     } else if (drift > 0) {
         label = 'Slightly overconfident'
-        tone = 'border-amber-100 bg-amber-50/70 text-amber-900'
+        tone = 'border-[color-mix(in_srgb,var(--ath-warning)_45%,transparent)] bg-[color-mix(in_srgb,var(--ath-warning)_9%,transparent)] text-[var(--ath-text)]'
         advice = 'You felt slightly more sure than the outcome warrants. Note where the surprise was.'
     } else if (drift < -0.4) {
         label = 'Underconfident'
-        tone = 'border-sky-200 bg-sky-50 text-sky-900'
+        tone = 'border-[var(--ath-info)] bg-[var(--ath-info-soft)] text-[var(--ath-text)]'
         advice = 'You got it right but said you weren\'t sure. Trust your instinct a little more - but verify on the next problem.'
     } else {
         label = 'Slightly underconfident'
-        tone = 'border-sky-100 bg-sky-50/70 text-sky-900'
+        tone = 'border-[color-mix(in_srgb,var(--ath-info)_45%,transparent)] bg-[color-mix(in_srgb,var(--ath-info)_9%,transparent)] text-[var(--ath-text)]'
         advice = 'A little more sure than you reported.'
     }
 

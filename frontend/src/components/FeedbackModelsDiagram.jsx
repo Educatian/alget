@@ -23,13 +23,13 @@ export const FeedbackModelsDiagram = () => {
     }, [isPlaying]);
 
     return (
-        <div className="my-8 p-6 bg-white rounded-2xl border border-slate-200 shadow-md max-w-2xl mx-auto font-sans relative overflow-hidden">
-            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-slate-200 pb-6">
+        <div className="my-8 p-6 bg-[var(--ath-panel)] rounded-2xl border border-[var(--ath-line)] shadow-md max-w-2xl mx-auto font-sans relative overflow-hidden">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-center justify-between mb-6 border-b border-[var(--ath-line)] pb-6">
                 <div>
-                    <h3 className="text-xl font-bold text-slate-800 mb-1 flex items-center gap-2">
+                    <h3 className="text-xl font-bold text-[var(--ath-text)] mb-1 flex items-center gap-2">
                         <span className="text-teal-500" aria-hidden="true">🔄</span> The Feedback Loop
                     </h3>
-                    <p className="text-sm text-slate-600">Feedback is only effective if it loops back to modify future actions.</p>
+                    <p className="text-sm text-[var(--ath-muted)]">Feedback is only effective if it loops back to modify future actions.</p>
                 </div>
                 <button
                     onClick={() => setIsPlaying(!isPlaying)}
@@ -40,7 +40,7 @@ export const FeedbackModelsDiagram = () => {
                 </button>
             </div>
 
-            <div className="w-full h-56 bg-slate-50 rounded-xl border border-slate-200 shadow-inner relative flex items-center justify-center p-4">
+            <div className="w-full h-56 bg-[var(--ath-panel-muted)] rounded-xl border border-[var(--ath-line)] shadow-inner relative flex items-center justify-center p-4">
                 <AccessibleSvg
                     viewBox="0 0 400 200"
                     className="w-full h-full relative z-10"
@@ -49,33 +49,33 @@ export const FeedbackModelsDiagram = () => {
                 >
                     <defs>
                         <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8" />
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ath-muted)" />
                         </marker>
                         <marker id="arrow-active" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1e293b" />
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ath-text)" />
                         </marker>
                     </defs>
 
                     {/* Central anchor */}
-                    <circle cx="200" cy="100" r="40" fill="#ffffff" stroke="#cbd5e1" strokeWidth="2" />
-                    <text x="200" y="105" fill="#475569" fontSize="12" fontWeight="bold" textAnchor="middle">Learner</text>
+                    <circle cx="200" cy="100" r="40" fill="var(--ath-panel)" stroke="var(--ath-line-strong)" strokeWidth="2" />
+                    <text x="200" y="105" fill="var(--ath-text)" fontSize="12" fontWeight="bold" textAnchor="middle">Learner</text>
 
                     {/* Arrows connecting the nodes */}
                     {/* Action -> Data */}
-                    <path d="M 230 45 Q 290 60 310 80" fill="none" stroke={step === 1 ? steps[1].color : "#cbd5e1"} strokeWidth={step === 1 ? 4 : 2} markerEnd={step === 1 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
+                    <path d="M 230 45 Q 290 60 310 80" fill="none" stroke={step === 1 ? steps[1].color : "var(--ath-line-strong)"} strokeWidth={step === 1 ? 4 : 2} markerEnd={step === 1 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
                     {/* Data -> Feedback */}
-                    <path d="M 310 120 Q 290 140 230 155" fill="none" stroke={step === 2 ? steps[2].color : "#cbd5e1"} strokeWidth={step === 2 ? 4 : 2} markerEnd={step === 2 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
+                    <path d="M 310 120 Q 290 140 230 155" fill="none" stroke={step === 2 ? steps[2].color : "var(--ath-line-strong)"} strokeWidth={step === 2 ? 4 : 2} markerEnd={step === 2 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
                     {/* Feedback -> Adjustment */}
-                    <path d="M 170 155 Q 110 140 90 120" fill="none" stroke={step === 3 ? steps[3].color : "#cbd5e1"} strokeWidth={step === 3 ? 4 : 2} markerEnd={step === 3 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
+                    <path d="M 170 155 Q 110 140 90 120" fill="none" stroke={step === 3 ? steps[3].color : "var(--ath-line-strong)"} strokeWidth={step === 3 ? 4 : 2} markerEnd={step === 3 ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
                     {/* Adjustment -> Action */}
-                    <path d="M 90 80 Q 110 60 170 45" fill="none" stroke={step === 0 && isPlaying ? steps[0].color : "#334155"} strokeWidth={step === 0 && isPlaying ? 4 : 2} markerEnd={step === 0 && isPlaying ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
+                    <path d="M 90 80 Q 110 60 170 45" fill="none" stroke={step === 0 && isPlaying ? steps[0].color : "var(--ath-text)"} strokeWidth={step === 0 && isPlaying ? 4 : 2} markerEnd={step === 0 && isPlaying ? "url(#arrow-active)" : "url(#arrow)"} className="transition-all duration-300" />
 
                     {/* Nodes */}
                     {steps.map((s, idx) => {
                         const isActive = step === idx;
                         return (
                             <g key={idx} className="transition-all duration-500" style={{ transform: isActive ? 'scale(1.1)' : 'scale(1)', transformOrigin: `${s.x}px ${s.y}px` }}>
-                                <rect x={s.x - 60} y={s.y - 15} width="120" height="30" rx="15" fill={isActive ? s.color : '#ffffff'} stroke={isActive ? 'white' : s.color} strokeWidth="2" className="transition-colors duration-300 shadow-md" />
+                                <rect x={s.x - 60} y={s.y - 15} width="120" height="30" rx="15" fill={isActive ? s.color : 'var(--ath-panel)'} stroke={isActive ? 'var(--ath-panel)' : s.color} strokeWidth="2" className="transition-colors duration-300 shadow-md" />
                                 <text x={s.x} y={s.y + 4} fill={isActive ? 'white' : s.color} fontSize="10" fontWeight="bold" textAnchor="middle">{s.label}</text>
                             </g>
                         );
@@ -91,8 +91,8 @@ export const FeedbackModelsDiagram = () => {
 
             {/* Active stage surfaced as text + live region (WCAG 1.4.1) */}
             <div aria-live="polite" className="relative z-10 mt-4 text-center text-sm">
-                <span className="font-semibold text-slate-600">Active stage: </span>
-                <span className="font-bold text-slate-900">{steps[step].label}</span>
+                <span className="font-semibold text-[var(--ath-muted)]">Active stage: </span>
+                <span className="font-bold text-[var(--ath-text)]">{steps[step].label}</span>
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-teal-500/10 rounded-full blur-[80px] pointer-events-none"></div>
         </div>
