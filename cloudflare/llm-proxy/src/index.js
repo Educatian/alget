@@ -407,6 +407,40 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
         return json(result)
       }
 
+      // --- Concept origin (first section a concept appears in) — static index ---
+      if (path.startsWith('/concept/') && path.endsWith('/origin')) {
+        const cid = decodeURIComponent(path.slice('/concept/'.length, path.length - '/origin'.length))
+        const staticBase = (env.STATIC_API_BASE || DEFAULT_STATIC_BASE).replace(/\/$/, '')
+        let map = {}
+        try { const r = await fetch(`${staticBase}/concept-origins`); if (r.ok) map = await r.json() } catch { map = {} }
+        return json({ concept_id: cid, section_slug: map[cid] || null })
+      }
+
+      // --- Mastery graph (skeleton from static content + live mastery overlay) ---
+      if (path === '/mastery_graph') {
+        const course = body.course || 'inst-design'
+        const staticBase = (env.STATIC_API_BASE || DEFAULT_STATIC_BASE).replace(/\/$/, '')
+        let skel = null
+        try { const r = await fetch(`${staticBase}/mastery-graph/${course}`); if (r.ok) skel = await r.json() } catch { skel = null }
+        if (!skel) return json({ nodes: [], links: [] })
+        const md = (body.mastery_data && typeof body.mastery_data === 'object') ? body.mastery_data : {}
+        const currentSectionId = body.current_section_id || null
+        const currentConcepts = Array.isArray(body.current_concepts) ? body.current_concepts : []
+        let focusChapter = null
+        if (currentSectionId) { const parts = String(currentSectionId).split('/'); if (parts.length >= 2) focusChapter = parts[1] }
+        let nodes = skel.nodes || []
+        if (focusChapter) { const scoped = nodes.filter((n) => n.chapter === focusChapter); if (scoped.length) nodes = scoped }
+        const normRatio = (v) => { const n = Number(v); return Number.isFinite(n) ? Math.max(0, Math.min(1, n)) : 0.1 }
+        const statusOf = (p) => (p >= 0.8 ? 'mastered' : p >= 0.5 ? 'emerging' : 'novice')
+        nodes = nodes.map((n) => {
+          const pk = (n.id in md) ? normRatio(md[n.id]) : 0.1
+          return { ...n, p_known: Math.round(pk * 100) / 100, status: statusOf(pk), is_current: n.section_id === currentSectionId || currentConcepts.includes(n.id) }
+        })
+        const ids = new Set(nodes.map((n) => n.id))
+        const links = (skel.links || []).filter((l) => ids.has(l.source) && ids.has(l.target))
+        return json({ nodes, links })
+      }
+
       // --- Everything else: proxy to the FastAPI backend as-is ---
       const proxied = await fetch(`${backend}${path}${url.search}`, {
         method: request.method,
