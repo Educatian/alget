@@ -5,6 +5,7 @@ Service for loading MDX content and metadata from the content folder.
 
 import os
 import json
+import hashlib
 from pathlib import Path
 from typing import Optional
 
@@ -150,6 +151,188 @@ def load_practice_for_section(course: str, chapter: str, section: str) -> dict:
             return json.load(f)
 
     return {"problems": []}
+
+
+# ---------------------------------------------------------------------------
+# Content-version provenance.
+#
+# A stable content-version hash over the four authored substrates of a section
+# (mdx + meta + practice + misconceptions). Stamped into every adaptive-decision
+# provenance record so each decision references the EXACT content version it was
+# made against (faithful provenance). The hash is:
+#   * deterministic  — same authored bytes always yield the same digest, so two
+#     processes / two runs agree without coordination;
+#   * canonical      — JSON substrates are serialized with sorted keys so an
+#     equivalent dict that merely reorders keys hashes identically;
+#   * order-stable    — each substrate is folded in under a fixed labeled order,
+#     so a change in any one of the four is detectable and attributable.
+# It is ADDITIVE: it reads the same files the loaders already read and changes
+# no loading behavior.
+# ---------------------------------------------------------------------------
+
+# Fixed ordering of the substrates folded into the section hash. Do not reorder
+# without bumping CONTENT_VERSION_ALGORITHM (consumers pin on the pair).
+_CONTENT_HASH_PARTS = ("mdx", "meta", "practice", "misconceptions")
+
+# Algorithm tag stamped alongside the digest so a future change to what/how we
+# hash is distinguishable from a content edit at the same digest length.
+CONTENT_VERSION_ALGORITHM = "sha256-mdx+meta+practice+misconceptions-v1"
+
+
+def _canonical_bytes(value: Optional[object]) -> bytes:
+    """Return canonical, deterministic bytes for one substrate.
+
+    None (missing file) folds in as a fixed empty marker so a present-but-empty
+    substrate and an absent substrate hash distinctly from arbitrary content.
+    dict/list substrates are JSON-serialized with sorted keys so key ordering
+    never perturbs the digest; raw text (mdx) is encoded utf-8 as authored.
+    """
+    if value is None:
+        return b"\x00"  # absent-substrate marker
+    if isinstance(value, str):
+        return value.encode("utf-8")
+    # JSON substrate (practice / meta / misconceptions): canonicalize.
+    return json.dumps(
+        value, sort_keys=True, ensure_ascii=False, separators=(",", ":")
+    ).encode("utf-8")
+
+
+def compute_content_version(course: str, chapter: str, section: str) -> dict:
+    """Compute the stable content-version descriptor for a section.
+
+    Reads the section's mdx + meta + practice + misconceptions (without the
+    per-request course/chapter/section meta injection done by load_section, so
+    the hash reflects only AUTHORED content and is independent of how it was
+    requested) and folds them, in fixed labeled order, into one sha256 digest.
+
+    Returns a small descriptor dict:
+        {
+          "content_version": "<hex sha256>",
+          "algorithm": CONTENT_VERSION_ALGORITHM,
+          "parts": ["mdx", "meta", "practice", "misconceptions"],
+        }
+
+    Never raises for a missing section: absent substrates fold in as the
+    absent-substrate marker, so the function always yields a usable digest.
+    """
+    # Read authored meta directly (NOT load_section, which injects request
+    # context); fall back to None when absent so the marker applies.
+    meta = load_section_meta(course, chapter, section)
+    content = load_section_content(course, chapter, section)
+    practice = load_practice_for_section(course, chapter, section)
+    misconceptions = load_misconceptions(course, chapter, section)
+
+    substrates = {
+        "mdx": content,
+        "meta": meta,
+        "practice": practice,
+        "misconceptions": misconceptions,
+    }
+
+    hasher = hashlib.sha256()
+    for part in _CONTENT_HASH_PARTS:
+        # Label each part so a value moving between substrates still changes the
+        # digest, and so empty trailing substrates cannot be silently absorbed.
+        hasher.update(part.encode("ascii"))
+        hasher.update(b"\x1f")  # unit separator between label and payload
+        hasher.update(_canonical_bytes(substrates.get(part)))
+        hasher.update(b"\x1e")  # record separator between substrates
+
+    return {
+        "content_version": hasher.hexdigest(),
+        "algorithm": CONTENT_VERSION_ALGORITHM,
+        "parts": list(_CONTENT_HASH_PARTS),
+    }
+
+
+def content_version_for_section_id(section_id: Optional[str]) -> Optional[dict]:
+    """Compute the content-version descriptor from a 'course/chapter/section'
+    slug as used by the adaptive-recommendation request.
+
+    Returns None when section_id is missing or not a well-formed slug, so a
+    caller can stamp provenance opportunistically without a crash on a partial
+    or malformed identifier. Any unexpected I/O error degrades to None for the
+    same reason (provenance is additive, never load-bearing for the decision).
+    """
+    if not section_id or not isinstance(section_id, str):
+        return None
+    parts = section_id.strip().strip("/").split("/")
+    if len(parts) != 3 or not all(parts):
+        return None
+    course, chapter, section = parts
+    try:
+        return compute_content_version(course, chapter, section)
+    except Exception:  # pragma: no cover - provenance must never break a decision
+        return None
+
+
+# Per-problem analytics read path.
+#
+# Derived per-item stats (first-attempt correctness, attempt count, mean
+# time-to-correct) materialized by the item_problem_stats view defined in
+# supabase_item_stats.sql. This helper is the server/author/fusion-policy read
+# path: it queries the view via Supabase REST and is ROBUST to the view (or the
+# whole Supabase backend) being absent — it returns an empty mapping rather than
+# raising, so neither startup nor a recommendation request can crash when the
+# analytics substrate has not been provisioned.
+async def fetch_item_stats(
+    supabase_url: Optional[str],
+    supabase_key: Optional[str],
+    problem_ids: Optional[list] = None,
+    section_id: Optional[str] = None,
+) -> dict:
+    """Fetch derived per-problem stats from the item_problem_stats view.
+
+    Returns a dict keyed by problem_id:
+        {"<problem_id>": {"problem_id", "section_id", "attempt_count",
+                          "first_attempt_correct_rate", "mean_time_to_correct_ms",
+                          "correct_count"}, ...}
+
+    Empty dict when credentials are missing, the view is absent, or any error
+    occurs. Optional problem_ids / section_id narrow the query server-side.
+    """
+    if not supabase_url or not supabase_key:
+        return {}
+    try:
+        import httpx
+    except Exception:  # pragma: no cover - httpx always present in app env
+        return {}
+
+    params = {"select": "*"}
+    if problem_ids:
+        ids = ",".join(str(p) for p in problem_ids if p)
+        if ids:
+            params["problem_id"] = f"in.({ids})"
+    if section_id:
+        params["section_id"] = f"eq.{section_id}"
+
+    headers = {
+        "apikey": supabase_key,
+        "Authorization": f"Bearer {supabase_key}",
+        "Accept": "application/json",
+    }
+    url = f"{supabase_url.rstrip('/')}/rest/v1/item_problem_stats"
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            res = await client.get(url, headers=headers, params=params)
+        if res.status_code >= 400:
+            # 404 (view absent) / 401 / etc: degrade to empty, never raise.
+            return {}
+        rows = res.json()
+    except Exception:
+        return {}
+
+    if not isinstance(rows, list):
+        return {}
+    stats: dict = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        pid = row.get("problem_id")
+        if pid is None:
+            continue
+        stats[str(pid)] = row
+    return stats
 
 
 # In-memory cache for parsed misconception files, keyed by section slug.

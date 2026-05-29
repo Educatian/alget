@@ -75,7 +75,16 @@ from module_hooks import (
     get_module_info,
     BIO_INSPIRED_MODULES
 )
-from content_service import load_section, load_section_meta, generate_toc, get_fallback_toc, load_practice_for_section, find_misconception
+from content_service import (
+    load_section,
+    load_section_meta,
+    generate_toc,
+    get_fallback_toc,
+    load_practice_for_section,
+    find_misconception,
+    content_version_for_section_id,
+    fetch_item_stats,
+)
 from grading_service import grade_problem
 from rag_service import rag_service
 from agents.assessment_agent import AssessmentAgent
@@ -1378,11 +1387,27 @@ def build_adaptive_recommendation(request: AdaptiveRecommendationRequest) -> Ada
     import uuid
     import time
 
+    # Content-version provenance (additive): stamp the stable hash of the exact
+    # content this decision was made against, so every decision references the
+    # precise content version. Computed best-effort; a missing/malformed section
+    # slug degrades to None and never blocks the decision.
+    content_version_descriptor = content_version_for_section_id(request.section_id)
+
     decision_id = str(uuid.uuid4())
     decision_record: dict[str, Any] = {
         "decision_id": decision_id,
         "created_at": time.time(),
         "section_id": request.section_id,
+        "content_version": (
+            content_version_descriptor.get("content_version")
+            if content_version_descriptor
+            else None
+        ),
+        "content_version_algorithm": (
+            content_version_descriptor.get("algorithm")
+            if content_version_descriptor
+            else None
+        ),
         "learner_id": request.learner_id,
         "session_id": request.session_id,
         "policy_mode": policy_mode,
@@ -3253,6 +3278,44 @@ async def log_events_proxy(request: LogEventsRequest):
         raise HTTPException(status_code=502, detail=str(exc))
 
     return {"status": "ok", "inserted": len(request.events)}
+
+
+# ============================================================================
+# DERIVED PER-ITEM ANALYTICS (read path over the item_problem_stats view)
+# ============================================================================
+
+
+@app.get("/api/item-stats")
+async def item_stats(
+    supabase_url: Optional[str] = None,
+    supabase_key: Optional[str] = None,
+    problem_ids: Optional[str] = None,
+    section_id: Optional[str] = None,
+):
+    """Read derived per-problem stats (first-attempt correctness rate, attempt
+    count, mean time-to-correct) from the item_problem_stats view.
+
+    These are the cohort-calibrated item statistics the fusion policy and
+    authors consume without re-aggregating the event log (plan item 9). The
+    read path is ROBUST to the view/table being absent: it returns an empty
+    `stats` map rather than raising, so a missing analytics substrate cannot
+    crash the app. Credentials are accepted as query params so the same
+    client-supplied Supabase config used elsewhere applies here.
+
+    `problem_ids` is an optional comma-separated filter; `section_id` narrows
+    to one section.
+    """
+    pid_list = (
+        [p for p in (problem_ids.split(",") if problem_ids else []) if p.strip()]
+        or None
+    )
+    stats = await fetch_item_stats(
+        supabase_url=supabase_url,
+        supabase_key=supabase_key,
+        problem_ids=pid_list,
+        section_id=section_id,
+    )
+    return {"stats": stats, "count": len(stats)}
 
 
 # ============================================================================

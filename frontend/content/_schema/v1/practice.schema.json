@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "alget://schema/practice.schema.json",
+  "$id": "alget://schema/v1/practice.schema.json",
+  "schemaVersion": "1.0.0",
   "title": "Section Practice File",
   "description": "Canonical contract for *.practice.json. The corpus legitimately varies in problem shape per `type`; this schema accepts every valid problem variant observed in the corpus while requiring the genuinely-required keys.",
   "type": "object",

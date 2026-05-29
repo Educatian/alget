@@ -8,6 +8,15 @@ import 'katex/dist/katex.min.css'
 import { logTimeOnTask } from '../lib/loggingService'
 import { useTheme } from '../lib/themeContext'
 import { READING_WIDTH_OPTIONS } from '../lib/readingPrefs'
+// Typed SEMANTIC content nodes (PreTeXt semantic blocks + Torus purpose
+// vocabulary) and knowl-style inline concept expansion. These are small and can
+// render inline (ConceptRef sits inside a paragraph), so they are imported
+// eagerly rather than lazily to avoid a block-level Suspense fallback flashing
+// inside running prose.
+import Definition from './Definition'
+import Callout from './Callout'
+import Figure from './Figure'
+import ConceptRef from './ConceptRef'
 
 // Map the UDL reading-width preference to a comfortable prose measure (the text
 // line length). index.css consumes --reading-width on .reading-narrative; the
@@ -302,6 +311,17 @@ export default function ReadingNarrative({
         'formative-summative-diagram': (props) => renderBreakoutLazyModule(FormativeSummativeDiagram, props),
         'rubric-design-diagram': (props) => renderBreakoutLazyModule(RubricDesignDiagram, props),
         'feedback-models-diagram': (props) => renderBreakoutLazyModule(FeedbackModelsDiagram, props),
+        // Typed SEMANTIC content nodes (PreTeXt semantic blocks + Torus purpose
+        // vocabulary). Additive: existing presentational markdown is unchanged;
+        // authors opt in by using these tags. react-markdown lowercases tag and
+        // attribute names, so authored <Definition conceptId> arrives here as
+        // <definition conceptid>; the components accept the lowercase form.
+        definition: (props) => <Definition {...props} />,
+        callout: (props) => <Callout {...props} />,
+        'figure-block': (props) => <Figure {...props} />,
+        // Knowl-style inline cross-reference expansion (PreTeXt knowl.js):
+        // expands the referenced concept in place via an accessible popover.
+        'concept-ref': (props) => <ConceptRef {...props} />,
     }), [conceptIds, course, sectionDescription, sectionId])
 
     const remarkPlugins = useMemo(

@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "alget://schema/meta.schema.json",
+  "$id": "alget://schema/v1/meta.schema.json",
+  "schemaVersion": "1.0.0",
   "title": "Section Meta File",
   "description": "Canonical contract for *.meta.json. The corpus contains TWO meta generations: the 'engineering' generation (course/chapter/section present, 20 files) and the 'supplement' generation (those keys absent, 236 files). Backfilling course/chapter/section into the 236 supplement metas is a deferred metadata pass, so this schema requires only the keys present in every meta today (`title`) and validates the optional keys when present. `practice_ids`, when present, must reference real problem ids in the sibling practice file (enforced by the cross-file checks in validate_content.py).",
   "type": "object",
