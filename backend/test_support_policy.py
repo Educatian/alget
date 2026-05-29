@@ -23,11 +23,79 @@ if _BACKEND_DIR not in sys.path:
 from knowledge_tracing import (  # noqa: E402
     ANNOTATION_REASON_CODES,
     REASON_CODE_FEATURES,
+    SM2_DEFAULT_EF,
+    SM2_MIN_EF,
+    aggregate_forgetting_risk,
+    compute_sm2_schedule,
     derive_reason_codes,
     reason_codes_are_faithful,
     score_support_actions,
     select_support_move,
 )
+
+
+# ---------------------------------------------------------------------------
+# SPACED REPETITION (SM-2): the schedule is a pure function of the review
+# history and produces a transparent forgetting_risk that feeds the existing
+# retrieval_risk reason code.
+# ---------------------------------------------------------------------------
+
+def test_sm2_empty_history_is_neutral_prior():
+    sched = compute_sm2_schedule([])
+    assert sched["reviews"] == 0
+    assert sched["repetition"] == 0
+    assert sched["easiness_factor"] == SM2_DEFAULT_EF
+    assert sched["forgetting_risk"] == 0.5  # engine's neutral prior
+    assert sched["due"] is True
+
+
+def test_sm2_successful_reviews_grow_interval_and_lower_risk():
+    """Consecutive clean recalls advance the SM-2 interval (1 -> 6 -> EF-scaled)
+    and, while not overdue, keep forgetting_risk low."""
+    sched = compute_sm2_schedule(
+        [{"quality": 5}, {"quality": 4}, {"quality": 5}],
+        elapsed_days_since_last=2.0,
+    )
+    assert sched["repetition"] == 3
+    assert sched["interval_days"] > 6.0  # 3rd interval = 6 * EF
+    assert sched["easiness_factor"] >= SM2_MIN_EF
+    assert sched["forgetting_risk"] < 0.6  # not overdue -> retrieval_risk does NOT fire
+    assert sched["due"] is False
+
+
+def test_sm2_overdue_concept_fires_retrieval_risk():
+    """A concept well past its scheduled interval pushes forgetting_risk over the
+    retrieval_risk threshold, and that risk feeds derive_reason_codes."""
+    sched = compute_sm2_schedule(
+        [{"quality": 5}, {"quality": 4}, {"quality": 5}],
+        elapsed_days_since_last=60.0,
+    )
+    assert sched["days_overdue"] > 0
+    assert sched["forgetting_risk"] >= 0.6
+    codes = derive_reason_codes({"forgetting_risk": sched["forgetting_risk"]}, "explain")
+    assert "retrieval_risk" in codes
+
+
+def test_sm2_failed_recall_resets_streak_and_raises_risk():
+    sched = compute_sm2_schedule([{"quality": 5}, {"quality": 4}, {"quality": 1}])
+    assert sched["repetition"] == 0  # streak reset on a sub-3 grade
+    assert sched["interval_days"] == 1.0  # re-learn from 1 day
+    assert sched["forgetting_risk"] >= 0.7  # failed recall is a strong risk signal
+
+
+def test_sm2_defaults_missing_quality_to_clean_recall():
+    """A bare 'completed this section' review (no quality) still advances."""
+    sched = compute_sm2_schedule([{"section_id": "02"}, {"section_id": "03"}])
+    assert sched["repetition"] == 2
+    assert sched["last_section_id"] == "03"
+
+
+def test_aggregate_forgetting_risk_takes_weakest_link():
+    safe = compute_sm2_schedule([{"quality": 5}, {"quality": 5}], elapsed_days_since_last=1.0)
+    overdue = compute_sm2_schedule([{"quality": 4}], elapsed_days_since_last=40.0)
+    agg = aggregate_forgetting_risk({"safe_concept": safe, "overdue_concept": overdue})
+    assert agg == max(safe["forgetting_risk"], overdue["forgetting_risk"])
+    assert aggregate_forgetting_risk({}) == 0.5  # neutral prior on empty input
 
 
 # ---------------------------------------------------------------------------

@@ -200,6 +200,79 @@ def grade_numeric_answer(
     return result
 
 
+def derive_targeted_hint(
+    result: dict,
+    steps: Optional[list],
+    user_value: Optional[float] = None,
+    expected_value: Optional[float] = None,
+) -> Optional[str]:
+    """Derive a targeted formative hint for a WRONG numeric/step answer.
+
+    Pure and import-light. Turns the solver's worked steps into a single
+    next-step nudge instead of a bare correct/incorrect verdict, so the learner
+    is pointed at WHERE to look without being handed the final number.
+
+    Hint selection (most specific first):
+      * unit error            -> point at the expected unit / quantity.
+      * value-correct-only    -> the math is right; recheck units.
+      * directional magnitude -> tell the learner if they are high or low and
+        name the first formula step to revisit (the usual source of a sign /
+        substitution slip).
+      * generic               -> name the first step's concept to re-examine.
+
+    Returns None when there is nothing useful to add (e.g. the answer is
+    correct, or there are no steps to draw a hint from). Never reveals the
+    final answer value.
+    """
+    if result.get("is_correct"):
+        return None
+
+    # Unit problems get a unit-targeted hint even without steps.
+    if result.get("unit_error"):
+        return None  # the explanation already states the expected unit clearly
+
+    first_step = None
+    if isinstance(steps, list):
+        for step in steps:
+            if isinstance(step, dict):
+                first_step = step
+                break
+
+    # Value is right but unit is off: hint at the dimensional check.
+    if result.get("value_correct") and not result.get("unit_correct"):
+        return (
+            "Your number matches the reference; the gap is dimensional. "
+            "Re-derive the units of each factor and confirm they combine to "
+            "the expected quantity."
+        )
+
+    # Directional magnitude hint, anchored on the first formula step.
+    direction = ""
+    if user_value is not None and expected_value is not None:
+        if user_value > expected_value:
+            direction = "Your value is too high. "
+        elif user_value < expected_value:
+            direction = "Your value is too low. "
+
+    if first_step:
+        formula = first_step.get("formula") or first_step.get("description") or ""
+        formula = str(formula).strip()
+        if formula:
+            return (
+                f"{direction}Start by re-checking this step: {formula}. "
+                "A sign error or a missed substitution here is the most common "
+                "cause of the gap."
+            ).strip()
+
+    if direction:
+        return (
+            f"{direction}Re-trace your substitution from the first equation; "
+            "a sign error or unit slip is the usual cause."
+        ).strip()
+
+    return None
+
+
 def grade_multiple_choice(user_answer: str, correct_answer: str) -> dict:
     """Grade a multiple choice answer."""
     is_correct = normalize_unit(user_answer) == normalize_unit(correct_answer)
@@ -312,8 +385,19 @@ def grade_problem(problem: dict, user_answer: str, user_unit: str = "") -> dict:
         )
         result["auto_graded"] = True
         # Surface the worked steps as feedback for step_based problems.
-        if problem_type == "step_based" and problem.get("steps"):
-            result["steps"] = problem["steps"]
+        steps = problem.get("steps") if problem_type == "step_based" else None
+        if steps:
+            result["steps"] = steps
+        # Richer formative feedback: a targeted hint for a wrong answer derived
+        # from the worked steps (not just correct/incorrect).
+        hint = derive_targeted_hint(
+            result,
+            steps,
+            user_value=parse_numeric(user_answer),
+            expected_value=expected["expected_value"],
+        )
+        if hint:
+            result["hint"] = hint
         return result
 
     return _ungradable_result(f"Problem type '{problem_type}' is not auto-graded.")
@@ -376,7 +460,18 @@ def grade_problem_with_solver(
         grade_result["auto_graded"] = True
         grade_result["solver_id"] = solver_id
         # Add solver steps to result for feedback
-        grade_result["steps"] = solver_result.get("steps", [])
+        solver_steps = solver_result.get("steps", [])
+        grade_result["steps"] = solver_steps
+        # Richer formative feedback: derive a targeted hint from the solver's
+        # worked steps for a wrong answer (never reveals the final value).
+        hint = derive_targeted_hint(
+            grade_result,
+            solver_steps,
+            user_value=parse_numeric(user_answer),
+            expected_value=solver_result.get("expected_value"),
+        )
+        if hint:
+            grade_result["hint"] = hint
 
         return grade_result
 

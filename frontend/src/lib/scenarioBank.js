@@ -140,6 +140,7 @@ const SCENARIOS = [
         successCriteria: ['External reactions are solved', 'Member signs come from equilibrium', 'Compression members are checked for buckling'],
         theoryMoves: ['Statics starts with a free-body diagram.', 'The method of joints depends on force balance at each node.', 'Compression capacity is not only material strength; slenderness matters.'],
         reflectionPrompt: 'Which joint would you solve first, and why?',
+        sim: 'truss',
     },
     {
         id: 'polar-drone-motion',
@@ -157,6 +158,7 @@ const SCENARIOS = [
         successCriteria: ['Velocity has radial and transverse components', 'Acceleration includes rotation-induced terms', 'Units distinguish angular and linear rates'],
         theoryMoves: ['Coordinate choice should match measurement structure.', 'Unit vectors can change even when magnitudes seem simple.', 'Cross terms encode path curvature and changing direction.'],
         reflectionPrompt: 'What physical motion does the 2 r-dot theta-dot term represent?',
+        sim: 'polar',
     },
     {
         id: 'online-seminar-coi',
@@ -412,6 +414,7 @@ const SCENARIOS = [
         successCriteria: ['Torque target is met across joint angles', 'Thermal load stays within limits', 'Brace remains comfortable and wearable'],
         theoryMoves: ['Torque depends on force and perpendicular distance.', 'Design variables interact with human constraints.', 'A good dynamics model informs tradeoffs, not just calculations.'],
         reflectionPrompt: 'At which knee angle does the moment arm matter most?',
+        sim: 'torque',
     },
 ]
 
@@ -427,29 +430,55 @@ function selectVisual(seed) {
     return VISUALS[Math.abs(hashString(seed)) % VISUALS.length]
 }
 
+// Score a single tag against the source string. A term-level partial match
+// (e.g. "gecko" inside "gecko tape") is weaker than a whole-tag substring hit,
+// and very short terms (<= 2 chars) are ignored to avoid spurious overlaps.
+function scoreScenario(scenario, source, terms) {
+    const normalizedSource = normalize(source)
+    return scenario.tags.reduce((sum, tag) => {
+        const normalizedTag = normalize(tag)
+        if (normalizedSource.includes(normalizedTag)) return sum + 1
+        const partial = terms.some((term) => term.length > 2 && (normalizedTag.includes(term) || term.includes(normalizedTag)))
+        return sum + (partial ? 1 : 0)
+    }, 0)
+}
+
+/**
+ * Resolve the best curated scenario for a section.
+ *
+ * Returns `{ matched: false, scenario: null }` when no curated case has any tag
+ * overlap with the section. Callers should render nothing in that case rather
+ * than a misleading decorative fallback. When `matched` is true the resolved
+ * scenario carries a `visual` and (for engineering cases) a `sim` descriptor.
+ */
 export function pickScenario({ topic, context, course, variant = 0 }) {
     const source = `${topic} ${context} ${course}`
     const terms = normalize(source).split(/[^a-z0-9@]+/).filter(Boolean)
-    const scored = SCENARIOS.map((scenario) => {
-        const score = scenario.tags.reduce((sum, tag) => {
-            const normalizedTag = normalize(tag)
-            return sum + (normalize(source).includes(normalizedTag) || terms.some((term) => normalizedTag.includes(term) || term.includes(normalizedTag)) ? 1 : 0)
-        }, 0)
-        return { scenario, score }
-    }).sort((left, right) => {
+    const scored = SCENARIOS.map((scenario) => ({
+        scenario,
+        score: scoreScenario(scenario, source, terms),
+    })).sort((left, right) => {
         if (right.score !== left.score) return right.score - left.score
         return Math.abs(hashString(`${source}:${left.scenario.id}`)) - Math.abs(hashString(`${source}:${right.scenario.id}`))
     })
 
-    const pool = scored.filter((item) => item.score === scored[0]?.score).map((item) => item.scenario)
-    const fallbackPool = pool.length > 0 ? pool : SCENARIOS
-    const index = Math.abs(hashString(`${source}:${variant}`)) % fallbackPool.length
-    const scenario = fallbackPool[index]
+    const topScore = scored[0]?.score || 0
+    if (topScore === 0) {
+        // No genuine section match: signal the caller to render nothing.
+        return { matched: false, scenario: null }
+    }
+
+    const pool = scored.filter((item) => item.score === topScore).map((item) => item.scenario)
+    const index = Math.abs(hashString(`${source}:${variant}`)) % pool.length
+    const scenario = pool[index]
 
     return {
-        ...scenario,
-        visual: selectVisual(`${scenario.id}:${source}:${variant}`),
-        source: 'curated'
+        matched: true,
+        scenario: {
+            ...scenario,
+            visual: selectVisual(`${scenario.id}:${source}:${variant}`),
+            source: 'curated',
+        },
     }
 }
 

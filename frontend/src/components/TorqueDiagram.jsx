@@ -39,6 +39,7 @@ export const TorqueDiagram = () => {
                         <input
                             id="torque-force"
                             type="range" min="10" max="100" value={force}
+                            aria-valuetext={`${force} newtons`}
                             onChange={(e) => setForce(Number(e.target.value))}
                             className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                         />
@@ -51,16 +52,20 @@ export const TorqueDiagram = () => {
                         <input
                             id="torque-angle"
                             type="range" min="0" max="180" value={angle}
+                            aria-valuetext={`${angle} degrees`}
                             onChange={(e) => setAngle(Number(e.target.value))}
                             className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                         />
                     </div>
 
-                    <div className="pt-4 border-t border-slate-100">
+                    <div className="pt-4 border-t border-slate-100" aria-live="polite">
                         <p className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Generated Torque ($\tau$)</p>
                         <div className="text-3xl font-black text-slate-800 tracking-tight">
                             {Math.round(torqueAmount)} <span className="text-base font-semibold text-slate-400">N*m</span>
                         </div>
+                        <p className="mt-1 text-xs text-slate-500">
+                            {force} N at {angle}° gives {Math.round(torqueAmount)} N*m of torque.
+                        </p>
                     </div>
                 </div>
 
