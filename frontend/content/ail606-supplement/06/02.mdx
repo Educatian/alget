@@ -4,13 +4,13 @@
 
 ## Why This Section Matters
 
-A blanket statement such as "AI tools were used throughout this project" is technically true and academically useless. It satisfies a disclosure box without letting anyone evaluate what the human actually contributed. Toolchain disclosure exists to solve a specific authorship problem: when generative tools can produce objectives, feedback text, images, and even rationale, a committee needs to know which decisions are yours. The AI-USE.md file is the instrument that answers this, and it answers it at the granularity of individual contributions, not at the granularity of the whole project.
+A blanket statement such as "AI tools were used throughout this project" is technically true and academically useless. It satisfies a disclosure box without letting anyone evaluate what the human actually contributed. Toolchain disclosure exists to solve a specific authorship problem: when generative tools can produce objectives, feedback text, images, and even rationale, a committee needs to know which decisions are yours. The AI-USE.md file is the provenance record, and the prototype README traceability matrix connecting theory to screen changes is the rationale record that should tell the same story at a different level.
 
 The deeper purpose is calibrating credit and responsibility. If an AI drafted your assessment items and you kept them unchanged, you are responsible for their alignment to your objectives whether or not you wrote them. If you rejected most of an AI's output, that rejection is itself evidence of expertise and belongs in the record. Disclosure is therefore not a compliance afterthought; it is part of the argument that the design judgment in the capstone is your own.
 
 ## Learning Targets
 
-- Analyze how the prototype README traceability matrix connecting theory to screen changes shows a defensible decision in AIL 606.
+- Analyze how the AI-USE.md disclosure, checked against the prototype README traceability matrix connecting theory to screen changes, shows a defensible decision in AIL 606.
 - Distinguish artifact polish from evidence-based revision.
 - Document a bounded AI/software support move with accepted and rejected suggestions.
 - Use annotations, support requests, and revision notes to decide what help or design change should come next.
@@ -77,7 +77,7 @@ If you cannot answer all three, the disclosure is not yet defensible, even if ev
 
 The most damaging misreading is that more disclosure looks worse. Designers sometimes minimize AI mentions to seem more independent, which backfires: an under-disclosed capstone that a committee later suspects of AI authorship is far weaker than one that openly documents and bounds its tool use. Transparency about a rejection is a credential, not a confession.
 
-A second misreading is treating disclosure as separate from the prototype README traceability matrix connecting theory to screen changes. The two documents should agree.
+A second misreading is treating disclosure as separate from the prototype README traceability matrix connecting theory to screen changes. The two documents should agree: AI-USE.md names what happened, and the traceability matrix explains why the resulting artifact is defensible.
 
 <branching-scenario tree='{"title":"The under-disclosure temptation","start":"n1","nodes":{"n1":{"prompt":"An AI drafted your Module 3 objectives. You rejected 3 of 5 because they targeted recall, not your analyze-level goal. The deadline is close and you worry that disclosing AI use will make the capstone look less independent. What do you do?","choices":[{"label":"Omit the AI mention entirely so the work reads as fully yours","next":"n2","feedback":"Under-disclosure is the high-risk move. If a committee later suspects AI authorship, an undocumented capstone is far weaker than a documented one."},{"label":"Log a vague \"AI tools were used throughout\" line to cover yourself","next":"n3","feedback":"This satisfies a box but is non-disclosure: nothing is locatable, so the reviewer must treat the whole artifact as potentially AI-authored."},{"label":"Log the rejection explicitly: 3 of 5 objectives declined, with the alignment reason","next":"n4","feedback":"Correct. The rejection is your strongest credential because it shows you can catch a misaligned objective a fluent tool produced."}]},"n2":{"prompt":"You omitted it. In the defense a committee member notes the objectives read like generated text and asks who wrote them. What does the omission cost you now?","feedback":"You now look like you hid AI use rather than reasoned about it. The rejection that was your best evidence of expertise is invisible, and trust is spent.","choices":[]},"n3":{"prompt":"The vague line is in the file. A reviewer asks which specific objectives the tool produced and which you kept. Can the line answer?","feedback":"No. \"Throughout\" cannot be checked against any element, so the reviewer cannot locate your authorship boundary and the disclosure does no work.","choices":[]},"n4":{"prompt":"The explicit rejection is logged. How does the committee read it?","feedback":"As evidence of instructional judgment: you recognized recall-level objectives masquerading as analyze-level ones and overrode the tool. Disclosing more made the capstone read as more rigorous, not less.","choices":[]}}}'></branching-scenario>
  If your matrix attributes a screen's design to a named principle but the AI-USE.md shows that screen's text was generated and kept unchanged, the committee will want to know who actually applied the principle. Keep the provenance record and the rationale record consistent.
@@ -113,22 +113,22 @@ Move the disclosure requirement into a workplace with a strict client confidenti
 
 ## Artifact Studio
 
-Open the studio packet: [download the prototype README traceability matrix connecting theory to screen changes packet](/downloads/summer2026/ail606-supplement/06-02-toolchain-disclosure-and-ai-use-md-artifact.md).
+Open the studio packet: [download the AI-USE.md disclosure artifact packet](/downloads/summer2026/ail606-supplement/06-02-toolchain-disclosure-and-ai-use-md-artifact.md).
 
-<artifact-studio artifact="prototype README traceability matrix connecting theory to screen changes" course="AIL 606" section="06.02"></artifact-studio>
+<artifact-studio artifact="AI-USE.md disclosure record with per-contribution provenance" course="AIL 606" section="06.02"></artifact-studio>
 
-Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
+Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted. Then verify that the final row set agrees with the traceability matrix.
 
 ## Adaptive Support
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **Mayer multimedia learning**.
-- If your note shows **confusion**, compare a weak and strong version of the prototype README traceability matrix connecting theory to screen changes.
+- If your note is a **question**, ask for a concise explanation tied to **[Mayer multimedia learning](https://doi.org/10.1017/CBO9781139164603)**.
+- If your note shows **confusion**, compare a weak and strong version of the AI-USE.md disclosure record and the prototype README traceability matrix connecting theory to screen changes.
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the prototype README traceability matrix connecting theory to screen changes for AIL 606 06.02. A peer comment points to an interface move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
+<dynamic-scenario prompt="You are revising the AI-USE.md disclosure record for AIL 606 06.02. A peer comment points to an interface move issue connected to [cognitive load theory](https://en.wikipedia.org/wiki/Cognitive_load) and asks you to check whether the disclosure still agrees with the prototype README traceability matrix connecting theory to screen changes. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
@@ -142,7 +142,7 @@ Before you move on, confirm that every AI-USE.md entry names a location, states 
 
 ## References
 
-- Mayer multimedia learning. https://doi.org/10.1017/CBO9781139164603
+- [Mayer multimedia learning](https://doi.org/10.1017/CBO9781139164603)
 - Sweller, Ayres, and Kalyuga (2011). Cognitive Load Theory. Springer. https://doi.org/10.1007/978-1-4419-8126-4
 - UDL learner variability. https://udlguidelines.cast.org/
 - usability heuristics. https://www.nngroup.com/articles/ten-usability-heuristics/

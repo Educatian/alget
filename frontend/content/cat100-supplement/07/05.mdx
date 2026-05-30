@@ -1,4 +1,4 @@
-# Automation Safety Checks
+﻿# Automation Safety Checks
 
 ![Automation Safety Checks textbook visual](/course-art/deep-exemplars/cat100-supplement/07-05-automation-safety-checks.png)
 
@@ -104,7 +104,7 @@ Now adjust the rule (exclude PDFs, or move-to-archive instead of delete), back u
 
 Work the bulk-delete case one decision at a time, predicting each safeguard before it is revealed.
 
-<step-reveal title="Make a ’delete everything older than 90 days’ rule safe" steps='[{"prompt":"You plan to delete every file in Downloads older than 90 days. A permanent bulk delete is the operation. What do you do before deleting anything?","predictType":"choice","choices":["Delete immediately to reclaim space","Sort by date and list what the rule would catch, without deleting (a dry run)","Empty the recycle bin first to make room","Delete and check the results afterward"],"answerIndex":1,"reveal":"Dry run first. Listing the matches without deleting lets you scan for false matches, and you spot the syllabus PDF you saved months ago that also fits ’older than 90 days.’"},{"prompt":"The dry-run list includes a PDF you need. The rule has a false match. What is the better next move?","predictType":"choice","choices":["Delete anyway; one file is acceptable loss","Refine the rule (exclude PDFs, or move-to-archive instead of delete)","Lower the age threshold to 30 days and delete more","Run it twice to be thorough"],"answerIndex":1,"reveal":"Fix the false match. Excluding PDFs or moving to an archive folder instead of deleting removes the file you needed from the blast radius."},{"prompt":"The refined rule looks right and the action is a permanent delete. What is the last safeguard before running it?","predictType":"choice","choices":["Nothing; the dry run was enough","Back up Downloads to the cloud as an undo path, then run","Trust the recycle bin to catch mistakes","Run it and watch closely"],"answerIndex":1,"reveal":"Back up for irreversibility. A permanent delete has no built-in undo, so a cloud backup of Downloads covers the case where the refined rule still misses something."},{"reveal":"Dry run surfaced the false match, the refined rule removed it from the blast radius, and the backup covered the residual risk. The same dry-run-then-backup habit makes every irreversible bulk action survivable."}]'></step-reveal>
+<step-reveal title="Make a â€™delete everything older than 90 daysâ€™ rule safe" steps='[{"prompt":"You plan to delete every file in Downloads older than 90 days. A permanent bulk delete is the operation. What do you do before deleting anything?","predictType":"choice","choices":["Delete immediately to reclaim space","Sort by date and list what the rule would catch, without deleting (a dry run)","Empty the recycle bin first to make room","Delete and check the results afterward"],"answerIndex":1,"reveal":"Dry run first. Listing the matches without deleting lets you scan for false matches, and you spot the syllabus PDF you saved months ago that also fits â€™older than 90 days.â€™"},{"prompt":"The dry-run list includes a PDF you need. The rule has a false match. What is the better next move?","predictType":"choice","choices":["Delete anyway; one file is acceptable loss","Refine the rule (exclude PDFs, or move-to-archive instead of delete)","Lower the age threshold to 30 days and delete more","Run it twice to be thorough"],"answerIndex":1,"reveal":"Fix the false match. Excluding PDFs or moving to an archive folder instead of deleting removes the file you needed from the blast radius."},{"prompt":"The refined rule looks right and the action is a permanent delete. What is the last safeguard before running it?","predictType":"choice","choices":["Nothing; the dry run was enough","Back up Downloads to the cloud as an undo path, then run","Trust the recycle bin to catch mistakes","Run it and watch closely"],"answerIndex":1,"reveal":"Back up for irreversibility. A permanent delete has no built-in undo, so a cloud backup of Downloads covers the case where the refined rule still misses something."},{"reveal":"Dry run surfaced the false match, the refined rule removed it from the blast radius, and the backup covered the residual risk. The same dry-run-then-backup habit makes every irreversible bulk action survivable."}]'></step-reveal>
 
 ## What Strong Reading Looks Like
 
@@ -141,12 +141,12 @@ Use the studio to create a before/after trace. The first version should show you
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
+- If your note is a **question**, ask for a concise explanation tied to **[NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)**.
 - If your note shows **confusion**, compare a weak and strong version of the bulk operation safety record.
 - If your note is an **insight**, transfer the dry-run-and-backup rule to a new setting.
 - If your note makes a **connection**, show where the connection changes the operation.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 07.05. A peer comment points to a evidence move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
+<dynamic-scenario prompt="You are revising the automation safety record for CAT 100 07.05. A peer comment points to a evidence move issue connected to [ISTE digital citizenship](https://iste.org/standards/students). Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
@@ -160,7 +160,8 @@ Before you move on, confirm your operation passes the dry-run, reversibility, an
 
 ## References
 
-- NACE career readiness. https://www.naceweb.org/career-readiness/competencies/career-readiness-defined
-- ISTE digital citizenship. https://iste.org/standards/students
+- [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
-- WCAG accessibility. https://www.w3.org/TR/WCAG22/
+- [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
+

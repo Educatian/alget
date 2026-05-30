@@ -278,6 +278,26 @@ def learner_trace_objective(profile: dict) -> str:
     return "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
 
 
+def meta_description(profile: dict, title: str, artifact: str) -> str:
+    title_phrase = title.lower()
+    artifact_phrase = clean_phrase(artifact)
+    artifact_lower = artifact_phrase.lower()
+    if artifact_lower == title_phrase:
+        return (
+            f"{profile['short']} textbook section on {title_phrase}, "
+            "reader notes, support moments, and revision evidence."
+        )
+    if title_phrase in artifact_lower or artifact_lower in title_phrase:
+        return (
+            f"{profile['short']} textbook section on {title_phrase}, centered on {artifact_phrase}, "
+            "reader notes, support moments, and revision evidence."
+        )
+    return (
+        f"{profile['short']} textbook section connecting {title_phrase} to {artifact_phrase}, "
+        "reader notes, support moments, and revision evidence."
+    )
+
+
 def course_example(profile: dict, title: str, artifact: str, anchors: list[str]) -> str:
     short = profile["short"]
     if short == "AIL 606":
@@ -572,10 +592,7 @@ def update_meta(course: str, chapter: int, section: int) -> None:
     meta = load_meta(course, chapter, section)
     title = meta["title"]
     artifact = clean_phrase(select_artifact(profile, title, chapter, section))
-    meta["description"] = (
-        f"{profile['short']} textbook section connecting {title.lower()} to {artifact}, "
-        "reader notes, support moments, and revision evidence."
-    )
+    meta["description"] = meta_description(profile, title, artifact)
     meta["learning_objectives"] = [
         f"Analyze how the {artifact} shows a defensible decision in {profile['short']}.",
         "Distinguish artifact polish from evidence-based revision.",

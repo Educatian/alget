@@ -1,10 +1,10 @@
-# CAT 100 Artifact Studio Packet: Digital Skills Transfer Map
+﻿# CAT 100 Artifact Studio Packet: Digital Skills Transfer Map
 
 ## Purpose
 This packet turns **Digital Skills Transfer Map** into a concrete artifact studio task. The goal is not to make a polished submission on the first pass. The goal is to make your judgment visible enough that an instructor, peer, or future version of you can review the decision.
 
 ## Artifact
-**privacy checklist for accounts, data sharing, and AI tool boundaries**
+**digital skills transfer map**
 
 ## Course Context
 Module: **Course Completion and Transfer**  
@@ -24,7 +24,7 @@ Submit one artifact file or screenshot plus a revision trace. The trace must con
 ## Worked Mini-Example
 Weak trace: "I used AI and made it clearer."
 
-Strong trace: "I asked for three alternatives for the privacy checklist for accounts, data sharing, and AI tool boundaries. I accepted the alternative that made the audience constraint explicit, rejected the alternative that removed the evidence source, and revised the artifact so the reader can see how NACE career readiness shaped the final decision. The remaining limitation is that the trace has not yet been tested with a second reader."
+Strong trace: "I asked for three alternatives for the digital skills transfer map. I accepted the alternative that made the audience constraint explicit, rejected the alternative that removed the evidence source, and revised the artifact so the reader can see how NACE career readiness shaped the final decision. The remaining limitation is that the trace has not yet been tested with a second reader."
 
 ## Instructor Rubric
 Score each row 0, 1, or 2.
@@ -50,3 +50,4 @@ Score each row 0, 1, or 2.
 
 ## Review Use
 This packet helps a reviewer separate the final artifact from the decision path behind it. The strongest evidence is not the finished artifact alone; it is the relationship among claim, constraint, evidence, support, and revision.
+
