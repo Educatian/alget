@@ -1,15 +1,15 @@
 {
   "chapter_title": "Instructor Toolkit for CAT 531",
   "title": "Discussion Prompts by Module",
-  "description": "CAT 531 textbook section connecting discussion prompts by module to TeachGen@i prompt transcript with teacher edits and rejected suggestions, reader notes, support moments, and revision evidence.",
+  "description": "CAT 531 textbook section connecting discussion prompts by module to a discussion prompt with teacher edits and rejected suggestions, reader notes, support moments, and revision evidence.",
   "course": "cat531-supplement",
   "chapter": "08",
   "section": "05",
   "learning_objectives": [
-    "Analyze how the TeachGen@i prompt transcript with teacher edits and rejected suggestions shows a defensible decision in CAT 531.",
+    "Analyze how the discussion prompt with teacher edits and rejected suggestions shows a defensible decision in CAT 531.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    "Use annotations, support requests, and revision notes to make a discussion prompt more defensible."
   ],
   "concept_ids": [
     "cat531_supplement_instructor_toolkit_for_cat_531",

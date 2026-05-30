@@ -1,4 +1,4 @@
-# Starter HTML and CSS
+﻿# Starter HTML and CSS
 
 ![Starter HTML and CSS textbook visual](/course-art/deep-exemplars/cat100-supplement/06-02-starter-html-and-css.png)
 
@@ -10,7 +10,7 @@ This section teaches you to write a minimal, valid HTML document and one stylesh
 
 ## Learning Targets
 
-- Analyze how the privacy checklist for accounts, data sharing, and AI tool boundaries shows a defensible decision in CAT 100.
+- Analyze how the starter HTML and CSS accessibility pass shows a defensible decision in CAT 100.
 - Distinguish artifact polish from evidence-based revision.
 - Document a bounded AI/software support move with accepted and rejected suggestions.
 - Use feedback, support requests, and revision notes to improve the artifact before sharing it.
@@ -27,13 +27,13 @@ Three mechanics carry most of the weight in starter HTML and CSS.
 
 **The minimal valid document.** Every HTML page needs a small, fixed skeleton: a `<!DOCTYPE html>` line, an `<html>` element with a `lang` attribute, a `<head>` for metadata the visitor does not see (the `<title>`, the character set, the stylesheet link), and a `<body>` for the content they do see. The `<title>` lives in the head and controls the browser tab and the bookmark name; it is not visible on the page itself. Getting this skeleton right is what makes a file a web page rather than a text file.
 
-**Accessible images.** The `alt` attribute on an `<img>` is the text a screen reader announces and the text a browser shows when an image fails to load. `alt` should describe the image's content or function, not repeat the word "image." A decorative flourish can use empty `alt=""` so screen readers skip it; a meaningful photo needs a real description. WCAG accessibility guidelines treat missing alt text on informative images as a failure, which is why this is not optional polish.
+**Accessible images.** The `alt` attribute on an `<img>` is the text a screen reader announces and the text a browser shows when an image fails to load. `alt` should describe the image's content or function, not repeat the word "image." A decorative flourish can use empty `alt=""` so screen readers skip it; a meaningful photo needs a real description. [WCAG accessibility](https://www.w3.org/TR/WCAG22/) guidelines treat missing alt text on informative images as a failure, which is why this is not optional polish.
 
 **The cascade and specificity.** "Cascading" in CSS means rules can conflict, and the browser resolves conflicts with predictable rules. When two rules target the same element with the same specificity, the one written later wins. When specificity differs, the more specific selector wins regardless of order (an id beats a class, a class beats a bare tag). Understanding this is what separates "I changed a color and the whole page broke" from "I know exactly which rule is in charge."
 
-These mechanics connect to the course anchors. ISTE digital citizenship makes the alt-text requirement an equity issue: a page without it excludes blind visitors. NACE career readiness reframes clean, valid markup as a professional habit; sloppy HTML is the kind of thing a technical reviewer notices immediately.
+These mechanics connect to the course anchors. [ISTE digital citizenship](https://iste.org/standards/students) makes the alt-text requirement an equity issue: a page without it excludes blind visitors. [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined) reframes clean, valid markup as a professional habit; sloppy HTML is the kind of thing a technical reviewer notices immediately.
 
-<inline-check question="An informative headshot is marked up as <img src='me.jpg' alt='image'>. What does the accessibility check say?" explanation="alt='image' just repeats the word the screen reader would already imply and describes nothing. For an informative image, alt must describe content or function, for example alt='Maria Lopez, headshot'. Only a purely decorative flourish may use empty alt='' so the screen reader skips it." options='[{"text":"It fails: alt must describe the content or function, e.g. alt=\"Maria Lopez, headshot\"","correct":true},{"text":"It passes: any non-empty alt attribute satisfies WCAG","correct":false},{"text":"It should be alt=\"\" because all images are decorative","correct":false}]'></inline-check>
+<inline-check question="An informative headshot is marked up as <img src='me.jpg' alt='image'>. What does the accessibility check say?" explanation="alt='image' just repeats the word the screen reader would already imply and describes nothing. For an informative image, alt must describe content or function, for example alt='Maria Lopez, headshot'. Only a purely decorative flourish may use empty alt='' so the screen reader skips it." options='[{"text":"It fails: alt must describe the content or function, e.g. alt=\"Maria Lopez, headshot\"","correct":true},{"text":"It passes: any non-empty alt attribute satisfies [WCAG](https://www.w3.org/TR/WCAG22/)","correct":false},{"text":"It should be alt=\"\" because all images are decorative","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -128,9 +128,9 @@ Take the same skills to a different document type: a single landing page for a c
 
 ## Artifact Studio
 
-Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/06-02-starter-html-and-css-artifact.md).
+Open the studio packet: [download the starter HTML and CSS accessibility pass packet](/downloads/summer2026/cat100-supplement/06-02-starter-html-and-css-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="06.02"></artifact-studio>
+<artifact-studio artifact="starter HTML and CSS accessibility pass" course="CAT 100" section="06.02"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -138,12 +138,12 @@ Use the studio to create a before/after trace. The first version should show you
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
-- If your note shows **confusion**, compare a weak and strong version of the privacy checklist for accounts, data sharing, and AI tool boundaries.
+- If your note is a **question**, ask for a concise explanation tied to **[NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)**.
+- If your note shows **confusion**, compare a weak and strong version of the starter HTML and CSS accessibility pass.
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the privacy checklist for accounts, data sharing, and AI tool boundaries for CAT 100 06.02. A peer comment points to an interface move issue connected to ISTE digital citizenship. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
+<dynamic-scenario prompt="You are revising the starter HTML and CSS accessibility pass for CAT 100 06.02. A peer comment points to an interface move issue connected to [ISTE digital citizenship](https://iste.org/standards/students). Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
@@ -153,7 +153,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the privacy checklist for accounts, data sharing, and AI tool boundaries records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
+Before you move on, check that the starter HTML and CSS accessibility pass records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
 
 ## Concept Map
 
@@ -161,7 +161,8 @@ Before you move on, check that the privacy checklist for accounts, data sharing,
 
 ## References
 
-- NACE career readiness. https://www.naceweb.org/career-readiness/competencies/career-readiness-defined
-- ISTE digital citizenship. https://iste.org/standards/students
+- [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
-- WCAG accessibility. https://www.w3.org/TR/WCAG22/
+- [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
+

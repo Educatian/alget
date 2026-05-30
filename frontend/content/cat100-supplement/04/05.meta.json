@@ -1,32 +1,32 @@
-{
-  "course": "cat100-supplement",
-  "chapter": "04",
-  "section": "05",
-  "chapter_title": "AI Conversations as a Teacher",
-  "title": "Tone, Bias, and Audience",
-  "description": "CAT 100 textbook section connecting tone, bias, and audience to privacy checklist for accounts, data sharing, and AI tool boundaries, reader notes, support moments, and revision evidence.",
-  "learning_objectives": [
-    "Analyze how the privacy checklist for accounts, data sharing, and AI tool boundaries shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
-  ],
-  "concept_ids": [
-    "cat100_supplement_ai_conversations_as_a_teacher",
-    "cat100_supplement_tone_bias_and_audience",
-    "evidence_based_revision",
-    "ai_supported_learning"
-  ],
-  "estimated_time_minutes": 14,
-  "order": 5,
-  "top_tier_hardened": false,
-  "prereq_section_ids": [
-    "cat100-supplement/04/04"
-  ],
-  "practice_ids": [
-    "cat100_supplement_4_5_tone_bias_and_audience_artifact_signal",
-    "cat100_supplement_4_5_tone_bias_and_audience_annotation_signal",
-    "cat100_supplement_4_5_tone_bias_and_audience_ai_boundary",
-    "cat100_supplement_4_5_tone_bias_and_audience_calibration"
-  ]
+﻿{
+    "course":  "cat100-supplement",
+    "chapter":  "04",
+    "section":  "05",
+    "chapter_title":  "AI Conversations as a Teacher",
+    "title":  "Tone, Bias, and Audience",
+    "description":  "CAT 100 textbook section connecting tone, bias, and audience to a tone, bias, and audience edit table, reader notes, support moments, and revision evidence.",
+    "learning_objectives":  [
+                                "Analyze how the tone, bias, and audience edit table shows a defensible decision in CAT 100.",
+                                "Distinguish artifact polish from evidence-based revision.",
+                                "Document a bounded AI/software support move with accepted and rejected suggestions.",
+                                "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+                            ],
+    "concept_ids":  [
+                        "cat100_supplement_ai_conversations_as_a_teacher",
+                        "cat100_supplement_tone_bias_and_audience",
+                        "evidence_based_revision",
+                        "ai_supported_learning"
+                    ],
+    "estimated_time_minutes":  14,
+    "order":  5,
+    "top_tier_hardened":  false,
+    "prereq_section_ids":  [
+                               "cat100-supplement/04/04"
+                           ],
+    "practice_ids":  [
+                         "cat100_supplement_4_5_tone_bias_and_audience_artifact_signal",
+                         "cat100_supplement_4_5_tone_bias_and_audience_annotation_signal",
+                         "cat100_supplement_4_5_tone_bias_and_audience_ai_boundary",
+                         "cat100_supplement_4_5_tone_bias_and_audience_calibration"
+                     ]
 }

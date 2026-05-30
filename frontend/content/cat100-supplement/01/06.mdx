@@ -1,21 +1,24 @@
-# Accessibility Basics
+﻿# Accessibility Basics
 
 ![Accessibility Basics textbook visual](/course-art/deep-exemplars/cat100-supplement/01-06-accessibility-basics.png)
 
 <youtube-embed id="PHOJwnSV6t4" title="Universal Design for Learning and CAST" caption="Watch before the accessibility revision. Use the UDL frame to check whether access is built into the design rather than added as a final polish step."></youtube-embed>
 
+**Watch for:** Which access barrier appears before you touch the slide, and which fix would remove it?
+**Use this here because:** The video names access as part of the design decision, which is the same standard you apply when you revise alt text, headings, color, and contrast.
+
 ## Why This Section Matters
 
 When you make a slide, a document, or a web page, some of your audience will use a screen reader, some cannot distinguish red from green, and some are reading on a dim phone in bright sun. Accessibility is the practice of making sure your content works for all of them, not just for a sighted reader on a good monitor. It is not charity or an afterthought; it is part of doing the job correctly, and in many settings it is a legal requirement.
 
-The work product is a before-after accessibility pass on a real artifact, where each fix maps to a specific, checkable standard. The WCAG guidelines turn "make it accessible" into concrete, testable items: does the image have alt text, does the page use real headings, does meaning survive without color, does the text have enough contrast.
+The work product is a before-after accessibility pass on a real artifact, where each fix maps to a specific, checkable standard. The [WCAG](https://www.w3.org/TR/WCAG22/) guidelines turn "make it accessible" into concrete, testable items: does the image have alt text, does the page use real headings, does meaning survive without color, does the text have enough contrast.
 
 ## Learning Targets
 
 - Write alt text that conveys an image's meaning, not just its file name.
 - Use real heading styles so assistive technology can navigate the structure.
 - Ensure no information is carried by color alone.
-- Check text contrast against the WCAG threshold and fix failures.
+- Check text contrast against the [WCAG](https://www.w3.org/TR/WCAG22/) threshold and fix failures.
 
 ## Opening Case
 
@@ -25,18 +28,18 @@ The slide is not broken for Jordan, which is exactly why the problem is easy to 
 
 ## Core Concept
 
-Accessibility is the principle that content should not depend on a single way of perceiving it. A screen reader needs text where you put an image; a colorblind reader needs a second cue besides color; a low-vision reader needs contrast. Each need maps to a concrete WCAG check.
+Accessibility is the principle that content should not depend on a single way of perceiving it. A screen reader needs text where you put an image; a colorblind reader needs a second cue besides color; a low-vision reader needs contrast. Each need maps to a concrete [WCAG](https://www.w3.org/TR/WCAG22/) check.
 
 | Check | What it fixes | How to verify it |
 |-------|---------------|------------------|
 | Alt text | Images for screen-reader users | Read the alt aloud: does it convey the meaning? |
 | Heading structure | Navigation for assistive tech | Use real heading styles, not big bold text |
 | Color independence | Meaning for colorblind users | Remove color: is the info still there? |
-| Contrast ratio | Readability for low vision | Check against the WCAG 4.5:1 ratio for body text |
+| Contrast ratio | Readability for low vision | Check against the [WCAG](https://www.w3.org/TR/WCAG22/) 4.5:1 ratio for body text |
 
 Two ideas make these checks make sense. First, alt text should describe the image's function in context, not its appearance: a chart's alt text is the conclusion the chart shows ("membership rose from 20 to 55"), not "a bar chart." Second, a real heading is structural, not visual: applying the `Heading 1` style lets a screen reader announce and jump to it, while text that is merely large and bold looks like a heading but is invisible to navigation. Building access in from the start (the Universal Design for Learning idea) is far easier than retrofitting it at the end.
 
-<inline-check question="A slide marks every required reading in red and adds no other label. A classmate who cannot tell red from green opens it. What does the color-independence check say?" explanation="WCAG color-independence means meaning must survive when color is removed. A second cue, such as the word Required next to each item, carries the meaning for a colorblind reader; brightening or changing the hue does not, because the information is still encoded only in color." options='[{"text":"It passes: red is a strong, attention-grabbing color","correct":false},{"text":"It fails: add a non-color cue such as the word Required so meaning does not depend on color","correct":true},{"text":"It passes once the red is made brighter","correct":false},{"text":"Swap red for green and it is fixed","correct":false}]'></inline-check>
+<inline-check question="A slide marks every required reading in red and adds no other label. A classmate who cannot tell red from green opens it. What does the color-independence check say?" explanation="[WCAG](https://www.w3.org/TR/WCAG22/) color-independence means meaning must survive when color is removed. A second cue, such as the word Required next to each item, carries the meaning for a colorblind reader; brightening or changing the hue does not, because the information is still encoded only in color." options='[{"text":"It passes: red is a strong, attention-grabbing color","correct":false},{"text":"It fails: add a non-color cue such as the word Required so meaning does not depend on color","correct":true},{"text":"It passes once the red is made brighter","correct":false},{"text":"Swap red for green and it is fixed","correct":false}]'></inline-check>
 
 ## Worked Example
 
@@ -44,7 +47,7 @@ A first draft of an accessibility claim often hides the real work:
 
 > I made the slide more accessible.
 
-That sentence is too thin because it names no check and no change. A reviewer cannot confirm it. A strong record shows each WCAG check, the before state, and the specific fix, so accessibility becomes a list of confirmable items rather than a claim.
+That sentence is too thin because it names no check and no change. A reviewer cannot confirm it. A strong record shows each [WCAG](https://www.w3.org/TR/WCAG22/) check, the before state, and the specific fix, so accessibility becomes a list of confirmable items rather than a claim.
 
 ### Worked Example: fixing one slide for accessibility, step by step
 
@@ -57,11 +60,11 @@ Take a single slide titled "Club Growth" and run an accessibility pass.
 
 Result: the slide looks similar but now passes four concrete checks, each one a change a reviewer can confirm rather than a claim that it is "more accessible."
 
-<step-reveal title="Run four WCAG checks on the Club Growth slide" steps='[{"prompt":"The chart alt text is currently \"Chart1.png.\" What does functional alt text say instead?","predictType":"choice","choices":["A bar chart with blue bars","Chart1.png is fine for screen readers","Bar chart showing club membership rising from 20 in fall to 55 in spring","An image of a graph"],"answerIndex":2,"reveal":"Functional alt text states the image purpose, the conclusion it shows, not its appearance. A screen-reader user needs the trend, not the file name."},{"prompt":"The title is 28pt bold text. Why is applying the real Heading 1 style different from just making text big and bold?","predictType":"choice","choices":["It is not different; both look like headings","Big bold text is invisible to screen-reader navigation, while a real heading is announced and jumpable","Heading 1 only changes the color","Bold text is more accessible than headings"],"answerIndex":1,"reveal":"A real heading is structural: assistive tech can announce and jump to it. Text that is merely large looks like a heading but cannot be navigated."},{"prompt":"Required steps are shown only in red. What fix keeps the meaning for a colorblind reader?","predictType":"choice","choices":["Make the red brighter","Add the word \"Required\" next to each, so meaning does not depend on color","Remove the red","Use green instead of red"],"answerIndex":1,"reveal":"Never let color be the only cue. Adding a text label means the information survives when color is removed."},{"prompt":"Body text is light gray on white. What is the check?","predictType":"choice","choices":["Eyeball it: it looks fine to me","Switch to dark gray on white to clear the WCAG 4.5:1 contrast ratio for body text","Make the font larger only","Leave it, contrast does not matter on slides"],"answerIndex":1,"reveal":"Body text must meet the 4.5:1 contrast ratio. Darkening the text clears the threshold for low-vision readers and bright-light conditions."},{"reveal":"Four checks, four confirmable fixes. Accessibility is a repeatable checklist, not a judgment call, and each fix maps to a named WCAG check."}]'></step-reveal>
+<step-reveal title="Run four [WCAG](https://www.w3.org/TR/WCAG22/) checks on the Club Growth slide" steps='[{"prompt":"The chart alt text is currently \"Chart1.png.\" What does functional alt text say instead?","predictType":"choice","choices":["A bar chart with blue bars","Chart1.png is fine for screen readers","Bar chart showing club membership rising from 20 in fall to 55 in spring","An image of a graph"],"answerIndex":2,"reveal":"Functional alt text states the image purpose, the conclusion it shows, not its appearance. A screen-reader user needs the trend, not the file name."},{"prompt":"The title is 28pt bold text. Why is applying the real Heading 1 style different from just making text big and bold?","predictType":"choice","choices":["It is not different; both look like headings","Big bold text is invisible to screen-reader navigation, while a real heading is announced and jumpable","Heading 1 only changes the color","Bold text is more accessible than headings"],"answerIndex":1,"reveal":"A real heading is structural: assistive tech can announce and jump to it. Text that is merely large looks like a heading but cannot be navigated."},{"prompt":"Required steps are shown only in red. What fix keeps the meaning for a colorblind reader?","predictType":"choice","choices":["Make the red brighter","Add the word \"Required\" next to each, so meaning does not depend on color","Remove the red","Use green instead of red"],"answerIndex":1,"reveal":"Never let color be the only cue. Adding a text label means the information survives when color is removed."},{"prompt":"Body text is light gray on white. What is the check?","predictType":"choice","choices":["Eyeball it: it looks fine to me","Switch to dark gray on white to clear the [WCAG](https://www.w3.org/TR/WCAG22/) 4.5:1 contrast ratio for body text","Make the font larger only","Leave it, contrast does not matter on slides"],"answerIndex":1,"reveal":"Body text must meet the 4.5:1 contrast ratio. Darkening the text clears the threshold for low-vision readers and bright-light conditions."},{"reveal":"Four checks, four confirmable fixes. Accessibility is a repeatable checklist, not a judgment call, and each fix maps to a named [WCAG](https://www.w3.org/TR/WCAG22/) check."}]'></step-reveal>
 
 Order the pass so access is built in rather than bolted on.
 
-<sequence-builder mode="order" items='["Write functional alt text for every meaningful image","Apply real heading styles to titles and sections","Add a second cue wherever color carries meaning","Check body-text contrast against the 4.5:1 ratio","Map each fix to a named WCAG check a reviewer can confirm"]'></sequence-builder>
+<sequence-builder mode="order" items='["Write functional alt text for every meaningful image","Apply real heading styles to titles and sections","Add a second cue wherever color carries meaning","Check body-text contrast against the 4.5:1 ratio","Map each fix to a named [WCAG](https://www.w3.org/TR/WCAG22/) check a reviewer can confirm"]'></sequence-builder>
 
 ## Decision Rule
 
@@ -96,9 +99,9 @@ A strong reviewer of an artifact can answer four questions:
 
 ## Stronger Artifact Standard
 
-Your accessibility pass is strong when each fix maps to a named WCAG check and could be confirmed by a reviewer or a checker tool. The earlier layers are alt text, heading structure, color independence, and contrast; the last layer is visual polish, which should never come at the cost of access. If a fix is unclear, mark it in your trace and ask BigAL to help you write functional alt text or find the contrast ratio rather than asking it to make the slide "look better."
+Your accessibility pass is strong when each fix maps to a named [WCAG](https://www.w3.org/TR/WCAG22/) check and could be confirmed by a reviewer or a checker tool. The earlier layers are alt text, heading structure, color independence, and contrast; the last layer is visual polish, which should never come at the cost of access. If a fix is unclear, mark it in your trace and ask BigAL to help you write functional alt text or find the contrast ratio rather than asking it to make the slide "look better."
 
-A useful note would read: "On the Club Growth slide I rewrote the chart alt text to state the trend, applied a real Heading 1 to the title, added the word 'Required' so meaning does not rely on red, and darkened the body text to meet the contrast ratio. Each change maps to a WCAG check a reviewer can confirm."
+A useful note would read: "On the Club Growth slide I rewrote the chart alt text to state the trend, applied a real Heading 1 to the title, added the word 'Required' so meaning does not rely on red, and darkened the body text to meet the contrast ratio. Each change maps to a [WCAG](https://www.w3.org/TR/WCAG22/) check a reviewer can confirm."
 
 ## Transfer Case
 
@@ -106,17 +109,17 @@ Carry the four checks to a different medium: a short video you post for a group 
 
 ## Artifact Studio
 
-Open the studio packet: [download the privacy checklist for accounts, data sharing, and AI tool boundaries packet](/downloads/summer2026/cat100-supplement/01-06-accessibility-basics-artifact.md).
+Open the studio packet: [download the accessibility revision pass packet](/downloads/summer2026/cat100-supplement/01-06-accessibility-basics-artifact.md).
 
-<artifact-studio artifact="privacy checklist for accounts, data sharing, and AI tool boundaries" course="CAT 100" section="01.06"></artifact-studio>
+<artifact-studio artifact="accessibility revision pass" course="CAT 100" section="01.06"></artifact-studio>
 
-Use the studio to create a before/after trace. The first version should show the artifact's accessibility gaps. The revised version should show each fix mapped to a WCAG check. The trace should explain how each fix helps a specific reader.
+Use the studio to create a before/after trace. The first version should show the artifact's accessibility gaps. The revised version should show each fix mapped to a [WCAG](https://www.w3.org/TR/WCAG22/) check. The trace should explain how each fix helps a specific reader.
 
 ## Adaptive Support
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **NACE career readiness**.
+- If your note is a **question**, ask for a concise explanation tied to **[NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)**.
 - If your note shows **confusion**, compare a slide with literal alt text against one with functional alt text.
 - If your note is an **insight**, transfer the four checks to a new medium such as video.
 - If your note makes a **connection**, show where the connection changes one of your fixes.
@@ -135,11 +138,12 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that your pass records alt text, heading structure, color independence, and contrast, each fix mapped to a WCAG check a reviewer could confirm.
+Before you move on, check that your pass records alt text, heading structure, color independence, and contrast, each fix mapped to a [WCAG](https://www.w3.org/TR/WCAG22/) check a reviewer could confirm.
 
 ## References
 
-- NACE career readiness. https://www.naceweb.org/career-readiness/competencies/career-readiness-defined
-- ISTE digital citizenship. https://iste.org/standards/students
+- [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
-- WCAG accessibility. https://www.w3.org/TR/WCAG22/
+- [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
+

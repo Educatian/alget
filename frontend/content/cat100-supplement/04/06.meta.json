@@ -1,32 +1,32 @@
-{
-  "course": "cat100-supplement",
-  "chapter": "04",
-  "section": "06",
-  "chapter_title": "AI Conversations as a Teacher",
-  "title": "Reflection on Teacher Judgment",
-  "description": "CAT 100 textbook section connecting reflection on teacher judgment to privacy checklist for accounts, data sharing, and AI tool boundaries, reader notes, support moments, and revision evidence.",
-  "learning_objectives": [
-    "Analyze how the privacy checklist for accounts, data sharing, and AI tool boundaries shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
-  ],
-  "concept_ids": [
-    "cat100_supplement_ai_conversations_as_a_teacher",
-    "learner_reflection",
-    "evidence_based_revision",
-    "ai_supported_learning"
-  ],
-  "estimated_time_minutes": 14,
-  "order": 6,
-  "top_tier_hardened": false,
-  "prereq_section_ids": [
-    "cat100-supplement/04/05"
-  ],
-  "practice_ids": [
-    "cat100_supplement_4_6_reflection_on_teacher_judgment_artifact_signal",
-    "cat100_supplement_4_6_reflection_on_teacher_judgment_annotation_signal",
-    "cat100_supplement_4_6_reflection_on_teacher_judgment_ai_boundary",
-    "cat100_supplement_4_6_reflection_on_teacher_judgment_calibration"
-  ]
+﻿{
+    "course":  "cat100-supplement",
+    "chapter":  "04",
+    "section":  "06",
+    "chapter_title":  "AI Conversations as a Teacher",
+    "title":  "Reflection on Teacher Judgment",
+    "description":  "CAT 100 textbook section connecting reflection on teacher judgment to a decision log, reader notes, support moments, and revision evidence.",
+    "learning_objectives":  [
+                                "Analyze how the decision log shows a defensible decision in CAT 100.",
+                                "Distinguish artifact polish from evidence-based revision.",
+                                "Document a bounded AI/software support move with accepted and rejected suggestions.",
+                                "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+                            ],
+    "concept_ids":  [
+                        "cat100_supplement_ai_conversations_as_a_teacher",
+                        "learner_reflection",
+                        "evidence_based_revision",
+                        "ai_supported_learning"
+                    ],
+    "estimated_time_minutes":  14,
+    "order":  6,
+    "top_tier_hardened":  false,
+    "prereq_section_ids":  [
+                               "cat100-supplement/04/05"
+                           ],
+    "practice_ids":  [
+                         "cat100_supplement_4_6_reflection_on_teacher_judgment_artifact_signal",
+                         "cat100_supplement_4_6_reflection_on_teacher_judgment_annotation_signal",
+                         "cat100_supplement_4_6_reflection_on_teacher_judgment_ai_boundary",
+                         "cat100_supplement_4_6_reflection_on_teacher_judgment_calibration"
+                     ]
 }

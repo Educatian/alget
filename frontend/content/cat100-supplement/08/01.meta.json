@@ -1,12 +1,12 @@
-{
+﻿{
   "course": "cat100-supplement",
   "chapter": "08",
   "section": "01",
   "chapter_title": "Course Completion and Transfer",
   "title": "Capstone Artifact Review",
-  "description": "CAT 100 textbook section connecting capstone artifact review to privacy checklist for accounts, data sharing, and AI tool boundaries, reader notes, support moments, and revision evidence.",
+  "description": "CAT 100 textbook section on capstone artifact review, centered on a review checklist, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the privacy checklist for accounts, data sharing, and AI tool boundaries shows a defensible decision in CAT 100.",
+    "Analyze how the capstone artifact review checklist shows a defensible decision in CAT 100.",
     "Distinguish artifact polish from evidence-based revision.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
@@ -30,3 +30,4 @@
     "cat100_supplement_8_1_capstone_artifact_review_calibration"
   ]
 }
+

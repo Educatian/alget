@@ -37,7 +37,7 @@ Score an issue by severity times reach and watch how effort never enters the ran
 
 <parameter-explorer config='{"title":"Severity x reach priority score (effort excluded by design)","sliders":[{"name":"severity","label":"Severity (1 trivial to 5 blocks the goal)","min":1,"max":5,"step":1,"unit":"pts","default":5},{"name":"reach","label":"Participants who hit it","min":0,"max":10,"step":1,"unit":"of 10","default":3},{"name":"effort","label":"Effort to fix (1 quick to 5 hard)","min":1,"max":5,"step":1,"unit":"pts","default":4}],"outputs":[{"label":"Priority score (severity x reach)","unit":"pts","expr":"severity * reach"},{"label":"Reach as share of audience","unit":"%","expr":"100 * reach / 10"},{"label":"Effort (records order among equals only)","unit":"pts","expr":"effort"}]}'></parameter-explorer>
 
-Set severity to 5 and reach to 3 for a blocking Submit-findability defect, then a trivial typo at severity 1 and reach 1: the priority scores are 15 versus 1, and the effort slider changes neither. Effort is real, but it only breaks ties among items of equal priority; let it lead and you sort the backlog by comfort. **Mayer multimedia learning** reminds you that the goal is a learning performance, so an issue is severe to the degree it blocks that performance, not to the degree it annoys someone. And **cognitive load theory** explains why a "small" friction can rank high: a confusing control that adds extraneous load at a decision point can derail the learning task even if it never produces an outright failure, which is why hesitation data, not just abandonment data, feeds the severity judgment.
+Set severity to 5 and reach to 3 for a blocking Submit-findability defect, then a trivial typo at severity 1 and reach 1: the priority scores are 15 versus 1, and the effort slider changes neither. Effort is real, but it only breaks ties among items of equal priority; let it lead and you sort the backlog by comfort. **[Mayer multimedia learning](https://doi.org/10.1017/CBO9781139164603)** reminds you that the goal is a learning performance, so an issue is severe to the degree it blocks that performance, not to the degree it annoys someone. And **[cognitive load theory](https://en.wikipedia.org/wiki/Cognitive_load)** explains why a "small" friction can rank high: a confusing control that adds extraneous load at a decision point can derail the learning task even if it never produces an outright failure, which is why hesitation data, not just abandonment data, feeds the severity judgment.
 
 ## Worked Example: Prioritizing Which Issues to Fix First
 
@@ -96,7 +96,7 @@ A backlog sorted by ease is a backlog that protects the team's comfort at the le
 
 Trace one backlog from instinct to a defensible order. A storyboard test surfaces a frame whose narration runs long (annoying, two participants mentioned it), a missing caption on a key diagram (blocks deaf learners entirely), and a slightly off-brand color (one stakeholder noticed). The effort instinct fixes the color first; the impact discipline does not. The missing caption is an access floor under **UDL learner variability**, so it leads even though only some learners hit it, because for them it is total exclusion, not mild friction.
 
-The long narration ranks next, not because it was mentioned, but because **cognitive load theory** flags overlong audio as extraneous load competing with the diagram the frame is teaching, so it plausibly blocks the learning action for more than the two who complained. The off-brand color, blocking nothing, drops to last. Read back, the order is an argument anyone can check: caption (access floor), narration (load on the learning goal), color (cosmetic), and each position cites the evidence that earned it rather than the hour it takes to fix.
+The long narration ranks next, not because it was mentioned, but because **[cognitive load theory](https://en.wikipedia.org/wiki/Cognitive_load)** flags overlong audio as extraneous load competing with the diagram the frame is teaching, so it plausibly blocks the learning action for more than the two who complained. The off-brand color, blocking nothing, drops to last. Read back, the order is an argument anyone can check: caption (access floor), narration (load on the learning goal), color (cosmetic), and each position cites the evidence that earned it rather than the hour it takes to fix.
 
 ## What Strong Reading Looks Like
 
@@ -131,12 +131,12 @@ Use the studio to create a before/after trace. The first version should show you
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **Mayer multimedia learning**.
+- If your note is a **question**, ask for a concise explanation tied to **[Mayer multimedia learning](https://doi.org/10.1017/CBO9781139164603)**.
 - If your note shows **confusion**, compare a weak and strong version of the storyboard frame sequence with narration, signaling, and reader-action notes.
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 05.07. A peer comment points to a evidence move issue connected to cognitive load theory. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
+<dynamic-scenario prompt="You are revising the storyboard frame sequence with narration, signaling, and reader-action notes for AIL 606 05.07. A peer comment points to a evidence move issue connected to [cognitive load theory](https://en.wikipedia.org/wiki/Cognitive_load). Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
@@ -152,7 +152,7 @@ Before you move on, confirm your backlog is ordered by severity and reach agains
 
 ## References
 
-- Mayer multimedia learning. https://doi.org/10.1017/CBO9781139164603
+- [Mayer multimedia learning](https://doi.org/10.1017/CBO9781139164603)
 - Sweller, Ayres, and Kalyuga (2011). Cognitive Load Theory. Springer. https://doi.org/10.1007/978-1-4419-8126-4
 - UDL learner variability. https://udlguidelines.cast.org/
 - usability heuristics. https://www.nngroup.com/articles/ten-usability-heuristics/
