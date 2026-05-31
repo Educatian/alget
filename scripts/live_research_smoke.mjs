@@ -35,10 +35,12 @@ function parseArgs(argv) {
     workerUrl: process.env.ALGET_ADAPTIVE_WORKER_URL || DEFAULT_WORKER_URL,
     requireAccess: false,
     requireProvenance: false,
+    checkTables: false,
   };
   for (const arg of argv) {
     if (arg === "--require-access") options.requireAccess = true;
     else if (arg === "--require-provenance") options.requireProvenance = true;
+    else if (arg === "--check-tables") options.checkTables = true;
     else if (arg.startsWith("--app-url=")) options.appUrl = arg.slice(10);
     else if (arg.startsWith("--worker-url=")) options.workerUrl = arg.slice(13);
   }
@@ -191,8 +193,8 @@ async function pollSupabaseDecision(decisionId, requireProvenance) {
 
   const base = supabaseUrl.replace(/\/+$/, "");
   const query =
-    `/rest/v1/adaptive_decisions?decision_id=eq.${encodeURIComponent(decisionId)}` +
-    "&select=decision_id,source,content_version,section_id,created_at";
+    `/rest/v1/recommendation_decisions?id=eq.${encodeURIComponent(decisionId)}` +
+    "&select=id,trace_id,course_id,section_id,chosen_action,learner_state_snapshot,created_at";
   let lastStatus = null;
   let lastText = "";
 
@@ -211,8 +213,9 @@ async function pollSupabaseDecision(decisionId, requireProvenance) {
         return {
           checked: true,
           found: true,
-          source: rows[0].source,
+          source: rows[0].learner_state_snapshot?.source ?? null,
           sectionId: rows[0].section_id,
+          chosenAction: rows[0].chosen_action,
         };
       }
     }
@@ -225,6 +228,40 @@ async function pollSupabaseDecision(decisionId, requireProvenance) {
     );
   }
   return { checked: true, found: false, lastStatus };
+}
+
+async function checkSupabaseTables() {
+  const supabaseUrl =
+    process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || "";
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+
+  if (!supabaseUrl || !serviceKey) {
+    return { checked: false, note: "missing local Supabase service env" };
+  }
+
+  const base = supabaseUrl.replace(/\/+$/, "");
+  const tables = [
+    "event_logs",
+    "interaction_events",
+    "recommendation_decisions",
+    "section_annotations",
+    "annotation_replies",
+    "annotation_reactions",
+    "annotation_read_states",
+    "artifact_revision_scores",
+    "human_ratings",
+  ];
+  const statuses = {};
+  for (const table of tables) {
+    const res = await fetch(`${base}/rest/v1/${table}?select=*&limit=1`, {
+      headers: {
+        apikey: serviceKey,
+        Authorization: `Bearer ${serviceKey}`,
+      },
+    });
+    statuses[table] = res.status;
+  }
+  return { checked: true, statuses };
 }
 
 async function main() {
@@ -241,6 +278,7 @@ async function main() {
     worker.decisionId,
     options.requireProvenance,
   );
+  const tableCheck = options.checkTables ? await checkSupabaseTables() : undefined;
 
   console.log(JSON.stringify({
     ok: true,
@@ -248,6 +286,7 @@ async function main() {
     access,
     worker,
     provenance,
+    ...(tableCheck ? { tableCheck } : {}),
   }, null, 2));
 }
 

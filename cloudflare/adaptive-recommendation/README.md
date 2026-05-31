@@ -11,11 +11,11 @@ Supabase edge fn's `policy.ts`, itself a 1:1 mirror of
   accepts the client-sent signals in the request body (the same contract as the
   Supabase edge fn's `index.ts`) and computes the decision in-isolate.
 - **Provenance is best-effort and non-blocking.** The only Worker -> Supabase
-  interaction is a fire-and-forget `POST` of the decision record to
-  `adaptive_decisions`, dispatched via `ctx.waitUntil(...)` so it runs *after*
-  the response is sent. A failed/absent write never affects the response. If the
-  `SUPABASE_URL` / `SUPABASE_SERVICE_ROLE_KEY` secrets are unset, the write is
-  skipped silently.
+  interaction is a fire-and-forget `POST` of the decision record to the
+  canonical `recommendation_decisions` research table, dispatched via
+  `ctx.waitUntil(...)` so it runs *after* the response is sent. A failed/absent
+  write never affects the response. If the `SUPABASE_URL` /
+  `SUPABASE_SERVICE_ROLE_KEY` secrets are unset, the write is skipped silently.
 - **Faithfulness invariant enforced** before returning: every `reason_code` maps
   to a feature present in `evidence_snapshot` (fail-closed to a faithful state).
 

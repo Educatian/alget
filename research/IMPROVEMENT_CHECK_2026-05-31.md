@@ -46,6 +46,18 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
   - `ENGINEERING_ACCESS_CODE`
   - `RESEARCHER_ACCESS_CODE`
 - [x] Adaptive Worker production `SUPABASE_URL` secret configured.
+- [x] Adaptive Worker production `SUPABASE_SERVICE_ROLE_KEY` secret configured.
+- [x] Worker provenance persistence aligned to the canonical `recommendation_decisions` research table.
+- [x] Strict production provenance smoke passed:
+  - `node scripts/live_research_smoke.mjs --require-access --require-provenance`
+  - Verified `https://alget.pages.dev` homepage, access gate, static section `content_version`, adaptive Worker response, and Supabase `recommendation_decisions` row for the returned `decision_id`.
+- [x] Live table drift check added to the smoke script:
+  - `node scripts/live_research_smoke.mjs --require-access --require-provenance --check-tables`
+  - Current live Supabase has `event_logs`, `interaction_events`, `recommendation_decisions`, and `human_ratings`.
+  - Current live Supabase is still missing `section_annotations`, `annotation_replies`, `annotation_reactions`, `annotation_read_states`, and `artifact_revision_scores`.
+- [x] Missing-table UX hardening:
+  - Social annotations now fall back to local storage after detecting missing Supabase annotation tables, avoiding repeated remote calls.
+  - Artifact trace scores still persist through `event_logs` and `interaction_events`; the optional `artifact_revision_scores` mirror is skipped after a missing-table response.
 
 ## Current Uncommitted Improvement Set
 
@@ -79,8 +91,7 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
 
 - [ ] Run the actual pilot protocol with real learners; the main A+ boundary is empirical evidence, not more content.
 - [ ] Provision live Supabase social annotation tables and RLS from `backend/supabase_all_in_one.sql`.
-- [ ] Configure adaptive Worker `SUPABASE_SERVICE_ROLE_KEY` in production.
-- [ ] Verify Worker provenance writes against the live Supabase project after secrets are set.
+- [ ] Provision live `artifact_revision_scores` from `backend/supabase_all_in_one.sql` or `backend/supabase_research_schema.sql`.
 - [ ] Persist artifact judgment-gate outputs to a trusted server table, not only UI/local traces.
 - [ ] Collect artifact revision ratings with reliability evidence or a defensible rubric validation plan.
 - [ ] Calibrate learner model and recommendation policy on real exported event traces.
@@ -90,4 +101,4 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
 
 ## Practical Next Move
 
-The next meaningful work is now narrower: provision the live Supabase schema if it is not already present, set adaptive Worker `SUPABASE_SERVICE_ROLE_KEY`, then run `node scripts/live_research_smoke.mjs --require-access --require-provenance`. That proves: access gate -> section read -> adaptive decision -> provenance row. The broader learner study smoke can then add annotation -> artifact trace -> anonymized export.
+The next meaningful work is now the broader learner study smoke after live schema provisioning: social annotation -> artifact trace -> adaptive decision -> provenance row -> anonymized export. Until the missing tables are provisioned, learner-facing annotation and artifact telemetry degrade locally/canonically without breaking the reading workflow. The access gate, section read, adaptive decision, and provenance row segment is already verified in production.

@@ -21,6 +21,7 @@ import os
 import math
 import re
 import logging
+import uuid
 
 logger = logging.getLogger(__name__)
 
@@ -832,7 +833,7 @@ def _estimate_action_outcomes(
 # RCT data and a client can later attach an outcome/accepted label. The
 # in-process store guarantees the 'why this support now' read endpoint works
 # offline and in tests; when Supabase credentials are supplied the same record
-# is best-effort written to the adaptive_decisions table.
+# is best-effort written to the canonical recommendation_decisions table.
 # ---------------------------------------------------------------------------
 _ADAPTIVE_DECISION_STORE: "dict[str, dict[str, Any]]" = {}
 _ADAPTIVE_DECISION_ORDER: list[str] = []
@@ -867,6 +868,43 @@ async def _persist_decision_to_supabase(
         return False
     import httpx
 
+    def maybe_uuid(value: Any) -> Optional[str]:
+        try:
+            return str(uuid.UUID(str(value)))
+        except (TypeError, ValueError):
+            return None
+
+    decision_id = str(record.get("decision_id") or uuid.uuid4())
+    canonical_record = {
+        "id": decision_id,
+        "trace_id": decision_id,
+        "user_id": maybe_uuid(record.get("learner_id")),
+        "course_id": record.get("course"),
+        "section_id": record.get("section_id") or "unknown",
+        "concept_ids": [],
+        "chosen_action": record.get("selected_action"),
+        "learner_state_snapshot": {
+            "learner_id": record.get("learner_id"),
+            "session_id": record.get("session_id"),
+            "policy_mode": record.get("policy_mode"),
+            "policy_strategy": record.get("policy_strategy"),
+            "annotation_adaptive": record.get("annotation_adaptive"),
+            "content_version": record.get("content_version"),
+            "content_version_algorithm": record.get("content_version_algorithm"),
+            "source": record.get("source") or "fastapi",
+        },
+        "candidate_actions": record.get("candidate_actions") or [],
+        "evidence_snapshot": record.get("evidence_snapshot") or {},
+        "explanation_snapshot": {
+            "reason_codes": record.get("reason_codes") or [],
+            "selected_action": record.get("selected_action"),
+            "rejected_actions": record.get("rejected_actions") or [],
+            "outcome": record.get("outcome"),
+            "accepted": record.get("accepted"),
+        },
+        "policy_score": record.get("action_scores") or {},
+    }
+
     headers = {
         "apikey": supabase_anon_key,
         "Authorization": f"Bearer {supabase_anon_key}",
@@ -876,13 +914,13 @@ async def _persist_decision_to_supabase(
     try:
         async with httpx.AsyncClient(timeout=10.0) as client:
             res = await client.post(
-                f"{supabase_url.rstrip('/')}/rest/v1/adaptive_decisions",
+                f"{supabase_url.rstrip('/')}/rest/v1/recommendation_decisions",
                 headers=headers,
-                json=record,
+                json=canonical_record,
             )
         return 200 <= res.status_code < 300
     except Exception as exc:  # pragma: no cover - network failure path
-        logger.warning("adaptive_decisions persist failed: %s", exc)
+        logger.warning("recommendation_decisions persist failed: %s", exc)
         return False
 
 

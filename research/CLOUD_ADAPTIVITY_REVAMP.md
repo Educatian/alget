@@ -44,8 +44,8 @@ reason_codes, evidence_snapshot, policy_mode, content_version }`. A separate
 
 ## Provenance + RLS
 
-The function uses the service role (function secret) to write `recommendation_decisions` /
-`adaptive_decisions` in-region; client reads stay behind RLS. This also closes the prior gap where
+The function uses the service role (function secret) to write `recommendation_decisions`
+in-region; client reads stay behind RLS. This also closes the prior gap where
 client-side upsert could drop provenance: every served decision is persisted server(edge)-side at
 generation time.
 
@@ -88,7 +88,7 @@ The edge function is the in-system policy, just relocated for speed.
   `features`, `prefer_advance`/`readiness`, `content_version`), runs `select_support_move`, generates a
   `decision_id` via `crypto.randomUUID()`, **best-effort** persists the decision record (candidate /
   selected / rejected actions, `action_scores`, `evidence_snapshot`, `reason_codes`, `policy_mode`,
-  `content_version`) to `adaptive_decisions` via the service role (`SUPABASE_URL` +
+  `content_version`) to `recommendation_decisions` via the service role (`SUPABASE_URL` +
   `SUPABASE_SERVICE_ROLE_KEY` from `Deno.env`), enforces the faithfulness invariant before returning,
   and returns the same response shape incl. `decision_id`. Persistence never throws to the caller.
 - `supabase/functions/adaptive-recommendation/parity/` — `fixtures.json` (13 diverse vectors varying
@@ -173,7 +173,7 @@ Worker that serves the SAME parity-verified policy from Cloudflare's global edge
   evidence_snapshot, policy_mode, content_version`).
 - **Latency = pure policy compute + return.** There are NO per-request DB reads. The ONLY Worker ->
   Supabase interaction is a **best-effort, fire-and-forget provenance WRITE** of the decision record to
-  `${SUPABASE_URL}/rest/v1/adaptive_decisions` (apikey + `Authorization: Bearer <service role>`,
+  `${SUPABASE_URL}/rest/v1/recommendation_decisions` (apikey + `Authorization: Bearer <service role>`,
   `Prefer: return=minimal`), dispatched via `ctx.waitUntil(...)` so it runs AFTER the response is sent.
   Wrapped in try/catch; a failed write NEVER affects the response, and if `SUPABASE_URL` /
   `SUPABASE_SERVICE_ROLE_KEY` are unset the write is skipped silently.
