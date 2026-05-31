@@ -174,6 +174,65 @@ function scoreArtifactRevision(req) {
   }
 }
 
+// --- Artifact trace validation (ported from backend validate_artifact_trace_payload) ---
+const ARTIFACT_RUBRIC_KEYS = [
+  'claim_visibility',
+  'evidence_specificity',
+  'support_boundary',
+  'revision_quality',
+  'rejection_rationale',
+  'transfer_constraint',
+]
+function cleanStr(value) { return String(value ?? '').trim() }
+function clampInt(value, low, high) {
+  const n = parseInt(value, 10)
+  const v = Number.isFinite(n) ? n : low
+  return Math.max(low, Math.min(high, v))
+}
+function artifactSupportMove(traceScore) {
+  if (traceScore <= 3) return 'explain'
+  if (traceScore <= 6) return 'compare'
+  return 'audit'
+}
+function validateArtifactTrace(req) {
+  const lengths = [
+    req.initial_draft_length,
+    req.claim_length,
+    req.evidence_length,
+    req.accepted_length,
+    req.rejected_length,
+    req.judgment_rationale_length,
+    req.revised_draft_length,
+    req.transfer_length,
+  ].map((value) => Math.max(0, parseInt(value, 10) || 0))
+
+  const computedTraceScore = lengths.filter((length) => length >= 12).length
+  const rubric = (req.rubric && typeof req.rubric === 'object') ? req.rubric : {}
+  const normalizedRubric = {}
+  for (const key of ARTIFACT_RUBRIC_KEYS) normalizedRubric[key] = clampInt(rubric[key], 0, 2)
+  const computedQuality = Math.round((Object.values(normalizedRubric).reduce((sum, value) => sum + value, 0) / (ARTIFACT_RUBRIC_KEYS.length * 2)) * 1000) / 1000
+  const recommendedSupportMove = artifactSupportMove(computedTraceScore)
+  const validationErrors = []
+
+  if (!cleanStr(req.course)) validationErrors.push('missing_course')
+  if (!cleanStr(req.section)) validationErrors.push('missing_section')
+  if (!cleanStr(req.artifact)) validationErrors.push('missing_artifact')
+  if (computedTraceScore !== (parseInt(req.trace_score, 10) || 0)) validationErrors.push('trace_score_mismatch')
+  if (Math.abs(computedQuality - Number(req.artifact_quality_score || 0)) > 0.01) validationErrors.push('artifact_quality_score_mismatch')
+  if (req.recommended_support_move && req.recommended_support_move !== recommendedSupportMove) validationErrors.push('recommended_support_mismatch')
+  if (!['explain', 'compare', 'audit'].includes(cleanStr(req.support_move))) validationErrors.push('unsupported_support_move')
+
+  return {
+    validator_pass: validationErrors.length === 0,
+    validation_errors: validationErrors,
+    computed_trace_score: computedTraceScore,
+    computed_artifact_quality_score: computedQuality,
+    recommended_support_move: recommendedSupportMove,
+    normalized_rubric: normalizedRubric,
+    policy_version: 'artifact-trace-validator-v1',
+  }
+}
+
 // --- Practice grading (ported from backend grading_service.py) ---
 const UNIT_CONV = { n: 1, kn: 1000, lbf: 4.44822, lb: 4.44822, m: 1, cm: 0.01, mm: 0.001, km: 1000, in: 0.0254, ft: 0.3048, rad: 1, deg: 0.0174533, '°': 0.0174533, kg: 1, g: 0.001, lb_mass: 0.453592, pa: 1, kpa: 1000, mpa: 1000000, psi: 6894.76 }
 const UNIT_GROUPS = { force: ['n', 'kn', 'lbf', 'lb'], length: ['m', 'cm', 'mm', 'km', 'in', 'ft'], angle: ['rad', 'deg', '°'], mass: ['kg', 'g', 'lb_mass'], pressure: ['pa', 'kpa', 'mpa', 'psi'] }
@@ -406,6 +465,11 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
       // --- Artifact revision scoring (deterministic, ported from backend) ---
       if (path === '/research/artifact-revision/score') {
         return json(scoreArtifactRevision(body))
+      }
+
+      // --- Artifact trace validation (deterministic, no raw text persisted) ---
+      if (path === '/research/artifact-trace/validate') {
+        return json(validateArtifactTrace(body))
       }
 
       // --- Practice problem grading (deterministic; reads static content) ---

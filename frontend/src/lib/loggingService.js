@@ -4,7 +4,7 @@
  */
 import { supabase, supabaseConfig, isSupabaseConfigured } from './supabase'
 import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
-import API_BASE from './apiConfig'
+import API_BASE, { LLM_API_BASE } from './apiConfig'
 
 // Session state
 let sessionId = null
@@ -255,7 +255,7 @@ async function validateArtifactStudioEvent(event) {
     }
 
     try {
-        const response = await fetch(`${API_BASE}/research/artifact-trace/validate`, {
+        const response = await fetch(`${LLM_API_BASE}/research/artifact-trace/validate`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(event.event_data || {}),
