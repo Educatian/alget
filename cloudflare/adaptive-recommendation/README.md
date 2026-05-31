@@ -67,7 +67,7 @@ logic — parity must be preserved). The Python module
 python ../../supabase/functions/adaptive-recommendation/parity/gen_golden.py
 cp ../../supabase/functions/adaptive-recommendation/parity/golden.json parity/golden.json
 
-# Run the parity check (transpiles src/policy.ts via the frontend's esbuild and
+# Run the parity check (transpiles src/policy.ts via the worker package's esbuild and
 # deep-compares every field to the Python golden over all fixtures):
 node parity/run_parity.mjs
 ```
