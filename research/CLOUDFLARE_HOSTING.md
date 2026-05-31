@@ -47,13 +47,19 @@ The smoke verifier checks the production Pages homepage, static `/api/book/*`
 payloads, section `content_version` stamping, cohort access validation, and the
 adaptive Worker response shape. Add `--require-provenance` after the adaptive
 Worker has `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` configured; that mode
-polls Supabase for the returned `decision_id` in `adaptive_decisions`.
+polls Supabase for the returned `decision_id` in `recommendation_decisions`.
+Use `--check-tables` with a local `SUPABASE_SERVICE_ROLE_KEY` env var to report
+live research-table availability by status code without printing secrets.
 
 ## Known limitations (v1)
 - **Backend-dependent POST features degrade gracefully** (no Python backend in this deployment): LLM tutor chat,
   server-side grading, and social-annotation persistence are unavailable. The core reading + interactives + adaptivity work.
 - **Social annotations 404** against Supabase because the `section_annotations` (and related) tables are not provisioned on
-  the live Supabase project; run `backend/supabase_all_in_one.sql` to enable.
+  the live Supabase project; run `backend/supabase_all_in_one.sql` to enable. The UI detects this missing-table response
+  and falls back to local annotation storage instead of repeatedly retrying the remote tables.
+- **Artifact revision score mirror 404** against Supabase because `artifact_revision_scores` is not provisioned live.
+  Artifact traces still land in `event_logs` and canonical `interaction_events`; the optional score-derived mirror is
+  skipped after the missing-table response until the table exists.
 - **Worker provenance write** is best-effort and skipped unless `SUPABASE_SERVICE_ROLE_KEY` is set via `wrangler secret put`.
   `SUPABASE_URL` is already configured on the adaptive Worker. The hosted LLM Worker preserves the adaptive Worker
   `decision_id`, so any persisted decision can be joined to the UI-facing response.

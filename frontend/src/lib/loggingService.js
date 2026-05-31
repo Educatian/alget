@@ -16,6 +16,7 @@ let lastScrollDepth = 0
 let lastClickTarget = null
 let lastClickTime = 0
 let cachedAccessToken = null
+let artifactScoreTableUnavailable = false
 
 // Config
 const FLUSH_INTERVAL_MS = 5000
@@ -249,6 +250,11 @@ function toArtifactRevisionScore(event) {
     }
 }
 
+function isMissingSupabaseTableError(error) {
+    return error?.code === 'PGRST205' ||
+        /Could not find the table|schema cache/i.test(error?.message || '')
+}
+
 async function validateArtifactStudioEvent(event) {
     if (event.event_type !== 'artifact_studio_trace') {
         return event
@@ -476,12 +482,15 @@ async function flushEvents() {
             .map(toArtifactRevisionScore)
             .filter(Boolean)
 
-        if (artifactRevisionScoreRows.length > 0) {
+        if (artifactRevisionScoreRows.length > 0 && !artifactScoreTableUnavailable) {
             const { error: artifactScoreError } = await supabase
                 .from('artifact_revision_scores')
                 .insert(artifactRevisionScoreRows)
 
             if (artifactScoreError) {
+                if (isMissingSupabaseTableError(artifactScoreError)) {
+                    artifactScoreTableUnavailable = true
+                }
                 console.warn('[Logging] Artifact revision score persistence failed:', artifactScoreError)
             }
         }

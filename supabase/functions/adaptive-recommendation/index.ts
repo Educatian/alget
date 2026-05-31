@@ -5,7 +5,7 @@
 // path. It accepts the SAME request contract the client already sends, runs the
 // ported PURE policy (./policy.ts, a 1:1 mirror of backend/knowledge_tracing.py),
 // generates a decision_id, BEST-EFFORT persists the decision-provenance record
-// to the adaptive_decisions table with the service role, enforces the
+// to the recommendation_decisions table with the service role, enforces the
 // faithfulness invariant, and returns { decision_id, ... } in the same shape.
 //
 // v1 scope: features are assembled from the request payload exactly as the
@@ -170,8 +170,38 @@ async function persistDecision(record: Record<string, unknown>): Promise<boolean
   if (!url || !serviceKey) {
     return false;
   }
+  const decisionId = String(record.decision_id ?? crypto.randomUUID());
+  const canonicalRecord = {
+    id: decisionId,
+    trace_id: decisionId,
+    user_id: null,
+    course_id: record.course ?? null,
+    section_id: record.section_id ?? "unknown",
+    concept_ids: [],
+    chosen_action: record.selected_action,
+    learner_state_snapshot: {
+      learner_id: record.learner_id ?? null,
+      session_id: record.session_id ?? null,
+      policy_mode: record.policy_mode ?? null,
+      policy_strategy: record.policy_strategy ?? null,
+      annotation_adaptive: record.annotation_adaptive ?? null,
+      content_version: record.content_version ?? null,
+      content_version_algorithm: record.content_version_algorithm ?? null,
+      source: record.source ?? "edge",
+    },
+    candidate_actions: record.candidate_actions ?? [],
+    evidence_snapshot: record.evidence_snapshot ?? {},
+    explanation_snapshot: {
+      reason_codes: record.reason_codes ?? [],
+      selected_action: record.selected_action ?? null,
+      rejected_actions: record.rejected_actions ?? [],
+      outcome: record.outcome ?? null,
+      accepted: record.accepted ?? null,
+    },
+    policy_score: record.action_scores ?? {},
+  };
   try {
-    const res = await fetch(`${url.replace(/\/+$/, "")}/rest/v1/adaptive_decisions`, {
+    const res = await fetch(`${url.replace(/\/+$/, "")}/rest/v1/recommendation_decisions`, {
       method: "POST",
       headers: {
         "apikey": serviceKey,
@@ -179,7 +209,7 @@ async function persistDecision(record: Record<string, unknown>): Promise<boolean
         "Content-Type": "application/json",
         "Prefer": "return=minimal",
       },
-      body: JSON.stringify(record),
+      body: JSON.stringify(canonicalRecord),
     });
     return res.status >= 200 && res.status < 300;
   } catch (_err) {

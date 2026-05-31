@@ -64,6 +64,11 @@ function dbToAnnotation(row, reactionCounts = {}) {
     }
 }
 
+function isMissingSupabaseTableError(error) {
+    return error?.code === 'PGRST205' ||
+        /Could not find the table|schema cache/i.test(error?.message || '')
+}
+
 export default function PerusallLayer({ sectionId, conceptIds = [] }) {
     const [annotations, setAnnotations] = useState(() => readAnnotations(sectionId))
     const [quote, setQuote] = useState('')
@@ -71,6 +76,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
     const [tag, setTag] = useState('question')
     const [filter, setFilter] = useState('all')
     const [isSynced, setIsSynced] = useState(false)
+    const [remoteUnavailable, setRemoteUnavailable] = useState(false)
     const [expanded, setExpanded] = useState(false)
     const [composing, setComposing] = useState(false)
 
@@ -79,7 +85,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
     }, [annotations, sectionId])
 
     const loadRemoteAnnotations = useCallback(async () => {
-        if (!isSupabaseConfigured || !sectionId) return
+        if (!isSupabaseConfigured || !sectionId || remoteUnavailable) return
         try {
             const { data, error } = await supabase
                 .from('section_annotations')
@@ -110,10 +116,13 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
             setAnnotations((current) => mergeAnnotations(current, remoteAnnotations))
             setIsSynced(true)
         } catch (err) {
+            if (isMissingSupabaseTableError(err)) {
+                setRemoteUnavailable(true)
+            }
             console.warn('[PerusallLayer] remote sync unavailable, falling back to local:', err?.message || err)
             setIsSynced(false)
         }
-    }, [sectionId])
+    }, [remoteUnavailable, sectionId])
 
     useEffect(() => {
         loadRemoteAnnotations()
@@ -160,7 +169,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
         }
         const selectedQuote = quote.trim()
 
-        if (isSupabaseConfigured) {
+        if (isSupabaseConfigured && !remoteUnavailable) {
             try {
                 const { data: { session } } = await supabase.auth.getSession()
                 const hash = await quoteHash(selectedQuote)
@@ -184,6 +193,9 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
                 setAnnotations((current) => [dbToAnnotation(data), ...current])
                 setIsSynced(true)
             } catch (err) {
+                if (isMissingSupabaseTableError(err)) {
+                    setRemoteUnavailable(true)
+                }
                 console.warn('[PerusallLayer] insert failed, kept local:', err?.message || err)
                 setAnnotations((current) => [nextLocal, ...current])
                 setIsSynced(false)
@@ -226,7 +238,7 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
             annotationId: id,
             reactionType: 'helpful',
         })
-        if (!isSupabaseConfigured || id.startsWith('pa_')) return
+        if (!isSupabaseConfigured || remoteUnavailable || id.startsWith('pa_')) return
         try {
             const { data: { session } } = await supabase.auth.getSession()
             const { error } = await supabase.from('annotation_reactions').upsert({
@@ -236,6 +248,9 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
             })
             if (error) throw error
         } catch (err) {
+            if (isMissingSupabaseTableError(err)) {
+                setRemoteUnavailable(true)
+            }
             console.warn('[PerusallLayer] reaction sync failed:', err?.message || err)
         }
     }
@@ -259,15 +274,15 @@ export default function PerusallLayer({ sectionId, conceptIds = [] }) {
         <span
             className="inline-flex items-center gap-1 rounded-full bg-[var(--ath-panel)] px-2 py-0.5 text-[10px] font-semibold text-[var(--ath-secondary)]"
             title={
-                isSupabaseConfigured
+                isSupabaseConfigured && !remoteUnavailable
                     ? isSynced
                         ? 'Annotations sync to the research layer'
                         : 'Saved locally — will sync when the annotations table is reachable'
                     : 'Annotations are stored on this device only'
             }
         >
-            <span className={`h-1.5 w-1.5 rounded-full ${isSupabaseConfigured && isSynced ? 'bg-emerald-500' : 'bg-amber-400'}`} aria-hidden />
-            {isSupabaseConfigured && isSynced ? 'Synced' : 'Local'}
+            <span className={`h-1.5 w-1.5 rounded-full ${isSupabaseConfigured && !remoteUnavailable && isSynced ? 'bg-emerald-500' : 'bg-amber-400'}`} aria-hidden />
+            {isSupabaseConfigured && !remoteUnavailable && isSynced ? 'Synced' : 'Local'}
         </span>
     )
 
