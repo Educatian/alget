@@ -35,6 +35,16 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
   - `npm.cmd run build` in `frontend/` -> pass.
   - Worker dry-runs for `adaptive-recommendation` and `llm-proxy` -> pass.
   - `npm.cmd run test:e2e` in `frontend/` -> 12 Playwright tests pass.
+- [x] CI warning/noise hardening on 2026-05-31:
+  - GitHub Actions upgraded to `actions/checkout@v6`, `actions/setup-node@v6`, and `actions/setup-python@v6`.
+  - Latest pushed run `26726869657` for commit `704effa` passed all jobs with zero job annotations.
+- [x] Live Cloudflare smoke verifier added:
+  - `node scripts/live_research_smoke.mjs` checks the production Pages homepage, static book TOC/section payload, `content_version` stamping, Pages access gate, adaptive Worker response, and optional Supabase provenance row polling.
+  - `node scripts/live_research_smoke.mjs --require-access` passed against `https://alget.pages.dev` after production Pages secrets were set.
+- [x] Cloudflare Pages production access-code secrets configured:
+  - `EDUCATION_ACCESS_CODE`
+  - `ENGINEERING_ACCESS_CODE`
+  - `RESEARCHER_ACCESS_CODE`
 
 ## Current Uncommitted Improvement Set
 
@@ -68,12 +78,9 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
 
 - [ ] Run the actual pilot protocol with real learners; the main A+ boundary is empirical evidence, not more content.
 - [ ] Provision live Supabase social annotation tables and RLS from `backend/supabase_all_in_one.sql`.
-- [ ] Configure Worker/Pages secrets and env vars in production:
+- [ ] Configure Worker Supabase secrets in production:
   - `SUPABASE_URL`
   - `SUPABASE_SERVICE_ROLE_KEY`
-  - `ENGINEERING_ACCESS_CODE`
-  - `EDUCATION_ACCESS_CODE`
-  - `RESEARCHER_ACCESS_CODE`
 - [ ] Verify Worker provenance writes against the live Supabase project after secrets are set.
 - [ ] Persist artifact judgment-gate outputs to a trusted server table, not only UI/local traces.
 - [ ] Collect artifact revision ratings with reliability evidence or a defensible rubric validation plan.
@@ -84,4 +91,4 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
 
 ## Practical Next Move
 
-Commit the current hardening set once reviewed, then deploy the Pages/Workers stack with production env vars. After deployment, the next meaningful work is a live end-to-end research-data smoke test: access gate -> section read -> annotation -> artifact trace -> adaptive decision -> provenance row -> anonymized export.
+The next meaningful work is now narrower: provision the live Supabase schema if it is not already present, set adaptive Worker `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, then run `node scripts/live_research_smoke.mjs --require-access --require-provenance`. That proves: access gate -> section read -> adaptive decision -> provenance row. The broader learner study smoke can then add annotation -> artifact trace -> anonymized export.

@@ -10,6 +10,7 @@ frontend/dist/
 frontend/node_modules/
 frontend/test-results/
 frontend/playwright-report/
+.wrangler/
 
 
 # transient UI-audit captures
