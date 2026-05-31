@@ -54,9 +54,9 @@ polls Supabase for the returned `decision_id` in `adaptive_decisions`.
   server-side grading, and social-annotation persistence are unavailable. The core reading + interactives + adaptivity work.
 - **Social annotations 404** against Supabase because the `section_annotations` (and related) tables are not provisioned on
   the live Supabase project; run `backend/supabase_all_in_one.sql` to enable.
-- **Worker provenance write** is best-effort and skipped unless `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` are set via
-  `wrangler secret put`. The hosted LLM Worker preserves the adaptive Worker `decision_id`, so any persisted decision can
-  be joined to the UI-facing response.
+- **Worker provenance write** is best-effort and skipped unless `SUPABASE_SERVICE_ROLE_KEY` is set via `wrangler secret put`.
+  `SUPABASE_URL` is already configured on the adaptive Worker. The hosted LLM Worker preserves the adaptive Worker
+  `decision_id`, so any persisted decision can be joined to the UI-facing response.
 - **Access codes are server-side only.** `ENGINEERING_ACCESS_CODE`, `EDUCATION_ACCESS_CODE`, and
   `RESEARCHER_ACCESS_CODE` are configured in Cloudflare Pages production. The local fallback codes only work when
   `ALLOW_FALLBACK_ACCESS_CODES=true` is explicitly set.

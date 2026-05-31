@@ -45,6 +45,7 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
   - `EDUCATION_ACCESS_CODE`
   - `ENGINEERING_ACCESS_CODE`
   - `RESEARCHER_ACCESS_CODE`
+- [x] Adaptive Worker production `SUPABASE_URL` secret configured.
 
 ## Current Uncommitted Improvement Set
 
@@ -78,9 +79,7 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
 
 - [ ] Run the actual pilot protocol with real learners; the main A+ boundary is empirical evidence, not more content.
 - [ ] Provision live Supabase social annotation tables and RLS from `backend/supabase_all_in_one.sql`.
-- [ ] Configure Worker Supabase secrets in production:
-  - `SUPABASE_URL`
-  - `SUPABASE_SERVICE_ROLE_KEY`
+- [ ] Configure adaptive Worker `SUPABASE_SERVICE_ROLE_KEY` in production.
 - [ ] Verify Worker provenance writes against the live Supabase project after secrets are set.
 - [ ] Persist artifact judgment-gate outputs to a trusted server table, not only UI/local traces.
 - [ ] Collect artifact revision ratings with reliability evidence or a defensible rubric validation plan.
@@ -91,4 +90,4 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
 
 ## Practical Next Move
 
-The next meaningful work is now narrower: provision the live Supabase schema if it is not already present, set adaptive Worker `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`, then run `node scripts/live_research_smoke.mjs --require-access --require-provenance`. That proves: access gate -> section read -> adaptive decision -> provenance row. The broader learner study smoke can then add annotation -> artifact trace -> anonymized export.
+The next meaningful work is now narrower: provision the live Supabase schema if it is not already present, set adaptive Worker `SUPABASE_SERVICE_ROLE_KEY`, then run `node scripts/live_research_smoke.mjs --require-access --require-provenance`. That proves: access gate -> section read -> adaptive decision -> provenance row. The broader learner study smoke can then add annotation -> artifact trace -> anonymized export.
