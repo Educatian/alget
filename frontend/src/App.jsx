@@ -58,11 +58,9 @@ export default function App() {
   const [loading, setLoading] = useState(() => !(E2E_USER || readDemoUser()))
 
   useEffect(() => {
-    // Wake up the FastAPI backend immediately (free tier sleeps after ~15min).
-    // The previous ping hit the STATIC /api content snapshot, so it never woke
-    // the real backend; the LLM worker's /warmup boots it in the background so
-    // proxied deterministic endpoints (grade, mastery_graph, ...) are warm by
-    // the time the learner reaches them. Fire-and-forget.
+    // Fire-and-forget Worker readiness ping. In the Cloudflare deployment this
+    // is a cheap no-op; local/dev variants can still use it to warm an optional
+    // backend escape hatch.
     fetch(`${LLM_API_BASE}/warmup`, { method: 'GET' }).catch(() => {})
 
     if (E2E_USER) {
