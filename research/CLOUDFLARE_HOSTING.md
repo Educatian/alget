@@ -55,11 +55,13 @@ live research-table availability by status code without printing secrets.
 - **Backend-dependent POST features degrade gracefully** (no Python backend in this deployment): LLM tutor chat,
   server-side grading, and social-annotation persistence are unavailable. The core reading + interactives + adaptivity work.
 - **Social annotations 404** against Supabase because the `section_annotations` (and related) tables are not provisioned on
-  the live Supabase project; run `backend/supabase_all_in_one.sql` to enable. The UI detects this missing-table response
-  and falls back to local annotation storage instead of repeatedly retrying the remote tables.
+  the live Supabase project. Apply `supabase/migrations/20260531234000_provision_optional_research_tables.sql` with
+  `scripts/provision_live_optional_research_tables.ps1` when `SUPABASE_ACCESS_TOKEN` or `SUPABASE_DB_URL` is available.
+  The UI detects this missing-table response and falls back to local annotation storage instead of repeatedly retrying
+  the remote tables.
 - **Artifact revision score mirror 404** against Supabase because `artifact_revision_scores` is not provisioned live.
-  Artifact traces still land in `event_logs` and canonical `interaction_events`; the optional score-derived mirror is
-  skipped after the missing-table response until the table exists.
+  The same migration provisions it. Artifact traces still land in `event_logs` and canonical `interaction_events`; the
+  optional score-derived mirror is skipped after the missing-table response until the table exists.
 - **Worker provenance write** is best-effort and skipped unless `SUPABASE_SERVICE_ROLE_KEY` is set via `wrangler secret put`.
   `SUPABASE_URL` is already configured on the adaptive Worker. The hosted LLM Worker preserves the adaptive Worker
   `decision_id`, so any persisted decision can be joined to the UI-facing response.
