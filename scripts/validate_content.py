@@ -55,7 +55,7 @@ SCHEMA_DIR = os.path.join(CONTENT_DIR, "_schema", SCHEMA_VERSION)
 
 
 def load_json(path):
-    with open(path, encoding="utf-8") as fh:
+    with open(path, encoding="utf-8-sig") as fh:
         return json.load(fh)
 
 

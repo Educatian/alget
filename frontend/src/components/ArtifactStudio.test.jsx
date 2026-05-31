@@ -19,6 +19,7 @@ vi.mock('../lib/knowledgeService', () => ({
 
 vi.mock('../lib/apiConfig', () => ({
     default: '/api',
+    LLM_API_BASE: '/api',
 }))
 
 describe('ArtifactStudio markdown contract surface', () => {

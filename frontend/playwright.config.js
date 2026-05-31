@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test'
 
+const devCommand = process.platform === 'win32'
+    ? 'npm.cmd run dev -- --host 127.0.0.1 --port 5179'
+    : 'npm run dev -- --host 127.0.0.1 --port 5179'
+
 export default defineConfig({
     testDir: './e2e',
     testMatch: '**/*.spec.js',
@@ -20,12 +24,21 @@ export default defineConfig({
         {
             command: 'python -m uvicorn backend.server:app --host 127.0.0.1 --port 8000',
             cwd: '..',
+            env: {
+                ...process.env,
+                ALLOW_FALLBACK_ACCESS_CODES: 'true',
+            },
             url: 'http://127.0.0.1:8000/api/book/inst-design/toc',
             reuseExistingServer: true,
             timeout: 120_000,
         },
         {
-            command: 'set VITE_E2E_AUTH_BYPASS=true&& npm.cmd run dev -- --host 127.0.0.1 --port 5179',
+            command: devCommand,
+            env: {
+                ...process.env,
+                VITE_E2E_AUTH_BYPASS: 'true',
+                ALLOW_FALLBACK_ACCESS_CODES: 'true',
+            },
             url: 'http://127.0.0.1:5179',
             reuseExistingServer: true,
             timeout: 120_000,

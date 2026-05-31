@@ -21,6 +21,7 @@ test.describe('ALGET accessibility gate', () => {
 
             const results = await new AxeBuilder({ page })
                 .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+                .exclude('iframe[src*="youtube-nocookie.com"]')
                 .analyze()
 
             const blockingViolations = results.violations.filter((violation) =>

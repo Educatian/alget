@@ -8,7 +8,7 @@ This document defines the merge gate: the set of checks that must pass before an
 
 ## The merge gate
 
-CI (`.github/workflows/ci.yml`) runs three jobs as **blocking** steps. A change cannot merge unless all three pass. Run them locally before opening a PR.
+CI (`.github/workflows/ci.yml`) runs content, frontend, backend, browser e2e, static-snapshot, and Worker checks as **blocking** steps. A change cannot merge unless all jobs pass. Run the relevant subset locally before opening a PR.
 
 ### 1. Content validation
 
@@ -47,10 +47,41 @@ python -m pytest \
   backend/test_eval.py \
   backend/test_misconceptions.py \
   backend/test_support_policy.py \
-  backend/test_agent_persona.py
+  backend/test_agent_persona.py \
+  backend/test_access_validation.py
 ```
 
-These four pinned modules cover evaluation, the misconception loader/contract, the support-move policy core (including the faithfulness invariant), and agent persona behavior. `pytest` is installed explicitly because it is a dev-only dependency and is not pinned in `backend/requirements.txt`.
+These pinned modules cover evaluation, the misconception loader/contract, the support-move policy core (including the faithfulness invariant), agent persona behavior, and server-side access-code handling. `pytest` is installed explicitly because it is a dev-only dependency and is not pinned in `backend/requirements.txt`.
+
+### 4. Browser e2e
+
+```bash
+cd frontend
+npm run test:e2e
+```
+
+Playwright starts the FastAPI backend and a Vite dev server with the e2e auth bypass enabled, then checks smoke routes, accessibility, and the annotation -> artifact -> adaptive rationale workflow.
+
+### 5. Static snapshot
+
+```bash
+node scripts/verify_static_snapshot.mjs
+```
+
+This verifies that the committed Cloudflare Pages API snapshot has 256 section JSON files, all TOCs, diagnostics, mastery graph skeletons, concept origins, baked misconceptions, and content-version descriptors.
+
+### 6. Cloudflare Workers
+
+```bash
+cd cloudflare/adaptive-recommendation
+npm run parity
+npm run dry-run
+
+cd ../llm-proxy
+npm run dry-run
+```
+
+The adaptive Worker parity check guards the TypeScript policy port against drift from the Python policy. Dry-runs ensure both deployed Workers still compile.
 
 ---
 
@@ -58,6 +89,7 @@ These four pinned modules cover evaluation, the misconception loader/contract, t
 
 - [ ] All three gate sections above pass locally.
 - [ ] If you changed content, `validate_content.py` is still at 0 hard errors. Author against `CONTENT_MODEL.md` and the schemas in `frontend/content/_schema/`.
+- [ ] If you changed content or grading data, refresh the static snapshot, run `scripts/bake_indexes.mjs`, `scripts/bake_grading_data.py`, and `scripts/verify_static_snapshot.mjs`, then commit the generated snapshot changes.
 - [ ] If you changed the UI, you walked `.review/ui.md` and pasted the checklist into the PR with each item checked or marked n/a.
 - [ ] If you changed the adaptive policy, the faithfulness invariant still holds (`reason_codes_are_faithful`) and `backend/test_support_policy.py` passes.
 - [ ] No em-dashes in user-facing prose.

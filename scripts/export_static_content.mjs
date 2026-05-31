@@ -25,18 +25,19 @@ async function get(path) {
 }
 
 let ok = 0, fail = 0
+const failures = []
 // search index
 try { await save('search/index', await get('/search/index')); ok++; console.log('OK   search/index') }
-catch (e) { fail++; console.log('FAIL search/index', String(e).slice(0, 60)) }
+catch (e) { fail++; failures.push(`search/index: ${e?.message || e}`); console.log('FAIL search/index', String(e).slice(0, 60)) }
 
 for (const course of courses) {
   // toc
   try { await save(`book/${course}/toc`, await get(`/book/${course}/toc`)); ok++ }
-  catch (e) { fail++; console.log(`FAIL ${course}/toc`, String(e).slice(0, 50)) }
+  catch (e) { fail++; failures.push(`${course}/toc: ${e?.message || e}`); console.log(`FAIL ${course}/toc`, String(e).slice(0, 50)) }
   // diagnostic questions (deterministic, content-derived) -> static so the
   // pathway probe is instant and needs no live backend.
   try { await save(`diagnostic/questions/${course}`, await get(`/diagnostic/questions/${course}`)); ok++ }
-  catch (e) { fail++; console.log(`FAIL ${course}/diagnostic`, String(e).slice(0, 50)) }
+  catch (e) { fail++; failures.push(`${course}/diagnostic: ${e?.message || e}`); console.log(`FAIL ${course}/diagnostic`, String(e).slice(0, 50)) }
   // sections
   for (const ch of readdirSync(join(CONTENT, course))) {
     const chdir = join(CONTENT, course, ch)
@@ -46,9 +47,15 @@ for (const course of courses) {
       if (!f.endsWith('.mdx')) continue
       const sec = f.replace('.mdx', '')
       try { await save(`book/${course}/${ch}/${sec}`, await get(`/book/${course}/${ch}/${sec}`)); ok++ }
-      catch (e) { fail++; console.log(`FAIL ${course}/${ch}/${sec}`, String(e).slice(0, 50)) }
+      catch (e) { fail++; failures.push(`${course}/${ch}/${sec}: ${e?.message || e}`); console.log(`FAIL ${course}/${ch}/${sec}`, String(e).slice(0, 50)) }
     }
   }
   console.log(`OK   ${course} (toc + sections)`)
 }
 console.log(`\nexported ${ok} files, ${fail} failed -> ${OUT}`)
+if (fail > 0) {
+  console.error('\nStatic export failed:')
+  for (const failure of failures.slice(0, 20)) console.error(`  - ${failure}`)
+  if (failures.length > 20) console.error(`  ...and ${failures.length - 20} more`)
+  process.exit(1)
+}

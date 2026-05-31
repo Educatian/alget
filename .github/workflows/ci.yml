@@ -58,6 +58,31 @@ jobs:
       - name: Build (vite)
         run: npx vite build
 
+  e2e:
+    name: Browser smoke and learner workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install backend dependencies
+        run: pip install -r backend/requirements.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+      - name: Install Playwright browsers
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: Run Playwright e2e
+        working-directory: frontend
+        run: npm run test:e2e
+
   backend:
     name: Backend tests
     runs-on: ubuntu-latest
@@ -79,3 +104,39 @@ jobs:
           backend/test_misconceptions.py
           backend/test_support_policy.py
           backend/test_agent_persona.py
+          backend/test_access_validation.py
+
+  static-snapshot:
+    name: Static snapshot integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Verify committed Cloudflare Pages API snapshot
+        run: node scripts/verify_static_snapshot.mjs
+
+  workers:
+    name: Cloudflare worker parity and dry runs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install adaptive worker dependencies
+        working-directory: cloudflare/adaptive-recommendation
+        run: npm ci
+      - name: Adaptive policy parity
+        working-directory: cloudflare/adaptive-recommendation
+        run: npm run parity
+      - name: Adaptive worker dry run
+        working-directory: cloudflare/adaptive-recommendation
+        run: npm run dry-run
+      - name: Install LLM worker dependencies
+        working-directory: cloudflare/llm-proxy
+        run: npm ci
+      - name: LLM worker dry run
+        working-directory: cloudflare/llm-proxy
+        run: npm run dry-run

@@ -19,6 +19,7 @@ vi.mock('../lib/knowledgeService', () => ({
 
 vi.mock('../lib/apiConfig', () => ({
     default: '/api',
+    LLM_API_BASE: '/api',
 }))
 
 // Walks the wizard to the final step with all trace fields populated so the

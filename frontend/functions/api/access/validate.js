@@ -32,7 +32,15 @@ export async function onRequestPost(context) {
   if (!envKey) {
     return Response.json({ valid: false, scope: scope ?? null }, { headers: CORS })
   }
-  const expected = String((context.env && context.env[envKey]) || FALLBACK[scope] || '').trim()
+  const configured = context.env && context.env[envKey]
+  const allowFallback = String((context.env && context.env.ALLOW_FALLBACK_ACCESS_CODES) || '').toLowerCase() === 'true'
+  const expected = String(configured || (allowFallback ? FALLBACK[scope] : '') || '').trim()
+  if (!expected) {
+    return Response.json(
+      { valid: false, scope, error: 'access_code_not_configured' },
+      { status: 503, headers: CORS },
+    )
+  }
   // Case-insensitive + trimmed compare so "EDU123"/" edu123 " also pass.
   const valid = Boolean(expected) && String(passcode || '').trim().toLowerCase() === expected.toLowerCase()
   return Response.json({ valid, scope }, { headers: CORS })

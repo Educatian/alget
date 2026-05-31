@@ -131,16 +131,24 @@ app = FastAPI(
     lifespan=app_lifespan,
 )
 
-# CORS for React frontend
+# CORS for React frontend. Keep local dev convenient, but avoid credentialed
+# wildcard CORS in deployed environments. Add comma-separated extra origins via
+# ALGET_ALLOWED_ORIGINS when staging domains are introduced.
+_allowed_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "https://alget.vercel.app",
+    "https://alget.pages.dev",
+]
+_allowed_origins.extend(
+    origin.strip()
+    for origin in os.environ.get("ALGET_ALLOWED_ORIGINS", "").split(",")
+    if origin.strip()
+)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "https://alget.vercel.app"
-    ],
-    allow_origin_regex="https?://.*",
+    allow_origins=_allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -1470,9 +1478,11 @@ def validate_access_passcode(scope: Literal["engineering", "education", "researc
         "researcher": "immersivebama",
     }
 
-    expected_value = os.environ.get(env_key_by_scope[scope], fallback_by_scope[scope]).strip()
+    configured = os.environ.get(env_key_by_scope[scope], "").strip()
+    allow_fallback = os.environ.get("ALLOW_FALLBACK_ACCESS_CODES", "").lower() == "true"
+    expected_value = configured or (fallback_by_scope[scope] if allow_fallback else "")
     candidate = passcode.strip()
-    return bool(expected_value) and candidate == expected_value
+    return bool(expected_value) and candidate.lower() == expected_value.lower()
 
 
 ARTIFACT_RUBRIC_KEYS = [

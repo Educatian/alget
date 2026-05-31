@@ -98,6 +98,9 @@ def main():
         print(f"{len(failed)} issues:")
         for f in failed[:20]:
             print("  ", f)
+        if len(failed) > 20:
+            print(f"  ...and {len(failed) - 20} more")
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

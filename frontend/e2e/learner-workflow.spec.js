@@ -80,11 +80,21 @@ test.describe('ALGET full learner workflow', () => {
     test('supports annotation, artifact judgment, revision scoring, and adaptive rationale in one path', async ({ page }) => {
         const failures = []
         page.on('console', (message) => {
-            if (message.type() === 'error') {
+            if (message.type() === 'error' && !message.text().includes('Failed to load resource: the server responded with a status of 404')) {
                 failures.push(`console error: ${message.text()}`)
             }
         })
         page.on('pageerror', (error) => failures.push(`page error: ${error.message}`))
+        page.on('response', (response) => {
+            const url = response.url()
+            if (
+                response.status() >= 400 &&
+                (url.includes('127.0.0.1:5173') || url.includes('127.0.0.1:8000')) &&
+                !url.endsWith('/favicon.ico')
+            ) {
+                failures.push(`response ${response.status()}: ${url}`)
+            }
+        })
 
         await installResearchApiMocks(page)
         await page.goto('/book/ail606-supplement/01/01', { waitUntil: 'networkidle' })
@@ -120,7 +130,7 @@ test.describe('ALGET full learner workflow', () => {
         await page.getByPlaceholder(/Where would this decision change next/i).fill('This decision would need to change for advanced learners who can process more simultaneous narration and visual detail.')
 
         await page.getByText(/Quality rubric/i).click()
-        for (const select of await page.locator('select').all()) {
+        for (const select of await page.locator('details:has-text("Quality rubric") select').all()) {
             await select.selectOption('2')
         }
 

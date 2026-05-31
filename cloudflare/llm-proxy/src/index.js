@@ -497,6 +497,22 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
         const mastery = Array.isArray(body.mastery) ? body.mastery : []
         const conceptIds = (Array.isArray(body.concept_ids) ? body.concept_ids : []).filter(Boolean)
         const staticBase = (env.STATIC_API_BASE || DEFAULT_STATIC_BASE).replace(/\/$/, '')
+        let sectionSnapshot = null
+        let contentVersion = body.content_version || null
+        let contentVersionAlgorithm = body.content_version_algorithm || null
+        if (body.section_id) {
+          try {
+            const sr = await fetch(`${staticBase}/book/${body.section_id}`)
+            if (sr.ok) sectionSnapshot = await sr.json()
+          } catch {
+            sectionSnapshot = null
+          }
+          const descriptor = sectionSnapshot?.content_version
+          if (descriptor && typeof descriptor === 'object') {
+            contentVersion = contentVersion || descriptor.content_version || null
+            contentVersionAlgorithm = contentVersionAlgorithm || descriptor.algorithm || null
+          }
+        }
 
         const conceptScores = mastery.map((s) => [s.concept_id, normRatioA(s.mastery_score != null ? s.mastery_score : s.p_known, 0.45)])
         let averageMastery, lowestConcept, lowestScore
@@ -566,7 +582,7 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
         // Binding (internal; public worker-to-worker fetch is restricted).
         let decision
         try {
-          const polReq = new Request('https://adaptive/recommend', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ features, annotation_adaptive: body.annotation_adaptive !== false, prefer_advance: readiness === 'advance', section_id: body.section_id }) })
+          const polReq = new Request('https://adaptive/recommend', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ features, annotation_adaptive: body.annotation_adaptive !== false, prefer_advance: readiness === 'advance', section_id: body.section_id, content_version: contentVersion, content_version_algorithm: contentVersionAlgorithm }) })
           const dr = env.ADAPTIVE ? await env.ADAPTIVE.fetch(polReq) : await fetch(ADAPTIVE_WORKER_URL, polReq)
           decision = await dr.json()
         } catch { decision = null }
@@ -619,8 +635,10 @@ Return EXACTLY: {"content_score":0.0-1.0,"wording_score":0.0-1.0,"sub_scores":{"
 
         return json({
           section_id: body.section_id,
-          decision_id: (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : `dec-${Date.now()}`,
+          decision_id: decision.decision_id,
           policy_mode: policyMode,
+          content_version: contentVersion,
+          content_version_algorithm: contentVersionAlgorithm,
           learner_state: { average_mastery: Math.round(averageMastery * 1000) / 1000, lowest_mastery_concept: lowestConcept, readiness, frustration_index: frustration, confidence_signal: confidenceSignal, forgetting_risk: Math.round(forgettingRisk * 1000) / 1000, calibration_drift: Math.round(calibrationDrift * 1000) / 1000, transfer_readiness: Math.round(transferReadiness * 1000) / 1000, dominant_misconception: dominantMiscon },
           primary_recommendation: primary,
           secondary_recommendations: secondary,

@@ -87,7 +87,7 @@ def load_section_meta(course: str, chapter: str, section: str) -> Optional[dict]
     if not meta_path.exists():
         return None
     
-    with open(meta_path, 'r', encoding='utf-8') as f:
+    with open(meta_path, 'r', encoding='utf-8-sig') as f:
         return json.load(f)
 
 
@@ -99,7 +99,7 @@ def load_section_content(course: str, chapter: str, section: str) -> Optional[st
     for ext in ['.mdx', '.md']:
         file_path = content_path / f"{section}{ext}"
         if file_path.exists():
-            with open(file_path, 'r', encoding='utf-8') as f:
+            with open(file_path, 'r', encoding='utf-8-sig') as f:
                 return f.read()
     
     return None
@@ -128,6 +128,8 @@ def load_section(course: str, chapter: str, section: str) -> dict:
         meta["chapter"] = chapter
         meta["section"] = section
     
+    content_version = compute_content_version(course, chapter, section)
+
     return {
         "meta": meta or {
             "title": f"Section {chapter}.{section}",
@@ -138,7 +140,8 @@ def load_section(course: str, chapter: str, section: str) -> dict:
         "content": content or "*Content not available*",
         "simulation": None,  # Will be loaded separately if exists
         "illustration": None,
-        "practice": load_practice_for_section(course, chapter, section)
+        "practice": load_practice_for_section(course, chapter, section),
+        "content_version": content_version,
     }
 
 
@@ -147,7 +150,7 @@ def load_practice_for_section(course: str, chapter: str, section: str) -> dict:
     practice_path = get_content_path(course, chapter, section) / f"{section}.practice.json"
 
     if practice_path.exists():
-        with open(practice_path, 'r', encoding='utf-8') as f:
+        with open(practice_path, 'r', encoding='utf-8-sig') as f:
             return json.load(f)
 
     return {"problems": []}
@@ -364,7 +367,7 @@ def load_misconceptions(course: str, chapter: str, section: str) -> dict:
 
     if path.exists():
         try:
-            with open(path, "r", encoding="utf-8") as f:
+            with open(path, "r", encoding="utf-8-sig") as f:
                 data = json.load(f)
         except (json.JSONDecodeError, OSError):
             data = None

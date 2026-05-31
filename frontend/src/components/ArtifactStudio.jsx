@@ -607,7 +607,7 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
                                         value={judgmentRationale}
                                         onChange={(event) => setJudgmentRationale(event.target.value)}
                                         className="editorial-input mt-1 min-h-20 text-sm"
-                                        placeholder="Name the evidence that drove this judgment."
+                                        placeholder="Why this judgment? Name the evidence that drove this judgment."
                                     />
                                 </label>
                             ) : (
@@ -642,7 +642,7 @@ export default function ArtifactStudio({ artifact, course, section, sectionId, c
 
                         <details className="rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-3 py-2 [&[open]>summary>span:last-child]:rotate-90">
                             <summary className="flex cursor-pointer list-none items-center justify-between text-xs font-semibold text-[var(--ath-secondary)]">
-                                <span>Quality after revision | {Math.round(artifactQualityScore * 100)}% ({artifactRevisionDelta >= 0 ? '+' : ''}{Math.round(artifactRevisionDelta * 100)} pts vs before)</span>
+                                <span>Quality after revision | Quality rubric | {Math.round(artifactQualityScore * 100)}% ({artifactRevisionDelta >= 0 ? '+' : ''}{Math.round(artifactRevisionDelta * 100)} pts vs before)</span>
                                 <span className="transition-transform">&gt;</span>
                             </summary>
                             <div className="mt-3 grid gap-2 md:grid-cols-3">

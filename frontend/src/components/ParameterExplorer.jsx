@@ -344,35 +344,32 @@ export default function ParameterExplorer({ config, ...rest }) {
                 <div className="grid gap-4">
                     <div>
                         <p className="editorial-kicker">Live outputs</p>
-                        <dl
-                            className="mt-2 grid gap-2"
-                            role="status"
-                            aria-live="polite"
-                            aria-atomic="true"
-                        >
-                            {computedOutputs.map((output) => (
-                                <div
-                                    key={output.label}
-                                    className="flex items-baseline justify-between gap-3 rounded-xl bg-[var(--ath-panel)] px-3 py-2"
-                                >
-                                    <dt className="text-sm text-[var(--ath-text)]">{output.label}</dt>
-                                    <dd className="font-mono text-sm font-semibold text-[var(--ath-primary)]">
-                                        {output.error ? (
-                                            <span className="text-rose-600">formula error</span>
-                                        ) : (
-                                            <>
-                                                {formatNumber(output.value)}
-                                                {output.unit ? (
-                                                    <span className="ml-1 text-xs font-normal text-[var(--ath-muted)]">
-                                                        {output.unit}
-                                                    </span>
-                                                ) : null}
-                                            </>
-                                        )}
-                                    </dd>
-                                </div>
-                            ))}
-                        </dl>
+                        <div role="status" aria-live="polite" aria-atomic="true">
+                            <dl className="mt-2 grid gap-2">
+                                {computedOutputs.map((output) => (
+                                    <div
+                                        key={output.label}
+                                        className="flex items-baseline justify-between gap-3 rounded-xl bg-[var(--ath-panel)] px-3 py-2"
+                                    >
+                                        <dt className="text-sm text-[var(--ath-text)]">{output.label}</dt>
+                                        <dd className="font-mono text-sm font-semibold text-[var(--ath-primary)]">
+                                            {output.error ? (
+                                                <span className="text-rose-600">formula error</span>
+                                            ) : (
+                                                <>
+                                                    {formatNumber(output.value)}
+                                                    {output.unit ? (
+                                                        <span className="ml-1 text-xs font-normal text-[var(--ath-muted)]">
+                                                            {output.unit}
+                                                        </span>
+                                                    ) : null}
+                                                </>
+                                            )}
+                                        </dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </div>
                         {/* Redundant text summary for assistive tech, kept off-screen. */}
                         <p className="sr-only">{liveSummary}</p>
                     </div>
