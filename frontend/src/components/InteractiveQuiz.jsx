@@ -14,7 +14,7 @@ const CONFIDENCE_LEVELS = [
     { value: 'high', label: 'Confident' },
 ];
 
-export default function InteractiveQuiz({ question, options, explanation, hint, conceptId, defaultConceptId, sectionId }) {
+export default function InteractiveQuiz({ question, options, explanation, hint, conceptId, defaultConceptId, sectionId, correctIndex, correctindex, ...rest }) {
     const reducedMotion = useReducedMotion();
     const baseId = useId();
     const [selectedOption, setSelectedOption] = useState(null);
@@ -38,6 +38,21 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
             </div>
         );
     }
+    const resolvedCorrectIndex = Number(correctIndex ?? correctindex ?? rest['correct-index'])
+    parsedOptions = parsedOptions.map((option, idx) => {
+        if (typeof option === 'string') {
+            return {
+                text: option,
+                isCorrect: Number.isFinite(resolvedCorrectIndex) && idx === resolvedCorrectIndex,
+            }
+        }
+
+        return {
+            ...option,
+            text: option?.text || option?.label || '',
+            isCorrect: Boolean(option?.isCorrect ?? option?.correct ?? (Number.isFinite(resolvedCorrectIndex) && idx === resolvedCorrectIndex)),
+        }
+    })
 
     const handleSelect = (idx) => {
         if (isSubmitted) return;

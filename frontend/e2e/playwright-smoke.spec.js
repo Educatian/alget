@@ -22,7 +22,7 @@ test.describe('ALGET browser smoke routes', () => {
             const failures = []
 
             page.on('console', (message) => {
-                if (message.type() === 'error') {
+                if (message.type() === 'error' && !message.text().includes('Failed to load resource: the server responded with a status of 404')) {
                     failures.push(`console error: ${message.text()}`)
                 }
             })
@@ -35,6 +35,17 @@ test.describe('ALGET browser smoke routes', () => {
                 const url = request.url()
                 if (url.includes('127.0.0.1:5173') || url.includes('127.0.0.1:8000')) {
                     failures.push(`request failed: ${url} ${request.failure()?.errorText || ''}`)
+                }
+            })
+
+            page.on('response', (response) => {
+                const url = response.url()
+                if (
+                    response.status() >= 400 &&
+                    (url.includes('127.0.0.1:5173') || url.includes('127.0.0.1:8000')) &&
+                    !url.endsWith('/favicon.ico')
+                ) {
+                    failures.push(`response ${response.status()}: ${url}`)
                 }
             })
 

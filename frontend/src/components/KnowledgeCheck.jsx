@@ -347,8 +347,10 @@ export default function KnowledgeCheck({
                 {currentQuestion?.type === 'mcq' ? (
                     <div className="mt-8 space-y-3" role="radiogroup" aria-label="Answer choices">
                         {currentQuestion.options?.map((option, optionIndex) => {
-                            const isSelected = selectedOptionId === option.id
-                            const isCorrect = option.id === currentQuestion.correct_option_id
+                            const optionId = option?.id || String.fromCharCode(65 + optionIndex)
+                            const optionText = typeof option === 'string' ? option : (option?.text || '')
+                            const isSelected = selectedOptionId === optionId
+                            const isCorrect = optionId === currentQuestion.correct_option_id
                             let resultLabel = ''
                             if (isAnswered && isCorrect) {
                                 resultLabel = ' (correct answer)'
@@ -373,18 +375,18 @@ export default function KnowledgeCheck({
 
                             return (
                                 <button
-                                    key={option.id}
+                                    key={optionId}
                                     type="button"
                                     role="radio"
                                     aria-checked={isSelected}
-                                    aria-label={`${option.id}. ${option.text}${resultLabel}`}
+                                    aria-label={`${optionId}. ${optionText}${resultLabel}`}
                                     tabIndex={isAnswered ? -1 : (isFocusable ? 0 : -1)}
                                     disabled={isAnswered}
-                                    onClick={() => handleOptionClick(option.id)}
+                                    onClick={() => handleOptionClick(optionId)}
                                     className={`flex w-full items-center gap-3 rounded-[1.25rem] border px-4 py-4 text-left transition-all ${optionClasses}`}
                                 >
-                                    <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] text-xs font-bold text-[var(--ath-secondary)]">{option.id}</span>
-                                    <span className="flex-1 text-sm leading-7">{option.text}</span>
+                                    <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--ath-line)] bg-[var(--ath-panel)] text-xs font-bold text-[var(--ath-secondary)]">{optionId}</span>
+                                    <span className="flex-1 text-sm leading-7">{optionText}</span>
                                 </button>
                             )
                         })}

@@ -13,6 +13,7 @@ vi.mock('../lib/supabase', () => ({
 
 vi.mock('../lib/apiConfig', () => ({
     default: '/api',
+    LLM_API_BASE: '/api',
 }))
 
 describe('KnowledgeGraph action explanation', () => {

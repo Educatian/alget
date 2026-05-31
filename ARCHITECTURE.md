@@ -113,6 +113,9 @@ Authored content and the application code are guarded by a blocking CI gate (see
 - `python scripts/lint_boilerplate.py`: fails if machine-generated filler boilerplate survives in any section MDX.
 - `python scripts/lint_duplication.py`: bounds practice-stem and misconception duplication across the supplement courses.
 - Frontend: `npm ci && npx vitest run && npx eslint src && npx vite build`.
-- Backend: `pip install -r backend/requirements.txt && python -m pytest backend/test_eval.py backend/test_misconceptions.py backend/test_support_policy.py backend/test_agent_persona.py`.
+- Browser e2e: Playwright route smoke, accessibility, and annotation -> artifact -> adaptive-rationale workflow checks.
+- Backend: `pip install -r backend/requirements.txt && python -m pytest backend/test_eval.py backend/test_misconceptions.py backend/test_support_policy.py backend/test_agent_persona.py backend/test_access_validation.py`.
+- Static deploy: `node scripts/verify_static_snapshot.mjs` ensures the committed Pages API snapshot has all 256 sections, TOCs, diagnostics, mastery graphs, concept origins, baked misconceptions, and content-version descriptors.
+- Workers: adaptive policy parity plus Cloudflare Worker dry-runs for both `cloudflare/adaptive-recommendation` and `cloudflare/llm-proxy`.
 
-The current baseline is green: 256 sections, 0 hard errors / 0 soft warnings; both linters pass; frontend tests + lint + build pass; the four backend test modules pass. Keeping this gate green is a merge requirement, not a courtesy.
+The current baseline is green only when all code, content, browser, static-snapshot, backend, and Worker gates pass. Keeping this gate green is a merge requirement, not a courtesy.
