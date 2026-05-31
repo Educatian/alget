@@ -38,6 +38,17 @@ npx wrangler pages deploy dist --project-name=alget --branch=main
 cd ../cloudflare/adaptive-recommendation && npx wrangler deploy
 ```
 
+## Live smoke verification
+```
+node scripts/live_research_smoke.mjs --require-access
+```
+
+The smoke verifier checks the production Pages homepage, static `/api/book/*`
+payloads, section `content_version` stamping, cohort access validation, and the
+adaptive Worker response shape. Add `--require-provenance` after the adaptive
+Worker has `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` configured; that mode
+polls Supabase for the returned `decision_id` in `adaptive_decisions`.
+
 ## Known limitations (v1)
 - **Backend-dependent POST features degrade gracefully** (no Python backend in this deployment): LLM tutor chat,
   server-side grading, and social-annotation persistence are unavailable. The core reading + interactives + adaptivity work.
@@ -46,7 +57,7 @@ cd ../cloudflare/adaptive-recommendation && npx wrangler deploy
 - **Worker provenance write** is best-effort and skipped unless `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` are set via
   `wrangler secret put`. The hosted LLM Worker preserves the adaptive Worker `decision_id`, so any persisted decision can
   be joined to the UI-facing response.
-- **Access codes are server-side only.** Set `ENGINEERING_ACCESS_CODE`, `EDUCATION_ACCESS_CODE`, and
-  `RESEARCHER_ACCESS_CODE` in Cloudflare Pages. The local fallback codes only work when `ALLOW_FALLBACK_ACCESS_CODES=true`
-  is explicitly set.
+- **Access codes are server-side only.** `ENGINEERING_ACCESS_CODE`, `EDUCATION_ACCESS_CODE`, and
+  `RESEARCHER_ACCESS_CODE` are configured in Cloudflare Pages production. The local fallback codes only work when
+  `ALLOW_FALLBACK_ACCESS_CODES=true` is explicitly set.
 - For full server features, host the FastAPI backend (e.g. Render/Fly) and point `VITE_API_BASE` at it instead of `/api`.
