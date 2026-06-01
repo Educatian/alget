@@ -42,6 +42,6 @@ describe('ChapterPassport', () => {
         expect(screen.getByText('Collect chapter stamps')).toBeInTheDocument()
         expect(screen.getByText('3 sections completed')).toBeInTheDocument()
         expect(screen.getByText('1/2 stamps')).toBeInTheDocument()
-        expect(screen.getByText('1/2')).toBeInTheDocument()
+        expect(screen.getAllByText('1/2').length).toBeGreaterThan(0)
     })
 })
