@@ -3,6 +3,8 @@ import { safeLocalStorageGet, safeLocalStorageRemove, safeLocalStorageSet } from
 export const EXIT_TICKET_MIN_CHARS = 120
 export const EXIT_TICKET_STORAGE_PREFIX = 'alget_exit_ticket_v1_'
 const EXIT_TICKET_INDEX_KEY = 'alget_exit_ticket_index_v1'
+const EVIDENCE_PATTERN = /\b(evidence|because|example|annotation|data|result|shows|demonstrates|observed|source|quote)\b/i
+const NEXT_MOVE_PATTERN = /\b(next|revise|apply|test|ask|practice|try|use|compare|improve|change|follow up)\b/i
 
 export function getExitTicketStorageKey(sectionId) {
     return sectionId ? `${EXIT_TICKET_STORAGE_PREFIX}${sectionId}` : null
@@ -125,4 +127,36 @@ export function listExitTickets({ limit = 3 } = {}) {
     }
 
     return [...indexed, ...scanned].slice(0, limit)
+}
+
+export function getExitTicketCue(ticketOrText) {
+    const text = typeof ticketOrText === 'string'
+        ? ticketOrText.trim()
+        : String(ticketOrText?.text || '').trim()
+
+    if (text.length < EXIT_TICKET_MIN_CHARS) {
+        return {
+            label: 'Strengthen trace',
+            detail: 'Add claim, evidence, and a next move before relying on it.'
+        }
+    }
+
+    if (!EVIDENCE_PATTERN.test(text)) {
+        return {
+            label: 'Add evidence',
+            detail: 'Anchor the reflection in an example, result, annotation, or source.'
+        }
+    }
+
+    if (!NEXT_MOVE_PATTERN.test(text)) {
+        return {
+            label: 'Name next move',
+            detail: 'Turn the reflection into a revision, question, or practice action.'
+        }
+    }
+
+    return {
+        label: 'Reuse insight',
+        detail: 'Connect this trace to your next artifact, quiz, or discussion.'
+    }
 }

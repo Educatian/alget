@@ -7,7 +7,7 @@ import { getResearchDashboardSnapshot, getEvaluationStatus } from '../lib/resear
 import { ALL_COURSE_IDS } from '../lib/courseCatalog'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import { getStreak } from '../lib/streak'
-import { listExitTickets } from '../lib/exitTickets'
+import { getExitTicketCue, listExitTickets } from '../lib/exitTickets'
 import CohortLiveMap from '../components/CohortLiveMap'
 import KindredReaders from '../components/KindredReaders'
 import EmptyState from '../components/EmptyState'
@@ -307,6 +307,62 @@ export default function StudentDashboard({ user }) {
                     </div>
                 </section>
 
+                {exitTickets.length > 0 && (
+                    <section>
+                        <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+                            <div>
+                                <p className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">Recent learning traces</p>
+                                <h2 className="font-headline text-[var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Turn reflections into the next study move</h2>
+                            </div>
+                            <p className="text-[var(--ath-text-xs)] text-[var(--ath-muted)]">
+                                {exitTickets.length} saved trace{exitTickets.length === 1 ? '' : 's'}
+                            </p>
+                        </div>
+                        <ul className="mt-3 grid gap-3 md:grid-cols-3">
+                            {exitTickets.map((ticket) => {
+                                const cue = getExitTicketCue(ticket)
+                                const title = ticket.title || `${ticket.course} ${ticket.chapter}.${ticket.section}`
+                                return (
+                                    <li
+                                        key={ticket.sectionId}
+                                        className="card-actionable flex min-h-[13rem] flex-col gap-3 p-4"
+                                    >
+                                        <div className="flex items-start justify-between gap-3">
+                                            <span className="rounded-full border border-[var(--ath-line)] bg-white px-2 py-0.5 text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.14em] text-[var(--ath-secondary)]">
+                                                {ticket.chapter}.{ticket.section}
+                                            </span>
+                                            <span className="text-right text-[var(--ath-text-2xs)] font-semibold text-[var(--ath-muted)]">
+                                                {formatTraceUpdatedAt(ticket.updatedAt)}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-headline text-[var(--ath-text-lg)] font-semibold leading-tight text-[var(--ath-text)] line-clamp-2">
+                                                {title}
+                                            </h3>
+                                            <p className="mt-2 text-[var(--ath-text-xs)] leading-5 text-[var(--ath-muted)] line-clamp-3">
+                                                {ticket.text}
+                                            </p>
+                                        </div>
+                                        <div className="mt-auto flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                                            <div className="min-w-0">
+                                                <p className="text-[var(--ath-text-xs)] font-semibold text-[var(--ath-primary)]">{cue.label}</p>
+                                                <p className="mt-1 text-[var(--ath-text-2xs)] leading-4 text-[var(--ath-muted)] line-clamp-2">{cue.detail}</p>
+                                            </div>
+                                            <button
+                                                type="button"
+                                                onClick={() => navigate(`/book/${ticket.course}/${ticket.chapter}/${ticket.section}`)}
+                                                className="editorial-button shrink-0 px-3 py-2 text-[var(--ath-text-xs)]"
+                                            >
+                                                Open trace
+                                            </button>
+                                        </div>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </section>
+                )}
+
                 <section className="grid gap-4 lg:grid-cols-2">
                     <div className="content-card p-5">
                         <h2 className="font-headline text-[var(--ath-text-xl)] font-semibold text-[var(--ath-text)]">Weakest concepts</h2>
@@ -408,4 +464,15 @@ export default function StudentDashboard({ user }) {
 
 function prettify(id) {
     return String(id || '').replace(/[_-]/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase())
+}
+
+function formatTraceUpdatedAt(value) {
+    if (!value) return 'Saved'
+    const date = new Date(value)
+    if (Number.isNaN(date.getTime())) return 'Saved'
+
+    return date.toLocaleDateString([], {
+        month: 'short',
+        day: 'numeric'
+    })
 }

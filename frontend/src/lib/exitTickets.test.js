@@ -1,5 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import {
+    EXIT_TICKET_MIN_CHARS,
+    getExitTicketCue,
     getExitTicketStorageKey,
     listExitTickets,
     readExitTicket,
@@ -45,5 +47,18 @@ describe('exit ticket persistence', () => {
                 text: 'Older ticket',
             }),
         ])
+    })
+
+    it('names the next useful learner action for a trace', () => {
+        expect(getExitTicketCue('Short reflection').label).toBe('Strengthen trace')
+
+        const longWithoutEvidence = 'I understand the main claim and I know what I need to revise next. '.repeat(3)
+        expect(longWithoutEvidence.length).toBeGreaterThan(EXIT_TICKET_MIN_CHARS)
+        expect(getExitTicketCue(longWithoutEvidence).label).toBe('Add evidence')
+
+        const reusable = 'The claim is clearer because the annotation evidence shows where my explanation needs more specificity. Next I will revise the artifact and compare it with the rubric before submitting.'
+        expect(getExitTicketCue(reusable)).toMatchObject({
+            label: 'Reuse insight'
+        })
     })
 })
