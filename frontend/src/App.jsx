@@ -1,12 +1,13 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { supabase } from './lib/supabase'
+import { supabase, isSupabaseConfigured } from './lib/supabase'
 import { initSession, endSession } from './lib/loggingService'
 import { replayPendingResearchPersists, clearResearchCaches } from './lib/researchService'
 import { clearLocalLearnerCaches } from './lib/knowledgeService'
 import { clearStreak } from './lib/streak'
 import { safeSessionStorageGet, safeLocalStorageGet, safeLocalStorageRemove } from './lib/browserStorage'
 import { DEMO_SESSION_KEY } from './lib/demoSession'
+import { clearCohortLearner, formatUserLabel, readCohortLearner } from './lib/cohortLearner'
 import { ToastProvider } from './lib/toast.jsx'
 import { ThemeProvider } from './lib/theme.jsx'
 import GlobalClickLogger from './components/GlobalClickLogger'
@@ -39,6 +40,50 @@ function readDemoUser() {
   }
 }
 
+function readStoredCohortUser() {
+  const profile = readCohortLearner()
+  if (!profile) return null
+  return {
+    id: `cohort-${profile.cohortId}-${profile.learnerHash}`,
+    email: `${profile.fullName} · ${profile.cohortLabel}`,
+    displayName: profile.fullName,
+    cohortId: profile.cohortId,
+    cohortLabel: profile.cohortLabel,
+    courseId: profile.courseId,
+    track: profile.track,
+    isCohortLearner: true,
+    user_metadata: {
+      full_name: profile.fullName,
+      cohort_id: profile.cohortId,
+      cohort_label: profile.cohortLabel,
+      course_id: profile.courseId,
+      learner_hash: profile.learnerHash,
+    },
+  }
+}
+
+function enrichCohortUser(authUser) {
+  const profile = readCohortLearner()
+  if (!authUser || !profile) return authUser
+  return {
+    ...authUser,
+    displayName: authUser.user_metadata?.full_name || profile.fullName,
+    cohortId: authUser.user_metadata?.cohort_id || profile.cohortId,
+    cohortLabel: authUser.user_metadata?.cohort_label || profile.cohortLabel,
+    courseId: authUser.user_metadata?.course_id || profile.courseId,
+    track: profile.track,
+    isCohortLearner: true,
+    user_metadata: {
+      ...(authUser.user_metadata || {}),
+      full_name: authUser.user_metadata?.full_name || profile.fullName,
+      cohort_id: authUser.user_metadata?.cohort_id || profile.cohortId,
+      cohort_label: authUser.user_metadata?.cohort_label || profile.cohortLabel,
+      course_id: authUser.user_metadata?.course_id || profile.courseId,
+      learner_hash: authUser.user_metadata?.learner_hash || profile.learnerHash,
+    },
+  }
+}
+
 function RouteFallback() {
   return (
     <div className="editorial-shell flex min-h-screen items-center justify-center px-4">
@@ -54,8 +99,8 @@ function RouteFallback() {
 }
 
 export default function App() {
-  const [user, setUser] = useState(() => E2E_USER || readDemoUser())
-  const [loading, setLoading] = useState(() => !(E2E_USER || readDemoUser()))
+  const [user, setUser] = useState(() => E2E_USER || readDemoUser() || readStoredCohortUser())
+  const [loading, setLoading] = useState(() => !(E2E_USER || readDemoUser() || readStoredCohortUser()))
 
   useEffect(() => {
     // Fire-and-forget Worker readiness ping. In the Cloudflare deployment this
@@ -70,18 +115,19 @@ export default function App() {
     // Persisted demo session: stay signed in as the demo user without Supabase,
     // and do NOT let getSession() overwrite it with null. (loading is already
     // initialized false when a demo session exists, so no setState needed here.)
-    if (readDemoUser()) {
+    if (readDemoUser() || (readCohortLearner() && !isSupabaseConfigured)) {
       return undefined
     }
 
     // Check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null)
+      const sessionUser = enrichCohortUser(session?.user ?? null)
+      setUser(sessionUser)
       setLoading(false)
 
       // Initialize logging session when user is authenticated
-      if (session?.user) {
-        initSession(session.user).then(() => {
+      if (sessionUser) {
+        initSession(sessionUser).then(() => {
           replayPendingResearchPersists().catch(() => {})
         })
       }
@@ -89,7 +135,7 @@ export default function App() {
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      const newUser = session?.user ?? null
+      const newUser = enrichCohortUser(session?.user ?? null)
 
       setUser((previousUser) => {
         if (newUser && !previousUser) {
@@ -110,6 +156,9 @@ export default function App() {
     // demo identity on reload (readDemoUser would otherwise win and mask it,
     // misattributing all subsequent writes to the demo user id).
     safeLocalStorageRemove(DEMO_SESSION_KEY)
+    if (!user?.isCohortLearner) {
+      clearCohortLearner()
+    }
     // Wipe the previous identity's unscoped local caches (mastery, adaptive
     // signals, research model/streak) so a new user on a shared browser can't
     // inherit them; they rebuild from the cloud.
@@ -123,6 +172,7 @@ export default function App() {
   const handleLogout = async () => {
     await endSession()
     safeLocalStorageRemove(DEMO_SESSION_KEY)
+    clearCohortLearner()
     clearLocalLearnerCaches()
     clearResearchCaches()
     clearStreak()
@@ -157,7 +207,7 @@ export default function App() {
                 path="/learn"
                 element={
                   user ? (
-                    <MainApp user={user} onLogout={handleLogout} />
+                    <MainApp user={{ ...user, displayLabel: formatUserLabel(user) }} onLogout={handleLogout} />
                   ) : (
                     <Navigate to="/" replace />
                   )

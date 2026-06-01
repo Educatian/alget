@@ -4,6 +4,7 @@ import { ArrowRight, Brain, GraduationCap, Layers3, Microscope, ShieldCheck, Spa
 import AuthModal from '../components/AuthModal'
 import GenerativeIllustration from '../components/GenerativeIllustration'
 import ThemeToggle from '../components/ThemeToggle'
+import { formatUserLabel } from '../lib/cohortLearner'
 
 const platformSignals = [
     { value: 'Adaptive', label: 'pathway-aware reading' },
@@ -55,6 +56,7 @@ const workflowSteps = [
 export default function LandingPage({ onLogin, user, onLogout }) {
     const [authOpen, setAuthOpen] = useState(false)
     const navigate = useNavigate()
+    const userLabel = formatUserLabel(user)
 
     return (
         <div className="editorial-shell relative flex min-h-screen flex-col overflow-hidden text-[var(--ath-text)]">
@@ -85,7 +87,7 @@ export default function LandingPage({ onLogin, user, onLogout }) {
                         <ThemeToggle />
                         {user ? (
                             <>
-                                <span className="hidden max-w-[12rem] truncate text-sm font-medium text-[var(--ath-muted)] lg:inline-block">{user.email}</span>
+                                <span className="hidden max-w-[12rem] truncate text-sm font-medium text-[var(--ath-muted)] lg:inline-block">{userLabel}</span>
                                 <button
                                     onClick={() => navigate('/learn')}
                                     className="editorial-button px-3 py-2 text-sm sm:px-5 sm:py-2.5"
@@ -250,9 +252,12 @@ export default function LandingPage({ onLogin, user, onLogout }) {
             <AuthModal
                 isOpen={authOpen}
                 onClose={() => setAuthOpen(false)}
-                onSuccess={(nextUser) => {
+                onSuccess={(nextUser, options = {}) => {
                     onLogin(nextUser)
                     setAuthOpen(false)
+                    if (options.redirectTo) {
+                        navigate(options.redirectTo)
+                    }
                 }}
             />
         </div>

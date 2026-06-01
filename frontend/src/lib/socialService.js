@@ -1,5 +1,6 @@
 import { supabase } from './supabase'
 import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
+import { readCohortLearner } from './cohortLearner'
 
 const SOCIAL_ALIAS_KEY = 'alget_social_alias'
 const SOCIAL_COLOR_KEY = 'alget_social_color'
@@ -54,6 +55,15 @@ export const SOCIAL_REACTIONS = [
 ]
 
 export function getSocialIdentity(user) {
+    const cohortLearner = readCohortLearner()
+    if (cohortLearner?.fullName) {
+        return {
+            alias: cohortLearner.fullName,
+            colorToken: COLOR_TOKENS[parseInt(cohortLearner.learnerHash, 36) % COLOR_TOKENS.length] || COLOR_TOKENS[0],
+            userKey: user?.id || `${cohortLearner.cohortId}-${cohortLearner.learnerHash}`
+        }
+    }
+
     if (typeof window === 'undefined') {
         return {
             alias: 'Curious Fox',

@@ -4,6 +4,7 @@
  */
 import { supabase, supabaseConfig, isSupabaseConfigured } from './supabase'
 import { safeLocalStorageGet, safeLocalStorageSet } from './browserStorage'
+import { getCohortGuestCredentials, readCohortLearner } from './cohortLearner'
 import API_BASE, { LLM_API_BASE } from './apiConfig'
 
 // Session state
@@ -35,6 +36,11 @@ function generateUUID() {
 }
 
 function ensureGuestCredentials() {
+    const cohortCredentials = getCohortGuestCredentials()
+    if (cohortCredentials) {
+        return cohortCredentials
+    }
+
     let guestId = safeLocalStorageGet('alget_guest_id')
     let guestPassword = safeLocalStorageGet('alget_guest_password')
 
@@ -72,12 +78,20 @@ export async function initSession(user) {
     sequenceCounter = 0
     userId = user?.id || null
 
+    const cohortLearner = readCohortLearner()
     const deviceInfo = {
         userAgent: navigator.userAgent,
         screenWidth: window.screen.width,
         screenHeight: window.screen.height,
         language: navigator.language,
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        learnerProfile: cohortLearner ? {
+            fullName: cohortLearner.fullName,
+            cohortId: cohortLearner.cohortId,
+            cohortLabel: cohortLearner.cohortLabel,
+            courseId: cohortLearner.courseId,
+            learnerHash: cohortLearner.learnerHash,
+        } : null,
     }
 
     // Create session in database
