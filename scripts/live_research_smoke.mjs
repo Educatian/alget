@@ -292,6 +292,8 @@ async function checkSupabaseTables(requireTables = false) {
     "annotation_replies",
     "annotation_reactions",
     "annotation_read_states",
+    "highlight_reactions",
+    "highlight_replies",
     "artifact_revision_scores",
     "human_ratings",
   ];
@@ -327,6 +329,14 @@ async function findExistingUserId() {
   return null;
 }
 
+async function findExistingHighlightId() {
+  const { res, data } = await supabaseRest(
+    "/rest/v1/highlights?select=id&limit=1",
+  );
+  if (res.ok && Array.isArray(data) && data[0]?.id) return data[0].id;
+  return null;
+}
+
 async function probeOptionalWrites() {
   const marker = `codex-smoke-${Date.now()}`;
   const created = {
@@ -342,6 +352,8 @@ async function probeOptionalWrites() {
     replyInsert: false,
     reactionInsert: "skipped",
     readStateInsert: "skipped",
+    highlightReactionInsert: "skipped",
+    highlightReplyInsert: "skipped",
     artifactScoreInsert: false,
     cleanup: false,
   };
@@ -416,9 +428,51 @@ async function probeOptionalWrites() {
       assert(readState.res.ok || readState.res.status === 201, `annotation_read_states insert failed: ${readState.res.status}; ${String(readState.text).slice(0, 160)}`);
       created.readState = true;
       result.readStateInsert = true;
+
+      const highlightId = await findExistingHighlightId();
+      if (highlightId) {
+        const highlightReaction = await supabaseRest(
+          "/rest/v1/highlight_reactions?select=id",
+          {
+            method: "POST",
+            prefer: "return=representation",
+            body: {
+              highlight_id: highlightId,
+              user_id: userId,
+              reaction_type: "insight",
+            },
+          },
+        );
+        assert(highlightReaction.res.ok, `highlight_reactions insert failed: ${highlightReaction.res.status}; ${String(highlightReaction.text).slice(0, 160)}`);
+        created.highlightReactionId = highlightReaction.data?.[0]?.id;
+        result.highlightReactionInsert = Boolean(created.highlightReactionId);
+
+        const highlightReply = await supabaseRest(
+          "/rest/v1/highlight_replies?select=id",
+          {
+            method: "POST",
+            prefer: "return=representation",
+            body: {
+              highlight_id: highlightId,
+              user_id: userId,
+              alias: "Codex Smoke",
+              color_token: "from-slate-500 to-slate-400",
+              body: "Codex smoke highlight reply write probe.",
+            },
+          },
+        );
+        assert(highlightReply.res.ok, `highlight_replies insert failed: ${highlightReply.res.status}; ${String(highlightReply.text).slice(0, 160)}`);
+        created.highlightReplyId = highlightReply.data?.[0]?.id;
+        result.highlightReplyInsert = Boolean(created.highlightReplyId);
+      } else {
+        result.highlightReactionInsert = "skipped:no_existing_highlight_id";
+        result.highlightReplyInsert = "skipped:no_existing_highlight_id";
+      }
     } else {
       result.reactionInsert = "skipped:no_existing_user_id";
       result.readStateInsert = "skipped:no_existing_user_id";
+      result.highlightReactionInsert = "skipped:no_existing_user_id";
+      result.highlightReplyInsert = "skipped:no_existing_user_id";
     }
 
     const artifactScore = await supabaseRest(
@@ -457,6 +511,20 @@ async function probeOptionalWrites() {
         { method: "DELETE" },
       );
       if (!del.res.ok) cleanupErrors.push(`annotation_read_states:${del.res.status}`);
+    }
+    if (created.highlightReactionId) {
+      const del = await supabaseRest(
+        `/rest/v1/highlight_reactions?id=eq.${encodeURIComponent(created.highlightReactionId)}`,
+        { method: "DELETE" },
+      );
+      if (!del.res.ok) cleanupErrors.push(`highlight_reactions:${del.res.status}`);
+    }
+    if (created.highlightReplyId) {
+      const del = await supabaseRest(
+        `/rest/v1/highlight_replies?id=eq.${encodeURIComponent(created.highlightReplyId)}`,
+        { method: "DELETE" },
+      );
+      if (!del.res.ok) cleanupErrors.push(`highlight_replies:${del.res.status}`);
     }
     if (created.reaction && created.annotationId) {
       const del = await supabaseRest(

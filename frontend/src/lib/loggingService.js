@@ -392,6 +392,27 @@ export function logHighlightCreate(textLength, hasNote, sectionId) {
 }
 
 /**
+ * Log sampled pointer/drag traces for drawing, selection, board panning, and
+ * other path-like gestures. Coordinates are viewport-relative and sampled, not
+ * raw high-frequency pointer streams.
+ */
+export function logPointerPath(trace = {}, sectionId = null) {
+    const samples = Array.isArray(trace.samples) ? trace.samples.slice(0, 80) : []
+    if (samples.length < 2) return null
+
+    return logEvent('pointer_path', trace.target_id || 'pointer_surface', {
+        pointer_type: trace.pointer_type || 'unknown',
+        target_id: trace.target_id || null,
+        started_on: trace.started_on || null,
+        ended_on: trace.ended_on || null,
+        duration_ms: Number(trace.duration_ms || 0),
+        distance_px: Number(trace.distance_px || 0),
+        sample_count: samples.length,
+        samples,
+    }, sectionId)
+}
+
+/**
  * Log stuck events (e.g., fast consecutive incorrect answers)
  */
 export function logStuckEvent(problemId, reason, latencyBeforeClick, sectionId) {
