@@ -232,8 +232,8 @@ function ReadingPane({
     const completionReady = readyCount === READY_CHECK_ITEMS.length && exitTicketReady
 
     return (
-        <div className="mx-auto w-full max-w-[min(78rem,100%)] px-6 py-10 sm:px-8">
-            <header className="mb-10">
+        <div className="mx-auto w-full max-w-[min(78rem,100%)] px-4 py-8 sm:px-8 sm:py-10">
+            <header className="mb-8 sm:mb-10">
                 <div className="mb-3 flex items-center justify-between gap-3">
                     <p className="editorial-kicker">
                         Chapter {meta?.chapter} / Section {meta?.section}
@@ -247,11 +247,11 @@ function ReadingPane({
 
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div>
-                        <h1 className="editorial-title text-4xl leading-tight text-[var(--ath-text)]">
+                        <h1 className="editorial-title text-3xl leading-tight text-[var(--ath-text)] sm:text-4xl">
                             {meta?.title || 'Section Title'}
                         </h1>
                         {meta?.description && (
-                            <p className="mt-4 max-w-4xl text-lg italic leading-8 text-[var(--ath-muted)]">
+                            <p className="mt-3 max-w-4xl text-base italic leading-7 text-[var(--ath-muted)] sm:mt-4 sm:text-lg sm:leading-8">
                                 {meta.description}
                             </p>
                         )}
@@ -305,9 +305,9 @@ function ReadingPane({
                             </button>
                         )}
                     </div>
-                    <ol className="mt-3 grid gap-2 text-[11px] font-semibold text-[var(--ath-secondary)] sm:grid-cols-5">
+                    <ol className="mt-3 flex gap-2 overflow-x-auto pb-1 text-[11px] font-semibold text-[var(--ath-secondary)] sm:grid sm:grid-cols-5 sm:overflow-visible sm:pb-0">
                         {SECTION_PATH_STEPS.map((step, index) => (
-                            <li key={step.id} className="min-w-0">
+                            <li key={step.id} className="min-w-[9rem] sm:min-w-0">
                                 <button
                                     type="button"
                                     onClick={() => jumpToStage(step.id)}

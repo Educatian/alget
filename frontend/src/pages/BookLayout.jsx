@@ -487,20 +487,20 @@ export default function BookLayout({ user, onLogout }) {
             <OnboardingTour />
             <RetentionBanner course={course} />
 
-            <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] px-6 py-4 backdrop-blur-3xl">
-                <div className="flex flex-wrap items-center justify-between gap-4">
+            <header className="sticky top-0 z-50 border-b border-[var(--ath-line)] bg-[rgba(248,246,241,0.84)] px-4 py-3 backdrop-blur-3xl sm:px-6 sm:py-4">
+                <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
                     <button
                         type="button"
                         onClick={() => navigate('/')}
                         aria-label="Go to ALGET home"
-                        className="flex min-w-0 items-center gap-4 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                        className="flex min-w-0 items-center gap-3 rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)] sm:gap-4"
                     >
-                        <div className="flex h-11 w-11 items-center justify-center rounded-[var(--ath-radius-xl)] border border-[color-mix(in_srgb,var(--ath-primary)_14%,transparent)] bg-[var(--ath-primary)] text-xl font-bold text-white shadow-[0_16px_32px_color-mix(in_srgb,var(--ath-primary-deep)_24%,transparent)]">
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--ath-radius-xl)] border border-[color-mix(in_srgb,var(--ath-primary)_14%,transparent)] bg-[var(--ath-primary)] text-lg font-bold text-white shadow-[0_16px_32px_color-mix(in_srgb,var(--ath-primary-deep)_24%,transparent)] sm:h-11 sm:w-11 sm:text-xl">
                             AL
                         </div>
                         <div className="min-w-0">
                             <p className="editorial-kicker">Alabama Generative Intelligent Textbook</p>
-                            <h1 className="truncate text-xl font-semibold tracking-tight text-[var(--ath-primary-deep)]">ALGET Reader</h1>
+                            <h1 className="truncate text-lg font-semibold tracking-tight text-[var(--ath-primary-deep)] sm:text-xl">ALGET Reader</h1>
                             <p className="truncate text-xs font-medium uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
                                 {formatCourseLabel(course)} / Chapter {chapter} / Section {section}
                             </p>
@@ -532,17 +532,17 @@ export default function BookLayout({ user, onLogout }) {
                     </div>
                 </div>
 
-                <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                <div className="mt-2 flex flex-wrap items-center justify-between gap-2 sm:mt-3 sm:gap-3">
                     <div className="min-w-0">
                         <p className="truncate text-sm font-semibold text-[var(--ath-text)]">
                             {sectionData?.meta?.title || sectionData?.title || 'Loading section...'}
                         </p>
-                        <p className="truncate text-xs text-[var(--ath-muted)]">
+                        <p className="hidden truncate text-xs text-[var(--ath-muted)] sm:block">
                             {sectionData?.meta?.description || sectionData?.meta?.chapter_title || 'Guided reading, practice, social presence, and adaptive support.'}
                         </p>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex w-full items-center gap-2 overflow-x-auto pb-1 sm:w-auto sm:flex-wrap sm:gap-3 sm:overflow-visible sm:pb-0 [&>*]:shrink-0">
                         <Popover.Root>
                             <Popover.Trigger asChild>
                                 <button
@@ -652,7 +652,7 @@ export default function BookLayout({ user, onLogout }) {
                             <Search className="h-4 w-4" />
                         </button>
 
-                        <div className="h-8 w-px bg-[var(--ath-line)]"></div>
+                        <div className="h-8 w-px shrink-0 bg-[var(--ath-line)]"></div>
 
                         <ThemeToggle />
 
@@ -705,7 +705,7 @@ export default function BookLayout({ user, onLogout }) {
                             <BarChart3 className="h-4 w-4" aria-hidden="true" />
                         </button>
 
-                        <div className="flex items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.75)] px-3 py-1.5 shadow-sm">
+                        <div className="flex shrink-0 items-center gap-3 rounded-full border border-[var(--ath-line)] bg-[rgba(255,255,255,0.75)] px-3 py-1.5 shadow-sm">
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-panel-muted)] text-sm font-medium text-[var(--ath-muted)]">
                                 {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
                             </div>
