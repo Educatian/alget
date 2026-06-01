@@ -59,6 +59,18 @@ describe('ParameterExplorer widget', () => {
         expect(alpha).toHaveAttribute('aria-valuetext', '5 m')
     })
 
+    it('uses wrapping plot-axis buttons instead of a clipping native select', () => {
+        render(<ParameterExplorer config={CONFIG} />)
+
+        expect(screen.getByRole('group', { name: /Plot against/i })).toBeInTheDocument()
+        expect(screen.queryByRole('combobox')).not.toBeInTheDocument()
+
+        fireEvent.click(screen.getByRole('button', { name: /Beta/i }))
+
+        expect(screen.getByRole('button', { name: /Beta/i })).toHaveAttribute('aria-pressed', 'true')
+        expect(screen.getByText(/Product \(m s\) vs Beta \(s\)/i)).toBeInTheDocument()
+    })
+
     it('degrades gracefully with no usable config', () => {
         render(<ParameterExplorer config="not json" />)
         expect(screen.getByRole('note')).toHaveTextContent(/unavailable/i)

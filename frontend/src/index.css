@@ -886,6 +886,21 @@ h6,
   margin: 0;
 }
 
+/* Breakout components may contain their own figure/pre/table elements. Those
+   inner elements should stay inside the interactive board; only the board
+   wrapper itself should use the reading-column breakout geometry. */
+.reading-narrative .reading-breakout :where(figure, pre, .worked-example, .reading-table-scroll, [data-reading-breakout]) {
+  width: 100%;
+  max-width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.reading-narrative [data-reading-interactive] {
+  box-sizing: border-box;
+  overflow-x: clip;
+}
+
 .reading-narrative h1,
 .reading-narrative h2,
 .reading-narrative h3,
