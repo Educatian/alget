@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { generateAssessment, updateMastery, gradeSummary, recordAdaptiveSignal } from '../lib/knowledgeService'
+import { logEvent, logProblemAttempt } from '../lib/loggingService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
 import ConfidenceFeedback from './ConfidenceFeedback'
 import RubricFeedback from './RubricFeedback'
+
+const nowMs = () => performance.now()
 
 function buildReviewPayload(question, sectionTitle, sourceReason) {
     return {
@@ -35,11 +38,22 @@ export default function KnowledgeCheck({
     const [isGrading, setIsGrading] = useState(false)
     const [confidence, setConfidence] = useState(3)
     const [misconceptionType, setMisconceptionType] = useState('unknown')
+    const questionStartedAtRef = useRef(0)
 
     const currentQuestion = questions[currentQuestionIndex]
 
+    useEffect(() => {
+        questionStartedAtRef.current = nowMs()
+    }, [currentQuestionIndex, currentQuestion?.id, currentQuestion?.concept_id])
+
     const handleStart = async () => {
         setStatus('loading')
+        logEvent('assessment_generate_request', 'knowledge_check', {
+            source: 'knowledge_check',
+            section_title_length: String(sectionTitle || '').length,
+            objective_count: Array.isArray(learningObjectives) ? learningObjectives.length : 0,
+            concept_count: Array.isArray(conceptIds) ? conceptIds.length : 0
+        }, sectionId || sectionTitle || 'knowledge-check')
 
         try {
             const bioTrim = bioContext ? bioContext.substring(0, 1000) : 'Biological mechanisms of adhesion and load-bearing'
@@ -59,9 +73,18 @@ export default function KnowledgeCheck({
 
             setQuestions(combined)
             setStatus('active')
+            logEvent('assessment_generate_success', 'knowledge_check', {
+                source: 'knowledge_check',
+                item_count: combined.length,
+                mcq_count: generated.mcq_questions?.length || 0,
+                has_summary: Boolean(generated.summary_question)
+            }, sectionId || sectionTitle || 'knowledge-check')
         } catch (error) {
             console.error(error)
             setStatus('error')
+            logEvent('assessment_generate_error', 'knowledge_check', {
+                source: 'knowledge_check'
+            }, sectionId || sectionTitle || 'knowledge-check')
         }
     }
 
@@ -74,6 +97,17 @@ export default function KnowledgeCheck({
         const isCorrect = optionId === currentQuestion.correct_option_id
         const nextResults = [...results, { isCorrect, conceptId: currentQuestion.concept_id, type: 'mcq' }]
         setResults(nextResults)
+        const problemId = currentQuestion.id || currentQuestion.concept_id || `knowledge-check-${currentQuestionIndex + 1}`
+        const timeSpentMs = Math.max(0, nowMs() - (questionStartedAtRef.current || nowMs()))
+
+        logProblemAttempt(problemId, isCorrect, timeSpentMs, false, sectionId || sectionTitle || 'knowledge-check', {
+            source: 'knowledge_check',
+            question_type: 'mcq',
+            concept_id: currentQuestion.concept_id,
+            confidence,
+            selected_option_id: optionId,
+            misconception_type: isCorrect ? null : misconceptionType
+        })
 
         updateMastery({ [currentQuestion.concept_id]: 1.0 }, isCorrect, { sectionId }).catch(console.error)
         recordAdaptiveSignal(sectionId || sectionTitle || 'knowledge-check', 'confidence_report', {
@@ -120,6 +154,20 @@ export default function KnowledgeCheck({
             setSummaryFeedback(data)
             setIsAnswered(true)
             setResults([...results, { isCorrect: data.is_passing, conceptId: currentQuestion.concept_id, type: 'summary' }])
+            const problemId = currentQuestion.id || currentQuestion.concept_id || `knowledge-summary-${currentQuestionIndex + 1}`
+            const timeSpentMs = Math.max(0, nowMs() - (questionStartedAtRef.current || nowMs()))
+
+            logProblemAttempt(problemId, data.is_passing, timeSpentMs, false, sectionId || sectionTitle || 'knowledge-check', {
+                source: 'knowledge_check',
+                question_type: 'summary',
+                concept_id: currentQuestion.concept_id,
+                confidence,
+                response_length: summaryText.trim().length,
+                content_score: data.content_score ?? null,
+                wording_score: data.wording_score ?? null,
+                sub_score_count: data.sub_scores ? Object.keys(data.sub_scores).length : 0,
+                misconception_type: data.is_passing ? null : misconceptionType
+            })
 
             if (data.sub_scores && Object.keys(data.sub_scores).length > 0) {
                 updateMastery(data.sub_scores, data.is_passing, { sectionId }).catch(console.error)
@@ -164,6 +212,22 @@ export default function KnowledgeCheck({
             })
             setIsAnswered(true)
             setResults([...results, { isCorrect: false, conceptId: currentQuestion.concept_id, type: 'summary' }])
+            logProblemAttempt(
+                currentQuestion.id || currentQuestion.concept_id || `knowledge-summary-${currentQuestionIndex + 1}`,
+                false,
+                Math.max(0, nowMs() - (questionStartedAtRef.current || nowMs())),
+                false,
+                sectionId || sectionTitle || 'knowledge-check',
+                {
+                    source: 'knowledge_check',
+                    question_type: 'summary',
+                    concept_id: currentQuestion.concept_id,
+                    confidence,
+                    response_length: summaryText.trim().length,
+                    grading_error: true,
+                    misconception_type: misconceptionType
+                }
+            )
             updateLearnerModel({
                 sectionId: sectionId || sectionTitle || 'knowledge-check',
                 conceptId: currentQuestion.concept_id,
@@ -412,6 +476,11 @@ export default function KnowledgeCheck({
                                                             conceptId: currentQuestion.concept_id,
                                                             type: nextValue
                                                         })
+                                                        logEvent('misconception_report', currentQuestion.id || currentQuestion.concept_id || 'knowledge-check', {
+                                                            source: 'knowledge_check_reflection',
+                                                            concept_id: currentQuestion.concept_id,
+                                                            type: nextValue
+                                                        }, sectionId || sectionTitle || 'knowledge-check')
                                                         annotateMisconceptionSignal({
                                                             sectionId: sectionId || sectionTitle || 'knowledge-check',
                                                             conceptId: currentQuestion.concept_id,
@@ -508,6 +577,11 @@ export default function KnowledgeCheck({
                                                             conceptId: currentQuestion.concept_id,
                                                             type: nextValue
                                                         })
+                                                        logEvent('misconception_report', currentQuestion.id || currentQuestion.concept_id || 'knowledge-check', {
+                                                            source: 'summary_reflection',
+                                                            concept_id: currentQuestion.concept_id,
+                                                            type: nextValue
+                                                        }, sectionId || sectionTitle || 'knowledge-check')
                                                         annotateMisconceptionSignal({
                                                             sectionId: sectionId || sectionTitle || 'knowledge-check',
                                                             conceptId: currentQuestion.concept_id,

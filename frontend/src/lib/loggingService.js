@@ -361,12 +361,13 @@ export function logPageView(sectionId, referrerSection = null) {
 /**
  * Log problem attempt (no raw answer, just metrics)
  */
-export function logProblemAttempt(problemId, isCorrect, timeSpentMs, hintUsed, sectionId) {
+export function logProblemAttempt(problemId, isCorrect, timeSpentMs, hintUsed, sectionId, extraData = {}) {
     return logEvent('problem_attempt', problemId, {
         problem_id: problemId,
         is_correct: isCorrect,
         time_spent_ms: timeSpentMs,
-        hint_used: hintUsed
+        hint_used: hintUsed,
+        ...extraData
     }, sectionId)
 }
 

@@ -1,6 +1,7 @@
-import React, { useId, useRef, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import { Check, X, Lightbulb } from 'lucide-react';
 import { recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService';
+import { logEvent, logProblemAttempt } from '../lib/loggingService';
 import { useReducedMotion, motionClasses } from '../lib/motion';
 import QuizOption from './QuizOption';
 
@@ -14,15 +15,32 @@ const CONFIDENCE_LEVELS = [
     { value: 'high', label: 'Confident' },
 ];
 
+const nowMs = () => performance.now();
+
+function stableQuestionId(question, conceptId) {
+    const input = `${conceptId || 'unknown'}:${question || ''}`;
+    let hash = 0;
+    for (let index = 0; index < input.length; index += 1) {
+        hash = ((hash << 5) - hash) + input.charCodeAt(index);
+        hash |= 0;
+    }
+    return `inline_quiz:${conceptId || 'unknown'}:${Math.abs(hash).toString(36)}`;
+}
+
 export default function InteractiveQuiz({ question, options, explanation, hint, conceptId, defaultConceptId, sectionId, correctIndex, correctindex, ...rest }) {
     const reducedMotion = useReducedMotion();
     const baseId = useId();
+    const attemptStartedAtRef = useRef(0);
     const [selectedOption, setSelectedOption] = useState(null);
     const radiogroupRef = useRef(null);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [feedbackSaved, setFeedbackSaved] = useState(false);
     const [hintShown, setHintShown] = useState(false);
     const [confidence, setConfidence] = useState(null);
+
+    useEffect(() => {
+        attemptStartedAtRef.current = nowMs();
+    }, [question, conceptId, defaultConceptId]);
 
     let parsedOptions = [];
     try {
@@ -91,6 +109,17 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
 
         const resolvedConceptId = conceptId || defaultConceptId || null;
         const wasCorrect = Boolean(parsedOptions[selectedOption]?.isCorrect);
+        const problemId = stableQuestionId(question, resolvedConceptId);
+        const timeSpentMs = Math.max(0, nowMs() - (attemptStartedAtRef.current || nowMs()));
+
+        logProblemAttempt(problemId, wasCorrect, timeSpentMs, hintShown, sectionId, {
+            source: 'inline_quiz',
+            concept_id: resolvedConceptId,
+            confidence,
+            selected_option_index: selectedOption,
+            option_count: parsedOptions.length,
+            question_length: String(question || '').length,
+        });
 
         if (sectionId) {
             recordAdaptiveSignal(sectionId, wasCorrect ? 'inline_quiz_correct' : 'inline_quiz_incorrect', {
@@ -116,6 +145,34 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
         setFeedbackSaved(false);
         setHintShown(false);
         setConfidence(null);
+        attemptStartedAtRef.current = nowMs();
+        logEvent('quiz_retry', stableQuestionId(question, conceptId || defaultConceptId || null), {
+            source: 'inline_quiz',
+            concept_id: conceptId || defaultConceptId || null,
+        }, sectionId);
+    };
+
+    const handleHintToggle = () => {
+        const nextHintShown = !hintShown;
+        setHintShown(nextHintShown);
+        if (nextHintShown) {
+            logEvent('hint_request', stableQuestionId(question, conceptId || defaultConceptId || null), {
+                source: 'inline_quiz',
+                concept_id: conceptId || defaultConceptId || null,
+            }, sectionId);
+        }
+    };
+
+    const handleConfidenceChange = (value) => {
+        const nextConfidence = confidence === value ? null : value;
+        setConfidence(nextConfidence);
+        if (nextConfidence) {
+            logEvent('confidence_report', stableQuestionId(question, conceptId || defaultConceptId || null), {
+                source: 'inline_quiz',
+                concept_id: conceptId || defaultConceptId || null,
+                value: nextConfidence,
+            }, sectionId);
+        }
     };
 
     // Map each option to one of the shared QuizOption primitive's states so this
@@ -146,7 +203,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                 {hasHint && !isSubmitted && (
                     <button
                         type="button"
-                        onClick={() => setHintShown((shown) => !shown)}
+                        onClick={handleHintToggle}
                         aria-expanded={hintShown}
                         aria-controls={hintRegionId}
                         className="inline-flex items-center gap-1.5 rounded-full border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] px-3 py-1 text-xs font-semibold text-[var(--ath-warning)] transition-colors hover:bg-[color-mix(in_srgb,var(--ath-warning)_22%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-warning)_45%,transparent)]"
@@ -203,7 +260,7 @@ export default function InteractiveQuiz({ question, options, explanation, hint, 
                                         key={level.value}
                                         type="button"
                                         aria-pressed={active}
-                                        onClick={() => setConfidence((current) => (current === level.value ? null : level.value))}
+                                        onClick={() => handleConfidenceChange(level.value)}
                                         className={`rounded-full border px-3 py-1 text-xs font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] ${motionClasses(['transition'], reducedMotion)} ${
                                             active
                                                 ? 'border-[var(--ath-primary)] bg-[var(--ath-primary)] text-[var(--ath-background)]'
