@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Award, Check, Flame } from 'lucide-react'
+import { Award, Check, Flame, MapPinned } from 'lucide-react'
 
 function sectionKey(course, chapterId, sectionId) {
     return `${course}/${chapterId}/${sectionId}`
@@ -35,49 +35,68 @@ function ChapterPassport({
 
     return (
         <section className="px-4 pt-4">
-            <div className="rounded-[1.6rem] border border-[var(--ath-line)] bg-[rgba(255,255,255,0.72)] p-4 shadow-sm">
+            <div className="rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.78)] p-4 shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                     <div>
                         <p className="editorial-kicker">Chapter Passport</p>
-                        <h2 className="mt-2 text-lg font-semibold tracking-tight text-[var(--ath-text)]">
+                        <h2 className="mt-2 text-base font-semibold tracking-tight text-[var(--ath-text)]">
                             Collect chapter stamps
                         </h2>
                     </div>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--ath-primary)] text-white shadow-sm">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--ath-primary)] text-white shadow-sm">
                         <Award className="h-5 w-5" />
                     </div>
                 </div>
 
-                <div className="mt-4 grid grid-cols-4 gap-2">
+                <div className="mt-4 grid grid-cols-4 gap-2.5">
                     {chapterProgress.map((chapter) => {
                         const complete = chapter.progress.total > 0 && chapter.progress.completed === chapter.progress.total
                         const active = chapter.id === currentChapter
+                        const ringStyle = {
+                            background: `conic-gradient(${complete ? 'var(--ath-success)' : 'var(--ath-primary)'} ${chapter.progress.percent}%, var(--ath-panel-muted) 0)`
+                        }
 
                         return (
                             <div
                                 key={chapter.id}
-                                className={`flex aspect-square flex-col items-center justify-center rounded-2xl border text-center transition-all ${complete
-                                    ? 'border-[color-mix(in_srgb,var(--ath-success)_35%,transparent)] bg-[var(--ath-success-soft)] text-[var(--ath-success)]'
+                                className={`group flex min-h-16 flex-col items-center justify-center rounded-xl border px-1.5 py-2 text-center transition-all ${complete
+                                    ? 'border-[color-mix(in_srgb,var(--ath-success)_38%,transparent)] bg-[color-mix(in_srgb,var(--ath-success-soft)_76%,white)] text-[var(--ath-success)]'
                                     : active
-                                        ? 'border-[var(--ath-primary-soft)] bg-[rgba(200,226,236,0.48)] text-[var(--ath-primary)]'
-                                        : 'border-[var(--ath-line)] bg-[var(--ath-panel)] text-[var(--ath-muted)]'
+                                        ? 'border-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] bg-[rgba(200,226,236,0.5)] text-[var(--ath-primary)] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--ath-primary)_28%,transparent)]'
+                                        : 'border-[var(--ath-line)] bg-[rgba(255,255,255,0.6)] text-[var(--ath-muted)]'
                                     }`}
                                 title={`Chapter ${chapter.id}: ${chapter.progress.completed}/${chapter.progress.total} sections`}
                             >
-                                {complete ? (
-                                    <Check className="h-4 w-4" aria-hidden="true" />
-                                ) : (
-                                    <span className="text-sm font-bold">{chapter.id}</span>
-                                )}
-                                <span className="mt-1 text-[10px] font-bold uppercase tracking-[0.12em]">
-                                    {chapter.progress.percent}%
+                                <div
+                                    className="grid h-9 w-9 place-items-center rounded-full p-[3px] shadow-[0_1px_0_rgba(255,255,255,0.82)]"
+                                    style={ringStyle}
+                                    aria-hidden="true"
+                                >
+                                    <div className={`grid h-full w-full place-items-center rounded-full border bg-white ${complete
+                                        ? 'border-[color-mix(in_srgb,var(--ath-success)_28%,transparent)]'
+                                        : active
+                                            ? 'border-[color-mix(in_srgb,var(--ath-primary)_30%,transparent)]'
+                                            : 'border-[var(--ath-line)]'
+                                        }`}
+                                    >
+                                        {complete ? (
+                                            <Check className="h-4 w-4" />
+                                        ) : active ? (
+                                            <MapPinned className="h-4 w-4" />
+                                        ) : (
+                                            <span className="text-xs font-bold">{chapter.id}</span>
+                                        )}
+                                    </div>
+                                </div>
+                                <span className="mt-1.5 text-[10px] font-semibold leading-none">
+                                    {chapter.progress.completed}/{chapter.progress.total}
                                 </span>
                             </div>
                         )
                     })}
                 </div>
 
-                <div className="mt-4 rounded-2xl border border-[var(--ath-line)] bg-white/72 p-3">
+                <div className="mt-4 rounded-xl border border-[var(--ath-line)] bg-white/72 p-3">
                     <div className="flex items-center justify-between gap-3 text-xs font-semibold text-[var(--ath-muted)]">
                         <span>Current chapter</span>
                         <span>{currentChapterProgress?.completed || 0}/{currentChapterProgress?.total || 0}</span>
@@ -90,7 +109,7 @@ function ChapterPassport({
                     </div>
                 </div>
 
-                <div className="mt-3 flex items-center justify-between rounded-2xl bg-[var(--ath-panel)] px-3 py-2 text-xs font-semibold text-[var(--ath-muted)]">
+                <div className="mt-3 flex items-center justify-between rounded-xl bg-[var(--ath-panel)] px-3 py-2 text-xs font-semibold text-[var(--ath-muted)]">
                     <span className="flex items-center gap-2">
                         <Flame className="h-4 w-4 text-[var(--ath-primary)]" />
                         {totalCompleted} sections completed
