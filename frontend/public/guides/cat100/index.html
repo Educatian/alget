@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAT 100 ALGET Student Guide</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172027;
+      --muted: #52616b;
+      --line: #d8dfdc;
+      --paper: #fbfaf6;
+      --panel: #ffffff;
+      --soft: #eef4f2;
+      --teal: #0f5167;
+      --green: #447861;
+      --gold: #a9681f;
+      --red: #a6423a;
+      --shadow: 0 20px 60px rgba(28, 45, 55, 0.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--teal); }
+    .shell { max-width: 1180px; margin: 0 auto; padding: 28px 20px 56px; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      border-bottom: 1px solid var(--line);
+      background: rgba(251, 250, 246, 0.92);
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+    }
+    .brand { display: flex; gap: 12px; align-items: center; text-decoration: none; color: var(--ink); }
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--teal);
+      color: white;
+      font-weight: 800;
+    }
+    .nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav a, .button {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .button.primary { background: var(--teal); color: white; border-color: var(--teal); }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 28px;
+      align-items: start;
+      padding: 44px 0 28px;
+    }
+    .kicker {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 12px 0 16px; font-size: clamp(2.4rem, 5vw, 4.6rem); line-height: .95; letter-spacing: 0; }
+    h2 { margin: 0 0 14px; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.05; letter-spacing: 0; }
+    h3 { margin: 0 0 8px; font-size: 1.2rem; letter-spacing: 0; }
+    p { margin: 0 0 14px; }
+    .lead { font-size: 1.08rem; color: var(--muted); max-width: 68ch; }
+    .hero-card, .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .hero-card { padding: 20px; }
+    .quick-list { display: grid; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+    .quick-list li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: var(--muted);
+    }
+    .num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .grid { display: grid; gap: 18px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    section { scroll-margin-top: 88px; margin-top: 34px; }
+    .panel { padding: 24px; }
+    .media-frame video { width: 100%; display: block; border-radius: 6px; background: #111820; }
+    audio { width: 100%; margin-top: 12px; }
+    .note {
+      border-left: 4px solid var(--green);
+      background: var(--soft);
+      padding: 14px 16px;
+      color: var(--ink);
+      border-radius: 0 8px 8px 0;
+    }
+    .steps { display: grid; gap: 14px; counter-reset: step; }
+    .step {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--teal);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+    .chapter {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: var(--panel);
+    }
+    .chapter strong { color: var(--teal); }
+    .tagrow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tag { border: 1px solid var(--line); background: var(--soft); color: var(--muted); border-radius: 999px; padding: 5px 9px; font-size: 12px; font-weight: 700; }
+    details { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 0; }
+    details + details { margin-top: 10px; }
+    summary { cursor: pointer; padding: 14px 16px; font-weight: 800; color: var(--ink); }
+    details p { padding: 0 16px 16px; color: var(--muted); }
+    .checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 0;
+      color: var(--muted);
+    }
+    .checklist input { margin-top: 6px; accent-color: var(--teal); }
+    .path-map {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .path-map div { padding: 16px; background: var(--panel); border-right: 1px solid var(--line); }
+    .path-map div:last-child { border-right: 0; }
+    .path-map b { display: block; color: var(--teal); margin-bottom: 6px; }
+    footer { margin-top: 44px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 860px) {
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+      .hero, .grid.two, .grid.three, .path-map { grid-template-columns: 1fr; }
+      .path-map div { border-right: 0; border-bottom: 1px solid var(--line); }
+      .path-map div:last-child { border-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/"><span class="mark">AL</span><span><strong>ALGET</strong><br><small>CAT 100 Student Guide</small></span></a>
+      <nav class="nav" aria-label="Guide sections">
+        <a href="#start">Start</a>
+        <a href="#path">Learning path</a>
+        <a href="#modules">Modules</a>
+        <a href="#faq">Q&amp;A</a>
+        <a class="button primary" href="/learn">Open ALGET</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="shell">
+    <section class="hero" id="start">
+      <div>
+        <p class="kicker">CAT 100 | Computer Concepts and Applications</p>
+        <h1>Use ALGET as your guided practice space.</h1>
+        <p class="lead">This guide shows exactly how CAT 100 students should enter the platform, what order to follow, how to use the textbook tools, and what to do when something is confusing.</p>
+        <div class="tagrow" aria-label="Guide topics">
+          <span class="tag">Current student entry</span>
+          <span class="tag">Digital skills</span>
+          <span class="tag">Excel and presentations</span>
+          <span class="tag">Portfolio evidence</span>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Fast start">
+        <p class="kicker">Fast start</p>
+        <ul class="quick-list">
+          <li><span class="num">1</span><span>Open ALGET, choose <strong>Sign in to start</strong>, then use the <strong>Current students</strong> box.</span></li>
+          <li><span class="num">2</span><span>Enter your real full name and choose <strong>CAT 100 Summer I</strong> or <strong>CAT 100 Summer II</strong>.</span></li>
+          <li><span class="num">3</span><span>Open the CAT 100 course card. Start with the diagnostic if prompted, then move through modules in order.</span></li>
+          <li><span class="num">4</span><span>Use the AI support rail for explanation, practice, and checking. Submit official assignments through the course LMS when instructed.</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="grid two" aria-label="Walkthrough media">
+      <div class="panel media-frame">
+        <h2>Video walkthrough</h2>
+        <p class="lead">A short screen recording of the CAT 100 entry flow and first learning route.</p>
+        <video controls preload="metadata" src="media/cat100-walkthrough.webm"></video>
+      </div>
+      <div class="panel">
+        <h2>Narration</h2>
+        <p class="lead">Play this narration while watching the video, or read the transcript below if audio is not convenient.</p>
+        <audio controls preload="metadata" src="media/cat100-narration.wav"></audio>
+        <details open>
+          <summary>Narration transcript</summary>
+          <p>Welcome to the CAT 100 ALGET guide. Start by opening ALGET and choosing Sign in to start. In the Current students box, type your real full name and select the correct CAT 100 summer cohort. After you enter, ALGET opens only the CAT 100 pathway. Begin with the diagnostic if it appears. Then work through each module in order: digital citizenship, resume and branding, Excel data stories, teacher conversations with AI, presentations, GitHub Pages, productivity, and final transfer. In every section, read the purpose first, try the embedded checks, use the support tools when you need help, and keep evidence of your work for the assignments your instructor names in the course LMS.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="path" class="panel">
+      <h2>The CAT 100 learning path</h2>
+      <div class="path-map" aria-label="CAT 100 path">
+        <div><b>Enter</b>Use your name and correct CAT 100 cohort so progress is identifiable.</div>
+        <div><b>Diagnose</b>Use pre-checks to see what you already know and where to focus.</div>
+        <div><b>Practice</b>Read, annotate, answer checks, ask for support, and revise artifacts.</div>
+        <div><b>Transfer</b>Use final modules to connect your work to course submissions and future use.</div>
+      </div>
+      <div class="note" style="margin-top:16px;">ALGET is the learning and practice space. Your instructor may still ask you to submit formal assignments, reflections, or artifacts in Blackboard or another LMS. Follow the instructor's course instructions for official submission.</div>
+    </section>
+
+    <section class="panel">
+      <h2>How to use one section well</h2>
+      <div class="steps">
+        <div class="step"><div><h3>Read the purpose before the details</h3><p>Each section begins with why the topic matters. Use that as your target so the page does not feel like random information.</p></div></div>
+        <div class="step"><div><h3>Try the embedded checks honestly</h3><p>Inline checks, scenarios, and practice prompts are there to reveal gaps. Missing one is useful because the feedback tells you what to fix.</p></div></div>
+        <div class="step"><div><h3>Use BigAL and support actions</h3><p>Ask for an explanation, a simpler version, practice, or a question. Treat AI help as coaching, not as a substitute for your own work.</p></div></div>
+        <div class="step"><div><h3>Save evidence</h3><p>For each module, keep the artifact, revision note, or reflection that shows what changed in your thinking or product.</p></div></div>
+        <div class="step"><div><h3>Exit with a next move</h3><p>Before leaving a section, write one sentence: what you learned, what artifact it affects, and what you will revise next.</p></div></div>
+      </div>
+    </section>
+
+    <section id="modules">
+      <h2>Module-by-module route</h2>
+      <div class="grid two">
+        <article class="chapter"><strong>1. Digital Citizenship and AI Readiness</strong><p>Set up responsible AI habits, privacy awareness, accessibility basics, and evidence of digital citizenship.</p></article>
+        <article class="chapter"><strong>2. Resume, Branding, and AI Brainstorming</strong><p>Build stronger resume claims, compare AI critique, draft a professional bio, and keep revision logs.</p></article>
+        <article class="chapter"><strong>3. Data Storytelling With Excel</strong><p>Practice clean spreadsheet structure, formulas, charts, pivot tables, data ethics, and data narration.</p></article>
+        <article class="chapter"><strong>4. AI Conversations as a Teacher</strong><p>Use teacher personas and classroom scenarios to test AI advice, tone, bias, and communication decisions.</p></article>
+        <article class="chapter"><strong>5. AI-Enhanced Presentation Development</strong><p>Plan the audience and structure before decoration, then use images, narration, recording, citation, and accessibility checks.</p></article>
+        <article class="chapter"><strong>6. GitHub Pages Personal Website</strong><p>Turn a simple HTML/CSS site into a published portfolio with GitHub Pages and debugging support.</p></article>
+        <article class="chapter"><strong>7. Productivity and Workflow Automation</strong><p>Organize files, calendars, templates, email drafts, automation safety checks, and collaboration norms.</p></article>
+        <article class="chapter"><strong>8. Course Completion and Transfer</strong><p>Review artifacts, connect them into a professional story, complete final checks, and plan future learning.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Weekly routine</h2>
+      <div class="grid three">
+        <div><h3>Before class</h3><p>Open the next module, skim the learning targets, and note one question to bring into class or discussion.</p></div>
+        <div><h3>During work time</h3><p>Keep ALGET open next to your artifact. Use it to check decisions, not only to read passively.</p></div>
+        <div><h3>After class</h3><p>Write a short revision note and save the artifact version you want to submit or discuss.</p></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>CAT 100 Q&amp;A</h2>
+      <details open><summary>Which CAT 100 cohort should I choose?</summary><p>Choose CAT 100 Summer I or CAT 100 Summer II based on the section you are enrolled in. If you choose the wrong one, sign out and enter again with the correct cohort.</p></details>
+      <details><summary>Why do I need to type my real name?</summary><p>Your name lets your instructor connect progress and support signals to the right learner. Do not use nicknames that your instructor cannot identify.</p></details>
+      <details><summary>Do I need to finish every section?</summary><p>Follow your instructor's pacing. The safest default is to move in order because later modules assume earlier habits such as AI verification, revision logs, and evidence collection.</p></details>
+      <details><summary>What if I already know Excel, GitHub, or AI tools?</summary><p>Use the checks quickly and focus on the artifact standard. CAT 100 is not only about tool use; it is about explaining, verifying, and transferring your choices.</p></details>
+      <details><summary>Can BigAL or another AI write my assignment for me?</summary><p>No. Use AI support to understand, brainstorm, critique, or revise. Your final artifact and explanation should show your own decisions and should follow your course AI policy.</p></details>
+      <details><summary>Where do I submit assignments?</summary><p>Use the submission location named by your instructor, usually the official course LMS. ALGET helps you learn and produce evidence, but it may not be the official gradebook.</p></details>
+      <details><summary>What should I do if a page feels too long?</summary><p>Read the learning targets, complete the first check, then use the support rail to ask for a simpler explanation. Return to the worked example before trying the final artifact task.</p></details>
+      <details><summary>What if audio, video, or an interaction does not load?</summary><p>Refresh once, try a current Chrome or Edge browser, and check your network. If it still fails, continue with the transcript or text and report the exact section to your instructor.</p></details>
+      <details><summary>How is my progress used?</summary><p>Progress and support signals help the instructor see where students may need help. Avoid entering another student's name because it can misattribute learning records.</p></details>
+      <details><summary>What is the best sign that I used a module well?</summary><p>You can point to an artifact, a revision, and a short explanation of why the change made the work stronger.</p></details>
+    </section>
+
+    <section class="panel checklist">
+      <h2>Completion checklist</h2>
+      <label><input type="checkbox"> I entered through Current students with my real name and correct CAT 100 cohort.</label>
+      <label><input type="checkbox"> I completed the diagnostic or first checkpoint when prompted.</label>
+      <label><input type="checkbox"> I have one saved artifact or revision note for each assigned module.</label>
+      <label><input type="checkbox"> I used AI help as support and kept my own decisions visible.</label>
+      <label><input type="checkbox"> I submitted required work in the official course location.</label>
+    </section>
+
+    <footer>
+      <p>ALGET CAT 100 guide. Use this page as a practical route map; course deadlines and grading requirements come from the instructor's official course materials.</p>
+    </footer>
+  </main>
+</body>
+</html>

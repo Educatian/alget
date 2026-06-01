@@ -221,6 +221,11 @@ export default function MainApp({ user, onLogout }) {
     const visibleCourses = cohortLearner
         ? educationCourses.filter((course) => course.id === cohortLearner.courseId)
         : unlockedMode === 'engineering' ? engineeringCourses : educationCourses
+    const cohortGuidePath = cohortLearner?.courseId === 'cat100-supplement'
+        ? '/guides/cat100/index.html'
+        : cohortLearner?.courseId === 'cat531-supplement'
+            ? '/guides/cat531/index.html'
+            : null
     const visibleCourseIds = new Set(visibleCourses.map((course) => course.id))
     const visibleBookmarks = bookmarks.filter((bookmark) => visibleCourseIds.has(bookmark.course)).slice(0, 3)
     const visibleRecentSection = recentSection && visibleCourseIds.has(recentSection.course) ? recentSection : null
@@ -365,8 +370,20 @@ export default function MainApp({ user, onLogout }) {
                                 <span className="text-[var(--ath-line-strong)]">/</span>
                                 <span>{visibleCourses.length} available</span>
                                 {cohortLearner ? (
-                                    <span className="ml-auto rounded-full bg-[var(--ath-panel-muted)] px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
-                                        {cohortLearner.fullName}
+                                    <span className="ml-auto flex flex-wrap items-center gap-2">
+                                        {cohortGuidePath && (
+                                            <a
+                                                href={cohortGuidePath}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className="rounded-full border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-[var(--ath-primary)] transition-colors hover:bg-white"
+                                            >
+                                                Course guide
+                                            </a>
+                                        )}
+                                        <span className="rounded-full bg-[var(--ath-panel-muted)] px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
+                                            {cohortLearner.fullName}
+                                        </span>
                                     </span>
                                 ) : (
                                     <button

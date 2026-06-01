@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAT 531 ALGET Student Guide</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172027;
+      --muted: #52616b;
+      --line: #d8dfdc;
+      --paper: #fbfaf6;
+      --panel: #ffffff;
+      --soft: #eef4f2;
+      --teal: #0f5167;
+      --green: #447861;
+      --violet: #5c4f8f;
+      --gold: #a9681f;
+      --shadow: 0 20px 60px rgba(28, 45, 55, 0.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--teal); }
+    .shell { max-width: 1180px; margin: 0 auto; padding: 28px 20px 56px; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      border-bottom: 1px solid var(--line);
+      background: rgba(251, 250, 246, 0.92);
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+    }
+    .brand { display: flex; gap: 12px; align-items: center; text-decoration: none; color: var(--ink); }
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--teal);
+      color: white;
+      font-weight: 800;
+    }
+    .nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav a, .button {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .button.primary { background: var(--teal); color: white; border-color: var(--teal); }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 28px;
+      align-items: start;
+      padding: 44px 0 28px;
+    }
+    .kicker {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 12px 0 16px; font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: .95; letter-spacing: 0; }
+    h2 { margin: 0 0 14px; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.05; letter-spacing: 0; }
+    h3 { margin: 0 0 8px; font-size: 1.2rem; letter-spacing: 0; }
+    p { margin: 0 0 14px; }
+    .lead { font-size: 1.08rem; color: var(--muted); max-width: 68ch; }
+    .hero-card, .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .hero-card { padding: 20px; }
+    .quick-list { display: grid; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+    .quick-list li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: var(--muted);
+    }
+    .num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .grid { display: grid; gap: 18px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    section { scroll-margin-top: 88px; margin-top: 34px; }
+    .panel { padding: 24px; }
+    .media-frame video { width: 100%; display: block; border-radius: 6px; background: #111820; }
+    audio { width: 100%; margin-top: 12px; }
+    .note {
+      border-left: 4px solid var(--violet);
+      background: var(--soft);
+      padding: 14px 16px;
+      color: var(--ink);
+      border-radius: 0 8px 8px 0;
+    }
+    .steps { display: grid; gap: 14px; counter-reset: step; }
+    .step {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--teal);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+    .chapter {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: var(--panel);
+    }
+    .chapter strong { color: var(--teal); }
+    .tagrow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .tag { border: 1px solid var(--line); background: var(--soft); color: var(--muted); border-radius: 999px; padding: 5px 9px; font-size: 12px; font-weight: 700; }
+    details { border: 1px solid var(--line); background: var(--panel); border-radius: 8px; padding: 0; }
+    details + details { margin-top: 10px; }
+    summary { cursor: pointer; padding: 14px 16px; font-weight: 800; color: var(--ink); }
+    details p { padding: 0 16px 16px; color: var(--muted); }
+    .checklist label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 0;
+      color: var(--muted);
+    }
+    .checklist input { margin-top: 6px; accent-color: var(--teal); }
+    .path-map {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .path-map div { padding: 16px; background: var(--panel); border-right: 1px solid var(--line); }
+    .path-map div:last-child { border-right: 0; }
+    .path-map b { display: block; color: var(--teal); margin-bottom: 6px; }
+    footer { margin-top: 44px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 860px) {
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+      .hero, .grid.two, .grid.three, .path-map { grid-template-columns: 1fr; }
+      .path-map div { border-right: 0; border-bottom: 1px solid var(--line); }
+      .path-map div:last-child { border-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/"><span class="mark">AL</span><span><strong>ALGET</strong><br><small>CAT 531 Student Guide</small></span></a>
+      <nav class="nav" aria-label="Guide sections">
+        <a href="#start">Start</a>
+        <a href="#path">Learning path</a>
+        <a href="#modules">Modules</a>
+        <a href="#faq">Q&amp;A</a>
+        <a class="button primary" href="/learn">Open ALGET</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="shell">
+    <section class="hero" id="start">
+      <div>
+        <p class="kicker">CAT 531 | Technology and Teaching</p>
+        <h1>Use ALGET to build teaching judgment, not just tool familiarity.</h1>
+        <p class="lead">This CAT 531 guide explains how to enter the platform, how to move through DTS, TeachGen@i, Ethobot, AI policy, evaluation, and field-transfer modules, and how to turn each module into portfolio-ready evidence.</p>
+        <div class="tagrow" aria-label="Guide topics">
+          <span class="tag">Current student entry</span>
+          <span class="tag">Design tensions</span>
+          <span class="tag">TeachGen@i</span>
+          <span class="tag">Ethobot</span>
+          <span class="tag">Portfolio evidence</span>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Fast start">
+        <p class="kicker">Fast start</p>
+        <ul class="quick-list">
+          <li><span class="num">1</span><span>Open ALGET, choose <strong>Sign in to start</strong>, then use <strong>Current students</strong>.</span></li>
+          <li><span class="num">2</span><span>Enter your real full name and select <strong>CAT 531</strong>.</span></li>
+          <li><span class="num">3</span><span>Open the CAT 531 course card. Start with the diagnostic if prompted, then follow the modules in order unless your instructor gives another sequence.</span></li>
+          <li><span class="num">4</span><span>For every module, leave with a teaching decision, evidence for that decision, and a revision note.</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="grid two" aria-label="Walkthrough media">
+      <div class="panel media-frame">
+        <h2>Video walkthrough</h2>
+        <p class="lead">A short screen recording of the CAT 531 entry flow and first learning route.</p>
+        <video controls preload="metadata" src="media/cat531-walkthrough.webm"></video>
+      </div>
+      <div class="panel">
+        <h2>Narration</h2>
+        <p class="lead">Play this narration while watching the video, or read the transcript below if audio is not convenient.</p>
+        <audio controls preload="metadata" src="media/cat531-narration.wav"></audio>
+        <details open>
+          <summary>Narration transcript</summary>
+          <p>Welcome to the CAT 531 ALGET guide. Begin by opening ALGET and choosing Sign in to start. In the Current students box, type your real full name and choose CAT 531. ALGET will open the Technology and Teaching pathway. Start with the diagnostic if it appears, then move through the modules as a sequence of teaching decisions: design tensions, TeachGen@i planning, AI in education, Ethobot ethics, educational technology evaluation, professional vision, field transfer, and instructor toolkit materials when assigned. In each section, read for the decision you need to make, use AI support to test your reasoning, and save evidence that shows how your plan changed because of learner needs, context constraints, equity, policy, or classroom feasibility.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="path" class="panel">
+      <h2>The CAT 531 learning path</h2>
+      <div class="path-map" aria-label="CAT 531 path">
+        <div><b>Enter</b>Use your real name and CAT 531 cohort so your instructor can identify support needs.</div>
+        <div><b>Frame</b>Read each module as a teaching decision under real classroom constraints.</div>
+        <div><b>Reason</b>Use AI tools, scenarios, annotations, and checks to compare options without outsourcing judgment.</div>
+        <div><b>Evidence</b>Save artifacts, reflections, and revisions for your professional portfolio.</div>
+      </div>
+      <div class="note" style="margin-top:16px;">The goal is not to collect tool tips. The goal is to explain why a technology-supported teaching decision fits learners, context, equity, policy, and instructional purpose.</div>
+    </section>
+
+    <section class="panel">
+      <h2>How to use one section well</h2>
+      <div class="steps">
+        <div class="step"><div><h3>Name the teaching decision</h3><p>Before reading deeply, ask: what decision would a teacher need to make here?</p></div></div>
+        <div class="step"><div><h3>Track the constraint</h3><p>Look for classroom variables such as device access, student variability, family communication, policy, time, and mentor-teacher expectations.</p></div></div>
+        <div class="step"><div><h3>Use AI as a comparison partner</h3><p>Let AI generate options or critique, but reject suggestions that ignore your learners, invent context, or flatten equity concerns.</p></div></div>
+        <div class="step"><div><h3>Annotate the reason</h3><p>Leave notes that explain why one option is stronger than another. These notes become evidence of professional judgment.</p></div></div>
+        <div class="step"><div><h3>Produce portfolio evidence</h3><p>Save the final plan, evaluation brief, transcript annotation, policy note, or field-transfer memo with a short revision explanation.</p></div></div>
+      </div>
+    </section>
+
+    <section id="modules">
+      <h2>Module-by-module route</h2>
+      <div class="grid two">
+        <article class="chapter"><strong>1. Foundations of CBI and Design Tensions</strong><p>Use design tensions to think before tool choice. Focus on efficiency, equity, context, and teacher agency.</p></article>
+        <article class="chapter"><strong>2. Teaching in Tech-Rich Classrooms With TeachGen@i</strong><p>Use scenarios to plan routines, adapt for learner variability, and revise based on teacher noticing.</p></article>
+        <article class="chapter"><strong>3. AI in Education</strong><p>Analyze what AI changes in schools, student work, bias, policy interpretation, and responsible prompting.</p></article>
+        <article class="chapter"><strong>4. AI Ethics and Ethobot 3.2</strong><p>Use ethical dialogue, facial-recognition cases, stakeholder analysis, privacy, consent, and transcript annotation.</p></article>
+        <article class="chapter"><strong>5. Educational Technology Evaluation</strong><p>Move from ratings to evidence. Compare vendor claims, usability, accessibility, equity, cost, sustainability, and classroom fit.</p></article>
+        <article class="chapter"><strong>6. Final Project and Professional Vision</strong><p>Synthesize your modules into a teaching philosophy, implementation plan, risk mitigation note, and presentation of professional vision.</p></article>
+        <article class="chapter"><strong>7. Field-Based Transfer and Coaching</strong><p>Transfer online cases into field placements through mentor conversations, observation notes, equity audits, and student voice.</p></article>
+        <article class="chapter"><strong>8. Instructor Toolkit for CAT 531</strong><p>Use facilitator notes, troubleshooting, discussion prompts, low-tech fallbacks, and readiness review when assigned by the instructor.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Weekly routine</h2>
+      <div class="grid three">
+        <div><h3>Before class</h3><p>Preview the module decision and identify one classroom constraint you expect to matter.</p></div>
+        <div><h3>During work time</h3><p>Use ALGET to compare alternatives, test assumptions, and annotate why you accept or reject an AI suggestion.</p></div>
+        <div><h3>After class</h3><p>Save a portfolio note that names the decision, evidence, rejected option, and next revision.</p></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>CAT 531 Q&amp;A</h2>
+      <details open><summary>Why does CAT 531 start with design tensions instead of tools?</summary><p>Because teachers need to reason about instructional purpose, learners, equity, and context before selecting or adapting a tool.</p></details>
+      <details><summary>Why do I need to type my real name?</summary><p>Your name lets your instructor connect progress and support signals to the right learner. Do not enter someone else's name or an unrecognizable nickname.</p></details>
+      <details><summary>Do I have to follow modules in order?</summary><p>Use the instructor's pacing first. If no alternate sequence is given, follow the module order because later work depends on design tensions, policy reasoning, and evidence standards introduced earlier.</p></details>
+      <details><summary>What counts as strong portfolio evidence?</summary><p>A strong artifact shows the original idea, the classroom constraint or evidence that changed it, the revision you made, and why that revision is more defensible.</p></details>
+      <details><summary>Can I use AI to plan lessons or policy language?</summary><p>Use AI for brainstorming, critique, adaptation, and comparison. You remain responsible for checking invented context, policy mismatch, equity gaps, and pedagogical fit.</p></details>
+      <details><summary>What should I do when TeachGen@i gives a polished but unrealistic suggestion?</summary><p>Reject or revise it. A polished suggestion that assumes unavailable devices, ignores accommodations, or invents learner details is not classroom-ready.</p></details>
+      <details><summary>How should I use Ethobot?</summary><p>Use Ethobot to practice ethical dialogue, stakeholder analysis, and policy reasoning. The point is not to win the debate; the point is to make tradeoffs visible and defensible.</p></details>
+      <details><summary>How is ALGET different from the official course LMS?</summary><p>ALGET is a learning, practice, and evidence-building environment. Official submission and grading requirements come from the instructor's course materials.</p></details>
+      <details><summary>What if I am not in a field placement yet?</summary><p>Use the field-transfer modules hypothetically, but label the context as simulated or planned. Replace assumptions with real placement evidence as soon as you have it.</p></details>
+      <details><summary>What is the best sign that I used a module well?</summary><p>You can explain a teaching decision with evidence, name a constraint, describe one rejected alternative, and show a revision.</p></details>
+    </section>
+
+    <section class="panel checklist">
+      <h2>Completion checklist</h2>
+      <label><input type="checkbox"> I entered through Current students with my real name and CAT 531 cohort.</label>
+      <label><input type="checkbox"> I completed the diagnostic or first checkpoint when prompted.</label>
+      <label><input type="checkbox"> I can name the teaching decision in each assigned module.</label>
+      <label><input type="checkbox"> I saved evidence showing how my plan changed because of context, equity, policy, or learner needs.</label>
+      <label><input type="checkbox"> I submitted required work in the official course location.</label>
+    </section>
+
+    <footer>
+      <p>ALGET CAT 531 guide. Use this page as a practical route map; course deadlines and grading requirements come from the instructor's official course materials.</p>
+    </footer>
+  </main>
+</body>
+</html>

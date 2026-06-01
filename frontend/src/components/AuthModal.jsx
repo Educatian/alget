@@ -167,6 +167,24 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                         <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
                             CAT 531 and CAT 100 summer students can enter with their name so progress is tied to the right learner.
                         </p>
+                        <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
+                            <a
+                                href="/guides/cat100/index.html"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="rounded-full border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3 py-1.5 text-[var(--ath-primary)] transition-colors hover:bg-white"
+                            >
+                                CAT 100 guide
+                            </a>
+                            <a
+                                href="/guides/cat531/index.html"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="rounded-full border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3 py-1.5 text-[var(--ath-primary)] transition-colors hover:bg-white"
+                            >
+                                CAT 531 guide
+                            </a>
+                        </div>
                         <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_0.9fr]">
                             <div>
                                 <label htmlFor="student-name" className="editorial-label mb-2 block">Name</label>
