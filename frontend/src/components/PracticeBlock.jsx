@@ -3,6 +3,7 @@ import { Lightbulb } from 'lucide-react'
 import { LLM_API_BASE } from '../lib/apiConfig'
 import { useToast } from '../lib/toastContext'
 import { fuseTelemetry, recordAdaptiveSignal, updateMastery } from '../lib/knowledgeService'
+import { logEvent, logProblemAttempt } from '../lib/loggingService'
 import { annotateMisconceptionSignal, resolveInterventionOutcome, updateLearnerModel } from '../lib/researchService'
 
 const STUCK_RULES = {
@@ -10,6 +11,8 @@ const STUCK_RULES = {
     CONSECUTIVE_WRONG: 2,
     HINT_CLICK_COUNT: 2
 }
+
+const nowMs = () => performance.now()
 
 function buildReviewPayload(problem, reason, preferredTab = 'explain') {
     return {
@@ -35,6 +38,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
     const [misconceptionByProblem, setMisconceptionByProblem] = useState({})
 
     const idleTimerRef = useRef(null)
+    const attemptStartedAtRef = useRef({})
     const problems = practice?.problems || []
     const currentProblem = problems[currentIndex]
 
@@ -65,6 +69,9 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
         setHintCount(0)
         setShowHint(false)
         setConsecutiveWrong(0)
+        if (currentProblem?.id) {
+            attemptStartedAtRef.current[currentProblem.id] = nowMs()
+        }
     }, [currentProblem?.id])
 
     const handleSubmit = async (problemId) => {
@@ -93,6 +100,7 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
             if (!response.ok) throw new Error(`Grade ${response.status}`)
             const result = await response.json()
             const confidenceValue = Number(confidenceByProblem[problemId] || 3)
+            const timeSpentMs = Math.max(0, nowMs() - (attemptStartedAtRef.current[problemId] || nowMs()))
             // Prefer the authored misconception pattern the backend returned for
             // a wrong MCQ option, so the fused signal carries the real tag rather
             // than only the learner's self-report. Falls back to unit_error and
@@ -104,6 +112,16 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                     : misconceptionByProblem[problemId] || 'unknown'
 
             setGradeResults((previous) => ({ ...previous, [problemId]: result }))
+            logProblemAttempt(problemId, result.is_correct, timeSpentMs, hintCount > 0, sectionId, {
+                source: 'practice',
+                concept_id: currentProblem?.concept_id || null,
+                confidence: confidenceValue,
+                selected_option_index: selectedIndex,
+                problem_type: currentProblem?.type || 'constructed_response',
+                misconception_type: result.is_correct ? null : misconceptionType,
+                unit_error: Boolean(result.unit_error),
+                attempt_index: Object.prototype.hasOwnProperty.call(gradeResults, problemId) ? 2 : 1,
+            })
             recordAdaptiveSignal(
                 sectionId,
                 result.is_correct ? 'practice_correct' : 'practice_incorrect',
@@ -189,6 +207,13 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
             problemId: currentProblem?.id,
             conceptId: currentProblem?.concept_id || null
         })
+        logEvent('hint_request', currentProblem?.id || 'practice_problem', {
+            source: 'practice',
+            problem_id: currentProblem?.id || null,
+            concept_id: currentProblem?.concept_id || null,
+            hint_count: nextCount,
+            has_authored_hint: Boolean(currentProblem?.hint)
+        }, sectionId)
 
         const event = new CustomEvent('open-chat', {
             detail: {
@@ -225,6 +250,12 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
             ...previous,
             [problemId]: Number(value)
         }))
+        logEvent('confidence_report', problemId, {
+            source: 'practice',
+            problem_id: problemId,
+            concept_id: currentProblem?.concept_id || null,
+            value: Number(value)
+        }, sectionId)
     }
 
     const updateMisconception = (problemId, value) => {
@@ -239,6 +270,12 @@ export default function PracticeBlock({ practice, onStuckEvent, onNeedsReview, s
                 conceptId: currentProblem.concept_id,
                 type: value
             })
+            logEvent('misconception_report', problemId, {
+                source: 'practice_reflection',
+                problem_id: problemId,
+                concept_id: currentProblem.concept_id,
+                type: value
+            }, sectionId)
             annotateMisconceptionSignal({
                 sectionId,
                 conceptId: currentProblem.concept_id,

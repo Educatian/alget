@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { LLM_API_BASE } from '../lib/apiConfig'
 import { getAdaptiveRecommendation, recordAdaptiveSignal } from '../lib/knowledgeService'
+import { logEvent } from '../lib/loggingService'
 import {
     appendInterventionTrace,
     evaluateSupportContent,
@@ -112,6 +113,12 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         recordAdaptiveSignal(resolvedSectionId, 'explanation_request', {
             reason: resolvedStuckReason
         })
+        logEvent('support_request', 'intel_rail', {
+            support_type: 'explain',
+            reason: resolvedStuckReason,
+            trace_id: activeTraceId,
+            concept_ids: recommendation?.primary_recommendation?.focus_concepts || []
+        }, resolvedSectionId)
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
                 type: 'support_requested',
@@ -157,6 +164,12 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
         recordAdaptiveSignal(resolvedSectionId, 'representation_request', {
             representationType: type
         })
+        logEvent('support_request', 'intel_rail', {
+            support_type: 'represent',
+            representation_type: type,
+            trace_id: activeTraceId,
+            concept_ids: recommendation?.primary_recommendation?.focus_concepts || []
+        }, resolvedSectionId)
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
                 type: 'support_requested',
@@ -210,6 +223,12 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             action,
             accepted
         })
+        logEvent('intervention_choice', 'intel_rail', {
+            action,
+            accepted,
+            trace_id: activeTraceId,
+            surface: 'recommendation_card'
+        }, resolvedSectionId)
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
                 type: 'recommendation_action',
@@ -249,6 +268,12 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
             accepted,
             surface: 'why-support-now'
         })
+        logEvent('intervention_choice', 'intel_rail', {
+            action: primaryRecommendation?.action || null,
+            accepted,
+            trace_id: activeTraceId,
+            surface: 'why-support-now'
+        }, resolvedSectionId)
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
                 type: 'recommendation_action',
@@ -259,6 +284,10 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
     }
 
     const handleClose = () => {
+        logEvent('support_rail_close', 'intel_rail', {
+            trace_id: activeTraceId,
+            active_tab: activeTab
+        }, resolvedSectionId)
         if (activeTraceId) {
             appendInterventionTrace(activeTraceId, {
                 type: 'rail_closed',
@@ -307,7 +336,13 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                         id={`intelrail-tab-${tab.id}`}
                         aria-selected={activeTab === tab.id}
                         aria-controls="intelrail-tabpanel"
-                        onClick={() => setActiveTab(tab.id)}
+                        onClick={() => {
+                            setActiveTab(tab.id)
+                            logEvent('support_tab_select', 'intel_rail', {
+                                tab_id: tab.id,
+                                trace_id: activeTraceId
+                            }, resolvedSectionId)
+                        }}
                         className={`flex-1 py-3 text-xs font-semibold uppercase tracking-[0.16em] transition-colors ${activeTab === tab.id
                             ? 'border-b-2 border-[var(--ath-primary)] bg-[rgba(255,255,255,0.74)] text-[var(--ath-primary)]'
                             : 'text-[var(--ath-secondary)] hover:text-[var(--ath-text)]'
@@ -528,6 +563,12 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                                                 detail: { support_type: 'ask', message_length: msg.length, surface: 'rail-launcher' }
                                             })
                                         }
+                                        logEvent('support_request', 'intel_rail', {
+                                            support_type: 'ask',
+                                            message_length: msg.length,
+                                            trace_id: activeTraceId,
+                                            surface: 'rail-launcher'
+                                        }, resolvedSectionId)
                                         recordAdaptiveSignal(resolvedSectionId, 'chat_engagement', { messageLength: msg.length })
                                         window.dispatchEvent(new CustomEvent('open-chat', { detail: { message: msg } }))
                                         setInputValue('')
@@ -549,6 +590,12 @@ export default function IntelRail({ context, stuckEvent, sectionInfo, onClose })
                                     if (msg) {
                                         recordAdaptiveSignal(resolvedSectionId, 'chat_engagement', { messageLength: msg.length })
                                     }
+                                    logEvent('support_request', 'intel_rail', {
+                                        support_type: 'ask',
+                                        message_length: msg.length,
+                                        trace_id: activeTraceId,
+                                        surface: 'rail-launcher'
+                                    }, resolvedSectionId)
                                     window.dispatchEvent(new CustomEvent('open-chat', { detail: { message: msg || undefined } }))
                                     setInputValue('')
                                 }}

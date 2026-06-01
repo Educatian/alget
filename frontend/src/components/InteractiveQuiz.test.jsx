@@ -2,14 +2,21 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 // Import-light: mock the learner-model services so no network / Supabase runs.
-const { recordAdaptiveSignal, updateMastery } = vi.hoisted(() => ({
+const { recordAdaptiveSignal, updateMastery, logEvent, logProblemAttempt } = vi.hoisted(() => ({
     recordAdaptiveSignal: vi.fn(),
     updateMastery: vi.fn(() => Promise.resolve()),
+    logEvent: vi.fn(),
+    logProblemAttempt: vi.fn(),
 }))
 
 vi.mock('../lib/knowledgeService', () => ({
     recordAdaptiveSignal,
     updateMastery,
+}))
+
+vi.mock('../lib/loggingService', () => ({
+    logEvent,
+    logProblemAttempt,
 }))
 
 import InteractiveQuiz from './InteractiveQuiz'
@@ -89,6 +96,18 @@ describe('InteractiveQuiz radiogroup interaction', () => {
             'ail606-supplement/01/01',
             'inline_quiz_correct',
             expect.objectContaining({ conceptId: 'cognitive_load' }),
+        )
+        expect(logProblemAttempt).toHaveBeenCalledWith(
+            expect.stringMatching(/^inline_quiz:cognitive_load:/),
+            true,
+            expect.any(Number),
+            false,
+            'ail606-supplement/01/01',
+            expect.objectContaining({
+                source: 'inline_quiz',
+                concept_id: 'cognitive_load',
+                selected_option_index: 1,
+            }),
         )
         expect(updateMastery).toHaveBeenCalledWith(
             { cognitive_load: 1.0 },
