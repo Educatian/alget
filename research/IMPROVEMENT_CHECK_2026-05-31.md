@@ -62,6 +62,8 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
   - `supabase/migrations/20260531234000_provision_optional_research_tables.sql` provisions `section_annotations`, `annotation_replies`, `annotation_reactions`, `annotation_read_states`, and `artifact_revision_scores` with indexes, RLS, grants, and summary views.
   - `scripts/provision_live_optional_research_tables.ps1` applies the migration through `SUPABASE_DB_URL` or Supabase CLI `SUPABASE_ACCESS_TOKEN`, then reruns the live smoke with table checks.
   - Direct live application is blocked in this Codex environment because Supabase CLI has no platform `SUPABASE_ACCESS_TOKEN`, no linked project, and no `SUPABASE_DB_URL`; the supplied service-role JWT is enough for REST provenance checks but not DDL.
+- [x] Post-provisioning verification hardened:
+  - `node scripts/live_research_smoke.mjs --require-access --require-provenance --require-tables --probe-optional-writes` now fails on missing live tables and performs synthetic insert/delete probes for the optional social annotation and artifact score persistence paths.
 
 ## Current Uncommitted Improvement Set
 
@@ -95,7 +97,7 @@ ALGET has moved past the original 2026-05-28 "significant upgrade" backlog. The 
 
 - [ ] Run the actual pilot protocol with real learners; the main A+ boundary is empirical evidence, not more content.
 - [ ] Apply `supabase/migrations/20260531234000_provision_optional_research_tables.sql` to live Supabase with `SUPABASE_ACCESS_TOKEN` or `SUPABASE_DB_URL`.
-- [ ] Re-run `node scripts/live_research_smoke.mjs --require-access --require-provenance --check-tables` and confirm all optional research tables return 200.
+- [ ] Re-run `node scripts/live_research_smoke.mjs --require-access --require-provenance --require-tables --probe-optional-writes` and confirm all optional research tables return 200 and accept synthetic writes.
 - [ ] Persist artifact judgment-gate outputs to a trusted server table, not only UI/local traces.
 - [ ] Collect artifact revision ratings with reliability evidence or a defensible rubric validation plan.
 - [ ] Calibrate learner model and recommendation policy on real exported event traces.

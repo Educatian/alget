@@ -36,11 +36,21 @@ function parseArgs(argv) {
     requireAccess: false,
     requireProvenance: false,
     checkTables: false,
+    requireTables: false,
+    probeOptionalWrites: false,
   };
   for (const arg of argv) {
     if (arg === "--require-access") options.requireAccess = true;
     else if (arg === "--require-provenance") options.requireProvenance = true;
     else if (arg === "--check-tables") options.checkTables = true;
+    else if (arg === "--require-tables") {
+      options.checkTables = true;
+      options.requireTables = true;
+    }
+    else if (arg === "--probe-optional-writes") {
+      options.checkTables = true;
+      options.probeOptionalWrites = true;
+    }
     else if (arg.startsWith("--app-url=")) options.appUrl = arg.slice(10);
     else if (arg.startsWith("--worker-url=")) options.workerUrl = arg.slice(13);
   }
@@ -180,9 +190,7 @@ async function smokeWorker(workerUrl, contentVersion) {
 }
 
 async function pollSupabaseDecision(decisionId, requireProvenance) {
-  const supabaseUrl =
-    process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || "";
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+  const { supabaseUrl, serviceKey } = getSupabaseServiceEnv();
 
   if (!supabaseUrl || !serviceKey) {
     if (requireProvenance) {
@@ -230,12 +238,48 @@ async function pollSupabaseDecision(decisionId, requireProvenance) {
   return { checked: true, found: false, lastStatus };
 }
 
-async function checkSupabaseTables() {
-  const supabaseUrl =
-    process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || "";
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
+function getSupabaseServiceEnv() {
+  return {
+    supabaseUrl: process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || "",
+    serviceKey: process.env.SUPABASE_SERVICE_ROLE_KEY || "",
+  };
+}
+
+async function supabaseRest(pathname, { method = "GET", body, prefer } = {}) {
+  const { supabaseUrl, serviceKey } = getSupabaseServiceEnv();
+  if (!supabaseUrl || !serviceKey) {
+    throw new Error("SUPABASE_URL/VITE_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required");
+  }
+  const headers = {
+    apikey: serviceKey,
+    Authorization: `Bearer ${serviceKey}`,
+  };
+  if (body !== undefined) headers["Content-Type"] = "application/json";
+  if (prefer) headers.Prefer = prefer;
+  const res = await fetch(`${supabaseUrl.replace(/\/+$/, "")}${pathname}`, {
+    method,
+    headers,
+    ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
+  });
+  const text = await res.text();
+  let data = null;
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch {
+      data = text;
+    }
+  }
+  return { res, data, text };
+}
+
+async function checkSupabaseTables(requireTables = false) {
+  const { supabaseUrl, serviceKey } = getSupabaseServiceEnv();
 
   if (!supabaseUrl || !serviceKey) {
+    if (requireTables) {
+      throw new Error("SUPABASE_URL/VITE_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required");
+    }
     return { checked: false, note: "missing local Supabase service env" };
   }
 
@@ -261,7 +305,194 @@ async function checkSupabaseTables() {
     });
     statuses[table] = res.status;
   }
-  return { checked: true, statuses };
+  const missing = Object.entries(statuses)
+    .filter(([, status]) => status === 404)
+    .map(([table]) => table);
+  const failing = Object.entries(statuses)
+    .filter(([, status]) => status >= 400)
+    .map(([table, status]) => `${table}:${status}`);
+  if (requireTables && failing.length > 0) {
+    throw new Error(`Supabase table check failed: ${failing.join(", ")}`);
+  }
+  return { checked: true, statuses, missing };
+}
+
+async function findExistingUserId() {
+  for (const table of ["event_logs", "interaction_events"]) {
+    const { res, data } = await supabaseRest(
+      `/rest/v1/${table}?select=user_id&user_id=not.is.null&limit=1`,
+    );
+    if (res.ok && Array.isArray(data) && data[0]?.user_id) return data[0].user_id;
+  }
+  return null;
+}
+
+async function probeOptionalWrites() {
+  const marker = `codex-smoke-${Date.now()}`;
+  const created = {
+    annotationId: null,
+    replyId: null,
+    artifactScoreId: null,
+    reaction: false,
+    readState: false,
+  };
+  const result = {
+    checked: true,
+    annotationInsert: false,
+    replyInsert: false,
+    reactionInsert: "skipped",
+    readStateInsert: "skipped",
+    artifactScoreInsert: false,
+    cleanup: false,
+  };
+
+  try {
+    const userId = await findExistingUserId();
+    const annotation = await supabaseRest(
+      "/rest/v1/section_annotations?select=id",
+      {
+        method: "POST",
+        prefer: "return=representation",
+        body: {
+          section_id: "cat100-supplement/01/01",
+          course_id: "cat100-supplement",
+          concept_ids: ["codex_smoke"],
+          quote_text: marker,
+          quote_hash: marker,
+          annotation_type: "question",
+          body: "Codex smoke annotation write probe.",
+          visibility: "private",
+        },
+      },
+    );
+    assert(annotation.res.ok, `section_annotations insert failed: ${annotation.res.status}; ${String(annotation.text).slice(0, 160)}`);
+    created.annotationId = annotation.data?.[0]?.id;
+    assert(created.annotationId, "section_annotations insert did not return id");
+    result.annotationInsert = true;
+
+    const reply = await supabaseRest(
+      "/rest/v1/annotation_replies?select=id",
+      {
+        method: "POST",
+        prefer: "return=representation",
+        body: {
+          annotation_id: created.annotationId,
+          body: "Codex smoke reply write probe.",
+        },
+      },
+    );
+    assert(reply.res.ok, `annotation_replies insert failed: ${reply.res.status}; ${String(reply.text).slice(0, 160)}`);
+    created.replyId = reply.data?.[0]?.id;
+    result.replyInsert = Boolean(created.replyId);
+
+    if (userId) {
+      const reaction = await supabaseRest(
+        "/rest/v1/annotation_reactions",
+        {
+          method: "POST",
+          prefer: "return=minimal",
+          body: {
+            annotation_id: created.annotationId,
+            user_id: userId,
+            reaction_type: "helpful",
+          },
+        },
+      );
+      assert(reaction.res.ok || reaction.res.status === 201, `annotation_reactions insert failed: ${reaction.res.status}; ${String(reaction.text).slice(0, 160)}`);
+      created.reaction = true;
+      result.reactionInsert = true;
+
+      const readState = await supabaseRest(
+        "/rest/v1/annotation_read_states",
+        {
+          method: "POST",
+          prefer: "return=minimal",
+          body: {
+            annotation_id: created.annotationId,
+            user_id: userId,
+          },
+        },
+      );
+      assert(readState.res.ok || readState.res.status === 201, `annotation_read_states insert failed: ${readState.res.status}; ${String(readState.text).slice(0, 160)}`);
+      created.readState = true;
+      result.readStateInsert = true;
+    } else {
+      result.reactionInsert = "skipped:no_existing_user_id";
+      result.readStateInsert = "skipped:no_existing_user_id";
+    }
+
+    const artifactScore = await supabaseRest(
+      "/rest/v1/artifact_revision_scores?select=id",
+      {
+        method: "POST",
+        prefer: "return=representation",
+        body: {
+          section_id: "cat100-supplement/01/01",
+          course_id: "cat100-supplement",
+          artifact_type: "codex-smoke",
+          studio_mode: "trace",
+          judgment: "modify",
+          trace_score: 6,
+          trace_denominator: 8,
+          claim_clarity: 0.8,
+          evidence_alignment: 0.7,
+          revision_depth: 0.7,
+          judgment_quality: 0.8,
+          transfer_readiness: 0.7,
+          specificity_delta: 0.6,
+          overall_revision_quality: 0.75,
+          diagnostics: { marker },
+        },
+      },
+    );
+    assert(artifactScore.res.ok, `artifact_revision_scores insert failed: ${artifactScore.res.status}; ${String(artifactScore.text).slice(0, 160)}`);
+    created.artifactScoreId = artifactScore.data?.[0]?.id;
+    assert(created.artifactScoreId, "artifact_revision_scores insert did not return id");
+    result.artifactScoreInsert = true;
+  } finally {
+    const cleanupErrors = [];
+    if (created.readState && created.annotationId) {
+      const del = await supabaseRest(
+        `/rest/v1/annotation_read_states?annotation_id=eq.${encodeURIComponent(created.annotationId)}`,
+        { method: "DELETE" },
+      );
+      if (!del.res.ok) cleanupErrors.push(`annotation_read_states:${del.res.status}`);
+    }
+    if (created.reaction && created.annotationId) {
+      const del = await supabaseRest(
+        `/rest/v1/annotation_reactions?annotation_id=eq.${encodeURIComponent(created.annotationId)}`,
+        { method: "DELETE" },
+      );
+      if (!del.res.ok) cleanupErrors.push(`annotation_reactions:${del.res.status}`);
+    }
+    if (created.replyId) {
+      const del = await supabaseRest(
+        `/rest/v1/annotation_replies?id=eq.${encodeURIComponent(created.replyId)}`,
+        { method: "DELETE" },
+      );
+      if (!del.res.ok) cleanupErrors.push(`annotation_replies:${del.res.status}`);
+    }
+    if (created.annotationId) {
+      const del = await supabaseRest(
+        `/rest/v1/section_annotations?id=eq.${encodeURIComponent(created.annotationId)}`,
+        { method: "DELETE" },
+      );
+      if (!del.res.ok) cleanupErrors.push(`section_annotations:${del.res.status}`);
+    }
+    if (created.artifactScoreId) {
+      const del = await supabaseRest(
+        `/rest/v1/artifact_revision_scores?id=eq.${encodeURIComponent(created.artifactScoreId)}`,
+        { method: "DELETE" },
+      );
+      if (!del.res.ok) cleanupErrors.push(`artifact_revision_scores:${del.res.status}`);
+    }
+    if (cleanupErrors.length > 0) {
+      throw new Error(`optional write probe cleanup failed: ${cleanupErrors.join(", ")}`);
+    }
+    result.cleanup = true;
+  }
+
+  return result;
 }
 
 async function main() {
@@ -278,7 +509,12 @@ async function main() {
     worker.decisionId,
     options.requireProvenance,
   );
-  const tableCheck = options.checkTables ? await checkSupabaseTables() : undefined;
+  const tableCheck = options.checkTables
+    ? await checkSupabaseTables(options.requireTables)
+    : undefined;
+  const optionalWriteProbe = options.probeOptionalWrites
+    ? await probeOptionalWrites()
+    : undefined;
 
   console.log(JSON.stringify({
     ok: true,
@@ -287,6 +523,7 @@ async function main() {
     worker,
     provenance,
     ...(tableCheck ? { tableCheck } : {}),
+    ...(optionalWriteProbe ? { optionalWriteProbe } : {}),
   }, null, 2));
 }
 

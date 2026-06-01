@@ -50,6 +50,10 @@ Worker has `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` configured; that mode
 polls Supabase for the returned `decision_id` in `recommendation_decisions`.
 Use `--check-tables` with a local `SUPABASE_SERVICE_ROLE_KEY` env var to report
 live research-table availability by status code without printing secrets.
+After applying the optional-table migration, run `--require-tables
+--probe-optional-writes` as well; that mode fails if any required table is still
+unavailable and performs synthetic insert/delete probes against the social
+annotation and artifact score tables.
 
 ## Known limitations (v1)
 - **Backend-dependent POST features degrade gracefully** (no Python backend in this deployment): LLM tutor chat,
@@ -57,6 +61,7 @@ live research-table availability by status code without printing secrets.
 - **Social annotations 404** against Supabase because the `section_annotations` (and related) tables are not provisioned on
   the live Supabase project. Apply `supabase/migrations/20260531234000_provision_optional_research_tables.sql` with
   `scripts/provision_live_optional_research_tables.ps1` when `SUPABASE_ACCESS_TOKEN` or `SUPABASE_DB_URL` is available.
+  The service-role JWT is sufficient for REST smoke/provenance checks but is not a DDL credential.
   The UI detects this missing-table response and falls back to local annotation storage instead of repeatedly retrying
   the remote tables.
 - **Artifact revision score mirror 404** against Supabase because `artifact_revision_scores` is not provisioned live.
