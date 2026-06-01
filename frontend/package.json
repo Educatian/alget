@@ -12,7 +12,8 @@
     "test:e2e": "playwright test",
     "smoke:live-logging": "node scripts/live-logging-smoke.mjs",
     "guide:record": "node scripts/record-cat-guides.mjs",
-    "guide:verify": "node scripts/verify-cat-guides.mjs"
+    "guide:verify": "node scripts/verify-cat-guides.mjs",
+    "guide:student-flow": "node scripts/guide-student-flow-check.mjs"
   },
   "dependencies": {
     "@radix-ui/react-popover": "^1.1.15",
