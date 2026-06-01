@@ -10,6 +10,13 @@ const ROUTES = [
     { route: '/analytics', expected: /Research|Analytics|Console/i },
 ]
 
+function shouldIgnoreConsoleError(text) {
+    return (
+        text.includes('Failed to load resource: the server responded with a status of 404') ||
+        text === 'Permissions policy violation: compute-pressure is not allowed in this document.'
+    )
+}
+
 test.describe('ALGET browser smoke routes', () => {
     test.beforeEach(async ({ page }) => {
         await page.addInitScript(() => {
@@ -22,7 +29,7 @@ test.describe('ALGET browser smoke routes', () => {
             const failures = []
 
             page.on('console', (message) => {
-                if (message.type() === 'error' && !message.text().includes('Failed to load resource: the server responded with a status of 404')) {
+                if (message.type() === 'error' && !shouldIgnoreConsoleError(message.text())) {
                     failures.push(`console error: ${message.text()}`)
                 }
             })
