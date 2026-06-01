@@ -147,11 +147,31 @@ function ReadingPane({
         logInteraction('ready_check_toggle', key, sectionId)
     }
 
+    const persistExitTicket = () => {
+        try {
+            writeExitTicket(sectionId, exitTicket, {
+                course: sectionData?.meta?.course,
+                chapter: sectionData?.meta?.chapter,
+                section: sectionData?.meta?.section,
+                title: sectionData?.meta?.title,
+                description: sectionData?.meta?.description
+            })
+        } catch {
+            // Local persistence is a convenience; completion remains available.
+        }
+    }
+
     const handleExitTicketBlur = () => {
+        persistExitTicket()
         const trimmedLength = exitTicket.trim().length
         if (trimmedLength > 0) {
             logInteraction('exit_ticket_saved', `${trimmedLength}`, sectionId)
         }
+    }
+
+    const handleMarkCompleted = () => {
+        persistExitTicket()
+        markCompleted()
     }
 
     if (loading) {
@@ -483,7 +503,7 @@ function ReadingPane({
                         </p>
                     </div>
                     <button
-                        onClick={markCompleted}
+                        onClick={handleMarkCompleted}
                         disabled={isCompleted}
                         className={`flex shrink-0 items-center justify-center gap-2 rounded-[1rem] px-6 py-3 text-base font-semibold transition-all ${isCompleted
                             ? 'cursor-default border border-emerald-200 bg-emerald-100 text-emerald-700'
