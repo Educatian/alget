@@ -80,7 +80,12 @@ test.describe('ALGET full learner workflow', () => {
     test('supports annotation, artifact judgment, revision scoring, and adaptive rationale in one path', async ({ page }) => {
         const failures = []
         page.on('console', (message) => {
-            if (message.type() === 'error' && !message.text().includes('Failed to load resource: the server responded with a status of 404')) {
+            const text = message.text()
+            const allowedBrowserNoise = [
+                'Failed to load resource: the server responded with a status of 404',
+                'Permissions policy violation: compute-pressure is not allowed in this document.',
+            ]
+            if (message.type() === 'error' && !allowedBrowserNoise.some((allowed) => text.includes(allowed))) {
                 failures.push(`console error: ${message.text()}`)
             }
         })
