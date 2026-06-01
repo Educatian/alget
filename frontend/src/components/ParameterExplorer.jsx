@@ -290,7 +290,8 @@ export default function ParameterExplorer({ config, ...rest }) {
 
     return (
         <section
-            className="my-6 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.88)] p-5 shadow-sm"
+            data-reading-interactive="parameter-explorer"
+            className="my-6 w-full max-w-full min-w-0 rounded-2xl border border-[var(--ath-line)] bg-[rgba(255,255,255,0.88)] p-5 shadow-sm"
             aria-labelledby={`${baseId}-title`}
         >
             <h4
@@ -300,9 +301,9 @@ export default function ParameterExplorer({ config, ...rest }) {
                 {title}
             </h4>
 
-            <div className="mt-4 grid gap-5 md:grid-cols-2">
+            <div className="mt-4 grid min-w-0 gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
                 {/* Sliders */}
-                <div className="grid gap-4">
+                <div className="grid min-w-0 gap-4">
                     {sliders.map((slider) => {
                         const id = `${baseId}-slider-${slider.name}`
                         const value = values[slider.name]
@@ -341,18 +342,18 @@ export default function ParameterExplorer({ config, ...rest }) {
                 </div>
 
                 {/* Outputs + plot */}
-                <div className="grid gap-4">
-                    <div>
+                <div className="grid min-w-0 gap-4">
+                    <div className="min-w-0">
                         <p className="editorial-kicker">Live outputs</p>
                         <div role="status" aria-live="polite" aria-atomic="true">
-                            <dl className="mt-2 grid gap-2">
+                            <dl className="mt-2 grid min-w-0 gap-2">
                                 {computedOutputs.map((output) => (
                                     <div
                                         key={output.label}
-                                        className="flex items-baseline justify-between gap-3 rounded-xl bg-[var(--ath-panel)] px-3 py-2"
+                                        className="flex min-w-0 items-baseline justify-between gap-3 rounded-xl bg-[var(--ath-panel)] px-3 py-2"
                                     >
-                                        <dt className="text-sm text-[var(--ath-text)]">{output.label}</dt>
-                                        <dd className="font-mono text-sm font-semibold text-[var(--ath-primary)]">
+                                        <dt className="min-w-0 text-sm text-[var(--ath-text)]">{output.label}</dt>
+                                        <dd className="shrink-0 font-mono text-sm font-semibold text-[var(--ath-primary)]">
                                             {output.error ? (
                                                 <span className="text-rose-600">formula error</span>
                                             ) : (
@@ -375,25 +376,33 @@ export default function ParameterExplorer({ config, ...rest }) {
                     </div>
 
                     {sliders.length > 1 && (
-                        <div>
-                            <label
-                                htmlFor={`${baseId}-plotvar`}
+                        <div className="min-w-0">
+                            <p
+                                id={`${baseId}-plotvar-label`}
                                 className="text-xs font-medium text-[var(--ath-muted)]"
                             >
                                 Plot against
-                            </label>
-                            <select
-                                id={`${baseId}-plotvar`}
-                                value={plotVar}
-                                onChange={(event) => setPlotVar(event.target.value)}
-                                className="mt-1 w-full rounded-lg border border-[var(--ath-line)] bg-white px-2 py-1 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)]"
+                            </p>
+                            <div
+                                role="group"
+                                aria-labelledby={`${baseId}-plotvar-label`}
+                                className="mt-2 grid min-w-0 gap-1.5 sm:grid-cols-2"
                             >
                                 {sliders.map((slider) => (
-                                    <option key={slider.name} value={slider.name}>
+                                    <button
+                                        key={slider.name}
+                                        type="button"
+                                        onClick={() => setPlotVar(slider.name)}
+                                        aria-pressed={plotVar === slider.name}
+                                        className={`min-h-10 min-w-0 rounded-lg border px-2.5 py-2 text-left text-xs font-semibold leading-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--ath-primary)_45%,transparent)] ${plotVar === slider.name
+                                            ? 'border-[var(--ath-primary)] bg-[color-mix(in_srgb,var(--ath-primary)_12%,white)] text-[var(--ath-primary)]'
+                                            : 'border-[var(--ath-line)] bg-white text-[var(--ath-text)] hover:bg-[var(--ath-panel)]'
+                                            }`}
+                                    >
                                         {slider.label}
-                                    </option>
+                                    </button>
                                 ))}
-                            </select>
+                            </div>
                         </div>
                     )}
 
