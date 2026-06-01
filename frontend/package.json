@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "smoke:live-logging": "node scripts/live-logging-smoke.mjs",
     "guide:record": "node scripts/record-cat-guides.mjs",
     "guide:verify": "node scripts/verify-cat-guides.mjs"
   },
