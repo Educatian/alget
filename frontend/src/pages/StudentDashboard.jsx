@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, BookOpen, Flame, Target } from 'lucide-react'
+import { ArrowRight, BookOpen, Flame, NotebookPen, Target } from 'lucide-react'
 import { LLM_API_BASE } from '../lib/apiConfig'
 import { supabase } from '../lib/supabase'
 import { getResearchDashboardSnapshot, getEvaluationStatus } from '../lib/researchService'
 import { ALL_COURSE_IDS } from '../lib/courseCatalog'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import { getStreak } from '../lib/streak'
+import { listExitTickets } from '../lib/exitTickets'
 import CohortLiveMap from '../components/CohortLiveMap'
 import KindredReaders from '../components/KindredReaders'
 import EmptyState from '../components/EmptyState'
@@ -34,6 +35,7 @@ export default function StudentDashboard({ user }) {
     const [masteryRows, setMasteryRows] = useState([])
     const [snapshot, setSnapshot] = useState(() => getResearchDashboardSnapshot())
     const [retentionDue, setRetentionDue] = useState([])
+    const [exitTickets, setExitTickets] = useState(() => listExitTickets({ limit: 3 }))
     const [loading, setLoading] = useState(true)
     const [streak] = useState(() => getStreak())
 
@@ -55,6 +57,7 @@ export default function StudentDashboard({ user }) {
 
                 if (!cancelled) {
                     setSnapshot(getResearchDashboardSnapshot())
+                    setExitTickets(listExitTickets({ limit: 3 }))
                 }
 
                 const dueChecks = []
@@ -90,6 +93,7 @@ export default function StudentDashboard({ user }) {
     )
 
     const recentMisconceptions = snapshot.learnerMetrics?.dominantMisconceptions?.slice(0, 5) || []
+    const latestExitTicket = exitTickets[0] || null
 
     const handleConceptOpen = async (conceptId) => {
         // Best-effort navigation: ask backend which section first introduces
@@ -190,7 +194,7 @@ export default function StudentDashboard({ user }) {
 
                 <section>
                     <div className="flex flex-wrap items-center gap-2 text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em] text-[var(--ath-secondary)]">
-                        <span>Today's focus · 15 min</span>
+                        <span>Today's focus · 20 min</span>
                         {streak.count > 0 && (
                             <span className="ml-auto inline-flex items-center gap-1 rounded-full border border-[var(--ath-warning)] bg-[var(--ath-warning-soft)] px-2 py-0.5 text-[var(--ath-text-2xs)] font-bold text-[var(--ath-warning)]">
                                 <Flame className="h-3 w-3" />
@@ -198,7 +202,7 @@ export default function StudentDashboard({ user }) {
                             </span>
                         )}
                     </div>
-                    <div className="mt-3 grid gap-4 md:grid-cols-3">
+                    <div className="mt-3 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                         {/* Card 1 — weakest concept */}
                         <button
                             type="button"
@@ -249,7 +253,35 @@ export default function StudentDashboard({ user }) {
                             )}
                         </button>
 
-                        {/* Card 3 — retention */}
+                        {/* Card 3 — evidence trace */}
+                        <button
+                            type="button"
+                            onClick={() => latestExitTicket && navigate(`/book/${latestExitTicket.course}/${latestExitTicket.chapter}/${latestExitTicket.section}`)}
+                            disabled={!latestExitTicket}
+                            className="group card-actionable flex min-h-[10rem] flex-col gap-2 p-4 text-left disabled:cursor-default disabled:opacity-60"
+                        >
+                            <div className="flex items-center gap-2 text-[var(--ath-primary)]">
+                                <NotebookPen className="h-4 w-4" />
+                                <span className="text-[var(--ath-text-2xs)] font-bold uppercase tracking-[0.18em]">Trace · 5 min</span>
+                            </div>
+                            {latestExitTicket ? (
+                                <>
+                                    <p className="font-headline text-[var(--ath-text-lg)] font-semibold text-[var(--ath-text)] line-clamp-2">
+                                        {latestExitTicket.title || `${latestExitTicket.course} ${latestExitTicket.chapter}.${latestExitTicket.section}`}
+                                    </p>
+                                    <p className="text-[var(--ath-text-xs)] leading-5 text-[var(--ath-muted)] line-clamp-3">
+                                        {latestExitTicket.text}
+                                    </p>
+                                    <span className="mt-auto inline-flex items-center gap-1 text-[var(--ath-text-xs)] font-semibold text-[var(--ath-primary)] group-hover:gap-2">
+                                        Reopen trace <ArrowRight className="h-3 w-3" />
+                                    </span>
+                                </>
+                            ) : (
+                                <p className="mt-auto text-[var(--ath-text-xs)] text-[var(--ath-muted)]">Write an exit ticket at the end of a section to create a reusable trace.</p>
+                            )}
+                        </button>
+
+                        {/* Card 4 — retention */}
                         <button
                             type="button"
                             onClick={() => retentionDue[0] && navigate(`/diagnostic/${retentionDue[0].course}?phase=retention`)}
