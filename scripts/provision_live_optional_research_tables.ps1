@@ -13,7 +13,7 @@ if ($env:SUPABASE_DB_URL) {
     npx.cmd supabase db query --db-url $env:SUPABASE_DB_URL --file $MigrationPath
 } else {
     if (-not $env:SUPABASE_ACCESS_TOKEN) {
-        throw "Set SUPABASE_ACCESS_TOKEN or SUPABASE_DB_URL before provisioning live Supabase tables."
+        throw "Set SUPABASE_ACCESS_TOKEN or SUPABASE_DB_URL before provisioning live Supabase tables. SUPABASE_SERVICE_ROLE_KEY is intentionally not enough for DDL; it only verifies REST data access."
     }
 
     $supabaseUrlLine = Get-Content -LiteralPath "frontend\.env" |
@@ -35,4 +35,4 @@ if (Test-Path -LiteralPath $ServiceRolePath) {
     $env:SUPABASE_SERVICE_ROLE_KEY = (Get-Content -Raw -LiteralPath $ServiceRolePath).Trim()
 }
 
-node scripts/live_research_smoke.mjs --require-access --require-provenance --check-tables
+node scripts/live_research_smoke.mjs --require-access --require-provenance --require-tables --probe-optional-writes
