@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { useTextSelection } from '../hooks/useTextSelection'
 import { useFocusTrap } from '../hooks/useFocusTrap'
-import { logHighlightCreate } from '../lib/loggingService'
+import { logEvent, logHighlightCreate } from '../lib/loggingService'
 import API_BASE from '../lib/apiConfig'
 import { Download, Hash, MessageSquarePlus, Sparkles, Highlighter, X } from 'lucide-react'
 import HighlightDiscussion from './HighlightDiscussion'
@@ -370,8 +370,17 @@ export default function HighlightableContent({
             }
             setSelectionState(newState)
             selectedTextRef.current = text // Persist in ref
+            logEvent('highlight_selection_capture', 'reading_selection', {
+                text_length: text.length,
+                rect: {
+                    width: Math.round(rect.width),
+                    height: Math.round(rect.height),
+                    top: Math.round(rect.top),
+                    left: Math.round(rect.left),
+                },
+            }, sectionId)
         }, 10)
-    }, [showNoteInput])
+    }, [sectionId, showNoteInput])
 
     const clearSelection = useCallback(() => {
         setSelectionState(null)
@@ -430,6 +439,10 @@ export default function HighlightableContent({
     const saveNote = async () => {
         if (editingNoteId) {
             await updateHighlightNote(editingNoteId, noteInput)
+            logEvent('highlight_note_update', 'highlight_note_editor', {
+                highlight_id: editingNoteId,
+                note_length: noteInput.trim().length,
+            }, sectionId)
             setShowNoteInput(false)
             setEditingNoteId(null)
             setNoteInput('')
@@ -439,6 +452,9 @@ export default function HighlightableContent({
     // Handle ask BigAL
     const handleAskBigAL = () => {
         if (selectionState?.text && onAskBigAL) {
+            logEvent('highlight_ask_bigal', 'reading_selection', {
+                text_length: selectionState.text.length,
+            }, sectionId)
             onAskBigAL(selectionState.text)
             clearSelection()
         }
@@ -450,6 +466,10 @@ export default function HighlightableContent({
             alert('No highlights to export yet.')
             return
         }
+
+        logEvent('highlight_export', 'highlight_export_markdown', {
+            highlight_count: highlights.length,
+        }, sectionId)
 
         const markdown = [
             `# Highlights from ${sectionId}`,
