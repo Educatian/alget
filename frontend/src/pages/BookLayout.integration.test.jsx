@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest'
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import BookLayout from './BookLayout'
 
@@ -128,7 +128,9 @@ describe('BookLayout integration', () => {
 
         expect(screen.getByText('Alabama Generative Intelligent Textbook')).toBeInTheDocument()
         expect(screen.getByText('ALGET Reader')).toBeInTheDocument()
-        expect(await screen.findByTestId('reading-pane')).toHaveTextContent('inst-design Section 01')
+        await waitFor(() => {
+            expect(screen.getByTestId('reading-pane')).toHaveTextContent('inst-design Section 01')
+        })
         expect(screen.getByText('Cloud sync on')).toBeInTheDocument()
     })
 
@@ -145,7 +147,9 @@ describe('BookLayout integration', () => {
             </MemoryRouter>,
         )
 
-        expect(await screen.findByTestId('reading-pane')).toHaveTextContent(`${course} Section 01`)
+        await waitFor(() => {
+            expect(screen.getByTestId('reading-pane')).toHaveTextContent(`${course} Section 01`)
+        })
         expect(globalThis.fetch).toHaveBeenCalledWith(expect.stringContaining(`/book/${course}/toc`))
         expect(globalThis.fetch).toHaveBeenCalledWith(expect.stringContaining(`/book/${course}/01/01`))
     })
