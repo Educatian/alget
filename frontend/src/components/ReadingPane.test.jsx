@@ -48,6 +48,33 @@ const sectionData = {
 }
 
 describe('ReadingPane continuity cues', () => {
+    it('offers a section path with jump targets and a ready check', () => {
+        const scrollIntoView = vi.fn()
+        window.HTMLElement.prototype.scrollIntoView = scrollIntoView
+
+        render(
+            <ReadingPane
+                sectionData={sectionData}
+                loading={false}
+                isBookmarked={false}
+                toggleBookmark={vi.fn()}
+                isCompleted={false}
+                markCompleted={vi.fn()}
+                previousSection={null}
+                nextSection={null}
+                recentSection={null}
+            />,
+        )
+
+        fireEvent.click(screen.getByRole('button', { name: /Jump to Practice/i }))
+        expect(scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' })
+        expect(screen.getByText('Ready check')).toBeInTheDocument()
+        expect(screen.getByText(/0\/3 evidence moves checked/i)).toBeInTheDocument()
+
+        fireEvent.click(screen.getByLabelText(/State the claim/i))
+        expect(screen.getByText(/1\/3 evidence moves checked/i)).toBeInTheDocument()
+    })
+
     it('shows a returning learner check-in and resumes the last section', async () => {
         const onNavigate = vi.fn()
 
@@ -79,7 +106,7 @@ describe('ReadingPane continuity cues', () => {
         expect(await screen.findByText('Reading narrative loaded')).toBeInTheDocument()
     })
 
-    it('names the next work-product action when there is no prior section to resume', () => {
+    it('names the next learning actions when there is no prior section to resume', () => {
         render(
             <ReadingPane
                 sectionData={sectionData}
@@ -95,8 +122,9 @@ describe('ReadingPane continuity cues', () => {
         )
 
         expect(screen.getByText('Read')).toBeInTheDocument()
-        expect(screen.getByText('Judge AI')).toBeInTheDocument()
-        expect(screen.getByText('Revise')).toBeInTheDocument()
+        expect(screen.getByText('Reflect')).toBeInTheDocument()
+        expect(screen.getByText('Practice')).toBeInTheDocument()
+        expect(screen.getByText('Finish')).toBeInTheDocument()
     })
 
     it('does not duplicate the objective block when the MDX already has learning targets', () => {
