@@ -3,13 +3,18 @@ import { isSupabaseConfigured, resetPassword, signIn, signUp } from '../lib/supa
 import { useFocusTrap } from '../hooks/useFocusTrap'
 import { safeLocalStorageSet } from '../lib/browserStorage'
 import { DEMO_USER, DEMO_SESSION_KEY } from '../lib/demoSession'
+import { CURRENT_STUDENT_COHORTS, signInCohortLearner } from '../lib/cohortLearner'
 
 export default function AuthModal({ isOpen, onClose, onSuccess }) {
     const [mode, setMode] = useState('signin')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [studentName, setStudentName] = useState('')
+    const [studentCohort, setStudentCohort] = useState(CURRENT_STUDENT_COHORTS[0].id)
     const [loading, setLoading] = useState(false)
+    const [studentLoading, setStudentLoading] = useState(false)
     const [error, setError] = useState('')
+    const [studentError, setStudentError] = useState('')
     const [message, setMessage] = useState('')
 
     const dialogRef = useFocusTrap(isOpen, onClose)
@@ -45,6 +50,26 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
         // (the hosted demo is shareable; App restores this on load).
         safeLocalStorageSet(DEMO_SESSION_KEY, JSON.stringify(DEMO_USER))
         onSuccess?.(DEMO_USER)
+    }
+
+    const handleStudentEntry = async (event) => {
+        event.preventDefault()
+        setStudentLoading(true)
+        setStudentError('')
+        setError('')
+        setMessage('')
+
+        try {
+            const user = await signInCohortLearner({
+                cohortId: studentCohort,
+                fullName: studentName,
+            })
+            onSuccess?.(user, { redirectTo: '/learn' })
+        } catch (err) {
+            setStudentError(err?.message || 'Unable to open your student course right now.')
+        } finally {
+            setStudentLoading(false)
+        }
     }
 
     const handleSubmit = async (event) => {
@@ -136,6 +161,53 @@ export default function AuthModal({ isOpen, onClose, onSuccess }) {
                             Local demo mode is active. Cloud authentication is not configured in this environment, so the fastest path is to continue with a sample learner.
                         </div>
                     )}
+
+                    <form onSubmit={handleStudentEntry} className="mb-6 rounded-[1.4rem] border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                        <p className="editorial-label">Current students</p>
+                        <p className="mt-2 text-sm leading-6 text-[var(--ath-muted)]">
+                            CAT 531 and CAT 100 summer students can enter with their name so progress is tied to the right learner.
+                        </p>
+                        <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_0.9fr]">
+                            <div>
+                                <label htmlFor="student-name" className="editorial-label mb-2 block">Name</label>
+                                <input
+                                    id="student-name"
+                                    type="text"
+                                    value={studentName}
+                                    onChange={(event) => setStudentName(event.target.value)}
+                                    placeholder="Your full name"
+                                    className="editorial-input"
+                                    autoComplete="name"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="student-cohort" className="editorial-label mb-2 block">Cohort</label>
+                                <select
+                                    id="student-cohort"
+                                    value={studentCohort}
+                                    onChange={(event) => setStudentCohort(event.target.value)}
+                                    className="editorial-input"
+                                >
+                                    {CURRENT_STUDENT_COHORTS.map((cohort) => (
+                                        <option key={cohort.id} value={cohort.id}>{cohort.label}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                        {studentError && (
+                            <div className="mt-3 rounded-[1.2rem] border border-[color-mix(in_srgb,var(--ath-danger)_32%,transparent)] bg-[color-mix(in_srgb,var(--ath-danger)_12%,var(--ath-panel))] px-4 py-3 text-sm font-medium text-[var(--ath-danger)]">
+                                {studentError}
+                            </div>
+                        )}
+                        <button
+                            type="submit"
+                            disabled={studentLoading}
+                            className="editorial-button mt-4 w-full px-5 py-3 text-sm disabled:opacity-60"
+                        >
+                            {studentLoading ? 'Opening course...' : 'Enter my course'}
+                        </button>
+                    </form>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>

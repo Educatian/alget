@@ -20,6 +20,7 @@ import { BioInspiredIllustration, StaticsIllustration } from '../components/Cour
 import ThemeToggle from '../components/ThemeToggle'
 import { useCourseProgress } from '../hooks/useCourseProgress'
 import API_BASE from '../lib/apiConfig'
+import { formatUserLabel, readCohortLearner } from '../lib/cohortLearner'
 import { getEvaluationStatus } from '../lib/researchService'
 import '../index.css'
 
@@ -168,9 +169,11 @@ function formatPathwayLabel(value) {
 export default function MainApp({ user, onLogout }) {
     const navigate = useNavigate()
     const { recentSection, bookmarks } = useCourseProgress(user)
+    const cohortLearner = readCohortLearner()
+    const userLabel = user?.displayLabel || formatUserLabel(user)
 
-    const [unlockedMode, setUnlockedMode] = useState(null)
-    const [selectedMode, setSelectedMode] = useState('engineering')
+    const [unlockedMode, setUnlockedMode] = useState(() => cohortLearner?.track || null)
+    const [selectedMode, setSelectedMode] = useState(() => cohortLearner?.track || 'engineering')
     const [passcode, setPasscode] = useState('')
     const [error, setError] = useState('')
     const [unlocking, setUnlocking] = useState(false)
@@ -215,7 +218,9 @@ export default function MainApp({ user, onLogout }) {
         }
     }
 
-    const visibleCourses = unlockedMode === 'engineering' ? engineeringCourses : educationCourses
+    const visibleCourses = cohortLearner
+        ? educationCourses.filter((course) => course.id === cohortLearner.courseId)
+        : unlockedMode === 'engineering' ? engineeringCourses : educationCourses
     const visibleCourseIds = new Set(visibleCourses.map((course) => course.id))
     const visibleBookmarks = bookmarks.filter((bookmark) => visibleCourseIds.has(bookmark.course)).slice(0, 3)
     const visibleRecentSection = recentSection && visibleCourseIds.has(recentSection.course) ? recentSection : null
@@ -251,9 +256,9 @@ export default function MainApp({ user, onLogout }) {
                     <div className="flex items-center gap-3">
                         <div className="hidden items-center gap-2 rounded-full border border-[var(--ath-line)] bg-[var(--ath-surface-strong)] px-3 py-1.5 shadow-sm sm:flex">
                             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--ath-panel-muted)] text-sm font-medium text-[var(--ath-muted)]">
-                                {user?.email ? user.email.charAt(0).toUpperCase() : 'U'}
+                                {userLabel ? userLabel.charAt(0).toUpperCase() : 'U'}
                             </div>
-                            <span className="text-sm font-medium text-[var(--ath-muted)]">{user?.email}</span>
+                            <span className="text-sm font-medium text-[var(--ath-muted)]">{userLabel}</span>
                         </div>
                         <ThemeToggle className="h-10 w-10 rounded-xl" />
 
@@ -359,15 +364,21 @@ export default function MainApp({ user, onLogout }) {
                                 </span>
                                 <span className="text-[var(--ath-line-strong)]">/</span>
                                 <span>{visibleCourses.length} available</span>
-                                <button
-                                    onClick={() => {
-                                        setUnlockedMode(null)
-                                        setPasscode('')
-                                    }}
-                                    className="ml-auto text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
-                                >
-                                    Change track
-                                </button>
+                                {cohortLearner ? (
+                                    <span className="ml-auto rounded-full bg-[var(--ath-panel-muted)] px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-[var(--ath-secondary)]">
+                                        {cohortLearner.fullName}
+                                    </span>
+                                ) : (
+                                    <button
+                                        onClick={() => {
+                                            setUnlockedMode(null)
+                                            setPasscode('')
+                                        }}
+                                        className="ml-auto text-xs font-medium text-[var(--ath-muted)] underline-offset-4 hover:text-[var(--ath-text)] hover:underline"
+                                    >
+                                        Change track
+                                    </button>
+                                )}
                             </div>
                         </section>
 

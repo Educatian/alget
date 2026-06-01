@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import MainApp from './MainApp'
+import { buildCohortLearnerProfile, persistCohortLearner } from '../lib/cohortLearner'
 
 vi.mock('../components/SettingsModal', () => ({
     default: () => null
@@ -14,6 +15,7 @@ vi.mock('../components/CourseIllustrations', () => ({
 }))
 
 beforeEach(() => {
+    window.localStorage.clear()
     globalThis.fetch = vi.fn().mockResolvedValue({
         ok: true,
         json: async () => ({ valid: true })
@@ -71,5 +73,33 @@ describe('MainApp', () => {
         expect(screen.getByText('CAT 531: Technology and Teaching Supplement')).toBeInTheDocument()
         expect(screen.getByText('CAT 100: Computer Concepts Supplement')).toBeInTheDocument()
         expect(screen.getByText('5 available')).toBeInTheDocument()
+    })
+
+    it('opens the named CAT 100 cohort directly to its course only', () => {
+        const profile = buildCohortLearnerProfile({
+            cohortId: 'cat100-summer1-2026',
+            fullName: 'Jamie Smith',
+        })
+        persistCohortLearner(profile)
+
+        render(
+            <MemoryRouter>
+                <MainApp
+                    user={{
+                        id: 'student-1',
+                        email: 'student@alget.test',
+                        displayName: 'Jamie Smith',
+                        cohortLabel: 'CAT 100 Summer I',
+                        isCohortLearner: true,
+                    }}
+                    onLogout={vi.fn()}
+                />
+            </MemoryRouter>
+        )
+
+        expect(screen.getByText('CAT 100: Computer Concepts Supplement')).toBeInTheDocument()
+        expect(screen.queryByText('CAT 531: Technology and Teaching Supplement')).not.toBeInTheDocument()
+        expect(screen.getByText('1 available')).toBeInTheDocument()
+        expect(screen.getByText('Jamie Smith')).toBeInTheDocument()
     })
 })

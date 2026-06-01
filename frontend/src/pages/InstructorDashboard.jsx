@@ -28,13 +28,20 @@ export default function InstructorDashboard() {
                 // = 10K rows; for now, hot-spot detection on the first 5K is
                 // representative. If pagination becomes a real need, replace
                 // with a SQL view that pre-aggregates server-side.
-                const { data: rows } = await supabase
+                const [masteryResponse, rosterResponse] = await Promise.all([
+                    supabase
                     .from('mastery')
                     .select('user_id, concept_id, mastery_score, p_known, attempts_count')
-                    .limit(5000)
+                    .limit(5000),
+                    supabase
+                        .from('cohort_learners')
+                        .select('user_id, display_name, cohort_label, course_id')
+                ])
+                const rows = masteryResponse?.data || []
+                const roster = buildRosterMap(rosterResponse?.data || [])
                 if (!cancelled && rows) {
                     setMasteryHeatmap(buildHeatmap(rows))
-                    setStrugglers(buildStrugglers(rows))
+                    setStrugglers(buildStrugglers(rows, roster))
                 }
                 const snap = await fetchRctSnapshot()
                 if (!cancelled) setRct(snap)
@@ -143,7 +150,7 @@ export default function InstructorDashboard() {
             <section className="mx-auto mt-4 max-w-5xl rounded-2xl border border-[var(--ath-line)] bg-white/85 p-5">
                 <div className="flex items-baseline justify-between">
                     <h2 className="text-sm font-semibold text-[var(--ath-text)]">Learners &lt; 50% average</h2>
-                    <span className="text-[10px] text-[var(--ath-secondary)]" title="Anonymized - consult roster to map IDs to names">anon</span>
+                    <span className="text-[10px] text-[var(--ath-secondary)]" title="Named CAT cohort rows come from the current-student entry form.">named when available</span>
                 </div>
                 {strugglers.length === 0 ? (
                     <p className="mt-3 text-xs text-[var(--ath-muted)]">None under threshold.</p>
@@ -151,7 +158,10 @@ export default function InstructorDashboard() {
                     <ul className="mt-3 space-y-1 text-xs text-[var(--ath-muted)]">
                         {strugglers.slice(0, 12).map((s) => (
                             <li key={s.user_id} className="flex justify-between rounded-lg bg-white/70 px-2.5 py-1.5">
-                                <span className="font-mono">{s.user_id.slice(0, 8)}...</span>
+                                <span>
+                                    <span className="font-semibold text-[var(--ath-text)]">{s.displayName || `${s.user_id.slice(0, 8)}...`}</span>
+                                    {s.cohortLabel && <span className="ml-2 text-[10px] uppercase tracking-[0.14em] text-[var(--ath-secondary)]">{s.cohortLabel}</span>}
+                                </span>
                                 <span>{Math.round(s.average * 100)}% / {s.conceptCount} concepts</span>
                             </li>
                         ))}
@@ -160,6 +170,10 @@ export default function InstructorDashboard() {
             </section>
         </div>
     )
+}
+
+function buildRosterMap(rows = []) {
+    return new Map(rows.map((row) => [row.user_id, row]))
 }
 
 function buildHeatmap(rows) {
@@ -177,7 +191,7 @@ function buildHeatmap(rows) {
     }))
 }
 
-function buildStrugglers(rows) {
+function buildStrugglers(rows, roster = new Map()) {
     const byUser = new Map()
     rows.forEach((row) => {
         const score = Number(row.mastery_score ?? row.p_known ?? 0)
@@ -187,6 +201,9 @@ function buildStrugglers(rows) {
     return Array.from(byUser.values())
         .map((entry) => ({
             user_id: entry.user_id,
+            displayName: roster.get(entry.user_id)?.display_name || null,
+            cohortLabel: roster.get(entry.user_id)?.cohort_label || null,
+            courseId: roster.get(entry.user_id)?.course_id || null,
             average: entry.scores.reduce((a, b) => a + b, 0) / entry.scores.length,
             conceptCount: entry.scores.length,
         }))
