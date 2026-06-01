@@ -11,6 +11,9 @@ if (-not (Test-Path -LiteralPath $MigrationPath)) {
 
 if ($env:SUPABASE_DB_URL) {
     npx.cmd supabase db query --db-url $env:SUPABASE_DB_URL --file $MigrationPath
+    if ($LASTEXITCODE -ne 0) {
+        exit $LASTEXITCODE
+    }
 } else {
     if (-not $env:SUPABASE_ACCESS_TOKEN) {
         throw "Set SUPABASE_ACCESS_TOKEN or SUPABASE_DB_URL before provisioning live Supabase tables. SUPABASE_SERVICE_ROLE_KEY is intentionally not enough for DDL; it only verifies REST data access."
@@ -27,8 +30,15 @@ if ($env:SUPABASE_DB_URL) {
     $supabaseUrl = $supabaseUrlLine -replace "^VITE_SUPABASE_URL=", ""
     $projectRef = ([uri]$supabaseUrl).Host.Split(".")[0]
 
-    npx.cmd supabase link --project-ref $projectRef --workdir supabase
-    npx.cmd supabase db query --linked --file $MigrationPath
+    npx.cmd supabase link --project-ref $projectRef --workdir .
+    if ($LASTEXITCODE -ne 0) {
+        exit $LASTEXITCODE
+    }
+
+    npx.cmd supabase db query --linked --workdir . --file $MigrationPath
+    if ($LASTEXITCODE -ne 0) {
+        exit $LASTEXITCODE
+    }
 }
 
 if (Test-Path -LiteralPath $ServiceRolePath) {
@@ -36,3 +46,6 @@ if (Test-Path -LiteralPath $ServiceRolePath) {
 }
 
 node scripts/live_research_smoke.mjs --require-access --require-provenance --require-tables --probe-optional-writes
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
