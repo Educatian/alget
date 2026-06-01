@@ -1,8 +1,11 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import ReadingPane from './ReadingPane'
 
-afterEach(() => cleanup())
+afterEach(() => {
+    cleanup()
+    window.localStorage.clear()
+})
 
 vi.mock('../lib/loggingService', () => ({
     logInteraction: vi.fn(),
@@ -73,6 +76,41 @@ describe('ReadingPane continuity cues', () => {
 
         fireEvent.click(screen.getByLabelText(/State the claim/i))
         expect(screen.getByText(/1\/3 evidence moves checked/i)).toBeInTheDocument()
+    })
+
+    it('autosaves an exit ticket and uses it as section completion evidence', async () => {
+        const note = [
+            'The core claim is that artifact evidence should show the learner decision, not only the final answer.',
+            'My evidence is the practice result plus the annotation I would cite before revising.',
+            'Next I would test whether the same claim holds in a new lesson plan.'
+        ].join(' ')
+
+        render(
+            <ReadingPane
+                sectionData={sectionData}
+                loading={false}
+                isBookmarked={false}
+                toggleBookmark={vi.fn()}
+                isCompleted={false}
+                markCompleted={vi.fn()}
+                previousSection={null}
+                nextSection={null}
+                recentSection={null}
+            />,
+        )
+
+        fireEvent.change(screen.getByLabelText(/Exit ticket/i), { target: { value: note } })
+
+        await waitFor(() => {
+            expect(window.localStorage.getItem('alget_exit_ticket_v1_inst-design/01/02')).toBe(note)
+        })
+        expect(screen.getByText(/120\/120 evidence trace/i)).toBeInTheDocument()
+
+        fireEvent.click(screen.getByLabelText(/State the claim/i))
+        fireEvent.click(screen.getByLabelText(/Use evidence/i))
+        fireEvent.click(screen.getByLabelText(/Name the next move/i))
+
+        expect(screen.getByRole('button', { name: /Complete Section/i })).toBeInTheDocument()
     })
 
     it('shows a returning learner check-in and resumes the last section', async () => {

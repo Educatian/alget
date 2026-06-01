@@ -1,5 +1,5 @@
-import { Suspense, lazy, memo, useState } from 'react'
-import { CheckCircle2, ChevronDown, ListChecks } from 'lucide-react'
+import { Suspense, lazy, memo, useEffect, useMemo, useState } from 'react'
+import { CheckCircle2, ChevronDown, ListChecks, NotebookPen } from 'lucide-react'
 import { logInteraction } from '../lib/loggingService'
 import PeerPulse from './PeerPulse'
 
@@ -22,6 +22,29 @@ const READY_CHECK_ITEMS = [
     ['evidence', 'Use evidence', 'I can point to one example, annotation, or practice result.'],
     ['transfer', 'Name the next move', 'I know what I would revise, test, or ask next.']
 ]
+
+const DEFAULT_READY_CHECKS = {
+    claim: false,
+    evidence: false,
+    transfer: false
+}
+
+const EXIT_TICKET_MIN_CHARS = 120
+
+function getExitTicketStorageKey(sectionId) {
+    return sectionId ? `alget_exit_ticket_v1_${sectionId}` : null
+}
+
+function readStoredExitTicket(sectionId) {
+    const key = getExitTicketStorageKey(sectionId)
+    if (!key || typeof window === 'undefined') return ''
+
+    try {
+        return window.localStorage.getItem(key) || ''
+    } catch {
+        return ''
+    }
+}
 
 function PanelFallback({ label }) {
     return (
@@ -81,15 +104,34 @@ function ReadingPane({
     onNavigate,
     peerPulse
 }) {
+    const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
-    const [readyChecks, setReadyChecks] = useState({
-        claim: false,
-        evidence: false,
-        transfer: false
-    })
+    const [readyCheckDraft, setReadyCheckDraft] = useState({ sectionId, value: DEFAULT_READY_CHECKS })
+    const [exitTicketDraft, setExitTicketDraft] = useState(() => ({
+        sectionId,
+        value: readStoredExitTicket(sectionId)
+    }))
+    const exitTicketStorageKey = getExitTicketStorageKey(sectionId)
+    const storedExitTicket = useMemo(() => readStoredExitTicket(sectionId), [sectionId])
+    const readyChecks = readyCheckDraft.sectionId === sectionId ? readyCheckDraft.value : DEFAULT_READY_CHECKS
+    const exitTicket = exitTicketDraft.sectionId === sectionId ? exitTicketDraft.value : storedExitTicket
 
-    const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null
+    useEffect(() => {
+        if (!exitTicketStorageKey || typeof window === 'undefined') return
+
+        try {
+            const trimmed = exitTicket.trim()
+            if (trimmed) {
+                window.localStorage.setItem(exitTicketStorageKey, exitTicket)
+            } else {
+                window.localStorage.removeItem(exitTicketStorageKey)
+            }
+        } catch {
+            // Local persistence is a convenience; the section should remain usable
+            // in privacy-restricted browsers.
+        }
+    }, [exitTicketStorageKey, exitTicket])
 
     const handleToggleSimulation = () => {
         const newState = !showSimulation
@@ -110,10 +152,21 @@ function ReadingPane({
     }
 
     const toggleReadyCheck = (key) => {
-        setReadyChecks((current) => ({
-            ...current,
-            [key]: !current[key]
-        }))
+        setReadyCheckDraft({
+            sectionId,
+            value: {
+                ...readyChecks,
+                [key]: !readyChecks[key]
+            }
+        })
+        logInteraction('ready_check_toggle', key, sectionId)
+    }
+
+    const handleExitTicketBlur = () => {
+        const trimmedLength = exitTicket.trim().length
+        if (trimmedLength > 0) {
+            logInteraction('exit_ticket_saved', `${trimmedLength}`, sectionId)
+        }
     }
 
     if (loading) {
@@ -174,6 +227,9 @@ function ReadingPane({
         && recentSection.sectionId !== sectionId
         && recentSection.course === meta?.course
     const readyCount = Object.values(readyChecks).filter(Boolean).length
+    const exitTicketLength = exitTicket.trim().length
+    const exitTicketReady = exitTicketLength >= EXIT_TICKET_MIN_CHARS
+    const completionReady = readyCount === READY_CHECK_ITEMS.length && exitTicketReady
 
     return (
         <div className="mx-auto w-full max-w-[min(78rem,100%)] px-6 py-10 sm:px-8">
@@ -450,7 +506,7 @@ function ReadingPane({
                             }`}
                     >
                         {isCompleted && <CheckCircle2 className="h-4 w-4" aria-hidden="true" />}
-                        {isCompleted ? 'Section Completed' : readyCount === 3 ? 'Complete Section' : 'Mark as Complete'}
+                        {isCompleted ? 'Section Completed' : completionReady ? 'Complete Section' : 'Mark as Complete'}
                     </button>
                 </div>
                 <div className="mt-5 grid gap-3 md:grid-cols-3">
@@ -477,6 +533,28 @@ function ReadingPane({
                             </span>
                         </div>
                     )})}
+                </div>
+                <div className="mt-5 rounded-2xl border border-[var(--ath-line)] bg-[var(--ath-panel)] p-4">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="flex items-center gap-2">
+                            <NotebookPen className="h-4 w-4 text-[var(--ath-primary)]" aria-hidden="true" />
+                            <label htmlFor="section-exit-ticket" className="text-sm font-semibold text-[var(--ath-text)]">
+                                Exit ticket
+                            </label>
+                        </div>
+                        <span className={`text-xs font-semibold ${exitTicketReady ? 'text-emerald-700' : 'text-[var(--ath-muted)]'}`}>
+                            {Math.min(exitTicketLength, EXIT_TICKET_MIN_CHARS)}/{EXIT_TICKET_MIN_CHARS} evidence trace
+                        </span>
+                    </div>
+                    <textarea
+                        id="section-exit-ticket"
+                        value={exitTicket}
+                        onChange={(event) => setExitTicketDraft({ sectionId, value: event.target.value })}
+                        onBlur={handleExitTicketBlur}
+                        rows={4}
+                        placeholder="Claim + evidence + next move..."
+                        className="mt-3 w-full resize-y rounded-xl border border-[var(--ath-line)] bg-white px-4 py-3 text-sm leading-6 text-[var(--ath-text)] shadow-inner outline-none transition-colors placeholder:text-[var(--ath-muted)] focus:border-[var(--ath-primary)] focus:ring-2 focus:ring-[rgba(15,81,103,0.16)]"
+                    />
                 </div>
             </section>
 
