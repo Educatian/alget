@@ -13,6 +13,7 @@ frontend/playwright-report/
 .wrangler/
 supabase/.temp/
 supabase/supabase/
+~$*.docx
 
 
 # transient UI-audit captures
