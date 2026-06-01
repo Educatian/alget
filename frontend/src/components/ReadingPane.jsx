@@ -1,6 +1,7 @@
 import { Suspense, lazy, memo, useEffect, useMemo, useState } from 'react'
 import { CheckCircle2, ChevronDown, ListChecks, NotebookPen } from 'lucide-react'
 import { logInteraction } from '../lib/loggingService'
+import { EXIT_TICKET_MIN_CHARS, getExitTicketStorageKey, readExitTicket, writeExitTicket } from '../lib/exitTickets'
 import PeerPulse from './PeerPulse'
 
 const ReadingNarrative = lazy(() => import('./ReadingNarrative'))
@@ -27,23 +28,6 @@ const DEFAULT_READY_CHECKS = {
     claim: false,
     evidence: false,
     transfer: false
-}
-
-const EXIT_TICKET_MIN_CHARS = 120
-
-function getExitTicketStorageKey(sectionId) {
-    return sectionId ? `alget_exit_ticket_v1_${sectionId}` : null
-}
-
-function readStoredExitTicket(sectionId) {
-    const key = getExitTicketStorageKey(sectionId)
-    if (!key || typeof window === 'undefined') return ''
-
-    try {
-        return window.localStorage.getItem(key) || ''
-    } catch {
-        return ''
-    }
 }
 
 function PanelFallback({ label }) {
@@ -110,10 +94,10 @@ function ReadingPane({
     const [readyCheckDraft, setReadyCheckDraft] = useState({ sectionId, value: DEFAULT_READY_CHECKS })
     const [exitTicketDraft, setExitTicketDraft] = useState(() => ({
         sectionId,
-        value: readStoredExitTicket(sectionId)
+        value: readExitTicket(sectionId)
     }))
     const exitTicketStorageKey = getExitTicketStorageKey(sectionId)
-    const storedExitTicket = useMemo(() => readStoredExitTicket(sectionId), [sectionId])
+    const storedExitTicket = useMemo(() => readExitTicket(sectionId), [sectionId])
     const readyChecks = readyCheckDraft.sectionId === sectionId ? readyCheckDraft.value : DEFAULT_READY_CHECKS
     const exitTicket = exitTicketDraft.sectionId === sectionId ? exitTicketDraft.value : storedExitTicket
 
@@ -121,17 +105,18 @@ function ReadingPane({
         if (!exitTicketStorageKey || typeof window === 'undefined') return
 
         try {
-            const trimmed = exitTicket.trim()
-            if (trimmed) {
-                window.localStorage.setItem(exitTicketStorageKey, exitTicket)
-            } else {
-                window.localStorage.removeItem(exitTicketStorageKey)
-            }
+            writeExitTicket(sectionId, exitTicket, {
+                course: sectionData?.meta?.course,
+                chapter: sectionData?.meta?.chapter,
+                section: sectionData?.meta?.section,
+                title: sectionData?.meta?.title,
+                description: sectionData?.meta?.description
+            })
         } catch {
             // Local persistence is a convenience; the section should remain usable
             // in privacy-restricted browsers.
         }
-    }, [exitTicketStorageKey, exitTicket])
+    }, [exitTicketStorageKey, exitTicket, sectionData?.meta, sectionId])
 
     const handleToggleSimulation = () => {
         const newState = !showSimulation
