@@ -1,5 +1,5 @@
 import { Suspense, lazy, memo, useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { CheckCircle2, ChevronDown, ListChecks } from 'lucide-react'
 import { logInteraction } from '../lib/loggingService'
 import PeerPulse from './PeerPulse'
 
@@ -8,6 +8,20 @@ const PracticeBlock = lazy(() => import('./PracticeBlock'))
 const KnowledgeCheck = lazy(() => import('./KnowledgeCheck'))
 const AffectiveReaction = lazy(() => import('./AffectiveReaction'))
 const PerusallLayer = lazy(() => import('./PerusallLayer'))
+
+const SECTION_PATH_STEPS = [
+    { id: 'section-reading', label: 'Read', detail: 'Core idea' },
+    { id: 'section-reflect', label: 'Reflect', detail: 'Question or connection' },
+    { id: 'section-check', label: 'Check', detail: 'Retrieval' },
+    { id: 'section-practice', label: 'Practice', detail: 'Apply' },
+    { id: 'section-finish', label: 'Finish', detail: 'Evidence trace' }
+]
+
+const READY_CHECK_ITEMS = [
+    ['claim', 'State the claim', 'I can say the section idea without rereading the heading.'],
+    ['evidence', 'Use evidence', 'I can point to one example, annotation, or practice result.'],
+    ['transfer', 'Name the next move', 'I know what I would revise, test, or ask next.']
+]
 
 function PanelFallback({ label }) {
     return (
@@ -69,6 +83,11 @@ function ReadingPane({
 }) {
     const [showSimulation, setShowSimulation] = useState(false)
     const [showIllustration, setShowIllustration] = useState(false)
+    const [readyChecks, setReadyChecks] = useState({
+        claim: false,
+        evidence: false,
+        transfer: false
+    })
 
     const sectionId = sectionData?.meta ? `${sectionData.meta.course}/${sectionData.meta.chapter}/${sectionData.meta.section}` : null
 
@@ -82,6 +101,19 @@ function ReadingPane({
         const newState = !showIllustration
         setShowIllustration(newState)
         logInteraction('illustration_accordion', newState ? 'opened' : 'closed', sectionId)
+    }
+
+    const jumpToStage = (targetId) => {
+        if (typeof document === 'undefined') return
+        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        logInteraction('section_path_jump', targetId, sectionId)
+    }
+
+    const toggleReadyCheck = (key) => {
+        setReadyChecks((current) => ({
+            ...current,
+            [key]: !current[key]
+        }))
     }
 
     if (loading) {
@@ -141,6 +173,7 @@ function ReadingPane({
     const canResumeRecent = recentSection?.sectionId
         && recentSection.sectionId !== sectionId
         && recentSection.course === meta?.course
+    const readyCount = Object.values(readyChecks).filter(Boolean).length
 
     return (
         <div className="mx-auto w-full max-w-[min(78rem,100%)] px-6 py-10 sm:px-8">
@@ -216,30 +249,41 @@ function ReadingPane({
                             </button>
                         )}
                     </div>
-                    <ol className="mt-3 flex items-center gap-2 text-[11px] font-semibold text-[var(--ath-secondary)]">
-                        {['Read', 'Annotate', 'Draft', 'Judge AI', 'Revise'].map((step, index) => (
-                            <li key={step} className="flex min-w-0 flex-1 items-center gap-1.5">
-                                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--ath-panel)] text-[10px] font-bold text-[var(--ath-text)]">{index + 1}</span>
-                                <span className="truncate">{step}</span>
-                                {index < 4 && <span aria-hidden className="ml-1 hidden h-px flex-1 bg-[var(--ath-line)] sm:block" />}
+                    <ol className="mt-3 grid gap-2 text-[11px] font-semibold text-[var(--ath-secondary)] sm:grid-cols-5">
+                        {SECTION_PATH_STEPS.map((step, index) => (
+                            <li key={step.id} className="min-w-0">
+                                <button
+                                    type="button"
+                                    onClick={() => jumpToStage(step.id)}
+                                    className="flex min-h-16 w-full items-center gap-2 rounded-xl border border-[var(--ath-line)] bg-[var(--ath-panel)] px-2.5 py-2 text-left transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(15,81,103,0.28)]"
+                                    aria-label={`Jump to ${step.label}`}
+                                >
+                                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-[10px] font-bold text-[var(--ath-text)] shadow-sm">{index + 1}</span>
+                                    <span className="min-w-0">
+                                        <span className="block truncate text-[var(--ath-text)]">{step.label}</span>
+                                        <span className="block truncate text-[10px] font-medium text-[var(--ath-muted)]">{step.detail}</span>
+                                    </span>
+                                </button>
                             </li>
                         ))}
                     </ol>
                 </div>
             </header>
 
-            <Suspense fallback={<PanelFallback label="Loading Reading Narrative..." />}>
-                <ReadingNarrative
-                    content={content}
-                    sectionId={sectionId}
-                    course={sectionData?.meta?.course}
-                    conceptIds={sectionData?.meta?.concept_ids || []}
-                    sectionDescription={sectionData?.meta?.description}
-                    onHeadingChange={(heading) => {
-                        onHeadingChange?.(heading)
-                    }}
-                />
-            </Suspense>
+            <section id="section-reading" className="scroll-mt-28">
+                <Suspense fallback={<PanelFallback label="Loading Reading Narrative..." />}>
+                    <ReadingNarrative
+                        content={content}
+                        sectionId={sectionId}
+                        course={sectionData?.meta?.course}
+                        conceptIds={sectionData?.meta?.concept_ids || []}
+                        sectionDescription={sectionData?.meta?.description}
+                        onHeadingChange={(heading) => {
+                            onHeadingChange?.(heading)
+                        }}
+                    />
+                </Suspense>
+            </section>
 
             {peerPulse && (
                 <PeerPulse
@@ -338,59 +382,103 @@ function ReadingPane({
                 </div>
             )}
 
-            <Suspense fallback={<PanelFallback label="Loading Reflection Tools..." />}>
-                <AffectiveReaction
-                    sectionId={sectionId}
-                    conceptIds={meta?.concept_ids}
-                />
-            </Suspense>
+            <section id="section-reflect" className="scroll-mt-28">
+                <Suspense fallback={<PanelFallback label="Loading Reflection Tools..." />}>
+                    <AffectiveReaction
+                        sectionId={sectionId}
+                        conceptIds={meta?.concept_ids}
+                    />
+                </Suspense>
 
-            <Suspense fallback={<PanelFallback label="Loading Social Annotation..." />}>
-                <PerusallLayer
-                    key={sectionId}
-                    sectionId={sectionId}
-                    sectionTitle={meta?.title || ''}
-                    conceptIds={meta?.concept_ids || []}
-                />
-            </Suspense>
-
-            <div className="editorial-divider my-10"></div>
-
-            <Suspense fallback={<PanelFallback label="Loading Knowledge Check..." />}>
-                <KnowledgeCheck
-                    bioContext={content}
-                    engContext={meta?.description}
-                    sectionId={sectionId}
-                    sectionTitle={meta?.title}
-                    learningObjectives={meta?.learning_objectives}
-                    conceptIds={meta?.concept_ids}
-                    onNeedsReview={onNeedsReview}
-                />
-            </Suspense>
+                <Suspense fallback={<PanelFallback label="Loading Social Annotation..." />}>
+                    <PerusallLayer
+                        key={sectionId}
+                        sectionId={sectionId}
+                        sectionTitle={meta?.title || ''}
+                        conceptIds={meta?.concept_ids || []}
+                    />
+                </Suspense>
+            </section>
 
             <div className="editorial-divider my-10"></div>
 
-            <Suspense fallback={<PanelFallback label="Loading Practice..." />}>
-                <PracticeBlock
-                    practice={practice}
-                    sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}
-                    onStuckEvent={onStuckEvent}
-                    onNeedsReview={onNeedsReview}
-                />
-            </Suspense>
+            <section id="section-check" className="scroll-mt-28">
+                <Suspense fallback={<PanelFallback label="Loading Knowledge Check..." />}>
+                    <KnowledgeCheck
+                        bioContext={content}
+                        engContext={meta?.description}
+                        sectionId={sectionId}
+                        sectionTitle={meta?.title}
+                        learningObjectives={meta?.learning_objectives}
+                        conceptIds={meta?.concept_ids}
+                        onNeedsReview={onNeedsReview}
+                    />
+                </Suspense>
+            </section>
 
-            <div className="mb-8 mt-12 flex justify-center">
-                <button
-                    onClick={markCompleted}
-                    disabled={isCompleted}
-                    className={`flex items-center gap-3 rounded-[1rem] px-8 py-3.5 text-lg font-semibold transition-all ${isCompleted
-                        ? 'cursor-default border border-emerald-200 bg-emerald-100 text-emerald-700'
-                        : 'editorial-button'
-                        }`}
-                >
-                    {isCompleted ? 'Section Completed' : 'Mark as Complete'}
-                </button>
-            </div>
+            <div className="editorial-divider my-10"></div>
+
+            <section id="section-practice" className="scroll-mt-28">
+                <Suspense fallback={<PanelFallback label="Loading Practice..." />}>
+                    <PracticeBlock
+                        practice={practice}
+                        sectionId={`${meta?.course}/${meta?.chapter}/${meta?.section}`}
+                        onStuckEvent={onStuckEvent}
+                        onNeedsReview={onNeedsReview}
+                    />
+                </Suspense>
+            </section>
+
+            <section id="section-finish" className="mb-8 mt-12 scroll-mt-28 rounded-[1.5rem] border border-[var(--ath-line)] bg-white p-5 shadow-sm">
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                        <div className="flex items-center gap-2 text-[var(--ath-primary)]">
+                            <ListChecks className="h-4 w-4" aria-hidden="true" />
+                            <p className="editorial-kicker">Ready check</p>
+                        </div>
+                        <h2 className="mt-2 font-headline text-2xl font-semibold text-[var(--ath-text)]">Before the next section</h2>
+                        <p className="mt-2 max-w-2xl text-sm leading-6 text-[var(--ath-muted)]">
+                            {readyCount}/3 evidence moves checked for this section.
+                        </p>
+                    </div>
+                    <button
+                        onClick={markCompleted}
+                        disabled={isCompleted}
+                        className={`flex shrink-0 items-center justify-center gap-2 rounded-[1rem] px-6 py-3 text-base font-semibold transition-all ${isCompleted
+                            ? 'cursor-default border border-emerald-200 bg-emerald-100 text-emerald-700'
+                            : 'editorial-button'
+                            }`}
+                    >
+                        {isCompleted && <CheckCircle2 className="h-4 w-4" aria-hidden="true" />}
+                        {isCompleted ? 'Section Completed' : readyCount === 3 ? 'Complete Section' : 'Mark as Complete'}
+                    </button>
+                </div>
+                <div className="mt-5 grid gap-3 md:grid-cols-3">
+                    {READY_CHECK_ITEMS.map(([key, title, description]) => {
+                        const inputId = `ready-check-${key}`
+                        return (
+                        <div
+                            key={key}
+                            className={`flex min-h-24 cursor-pointer gap-3 rounded-2xl border p-4 transition-colors ${readyChecks[key]
+                                ? 'border-emerald-200 bg-emerald-50'
+                                : 'border-[var(--ath-line)] bg-[var(--ath-panel)] hover:bg-white'
+                                }`}
+                        >
+                            <input
+                                id={inputId}
+                                type="checkbox"
+                                checked={readyChecks[key]}
+                                onChange={() => toggleReadyCheck(key)}
+                                className="mt-1 h-4 w-4 rounded border-[var(--ath-line)] text-[var(--ath-primary)] focus:ring-[var(--ath-primary)]"
+                            />
+                            <span>
+                                <label htmlFor={inputId} className="block cursor-pointer text-sm font-semibold text-[var(--ath-text)]">{title}</label>
+                                <span className="mt-1 block text-xs leading-5 text-[var(--ath-muted)]">{description}</span>
+                            </span>
+                        </div>
+                    )})}
+                </div>
+            </section>
 
             <div className="mb-4 grid gap-3 border-t border-[var(--ath-line)] pt-6 md:grid-cols-2">
                 <button
