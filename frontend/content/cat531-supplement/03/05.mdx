@@ -25,7 +25,7 @@ Three students, three different failures, all in the prompt. The first poured an
 
 Responsible prompting with students has three components, and they are best taught as a routine students internalize, not as rules posted on a wall.
 
-- **Protect the data (input safety).** Anything typed into a public AI tool can leave the room, be stored, and be used to train a commercial model. The non-negotiable rule is that students never enter names of other people, their own identifying or sensitive personal information, or protected data. This is not a vague caution; it is a specific input filter students apply before they hit enter. A request about a classmate's behavior is handled with a human, never a chatbot.
+- **Protect the data (input safety).** Anything typed into a public AI tool can leave the room, be stored, and be used to train a commercial model. The non-negotiable rule is that students never enter names of other people, their own identifying or sensitive personal information, or protected data. This is not a vague caution; it is a specific input filter students apply before they hit enter. A request about a classmate's behavior is handled with a human, never a chatbot. Privacy basis: FERPA (20 U.S.C. 1232g; 34 CFR Part 99) governs disclosure of education records, and its 34 CFR 99.31(a)(1) "school official" exception defines when a vendor or AI tool may receive them, while COPPA (15 U.S.C. 6501-6506; 16 CFR Part 312, amended 2025) governs data from children under 13; the 2025 COPPA amendments (effective June 23, 2025, with full compliance by April 22, 2026) tighten how operators may retain and monetize that data, which is exactly why a public tool may train on what a student types.
 - **Specify the request.** The difference between "write the water cycle" and "explain the water cycle for sixth graders in five sentences with one everyday example" is the difference between outsourcing thinking and directing it. Specifying an audience, a length, a purpose, and a constraint forces the student to understand the task first, and it makes the output something they can evaluate rather than just accept. Specification is where the learning hides.
 - **Verify the output (do not copy).** The model can be confidently wrong, so the routine ends with the student checking the key claims against a real source and then writing the result in their own words. Copying the first response is both an integrity failure and a learning failure; the verify step is what keeps the tool a scaffold rather than a substitute.
 
@@ -51,7 +51,7 @@ Follow a teacher's annotated before/after judgment on a sixth-grader's research 
 2. **Privacy edit:** Annotate the identifier. The teacher removes the named classmate entirely, because student names must never go into a public tool. The behavior question is handled offline, not in the chatbot.
 3. **Specification edit:** Annotate the vagueness. Together they rewrite the task prompt to "Explain the water cycle for sixth graders in five sentences with one everyday example," naming audience, purpose, and constraint.
 4. **After (verify routine):** The student reads the output, checks the evaporation claim against the science textbook, finds one oversimplified sentence, and refines the prompt. The teacher records: "Accepted the structure, rejected sentence three, verified against the text." The student wrote the final summary in her own words.
-5. **Evidence trail:** The revision is justified by **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** (input privacy) and by **prompting_practice** (specify and verify). The rejected first output and the removed identifier are recorded with reasons.
+5. **Evidence trail:** The revision is justified by research on AI and education datafication (Perrotta & Selwyn, 2019) and current K-12 guidance on generative-AI data retention (Future of Privacy Forum, 2024) for input privacy, and by **prompting_practice** (specify and verify). The rejected first output and the removed identifier are recorded with reasons.
 
 Step 1 to step 4 captures the section's lesson: responsible prompting protects student data, specifies the request, and verifies the output rather than copying the first response.
 
@@ -123,7 +123,7 @@ Use the studio to create a before/after trace. The first version should show you
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **[TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)**.
+- If your note is a **question**, ask for a concise explanation tied to **[TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)**, and to AI-TPACK as the AI-relevant version of the framework for generative tools (Ning et al., 2024).
 - If your note shows **confusion**, compare a weak and strong version of the TeachGen@i prompt transcript with teacher edits and rejected suggestions.
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
@@ -142,7 +142,11 @@ Before you move on, check that the TeachGen@i prompt transcript with teacher edi
 
 ## References
 
-- [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
-- critical edtech studies. https://doi.org/10.4324/9781315670160
-- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
-- teacher professional judgment. https://doi.org/10.1177/002205741319300304
+- Mishra, P., & Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher knowledge. Teachers College Record, 108(6), 1017-1054. https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Ning, Y., et al. (2024). Teachers' AI-TPACK: Exploring the relationship between knowledge elements. Sustainability, 16(3), 978. https://doi.org/10.3390/su16030978
+- Al-Abdullatif, A. M. (2024). Modeling teachers' acceptance of generative artificial intelligence use in higher education: The role of AI literacy, intelligent TPACK, and perceived trust. Education Sciences, 14(11), 1209. https://doi.org/10.3390/educsci14111209
+- Family Educational Rights and Privacy Act (FERPA), 20 U.S.C. 1232g; 34 CFR Part 99. U.S. Department of Education. https://studentprivacy.ed.gov/faq/what-ferpa
+- Children's Online Privacy Protection Rule (COPPA), 16 CFR Part 312, final rule amendments. Federal Trade Commission (2025). https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule
+- Future of Privacy Forum. (2024). Vetting generative AI tools for use in schools. https://fpf.org/wp-content/uploads/2024/10/Ed_AI_legal_compliance.pdf_FInal_OCT24.pdf
+- Selwyn, N. (2016). Distrusting Educational Technology: Critical Questions for Changing Times. Routledge. https://doi.org/10.4324/9781315670160
+- Perrotta, C., & Selwyn, N. (2019). Deep learning goes to school: Toward a relational understanding of AI in education. Learning, Media and Technology, 45(3), 251-269. https://doi.org/10.1080/17439884.2020.1686017

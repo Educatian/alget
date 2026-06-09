@@ -47,7 +47,7 @@
         "ai_supported_learning",
         "cat100_supplement_starter_html_and_css"
       ],
-      "stem": "An AI assistant gives you CSS that styles your nav bar but targets a class .container that does not exist in your HTML. What should you do before pasting it in?",
+      "stem": "A coding assistant (such as GitHub Copilot in VS Code, or ChatGPT/Claude) gives you CSS that styles your nav bar but targets a class .container that does not exist in your HTML. What should you do before pasting it in?",
       "options": [
         "Paste it as-is; the AI already tested it",
         "Check which selectors match elements that actually exist in my HTML, then add or remove the .container class so the markup and CSS agree",

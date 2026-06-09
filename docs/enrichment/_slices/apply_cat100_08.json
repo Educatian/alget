@@ -1,0 +1,346 @@
+[
+ {
+  "section_key": "cat100/08/01",
+  "section_title": "Capstone Artifact Review",
+  "dir": "frontend/content/cat100-supplement/08",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The section's thesis is that secrets persist in repo HISTORY after deletion, yet the remediation scan it teaches (git grep -n -i \"key|password|token\") only searches the current working tree, not history. The worked-example evidence paragraph (lines 62-66) and step-reveal final step (line 70) treat 'reran git grep with zero hits' as proof the artifact is clean. A learner who deletes a pushed secret and re-runs git grep WILL get zero hits while the secret is still live in commit a1b2c3 — the exact false reassurance the section warns against. The verification command cannot detect the failure mode the section centers on.",
+    "proposed_change": "Add a short callout (Core Concept area or after Worked Example Step 3) clarifying git grep checks only the working tree. To search history use `git grep <pattern> $(git rev-list --all)` or a dedicated scanner: gitleaks (fast pre-commit/diff regex scanning) or trufflehog (scans full history AND verifies whether the credential is still live). Qualify the worked-example/step-reveal 'zero hits' to 'zero hits in the working tree AND a history/tool scan confirms no live credential remains' — keeping the existing point that rotation, not deletion, is the real fix. Also reinforce Decision Rule item 1 (line 84).",
+    "where_to_apply": "01.mdx — Worked Example Step 3 evidence paragraph (lines 62-66), step-reveal final step (line 70), and Decision Rule item 1 (line 84)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Jit — TruffleHog vs. Gitleaks: A Detailed Comparison of Secret Scanning Tools (2026)",
+      "url_or_doi": "https://www.jit.io/resources/appsec-tools/trufflehog-vs-gitleaks-a-detailed-comparison-of-secret-scanning-tools",
+      "finding": "Gitleaks is a fast lightweight regex engine (sub-second on diffs); TruffleHog is a detector engine with two-phase scanning that verifies candidates by making real API calls, and is preferred for git-history scanning because it tells you which old-commit secrets are still live. This grounds the proposed tool naming and the distinction that a working-tree grep cannot detect a live secret in history."
+     },
+     {
+      "cite": "Meli, McNiece et al. (2019) How Bad Can It Git? Characterizing Secret Leakage in Public GitHub Repositories, NDSS",
+      "url_or_doi": "https://doi.org/10.14722/ndss.2019.23418",
+      "finding": "Secret leakage is pervasive across 100,000+ repositories with thousands of new unique secrets daily; secrets persist in history and remain retrievable, confirming that a current-file scan is insufficient verification."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section presents the 2019-era reality that a pushed secret is silently scraped 'within minutes' and that GitHub repos are 'public by default' with no platform-side guardrail (lines 22, 26). As of March 2024, GitHub secret scanning AND push protection are enabled by default on all new public repositories owned by personal accounts; push protection actively BLOCKS pushes containing recognized credential patterns. This changes the student's lived experience (they often hit a block screen) and the advice. Current tooling (gitleaks, trufflehog) is unnamed.",
+    "proposed_change": "Add a 'Recent Evidence' callout (after Core Concept table, ~line 36, or after Opening Case, line 22): since March 11, 2024 GitHub enables secret scanning and push protection by default on new public repos owned by personal accounts, so an obvious API key push is often BLOCKED before it lands (push protection blocked ~4.4M secrets in 2024). But push protection only recognizes a limited set of known token types (200+ patterns from 180+ providers), can be bypassed/overridden, and does NOT scan existing history, so the manual checklist + a tool like gitleaks/trufflehog still matters. Name gitleaks (fast pre-commit/diff) and trufflehog (full-history + live-credential verification) as current 2026 free options.",
+    "where_to_apply": "01.mdx — new callout after Core Concept table (after line 36) or after Opening Case (line 22); update line 22 public-by-default phrasing",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "GitHub Changelog — Secret scanning and push protection are enabled by default on new public repositories (2024-03-11)",
+      "url_or_doi": "https://github.blog/changelog/2024-03-11-secret-scanning-and-push-protection-are-enabled-by-default-on-new-public-repositories/",
+      "finding": "All new public repositories owned by personal accounts have secret scanning and push protection enabled by default; pushes containing known secrets are blocked and detected secrets generate alerts. Existing repos and org-owned new repos are not affected; admins can disable. Detects 200+ token types from 180+ providers."
+     },
+     {
+      "cite": "GitHub Blog — GitHub found 39M secret leaks in 2024 (next evolution of GitHub Advanced Security)",
+      "url_or_doi": "https://github.blog/security/application-security/next-evolution-github-advanced-security/",
+      "finding": "GitHub detected 39 million leaked secrets across the platform in 2024 and blocked ~4.4 million secrets via push protection, confirming both the scale claim and that push protection often blocks an obvious key before it lands."
+     },
+     {
+      "cite": "GitGuardian — GitHub Push Protection: Benefits and Key Limitations Explained",
+      "url_or_doi": "https://blog.gitguardian.com/github-push-protection-enhancing-open-source-security-with-limitations-to-consider/",
+      "finding": "Push protection covers only known/recognized credential patterns, can be bypassed by the developer, and does NOT scan a repository's existing history — grounding the proposed limitation caveats."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/08/02",
+  "section_title": "Professional Story Across Artifacts",
+  "dir": "frontend/content/cat100-supplement/08",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is fully generic. The body says 'I rejected an AI suggestion to open with the resume' and Adaptive Support / dynamic-scenario refer to a 'bounded AI/software support move' with no named 2026 tool. This is the course-wide currency-watch flag: tool-agnostic to the point of vagueness, and Ch5/Ch8 are exactly where AI presentation/disclosure tools live.",
+    "proposed_change": "Ground one instance in a current 2026 named tool with a churn note. In the 'Stronger Artifact Standard' closing note (line ~112) or a new 'Recent Evidence' callout after 'Adaptive Support', name a concrete slide-AI assistant (Copilot in PowerPoint, which as of Jan 2026 generates an editable outline you can refine before it builds slides; or Gamma, which produces a ~10-slide deck with a coherent narrative arc from one prompt) generating a draft slide order, and show the learner rejecting its resume-first ordering against the audience question. Add a one-line model-churn caveat: 'tool names and features change (Copilot added Agent Mode and Claude-powered agents in Jan 2026); the disclosure habit does not.'",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\08\\02.mdx, 'Stronger Artifact Standard' closing note (line ~112) and/or new callout after 'Adaptive Support' (line ~126)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft Support — Create a new presentation with Copilot in PowerPoint (accessed Jun 2026)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d",
+      "finding": "Copilot in PowerPoint generates a suggested OUTLINE the user can add to / delete sections from and chat-refine BEFORE it generates the slides — i.e., it proposes a slide order the learner can accept, modify, or reject, which is exactly the LO3 move."
+     },
+     {
+      "cite": "WinningPresentations — PowerPoint Copilot Tutorial: What Actually Works in 2026",
+      "url_or_doi": "https://winningpresentations.com/powerpoint-copilot-whats-works/",
+      "finding": "Jan 2026 updates added Agent Mode on Mac/web (feature parity with Windows), SharePoint brand asset integration, and Claude-powered agents for document generation — concrete 2026 version/churn detail supporting the 'features change, the habit does not' caveat."
+     },
+     {
+      "cite": "Gamma — AI Presentation Maker (gamma.app, accessed Jun 2026)",
+      "url_or_doi": "https://gamma.app/",
+      "finding": "Gamma's AI agent produces a ~10-slide deck with a 'coherent narrative arc' from a single prompt and uses a card-based editor where slides are reorderable cards — an alternative 2026 named slide-AI that imposes its own default ordering the learner must judge against the audience."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/08/03",
+  "section_title": "Digital Skills Transfer Map",
+  "dir": "frontend/content/cat100-supplement/08",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The worked example maps the capability 'Summarize data with a pivot table' but its scale-adaptation note is a VLOOKUP absolute-reference fix (=VLOOKUP(A2,$D$2:$E$4000,2,FALSE)). A pivot table does not use VLOOKUP; it aggregates a source data range. The actual scale/far-transfer concern for a pivot is a stale or non-dynamic source range (the pivot silently excludes new rows added past the original range and must be refreshed, or the source must be an Excel Table / dynamic range). The section conflates two distinct Excel mechanics and teaches the wrong adaptation for the named capability. This is verified against current Microsoft documentation: a pivot built on a fixed range does not pick up appended rows and must have its source range reset or be Refreshed; basing it on an Excel Table makes the range expand automatically.",
+    "proposed_change": "In the 'After' table row (line ~62) and the step-reveal final step (line ~68), replace the VLOOKUP/absolute-reference adaptation with a pivot-appropriate one, e.g. 'Source grows from 512 to ~4,000 rows. A pivot built on a fixed range A1:F512 silently ignores the new rows, so base the pivot on an Excel Table (or named dynamic range) and Refresh after each import.' Update the matching prose in 'Worked Example' (line ~64), the inline-check explanation (line ~44), 'Common Misreadings' (line ~92), and the 'Stronger Artifact Standard' closing note (line ~117) to the Table/Refresh framing. Keep the VLOOKUP/absolute-reference idea for the lookup-formula example, which the 03.practice ai_boundary item already handles correctly.",
+    "where_to_apply": "03.mdx — 'Worked Example' After table (line ~62), worked-example prose (line ~64), final <step-reveal> step (line ~68), inline-check explanation (line ~44), 'Common Misreadings' (line ~92), and 'Stronger Artifact Standard' closing note (line ~117).",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Support — Create PivotTables with Copilot in Excel / PivotTable source-range behavior",
+      "url_or_doi": "https://support.microsoft.com/en-us/topic/create-pivottables-with-copilot-in-excel-93f14f4e-1cb4-4d24-9509-d36a8677d652",
+      "finding": "A PivotTable aggregates a defined source data range; it does not use VLOOKUP. A pivot built on a fixed range does not automatically include rows appended past that range, so the source must be reset/refreshed or based on an Excel Table whose range expands. This confirms the VLOOKUP absolute-reference note is the wrong adaptation for a pivot-table capability."
+     }
+    ]
+   },
+   {
+    "type": "assessment_align",
+    "gap": "The practice 'ai_boundary' item (cat100_supplement_8_3_..._ai_boundary, concept ai_supported_learning) tests a VLOOKUP absolute-reference transfer with NO AI/software-support move and no accepted/rejected suggestion. It maps to LO3 ('Document a bounded AI/software support move with accepted and rejected suggestions') and concept ai_supported_learning, but the stem contains no AI dimension. The misconception it points to (assume_identical_context) is about scale transfer, not bounded AI use. There is zero assessment coverage of LO3's distinctive accepted/modified/REJECTED suggestion construct.",
+    "proposed_change": "Either re-tag the ai_boundary item to concept evidence_based_revision / a transfer concept (it is really a far-transfer item), OR rewrite the stem so it embeds a real 2026 AI suggestion the learner must accept/modify/reject, grounded in a current tool: e.g. 'Copilot in Excel offers to paste your lookup formula down 4,000 rows with a RELATIVE range. What is the correct accept/modify/reject decision and why?' Add one practice item or misconception that directly assesses documenting a REJECTED AI suggestion in the transfer map's adaptation note.",
+    "where_to_apply": "03.practice.json — item id cat100_supplement_8_3_digital_skills_transfer_map_ai_boundary; and 03.misconceptions.json (add an AI-rejection misconception).",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Computerworld — '11 cool things Copilot can do in Excel' (2026); Microsoft Support — Copilot in Excel",
+      "url_or_doi": "https://www.computerworld.com/article/4119411/11-cool-things-copilot-can-do-in-excel.html",
+      "finding": "As of 2026, Copilot in Excel suggests formulas the user did not ask for, builds pivot tables from natural language, and exposes a =COPILOT() cell function. This confirms a concrete, current AI tool exists to ground an accept/modify/reject AI-suggestion stem, supporting the rewrite."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "NACE Career Readiness is anchored heavily (video + two reference links) but the section states no edition/date; NACE periodically revises the competencies. ISTE Standards for Students edition is uncited. AI is referenced only generically ('bounded AI/software support move') with no named 2026 tool.",
+    "proposed_change": "Add a dated NACE reference: the set is 8 competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology), last revised April 2024; cite as 'NACE Career Readiness Competencies (rev. April 2024)'. Cite ISTE as 'ISTE Standards for Students (2024 refresh, 7 standards)'. Add one concrete current AI-tool example to 'Adaptive Support' (line ~135) / AI-use framing, e.g. 'Copilot in Excel may offer a relative-range formula paste that should be modified to an anchored range before accepting,' so LO3 is grounded in a real 2026 tool.",
+    "where_to_apply": "03.mdx — 'Adaptive Support' (line ~135), References (lines ~154-155), and the youtube-embed caption framing (line ~5).",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "NACE — Career Readiness Competencies (revised April 2024)",
+      "url_or_doi": "https://www.naceweb.org/docs/default-source/default-document-library/2024/resources/nace-career-readiness-competencies-revised-apr-2024.pdf",
+      "finding": "Current set is 8 competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology); document dated April 2024 confirms count and the dateable edition the section should cite."
+     },
+     {
+      "cite": "ISTE — Standards for Students (2024 refresh, Version 4.x)",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "Current edition is the 2024 refresh, with 7 student standards (Empowered Learner, Digital Citizen, Knowledge Constructor, Innovative Designer, Computational Thinker, Creative Communicator, Global Collaborator); standards are intentionally technology-neutral. Confirms the citable current edition and supports adding an explicit date."
+     },
+     {
+      "cite": "Microsoft Support — Get started with Copilot in Excel (2026)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-excel-d7110502-0334-4b4f-a175-a73abdfc118a",
+      "finding": "Copilot in Excel is a current (2026) named tool that generates pivot tables and suggests formulas via natural language and a =COPILOT() function, providing a concrete real AI example to replace the generic 'AI/software support move.'"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/08/04",
+  "section_title": "AI Use Disclosure Portfolio",
+  "dir": "frontend/content/cat100-supplement/08",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "This section is literally about AI-use disclosure, the single fastest-moving 2026 norm, yet names no concrete AI tools/models and no institutional or academic-integrity policy anchor. The abstract norm is never grounded in what a real disclosure expectation looks like (syllabus AI statement, named assistant cited by tool+date).",
+    "proposed_change": "Add a short dated 'What disclosure looks like in 2026' callout near 'Why This Section Matters' grounding the norm in concrete current practice: many course syllabi now carry an explicit AI-use statement (UNC College of Arts & Sciences mandates one on every undergraduate syllabus; UCLA and U Minnesota published sample statements in 2025), and AI assistants should be named by tool and version with a date (e.g., 'Used ChatGPT (GPT-4o), May 2026' or Microsoft Copilot, Claude, or Gemini) in the disclosure note rather than the generic 'an AI tool.' Update the modeled AI-use note on lines 56-58 and 113 to name a specific tool and date as the best-practice exemplar, matching the APA convention of citing the tool name and access date.",
+    "where_to_apply": "04.mdx — 'Why This Section Matters' (after line 9) add a small dated callout; and 'Worked Example' AI-use note (lines 56-58) plus the closing note (line 113) — replace generic 'an AI tool' with a named tool + date",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "thesify.ai (Oct 2025) Teaching with AI in Higher Education 2025 / Gen AI Policies Update",
+      "url_or_doi": "https://www.thesify.ai/blog/teaching-with-ai-in-higher-education-2025",
+      "finding": "UNC-Chapel Hill College of Arts & Sciences mandates an AI policy on every undergraduate syllabus; UCLA published sample syllabus AI statements in April 2025; the University of Minnesota provides a faculty resource for GenAI syllabus statements. Explicit, customizable syllabus AI-use statements are now standard practice at major institutions."
+     },
+     {
+      "cite": "University of Minnesota Office of the Provost — GenAI Syllabus Statements",
+      "url_or_doi": "https://provost.umn.edu/academic-oversight/genai-syllabus-statements",
+      "finding": "Institutional resource supplying faculty with ready GenAI syllabus statements (allow or prohibit), confirming the syllabus AI-statement norm is institutionalized as of 2025."
+     },
+     {
+      "cite": "Chan, C. K. Y. (2023) A comprehensive AI policy education framework for university teaching and learning",
+      "url_or_doi": "https://doi.org/10.1186/s41239-023-00408-3",
+      "finding": "Peer-reviewed framework (1,100+ citations) establishing that transparent, declared/disclosed GenAI use with defined acceptable-vs-unacceptable boundaries is the recommended institutional norm — scholarly anchor for the disclosure-portfolio premise."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/08/05",
+  "section_title": "Peer Showcase Feedback",
+  "dir": "frontend/content/cat100-supplement/08",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The AI reviewer is entirely generic ('an AI reviewer', 'AI critique log'). The course currency-watch flags unnamed AI tools as a vagueness problem. A 2026 student doing a showcase critique would plausibly use ChatGPT, Claude, Gemini, or Microsoft Copilot, or an inline tool like Copilot in Excel or GitHub Copilot code review. The section never grounds 'AI reviewer' in any concrete 2026 tool nor notes that model behavior (confidently wrong renames like the Net Revenue example) is exactly why the meaning-guard exists.",
+    "proposed_change": "Add one concrete grounding sentence in 'Core Concept' (near line 34) or a small callout after the inline-check: name 1-2 current general-purpose assistants a student might use as the 'AI reviewer' (ChatGPT, Claude, Gemini, or Microsoft Copilot) while keeping the lesson tool-agnostic, and note that these tools can produce confident, plausible-but-wrong suggestions (like the Net Revenue rename), which is precisely why each item is judged against artifact meaning, not source authority. Tool names verified current as of June 2026: 'Copilot in Excel' is the current product name (now with Plan mode, Python integration, and local-file edits), and 'GitHub Copilot code review' is a live feature (severity-labeled inline PR comments, CLI invocation). These two are good concrete examples of in-context AI reviewers that can be confidently wrong.",
+    "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/08/05.mdx 'Core Concept' section (near line 34) or a new short callout after the inline-check",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft (May 2026) What's New in Microsoft 365 Copilot",
+      "url_or_doi": "https://techcommunity.microsoft.com/blog/microsoft365copilotblog/what%e2%80%99s-new-in-microsoft-365-copilot--may-2026/4522010",
+      "finding": "As of mid-2026 the feature is still named 'Copilot in Excel'; new 2026 capabilities include Plan mode (outlines a step-by-step plan before editing), Python-powered editing, and multi-step edits to locally stored workbooks. Confirms the current product name and that the assistant actively proposes edits a learner must judge."
+     },
+     {
+      "cite": "GitHub Docs / GitHub Changelog (2026) GitHub Copilot code review",
+      "url_or_doi": "https://docs.github.com/en/copilot/concepts/agents/code-review",
+      "finding": "'GitHub Copilot code review' is a current (2026) feature that reviews pull requests, adds inline comments with High/Medium/Low severity labels, and can be requested from the GitHub CLI. Confirms an inline AI reviewer a student could plausibly cite, and that it produces suggestions requiring human judgment."
+     },
+     {
+      "cite": "Schemmer et al. (2023) Appropriate Reliance on AI Advice: Conceptualization and the Effect of Explanations (IUI '23)",
+      "url_or_doi": "https://doi.org/10.1145/3581641.3584066",
+      "finding": "Defines 'appropriate reliance' as accepting correct AI advice and rejecting incorrect AI advice; over-reliance is following confidently-presented but wrong AI suggestions. Grounds the section's claim that the meaning-guard exists precisely because AI assistants can be confidently wrong."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/08/06",
+  "section_title": "Revision Sprint",
+  "dir": "frontend/content/cat100-supplement/08",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed entirely generically ('an AI suggestion to rebuild the whole layout with CSS grid', 'an AI tool suggests'), with no named 2026 tools, matching the course-wide currency-watch flag. The section's artifact is a spreadsheet + GitHub Pages site, so two concrete current tools are directly relevant: Copilot in Excel for the formula/total, and an AI coding assistant for the HTML/CSS grid suggestion.",
+    "proposed_change": "Ground at least one AI mention in a current named tool while keeping the decision-rule tool-agnostic. In the Opening Case (line 20) and/or the ai_boundary practice stem, attribute the grid-rebuild suggestion to a named coding assistant ('Copilot, Claude Code, or Cursor suggested rebuilding the layout with CSS grid') and note the disciplined move (decline, log as future work) is independent of which tool produced it. Add a one-line note that tool names/versions churn (e.g. Copilot moved to usage-based AI Credits on 2026-06-01), so the triage logic, not the tool, is the durable skill.",
+    "where_to_apply": "06.mdx 'Opening Case' (line 20) and/or practice.json item cat100_supplement_8_6_revision_sprint_ai_boundary (stem, line 49)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft Support / Tech Community (2026) — Copilot in Excel: Agent Mode, COPILOT function, formula AI",
+      "url_or_doi": "https://techcommunity.microsoft.com/blog/microsoftmechanicsblog/microsoft-excel-power-user-updates--agent-mode-copilot-function--formula-ai/4465676",
+      "finding": "As of 2026 Copilot in Excel does natural-language formula generation (including nested/array formulas) and has an Agent Mode; it is a concrete, current, named tool for the spreadsheet/total fix in this section, and requires a separate Copilot license (not bundled in standard M365)."
+     },
+     {
+      "cite": "Scrimba (2026) Best AI Coding Assistants 2026: Cursor vs Copilot vs Claude Code",
+      "url_or_doi": "https://scrimba.com/articles/best-ai-coding-assistants-2026/",
+      "finding": "The three current (2026) named AI coding assistants are Claude Code, GitHub Copilot, and Cursor; Copilot's agent plan-and-apply workflow is cited as catching a missing CSS property, supporting a named, current attribution for the CSS-grid suggestion. GitHub Copilot moved to usage-based AI Credits on 2026-06-01 — confirms tool naming/pricing churn, so the triage logic should be the durable skill, not the tool."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/08/07",
+  "section_title": "Final Submission Checklist",
+  "dir": "frontend/content/cat100-supplement/08",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The 'No private data' / credential-scan step is presented as a universal checklist row but uses a git-only mechanism. 07.mdx Worked Example (line 49) runs 'git grep -i \"key\\|password\"' and the Textbook Walkthrough (line 86) says 'Rerun the credential scan'; the Core Concept Safety row (line 33) says 'Rerun a scan for keys and passwords'. For the two non-repo deliverables in the same example (a PDF deck and a budget spreadsheet) git grep does nothing, and many CAT 100 artifacts (resume, Excel pivot, slides) are not in a git repo at all. As written it implies a git command verifies credential-safety of any submission. This is a real internal inconsistency in the file, independently corroborated by the fact that git grep only scans tracked repo files.",
+    "proposed_change": "Qualify the credential step so the test matches the artifact: for repo/code artifacts, 'git grep -i \"key\\|password\"'; for documents/spreadsheets, 'open the file and scan for embedded API keys, passwords, tokens, or personal data (e.g., a leftover key in a worksheet cell or speaker notes)'. State explicitly that the credential scan applies to whatever artifact actually carries text/data, not only to the repo.",
+    "where_to_apply": "07.mdx 'Core Concept' Safety row (line 33) + 'Worked Example' table 'No private data' row (line 49) + 'Textbook Walkthrough' paragraph 2 'Rerun the credential scan' (line 86)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Git documentation — git-grep",
+      "url_or_doi": "https://git-scm.com/docs/git-grep",
+      "finding": "git grep searches tracked files in the working tree / index of a git repository; it has no effect on files that are not in a repo, confirming the credential scan as written cannot verify a standalone PDF or spreadsheet."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed entirely generically in 07.mdx ('an AI tool offers to auto-generate your final checklist', 'AI/software support move') and in 07.practice.json the ai_boundary stem opens 'An AI tool offers to auto-generate your final checklist and confirm everything is done' (line 49) — no named 2026 tools, matching the course-wide currency-watch flag. Research confirms a concrete, current grounding is both true and useful: named 2026 assistants (ChatGPT, Claude) genuinely cannot reliably open/verify a submitted artifact, and even when an assistant can browse a URL it fetches via its own egress path, not the grader's signed-out, no-account session.",
+    "proposed_change": "Add one concrete, current grounding: name 2026 tools where AI assistance is plausible (e.g., 'a chat assistant such as ChatGPT or Claude can draft the checklist rows, but cannot open your exported PDF or load your link signed out') and add a one-line note that some assistants can fetch a URL but still cannot reproduce a grader's signed-out, no-account session. Keep tool-agnostic phrasing as the lead but include at least one named current example.",
+    "where_to_apply": "07.mdx 'Core Concept' / 'Adaptive Support' (lines 24-36 / 119-128) and 07.practice.json ai_boundary stem (line 49)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Claude Help Center — Upload files to Claude / PDF support (2026)",
+      "url_or_doi": "https://support.claude.com/en/articles/8241126-upload-files-to-claude",
+      "finding": "File upload (and reliable reading) requires the file to be a supported, text-based, non-encrypted format; scanned/image PDFs degrade and encrypted PDFs cannot be read at all — so an assistant cannot dependably 'open and confirm' an arbitrary exported submission file."
+     },
+     {
+      "cite": "ClipsTrust — ChatGPT File Upload Issues 2026: Proven Fixes",
+      "url_or_doi": "https://clipstrust.com/blog/chatgpt-unable-to-upload-documents/",
+      "finding": "As of 2026, ChatGPT file handling is gated by plan (file size limits, 25MB/3-files-per-day on free, no support for password-protected or scanned/image PDFs), so it cannot be relied on to verify a learner's actual submission artifact."
+     },
+     {
+      "cite": "openai/openai-python Issue #3000 — AI Web Fetch Tools Silently Drop Content Inside Custom HTML Elements (2026); anthropics/claude-code Issue #35012 — WebFetch egress proxy blocks most websites",
+      "url_or_doi": "https://github.com/openai/openai-python/issues/3000",
+      "finding": "Both ChatGPT- and Claude-style web fetch tools retrieve pages through their own proxy/egress and can silently drop content or be blocked entirely; an assistant's browse of a URL is not equivalent to a grader's signed-out, no-account browser session, supporting the 'can browse but cannot reproduce the grader's session' note."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/08/08",
+  "section_title": "Future Learning Plan",
+  "dir": "frontend/content/cat100-supplement/08",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI is referenced generically ('an AI tool returns ten advanced topics', 'AI/software support move') with no named 2026 tools, consistent with the course-wide currency-watch note. For a final 'future learning plan' section where students will go use tools to self-direct, the absence of concrete current platforms and a clear AI-use-disclosure framing is a missed grounding opportunity given fast-evolving 2026 academic-integrity norms.",
+    "proposed_change": "Add a brief, version-aware note naming current (2026) options for AI-assisted plan drafting (a current general-purpose assistant such as ChatGPT, Claude, or Gemini to draft a plan you then critique, plus structured-course catalogs for sequenced learning), with an explicit 'tools and models change; verify current versions and your institution's AI-use policy before relying on them' caveat. Frame disclosure per the prevailing 2026 'disclose-and-approve' model. Keep structure tool-agnostic but concrete in examples.",
+    "where_to_apply": "08.mdx -- '## Adaptive Support' area (lines 122-131) or a new small callout near the Transfer Case (line 112).",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Princeton University Library (2026) Disclosing the Use of AI -- Generative AI for Research and Scholarship",
+      "url_or_doi": "https://libguides.princeton.edu/generativeAI/disclosure",
+      "finding": "Students must confirm AI is permitted by the instructor and disclose AI use in academic work, with attribution when AI text is used -- supports framing the section's caveat around an explicit 'verify your institution's AI-use policy and disclose' norm rather than vague AI-use language."
+     },
+     {
+      "cite": "Cornell Center for Teaching Innovation (2026) AI & Academic Integrity",
+      "url_or_doi": "https://teaching.cornell.edu/generative-artificial-intelligence/ai-academic-integrity",
+      "finding": "The dominant institutional model in 2026 permits generative AI for brainstorming/drafting with disclosure and instructor approval but restricts it in graded assessments; AI detection tools are unreliable -- supports a 'draft a plan with AI, then critique and disclose' framing and the version-aware caveat."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "Three external anchors are cited (NACE career readiness at lines 126/145, ISTE Standards for Students at lines 131/146, WCAG 2.2 at line 148) per the course currency-watch list, and these are exactly the items flagged as periodically revised. The links should be confirmed against the current edition/wording.",
+    "proposed_change": "Verified: all three links resolve to current editions and need no URL change. WCAG 2.2 is still the current W3C Recommendation (TR/WCAG22/ correct; WCAG 3.0 remains a non-normative Working Draft). NACE link resolves to the current career-readiness definition; the live competency set is the December 2025 edition (8 competencies) -- no URL change, optionally cite the December 2025 PDF if a dated reference is wanted. ISTE link iste.org/standards/students is the current 2024-refresh (v4.02) page; minor wording note: the section labels it 'ISTE digital citizenship', but Digital Citizen is only one of seven student standards -- consider relabeling 'ISTE Standards for Students' for accuracy. No prose rewrite otherwise required.",
+    "where_to_apply": "08.mdx '## References' (lines 145-148) and inline links at lines 126, 131.",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "W3C WAI -- Web Content Accessibility Guidelines (WCAG) 2.2 (Recommendation, 5 Oct 2023; updated 12 Dec 2024)",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/",
+      "finding": "WCAG 2.2 remains the current W3C Recommendation and is now ISO/IEC 40500:2025; WCAG 3.0 is only a Working Draft (latest Sept 2025 / 2026) and is explicitly not for compliance -- the existing WCAG22 link is current and correct."
+     },
+     {
+      "cite": "NACE -- Career Readiness Competencies (December 2025 edition)",
+      "url_or_doi": "https://www.naceweb.org/career-readiness/competencies/career-readiness-defined",
+      "finding": "The career-readiness-defined URL is live and current; the present competency set is the December 2025 edition with 8 competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology) -- existing link/anchor is current."
+     },
+     {
+      "cite": "ISTE -- Standards for Students (2024 refresh, v4.02)",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "Current edition is the 2024 refresh (v4.02) with seven student standards (Empowered Learner, Digital Citizen, Knowledge Constructor, Innovative Designer, Computational Thinker, Creative Communicator, Global Collaborator); link is live and current. Section label 'ISTE digital citizenship' references only one of the seven standards."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ }
+]

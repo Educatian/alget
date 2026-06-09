@@ -1,0 +1,19 @@
+[
+ {
+  "section_key": "cat531/05/05",
+  "section_title": "Classroom Fit Matrix",
+  "dir": "frontend/content/cat531-supplement/05",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Worked Example numbers are internally inconsistent. Step 1 (line 64) states Tool A 'total 15 of 20 (75 percent rescaled to 92 percent of weighted points)' with no weights given, then the inline-check (line 44), step-reveal (line 73), and Textbook Walkthrough (lines 95-99) all reuse '92 percent' as Tool A's headline. Tool B's correct raw total (17/20 = 85%) already EXCEEDS Tool A's (15/20 = 75%), so the un-weighted arithmetic does not demonstrate the compensatory trap (A does not out-total B). The trap only works if weights make A win, but weights are never specified, and B is mislabeled as 88% with no basis.",
+    "proposed_change": "Pin the arithmetic so the trap is reproducible. Supply explicit weights in Step 1 that make Tool A's weighted total exceed Tool B's (e.g., usability 30%, features 30%, accessibility 20%, offline 20%: A = 0.30*(5/5)+0.30*(5/5)+0.20*(4/5)+0.20*(1/5) = 30+30+16+4 = 80% ... adjust weights so A lands near 92% and B near 88%), and state the weights inline. Then reconcile inline-check, step-reveal, and Textbook Walkthrough to those same figures. Alternatively drop the 'rescaled to 92 percent' move entirely and use raw scores where A genuinely out-totals B (which requires changing the scores, since current raw totals make B win). Either way the 92/88 headline must be reproducible from the numbers shown.",
+    "where_to_apply": "05.mdx Worked Example Step 1 (line 64); reused '92 percent' in inline-check (line 44), step-reveal (line 73), Textbook Walkthrough (lines 95-99)",
+    "priority": "high",
+    "sources": [],
+    "verified": "unverified"
+   }
+  ]
+ }
+]

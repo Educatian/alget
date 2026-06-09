@@ -121,6 +121,8 @@ Open the studio packet: [download the Excel pivot-table finding with unit labels
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
+A concrete case for that trace (as of 2026): if you ask Copilot in Excel, or a chat assistant such as ChatGPT or Claude, to write the with-tax formula, it may return `=B2*(1+E1)` without locking the rate. Your job is to catch that the copy will slide onto the blank E2: accept the formula structure, modify the reference to `$E$1`, and log the rejection of the unlocked version in your trace.
+
 ## Adaptive Support
 
 ALGET uses your annotations and artifact trace to choose support:

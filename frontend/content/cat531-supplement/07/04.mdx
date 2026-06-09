@@ -29,11 +29,13 @@ Each finding has three required parts. The **affected group** names who, specifi
 
 Three lenses drive the disaggregation:
 
-- **Critical edtech studies** supplies the core move: ask whose interests the tool was built around and which students sit outside that default. A model trained mostly on standard English has a built-in default that your multilingual students fall outside of.
+- **[Critical edtech studies](https://doi.org/10.4067/s0718-50492025000100248)** (Selwyn) supplies the core move: ask whose interests the tool was built around and which students sit outside that default. A model trained mostly on standard English has a built-in default that your multilingual students fall outside of.
 - **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** asks what the tool does with the data it gathers, and whether its training data represented your students at all. Underrepresentation in training is a mechanism, not a footnote.
-- **[TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)** keeps the audit tethered to learning: a tool that fails a subgroup on the actual content goal is failing, regardless of how engaging it is for the majority.
+- **[TPACK](https://doi.org/10.1111/j.1467-9620.2006.00684.x)** keeps the audit tethered to learning: a tool that fails a subgroup on the actual content goal is failing, regardless of how engaging it is for the majority.
 
 A lens has done its work when it produced a specific risk row, not a general worry.
+
+> **Recent evidence:** Both of this section's anchor risks are documented findings, not hypotheticals. On facial recognition, Buolamwini & Gebru's [Gender Shades](http://proceedings.mlr.press/v81/buolamwini18a/buolamwini18a.pdf) study (2018) found commercial face-analysis error rates up to 34.7% for darker-skinned women versus 0.8% for lighter-skinned men, and NIST's [FRVT Part 3: Demographic Effects](https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8280.pdf) report (2019) found demographic differentials in the majority of algorithms tested, with elevated false positives for African American and Asian faces in one-to-many matching. On essay scoring, [Wilson & Huang (2024)](https://doi.org/10.1016/j.asw.2024.100815) found evidence of bias in automated essay scores for English language learners.
 
 <inline-check question="A vendor page states the tool is 'bias-tested and fair for all learners.' How should the audit treat this claim?" explanation="As an unverified hypothesis, not a finding. The claim names no test population, no data, and no whether your students were represented. The audit logs it as open and records the questions it leaves open: which groups were tested, on what data, and were multilingual learners (or your specific group) represented." options='[{"text":"As an unverified hypothesis, logging the questions it leaves open","correct":true},{"text":"As evidence that satisfies the equity requirement","correct":false},{"text":"As a reason to skip disaggregating your own roster","correct":false}]'></inline-check>
 
@@ -96,6 +98,8 @@ Apply the matrix to a different tool. Your placement is considering an AI attend
 
 Affected group: facial-recognition error rates are documented to be higher for darker-skinned students, and your placement's roster is majority Black and Latino. Mechanism: the model's training data underrepresented these groups, so misidentification is structurally more likely for them. Safeguard: a manual roster check whenever the system fails to match, and no consequence (such as a tardy mark) triggered by the system alone. Monitoring check: review misidentification logs by student after two weeks and compare rates across groups. The recommendation that follows is not a thumbs-up; it is "adopt only with the manual override and the disparity check, and reconsider if the two-week logs show a gap." The walkthrough repeats the structure: name the group, name the mechanism, attach a safeguard, schedule the check.
 
+> **Legal floor:** Biometric attendance data on minors is not only a fairness question; it implicates FERPA (education records) and, for students under 13, COPPA. As of 2026, the FTC's [amended COPPA rule](https://www.loeb.com/en/insights/publications/2025/05/childrens-online-privacy-in-2025-the-amended-coppa-rule) (finalized January 2025, with full compliance required by April 22, 2026) explicitly classifies biometric identifiers, including facial templates, as covered personal information requiring verifiable parental consent. The audit's monitoring check therefore also confirms legal basis and consent, not only error-rate disparity.
+
 ## What Strong Reading Looks Like
 
 As you read an audit, keep a two-column note: **named group and mechanism** on the left, **safeguard and check** on the right. A row with the left side empty is a slogan; a row with the right side empty is an alarm with no response. A strong audit has both columns filled for every risk it raises.
@@ -129,7 +133,7 @@ Use the studio to create a before/after trace. The first version should show you
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **[TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)**.
+- If your note is a **question**, ask for a concise explanation tied to **[TPACK](https://doi.org/10.1111/j.1467-9620.2006.00684.x)**.
 - If your note shows **confusion**, compare a weak and strong version of the equity-oriented edtech evaluation matrix with context-specific risk notes.
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
@@ -152,7 +156,11 @@ Before you move on, make sure each risk names an actual group and mechanism, eac
 
 ## References
 
-- [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
-- critical edtech studies. https://doi.org/10.4324/9781315670160
-- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
+- [TPACK](https://doi.org/10.1111/j.1467-9620.2006.00684.x). Mishra & Koehler (2006). https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- critical edtech studies. Selwyn (2016), https://doi.org/10.4324/9781315670160; Selwyn, Rivera-Vargas & Herrera-Urizar (2025), https://doi.org/10.4067/s0718-50492025000100248
+- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017); Williamson, Macgilchrist & Potter (2023), Re-examining AI, automation and datafication in education, https://doi.org/10.1080/17439884.2023.2167830
+- Buolamwini & Gebru (2018). Gender Shades: Intersectional accuracy disparities in commercial gender classification. http://proceedings.mlr.press/v81/buolamwini18a/buolamwini18a.pdf
+- Grother, Ngan & Hanaoka, NIST (2019). FRVT Part 3: Demographic Effects (NISTIR 8280). https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8280.pdf
+- Wilson & Huang (2024). Validity of automated essay scores for elementary-age English language learners: Evidence of bias? Assessing Writing, 60. https://doi.org/10.1016/j.asw.2024.100815
+- FTC amended COPPA rule (2025), biometric identifiers. https://www.loeb.com/en/insights/publications/2025/05/childrens-online-privacy-in-2025-the-amended-coppa-rule
 - teacher professional judgment. https://doi.org/10.1177/002205741319300304

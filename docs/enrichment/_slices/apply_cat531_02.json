@@ -1,0 +1,468 @@
+[
+ {
+  "section_key": "cat531/02/01",
+  "section_title": "Tech-Rich Classroom Routines",
+  "dir": "frontend/content/cat531-supplement/02",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The swap-analysis 'Data exposure' row (line 31) claims digital routine responses are 'stored, scored, and sometimes sold or profiled' and Decision Rule item 2 (line 61) asks what student data leaves the room, but neither cites any statute despite student-data privacy being a core Ch2 anchor. The 'sold' framing is legally imprecise.",
+    "proposed_change": "Anchor the 'Data exposure' row and Decision Rule 'Data check' (item 2) in FERPA (20 U.S.C. 1232g; 34 CFR Part 99) and COPPA (16 CFR Part 312, 2025 amended rule). Reframe 'sometimes sold or profiled' to the accurate nuance: ed-tech vendors may retain/use PII under FERPA's 'school official' exception (34 CFR 99.31(a)(1)(i)(B)) when under the school's direct control and used only for authorized purposes, while outright sale/disclosure of PII from education records without consent is restricted; under the 2025 COPPA amendments operators need separate verifiable parental consent to disclose under-13 children's data to third parties for targeted advertising. Add both to References.",
+    "where_to_apply": "01.mdx — Core Concept swap table 'Data exposure' row (line 31) and Decision Rule item 2 (line 61); add entries to References (lines 124-128)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "U.S. Dept. of Education, Protecting Student Privacy — Responsibilities of Third-Party Service Providers under FERPA (Vendor FAQ); FERPA codified at 20 U.S.C. 1232g, 34 CFR Part 99",
+      "finding": "FERPA's 'school official' exception (34 CFR 99.31(a)(1)(i)(B), 2008 regs) lets ed-tech vendors receive PII without consent only if they perform an institutional function, are under the school's direct control, and use the data only for school-authorized purposes; redisclosure is restricted under 34 CFR 99.33(a). This grounds 'profiled/retained under the school-official exception' and refutes a blanket 'sold' claim.",
+      "url_or_doi": "https://studentprivacy.ed.gov/sites/default/files/resource_document/file/Vendor%20FAQ.pdf"
+     },
+     {
+      "cite": "FTC, Children's Online Privacy Protection Rule — Final Rule Amendments (Fed. Reg. 2025-05904, Apr. 22, 2025)",
+      "finding": "The amended COPPA Rule (16 CFR Part 312) is effective June 23, 2025 (full compliance by April 22, 2026); it now requires separate verifiable parental consent to disclose a child's personal information to third parties (e.g., targeted advertising) and expands 'personal information' to include biometric and government identifiers. FTC deferred ed-tech/school-specific amendments to avoid conflict with FERPA.",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule"
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin/dated: TPACK anchored only to Wikipedia + 2006 Mishra & Koehler DOI; 'critical edtech studies' is a bare DOI (10.4324/9781315670160) with Selwyn never named in prose; the 'teacher professional judgment' DOI (10.1177/002205741319300304) resolves to a 2013 PCK item in Journal of Education vol 193, not a judgment source.",
+    "proposed_change": "Name Selwyn (2016) explicitly in References and in the Core Concept sentence invoking 'critical edtech studies supplies the suspicion.' NOTE: the bare DOI 10.4324/9781315670160 does not resolve (Crossref 404; that Routledge prefix does not match the Polity Press 2016 book), so cite the book by author/title/publisher rather than relying on that DOI. Add one current (2024) AI-TPACK / generative-AI teacher-knowledge citation alongside the 2006 TPACK DOI. Replace the mismatched 'teacher professional judgment' DOI with a substantive current teacher-judgment/decision-making source.",
+    "where_to_apply": "01.mdx — Core Concept (line 34) and References (lines 125-128)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Selwyn, N. (2016). Is Technology Good for Education? Polity Press (Digital Futures series, ISBN 9780745696461/78)",
+      "finding": "The 'critical edtech studies' source is Neil Selwyn's 2016 book, published by Polity Press (not Routledge); the section's DOI 10.4324/9781315670160 does not resolve in Crossref, so the entry should name author/title/publisher. Selwyn's adjacent 'Data entry: towards the critical study of digital data and education' (2014, Learning Media and Technology, doi:10.1080/17439884.2014.921628, ~324 cites) is a citable peer-reviewed datafication anchor.",
+      "url_or_doi": "https://www.politybooks.com/bookdetail?book_slug=is-technology-good-for-education--9780745696461"
+     },
+     {
+      "cite": "Ning, Y. et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability 16(3):978",
+      "finding": "Current (2024), well-cited (~221) AI-TPACK framework extending TPACK to generative-AI teacher knowledge — suitable to pair with the canonical 2006 TPACK DOI. (Alt: Al-Abdullatif 2024, doi:10.3390/educsci14111209, 'Intelligent TPACK' + AI literacy.)",
+      "url_or_doi": "https://doi.org/10.3390/su16030978"
+     },
+     {
+      "cite": "Sperling, K. et al. (2024). In search of AI literacy in teacher education: A scoping review. Computers and Education Open 5:100169",
+      "finding": "Confirms the existing 'teacher professional judgment' DOI is misattributed (it resolves to Mecoli 2013, a PCK piece in Journal of Education 193(3)). Sperling 2024 (~319 cites) frames teacher professional knowledge via phronesis/professional judgement and is a substantive current replacement; Santagata et al. 2021 (doi:10.1007/s11858-020-01216-z) on teacher noticing/interpretive reasoning is an alternative judgment-focused review.",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169"
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Course-internal tool names need a 2026 currency check. TeachGen@i is named in the Worked Example (line 48) and practice item 3; the artifact is the Design Tension Studio map linking (per course context) to swarmid.vercel.app with join code UA-CAT531-SUMMER26. The MDX never surfaces the live DTS URL/join code.",
+    "proposed_change": "The live app at swarmid.vercel.app is confirmed as 'Design Tension Studio' (teacher/student/IT tension-network mapping) with a 'Course code' join field, consistent with the UA-CAT531-SUMMER26 code. TeachGen is NOT surfaced on the public DTS app. Add the live DTS join link/code to the Artifact Studio block so students reach the deployed studio. The TeachGen@i name is a course-internal generative-AI tool reference; it could not be independently verified against a live public syllabus, so confirm against the current CAT 531 syllabus before relying on it for naming consistency.",
+    "where_to_apply": "01.mdx — Worked Example (line 48), Artifact Studio (lines 94-96); 01.practice.json ai_boundary item (line 49)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Design Tension Studio (live app, swarmid.vercel.app), fetched 2026-06-09",
+      "finding": "App is live and titled 'Design Tension Studio' — an instructional-design lab mapping design tensions across teacher/student/IT perspectives, with login fields including 'Course code' for students to join. This matches the artifact named in the section and supports adding the live URL + join code (UA-CAT531-SUMMER26). 'TeachGen' is not referenced anywhere on the app, so the TeachGen@i tool name remains course-syllabus-internal and unverified externally.",
+      "url_or_doi": "https://swarmid.vercel.app/"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/02/02",
+  "section_title": "TeachGen@i Scenario Setup",
+  "dir": "frontend/content/cat531-supplement/02",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's central privacy claim — that a de-identified learner profile must never leave the room attached to names because a vendor may store the transcript — is asserted with no legal grounding. The chapter is titled 'Consent, Datafication, and Classroom Privacy' yet the prose cites NO statute. FERPA (and COPPA for under-13 contexts) directly governs whether pasting identifiable student records into a third-party generative tool is permissible.",
+    "proposed_change": "Add a one-clause citation to the Core Concept paragraph beginning 'Critical edtech studies and datafication remind you to de-identify...' anchoring the de-identification rule to FERPA's protection of personally identifiable information in education records (34 CFR Part 99), noting that PII disclosed to a third-party vendor remains FERPA-governed and may be used only for school-authorized purposes, and flagging COPPA's stricter parental-consent regime where students are under 13. Add FERPA (34 CFR Part 99) and the COPPA Rule (16 CFR Part 312) to the References list. One sentence; mirror the same warrant into the practice.json explanation for the annotation_signal problem.",
+    "where_to_apply": "02.mdx — Core Concept paragraph after the scenario-element table ('Two disciplines govern how you write these down...'); References list; and 02.practice.json annotation_signal explanation.",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "U.S. Dept. of Education, FERPA regulations, 34 CFR Part 99 (definition of personally identifiable information, §99.3)",
+      "url_or_doi": "https://studentprivacy.ed.gov/sites/default/files/resource_document/file/Vendor%20FAQ.pdf",
+      "finding": "FERPA PII covers both direct identifiers (name) and indirect identifiers; when PII from education records is disclosed to a third-party provider under the school-official exception, FERPA still governs its use and the school remains responsible — PII may be used only for school-authorized purposes. This is the exact legal warrant for the 'never names; a vendor may store the transcript' rule."
+     },
+     {
+      "cite": "Federal Trade Commission (2025) FTC Finalizes Changes to Children's Privacy Rule",
+      "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+      "finding": "FTC finalized COPPA Rule amendments Jan 2025 (published in Federal Register Apr 22 2025, effective June 23 2025, full compliance by Apr 22 2026); expanded the definition of personal information and added a separate verifiable-parental-consent requirement for third-party disclosure — grounding the stricter under-13 boundary noted in the section. Current as of 2026."
+     },
+     {
+      "cite": "Student Privacy Compass — State Guidance on the Use of Generative AI in K-12 Education",
+      "url_or_doi": "https://studentprivacycompass.org/state-guidance-on-the-use-of-generative-ai-in-k-12-education/",
+      "finding": "About 12 states explicitly direct educators to avoid inputting student PII into generative AI systems; once student PII enters an LLM, technical unlearning is extraordinarily difficult — supporting the 'should never leave the room attached to names' rule with current edtech-privacy practice."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin and Wikipedia-anchored. TPACK links to Wikipedia + the 2006 Mishra & Koehler DOI; 'critical edtech studies' is a bare unnamed DOI (Selwyn 2016) with no author named in-text; 'AI and education datafication' is a single 2020 DOI reused course-wide. For a 2026 course this is dated, and the core argument (AI fills gaps with a training-data default) needs a current generative-AI / AI-TPACK anchor.",
+    "proposed_change": "Name authors in-text (Mishra & Koehler for TPACK; name the critical-edtech author — substitute or supplement with Williamson 2023 for a current datafication anchor) instead of bare links, and add one current (2023-2026) AI-TPACK / generative-AI teacher-literacy anchor (Ning et al., 2024) to support the 'AI cannot see your room; it substitutes a training-data default' claim. Add these to the References list.",
+    "where_to_apply": "02.mdx — References list and in-text links in Core Concept and Adaptive Support sections.",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra & Koehler (2006) Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge",
+      "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+      "finding": "Confirms the canonical TPACK source and authors to name in-text (Mishra & Koehler) rather than linking only to Wikipedia."
+     },
+     {
+      "cite": "Ning et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Current (2024) AI-TPACK framework integrating AI into teacher technological-pedagogical-content knowledge; a direct, on-point anchor for the claim that grounded teacher input (vs. an AI default) is the locus of professional judgment in generative-AI planning."
+     },
+     {
+      "cite": "Williamson, Macgilchrist & Potter (2023) Re-examining AI, automation and datafication in education",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "A current (2023) critical-edtech / datafication source in Learning, Media and Technology that can replace or supplement the single reused 2020 datafication DOI, sharpening the 'training-data default is a datafication problem' link."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/02/03",
+  "section_title": "Prompting for Classroom Constraints",
+  "dir": "frontend/content/cat531-supplement/02",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The whole section rests on IEP extended-time, the district 1:8 chaperone ratio, and the allergy plan being legally non-negotiable hard constraints, yet the MDX cites no statute. The 'legally required'/'unlawful' language is asserted, not sourced, in a course that explicitly values evidence-grounding.",
+    "proposed_change": "Add a one-to-two-sentence 'Why these are legal, not stylistic' note in the Core Concept or Decision Rule block: the duty to implement a written IEP accommodation arises under IDEA (20 U.S.C. 1400 et seq.) as part of FAPE, and a material failure to implement it is a compliance violation, not a pedagogical trade-off; Section 504 of the Rehabilitation Act (29 U.S.C. 794) imposes a parallel accommodation duty, and FERPA (20 U.S.C. 1232g) grounds the course's privacy/consent framing (Section 504/IEP records are FERPA education records). Add IDEA, Section 504, and FERPA to the References list to anchor the hard-constraint definition. Frame the 'material failure' nuance accurately (courts excuse only de-minimis/non-material deviations), so the claim is 'a written accommodation must be implemented,' not 'any deviation is automatically unlawful.'",
+    "where_to_apply": "03.mdx — Core Concept hard/soft table ('Typical source' row 'Law, IEP/504') and Decision Rule, plus the References list at the bottom",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Individuals with Disabilities Education Act, 20 U.S.C. 1400 et seq. (LII / Cornell Law School)",
+      "url_or_doi": "https://www.law.cornell.edu/uscode/text/20/1400",
+      "finding": "The IEP is the legal basis of a child with a disability's entitlement to an individualized education; schools must comport with the IEP as part of providing a Free Appropriate Public Education (FAPE), and a material failure to implement IEP requirements is a denial of FAPE / compliance violation (de-minimis deviations may be excused)."
+     },
+     {
+      "cite": "U.S. Dept. of Education, Section 504 of the Rehabilitation Act (29 U.S.C. 794)",
+      "url_or_doi": "https://www.ed.gov/laws-and-policy/individuals-disabilities/section-504",
+      "finding": "Section 504 is a federal statute requiring recipients of federal funds to provide students with disabilities equal access and accommodations; it imposes an enforceable accommodation duty parallel to IDEA, confirming accommodations are a legal obligation rather than a pedagogical preference."
+     },
+     {
+      "cite": "Family Educational Rights and Privacy Act (FERPA), 20 U.S.C. 1232g (U.S. Dept. of Education / APA DART)",
+      "url_or_doi": "https://www.apa.org/pi/disability/dart/legal/ferpa",
+      "finding": "FERPA protects personally identifiable information in student education records and bars disclosure without consent; records of Section 504/IEP disability accommodations are education records subject to FERPA, grounding the section's privacy/consent framing in statute."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin and reused verbatim project-wide: 'critical edtech studies' is a bare unnamed DOI (10.4324/9781315670160, Selwyn 2016) and the datafication anchor is a single 2020 DOI. For a 2026 course these are dated and the critical-edtech lineage is anonymous in prose. The section's central mechanism (an optimizer silently trades a stated constraint for a training-favored outcome) maps precisely onto current specification-gaming / sycophancy literature.",
+    "proposed_change": "Name Selwyn explicitly where 'critical edtech studies' is invoked (Core Concept paragraph and the Adaptive Support / dynamic-scenario bullet). Refresh the datafication anchor with Williamson (2023) 'Re-examining AI, automation and datafication in education' (Learning, Media and Technology). Add one current citation grounding the 'silently substitutes training-favored outcomes for stated constraints' claim: either a specification-gaming/goal-misgeneralization source or an LLM-sycophancy source. Recommended primary add: Wei et al. (2023) on sycophancy (models drop user-stated constraints toward training-favored answers) and/or Fanous et al. (2025) SycEval; Park et al. (2024) 'AI Deception' supports the broader reward-hacking framing.",
+    "where_to_apply": "03.mdx — Core Concept paragraph ('critical edtech studies warns...' sentence at line 34), Adaptive Support / dynamic-scenario bullet (line 112), and the References list (replace/augment lines 129-130)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Williamson, B. (2023). Re-examining AI, automation and datafication in education. Learning, Media and Technology.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "A current (2023) critical-edtech/datafication source in the same Learning, Media and Technology lineage as the existing 2020 anchor (10.1080/17439884.2020.1686017), suitable as a refreshed datafication citation for a 2026 course."
+     },
+     {
+      "cite": "Wei, J. et al. (2023). Simple synthetic data reduces sycophancy in large language models.",
+      "url_or_doi": "https://doi.org/10.48550/arxiv.2308.03958",
+      "finding": "Documents that LLMs exhibit sycophancy, adjusting outputs toward what aligns with the model's training signal / perceived user preference rather than holding the stated specification, directly grounding the section's 'optimizer trades a stated constraint for a training-favored outcome' mechanism."
+     },
+     {
+      "cite": "Fanous, A. et al. (2025). SycEval: Evaluating LLM Sycophancy.",
+      "url_or_doi": "https://doi.org/10.1609/aies.v8i1.36598",
+      "finding": "A 2024-2026 peer-reviewed (AIES) evaluation showing measurable LLM sycophancy across models, providing a current citation that generative tools substitute agreeable/favored responses for stated user constraints."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/02/04",
+  "section_title": "Comparing AI Suggestions to Pedagogy",
+  "dir": "frontend/content/cat531-supplement/02",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The 'treat the AI's confidence as authority' misreading (line 73) is a critical-edtech move but is grounded only in TPACK in prose; the section's Selwyn/critical-edtech reference sits unnamed at the bottom, and the dynamic-scenario explicitly hooks 'critical edtech studies' with no body support.",
+    "proposed_change": "In the 'Common Misreadings' paragraph (line 73), after 'treat the AI's confidence as authority,' add 1-2 sentences citing Selwyn inline: a polished, confident vendor/tool suggestion treats a commercial framing as pedagogical authority and quietly shifts the pedagogical labor (deciding what counts as good teaching) onto the tool, which critical edtech studies (Selwyn) warns against. Replace the unnamed DOI in References with a named Selwyn citation.",
+    "where_to_apply": "04.mdx line 73 ('The second is to treat the AI's confidence as authority...') and References line 127/128",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Perrotta, C. & Selwyn, N. (2019/2020) Deep learning goes to school: toward a relational understanding of AI in education",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "The DOI currently labeled 'AI and education datafication' in this section's References resolves to a Perrotta & Selwyn paper that is itself a critical-edtech analysis of AI in education, providing a namable Selwyn anchor for the 'AI-confidence-as-authority / hidden labor' point. The section can cite Selwyn inline using a source already in its own reference list."
+     },
+     {
+      "cite": "Selwyn, N. (2016) Is Technology Good for Education? Polity Press (critical edtech)",
+      "url_or_doi": "10.4324/9781315670160",
+      "finding": "The 'critical edtech studies' DOI (Routledge/T&F prefix 10.4324) corresponds to Selwyn's critical-edtech scholarship questioning the values, agendas, and interests that gain from digital education, directly supporting framing a confident AI suggestion as a vendor authority/burden-shifting claim rather than evidence."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Three of the four References are anonymous DOIs (no author/title): TPACK is Wikipedia + a 2006 DOI, 'critical edtech studies' and 'teacher professional judgment' are bare DOIs, and the AI-datafication DOI is reused repo-wide. For a 2026 graduate course on evaluating AI suggestions against content-pedagogy fit, a current AI-TPACK / generative-AI teacher-knowledge citation is missing.",
+    "proposed_change": "Name the three anonymous DOIs and add one current AI-TPACK citation. (a) TPACK = Mishra & Koehler (2006), 'Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge'; (b) 'teacher professional judgment' DOI = Mecoli (2013) on the PCK framework in preservice teacher education (note: it is a PCK-framework piece, not a generic professional-judgment source - rename accordingly or replace if a true judgment source is wanted); (c) 'AI and education datafication' = Perrotta & Selwyn (2019/2020); also reuse it as the named Selwyn critical-edtech anchor. (d) Add Ning et al. (2024) 'Teachers' AI-TPACK' as the current AI-TPACK framing tied directly to evaluating AI against content-pedagogy fit.",
+    "where_to_apply": "04.mdx References section (lines 124-129)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra, P. & Koehler, M. J. (2006) Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge",
+      "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+      "finding": "DOI 10.1111/j.1467-9620.2006.00684.x resolves (OpenAlex) to Mishra & Koehler (2006), the canonical TPACK paper - confirms the author/title/year to substitute for the bare TPACK DOI."
+     },
+     {
+      "cite": "Mecoli, S. (2013) The Influence of the PCK Theoretical Framework on Research on Preservice Teacher Education",
+      "url_or_doi": "https://doi.org/10.1177/002205741319300304",
+      "finding": "The 'teacher professional judgment' DOI (10.1177/002205741319300304) actually resolves to Mecoli (2013), a PCK-framework review of preservice teacher education - the label 'teacher professional judgment' is a mismatch and should be corrected to the true title or swapped for an actual professional-judgment source."
+     },
+     {
+      "cite": "Ning, Y. et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "A 2024 framework integrating TPACK with AI technology (AI-TPACK), modeling how teachers' knowledge components interact - a current (2024) anchor for evaluating AI suggestions against content-pedagogy fit; alternatives: Al-Abdullatif (2024, intelligent TPACK, 10.3390/educsci14111209) and Celik (2022, AI for teachers review, 10.1007/s11528-022-00715-y)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/02/05",
+  "section_title": "Adapting Plans for Learner Variability",
+  "dir": "frontend/content/cat531-supplement/02",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "UDL is the single most load-bearing framework in this section ('The professional distinction, drawn from Universal Design for Learning... change the route to a learning goal while holding the goal constant') and the 'access vs goal / barrier vs label' logic is a direct paraphrase of CAST UDL principles, yet UDL is invoked with NO citation anywhere. The References list (lines 124-129) has TPACK, critical edtech, datafication, and teacher-judgment entries but no UDL anchor.",
+    "proposed_change": "Add a CAST UDL Guidelines 3.0 (2024) citation to the '## References' list and link the first mention of 'Universal Design for Learning' in 'Why This Section Matters' (line 7) to it. Use the current 3.0 guidelines rather than (or in addition to) Rose & Meyer foundational work, because 3.0 was officially released July 30, 2024 and directly serves the currency goal; its three principles (multiple means of Engagement, Representation, and Action & Expression) are exactly the 'change the route while holding the goal constant' logic the section paraphrases. Cite as: CAST (2024). Universal Design for Learning Guidelines version 3.0. https://udlguidelines.cast.org/",
+    "where_to_apply": "05.mdx line 7 (first 'Universal Design for Learning' mention) and '## References' list (lines 124-129) — add CAST UDL 3.0 entry",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "CAST (2024). Universal Design for Learning Guidelines version 3.0",
+      "url_or_doi": "https://udlguidelines.cast.org/",
+      "finding": "CAST officially released UDL Guidelines version 3.0 on July 30, 2024; the framework's three principles (multiple means of engagement, representation, action & expression) directly ground the section's 'change the access route while holding the learning goal constant' claim. 3.0 is current and serves the section's currency goal."
+     },
+     {
+      "cite": "Ohio State ASC Office of Distance Education — 'UDL Guidelines 3.0 Officially Released'",
+      "url_or_doi": "https://ascode.osu.edu/news/udl-guidelines-3.0-officially-released",
+      "finding": "Independent institutional confirmation of the 3.0 release (2024), corroborating the version number and date to cite."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The claim that AI 'simplification' of a primary source 'frequently strips the very complexity the objective asked students to analyze' is stated three times (Core Concept line 32, Common Misreadings line 73, self-explain line 93) as fact but is uncited and generically framed ('an AI tool'). For a 2026 course this should be grounded in current 2024-2026 evidence on LLM text-simplification reducing analytical/informational content (readability-gain vs meaning-loss).",
+    "proposed_change": "Add a 'Recent Evidence' note (or an inline cite on the Core Concept AI-caution sentence and the 3rd Common-Misreadings paragraph) anchoring the 'strips complexity' claim with Agrawal et al. (2024, TACL), which used human reading-comprehension evaluation to show text-simplification systems do NOT reliably preserve meaning. Keep tool references generic-but-accurate to 2026 (e.g., 'a teacher pasting a source into a general-purpose assistant such as ChatGPT or Gemini'). Add the Agrawal entry to '## References'. Note Google's 2025 'minimally-lossy simplification' work explicitly frames information loss/distortion as the core failure mode, corroborating the claim.",
+    "where_to_apply": "05.mdx — '## Core Concept' AI-caution sentence (line 32), 3rd paragraph of Common Misreadings (line 73), self-explain (line 93); add to '## References'",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Agrawal, S. & Carpuat, M. (2024). Do Text Simplification Systems Preserve Meaning? A Human Evaluation via Reading Comprehension. Transactions of the ACL.",
+      "url_or_doi": "https://doi.org/10.1162/tacl_a_00653",
+      "finding": "Peer-reviewed TACL human evaluation (reading-comprehension based) directly tests whether simplification systems preserve meaning; supports the claim that simplifying a source can strip content the original demanded readers process. Directly grounds the 'strips the very complexity' claim."
+     },
+     {
+      "cite": "Google Research (2025). Making complex text understandable: Minimally-lossy text simplification with Gemini.",
+      "url_or_doi": "https://research.google/blog/making-complex-text-understandable-minimally-lossy-text-simplification-with-gemini/",
+      "finding": "Frames LLM simplification failure modes explicitly as information loss, gain, and distortion measured against the original; corroborates that current general-purpose LLMs lose fidelity when simplifying, and that checking adapted-vs-original demand is the needed safeguard. Current (2025), named tooling (Gemini)."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/02/06",
+  "section_title": "Teacher Noticing and Revision",
+  "dir": "frontend/content/cat531-supplement/02",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's central construct, teacher noticing, is presented with no citation even though it reproduces the named van Es & Sherin attend/interpret/decide framework almost verbatim (line 24: 'observe, then interpret, then decide'; line 7: separating describing from judging). The References list (lines 120-125) instead carries a generic 'teacher professional judgment' DOI that does not name the noticing literature the section actually draws on. VERIFIED: that DOI (10.1177/002205741319300304) resolves to Mecoli (2013), a paper on Shulman's PCK framework, NOT teacher judgment or noticing, so the current anchor is both mislabeled and non-load-bearing.",
+    "proposed_change": "Add named teacher-noticing anchors to the References list and a one-clause attribution in Core Concept (line 24) where observe/interpret/decide is introduced. Primary: van Es & Sherin (2021), 'Expanding on prior conceptualizations of teacher noticing,' for the attend-interpret-decide framework. Supporting: Barnhart & van Es (2014) for the attend-analyze-respond chain in teacher education, and Mason (2002) 'Researching Your Own Practice: The Discipline of Noticing' as the secondary anchor named in the proposed change. Remove or replace the mislabeled 'teacher professional judgment' DOI (10.1177/002205741319300304 = Mecoli 2013 on PCK).",
+    "where_to_apply": "06.mdx — References list (lines 120-125, replacing the line-125 teacher-professional-judgment DOI) and Core Concept (line 24)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "van Es, E. A., & Sherin, M. G. (2021). Expanding on prior conceptualizations of teacher noticing. ZDM Mathematics Education, 53, 17-27.",
+      "url_or_doi": "https://doi.org/10.1007/s11858-020-01211-4",
+      "finding": "Canonical statement of the teacher-noticing framework (attending, interpreting, deciding-to-respond); attending involves selecting features to observe and disregarding others, with an inquiry stance toward observed phenomena. 249 citations. Directly anchors the section's observe-interpret-decide structure."
+     },
+     {
+      "cite": "Barnhart, T., & van Es, E. (2014). Studying teacher noticing: Examining the relationship among pre-service science teachers' ability to attend, analyze and respond to student thinking. Teaching and Teacher Education, 45, 83-93.",
+      "url_or_doi": "https://doi.org/10.1016/j.tate.2014.09.005",
+      "finding": "Operationalizes noticing as attend-analyze-respond and ties analysis quality to responsive decisions; 406 citations; supports the section's describe-before-decide discipline."
+     },
+     {
+      "cite": "Mason, J. (2002). Researching Your Own Practice: The Discipline of Noticing. RoutledgeFalmer.",
+      "url_or_doi": "https://doi.org/10.4324/9780203471876",
+      "finding": "Foundational 'discipline of noticing' text framing intentional, disciplined observation (vs. haphazard noticing) as the basis of professional practice; 844 citations; the secondary anchor named in the proposed change."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "References (06.mdx lines 120-125) are a thin, Wikipedia-anchored, near-identical set with authors unnamed and two mislabeled DOIs. VERIFIED: TPACK DOI 10.1111/j.1467-9620.2006.00684.x = correctly Mishra & Koehler (2006) but unnamed; 'critical edtech studies' DOI 10.4324/9781315670160 = Selwyn (2016) 'Is Technology Good for Education?' never named; the 'AI and education datafication' DOI 10.1080/17439884.2020.1686017 = Perrotta & Selwyn (2019) 'Deep learning goes to school,' a relational-critique-of-AI piece, NOT a generic datafication source as the label implies. The critical-edtech construct never appears in the body except via the Adaptive Support dynamic-scenario prompt (line 108).",
+    "proposed_change": "Name authors inline (Mishra & Koehler 2006 for TPACK; Selwyn 2016 for critical edtech; Perrotta & Selwyn 2019 for the AI-in-education DOI, with its label corrected from generic 'datafication'). Add one current (2023-2026) anchor relevant to this section: an AI-TPACK / generative-AI teacher-knowledge framework (Ning et al. 2024), and a recent datafication-of-classroom-data source (Pangrazio, Selwyn & Cumbo 2023 or Livingstone et al. 2024). Verify the critical-edtech citation is load-bearing or trim it, since the construct surfaces only in the dynamic-scenario prompt.",
+    "where_to_apply": "06.mdx — References (lines 120-125)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra, P., & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge. Teachers College Record, 108(6), 1017-1054.",
+      "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+      "finding": "The existing TPACK DOI resolves correctly to the foundational Mishra & Koehler (2006) paper; the citation is accurate but the authors are unnamed in the list."
+     },
+     {
+      "cite": "Selwyn, N. (2016). Is Technology Good for Education? Polity Press.",
+      "url_or_doi": "https://doi.org/10.4324/9781315670160",
+      "finding": "The 'critical edtech studies' DOI is Selwyn's (2016) book; confirms the gap-analysis claim that Selwyn is the source but is never named in the References list."
+     },
+     {
+      "cite": "Ning, Y., Zhang, C., Xu, B., Zhou, Y., & Wijaya, T. T. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability, 16(3), 978.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Current (2024) AI-TPACK framework with seven components (PK, CK, AI-TK; PCK, AI-TCK, AI-TPK); a section-relevant current anchor extending TPACK to AI, suitable to break the byte-identical reuse."
+     },
+     {
+      "cite": "Pangrazio, L., Selwyn, N., & Cumbo, B. (2023). Tracking technology: exploring student experiences of school datafication. Cambridge Journal of Education, 53(3).",
+      "url_or_doi": "https://doi.org/10.1080/0305764x.2023.2215194",
+      "finding": "Recent (2023) empirical study of school datafication centered on power, surveillance, and student data experience; a current datafication-of-classroom-data anchor that also fixes the mislabeled 2020 DOI (which is actually Perrotta & Selwyn 2019, 'Deep learning goes to school')."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/02/07",
+  "section_title": "Evidence for Portfolio Entry",
+  "dir": "frontend/content/cat531-supplement/02",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The References block reuses the repo-wide citation quartet verbatim (TPACK 2006 + Wikipedia, an unnamed 'critical edtech studies' Routledge DOI 10.4324/9781315670160, a single 2020 AI/education datafication DOI, and a 2006/2013 'teacher professional judgment' DOI). None speak to THIS section's claim-warrant-outcome / evidence-vs-artifact thesis. The 'critical edtech studies' entry is anonymous (no Selwyn name) and the datafication anchor is dated (2020).",
+    "proposed_change": "Replace the anonymous 'critical edtech studies' line with a named Neil Selwyn citation (e.g., Selwyn's critical/distrust-of-edtech scholarship), and ADD one current (2025) source on whether output-based artifacts can serve as competency evidence under generative AI: Kofinas et al. (2025) in BJET, whose central finding (markers cannot reliably tell GenAI-assisted from non-AI work, so output-based artifacts are weak evidence) directly grounds this section's 'polish is not evidence' / 'foreground the warrant and outcome a tool cannot fabricate' thesis. The datafication DOI can stay but should be attributed by author name rather than left generic.",
+    "where_to_apply": "07.mdx -- References section (lines 125-130), and inline support of the Core Concept 'critical edtech studies adds a warning' clause (line 33)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Selwyn, N. (2014). Distrusting Educational Technology: Critical Questions for Changing Times. Routledge.",
+      "url_or_doi": "https://doi.org/10.4324/9780203108178",
+      "finding": "Selwyn is the canonical named author behind the 'critical edtech studies' line the section invokes; his critical-edtech scholarship supplies the warning that the section attributes anonymously. Replaces the unnamed Routledge DOI with an attributable source."
+     },
+     {
+      "cite": "Selwyn, N. (2014). Data entry: towards the critical study of digital data and education. Learning, Media and Technology, 40(1), 64-82.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2014.921628",
+      "finding": "A named Selwyn article on critical study of educational data/datafication; can replace or augment the anonymous critical-edtech and dated datafication entries with an attributable source."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/02/08",
+  "section_title": "Readiness Review",
+  "dir": "frontend/content/cat531-supplement/02",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "CRITICAL SECTION-IDENTITY MISMATCH. The gap-analysis opportunities were written against a section titled 'Module 2 Teaching Plan Studio' about plan coherence / coverage-vs-depth / 'assembly_not_integration' misconception. The ACTUAL file at cat531-supplement/08/08.* is titled 'Readiness Review' and teaches a go/no-go/conditional launch gate. None of the cited line numbers, prose claims, or misconception_ids in the opportunities match the real content (e.g., there is no 'coverage trap', no 'assembly_not_integration', no two-column reading metaphor on line 81 about component->objective sentences; the real line 81 is about a different two-column note). Most opportunity-specific edits below therefore cannot be applied as written and need re-derivation against the real Readiness Review section.",
+    "proposed_change": "Re-run the gap analysis against the actual 'Readiness Review' content before applying any structural edit. Treat the original opportunity list as stale/mis-targeted. The verified, applicable findings are split out into the separate entries below.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\08\\08.mdx (whole file) and 08.meta.json",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": []
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Orphaned AND mislabeled reference. The References block (08.mdx line 130) lists 'teacher professional judgment. https://doi.org/10.1177/002205741319300304'. That DOI actually resolves to Mecoli, S. (2013), 'The Influence of the Pedagogical Content Knowledge Theoretical Framework on Research on Preservice Teacher Education,' Journal of Education (SAGE) -- a PCK paper, NOT a paper about teacher professional judgment. The prose asserts 'Teacher professional judgment is the anchor that makes a no-go possible' (line 30) but never cites this DOI, and the DOI does not actually support a 'professional judgment' label.",
+    "proposed_change": "Either (a) relabel the reference to its true title/topic (Mecoli 2013, PCK) and stop implying it grounds 'professional judgment', or (b) replace it with a source genuinely about teacher professional judgment/decision-making and cite it inline at line 30 where 'professional judgment' is the load-bearing claim. Do not keep a 'teacher professional judgment' label pointing at a PCK paper.",
+    "where_to_apply": "08.mdx References (line 130) and Core Concept (line 30, 'Teacher professional judgment is the anchor...').",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mecoli, S. (2013). The Influence of the Pedagogical Content Knowledge Theoretical Framework on Research on Preservice Teacher Education. Journal of Education.",
+      "url_or_doi": "https://doi.org/10.1177/002205741319300304",
+      "finding": "The DOI in the reference list resolves to a 2013 PCK-framework paper by Mecoli, not a teacher-professional-judgment paper; the reference label is inaccurate."
+     }
+    ]
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Mislabeled / misdated datafication anchor. References line 129 lists '[AI and education datafication] https://doi.org/10.1080/17439884.2020.1686017'. That DOI resolves to Perrotta, C. & Selwyn, N. (2019/2020), 'Deep learning goes to school: toward a relational understanding of AI in education,' Learning, Media and Technology -- a critical-AI-in-education STS paper, not specifically a 'datafication' paper, and the canonical publication year is 2019 (online) though the issue carries a 2020 date. The label overstates that it is about 'datafication'.",
+    "proposed_change": "Relabel to the actual title (Perrotta, 'Deep learning goes to school', Learning, Media and Technology). If a genuine datafication anchor is wanted, cite a true datafication-in-education source instead. Note: this anchor is only decorative here -- the Readiness Review section never engages datafication, so consider dropping it unless threaded into the consent/policy verdict logic.",
+    "where_to_apply": "08.mdx References (line 129).",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Perrotta, C., & Selwyn, N. (2019/2020). Deep learning goes to school: toward a relational understanding of AI in education. Learning, Media and Technology, 45(3).",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "OpenAlex resolves this DOI to Perrotta's critical-AI STS paper (online 2019), not a dedicated 'datafication' work; the reference label and year are imprecise."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "TPACK anchor (Mishra & Koehler 2006 DOI + Wikipedia, References lines 127) is dated for a 2026 generative-AI / TeachGen@i-centered course. The section never invokes a current AI-TPACK / generative-AI teacher-knowledge framework even though it routes Adaptive Support to TPACK (line 106).",
+    "proposed_change": "Add a current AI-TPACK / generative-AI teacher-knowledge reference alongside the 2006 TPACK anchor (e.g., Ning et al. 2024 'Teachers' AI-TPACK', or Al-Abdullatif 2024 on intelligent TPACK + AI literacy + trust), and cite it where TPACK is invoked in Adaptive Support (line 106).",
+    "where_to_apply": "08.mdx References (line 127) and Adaptive Support TPACK link (line 106).",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Ning, Y. et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability, 16(3), 978.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Recent peer-reviewed AI-TPACK framework extending TPACK for AI; a current anchor to pair with Mishra & Koehler 2006."
+     },
+     {
+      "cite": "Al-Abdullatif, A. M. (2024). Modeling Teachers' Acceptance of Generative AI Use in Higher Education: AI Literacy, Intelligent TPACK, and Perceived Trust. Education Sciences, 14(11), 1209.",
+      "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+      "finding": "2024 generative-AI 'intelligent TPACK' teacher-knowledge study; supports refreshing the TPACK anchor for a GenAI-centered capstone."
+     },
+     {
+      "cite": "Sperling, K. et al. (2024). In search of artificial intelligence (AI) literacy in teacher education: A scoping review. Computers and Education Open, 5, 100169.",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169",
+      "finding": "2024 scoping review of AI literacy in teacher education; current teacher-AI-knowledge grounding."
+     }
+    ]
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Terminology drift between learner-facing Adaptive Support moves and backend rail_action vocabulary. Real Adaptive Support (08.mdx lines 106-109) uses: explain / compare / transfer / show-where-connection-changes-artifact. Real misconceptions.json rail_action values are: represent (line 10), ask (line 18), explain (line 26), practice (line 34). So 'represent', 'ask', and 'practice' rail actions have NO visible learner-facing counterpart in Adaptive Support, and 'compare'/'transfer' have no rail_action. The drift the opportunity flagged is real (though the exact action names differ from what the opportunity listed).",
+    "proposed_change": "Reconcile the two vocabularies: map each rail_action (ask/represent/explain/practice) to a learner-facing Adaptive Support bullet, or add a note that backend rail actions are a superset. Ensure ask/represent/practice each have a visible counterpart.",
+    "where_to_apply": "08.mdx Adaptive Support (lines 106-109) vs 08.misconceptions.json rail_action fields (lines 10, 18, 26, 34).",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": []
+   },
+   {
+    "type": "currency_update",
+    "gap": "Template-stamped learning objectives. Objectives 2-4 (08.meta.json lines 10-12 / 08.mdx lines 14-16) are course-wide boilerplate ('Distinguish artifact polish from evidence-based revision' / 'Document a bounded AI/software support move...' / 'Use annotations, support requests, and revision notes...'), and objective 1 only inserts the DTS artifact name. None of the four objectives names this section's actual core skill: running a readiness review as a go/no-go gate, tying verdicts to prior artifacts, and holding a no-go on a blocker. The description (meta line 4) is the same auto-generated formula.",
+    "proposed_change": "Rewrite at least one objective to name this section's specific competency, e.g. 'Run a readiness review as a go/no-go gate: assign a traceable verdict to each prior artifact, let a single safety/consent/equity blocker hold the launch, and record a rejected boundary-reversing shortcut.' Update the description (meta line 4) to match.",
+    "where_to_apply": "08.meta.json learning_objectives (lines 8-13) and description (line 4); 08.mdx Learning Targets (lines 13-16).",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": []
+   }
+  ]
+ }
+]

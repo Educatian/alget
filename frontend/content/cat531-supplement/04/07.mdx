@@ -31,9 +31,9 @@ Adapting a prompt is targeted redesign, and the target depends on why the defaul
 
 Two design moves do most of the work. The first is to swap abstraction for a concrete scenario: not "the ethics of surveillance" but "your school is thinking about cameras in the hallway, who would feel safer and who would feel watched." The second is to constrain the bot's behavior, not the student's answer: instruct the bot to ask one follow-up that makes the student name a person affected, then stop, so it deepens reasoning without flooding or leading.
 
-The line you must not cross is scaffolding the verdict. Adding a language support ("if the student gives a one-word answer, ask for an example from their own school day") helps students reason; adding your opinion ("guide the student to see that surveillance harms trust") tells them what to conclude. The first is adaptation; the second is steering, and a re-run transcript is how you check which one you did.
+The line you must not cross is scaffolding the verdict. Adding a language support ("if the student gives a one-word answer, ask for an example from their own school day") helps students reason; adding your opinion ("guide the student to see that surveillance harms trust") tells them what to conclude. The first is adaptation; the second is steering, and a re-run transcript is how you check which one you did. This is not just a pedagogical worry: LLMs exhibit documented sycophancy, tailoring answers to the user's stated view even when it is not warranted (Wei et al., 2023; Ranaldi & Pucci, 2023), so a prompt that states the teacher's opinion reliably manufactures agreement.
 
-The course anchors apply sharply. **Critical edtech studies** is the lens that flags the steering risk: a prompt engineered toward a "correct" ethical answer trains compliance, not reasoning. **[TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)** asks whether your adaptation still serves the content goal (ethical reasoning) rather than just producing longer transcripts. **Teacher professional judgment** is what decides which failure mode you are seeing and what to change, since the bot cannot diagnose its own prompt.
+The course anchors apply sharply. **Critical edtech studies** is the lens that flags the steering risk: a prompt engineered toward a "correct" ethical answer trains compliance, not reasoning. **[TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)** asks whether your adaptation still serves the content goal (ethical reasoning) rather than just producing longer transcripts; current AI-TPACK work extends the same purpose-fit test explicitly to AI-tool integration (Ning et al., 2024). **Teacher professional judgment** is what decides which failure mode you are seeing and what to change, since the bot cannot diagnose its own prompt.
 
 ## Worked Example: Adapting a Bot Prompt for a Specific Class
 
@@ -139,7 +139,11 @@ Before you move on, make sure your trace records evidence source, risk, support 
 
 ## References
 
-- [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
-- critical edtech studies. https://doi.org/10.4324/9781315670160
-- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
+- Mishra, P., & Koehler, M. J. (2006). [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Ning, Y., et al. (2024). Teachers' AI-TPACK: Exploring the relationship between knowledge elements. *Sustainability, 16*(3), 978. https://doi.org/10.3390/su16030978
+- Selwyn, N. (2016). critical edtech studies. https://doi.org/10.4324/9781315670160
+- Perrotta, C., & Selwyn, N. (2020). Deep learning goes to school: Toward a relational understanding of AI in education. *Learning, Media and Technology, 45*(3). [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
+- Williamson, B., et al. (2023). Re-examining AI, automation and datafication in education. *Learning, Media and Technology, 48*(1). https://doi.org/10.1080/17439884.2023.2167830
 - teacher professional judgment. https://doi.org/10.1177/002205741319300304
+- Wei, J., et al. (2023). Simple synthetic data reduces sycophancy in large language models. https://doi.org/10.48550/arxiv.2308.03958
+- Ranaldi, L., & Pucci, G. (2023). When large language models contradict humans? Large language models' sycophantic behaviour. https://doi.org/10.48550/arxiv.2311.09410

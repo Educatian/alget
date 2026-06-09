@@ -36,6 +36,8 @@ The reason these rules matter is mechanical, not stylistic. Excel's aggregation 
 
 Three tools do most of the repair work: **Text to Columns** (split one cell into two on a delimiter such as a comma), **Find and Replace** (collapse spelling variants into one canonical label), and deleting non-data rows (the banner and the blank). Knowing which tool fixes which defect is the core skill here.
 
+**Recent tools (as of 2026):** Current Excel adds three newer paths to the same repairs. Flash Fill (Ctrl+E) splits or normalizes values by example: type the result you want in one or two cells and Excel fills the pattern without the delimiter dialog (the output is static text, so it will not update if the source changes). Power Query (Data > Get & Transform Data > From Table/Range, then Split Column) records each cleaning step as a repeatable query you can Refresh when new data arrives, which makes it the right tool for cleanups you will run more than once. And Copilot in Excel offers a Clean Data feature that scans for spacing, formatting, and inconsistent-label problems and suggests fixes in plain language; note that it requires a Microsoft 365 Copilot license (not bundled with base Microsoft 365), the latest Excel, AutoSave on, and the file saved to OneDrive or SharePoint. Whichever path you use, the rule of this section still applies: verify every automated or AI repair (for example, confirm =SUM matches a hand count) before you trust it.
+
 ## Worked Example
 
 Suppose a downloaded export arrives looking like this, with a banner title, a blank row, mixed name format, and inconsistent regions:
@@ -123,7 +125,7 @@ Open the studio packet: [download the Excel pivot-table finding with unit labels
 
 <artifact-studio artifact="Excel pivot-table finding with unit labels, source note, and claim-first chart title" course="CAT 100" section="03.01"></artifact-studio>
 
-Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
+Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion (for example, a Flash Fill pattern or a Copilot in Excel cleanup you checked and declined) was not accepted.
 
 ## Adaptive Support
 

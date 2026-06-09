@@ -76,6 +76,26 @@
       "explanation": "The lab PDFs and the slides belong to one module, so a task folder keeps them together. Type folders split one assignment across the disk.",
       "misconception_id": "cat100_supplement_7_1_folder_by_filetype",
       "difficulty": "hard"
+    },
+    {
+      "id": "cat100_supplement_7_1_file_organization_for_coursework_bounded_ai_move",
+      "type": "multiple_choice",
+      "concept_id": "cat100_supplement_file_organization_for_coursework",
+      "concept_ids": [
+        "cat100_supplement_file_organization_for_coursework",
+        "ai_supported_learning"
+      ],
+      "stem": "An AI organize-my-folder tool (such as Copilot Suggested Rename or File Explorer AI Actions) proposes renaming your CAT 100 folder to a date-leading scheme, padding versions as _v2, and auto-deleting files it labels 'duplicates.' Which response shows a bounded AI move?",
+      "options": [
+        "Accept everything, since the AI has read the file contents",
+        "Reject everything, since AI tools cannot help with file organization",
+        "Accept the date-leading pattern, modify the version padding to _v02, and reject the auto-delete because the tool cannot know which version has the corrected calculations",
+        "Accept the auto-delete first so the folder is smaller before renaming"
+      ],
+      "correct_index": 2,
+      "explanation": "A bounded move accepts what fits your convention, modifies what is close, and rejects what you cannot verify. Auto-deleting 'duplicates' is the unverifiable step: the AI cannot tell which copy holds the corrected calculations.",
+      "misconception_id": "cat100_supplement_7_1_blind_ai_bulk_rename",
+      "difficulty": "medium"
     }
   ]
 }

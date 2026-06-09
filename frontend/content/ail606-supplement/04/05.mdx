@@ -6,11 +6,11 @@
 
 Accessibility is the place where "looks fine to me" is most often wrong, because the designer is rarely the person the design fails. A learner using a screen reader, a learner with low vision, and a learner who cannot distinguish red from green each experience a screen the sighted designer never sees. The Web Content Accessibility Guidelines exist precisely to replace personal taste with verifiable criteria: a contrast ratio is a number you can compute, not an opinion. AIL 606 treats accessibility as a checkable revision, where every fix names the WCAG criterion it satisfies and can be confirmed by anyone, not asserted by the author.
 
-This section teaches you to audit a draft screen against specific WCAG 2.1 AA success criteria and to write fixes that are verifiable rather than tasteful. You should leave able to catch the three most common failures (insufficient contrast, useless alt text, and meaning carried by color alone) and to state which criterion each fix meets.
+This section teaches you to audit a draft screen against specific WCAG 2.2 AA success criteria (WCAG 2.2 is the current W3C Recommendation as of 2026; WCAG 3.0 remains a Working Draft, so audits should target 2.2 AA today) and to write fixes that are verifiable rather than tasteful. You should leave able to catch the three most common failures (insufficient contrast, useless alt text, and meaning carried by color alone) and to state which criterion each fix meets.
 
 ## Learning Targets
 
-- Audit a screen against specific WCAG 2.1 AA success criteria, not general "looks accessible" impressions.
+- Audit a screen against specific WCAG 2.2 AA success criteria, not general "looks accessible" impressions.
 - Compute and check color contrast against the 4.5:1 threshold for normal text.
 - Write alt text that conveys the information an image carries, not the word "image."
 - Ensure no status or meaning is communicated by color alone.
@@ -43,7 +43,7 @@ Contrast is arithmetic, not taste. Given the relative luminance of the text (\$L
 
 ## Worked Example
 
-Work through one annotated before/after accessibility revision of a single quiz-feedback screen against WCAG 2.1 AA.
+Work through one annotated before/after accessibility revision of a single quiz-feedback screen against WCAG 2.2 AA (the three criteria used here, 1.4.3, 1.1.1, and 1.4.1, are unchanged from WCAG 2.1).
 
 **Before (feedback screen markup):**
 

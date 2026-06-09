@@ -48,7 +48,7 @@
         "ai_supported_learning",
         "cat100_supplement_linkedin_and_portfolio_alignment"
       ],
-      "stem": "An AI tool rewrites your LinkedIn headline to \"Award-Winning Developer and Industry Thought Leader.\" You have won no awards and published nothing. The most aligned, honest fix is to:",
+      "stem": "LinkedIn's AI writing assistant rewrites your headline to \"Award-Winning Developer and Industry Thought Leader.\" You have won no awards and published nothing. The most aligned, honest fix is to:",
       "options": [
         "Keep it because headlines are supposed to be bold.",
         "Keep \"Award-Winning\" but drop \"Thought Leader.\"",

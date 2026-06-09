@@ -36,7 +36,7 @@ The discipline is summarized in one principle and one readiness test:
 
 The readiness test is blunt: pick any two of your artifacts and confirm they agree on all four facts. If they do, and your AI-use log explains where a tool helped, the package is ready to submit. Polishing fonts on a package that still has a date mismatch is effort spent on the wrong layer; the consistency of the facts is the layer that decides whether the package earns trust.
 
-<inline-check question="Your resume and bio both say â€˜graduating May 2026,â€™ but your LinkedIn still says â€˜Dec 2025â€™ from an old plan. Every document looks polished on its own. Is the package ready?" explanation="The capstone is a cross-artifact audit, not a per-document polish. A date that disagrees between two artifacts is exactly the seam a recruiter inspects. Each piece looking finished does not make the package finished, the contradiction lives BETWEEN documents." options='[{"text":"No, two artifacts disagree on graduation date; resolve it toward the truth first","correct":true},{"text":"Yes, each document looks polished on its own","correct":false},{"text":"Yes, dates do not matter to recruiters","correct":false},{"text":"No, but only because the fonts differ","correct":false}]'></inline-check>
+<inline-check question="Your resume and bio both say ‘graduating May 2026,’ but your LinkedIn still says ‘Dec 2025’ from an old plan. Every document looks polished on its own. Is the package ready?" explanation="The capstone is a cross-artifact audit, not a per-document polish. A date that disagrees between two artifacts is exactly the seam a recruiter inspects. Each piece looking finished does not make the package finished, the contradiction lives BETWEEN documents." options='[{"text":"No, two artifacts disagree on graduation date; resolve it toward the truth first","correct":true},{"text":"Yes, each document looks polished on its own","correct":false},{"text":"Yes, dates do not matter to recruiters","correct":false},{"text":"No, but only because the fonts differ","correct":false}]'></inline-check>
 
 ## Worked Example: A Final Consistency Pass on the Brand Package
 
@@ -65,13 +65,15 @@ The studio capstone is the whole package: resume, bio, LinkedIn, portfolio, plus
 **Step 4. Complete the AI-use log row.**
 
 ```
-Used AI to brainstorm 5 LinkedIn headlines. Chose the one matching my real
+Used ChatGPT to brainstorm 5 LinkedIn headlines. Chose the one matching my real
 dashboard work, rejected 2 that claimed "expert analyst," rewrote in my voice.
 ```
 
+Any current assistant (ChatGPT, Microsoft Copilot, or Claude) fits the brainstorm step; what matters is that the log names the tool you actually used.
+
 **Step 5. Declare readiness by the right test.** The package is ready because any two artifacts now agree on name, title, date, and proof, and the log explains where a tool helped. That, not polish, is the submit signal.
 
-<step-reveal title="Run the consistency pass on a four-artifact package" steps='[{"prompt":"You have a resume, bio, LinkedIn, and portfolio that each look finished. What is the FIRST move of the studio pass?","predictType":"choice","choices":["Pick the prettiest font and apply it to all four","Lay the four facts (name, title, dates, headline proof) side by side, one row per artifact","Submit the package, it looks done","Rewrite the resume from scratch"],"answerIndex":1,"reveal":"Right. The comparison table is the whole point. Contradictions are only visible when you read DOWN each fact column, not while admiring one page at a time."},{"prompt":"Scanning the table, LinkedIn says â€˜Dec 2025â€™ while resume and bio say â€˜May 2026,â€™ and LinkedInâ€™s headline is the vague â€˜data projects.â€™ How do you resolve these?","predictType":"choice","choices":["Make the prettiest version win","Fix the facts toward the truth: set LinkedIn to May 2026 and lead with the real Tableau dashboard","Delete LinkedIn","Average the two dates"],"answerIndex":1,"reveal":"Yes. Resolve toward truth, not toward whichever looked nicest. Fix facts before fonts."},{"reveal":"You also standardize the display name to â€˜Jordan Ellisâ€™ everywhere and add the missing portfolio title, then complete the AI-use log row: brainstormed 5 headlines, kept the one matching real work, rejected 2 that claimed â€˜expert analyst.â€™"},{"prompt":"What is the actual submit signal, the thing that says the package is ready?","predictType":"choice","choices":["A feeling of being done","A new, more professional template","Any two artifacts agree on all four facts, and the log explains the toolâ€™s role","Every document is the same length"],"answerIndex":2,"reveal":"Exactly. Finished-looking is not finished. Agreement on the facts plus a truthful AI-use log is the readiness test."}]'></step-reveal>
+<step-reveal title="Run the consistency pass on a four-artifact package" steps='[{"prompt":"You have a resume, bio, LinkedIn, and portfolio that each look finished. What is the FIRST move of the studio pass?","predictType":"choice","choices":["Pick the prettiest font and apply it to all four","Lay the four facts (name, title, dates, headline proof) side by side, one row per artifact","Submit the package, it looks done","Rewrite the resume from scratch"],"answerIndex":1,"reveal":"Right. The comparison table is the whole point. Contradictions are only visible when you read DOWN each fact column, not while admiring one page at a time."},{"prompt":"Scanning the table, LinkedIn says ‘Dec 2025’ while resume and bio say ‘May 2026,’ and LinkedIn’s headline is the vague ‘data projects.’ How do you resolve these?","predictType":"choice","choices":["Make the prettiest version win","Fix the facts toward the truth: set LinkedIn to May 2026 and lead with the real Tableau dashboard","Delete LinkedIn","Average the two dates"],"answerIndex":1,"reveal":"Yes. Resolve toward truth, not toward whichever looked nicest. Fix facts before fonts."},{"reveal":"You also standardize the display name to ‘Jordan Ellis’ everywhere and add the missing portfolio title, then complete the AI-use log row: brainstormed 5 headlines, kept the one matching real work, rejected 2 that claimed ‘expert analyst.’"},{"prompt":"What is the actual submit signal, the thing that says the package is ready?","predictType":"choice","choices":["A feeling of being done","A new, more professional template","Any two artifacts agree on all four facts, and the log explains the tool’s role","Every document is the same length"],"answerIndex":2,"reveal":"Exactly. Finished-looking is not finished. Agreement on the facts plus a truthful AI-use log is the readiness test."}]'></step-reveal>
 
 Reduced to its order, the studio pass tabulates, scans, resolves, and only then polishes, with the AI-use log closing it out.
 
@@ -129,7 +131,7 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the module 2 branding checklist for CAT 100 02.08. A peer comment points to a evidence move issue connected to [ISTE digital citizenship](https://iste.org/standards/students). Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
+<dynamic-scenario prompt="You are revising the module 2 branding checklist for CAT 100 02.08. A peer comment points to an evidence move issue connected to [ISTE digital citizenship indicator 1.2.a, Digital Footprint](https://iste.org/standards/students): students cultivate and manage their digital identity and reputation. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
@@ -139,7 +141,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, check that the module 2 branding checklist records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change.
+Before you move on, check that the module 2 branding checklist records audience, evidence source, AI/software support, accepted revision, rejected suggestion, and confidence change. The AI-use log should also follow your course or institution's AI-use disclosure expectation: substantive AI use, such as generating headline text, must be declared, while light proofreading may not need to be.
 
 ## References
 

@@ -1,0 +1,18 @@
+[
+ {
+  "section_key": "cat100/02/03",
+  "type": "accuracy_fix",
+  "gap_summary": "Bio section labels its deliverable a resume revision with 'role fit' in meta, link, artifact-studio, support, scenario.",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: wrong phrase found 5x in 03.mdx, 2x in 03.meta.json, 2x in linked packet; body teaches bio role-focus-proof pattern. All 9 replaced with bio label.",
+  "applied": true
+ },
+ {
+  "section_key": "cat100/02/08",
+  "type": "accuracy_fix",
+  "gap_summary": "UTF-8-as-CP1252 mojibake (â€˜/â€™) in inline-check question and step-reveal prompt/reveal strings of 08.mdx.",
+  "verdict": "skipped_already",
+  "evidence": "Gap was real: git HEAD 08.mdx had 16 mojibake byte sequences at the described lines; uncommitted working tree already has proper U+2018/U+2019 (0 mojibake bytes).",
+  "applied": false
+ }
+]

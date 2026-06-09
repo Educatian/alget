@@ -17,7 +17,7 @@ This section teaches a concrete, repeatable filing system you can set up in fift
 
 ## Opening Case
 
-A student finishes a lab report at 11:50 PM, opens the upload page, and faces four candidate files: `lab.docx`, `lab_final.docx`, `lab_final2.docx`, and `FINAL_real.docx`. The modified dates all read "today" because the file was opened (not edited) on each. There is no way to tell which is the version with the corrected calculations short of opening all four and reading them. That two-minute panic is the exact failure a naming convention prevents.
+A student finishes a lab report at 11:50 PM, opens the upload page, and faces four candidate files: `lab.docx`, `lab_final.docx`, `lab_final2.docx`, and `FINAL_real.docx`. The modified dates all read "today" because the student saved, duplicated, and re-exported all four during the same late-night session, so they cluster to the same day. There is no way to tell which is the version with the corrected calculations short of opening all four and reading them. That two-minute panic is the exact failure a naming convention prevents.
 
 The deeper point is that file names are a communication channel. A good name tells a reader the date, the course, the task, and the version without opening the file. A bad name forces a guess, and guesses under deadline pressure produce wrong submissions.
 
@@ -73,7 +73,7 @@ Three concrete changes did the work:
 
 1. **Folder tree by course then module then task** so one assignment's files travel together.
 2. **Name pattern `date_course_task_version`** so `_v3` is obviously newer than `_v2`, no `FINAL_real` guessing.
-3. **A second synced copy** in OneDrive so a dead USB stick cannot erase the only version.
+3. **A second synced copy** in a cloud drive such as OneDrive (5 GB free), Google Drive (15 GB free), or iCloud Drive (5 GB free) so a dead USB stick cannot erase the only version. University-provided storage (institutional OneDrive or Google Workspace for Education) is often the safest second copy, because it has effectively large quotas and survives a lost personal device.
 
 The improvement is not nicer wording. It is a structure another person, or future-you, can navigate without asking.
 
@@ -89,7 +89,7 @@ A well-filed assignment should pass three quick tests:
 
 1. **Location test:** Does this file live in its course/module/task leaf folder, not loose on the Desktop or in Downloads?
 2. **Name test:** Does the name lead with an ISO date and say course, task, and version, so the newest copy is obvious without opening it?
-3. **Backup test:** Is there a second synced copy somewhere a single dead drive cannot erase?
+3. **Backup test:** Is there a second synced copy (OneDrive, Google Drive, iCloud Drive, or your university's institutional storage) somewhere a single dead drive cannot erase? Free-tier quotas change frequently, so verify the current offering rather than trusting a remembered number.
 
 If any test fails, the file is findable today only because you remember where it is, and that memory will not survive to week 14.
 
@@ -145,7 +145,9 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same naming and backup rule to a new setting.
 - If your note makes a **connection**, show where the connection changes the structure.
 
-<dynamic-scenario prompt="You are revising the coursework file organization plan for CAT 100 07.01. A peer comment points to a evidence move issue connected to [ISTE digital citizenship](https://iste.org/standards/students). Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
+AI features now offer to do this organizing for you: as of 2026, Copilot "Suggested Rename" in OneDrive and File Explorer "AI Actions" can batch-rename or reorganize files based on their content. Treat these like any bounded support move: accept what fits your convention, modify what does not, and reject anything you cannot verify, and note that such features change frequently, so check what the tool currently does.
+
+<dynamic-scenario prompt="You are revising the coursework file organization plan for CAT 100 07.01. A peer comment says they cannot tell which file is your latest draft from the names alone. Choose the next revision move (rename to date_course_task_version, restructure the folder tree, or add a backup) and state the evidence that would show it helped (e.g., a classmate finds the newest version in under 30 seconds)."></dynamic-scenario>
 
 ## Check Your Understanding
 

@@ -60,12 +60,14 @@ If you change the lab fee to 60, cell B5 still says 250. The value is stale.
 
 ```
        A            B            C
-1  Item         Cost         Tax rate: 0.08
+1  Item         Cost         0.08         <- tax rate; C1 holds only the number
 2  Books        120          =B2*$C$1
 3  Lab fee      60           =B3*$C$1
 4  Software     85           =B4*$C$1
 5  TOTAL        =SUM(B2:B4)   =SUM(C2:C4)
 ```
+
+Note that C1 holds the bare value `0.08`, with the "tax rate" label kept in a comment or header outside the cell. If C1 held the text "Tax rate: 0.08," the formula `=B2*$C$1` would try to multiply by a text string and return an error instead of the tax (with B2 = 120, the correct result is 9.6).
 
 Three concrete moves made it a template:
 
@@ -73,7 +75,7 @@ Three concrete moves made it a template:
 2. **Relative and absolute references.** `=B2*$C$1` copies down so B shifts to B3, B4 while the tax rate stays locked at `$C$1`.
 3. **Edit a copy, keep the master blank.** Save As `budget_2026spring.xlsx` so `budget_template.xlsx` stays reusable next term.
 
-<step-reveal title="Predict what each reference does when you copy the formula down" steps='[{"prompt":"Cell C2 holds =B2*$C$1. You copy it down into C3. The B2 part is a relative reference. What does it become?","predictType":"choice","choices":["It stays B2","It becomes B3","It becomes C2","It becomes $B$3"],"answerIndex":1,"reveal":"Relative references shift with the copy, so B2 becomes B3, picking up each rowâ€™s own cost."},{"prompt":"In that same copied formula, the $C$1 part is an absolute reference. What does it become in C3?","predictType":"choice","choices":["It becomes $C$2","It becomes C1","It stays locked at $C$1","It becomes $D$1"],"answerIndex":2,"reveal":"The dollar signs pin both the column and row, so $C$1 stays locked on the single tax-rate cell no matter where you copy it."},{"reveal":"If you had written =B2*C1 with no dollar signs, copying down would give =B3*C2, =B4*C3, and the rate reference would drift off C1 entirely and produce garbage. Lock the shared constant with $C$1."}]'></step-reveal>
+<step-reveal title="Predict what each reference does when you copy the formula down" steps='[{"prompt":"Cell C2 holds =B2*$C$1. You copy it down into C3. The B2 part is a relative reference. What does it become?","predictType":"choice","choices":["It stays B2","It becomes B3","It becomes C2","It becomes $B$3"],"answerIndex":1,"reveal":"Relative references shift with the copy, so B2 becomes B3, picking up each row’s own cost."},{"prompt":"In that same copied formula, the $C$1 part is an absolute reference. What does it become in C3?","predictType":"choice","choices":["It becomes $C$2","It becomes C1","It stays locked at $C$1","It becomes $D$1"],"answerIndex":2,"reveal":"The dollar signs pin both the column and row, so $C$1 stays locked on the single tax-rate cell no matter where you copy it."},{"reveal":"If you had written =B2*C1 with no dollar signs, copying down would give =B3*C2, =B4*C3, and the rate reference would drift off C1 entirely and produce garbage. Lock the shared constant with $C$1."}]'></step-reveal>
 
 <inline-check question="You want a percentage cell to recalculate automatically every time you enter a new graded item. Should it hold a typed number or a formula?" explanation="A typed value is a snapshot frozen at the moment you typed it; a formula like =SUM(B2:B10)/SUM(C2:C10) is a living relationship that updates with its inputs. Results get formulas." options='[{"text":"A formula, so it recomputes whenever an input changes","correct":true},{"text":"A typed number, because it is faster to enter","correct":false},{"text":"A typed number locked with dollar signs","correct":false},{"text":"Either one works identically","correct":false}]'></inline-check>
 
@@ -87,7 +89,7 @@ A reusable document passes three checks:
 
 1. **Formula check:** Is every computed cell a formula, so nothing goes stale when an input changes?
 2. **Reference check:** When you copy a formula, do row references shift and shared constants stay locked with `$`?
-3. **Master check:** Is the blank template preserved separately from the filled-in working copy?
+3. **Master check:** Is the blank template preserved separately from the filled-in working copy? In current Excel, File > Save As and choosing Excel Template (.xltx) keeps the master blank; you reuse it through File > New > Personal.
 
 If a "total" is a typed number, the document is a one-time snapshot, not a template.
 
@@ -119,6 +121,8 @@ A strong reader of a template can answer four questions:
 The artifact is a working template plus a short note on its formulas. It is strong when a reader can change any input and watch every result update correctly, and when the absolute references are placed exactly where a shared constant lives.
 
 A useful note sounds like this: "I replaced the typed total with `=SUM(B2:B4)` and built the tax column as `=B2*$C$1` so it copies down without losing the rate. I rejected hard-coding the 0.08 rate into each formula because then changing the rate would mean editing every row instead of one cell."
+
+AI assistants can now draft and explain these formulas: as of 2026, Copilot in Excel can generate a calculation column or explain what `=B2*$C$1` does ("Explain this formula"). Apply the same accept/modify/reject discipline you use everywhere else, for example, reject a Copilot draft that hard-codes 0.08 into every row instead of referencing `$C$1`. These features change with each release, so verify what the tool currently offers.
 
 ## Transfer Case
 

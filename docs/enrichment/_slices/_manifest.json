@@ -1,0 +1,216 @@
+{
+ "apply": [
+  {
+   "file": "docs/enrichment/_slices/apply_cat100_01.json",
+   "course": "cat100",
+   "chapter": "01",
+   "sections": 7,
+   "ops": 11
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat100_02.json",
+   "course": "cat100",
+   "chapter": "02",
+   "sections": 8,
+   "ops": 15
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat100_03.json",
+   "course": "cat100",
+   "chapter": "03",
+   "sections": 8,
+   "ops": 11
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat100_04.json",
+   "course": "cat100",
+   "chapter": "04",
+   "sections": 8,
+   "ops": 13
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat100_05.json",
+   "course": "cat100",
+   "chapter": "05",
+   "sections": 8,
+   "ops": 16
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat100_06.json",
+   "course": "cat100",
+   "chapter": "06",
+   "sections": 8,
+   "ops": 19
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat100_07.json",
+   "course": "cat100",
+   "chapter": "07",
+   "sections": 8,
+   "ops": 17
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat100_08.json",
+   "course": "cat100",
+   "chapter": "08",
+   "sections": 8,
+   "ops": 13
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat531_01.json",
+   "course": "cat531",
+   "chapter": "01",
+   "sections": 8,
+   "ops": 21
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat531_02.json",
+   "course": "cat531",
+   "chapter": "02",
+   "sections": 8,
+   "ops": 20
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat531_03.json",
+   "course": "cat531",
+   "chapter": "03",
+   "sections": 8,
+   "ops": 26
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat531_04.json",
+   "course": "cat531",
+   "chapter": "04",
+   "sections": 8,
+   "ops": 25
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat531_05.json",
+   "course": "cat531",
+   "chapter": "05",
+   "sections": 8,
+   "ops": 17
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat531_06.json",
+   "course": "cat531",
+   "chapter": "06",
+   "sections": 6,
+   "ops": 14
+  },
+  {
+   "file": "docs/enrichment/_slices/apply_cat531_07.json",
+   "course": "cat531",
+   "chapter": "07",
+   "sections": 3,
+   "ops": 8
+  }
+ ],
+ "verify": [
+  {
+   "file": "docs/enrichment/_slices/verify_ail606_01.json",
+   "course": "ail606",
+   "chapter": "01",
+   "sections": 6,
+   "ops": 6
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_ail606_02.json",
+   "course": "ail606",
+   "chapter": "02",
+   "sections": 4,
+   "ops": 5
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_ail606_03.json",
+   "course": "ail606",
+   "chapter": "03",
+   "sections": 3,
+   "ops": 6
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_ail606_04.json",
+   "course": "ail606",
+   "chapter": "04",
+   "sections": 6,
+   "ops": 7
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_ail606_05.json",
+   "course": "ail606",
+   "chapter": "05",
+   "sections": 1,
+   "ops": 1
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_ail606_06.json",
+   "course": "ail606",
+   "chapter": "06",
+   "sections": 3,
+   "ops": 3
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_ail606_07.json",
+   "course": "ail606",
+   "chapter": "07",
+   "sections": 2,
+   "ops": 2
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_ail606_08.json",
+   "course": "ail606",
+   "chapter": "08",
+   "sections": 4,
+   "ops": 5
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_cat100_02.json",
+   "course": "cat100",
+   "chapter": "02",
+   "sections": 2,
+   "ops": 2
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_cat100_06.json",
+   "course": "cat100",
+   "chapter": "06",
+   "sections": 1,
+   "ops": 1
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_cat100_07.json",
+   "course": "cat100",
+   "chapter": "07",
+   "sections": 1,
+   "ops": 1
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_cat531_05.json",
+   "course": "cat531",
+   "chapter": "05",
+   "sections": 1,
+   "ops": 1
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_cat531_06.json",
+   "course": "cat531",
+   "chapter": "06",
+   "sections": 3,
+   "ops": 3
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_cat531_07.json",
+   "course": "cat531",
+   "chapter": "07",
+   "sections": 2,
+   "ops": 2
+  },
+  {
+   "file": "docs/enrichment/_slices/verify_cat531_08.json",
+   "course": "cat531",
+   "chapter": "08",
+   "sections": 3,
+   "ops": 3
+  }
+ ]
+}

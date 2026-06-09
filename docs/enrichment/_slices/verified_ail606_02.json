@@ -1,0 +1,42 @@
+[
+ {
+  "section_key": "ail606/02/01",
+  "type": "currency_update",
+  "gap_summary": "meta.json description/LO1 are the templated stock string, not the section's four-part defensible-decision framework",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 01.mdx Core Concept defines purpose/constraint/evidence/revision + before/after Frame 3 storyboard worked example; meta carried generic string.",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/02/04",
+  "type": "accuracy_fix",
+  "gap_summary": "Artifact mislabeled as chapter-generic storyboard sequence; section assesses a feedback/timing/control loop",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 04.mdx Stronger Artifact Standard specifies feed-forward text, reveal-timing rule, skip cost, behavioral signal; storyboard label appeared in LO1, studio, support, Final Check.",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/02/05",
+  "type": "currency_update",
+  "gap_summary": "References pinned to Mayer 2nd-ed DOI, CLT cite only 2011 monograph, UDL link unversioned; needs 2026-current editions",
+  "verdict": "confirmed",
+  "evidence": "Crossref: 10.1017/9781316941355 = Mayer Multimedia Learning 3rd ed 2020; 10.1017/9781108894333 = Handbook 3rd ed 2021; 10.1007/s10648-019-09465-5 = Sweller et al. 2019 EPR; CAST UDL 3.0 released 2024-07-30 (udlguidelines.cast.org).",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/02/08",
+  "type": "accuracy_fix",
+  "gap_summary": "Design-memo section carries the storyboard artifact label in LO1, studio tag, packet link, support bullets, scenario, Final Check",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 08.mdx body teaches BLUF memo anatomy (header/recommendation/evidence/trade-off) and never assigns a storyboard; all storyboard strings replaced with memo artifact label.",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/02/08",
+  "type": "accuracy_fix",
+  "gap_summary": "Final Check demanded a cognitive-load diagnosis, CLT boilerplate that contradicts the memo's checkable elements",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: memo anatomy in 08.mdx Core Concept = header, BLUF, claim-linked evidence, acknowledged trade-off; Final Check rewritten to those elements, rejected-suggestion element retained.",
+  "applied": true
+ }
+]

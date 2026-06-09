@@ -1,0 +1,298 @@
+[
+ {
+  "section_key": "cat100/01/02",
+  "section_title": "Responsible AI Use in Coursework",
+  "dir": "frontend/content/cat100-supplement/01",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI tools are referenced inconsistently and vaguely. The MDX body keeps everything generic ('a chatbot and a grammar checker', 'an AI'), while practice.json artifact_signal hard-codes 'Used ChatGPT on 6/3'. The course currency-watch flags that unnamed/generic AI framing should be grounded in current 2026 named tools with a note on model/version churn. The single named tool (ChatGPT) appears only once and is not reconciled with the body.",
+    "proposed_change": "Add one short parenthetical in the Core Concept (after the four-part disclosure table, line ~37) or the Worked Example intro anchoring 'chatbot'/'grammar checker' to current 2026 named examples: 'a general chatbot such as ChatGPT, Google Gemini, Claude, or Microsoft Copilot; a grammar tool such as Grammarly', plus a one-line caveat that tool names and model versions change fast and the disclosure should record the specific tool/version you actually used. CONFIRMED current: as of April-June 2026 ChatGPT remains dominant (54.7% of web visits across the seven largest chatbots, or 76.85% by StatCounter), Gemini is #2 (27.4% / 9%), Claude (8.2% / 2.66%) and Copilot (3.76%) round out the named set, so all four anchors are valid. The churn caveat is also supported: ChatGPT's share fell from ~76.5% (Feb 2025) to 54.7% (Apr 2026) while Gemini's rose from ~5.6% to 27.4%.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\02.mdx -> Core Concept after the disclosure table (line ~37) or Worked Example intro; reconcile with 02.practice.json artifact_signal stem (line 14, 'Used ChatGPT on 6/3')",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Similarweb / First Page Sage, Top Generative AI Chatbots by Market Share (June 2026)",
+      "url_or_doi": "https://firstpagesage.com/reports/top-generative-ai-chatbots/",
+      "finding": "April 2026: ChatGPT 54.7% of worldwide web visits across the seven largest chatbots, Google Gemini 27.4%, Anthropic Claude 8.2%; ChatGPT's share fell from ~76.5% (Feb 2025) to 54.7% (Apr 2026) while Gemini's rose from ~5.6% to 27.4% — confirming both the named-tool set and rapid version/share churn."
+     },
+     {
+      "cite": "Statcounter Global Stats, AI Chatbot Market Share (April 2026)",
+      "url_or_doi": "https://gs.statcounter.com/ai-chatbot-market-share",
+      "finding": "ChatGPT 76.85%, Google Gemini 9%, Perplexity 7.73%, Microsoft Copilot 3.76%, Claude 2.66% — corroborates that ChatGPT, Gemini, Claude, and Copilot are the dominant named generative-AI chatbots in 2026."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/01/03",
+  "section_title": "ETHOBOT CAT100 Orientation",
+  "dir": "frontend/content/cat100-supplement/01",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed entirely tool-agnostically. ETHOBOT and BigAL are the only named agents (lines 7, 101); no current 2026 tool/model is named and no institutional GenAI academic-integrity / AI-use-disclosure expectation is stated. Ch1 is the responsible-AI-use chapter and the critique log is itself an AI-use disclosure artifact, so the gap is conspicuous. Verified that an AI-use-disclosure norm is now standard practice in higher education for 2025-2026.",
+    "proposed_change": "Add a short 'Recent Evidence' / 'AI-use disclosure in 2026' callout near the Core Concept (lines 24-36) or within Stronger Artifact Standard (lines 99-103) noting that (a) ETHOBOT is the course's bounded tutor and may be backed by general-purpose assistants students also encounter (e.g., ChatGPT, Claude, Copilot, as examples of the same accept/modify/reject discipline), and (b) many programs now require an AI-use disclosure statement naming which tool was used, for what purpose, and to what extent, and the critique log doubles as that disclosure. Tie to the course's Ch8 AI-use disclosure portfolio.",
+    "where_to_apply": "03.mdx -> new callout after 'Core Concept' (line 36) or within 'Stronger Artifact Standard' (lines 99-103)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Thesify (Oct 2025) Generative AI Policies at the World's Top Universities; Carnegie Mellon disclosure model",
+      "url_or_doi": "https://www.thesify.ai/blog/gen-ai-policies-update-2025",
+      "finding": "Disclosure became the standard university approach by 2025; the widely adapted CMU model requires students to disclose (1) which AI tool was used, (2) the purpose (brainstorming/drafting/editing/citation/translation), and (3) the extent of AI-generated content in the submission."
+     },
+     {
+      "cite": "Azevedo et al. (2025) Institutional Policies on Artificial Intelligence in Higher Education, New Directions for Adult and Continuing Education",
+      "url_or_doi": "https://doi.org/10.1002/ace.70013",
+      "finding": "Peer-reviewed synthesis documents the shift to framework/disclosure-based AI policies in higher education, with disclosure specific enough that a reader can tell human from AI-assisted contributions (consistent with ICAI 2025 guidelines)."
+     },
+     {
+      "cite": "Princeton University Library (2025) Disclosing the Use of AI",
+      "url_or_doi": "https://libguides.princeton.edu/generativeAI/disclosure",
+      "finding": "Major universities (Princeton, Stanford, Harvard) now instruct students to confirm permitted AI use and disclose any AI assistance; ChatGPT, Claude, and Copilot are the commonly named general-purpose assistants students encounter in 2025-2026."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/01/04",
+  "section_title": "Prompting With Verification",
+  "dir": "frontend/content/cat100-supplement/01",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "All AI references are generic ('a chatbot', 'the model', 'AI', plus mascot 'BigAL'). The course currency-watch flags that CAT100 AI use is tool-agnostic to the point of vagueness and should be grounded in current 2026 named tools, noting that built-in 'search/grounding' modes change the verification calculus.",
+    "proposed_change": "Add one concrete current example (a small callout before 'Decision Rule', or after the prompt-then-verify table at line 36) without over-coupling to one vendor: note that as of 2026 mainstream assistants (ChatGPT, Claude, Google Gemini, Microsoft Copilot, Perplexity) increasingly offer a web-search/grounding mode that cites sources, but that cited output still must be opened and confirmed because the citation can be wrong, the page misread, or the link dead. Ground this with the Tow Center (Columbia, March 2025) finding that AI search engines failed to produce accurate citations in over 60% of tests. Add a one-line model/version-churn caveat. This modernizes the section while preserving the verify-anyway discipline.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\04.mdx -> 'Core Concept' after the prompt-then-verify table (line 36) or a new callout before 'Decision Rule' (line 65)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Jaźwińska & Chandrasekar / Tow Center for Digital Journalism, Columbia (March 2025), via Nieman Lab",
+      "url_or_doi": "https://www.niemanlab.org/2025/03/ai-search-engines-fail-to-produce-accurate-citations-in-over-60-of-tests-according-to-new-tow-center-study/",
+      "finding": "Across 200 tests on eight AI search tools (incl. ChatGPT Search, Perplexity, Gemini), AI search engines failed to produce accurate citations in over 60% of tests. Confirms that even web-search/grounding modes that show sources still require the user to open and verify each cited page."
+     },
+     {
+      "cite": "IntuitionLabs (2026), Claude vs ChatGPT vs Copilot vs Gemini Enterprise Guide",
+      "url_or_doi": "https://intuitionlabs.ai/articles/claude-vs-chatgpt-vs-copilot-vs-gemini-enterprise-comparison",
+      "finding": "Confirms that as of 2026 ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google, via Google Search grounding), and Microsoft Copilot are the leading assistants and offer web-search/citation modes; supports naming current 2026 tools and the grounding-mode framing. Use a non-scholarly source only for the tool-name currency check."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/01/05",
+  "section_title": "Privacy and Account Safety",
+  "dir": "frontend/content/cat100-supplement/01",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The 2FA framing stops at 'app-based 2FA' and treats SMS as implicitly equivalent. As of 2024-2026 the consensus has shifted: SMS codes are phishable (SIM-swap/relay), app TOTP codes are still phishable via real-time adversary-in-the-middle relay, and passkeys / FIDO2 are the phishing-resistant default offered by Google, Microsoft, and Apple. Critically, the section's own branching scenario has the attacker capture the password on a fake page; an app-based TOTP code typed into that same page would ALSO be captured, which the current text never acknowledges.",
+    "proposed_change": "Add a one-sentence ranking to the Core Concept 2FA row (or the Decision Rule second-factor check): not all second factors are equal. SMS is weakest (SIM-swap/relay); app TOTP codes are better but can still be relayed through a fake login page; passkeys / security keys are phishing-resistant because they are cryptographically bound to the real site's domain and cannot be entered on a lookalike page. Tie back to the branching-scenario 'breach' node: a passkey would have blocked the login even after the password (and even a TOTP code) was phished, because the lookalike domain cannot satisfy the WebAuthn origin check.",
+    "where_to_apply": "cat100-supplement/01/05.mdx -> 'Core Concept' table 2FA row + 'Decision Rule' second-factor check (optionally a new 'Recent Evidence' callout); reflects into the branching-scenario breach node",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "CISA, 'Implementing Phishing-Resistant MFA' / Fact Sheet (FIDO/WebAuthn as gold standard; 'do not use SMS as a second factor')",
+      "url_or_doi": "https://www.cisa.gov/resources-tools/resources/implementing-phishing-resistant-mfa",
+      "finding": "CISA ranks FIDO/WebAuthn (passkeys/security keys) as the phishing-resistant gold standard, app-based authenticators as next-best, and SMS as a last resort, explicitly warning against SMS as a second factor due to phishing and SIM-swap exposure."
+     },
+     {
+      "cite": "ID Dataweb (2025) 'Passkeys vs. OTP: Why 2025 is the tipping point for phishing-resistant MFA'",
+      "url_or_doi": "https://www.iddataweb.com/passkeys-vs-otp-2025/",
+      "finding": "TOTP/OTP codes can be phished in real time by adversary-in-the-middle proxies; FIDO2/WebAuthn passkeys cannot be proxied because the signed challenge is scoped to the real origin, and Google, Apple, and Microsoft have made passkeys a default authentication method."
+     },
+     {
+      "cite": "Verizon (2025) Data Breach Investigations Report - MFA bypass section",
+      "url_or_doi": "https://www.verizon.com/business/resources/reports/dbir/",
+      "finding": "The 2025 DBIR documents a surge in MFA-bypass attacks against phishable methods (OTP, number match, push), confirming that app-code/SMS 2FA is being bypassed at scale while phishing-resistant methods are recommended."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "evidence_add",
+    "gap": "Central empirical claims are stated without a source in a course that explicitly values evidence-grounding: 'attackers take email-and-password pairs leaked from one breach and try them on hundreds of other sites automatically' (credential stuffing) and 'two-factor authentication blocks most account takeovers' (practice annotation_signal explanation and 2fa_unnecessary misconception feedback both say 'blocks most takeovers'). True, but currently bare assertions.",
+    "proposed_change": "Add a short 'Recent Evidence' callout after the Core Concept table citing primary security sources: (a) the Google/NYU/UCSD 2019 study showing an on-device prompt blocked 100% of automated bot attacks, 99% of bulk phishing, and 90% of targeted attacks (SMS code: 100%/96%/76%) - this grounds 'blocks most takeovers' and gives a precise figure; (b) a credential-stuffing/stolen-credential scale figure from the Verizon DBIR (stolen credentials the single largest breach vector, ~31-38% of breaches; ~22% of breaches begin with credential abuse) to ground 'tried everywhere automatically'. Then tighten 'blocks most takeovers' in 05.practice.json annotation_signal explanation and 05.misconceptions.json 2fa_unnecessary feedback so the wording matches the cited figures (e.g., 'blocks essentially all automated attacks and the large majority of targeted ones' rather than an unqualified 'most').",
+    "where_to_apply": "cat100-supplement/01/05.mdx -> new 'Recent Evidence' callout after 'Core Concept' table; tighten wording in cat100-supplement/01/05.practice.json (annotation_signal explanation) and 05.misconceptions.json (2fa_unnecessary feedback)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Google Security Blog (2019) 'New research: How effective is basic account hygiene at preventing hijacking' (Google with NYU and UC San Diego, presented at The Web Conference 2019)",
+      "url_or_doi": "https://security.googleblog.com/2019/05/new-research-how-effective-is-basic.html",
+      "finding": "Adding an on-device prompt as a second factor blocked 100% of automated bot attacks, 99% of bulk phishing attacks, and 90% of targeted attacks; an SMS code blocked 100% of automated, 96% of bulk phishing, and 76% of targeted attacks - grounding the 'blocks most takeovers' claim with concrete numbers."
+     },
+     {
+      "cite": "Verizon (2025) Data Breach Investigations Report",
+      "url_or_doi": "https://www.verizon.com/business/resources/reports/dbir/",
+      "finding": "Stolen credentials remain the top breach vector (about 31% in the 2025 DBIR, down from 38% in 2024, still more than double any other single vector); roughly 22% of breaches begin with credential abuse - grounding the credential-stuffing 'tried everywhere automatically' claim."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The AI data-boundary thread is fully tool-agnostic ('an AI tool', 'BigAL') and never names the concrete 2026 reality: whether pasted text is retained/used for training depends on the specific product and account tier (consumer ChatGPT/Gemini/Copilot defaults vs enterprise/education tenants with no-training terms), and many schools provide a managed AI tenant. This is the flagged currency-watch gap (AI use vague to the point of unhelpful) and it weakens the section's strongest AI-literacy move.",
+    "proposed_change": "Add one or two concrete sentences to the Worked Example step 4 (Check AI data boundary) and/or 'Stronger Artifact Standard': consumer chatbots may retain conversation text and use it to improve models unless you opt out (e.g., ChatGPT Settings > Data Controls), whereas enterprise/education tiers (ChatGPT Edu/Enterprise, and the equivalent education tenants from Google and Microsoft) do not train on input by default and can carry FERPA-aligned contractual terms. Recommend checking the specific tool's data-use setting before pasting and preferring the school-provided managed tool for anything with real names or IDs. Mirror this in 05.practice.json ai_boundary explanation (where the distractor 'AI tools keep everything private' is currently the only retention reference). Keep it tool-agnostic in principle but name the categories (consumer vs education/enterprise tenant) so the advice is actionable.",
+    "where_to_apply": "cat100-supplement/01/05.mdx -> 'Worked Example' step 4 and/or 'Stronger Artifact Standard'; mirror in cat100-supplement/01/05.practice.json (ai_boundary explanation)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "OpenAI Help Center 'What if I want to keep my history on but disable model training?' / Enterprise privacy terms",
+      "url_or_doi": "https://help.openai.com/en/articles/8983130-what-if-i-want-to-keep-my-history-on-but-disable-model-training",
+      "finding": "On consumer ChatGPT (Free/Plus/Pro) new conversations are used to improve models by default unless the user opts out via Settings > Data Controls, while ChatGPT Business, Enterprise, Edu, and the API do not use inputs/outputs to train models by default."
+     },
+     {
+      "cite": "Sonomos.ai (2026) 'FERPA and AI: Can Schools and EdTech Use ChatGPT/Claude'",
+      "url_or_doi": "https://sonomos.ai/blog/ferpa-ai-chatgpt-claude-schools-edtech-2026/",
+      "finding": "Consumer ChatGPT (Free/Plus/Pro) cannot satisfy FERPA school-official requirements (no contract restricting data use), whereas Enterprise/Edu tiers from OpenAI, Anthropic, and Google can if the institution has a written agreement imposing FERPA restrictions; Team/Edu tiers contractually prevent student data from training future models."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/01/06",
+  "section_title": "Accessibility Basics",
+  "dir": "frontend/content/cat100-supplement/01",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "06.mdx repeatedly states body text must meet '4.5:1 contrast ratio' (Core Concept table line 38; step-reveal contrast step line 63; sequence-builder line 67; Decision Rule; Strong Reading) but never distinguishes the WCAG 2.2 large-text threshold of 3:1. The central artifact is a SLIDE with a 28pt title (line 57) and chart labels; 28pt qualifies as large text, so a learner could mis-apply 4.5:1 to title text. Contrast guidance is presented as a single universal number.",
+    "proposed_change": "In the Core Concept table 'Contrast ratio' row (line 38) and the step-reveal contrast step (line 63), add a one-clause note: the threshold is 4.5:1 for normal body text but 3:1 for large text (at least 18pt, or at least 14pt bold) and for UI components/graphical objects (SC 1.4.11). This keeps the 28pt slide-title example correct and is a high-value precision fix for slide and chart contexts.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\06.mdx -> Core Concept table 'Contrast ratio' row (line 38) and Worked Example step-reveal contrast step (line 63)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "W3C, Web Content Accessibility Guidelines (WCAG) 2.2, SC 1.4.3 Contrast (Minimum), 2023",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/#contrast-minimum",
+      "finding": "SC 1.4.3 requires a contrast ratio of at least 4.5:1 for normal text and at least 3:1 for large-scale text; large text is defined as at least 18 point, or 14 point bold (or CJK-equivalent)."
+     },
+     {
+      "cite": "W3C, WCAG 2.2, SC 1.4.11 Non-text Contrast, 2023",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/#non-text-contrast",
+      "finding": "SC 1.4.11 requires a contrast ratio of at least 3:1 for user interface components and graphical objects against adjacent colors."
+     },
+     {
+      "cite": "WebAIM, Contrast Checker",
+      "url_or_doi": "https://webaim.org/resources/contrastchecker/",
+      "finding": "WCAG AA requires 4.5:1 for normal text and 3:1 for large text; the tool evaluates entered foreground/background colors against these thresholds, confirming the dual-threshold convention."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI/tool support in 06.mdx is named only as the generic 'BigAL' persona (line 102), and the verification steps ('read the alt aloud' line 35, 'view in grayscale' / 'run a contrast check' line 91) never name concrete, free, current 2026 tools. This is the course-wide tool-agnostic-to-vagueness issue; accessibility is a domain where named built-in tools exist and matter pedagogically.",
+    "proposed_change": "Add a short 'Tools that run these checks' note (after 'What Strong Reading Looks Like', line 98, or appended to 'Stronger Artifact Standard', line 102) naming current free/built-in checkers: the Accessibility Checker built into Microsoft PowerPoint/Word/Excel (Review > Check Accessibility, with a 'Keep accessibility checker running while I work' option) and a browser contrast checker (WebAIM Contrast Checker). IMPORTANT accuracy nuance found in research: Google Slides/Docs does NOT have a native built-in accessibility checker, so do NOT claim it does; for Google, note alt-text fields exist but standards checking needs an add-on (e.g., Grackle) or a contrast checker. Keep BigAL as the draft-generator/explainer, but make clear the standards-checker is a tool/policy, not the LLM. Note tool UI labels drift.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\06.mdx -> new short note after 'What Strong Reading Looks Like' (line 98) or appended to 'Stronger Artifact Standard' (line 102)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft Support, Improve accessibility with the Accessibility Checker (Microsoft 365)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/check-accessibility-while-you-work-in-office-apps-ae9e8ea7-1f22-41af-ad04-cc2919daebae",
+      "finding": "In PowerPoint/Word/Excel, select Review > Check Accessibility to open the Accessibility pane; issues group into Errors, Warnings, and Tips, and a 'Keep accessibility checker running while I work' option enables real-time checking. Confirmed current as of 2026."
+     },
+     {
+      "cite": "WebAIM, Contrast Checker",
+      "url_or_doi": "https://webaim.org/resources/contrastchecker/",
+      "finding": "Free browser-based tool: enter foreground/background hex colors (or use the picker) and it reports pass/fail against WCAG AA/AAA for normal and large text; current and maintained in 2026."
+     },
+     {
+      "cite": "Utah State University, Google Slides Accessibility; Elgin Community College, Accessibility in Google Slides Testing",
+      "url_or_doi": "https://www.usu.edu/accessibility/documents/google-slides-accessibility",
+      "finding": "Google Slides has no built-in accessibility checker; alt-text fields exist, but conformance testing requires a third-party add-on (e.g., Grackle Slides) or an external contrast checker. This refutes naming a native Google Slides checker, so the proposed note must be worded to avoid that error."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/01/07",
+  "section_title": "Evidence of Digital Citizenship",
+  "dir": "frontend/content/cat100-supplement/01",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Confirmed at 07.mdx line 143: 'data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi' is copy-paste boilerplate from data-storytelling sections. It is irrelevant to this section, which is about portfolio evidence/captioning, not data-ink or chart design. The term 'data-ink' appears nowhere in the body; nothing in the section uses Tufte. Its presence is misleading and clutters the evidence anchors.",
+    "proposed_change": "Remove the Tufte line from References (line 143), or replace it with a source actually used in this section: the NACE career-readiness competencies page already cited (line 118/141) or a portfolio/e-portfolio assessment source such as Donnelly & O'Keeffe's ePortfolio work in the International Journal of ePortfolio.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\07.mdx -> References line 143",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "07.mdx body (self-evidence: no Tufte/data-ink usage in section)",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\07.mdx",
+      "finding": "The section teaches portfolio captioning/curation; 'data-ink', charts, and visual-design are never discussed, so the Tufte VDQI reference at line 143 is unused boilerplate and should be removed or replaced."
+     },
+     {
+      "cite": "Donnelly & O'Keeffe (2013) Exploration of ePortfolios for Adding Value and Deepening Student Learning in Contemporary Higher Education, International Journal of ePortfolio",
+      "url_or_doi": "https://api.openalex.org/works?search=eportfolio%20evidence%20competency%20assessment%20higher%20education",
+      "finding": "A topically-relevant e-portfolio assessment source that could replace the off-topic Tufte line if a scholarly anchor is desired."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/01/08",
+  "section_title": "Module 1 Readiness Studio",
+  "dir": "frontend/content/cat100-supplement/01",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI support is named only generically ('ask BigAL', 'the studio's AI'). Per the course currency-watch, AI tooling should be grounded in current 2026 named assistant classes and the model/version churn noted. The 2FA worked example would also be more current naming app-based authenticator/passkey norms rather than just 'app-based 2FA' (MDX lines 60, 105: 'app-based 2FA').",
+    "proposed_change": "Add a short tools callout near Adaptive Support or Stronger Artifact Standard naming a current 2026 assistant class with a version-churn caveat, e.g. 'a current general-purpose assistant such as ChatGPT, Claude, or Gemini in their 2026 versions; model versions change, so record which one and when.' Update the privacy example to mention authenticator apps or passkeys as the current 2FA standard. Keep the pedagogical point (AI helps you inspect, it does not declare you ready) unchanged.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\08.mdx -> 'Stronger Artifact Standard' (BigAL mention, line 103) and a new short callout near 'Adaptive Support' (lines 119-128)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "AI Updates Today (June 2026) - Latest AI Model Releases (llm-stats.com) and TechCrunch I/O 2026 coverage",
+      "url_or_doi": "https://llm-stats.com/llm-updates",
+      "finding": "As of June 2026 the mainstream assistants are on rapidly-churning versions: OpenAI ChatGPT on GPT-5.4/5.5, Anthropic Claude on Opus 4.6-4.8, Google Gemini on 3.1 Pro (rolled across Workspace). This documented version churn directly justifies the 'record which model and when' caveat and confirms ChatGPT/Claude/Gemini as the correct current named assistant classes."
+     },
+     {
+      "cite": "Bitwarden, 'Passkeys vs 2FA: Understanding the security landscape' (2025-2026); CISA/Microsoft phishing-resistant MFA guidance",
+      "url_or_doi": "https://bitwarden.com/resources/passkeys-vs-2fa/",
+      "finding": "Current (2025-2026) best practice: use passkeys where supported as the most secure/phishing-resistant option (aligned with CISA and Microsoft Zero Trust guidance); where passkeys are unavailable, an authenticator app (e.g., Authy, Google Authenticator) is the recommended 2FA, with SMS the weakest fallback. Supports updating the example to name authenticator apps/passkeys as the current 2FA standard."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The References list NACE 'career-readiness-defined' (line 146) and ISTE student standards (line 147) as anchors; the Adaptive Support tie-in also links the NACE page (line 123). A dated link/wording is a real risk since both orgs revise periodically.",
+    "proposed_change": "Verify both anchors. Result: both URLs are live and current; no link change required. NACE career readiness still defines eight competencies (most recently revised Apr 2024); ISTE Standards for Students is current at v4.02 (2024) and still includes the Digital Citizen standard. The existing in-text framing ('NACE career readiness', 'ISTE digital citizenship') remains accurate. Optionally note the NACE competencies were last revised April 2024 if a date is desired, but no correction is needed.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\01\\08.mdx -> References list (lines 146-147) and 'Adaptive Support' NACE link (line 123)",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "NACE, 'What is Career Readiness?' / Competencies (naceweb.org); NACE Career Readiness Competencies, revised Apr 2024 PDF",
+      "url_or_doi": "https://www.naceweb.org/career-readiness/competencies/career-readiness-defined",
+      "finding": "Page is live and current. NACE still defines career readiness around eight competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology), most recently revised April 2024. The existing reference URL and in-text 'NACE career readiness' framing remain valid (current content fine; no change required)."
+     },
+     {
+      "cite": "ISTE Standards for Students (iste.org/standards/students), v4.02, 2024",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "Page is live and current at version 4.02 (2024) and still includes the 'Digital Citizen' standard among the seven student standards. The existing reference link and 'ISTE digital citizenship' framing remain accurate; no update needed."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ }
+]

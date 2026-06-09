@@ -1,0 +1,18 @@
+[
+ {
+  "section_key": "cat531/07/02",
+  "type": "currency_update",
+  "gap_summary": "Outside-server/vendor-approval stakes discussed with no FERPA/COPPA/state student-data-privacy citation",
+  "verdict": "confirmed",
+  "evidence": "FERPA school-official exception + direct control: studentprivacy.ed.gov Vendor FAQ; amended COPPA Rule eff. 2025-06-23, full compliance 2026-04-22: federalregister.gov/d/2025-05904",
+  "applied": true
+ },
+ {
+  "section_key": "cat531/07/03",
+  "type": "accuracy_fix",
+  "gap_summary": "rail_action values ask/represent/explain/practice do not match Adaptive Support moves explain/compare/transfer/show",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 03.mdx Adaptive Support bullets list explain/compare/transfer/show; 03.misconceptions.json used ask/represent/practice; 06/01.misconceptions.json shows aligned precedent",
+  "applied": true
+ }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "section_key": "ail606/08/02",
+    "type": "accuracy_fix",
+    "gap_summary": "Meta/studio/support/final-check label storyboard artifact; section's artifact is the feedback template itself",
+    "verdict": "confirmed",
+    "evidence": "Internal consistency: 02.mdx Worked Example states 'The artifact is the comment template itself'; storyboard label contradicted lesson body throughout components.",
+    "applied": true
+  },
+  {
+    "section_key": "ail606/08/03",
+    "type": "accuracy_fix",
+    "gap_summary": "Artifact-studio/packet/LOs embed storyboard artifact in a rubric-calibration section; artifact should be calibration packet",
+    "verdict": "confirmed",
+    "evidence": "Internal consistency: 03.mdx Stronger Artifact Standard describes before/after agreement, traced split, rewritten descriptor; storyboard drafts are only the scored material.",
+    "applied": true
+  },
+  {
+    "section_key": "ail606/08/03",
+    "type": "accuracy_fix",
+    "gap_summary": "CLT/Mayer citations misattached to rubric calibration claims; inter-rater reliability is not a CLT/multimedia construct",
+    "verdict": "confirmed",
+    "evidence": "Replaced with rubric-reliability source verified via Crossref: Jonsson & Svingby (2007), Educ. Research Review, https://doi.org/10.1016/j.edurev.2007.05.002 (rubric reliability/validity).",
+    "applied": true
+  },
+  {
+    "section_key": "ail606/08/05",
+    "type": "currency_update",
+    "gap_summary": "WCAG named without version/conformance level; 4.5:1/3:1 floors and SC IDs left unpinned to WCAG 2.2 AA",
+    "verdict": "confirmed",
+    "evidence": "https://www.w3.org/TR/WCAG22/ = W3C Recommendation 12 Dec 2024 (1.4.3 AA 4.5:1/3:1; 1.1.1, 1.4.1, 2.1.1, 2.2.1 present); https://www.w3.org/TR/wcag-3.0/ = Working Draft 3 Mar 2026.",
+    "applied": true
+  },
+  {
+    "section_key": "ail606/08/07",
+    "type": "accuracy_fix",
+    "gap_summary": "Studio/meta/support label storyboard artifact; section's actual artifact is the before/after constructive-alignment table",
+    "verdict": "confirmed",
+    "evidence": "Internal consistency: 07.mdx Stronger Artifact Standard and Worked Example build the objective-to-activity-to-assessment alignment table, not a storyboard revision.",
+    "applied": true
+  }
+]

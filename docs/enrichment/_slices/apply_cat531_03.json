@@ -1,0 +1,615 @@
+[
+ {
+  "section_key": "cat531/03/01",
+  "section_title": "What AI Changes in Schools",
+  "dir": "frontend/content/cat531-supplement/03",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The References list is the generic course-wide stub: TPACK links to Wikipedia plus a bare 2006 DOI; 'critical edtech studies' is an unnamed DOI (10.4324/9781315670160); 'teacher professional judgment' is a bare DOI with no author/year (10.1177/002205741319300304). The Worked Decision step 5 invokes 'critical edtech studies' as the warrant for 'the tool is not neutral; it optimizes what it can measure' but never names the source, so the section's central claim rests on an anonymous citation.",
+    "proposed_change": "Name the critical-edtech anchor explicitly. IMPORTANT CORRECTION to the gap agent's proposal: the existing DOI 10.4324/9781315670160 already resolves to a real Selwyn critical-edtech work — Selwyn, N. (2016/2014), Distrusting Educational Technology: Critical Questions for Changing Times (Routledge) — NOT to the Polity book 'Is Technology Good for Education?' (ISBN 9780745696461, a separate title). So keep the DOI and just attach the correct author/year/title rather than swapping to a new work; the gap agent conflated two Selwyn books. In References line 144, change 'critical edtech studies. https://doi.org/10.4324/9781315670160' to 'Selwyn, N. (2016). Distrusting Educational Technology: Critical Questions for Changing Times. Routledge. https://doi.org/10.4324/9781315670160'. In Worked Decision step 5 (line 56), change 'justified by critical edtech studies' to '...by Selwyn's critique that edtech is not neutral but optimizes what it can measure (Selwyn, 2016).' For the 'teacher professional judgment' DOI (line 146), note it actually resolves to Mecoli, S. (2013), a PCK / preservice-teacher-education paper in Journal of Education, which is mislabeled — relabel it accurately or replace with a genuine teacher-professional-judgment source. The datafication DOI (line 145) is Perrotta & Selwyn (2019/2020), 'Deep learning goes to school,' Learning, Media and Technology — add the author/year so it is not bare.",
+    "where_to_apply": "01.mdx — References list (lines 143-146) and Worked Decision 'Evidence trail' step 5 (line 56)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Selwyn, N. (2016). Distrusting Educational Technology: Critical Questions for Changing Times. Routledge.",
+      "url_or_doi": "https://doi.org/10.4324/9781315670160",
+      "finding": "The DOI 10.4324/9781315670160 already in the References resolves to Selwyn's Distrusting Educational Technology (Routledge), a critical-edtech monograph arguing edtech is not neutral — it is a valid anchor for the non-neutrality warrant. It is NOT 'Is Technology Good for Education?' (Polity 2016, ISBN 9780745696461), which is a different Selwyn book; the gap agent conflated the two."
+     },
+     {
+      "cite": "Perrotta, C., & Selwyn, N. (2019). Deep learning goes to school: toward a relational understanding of AI in education. Learning, Media and Technology, 45(3), 251-269.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "OpenAlex confirms the datafication DOI is co-authored by Selwyn, reinforcing Selwyn as the section's critical-edtech anchor; the bare reference should carry author/year."
+     },
+     {
+      "cite": "Mecoli, S. (2013). The Influence of the Pedagogical Content Knowledge Theoretical Framework on Research on Preservice Teacher Education. Journal of Education.",
+      "url_or_doi": "https://doi.org/10.1177/002205741319300304",
+      "finding": "OpenAlex shows the 'teacher professional judgment' DOI actually resolves to a PCK / preservice-teacher-education paper by Mecoli (2013), so the current label is inaccurate and should be corrected or replaced."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section's privacy/equity framing is implicit only. The Worked Decision and Walkthrough discuss what data the tool collects and what it 'never surfaces,' and the misconceptions rail names 'what data it collects,' but there is no anchor to FERPA/COPPA or any 2024-2026 school-AI guidance. As the on-ramp section for the whole AI-in-education module, it is the natural place to seed the statutory frame later sections rely on.",
+    "proposed_change": "Add one short 'Legal floor' callout (2-3 sentences) after Core Concept: the division-of-labor analysis sits on top of a legal floor. FERPA governs the student-record data these tools ingest; COPPA governs under-13 data, and the FTC's 2025 amended COPPA Rule (published April 22, 2025; effective June 23, 2025; compliance by April 22, 2026) expands covered data to biometric and other identifiers and limits retention. The US Department of Education issued AI guidance plus updated 2025 FERPA resources, and ~20 states now reference FERPA/COPPA in K-12 AI guidance. Keep it brief — frame, do not enumerate.",
+    "where_to_apply": "01.mdx — new short callout after 'Core Concept' (after line 38) or appended to 'Common Misreadings'",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Federal Trade Commission (2025). Children's Online Privacy Protection Rule — Final amendments.",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "Amended COPPA Rule published in the Federal Register April 22, 2025; effective June 23, 2025; most compliance obligations due by April 22, 2026. Adds biometric identifiers and other identifiers to 'personal information' and imposes data-retention limits."
+     },
+     {
+      "cite": "U.S. Department of Education (2025). Guidance on Artificial Intelligence Use in Schools; 2025 FERPA resources.",
+      "url_or_doi": "https://www.ed.gov/about/news/press-release/us-department-of-education-issues-guidance-artificial-intelligence-use-schools-proposes-additional-supplemental-priority",
+      "finding": "US ED issued AI-in-schools guidance and released updated 2025 FERPA FAQ resources (37 questions) on third-party data handling, the statutory floor for edtech student-record data."
+     },
+     {
+      "cite": "Future of Privacy Forum, Student Privacy Compass — State Guidance on the Use of Generative AI in K-12 Education.",
+      "url_or_doi": "https://studentprivacycompass.org/state-guidance-on-the-use-of-generative-ai-in-k-12-education/",
+      "finding": "Tracker shows multiple state DOEs issued K-12 generative-AI guidance (2023-2025); ~20 states reference FERPA/COPPA/CIPA as the baseline for acceptable data handling."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The Adaptive Support TPACK reference is a Wikipedia link, and the section never connects to current AI-specific teacher-literacy frameworks even though its subject is generative AI in teaching. AI-TPACK / generative-AI teacher-competence frameworks (2023-2026) are now the live framing for 'does the tech fit this content and pedagogy.'",
+    "proposed_change": "Replace the bare Wikipedia TPACK link with the canonical full citation — Mishra, P., & Koehler, M. J. (2006), Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge, Teachers College Record, 108(6) (DOI confirmed 10.1111/j.1467-9620.2006.00684.x) — and add one current AI-TPACK reference (e.g., Ning et al., 2024, Sustainability, or Yue et al., 2024, Education and Information Technologies). Add a half-sentence in Adaptive Support pointing learners to AI-TPACK as the purpose-fit anchor for generative tools specifically.",
+    "where_to_apply": "01.mdx — Adaptive Support TPACK bullet (line 124) and References (line 143)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra, P., & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge. Teachers College Record, 108(6).",
+      "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+      "finding": "OpenAlex confirms the existing TPACK DOI is the canonical Mishra & Koehler (2006) paper; the bare Wikipedia link can be replaced with this full citation."
+     },
+     {
+      "cite": "Ning, Y., et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability, 16(3), 978.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Constructs an explicit AI-TPACK framework integrating TPACK with AI knowledge across seven components — a current purpose-fit anchor for generative tools."
+     },
+     {
+      "cite": "Yue, M., et al. (2024). Understanding K-12 Teachers' TPACK Readiness and Attitudes toward Artificial Intelligence Education. Education and Information Technologies.",
+      "url_or_doi": "https://doi.org/10.1007/s10639-024-12621-2",
+      "finding": "Survey of 1,664 K-12 educators on AI-TPACK readiness, a 2024 empirical anchor for teacher AI literacy."
+     }
+    ]
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Adaptive Support advertises learner-facing moves 'ask for explanation / compare / transfer / show connection' (lines 124-127) while the misconceptions rail_action vocabulary is ask / explain / represent / practice. The two vocabularies do not line up: 'represent' and 'practice' have no counterpart in the Adaptive Support copy, and 'compare' / 'connection' / 'transfer' appear only in the MDX. A learner or reviewer reading both sees an inconsistent support taxonomy, undercutting the closed-loop adaptive claim.",
+    "proposed_change": "Reconcile to a single named set. Either map the misconceptions rail_action values (ask/explain/represent/practice) onto the Adaptive Support bullets explicitly, or relabel the Adaptive Support moves to the backend vocabulary so the displayed move and the routed rail_action use identical terms. Document the mapping once. (Confirmed by inspection: 01.misconceptions.json uses rail_action values ask/explain/represent/practice across the four entries, while 01.mdx Adaptive Support uses ask/compare/transfer/show-connection — the vocabularies genuinely diverge.)",
+    "where_to_apply": "01.mdx — Adaptive Support block (lines 122-127) reconciled with 01.misconceptions.json rail_action fields",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": []
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section frames the AI-in-education module but never positions itself against the current SOTA bar (Google 'Learn Your Way' 2025; iTextbooks/IJAIED 2025). For the on-ramp section, a brief note that adaptive/AI textbooks are themselves the object of this same substitution analysis would update currency and reinforce the thesis.",
+    "proposed_change": "Add one optional framing sentence in 'Why This Section Matters' (line 9) or 'What Strong Reading Looks Like' (line 89) noting that even AI textbooks and tutoring systems — e.g., Google's Learn Your Way (2025), which adapts a chapter via LearnLM/Gemini 2.5 Pro and reported an ~11-percentage-point recall gain in a small study — are subject to the same task/learning/labor analysis: a recall lift on the task layer still has to be checked against what cognitive work it preserves or displaces. Keeps positioning current to 2025-2026 without adding volume.",
+    "where_to_apply": "01.mdx — one sentence in 'Why This Section Matters' (line 9) or 'What Strong Reading Looks Like' (line 89)",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Google Research (2025). Learn Your Way: Reimagining textbooks with generative AI.",
+      "url_or_doi": "https://research.google/blog/learn-your-way-reimagining-textbooks-with-generative-ai/",
+      "finding": "Announced September 16, 2025; powered by LearnLM integrated into Gemini 2.5 Pro; adapts content to grade level/interest and generates multiple representations. A study of 60 students (ages 15-18) found an ~11-percentage-point gain on a long-term recall test vs a standard digital reader — confirms the current SOTA framing the gap agent names."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/03/02",
+  "section_title": "Generative AI and Student Work",
+  "dir": "frontend/content/cat531-supplement/03",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's load-bearing empirical claim - that AI text detectors have a 'well-documented' elevated false-positive rate and 'known equity bias' against multilingual/non-native/formulaic writers (Core Concept line 30, Opening Case line 22, Worked Decision line 54, misconceptions feedback) - is cited NOWHERE. For a course whose thesis is evidence-grounded defensible judgment, the central fact of the section is uncited.",
+    "proposed_change": "Add a 'Recent Evidence' callout near line 30 and a matching References entry citing Liang, Yuksekgonul, Mao, Wu & Zou (2023), 'GPT detectors are biased against non-native English writers' (Patterns, Cell Press, DOI 10.1016/j.patter.2023.100779). Anchor the prose phrase 'The well-documented result is an elevated false-positive rate for these groups' to this study, which found seven GPT detectors misclassified 61.3% of TOEFL (non-native) essays as AI-generated while classifying native-speaker essays near-perfectly as human. Optionally note OpenAI's July 2023 retirement of its own AI Text Classifier for 'low rate of accuracy' (26% true-positive sensitivity) as corroborating that even the model vendor could not make detection reliable.",
+    "where_to_apply": "02.mdx - Core Concept 'detectors are probabilistic classifiers' paragraph (line 30); add matching entry to References (lines 144-149)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Liang, Yuksekgonul, Mao, Wu & Zou (2023) GPT detectors are biased against non-native English writers",
+      "url_or_doi": "https://doi.org/10.1016/j.patter.2023.100779",
+      "finding": "Seven widely-used GPT detectors misclassified 61.3% (over half) of non-native-speaker TOEFL essays as AI-generated, while near-perfectly classifying native-speaker essays as human; simple prompting to elevate linguistic complexity removed the AI flag. Directly grounds the 'elevated false-positive rate / known equity bias against multilingual writers' claim."
+     },
+     {
+      "cite": "OpenAI (July 2023) AI Text Classifier retired; TechCrunch / The Register coverage",
+      "url_or_doi": "https://techcrunch.com/2023/07/25/openai-scuttles-ai-written-text-detector-over-low-rate-of-accuracy/",
+      "finding": "OpenAI shut down its own AI Text Classifier on 20 July 2023 (announced Jan 31 2023) citing 'low rate of accuracy'; the tool detected only ~26% of AI-generated text as 'likely AI'. Corroborates that detector scores are unreliable hypotheses, not findings."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The References list (lines 144-149) is the generic CAT531 template - TPACK (Wikipedia + 2006 DOI), an unnamed 'critical edtech studies' DOI, a single 2020 datafication DOI, and a 'teacher professional judgment' DOI. None is specific to generative-AI-and-student-work, the actual topic; the reference list does not support the section's own arguments (detector bias, process vs product evidence, allowed-use boundaries).",
+    "proposed_change": "Supplement/replace at least two generic entries with topic-specific 2023-2026 sources: (1) Liang et al. (2023) for detector bias; (2) a current academic-integrity-in-the-genAI-era source - Sullivan, Kelly & McLaughlan (2023, Journal of Applied Learning & Teaching) on integrity and assessment redesign, and/or Bower et al. (2024, Education and Information Technologies) on how teaching/assessment should change in response to generative AI (the process/authentic-assessment thread). Keep TPACK but add an AI-TPACK reference, Ning et al. (2024, Sustainability), to support the teacher-literacy framing.",
+    "where_to_apply": "02.mdx - References section (lines 144-149)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Sullivan, Kelly & McLaughlan (2023) ChatGPT in higher education: Considerations for academic integrity and student learning",
+      "url_or_doi": "https://doi.org/10.37074/jalt.2023.6.1.17",
+      "finding": "Topic-specific peer-reviewed source on genAI academic integrity and the shift toward integrity-resilient assessment design; supports the section's 'redesign assignments, not police' thesis."
+     },
+     {
+      "cite": "Bower, Torrington, Lai, Petocz & Alfano (2024) How should we change teaching and assessment in response to increasingly powerful generative AI?",
+      "url_or_doi": "https://doi.org/10.1007/s10639-023-12405-0",
+      "finding": "2024 study documenting the move from product-based to process/authentic assessment in response to generative AI; supports the product-evidence-to-process-evidence core concept."
+     },
+     {
+      "cite": "Ning, Zhang, Wang & Li (2024) Teachers' AI-TPACK: Exploring the relationship between knowledge elements",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Develops a seven-component AI-TPACK framework, an AI-era extension of TPACK; provides a current teacher-literacy reference to add alongside the legacy TPACK citation."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/03/03",
+  "section_title": "Bias, Data, and Classroom Consequences",
+  "dir": "frontend/content/cat531-supplement/03",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The Opening Case and Transfer Case build on the AAVE/dialect essay-scoring disparity, a real and well-documented phenomenon, but it is asserted with no citation. The flagship example should point to real algorithmic-fairness-in-education research (NLP/AES bias against AAVE and English learners). Currently the only inline source in the whole section is the reused 2020 datafication DOI.",
+    "proposed_change": "Add a 'Recent Evidence' inline note (or reference-list entries) grounding the Opening Case sentence about a training set 'graded by humans who rewarded a particular dialect.' Cite Mayfield et al. (2019), which documents how language technologies for educational assessment systematically disadvantage non-mainstream-dialect and minority writers, and Hofmann et al. (2024, Nature), which shows that LLMs encode dialect prejudice against African American English (more negative than any human stereotype ever recorded), making the AAVE scoring disparity a documented model behavior rather than a plausible-sounding scenario.",
+    "where_to_apply": "03.mdx — Opening Case paragraph (lines 20-22) and References (lines 143-146); optionally a 'Recent Evidence' callout after the Opening Case",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mayfield, E., Madaio, M., Prabhumoye, S., Gerritsen, D., McLaughlin, B., Dixon-Roman, E., & Black, A. W. (2019). Equity Beyond Bias in Language Technologies for Education. Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications (BEA).",
+      "url_or_doi": "https://doi.org/10.18653/v1/w19-4446",
+      "finding": "Documents that automated language/scoring technologies in education embed bias that disadvantages students who write outside the mainstream-dialect norm rewarded by human raters, framing fairness in automated assessment as an equity problem rather than a glitch (peer-reviewed, 58 cites)."
+     },
+     {
+      "cite": "Hofmann, V., Kalluri, P. R., Jurafsky, D., & King, S. (2024). AI generates covertly racist decisions about people based on their dialect. Nature, 633, 147-154.",
+      "url_or_doi": "https://doi.org/10.1038/s41586-024-07856-5",
+      "finding": "Major LLMs (GPT-2/3.5/4, RoBERTa, T5) assign more negative traits, lower-prestige jobs, and higher criminality to identical-meaning text written in African American English vs. Standard American English; the stereotypes are more negative than any human stereotype experimentally recorded, and human-feedback training hides the surface racism while leaving the dialect bias intact. Directly grounds the AAVE-essay-scoring claim and the Transfer Case generative-feedback claim (160 cites)."
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The Textbook Walkthrough on webcam/affect-based 'engagement' detection (eye contact, stillness, flagging Black students and autistic students more) is a strong, accurate argument but entirely uncited. Substantial literature documents facial-affect/engagement-recognition bias by race and harms to neurodivergent students.",
+    "proposed_change": "Add a 'Recent Evidence' note after the Walkthrough flagging documented disparate outputs. Cite Rhue (2018), which empirically shows commercial emotion-recognition APIs score Black faces as substantially angrier/more contemptuous than white faces (and as negative under any expression ambiguity), and Banzon et al. (2023, IEEE T. Affective Computing), which catalogs the ethical hazards of affect/engagement detection in classrooms (culturally specific labels, neurodivergent mismatch). This makes the webcam case 'not hypothetical.'",
+    "where_to_apply": "03.mdx — Textbook Walkthrough (lines 83-87); add citation + optional 'Recent Evidence' callout",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Rhue, L. (2018). Racial Influence on Automated Perceptions of Emotions. SSRN Working Paper.",
+      "url_or_doi": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3281765",
+      "finding": "Across 400 NBA player photos, Face++ rated Black faces as roughly twice as angry as white faces and Face API scored them ~3x more contemptuous; Black faces were scored angrier for every smile (Face++) and angrier under any expression ambiguity (Face API) — direct evidence that affect/engagement systems misread Black faces as more negative."
+     },
+     {
+      "cite": "Banzon, A. M., et al. (2023). Facial Expression Recognition in Classrooms: Ethical Considerations and Proposed Guidelines for Affect Detection in Educational Settings. IEEE Transactions on Affective Computing.",
+      "url_or_doi": "https://doi.org/10.1109/taffc.2023.3275624",
+      "finding": "Peer-reviewed analysis of in-classroom affect/engagement detection identifying ethical risks of inferring learner emotion/engagement from facial expression, including culturally and neurologically variable display norms that make a single 'engaged' template inequitable — grounds the webcam-engagement walkthrough."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "References are thin and dated: TPACK is a Wikipedia link + 2006 DOI; critical-edtech is anchored only to Selwyn 2016; the AI/datafication anchor is a single 2020 Williamson DOI reused verbatim across all 64 sections. For a 2026 section whose entire argument is contemporary AI bias and datafication, this is stale.",
+    "proposed_change": "Supplement the verbatim 2020 DOI (and the Worked Decision Evidence trail) with a 2023-2026 critical-datafication source — Williamson, Macgilchrist & Potter (2023), 'Re-examining AI, automation and datafication in education' — and an education-measurement AI-bias anchor, Bulut et al. (2024), 'The Rise of Artificial Intelligence in Educational Measurement.' This breaks the identical-to-the-other-63 reference list and dates the argument to current literature. (Optionally pair the 2006 TPACK with a 2024 AI-literacy-for-teachers framework such as Sperling et al. 2024.)",
+    "where_to_apply": "03.mdx — References (lines 143-146) and the Evidence trail in Worked Decision (line 58)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Williamson, B., Macgilchrist, F., & Potter, J. (2023). Re-examining AI, automation and datafication in education. Learning, Media and Technology, 48(1), 1-5.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "Current (2023) critical-edtech editorial that re-frames AI/automation/datafication in education and explicitly foregrounds bias, equity, and accountability concerns — a contemporary replacement/supplement for the reused 2020 datafication DOI (136 cites)."
+     },
+     {
+      "cite": "Bulut, O., Beiting-Parrish, M., et al. (2024). The Rise of Artificial Intelligence in Educational Measurement: Opportunities and Ethical Challenges. Measurement: Interdisciplinary Research and Perspectives.",
+      "url_or_doi": "https://doi.org/10.59863/miql7785",
+      "finding": "2024 source surveying AI in educational measurement/assessment and its ethical challenges, including fairness and subgroup-bias risks in automated scoring — anchors the section's adoption/audit argument in current measurement literature (72 cites)."
+     },
+     {
+      "cite": "Sperling, K., Stenliden, L., Nissen, J., & Heintz, F. (2024). In search of artificial intelligence (AI) literacy in teacher education: A scoping review. Computers and Education Open, 6, 100169.",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169",
+      "finding": "2024 scoping review of AI literacy in teacher education — a current companion to the canonical 2006 TPACK for the teacher-literacy framing (319 cites)."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The Transfer Case (generative AI writing personalized feedback with biased warmth/dialect treatment) refers to AI only generically ('AI that writes personalized feedback'). For a 2026 course this is safe but misses a chance to anchor the generative-bias claim in a concrete current LLM finding.",
+    "proposed_change": "Add one 'Recent Evidence' line to the Transfer Case anchoring the generative-bias transfer in a documented LLM dialect/feedback finding — Hofmann et al. (2024, Nature) shows production LLMs (incl. GPT-4) treat African American English text more negatively in identical-meaning prompts even after human-feedback alignment, which is exactly the 'biased warmth/dialect treatment in feedback prose' the Transfer Case describes. Keep to a single line per the no-volume directive.",
+    "where_to_apply": "03.mdx — Transfer Case (line 108)",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Hofmann, V., Kalluri, P. R., Jurafsky, D., & King, S. (2024). AI generates covertly racist decisions about people based on their dialect. Nature, 633, 147-154.",
+      "url_or_doi": "https://doi.org/10.1038/s41586-024-07856-5",
+      "finding": "Current production LLMs (incl. GPT-4) assign more negative judgments to identical-meaning African American English vs. Standard American English text, and human-feedback training masks the surface bias while the underlying dialect prejudice persists — a concrete 2024 finding that the generative-feedback Transfer Case can name instead of staying purely hypothetical."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/03/04",
+  "section_title": "AI Literacy for Teachers",
+  "dir": "frontend/content/cat531-supplement/03",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's central empirical claim - that generative models routinely fabricate plausible-looking citations and that fluency is not evidence of accuracy - is asserted repeatedly (Why This Section Matters, Opening Case, Core Concept 'Verification by default', Worked Example, Worked Decision, practice item artifact_signal, misconception confident_tone_equals_correct) but carries NO citation. It is the single most load-bearing claim in the section and the course explicitly values evidence-grounding.",
+    "proposed_change": "Add a 'Recent Evidence' callout after the Core Concept 'Verification by default' bullet and a matching References entry citing a measured study of LLM reference fabrication. Suggested phrasing grounded in real data: 'In a controlled study of AI-generated bibliographies, 55% of GPT-3.5 and 18% of GPT-4 citations were entirely fabricated, and among the real citations 43% (GPT-3.5) and 24% (GPT-4) still contained substantive errors (Walters & Wilder, 2023) - confirming that verification is not optional.' Optionally add the medical systematic-review figure (Chelli et al., 2024) showing GPT-3.5 hallucinated 39.6% and GPT-4 28.6% of references. Mirror the new reference in 04.meta.json if it tracks references.",
+    "where_to_apply": "04.mdx - Core Concept, new callout after the 'Verification by default' bullet (line 32); new entry in References (lines 143-148)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Walters, W. H., & Wilder, E. I. (2023). Fabrication and errors in the bibliographic citations generated by ChatGPT. Scientific Reports, 13, 14045.",
+      "finding": "55% of GPT-3.5 citations and 18% of GPT-4 citations were fabricated; among non-fabricated citations, 43% (GPT-3.5) and 24% (GPT-4) contained substantive errors. Directly grounds the 'fabricated references look identical to real ones' / 'fluency is not accuracy' claim.",
+      "url_or_doi": "https://doi.org/10.1038/s41598-023-41032-5"
+     },
+     {
+      "cite": "Chelli, M., et al. (2024). Hallucination Rates and Reference Accuracy of ChatGPT and Bard for Systematic Reviews: Comparative Analysis. Journal of Medical Internet Research, 26, e53164.",
+      "finding": "Reference hallucination rates of 39.6% (GPT-3.5), 28.6% (GPT-4), and 91.4% (Bard) in a systematic-review context, with very low precision - corroborates citation fabrication as a measured, model-general property, not anecdote.",
+      "url_or_doi": "https://doi.org/10.2196/53164"
+     },
+     {
+      "cite": "Lehr, S. A., et al. (2024). ChatGPT as Research Scientist. PNAS, 121.",
+      "finding": "GPT-3.5 produced fictional references 36.0% of the time and GPT-4 5.4% - a third independent measurement of LLM citation fabrication, useful if a non-medical scholarly source is preferred.",
+      "url_or_doi": "https://doi.org/10.1073/pnas.2404328121"
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section is titled 'AI Literacy for Teachers' yet anchors only to a 2006 TPACK DOI + Wikipedia, an unnamed 2016 critical-edtech DOI, and a 2020 datafication DOI reused verbatim across sections. For a 2026 teacher-AI-literacy course there are now canonical frameworks the section should position against.",
+    "proposed_change": "Add the UNESCO AI Competency Framework for Teachers (2024) to References and reference it once in Core Concept or 'What Strong Reading Looks Like' so the verify/boundary/model triad is anchored to a recognized competency framework rather than presented as the author's own scheme. The section's three habits map cleanly onto UNESCO dimensions (Ethics of AI / Human-centred mindset -> verification & accountability; AI foundations and applications -> capability boundaries; AI pedagogy -> modeling for students). Optionally add Chan (2023) AI Ecological Education Policy Framework as a second, peer-reviewed anchor. Update 04.meta.json references parity.",
+    "where_to_apply": "04.mdx - References list (lines 143-148) and a one-line anchor in Core Concept (around line 30) or 'What Strong Reading Looks Like'; 04.meta.json description + references",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "UNESCO (2024). AI competency framework for teachers. Paris: UNESCO. (authors Miao, F. & Cukurova, M.)",
+      "finding": "Published 8 Aug 2024; 15 competencies across five dimensions (Human-centred mindset; Ethics of AI; AI foundations and applications; AI pedagogy; AI for professional learning) at three progression levels (Acquire, Deepen, Create). The current canonical teacher-AI-literacy framework to position the section's triad against.",
+      "url_or_doi": "https://www.unesco.org/en/articles/ai-competency-framework-teachers"
+     },
+     {
+      "cite": "Chan, C. K. Y. (2023). A comprehensive AI policy education framework for university teaching and learning. International Journal of Educational Technology in Higher Education, 20, 38.",
+      "finding": "Peer-reviewed AI Ecological Education Policy Framework spanning Pedagogical, Governance, and Operational dimensions - a citable, recent scholarly anchor for teacher AI-literacy competencies.",
+      "url_or_doi": "https://doi.org/10.1186/s41239-023-00408-3"
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "The Textbook Walkthrough asserts the ATP-yield figure as bare fact ('the draft says 38 where the modern accepted figure is around 30 to 32'). Because the whole pedagogical move is 'verify the number,' the section should itself model verification by sourcing it.",
+    "proposed_change": "Add a brief parenthetical/footnote sourcing the ~30-32 net ATP figure and noting that ~36-38 is the older theoretical maximum (from assuming 3 ATP/NADH and 2 ATP/FADH2), which is exactly why a next-token model trained on legacy text reproduces it. The revised range follows from modern P/O ratios (~2.5 ATP/NADH, ~1.5 ATP/FADH2). The content is CONFIRMED accurate: modern textbooks and primary measurements give ~30-32 net (empirical whole-cell measurements ~29-33).",
+    "where_to_apply": "04.mdx - Textbook Walkthrough, the sentence asserting 38 vs 30-32 (line 87)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Mookerjee, S. A., et al. (2017). Quantifying intracellular rates of glycolytic and oxidative ATP production and consumption using extracellular flux measurements. Journal of Biological Chemistry, 292(17), 7189-7207.",
+      "finding": "Empirically derived maximum of ~33.45 ATP per glucose (P/O up to 2.79) from direct flux measurement - confirms the modern figure is well below the classical 38 and consistent with the section's 30-32 range.",
+      "url_or_doi": "https://doi.org/10.1074/jbc.M116.774471"
+     },
+     {
+      "cite": "Cellular respiration - Wikipedia / Biology LibreTexts (18.3E Theoretical ATP Yield).",
+      "finding": "Standard current teaching: net ~30-32 ATP/glucose (2 glycolysis + 2 TCA + 26-28 oxidative phosphorylation) using revised P/O ratios of 2.5 ATP/NADH and 1.5 ATP/FADH2; older 36-38 assumed 3 and 2 respectively. Confirms both the 30-32 figure and the explanation for why 38 persists.",
+      "url_or_doi": "https://bio.libretexts.org/Bookshelves/Microbiology/Microbiology_(Kaiser)/Unit_7%3A_Microbial_Genetics_and_Microbial_Metabolism/18%3A_Microbial_Metabolism/18.3%3A_Aerobic_Respiration/18.3E%3A_Theoretical_ATP_Yield"
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/03/05",
+  "section_title": "Responsible Prompting With Students",
+  "dir": "frontend/content/cat531-supplement/03",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The privacy core ('text leaves the room and may train a commercial system,' minimum-age-13 ToS, 'protected data,' 'student data must not enter a public tool') is the analytic backbone but cites NO statute. The calibration practice item turns on a ToS minimum age of 13 (a COPPA artifact) without naming COPPA, and the PII/education-record claims are not tied to FERPA. For a graduate course stressing FERPA/COPPA, the privacy claims read as common-sense caution rather than legally grounded judgment.",
+    "proposed_change": "Add a one-line 'Privacy basis' note in the Core Concept 'Protect the data (input safety)' bullet and add References citing FERPA (20 U.S.C. 1232g; 34 CFR Part 99) for education-record disclosure (and the 34 CFR 99.31(a)(1) 'school official' exception that governs when a vendor/AI tool may receive records) and COPPA (15 U.S.C. 6501-6506; 16 CFR Part 312, 2025 amended rule) for the under-13 consent / age-13 ToS logic. The 2025 COPPA amendments (effective June 23, 2025; full compliance due April 22, 2026) explicitly tighten how operators may retain and monetize children's data, which directly grounds the 'a public tool may train on inputs' claim.",
+    "where_to_apply": "05.mdx — References list (add FERPA + COPPA citations) and a one-line basis note in Core Concept 'Protect the data (input safety)' bullet; reinforces 05.practice.json calibration item (cat531_supplement_3_5_..._calibration) and the cat531_supplement_3_5_pasting_student_pii misconception",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "FTC, Children's Online Privacy Protection Rule, Final Rule Amendments (16 CFR Part 312), 2025",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "FTC published amended COPPA Rule April 22, 2025; effective June 23, 2025, with full compliance required by April 22, 2026. Rule requires verifiable parental consent before collecting/using/disclosing personal information from children under 13 and adds limits on data retention/monetization, directly grounding both the age-13 ToS logic and the 'public tool may train on inputs' claim."
+     },
+     {
+      "cite": "U.S. Dept. of Education, 'What is FERPA?', Protecting Student Privacy (34 CFR Part 99)",
+      "url_or_doi": "https://studentprivacy.ed.gov/faq/what-ferpa",
+      "finding": "FERPA (regulations at 34 CFR Part 99) governs disclosure of personally identifiable information from education records; FERPA-protected records cannot be sent to a consumer chatbot (ChatGPT/Claude/Gemini) without prior written consent or a documented 34 CFR 99.31(a)(1) 'school official' designation, which is the statutory basis for 'student data must not enter a public tool.'"
+     },
+     {
+      "cite": "Future of Privacy Forum, 'Vetting Generative AI Tools for Use in Schools' (Oct 2024)",
+      "url_or_doi": "https://fpf.org/wp-content/uploads/2024/10/Ed_AI_legal_compliance.pdf_FInal_OCT24.pdf",
+      "finding": "Current K-12 legal-compliance guidance maps FERPA/COPPA obligations onto generative-AI tool adoption; ~12 states stress not inputting PII into AI systems and ~16 address data retention limits, evidencing that the section's 'strip PII / public tool may train on inputs' rule reflects standing law and state guidance, not mere caution."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The datafication evidence anchor is a single bare DOI (10.1080/17439884.2020.1686017) reused verbatim across sections and labeled 'AI and education datafication' with no author named; 'critical edtech studies' is also a bare DOI (10.4324/9781315670160) with no author. For the precise claim 'students type text into a chatbot that retains it and trains a commercial model,' a 2024-2026 source on generative-AI student-data practices would be far stronger and current. Note: a verification side-finding is that the existing 'datafication' DOI is actually Perrotta & Selwyn (2019), not 2020.",
+    "proposed_change": "Name the author(s) on both reference lines: the existing 'datafication' DOI (10.1080/17439884.2020.1686017) resolves to Perrotta & Selwyn (2019), 'Deep learning goes to school: toward a relational understanding of AI in education,' Learning, Media and Technology — so Selwyn is ALREADY the co-author of that line and the prose should name him there (and correct the implied 2020 date to 2019). Add one 2024-2026 source on generative-AI student-data retention/training in education to the Worked Decision step-5 evidence trail (e.g., the FPF 2024 K-12 vetting guide, or Williamson 2023 'Re-examining AI, automation and datafication in education') so the retention/training claim does not rest solely on a 2019 paper.",
+    "where_to_apply": "05.mdx — References list ('AI and education datafication' line and 'critical edtech studies' line: add author names) and Worked Decision step 5 evidence trail (add a 2024-2026 retention/training source)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Perrotta, C. & Selwyn, N. (2019). Deep learning goes to school: toward a relational understanding of AI in education. Learning, Media and Technology.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "OpenAlex resolves the section's current 'AI and education datafication' DOI to Perrotta & Selwyn (publication_date 2019-11-06, year 2019), Learning, Media and Technology. So Selwyn is already the co-author on the existing anchor; the section simply fails to name him and the bare DOI mis-implies a 2020 date."
+     },
+     {
+      "cite": "Williamson, B. (2023). Re-examining AI, automation and datafication in education. Learning, Media and Technology.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "A current (2023) critical-edtech/datafication source in the same journal, suitable to add alongside the 2019 anchor for the retention/training-on-inputs claim instead of relying solely on a single older DOI."
+     },
+     {
+      "cite": "Future of Privacy Forum, 'Vetting Generative AI Tools for Use in Schools' (Oct 2024)",
+      "url_or_doi": "https://fpf.org/wp-content/uploads/2024/10/Ed_AI_legal_compliance.pdf_FInal_OCT24.pdf",
+      "finding": "2024 K-12-specific source documenting that consumer generative-AI tools may store and train on inputs and that schools must contract enterprise tiers / redact PII; supports the 'retains it and trains a commercial model' claim with current data."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The Adaptive Support block and References anchor TPACK to the 2006 Mishra & Koehler DOI plus Wikipedia. For a 2026 course centered on AI judgment, the AI-specific TPACK literature (AI-TPACK / Intelligent-TPACK / generative-AI teacher-knowledge frameworks, 2023-2026) is the relevant purpose-fit anchor and is missing.",
+    "proposed_change": "Add one current AI-TPACK or generative-AI teacher-knowledge framework citation (2023-2026) on the References TPACK line and in the Adaptive Support 'question' bullet, so the 'tie to TPACK' move points at the AI-relevant version of the framework, not just the canonical 2006 paper and Wikipedia. Ning et al. (2024) explicitly develops a seven-component AI-TPACK framework; Al-Abdullatif (2024) operationalizes 'Intelligent TPACK' for teachers' generative-AI use.",
+    "where_to_apply": "05.mdx — References (TPACK line) and Adaptive Support 'question' bullet that links TPACK",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Ning, Y., et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Develops an AI-TPACK framework of seven components and uses SEM to model how technological/pedagogical/content knowledge elements support teachers' AI integration; well-cited (221 citations), purpose-fit AI extension of TPACK."
+     },
+     {
+      "cite": "Al-Abdullatif, A. M. (2024). Modeling Teachers' Acceptance of Generative Artificial Intelligence Use in Higher Education: The Role of AI Literacy, Intelligent TPACK, and Perceived Trust. Education Sciences.",
+      "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+      "finding": "Operationalizes 'Intelligent TPACK' specifically for teachers' generative-AI adoption (2024), an AI-specific TPACK anchor directly relevant to the Adaptive Support TPACK move."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/03/06",
+  "section_title": "School Policy Interpretation",
+  "dir": "frontend/content/cat531-supplement/03",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's entire authority-stack thesis (IDEA, FERPA, Section 504, COPPA) is named repeatedly in the Core Concept, Worked Example, Decision Rule, branching scenario, and practice items, yet the MDX cites NO actual statute or regulation. The most load-bearing claims (a district memo cannot override a federally mandated IEP accommodation; FERPA governs third-party sharing of identifiable student work) are asserted bare.",
+    "proposed_change": "Add inline statute anchors to the Core Concept 'Check the hierarchy of authority' bullet and add citations to the References list: FERPA (20 U.S.C. 1232g; 34 CFR Part 99) for third-party data sharing; IDEA (20 U.S.C. 1400 et seq.) and Section 504 of the Rehabilitation Act (29 U.S.C. 794) for the IEP/accommodation argument; and COPPA (15 U.S.C. 6501-6506; 16 CFR Part 312) for the under-13 / parental-consent argument. Note the 2025 COPPA amended Rule is effective June 23, 2025 with a general compliance deadline of April 22, 2026, and it now requires separate verifiable parental consent before disclosing children's personal information to third parties — directly relevant to the free-AI-feedback-tool case in the Worked Example.",
+    "where_to_apply": "06.mdx — Core Concept 'Check the hierarchy of authority' bullet (line 29; add inline statute anchors) and References list (lines 142-145; add FERPA/IDEA/504/COPPA citations)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "FTC, Children's Online Privacy Protection Rule, Final Rule Amendments (16 CFR Part 312), 90 Fed. Reg. (Apr. 22, 2025)",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "The amended COPPA Rule is effective June 23, 2025, with a general compliance deadline of April 22, 2026. It newly requires operators to obtain separate verifiable parental consent to disclose children's personal information to third parties (e.g., for targeted advertising), and expands 'personal information' to include biometric and government identifiers. The FTC declined to adopt the proposed ed-tech-specific school-authorization changes. Confirms the COPPA statutory/regulatory anchor and currency for the under-13/consent argument."
+     },
+     {
+      "cite": "FTC, FTC Finalizes Changes to Children's Privacy Rule (press release, Jan. 16, 2025)",
+      "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+      "finding": "Official FTC announcement of the COPPA Rule amendments under 16 CFR Part 312, confirming the parental-consent-for-third-party-disclosure requirement that grounds the section's consent-before-AI-data-sharing claim."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The Textbook Walkthrough hard case and the practice 'calibration' item rest on the empirical claim that AI/plagiarism detectors falsely flag multilingual (non-native English) writers at elevated rates ('a tool with a known bias against multilingual writers'), presented as established fact and driving the recommended decision, yet uncited.",
+    "proposed_change": "Add a 'Recent Evidence' callout to the Textbook Walkthrough grounding the bias claim in Liang et al. (2023, Patterns), which found seven widely used GPT detectors misclassified non-native English (TOEFL) essays as AI-generated at an average false-positive rate of ~61.3% while near-perfectly classifying native-speaker essays. Reinforce with the currency note that OpenAI discontinued its own AI Text Classifier on July 20, 2023 for low accuracy (only 26% of AI text correctly identified; 9% of human text false-flagged), so detector scores should be treated as advisory, not dispositive. Add Liang et al. to References.",
+    "where_to_apply": "06.mdx — Textbook Walkthrough section (lines 82-86; add a 'Recent Evidence' callout) and References (lines 142-145)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., & Zou, J. (2023). GPT detectors are biased against non-native English writers. Patterns, 4(7), 100779.",
+      "url_or_doi": "https://doi.org/10.1016/j.patter.2023.100779",
+      "finding": "Peer-reviewed (Cell Press, Patterns), 438 OpenAlex citations. Seven widely used GPT detectors misclassified non-native-English TOEFL essays as AI-generated at an average false-positive rate of 61.3% (with some detectors flagging up to ~98%), while classifying native-speaker essays with near-perfect accuracy. Directly grounds the 'known bias against multilingual writers' claim that drives the Textbook Walkthrough decision."
+     },
+     {
+      "cite": "OpenAI (2023). New AI classifier for indicating AI-written text (updated July 20, 2023 to note discontinuation).",
+      "url_or_doi": "https://openai.com/index/new-ai-classifier-for-indicating-ai-written-text/",
+      "finding": "OpenAI discontinued its AI Text Classifier on July 20, 2023 due to low accuracy; the tool correctly identified only ~26% of AI-written text as 'likely AI' and false-flagged ~9% of human text. Supports the section's currency claim that detector output is unreliable and should be advisory, not standalone evidence."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin and Wikipedia-anchored. For a section ENTIRELY about interpreting school AI policy there is no anchor to any actual school/district or federal AI guidance. The datafication anchor is a single 2020 DOI reused course-wide, and 'critical edtech studies' is an unlabeled 2016 DOI (Selwyn).",
+    "proposed_change": "Add a current authoritative school-AI-policy framing citation to the References: U.S. Department of Education, Office of Educational Technology, 'Designing for Education with Artificial Intelligence: An Essential Guide for Developers' (July 2024) and/or its precursor 'Artificial Intelligence and the Future of Teaching and Learning: Insights and Recommendations' (May 2023, whose first recommendation is 'keep humans in the loop'). Name Selwyn explicitly on the critical-edtech DOI line (https://doi.org/10.4324/9781315670160 = Selwyn, Is Technology Good for Education?, 2016) rather than leaving it unlabeled. Optionally anchor the 'Why This Section Matters' line to the OET guidance.",
+    "where_to_apply": "06.mdx — References list (lines 142-145; add OET guidance, label Selwyn) and optionally the 'Why This Section Matters' anchor (lines 5-9)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "U.S. Department of Education, Office of Educational Technology (2024). Designing for Education with Artificial Intelligence: An Essential Guide for Developers.",
+      "url_or_doi": "https://eric.ed.gov/?id=ED661949",
+      "finding": "Federal OET guidance (released July 8, 2024) with explicit recommendations for both ed-tech developers and school/district officials on responsible AI use, risk management, and keeping humans in the loop. Provides the current (2024) authoritative AI-in-education policy anchor the section lacks."
+     },
+     {
+      "cite": "U.S. Department of Education, Office of Educational Technology (2023). Artificial Intelligence and the Future of Teaching and Learning: Insights and Recommendations.",
+      "url_or_doi": "https://www.ed.gov/sites/ed/files/documents/ai-report/ai-report.pdf",
+      "finding": "May 2023 federal OET policy report with seven recommendations, the first being to keep humans in the loop. Directly supports the section's thesis that teacher professional judgment must mediate AI policy. Suitable current policy citation."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/03/07",
+  "section_title": "AI Use Disclosure",
+  "dir": "frontend/content/cat531-supplement/03",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's subject is disclosing AI use in minors' educational records and family-facing communications (report-card comments, recommendation letters, feedback), yet it cites NO legal or policy standard. The accountability property in particular intersects FERPA (records families read) and the 2023-2026 wave of state/district AI-disclosure guidance, but the four properties are framed as purely ethical norms with no statutory anchor.",
+    "proposed_change": "Add a tight 'Where the law sits' callout after the Core Concept four-property list (or inside Common Misreadings) noting: (1) AI-assisted analysis/comments about an identifiable student become part of the FERPA-protected educational record, and FERPA keeps accountability with the institution/teacher even when a vendor or general-purpose tool generated the text -- this is a STATUTORY anchor for the 'accountability stays with the human' property, not merely an ethical preference; (2) a 2024-2026 wave of state guidance increasingly expects teacher AI-use transparency, with Tennessee (since March 2024) and Ohio actually MANDATING district-level AI-use policies, and over half of U.S. states having issued guidance by mid-2025. Add matching References entries. Keep to one callout, no added pages.",
+    "where_to_apply": "07.mdx -- new callout after 'Core Concept' four-property list, or inside 'Common Misreadings'; add matching entries to References list (replace/augment the generic stubs)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "U.S. Dept. of Education FERPA guidance, summarized in NMU CTL 'Understanding FERPA in the Context of Generative AI' (2024-2025)",
+      "url_or_doi": "https://nmu.edu/ctl/understanding-ferpa-context-generative-ai-guide-faculty",
+      "finding": "AI-generated analysis of an identifiable student is treated as an education record under FERPA; the educational agency/institution (and the teacher acting for it) remains accountable for protecting and for the accuracy of that record even when a third-party tool generated the content. This grounds the section's 'accountability stays with the human' property in statute rather than ethics alone."
+     },
+     {
+      "cite": "Agile Education Marketing, 'From Suggestion to Requirement: K-12 School District AI Policy in 2025'; corroborated by CDT and AI for Education state-guidance trackers",
+      "url_or_doi": "https://agile-ed.com/resources/k12-school-district-ai-policy-2025/",
+      "finding": "Tennessee has required each district to craft and publicly share AI-use policies since March 2024, and Ohio likewise mandates district AI policy creation/disclosure; over half of U.S. states had issued AI-in-education guidance by mid-2025, with several (e.g., Nevada, California) emphasizing transparency-and-disclosure norms over punitive detection. Supports the 'recent wave of guidance requiring teacher AI-use disclosure' claim."
+     },
+     {
+      "cite": "Chan, C. K. Y. (2023). A comprehensive AI policy education framework for university teaching and learning. International Journal of Educational Technology in Higher Education.",
+      "url_or_doi": "https://doi.org/10.1186/s41239-023-00408-3",
+      "finding": "Peer-reviewed framework (1,100+ citations) placing AI disclosure within explicit governance and accountability dimensions of institutional policy; a scholarly anchor for treating disclosure as a governance/accountability structure, suitable as a References entry replacing a generic stub."
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "References are generic course-wide stubs (TPACK Wikipedia + 2006 DOI, unnamed 'critical edtech studies' DOI, a 2020 datafication DOI, a generic 'teacher professional judgment' DOI). NONE is specific to AI-use disclosure, academic-integrity disclosure norms, or transparency/trust in AI-assisted professional writing -- the actual topic. The Worked Example asserts that specific disclosure 'increases trust rather than eroding it' with no citation, and current scholarship actually shows this is contested.",
+    "proposed_change": "Add 1-2 disclosure-specific citations and replace the generic 'teacher professional judgment' stub. Most importantly, cite Schilke & Reimann (2025) 'The transparency dilemma: How AI disclosure erodes trust' -- 13 experiments showing disclosure can REDUCE trust via lowered perceived legitimacy. This both grounds the topic and forces a small accuracy nuance: the Worked Example's blanket claim that specific disclosure increases trust should be softened to 'specific, verified disclosure can preserve or build trust where a vague label or hidden use would erode it -- though disclosure alone does not guarantee higher trust.' Pair with Chan (2023) for the integrity/governance framing.",
+    "where_to_apply": "07.mdx -- '## References' list (add Schilke & Reimann 2025 and Chan 2023; replace the 'teacher professional judgment' stub); optionally soften the Worked Example trust claim",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Schilke, O., & Reimann, M. (2025). The transparency dilemma: How AI disclosure erodes trust. Organizational Behavior and Human Decision Processes.",
+      "url_or_doi": "https://doi.org/10.1016/j.obhdp.2025.104405",
+      "finding": "Across thirteen experiments, actors who disclosed AI use were trusted LESS than those who did not, an effect that held across disclosure framings and above algorithm aversion, driven by reduced perceptions of legitimacy. Directly relevant to (and partially complicating) the section's claim that disclosure increases trust; the section's stronger, defensible claim is that specific + verified disclosure beats a vague label or concealment, not that disclosure universally raises trust."
+     },
+     {
+      "cite": "Chan, C. K. Y. (2023). A comprehensive AI policy education framework for university teaching and learning. International Journal of Educational Technology in Higher Education.",
+      "url_or_doi": "https://doi.org/10.1186/s41239-023-00408-3",
+      "finding": "Frames AI disclosure and accountability as core elements of academic-integrity policy across pedagogical, governance, and operational dimensions; a topic-specific, highly cited replacement for the generic 'teacher professional judgment' stub."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Opening Case, Worked Example, and Walkthrough reference AI generically ('a chatbot', 'AI assistance') and the hallucination/fabrication risk (invented 'growing leadership' detail) without anchoring to documented 2024-2026 model behavior. The fabrication examples would land harder if confirmed against current assistant behavior.",
+    "proposed_change": "Lightweight: confirm (and optionally cite in a one-line aside) that the invented-detail framing matches documented current behavior of mainstream assistants teachers use for comment drafting. No brand over-specification needed; the existing generic framing is accurate and ages well. If a touchpoint is refreshed, note that current general-purpose assistants are documented to produce confident, plausible-but-fabricated specifics -- which is exactly the 'growing leadership' failure mode -- so the example is current, not dated.",
+    "where_to_apply": "07.mdx -- '## Opening Case' and '## Worked Example' (optional one-line currency aside)",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "MIT Sloan Teaching & Learning Technologies, 'When AI Gets It Wrong: Addressing AI Hallucinations and Bias' (2025-2026)",
+      "url_or_doi": "https://mitsloanedtech.mit.edu/ai/basics/addressing-ai-hallucinations-and-bias/",
+      "finding": "Current general-purpose assistants reliably produce fluent, authoritative-sounding but fabricated specifics, and models use MORE confident language (e.g., 'definitely', 'certainly') when hallucinating than when stating facts. This confirms the section's invented-'growing-leadership'-detail example matches documented 2025-2026 behavior; the fabrication framing is current, not dated, so only a one-line refresh is warranted."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/03/08",
+  "section_title": "Module 3 AI Analysis Studio",
+  "dir": "frontend/content/cat531-supplement/03",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's two anchor bias examples are presented as concrete fact but are uncited: an AI essay coach that 'scores AAVE lower' (Opening Case / Why This Section Matters, lines 22) and an early-warning system that 'flags English learners at twice the rate of peers' / 'doubles false positives for English learners' (lines 54, 84, 103, branching-scenario line 63). For a graduate course that treats vendor self-certification as 'the absence of evidence' and demands data, presenting load-bearing quantitative harm claims ('twice the rate', 'doubles false positives') with no source undercuts the section's own standard of proof.",
+    "proposed_change": "Add a short 'Recent Evidence' callout after the 'Textbook Walkthrough' heading (after line 82) noting that disparate-error findings in educational AI are documented: automated essay scoring under-scores African American writers relative to human raters, and recent LLM essay raters show demographic score gaps; and that fairness audits of educational predictive models routinely find subgroup error-rate disparities. Then soften the line-103 figure to clearly hypothetical framing, e.g. 'suppose the disaggregated audit shows roughly double the false-positive rate for English learners,' so learners do not cite a fabricated statistic. Add one citation (Ramineni & Williamson; Yamashita 2025; or Kizilcec 2022) to the References list. The 'twice the rate' figure should remain framed as a scenario, not as a sourced number.",
+    "where_to_apply": "08.mdx — new 'Recent Evidence' callout after 'Textbook Walkthrough' heading (line 82); soften the quantitative claim at line 103 ('doubles false positives for English learners') and the parallel 'twice the rate' claims at lines 54/84/63 toward hypothetical framing; add reference to References list (lines 144-147)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Ramineni & Williamson (2018) — reported in EdTech coverage of ETS e-rater subgroup analysis",
+      "url_or_doi": "https://doi.org/10.1002/ets2.12047",
+      "finding": "ETS e-rater automated essay scoring under-scored African American examinees by ~0.81 points relative to expert human raters while over-scoring examinees from China by ~1.3 points — a documented disparate-scoring pattern that grounds the section's 'scores AAVE lower' illustration as plausible rather than fabricated."
+     },
+     {
+      "cite": "Yamashita (2025) Exploring potential biases in GPT-4o's ratings of English language learners' essays, Language Testing",
+      "url_or_doi": "https://journals.sagepub.com/doi/full/10.1177/02655322251329435",
+      "finding": "A 2025 peer-reviewed study found GPT-4o exhibits demographic/L1-related score biases when rating English language learners' essays, confirming that LLM essay raters can produce subgroup score disparities (current 2025 evidence the section can cite for the 'AI writing coach scores AAVE lower' anchor)."
+     },
+     {
+      "cite": "Kizilcec & Lee (2022) Algorithmic Fairness in Education (Routledge handbook chapter)",
+      "url_or_doi": "https://doi.org/10.4324/9780429329067-10",
+      "finding": "Documents that data-driven predictive models in education (including at-risk/dropout early-warning systems) raise fairness concerns with bias entering at measurement, model-learning, and action stages — supports framing subgroup error-rate disparity in early-warning systems as a real, studied phenomenon while the specific '2x' figure stays hypothetical."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Privacy/consent is central to the section's decisive harm (the recurring 'consent form does not cover it / data flows to a third-party server / the AI memo is silent' constraint that dominates every worked decision at lines 22, 41, 43, 55, 84, 103, and the branching scenario), yet the MDX names no statute. A 2026 graduate teacher-education capstone on adopting tools that log keystroke-level minor student data should ground the consent/retention constraint in FERPA and COPPA, and reflect 2025-2026 developments (the 2025 COPPA rule amendments).",
+    "proposed_change": "Add a short 'Standards anchor' note (1-2 sentences) at the Core Concept 'privacy and policy' bullet (line 28) or the Worked Example 'Privacy and policy' sentence (line 41), naming FERPA (education records, restrictions on third-party disclosure) and COPPA (personal information from children under 13) as the legal floor the 'consent form does not cover it' gap is measured against, and noting the FTC finalized COPPA Rule amendments in April 2025 (effective June 23, 2025; full compliance by April 22, 2026) that expand covered data to biometric identifiers, require separate verifiable parental consent for non-integral disclosures, and mandate written data-retention policies — directly relevant to ed-tech tools logging granular student data to vendor servers. Add FERPA and the 2025 COPPA Final Rule to References.",
+    "where_to_apply": "08.mdx — Core Concept 'privacy and policy' bullet (line 28) and/or Worked Example 'Privacy and policy' sentence (line 41); new short standards note; References list (lines 144-147)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "FTC, Children's Online Privacy Protection Rule (Final Rule amendments), Federal Register, April 22, 2025",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "The amended COPPA Rule was published April 22, 2025, effective June 23, 2025, with full compliance required by April 22, 2026. It expands 'personal information' to include biometric identifiers, requires separate verifiable parental consent before disclosing children's data for non-integral purposes, and mandates a written information-security program and written data-retention policy — the current statutory floor for the section's 'data flows to a third-party server / consent form does not cover it' harm."
+     },
+     {
+      "cite": "K-12 Dive, 'New COPPA Rule to take effect in June' (2025)",
+      "url_or_doi": "https://www.k12dive.com/news/new-coppa-rule-effective-date-2025-ftc/746406/",
+      "finding": "Confirms the June 2025 effective date and frames the 2025 COPPA amendments specifically for K-12/ed-tech operators, supporting the note that schools adopting AI tools handling under-13 student data face updated consent and data-retention requirements as of 2025-2026."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section's scholarly anchors are dated and Wikipedia-thin, conspicuous in a capstone whose 'Evidence trail' (line 57) names 'critical edtech studies' and 'AI and education datafication' as the warrant for the decision. References (lines 144-147): TPACK -> Wikipedia + 2006 DOI; 'critical edtech studies' -> a bare unnamed Selwyn DOI (2016 book); datafication -> a single 2020 DOI (Williamson). For a capstone framed as integrating these into a defensible 2026 decision, the anchors should be refreshed with a generative-AI / AI-TPACK teacher framing (2023-2025), a named critical-edtech source, and a more current datafication/AI-equity reference.",
+    "proposed_change": "Refresh the References list: name Selwyn explicitly for the critical-edtech entry (the 2016 DOI 10.4324/9781315670160 is Selwyn, Is Technology Good for Education?); add a 2023-2025 AI-TPACK / generative-AI teacher reference alongside the 2006 TPACK DOI (Mishra et al. 2023 'TPACK in the age of ChatGPT and Generative AI', or Lan et al. 2025 GenAI-TPACK); add a more recent datafication/AI-equity source (Bearman et al. 2022 critical review of AI in higher education) to supplement the 2020 Williamson DOI. Update the in-text 'Evidence trail' (line 57) so its named anchors point to the strengthened references.",
+    "where_to_apply": "08.mdx — References list (lines 144-147) and the in-text 'Evidence trail' (line 57)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra, Warr & Islam (2023) TPACK in the age of ChatGPT and Generative AI, Journal of Digital Learning in Teacher Education",
+      "url_or_doi": "https://doi.org/10.1080/21532974.2023.2247480",
+      "finding": "Current, well-cited extension of the TPACK framework to generative AI for teacher knowledge — the appropriate 2023+ anchor to add alongside the 2006 TPACK DOI for a 2026 AI-decision capstone."
+     },
+     {
+      "cite": "Lan et al. (2025) Constructing the GenAI-TPACK framework for university teachers' professional development, Education and Information Technologies",
+      "url_or_doi": "https://doi.org/10.1007/s10639-025-13427-6",
+      "finding": "2025 framework integrating ethical knowledge into a GenAI-TPACK model for teacher professional development — a current generative-AI teacher-literacy reference matching the section's capstone framing."
+     },
+     {
+      "cite": "Bearman, Ryan & Ajjawi (2022) Discourses of artificial intelligence in higher education: a critical literature review, Higher Education",
+      "url_or_doi": "https://doi.org/10.1007/s10734-022-00937-2",
+      "finding": "Recent named critical review of how AI is positioned in education and issues of accountability/datafication — refreshes the 'critical edtech / datafication' warrant beyond the single 2020 Williamson DOI; Selwyn's 2016 book (DOI 10.4324/9781315670160) should be cited by name for the existing critical-edtech entry."
+     }
+    ]
+   }
+  ]
+ }
+]

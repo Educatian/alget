@@ -52,7 +52,7 @@
         "A request that students speak louder."
       ],
       "correct_index": 1,
-      "explanation": "Voice is biometric; recording minors requires parental opt-in and a retention or deletion rule.",
+      "explanation": "Voice is biometric as a matter of statute, not just prudence: the FTC's 2025 amended COPPA Rule counts biometric identifiers as children's personal information and sets deletion terms for voice recordings, and Illinois BIPA names a voiceprint explicitly. Recording minors therefore requires parental opt-in and a retention or deletion rule.",
       "misconception_id": "cat531_supplement_4_8_single_lens_decision",
       "difficulty": "medium",
       "concept_ids": [

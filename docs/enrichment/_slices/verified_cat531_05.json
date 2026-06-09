@@ -1,0 +1,10 @@
+[
+ {
+  "section_key": "cat531/05/05",
+  "type": "accuracy_fix",
+  "gap_summary": "Worked Example: 92%/88% headline not reproducible; no weights given and raw totals make Tool B beat Tool A",
+  "verdict": "confirmed",
+  "evidence": "Recomputed: A=100-0.2wA-0.8wO, B=80+0.2wO; 92/88 pair impossible. Pinned weights 40/35/20/5 give A=92%, B=81%; B set to 81 not 88.",
+  "applied": true
+ }
+]

@@ -27,9 +27,13 @@ First, separate roles. A single tool has buyers (who decide), operators (who run
 
 Second, name interests as they actually are, including the ones nobody says aloud. The vendor's interest is adoption and access to student data; that is not sinister, but it is not neutral, and a map that lists the vendor as "provides the tool" has erased the part that matters.
 
+**Legal anchor.** The vendor's data interest and the parent-consent move both have statutory hooks, not just ethical ones: FERPA governs disclosure of student education records and the parental-consent requirement behind any consent step, and COPPA governs data collection from students under 13. The FTC's 2025 COPPA amendments tighten this further, limiting data retention and requiring separate verifiable parental consent before children's data is disclosed to third parties, including for model training, as of 2026.
+
 Third, find the silent stakeholder by asking: who is most affected and least consulted? In school AI the answer correlates almost perfectly with who has the least institutional power. The English learner whose syntax the model scores as error, the student in special education whose accommodations the tool ignores, the family without the literacy to read a consent form, these are the people the design will fail quietly.
 
 The course anchors do pointed work. **Critical edtech studies** is the lens that insists you ask who benefits and who is burdened, rather than assuming a tool that helps "students" helps all students equally. **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** names the vendor's data interest as a stake rather than a service. **Teacher professional judgment** is what lets you, the operator who actually sees the students, speak for the silent stakeholder in a room where no one else will.
+
+**Recent evidence.** The English-learner concern is documented, not speculative: peer-reviewed work has directly investigated bias in automated essay scores for elementary-age English learners (Wilson & Huang, 2024), and a systematic review of automated essay scoring reports recurring construct-irrelevant variance and fairness limitations across systems (Ramesh & Sanampudi, 2022), supporting the claim that grammar models can score non-standard phrasing as error rather than dialect or developmental form.
 
 ## Worked Example: Mapping Stakeholders Around an AI Tutoring Pilot
 
@@ -48,7 +52,7 @@ Before (weak): "Teachers and students are the stakeholders, and the tool helps b
 
 After (strong): "Six stakeholders, with conflicting interests. The silent stakeholder is English learners, whose phrasing the AI may misread as error. The current design centers teacher time and vendor adoption. Negotiated move: pilot only with a teacher override on EL essays and a parent consent step. Evidence for the EL concern = the vendor's grammar model has no dialect setting."
 
-The strong map names interests, surfaces the silent stakeholder, and states whose interest the design centers, which a colleague can audit.
+The strong map names interests, surfaces the silent stakeholder, and states whose interest the design centers, which a colleague can audit. (The EL concern cited as evidence is itself evidence-backed: see Wilson & Huang, 2024, on automated essay-score bias for English learners.)
 
 You are the one teacher in the adoption meeting who sees the students daily. Decide what you say.
 
@@ -77,7 +81,7 @@ The first misreading is treating "stakeholders" as a synonym for "people who lik
 
 ## Textbook Walkthrough
 
-Apply it to an attendance-prediction tool that flags students "at risk of dropping out." Roster the parties: district (buyer), counselors (operators), students (subjects), the data officer (gatekeeper), the vendor. Name interests: the district wants a measurable intervention metric; counselors want early warning; the vendor wants the predictive contract and the historical data to refine its model. Now find the silent stakeholder: the flagged student, who never consented to being scored and may be tracked into lowered expectations by a label they cannot see or contest. Whose interest does the design center? The district's metric and the vendor's model, not the student's right to be treated as more than a risk score. The re-centering move: make every flag generate a private counselor conversation, never an automated placement, and give families the right to know and contest the label. The mechanics are identical to the writing-tutor case; only the silent stakeholder's specific harm changes.
+Apply it to an attendance-prediction tool that flags students "at risk of dropping out." Roster the parties: district (buyer), counselors (operators), students (subjects), the data officer (gatekeeper), the vendor. Name interests: the district wants a measurable intervention metric; counselors want early warning; the vendor wants the predictive contract and the historical data to refine its model. Now find the silent stakeholder: the flagged student, who never consented to being scored and may be tracked into lowered expectations by a label they cannot see or contest. Whose interest does the design center? The district's metric and the vendor's model, not the student's right to be treated as more than a risk score. The re-centering move: make every flag generate a private counselor conversation, never an automated placement, and give families the right to know and contest the label. The mechanics are identical to the writing-tutor case; only the silent stakeholder's specific harm changes. This harm is documented, not hypothetical: Wisconsin's Dropout Early Warning System was found to raise false alarms about Black and Hispanic students at significantly higher rates than white students, to be wrong about three-quarters of the time when predicting non-graduation, and to attach color-coded "high risk" labels students could not see or contest (The Markup, 2023; see also Yu et al., 2021, on fairness audits of dropout-prediction models).
 
 ## What Strong Reading Looks Like
 
@@ -113,6 +117,8 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
+(These support moves map onto the misconception-rail actions this section uses: *ask* drives the question move, *explain* drives both the explanation and the weak/strong comparison, and *represent* corresponds to showing the idea in a new form, as the transfer and connection moves do.)
+
 <dynamic-scenario prompt="You are revising the Design Tension Studio map naming a classroom value conflict and negotiated decision for CAT 531 04.03. A peer comment points to a transfer move issue connected to critical edtech studies. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Concept Map
@@ -133,7 +139,14 @@ Before you move on, make sure your trace records evidence source, risk, support 
 
 ## References
 
-- [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
-- critical edtech studies. https://doi.org/10.4324/9781315670160
+- Mishra, P., & Koehler, M. J. (2006). [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Selwyn, N. (2014). Distrusting educational technology: Critical questions for changing times. Routledge. https://doi.org/10.4324/9781315886350
 - [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
 - teacher professional judgment. https://doi.org/10.1177/002205741319300304
+- Wilson, J., & Huang, Y. (2024). Validity of automated essay scores for elementary-age English language learners: Evidence of bias? *Assessing Writing, 60*. https://doi.org/10.1016/j.asw.2024.100815
+- Ramesh, D., & Sanampudi, S. K. (2022). An automated essay scoring systems: A systematic literature review. *Artificial Intelligence Review, 55*. https://doi.org/10.1007/s10462-021-10068-2
+- Feathers, T. (2023). False alarm: How Wisconsin uses race and income to label students "high risk." The Markup. https://themarkup.org/machine-learning/2023/04/27/false-alarm-how-wisconsin-uses-race-and-income-to-label-students-high-risk
+- Yu, R., et al. (2021). Should college dropout prediction models include protected attributes? *Proceedings of the Eighth ACM Conference on Learning @ Scale*. https://doi.org/10.1145/3430895.3460139
+- Federal Trade Commission (2025). FTC finalizes changes to children's privacy rule (amended COPPA Rule). https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data
+- U.S. Department of Education. FERPA (educational records and parental consent for disclosure). https://studentprivacy.ed.gov/ferpa
+- Sperling, K., et al. (2024). In search of artificial intelligence (AI) literacy in teacher education: A scoping review. *Computers and Education Open, 6*. https://doi.org/10.1016/j.caeo.2024.100169

@@ -1,0 +1,10 @@
+[
+ {
+  "section_key": "cat100/07/07",
+  "type": "accuracy_fix",
+  "gap_summary": "practice.json says 5 min daily = 35 min/week (5x7) but MDX uses 5-weekday convention = 25 min/week throughout",
+  "verdict": "confirmed",
+  "evidence": "Internal recomputation: 5 min x 5 weekdays = 25 min/wk (matches 07.mdx Core Concept, inline-check, worked-example table 'daily (5x) 25 min'); 40 min / ~13-wk term = ~3 min/wk",
+  "applied": true
+ }
+]

@@ -46,7 +46,7 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "An AI tool offers to 'auto-generate your final checklist and confirm everything is done.' How should you use it within a safe boundary?",
+      "stem": "A chat assistant such as ChatGPT or Claude offers to auto-generate your final checklist and confirm everything is done. How should you use it within a safe boundary?",
       "options": [
         "Let it confirm the submission is complete and submit based on that.",
         "Let it propose checklist items, but verify each one yourself by opening the file, testing the link, and checking the format before you submit.",
@@ -54,7 +54,7 @@
         "Have it submit the assignment for you."
       ],
       "correct_index": 1,
-      "explanation": "The AI can draft the checklist, but the learner verifies each item against the real artifact. The tool cannot confirm your file opens or your link is public.",
+      "explanation": "The AI can draft the checklist, but the learner verifies each item against the real artifact. The tool cannot confirm your file opens or your link is public; even an assistant that can fetch a URL does so through its own service, not the grader's signed-out session.",
       "misconception_id": "cat100_supplement_8_7_untested_link",
       "difficulty": "hard"
     },

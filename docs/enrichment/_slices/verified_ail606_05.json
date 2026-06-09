@@ -1,0 +1,10 @@
+[
+ {
+  "section_key": "ail606/05/03",
+  "type": "accuracy_fix",
+  "gap_summary": "Gulf of execution uncited and misattributed to Mayer/CLT; it is Norman's concept (Design of Everyday Things).",
+  "verdict": "confirmed",
+  "evidence": "Norman (2013) The Design of Everyday Things, Rev/Exp ed., Basic Books defines gulf of execution; corroborated by nngroup.com/articles/two-ux-gulfs-evaluation-execution and jnd.org.",
+  "applied": true
+ }
+]

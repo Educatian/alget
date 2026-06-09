@@ -8,16 +8,16 @@
         "cat100_supplement_module_4_dialogue_studio",
         "cat100_supplement_ai_conversations_as_a_teacher"
       ],
-      "stem": "Your page loads in the browser but has no <title> and no <h1>. On the four-item publish checklist, what is the verdict?",
+      "stem": "The AI's teaching advice on your published dialogue page reads smoothly and sounds confident, and the page renders fine. Is the advice itself ready to publish?",
       "options": [
-        "PASS, because it loads.",
-        "FAIL on Page title and Real heading, even though it renders.",
-        "PASS, because browsers ignore missing tags.",
-        "It cannot load without a title."
+        "Yes; fluent, confident advice is accurate advice.",
+        "No; fluent advice must still be checked claim by claim against evidence before it is published.",
+        "Yes, as long as the page loads.",
+        "No, because advice can never appear on a public page."
       ],
       "correct_index": 1,
-      "explanation": "Rendering is not the bar; missing title and heading are checklist failures even when the page displays.",
-      "misconception_id": "cat100_supplement_4_8_loads_means_correct",
+      "explanation": "Fluency is a style property, not an evidence check; each claim in the advice has to be verified before it goes on the public page.",
+      "misconception_id": "cat100_supplement_4_8_fluent_equals_correct",
       "difficulty": "easy"
     },
     {
@@ -27,16 +27,16 @@
       "concept_ids": [
         "cat100_supplement_module_4_dialogue_studio"
       ],
-      "stem": "Which line correctly makes 'My Teacher-AI Dialogue Project' the main heading?",
+      "stem": "Your dialogue page shows the teacher persona block at the top. What role does that persona actually play in the artifact?",
       "options": [
-        "<p style=\"font-size:40px\">My Teacher-AI Dialogue Project</p>",
-        "<h1>My Teacher-AI Dialogue Project</h1>",
-        "My Teacher-AI Dialogue Project",
-        "<title>My Teacher-AI Dialogue Project</title>"
+        "It is flavor text that makes the chat sound friendlier.",
+        "It is a constraint that fixes the AI's role, audience, and limits, so the dialogue can be checked against it.",
+        "It is decoration a reviewer is expected to skip.",
+        "It only matters if the page also has custom styling."
       ],
       "correct_index": 1,
-      "explanation": "An h1 is a real heading element; big text or a title tag in the head is not the page heading.",
-      "misconception_id": "cat100_supplement_4_8_bare_text_not_heading",
+      "explanation": "The persona is the contract the dialogue must honor; treating it as decoration means the tone, audience, and bounds were never really set.",
+      "misconception_id": "cat100_supplement_4_8_persona_is_decoration",
       "difficulty": "medium"
     },
     {
@@ -47,16 +47,16 @@
         "ai_supported_learning",
         "cat100_supplement_module_4_dialogue_studio"
       ],
-      "stem": "The AI suggests adding a flashy background color, but your link still reads <a>link</a> with no href. What is the strongest move?",
+      "stem": "While drafting your page with a current assistant (ChatGPT, Claude, Copilot, or Gemini), it suggests opening with 'Research shows students remember 90% of what they teach others (Dale, 1969).' It sounds authoritative. What is the strongest move?",
       "options": [
-        "Add the background color first; it looks more finished.",
-        "Reject the decoration for now and fix the empty href so the link points to the real file.",
-        "Delete the link so the color stands out.",
-        "Keep both as they are."
+        "Accept it; a citation means the claim is verified.",
+        "Reject it and log the rejection, because the statistic is fabricated and the cited author never made the claim.",
+        "Accept it but remove the citation so no one can check it.",
+        "Keep it because it makes the page look researched."
       ],
       "correct_index": 1,
-      "explanation": "The publish checklist values a working link over decoration; fixing the href is the substantive move.",
-      "misconception_id": "cat100_supplement_4_8_empty_href",
+      "explanation": "Confident, fluent advice with a citation still has to pass claim-by-claim verification; this is the fabricated statistic and misattribution debunked in 04.03, so you reject it and record the rejection in your trace.",
+      "misconception_id": "cat100_supplement_4_8_fluent_equals_correct",
       "difficulty": "hard"
     },
     {
@@ -67,16 +67,16 @@
         "evidence_based_revision",
         "cat100_supplement_module_4_dialogue_studio"
       ],
-      "stem": "After pushing to GitHub Pages, what confirms the publish actually worked?",
+      "stem": "After pushing your dialogue page to GitHub Pages, what confirms the artifact is actually done?",
       "options": [
-        "The file exists on your laptop.",
-        "Opening the live URL and seeing the title in the tab, the heading rendered, and the link downloading the real file.",
+        "The AI's first draft is pasted whole, so the work is complete.",
+        "Opening the live URL and seeing the labeled dialogue plus your trace of accepted, modified, and rejected suggestions.",
         "The HTML was long enough.",
         "The AI said it looked good."
       ],
       "correct_index": 1,
-      "explanation": "Verification means loading the published URL and checking each checklist item live, not trusting the local copy.",
-      "misconception_id": "cat100_supplement_4_8_loads_means_correct",
+      "explanation": "One unedited draft is not a revision; the artifact is done when the live page carries the dialogue and the accept/modify/reject trace a reviewer can audit.",
+      "misconception_id": "cat100_supplement_4_8_one_draft_is_revision",
       "difficulty": "medium"
     }
   ]

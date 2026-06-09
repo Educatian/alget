@@ -2,7 +2,7 @@
 
 ![Digital Skills Transfer Map textbook visual](/course-art/deep-exemplars/cat100-supplement/08-03-digital-skills-transfer-map.png)
 
-<youtube-embed id="FF83OevoW6U" title="NACE Career Readiness Competencies" caption="Watch before you write the transfer row. Use the competencies to decide which skill is portable, which proof belongs with it, and which details should stay out."></youtube-embed>
+<youtube-embed id="FF83OevoW6U" title="NACE Career Readiness Competencies" caption="Watch before you write the transfer row. Use the competencies (the current NACE set, revised April 2024, has eight) to decide which skill is portable, which proof belongs with it, and which details should stay out."></youtube-embed>
 
 **Watch for:** Which part of your skill claim is actually portable to a future role?
 **Use this here because:** The video turns a tool name into a capability check, which is the same move this section asks you to make in the transfer map.
@@ -11,7 +11,7 @@
 
 The hardest part of finishing a course is naming what you actually learned in language a future employer or professor understands. "I learned Excel" is nearly useless: it names a brand, not a capability, and it does not say what you can do or whether it survives outside a 40-row classroom dataset. A transfer map fixes this by converting each tool you touched into a portable capability, a proof that you did it, a real destination task where it applies, and an honest note about what changes when the context grows.
 
-This matters because transfer is rarely a copy. The pivot table that ran cleanly over 512 class rows can break, or run dangerously slow, over 40,000 rows at a part-time job if your lookup ranges are not anchored. Knowing the click sequence is not the same as owning the skill. The transfer map is where you prove you understand a skill well enough to adapt it, which is exactly what makes it worth listing on a resume.
+This matters because transfer is rarely a copy. The pivot table that ran cleanly over 512 class rows can silently go stale over 40,000 rows at a part-time job if its source range stays fixed while the data keeps growing. Knowing the click sequence is not the same as owning the skill. The transfer map is where you prove you understand a skill well enough to adapt it, which is exactly what makes it worth listing on a resume.
 
 ## Learning Targets
 
@@ -41,7 +41,7 @@ The intellectual core is the difference between near transfer and far transfer. 
 
 This is also why a proof artifact is non-negotiable. A capability claim without a linked file is a wish. The map ties every claim to a real Unit file a reviewer can open, which is the same evidence standard you carry into the resume and portfolio.
 
-<inline-check question="A row reads: a 40-row pivot table transfers unchanged to a 40,000-row job dataset. What is wrong with it?" explanation="That claim describes near transfer only and ignores what scale forces. Far transfer means naming the adaptation: a dragged lookup needs an absolute reference so the range does not drift as the data grows. An empty adaptation note reveals memorized clicks, not understanding." options='[{"text":"Nothing; a pivot table works the same at any size.","correct":false},{"text":"It skips the adaptation: a larger dataset forces an absolute reference in the lookup.","correct":true},{"text":"The destination should say my future career to stay flexible.","correct":false}]'></inline-check>
+<inline-check question="A row reads: a 40-row pivot table transfers unchanged to a 40,000-row job dataset. What is wrong with it?" explanation="That claim describes near transfer only and ignores what scale forces. Far transfer means naming the adaptation: a pivot built on a fixed source range silently ignores rows added past it, so the source must be an Excel Table (or dynamic range) that is refreshed as the data grows. An empty adaptation note reveals memorized clicks, not understanding." options='[{"text":"Nothing; a pivot table works the same at any size.","correct":false},{"text":"It skips the adaptation: a growing dataset forces the pivot onto an Excel Table source that gets refreshed.","correct":true},{"text":"The destination should say my future career to stay flexible.","correct":false}]'></inline-check>
 
 ## Worked Example: Building One Row of a Transfer Map
 
@@ -59,13 +59,13 @@ A reviewer learns nothing: no capability, no destination task, no proof.
 
 | Skill (capability) | Proof artifact | Destination task | What changes in the new context |
 | --- | --- | --- | --- |
-| Summarize data with a pivot table | Unit 5 file pivots 512 order rows into a Region x Month grid | Build the weekly sales recap at the store | Source grows from 512 to ~4,000 rows, so lock the lookup range with an absolute reference like `=VLOOKUP(A2,$D$2:$E$4000,2,FALSE)` |
+| Summarize data with a pivot table | Unit 5 file pivots 512 order rows into a Region x Month grid | Build the weekly sales recap at the store | Source grows from 512 to ~4,000 rows; a pivot built on the fixed range `A1:F512` silently ignores the new rows, so base the pivot on an Excel Table (or a named dynamic range) and Refresh after each import |
 
-The capability replaces the brand name. The proof points to a real file. The destination names a concrete job task. The last column shows the transfer is an adaptation, not a copy: the formula that ran over 40 class rows needs an anchored range before it runs over thousands. That adaptation note is the evidence that the student understands the skill rather than just the click sequence.
+The capability replaces the brand name. The proof points to a real file. The destination names a concrete job task. The last column shows the transfer is an adaptation, not a copy: the pivot that ran over 512 class rows silently excludes appended rows once the source range stops matching the data, so it must sit on an Excel Table and be refreshed. That adaptation note is the evidence that the student understands the skill rather than just the click sequence.
 
 Build one row of the map as a fixed procedure. Predict each step before revealing it:
 
-<step-reveal title="Promote a tool name into a transferable skill row" steps='[{"prompt":"Your draft row says only Excel. What is the first fix that turns a brand into a capability?","predictType":"choice","choices":["Add the word advanced in front of Excel","Restate it as a verb phrase like summarize data with a pivot table","Link your LinkedIn profile as proof"],"answerIndex":1,"reveal":"Name the verb, not the brand. Summarize data with a pivot table is a capability; Excel is just a product."},{"reveal":"Link a real proof artifact: the specific Unit file, like Unit 5 pivots 512 order rows into a Region by Month grid. No file, no claim."},{"reveal":"Name a concrete destination task, such as the storeâ€™s weekly sales recap, not my future career."},{"reveal":"Write the adaptation note: what breaks when data grows. Lock the lookup range with an absolute reference so a dragged formula does not drift past a few thousand rows."}]'></step-reveal>
+<step-reveal title="Promote a tool name into a transferable skill row" steps='[{"prompt":"Your draft row says only Excel. What is the first fix that turns a brand into a capability?","predictType":"choice","choices":["Add the word advanced in front of Excel","Restate it as a verb phrase like summarize data with a pivot table","Link your LinkedIn profile as proof"],"answerIndex":1,"reveal":"Name the verb, not the brand. Summarize data with a pivot table is a capability; Excel is just a product."},{"reveal":"Link a real proof artifact: the specific Unit file, like Unit 5 pivots 512 order rows into a Region by Month grid. No file, no claim."},{"reveal":"Name a concrete destination task, such as the store’s weekly sales recap, not my future career."},{"reveal":"Write the adaptation note: what breaks when data grows. A pivot built on a fixed range silently ignores new rows, so base it on an Excel Table or named dynamic range and refresh after each import."}]'></step-reveal>
 
 Now order the four columns a complete row fills:
 
@@ -89,7 +89,7 @@ If any column stays empty, the skill is not yet ready to put in front of an empl
 
 The first misreading is treating the destination as "my future career" or "any job." A destination is a specific task: the weekly sales recap, the budget reconciliation, the inventory count. Vague destinations signal that you have not pictured the skill in use.
 
-The second misreading is assuming a skill transfers unchanged. The most revealing column is the adaptation note. A student who claims a 40-row pivot transfers untouched to a 40,000-row dataset has not understood absolute references or recalculation cost. Naming what changes is the proof of genuine, far transfer.
+The second misreading is assuming a skill transfers unchanged. The most revealing column is the adaptation note. A student who claims a 40-row pivot transfers untouched to a 40,000-row dataset has not understood that a pivot built on a fixed source range silently excludes appended rows; it must be based on an Excel Table or refreshed against the grown range. Naming what changes is the proof of genuine, far transfer.
 
 ## Textbook Walkthrough
 
@@ -114,7 +114,7 @@ A strong reader of the digital skills transfer map can answer four questions:
 
 The map is strong when every row links a verb-form capability to a real file, a concrete destination, and a specific adaptation that demonstrates far transfer. The standard is not length; a three-row map with honest adaptation notes beats a ten-row list of tool names.
 
-A useful closing note would read: "I mapped the pivot-table skill to the store's weekly sales recap and noted that the source grows from 512 to about 4,000 rows, which forces an absolute reference in the lookup so the formula does not drift when I drag it. I left off a row for a tool I only watched a demo of, because I have no proof artifact and cannot defend the transfer."
+A useful closing note would read: "I mapped the pivot-table skill to the store's weekly sales recap and noted that the source grows from 512 to about 4,000 rows, which forces the pivot onto an Excel Table source, refreshed after each import, so it does not silently exclude the new rows. I left off a row for a tool I only watched a demo of, because I have no proof artifact and cannot defend the transfer."
 
 ## Transfer Case
 
@@ -137,6 +137,8 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
+For the bounded AI/software support move itself, ground it in a current tool: as of 2026, Copilot in Excel suggests formulas and builds pivot tables from natural language, and it may offer a relative-range formula paste that should be modified to an anchored range before accepting. Documenting that modify-or-reject decision is exactly the adaptation note the map asks for.
+
 <dynamic-scenario prompt="You are revising the digital skills transfer map for CAT 100 08.03. A peer comment points to a transfer move issue connected to [ISTE digital citizenship](https://iste.org/standards/students). Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
@@ -151,8 +153,8 @@ Before you move on, make sure your trace links claim, evidence, tool boundary, r
 
 ## References
 
-- [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
-- [ISTE digital citizenship](https://iste.org/standards/students)
+- [NACE Career Readiness Competencies (rev. April 2024, 8 competencies)](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
+- [ISTE Standards for Students (2024 refresh, 7 standards)](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
 

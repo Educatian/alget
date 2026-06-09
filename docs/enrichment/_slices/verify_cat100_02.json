@@ -1,0 +1,36 @@
+[
+ {
+  "section_key": "cat100/02/03",
+  "section_title": "Professional Bio Drafting",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Pervasive artifact-name mismatch: the meta description, the artifact-studio component, the download-packet link, the Adaptive Support bullet, and the dynamic-scenario prompt all call the deliverable 'resume before-after revision with truthful evidence, role fit, and AI-use note', but the section body teaches and asks for a BIO before/after revision. 'Role fit' is a resume concept, not a bio concept. Confirmed in 03.meta.json description (line 7), 03.mdx download link (line 112), <artifact-studio artifact=...> (line 114), Adaptive Support bullet (line 123), and <dynamic-scenario prompt> (line 127). Note: the section's actual download file is 02-03-professional-bio-drafting-artifact.md (the link text is wrong but the path is already bio-named and resolves).",
+    "proposed_change": "Replace the resume label with a bio-appropriate one throughout, e.g. 'bio before/after revision with role-focus-proof, truthful evidence, and AI-use note'. Update 03.meta.json description (line 7); the download link text (line 112, path /downloads/summer2026/cat100-supplement/02-03-professional-bio-drafting-artifact.md already correct - keep it); the artifact-studio attribute (line 114); the Adaptive Support 'confusion' bullet (line 123); and the dynamic-scenario prompt (line 127).",
+    "where_to_apply": "03.meta.json description (line 7); 03.mdx artifact-studio attribute (line 114), Artifact Studio download link text (line 112), Adaptive Support bullet (line 123), dynamic-scenario prompt (line 127)",
+    "priority": "high",
+    "verified": "unverified",
+    "sources": []
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/02/08",
+  "section_title": "Module 2 Branding Studio",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Mojibake in interactive components: the inline-check question and step-reveal prompts render literal 'â€˜' / 'â€™' / 'â€œ' sequences instead of curly quotes (e.g. 'graduating May 2026,â€™', 'data projects.â€™', 'LinkedInâ€™s'). This is a UTF-8/CP-1252 encoding corruption that displays as garbage to learners and screen readers. CONFIRMED in source: line 39 inline-check (question attr) and line 74 step-reveal steps 2 and 3 contain these artifacts.",
+    "proposed_change": "Replace all 'â€˜', 'â€™', 'â€œ', 'â€' artifacts inside the inline-check 'question'/'explanation' and the step-reveal 'prompt'/'reveal' strings with straight ASCII quotes (' and \") or correctly encoded curly quotes. Affected strings: inline-check question ('â€˜graduating May 2026,â€™', 'â€˜Dec 2025â€™'); step-reveal step 2 prompt ('â€˜Dec 2025â€™', 'â€˜May 2026,â€™', 'LinkedInâ€™s', 'â€˜data projects.â€™'); step-reveal step 3 reveal ('â€˜Jordan Ellisâ€™', 'â€˜expert analyst.â€™'); step-reveal step 4 reveal ('toolâ€™s role'). Note: the prose body of the same .mdx (lines 7, 20, 54, etc.) already uses straight ASCII quotes correctly, so this is isolated to the JSX attribute strings.",
+    "where_to_apply": "08.mdx — <inline-check> at line 39 (question/explanation) and <step-reveal> at line 74 (steps 2-4 prompt/reveal strings)",
+    "priority": "high",
+    "verified": "unverified",
+    "sources": []
+   }
+  ]
+ }
+]

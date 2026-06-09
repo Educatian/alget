@@ -30,7 +30,7 @@ Scenario setup means converting the facts of your room into constraints the tool
 | Learner profile (de-identified) | "About a third read below grade level" | An on-grade-level, monolingual class |
 | Prior knowledge | "Yesterday we named numerator and denominator only" | Mastery of prerequisites the class has not met |
 
-Two disciplines govern how you write these down. [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge) reminds you that the content prerequisite (what students already know) is a scenario fact, not a nicety; an AI that assumes mastery will plan the wrong lesson. Critical edtech studies and datafication remind you to de-identify: you encode "about a third read below grade level" rather than naming students, because the transcript may be stored by a vendor and a real classroom profile should never leave the room attached to names. A scenario is complete when omitting any one element would let the tool substitute a default that does not match your room.
+Two disciplines govern how you write these down. [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge) (Mishra & Koehler, 2006; extended to AI-rich planning by Ning et al., 2024) reminds you that the content prerequisite (what students already know) is a scenario fact, not a nicety; an AI that assumes mastery will plan the wrong lesson. Critical edtech studies and datafication scholarship (Selwyn, 2016; Williamson et al., 2023) remind you to de-identify: you encode "about a third read below grade level" rather than naming students, because the transcript may be stored by a vendor and a real classroom profile should never leave the room attached to names. This rule is legal, not just prudent: FERPA protects personally identifiable information in education records (34 CFR Part 99), PII disclosed to a third-party vendor remains FERPA-governed and may be used only for school-authorized purposes, and COPPA (16 CFR Part 312) adds a stricter verifiable-parental-consent regime where students are under 13. A scenario is complete when omitting any one element would let the tool substitute a default that does not match your room.
 
 <inline-check question="A teacher writes: 'Plan an engaging, rigorous, differentiated 45-minute reading lesson.' Which part of this is the only true binding fact the tool can act on?" explanation="Engaging, rigorous, and differentiated are adjectives, not constraints; the tool cannot convert them into a number of minutes or a learner profile. Only '45-minute' is a binding fact. The rest must be encoded as resources, learner profile, and prerequisites or the tool will fill them with defaults." options='[{"text":"The 45-minute time block","correct":true},{"text":"The word rigorous, because it sets a difficulty target","correct":false},{"text":"The word differentiated, because it specifies the learner profile","correct":false}]'></inline-check>
 
@@ -124,7 +124,11 @@ Before you move on, check that your transcript opens with all four scenario elem
 
 ## References
 
-- [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
-- critical edtech studies. https://doi.org/10.4324/9781315670160
-- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
+- Mishra, P., & Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher knowledge ([TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)). https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Ning, Y., Zhang, C., Xu, B., Zhou, Y., & Wijaya, T. T. (2024). Teachers' AI-TPACK: Exploring the relationship between knowledge elements. *Sustainability, 16*(3), 978. https://doi.org/10.3390/su16030978
+- Selwyn, N. (2016). *Is technology good for education?* Polity Press.
+- Williamson, B., Macgilchrist, F., & Potter, J. (2023). Re-examining AI, automation and datafication in education. *Learning, Media and Technology, 48*(1), 1-5. https://doi.org/10.1080/17439884.2023.2167830
+- Perrotta, C., & Selwyn, N. (2020). Deep learning goes to school: Toward a relational understanding of AI in education. [*Learning, Media and Technology*](https://doi.org/10.1080/17439884.2020.1686017)
+- U.S. Department of Education. Family Educational Rights and Privacy Act (FERPA) regulations, 34 CFR Part 99. https://studentprivacy.ed.gov/
+- Federal Trade Commission. (2025). Children's Online Privacy Protection Rule, 16 CFR Part 312 (final rule amendments). https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data
 - teacher professional judgment. https://doi.org/10.1177/002205741319300304

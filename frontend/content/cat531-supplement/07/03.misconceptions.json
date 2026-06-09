@@ -7,7 +7,7 @@
       "description": "Recording conclusions about engagement or quality before recording the observable behavior",
       "trigger": "candidate writes that a tool engaged students without time-stamped, countable evidence",
       "feedback": "Record what you could see and count first. Save the conclusion until the observed evidence supports it.",
-      "rail_action": "ask"
+      "rail_action": "represent"
     },
     {
       "id": "cat531_supplement_7_3_notes_miss_access_pattern",
@@ -15,7 +15,7 @@
       "description": "Writing observation notes that overlook who got teacher attention and who did not",
       "trigger": "candidate notes overall climate but no pattern of access across students",
       "feedback": "Track who used which feature and who received check-ins. Access patterns are the evidence a coaching conversation needs.",
-      "rail_action": "represent"
+      "rail_action": "practice"
     },
     {
       "id": "cat531_supplement_7_3_ai_invents_observation",
@@ -31,7 +31,7 @@
       "description": "Offering an overall rating in place of verifiable evidence a second observer could check",
       "trigger": "candidate submits a one-line verdict or a feature list instead of observed data",
       "feedback": "Keep counts, timing, feature use, and access gaps separate from your interpretation so another observer can judge independently.",
-      "rail_action": "practice"
+      "rail_action": "represent"
     }
   ]
 }

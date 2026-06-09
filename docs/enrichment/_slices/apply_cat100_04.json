@@ -1,0 +1,345 @@
+[
+ {
+  "section_key": "cat100/04/01",
+  "section_title": "Teacher Persona Setup",
+  "dir": "frontend/content/cat100-supplement/04",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The References list includes a Tufte data-ink / Visual Display of Quantitative Information link (line 167) that is irrelevant to a persona/system-prompt section. It is a copy-paste artifact from a data-visualization section and weakens the evidence list by listing a source nothing in the body uses.",
+    "proposed_change": "Remove the Tufte 'data-ink and visual evidence' bullet from the References block (line 167). Replace it with the OpenAI Custom Instructions help-center doc and/or Shanahan (2023) recommended in the evidence_add item, leaving NACE, ISTE, and WCAG which are genuinely anchored in the body. Confirmed by inspecting the file: line 167 reads 'data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi' and no body text references Tufte, data-ink, or visualization.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\01.mdx, References section (line 167, the 'data-ink and visual evidence' bullet)",
+    "priority": "med",
+    "sources": [],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI use is described entirely tool-agnostically ('an AI tool', 'any tool', 'paste at the start of a chat'). No current 2026 tool is named, and the section misses that major assistants now have a first-class home for a saved persona (ChatGPT Custom Instructions / Projects, Claude Projects custom instructions, Gemini Gems, Microsoft Copilot agents) rather than re-pasting a block each chat.",
+    "proposed_change": "Add a short 'Where the persona actually lives in 2026 tools' note (callout or 2-3 sentences) after the persona.txt paragraph (~line 39) or in the Textbook Walkthrough, naming current mechanisms: ChatGPT Custom Instructions / Projects, Claude Projects instructions, Gemini Gems, Microsoft Copilot. Keep persona.txt as the version-controllable source of truth and frame these features as where you paste/pin it. Note that exact feature names and UI churn, so the file is the durable artifact. Verified as of June 2026: all three major assistants expose a per-project/persona instruction store that is applied automatically to every conversation in that space, so the 'paste it first every time' workflow is partly dated; the persona.txt-as-source-of-truth framing remains correct because feature names/UI churn.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\01.mdx, Core Concept (after persona.txt paragraph, ~line 39) or Textbook Walkthrough",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "OpenAI Help Center, 'ChatGPT Custom Instructions' (accessed 2026)",
+      "url_or_doi": "https://help.openai.com/en/articles/8096356-chatgpt-custom-instructions",
+      "finding": "Custom instructions are applied immediately to all chats and considered for every conversation going forward, so the user does not repeat preferences each chat; available on all plans (Web, Desktop, iOS, Android). This is the named ChatGPT home for a saved persona."
+     },
+     {
+      "cite": "Stackviv, 'Custom GPTs, Gems & Claude Projects: Full 2026 Guide'; MindStudio comparison (accessed 2026)",
+      "url_or_doi": "https://stackviv.ai/blog/custom-gpts-gems-claude-projects",
+      "finding": "As of 2026 the three saved-persona homes are: ChatGPT Custom Instructions/Projects, Claude Projects (per-project instructions, Pro $20/mo), and Gemini Gems (created via gemini.google.com Gem manager; each Gem is a reusable custom persona). Each lets you store task-specific instructions instead of re-pasting a block."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/04/02",
+  "section_title": "Scenario-Based AI Dialogue",
+  "dir": "frontend/content/cat100-supplement/04",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI is referred to only generically ('the AI', 'an AI tool') with no named 2026 tools and no note on multi-turn chat / transcript-export behavior. Learners build a 'saved chat transcript' artifact with no grounding in what current chat assistants and their transcript share/export features actually look like.",
+    "proposed_change": "Add a short parenthetical or callout near '## Why This Section Matters' or in Worked Example Step 3 grounding the dialogue in current named multi-turn chat assistants (ChatGPT, Claude, Gemini, Microsoft Copilot) and noting that most support sharing or exporting a transcript (ChatGPT shared read-only links + full data export; Claude data export; Gemini import; Copilot has weaker native export), which is what makes the labeled-turn artifact saveable. Add a one-line churn caveat: 'tool and model versions change; the three-move structure does not.'",
+    "where_to_apply": "02.mdx '## Worked Example' Step 3 (line 60, 'save the full transcript') or a new small note near '## Why This Section Matters' (lines 5-9)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "OpenAI Help Center, ChatGPT Shared Links FAQ (accessed 2026)",
+      "url_or_doi": "https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq",
+      "finding": "ChatGPT supports generating a unique read-only shared link for a conversation from the sidebar or the share button, available on web and iOS/Android apps, confirming native transcript sharing for a current named tool."
+     },
+     {
+      "cite": "IntuitionLabs, 'Claude vs ChatGPT vs Copilot vs Gemini: 2026 Enterprise Guide'",
+      "url_or_doi": "https://intuitionlabs.ai/articles/claude-vs-chatgpt-vs-copilot-vs-gemini-enterprise-comparison",
+      "finding": "As of 2026, OpenAI (ChatGPT) and Anthropic (Claude) offer full JSON/data export of conversations, while Microsoft Copilot lacks a built-in export of conversation history, grounding a named-tool, export-aware note and the version-churn caveat."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/04/03",
+  "section_title": "Checking AI Pedagogical Advice",
+  "dir": "frontend/content/cat100-supplement/04",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's central factual claims (the 90% figure traces to a corporate handout not peer-reviewed research; the learning pyramid is an unproven graphic; Dale's Cone assigns no percentages; controlled studies have repeatedly failed to support learning-styles matching) are themselves uncited, which is ironic for a section that teaches 'name a source for each claim.' This is the highest-value, most on-theme enrichment.",
+    "proposed_change": "Add a short 'Recent Evidence' callout near Core Concept and add reference-list entries anchoring the three debunked claims, then reference them inline. (a) Learning-pyramid retention percentages / Dale misattribution -> Subramony, Molenda, Betrus & Thalheimer (2014) and Letrud & Hernes (2015/2016). (b) Learning-styles meshing null result -> Pashler, McDaniel, Rohrer & Bjork (2008). Cite inline at Opening Case (90% / pyramid / Dale), Worked Example Step 2 table, and Textbook Walkthrough (learning-styles row). NOTE: the gap memo's '2018' date for Letrud & Hernes is incorrect; the canonical learning-pyramid paper is the 2015/2016 Journal of Curriculum Studies article (DOI 10.1080/00220272.2015.1088063), not a 2018 work. Use the verified citation below.",
+    "where_to_apply": "03.mdx References section (add 3 entries) + inline at 'Opening Case', 'Worked Example' Step 2 table, and 'Textbook Walkthrough'",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Subramony, Molenda, Betrus & Thalheimer (2014). The Mythical Retention Chart and the Corruption of Dale's Cone of Experience. Educational Technology, 54(6), 6-16.",
+      "url_or_doi": "https://openalex.org/works?filter=title.search:Mythical%20Retention%20Chart (Educational Technology 54(6):6-16; no DOI)",
+      "finding": "Documents that the fabricated retention percentages (e.g., people remember 90% of what they teach others) have no empirical source and were corruptly grafted onto Edgar Dale's Cone of Experience, which itself contained NO percentages. Directly grounds the section's '90% traces to a corporate handout' and 'Dale assigned no percentages' claims."
+     },
+     {
+      "cite": "Letrud & Hernes (2015/2016). The diffusion of the learning pyramid myths in academia: an exploratory study. Journal of Curriculum Studies, 48(3), 291-302.",
+      "url_or_doi": "https://doi.org/10.1080/00220272.2015.1088063",
+      "finding": "Shows the 'learning pyramid' retention figures are widely circulated in academic literature despite lacking empirical support, confirming the section's 'real-but-unproven graphic' characterization. Corrects the gap memo's mistaken 2018 date."
+     },
+     {
+      "cite": "Pashler, McDaniel, Rohrer & Bjork (2008). Learning Styles: Concepts and Evidence. Psychological Science in the Public Interest, 9(3), 105-119.",
+      "url_or_doi": "https://doi.org/10.1111/j.1539-6053.2009.01038.x",
+      "finding": "The canonical review concluding there is no adequate experimental evidence for the learning-styles meshing hypothesis (matching instruction to a learner's style improves outcomes); grounds the Walkthrough claim that 'controlled studies have repeatedly failed to support learning-styles matching.'"
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI is referred to generically ('an AI', 'AI tools') with no current 2026 named tools or note on model/version churn. Current 2025-2026 reasoning and web-search models still fabricate plausible citations and cite real sources that do not support the claim, which directly reinforces the section's thesis.",
+    "proposed_change": "Add a one-sentence 'Recent Evidence' note in 'Why This Section Matters' or after the three Decision Rule checks: name that current 2026 assistants (ChatGPT, Claude, Gemini, Copilot) still produce confident but fabricated or misattributed citations even in their newest reasoning and web-search modes, so claim-by-claim verification stays necessary regardless of model version. Note that built-in 'cite your sources' / AI-search features can themselves point to a real source that does not actually support the claim (the misattribution pattern this section teaches). Keep it tool-illustrative, not tool-dependent.",
+    "where_to_apply": "03.mdx 'Why This Section Matters' (add a sentence) or 'Decision Rule' (after the three checks)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Tow Center for Digital Journalism / Columbia Journalism Review (2025). AI Search Has a Citation Problem.",
+      "url_or_doi": "https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php",
+      "finding": "Tested 8 AI search engines (ChatGPT Search, Perplexity/Pro, Gemini, DeepSeek, Grok-2/3); collectively returned incorrect answers to over 60% of queries (ChatGPT Search wrong 67%), and over half of Gemini and Grok-3 citations led to fabricated or broken URLs. Confirms current web-search AI modes still cite wrong/nonexistent sources confidently (2025)."
+     },
+     {
+      "cite": "GhostCite: A Large-Scale Analysis of Citation Validity in the Age of Large Language Models (2026, arXiv).",
+      "url_or_doi": "https://arxiv.org/pdf/2602.06718",
+      "finding": "Citation hallucination rates rise with recency, reaching ~98.75% for 2025-dated references; a companion 2026 benchmark of 13 LLMs found citation hallucination between 14% and 95% across vendors. Confirms newest models still fabricate citations, so per-claim verification remains necessary regardless of version."
+     },
+     {
+      "cite": "Compound Deception in Elite Peer Review: 100 Fabricated Citations at NeurIPS 2025 (2026, arXiv).",
+      "url_or_doi": "https://arxiv.org/pdf/2602.05930",
+      "finding": "100 AI-generated hallucinated citations were found in NeurIPS 2025 accepted papers; 66% were total fabrications and 100% showed compound errors, evading 3-5 expert reviewers. Real-world evidence that confident, well-formatted fabricated citations persist in 2025-2026."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/04/04",
+  "section_title": "Classroom Communication Drafts",
+  "dir": "frontend/content/cat100-supplement/04",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI is framed entirely generically in 04.mdx ('AI tools default to vague' line 7, 'The AI returns' line 20, 'the AI offered to add' line 84) with no named 2026 tool or model. This is the course currency-watch flag and is salient because the section is about drafting/checking AI-generated email, the exact use case where named tools shape student practice in 2026.",
+    "proposed_change": "Add one grounding sentence in 'Why This Section Matters' (line 7) naming current 2026 email-drafting assistants (Microsoft Copilot in Outlook via 'Help me write'/'Help me reply', Gemini in Gmail/Workspace, ChatGPT) as tools that produce these hedged drafts, with a note that the four-part check is tool-agnostic and outlives model/version churn. Keep it to one sentence so the rest of the prose stays generic.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\04.mdx 'Why This Section Matters' (line 7)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft Support (2026) Draft an email message with Copilot in Outlook",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/draft-an-email-message-with-copilot-in-outlook-3eb1d053-89b8-491c-8a6e-746015238d9b",
+      "finding": "Confirms Copilot in Outlook is current in 2026: users click 'Help me write'/'Help me reply', enter a prompt, and Copilot drafts the message - a live named email-drafting assistant."
+     },
+     {
+      "cite": "Lead with AI (2026) AI for Email: Gemini, Copilot, Claude, and ChatGPT",
+      "url_or_doi": "https://www.leadwithai.co/guides/ai-for-email",
+      "finding": "Confirms Gemini in Gmail (in-place drafting/thread summarization), Copilot in Outlook, and ChatGPT are the current 2026 read-and-draft email assistants; all are draft-only and cannot send."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The dynamic-scenario prompt (04.mdx line 158) and References (line 173) cite 'ISTE digital citizenship' linking to iste.org/standards/students. The generic 'digital citizenship' label does not match the current standard naming/numbering: the current edition is ISTE Standards for Students v4.02 (2024), in which the relevant standard is 1.2 Digital Citizen (not 'digital citizenship').",
+    "proposed_change": "Update the link label from the generic 'ISTE digital citizenship' to the precise current standard name/number 'ISTE Standards for Students 1.2 Digital Citizen' (2024 edition, v4.02), keeping the iste.org/standards/students URL. Apply in both the References entry (line 173) and the dynamic-scenario prompt (line 158).",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\04\\04.mdx References (line 173) and dynamic-scenario prompt (line 158)",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "ISTE Standards for Students, 2024 edition (v4.02)",
+      "url_or_doi": "https://cms-live-media.iste.org/ISTE_STANDARDS_2024_v02.pdf",
+      "finding": "Current ISTE Standards for Students are v4.02 copyright 2024; the digital-citizenship standard is formally '1.2 Digital Citizen', confirming the generic 'digital citizenship' label should be updated to the precise standard name/number."
+     },
+     {
+      "cite": "ISTE - Standards for Students (official page)",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "Cited URL is still valid for the current student standards; the page presents the 2024 standards including 1.2 Digital Citizen, so only the label needs precise renaming, not the link."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/04/05",
+  "section_title": "Tone, Bias, and Audience",
+  "dir": "frontend/content/cat100-supplement/04",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI is referred to generically throughout ('An AI drafts a note', 'the AI suggested', 'the AI's offer') with no named 2026 tool/model and no note that AI defaults (overconfident causal language) are a documented failure mode worth scanning for.",
+    "proposed_change": "Add one parenthetical grounding the AI actor in 2026 reality the first time AI is invoked in the Opening Case, e.g. 'a general-purpose assistant such as ChatGPT, Claude, or Copilot,' plus a one-line currency note in Worked Example Step 1 that AI drafts tend to over-assert causes and use templated urgency, which is exactly why the word-level scan matters. Keep prose tool-agnostic (do not tie to a single product).",
+    "where_to_apply": "05.mdx '## Opening Case' first sentence (line 20) and a short note in '## Worked Example' Step 1 (around line 45)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "IntuitionLabs (2026). Claude vs ChatGPT vs Copilot vs Gemini: 2026 Enterprise Guide; Microsoft Support (2026), Use Claude with Researcher in Microsoft 365 Copilot",
+      "url_or_doi": "https://intuitionlabs.ai/articles/claude-vs-chatgpt-vs-copilot-vs-gemini-enterprise-comparison",
+      "finding": "As of 2026 the leading general-purpose assistants are ChatGPT (OpenAI GPT-5 family), Claude (Anthropic, Opus/Sonnet 4.6), and Microsoft Copilot -- so 'ChatGPT, Claude, or Copilot' is current and accurate as a tool-agnostic example set."
+     },
+     {
+      "cite": "Augenstein, I., et al. (2024). Factuality challenges in the era of large language models and opportunities for fact-checking. Nature Machine Intelligence",
+      "url_or_doi": "https://doi.org/10.1038/s42256-024-00881-z",
+      "finding": "Documents that LLMs generate plausible, authoritative-sounding but unverified/misleading explanations -- supporting the currency note that AI drafts over-assert causes, the exact failure the word-level scan catches."
+     },
+     {
+      "cite": "Huang, L., et al. (2023). A Survey on Hallucination in Large Language Models: Principles, Taxonomy, Challenges, and Open Questions",
+      "url_or_doi": "https://doi.org/10.48550/arxiv.2311.05232",
+      "finding": "Taxonomizes LLM tendency to produce 'plausible yet nonfactual content,' corroborating that overconfident causal assertions are a documented, scannable failure mode."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/04/06",
+  "section_title": "Reflection on Teacher Judgment",
+  "dir": "frontend/content/cat100-supplement/04",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI is referenced generically throughout ('the AI', 'AI advice') with no link to any institutional or sector AI-use disclosure norm, even though the section is explicitly a reflection-on-AI-use artifact teaching students to defend their AI use to a reader. For a 2026 supplement, the absence of any current academic-integrity/disclosure norm is a real gap.",
+    "proposed_change": "Add a short 'Recent Evidence' callout (new_callout style) near the Stronger Artifact Standard section (after line 111, before Transfer Case) noting that GenAI-use disclosure is now an explicit expectation in many courses and professional settings (2024-2026), and that the decision log doubles as a disclosure artifact: it shows not just THAT AI was used but exactly which suggestions were accepted, modified, and rejected, which is precisely what current disclosure norms ask for. Ground it in the MLA/APA disclosure guidance and the syllabus-policy trend below.",
+    "where_to_apply": "mdx (06.mdx, new callout after 'Stronger Artifact Standard' line 111, before 'Transfer Case' line 113)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "MLA Style Center, 'How do I cite generative AI in MLA style? (Updated and Revised)' (updated Aug 2025)",
+      "url_or_doi": "https://style.mla.org/citing-generative-ai-updated-revised/",
+      "finding": "MLA directs writers to cite a generative AI tool whenever they paraphrase, quote, or incorporate AI-created content, AND to acknowledge all functional uses of the tool (e.g., editing prose, translating) in a note or other suitable location. This grounds the claim that current disclosure norms ask for which uses were made, not merely that AI was used."
+     },
+     {
+      "cite": "APA Style Blog, 'Citing generative AI in APA Style: Part 3 - Is AI \"allowed\" in APA Style?' (Sept 9, 2025)",
+      "url_or_doi": "https://apastyle.apa.org/blog/cite-generative-ai-allowed",
+      "finding": "APA Journals policy: 'the use of AI should be disclosed in the Method section, author note, or other relevant place in the text' and the AI tool(s) should be cited in the reference list. Confirms disclosure of AI use is an established 2025 expectation in academic writing."
+     },
+     {
+      "cite": "Thesify, 'Generative AI Policies at the World's Top Universities: October 2025 Update'; HEPI March 2026 survey",
+      "url_or_doi": "https://www.thesify.ai/blog/gen-ai-policies-update-2025",
+      "finding": "In 2025 disclosure became the standard approach to GenAI policies in higher education; Harvard's Bok Center now encourages all instructors to include an AI policy on syllabi. HEPI's March 2026 survey found 94% of full-time UK undergraduates used generative AI for assessed work, underscoring why disclosure norms now apply to students."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/04/07",
+  "section_title": "Evidence Collection",
+  "dir": "frontend/content/cat100-supplement/04",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is fully generic ('a bounded AI/software support move', 'the AI', 'AI tutor') with no named 2026 tools or any AI-use disclosure norm, matching the course-wide currency-watch flag. For a Chapter-4 'AI Conversations as a Teacher' section that hinges on logging accepted/rejected AI suggestions, the absence of any concrete tool grounding reads as dated/vague.",
+    "proposed_change": "Add one 'Recent Evidence'-style callout near the Worked Example decision-log addition or Adaptive Support naming current general-purpose assistants (ChatGPT, Microsoft Copilot, Google Gemini, Claude) as examples of where decision-log AI suggestions come from, with a one-line note that model versions change rapidly (e.g. Copilot now runs on GPT-5.1, Gemini on Gemini 3 Pro as of 2026) so the decision log -- not the tool name -- is what travels. Tie to an AI-use disclosure line consistent with Ch1/Ch8: disclose substantive AI use; assistive use (grammar/proofreading) may not require disclosure, but undisclosed substantive use is an integrity violation.",
+    "where_to_apply": "07.mdx, new callout near Worked Example decision-log addition (line 68) or Adaptive Support (line 135)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Windows News (2026) 2026 Windows Chatbot Wars: ChatGPT, Copilot, Gemini, Claude, Perplexity as core workflow software",
+      "url_or_doi": "https://windowsnews.ai/article/2026-windows-chatbot-wars-how-chatgpt-copilot-gemini-claude-and-perplexity-became-core-workflow-soft.416073",
+      "finding": "As of 2026 the leading general-purpose assistants are ChatGPT, Microsoft Copilot, Google Gemini, Claude (and Perplexity); Copilot is powered by GPT-5.1 and Gemini runs on Gemini 3 Pro -- model versions change frequently, supporting the 'name the tool but rely on the log' framing."
+     },
+     {
+      "cite": "Princeton University Library, Disclosing the Use of AI (Generative AI research guide, accessed 2026)",
+      "url_or_doi": "https://libguides.princeton.edu/generativeAI/disclosure",
+      "finding": "Students must disclose AI use in academic work; failure to disclose, even where AI is permitted, is a scholarly-integrity violation. Assistive use (basic grammar/proofreading) may not need disclosure, but substantive use (generating/interpreting data, creating visuals, paraphrasing) must be declared -- grounds the AI-use-disclosure line."
+     },
+     {
+      "cite": "Momentic (2026) Top Generative AI Chatbots & LLMs by Market Share, June 2026",
+      "url_or_doi": "https://momenticmarketing.com/blog/top-ai-chatbots",
+      "finding": "Confirms ChatGPT, Gemini, and Claude as the dominant 2026 general-purpose chatbots by usage share (ChatGPT ~59%, Gemini ~19%, Claude ~12.5% US web-visit share), validating the named tool set as current."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/04/08",
+  "section_title": "Module 4 Dialogue Studio",
+  "dir": "frontend/content/cat100-supplement/04",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "GitHub Pages branch instruction is inconsistent and uses a dated convention. Worked Example Step 4 (08.mdx line 81) says 'After pushing to the gh-pages branch', but the Core Concept (line 37) says GitHub Pages 'serves whatever is in the published branch'. gh-pages is a legacy convention; GitHub's current UI default for user/org sites is the main branch under Settings > Pages > Deploy from a branch, and GitHub Actions is the other supported source. The hard-coded 'gh-pages' contradicts the section's own 'published branch' language and the course's canonical 06/04.",
+    "proposed_change": "Replace 'After pushing to the gh-pages branch, you open the live URL' with 'After committing to the published branch (Settings > Pages > Deploy from a branch > main, or a GitHub Actions deploy), you open the live URL'. Make branch naming consistent with the Core Concept's 'published branch' phrasing and with 06/04; note the build/cache delay. (Only applies if any publishing content survives the re-theme; otherwise this content drops out entirely.)",
+    "where_to_apply": "08.mdx Worked Example Step 4 (line 81, 'After pushing to the gh-pages branch')",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "GitHub Docs, Configuring a publishing source for your GitHub Pages site (accessed 2026)",
+      "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "finding": "The current UI source is 'Deploy from a branch' (or GitHub Actions); for user and organization sites the default publishing source is the main branch, not gh-pages. gh-pages still works as a selectable branch but is not the modern default, confirming the proposed wording change."
+     },
+     {
+      "cite": "GitHub Changelog, Build and deploy GitHub Pages from any branch (2020)",
+      "url_or_doi": "https://github.blog/changelog/2020-09-03-build-and-deploy-github-pages-from-any-branch/",
+      "finding": "Since 2020 Pages can build/deploy from any branch; the special gh-pages branch is a legacy convention rather than a required target, supporting replacement of the hard-coded 'gh-pages' instruction with 'the published branch (main).'"
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI use is fully generic ('the AI suggested a flashy background color', 'AI's offer of a flashy background color') with no named 2026 assistant and no institutional GenAI-use/disclosure policy reference. For a Ch4 section whose premise is conversing with an AI as a teacher and checking its pedagogical advice, the absence of any concrete current assistant is conspicuous, and the rejected suggestion ('flashy background color') is an HTML-publishing artifact, not a teaching-dialogue move.",
+    "proposed_change": "After re-theming, ground the AI-as-teacher conversation in at least one named current assistant (e.g., ChatGPT / Claude / Microsoft Copilot / Gemini, framed tool-agnostically) and add a one-line disclosure-norm note tying to Ch1 responsible/disclosed AI use, with a caution that model/version names churn. Keep a bounded-AI rejection example but make the rejected suggestion pedagogically wrong (e.g., AI invents a citation or gives developmentally inappropriate advice), not a flashy background color. Mirror this into the 08.practice.json ai_boundary problem (currently 'flashy background color' + empty href).",
+    "where_to_apply": "08.mdx Worked Example Step 4 + step-reveal final step + Stronger Artifact Standard closing-note example; 08.practice.json problem cat100_supplement_4_8_module_4_dialogue_studio_ai_boundary",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Thesify, Generative AI Policies at the World's Top Universities: October 2025 Update",
+      "url_or_doi": "https://www.thesify.ai/blog/gen-ai-policies-update-2025",
+      "finding": "By 2025 disclosure-based AI policies became the standard across top universities (e.g., Harvard's Bok Center, Johns Hopkins May 2025 responsible-use guidance, UCLA April 2025 sample syllabus statements), supporting a one-line disclosure-norm note in the section."
+     },
+     {
+      "cite": "Azevedo et al. (2025), Institutional Policies on Artificial Intelligence in Higher Education: Frameworks and Best Practices for Faculty, New Directions for Adult and Continuing Education",
+      "url_or_doi": "https://doi.org/10.1002/ace.70013",
+      "finding": "Peer-reviewed synthesis showing higher-ed AI policy has moved from prohibition toward framework-based acceptable-use plus disclosure expectations, grounding the proposed disclosure-norm tie-in to Ch1."
+     },
+     {
+      "cite": "Kim et al. (2024), 'I'm Not Sure, But...': Examining the Impact of LLMs' Uncertainty Expression on User Reliance and Trust (FAccT/CHI)",
+      "url_or_doi": "https://doi.org/10.1145/3630106.3658941",
+      "finding": "LLMs 'produce convincing yet incorrect outputs, potentially misleading users' (N=404); supports using a named current assistant whose confident-but-wrong pedagogical claim is the bounded move to reject."
+     }
+    ]
+   },
+   {
+    "type": "assessment_align",
+    "gap": "Missing the central Ch4 misconception. The three misconceptions in 08.misconceptions.json (renders_equals_valid, visual_size_instead_of_heading_tag, link_with_no_target) are all HTML-publishing misconceptions. There is no misconception about the central Ch4 trap: trusting the AI's pedagogical/teaching advice as authoritative because it sounds confident or fluent.",
+    "proposed_change": "After re-theming, replace the three HTML misconceptions with Ch4 ones: (a) 'fluent_equals_correct' -- treating confident/fluent AI teaching advice as accurate without checking it against evidence or developmental appropriateness; (b) 'persona_is_decoration' -- treating the teacher persona as flavor text rather than a constraint shaping tone/audience; (c) 'one_draft_is_revision' -- pasting the AI's first dialogue as the artifact with no accepted/modified/rejected trace. Wire matching misconception_id values into the rewritten practice items (08.practice.json currently references the HTML ids loads_means_correct, bare_text_not_heading, empty_href).",
+    "where_to_apply": "08.misconceptions.json (all 3 entries) and 08.practice.json misconception_id fields",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Kim et al. (2024), 'I'm Not Sure, But...': Examining the Impact of LLMs' Uncertainty Expression on User Reliance and Trust",
+      "url_or_doi": "https://doi.org/10.1145/3630106.3658941",
+      "finding": "Empirically shows users over-rely on confident-sounding LLM answers and that uncertainty cues reduce (not eliminate) overreliance, directly grounding the proposed 'fluent_equals_correct' misconception."
+     },
+     {
+      "cite": "Kim et al. (2025), Fostering Appropriate Reliance on LLMs: The Role of Explanations, Sources, and Inconsistencies (CHI)",
+      "url_or_doi": "https://doi.org/10.1145/3706598.3714020",
+      "finding": "Explanations increase reliance on both correct AND incorrect responses, while sources/inconsistency cues reduce trust in inaccurate output, supporting a misconception that fluent/explained AI advice must still be checked against evidence."
+     }
+    ]
+   }
+  ]
+ }
+]

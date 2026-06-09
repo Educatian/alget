@@ -30,10 +30,12 @@ A submission checklist is a list of concrete, testable requirements, where each 
 | Format | Correct file type (PDF, not PPTX) | Export, then open the exported file and confirm nothing shifted |
 | Access | Link is public | Open it in an incognito or signed-out window and confirm no 404 |
 | Identification | Filename follows the convention | Read the requirement, rename to match (`lastname_course_v3.pdf`) |
-| Safety | No private data or credentials | Rerun a scan for keys and passwords; confirm zero hits |
+| Safety | No private data or credentials | For a repo artifact, rerun the `git grep` credential scan; for a document or spreadsheet, open the file and scan for embedded keys, passwords, tokens, or personal data |
 | Correctness | No broken values | Open the file and confirm totals compute, with no `#REF!` |
 
 The unifying principle is testing from the recipient's environment. Exporting to PDF is not enough; you open the PDF to confirm a chart did not move. Pasting a link is not enough; you load it while signed out, which is the single most common catch, because GitHub Pages, Google Drive, and many tools quietly grant you access they do not grant a stranger. Each checklist row is a hypothesis ("the link is public") paired with the experiment that confirms it ("loaded it incognito, no 404").
+
+The same recipient-position logic bounds AI help. As of 2026, a chat assistant such as ChatGPT or Claude can draft the checklist rows for you, but it cannot reliably open your exported PDF or load your link the way the grader will: file handling is gated by format and plan, and even an assistant that can fetch a URL does so through its own service, not through a signed-out, no-account browser session. The verification tests stay yours to run.
 
 <inline-check question="Your portfolio link loads fine when you click it. Is the public-link requirement satisfied?" explanation="It loads for you because you are signed into the account that owns it. Signed-in access is invisible privilege; the only honest test is loading it in an incognito or signed-out window and confirming no 404." options='[{"text":"Yes; if it loads for you, it loads for the grader.","correct":false},{"text":"No; you must load it signed out in an incognito window to confirm no 404.","correct":true},{"text":"Yes, as long as the URL contains the word public.","correct":false}]'></inline-check>
 
@@ -46,14 +48,14 @@ A student is ready to submit a capstone with three deliverables: a slide deck, a
 | Correct export format | Exported `presentation.pptx` to PDF; opened the PDF and confirmed fonts and chart did not shift | Pass |
 | Link is public | Opened the GitHub Pages link in an incognito window while signed out; page loaded, no 404 | Pass |
 | Filename convention | Renamed `final.pdf` to `moon_cat100_capstone_v3.pdf` so it is identifiable | Pass |
-| No private data | Reran `git grep -i "key\|password"` on the repo; zero hits | Pass |
+| No private data | Reran `git grep -i "key\|password"` on the repo (zero hits); opened the PDF deck and the budget spreadsheet and scanned them for embedded keys, tokens, and personal data (none found) | Pass |
 | Spreadsheet totals | Confirmed Total cell B14 reads `=SUM(B2:B13)` = 8,420 with no `#REF!` | Pass |
 
 The checklist is not cosmetic. Each row is a concrete test the student actually performed, including opening the exported file and the link from a signed-out browser. The submission goes out only after every item shows a verifiable pass, not after the work merely "feels done."
 
 Run the checklist as a fixed procedure. Predict each step before revealing it:
 
-<step-reveal title="Verify a submission from the recipientâ€™s position" steps='[{"prompt":"The assignment says submit slides as a PDF. What is the first move?","predictType":"choice","choices":["Upload the PowerPoint file; it is basically the same","Read the requirement literally and export to PDF","Email the grader to ask if PPTX is fine"],"answerIndex":1,"reveal":"Read the requirement literally: slides as a PDF means a PDF, not the source file. Convert the exact format the assignment states."},{"reveal":"Open what you exported. Conversion routinely shifts charts and fonts, so confirm fidelity by opening the PDF, not by trusting the export button."},{"reveal":"Test access while signed out. Load every link in an incognito window; a 404 there is a 404 for the grader, the most common catch."},{"reveal":"Finish the safety and correctness rows: rename to the convention, re-scan for credentials with zero hits, and confirm the total computes. Submit only when every row passes."}]'></step-reveal>
+<step-reveal title="Verify a submission from the recipient’s position" steps='[{"prompt":"The assignment says submit slides as a PDF. What is the first move?","predictType":"choice","choices":["Upload the PowerPoint file; it is basically the same","Read the requirement literally and export to PDF","Email the grader to ask if PPTX is fine"],"answerIndex":1,"reveal":"Read the requirement literally: slides as a PDF means a PDF, not the source file. Convert the exact format the assignment states."},{"reveal":"Open what you exported. Conversion routinely shifts charts and fonts, so confirm fidelity by opening the PDF, not by trusting the export button."},{"reveal":"Test access while signed out. Load every link in an incognito window; a 404 there is a 404 for the grader, the most common catch."},{"reveal":"Finish the safety and correctness rows: rename to the convention, re-scan for credentials with zero hits, and confirm the total computes. Submit only when every row passes."}]'></step-reveal>
 
 Now order the submission-verification steps:
 
@@ -83,7 +85,7 @@ The second misreading is treating the checklist as bureaucratic busywork. Each r
 
 Begin by reading the assignment instructions and converting each requirement into a testable row. "Submit slides as a PDF" becomes two rows: export to PDF, and open the PDF to confirm fidelity. "Include a public link" becomes one row with an explicit incognito test. Turning prose requirements into tests is the move that prevents "I thought it said" mistakes.
 
-Work the rows with real actions. Export the deck, then open the resulting PDF and look at the chart and fonts, because conversion routinely shifts them. Copy the site link, open a private window, sign out, and load it; a 404 here is the failure you most want to catch before the grader does. Rename the file to the stated convention so it is identifiable among many. Rerun the credential scan so no key rides along into a public artifact, and open the spreadsheet to confirm the total computes.
+Work the rows with real actions. Export the deck, then open the resulting PDF and look at the chart and fonts, because conversion routinely shifts them. Copy the site link, open a private window, sign out, and load it; a 404 here is the failure you most want to catch before the grader does. Rename the file to the stated convention so it is identifiable among many. Rerun the credential scan against whatever artifact actually carries text or data, not only the repo: `git grep` covers tracked files in a git repository and does nothing for a standalone PDF or spreadsheet, so open those files and scan for embedded API keys, passwords, tokens, or personal data (a leftover key in a worksheet cell or in the speaker notes is the classic miss). Then open the spreadsheet to confirm the total computes.
 
 Mark each row pass only after its test passes, and submit only when the whole table is green. The walkthrough output is a checklist table where every status is backed by an action you can describe, not a feeling.
 

@@ -48,7 +48,7 @@
         "ai_supported_learning",
         "cat100_supplement_website_purpose_and_information_architecture"
       ],
-      "stem": "You ask an AI tool to propose a sitemap. It returns Home, About, Services, Pricing, Team, Careers. What is the right next move for your personal student portfolio?",
+      "stem": "You ask a current AI assistant (such as ChatGPT, Gemini, or Claude) to propose a sitemap. It returns Home, About, Services, Pricing, Team, Careers. What is the right next move for your personal student portfolio?",
       "options": [
         "Adopt the full sitemap because the AI is more experienced at web design",
         "Keep only the pages that fit a single-author student portfolio (drop Services, Pricing, Team, Careers) and justify the cut",

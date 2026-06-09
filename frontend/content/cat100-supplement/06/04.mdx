@@ -25,7 +25,7 @@ The bug was invisible in the editor preview, which serves from the folder root, 
 
 Three facts about GitHub Pages explain almost every publishing surprise.
 
-**Pages is a build-and-serve pipeline, not a live file mirror.** When you push, GitHub queues a build and then serves the output. There is a delay (often under a minute, sometimes longer), and a recent change is not live until the build finishes. "I pushed and nothing changed" is usually "the build has not completed and your browser is showing a cached copy."
+**Pages is a build-and-serve pipeline, not a live file mirror.** When you push, GitHub queues a build and then serves the output. There is a delay (often under a minute, sometimes longer), and a recent change is not live until the build finishes. "I pushed and nothing changed" is usually "the build has not completed and your browser is showing a cached copy." When you reach the settings screen, note that the "Build and deployment" Source control offers two options: "Deploy from a branch," the correct choice for a hand-written HTML/CSS portfolio like this one (GitHub's recommended path when there is no build framework), and "GitHub Actions," which is for framework projects such as React or Next.js.
 
 **Absolute versus relative paths.** A path beginning with `/` is absolute: it starts from the domain root, `username.github.io/`. A path with no leading slash is relative: it starts from the current page's folder. On a user site served from the root, absolute paths happen to work. On a project site served from `/portfolio/`, an absolute `/style.css` points outside your project and fails, while a relative `assets/style.css` resolves correctly. This single distinction causes the unstyled-page case.
 
@@ -104,6 +104,8 @@ Your published site is strong when you can point to evidence from the live URL, 
 
 A strong submission names the environment difference you resolved: "Locally my CSS loaded; live it 404ed because I used an absolute path on a project subpath. I switched to a relative path and confirmed the fix on the live URL in a private window."
 
+> **Accessibility and privacy on the live page.** The live-URL visit is also where this module's accessibility and privacy checks happen, not just the publishing ones. While you are on the published address, confirm that every informative image has meaningful alt text, that text contrast meets [WCAG 2.2](https://www.w3.org/TR/WCAG22/) (4.5:1 for normal text under SC 1.4.3, and 3:1 for non-text content under SC 1.4.11), and that no private data (home address, personal email, unredacted documents) was ever committed. A public GitHub Pages repo exposes its full source and commit history to the world, not just the rendered site, so a privacy slip lives in the repo even when it is invisible on the page.
+
 ## Transfer Case
 
 Move the same publishing logic to a different host, say a Netlify or Cloudflare Pages deploy of the same site. The exact menu to enable the site differs, but the deep facts carry over: there is a build step with a delay, paths must match where the site is served, and the only trustworthy test is the live URL in a clean browser session. A student who learned to diagnose local-versus-live differences on GitHub Pages will diagnose the same class of bug on any static host, because the cause (environment mismatch) is platform-independent. Recognizing that the skill is "verify the deployed environment," not "click the GitHub Pages button," is the sign you understood publishing rather than memorizing one dashboard.
@@ -114,7 +116,7 @@ Open the studio packet: [download the GitHub Pages file tree with accessibility,
 
 <artifact-studio artifact="GitHub Pages file tree with accessibility, privacy, and publishing checks" course="CAT 100" section="06.04"></artifact-studio>
 
-Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
+Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted. If a chat assistant such as GitHub Copilot Chat or ChatGPT diagnoses your deploy, treat destructive suggestions (recreate the repo, force-push) as rejected by default until the build status and a hard refresh have ruled out the ordinary causes, and name the tool you used in your AI-use note, since these assistants change names and behavior often.
 
 ## Adaptive Support
 

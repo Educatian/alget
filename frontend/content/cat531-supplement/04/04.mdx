@@ -29,9 +29,11 @@ Privacy and consent with minors rest on three terms that are routinely blurred a
 | Assent | Minor agrees | The student's age-appropriate "yes." | No |
 | Consent | Parent or guardian agrees | Legally binding permission for a minor. | Yes, when informed |
 
+**Legal anchor.** This design implements named statutes, not just good manners. COPPA is where the verifiable-parental-consent and opt-in standards for under-13 students come from, and FERPA governs whether a vendor qualifies as a "school official" and what it may do with education records (it may not redisclose or use them for purposes the school did not authorize). Currency note: the FTC's amended COPPA Rule (published April 22, 2025; effective June 23, 2025; full compliance by April 22, 2026) now requires separate verifiable parental consent before disclosing children's data to third parties, prohibits indefinite retention (data may be kept only as long as reasonably necessary for the stated purpose), expands "personal information" to biometric and government identifiers, and adds new consent methods. Those changes directly reinforce this section's opt-in, purpose-limitation, and retention-override tests.
+
 A defensible consent design does four things in order. It names both parties (the student assents, the guardian consents). It states the data and a single bounded purpose ("question text and timestamps, used only to alert the teacher to a struggling student, never to train the vendor model"). It sets the default to opt-in, because a family that does not return a form has not agreed to anything. And it sets a retention and deletion rule that overrides the vendor's, with a specific end date.
 
-The course anchors are concrete here. **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** is the lens that exposes the vendor default as the real adversary: the 24-month retention and training-on-student-data setting is the thing your clause exists to override. **Critical edtech studies** reminds you that the families least able to parse a dense consent form are often the ones whose children are most exposed, so plain language is an equity requirement, not a courtesy. **Teacher professional judgment** is what bounds the purpose: you decide the data serves a teacher alert and nothing more, and you write that limit in.
+The course anchors are concrete here. **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** is the lens that exposes the vendor default as the real adversary: the 24-month retention and training-on-student-data setting is the thing your clause exists to override. **Critical edtech studies** (Perrotta & Selwyn, 2020) reminds you that the families least able to parse a dense consent form are often the ones whose children are most exposed, so plain language is an equity requirement, not a courtesy. **Teacher professional judgment** is what bounds the purpose: you decide the data serves a teacher alert and nothing more, and you write that limit in.
 
 ## Worked Example: A Consent Clause for a Minors' AI Tool
 
@@ -133,7 +135,11 @@ Before you move on, check that the school AI policy memo with privacy, equity, c
 
 ## References
 
-- [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Mishra, P., & Koehler, M. J. (2006). [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
 - critical edtech studies. https://doi.org/10.4324/9781315670160
-- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
+- Perrotta, C., & Selwyn, N. (2020). Deep learning goes to school: Toward a relational understanding of AI in education. *Learning, Media and Technology, 45*(3). [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
+- Selwyn, N. (2019). What's the problem with learning analytics? *Journal of Learning Analytics, 6*(3). https://doi.org/10.18608/jla.2019.63.3
 - teacher professional judgment. https://doi.org/10.1177/002205741319300304
+- Federal Trade Commission (2025). FTC finalizes changes to children's privacy rule (amended COPPA Rule; Federal Register Apr. 22, 2025; effective June 23, 2025; compliance by Apr. 22, 2026). https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data
+- U.S. Department of Education, Student Privacy Policy Office. Responsibilities of third-party service providers under FERPA (Vendor FAQ). https://studentprivacy.ed.gov/sites/default/files/resource_document/file/Vendor%20FAQ.pdf
+- Center for Democracy & Technology. Commercial companies and FERPA's "school official" exception: A survey of privacy policies. https://cdt.org/insights/commercial-companies-and-ferpas-school-official-exception-a-survey-of-privacy-policies/

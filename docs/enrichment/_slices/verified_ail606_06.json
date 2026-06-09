@@ -1,0 +1,26 @@
+[
+ {
+  "section_key": "ail606/06/04",
+  "type": "accuracy_fix",
+  "gap_summary": "Artifact-studio/meta label 'prototype README traceability matrix' but section teaches a quality-review scorecard",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 04.mdx Core Concept/Worked Example/Decision Rule all teach criterion/score/evidence/severity rubric; README matrix is a different ch6 artifact.",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/06/05",
+  "type": "currency_update",
+  "gap_summary": "Mayer cited via superseded DOI 10.1017/CBO9781139164603; 3rd edition (2020) exists with segmenting principle",
+  "verdict": "confirmed",
+  "evidence": "Crossref: 10.1017/9781316941355 = Mayer, Multimedia Learning 3rd ed., CUP 2020; old DOI = 1st ed. 2001; Handbook 3rd ed. 2021 = 10.1017/9781108894333.",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/06/06",
+  "type": "accuracy_fix",
+  "gap_summary": "Artifact-studio/meta reference ch3 storyboard artifact; section actually teaches critique-and-disposition round trip",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 06.mdx body defines the artifact as 'the critique you gave, the dispositions you logged'; storyboard never built in this section.",
+  "applied": true
+ }
+]

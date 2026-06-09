@@ -8,15 +8,15 @@
         "cat100_supplement_debugging_with_ai_assistance",
         "cat100_supplement_github_pages_personal_website"
       ],
-      "stem": "Your nav links render as plain text and the page below them is also blue and underlined. You forgot to close an anchor tag: <a href=\"about.html\">About<a href=\"projects.html\">Projects</a>. What is the actual bug?",
+      "stem": "Your nav looks fine, but every paragraph below it renders blue and underlined. The last nav link reads <a href=\"about.html\">About with no closing tag before </nav>. What is the actual bug?",
       "options": [
         "The browser is broken",
-        "The first <a> was never closed with </a>, so the link wraps everything until the next close tag",
+        "The <a> was never closed with </a>, so the browser keeps treating the content after the nav as part of the link",
         "GitHub Pages does not allow links",
         "You used the wrong color in CSS"
       ],
       "correct_index": 1,
-      "explanation": "A missing </a> leaves the first link open, so following content is swallowed into the anchor. Closing the tag fixes the runaway styling.",
+      "explanation": "A missing </a> leaves the link open, so the following content is swallowed into the anchor. Closing the tag fixes the runaway styling.",
       "misconception_id": "cat100_supplement_6_5_browser_blamed_for_markup_bug",
       "difficulty": "easy"
     },

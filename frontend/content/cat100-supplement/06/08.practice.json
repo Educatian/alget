@@ -47,7 +47,7 @@
         "ai_supported_learning",
         "cat100_supplement_module_6_website_studio"
       ],
-      "stem": "You used AI to draft your HTML, debug a CSS issue, and reword a resume bullet. What does the module ask you to include so the work is honest?",
+      "stem": "You used an AI assistant (for example GitHub Copilot, Claude, or ChatGPT) to draft your HTML, debug a CSS issue, and reword a resume bullet. What does the module ask you to include so the work is honest?",
       "options": [
         "Nothing; AI use never needs to be mentioned",
         "A short AI-use note stating where AI helped (drafting, debugging, wording) and confirming you verified the output and own the final decisions",
@@ -55,7 +55,7 @@
         "The full chat transcript pasted into the home page"
       ],
       "correct_index": 1,
-      "explanation": "The module's standard is a concise AI-use note that discloses where AI assisted and affirms you checked the output and remain responsible for the result.",
+      "explanation": "The module's standard is a concise AI-use note that discloses where AI assisted and affirms you checked the output and remain responsible for the result. Naming the specific tool (and version, if known) and following your course's GenAI disclosure policy makes the note auditable.",
       "misconception_id": "cat100_supplement_6_8_ai_use_left_undisclosed",
       "difficulty": "hard"
     },

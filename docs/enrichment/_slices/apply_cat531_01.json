@@ -1,0 +1,515 @@
+[
+ {
+  "section_key": "cat531/01/01",
+  "section_title": "CBI as Pedagogical Judgment",
+  "dir": "frontend/content/cat531-supplement/01",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The 'critical edtech studies' anchor (line 38/155) never names Selwyn in-text and points to an unnamed 2016 Routledge DOI (10.4324/9781315670160); the 'AI and education datafication' anchor (line 39/156) rests on a single 2020 DOI reused across all sections. For a 2026 graduate ethics course the critical-edtech/datafication evidence base reads as a placeholder frozen at 2016-2020.",
+    "proposed_change": "Rename the anchor-table row to 'Critical edtech studies (Selwyn)' and add one 2023-2025 companion. Add Pangrazio & Selwyn (2023) Critical Data Literacies as the named-Selwyn current source, and/or Williamson, Macgilchrist & Potter (2023) on re-examining AI, automation and datafication in education as the current datafication companion alongside the 2020 anchor. Keep the 2016/2020 DOIs as foundational.",
+    "where_to_apply": "01.mdx Core Concept anchor table rows 'Critical edtech studies' (line 38) and 'AI and education datafication' (line 39); References lines 155-156",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Pangrazio & Selwyn (2023) Critical Data Literacies (MIT Press)",
+      "url_or_doi": "10.7551/mitpress/14155.001.0001",
+      "finding": "Current (2023) book co-authored by Neil Selwyn on critical data literacy in education; lets the anchor name Selwyn explicitly with a recent source instead of an unnamed 2016 DOI."
+     },
+     {
+      "cite": "Williamson, Macgilchrist & Potter (2023) Re-examining AI, automation and datafication in education",
+      "url_or_doi": "10.1080/17439884.2023.2167830",
+      "finding": "2023 Learning, Media and Technology editorial (136 citations) directly re-examining AI and datafication in education; a current companion to the 2020 datafication anchor in the same journal lineage."
+     },
+     {
+      "cite": "Sperling et al. (2024) In search of AI literacy in teacher education: a scoping review",
+      "url_or_doi": "10.1016/j.caeo.2024.100169",
+      "finding": "2024 scoping review (319 citations) on AI literacy in teacher education; optional current critical-lens supplement if a teacher-facing source is preferred."
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The opening case and worked example lean on FERPA/COPPA-style concerns (third-party-processor opt-outs, unstated retention period, processing flagged students' data) but cite NO statute or standard, so the privacy reasoning is asserted rather than grounded.",
+    "proposed_change": "Add one short 'Recent Evidence' sentence after the Opening Case (after line 22) or in the Decision Rule naming FERPA and COPPA as the operative U.S. frameworks for the privacy constraint, and noting the FTC's 2025 COPPA amendments (finalized Jan 16, 2025; effective June 23, 2025; compliance by April 22, 2026) that newly limit retention and monetization of children's data. Add the two citations to References. Do not expand the case prose.",
+    "where_to_apply": "01.mdx new short callout after Opening Case (after line 22) or in Decision Rule; add citations to References",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "FTC (2025) Children's Online Privacy Protection Rule, Final Rule",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "FTC finalized COPPA amendments Jan 16, 2025, published Apr 22, 2025, effective June 23, 2025 (compliance deadline Apr 22, 2026); first major overhaul since 2013, adding explicit data-retention limits and opt-in consent for monetizing children's data, directly grounding the case's retention/opt-out concern."
+     },
+     {
+      "cite": "U.S. Dept. of Education, Family Educational Rights and Privacy Act (FERPA), 20 U.S.C. 1232g",
+      "url_or_doi": "https://studentprivacy.ed.gov/ferpa",
+      "finding": "FERPA is the federal law protecting student education records and governs disclosure to third-party (vendor) processors; it is the operative frame for the case's vendor-server constraint."
+     },
+     {
+      "cite": "Student Privacy Compass / AI for Education (2024-2025) State guidance on generative AI in K-12",
+      "url_or_doi": "https://studentprivacycompass.org/state-guidance-on-the-use-of-generative-ai-in-k-12-education/",
+      "finding": "Nearly all states have published AI guidance/playbooks for K-12 (2024-2025), and ~150 state student-privacy laws since 2014 regulate vendor data use; supports a current state-level companion sentence."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The TPACK anchor (line 37/154) links only to Wikipedia plus the canonical 2006 Mishra & Koehler DOI, while this section introduces TPACK as the 'purpose-fit' anchor for AI tools specifically. The currency-watch flags AI-TPACK / generative-AI teacher-knowledge framings (2023-2026) as the relevant current layer.",
+    "proposed_change": "Replace the Wikipedia link target with, or supplement it by, a current generative-AI TPACK source, keeping Mishra & Koehler 2006 as the canonical root in References. Add Mishra, Warr & Islam (2023) 'TPACK in the Age of ChatGPT and Generative AI' as the AI-era companion DOI; optionally Ning et al. (2024) on teachers' AI-TPACK.",
+    "where_to_apply": "01.mdx Core Concept anchor table TPACK row (line 37) and References (line 154)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra, Warr & Islam (2023) TPACK in the Age of ChatGPT and Generative AI",
+      "url_or_doi": "10.1080/21532974.2023.2247480",
+      "finding": "2023 Journal of Digital Learning in Teacher Education article (354 citations) extending TPACK to generative AI; the canonical current AI-TPACK companion to the 2006 root."
+     },
+     {
+      "cite": "Ning et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements",
+      "url_or_doi": "10.3390/su16030978",
+      "finding": "2024 study (221 citations) formalizing an AI-TPACK construct for teachers; an alternative/supplementary current framework citation."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The Design Tension Studio artifact (named throughout the section and in the live ArtifactStudio component) sends students to swarmid.vercel.app with join code UA-CAT531-SUMMER26, but the URL/join code are deployment-volatile and never surfaced in the MDX, so drift would silently break the student path.",
+    "proposed_change": "Add a one-line 'Studio access' note in the Artifact Studio section (lines 117-123) with the live URL (swarmid.vercel.app) and join code UA-CAT531-SUMMER26 so the textbook is self-consistent with the tool. The deployment is confirmed live with the named 'Design Tension Studio' and a working student Course code / 'Join with Code' flow; the specific code is not publicly indexable (private course gate), so confirm the code in the instructor console before publishing it.",
+    "where_to_apply": "01.mdx Artifact Studio section (lines 117-123)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Design Tension Studio (live deployment), swarmid.vercel.app",
+      "url_or_doi": "https://swarmid.vercel.app/",
+      "finding": "Site is live and titled 'Design Tension Studio,' an instructional design systems lab with multi-lens (Teacher/IT/Student) tension mapping and a student 'Course code' input with a 'Join with Code' button, plus instructor email/password sign-in; the named-account/join-code flow the artifact assumes is present and operational. The CAT531 join code is not publicly visible (expected for a gated course)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/01/02",
+  "section_title": "Design Tensions Before Tool Choice",
+  "dir": "frontend/content/cat531-supplement/01",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "Textbook Walkthrough (lines 85-87) makes an uncited empirical claim central to its argument: an AI writing-feedback tool 'quietly scores multilingual writers lower' / would 'systematically misjudge students whose prose differs from the model's training register.' Course currency-watch flags AAVE/disparate-error-rate scoring as an illustrative-but-uncited example needing 2024-2026 grounding.",
+    "proposed_change": "Add a 'Recent Evidence' parenthetical/footnote after the Pole B sentence (line 85) citing Liang et al. (2023, Patterns) on GPT detectors misclassifying non-native English writers, optionally with the 2025 L2-writing review. Add matching References entry. Prose volume stays flat; sharpens the existing claim rather than adding pages.",
+    "where_to_apply": "02.mdx Textbook Walkthrough, after the Pole B sentence (line 85); add matching entry to References (lines 149-152).",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Liang, Yuksekgonul, Mao, Wu & Zou (2023). GPT detectors are biased against non-native English writers. Patterns 4(7), 100779.",
+      "url_or_doi": "https://doi.org/10.1016/j.patter.2023.100779",
+      "finding": "GPT detectors misclassified over half of TOEFL essays by non-native English writers as AI-generated (near-zero false-positive for native writers), demonstrating systematic disparate error rates against writers whose prose differs from the model's expected register. Well-cited (438+ citations); peer-reviewed in Patterns."
+     },
+     {
+      "cite": "Li (2025). Generative AI and Second Language Writing. Digital Studies in Language and Literature.",
+      "url_or_doi": "https://doi.org/10.1515/dsll-2025-0007",
+      "finding": "Recent (2025) treatment of LLM writing feedback for L2/multilingual writers; provides a current second anchor for the multilingual-writer fairness claim."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Artifact-standard copy (line 104) tells students to 'ask BigAL,' but per course context the current CAT 531 generative-AI teaching assistant is TeachGen@i (BigAL appears in 04/05 artifact copy, a legacy/other reference). Within one section the assistant should have a single current name matching the live syllabus.",
+    "proposed_change": "Standardize the assistant reference on line 104 to TeachGen@i (the named CAT 531 assistant per course context), replacing 'ask BigAL.' Name is course-internal and not publicly indexed, so verification rests on the course-context signal, not a public source.",
+    "where_to_apply": "02.mdx Stronger Artifact Standard (line 104, 'ask BigAL').",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "ALGET CAT 531 course context (this task brief).",
+      "url_or_doi": "internal course context",
+      "finding": "Course context names TeachGen@i as the CAT 531 internal generative-AI teaching assistant; BigAL is the 04/05 artifact-copy name. Public web search (catalog.ua.edu, UA Teaching Academy) returned no public listing of either internal tool, so this is an internal-consistency standardization, not a web-verifiable fact."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Artifact Studio prose (lines 112-118) and the <artifact-studio> component point to the Design Tension Studio but give no live URL or join code. Course context flags the live studio at swarmid.vercel.app with join code UA-CAT531-SUMMER26 for Summer 2026.",
+    "proposed_change": "Add a one-line pointer in the Artifact Studio block to the live DTS (swarmid.vercel.app) with join code UA-CAT531-SUMMER26, or verify the artifact-studio component injects it. One wiring line, no bulk prose.",
+    "where_to_apply": "02.mdx Artifact Studio (lines 112-118).",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Design Tension Studio (swarmid.vercel.app), landing page fetched 2026-06-09.",
+      "url_or_doi": "https://swarmid.vercel.app",
+      "finding": "Site is live and is the Design Tension Studio; it exposes a 'Student join' flow with email/password and a course-code entry field, consistent with the UA-CAT531-SUMMER26 join code from course context. The join code itself is not publicly displayed (expected), but the URL and the course-code join mechanism are confirmed live."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/01/03",
+  "section_title": "DTS Map Reading",
+  "dir": "frontend/content/cat531-supplement/01",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The 'Stronger Artifact Standard' block (line 106) tells the learner to 'ask BigAL to compare a generic edge label against a mechanism-naming one.' BigAL is not the course-canonical assistant; CAT 531's named generative-AI teaching tool is TeachGen@i, used consistently in Ch 02 (chapter title 'Teaching in Tech-Rich Classrooms With TeachGen@i', plus all practice/misconception/meta files) and Ch 08 (22 occurrences). 'BigAL' is a one-off inconsistency that confuses which assistant the course deploys and undercuts its bounded-prompting modeling.",
+    "proposed_change": "Replace 'ask BigAL to compare a generic edge label against a mechanism-naming one' with 'ask TeachGen@i for a bounded comparison of a generic edge label against a mechanism-naming one'. Keep the constrained/bounded-prompt framing (compare weak vs mechanism-naming edge, not 'explain it for me'). This is the only occurrence of BigAL in the CAT 531 corpus.",
+    "where_to_apply": "03.mdx line 106, 'Stronger Artifact Standard' section, sentence 'ask BigAL to compare a generic edge label against a mechanism-naming one'",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "ALGET cat531-supplement Ch 02 meta (02.meta.json)",
+      "finding": "chapter_title = 'Teaching in Tech-Rich Classrooms With TeachGen@i'; the canonical assistant name throughout Ch 02 is TeachGen@i, not BigAL.",
+      "url_or_doi": "C:/Users/jewoo/Projects/alget/frontend/content/cat531-supplement/02/02.meta.json"
+     },
+     {
+      "cite": "ALGET cat531-supplement Ch 08 (grep)",
+      "finding": "TeachGen@i appears 22 times across Ch 08 files; BigAL appears nowhere in the CAT 531 corpus except 03.mdx line 106, confirming the inconsistency.",
+      "url_or_doi": "C:/Users/jewoo/Projects/alget/frontend/content/cat531-supplement/08"
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The worked example, decision rule, and transfer case rest on the empirical claim that automated essay scorers trained on native-speaker prose systematically under-score multilingual/L2 writers (the '4 of 5 a band low' figure is fabricated-for-illustration). This central evidence claim is uncited; a graduate ethics course should ground it in real research.",
+    "proposed_change": "Add a 'Recent Evidence' callout after the Worked Example (and a reference entry) citing real evidence that LLM/AI text systems exhibit disparate treatment of non-native/L2 English writers, and that fairness audits use subgroup disaggregation of error rates. Keep the 12-essay scenario as a teacher's local spot-check but anchor the mechanism claim to Liang et al. (2023). Suggested callout text: 'Real research confirms this mechanism: GPT-based classifiers systematically misclassify non-native English prose (Liang et al., 2023, Patterns), because L2 writers use more constrained, less idiomatic phrasing the models were not trained to reward. Fairness audits therefore disaggregate error rates by subgroup rather than reporting a single accuracy number.'",
+    "where_to_apply": "03.mdx, new 'Recent Evidence' callout after the 'Worked Example' (after line 65) and a new entry in 'References'; also strengthens the 'After' edge-mechanism claim (lines 58-59).",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Liang, W. et al. (2023) GPT detectors are biased against non-native English writers. Patterns 4(7).",
+      "finding": "GPT detectors consistently misclassify non-native English writing as AI-generated while native writing is classified accurately, because L2 writers use more constrained linguistic expression; demonstrates the same train-on-native-prose-penalizes-L2 mechanism the section asserts for AES.",
+      "url_or_doi": "https://doi.org/10.1016/j.patter.2023.100779"
+     },
+     {
+      "cite": "Liang, W. et al. (2023) GPT detectors are biased against non-native English writers (preprint).",
+      "finding": "Companion arXiv preprint: detectors penalize writers with limited/constrained linguistic expression, raising fairness and robustness concerns for multilingual writers.",
+      "url_or_doi": "https://doi.org/10.48550/arxiv.2304.02819"
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The 'Textbook Walkthrough' (lines 83-91) builds a case on an AI attendance/engagement camera that infers engagement from face and posture and 'misreads neurodivergent and culturally varied expression' and surveils minors, presented as established via 'critical edtech studies' but citing no specific source, statute, or case. This is the highest-value place to add a real citation in a course stressing privacy/consent with minors.",
+    "proposed_change": "Add citations supporting that facial/affect-based engagement detection is an unreliable, contested signal (validity concerns for neurodivergent and cross-cultural expression). Anchor the mechanism to Barrett et al. (2019, Psychological Science in the Public Interest) and, for the automated-classifier failure on naturalistic faces, Kuntzler et al. (2021). Add a privacy anchor: FERPA (education records) and COPPA (under-13 data) as the statutory floor for biometric/engagement data on minors. One concrete edit: in the edge-mechanism sentence (line 89) cite Barrett et al. (2019); in the decision-node/References add a FERPA/COPPA note.",
+    "where_to_apply": "03.mdx 'Textbook Walkthrough' section (lines 89-91, camera case) and 'References'.",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Barrett, L. F. et al. (2019) Emotional Expressions Reconsidered: Challenges to Inferring Emotion From Human Facial Movements. Psychological Science in the Public Interest 20(1).",
+      "finding": "How people express anger, fear, happiness, etc. varies substantially across cultures, situations, and individuals; a given facial configuration does not reliably map to an emotional state, so inferring engagement/affect from faces is not a valid signal.",
+      "url_or_doi": "https://doi.org/10.1177/1529100619832930"
+     },
+     {
+      "cite": "Kuntzler, T. et al. (2021) Automatic Facial Expression Recognition in Standardized and Non-standardized Emotional Expressions. Frontiers in Psychology 12.",
+      "finding": "Automated facial-expression systems classify posed/standardized emotions adequately but performance 'drops remarkably' on naturalistic expressions, undermining real-world classroom engagement detection.",
+      "url_or_doi": "https://doi.org/10.3389/fpsyg.2021.627561"
+     },
+     {
+      "cite": "U.S. Dept. of Education FERPA / FTC COPPA (statutory anchor)",
+      "finding": "FERPA governs disclosure/handling of student education records and COPPA restricts collection of data from children under 13; both establish the legal floor for collecting biometric/engagement (face, posture) data on minors that the surveillance mechanism implicates. (Cite the statutes directly in the reference list; no scholarly DOI required.)",
+      "url_or_doi": "https://studentprivacy.ed.gov/ (FERPA); https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa (COPPA)"
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "References (lines 149-154) are thin and Wikipedia-anchored: TPACK links to Wikipedia + 2006 DOI; 'critical edtech studies' is a bare DOI (no author/title shown); datafication is a single 2020 DOI; 'teacher professional judgment' is a 1993 DOI. No author/title attribution a student could cite, and nothing newer than 2020 for a 2026 graduate AI-ethics course.",
+    "proposed_change": "Name authors/titles in each entry (Mishra & Koehler, 2006, 'Technological Pedagogical Content Knowledge'; Selwyn, N., critical-edtech work for the cited Routledge DOI; the datafication source) instead of bare labels, and add at least one 2023-2026 anchor for AI-era teacher tech judgment, e.g., Ning et al. (2024) AI-TPACK or Sperling et al. (2024) AI literacy in teacher education scoping review. Note the existing 'critical edtech studies' Routledge DOI (10.4324/9781315670160) did not resolve in OpenAlex; Selwyn's best-known 2016 critical-edtech title 'Is Technology Good for Education?' is Polity Press, so the editor should confirm which Selwyn/Routledge work the DOI actually points to before printing an author/title.",
+    "where_to_apply": "03.mdx 'References' section (lines 149-154, all four entries) and inline anchor links in 'Core Concept' / 'Adaptive Support'.",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Ning, Y. et al. (2024) Teachers' AI-TPACK: Exploring the Relationship Between Knowledge Elements. Sustainability 16(3):978.",
+      "finding": "Introduces AI-TPACK extending TPACK with AI-Technological Knowledge components; a current (2024) framework anchor for AI-era teacher technology judgment.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978"
+     },
+     {
+      "cite": "Sperling, K. et al. (2024) In search of AI literacy in teacher education: A scoping review. Computers and Education Open 6:100169.",
+      "finding": "Recent (2024) synthesis of AI literacy in teacher education; suitable current critical/competency anchor to refresh the frozen-at-2016/2020 reading list.",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169"
+     },
+     {
+      "cite": "Selwyn, N. (2016) Is Technology Good for Education? Polity Press (publisher check)",
+      "finding": "Selwyn's canonical critical-edtech monograph is Polity Press (ISBN 978-0-7456-9646-1), NOT Routledge; the .mdx Routledge DOI 10.4324/9781315670160 returned no OpenAlex record, so the bare 'critical edtech studies' label needs its actual author/title verified before attribution.",
+      "url_or_doi": "https://doi.org/10.4324/9781315670160"
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The Artifact Studio block (lines 114-118) names the DTS map artifact and links a download packet but does not point students to the live DTS authoring tool (swarmid.vercel.app) or surface a join code; since 01.03 is specifically about READING DTS maps, it is the natural place to confirm the deployed studio students draw maps in.",
+    "proposed_change": "Add a one-line pointer in 'Artifact Studio' to the live Design Tension Studio app. Verified: https://swarmid.vercel.app/cat531.html is LIVE and is the CAT 531 'Design Tension Studio' portal. IMPORTANT currency correction: the live page now uses a name-dropdown / named-account sign-in (select your name), NOT a join code, and does NOT surface 'UA-CAT531-SUMMER26'. So add the URL but do NOT print the old join code; instead direct students to 'sign in by selecting your name' per the deployed login. (Consistent with the course's migration from join-code to fixed named accounts.)",
+    "where_to_apply": "03.mdx 'Artifact Studio' section (lines 114-118), near the artifact-studio component and packet download link.",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Design Tension Studio — CAT 531 portal (live)",
+      "finding": "https://swarmid.vercel.app/cat531.html is a live 'CAT 531 - Design Tension Studio' (University of Alabama) login that lets students select their name (named-account sign-in, no password); it does NOT display the join code UA-CAT531-SUMMER26, so the join-code mechanism appears superseded.",
+      "url_or_doi": "https://swarmid.vercel.app/cat531.html"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/01/04",
+  "section_title": "Balancing Efficiency and Equity",
+  "dir": "frontend/content/cat531-supplement/01",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's central empirical claim (automated essay scorers systematically under-score multilingual/dialect writers, and aggregate accuracy hides concentrated subgroup harm) is the load-bearing argument but is asserted with invented numbers (AutoGrade, 4-of-6) and zero citation. For a course whose thesis is evidence-grounded, auditable judgment, the most defensible claim is the least sourced.",
+    "proposed_change": "Add a one-line 'Recent Evidence' anchor after the Opening Case (or in the Core Concept disaggregation paragraph) grounding the disparate-error mechanism in the real AES-fairness literature. Suggested inline phrasing: 'The mechanism here is documented, not hypothetical: machine scorers show measurable score differences across subgroups defined by country/native language (Bridgeman, Trapani & Attali, 2012), motivating per-group fairness checks (Doewes et al., 2022) and bias-detection tooling (Madnani et al., 2017).' Keep the AutoGrade scenario as illustration but mark it as illustrative. Add the matching entries to the References list.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\01\\04.mdx — after 'Opening Case' (line ~22) or within 'Core Concept' disaggregation paragraph (line ~35); add matching References entries (after line 153)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Bridgeman, Trapani & Attali (2012) Comparison of Human and Machine Scoring of Essays: Differences by Gender, Ethnicity, and Country",
+      "url_or_doi": "https://doi.org/10.1080/08957347.2012.635502",
+      "finding": "ETS study (Applied Measurement in Education 25(1), 27-40) directly comparing e-rater machine scores to human scores; documents systematic score differences across subgroups defined by gender, ethnicity, and country/native-language, establishing that aggregate machine-human agreement can mask differential treatment of specific subgroups."
+     },
+     {
+      "cite": "Doewes, Saxena, Pei & Pechenizkiy (2022) Individual Fairness Evaluation for Automated Essay Scoring System",
+      "url_or_doi": "https://doi.org/10.5281/zenodo.6853151",
+      "finding": "Proceedings of the 15th International Conference on Educational Data Mining (EDM 2022); formalizes fairness evaluation of AES across demographic groups, confirming that per-subgroup error analysis (not aggregate accuracy) is the equity-relevant measurement — exactly the disaggregation move the section teaches."
+     },
+     {
+      "cite": "Madnani, Loukina, von Davier, Burstein & Cahill (2017) Building Better Open-Source Tools to Support Fairness in Automated Scoring",
+      "url_or_doi": "https://doi.org/10.18653/v1/w17-1605",
+      "finding": "ACL First Workshop on Ethics in NLP; argues automated-scoring algorithms must 'treat all test-takers fairly' and provides open-source bias-detection tooling, evidence that differential subgroup performance in automated scoring is a recognized, instrumented concern rather than hypothetical."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "TPACK is linked only to Wikipedia + the 2006 Mishra & Koehler DOI for a 2026 course explicitly about AI tools mediating instruction. 'critical edtech studies' is a bare unnamed DOI (10.4324/9781315670160), and the entry labeled 'AI and education datafication' (DOI 10.1080/17439884.2020.1686017) is actually mislabeled. No current (2023-2026) AI-TPACK or generative-AI teacher-literacy source supports the 'does the tech fit THIS content+pedagogy for AI tools' framing.",
+    "proposed_change": "(1) Name the critical-edtech author explicitly — Selwyn — and replace the unresolvable bare DOI with a citable Selwyn critical-edtech work (e.g., Distrusting Educational Technology, 2014, eBook DOI 10.4324/9781315886350) or another verified Selwyn title. (2) Correct the mislabeled 'AI and education datafication' entry: DOI 10.1080/17439884.2020.1686017 resolves to Perrotta et al., 'Deep learning goes to school: toward a relational understanding of AI in education' (Learning, Media and Technology) — relabel it accurately or swap for a true algorithmic-equity/datafication source. (3) Add one current AI-TPACK / generative-AI teacher-literacy citation (Ning et al., 2024, AI-TPACK; or Al-Abdullatif, 2024, intelligent TPACK) to the inline TPACK link in Core Concept and Adaptive Support and to References.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\01\\04.mdx — References (lines 150-153), inline TPACK link in 'Core Concept' (line 35) and 'Adaptive Support' (line 125)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Ning, Zhang, Xu, Zhou & Wijaya (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Sustainability 16(3), 978; develops a seven-component AI-TPACK framework extending TPACK to AI tools, directly supporting the 'does the AI tool fit THIS content+pedagogy' framing for a 2026 course."
+     },
+     {
+      "cite": "Al-Abdullatif (2024) Modeling Teachers' Acceptance of Generative AI Use in Higher Education: The Role of AI Literacy, Intelligent TPACK, and Perceived Trust",
+      "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+      "finding": "Education Sciences 14(11), 1209; operationalizes 'intelligent TPACK' for generative-AI teaching contexts, a current (2024) anchor for AI-specific teacher technology judgment."
+     },
+     {
+      "cite": "Perrotta, Selwyn et al. (2020) Deep learning goes to school: toward a relational understanding of AI in education",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "Learning, Media and Technology 45(3), 251-269; this is the actual work behind the DOI currently mislabeled 'AI and education datafication' in the References, so the existing label is inaccurate and should be corrected (the DOI is a critical AI-in-education piece, not a datafication source)."
+     }
+    ]
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "The Stronger Artifact Standard (line 105) tells learners to 'ask BigAL to compare an aggregate-only claim against a disaggregated one.' Course-context flagged confirming whether 'BigAL' is the correct current assistant. CAT 531's named pedagogical tools are TeachGen@i (generative teaching assistant) and Ethobot (ethical dialogue).",
+    "proposed_change": "Replace 'BigAL' with 'TeachGen@i' in the Stronger Artifact Standard sentence. 'BigAL' is the platform-wide generic chat-tutor widget name, not a CAT 531 named pedagogical tool; the essay-grader / prompt-transcript artifact move belongs to TeachGen@i, consistent with existing CAT 531 usage. Reconcile so the learner-facing named assistant matches the course's tool set.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\01\\04.mdx — 'Stronger Artifact Standard', line 105 ('ask BigAL to compare an aggregate-only claim...')",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "ALGET frontend MainApp.jsx — CAT 531 course definition",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\src\\pages\\MainApp.jsx (lines 123-124)",
+      "finding": "CAT 531 description and topics list its named tools as 'DTS', 'TeachGen@i', 'Ethobot', 'EdTech Evaluation' — TeachGen@i is the generative teaching assistant for the course; 'BigAL' does not appear as a CAT 531 named tool."
+     },
+     {
+      "cite": "ALGET frontend ChatWidget.jsx — platform tutor widget",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\src\\components\\ChatWidget.jsx (lines 281-456)",
+      "finding": "'BigAL' is the generic platform-wide chat-tutor widget label ('BigAL Tutor', 'Open BigAL tutor chat'), shared across all courses (its subtitle even reads 'Instructional Design'/'Bio-Inspired Engineering'), confirming it is the chat UI, not a CAT 531 pedagogical assistant."
+     },
+     {
+      "cite": "ALGET CAT 531 existing sections using TeachGen@i for generative prompt-transcript work",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\02\\01.practice.json; \\08\\02.mdx",
+      "finding": "02/01.practice.json stem ('A teacher asks TeachGen@i to design a tech-rich opening routine...') and 08/02.mdx ('TeachGen@i Troubleshooting', 'TeachGen@i prompt transcript with teacher edits') show TeachGen@i is the course's named assistant for generative/prompt-transcript artifact work, the same kind of move described in 04 line 105."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/01/05",
+  "section_title": "Classroom Context Variables",
+  "dir": "frontend/content/cat531-supplement/01",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's load-bearing thesis (context variables govern whether instructional/edtech findings transfer; treat a borrowed finding as conditional) has no source. No citation grounds the external-validity / heterogeneity-of-treatment-effects literature it depends on. References list has only 4 thin anchors.",
+    "proposed_change": "Add 1-2 real anchors to the References list and cite one inline near the Core Concept 'A context variable is any classroom condition...' paragraph / the 'treat a borrowed finding as conditional' sentence. Best fits: (a) the WWC Procedures and Standards Handbook v5.0 for the standards basis that setting/sample bound evidence transfer; (b) Bryan, Tipton & Yeager on heterogeneous treatment effects / situated cognition for generalizability of psych-ed interventions, or List (2020) on external-validity of field experiments. These directly ground 'a result, not evidence, travels without its conditions.'",
+    "where_to_apply": "05.mdx — References list (lines 148-153) + inline near Core Concept paragraph at line 26 ('treating a borrowed finding as conditional, not universal')",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "What Works Clearinghouse (2022, rev. Dec 2022) Procedures and Standards Handbook, Version 5.0 (IES/NCEE, WWC 2022008)",
+      "url_or_doi": "https://ies.ed.gov/ncee/wwc/Docs/referenceresources/Final_WWC-HandbookVer5.0-0-508.pdf",
+      "finding": "v5.0 (released Aug 2022, current as of 2026; v4.0 superseded) instructs reviewers to assess generalizability from variation in people, settings, and outcomes and from within-subgroup analyses — i.e., evidence is bounded by the study's setting/sample, the section's exact thesis."
+     },
+     {
+      "cite": "List (2020) Non est Disputandum de Generalizability? A Glimpse into The External Validity Trial (NBER w27535)",
+      "url_or_doi": "https://doi.org/10.3386/w27535",
+      "finding": "Field-experiment results are conditional on the population, situation, and implementation that produced them; external validity must be argued, not assumed — grounds 'a borrowed result that may not exist in her room.'"
+     },
+     {
+      "cite": "Yeager et al. (2019) A national experiment reveals where a growth mindset improves achievement, Nature",
+      "url_or_doi": "https://doi.org/10.1038/s41586-019-1466-y",
+      "finding": "A large national RCT where the intervention changed outcomes only where school/peer-norm context aligned — a documented case of setting-dependent (load-bearing-context) treatment-effect heterogeneity in education."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "References are thin/Wikipedia-anchored: TPACK = Wikipedia link + 2006 DOI; 'critical edtech studies' = bare DOI (author unnamed); datafication = a single 2020-labeled DOI; 'teacher professional judgment' = a bare DOI assumed 1993-era. No 2024-2026 refresh for a 2026 course.",
+    "proposed_change": "Name authors and correct years on the existing entries, and add 2024-2026 refreshes. Corrections: TPACK = Mishra & Koehler (2006); datafication DOI 10.1080/17439884.2020.1686017 is actually Perrotta & Selwyn (2019) 'Deep learning goes to school' in Learning, Media and Technology (so Selwyn IS already there — fix year to 2019 and name them); the 'teacher professional judgment' DOI 10.1177/002205741319300304 is NOT a professional-judgment source — it is Mecoli (2013) on the PCK framework in preservice teacher ed (mislabeled; replace or relabel). The 'critical edtech studies' DOI 10.4324/9781315670160 does not resolve (404 at doi.org / Crossref / OpenAlex) — treat as broken and replace with a named Selwyn/Williamson work. Add refreshes: Ning et al. (2024) Teachers' AI-TPACK; Williamson (2023) Re-examining AI, automation and datafication in education.",
+    "where_to_apply": "05.mdx — References section lines 150 (TPACK), 151 (critical edtech, broken DOI), 152 (datafication = Perrotta & Selwyn 2019), 153 (mislabeled Mecoli 2013)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra & Koehler (2006) Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge, Teachers College Record",
+      "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+      "finding": "Confirms the TPACK DOI is Mishra & Koehler (2006); entry should name authors rather than link Wikipedia."
+     },
+     {
+      "cite": "Perrotta & Selwyn (2019) Deep learning goes to school: toward a relational understanding of AI in education, Learning, Media and Technology",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "The 'datafication' DOI actually resolves to Perrotta & Selwyn (2019), not an unnamed 2020 work — so Selwyn is already cited; fix the year to 2019 and name the authors. (The gap's premise that Selwyn is unnamed is partly refuted.)"
+     },
+     {
+      "cite": "Ning, Zhang, Wu et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements, Sustainability 16(3):978",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "A 2024 AI-TPACK framework (221 citations) suitable as the modern refresh extending the 2006 TPACK anchor for a 2026 course; pairs with Al-Abdullatif (2024) intelligent-TPACK, doi.org/10.3390/educsci14111209."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/01/06",
+  "section_title": "Teacher Agency With Technology",
+  "dir": "frontend/content/cat531-supplement/01",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The Core Concept (line 35) names 'critical edtech studies,' 'TPACK,' and 'datafication' as anchors but binds them only to a Wikipedia link (TPACK) and bare DOIs with no named authors in prose. The load-bearing claim ('agency is accountable authorship within a constraint') has no scholarly grounding. Worse, the 'teacher professional judgment' DOI (002205741319300304) sitting unused in References is MISLABELED: it is actually Storey Mecoli (2013), a paper on the influence of the PCK framework on preservice teacher education research, NOT a teacher-agency/professional-judgment source. Separately, the datafication DOI (1080/17439884.2020.1686017) is in fact Perrotta & Selwyn (2019), so Selwyn is already cited in the reference list but never named in prose.",
+    "proposed_change": "In the Core Concept paragraph (line 35), name scholars in-prose: attribute the 'hidden harm of a default'/datafication point to Selwyn (the datafication DOI already in the list is Perrotta & Selwyn 2019) and ground 'agency as accountable authorship within structural constraint' in Biesta, Priestley & Robinson's ecological model of teacher agency (Biesta et al. 2015, Teachers and Teaching, ~1,200 citations). Replace the mislabeled Storey Mecoli (2013) PCK DOI in References with a genuine teacher-agency citation (Biesta et al. 2015) and add it as the in-prose anchor for the authorship claim.",
+    "where_to_apply": "06.mdx — Core Concept (line 35) and References (lines 146-151)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Biesta, Priestley & Robinson (2015) The role of beliefs in teacher agency",
+      "url_or_doi": "https://doi.org/10.1080/13540602.2015.1044325",
+      "finding": "Ecological model of teacher agency: agency is achieved within institutional/structural constraints and mediated by beliefs and values, not a free capacity to refuse — directly grounds 'agency as accountable authorship within a constraint.' ~1,193 citations (OpenAlex)."
+     },
+     {
+      "cite": "Perrotta & Selwyn (2019) Deep learning goes to school: toward a relational understanding of AI in education",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "OpenAlex confirms this DOI (the section's 'datafication' reference) is authored by Carlo Perrotta and Neil Selwyn — so Selwyn is already in the reference list and can be named in prose for the datafication/hidden-default point."
+     },
+     {
+      "cite": "Storey Mecoli (2013) The Influence of the Pedagogical Content Knowledge Theoretical Framework on Research on Preservice Teacher Education",
+      "url_or_doi": "https://doi.org/10.1177/002205741319300304",
+      "finding": "OpenAlex confirms the unused 'teacher professional judgment' DOI is actually a PCK/preservice-teacher-education paper, NOT a teacher-agency source — it is mislabeled and should be replaced rather than merely attached."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are dated/homogenized: TPACK is a 2006 DOI + Wikipedia, datafication is the reused Perrotta & Selwyn 2019 DOI, and critical edtech is an unnamed 2016 Routledge DOI. For a 2026 course whose Worked Example and Walkthrough literally use generative-AI lesson planners and AI comment-banks, the AI-specific teacher-agency literature is entirely absent.",
+    "proposed_change": "Refresh References with a 2023-2026 source on teacher/learner agency with generative AI feedback (Darvishi et al. 2023, Computers & Education, an RCT directly on AI assistance and agency) and an AI-TPACK / generative-AI teacher-competence framework (Ning et al. 2024 AI-TPACK, or Al-Abdullatif 2024 Intelligent-TPACK). Keep the canonical 2006 TPACK DOI but pair it with a current AI-TPACK citation.",
+    "where_to_apply": "06.mdx — References (lines 146-151)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Darvishi, Khosravi, Sadiq, Gašević & Siemens (2023) Impact of AI assistance on student agency",
+      "url_or_doi": "https://doi.org/10.1016/j.compedu.2023.104967",
+      "finding": "RCT (1,625 students, 10 courses) on how AI-guided feedback affects self-regulation/agency — a current empirical anchor for the AI comment-bank and AI-as-draft authorship scenarios the section uses."
+     },
+     {
+      "cite": "Ning, Wang, et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "2024 AI-TPACK framework extending TPACK to AI tools; pairs the canonical 2006 TPACK with a current generative-AI teacher-competence model."
+     },
+     {
+      "cite": "Al-Abdullatif (2024) Modeling Teachers' Acceptance of Generative AI Use in Higher Education: AI Literacy, Intelligent TPACK, and Perceived Trust",
+      "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+      "finding": "2024 study operationalizing Intelligent-TPACK and AI literacy for teachers using generative AI — alternative current AI-TPACK anchor."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/01/07",
+  "section_title": "Portfolio Evidence Setup",
+  "dir": "frontend/content/cat531-supplement/01",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Grammar error in the dynamic-scenario prompt, 07.mdx line 123: 'points to a evidence move issue connected to critical edtech studies.' Should be 'an evidence move issue.' The critical-edtech tie-in is a template graft that does not connect to the portfolio-evidence topic the section teaches. Confirmed by reading line 123.",
+    "proposed_change": "Fix 'a evidence' to 'an evidence.' While editing, replace the off-topic 'connected to critical edtech studies' graft with a portfolio-relevant peer-comment scenario, e.g. 'a peer comment flags that your growth claim rests on a single polished artifact with no earlier comparison' (aligns with the section's growth-as-delta rubric and the single-artifact misconception at 07.misconceptions.json line 29-34).",
+    "where_to_apply": "07.mdx dynamic-scenario prompt, line 123",
+    "priority": "med",
+    "sources": [],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/01/08",
+  "section_title": "Module 1 Reflection Studio",
+  "dir": "frontend/content/cat531-supplement/01",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The References block (lines 148-151) is the verbatim course-wide shared list (TPACK Wikipedia + 2006 Mishra & Koehler DOI; unnamed 'critical edtech studies' DOI 10.4324/9781315670160; single 2020 AI/education datafication DOI 10.1080/17439884.2020.1686017; 2004-era 'teacher professional judgment' DOI 10.1177/002205741319300304). None of these four anchors actually appears in this section's prose, which is about reflection, synthesis, transfer, and metacognition. The list is mismatched to content and, for a 2026 course, is reused identically across sections so the citations are decorative rather than load-bearing.",
+    "proposed_change": "Add a transfer-of-learning and a reflective-practice source so the references reflect what the section teaches, and tie the retained course anchors to the reflection in one line. Recommended additions: Schon's The Reflective Practitioner (the foundational reflective-practice anchor) and a current reflective-practice-in-teacher-development source (Farrell 2019), plus the Barnett & Ceci (2002) transfer taxonomy already used for the evidence_add. Drop or contextualize the datafication/critical-edtech anchors the prose never invokes, or add a one-line note tying TPACK to the 'named lenses' framing on line 33.",
+    "where_to_apply": "08.mdx '## References' (lines 148-151)",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "Schon, D. A. (1983). The Reflective Practitioner: How Professionals Think in Action. Basic Books.",
+      "url_or_doi": "https://doi.org/10.4324/9781315237473",
+      "finding": "Foundational text defining reflective practice (reflection-in-action / reflection-on-action) that professionals use to revise reasoning from experience; directly grounds the section's before/after reflection and 'show a belief that was revised' move. (OpenAlex/Crossref also indexes a 1986 reprint DOI 10.1080/07377366.1986.10401080.)"
+     },
+     {
+      "cite": "Farrell, T. S. C. (2019). Professional development through reflective practice for English-medium instruction (EMI) teachers. International Journal of Bilingual Education and Bilingualism.",
+      "url_or_doi": "https://doi.org/10.1080/13670050.2019.1612840",
+      "finding": "Recent (2019) teacher-development source showing that experience combined with systematic reflection leads to professional growth; a current reflective-practice anchor appropriate for a 2026 course, replacing the dated decorative anchors."
+     },
+     {
+      "cite": "Barnett, S. M., & Ceci, S. J. (2002). When and where do we apply what we learn? A taxonomy for far transfer. Psychological Bulletin, 128(4), 612-637.",
+      "url_or_doi": "https://doi.org/10.1037/0033-2909.128.4.612",
+      "finding": "Provides the transfer-of-learning citation the section thesis relies on but currently lacks; makes the reference list load-bearing for the synthesis/transfer content."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ }
+]

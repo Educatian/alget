@@ -1,0 +1,81 @@
+[
+ {
+  "section_key": "ail606/03/03",
+  "section_title": "Image Generation for Instruction",
+  "dir": "frontend/content/ail606-supplement/03",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The Transfer Case (line 109) asserts as fact that text-to-image models 'default to stereotyped depictions of role, gender, age, and ethnicity.' This is a load-bearing empirical claim and the course's own currency-watch flags that any model-specific claim about bias behavior must be verified against current (2026) text-to-image models, which have undergone substantial debiasing/RLHF and prompt-rewriting interventions since the early diffusion era. The claim is asserted with no citation and may overstate or misdate the behavior.",
+    "proposed_change": "Soften and ground the claim: cite a specific audited finding (e.g., Bianchi et al. 2023 on Stable Diffusion stereotype amplification; Luccioni et al. 2023 Stable Bias) and add a hedge noting that 2024-2026 commercial models apply prompt-rewriting and debiasing that reduce but do not eliminate the effect, so a representation audit is still required. Keep the pedagogical point (audit for social accuracy) but attach a real source and a current-state qualifier.",
+    "needs_research": true,
+    "where_to_apply": "03.mdx — 'Transfer Case' section, the sentence 'the model defaults to stereotyped depictions of role, gender, age, and ethnicity'",
+    "search_terms": [
+     "text-to-image model bias stereotype 2025 2026 audit",
+     "Bianchi Stable Diffusion stereotype amplification 2023",
+     "Luccioni Stable Bias diffusion",
+     "DALL-E Midjourney debiasing prompt rewriting representation 2024"
+    ],
+    "priority": "high"
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "The ArtifactStudio component and meta point to the generic chapter artifact 'storyboard frame sequence with narration, signaling, and reader-action notes' (MDX lines 113-117, 124, 128, 138; meta description). The known-issues list explicitly names 03.03 as a mis-labeled artifact: this section is about image generation, so the artifact the learner should build and trace is a commission-then-verify image-decision record (function sentence + rejected generation + verification note), not a storyboard frame sequence. The mislabel breaks the artifact-as-unit-of-adaptation promise and confuses the Adaptive Support/Final Check rubric (which asks for 'cognitive-load diagnosis, support request, accepted revision, rejected suggestion, confidence change' against the wrong artifact).",
+    "proposed_change": "Retag the artifact-studio to a section-appropriate instrument: artifact=\"instructional image commission-and-verification trace\" with fields for the one-sentence function, the rejected generation + gate it failed, and the verification/correction note (the Stronger Artifact Standard at lines 101-105 already specifies exactly these fields — align the studio tag and the Adaptive Support/Final Check text to it). Update the download-packet label and the three Adaptive Support bullets to reference the image-decision trace rather than the storyboard frame sequence.",
+    "needs_research": false,
+    "where_to_apply": "03.mdx — <artifact-studio artifact=...> (line 115), download link text (line 113), Adaptive Support bullets (lines 124-128), Final Check (line 138); and 03.meta.json 'description'",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/03/05",
+  "section_title": "Alt Text and Accessibility",
+  "dir": "frontend/content/ail606-supplement/03",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The Core Concept and Decision Rule reference 'a WCAG requirement' only generically, and the References list omits WCAG entirely despite this being a WCAG-centric section. For a 2026 graduate LXD course the standard should be pinned to a specific version and the two governing success criteria named, with a note on WCAG 3.0's draft (not yet Recommendation) status.",
+    "proposed_change": "Pin the standard to WCAG 2.2 AA (W3C Recommendation since Oct 2023, still current in 2026) and cite the two governing success criteria by number: SC 1.1.1 Non-text Content (the alt obligation) and SC 1.4.1 Use of Color (the color-only prohibition). Add a one-line note that WCAG 3.0 remains an early W3C Working Draft (Candidate Rec not expected until ~2027-2028, final ~2028-2030), so 2.2 AA is the operative target. Add a WCAG 2.2 entry to the References list (https://www.w3.org/TR/WCAG22/).",
+    "needs_research": false,
+    "where_to_apply": "05.mdx — Core Concept (third decision 'a WCAG requirement') and Decision Rule step 3; add to References list",
+    "priority": "high"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The References list cites UDL via a bare generic link (udlguidelines.cast.org) with no version. CAST released UDL Guidelines 3.0 in July 2024, which reframes the goal as learner agency and treats identity as part of variability. A 2026 course citing 'UDL learner variability' as a core anchor should reference 3.0.",
+    "proposed_change": "Update the References UDL entry to 'CAST (2024). Universal Design for Learning Guidelines version 3.0. https://udlguidelines.cast.org/'. Optionally add one clause in Core Concept noting UDL 3.0 frames sensory/perceptual access as part of learner variability, not a special accommodation.",
+    "needs_research": false,
+    "where_to_apply": "05.mdx — References (UDL line); optional clause in Core Concept where 'UDL learner variability is the driver'",
+    "priority": "high"
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Meta description and learning_objectives are templated to the chapter-level signature artifact ('storyboard frame sequence with narration, signaling, and reader-action notes'), which is the wrong artifact for an alt-text/accessibility section. LO #1 asks learners to 'Analyze how the storyboard frame sequence... shows a defensible decision' — this does not describe what this section actually teaches (classify/function/color accessibility decisions). This is the documented artifact-mislabel + templated-LO issue.",
+    "proposed_change": "Rewrite the meta description and LOs to be section-specific: e.g., LO1 'Classify an instructional image as decorative, informative, or functional and assign the correct alt treatment'; LO2 'Write functional alt that carries an image's instructional meaning, and move dense data to an adjacent table or long description'; LO3 'Audit a visual for color-only coding and add a redundant cue per WCAG 2.2 SC 1.4.1'; LO4 'Apply the cover test and reject over-long AI-generated alt with reasons.' Align the ArtifactStudio artifact tag away from the generic storyboard sequence toward the accessibility-treatment trace.",
+    "needs_research": false,
+    "where_to_apply": "05.meta.json — description and learning_objectives; 05.mdx — Learning Targets list and Artifact Studio artifact attribute",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/03/08",
+  "section_title": "Module 3 Storyboard Studio",
+  "dir": "frontend/content/ail606-supplement/03",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "meta.json description is the near-duplicate templated stock string keyed only to the chapter signature-artifact name ('connecting module 3 storyboard studio to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence'). It does not describe this section's actual distinctive content: capstone-scale integration, sequence coherence, and the auditable decision record.",
+    "proposed_change": "Rewrite the meta.json description to be section-specific, e.g. 'The Module 3 capstone studio: integrating seven prior storyboard skills into one coherent frame sequence, auditing objective trace, chain, and principle consistency across frames, and shipping an auditable decision record of accepted and rejected (including AI-suggested) choices.' Also tighten LO1 from the generic 'shows a defensible decision' phrasing to name sequence coherence / the decision record.",
+    "needs_research": false,
+    "search_terms": [],
+    "where_to_apply": "08.meta.json description (line 4) and learning_objectives[0] (line 6)",
+    "priority": "high"
+   }
+  ]
+ }
+]

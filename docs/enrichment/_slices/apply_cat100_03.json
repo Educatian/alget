@@ -1,0 +1,301 @@
+[
+ {
+  "section_key": "cat100/03/01",
+  "section_title": "Spreadsheet Structure and Clean Data",
+  "dir": "frontend/content/cat100-supplement/03",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The section names only legacy manual menu tools (Text to Columns, Find and Replace, delete rows; 01.mdx line 37) for cleaning tasks that current Excel / Microsoft 365 now fronts with newer features: Flash Fill (Ctrl+E) for splitting/normalizing by example, Power Query / Get & Transform for repeatable structural cleaning, and Copilot in Excel for natural-language cleanup. For a 2026 supplement that promises tool-grounding, presenting only the 2010-era menu path is dated and conflicts with the course's own AI-support through-line (the concrete on-topic AI cleaning move for THIS section is Flash Fill / Copilot, not a generic 'AI/software support move').",
+    "proposed_change": "Add a short 'Recent tools' callout after the three-tools paragraph (after 01.mdx line 37) noting that (a) Flash Fill (Ctrl+E) splits or normalizes values by example without the delimiter dialog, (b) Power Query (Data > Get & Transform Data > From Table/Range, then Split Column) records repeatable cleaning steps you can Refresh, and (c) Copilot in Excel (its Clean Data / Edit-with-Copilot feature) can suggest cleanups in plain language — while reinforcing the section's existing rule that you still verify every AI/automated repair (SUM matches a hand count) before trusting it. Note that Copilot's data-cleaning features require a Microsoft 365 Copilot license (not bundled in base Microsoft 365), the latest Excel, AutoSave on, and the file saved to OneDrive/SharePoint. Also tighten the Adaptive Support / Artifact Studio AI framing to reference these named tools rather than a generic 'bounded AI/software support move'.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\03\\01.mdx '## Core Concept' — new callout after the three-tools paragraph (after line 37); also tighten the Adaptive Support / Artifact Studio AI framing (lines 124-137)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Microsoft Support — Use Flash Fill in Excel / Ctrl+E (2026)",
+      "url_or_doi": "https://practicetestgeeks.com/excel/how-to-use-flash-fill-in-excel",
+      "finding": "Ctrl+E is the current Flash Fill shortcut: type two examples (e.g., a split or reformatted value) and press Ctrl+E to fill the pattern; output is static text that does not update if source data changes — so verification is still required."
+     },
+     {
+      "cite": "Coefficient — How to Use Power Query in Excel, Step-by-Step (2026)",
+      "url_or_doi": "https://coefficient.io/excel-tutorials/how-to-use-power-query-in-excel",
+      "finding": "Current UI path is Data > Get & Transform Data > From Table/Range, then in the Power Query Editor use Split Column > By Delimiter; the query is repeatable via Refresh, making it the recommended tool for recurring/structural cleaning."
+     },
+     {
+      "cite": "Microsoft Support — Clean up your data with Copilot in Excel (2026)",
+      "url_or_doi": "https://support.microsoft.com/en-us/topic/clean-up-your-data-with-copilot-in-excel-b9d9b10d-5968-48a0-b43e-677c9f78119a",
+      "finding": "Copilot in Excel offers a Clean Data feature that scans for spacing, formatting, spelling, text-inconsistency and number-format problems; it requires an active Microsoft 365 Copilot license, the latest Excel, AutoSave on, and files in OneDrive/SharePoint — so availability is a paid tier, not bundled with base Microsoft 365."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/03/02",
+  "section_title": "Formulas for Everyday Analysis",
+  "dir": "frontend/content/cat100-supplement/03",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is entirely generic ('bounded AI/software support move', no named tool). For an Excel formulas section in 2026, Copilot in Excel is the obvious high-value grounding: it writes/explains formulas in natural language and is exactly the accept/modify/reject AI suggestion a learner should evaluate. Confirmed current via Microsoft Support: Copilot in Excel generates formula columns and explains how each formula works; agentic Copilot in Word/Excel/PowerPoint reached general availability April 2026.",
+    "proposed_change": "Add a concrete AI-use callout near Artifact Studio (after line 122) or Final Check (after line 143), e.g.: 'If you ask Copilot in Excel (or a chat model) to write the with-tax formula, it may return =B2*(1+E1) without locking the rate. Your job is to catch that the copy will slide to the blank E2 — accept the formula structure but modify it to $E$1, and log that rejection of the unlocked version in your trace.' Grounds the bounded-AI move in a real 2026 tool and the exact error mode this section teaches.",
+    "where_to_apply": "02.mdx new callout near '## Artifact Studio' (after line 122) or '## Final Check' (after line 143)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Support — Generate formula rows and columns with Copilot in Excel",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/generate-formula-rows-and-columns-with-copilot-in-excel-d866d926-9791-4e5f-be2a-c6dd9e587a47",
+      "finding": "Copilot in Excel generates new columns/rows that perform calculations from existing data and explains how each formula works; users can describe the calculation in plain language and Copilot writes and explains the formula."
+     },
+     {
+      "cite": "Microsoft 365 Blog (Apr 22, 2026) — Copilot's agentic capabilities in Word, Excel, and PowerPoint are generally available",
+      "url_or_doi": "https://www.microsoft.com/en-us/microsoft-365/blog/2026/04/22/copilots-agentic-capabilities-in-word-excel-and-powerpoint-are-generally-available/",
+      "finding": "As of April 2026, Copilot in Excel can take multi-step app-native actions in worksheets (formulas, tables, visuals); confirms 'Copilot in Excel' is the current, correctly named 2026 tool."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/03/03",
+  "section_title": "Charts That Answer Questions",
+  "dir": "frontend/content/cat100-supplement/03",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI support is framed generically as 'a bounded AI/software support move' (lines 15, 122, 129, 143) with no named 2026 tool, despite the chapter being Excel data storytelling where the obvious current tool is Copilot in Excel for chart suggestions. The currency-watch flag for this chapter explicitly calls for grounding in current named tools and noting model/version churn.",
+    "proposed_change": "Add a concrete, dated AI-use example in Worked Example Step 3 (line 56) or Adaptive Support (lines 124-133): e.g., an AI assistant such as Copilot in Excel (as of 2026) may suggest a chart type and auto-generate a title; the disclosed move is to accept the suggested chart type but REJECT a topic-only auto-title in favor of a claim-first one, logging that decision in the trace. Add a one-line caveat that AI tool names and chart-suggestion behavior change frequently, so the durable skill is the honesty check, not the tool.",
+    "where_to_apply": "03.mdx Worked Example Step 3 (line 56) or Adaptive Support (lines 124-133) as a concrete AI-critique-log example.",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Support — Create charts with Copilot in Excel (current as of 2026).",
+      "url_or_doi": "https://support.microsoft.com/en-us/topic/create-charts-with-copilot-in-excel-0c07842d-4492-4c2b-8c3a-fb3114653ad7",
+      "finding": "Copilot in Excel can create charts from a selected range and currently supports 12+ chart types; you can ask it (in natural language or Agent Mode) for the best chart to compare or trend data and it recommends, for example, a clustered column or line chart and offers to insert it. Confirms 'Copilot in Excel suggests a chart type' is an accurate, current named-tool example. (Requires the file on OneDrive/SharePoint with AutoSave on.)"
+     },
+     {
+      "cite": "Microsoft Excel Blog — Five ways to create and analyze an Excel spreadsheet with AI (2026).",
+      "url_or_doi": "https://excel.cloud.microsoft/create/en/blog/create-analyze-excel-spreadsheet-ai/",
+      "finding": "Confirms Copilot in Excel generates charts (line, column, scatter, pie) for selected ranges on request, supporting the example of Copilot suggesting a chart type and/or auto-title that the learner then critiques. Supports the one-line caveat that feature naming/behavior is actively evolving in 2026."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/03/04",
+  "section_title": "Pivot Tables as Summaries",
+  "dir": "frontend/content/cat100-supplement/03",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "LO3 / the Adaptive Support 'bounded AI/software support move' and the course's two-AI / accepted-vs-rejected-suggestion construct are entirely generic - no current 2026 named tool. The Excel chapter's natural concrete grounding is Copilot-in-Excel, which can propose a pivot/aggregation, and the section already teaches how to verify a pivot figure (the 'reject the AI suggestion' moment).",
+    "proposed_change": "Add a short 'Recent Evidence' / AI-boundary callout grounding the bounded-AI move in the named 2026 tool 'Copilot in Excel': 'Copilot in Excel will offer to build a PivotTable and pick an aggregation for you. Treat it as a suggestion, not an answer: run the three checks (aggregation matches the question, category row not Grand Total, refreshed range covers all data) before you accept it. A defensible AI-use note records when you accepted Copilot's pivot, when you switched its Sum to Count, and when you rejected its Grand-Total headline.' Use the exact product name 'Copilot in Excel' (verified current).",
+    "where_to_apply": "04.mdx new callout near '## Adaptive Support' (line 136) or after '## Stronger Artifact Standard' (line 118).",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft Support, 'Create PivotTables with Copilot in Excel'",
+      "url_or_doi": "https://support.microsoft.com/en-us/topic/create-pivottables-with-copilot-in-excel-93f14f4e-1cb4-4d24-9509-d36a8677d652",
+      "finding": "Microsoft's current product name is 'Copilot in Excel' (Microsoft 365). The dedicated support page states 'you can ask Copilot to create a PivotTable' and works via natural-language prompts (example: 'the average budget for each type'), confirming Copilot proposes pivots and aggregations that a user then accepts/refines - exactly the reject-the-suggestion teaching moment."
+     },
+     {
+      "cite": "Microsoft Support, 'Get started with Copilot in Excel'",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-excel-d7110502-0334-4b4f-a175-a73abdfc118a",
+      "finding": "Confirms 'Copilot in Excel' is the current 2026 feature name and that Copilot can recommend pivot layouts, fields, values, and aggregations conversationally; refinement follow-ups can change the aggregation function - grounding the bounded-AI 'accepted vs rejected suggestion' construct in a real, currently shipping tool."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The Microsoft support-doc link and UI labels (Value Field Settings, Summarize Values By, Insert PivotTable) need confirmation against current Microsoft 365 / Excel for the web; the support article URL and exact dialog path can drift, and the section asserts a precise click path.",
+    "proposed_change": "No content correction required: the Microsoft support article URL still resolves and 'Value Field Settings', 'Summarize Values By', and 'Insert > PivotTable' are the current labels. Optionally add a one-line web note: in Excel for the web you reach the same control via the arrow to the right of the value field name (or right-click a value > Summarize Values By), since the web version routes through the field dropdown rather than a separate dialog. This is an enhancement, not a fix.",
+    "where_to_apply": "04.mdx line 5 (Optional reference link - verified live) and Core Concept / Worked Example UI-label references (lines 35, 66, 100) - labels are current, optional web-routing note only.",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "Microsoft Support, 'Create a PivotTable to analyze worksheet data'",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/create-a-pivottable-to-analyze-worksheet-data-a9a84538-bfe9-40a9-a8e9-f99134456576",
+      "finding": "The exact URL cited on line 5 of 04.mdx resolves and is current. Page title 'Create a PivotTable to analyze worksheet data'; it instructs 'Select Insert > PivotTable', and references the 'Value Field Settings' option and Values-area SUM default - all matching the section's UI labels."
+     },
+     {
+      "cite": "Microsoft Support, 'Change the summary function or custom calculation for a field in a PivotTable report'",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/change-the-summary-function-or-custom-calculation-for-a-field-in-a-pivottable-report-ea8945fb-9969-4bac-a16c-4f67b0f7b239",
+      "finding": "'Summarize Values By' is the current tab/label and offers Sum, Count, Average among 11 functions. In Excel for the web the summary function is changed by right-clicking a value and selecting 'Summarize Values By' (via the field dropdown), confirming the proposed one-line web-routing note is accurate."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/03/05",
+  "section_title": "AI Help for Excel Debugging",
+  "dir": "frontend/content/cat100-supplement/03",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The section is entirely tool-agnostic ('an AI assistant', 'paste into an AI chat'). The course currency-watch flags 03/05 for Copilot-in-Excel. In 2026 the dominant Excel-debugging workflow splits into Copilot in Excel (which CAN see the sheet) versus a general chat assistant (which cannot). The section's central claim 'It does not see your sheet; it only sees the words in your prompt' (line 5) is now true only for general chat tools, NOT in-app Copilot, which is grounded in the open workbook's cells, headers, and data types. The core framing is therefore partially dated.",
+    "proposed_change": "Add a short 'Recent Evidence'/tool-grounding callout at the end of 'Core Concept' distinguishing two 2026 paths: (a) a general chat assistant (ChatGPT/Claude/Gemini) that sees only your prompt text, and (b) Copilot in Excel, which reads the open sheet (column headers, data types, real range references) and can explain a broken formula in place. Note that even when the tool can see the data, the verify-on-a-known-answer-row step is unchanged, and that cloud Copilot inherits the file's sensitivity labels and DLP policy but sharing a whole sheet still has privacy/data-governance considerations. This grounds the generic 'AI assistant' in named current tools and preserves the verification discipline.",
+    "where_to_apply": "05.mdx, end of 'Core Concept' (after line 36) as a new short callout, OR a 'Recent Evidence' note before 'Common Misreadings'",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Microsoft Support, 'Get started with Copilot in Excel' (2026)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/get-started-with-copilot-in-excel-d7110502-0334-4b4f-a175-a73abdfc118a",
+      "finding": "Copilot in Excel is grounded in the open workbook: it reads column headers, detects data types, infers field relationships, and can explain or diagnose an existing formula in place, unlike a general chatbot that sees only the prompt text. Confirms the section's 'it cannot see your sheet' claim is now only true for general chat tools."
+     },
+     {
+      "cite": "Microsoft Learn, 'Data, Privacy, and Security for Microsoft 365 Copilot' (2026)",
+      "url_or_doi": "https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-privacy",
+      "finding": "When using the Excel agent, Copilot Chat is aware of the user's open spreadsheet content; data is encrypted, is not used to train foundation LLMs, and Copilot inherits the file's sensitivity labels, retention, and Purview DLP policies. Grounds the data-governance caveat for sharing a whole sheet with cloud Copilot."
+     },
+     {
+      "cite": "Microsoft Tech Community, 'Excel Power User Updates: Agent Mode, COPILOT Function & Formula AI' (2026)",
+      "url_or_doi": "https://techcommunity.microsoft.com/blog/microsoftmechanicsblog/microsoft-excel-power-user-updates--agent-mode-copilot-function--formula-ai/4465676",
+      "finding": "By 2026 Excel ships a COPILOT() in-cell function and Formula AI/Agent Mode, but Microsoft notes Copilot still hallucinates and can generate formulas that technically work yet are wrong, reinforcing that the known-answer-row verification step is still required even with sheet-aware tools."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The NACE reference URL '/career-readiness/competencies/career-readiness-defined' (lines 130, 149), the ISTE Standards for Students link (lines 135, 150), and the WCAG 2.2 link (line 152) are used as live anchors; the brief's currency-watch asks to confirm wording/editions are current as of 2026.",
+    "proposed_change": "All three anchors are current and need no link change. Optionally update in-prose framing: NACE still lists eight competencies (note Equity & Inclusion is under review per recent federal guidance, so avoid leaning on that single competency); ISTE Standards for Students are at the 2024 v4.02 edition with Digital Citizen as Standard 1.2 (the /standards/students URL resolves to the current edition); WCAG 2.2 (Oct 2023, updated Dec 2024) remains the current W3C Recommendation — WCAG 3.0 is still only a Working Draft (March 2026) not expected before ~2028, so do NOT switch the link to 3.0.",
+    "where_to_apply": "05.mdx 'References' (lines 147-152) and inline links in 'Adaptive Support' (line 130) / 'dynamic-scenario' (line 135)",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "NACE, Career Readiness Competencies (2024 revision, current 2026)",
+      "url_or_doi": "https://www.naceweb.org/career-readiness/competencies",
+      "finding": "NACE still defines eight competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology); the linked page and 'career-readiness-defined' anchor remain live. Equity & Inclusion is currently under review due to recent U.S. federal executive orders/guidance — avoid anchoring solely on it."
+     },
+     {
+      "cite": "ISTE Standards for Students, 2024 edition v4.02 (current 2026)",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "The current ISTE Standards for Students are the 2024 v4.02 edition; the /standards/students URL resolves to it and Digital Citizen is Standard 1.2. The existing link is current; no edition change needed."
+     },
+     {
+      "cite": "W3C WAI, WCAG 2.2 (W3C Recommendation, current 2026)",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/",
+      "finding": "WCAG 2.2 (published 5 Oct 2023, updated 12 Dec 2024) remains the current stable W3C Recommendation in 2026. WCAG 3.0 is still a Working Draft (latest March 2026), not expected to finalize before ~2028, and will not deprecate 2.2. Keep the WCAG22 link as-is."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/03/06",
+  "section_title": "Data Ethics in Small Datasets",
+  "dir": "frontend/content/cat100-supplement/03",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The central claim, that deleting a name does not anonymize because quasi-identifiers re-identify people, is asserted in prose (lines 7, 24, 83) with no citation. The course values evidence-grounding and this exact claim has a canonical citable source (Sweeney's ~87% finding; the k-anonymity formalization). Grounding it lifts the section from instructor assertion to documented finding.",
+    "proposed_change": "Add a 2-3 sentence 'Recent Evidence' callout (or inline footnote) after the quasi-identifier paragraph at line 24 citing Sweeney's classic result that about 87% of the US population is uniquely identified by ZIP code, date of birth, and sex, and naming k-anonymity as the formal concept (a record should be indistinguishable from at least k-1 others on its quasi-identifiers). Add one line noting the mechanism is even sharper in a 7-row table. Mirror the citation into '## References' (line 150). VERIFIED CORRECT: the canonical figure is 87% (216M of 248M) using {5-digit ZIP, gender, date of birth} from 1990 Census; 53% with {city/place, gender, DOB}.",
+    "where_to_apply": "06.mdx '## Core Concept' immediately after line 24; add reference at line 150 ('## References').",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Sweeney, L. (2000). Simple Demographics Often Identify People Uniquely. Carnegie Mellon University, Data Privacy Working Paper 3.",
+      "url_or_doi": "https://dataprivacylab.org/projects/identifiability/paper1.pdf",
+      "finding": "87% (216 million of 248 million) of the US population had reported characteristics that likely made them unique based only on {5-digit ZIP, gender, date of birth}; 53% by {place, gender, date of birth}."
+     },
+     {
+      "cite": "Sweeney, L. (2002). k-anonymity: a model for protecting privacy. Int'l Journal of Uncertainty, Fuzziness and Knowledge-Based Systems, 10(5), 557-570.",
+      "url_or_doi": "https://doi.org/10.1142/s0218488502001648",
+      "finding": "Formalizes k-anonymity: a release provides k-anonymity protection if the information for each person cannot be distinguished from at least k-1 other individuals whose information also appears in the release (on the quasi-identifier attributes). ~8,400+ citations."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The AI-boundary practice item (06.practice.json ai_boundary, lines 50-59) and the Adaptive Support / dynamic-scenario blocks (06.mdx lines 129-138) refer only to 'an AI tool' / 'a third-party tool' with no grounding in 2026 data-handling reality, and never note that consumer vs enterprise AI tiers differ in whether pasted data is retained or used for training. The distractor option literally says 'the tool is private' (line 51) but the explanation never rebuts it.",
+    "proposed_change": "In the ai_boundary explanation (lines 57-58) add a clause grounding the risk: consumer AI chat tools may retain pasted text and use it for model training by default (you must opt out in settings), so stripping direct identifiers before pasting matters regardless of the specific tool, whereas enterprise/institution-licensed tiers typically do NOT train on submitted content by default. Explicitly rebut the 'the tool is private' distractor. Keep tool-agnostic. VERIFIED for 2026: OpenAI does NOT train on ChatGPT Enterprise/Business content by default; consumer Free/Plus data may be used for training unless the user opts out; Claude and Gemini similarly provide training opt-out toggles.",
+    "where_to_apply": "06.practice.json item 'cat100_supplement_3_6_data_ethics_in_small_datasets_ai_boundary' explanation (lines 57-58).",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "OpenAI. Enterprise privacy / Business data privacy (accessed 2026).",
+      "url_or_doi": "https://openai.com/enterprise-privacy/",
+      "finding": "By default OpenAI does not use ChatGPT Enterprise and ChatGPT Business customer content to train models; consumer (Free/Plus) submissions may be used for training unless the user opts out via settings."
+     },
+     {
+      "cite": "How to Stop AI from Training on Your Data: The 2026 Privacy Guide. Fello AI (2026).",
+      "url_or_doi": "https://felloai.com/how-to-stop-ai-from-training-on-your-data/",
+      "finding": "ChatGPT, Claude, and Gemini consumer tiers each provide a toggle to opt out of training; consumer plans generally feed data into training unless the user takes action."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/03/07",
+  "section_title": "Narrating a Data Finding",
+  "dir": "frontend/content/cat100-supplement/03",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is described only generically ('a bounded AI/software support move,' 'AI/software support'). For a 2026 data-narration section, the obvious concrete tool is Copilot in Excel / Microsoft 365 Copilot, which will literally draft a narrative summary of a pivot/finding and is exactly the tool that produces the inflated 'skyrocketed' rewrites the section warns against. Tool-agnostic vagueness is a named known-issue for this course.",
+    "proposed_change": "Add one concrete, dated AI example: name Copilot in Excel / Microsoft 365 Copilot as a tool that auto-drafts a narrative of a pivot finding, then show an accept/modify/reject trace (e.g., reject the AI verb 'surged' for a 40% lift, keep its evidence-attachment / email-summary suggestion). Add a one-line model/version-churn caveat. Best placed as a short note in '## Artifact Studio' (07.mdx ~line 118-124) or '## Adaptive Support' (~line 126-135) so it does not bloat the Core Concept. CONFIRMED CURRENT as of 2026: Microsoft documents that Copilot in Excel reads a structured table and returns insights as 'charts, PivotTables, summaries, trends, or outliers' and can 'generate a summary to be used in a new email,' i.e., it does auto-draft narrative summaries of pivot findings, which is precisely the inflation-prone draft the section trains learners to audit.",
+    "where_to_apply": "07.mdx '## Artifact Studio' (lines 118-124) or '## Adaptive Support' (lines 126-135) (new sentence/callout)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Support — Get insights about numerical data with Copilot in Excel (accessed 2026)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/get-insights-about-numerical-data-with-copilot-in-excel-52d97339-86c0-431c-b46c-e7b07b2898dd",
+      "finding": "Copilot in Excel analyzes a structured table and surfaces insights as charts, PivotTables, summaries, trends, or outliers, and can generate a summary for use in a new email draft, confirming it auto-drafts narrative summaries of findings."
+     },
+     {
+      "cite": "Microsoft Learn — Summarize and simplify information with Microsoft 365 Copilot (accessed 2026)",
+      "url_or_doi": "https://learn.microsoft.com/en-us/training/modules/summarize-simplify-information-with-microsoft-copilot-microsoft-365/",
+      "finding": "Microsoft 365 Copilot is documented as quickly generating summaries from data and turning raw data into presentation-ready narrative; the current product name is 'Microsoft 365 Copilot' / 'Copilot in Excel' (use this for the dated tool reference and the version-churn caveat)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/03/08",
+  "section_title": "Module 3 Data Story Studio",
+  "dir": "frontend/content/cat100-supplement/03",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed generically as a 'bounded AI/software support move' with no named current tool (confirmed in 08.mdx Adaptive Support/Worked Example and 08.practice.json ai_boundary), even though this is a spreadsheet module where Copilot in Excel is now a real, widely-deployed assistant. As of 2026 Copilot in Excel critiques data, generates formulas and charts from natural language, surfaces insights/outliers, and its agentic multi-step capabilities in Word/Excel/PowerPoint reached general availability (Microsoft 365 Blog, 2026-04-22). Naming it grounds the move in a current tool the course's currency-watch flags.",
+    "proposed_change": "Add a one-sentence concrete grounding in the Worked Example or Adaptive Support, e.g. a parenthetical naming Copilot in Excel (or a general-purpose chat assistant) as the kind of tool that can critique a draft headline against your own pivot numbers, while keeping the move tool-agnostic and noting model/version churn. Optionally mirror in 08.practice.json ai_boundary stem.",
+    "where_to_apply": "cat100-supplement/03/08.mdx -> 'Worked Example' or 'Adaptive Support' section (add a named-tool parenthetical); optionally 08.practice.json ai_boundary stem",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft 365 Blog (2026) 'Copilot's agentic capabilities in Word, Excel, and PowerPoint are generally available'",
+      "url_or_doi": "https://www.microsoft.com/en-us/microsoft-365/blog/2026/04/22/copilots-agentic-capabilities-in-word-excel-and-powerpoint-are-generally-available/",
+      "finding": "As of April 2026, Copilot's agentic, multi-step capabilities in Excel (and Word/PowerPoint) are generally available; in Excel it explores data, builds and explains analysis, and edits workbooks (formulas, tables, visuals). Confirms Copilot in Excel is a real, current, named tool to ground the AI-support move."
+     },
+     {
+      "cite": "Microsoft Support 'Get insights about numerical data with Copilot in Excel'",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/get-insights-about-numerical-data-with-copilot-in-excel-52d97339-86c0-431c-b46c-e7b07b2898dd",
+      "finding": "Copilot in Excel analyzes data and surfaces insights as charts, PivotTables, summaries, trends, and outliers, and can generate/explain formulas from plain language, exactly the 'critique a draft against your own numbers' capability the section describes. Requires a qualifying Microsoft 365 subscription plus a Copilot add-on license (note tier/version churn)."
+     }
+    ]
+   }
+  ]
+ }
+]

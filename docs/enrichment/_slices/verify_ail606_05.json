@@ -1,0 +1,23 @@
+[
+ {
+  "section_key": "ail606/05/03",
+  "section_title": "Task Scenarios for Prototype Testing",
+  "dir": "frontend/content/ail606-supplement/05",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The section's load-bearing theoretical anchor is the 'gulf of execution' (cited in Core Concept, Self-Explain, and used to justify why naming a control erases the measurement). That concept is Donald Norman's (The Design of Everyday Things), NOT Mayer's multimedia learning theory nor cognitive load theory. Yet the prose attributes the goal-vs-control point to Mayer ('Mayer multimedia learning reinforces this... a meaningful task targets a transferable goal, not a button press') and repeatedly cites Mayer/CLT where Norman is the correct source. The gulf of execution itself has no citation anywhere despite being invoked three times.",
+    "proposed_change": "Add Norman (2013, The Design of Everyday Things, MIT Press / Basic Books) as the citation for the 'gulf of execution' at its first use in Core Concept and in the Self-Explain answer. Reattribute the 'goal-based task = bridging the gulf of execution' argument to Norman rather than Mayer. Keep Mayer only where genuinely relevant (transfer/meaningfulness of learning goals) and stop using it as the primary warrant for the usability-task claim. Add Norman to the References list.",
+    "needs_research": true,
+    "search_terms": [
+     "Norman gulf of execution gulf of evaluation Design of Everyday Things",
+     "Norman 2013 Design of Everyday Things citation DOI ISBN",
+     "gulf of execution usability task scenario"
+    ],
+    "where_to_apply": "03.mdx — Core Concept paragraph ('that mapping is precisely the gulf of execution'), Self-Explain answer field, and References list",
+    "priority": "high"
+   }
+  ]
+ }
+]

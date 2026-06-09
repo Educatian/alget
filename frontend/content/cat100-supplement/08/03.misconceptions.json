@@ -24,6 +24,14 @@
       "trigger": "learner copies a course workflow into a job setting without checking the new constraint",
       "feedback": "Transfer adapts, it does not copy. A formula that worked on 40 class rows may need an absolute reference ($A$1) or a different range when the job dataset has 4,000 rows.",
       "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_8_3_ai_suggestion_unjudged",
+      "pattern": "ai_output_taken_on_authority",
+      "description": "Accepting an AI tool's suggested formula or fix without judging it against the destination context, and not documenting the modified or rejected part of the suggestion",
+      "trigger": "adaptation note says 'used Copilot' or 'used AI' with no recorded accept/modify/reject decision",
+      "feedback": "Judge AI output against the new context, then document the boundary. Copilot in Excel can offer a relative-range fill that drifts over 4,000 rows; the defensible move is modify (anchor the range) and record what you rejected and why.",
+      "rail_action": "explain"
     }
   ]
 }

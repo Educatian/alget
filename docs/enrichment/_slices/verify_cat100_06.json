@@ -1,0 +1,19 @@
+[
+ {
+  "section_key": "cat100/06/03",
+  "section_title": "GitHub Repository Setup",
+  "dir": "frontend/content/cat100-supplement/06",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Step 2 (lines 51-58) immediately runs `git push -u origin main`, but `git init` on older Git versions creates a `master` branch, not `main`, and the example never establishes how the local branch became `main`. A learner on a default-config older install gets `error: src refspec main does not match any`. Modern Git (2.28+, configurable via init.defaultBranch) and GitHub default to `main`, but the example silently assumes it.",
+    "proposed_change": "Add `git branch -M main` between the `git commit` line and the `git remote add origin` line (the standard GitHub-suggested incantation), or add a one-line note that GitHub's default branch is `main` and show `git branch -M main` to rename the initial branch so `push origin main` matches.",
+    "where_to_apply": "03.mdx -- Worked Example, Step 2 code block (lines 51-58, the git command sequence)",
+    "priority": "high",
+    "verified": "unverified",
+    "sources": []
+   }
+  ]
+ }
+]

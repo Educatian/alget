@@ -35,6 +35,8 @@ Reading the code tells you where to look before you ask anyone, human or AI, for
 
 A good debugging prompt has four parts: the current formula, the error or wrong result it produces, the cause if you know it, and the exact behavior you want, including any edge case. Compare "fix my formula" with "My formula `=B4/D4` returns #DIV/0! because D4 is blank; I want it to show 'n/a' when D4 is empty and otherwise divide normally; give me one formula." The second prompt constrains the AI so tightly that its answer is easy to check. Then comes the non-negotiable step: verify the returned formula on a known-answer row, a row where you already know the correct result, before copying it anywhere.
 
+**Recent tools (as of 2026):** the "it cannot see your sheet" rule now depends on which assistant you use. A general chat assistant (ChatGPT, Claude, or Gemini) still sees only the words in your prompt, so a precise description is everything. Copilot in Excel, by contrast, is grounded in the open workbook: it reads your column headers, data types, and real range references, and it can explain or diagnose a broken formula in place. Even then, the verify-on-a-known-answer-row step is unchanged, because sheet-aware tools still produce formulas that look right and compute wrong. And while cloud Copilot inherits the file's sensitivity labels and data-loss-prevention policies, sharing a whole sheet still raises privacy and data-governance considerations, so share the minimum the fix requires.
+
 ## Worked Example
 
 Suppose a class-average sheet shows an error in C4.
@@ -146,7 +148,7 @@ Before you move on, check that the Excel pivot-table finding with unit labels, s
 
 ## References
 
-- [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
-- [ISTE digital citizenship](https://iste.org/standards/students)
+- [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined) (eight career-readiness competencies; current as of 2026)
+- [ISTE digital citizenship](https://iste.org/standards/students) (ISTE Standards for Students, 2024 edition v4.02)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
-- [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
+- [WCAG accessibility](https://www.w3.org/TR/WCAG22/) (WCAG 2.2, the current W3C Recommendation as of 2026)

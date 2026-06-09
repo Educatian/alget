@@ -33,6 +33,8 @@ A fourth outcome is "not loggable": vague praise like "nice site" has no target,
 
 The key idea is that feedback is input, not instruction. An AI reviewer suggesting "rename Net Revenue to Profit" sounds plausible, but if the column is revenue minus returns rather than revenue minus all costs, renaming it to Profit makes the spreadsheet lie. Accepting it would be polish that damages truth. The log forces you to judge each suggestion against what the artifact actually means, which is the difference between editing and just complying.
 
+In practice, the "AI reviewer" in 2026 is usually a general-purpose assistant such as ChatGPT, Claude, Gemini, or Microsoft Copilot, or an in-context reviewer like Copilot in Excel or GitHub Copilot code review, which adds severity-labeled comments to pull requests. All of them can produce confident, plausible-but-wrong suggestions exactly like the Net Revenue rename, which is precisely why each item is judged against the artifact's meaning, not the source's authority.
+
 <inline-check question="An AI reviewer says rename the Net Revenue column to Profit. The column is revenue minus returns, not minus all costs. What is the right log entry?" explanation="Source does not set quality; meaning does. Renaming Net Revenue to Profit would mislabel the data, so the correct decision is Reject with a recorded reason, even though Profit sounds tidier." options='[{"text":"Accept; the AI reviewer is more authoritative than a peer.","correct":false},{"text":"Reject; the rename would mislabel data, so record the reason and keep Net Revenue.","correct":true},{"text":"Not loggable; it is just a naming preference.","correct":false}]'></inline-check>
 
 ## Worked Example: A Critique Log with Accept, Modify, and Reject

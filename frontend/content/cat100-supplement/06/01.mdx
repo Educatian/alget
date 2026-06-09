@@ -27,7 +27,9 @@ Information architecture rests on one principle: structure should follow the vis
 
 **Purpose statement.** Write one sentence in the form "This site helps [specific audience] [do one thing]." For a job-seeking portfolio: "This site helps a hiring manager confirm in under a minute that I can build working data tools." That sentence is a filter. Any page that does not serve it is a candidate for cutting.
 
-**Navigation depth and the click budget.** Visitors abandon sites that bury content. The practical target for a small portfolio is that any important page is reachable in one click from Home (depth 1). If your most impressive project takes three clicks to reach (Home, then Projects, then a category, then the project), you have spent your visitor's patience on hierarchy they did not ask for. Flat beats deep for a five-to-seven-page site.
+**Navigation depth and the click budget.** Visitors abandon sites whose navigation gives weak cues about where the content lives. The practical default for a small portfolio is that any important page is reachable in one click from Home (depth 1), not because clicks are costly in themselves, but because every extra hop is another chance for a vague label to lose the visitor. If your most impressive project takes three clicks to reach (Home, then Projects, then a category, then the project), you have spent your visitor's patience on hierarchy they did not ask for. Flat beats deep for a five-to-seven-page site because each link can carry a strong, specific label.
+
+> **Recent evidence.** The popular "three-click rule" is a heuristic, not a hard limit. Nielsen Norman Group's review of the evidence (Laubheimer, 2019) found that user drop-off and satisfaction do not hinge on a raw click count. What governs abandonment is information scent: the cues in link labels and surrounding context that tell a visitor a path leads to their goal (Budiu, 2020; Pirolli, 2005). Users tolerate more clicks when each click has strong scent and leave when scent is weak, regardless of depth, which is why the Labeling principle below does as much work as the depth target.
 
 **Labeling.** Page names are an interface. "Projects" tells a visitor what they will find; "Stuff" or "My Work Maybe" does not. Use the words your audience already uses. A hiring manager searches for "Resume," not "Curriculum Vitae of My Journey."
 
@@ -98,6 +100,8 @@ Walk one candidate page through the three checks and predict the verdict before 
 
 <step-reveal title="Apply the three checks to a candidate Blog page (portfolio for a hiring manager, no posts written yet)" steps='[{"prompt":"Task check first: can you name in one verb phrase what a hiring manager comes to a Blog page to do?","predictType":"choice","choices":["Yes: read my published technical writing","No clear hiring-manager task, and there are no posts anyway"],"answerIndex":1,"reveal":"There is no posted writing, so no verb-phrase task survives. The page is decoration relative to the stated audience."},{"prompt":"Empty check next: does the page have real content today?","predictType":"choice","choices":["Yes, it has a welcome placeholder","No, it is empty"],"answerIndex":1,"reveal":"An empty page is worse than a missing one because it signals abandonment to a recruiter."},{"reveal":"Verdict: cut the Blog page now. It fails both the task check and the empty check. Document the cut in one sentence so it reads as a decision, not an oversight: I removed Blog because it would have been empty, and an empty section signals neglect."}]'></step-reveal>
 
+> **Accessibility of your IA.** The labeling principle is also an accessibility requirement, which is what makes your artifact an accessibility-checked file tree rather than just a tidy one. Descriptive page names double as accessible link text: [WCAG 2.4.4 Link Purpose (In Context), Level A](https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html) asks that a link's purpose be clear from its text alone, which "Projects" satisfies and "Stuff" does not. A shallow, consistent nav with a skip-to-content link and proper landmark and heading structure is what lets screen-reader users jump straight to a section (WCAG 2.4.1 Bypass Blocks, Level A), and WCAG 2.4.6 Headings and Labels (Level AA) requires that those headings and labels describe their topic or purpose. Run this one IA-level check before you write any HTML in 06.02: read each page name aloud and ask whether it would still orient a visitor if it were the only thing a screen reader announced.
+
 ## Common Misreadings
 
 The most common mistake is treating "more pages" as "more impressive." A visitor judges a portfolio by the strongest thing they can find quickly, not by the total count of links. Adding a thin Hobbies page does not raise the ceiling; it lowers the floor by diluting the path to your best work.
@@ -139,7 +143,7 @@ Open the studio packet: [download the GitHub Pages file tree with accessibility,
 
 <artifact-studio artifact="GitHub Pages file tree with accessibility, privacy, and publishing checks" course="CAT 100" section="06.01"></artifact-studio>
 
-Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
+Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted. If you ask a current assistant such as ChatGPT, Gemini, or Claude to propose a sitemap, treat the proposal as a draft to judge against your purpose statement, and record in your AI-use note which tool (and version, if you know it) you used: model behavior and naming change often, so the disclosure is part of the evidence.
 
 ## Adaptive Support
 
@@ -172,3 +176,6 @@ Before you move on, make sure your trace links claim, evidence, tool boundary, r
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
+- Laubheimer, P. (2019). The 3-click rule for navigation is false. Nielsen Norman Group. https://www.nngroup.com/articles/3-click-rule/
+- Budiu, R. (2020). Information scent: How users decide where to go next. Nielsen Norman Group. https://www.nngroup.com/articles/information-scent/
+- Pirolli, P. (2005). Rational analyses of information foraging on the web. *Cognitive Science, 29*(3). https://doi.org/10.1207/s15516709cog0000_20

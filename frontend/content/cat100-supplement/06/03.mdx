@@ -31,6 +31,8 @@ Repository setup rests on a few mechanics that beginners can learn in one sittin
 
 **History is permanent; `.gitignore` is prevention.** A commit is a permanent record. Deleting a file later removes it from the current snapshot but not from past commits. The correct defense is to never commit secrets: a `.gitignore` file lists patterns (like `token.txt` or `.DS_Store`) that Git will refuse to stage. Prevention beats cleanup because cleaning history is hard and, for a leaked credential, insufficient (you still have to rotate the key).
 
+> **Recent evidence.** Prevention now has platform help: since March 2024, GitHub enables secret scanning push protection by default on new public repositories owned by personal accounts, so a push containing a known secret type can be blocked before it ever enters history. If a secret does reach history, the current standard cleanup tool is `git filter-repo` (the replacement GitHub recommends for the deprecated `git filter-branch`), but rotation is still mandatory either way: empirical scans of public GitHub found leaked keys are harvested within seconds of appearing (Meli et al., 2019), so a committed credential must be treated as compromised, not merely deleted.
+
 These mechanics meet [ISTE digital citizenship](https://iste.org/standards/students) directly: committing a key is a real security exposure, and knowing that history is permanent is the difference between a recoverable mistake and a published one. [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined) applies too, because version control and not leaking credentials are baseline expectations in any technical workplace.
 
 <inline-check question="You commit token.txt holding an API key, then in the next commit you delete the file. Is the key now safe?" explanation="A commit is a permanent record. Deleting the file in a later commit removes it from the current snapshot but leaves it readable in history. The only real fix is to rotate (revoke and reissue) the key, and the prevention is to list it in .gitignore before the first commit so it never enters history." options='[{"text":"No: the key still lives in history, so you must rotate it, not just delete the file","correct":true},{"text":"Yes: deleting the file in a new commit removes it from the repo entirely","correct":false},{"text":"Yes, as long as you also run git push after deleting it","correct":false}]'></inline-check>
@@ -53,9 +55,14 @@ cd my-portfolio
 git init
 git add index.html about.html assets/
 git commit -m "Initial portfolio"
+git branch -M main
 git remote add origin https://github.com/mlopez/mlopez.github.io.git
 git push -u origin main
 ```
+
+The `git branch -M main` line is not decoration: GitHub's default branch is `main`, but `git init` on Git versions before 2.28 (or on any version without `init.defaultBranch` configured) names the first branch `master`, so without the rename the final push fails with `error: src refspec main does not match any`. Renaming the initial branch to `main` makes `git push -u origin main` match.
+
+One real setup snag belongs on the list alongside the URL and secret snags: the first push over HTTPS prompts for credentials, and GitHub no longer accepts your account password there (password authentication for Git over HTTPS ended in August 2021). At the password prompt you supply a personal access token (PAT) generated in your GitHub settings, or you set up an SSH key and use an SSH remote instead.
 
 **Step 3. Protect secrets before the first push.** Maria notices a file token.txt in the folder. She adds a .gitignore:
 
@@ -128,7 +135,7 @@ Open the studio packet: [download the GitHub Pages file tree with accessibility,
 
 <artifact-studio artifact="GitHub Pages file tree with accessibility, privacy, and publishing checks" course="CAT 100" section="06.03"></artifact-studio>
 
-Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
+Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted. A concrete current example of the bounded support move: an in-terminal assistant such as GitHub Copilot CLI (generally available as of 2026) will translate natural language into git commands, and the force-push suggestion in this section's practice set is exactly the kind you reject and log with a reason. Tool names and models churn quickly, so the documented judgment, not the tool, is the artifact.
 
 ## Adaptive Support
 

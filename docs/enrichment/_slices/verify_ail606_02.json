@@ -1,0 +1,83 @@
+[
+ {
+  "section_key": "ail606/02/01",
+  "section_title": "LXD as a Decision Discipline",
+  "dir": "frontend/content/ail606-supplement/02",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The meta.json 'description' field is the templated stock string flagged across the supplement ('connecting lxd as a decision discipline to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence'). It is keyword-stuffed, near-identical to the 64 other sections, and does not describe the actual distinctive content (the four-part defensible-decision framework: purpose/constraint/evidence/revision).",
+    "proposed_change": "Rewrite the meta.json description to a section-specific summary, e.g.: 'Frames LXD as a decision discipline in which the deliverable is an auditable chain of reasoning, not the screen. Introduces the four-part defensible decision (purpose, constraint, evidence, revision) and shows it on a before/after onboarding storyboard frame.' Likewise tighten the templated learning_objectives so LO1 names the four-part framework rather than the generic signature-artifact string.",
+    "needs_research": false,
+    "search_terms": [],
+    "where_to_apply": "01.meta.json description (line 4) and learning_objectives (lines 5-10)",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/02/04",
+  "section_title": "Feedback Loops and Learner Control",
+  "dir": "frontend/content/ail606-supplement/02",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The artifact attached to this section is the chapter-level generic 'storyboard frame sequence with narration, signaling, and reader-action notes.' This is the known artifact-mislabel pattern: the section is about feedback content, timing, and calibrated control on a practice loop, NOT about a multimedia storyboard. The artifact-studio tag, the LO #1, the meta description, the download packet link, the Adaptive Support bullets, and the dynamic-scenario all carry the wrong artifact name, creating a mismatch between the rich feedback-loop content and the assessed artifact.",
+    "proposed_change": "Retag the artifact to a section-appropriate instrument, e.g., a 'feedback-loop specification' or 'feedback-and-control redesign trace' that captures: the exact wrong-answer feedback text (feed-forward), the reveal-timing rule, the calibrated-control structure with the named cost of skipping, and a behavioral signal to watch. Update artifact-studio artifact attribute (line 127), the download packet link text (line 125), Final Check (line 150), and the repeated 'storyboard frame sequence...' strings in Adaptive Support (lines 136, 140) to this artifact.",
+    "needs_research": false,
+    "where_to_apply": "04.mdx — artifact-studio (line 127), Artifact Studio download link (line 125), Adaptive Support confusion bullet (line 136) and dynamic-scenario (line 140), Final Check (line 150); 04.meta.json description and learning_objectives[0]",
+    "priority": "high",
+    "search_terms": []
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/02/05",
+  "section_title": "AI Tutor Boundaries",
+  "dir": "frontend/content/ail606-supplement/02",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "References and inline citations use dated editions/links flagged in the course currency-watch: Mayer is pinned to the 2nd-ed CUP DOI 10.1017/CBO9781139164603 (~2009/2014), Sweller/Ayres/Kalyuga (2011) is the only CLT cite, and UDL points to the generic udlguidelines.cast.org link rather than the CAST UDL 3.0 (2024) guidelines. The Adaptive Support and References blocks both reuse the 2nd-ed Mayer DOI.",
+    "proposed_change": "Update the References list and the two inline Mayer links to the 3rd edition of Multimedia Learning (2021) or the Cambridge Handbook of Multimedia Learning (2022); add a current CLT synthesis (e.g., Sweller 2019 'Cognitive Load Theory in 5 Areas', Educational Psychology Review) alongside the 2011 monograph; and update the UDL reference to CAST UDL 3.0 (2024). Confirm WCAG 2.2 AA is still the current normative version vs WCAG 3.0 draft as of 2026.",
+    "needs_research": true,
+    "search_terms": [
+     "Mayer Multimedia Learning 3rd edition 2021 DOI",
+     "Cambridge Handbook of Multimedia Learning 2022",
+     "Sweller cognitive load theory synthesis Educational Psychology Review 2019",
+     "CAST UDL 3.0 guidelines 2024",
+     "WCAG 2.2 vs WCAG 3.0 status 2026"
+    ],
+    "where_to_apply": "05.mdx '## References' (lines 147-150), '## Adaptive Support' Mayer link (line 128), and Mayer link in '## References'/self-explain context",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/02/08",
+  "section_title": "Module 2 Design Memo",
+  "dir": "frontend/content/ail606-supplement/02",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Pervasive artifact mislabel. The section teaches the DESIGN MEMO (a decision/argument document), but the embedded artifact, the studio packet link, the download filename, the Adaptive Support bullets, the dynamic-scenario, and the Final Check all name the Chapter 3 artifact 'storyboard frame sequence with narration, signaling, and reader-action notes.' A memo is not a storyboard frame sequence. This is the known artifact-studio mis-label bug and it directly contradicts the MDX body, which never mentions storyboards.",
+    "proposed_change": "Replace every 'storyboard frame sequence with narration, signaling, and reader-action notes' instance with a memo-appropriate artifact label, e.g. 'design memo (BLUF recommendation with linked evidence and acknowledged trade-off).' Update the artifact-studio tag (line 125 artifact=...), the studio packet link text and the download path (line 123), Adaptive Support bullet 2 (line 134), the dynamic-scenario prompt (line 138), and Final Check (line 148). Also fix meta.json 'description' and learning_objectives[0] which carry the same wrong artifact name.",
+    "needs_research": false,
+    "where_to_apply": "mdx lines 123, 125, 134, 138, 148; meta description + learning_objectives[0]",
+    "priority": "high"
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Final Check (line 148) tells learners the artifact 'records cognitive-load diagnosis, support request, accepted revision, rejected suggestion, and confidence change.' A design memo does not contain a cognitive-load diagnosis; that is boilerplate copied from a multimedia/CLT section. The memo's checkable elements are header, BLUF recommendation, claim-linked evidence, and acknowledged trade-off.",
+    "proposed_change": "Rewrite the Final Check to enumerate memo-specific elements: 'check that the memo names its audience and decision, states the recommendation up front with the alternative it beats, links each evidence item to the claim it supports, and acknowledges the chief trade-off.' Keep the accept/reject AI-judgment element since the section does require documenting a rejected suggestion.",
+    "needs_research": false,
+    "where_to_apply": "mdx Final Check (line 148)",
+    "priority": "high"
+   }
+  ]
+ }
+]

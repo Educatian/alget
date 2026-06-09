@@ -8,10 +8,10 @@ This section treats accessibility as a design obligation that is decided when yo
 
 ## Learning Targets
 
-- Analyze how the storyboard frame sequence with narration, signaling, and reader-action notes shows a defensible decision in AIL 606.
-- Distinguish artifact polish from evidence-based revision.
-- Document a bounded AI/software support move with accepted and rejected suggestions.
-- Use annotations, support requests, and revision notes to decide what help or design change should come next.
+- Classify an instructional image as decorative, informative, or functional and assign the correct alt treatment.
+- Write functional alt text that carries an image's instructional meaning, and move dense data to an adjacent table or long description.
+- Audit a visual for color-only coding and add a redundant cue per WCAG 2.2 SC 1.4.1.
+- Apply the cover test and reject over-long AI-generated alt text with reasons.
 
 ## Opening Case
 
@@ -27,9 +27,9 @@ First, **classification**. An image is either decorative (it adds no information
 
 Second, **function over appearance**. For a meaningful image, the alt must convey what the learner should take from it, the ranking, the relationship, the value, not the colors or layout. Compare "blue, green, orange bars" (appearance) with "inquiry scored highest at 82, then lecture at 74, then lab at 70" (function). Keep it brief; alt is read linearly with no skimming, so a complex chart's full data belongs in an adjacent table or a long description, with the alt giving the headline.
 
-Third, **do not encode meaning in color alone** (a WCAG requirement). If series are told apart only by hue, color-blind learners lose the distinction even with full sight; add a redundant cue, direct labels, patterns, or values on the bars.
+Third, **do not encode meaning in color alone** (WCAG 2.2 success criterion 1.4.1, Use of Color; the alt obligation behind the first two decisions is SC 1.1.1, Non-text Content). If series are told apart only by hue, color-blind learners lose the distinction even with full sight; add a redundant cue, direct labels, patterns, or values on the bars. The operative conformance target as of 2026 is WCAG 2.2 AA, a W3C Recommendation since October 2023; WCAG 3.0 remains an early, exploratory W3C Working Draft that is still years from becoming a standard, so design and audit against 2.2.
 
-These map onto the course anchors. UDL learner variability is the driver: design for the range of sensory and perceptual access, not the median learner. Mayer's coherence principle keeps alt brief, because over-long alt is extraneous load delivered through the ear. And accessibility is a multimedia decision, not a compliance afterthought, so it belongs at image-selection time, beside the function and coherence decisions of 03.03.
+These map onto the course anchors. UDL learner variability is the driver: design for the range of sensory and perceptual access, not the median learner (UDL Guidelines 3.0 frames sensory and perceptual access as ordinary learner variability to design for, not a special accommodation). Mayer's coherence principle keeps alt brief, because over-long alt is extraneous load delivered through the ear. And accessibility is a multimedia decision, not a compliance afterthought, so it belongs at image-selection time, beside the function and coherence decisions of 03.03.
 
 ## Worked Example: Rewriting Alt Text for a Bar Chart
 
@@ -61,7 +61,7 @@ Run every image through the accessibility sequence in order:
 
 1. **Classify:** Is this image decorative or meaningful? Decorative gets `alt=""`. Meaningful gets content-bearing alt. If you are unsure, ask whether the surrounding text already conveys what the image conveys; if it does, the image is decorative.
 2. **Write to function, briefly:** For a meaningful image, state what the learner should take from it in one tight sentence. If the image is data-dense, give the headline in alt and put the full values in an adjacent table or long description.
-3. **Audit color:** Is any distinction carried by color alone? If yes, add a non-color cue (labels, values, patterns) so the meaning survives color blindness and grayscale.
+3. **Audit color:** Is any distinction carried by color alone? If yes, add a non-color cue (labels, values, patterns) so the meaning survives color blindness and grayscale, per WCAG 2.2 SC 1.4.1.
 
 A defensible image decision can answer all three: how it was classified, what function its alt carries, and how it avoids color-only coding. The right test is the cover test: hide the image and read only the alt, can a learner still get the point?
 
@@ -108,7 +108,7 @@ Move from a static image to a data dashboard the learner can filter and re-sort 
 
 Open the studio packet: [download the storyboard frame sequence with narration, signaling, and reader-action notes packet](/downloads/summer2026/ail606-supplement/03-05-alt-text-and-accessibility-artifact.md).
 
-<artifact-studio artifact="storyboard frame sequence with narration, signaling, and reader-action notes" course="AIL 606" section="03.05"></artifact-studio>
+<artifact-studio artifact="image accessibility-treatment trace" course="AIL 606" section="03.05"></artifact-studio>
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -143,5 +143,6 @@ Connect accessibility to the storyboarding work, the evidence-based revision tha
 
 - [Mayer multimedia learning](https://doi.org/10.1017/CBO9781139164603)
 - Sweller, Ayres, and Kalyuga (2011). Cognitive Load Theory. Springer. https://doi.org/10.1007/978-1-4419-8126-4
-- UDL learner variability. https://udlguidelines.cast.org/
+- W3C (2023). Web Content Accessibility Guidelines (WCAG) 2.2. W3C Recommendation. https://www.w3.org/TR/WCAG22/
+- CAST (2024). Universal Design for Learning Guidelines version 3.0. https://udlguidelines.cast.org/
 - usability heuristics. https://www.nngroup.com/articles/ten-usability-heuristics/

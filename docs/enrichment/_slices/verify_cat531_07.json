@@ -1,0 +1,40 @@
+[
+ {
+  "section_key": "cat531/07/02",
+  "section_title": "Mentor Teacher Conversation Guides",
+  "dir": "frontend/content/cat531-supplement/07",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The section's recurring stakes are student-data privacy with minors: 'student responses on an outside server,' 'no district agreement,' 'no named student data collected,' 'whether the district has approved the vendor.' These are precisely FERPA / COPPA / state student-data-privacy concerns, but the MDX prose cites NO specific statute or standard. This is the one section where the privacy law tie-in is most natural and most load-bearing, and the course explicitly stresses FERPA/COPPA. The 2024-2026 COPPA rule update and state school-AI guidance are directly relevant to the 'outside server / vendor approval' mechanism.",
+    "proposed_change": "Add a short 'Recent Evidence' or 'Standard of Care' callout (3-4 sentences) near the Opening Case or Core Concept that names why the mentor's outside-server concern is not mere caution: FERPA governs disclosure of education records to third-party vendors, COPPA governs data from under-13 students, and many districts require a signed data-privacy agreement / vendor approval before student responses leave the school server. Cite current FERPA/COPPA references and note 2024-2026 COPPA amendments and state school-AI data guidance. Keep to one callout, not a new section.",
+    "needs_research": true,
+    "where_to_apply": "02.mdx — new short callout after 'Opening Case' or within 'Core Concept' (anchor to the 'outside server / district agreement' discussion); add matching reference entries",
+    "search_terms": [
+     "FERPA third party vendor education records school official exception 2024",
+     "COPPA rule amendment 2025 2026 children online privacy",
+     "student data privacy agreement district vendor approval edtech",
+     "state student data privacy law school AI guidance 2024 2025 2026"
+    ],
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/07/03",
+  "section_title": "Technology Observation Notes",
+  "dir": "frontend/content/cat531-supplement/07",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Terminology drift between learner-facing support vocabulary and the adaptive/misconception backend. The Adaptive Support block uses the moves explain / compare / transfer / (connection), while this section's misconceptions.json rail_action values are ask / represent / explain / practice. The four misconception rail_actions therefore do not map onto any move the learner is told ALGET will take, so the advertised 'we use your annotations to choose support' loop is internally inconsistent.",
+    "proposed_change": "Reconcile the two vocabularies for this section: either align the misconception rail_action values (ask/represent/explain/practice) with the four annotation-type moves the Adaptive Support block lists (question->explain, confusion->compare, insight->transfer, connection->show), or add a one-line mapping note. Minimally, change rail_action 'represent' and 'practice' to the learner-visible move set so the routing the section promises is the routing the data encodes. This is the course-wide explain/compare/audit vs explain/represent/practice/ask/advance drift flagged in the audit.",
+    "needs_research": false,
+    "where_to_apply": "03.misconceptions.json rail_action fields (all 4) reconciled against 03.mdx '## Adaptive Support' bullets (lines 125-128)",
+    "priority": "high"
+   }
+  ]
+ }
+]

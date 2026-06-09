@@ -17,7 +17,7 @@ The skill is not "distrust AI." It is "verify claim by claim." A single AI reply
 
 ## Opening Case
 
-A student asks an AI how to help a struggling reader and gets back: "Research shows students learn 90% of what they teach others, so have them tutor a classmate. This is the learning pyramid, proven by Edgar Dale (1969)." It reads like a citation-backed fact. It contains a fabricated statistic (the 90% figure traces to a corporate handout, not peer-reviewed research), a real-but-unproven graphic (the learning pyramid), and a misattribution (Dale wrote on the Cone of Experience and assigned no percentages).
+A student asks an AI how to help a struggling reader and gets back: "Research shows students learn 90% of what they teach others, so have them tutor a classmate. This is the learning pyramid, proven by Edgar Dale (1969)." It reads like a citation-backed fact. It contains a fabricated statistic (the 90% figure traces to a corporate handout, not peer-reviewed research; Subramony et al., 2014), a real-but-unproven graphic (the learning pyramid; Letrud & Hernes, 2016), and a misattribution (Dale wrote on the Cone of Experience and assigned no percentages; Subramony et al., 2014).
 
 If you act on the whole reply, you have built a tutoring plan on a made-up number and a wrong name. If you verify claim by claim, you can still keep the defensible idea (peer tutoring has independent support) while cutting the fabricated 90% and correcting the citation.
 
@@ -33,6 +33,8 @@ AI advice fails in recognizable patterns. Learning the categories lets you predi
 | Overgeneralization | a narrow finding stated as a universal rule | check the original study's population and conditions |
 
 The core move is decomposition. A reply is not one claim; it is several claims glued together by confident prose. You separate them into rows, find a source for each, and assign a verdict. A spreadsheet (Excel or Google Sheets) makes this inspectable: one claim per row, a SOURCE column, and a VERDICT column. The verdict matters because the goal is not to throw out the whole reply but to filter it, keeping what survives.
+
+> **Recent evidence:** The failures this section uses are documented, not hypothetical. Subramony, Molenda, Betrus, and Thalheimer (2014) traced the retention percentages to fabricated charts grafted onto Edgar Dale's Cone of Experience, which itself contained no percentages. Letrud and Hernes (2016) showed the learning-pyramid figures circulating widely in academic literature despite lacking empirical support. And Pashler, McDaniel, Rohrer, and Bjork (2008) found no adequate experimental evidence that matching instruction to a student's learning style improves outcomes.
 
 <inline-check question="An AI reply says: 'Students learn 90% of what they teach others (Dale, 1969).' Why is the citation NOT proof the claim is verified?" explanation="A citation is itself a claim. AIs routinely attach real author names to findings those authors never made. Here Dale wrote on the Cone of Experience and assigned no percentages, so the citation is a misattribution. A reference is a place to start verifying, not a stamp of approval." options='[{"text":"A citation is just another claim that must be checked; the author may never have said it","correct":true},{"text":"Citations from before 2000 are always invalid","correct":false},{"text":"It is proof; any named author confirms the number","correct":false},{"text":"The percentage is too round to be wrong","correct":false}]'></inline-check>
 
@@ -56,9 +58,9 @@ Step 2. Break the reply into separate checkable claims, one per row, and add a S
 
 | Claim | Source you found | Verdict |
 |-------|------------------|---------|
-| "students learn 90% of what they teach" | no peer-reviewed study; traces to a corporate handout | FALSE (fabricated statistic) |
-| "this is the learning pyramid" | the pyramid exists as a popular graphic | TRUE-ish (real graphic, unproven numbers) |
-| "proven by Edgar Dale (1969)" | Dale wrote on the Cone of Experience but assigned no percentages | MISATTRIBUTED |
+| "students learn 90% of what they teach" | no peer-reviewed study; traces to a corporate handout (Subramony et al., 2014) | FALSE (fabricated statistic) |
+| "this is the learning pyramid" | the pyramid exists as a popular graphic with unsupported numbers (Letrud & Hernes, 2016) | TRUE-ish (real graphic, unproven numbers) |
+| "proven by Edgar Dale (1969)" | Dale wrote on the Cone of Experience but assigned no percentages (Subramony et al., 2014) | MISATTRIBUTED |
 
 Step 3. Compute the check result. 1 of 3 claims survives, and even that one is weakened. The advice is built on a fabricated number and a wrong citation, so you do not act on it as stated.
 
@@ -80,6 +82,8 @@ Run these three checks on any advice that includes a number or a name:
 
 If a precise-sounding number has no traceable source, treat it as fabricated until proven otherwise. Confident formatting is not evidence.
 
+This is not a solved problem. As of 2026, current assistants (ChatGPT, Claude, Gemini, Copilot) still produce confident but fabricated or misattributed citations even in their newest reasoning and web-search modes, and a built-in "cite your sources" feature can itself point to a real source that does not actually support the claim, the exact misattribution pattern this section teaches you to catch. Claim-by-claim verification stays necessary regardless of which tool or model version you use.
+
 ## Common Misreadings
 
 The first misreading is "if it has a citation, it is checked." A citation is a claim too. AIs routinely attach real names to invented findings, so a reference is a place to start verifying, not a stamp of approval.
@@ -88,7 +92,7 @@ The second misreading is throwing out the entire reply because one claim failed.
 
 ## Textbook Walkthrough
 
-Apply the same row-by-row method to a different reply. You asked an AI for study tips and it returned: "Students retain information best when they match their learning style; visual learners should only use diagrams. Studies show this raises test scores by 40%." Decompose it. Row one: "matching learning styles improves retention," verdict MYTH-AS-FACT, because controlled studies have repeatedly failed to support learning-styles matching. Row two: "raises test scores by 40%," verdict FABRICATED, because the number has no traceable study. Row three: "diagrams can help with spatial content," verdict TRUE, supported on its own.
+Apply the same row-by-row method to a different reply. You asked an AI for study tips and it returned: "Students retain information best when they match their learning style; visual learners should only use diagrams. Studies show this raises test scores by 40%." Decompose it. Row one: "matching learning styles improves retention," verdict MYTH-AS-FACT, because controlled studies have repeatedly failed to support learning-styles matching (Pashler et al., 2008). Row two: "raises test scores by 40%," verdict FABRICATED, because the number has no traceable study. Row three: "diagrams can help with spatial content," verdict TRUE, supported on its own.
 
 After filtering, almost nothing of the original advice survives. The learning-styles framing fails, the 40% figure is invented, and only the modest, independently supported point about diagrams remains. The table makes that collapse visible: a reviewer sees three rows, two failures, and one survivor, and can trust that you did not act on the myth. Without the table, you might have repeated "match their learning style" because it sounded reasonable.
 
@@ -152,5 +156,8 @@ Before you move on, make sure your table has one row per claim, a named source f
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
 - [ISTE digital citizenship](https://iste.org/standards/students)
+- Subramony, D. P., Molenda, M., Betrus, A. K., & Thalheimer, W. (2014). The mythical retention chart and the corruption of Dale's Cone of Experience. *Educational Technology, 54*(6), 6-16.
+- Letrud, K., & Hernes, S. (2016). The diffusion of the learning pyramid myths in academia: An exploratory study. *Journal of Curriculum Studies, 48*(3), 291-302. https://doi.org/10.1080/00220272.2015.1088063
+- Pashler, H., McDaniel, M., Rohrer, D., & Bjork, R. (2008). Learning styles: Concepts and evidence. *Psychological Science in the Public Interest, 9*(3), 105-119. https://doi.org/10.1111/j.1539-6053.2009.01038.x
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)

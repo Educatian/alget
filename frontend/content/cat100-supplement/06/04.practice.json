@@ -47,7 +47,7 @@
         "ai_supported_learning",
         "cat100_supplement_publishing_with_github_pages"
       ],
-      "stem": "You push a change but the live page still shows the old version. An AI tool says 'the deploy is broken, recreate the repo.' Before doing anything drastic, what is the best check?",
+      "stem": "You push a change but the live page still shows the old version. A chat assistant (such as GitHub Copilot Chat or ChatGPT) says 'the deploy is broken, recreate the repo.' Before doing anything drastic, what is the best check?",
       "options": [
         "Recreate the repo immediately as the AI said",
         "Hard-refresh the browser to clear the cache and check the Actions or Pages build status, since deploys take a minute and browsers cache",
@@ -77,6 +77,26 @@
       "correct_index": 1,
       "explanation": "Local previews hide path and caching problems. Loading the live URL in a fresh private window on another device tests what a real visitor receives.",
       "misconception_id": "cat100_supplement_6_4_local_preview_equals_live",
+      "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_6_4_publishing_with_github_pages_a11y_privacy",
+      "type": "multiple_choice",
+      "concept_id": "cat100_supplement_publishing_with_github_pages",
+      "concept_ids": [
+        "cat100_supplement_publishing_with_github_pages",
+        "cat100_supplement_github_pages_personal_website"
+      ],
+      "stem": "Your portfolio is live on GitHub Pages and every page loads. Which check covers the accessibility and privacy dimensions of the published artifact, not just the publishing mechanics?",
+      "options": [
+        "Confirm the Pages build finished and the live URL loads in a private window",
+        "Confirm every informative image has meaningful alt text, text contrast meets WCAG 2.2 (4.5:1 for normal text), and no private data such as a home address or personal email sits anywhere in the public repo",
+        "Confirm the repo has a descriptive README and at least five commits",
+        "Confirm the site uses a custom font and at least three colors"
+      ],
+      "correct_index": 1,
+      "explanation": "A live page can load perfectly and still fail its visitors: missing alt text excludes screen-reader users, low contrast fails WCAG 2.2 (SC 1.4.3), and a public Pages repo exposes every committed file and its history, so private data must never be committed at all.",
+      "misconception_id": "cat100_supplement_6_4_public_repo_hides_source",
       "difficulty": "medium"
     }
   ]

@@ -32,6 +32,14 @@
       "trigger": "learner has one Images folder mixing photos from every class",
       "feedback": "Organize by course then task so related files travel together. Type-based folders scatter one assignment across many places.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_7_1_blind_ai_bulk_rename",
+      "pattern": "blind_ai_bulk_action",
+      "description": "Trusting an AI bulk-rename or organize-my-folder action across a whole folder without checking which file is the real latest version",
+      "trigger": "learner accepts every AI rename and auto-delete suggestion in one click, including removal of files the tool labels duplicates",
+      "feedback": "Treat AI organize suggestions as a bounded move: accept what fits your naming convention, modify what is close, and reject anything you cannot verify, especially deletions, because the tool cannot know which version holds your corrected work.",
+      "rail_action": "ask"
     }
   ]
 }
