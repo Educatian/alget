@@ -37,7 +37,11 @@ The three checks answer three separate questions about three populations:
 
 Two traps recur. The first is the **badge mismatch**: a tool advertises WCAG AA, but the badge covers its navigation while the core learning activity (a drag-and-drop lab) has no spoken labels. Compliance on the shell is not compliance on the task. The second is **collapsing equity into accessibility**: a home-internet requirement is not an accessibility flaw, it is an equity flaw, and treating them as one hides it.
 
+**Recent Evidence.** The current standard is WCAG 2.2, a W3C Recommendation since October 2023, so an evaluation should name which version and level a badge actually claims rather than citing generic "WCAG AA." And automated audit tools detect only roughly 30 percent of accessibility issues; the WebAIM Million project, which reports widespread home-page failures every year, counts only automatically detectable barriers and notes that true conformance is lower than its reported figures. A scanner result of "no issues found" is therefore not a clearance, and the screen-reader or keyboard walkthrough of the core task remains the decisive test.
+
 Three course anchors guide the checks. **[TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)** keeps the accessibility test focused on the core learning task rather than the login screen. **Critical edtech studies** names the equity burdens vendors externalize onto families (devices, data plans, nightly practice). **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** flags tools whose "adaptivity" degrades for students with less data history, an equity failure dressed as personalization.
+
+**The legal floor.** For public schools the accessibility check is a compliance obligation, not just good practice: the 2024 Department of Justice rule under ADA Title II adopts WCAG 2.1 AA as the technical standard for the web content and mobile apps of state and local government entities, explicitly including public K-12 schools, community colleges, and public universities. As of 2026, the compliance deadlines have been extended to April 26, 2027 for entities serving 50,000 or more people and April 26, 2028 for smaller entities and special districts, so a tool that fails the core-task accessibility check can put a district out of compliance, which gives the badge-mismatch trap real teeth.
 
 Before running the checks on a real tool, fix the three apart in your mind. Match each check to the population it is actually about and the direct test that exposes its failure. The point is to stop "easy to use" from absorbing the other two.
 
@@ -153,6 +157,13 @@ Before you move on, confirm the matrix scores usability, accessibility, and equi
 ## References
 
 - [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Sperling et al. (2024), In search of artificial intelligence (AI) literacy in teacher education: A scoping review. https://doi.org/10.1016/j.caeo.2024.100169
+- Casal-Otero et al. (2023), AI literacy in K-12: A systematic literature review. https://doi.org/10.1186/s40594-023-00418-7
 - critical edtech studies. https://doi.org/10.4324/9781315670160
 - [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
+- W3C (2023), Web Content Accessibility Guidelines (WCAG) 2.2, W3C Recommendation. https://www.w3.org/TR/WCAG22/
+- WebAIM, The WebAIM Million: An annual accessibility analysis of the top 1,000,000 home pages. https://webaim.org/projects/million/
+- Alsaeedi (2020), Comparing web accessibility evaluation tools and evaluating the accessibility of webpages. https://doi.org/10.3390/info11010040
+- U.S. Department of Justice, ADA.gov (2024), Rule on the accessibility of web content and mobile apps provided by state and local governments (ADA Title II, WCAG 2.1 AA). https://www.ada.gov/resources/2024-03-08-web-rule/
+- Federal Register (2026), Extension of compliance dates for the ADA Title II web accessibility rule. https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web
 - teacher professional judgment. https://doi.org/10.1177/002205741319300304

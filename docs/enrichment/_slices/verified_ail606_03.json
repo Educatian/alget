@@ -1,0 +1,50 @@
+[
+ {
+  "section_key": "ail606/03/03",
+  "type": "currency_update",
+  "gap_summary": "Transfer Case asserts uncited that text-to-image models default to stereotyped depictions of role/gender/age/ethnicity",
+  "verdict": "confirmed",
+  "evidence": "Bianchi et al. 2023 FAccT doi:10.1145/3593013.3594095 (stereotype amplification, persists despite guardrails); Luccioni et al. 2023 Stable Bias arXiv:2303.11408; DALL-E 3 prompt-rewriting reduces but 2024-25 audits show bias persists",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/03/03",
+  "type": "accuracy_fix",
+  "gap_summary": "ArtifactStudio/meta tagged to chapter storyboard artifact instead of the image commission-and-verification trace",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: section teaches commission-then-verify image decisions; Stronger Artifact Standard already specifies function sentence + rejected generation + verification note; studio tag/link/Final Check said storyboard sequence",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/03/05",
+  "type": "currency_update",
+  "gap_summary": "WCAG cited only generically; no version, no SC numbers, WCAG absent from References",
+  "verdict": "confirmed",
+  "evidence": "https://www.w3.org/TR/WCAG22/ (Recommendation since Oct 2023): SC 1.1.1 Non-text Content, SC 1.4.1 Use of Color; w3.org/WAI wcag3-intro: WCAG 3.0 still exploratory Working Draft (Mar 2026), years from standard",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/03/05",
+  "type": "currency_update",
+  "gap_summary": "References cite UDL via bare unversioned link; CAST UDL Guidelines 3.0 (2024) should be the citation",
+  "verdict": "confirmed",
+  "evidence": "https://udlguidelines.cast.org/ confirms Guidelines 3.0 released July 30 2024, learner-agency framing; suggested citation CAST (2024) UDL Guidelines version 3.0",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/03/05",
+  "type": "accuracy_fix",
+  "gap_summary": "Meta description/LOs and Learning Targets templated to storyboard artifact, not this section's alt-text/accessibility skills",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 05.mdx teaches classify/function-alt/color-audit/cover-test; meta LOs and Learning Targets were the generic storyboard boilerplate; rewritten section-specific, studio retagged to accessibility-treatment trace",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/03/08",
+  "type": "currency_update",
+  "gap_summary": "08.meta.json description is the templated stock string; misses capstone integration, sequence coherence, decision record",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 08.mdx Core Concept = sequence coherence + decision record + consistency audit; meta description/LO1 were generic chapter boilerplate; rewritten to match actual section content",
+  "applied": true
+ }
+]

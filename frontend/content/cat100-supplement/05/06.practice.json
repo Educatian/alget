@@ -11,7 +11,7 @@
       "stem": "Your slide uses a chart you found online and a paragraph drafted by AI. Which attribution shows you handled credit correctly?",
       "options": [
         "No source line, because the chart was free to view.",
-        "A caption: 'Chart: U.S. BLS, 2025, CC BY 4.0' and a note 'Summary drafted with AI, edited by me' where disclosure is required.",
+        "A caption: 'Chart: U.S. BLS, 2025 (public domain)' and a note 'Summary drafted with AI, edited by me' where disclosure is required.",
         "A line saying 'image from the internet.'",
         "Nothing, since you reworded the AI text slightly."
       ],

@@ -19,6 +19,8 @@ What makes this a judgment problem rather than a slogan is that "facial recognit
 
 A district pilots facial-recognition check-in to cut hallway tardies, and a teacher is asked to weigh in before the building-wide rollout. The pitch is appealing: ten minutes per period back for instruction. But the teacher knows two facts the pitch omits. The vendor's own documentation shows higher false-non-match rates for darker-skinned students, which means some students would be marked absent while standing in the doorway. And the face templates sit on a vendor server for two years. The decision is not "is this cool" but "which value do I protect, and can I name a condition under which the trade would change."
 
+**Recent evidence.** This exact decision has already been made at state scale. The Lockport City School District in New York deployed the Aegis facial-recognition system (SN Technologies) for school security; an independent audit found the system's false-match rate for Black female faces was roughly 16 times that for white males. In 2020 New York enacted a statewide moratorium on biometric identifying technology in schools, and the state's Office of Information Technology Services report with NYSED concluded the risks of facial recognition in schools outweighed the benefits, recommending against it. The negotiated, evidence-conditioned decision this section teaches is the one the state reached.
+
 ## Core Concept
 
 A defensible facial-recognition decision treats the proposal as a set of competing values with evidence attached, not as a single feature to approve or reject. The mistake to avoid is collapsing the case to its most salient pole. "It saves time" hides the equity cost; "it's biased" hides the privacy cost and the real instructional benefit. A tension map keeps all the poles visible at once.
@@ -26,8 +28,8 @@ A defensible facial-recognition decision treats the proposal as a set of competi
 There are three distinct pressures, and they do not trade against each other on the same scale:
 
 - **Efficiency** is measured in recovered instructional minutes. Real, but bounded and substitutable (a manual roster also works).
-- **Equity** is measured in differential error rates across groups. A system that is 99 percent accurate overall can still be 90 percent accurate for one subgroup, and that subgroup absorbs the entire cost.
-- **Privacy** is measured in what data is collected, where it lives, and for how long. A face template is biometric: unlike a password, a student cannot change their face if the data leaks.
+- **Equity** is measured in differential error rates across groups. A system that is 99 percent accurate overall can still be 90 percent accurate for one subgroup, and that subgroup absorbs the entire cost. This is documented, not hypothetical: NIST's large-scale vendor test found demographic differentials in false-non-match and false-positive rates across the large majority of the 189 algorithms tested (Grother, Ngan, & Hanaoka, 2019), and the Gender Shades audit found commercial systems most accurate for lighter-skinned men and least accurate for darker-skinned women, with error gaps up to roughly 34 percentage points (Buolamwini & Gebru, 2018).
+- **Privacy** is measured in what data is collected, where it lives, and for how long. A face template is biometric: unlike a password, a student cannot change their face if the data leaks. Specific law constrains this pole, not just prudence: Illinois BIPA requires informed written consent plus a public written retention-and-destruction schedule (destruction at purpose-completion or within 3 years, whichever comes first), and the FTC's 2025 COPPA amendments explicitly classify facial templates as children's personal information, bar indefinite retention, and require a written deletion-timeframe policy, as of 2026. The case's 24-month vendor retention already sits in tension with both.
 
 The course anchors do specific work here. **Critical edtech studies** is what surfaces the equity pole, because aggregate accuracy claims are designed to make subgroup failure invisible; you have to ask for the breakdown. **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** is what surfaces the privacy pole, naming the 24-month retention as a standing risk rather than a footnote. **Teacher professional judgment** is what produces the negotiated decision, the part no policy template can write for you: which value you protect now, and what evidence would justify revisiting.
 
@@ -63,7 +65,7 @@ You are now in the adoption meeting and must make the call out loud, with a prin
 For any biometric classroom tool, run the poles in this order before you decide:
 
 1. **Equity first:** Ask for error rates by subgroup. If the vendor gives only an aggregate, treat the gap as unknown and therefore unacceptable until shown.
-2. **Privacy second:** Name what is collected, where it is stored, and the retention period. Biometric data raises the bar because it cannot be reissued.
+2. **Privacy second:** Name what is collected, where it is stored, and the retention period. Biometric data raises the bar because it cannot be reissued, and because statute constrains it: face templates trigger FERPA's educational-record limits, Illinois BIPA's written-consent and retention-schedule requirements, and the 2025 COPPA amendments' no-indefinite-retention rule.
 3. **Efficiency last:** Quantify the benefit honestly, then ask whether a non-biometric method captures most of it.
 
 A negotiated decision must include a re-entry condition: the specific, measurable thing that would have to change for the answer to flip.
@@ -140,3 +142,8 @@ Before you move on, check that the Design Tension Studio map naming a classroom 
 - critical edtech studies. https://doi.org/10.4324/9781315670160
 - [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
 - teacher professional judgment. https://doi.org/10.1177/002205741319300304
+- Grother, P., Ngan, M., & Hanaoka, K. (2019). Face Recognition Vendor Test (FRVT) Part 3: Demographic Effects (NIST IR 8280). National Institute of Standards and Technology. https://doi.org/10.6028/NIST.IR.8280
+- Buolamwini, J., & Gebru, T. (2018). Gender Shades: Intersectional accuracy disparities in commercial gender classification. *Proceedings of Machine Learning Research, 81*, 77-91. https://proceedings.mlr.press/v81/buolamwini18a.html
+- Federal Trade Commission (2025). Children's Online Privacy Protection Rule, Final Amendments. *Federal Register* (Apr. 22, 2025). https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule
+- Illinois Biometric Information Privacy Act, 740 ILCS 14. https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004
+- New York statewide moratorium on biometric technology in schools and the Lockport/Aegis case. https://www.biometricupdate.com/202007/facial-biometrics-in-new-york-state-schools-blocked-as-legislature-passes-2-year-moratorium

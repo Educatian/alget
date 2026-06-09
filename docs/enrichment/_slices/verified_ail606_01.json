@@ -1,0 +1,50 @@
+[
+ {
+  "section_key": "ail606/01/01",
+  "type": "accuracy_fix",
+  "gap_summary": "Misconceptions feedback says printed text is processed in the VERBAL channel, contradicting MDX visual-channel framing",
+  "verdict": "confirmed",
+  "evidence": "Mayer CTML (doi:10.1017/CBO9781139164603): printed words enter via eyes into visual sensory memory/visual channel; MDX, practice item, and parameter-explorer all use this framing",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/01/02",
+  "type": "accuracy_fix",
+  "gap_summary": "Section teaches principle-to-edit constraint table but artifact widgets/meta name the CLT load-diagnosis table (01.03 artifact)",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 02.mdx Stronger Artifact Standard and Worked Example describe principle+boundary-condition+conflict-ranking table; load table belongs to 01.03 (01-03 packet exists separately)",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/01/05",
+  "type": "currency_update",
+  "gap_summary": "UDL taught via pre-3.0 framing with generic CAST link; UDL Guidelines 3.0 (2024) not referenced",
+  "verdict": "confirmed",
+  "evidence": "udlguidelines.cast.org now presents UDL Guidelines 3.0, released 2024-07-30; retains 3 principles, foregrounds learner agency/identity and bias-rooted barriers, no longer foregrounds brain-network labels",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/01/06",
+  "type": "accuracy_fix",
+  "gap_summary": "Artifact Studio/Adaptive Support embed Ch03 storyboard artifact instead of the software-case selection memo the section teaches",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 06.mdx Worked Example and Stronger Artifact Standard model an objective-to-affordance-to-constraint selection memo; storyboard label was the documented template mislabel",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/01/07",
+  "type": "accuracy_fix",
+  "gap_summary": "Artifact widgets reference storyboard frame sequence instead of the design-rationale log entry the section scaffolds",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 07.mdx teaches Toulmin claim/evidence/warrant/rejected-alternatives/planned-check log; storyboard label matched no prose in the section",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/01/08",
+  "type": "accuracy_fix",
+  "gap_summary": "Meta + artifact widgets mislabel the synthesis section artifact as a storyboard; actual artifact is a one-page synthesis decision brief",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 08.mdx prose, Worked Example, and Stronger Artifact Standard all define a synthesis decision brief (convergence + named/resolved conflict + rejected alternative); no storyboard produced",
+  "applied": true
+ }
+]

@@ -1,0 +1,56 @@
+[
+ {
+  "section_key": "cat531/06/03",
+  "section_title": "Portfolio Artifact Selection",
+  "dir": "frontend/content/cat531-supplement/06",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Terminology drift between learner-facing support vocabulary and the backend adaptive/misconception vocabulary. The MDX 'Adaptive Support' block routes on note-type (question/confusion/insight/connection) to moves (ask-explanation/compare/transfer/show). But 03.misconceptions.json uses rail_action values explain/ask/represent/practice, and the course-wide backend policy vocabulary is explain/represent/practice/ask/advance. A learner who sees 'compare a weak and strong version' will never see a matching backend action, and the misconception 'represent'/'practice' actions have no learner-facing analogue here.",
+    "proposed_change": "Reconcile the Adaptive Support bullets (lines 135-138) with the backend rail_action set (explain/represent/practice/ask/advance). Map 'question' -> explain (already aligned), 'confusion' -> represent (the 'compare weak/strong version' bullet becomes 'show a contrasting weak/strong representation'), 'insight' -> advance (transfer to new audience), 'connection' -> represent. Either swap the MDX move verbs to the canonical set, or add one line defining the learner verbs (explain/compare/transfer/show) as surface labels for the backend actions so the two rails are explicitly linked. Confirmed in-repo: 03.misconceptions.json rail_action values are explain/ask/represent/practice only (no 'advance' and no 'compare/transfer/show'), so the divergence is real.",
+    "where_to_apply": "03.mdx '## Adaptive Support' bullet list (lines 135-138) reconciled against 03.misconceptions.json rail_action fields (grade_proxy=explain, no_rationale=ask, ai_curates=represent, only_successes=practice)",
+    "priority": "high",
+    "sources": [],
+    "verified": "unverified"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/06/04",
+  "section_title": "Classroom Implementation Plan",
+  "dir": "frontend/content/cat531-supplement/06",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Assistant-name inconsistency. The 'Stronger Artifact Standard' (line 109) and Artifact Studio direct students to ask 'BigAL' to compare versions, but the course's named generative-AI teaching assistant is TeachGen@i (per the currency-watch / Ch2 & Ch8 usage). The course-context note flags 'BigAL' as a thing to confirm. Within one section the learner-facing assistant name should match the course's canonical tool or the support-move instruction is unactionable.",
+    "proposed_change": "Reconcile the assistant name: either replace 'BigAL' with 'TeachGen@i' (the course-canonical assistant) on line 109, or confirm 'BigAL' is the current/correct name and make it consistent with the rest of CAT 531. Cross-check the live syllabus before changing.",
+    "needs_research": true,
+    "where_to_apply": "04.mdx — Stronger Artifact Standard, sentence beginning 'If a step lacks a fallback...' (line 109)",
+    "priority": "high",
+    "search_terms": [
+     "CAT 531 syllabus TeachGen@i BigAL assistant name 2026",
+     "TeachGen@i generative AI teaching assistant"
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/06/07",
+  "section_title": "Presentation of Professional Vision",
+  "dir": "frontend/content/cat531-supplement/06",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Terminology drift flagged at course level is present here. The learner-facing Adaptive Support block uses support moves keyed to note type: explanation→explain, confusion→compare, insight→transfer, connection→show-where. But this section's misconceptions.json rail_action vocabulary is explain / ask / represent / practice. The mapping is internally incoherent: the 'no_transfer' misconception (a confusion/ideal-only pattern) is tagged rail_action 'ask'; 'ai_supplies_vision' is tagged 'represent'; 'works_everywhere' is tagged 'practice'. These backend actions do not correspond to any move the learner-facing copy advertises, so adaptive routing cannot be explained or audited — which directly contradicts the section's own thesis that decisions must be inspectable.",
+    "proposed_change": "Reconcile the two vocabularies into one published set. Either (a) map the Adaptive Support note-type moves (explain/compare/transfer/connect) onto the rail_action field so backend and learner copy match, or (b) document the explain/represent/practice/ask/advance policy and align the learner copy to it. At minimum, fix the obviously mismatched rail_actions: 'no_transfer' should route to compare/transfer not 'ask'; 'works_everywhere' to compare not 'practice'.",
+    "needs_research": false,
+    "where_to_apply": "07.misconceptions.json (rail_action fields, all four) vs 07.mdx Adaptive Support block (lines 126-131)",
+    "priority": "high",
+    "search_terms": []
+   }
+  ]
+ }
+]

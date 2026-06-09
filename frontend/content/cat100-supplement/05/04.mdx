@@ -21,7 +21,7 @@ A student records narration by reading each slide aloud, word for word. The resu
 
 ## Core Concept
 
-Narration is a second information channel, and its job is to be **complementary**, not redundant. The slide shows the *what* (the chart, the headline, the bullet); the voice supplies the *why* and the *so what* that the slide leaves implicit. This is the multimedia principle in practice: words and visuals teach more together when each carries different, mutually supporting information, and they teach less when the audio merely recites the on-screen text.
+Narration is a second information channel, and its job is to be **complementary**, not redundant. The slide shows the *what* (the chart, the headline, the bullet); the voice supplies the *why* and the *so what* that the slide leaves implicit. This is the multimedia principle in practice: words and visuals teach more together when each carries different, mutually supporting information, and they teach less when the audio merely recites the on-screen text. Both effects are documented in multimedia-learning research: the redundancy principle (Kalyuga & Sweller, 2014) and a direct empirical test showing that on-screen text duplicating narration depresses learning (Chan et al., 2020).
 
 A useful test is the **delete-the-overlap test**. Draft the script, then strike every sentence that only repeats visible text. What remains should be the cause, the example, the caveat, or the recommendation. If almost nothing remains, the narration was redundant and the slide did not need a voice at all.
 
@@ -33,7 +33,11 @@ The pathway you choose to produce the narration carries its own obligations:
 | AI text-to-speech | Fast, consistent, easy to revise | Check pronunciation; disclose AI voice where required |
 | AI-drafted script you read aloud | Fast first draft | Edit for accuracy and your own claims; you own every word |
 
-AI voices mispronounce domain terms with total confidence ("cache" read as "kashay"), so an AI narration pathway adds a proofreading-by-ear step that a typed slide never needed. Disclosure is not optional decoration; where the assignment or audience expects to know a voice is synthetic, hiding it is a citizenship failure.
+As of 2026, current text-to-speech options include ElevenLabs (Eleven v3), the built-in AI narration in Microsoft 365 via Copilot and Clipchamp (which can voice your speaker notes), and tools like Murf; tool names and voice quality churn fast, but the obligations (proofread by ear, caption or transcript, disclose, own every word) are tool-independent.
+
+Whichever pathway you choose, narration adds an accessibility obligation: every narrated slide needs a caption or transcript. WCAG 2.2 requires a text alternative for prerecorded audio (SC 1.2.1, Level A, satisfied by a transcript) and synchronized captions when the narration plays inside a video (SC 1.2.2, Level A). With AI text-to-speech the transcript is essentially free, because it is the script you already wrote as editable text; recorded own-voice narration needs captions or a transcript added afterward. Your critique log should record that a caption or transcript exists for each narrated slide.
+
+AI voices mispronounce domain terms with total confidence ("cache" read as "kashay"), so an AI narration pathway adds a proofreading-by-ear step that a typed slide never needed. Disclosure is not optional decoration; where the assignment or audience expects to know a voice is synthetic, hiding it is a citizenship failure. Disclosure expectations for AI use are still evolving and vary by instructor, so check your course or institution policy; a workable model as of 2026 is a one-line note naming the tool and how you used it.
 
 ## Worked Example
 
@@ -62,17 +66,18 @@ Work one narration decision at a time, predicting each move before you reveal it
 
 <step-reveal title="Turn a slide-reading script into complementary narration" steps='[{"prompt":"Your chart slide says \"Signups doubled after launch\" and your draft narration says \"Signups doubled after launch.\" What is the first move?","predictType":"choice","choices":["Record it as is; repeating the headline reinforces it","Run the delete-the-overlap test and strike the line that only repeats visible text","Add an animation so the line feels less repetitive","Make the voice louder on that line"],"answerIndex":1,"reveal":"Strike it. The chart already states that signups doubled, so reading it aloud triggers the redundancy effect. The narration budget should go to what the slide cannot show."},{"prompt":"You deleted the redundant line. What goes in its place?","predictType":"choice","choices":["A restatement of the headline in different words","The cause of the jump and the recommendation the chart cannot show","A summary of the whole deck","Nothing; leave the slide silent"],"answerIndex":1,"reveal":"Add the why and the so-what: \"The jump came from the week-two referral feature, which is why I recommend funding referrals next quarter.\" That is complementary, not redundant."},{"reveal":"Generate or record the audio, then proofread by ear. The AI voice read \"cache\" as \"kashay,\" so re-record that term and add the required AI-narration disclosure. The log records the redundancy cut, the pronunciation catch, and the disclosure."}]'></step-reveal>
 
-<inline-check question="A student records narration that reads each bullet aloud word for word, reasoning that it is thorough. Why does this lower comprehension?" explanation="Identical audio and on-screen text compete for the same working memory; that is the redundancy effect. Comprehension improves only when the voice carries different, complementary information from the slide." options='[{"text":"Reading every bullet is thorough and aids memory","correct":false},{"text":"Identical audio and text compete for working memory (the redundancy effect)","correct":true},{"text":"The voice is simply too quiet to follow","correct":false},{"text":"The slide has too few bullets to read aloud","correct":false}]'></inline-check>
+<inline-check question="A student records narration that reads each bullet aloud word for word, reasoning that it is thorough. Why does this lower comprehension?" explanation="Identical audio and on-screen text compete for the same working memory; that is the redundancy effect (Kalyuga & Sweller, 2014; Chan et al., 2020). Comprehension improves only when the voice carries different, complementary information from the slide." options='[{"text":"Reading every bullet is thorough and aids memory","correct":false},{"text":"Identical audio and text compete for working memory (the redundancy effect)","correct":true},{"text":"The voice is simply too quiet to follow","correct":false},{"text":"The slide has too few bullets to read aloud","correct":false}]'></inline-check>
 
 ## Decision Rule
 
 Make the voice complementary to the slide, not redundant with it, and own every word the audience hears regardless of how it was produced. If the narration only reads the screen, cut it.
 
-Check a narration pass against three questions:
+Check a narration pass against four questions:
 
 1. **Purpose check:** After the audio, can the audience act, knowing the why and the so-what, not just the on-screen what?
 2. **Evidence check:** Which sentences add cause, example, or recommendation, and which only repeat visible text?
 3. **Revision check:** What redundant line did you cut, and what AI-voice error or disclosure did you handle?
+4. **Accessibility check:** Does every narrated slide have a caption or transcript? For text-to-speech, the script is the transcript; for your own recorded voice, add one afterward.
 
 If you removed nothing in the delete-the-overlap test, the narration was redundant.
 
@@ -107,7 +112,7 @@ A strong reader of this section can answer four questions:
 
 The critique log is strong when a reviewer can see which narration lines you cut for redundancy, which you added for reasoning, and which AI-voice errors you caught and fixed. Treat a smooth-sounding take as the starting point, not the finish line.
 
-A useful entry would sound like this: "I cut the line that reread 'signups doubled' and replaced it with the cause (the week-two referral feature) and the recommendation (fund referrals). I accepted the AI voice for speed but rejected its first render because it pronounced 'cache' as 'kashay,' re-recorded that term, and added the required AI-narration disclosure on the closing slide."
+A useful entry would sound like this: "I cut the line that reread 'signups doubled' and replaced it with the cause (the week-two referral feature) and the recommendation (fund referrals). I accepted the AI voice for speed but rejected its first render because it pronounced 'cache' as 'kashay,' re-recorded that term, and added the required AI-narration disclosure on the closing slide: 'Narration generated with ElevenLabs and edited by the author.'"
 
 ## Transfer Case
 
@@ -154,3 +159,5 @@ Before you move on, confirm the narration adds reasoning the slide cannot show, 
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
+- [Kalyuga & Sweller (2014), The redundancy principle in multimedia learning. In R. E. Mayer (Ed.), The Cambridge Handbook of Multimedia Learning (2nd ed.)](https://doi.org/10.1017/cbo9781139547369.013)
+- [Chan et al. (2020), Effect of on-screen text on multimedia learning with native and foreign-accented narration. Learning and Instruction, 70](https://doi.org/10.1016/j.learninstruc.2020.101305)

@@ -33,6 +33,8 @@ Three rules make the system work:
 
 The underlying logic is that time is a finite resource you allocate in advance. A due date is a constraint; a work block is the allocation that satisfies it.
 
+Current tools implement this split directly: Google Calendar or the Outlook calendar holds events, while Microsoft To Do, Google Tasks, or Todoist holds the task list. AI features now propose work blocks for you; as of 2026, Copilot in Outlook can block focus time and resolve calendar conflicts, and Gemini in Google Calendar can find free slots and create events. The concept stays primary: you still verify and accept (or modify, or reject) the AI's block placement, and tool interfaces and AI features churn, so check what your tool currently does.
+
 <sequence-builder mode="order" items='["Enter the fixed event: put the Tuesday 10:00 AM lecture on the calendar at its set time","Capture the task: add Write the lab report to the task list with its Friday 11:59 PM deadline","Reserve a work block: place a Wednesday 6 to 8 PM event that is the time you will actually do the task","Set a reminder with lead time: have it fire before the start so travel and setup are covered, not at the deadline itself"]'></sequence-builder>
 
 <inline-check question="A student puts 'submit lab report, Friday 11:59 PM' on their calendar at 11:59 PM and feels organized. What did they actually reserve?" explanation="Putting the due time on the calendar reserves the instant work is due, not the hours it takes to produce. The work still has no home; it needs a separate work block." options='[{"text":"The moment the work is due, but no time to actually do the work","correct":true},{"text":"A full work block plus a reminder","correct":false},{"text":"Both the deadline and the allocation","correct":false},{"text":"Nothing, because tasks cannot go on a calendar","correct":false}]'></inline-check>
@@ -95,7 +97,7 @@ Apply the system to a real conflict. You have a lecture Tuesday at 10 AM, a lab 
 
 The walkthrough exposes a hidden risk: if you had only written "lab due Wed," you would not have noticed that the shift consumed your obvious work time until Wednesday evening. By allocating the work block in advance, you discovered the squeeze on Sunday, when you could still adjust (start a day earlier or trade the shift). The system's value is catching the collision before it becomes a missed deadline.
 
-<step-reveal title="Resolve the Tuesday-lecture, Wednesday-shift, Wednesday-deadline conflict" steps='[{"prompt":"Three obligations: lecture Tue 10 AM, lab report due Wed 11:59 PM, shift Wed 1 to 5 PM. Step one is to SORT. Which item is the task?","predictType":"choice","choices":["The lecture","The shift","The lab report","All three are tasks"],"answerIndex":2,"reveal":"Lecture and shift are fixed-time events; the lab report is work with a deadline, so it is the only task that needs a work block."},{"prompt":"The shift eats Wednesday 1 to 5 PM. Where is the only viable work block before the deadline?","predictType":"choice","choices":["Wednesday 1 to 5 PM, during the shift","Wednesday 6 to 8 PM, after the shift and before 11:59 PM","Thursday morning, after the deadline","No block is needed"],"answerIndex":1,"reveal":"After the shift, before the deadline: Wednesday 6 to 8 PM is the only window. Allocating it on Sunday surfaces the squeeze while you can still adjust."},{"reveal":"Discovering the collision early is the whole payoff. With only â€™lab due Wedâ€™ written down, you would notice the shift ate your work time on Wednesday evening, far too late to recover."}]'></step-reveal>
+<step-reveal title="Resolve the Tuesday-lecture, Wednesday-shift, Wednesday-deadline conflict" steps='[{"prompt":"Three obligations: lecture Tue 10 AM, lab report due Wed 11:59 PM, shift Wed 1 to 5 PM. Step one is to SORT. Which item is the task?","predictType":"choice","choices":["The lecture","The shift","The lab report","All three are tasks"],"answerIndex":2,"reveal":"Lecture and shift are fixed-time events; the lab report is work with a deadline, so it is the only task that needs a work block."},{"prompt":"The shift eats Wednesday 1 to 5 PM. Where is the only viable work block before the deadline?","predictType":"choice","choices":["Wednesday 1 to 5 PM, during the shift","Wednesday 6 to 8 PM, after the shift and before 11:59 PM","Thursday morning, after the deadline","No block is needed"],"answerIndex":1,"reveal":"After the shift, before the deadline: Wednesday 6 to 8 PM is the only window. Allocating it on Sunday surfaces the squeeze while you can still adjust."},{"reveal":"Discovering the collision early is the whole payoff. With only ’lab due Wed’ written down, you would notice the shift ate your work time on Wednesday evening, far too late to recover."}]'></step-reveal>
 
 ## What Strong Reading Looks Like
 
@@ -130,7 +132,7 @@ Use the studio to create a before/after trace. The first version should show you
 
 ALGET uses your annotations and artifact trace to choose support:
 
-- If your note is a **question**, ask for a concise explanation tied to **[NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)**.
+- If your note is a **question**, ask for a concise explanation tied to **[NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)**, specifically the Career & Self-Development (and Professionalism) competencies that time and task management build.
 - If your note shows **confusion**, compare a weak and strong version of the one-week calendar and task plan.
 - If your note is an **insight**, transfer the event-versus-task rule to a new setting.
 - If your note makes a **connection**, show where the connection changes the plan.
@@ -155,6 +157,7 @@ Before you move on, confirm your week passes the sort, allocation, and lead-time
 
 - [NACE career readiness](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined)
 - [ISTE digital citizenship](https://iste.org/standards/students)
-- data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
+- Gollwitzer, P. M., & Sheeran, P. (2006). Implementation intentions and goal achievement: A meta-analysis of effects and processes. *Advances in Experimental Social Psychology, 38*, 69-119. https://doi.org/10.1016/S0065-2601(06)38002-1
+- Koole, S., & van’t Spijker, M. (2000). Overcoming the planning fallacy through willpower: Effects of implementation intentions on actual and predicted task-completion times. *European Journal of Social Psychology, 30*(6), 873-888.
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
 

@@ -19,7 +19,7 @@ A privacy checklist is the discipline of inspecting your own artifacts the way a
 
 Maya is about to share her GitHub Pages portfolio in the capstone showcase. The site looks finished: a clean header, three project cards, a contact form. What she cannot see from the rendered page is that her `app.js` still holds a weather API key she pasted while testing, and her `contact.html` carries a leftover comment with an SMTP password.
 
-The rendered website hides both. A reviewer browsing the live page would never notice. But GitHub repositories are public by default, and automated bots scrape new commits for exactly these strings within minutes. Maya's artifact is visually polished and simultaneously a security incident. The privacy checklist exists to catch the gap between "looks done" and "is safe to publish."
+The rendered website hides both. A reviewer browsing the live page would never notice. But in a public GitHub repository, automated bots scrape new commits for exactly these strings within minutes. Maya's artifact is visually polished and simultaneously a security incident. The privacy checklist exists to catch the gap between "looks done" and "is safe to publish."
 
 ## Core Concept
 
@@ -35,7 +35,9 @@ The checklist covers three distinct surfaces, and confusing them is where studen
 
 The reason a checklist beats good intentions is that secrets enter files by accident, during testing, when you are focused on making something work. You will not remember them later. A scan finds them; a memory does not. The output that earns review is not "I was careful," it is a reproducible command and its result.
 
-<inline-check question="You deleted an API key from app.js in a new commit and pushed it. Is the leak fixed?" explanation="Deletion does not remove the value from a public repositoryâ€™s history; a clone still exposes the old commit. The only safe response to any pushed credential is to rotate it." options='[{"text":"Yes, the current file no longer contains the key, so it is safe.","correct":false},{"text":"No, the key still lives in the commit history; you must rotate it.","correct":true},{"text":"Yes, as long as the commit message does not mention the key.","correct":false}]'></inline-check>
+> **Recent evidence (as of 2026).** Since March 11, 2024, GitHub enables secret scanning and push protection by default on new public repositories owned by personal accounts, so an obvious API-key push is often blocked before it ever lands; push protection blocked roughly 4.4 million secrets in 2024. But the guardrail recognizes only a limited set of known token types (200+ patterns from 180+ providers), can be bypassed or overridden, and does not scan a repository's existing history. The manual checklist, plus a dedicated scanner such as gitleaks (fast pre-commit/diff regex scanning) or trufflehog (full-history scanning that also verifies whether a found credential is still live), still matters.
+
+<inline-check question="You deleted an API key from app.js in a new commit and pushed it. Is the leak fixed?" explanation="Deletion does not remove the value from a public repository’s history; a clone still exposes the old commit. The only safe response to any pushed credential is to rotate it." options='[{"text":"Yes, the current file no longer contains the key, so it is safe.","correct":false},{"text":"No, the key still lives in the commit history; you must rotate it.","correct":true},{"text":"Yes, as long as the commit message does not mention the key.","correct":false}]'></inline-check>
 
 ## Worked Example: Auditing One Repo Against the Privacy Checklist
 
@@ -61,13 +63,15 @@ Two hits. Both are real secrets sitting in tracked files.
 
 **Step 3. Record verifiable evidence.** The checklist line that passes review is not "checked privacy." It is:
 
-> Removed weather key from `app.js:14` into `/config/keys.js` (now in `.gitignore`), deleted SMTP comment in `contact.html:32`, rotated both secrets on 2026-05-12, reran `git grep -i key` with zero hits, confirmed the page still loads.
+> Removed weather key from `app.js:14` into `/config/keys.js` (now in `.gitignore`), deleted SMTP comment in `contact.html:32`, rotated both secrets on 2026-05-12, reran `git grep -i key` with zero hits in the working tree, and ran a history scan confirming no live credential remains in any commit; confirmed the page still loads.
 
 That paragraph names the file, the line, the action, the date, and the re-check, so a reviewer can reproduce every step. Polish (a nicer layout, a hero image) is the last layer; it never substitutes for the secret audit.
 
+> **The scan has a blind spot.** `git grep` searches only the current working tree. Delete a pushed secret, re-run the scan, and you will get zero hits while the secret still lives in commit `a1b2c3`, exactly the false reassurance this section warns against. To search history, run `git grep <pattern> $(git rev-list --all)`, or use a dedicated scanner: gitleaks (fast regex scanning of diffs and pre-commit hooks) or trufflehog (scans the full history and verifies whether a found credential is still live). A clean result means zero hits in the working tree *and* a history scan confirming no live credential remains; either way, rotation, not deletion, is still the real fix.
+
 Work the scan as a fixed procedure. Reveal each step only after you have predicted what it does:
 
-<step-reveal title="Run the privacy checklist on one repo" steps='[{"prompt":"You are about to publish a GitHub Pages portfolio. What is the first move before you trust the page looks clean?","predictType":"choice","choices":["Add a hero image so the site looks finished","Scan the tracked files for secrets with git grep","Email the link to a friend to check it loads"],"answerIndex":1,"reveal":"Scan first. Run git grep -n -i for key, password, and token against the actual tracked files, not your memory of how careful you were."},{"reveal":"For each hit, decide and act row by row: move the secret out of tracked files, add that path to .gitignore, and note the exact file and line."},{"reveal":"Rotate any secret that was ever pushed. Deletion alone leaves the value in public history, so invalidate the old credential and issue a new one."},{"reveal":"Record verifiable evidence: file, line, action, rotation date, and a clean re-scan that returns zero hits. That paragraph is what earns review."}]'></step-reveal>
+<step-reveal title="Run the privacy checklist on one repo" steps='[{"prompt":"You are about to publish a GitHub Pages portfolio. What is the first move before you trust the page looks clean?","predictType":"choice","choices":["Add a hero image so the site looks finished","Scan the tracked files for secrets with git grep","Email the link to a friend to check it loads"],"answerIndex":1,"reveal":"Scan first. Run git grep -n -i for key, password, and token against the actual tracked files, not your memory of how careful you were."},{"reveal":"For each hit, decide and act row by row: move the secret out of tracked files, add that path to .gitignore, and note the exact file and line."},{"reveal":"Rotate any secret that was ever pushed. Deletion alone leaves the value in public history, so invalidate the old credential and issue a new one."},{"reveal":"Record verifiable evidence: file, line, action, rotation date, a clean working-tree re-scan, and a history scan (git grep across git rev-list --all, or gitleaks/trufflehog) confirming no live credential remains. That paragraph is what earns review."}]'></step-reveal>
 
 Then practice the order itself. Drag these into the sequence a safe audit follows:
 
@@ -81,7 +85,7 @@ These four concepts anchor the section; trace how they connect:
 
 Treat any string that grants access or identifies a person as a leak until you have proven otherwise with a scan. Concretely, before you publish:
 
-1. **Scan, do not recall.** Run `git grep -i` for `key`, `password`, `token`, `secret`, and `@` (to catch emails). Trust the output, not your memory.
+1. **Scan, do not recall.** Run `git grep -i` for `key`, `password`, `token`, `secret`, and `@` (to catch emails). Trust the output, not your memory. Remember that `git grep` checks only the working tree; pair it with a history scan (`git grep <pattern> $(git rev-list --all)`, or gitleaks/trufflehog) before you call the repo clean.
 2. **Rotate anything that was ever pushed.** If a secret reached a public commit, deletion is not enough; invalidate the old credential and issue a new one.
 3. **Quarantine third-party data.** Anything you pasted into an AI tool has left your machine; if it included private data, treat that data as shared and disclose it.
 

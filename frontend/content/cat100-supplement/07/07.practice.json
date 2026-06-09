@@ -35,7 +35,7 @@
         "Whichever is more fun to fix"
       ],
       "correct_index": 1,
-      "explanation": "5 min daily is about 35 min a week and grows; the 40-min task happens once a term. Frequency times duration points to the rename.",
+      "explanation": "5 min daily is about 25 min a week (5 weekdays), far more than a 40-minute task done once a term (~3 min/week). Frequency times duration points to the rename.",
       "misconception_id": "cat100_supplement_7_7_optimize_rare_step",
       "difficulty": "medium"
     },

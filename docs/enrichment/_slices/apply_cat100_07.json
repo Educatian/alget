@@ -1,0 +1,375 @@
+[
+ {
+  "section_key": "cat100/07/01",
+  "section_title": "File Organization for Coursework",
+  "dir": "frontend/content/cat100-supplement/07",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The Opening Case (line 20) asserts the four candidate files' modified dates 'all read today because the file was opened (not edited) on each.' This is technically false on every mainstream OS: merely opening a file does not update its last-modified timestamp (only the access time, which most file managers do not display). The vivid scenario rests on an incorrect claim about how timestamps work, undermining the section's credibility on the exact domain it teaches.",
+    "proposed_change": "Reword so the timestamp clustering is realistic: the dates cluster because the student saved/duplicated all four the same evening (Save As, copy-paste, autosave), or because file managers show date-modified to the day so several same-day saves look identical. Drop the 'opened (not edited)' causal claim. Keep the punchline that modified date alone cannot disambiguate version. Suggested replacement sentence: 'The modified dates all read today because the student saved, duplicated, and re-exported all four during the same late-night session, so they cluster to the same day.'",
+    "where_to_apply": "01.mdx, line 20, '## Opening Case' paragraph beginning 'A student finishes a lab report at 11:50 PM'",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Learn / Win32 file times documentation (NTFS access vs. modified time)",
+      "url_or_doi": "https://learn.microsoft.com/en-us/windows/win32/sysinfo/file-times",
+      "finding": "The last-write (modified) time is updated only when the file is written, not when it is opened/read; only the last-access time tracks opens, and on Windows last-access updates are disabled by default (NtfsDisableLastAccessUpdate). Confirms that opening a file does not change the date-modified that file managers display."
+     }
+    ]
+   },
+   {
+    "type": "assessment_align",
+    "gap": "Adaptive Support and the meta LO both promise a 'bounded AI/software support move with accepted, modified, and REJECTED suggestions' (the course's most-repeated construct), and the Stronger Artifact Standard models a rejected suggestion (line 125). But none of the four practice problems or four misconceptions test the AI-boundary / accepted-vs-rejected construct; the practice_id 'cat100_supplement_7_1_file_organization_for_coursework_ai_boundary' is actually a backup question, not an AI-boundary question. The disclosed/bounded-AI move the objectives claim is never assessed.",
+    "proposed_change": "Add one practice problem and one matching misconception about the bounded-AI move in THIS domain. Example problem: an AI batch-rename/'organize my folder' tool (e.g., Copilot Suggested Rename / File Explorer AI Actions) proposes one scheme; the strong move is to ACCEPT the date-leading pattern, MODIFY the version padding (_v02), and REJECT auto-deleting files it labels 'duplicates' because it cannot know which version has the corrected calculations. Misconception (new id, e.g. cat100_supplement_7_1_blind_ai_bulk_rename): 'trusting an AI bulk-rename/organize action across a whole folder without checking which file is the real latest version.' Wire the misconception_id into the new problem.",
+    "where_to_apply": "01.practice.json 'problems' array (add 1) and 01.misconceptions.json 'misconceptions' array (add 1 with matching misconception_id)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft / Windows News: Copilot Suggested Rename in OneDrive and File Explorer AI Actions",
+      "url_or_doi": "https://windowsnews.ai/article/copilot-suggested-rename-in-onedrive-ai-filename-suggestions-arriving-june-2026.423442",
+      "finding": "Microsoft is rolling out 'Copilot Suggested Rename' for OneDrive (June 2026) that analyzes file content to offer three AI filename suggestions, and File Explorer 'AI Actions' can rename/organize files by content. Grounds a realistic 2026 bounded-AI move where a learner accepts/modifies/rejects AI rename and organize suggestions."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Cloud/backup tooling is named only as 'OneDrive' (lines 76, 92), and AI assistance is fully generic ('a bounded AI/software support move'). For a 2026 digital-fluency course the backup options and any AI-assisted organization should be grounded in current named tools, with version churn noted.",
+    "proposed_change": "In the backup discussion name 2-3 current options neutrally: OneDrive (5 GB free), Google Drive (15 GB free), iCloud Drive (5 GB free), and note that university-provided storage (institutional OneDrive / Google Workspace for Education) is often the safest 'second copy' because it has effectively large quotas and survives a lost personal device. In Adaptive Support / Artifact Studio, ground the AI move in a concrete current capability (Copilot 'Suggested Rename' in OneDrive and File Explorer 'AI Actions' for batch rename/organize, rolling out 2026) while staying tool-agnostic. Add a one-line churn note that free tiers and AI-rename features change frequently, so verify the current offering.",
+    "where_to_apply": "01.mdx, '## Worked Example' backup bullet (line 76), '## Decision Rule' Backup test (line 92), and '## Adaptive Support' (lines 139-148)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Cloud storage free-tier comparison 2026 (Tactiq / CloudsLinker)",
+      "url_or_doi": "https://tactiq.io/learn/icloud-vs-google-drive-vs-onedrive",
+      "finding": "As of 2026 free tiers are Google Drive 15 GB, OneDrive 5 GB, iCloud 5 GB. Grounds naming 2-3 current named cloud options neutrally with current quotas."
+     },
+     {
+      "cite": "Windows News: Copilot in Windows 11 File Explorer / OneDrive Suggested Rename (2026)",
+      "url_or_doi": "https://windowsnews.ai/article/copilot-suggested-rename-in-onedrive-ai-filename-suggestions-arriving-june-2026.423442",
+      "finding": "Copilot AI Actions in File Explorer can rename/organize files by content and 'Suggested Rename' (OneDrive web, June 2026 rollout) offers three AI filename suggestions. Grounds the AI-assisted organization move in a concrete, current capability while noting feature churn."
+     }
+    ]
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "The dynamic-scenario prompt (line 148) contains a templating/grammar error and a loosely-tied link: 'A peer comment points to a evidence move issue connected to [ISTE digital citizenship](https://iste.org/standards/students).' ('a evidence move issue' is a generic templated string, ungrammatical, and only loosely tied to file organization.)",
+    "proposed_change": "Replace with a file-organization-specific, grammatical prompt, e.g.: 'A peer comment says they cannot tell which file is your latest draft from the names alone. Choose the next revision move (rename to date_course_task_version, restructure the folder tree, or add a backup) and state the evidence that would show it helped (e.g., a classmate finds the newest version in under 30 seconds).' The ISTE link resolves and is current (see source), but it is tangential to file organization; the prompt itself should be the focus of the edit.",
+    "where_to_apply": "01.mdx, line 148, '## Adaptive Support' <dynamic-scenario> prompt attribute",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "ISTE Standards for Students (current edition)",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "The URL resolves to a valid, current ISTE Standards for Students page (ISTE Standards 2024, v4.02), so the link does not need replacement; only the ungrammatical templated prompt text needs the file-organization-specific rewrite."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/07/02",
+  "section_title": "Calendar and Task Systems",
+  "dir": "frontend/content/cat100-supplement/07",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The References list (line 158) includes 'data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi' (Tufte, The Visual Display of Quantitative Information). This section is about scheduling; data-ink ratio and visual evidence are irrelevant. It is a copy-paste artifact from the course's data/presentation sections and misleads about what grounds this section. Confirmed on read of lines 154-159. The NACE and ISTE anchors are at least plausible and verified current (see currency items), but Tufte has no defensible connection to calendars or task systems.",
+    "proposed_change": "Remove the Tufte 'data-ink and visual evidence' line from the References list. Replace it with the implementation-intentions / planning-fallacy anchors from the evidence_add item (Gollwitzer & Sheeran, 2006; and/or Koole & van't Spijker, 2000) so References actually support this section's central claim.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\02.mdx -> '## References' list, the Tufte bullet (line 158)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Tufte, E. R. The Visual Display of Quantitative Information (edwardtufte.com product page)",
+      "url_or_doi": "https://www.edwardtufte.com/tufte/books_vdqi",
+      "finding": "The cited Tufte source is a book on statistical-graphics design (data-ink ratio, visual evidence). It concerns information visualization, not personal time management, calendars, or task systems, so it does not ground any claim in this scheduling section."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section is entirely tool-agnostic: it never names a concrete 2026 calendar/task tool, and Adaptive Support / Artifact Studio reference a generic 'AI/software support move' with no current tool. The course-level currency-watch flags this vagueness. For a digital-fluency gen-ed course in Summer 2026, learners benefit from seeing the abstraction instantiated in tools they actually have.",
+    "proposed_change": "Add a brief tool-agnostic-but-grounded callout after '## Core Concept' or within '## Transfer Case' naming 2-3 current tools that implement the calendar-vs-task split (Google Calendar / Outlook calendar for events; Microsoft To Do, Google Tasks, or Todoist for tasks) and one AI feature that proposes work blocks (Copilot in Outlook can block focus time and resolve calendar conflicts; Gemini in Google Calendar can find free slots and create events). Add the explicit caveat that the learner must still verify/accept the AI's block placement (ties to the course's accepted/modified/rejected AI-critique through-line) and that tool UIs and AI features churn. Keep the concept primary; name tools as examples only.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\02.mdx -> new small callout after '## Core Concept' (line 34) or within '## Transfer Case' (line 119); optionally update '## Adaptive Support' bounded-AI framing (lines 129-138)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Community Hub / Microsoft 365 (2026). Copilot in Outlook: New agentic experiences for email and calendar.",
+      "url_or_doi": "https://techcommunity.microsoft.com/blog/outlook/copilot-in-outlook-new-agentic-experiences-for-email-and-calendar/4514601",
+      "finding": "As of April 27, 2026, Copilot in Outlook can block focus (work) time, respond to invites, and resolve calendar conflicts based on user preferences -- a current AI feature that proposes/protects work blocks. Confirms the named tool and AI capability are live in 2026."
+     },
+     {
+      "cite": "UC Today (2026). Gemini in Google Calendar: Why AI Scheduling is the New Productivity Battleground.",
+      "url_or_doi": "https://www.uctoday.com/productivity-automation/gemini-in-google-calendar-why-ai-scheduling-is-the-new-productivity-battleground/",
+      "finding": "Gemini in Google Calendar (2026) creates events, finds free time slots, and drafts/summarizes schedule items from the calendar side panel. Confirms a current AI scheduling feature; note both Copilot and Gemini are ecosystem-locked and still struggle with multi-party scheduling, supporting the 'verify/accept the AI block' caveat."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The NACE career-readiness reference URL (line 133, line 156) anchors the 'question' adaptive-support branch, and the course currency-watch notes NACE periodically revises competency wording and ISTE editions change. The section relies on these as live anchors but wording/edition was unverified for 2026.",
+    "proposed_change": "Keep the NACE link (URL and framework remain current; the page 403'd to the fetcher but the framework is confirmed live for 2026 via secondary sources). The current NACE set is 8 competencies, last revised April 2024: Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology. Make the adaptive-support copy name a specific competency rather than leaving it generic: time/task management maps cleanly to 'Career & Self-Development' (and 'Professionalism'). For ISTE, keep https://iste.org/standards/students (current 2024 Standards for Students); the relevant strand is the Digital Citizen standard, which is live and correctly cited. No URL changes required; only the explicit competency naming.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\02.mdx -> '## Adaptive Support' NACE link (line 133) and '## References' (NACE line 156, ISTE line 157)",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "NACE Career Readiness Competencies (revised April 2024); 2026 NACE Career Competencies (uConnect distribution).",
+      "url_or_doi": "https://www.naceweb.org/docs/default-source/default-document-library/2024/resources/nace-career-readiness-competencies-revised-apr-2024.pdf",
+      "finding": "Current NACE framework is 8 competencies (last revised April 2024, still in force for 2026): Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology. 'Career & Self-Development' and 'Professionalism' are the defensible anchors for time/task management. URL/framework current; wording is stable."
+     },
+     {
+      "cite": "ISTE Standards for Students (current 2024 edition) -- Digital Citizen standard.",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "ISTE Standards for Students at the cited URL are the current edition as of 2024-2026; the seven student strands include Digital Citizen, which the section references. Link and edition are current; no update needed beyond the page itself."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/07/03",
+  "section_title": "Template-Based Productivity",
+  "dir": "frontend/content/cat100-supplement/07",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "In the 'After' worked-example block, cell C1 holds the label text 'Tax rate: 0.08' while C2-C4 hold =B2*$C$1 etc. In real Excel, =B2*$C$1 references C1 which contains the text string 'Tax rate: 0.08', so the multiplication returns #VALUE!, not the tax. The canonical worked example does not actually run as written. Confirmed against the file: line 63 ('Tax rate: 0.08' label in the C column header cell C1) and lines 64-66 (=B2*$C$1, =B3*$C$1, =B4*$C$1) plus prose at line 38, line 73, and the <step-reveal> at line 76 all reference $C$1 as the rate cell, but C1 holds a label string, not the bare value 0.08.",
+    "proposed_change": "Restructure the After block so the referenced rate cell holds only the value 0.08. Option A (minimal): put the bare value 0.08 in C1 and move the 'Tax rate' label to the A or B header area or a comment, keeping =B2*$C$1 valid. Option B (clearer grid): label 'Tax rate' in C1 and value 0.08 in D1, then write the tax column as =B2*$D$1, =B3*$D$1, =B4*$D$1. Update the After block (lines 61-68), the Core Concept prose (line 38: =B2*$C$1 narrative), the Worked Example item 2 (line 73), the Stronger Artifact note (line 121: 'built the tax column as =B2*$C$1'), and the <step-reveal> (line 76) so every reference points at a cell that actually holds the number 0.08. Verify the example computes (e.g., B2=120, rate 0.08 -> tax 9.6).",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\03.mdx -- 'Worked Example' After block (lines 61-68); references at line 38, line 73, line 121; <step-reveal> at line 76",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Support, 'Switch between relative, absolute, and mixed references' (Excel)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/switch-between-relative-absolute-and-mixed-references-dfec08cd-ae65-4f56-839e-5f0d8d0baca9",
+      "finding": "Confirms a $C$1 absolute reference points at exactly cell C1 when copied; for =B2*$C$1 to yield a tax, C1 must hold the numeric rate. A cell containing text ('Tax rate: 0.08') cannot be multiplied, so the example as written errors."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Adaptive AI support and the AI-disclosure through-line are framed generically ('bounded AI/software support move', artifact-studio) with no named 2026 tools. For a spreadsheet-template section the most relevant current tool is Copilot in Excel, and the master-template mechanic is never grounded in the actual current Excel 'Save As > Excel Template (.xltx)' UI (the misconception mentions .xltx/.dotx only in passing, line 9).",
+    "proposed_change": "Add one concrete named-tool callout near 'Stronger Artifact Standard' (lines 117-121) or 'Adaptive Support' (lines 135-142): name Copilot in Excel as an AI assistant that can draft or explain a =SUM/absolute-reference formula (it has 'Explain this formula' and formula generation), paired with the existing accept/modify/reject discipline (e.g., 'reject Copilot hard-coding 0.08 into every row instead of referencing $C$1'). Add the current Excel template path to the 'Master check' (line 90) and Decision Rule: File > Save As > Excel Template (.xltx) keeps the master blank. Note model/UI churn so it can be refreshed.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\07\\03.mdx -- new callout near 'Stronger Artifact Standard' (lines 117-121) or 'Adaptive Support' (lines 135-142); add .xltx Save-As path to 'Master check' (line 90) and Decision Rule",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Support, 'Understand formulas with Copilot in Excel'",
+      "url_or_doi": "https://support.microsoft.com/en-us/topic/understand-formulas-with-copilot-in-excel-7838fb47-7309-4dac-ba7a-8080cb75ee06",
+      "finding": "Copilot in Excel can explain how a formula works: select a cell with a formula, choose the Copilot sparkle icon, then 'Explain this formula'. Confirms Copilot is a current (2026) tool that drafts and explains formulas, supporting the accept/modify/reject callout."
+     },
+     {
+      "cite": "Microsoft Support, 'Generate formula rows and columns with Copilot in Excel'",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/generate-formula-rows-and-columns-with-copilot-in-excel-d866d926-9791-4e5f-be2a-c6dd9e587a47",
+      "finding": "Copilot in Excel generates calculation columns/rows (and there is a new COPILOT() function and formula completion as of 2025-2026), confirming the named-tool callout is current and that Copilot can produce per-row formulas a learner must vet."
+     },
+     {
+      "cite": "Microsoft Support, 'Save a workbook as a template' (Excel)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/save-a-workbook-as-a-template-58c6625a-2c0b-4446-9689-ad8baec39e1e",
+      "finding": "Current Excel mechanic: File > Save As, then in 'Save as type' choose Excel Template (.xltx); the blank master is reused via File > New > Personal. Grounds the .xltx Save-As path proposed for the Master check."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/07/04",
+  "section_title": "AI-Assisted Email Drafting",
+  "dir": "frontend/content/cat100-supplement/07",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The References list (line 162 of 04.mdx) includes 'data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi' — a Tufte data-visualization reference irrelevant to an email-drafting section. Confirmed by reading the file: the term 'data-ink', 'Tufte', or 'visual evidence' appears nowhere in the body; it is template carryover from the data-storytelling chapter.",
+    "proposed_change": "Remove the Tufte data-ink bullet from the '## References' section of 04.mdx (line 162). Replace it with sources actually relevant to this section, e.g., the Huang et al. (2024) hallucination survey proposed below to ground the verification rationale.",
+    "where_to_apply": "04.mdx -> '## References' (line 162, the 'data-ink and visual evidence' bullet)",
+    "priority": "high",
+    "sources": [],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "Every AI tool is referred to generically ('an AI writing tool', 'public AI tools', 'the tool'; lines 7, 9, 15, 28-32, 98, 127). For a mid-2026 email-drafting section this is unactionable: students draft email in concrete surfaces, and the section never names them or explains how data-use defaults differ by tier — which is exactly the 'Bound' move it teaches.",
+    "proposed_change": "Add a short 'Recent tools (2026)' callout after the 'Bound' paragraph in '## Core Concept' (or in '## Transfer Case') naming the current named surfaces: Microsoft 'Draft with Copilot' / 'Help me write' in Outlook, Google Gemini's 'Help me write' in Gmail, and ChatGPT/Claude in the browser. Note that consumer free/Plus tiers use inputs for model training BY DEFAULT (opt-out required), whereas business/enterprise/EDU tiers do NOT train on inputs by default — so the boundary check includes 'which tier am I in and what is its data-use default.' Add a churn note that model names and retention defaults change, so verify the current setting rather than trusting a remembered default.",
+    "where_to_apply": "04.mdx -> new callout after the 'Bound.' paragraph in '## Core Concept' (after line 32), or within '## Transfer Case' (lines 125-127)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft Support, 'Draft an email message with Copilot in Outlook' / 'Frequently asked questions about Copilot in Outlook' (2026)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/draft-an-email-message-with-copilot-in-outlook-3eb1d053-89b8-491c-8a6e-746015238d9b",
+      "finding": "Copilot in Outlook exposes 'Draft with Copilot' / 'Help me write' / 'Help me reply' that generate full-length email drafts from prompts; work/school accounts are governed by separate M365 Copilot Data, Privacy & Security terms distinct from personal-account handling."
+     },
+     {
+      "cite": "OpenAI Help Center, 'Data Controls FAQ' / 'How your data is used to improve model performance' (2026)",
+      "url_or_doi": "https://help.openai.com/en/articles/7730893-data-controls-faq",
+      "finding": "ChatGPT Free/Plus/Pro on a personal workspace are used for training BY DEFAULT (users must opt out via Settings > Data Controls), while ChatGPT Business, Enterprise, Edu, and the API do NOT use inputs/outputs to train models by default — confirming the tier-dependent data-use distinction."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "The 'Bound' rationale states flatly 'Public AI tools may store or train on what you type' (line 32) and the parallel 'a tool that may retain it' (line 98). As an absolute this overstates uniformity: behavior is tier- and opt-out-dependent (consumer trains-by-default-with-opt-out vs. business/enterprise/EDU no-training-by-default), so 'always retained' is a brittle mental model.",
+    "proposed_change": "Tighten to a conditional decision rule: 'Some AI tools retain or train on what you type, and the default varies by tool and account tier, so unless you have confirmed otherwise, treat the prompt as potentially stored — keep identifiers and sensitive details out and add them by hand.' Apply the parallel softening in '## Common Misreadings' (line 98). This preserves the safe default while being accurate about variation and reinforces the 'check the policy' move in the Transfer Case.",
+    "where_to_apply": "04.mdx -> 'Bound.' paragraph in '## Core Concept' (line 32) and the parallel sentence in '## Common Misreadings' (line 98)",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "OpenAI Help Center, 'Data Controls FAQ' (2026)",
+      "url_or_doi": "https://help.openai.com/en/articles/7730893-data-controls-faq",
+      "finding": "Confirms data-use is conditional, not absolute: consumer ChatGPT trains on inputs by default (opt-out available), business/enterprise/Edu/API do not train on inputs by default — supporting the move from a blanket assertion to a tier-dependent conditional rule."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/07/05",
+  "section_title": "Automation Safety Checks",
+  "dir": "frontend/content/cat100-supplement/07",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The step-reveal component on line 107 contains UTF-8-as-CP1252 mojibake where curly apostrophes should be: title=\"Make a â€™delete everything older than 90 daysâ€™ rule safe\", and inside the reveal strings ('older than 90 days.â€™', 'â€™older than 90 days.â€™'). This renders as garbage in the UI and is read aloud literally by screen readers.",
+    "proposed_change": "Replace every 'â€™' sequence with a straight apostrophe (') in the step-reveal title and in the reveal fields of steps 1 and 3. A repo-wide grep confirms the corruption is isolated to line 107 of this file (no other mojibake remains).",
+    "where_to_apply": "05.mdx line 107: <step-reveal> title attribute and the 'reveal' fields of step 1 ('...spot the syllabus PDF you saved months ago that also fits â€™older than 90 days.â€™') and step 3.",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Repo grep verification (this analysis)",
+      "url_or_doi": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/07/05.mdx",
+      "finding": "Grep for the byte sequence 'â€' matches only line 107; the 'â€™' mojibake appears in the step-reveal title and in steps 1 and 3 reveal text, and nowhere else in the file."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section is about automation yet names zero concrete tools (the course currency-watch flags 'AI tools/models unnamed/generic'). 'Rename rule', 'mail filter', 'an app's undo button', 'version history', 'cloud backup' are all abstract; a 2026 digital-fluency learner needs at least one named current tool per move so the habit is actionable.",
+    "proposed_change": "Add a short 'In real tools' callout grounding each safeguard in a current named tool: bulk rename = Windows PowerToys PowerRename (its live preview pane IS a built-in dry run, and it has a post-run undo) or macOS Finder batch Rename; undo path = OneDrive / Google Drive version history (30-day file restore on personal accounts); email rules = Outlook/Gmail filters plus their review/undo flow. Note that these UIs change and the live tool is the source of truth.",
+    "where_to_apply": "05.mdx, new callout after 'Common Misreadings' (after line 97) or inside 'Worked Example'.",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Learn - PowerRename Utility for Windows (Bulk File Renaming Tool)",
+      "url_or_doi": "https://learn.microsoft.com/en-us/windows/powertoys/powerrename",
+      "finding": "PowerRename (part of free, open-source PowerToys on Windows 10/11) shows a real-time preview pane of the new file names as you type the search/replace, before committing, and supports undoing a completed rename, so its preview functions as a built-in dry run."
+     },
+     {
+      "cite": "Microsoft Support - Restore a previous version of a file stored in OneDrive",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/restore-a-previous-version-of-a-file-stored-in-onedrive-159cad6d-d76e-4981-88ef-de6e96c93893",
+      "finding": "OneDrive Version History lets you view and restore prior versions of Office files, PDFs, and images; personal OneDrive retains version history ~30 days (up to 500 versions), providing a recovery/undo path."
+     },
+     {
+      "cite": "Google Drive Help - Manage versions / Restore files in bulk",
+      "url_or_doi": "https://support.google.com/drive/answer/16482799?hl=en",
+      "finding": "Google Drive keeps file revisions for up to 30 days (max 100 revisions/file) via 'Manage versions', and supports bulk restore of prior file versions through Settings > Restore file versions."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/07/06",
+  "section_title": "Collaboration Norms",
+  "dir": "frontend/content/cat100-supplement/07",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The section teaches edit-visibility using only the Google-Docs term 'Suggesting mode' (Core Concept 'Overwrite risk' line 32, Worked Example line 61, step-reveal line 73, Decision/Final checks) and never names the platform, while the worked example and transfer case talk about generic 'shared documents' and a 'workplace shared drive.' Microsoft Word / Microsoft 365 (the dominant institutional stack, same stack used in the Ch3 Excel sections) calls the equivalent feature 'Track Changes,' not 'Suggesting mode,' and sharing/co-authoring live behind OneDrive/SharePoint. A 2026 M365 learner will not find a 'Suggesting mode' toggle. The Textbook Walkthrough (line 98) already acknowledges 'suggesting mode may not exist' in some tools, so the tool-mapping gap is real.",
+    "proposed_change": "Add a one-line tool-mapping note (callout or parenthetical) at the 'Overwrite risk' paragraph (line 32): 'This feature is called Suggesting mode in Google Docs and Track Changes in Microsoft Word / Microsoft 365; both keep the original and let the owner accept or reject each change.' Optionally name the real-time co-editing tools once (Google Docs natively; Word via OneDrive/SharePoint or Word for the web) so the abstraction is anchored to current named tools.",
+    "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/07/06.mdx — Core Concept 'Overwrite risk' paragraph (line 32); optionally Worked Example 'After' block (line 61)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft Support, 'Track changes in Word' (current/2026)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/track-changes-in-word-197ba630-0f5f-4a8e-9a77-3712475e806a",
+      "finding": "Microsoft Word's editor-proposes / owner-accepts-or-rejects feature is named 'Track Changes' (Review menu, accept/reject individually or in bulk), not 'Suggesting mode'; confirms the proposed Word vs Google Docs tool mapping."
+     },
+     {
+      "cite": "Ghostwriting LLC, 'Track Changes in Google Docs and Microsoft Word: Step-by-Step Guide (2026)'",
+      "url_or_doi": "https://ghostwritingllc.com/blog/track-changes/",
+      "finding": "As of 2026, Google Docs 'Suggesting' mode is the direct equivalent of Word's 'Track Changes' (editor proposes; writer accepts/rejects with one click); Google Docs collaborates in real time natively while Word requires OneDrive or SharePoint for co-authoring."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/07/07",
+  "section_title": "Personal Workflow Audit",
+  "dir": "frontend/content/cat100-supplement/07",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI/automation is framed generically ('a bounded AI/software support move', ArtifactStudio adaptive-support menu, 'two filters' in the email walkthrough) with zero concrete 2026 tools, even though this is the Productivity and Workflow Automation chapter where the relevant tools are concrete and current. No named assistant for the rename/triage tasks.",
+    "proposed_change": "Add a short 'Tools you might use (2026)' callout after the Worked Example or within Transfer Case: built-in rules/filters in Outlook and Gmail for email triage; PowerToys PowerRename (Windows) or macOS Shortcuts/Automator for batch renaming; AI assistants (Microsoft 365 Copilot, ChatGPT) only to draft a rename rule or triage rule you then verify on a sample. Frame each as 'test on a sample before trusting it' with a one-line version-churn caveat, consistent with the automate-after-fixing misconception. PowerRename's built-in preview pane directly supports the 'verify on a sample' framing.",
+    "where_to_apply": "07.mdx new short callout after Worked Example (after line 72) or within Transfer Case (lines 119-121)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft Learn - PowerRename Utility for Windows (PowerToys)",
+      "url_or_doi": "https://learn.microsoft.com/en-us/windows/powertoys/powerrename",
+      "finding": "PowerRename is a free, open-source bulk file-rename utility in Microsoft PowerToys (Windows 10/11) supporting search/replace and regex with a preview pane to check expected results before applying and an undo after completion. Current as of 2026 and directly supports the 'test/verify on a sample before trusting the automation' framing."
+     },
+     {
+      "cite": "Microsoft Support - Triage Email with Microsoft 365 Copilot in Outlook / FAQ about Copilot in Outlook",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/triage-email-with-microsoft-365-copilot-in-outlook-85932469-7c3f-4a6a-acdb-adf0f3ebc169",
+      "finding": "As of spring 2026, Outlook offers Copilot-assisted email triage and rule creation via natural language ('create a rule that...') plus draft generation, alongside the long-standing manual rules/filters. Grounds the email-triage example in current named tools (Outlook/Gmail rules + Copilot) with the verify-on-a-sample caveat."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/07/08",
+  "section_title": "Workflow Studio",
+  "dir": "frontend/content/cat100-supplement/07",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The Core Concept, Worked Example, and step-reveal pin the GitHub Pages UI to 'Settings > Pages, Source = branch main, folder /(root)' (the 'Deploy from a branch' flow) with no mention of the GitHub Actions source option, and no mention of build/propagation delay or browser caching as a reason a 'fixed and re-pushed' site still shows the old version. The step-reveal third symptom attributes a stale live site only to not verifying on the public URL.",
+    "proposed_change": "The named UI path is CONFIRMED current for Summer 2026: Settings is under the repo name, Pages sits in the 'Code and automation' sidebar section, and the branch+folder ('/(root)' default) flow is exactly 'Deploy from a branch'. Keep that path but (a) add one clause that 'Deploy from a branch' is the simplest source while 'GitHub Actions' is the modern alternative for custom builds; (b) add to the step-reveal third reveal that a successful push can take up to ~10 minutes to build and propagate across the CDN, and that browser/CDN caching can serve a stale page, so a hard refresh or incognito tab is part of verifying on the live URL (not only opening the public URL).",
+    "where_to_apply": "08.mdx -> Core Concept ('Publishing must be enabled' para, line 38), Worked Example ('Publish:' line 75), and step-reveal third step reveal (line 113)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "GitHub Docs, 'Configuring a publishing source for your GitHub Pages site' (accessed 2026-06)",
+      "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "finding": "Current UI: Settings under repo name, then 'Pages' in the 'Code and automation' sidebar section. Two source options exist: 'Deploy from a branch' (select branch + folder, default '/(root)') and 'GitHub Actions' (for custom build workflows). The named path in the section is still accurate."
+     },
+     {
+      "cite": "GitHub Docs, 'Creating a GitHub Pages site' (accessed 2026-06)",
+      "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site",
+      "finding": "Official docs state 'It can take up to 10 minutes for changes to your site to publish after you push the changes to GitHub,' confirming a real build/propagation delay the section omits."
+     },
+     {
+      "cite": "GitHub community discussion #19713 'My github webpage is not updating' and DevPractical 'How Long Does GitHub Pages Take to Update' (accessed 2026-06)",
+      "url_or_doi": "https://github.com/orgs/community/discussions/19713",
+      "finding": "GitHub Pages CDN caches static content (~10 min) and local browser caching can show a stale page after a push; recommended fix is clearing cache or using incognito/another browser, grounding the 'hard refresh / incognito' verification clause."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ }
+]

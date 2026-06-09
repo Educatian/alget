@@ -64,6 +64,8 @@ Predict each audit move before you reveal it. The map under audit has two value 
 
 <step-reveal title="Auditing the AutoScore map, node by node" steps='[{"prompt":"You audit the two value nodes first. What should you do with them?","predictType":"choice","choices":["Restate both as tools","Keep both; they are legitimate learning values","Delete the fairness node to simplify"],"answerIndex":1,"reveal":"Both faster feedback and fair feedback for multilingual writers are genuine learning values. Keep both; the conflict between them is real."},{"prompt":"You reach the edge labeled with the bare word tension. What does a readable edge require?","predictType":"choice","choices":["A shorter label","A named causal mechanism of the conflict","A color change"],"answerIndex":1,"reveal":"Annotate the mechanism: AutoScore returns scores in seconds (faster feedback) but was trained on native-speaker prose, so it penalizes multilingual sentence patterns (fairness cost)."},{"prompt":"The decision node says only Use AutoScore. What is missing?","predictType":"choice","choices":["What was yielded and why","A second tool option","The vendor name"],"answerIndex":0,"reveal":"A readable decision node states what was adopted, what was yielded, and the reason: use AutoScore for first-draft turnaround only; teacher re-scores flagged multilingual essays; yielded full automation."},{"reveal":"Finally, cite the evidence that informed the call: a 12-essay spot check showing AutoScore marked 4 of 5 multilingual essays a full band lower than the teacher. Now a stranger can reconstruct both the conflict and the trade from the map alone."}]'></step-reveal>
 
+**Recent evidence.** The 12-essay spot check above is a teacher's local, illustrative audit, but real research confirms the mechanism: GPT-based classifiers systematically misclassify non-native English prose (Liang et al., 2023, *Patterns*), because L2 writers use more constrained, less idiomatic phrasing the models were not trained to reward. Fairness audits therefore disaggregate error rates by subgroup rather than reporting a single accuracy number.
+
 ## Decision Rule
 
 When auditing a map, read the value conflict first, the tool's affordance second, and the policy boundary third. A tool choice is justified only when it protects students while improving a specific learning activity, and the map must show that protection on its face.
@@ -86,7 +88,7 @@ Apply map-reading to a new artifact: a peer's DTS map about adopting an AI atten
 
 Audit the value nodes. One reads "engagement," the other reads "the camera." The second is a tool, not a value; restate it as the value it threatens: "student privacy and trust." Now both nodes are learning values that can genuinely conflict.
 
-Audit the edge, which is labeled "balance." That hides the mechanism entirely. A readable edge names the causal cost: "the camera infers engagement from face and posture, which misreads neurodivergent and culturally varied expression, so it surveils students to chase an unreliable signal." Critical edtech studies supplies exactly this mechanism.
+Audit the edge, which is labeled "balance." That hides the mechanism entirely. A readable edge names the causal cost: "the camera infers engagement from face and posture, which misreads neurodivergent and culturally varied expression, so it surveils students to chase an unreliable signal." Critical edtech studies supplies exactly this mechanism, and the affect-science evidence backs it: facial configurations do not reliably map to inner states across cultures, situations, and individuals (Barrett et al., 2019), and automated facial-expression classifiers that handle posed expressions adequately drop sharply on naturalistic ones (Kuntzler et al., 2021). Because the camera also collects face and posture data on minors, FERPA and COPPA set the statutory floor for the privacy side of the edge.
 
 Audit the decision node, which says "Use camera in pilot." It announces a choice and yields nothing. Rewrite it so a reader sees the trade and its evidence: "Decline the camera; pilot a two-question exit ticket instead. Yielded: automated, continuous data. Reason: a 3-day trial flagged 5 attentive neurodivergent students as disengaged, so the signal is not trustworthy enough to justify constant surveillance." The walkthrough shows the same audit, applied to a different conflict, turning an opaque map into one a reviewer can act on.
 
@@ -103,7 +105,7 @@ A strong reader of DTS maps can answer four questions:
 
 ## Stronger Artifact Standard
 
-The map is strong when a mentor can read it cold: value nodes are learning values, every edge names a mechanism, and the decision node states what was adopted, what was yielded, and the evidence behind it. The most common missing layer is the edge mechanism; if yours says only "tension," mark it and ask BigAL to compare a generic edge label against a mechanism-naming one rather than for a general explanation.
+The map is strong when a mentor can read it cold: value nodes are learning values, every edge names a mechanism, and the decision node states what was adopted, what was yielded, and the evidence behind it. The most common missing layer is the edge mechanism; if yours says only "tension," mark it and ask TeachGen@i to compare a generic edge label against a mechanism-naming one rather than for a general explanation.
 
 A useful decision-node line sounds like: "Adopt for first-draft speed only; teacher hand-re-scores flagged essays. Yielded full automation, because the speed gain does not justify under-scoring multilingual writers (12-essay check: 4 of 5 a band low)."
 
@@ -116,6 +118,8 @@ Move the essay-scorer map into a class of confident, monolingual writers prepari
 Open the studio packet: [download the Design Tension Studio map naming a classroom value conflict and negotiated decision packet](/downloads/summer2026/cat531-supplement/01-03-dts-map-reading-artifact.md).
 
 <artifact-studio artifact="Design Tension Studio map naming a classroom value conflict and negotiated decision" course="CAT 531" section="01.03"></artifact-studio>
+
+Studio access: the live Design Tension Studio runs at [swarmid.vercel.app/cat531.html](https://swarmid.vercel.app/cat531.html); sign in on the CAT 531 page by selecting your name (named-account sign-in has replaced the older join-code flow).
 
 Use the studio to create a before/after trace. The first version should show your starting interpretation. The revised version should show one meaningful change. The trace should explain why the change happened and why at least one possible suggestion was not accepted.
 
@@ -148,7 +152,12 @@ See how auditing nodes and edges connects to evidence-based revision and the rea
 
 ## References
 
-- [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
-- critical edtech studies. https://doi.org/10.4324/9781315670160
-- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
-- teacher professional judgment. https://doi.org/10.1177/002205741319300304
+- Mishra, P., & Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher knowledge ([TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)). *Teachers College Record*. https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Selwyn, N. Critical edtech studies (Routledge; author/title attribution pending editor verification of the DOI). https://doi.org/10.4324/9781315670160
+- Perrotta, C., & Selwyn, N. (2020). Deep learning goes to school: Toward a relational understanding of AI in education. *Learning, Media and Technology*. https://doi.org/10.1080/17439884.2020.1686017
+- Mecoli, S. (2013). The influence of the pedagogical content knowledge theoretical framework on research on preservice teacher education. *Journal of Education*. https://doi.org/10.1177/002205741319300304
+- Ning, Y., et al. (2024). Teachers' AI-TPACK: Exploring the relationship between knowledge elements. *Sustainability, 16*(3), 978. https://doi.org/10.3390/su16030978
+- Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., & Zou, J. (2023). GPT detectors are biased against non-native English writers. *Patterns, 4*(7), 100779. https://doi.org/10.1016/j.patter.2023.100779
+- Barrett, L. F., et al. (2019). Emotional expressions reconsidered: Challenges to inferring emotion from human facial movements. *Psychological Science in the Public Interest, 20*(1). https://doi.org/10.1177/1529100619832930
+- Kuntzler, T., et al. (2021). Automatic facial expression recognition in standardized and non-standardized emotional expressions. *Frontiers in Psychology, 12*. https://doi.org/10.3389/fpsyg.2021.627561
+- FERPA (U.S. Dept. of Education, student education records): https://studentprivacy.ed.gov/; COPPA (FTC, data from children under 13): https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa

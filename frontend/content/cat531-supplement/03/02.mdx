@@ -29,6 +29,8 @@ Two ideas make this concrete and keep teachers out of trouble.
 
 First, **detectors are probabilistic classifiers, not evidence.** An AI detector outputs a likelihood, not a fact, and it produces that likelihood by recognizing statistical patterns in text. Crucially, those patterns are not "wrongness"; they are predictability. Writing that is simple, formulaic, or structurally regular reads as more "AI-like," which is exactly how many multilingual students, younger writers, and students taught to follow templates write. The well-documented result is an elevated false-positive rate for these groups. A detector score is therefore a hypothesis with a known equity bias, never a finding, and it cannot be the basis of a consequence.
 
+**Recent evidence.** This is not hypothetical. Liang et al. (2023) tested seven widely used GPT detectors and found they misclassified 61.3% of TOEFL essays by non-native English writers as AI-generated, while classifying native-speaker essays almost perfectly as human; simply prompting to raise linguistic complexity removed the AI flag. OpenAI retired its own AI Text Classifier in July 2023 for a "low rate of accuracy" (it caught only about 26% of AI-generated text), which underscores that even the model vendor could not make detection reliable.
+
 Second, **integrity is defined by the assignment's allowed-use boundary, not by the presence of AI.** "Did the student use AI" is the wrong question, because the answer is often "yes, in a way you permitted." The right question is "did the student do the work the assignment reserved for them." That requires you to have stated, in advance, which steps are theirs (the brainstorming, the drafting, the revision, the final reasoning) and which a tool may assist. Without that boundary, you have no standard to judge against, and any accusation is arbitrary.
 
 <inline-check question="A detector flags an essay at 88%. The same student has a four-day version history with two abandoned theses. Which is stronger evidence about whether the student did the reserved work?" explanation="A detector outputs a probability with a known bias against formulaic and multilingual writers; it is a hypothesis, not a finding. A multi-day version history with abandoned drafts is process evidence that is far harder to fake and that directly shows the thinking happening over time." options='[{"text":"The 88% detector score, because it is a precise number","correct":false},{"text":"The version history, because process evidence is hard to fake and shows the thinking","correct":true},{"text":"Neither; only an oral confession counts","correct":false},{"text":"They are equally strong","correct":false}]'></inline-check>
@@ -143,7 +145,10 @@ Before you move on, make sure your trace records evidence source, risk, support 
 
 ## References
 
-- [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
-- critical edtech studies. https://doi.org/10.4324/9781315670160
-- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
-- teacher professional judgment. https://doi.org/10.1177/002205741319300304
+- Mishra, P., & Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher knowledge. Teachers College Record, 108(6), 1017-1054. https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Ning, Y., et al. (2024). Teachers' AI-TPACK: Exploring the relationship between knowledge elements. Sustainability, 16(3), 978. https://doi.org/10.3390/su16030978
+- Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., & Zou, J. (2023). GPT detectors are biased against non-native English writers. Patterns, 4(7), 100779. https://doi.org/10.1016/j.patter.2023.100779
+- Sullivan, M., Kelly, A., & McLaughlan, P. (2023). ChatGPT in higher education: Considerations for academic integrity and student learning. Journal of Applied Learning & Teaching, 6(1). https://doi.org/10.37074/jalt.2023.6.1.17
+- Bower, M., Torrington, J., Lai, J. W. M., Petocz, P., & Alfano, M. (2024). How should we change teaching and assessment in response to increasingly powerful generative artificial intelligence? Education and Information Technologies, 29, 15403-15439. https://doi.org/10.1007/s10639-023-12405-0
+- Selwyn, N. (2016). Distrusting Educational Technology: Critical Questions for Changing Times. Routledge. https://doi.org/10.4324/9781315670160
+- Perrotta, C., & Selwyn, N. (2019). Deep learning goes to school: Toward a relational understanding of AI in education. Learning, Media and Technology, 45(3), 251-269. https://doi.org/10.1080/17439884.2020.1686017

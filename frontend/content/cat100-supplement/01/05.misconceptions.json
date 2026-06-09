@@ -14,7 +14,7 @@
       "pattern": "two_factor_seen_as_optional_hassle",
       "description": "Skipping two-factor authentication because it adds an extra step",
       "trigger": "learner declines 2FA to log in faster",
-      "feedback": "Two-factor authentication blocks most account takeovers even when a password leaks. Turn it on for email and the school portal first.",
+      "feedback": "Two-factor authentication blocks essentially all automated takeover attempts and the large majority of targeted ones, even when a password leaks. Turn it on for email and the school portal first.",
       "rail_action": "represent"
     },
     {

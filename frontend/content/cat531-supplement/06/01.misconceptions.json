@@ -7,7 +7,7 @@
       "description": "Treating a list of named modules or theories as synthesis, instead of letting the lenses jointly shape one decision",
       "trigger": "the tension map cites TPACK, equity, and ethics but no lens changes the final decision",
       "feedback": "Show how each module lens altered the negotiated decision. If naming a module changes nothing, it is a citation, not synthesis.",
-      "rail_action": "ask"
+      "rail_action": "represent"
     },
     {
       "id": "cat531_supplement_6_1_synthesis_across_modules_tensions_left_unresolved",
@@ -23,7 +23,7 @@
       "description": "Letting the AI decide which classroom value should win the tension rather than surfacing options for the teacher to judge",
       "trigger": "learner adopts the model's chosen value without an evidence check or recorded reason",
       "feedback": "Use AI to widen the values you consider, then make the negotiated call yourself and record why.",
-      "rail_action": "represent"
+      "rail_action": "ask"
     },
     {
       "id": "cat531_supplement_6_1_synthesis_across_modules_one_right_decision",

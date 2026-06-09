@@ -1,0 +1,103 @@
+[
+ {
+  "section_key": "ail606/01/01",
+  "section_title": "Cognitive Architecture for Multimedia Learning",
+  "dir": "frontend/content/ail606-supplement/01",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The MDX body and the misconceptions file contradict each other on the most load-bearing point of the section. The MDX consistently frames printed text as loading the VISUAL channel because it 'enters through the eyes' (lines 26, 62, 78, 88, and the step-reveal answerIndex). But the misconceptions file (cma_channels_are_modalities, feedback field) says printed text 'is processed in the VERBAL channel, the same route used for narration.' These are two different and mutually exclusive readings of Mayer's dual-channel model (the sensory-modality interpretation vs the presentation-mode interpretation). A learner who reads both will be confused about which channel printed text loads. Mayer's canonical treatment uses the sensory-modality interpretation for channel definition (eyes->visual/pictorial channel, ears->auditory/verbal channel), which is what the MDX uses; the misconception feedback as written is wrong and undercuts the entire section.",
+    "proposed_change": "Rewrite the cma_channels_are_modalities feedback to align with the MDX sensory-modality framing: 'Printed text enters through the eyes, so it loads the VISUAL channel alongside the picture/animation and the two compete for the same limited capacity. Route the explanation to spoken narration so the verbal stream travels through the idle AUDITORY channel.' Also rename/rewrite the description, which currently says channels are NOT defined by sense organ, the opposite of what the MDX teaches. Reconcile the 'pattern' label too.",
+    "needs_research": false,
+    "where_to_apply": "01.misconceptions.json -> misconception id ail606_supplement_1_1_cma_channels_are_modalities (description and feedback fields); cross-check against 01.mdx lines 26, 62, 88",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/01/02",
+  "section_title": "Mayer Principles as Design Constraints",
+  "dir": "frontend/content/ail606-supplement/01",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Artifact mismatch (the known-issue mislabeling pattern). This is the Mayer-principles section, but the embedded artifact-studio (MDX line 114), the studio download link (line 112), the meta description, and the Adaptive Support bullets (lines 123-127) all name the artifact as a 'cognitive load diagnosis table with intrinsic/extraneous/germane load evidence.' The section never asks the learner to diagnose intrinsic/extraneous/germane load; it asks them to build a principle-to-edit table with boundary conditions and conflict rankings (Stronger Artifact Standard, lines 100-104). The artifact name describes CLT work (section 01.03 territory), not the Mayer-principles table the prose actually scaffolds.",
+    "proposed_change": "Relabel the artifact for this section to match the prose, e.g. 'Mayer principle-to-edit constraint table (each edit cites the governing principle, its boundary condition, and the conflict ranking where two principles collided).' Update the artifact-studio tag (line 114), the download filename/label (line 112), the meta description, and the four Adaptive Support bullets so they reference the principle-constraint table, not the CLT load table. Verify the downloads/ packet file matches the renamed artifact.",
+    "needs_research": false,
+    "where_to_apply": "02.mdx artifact-studio (line 114), Artifact Studio download link (line 112), Adaptive Support (lines 122-127); 02.meta.json description",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/01/05",
+  "section_title": "Learner Variability and UDL",
+  "dir": "frontend/content/ail606-supplement/01",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The section teaches UDL via the older three-brain-network framing (recognition/strategic/affective) and the UDL 2.x principle wording, and the References list links the generic udlguidelines.cast.org. CAST released UDL Guidelines 3.0 in 2024, which reworded several guidelines/checkpoints, foregrounded 'firm goals, flexible means', and added explicit attention to identity/bias and learner agency. A graduate LXD course should reference the current 3.0 version.",
+    "proposed_change": "Pin the References UDL link to the versioned CAST UDL 3.0 guidelines (udlguidelines.cast.org with the 3.0 designation) and add one sentence in Core Concept noting these are the 2024 UDL 3.0 guidelines. Keep the brain-network table but add a short note that 3.0 retains the three principles while sharpening attention to learner identity/agency and reducing bias as construct-irrelevant barriers. Verify exact 3.0 guideline wording before editing.",
+    "needs_research": true,
+    "search_terms": [
+     "CAST UDL Guidelines 3.0 2024 changes",
+     "UDL 3.0 principles representation action expression engagement",
+     "udlguidelines.cast.org version 3.0 release"
+    ],
+    "where_to_apply": "05.mdx References list (UDL learner variability link) and Core Concept paragraph introducing the three-principle table",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/01/06",
+  "section_title": "Choosing a Software Case",
+  "dir": "frontend/content/ail606-supplement/01",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The Artifact Studio and Adaptive Support blocks embed the wrong artifact for this section. artifact-studio tag and the downloadable packet are 'storyboard frame sequence with narration, signaling, and reader-action notes' (a Chapter 3 storyboarding artifact). The MDX body is about a tool-selection rationale memo / software case. This is exactly the artifact-studio mis-labeling pattern flagged in known issues (cf. 03.03 / 04.06). It will confuse learners and breaks the closed-loop promise because the studio captures the wrong artifact.",
+    "proposed_change": "Change the artifact-studio artifact attribute and the Artifact Studio download packet to a 'software-case selection memo / objective-to-affordance-to-constraint mapping' artifact (matching the Worked Example and Stronger Artifact Standard, which already model exactly this memo). Update the Adaptive Support bullets that say 'compare a weak and strong version of the storyboard frame sequence...' to reference the selection memo instead.",
+    "needs_research": false,
+    "where_to_apply": "06.mdx -> ## Artifact Studio (artifact-studio tag + download link) and ## Adaptive Support (confusion/insight/connection bullets + dynamic-scenario prompt)",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/01/07",
+  "section_title": "Design Rationale as Evidence",
+  "dir": "frontend/content/ail606-supplement/01",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Pervasive artifact mis-label. The MDX teaches design-rationale logging, but the artifact-studio tag, the download link, the Adaptive Support 'confusion' branch, and the dynamic-scenario all reference 'storyboard frame sequence with narration, signaling, and reader-action notes' (a Ch03 storyboarding artifact, not a rationale log). This is the documented 03.03/04.06 mis-label pattern. A learner is told to open a storyboard packet to practice rationale logging.",
+    "proposed_change": "Change the artifact across all four touchpoints to a 'design-rationale log entry (claim / evidence / warrant / rejected alternatives / planned check)'. Update artifact-studio artifact= attribute (line 112), the download link text and slug (line 110), the Adaptive Support 'confusion' bullet (line 121), and the dynamic-scenario prompt (line 125) to name the rationale-log artifact instead of the storyboard sequence.",
+    "needs_research": false,
+    "where_to_apply": "07.mdx -> Artifact Studio (lines 110, 112), Adaptive Support (line 121), dynamic-scenario (line 125)",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/01/08",
+  "section_title": "Module 1 Synthesis Studio",
+  "dir": "frontend/content/ail606-supplement/01",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The metadata and the in-body artifact widgets mislabel this section's signature artifact as a 'storyboard frame sequence with narration, signaling, and reader-action notes.' This section produces NO storyboard. Its actual artifact (defined throughout the MDX prose, Worked Example, Stronger Artifact Standard, and the calibration practice item) is a one-page SYNTHESIS DECISION BRIEF that converges multiple Module 1 principles on a single screen and resolves a named conflict by ownership. This is the exact chapter-level-template mislabel the known-issues list flags for 03.03/04.06, and it propagates the wrong instrument into meta LO #1, the artifact-studio tag, the download-packet link text, and all four Adaptive Support bullets.",
+    "proposed_change": "Replace the artifact label everywhere in this section from 'storyboard frame sequence with narration, signaling, and reader-action notes' to 'one-page synthesis decision brief (convergence of principles on one screen + named/resolved conflict + recorded rejected alternative).' Update: (a) 08.mdx artifact-studio tag artifact attr; (b) the download-packet link text and Adaptive Support confusion bullet; (c) the dynamic-scenario prompt; (d) 08.meta.json description and learning_objectives[0]. Keep concept_ids/slugs unchanged so the DAG/validator stays green.",
+    "needs_research": false,
+    "where_to_apply": "08.mdx Artifact Studio (<artifact-studio> artifact attr, line ~113), Artifact Studio download link (line ~111), Adaptive Support confusion bullet (line ~122) and dynamic-scenario prompt (line ~126); 08.meta.json description + learning_objectives[0]",
+    "priority": "high"
+   }
+  ]
+ }
+]

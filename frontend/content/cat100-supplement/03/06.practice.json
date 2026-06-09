@@ -55,7 +55,7 @@
         "Add more personal detail so the summary is accurate."
       ],
       "correct_index": 1,
-      "explanation": "Sharing classmates' names and emails with an external tool exposes their data without consent. Strip or mask direct identifiers before using AI on the dataset.",
+      "explanation": "Sharing classmates' names and emails with an external tool exposes their data without consent. 'The tool is private' is not a safe assumption: as of 2026, consumer AI chat tools (such as the free or personal tiers of ChatGPT, Claude, or Gemini) may retain pasted text and use it for model training by default unless you opt out in settings, while enterprise or institution-licensed tiers typically do not train on submitted content by default. Strip or mask direct identifiers before pasting, regardless of which tool or tier you use.",
       "misconception_id": "cat100_supplement_3_6_data_ethics_in_small_datasets_sharing_identifiers",
       "difficulty": "medium"
     },

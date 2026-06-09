@@ -27,6 +27,7 @@
     "cat100_supplement_2_5_ai_feedback_you_should_reject_artifact_signal",
     "cat100_supplement_2_5_ai_feedback_you_should_reject_annotation_signal",
     "cat100_supplement_2_5_ai_feedback_you_should_reject_ai_boundary",
-    "cat100_supplement_2_5_ai_feedback_you_should_reject_calibration"
+    "cat100_supplement_2_5_ai_feedback_you_should_reject_calibration",
+    "cat100_supplement_2_5_ai_feedback_you_should_reject_identity_guessing"
   ]
 }

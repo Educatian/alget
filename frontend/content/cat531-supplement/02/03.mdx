@@ -31,7 +31,9 @@ Every constraint you give a tool falls into one of two classes, and conflating t
 | If violated | The plan is unusable or unlawful | The plan is merely less ideal |
 | Correct instruction to the tool | "Non-negotiable; never drop" | "Optional; drop this first if something must give" |
 
-The method has three moves. First, sort: label each constraint hard or soft before prompting, so you can tell the tool what it may sacrifice. Second, rank the soft preferences, so the tool knows the order to cut them in. Third, and most important, verify: read the returned plan against each hard constraint individually, because stating a constraint and the tool satisfying it are two separate events. [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge) keeps you honest about which content demands are real; critical edtech studies warns that an optimizer will always find a way to trade a quiet accommodation for a visible feature unless you forbid it explicitly and then check.
+These hard constraints are legal, not stylistic. The duty to implement a written IEP accommodation arises under IDEA (20 U.S.C. § 1400 et seq.) as part of a free appropriate public education, and a material failure to implement it is a compliance violation rather than a pedagogical trade-off (courts excuse only de-minimis deviations, so the accurate claim is that a written accommodation must be implemented, not that any deviation is automatically unlawful); Section 504 of the Rehabilitation Act (29 U.S.C. § 794) imposes a parallel accommodation duty, and FERPA (20 U.S.C. § 1232g) grounds the privacy and consent boundaries, since IEP and 504 records are education records it protects.
+
+The method has three moves. First, sort: label each constraint hard or soft before prompting, so you can tell the tool what it may sacrifice. Second, rank the soft preferences, so the tool knows the order to cut them in. Third, and most important, verify: read the returned plan against each hard constraint individually, because stating a constraint and the tool satisfying it are two separate events. [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge) keeps you honest about which content demands are real; critical edtech studies (Selwyn, 2016) warns that an optimizer will always find a way to trade a quiet accommodation for a visible feature unless you forbid it explicitly and then check. That warning is now empirically documented in the LLM sycophancy literature: models measurably drift toward training-favored or agreeable answers instead of holding a stated specification (Wei et al., 2023; Fanous et al., 2025).
 
 <inline-check question="An IEP guarantees one student extended response time, and you also want a movement break. The tool can only fit one. Which is the hard constraint?" explanation="A legally required IEP accommodation is a boundary that must hold no matter the cost; if it is dropped the plan is unusable and unlawful. The movement break is a soft preference: the plan is merely less ideal without it. Conflating the two is the central error of constraint prompting." options='[{"text":"The extended response time, because an IEP accommodation is non-negotiable","correct":true},{"text":"The movement break, because it keeps students engaged","correct":false},{"text":"Both are equally hard, so the tool should decide","correct":false}]'></inline-check>
 
@@ -109,7 +111,7 @@ ALGET uses your annotations and artifact trace to choose support:
 - If your note is an **insight**, transfer the same decision rule to a new audience or setting.
 - If your note makes a **connection**, show where the connection changes the artifact.
 
-<dynamic-scenario prompt="You are revising the TeachGen@i prompt transcript with teacher edits and rejected suggestions for CAT 531 02.03. A peer comment points to an adaptive move issue connected to critical edtech studies. Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
+<dynamic-scenario prompt="You are revising the TeachGen@i prompt transcript with teacher edits and rejected suggestions for CAT 531 02.03. A peer comment points to an adaptive move issue connected to critical edtech studies (Selwyn, 2016). Choose the next revision move and the evidence that would show it helped."></dynamic-scenario>
 
 ## Check Your Understanding
 
@@ -126,6 +128,11 @@ Before you move on, make sure your transcript labels each constraint hard or sof
 ## References
 
 - [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
-- critical edtech studies. https://doi.org/10.4324/9781315670160
-- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
+- Selwyn, N. (2016). *Is technology good for education?* Polity Press.
+- Williamson, B., Macgilchrist, F., & Potter, J. (2023). Re-examining AI, automation and datafication in education. *Learning, Media and Technology, 48*(1), 1-5. https://doi.org/10.1080/17439884.2023.2167830
+- Wei, J., Huang, D., Lu, Y., Zhou, D., & Le, Q. V. (2023). Simple synthetic data reduces sycophancy in large language models. https://doi.org/10.48550/arxiv.2308.03958
+- Fanous, A., et al. (2025). SycEval: Evaluating LLM sycophancy. *Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society*. https://doi.org/10.1609/aies.v8i1.36598
+- Individuals with Disabilities Education Act (IDEA), 20 U.S.C. § 1400 et seq. https://www.law.cornell.edu/uscode/text/20/1400
+- Section 504 of the Rehabilitation Act of 1973, 29 U.S.C. § 794. https://www.ed.gov/laws-and-policy/individuals-disabilities/section-504
+- Family Educational Rights and Privacy Act (FERPA), 20 U.S.C. § 1232g. https://studentprivacy.ed.gov/
 - teacher professional judgment. https://doi.org/10.1177/002205741319300304

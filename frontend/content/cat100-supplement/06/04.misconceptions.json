@@ -32,6 +32,14 @@
       "trigger": "learner verifies only in their own editor and skips the live URL",
       "feedback": "Local previews hide path and cache issues. Open the live URL in a private window on another device to test what a real visitor actually receives.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_6_4_public_repo_hides_source",
+      "pattern": "public_repo_assumed_render_only",
+      "description": "Believing a public GitHub Pages repository only exposes the rendered site, not the source files and commit history behind it",
+      "trigger": "learner commits personal data or working files assuming visitors can only see the published pages",
+      "feedback": "A public Pages repo is world-readable: every committed file and every past commit is visible, not just the rendered site. Keep private data out of the repo entirely.",
+      "rail_action": "explain"
     }
   ]
 }

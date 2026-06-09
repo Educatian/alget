@@ -21,6 +21,8 @@ A district adopts an AI essay-scoring engine to speed up benchmark grading. It c
 
 The aggregate correlation hid this completely. "Agrees with humans 88% of the time" averaged over the whole population, and the disagreements concentrated on exactly the students already underserved. If the teacher trusts the headline number, the tool quietly tells a group of capable writers that their work is weaker than it is, on every benchmark, all year. The bias was always in the data; the AI just made it fast, consistent, and invisible behind a credible-looking statistic.
 
+**Recent evidence.** This scoring disparity is documented, not hypothetical. Mayfield et al. (2019) show that automated language technologies for educational assessment systematically disadvantage students who write outside the mainstream-dialect norm that human raters reward. Hofmann et al. (2024), in Nature, find that large language models (including GPT-4) encode covert dialect prejudice against African American English, assigning more negative judgments to identical-meaning text, with stereotypes more negative than any human stereotype experimentally recorded; human-feedback training masks the surface racism while leaving the dialect bias intact.
+
 ## Core Concept
 
 Bias in educational AI is not a glitch or a bad actor; it is a predictable consequence of how these systems are built. Three mechanisms account for most classroom harm, and naming them lets you find the bias instead of trusting a vendor.
@@ -55,7 +57,7 @@ Follow a teacher-leader's annotated before/after judgment on a dropout-risk mode
 2. **Inputs inspected:** Annotate the feature list. The model uses prior school, ZIP code, attendance, and free-lunch status. None names race, but prior school and ZIP code act as proxies for race and income in this district.
 3. **Disaggregated check:** Annotate the broken-out results. The vendor's own report shows 94% accuracy for white students and 71% for Black and Latino students, with a false-flag rate three times higher for English learners. The 91% overall hid this gap.
 4. **After (revised decision):** "I recommend we do not adopt this model as a referral trigger. It would flag our English learners disproportionately for harm. If we pilot it, it must be advisory only, paired with teacher review, and re-audited by subgroup each term. I reject the claim that data-driven means unbiased."
-5. **Evidence trail:** The revision is justified by **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** (proxy variables and subgroup harm) and by the disaggregated data, not the headline number. The rejected adoption is recorded with its reason.
+5. **Evidence trail:** The revision is justified by critical scholarship on AI and education datafication (Perrotta & Selwyn, 2019; Williamson, Macgilchrist, & Potter, 2023) on proxy variables and subgroup harm, and by the disaggregated data, not the headline number. The rejected adoption is recorded with its reason.
 
 Step 1 to step 4 captures the section's lesson: bias hides inside neutral-looking inputs and aggregate numbers, and a defensible decision audits proxies and subgroup performance before letting a model touch students.
 
@@ -86,6 +88,8 @@ Start with training-data bias: the model learned "engaged" from labeled video, a
 
 Weigh the consequence. These flags shape how teachers perceive and treat students every period, a high-stakes, compounding effect. The defensible decision writes itself: do not adopt this system to flag individual students, because its error pattern would systematically mislabel specific groups as inattentive, reinforcing existing bias under a veneer of objectivity. If anything, the only acceptable use is aggregate and anonymous (is the whole class fading at 1pm), never per-student. The audit, not the marketing, set the boundary.
 
+**Recent evidence.** The webcam case is not hypothetical. Rhue (2018) found commercial emotion-recognition APIs scored Black faces as roughly twice as angry (Face++) and about three times more contemptuous (Face API) than white faces, and as more negative under any expression ambiguity. Banzon et al. (2023), in IEEE Transactions on Affective Computing, catalog the ethical hazards of affect and engagement detection in classrooms, including culturally and neurologically variable display norms that make a single "engaged" template inequitable for neurodivergent students.
+
 ## What Strong Reading Looks Like
 
 A strong reader treats every "objective" or "AI-powered" claim as a prompt to ask three things: what data did it learn from, what proxies does it use, and what do the subgroup error rates look like. As you read, keep a two-column note with the **fairness claim** on the left and the **evidence that would actually test it** on the right. If the right column only contains an aggregate accuracy number, the claim is untested.
@@ -105,7 +109,7 @@ A useful closing line for the artifact would read: "I rejected this tool as a re
 
 ## Transfer Case
 
-Move from a flagging system to a generative one: an AI that writes personalized feedback comments for every student. There is no obvious "risk score" to audit, so the bias mechanism transfers into a subtler form. Ask whose writing the model treats as the norm. If it consistently suggests that dialect features are errors, or writes warmer encouragement for some students than others, it is reproducing training-data bias in the language of feedback rather than in a number. The audit method is the same (disaggregate the outputs, look for who is systematically treated worse), but you are now reading prose for patterns instead of reading a confusion matrix. Detecting the same mechanism when it wears a different costume is the test that you understand bias structurally, not just as a property of scoring models.
+Move from a flagging system to a generative one: an AI that writes personalized feedback comments for every student. There is no obvious "risk score" to audit, so the bias mechanism transfers into a subtler form. Ask whose writing the model treats as the norm. If it consistently suggests that dialect features are errors, or writes warmer encouragement for some students than others, it is reproducing training-data bias in the language of feedback rather than in a number. The audit method is the same (disaggregate the outputs, look for who is systematically treated worse), but you are now reading prose for patterns instead of reading a confusion matrix. Detecting the same mechanism when it wears a different costume is the test that you understand bias structurally, not just as a property of scoring models. Recent evidence makes this concrete: Hofmann et al. (2024) show production LLMs, including GPT-4, treat identical-meaning African American English text more negatively even after human-feedback alignment, which is exactly the biased warmth and dialect treatment this feedback case describes.
 
 <concept-map concepts='["cat531_supplement_ai_in_education","cat531_supplement_bias_data_and_classroom_consequences","evidence_based_revision","ai_supported_learning"]'></concept-map>
 
@@ -140,7 +144,13 @@ Before you move on, check that the Design Tension Studio map naming a classroom 
 
 ## References
 
-- [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Mishra, P., & Koehler, M. J. (2006). Technological pedagogical content knowledge: A framework for teacher knowledge. Teachers College Record, 108(6), 1017-1054. https://doi.org/10.1111/j.1467-9620.2006.00684.x
+- Mayfield, E., Madaio, M., Prabhumoye, S., Gerritsen, D., McLaughlin, B., Dixon-Roman, E., & Black, A. W. (2019). Equity beyond bias in language technologies for education. Proceedings of the 14th Workshop on Innovative Use of NLP for Building Educational Applications (BEA), 444-460. https://doi.org/10.18653/v1/w19-4446
+- Hofmann, V., Kalluri, P. R., Jurafsky, D., & King, S. (2024). AI generates covertly racist decisions about people based on their dialect. Nature, 633, 147-154. https://doi.org/10.1038/s41586-024-07856-5
+- Rhue, L. (2018). Racial influence on automated perceptions of emotions. SSRN Working Paper. https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3281765
+- Banzon, A. M., et al. (2023). Facial expression recognition in classrooms: Ethical considerations and proposed guidelines for affect detection in educational settings. IEEE Transactions on Affective Computing. https://doi.org/10.1109/taffc.2023.3275624
+- Williamson, B., Macgilchrist, F., & Potter, J. (2023). Re-examining AI, automation and datafication in education. Learning, Media and Technology, 48(1), 1-5. https://doi.org/10.1080/17439884.2023.2167830
+- Bulut, O., Beiting-Parrish, M., et al. (2024). The rise of artificial intelligence in educational measurement: Opportunities and ethical challenges. Measurement: Interdisciplinary Research and Perspectives. https://doi.org/10.59863/miql7785
+- Sperling, K., Stenliden, L., Nissen, J., & Heintz, F. (2024). In search of artificial intelligence (AI) literacy in teacher education: A scoping review. Computers and Education Open, 6, 100169. https://doi.org/10.1016/j.caeo.2024.100169
 - Selwyn, N. (2016). Is Technology Good for Education? Polity Press.
-- [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
-- teacher professional judgment. https://doi.org/10.1177/002205741319300304
+- Perrotta, C., & Selwyn, N. (2019). Deep learning goes to school: Toward a relational understanding of AI in education. Learning, Media and Technology, 45(3), 251-269. https://doi.org/10.1080/17439884.2020.1686017

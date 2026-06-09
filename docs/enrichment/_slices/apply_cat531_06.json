@@ -1,0 +1,350 @@
+[
+ {
+  "section_key": "cat531/06/01",
+  "section_title": "Synthesis Across Modules",
+  "dir": "frontend/content/cat531-supplement/06",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The three course anchors are bare named lenses with weak/Wikipedia-anchored citations. The References list 'critical edtech studies' as a bare DOI (10.4324/9781315670160), TPACK links to Wikipedia plus a 2006 DOI, and the 'AI and education datafication' line uses a single DOI (10.1080/17439884.2020.1686017) reused verbatim across many sections. A capstone that teaches 'if an anchor leaves your decision identical, you cited it; you did not use it' itself models citation-without-use: the anchors are never grounded in a named author/work the learner could read.",
+    "proposed_change": "In the References block name the authors/works rather than bare DOIs. Critical edtech studies -> Selwyn (the 10.4324/9781315670160 DOI is the Routledge edition of Selwyn's 'Education and Technology: Key Issues and Debates'; OpenAlex lists the original 2011 Continuum edition under his name). TPACK -> Mishra & Koehler (2006), 'Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge,' Teachers College Record (DOI 10.1111/j.1467-9620.2006.00684.x confirmed correct). For datafication, note that the cited 10.1080/17439884.2020.1686017 DOI actually resolves to Perrotta & Selwyn, 'Deep learning goes to school: toward a relational understanding of AI in education' (Learning, Media and Technology) -- so attribute it correctly to Perrotta & Selwyn, and supplement/replace with a current, highly cited piece: Williamson (2023), 'Re-examining AI, automation and datafication in education' (Learning, Media and Technology). Add author names inline at first mention in the Core Concept anchor table (lines 36-38).",
+    "where_to_apply": "01.mdx -> '## References' list (lines 153-156) and '## Core Concept' anchor table (lines 36-38)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra & Koehler (2006) Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge",
+      "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+      "finding": "OpenAlex confirms this DOI is the seminal Mishra & Koehler 2006 TPACK article in Teachers College Record -- the existing TPACK DOI is correct; only the author attribution (currently absent, replaced by a Wikipedia link) needs adding."
+     },
+     {
+      "cite": "Selwyn (2011/2016) Education and Technology: Key Issues and Debates",
+      "url_or_doi": "https://doi.org/10.4324/9781315670160",
+      "finding": "OpenAlex returns Neil Selwyn as author of 'Education and Technology: Key Issues and Debates' (orig. 2011 Continuum; the 10.4324/9781315670160 DOI is the Routledge/Taylor & Francis edition). Supports naming Selwyn for the 'critical edtech studies' anchor."
+     },
+     {
+      "cite": "Perrotta & Selwyn (2020) Deep learning goes to school: toward a relational understanding of AI in education; Williamson (2023) Re-examining AI, automation and datafication in education",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017 ; https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "OpenAlex resolves the section's reused 'datafication' DOI (10.1080/17439884.2020.1686017) to Perrotta & Selwyn 'Deep learning goes to school' in Learning, Media and Technology -- NOT a generic datafication review, so attribution must say Perrotta & Selwyn. Williamson (2023) 'Re-examining AI, automation and datafication in education' (LMT, 136 citations, top 1% field-weighted) is a current, well-cited replacement/supplement for the datafication anchor."
+     }
+    ]
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Terminology drift confirmed within this single section. The learner-facing 'Adaptive Support' block (lines 134-137) uses move verbs explain/compare/transfer/show, while 01.misconceptions.json rail_action uses a different set: ask, explain, represent, practice. The support the learner is told they will receive does not match the rail_action that actually fires from their misconception, undercutting the section's promise that annotations route support.",
+    "proposed_change": "Reconcile to one canonical move set. Recommended: align misconceptions.json rail_action to the learner-facing vocabulary (explain/compare/transfer/show). Current rail_actions are: listing_is_synthesis -> 'ask'; tensions_left_unresolved -> 'explain'; ai_resolves_tension -> 'represent'; one_right_decision -> 'practice'. Map 'represent' and 'practice' (and reconcile 'ask') onto explain/compare/transfer/show so the routing the prose promises is the routing that fires. Verified internally by reading both files: the two vocabularies are genuinely disjoint except for 'explain', so the mismatch is real.",
+    "where_to_apply": "01.mdx '## Adaptive Support' (lines 132-137) and 01.misconceptions.json rail_action fields (all four entries)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "01.mdx Adaptive Support block vs 01.misconceptions.json rail_action fields",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\06\\01.mdx (lines 134-137); 01.misconceptions.json",
+      "finding": "Direct file read confirms the mismatch: MDX support moves are {explain, compare, transfer, show}; misconceptions rail_action values are {ask, explain, represent, practice}. Only 'explain' overlaps; 'compare/transfer/show' never fire and 'ask/represent/practice' are never described to the learner."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section names BigAL as the in-course AI assistant (Worked Example step 5 line 69, Stronger Artifact Standard line 114). The canonical CAT531 assistant naming is in flux; TeachGen@i and Ethobot are the named tools elsewhere in the supplement.",
+    "proposed_change": "Rename BigAL to the canonical in-course assistant TeachGen@i (the general AI writing/drafting assistant) in both mentions (lines 69, 114), and add a one-line gloss on first mention since the assistant is otherwise unintroduced in this capstone. Evidence: a repo-wide search shows TeachGen@i is the established AI drafting assistant (used in ch 08 transcripts, e.g., 08.08 'The TeachGen@i transcript shows teacher edits and at least one rejected suggestion') and Ethobot is the ethics-dilemma agent (ch 04/08). 'BigAL' appears ONLY in ch 06 sections 01 and 02 -- it is a local inconsistency, not the course canon. Note: this is resolvable from the repo itself; the live syllabus was not consulted, so 'confirmed' rests on internal cross-section evidence rather than an external syllabus.",
+    "where_to_apply": "01.mdx Worked Example step 5 (line 69) and '## Stronger Artifact Standard' (line 114); also flag 06/02.mdx line 112 and 06/02.practice.json line 49 which share the same BigAL usage",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "cat531-supplement repo-wide assistant naming scan",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement (Grep BigAL|TeachGen|Ethobot)",
+      "finding": "TeachGen@i is the canonical AI drafting assistant across ch 08 (08.08 line 47 references a TeachGen@i transcript with teacher edits + a rejected suggestion); Ethobot is the ethics-agent (ch 03/04/08). 'BigAL' occurs only in ch 06 (01.mdx lines 69 & 114; 02.mdx line 112; 06 practice files), confirming it is an isolated stale name to reconcile to TeachGen@i."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/06/02",
+  "section_title": "Professional Teaching Philosophy With AI",
+  "dir": "frontend/content/cat531-supplement/06",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's disclosure and data-protection commitments (line 30 'no uploading student work to a tool that trains on it'; line 34 'Students and families are told when AI has read or processed student work'; sequence-builder line 43 'Refuse any tool that retains student essays or trains on submissions'; line 97 datafication 'whether the scoring tool retains the student essays') frame consent/retention/notice for minors as professional courtesy and cite NO statute. For an artifact a hiring committee scrutinizes, the disclosure/retention boundary is far stronger anchored to FERPA and COPPA, especially given the Jan 2025 COPPA final rule and 2024-2026 state school-AI guidance.",
+    "proposed_change": "Add a short Recent Evidence / legal-anchor callout near the Core Concept 'Disclosure' bullet (line 34) or in the Textbook Walkthrough datafication paragraph (line 97). Name FERPA (school retains direct control of education records; the 'school official' exception lets vendors process records only under contractual control, data-use limits, and no onward sharing/training) and COPPA (verifiable parental consent for under-13 data; the Jan 2025 FTC final rule now requires SEPARATE consent before disclosing children's data to third parties and tightens monetization/retention). Note that ~half of US state education departments have issued generative-AI guidance for K-12. Frame these as the legal FLOOR the disclosure/retention boundary rests on, with the ethical bar set higher. Add 1-2 of the citations below to the References list (lines 149-154).",
+    "where_to_apply": "02.mdx Core Concept 'Disclosure' bullet (line 34) and/or Textbook Walkthrough datafication paragraph (line 97); add citations to References (lines 149-154)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "FTC (2025) Children's Online Privacy Protection Rule, Final Rule",
+      "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+      "finding": "First major COPPA update since 2013; finalized Jan 2025, published in Federal Register Apr 22, 2025 with compliance by Apr 22, 2026. Operators must now obtain SEPARATE verifiable parental consent before disclosing a child's data to third parties; blanket collection consent no longer covers downstream sharing. Schools may still consent in lieu of parents only when the data is used solely for educational (not commercial) purposes."
+     },
+     {
+      "cite": "Student Privacy Compass / FPF — State Guidance on the Use of Generative AI in K-12 Education (2024-2025)",
+      "url_or_doi": "https://studentprivacycompass.org/state-guidance-on-the-use-of-generative-ai-in-k-12-education/",
+      "finding": "About half of US state departments of education have issued guidance or policy on responsible generative-AI use in K-12, establishing the state-level school-AI guidance the section currently treats as nonexistent."
+     },
+     {
+      "cite": "U.S. Dept. of Education FERPA — 'school official' exception (34 CFR 99.31)",
+      "url_or_doi": "https://studentprivacy.ed.gov/",
+      "finding": "Under the school-official exception schools may share education records with an edtech vendor without consent only if the vendor performs an institutional service, has a legitimate need limited to required records, is under the school's direct control (contractual), and is barred from re-disclosing or repurposing the data. This is the statutory basis for the 'no tool that retains/trains on student work' boundary."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "References (lines 149-154) are the thin, partly Wikipedia-anchored set reused across sections: TPACK = Wikipedia + 2006 DOI (10.1111/j.1467-9620.2006.00684.x); 'critical edtech studies' = an UNNAMED Selwyn 2016 Routledge DOI (10.4324/9781315670160) though the prose at lines 53/55 cites 'critical edtech studies' with no author; 'AI and education datafication' = the single reused 2020 DOI (10.1080/17439884.2020.1686017). For a 2026 graduate course this trails the field ~6-10 years.",
+    "proposed_change": "Name Selwyn explicitly in the prose where 'critical edtech studies' appears (lines 53, 55, and the Core Concept mention line 37) — e.g. 'critical edtech studies (Selwyn)'. Update References: add a current (2023) datafication/critical-AI source and a 2024 AI-TPACK / generative-AI teacher-literacy source so the 2026 framing is not carried solely by a 2006/2016/2020 trio. Keep the canonical anchors but stop reusing the identical list verbatim.",
+    "where_to_apply": "02.mdx References (lines 149-154) and prose 'critical edtech studies' mentions (lines 37, 53, 55)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Williamson, Macgilchrist & Potter (2023) Re-examining AI, automation and datafication in education",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "Current (2023) critical-edtech/datafication editorial that directly updates the section's 2020 datafication anchor and matches the course's critical-edtech lens; suitable replacement/addition for the reused 2020 DOI."
+     },
+     {
+      "cite": "Ning et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Constructs a seven-component AI-TPACK framework via SEM, providing a 2024 generative-AI teacher-knowledge anchor to update the lone 2006 TPACK citation."
+     },
+     {
+      "cite": "Sperling et al. (2024) In search of AI literacy in teacher education: A scoping review",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169",
+      "finding": "2024 scoping review of AI literacy in teacher education; alternative current teacher-literacy anchor grounding the 'professional judgment with AI' framing the section develops."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The MDX names 'BigAL' as the assistant the learner asks for help (line 112: 'ask BigAL to compare a slogan version with a committed version'). The named generative-AI teaching tool threaded through CAT531 is TeachGen@i (Ch8/02 is an entire 'TeachGen@i Troubleshooting' section with its own art asset; TeachGen@i appears ~89x across 32 files vs BigAL ~once-per-section as a generic helper). A stray assistant name risks pointing students to the wrong/renamed tool. The DTS artifact tool and join code also need confirming.",
+    "proposed_change": "Change 'BigAL' (line 112) to TeachGen@i so the named tool matches the course's canonical generative-AI assistant (consistent with Ch8/02 and Ch2/Ch3). The DTS deployed URL (swarmid.vercel.app) and the 'Design Tension Studio' artifact are confirmed live with a course-code join form; the artifact download link (line 122) and join code UA-CAT531-SUMMER26 remain valid — verify the code against the live syllabus before the next term since the public site does not display the code.",
+    "where_to_apply": "02.mdx Stronger Artifact Standard (line 112, 'ask BigAL') and Artifact Studio download link (line 122)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "ALGET cat531-supplement codebase — assistant-name frequency",
+      "url_or_doi": "C:/Users/jewoo/Projects/alget/frontend/content/cat531-supplement/08/02.mdx",
+      "finding": "TeachGen@i is the canonical named generative-AI teaching tool: section 08/02 is 'TeachGen@i Troubleshooting' with dedicated art and 89 occurrences across 32 files; 'BigAL' occurs once-per-section as a generic helper. In a teaching-philosophy section that asks AI to compare slogan vs committed versions, the contextually correct named tool is TeachGen@i."
+     },
+     {
+      "cite": "Design Tension Studio (live deployment)",
+      "url_or_doi": "https://swarmid.vercel.app",
+      "finding": "Site is live and self-identifies as 'Design Tension Studio — instructional design systems lab' with a 'Join a course' form taking a course code; confirms the artifact tool and join workflow the section relies on (the specific code UA-CAT531-SUMMER26 is not displayed publicly and should be confirmed against the syllabus)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/06/03",
+  "section_title": "Portfolio Artifact Selection",
+  "dir": "frontend/content/cat531-supplement/06",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "Central claims about evidence-based portfolio selection (portfolio as argument/warrant, reviewers discounting grades, reflective-failure artifacts as persuasive evidence) are asserted with no citation. The References list reuses the generic course-wide quartet (TPACK Wikipedia+2006 DOI, an unnamed critical-edtech DOI, one 2020 datafication DOI, one teacher-professional-judgment DOI), none specific to portfolio assessment or warrant theory.",
+    "proposed_change": "Add two real anchors: (a) Toulmin's argument model at the first use of 'warrant' in Core Concept (line 28) — the entire framework rests on the claim/warrant/evidence vocabulary, which is exactly Toulmin's; and (b) a teacher-education / National Board portfolio-as-evidence anchor for the portfolio-assessment claims. Cite Toulmin, S. (2003) The Uses of Argument (Cambridge UP), DOI 10.1017/cbo9780511840005 for warrant/claim/data; and the NBPTS portfolio structure (Components 2-4 require documented evidence of impact on student learning, scored on a rubric) to ground 'reviewers read exhibits' and the Transfer Case's National Board framing. Add both to the References list, ideally replacing one of the unrelated generic DOIs.",
+    "where_to_apply": "03.mdx '## Core Concept' (warrant definition, line 28; also Transfer Case lines 119-121) and '## References' (lines 154-157)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Toulmin, S. E. (2003) The Uses of Argument (updated ed.), Cambridge University Press",
+      "url_or_doi": "https://doi.org/10.1017/cbo9780511840005",
+      "finding": "Canonical source of the claim / data / warrant model; 'warrant' is Toulmin's term for the inferential link licensing a claim from data — exactly the warrant-as-link definition the section uses on line 28."
+     },
+     {
+      "cite": "NBPTS, General Portfolio Instructions / Components (2023)",
+      "url_or_doi": "https://www.nbpts.org/certification/components/",
+      "finding": "National Board certification requires four components; the portfolio components (Component 2 Differentiation, Component 3 Teaching Practice & Learning Environment, Component 4 Effective & Reflective Practitioner) require documented evidence of impact on student learning, scored on a 0.75-4.25 rubric — grounds the 'portfolio as scored evidence of impact over time' framing in the Transfer Case."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The Textbook Walkthrough (lines 98-100) builds on 'designs assessments that AI cannot trivially complete' and 'critique an AI draft rather than produce one,' and makes an empirical-sounding claim ('the AI-resistant task surfaced genuine thinking') with no support. The AI-resistant-assessment / critique-of-AI-output framing has matured in 2024-2026.",
+    "proposed_change": "Add a one-line 'Recent Evidence' framing/citation grounding that critique-of-AI-output tasks shift cognitive demand from production to evaluation and resist trivial AI completion, drawing on 2024-2025 assessment-redesign literature. Keep generic model language ('an AI assistant') for longevity. Confirmed real anchors below.",
+    "where_to_apply": "03.mdx '## Textbook Walkthrough' (lines 98-100)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Khlaif, Z. N. et al. (2025) Redesigning Assessments for AI-Enhanced Learning: A Framework for Educators in the Generative AI Era. Education Sciences 15(2):174",
+      "url_or_doi": "https://doi.org/10.3390/educsci15020174",
+      "finding": "Presents an assessment-redesign framework (Against/Avoid/Adopt/Explore) for the generative-AI era, supporting the walkthrough's claim that prompts can be redesigned so AI cannot trivially complete the task."
+     },
+     {
+      "cite": "Alkouk, W. A. et al. (2024) AI-resistant assessments in higher education: practical insights from faculty training workshops. Frontiers in Education 9:1499495",
+      "url_or_doi": "https://doi.org/10.3389/feduc.2024.1499495",
+      "finding": "Describes a process-product assessment approach evaluating the student's interaction with AI tools, not just the final product — directly supports 'critique an AI draft rather than produce one' as a cognitive-demand shift that resists AI completion."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "References cite TPACK via Wikipedia + the 2006 Mishra & Koehler DOI only, and the section invokes TPACK (line 40) as the test for 'technology serving a learning target' in an AI-era portfolio context. Current generative-AI / AI-TPACK teacher-knowledge frameworks (2023-2026) should be considered since the walkthrough is entirely about AI-era assessment redesign.",
+    "proposed_change": "Add one current AI-TPACK / generative-AI teacher-knowledge citation (2023-2026) alongside the canonical 2006 TPACK reference, at the Core Concept point (line 40) where TPACK is invoked as the purpose-fit test. Confirmed anchor below.",
+    "where_to_apply": "03.mdx '## Core Concept' (TPACK link, line 40) and '## References' (line 154)",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "Ning, Y. et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability 16(3):978",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Develops a seven-component AI-TPACK framework extending TPACK to integrate AI as a technological dimension in teacher knowledge — a current (2024) anchor for the AI-era purpose-fit test the section applies."
+     },
+     {
+      "cite": "Al-Abdullatif, A. M. (2024) Modeling Teachers' Acceptance of Generative AI Use in Higher Education: The Role of AI Literacy, Intelligent TPACK, and Perceived Trust. Education Sciences 14(11):1209",
+      "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+      "finding": "Operationalizes 'Intelligent TPACK' for generative-AI teaching contexts, supporting an AI-extended reading of TPACK as the artifact purpose-fit test."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/06/05",
+  "section_title": "Risk Mitigation and Family Communication",
+  "dir": "frontend/content/cat531-supplement/06",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section is built entirely on FERPA, informed consent, opt-out, and data retention, yet the MDX prose cites NO specific statute. 'FERPA-aware' is correctly called marketing language, but the section never states what FERPA actually requires, never names COPPA (directly relevant to AI tools collecting data from under-13 students and to the parental-consent/opt-out logic that is the section's spine), and gives a teacher no statutory anchor to cite when challenging a vendor claim.",
+    "proposed_change": "Add a short 'Legal Anchor' callout (2-3 sentences) after the Core Concept 'Privacy check' bullet (line 28): name FERPA (20 U.S.C. 1232g; 34 CFR Part 99) as the federal floor for disclosing education records, and specifically the 'school official' exception (34 CFR 99.31(a)(1)) that many edtech tools rely on to access student data without per-family consent (vendor must perform an institutional function, be under the school's direct control, and obey the redisclosure limits of 34 CFR 99.33). Name COPPA (15 U.S.C. 6501-6506; 16 CFR Part 312) as governing collection from under-13 users and the verifiable-parental-consent / school-consent mechanism. Make explicit that 'FERPA-compliant' precisely PERMITS the school-official storage/analysis a cautious family would want disclosed, which is why the memo must disclose beyond compliance. Add the two statutory citations to References (lines 147-150).",
+    "where_to_apply": "05.mdx — Core Concept, after the 'Privacy check' bullet (line 28); References list (lines 147-150); optionally cross-link from Decision Rule 'Disclosure check' (line 73).",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "34 CFR 99.31(a)(1) — school official exception (eCFR / Cornell LII)",
+      "url_or_doi": "https://www.law.cornell.edu/cfr/text/34/99.31",
+      "finding": "Prior consent is not required to disclose education records to a contractor/consultant/vendor acting as a 'school official' that performs an institutional function the school would otherwise use employees for, is under the school's direct control over the records, and is subject to the redisclosure limits of 34 CFR 99.33(a). This is the legal basis letting edtech vendors access student data without per-family consent — confirming the section's point that 'FERPA-compliant' permits exactly what families would want disclosed."
+     },
+     {
+      "cite": "FERPA statute & regulations (20 U.S.C. 1232g; 34 CFR Part 99) — eCFR",
+      "url_or_doi": "https://www.ecfr.gov/current/title-34/subtitle-A/part-99",
+      "finding": "FERPA (20 U.S.C. 1232g; 34 CFR Part 99) defines 'education records' as records directly related to a student and maintained by the agency/institution or a party acting for it (34 CFR 99.3), establishing the federal floor for education-record disclosure the proposed callout cites."
+     },
+     {
+      "cite": "FTC, Children's Online Privacy Protection Rule, Final Rule (16 CFR Part 312), Federal Register 22 Apr 2025",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "COPPA (15 U.S.C. 6501-6506; 16 CFR Part 312) governs online collection of personal information from children under 13 and requires verifiable parental consent; the school-consent mechanism lets schools authorize collection for educational purposes, grounding the proposed COPPA anchor."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "COPPA's Rule was substantially amended by the FTC in 2024-2025 (finalized amendments tightening third-party disclosure, data-retention limits, and consent for using children's data for AI/model training). State student-data-privacy and school-AI guidance also moved in 2024-2026. The section's retention/opt-out/training-use framing is exactly what these updates touched, but the prose is statute-free and time-neutral, so it cannot point students at current rules.",
+    "proposed_change": "Add a 'Recent Evidence' callout near the Textbook Walkthrough (line 89) flagging: (1) the FTC's COPPA Final Rule (published 22 Apr 2025, effective 23 Jun 2025, full compliance by 22 Apr 2026) which now requires SEPARATE verifiable parental consent to disclose a child's data to train/develop AI, mandates a written data-retention policy (no indefinite retention; keep only as long as reasonably necessary), requires naming the identity/category of third-party recipients, and expands 'personal information' to include biometric identifiers such as voiceprints/facial templates (directly relevant to the Walkthrough's voice-recording tool); and (2) the 2024-2026 wave of state student-data-privacy and state-department-of-education AI guidance (e.g., California AB 1159 prohibiting use of student data to train AI; Idaho SB 1227 statewide K-12 AI framework). Frame these as the moving target that makes 'verify before you publish' a recurring obligation, tying directly to the Transfer Case line (line 114) 'Verification becomes a recurring obligation as vendors change terms.'",
+    "where_to_apply": "05.mdx — new 'Recent Evidence' callout near Textbook Walkthrough (line 89-93); reinforce Transfer Case sentence (line 114).",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "FTC, 'FTC Finalizes Changes to Children's Privacy Rule Limiting Companies' Ability to Monetize Kids' Data' (Jan 2025) + Federal Register Final Rule (22 Apr 2025)",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "COPPA Final Rule published 22 Apr 2025, effective 23 Jun 2025, full compliance by 22 Apr 2026: requires separate verifiable parental consent to disclose children's data for training/developing AI; mandates a written data-retention policy barring indefinite retention; requires disclosing identity/category of third-party recipients; expands 'personal information' to biometric identifiers (voiceprints, facial templates)."
+     },
+     {
+      "cite": "Norton Rose Fulbright Data Protection Report, 'FTC's COPPA Rule changes include AI training consent requirement' (Jun 2025)",
+      "url_or_doi": "https://www.dataprotectionreport.com/2025/06/ftcs-coppa-rule-changes-include-ai-training-consent-requirement/",
+      "finding": "Confirms the amended COPPA Rule treats disclosure of a child's personal information to train or develop AI as requiring separate verifiable parental consent — the specific retention/training-use issue the section's privacy check and verification rule center on."
+     },
+     {
+      "cite": "MultiState, 'AI in Education Legislation: 2026 State Policy Trends'; Student Privacy Compass, 'State Guidance on the Use of Generative AI in K-12 Education'",
+      "url_or_doi": "https://www.multistate.us/insider/2026/4/9/how-states-are-regulating-ai-in-education-this-legislative-session",
+      "finding": "As of 2026, about half of state education departments have issued K-12 generative-AI guidance addressing data privacy; recent state laws include California AB 1159 (prohibits using student data to train AI, extends to third-party operators, creates a private right of action) and Idaho SB 1227 (statewide K-12 AI framework with data-privacy requirements) — confirming a 2024-2026 moving regulatory target."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/06/06",
+  "section_title": "Evidence-Based Reflection",
+  "dir": "frontend/content/cat531-supplement/06",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "This section ABOUT evidence-grounding leaves its own load-bearing methodological moves uncited: 'regression to the mean', 'the average that hides the subgroup' / disaggregation, 'weigh rival explanations / confounds', and the defeasibility claim ('only as strong as the disconfirming evidence it survived'). The disaggregation / disparate-impact move in particular floats as folk methodology rather than anchoring to the course's critical-edtech and algorithmic-fairness literature.",
+    "proposed_change": "In Core Concept, after the 'Weigh rival explanations' bullet (and where line 33 says 'critical edtech studies pushes the disconfirming move toward subgroup effects the average hides'), add a one-line inline anchor citing a named algorithmic-fairness source for why subgroup disaggregation is the required disconfirming move in edtech equity evaluation, e.g. Hanna et al. (2020) on disaggregating by socially-meaningful subgroups, alongside the named Selwyn (2022) critical-edtech anchor. Also strengthen the self-explain at line 79 (which already invokes 'critical edtech studies pushes exactly this') by naming Selwyn.",
+    "where_to_apply": "06.mdx Core Concept after the 'Weigh rival explanations' bullet (line 30) and the datafication/critical-edtech sentence at line 33; self-explain at line 79; References list",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Hanna, Denton, Smart & Smith-Loud (2020) Towards a Critical Race Methodology in Algorithmic Fairness (ACM FAT*)",
+      "url_or_doi": "https://doi.org/10.1145/3351095.3372826",
+      "finding": "Algorithmic-fairness work argues that race/subgroup must be treated as a unit of analysis and outcomes disaggregated by socially-meaningful subgroups; an aggregate/average metric can mask disparate effects on a subgroup. This grounds the section's 'average that hides the subgroup' and disaggregation-as-required-move claims in named fairness literature rather than folk methodology."
+     },
+     {
+      "cite": "Selwyn (2022) The future of AI and education: Some cautionary notes (European Journal of Education)",
+      "url_or_doi": "https://doi.org/10.1111/ejed.12532",
+      "finding": "A named, highly cited (267) critical-edtech source specifically on AI in education and its equity/datafication concerns, suitable to replace the unnamed 2016 'critical edtech studies' DOI and to anchor the disaggregation-by-subgroup equity move that the section threads through Core Concept, the branching scenario, and the self-explain."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "References are dated and Wikipedia-anchored: TPACK links to Wikipedia + the 2006 Mishra & Koehler DOI (10.1111/j.1467-9620.2006.00684.x); 'critical edtech studies' is an unnamed 2016 Routledge DOI (10.4324/9781315670160); datafication is the single 2020 DOI (10.1080/17439884.2020.1686017) reused course-wide. For a 2026 capstone that discusses AI tools and vendor analytics ('vendor dashboard is a claim not evidence', used twice), the critical-edtech/datafication anchor is stale.",
+    "proposed_change": "Replace the unnamed 'critical edtech studies' entry with the named Selwyn (2022) AI-in-education source, and add a 2023 datafication/AI-analytics anchor (Williamson, Macgilchrist & Potter 2023, same Learning Media and Technology venue as the existing 2020 datafication DOI) for the vendor-metric-as-claim move. Keep the 2006 TPACK DOI as canonical but add a current AI-TPACK / generative-AI teacher framework (Ning et al. 2024 or Al-Abdullatif 2024) since the section repeatedly invokes TPACK to keep AI-tool claims tied to a learning target.",
+    "where_to_apply": "06.mdx References (lines 147-150) and the datafication sentence at line 33",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Williamson, Macgilchrist & Potter (2023) Re-examining AI, automation and datafication in education (Learning, Media and Technology 48(1):1-5)",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "A current (2023) critical anchor on AI/automation/datafication in education in the same journal as the existing 2020 datafication DOI; directly supports refreshing the stale datafication reference for the section's 'tool analytics are a vendor-shaped data source, not neutral truth' claim."
+     },
+     {
+      "cite": "Selwyn (2022) The future of AI and education: Some cautionary notes (European Journal of Education)",
+      "url_or_doi": "https://doi.org/10.1111/ejed.12532",
+      "finding": "Named, recent, well-cited critical-edtech source on AI in education suitable to replace the unnamed 2016 'critical edtech studies' DOI in the References list."
+     },
+     {
+      "cite": "Ning, Zhang, Xu, Zhou & Wijaya (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements (Sustainability 16(3):978)",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "A 2024 AI-TPACK framework extending the 2006 TPACK model to AI competencies; supports adding a current AI-TPACK reference alongside the canonical 2006 TPACK DOI. (Al-Abdullatif 2024, https://doi.org/10.3390/educsci14111209, 'intelligent TPACK', is an alternative.)"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/06/08",
+  "section_title": "Module 6 Final Studio",
+  "dir": "frontend/content/cat531-supplement/06",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The Textbook Walkthrough builds its capstone example on a 'no-retention setting,' a 'school-only' device constraint, and a family memo that discloses exactly the safeguard the plan implements. These are FERPA/COPPA-governed decisions, yet the prose cites no specific statute or current student-data-privacy standard, even though the course foregrounds FERPA/COPPA.",
+    "proposed_change": "Add a one-sentence parenthetical or short callout in the Textbook Walkthrough (at the 'no-retention setting' / family-memo sentences) grounding the retention and disclosure decisions in statute: the no-retention configuration maps to COPPA's 2025 amendment, which bars indefinite retention of children's data and requires a written retention policy (FTC, eff. June 23, 2025; compliance by April 22, 2026); the school-only constraint and accurate family memo map to FERPA's education-record/consent regime, where the ed-tech vendor operates under the 'school official' exception only if it does not retain or repurpose data beyond the contracted educational service. Add one citation line to References. NOTE current-events accuracy: FTC explicitly declined to codify the long-standing school-consent guidance in the 2025 COPPA amendment, deferring to forthcoming FERPA rulemaking, so phrase the COPPA-school link as 'enforced under existing FTC guidance' rather than 'codified.'",
+    "where_to_apply": "08.mdx — '## Textbook Walkthrough' (no-retention / family-memo sentences); add 1 line to '## References'",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Federal Trade Commission (2025) Children's Online Privacy Protection Rule, Final Amended Rule",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "Amended COPPA Rule (effective June 23, 2025; compliance deadline April 22, 2026) prohibits indefinite retention of personal information collected from children under 13 and requires operators to post a written data-retention policy; FTC declined to codify the school-authorized-consent guidance for ed-tech, deferring to pending FERPA rulemaking and stating it will continue enforcing COPPA in the ed-tech context under existing guidance. This grounds the 'no-retention setting' as a legal obligation, not just good practice."
+     },
+     {
+      "cite": "U.S. Department of Education, Protecting Student Privacy — FERPA (studentprivacy.ed.gov)",
+      "url_or_doi": "https://studentprivacy.ed.gov/ferpa",
+      "finding": "FERPA defines education records as records directly related to a student and maintained by the school or a party acting for it; disclosure of personally identifiable information requires prior written consent that is signed/dated and specifies the records, purpose, and recipient, unless an exception (e.g., the school-official exception for contractors with a legitimate educational interest) applies. This grounds the family-memo disclosure and the school-only/vendor constraint."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ }
+]

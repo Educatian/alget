@@ -1,0 +1,18 @@
+[
+ {
+  "section_key": "ail606/07/05",
+  "type": "accuracy_fix",
+  "gap_summary": "Reflection-as-data section embeds Ch3 storyboard artifact in studio link, tag, support bullet, scenario, Final Check, meta",
+  "verdict": "confirmed",
+  "evidence": "Internal-consistency: 05.mdx body teaches excerpt/code/decision-linkage reflection coding, yet all five touchpoints referenced the storyboard frame sequence artifact; verified by reading current file.",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/07/08",
+  "type": "accuracy_fix",
+  "gap_summary": "Research Translation Studio embeds Ch3 storyboard artifact in studio link, artifact-studio tag, support bullet, scenario, meta description",
+  "verdict": "confirmed",
+  "evidence": "Internal-consistency: 08.mdx body is entirely about the translation chain (finding-principle-decision-evidence-disclosure); artifact touchpoints and 08.meta.json said storyboard; verified by reading current files.",
+  "applied": true
+ }
+]

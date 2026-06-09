@@ -32,6 +32,14 @@
       "trigger": "learner accepts a suggestion because the tool stated it assertively or with fancy wording",
       "feedback": "Apply the defensibility test: could you stand behind the resulting claim in an interview? If not, reject it.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_2_5_identity_guessing",
+      "pattern": "ai_can_infer_my_background",
+      "description": "Believing AI-inferred claims about your language, demographics, or background are safe to keep because they sound plausible",
+      "trigger": "learner accepts an AI suggestion that asserts a language, identity, or background fact the AI guessed from a name or other text rather than one the learner supplied",
+      "feedback": "An AI cannot know your background; guessing it from your name is algorithmic bias producing invented facts about you. Reject identity guesses and keep only facts you supplied and can defend.",
+      "rail_action": "explain"
     }
   ]
 }

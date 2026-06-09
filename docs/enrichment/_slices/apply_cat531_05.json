@@ -1,0 +1,461 @@
+[
+ {
+  "section_key": "cat531/05/01",
+  "section_title": "Evaluation Questions Before Ratings",
+  "dir": "frontend/content/cat531-supplement/05",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The recurring privacy boundary clause ('without exposing names to a third party', 'data handling', 'sending names off-site') appears across the Opening Case, Worked Example, Decision Rule, parameter-explorer, and Final Check, yet no privacy statute is cited. For a course stressing FERPA/COPPA and student-data retention/opt-out, the section's central recurring boundary is legally ungrounded.",
+    "proposed_change": "Add a 2-3 sentence 'Why the boundary is legal, not just preferential' note after Decision Rule item 3 (Boundary check), naming FERPA and COPPA as statutory backing. FERPA: disclosing personally identifiable information (PII) from education records to a third party generally requires prior written consent (34 CFR 99.30); the school-official/contractor exception (34 CFR 99.31) lets a vendor receive PII ONLY for the contracted purpose and bars re-disclosure without consent, so 'sending names off-site' is a consent-bound act, not a preference. COPPA: under the FTC's amended Rule (published Jan 2025, effective June 23, 2025, full compliance by April 22, 2026), operators collecting from under-13 students must obtain verifiable parental consent before disclosing data to third parties or using it for targeted advertising, and may not retain children's data indefinitely (only as long as reasonably necessary). Add matching citations to References.",
+    "where_to_apply": "01.mdx — '## Decision Rule' after numbered item 3 (Boundary check); add citations to '## References'",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "U.S. DoE, FERPA regulations, 34 CFR 99.30 (prior consent required) and 99.31 (exceptions, incl. school-official/contractor)",
+      "url_or_doi": "https://www.ecfr.gov/current/title-34/subtitle-A/part-99/subpart-D",
+      "finding": "A parent/eligible student must give signed written consent before an agency discloses PII from education records (99.30); the contractor/service-provider exception (99.31) permits a vendor to receive PII only for the purpose disclosed and forbids re-disclosure without consent. Grounds 'without exposing names to a third party' as a statutory line, not a preference."
+     },
+     {
+      "cite": "FTC (Jan 2025) Final Rule amending the Children's Online Privacy Protection Rule (COPPA)",
+      "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+      "finding": "Amended COPPA Rule (effective June 23, 2025; full-compliance deadline April 22, 2026) requires separate verifiable parental consent before disclosing under-13 children's data to third parties or using it for targeted ads, and bars indefinite data retention (retain only as long as reasonably necessary). Note: FTC did NOT finalize the proposed ed-tech-specific amendments, continuing to enforce COPPA in ed tech under existing guidance — so cite COPPA's general third-party-disclosure/retention provisions, not a new ed-tech rule."
+     },
+     {
+      "cite": "Taft / Privacy & Data Security Insights (2025) COPPA Amendments Effective June 23, 2025",
+      "url_or_doi": "https://www.privacyanddatasecurityinsight.com/2025/05/childrens-online-privacy-protection-act-amendments-effective-june-23-2025/",
+      "finding": "Confirms the June 23, 2025 effective date and April 22, 2026 compliance deadline, and the new data-retention limit plus third-party-disclosure parental-consent requirement; corroborates the FTC press release for currency."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin/dated: TPACK points to Wikipedia + a 2006 DOI; the 'critical edtech studies' entry is an unnamed bare DOI (Selwyn never named); 'AI and education datafication' is a single 2020 DOI reused course-wide. For a 2026 graduate evaluation course this reads dated and uncredited.",
+    "proposed_change": "Name Selwyn on the critical-edtech entry (the bare DOI 10.4324/9781315670160 is Selwyn, 'Is Technology Good for Education?', Polity/Routledge 2016 — label it 'Selwyn (2016), Is Technology Good for Education?'). Add one 2023-2026 critical-edtech/datafication source: Williamson, Macgilchrist & Potter (2023), 'Re-examining AI, automation and datafication in education' (doi 10.1080/17439884.2023.2167830), and/or Selwyn (2020), 'The datafication of higher education' (doi 10.1080/13562517.2019.1689388), so the anchor is not a lone 2016/2020 pair. Optionally add a current AI-TPACK reference alongside the 2006 TPACK DOI: Ning et al. (2024), 'Teachers' AI-TPACK' (doi 10.3390/su16030978).",
+    "where_to_apply": "01.mdx — '## References' (critical edtech entry; AI/education datafication entry; TPACK entry)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Williamson, Macgilchrist & Potter (2023) Re-examining AI, automation and datafication in education",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "Current (2023) critical-edtech/datafication editorial in Learning, Media and Technology; serves as the recent companion to the lone 2020 datafication DOI."
+     },
+     {
+      "cite": "Selwyn (2020) The datafication of higher education: discussing the promises and problems",
+      "url_or_doi": "https://doi.org/10.1080/13562517.2019.1689388",
+      "finding": "Named Neil Selwyn critical-datafication work; supports replacing the unnamed bare DOI with an explicitly attributed Selwyn entry (the existing 10.4324/9781315670160 is Selwyn's 2016 Polity book 'Is Technology Good for Education?')."
+     },
+     {
+      "cite": "Ning et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Recent AI-TPACK framework extending TPACK to AI; a current optional companion to the 2006 TPACK DOI. (Al-Abdullatif 2024, doi 10.3390/educsci14111209, on AI literacy + intelligent TPACK is an alternative.)"
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The '## Artifact Studio' download link references /downloads/summer2026/cat531-supplement/05-01-evaluation-questions-before-ratings-artifact.md, whose existence and currency should be verified before hardening.",
+    "proposed_change": "No prose change needed: the artifact packet file exists at the linked summer2026 path (verified in both frontend/public/downloads/summer2026/cat531-supplement/ and the built dist/ mirror). Confirm on a content pass that the packet still matches the 'evaluation question above every row / rating column least authoritative' standard from '## Stronger Artifact Standard'; only edit if the packet body is stale.",
+    "where_to_apply": "01.mdx — '## Artifact Studio' download link path (file confirmed present)",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "ALGET repo — public/downloads packet file present",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\public\\downloads\\summer2026\\cat531-supplement\\05-01-evaluation-questions-before-ratings-artifact.md",
+      "finding": "The linked artifact packet exists at the public path (and in the dist/ build mirror), so the Artifact Studio download link is not broken; link currency confirmed."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/05/02",
+  "section_title": "Evidence Claims and Vendor Claims",
+  "dir": "frontend/content/cat531-supplement/05",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section is ABOUT grading evidence quality, yet its own three-weakness hierarchy (no control group, small/self-selected sample, conflicted funder) and the 'pre-post cannot separate tool effect' claim are presented with no citation. The canonical real-world standards that operationalize exactly this judgment for U.S. educators (What Works Clearinghouse evidence standards and the ESSA Tiers of Evidence: strong / moderate / promising / demonstrates-a-rationale) are never named.",
+    "proposed_change": "Add a short 'Where this comes from' note in Core Concept (after the three-weakness list) tying the design checks to two named standards teachers actually meet in district procurement: (1) the WWC Procedures and Standards Handbook v5.0, whose top rating 'Meets WWC Group Design Standards Without Reservations' is reserved for low-attrition RCTs and where only single-case designs may lack a comparison group, which grounds the 'no control group' weakness; and (2) the ESSA four-tier framework (Strong / Moderate / Promising / Demonstrates a Rationale), where Tiers 1-3 require a statistically significant favorable effect and rigor descends with design strength, which grounds the whole weight hierarchy. Add both to References with current citations, replacing the bare DOIs.",
+    "where_to_apply": "02.mdx — Core Concept, after the 'Conflicted funder' bullet (line 32); and References list (lines 149-155)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "What Works Clearinghouse (2022). Procedures and Standards Handbook, Version 5.0 (WWC 2022008). U.S. Dept. of Education, Institute of Education Sciences, NCEE.",
+      "url_or_doi": "https://ies.ed.gov/ncee/wwc/Docs/referenceresources/Final_WWC-HandbookVer5.0-0-508.pdf",
+      "finding": "v5.0 is the current handbook. The highest group-design rating, 'Meets WWC Group Design Standards Without Reservations,' requires a randomized controlled trial with low sample attrition; single-case designs are the only designs without a comparison group eligible for WWC review. This directly operationalizes the section's 'no control group' weakness."
+     },
+     {
+      "cite": "Every Student Succeeds Act / U.S. Dept. of Education ESSA evidence tiers (20 U.S.C. 7801(21)); CA Dept. of Education, 'Evidence-Based Interventions Under the ESSA.'",
+      "url_or_doi": "https://www.cde.ca.gov/re/es/evidence.asp",
+      "finding": "ESSA defines four tiers in descending rigor: Tier 1 Strong (at least one well-designed/well-implemented experimental study, i.e., RCT, with a significant favorable effect), Tier 2 Moderate (quasi-experimental), Tier 3 Promising (correlational with statistical controls), Tier 4 Demonstrates a Rationale (logic model + research base, evaluation underway). Tiers 1-3 require statistically significant effects on student outcomes. This is the standard map for the section's 'evidence weight from design, not headline number.'"
+     },
+     {
+      "cite": "Education Week MarketBrief (2023). 'What Evidence Meets ESSA Standards? Department of Education Releases New Toolkit.'",
+      "url_or_doi": "https://marketbrief.edweek.org/regulation-policy/what-evidence-meets-essa-standards-department-of-education-releases-new-toolkit/2023/05",
+      "finding": "Confirms the four ESSA tiers are the framework districts use in edtech procurement and that federal relief funds required evidence-based interventions, establishing that this standard is one teachers encounter in real procurement decisions."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are the audit-flagged thin/dated set: TPACK -> Wikipedia + 2006 DOI; 'critical edtech studies' -> an unnamed 2016 Routledge DOI with Selwyn never named in-text; datafication -> the single 2020 DOI reused course-wide. For a 2026 course teaching evidence scrutiny, the reference list models the weakest sourcing. Current vendor-evidence-scrutiny touchstones (EdTech Evidence Exchange / EdTech Genome, Digital Promise efficacy certification, ESSA-tier scrutiny) are absent.",
+    "proposed_change": "Name Neil Selwyn in-text where 'critical edtech studies' first appears (Core Concept, line 42), citing a current Selwyn work. Refresh the datafication anchor with Williamson (2023) 'Re-examining AI, automation and datafication in education,' an on-point 2023 source. Add at least one current edtech-efficacy-scrutiny source directly on this section's topic: the EdTech Evidence Exchange (EdTech Genome Project) and/or Digital Promise's ESSA-Tier-3 / Research-Based product certifications. De-duplicate from the course-wide boilerplate reference block.",
+    "where_to_apply": "02.mdx — 'Critical edtech studies' mention in Core Concept (line 42) and References list (lines 149-155)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Selwyn, N. (2021). Education and Technology: Key Issues and Debates (3rd ed.). Bloomsbury.",
+      "url_or_doi": "https://doi.org/10.5040/9781350145573",
+      "finding": "Selwyn is the standard named scholar for 'critical edtech studies'; his Education and Technology (2021, 215 cites; 2017 ed. 313 cites) systematically raises critical questions about overstated technology benefits, matching the section's 'incentive to overstate' point and letting the text name an author instead of a bare 2016 Routledge DOI."
+     },
+     {
+      "cite": "Williamson, B. (2023). Re-examining AI, automation and datafication in education. Learning, Media and Technology, 48(1).",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "A current (2023, 136 cites) critical-edtech/datafication source from the same journal lineage as the reused 2020 DOI; directly addresses AI 'personalization' and datafication claims, refreshing the section's datafication anchor with a 2022-2026 reference."
+     },
+     {
+      "cite": "Digital Promise — Evidence-Based Edtech (ESSA Tier 3) and Research-Based Product Certifications; EdTech Evidence Exchange / EdTech Genome Project.",
+      "url_or_doi": "https://digitalpromise.org/product-certifications/evidence-based-edtech-essa-tier-3/",
+      "finding": "Digital Promise's Evidence-Based Edtech certification is explicitly aligned to ESSA Tier 3 and requires a well-designed quantitative study plus a logic model backed by at least five empirical citations; the EdTech Evidence Exchange (EdTech Genome, now under InnovateEDU) is the field's named effort to scrutinize edtech efficacy claims. Both are current, on-topic touchstones the section currently omits."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/05/03",
+  "section_title": "Usability, Accessibility, and Equity",
+  "dir": "frontend/content/cat531-supplement/05",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's central accessibility claims are uncited. The practice problem (ai_boundary item) and Core Concept assert that automated audits detect a minority of accessibility barriers and that WCAG conformance on the shell does not equal conformance on the core task, but no source backs these strong, decision-driving claims. The 'automated tools catch only some barriers' figure (often cited around 30-40%) is exactly the kind of claim a peer would want sourced.",
+    "proposed_change": "Add a one-line 'Recent Evidence' callout under Core Concept near the badge-mismatch paragraph (line 38-40) citing (a) WCAG 2.2 (W3C, 2023) as the current Recommendation rather than generic 'WCAG AA', and (b) the well-established finding that automated tooling detects only roughly 30% of WCAG/accessibility issues, so 'no issues found' from a scanner is not a clearance. Anchor the ai_boundary practice claim ('automated audits detect a minority of accessibility barriers') to this. Add citations to the References list. Confirmed facts: WCAG 2.2 became a W3C Recommendation on 5 Oct 2023 (updated 12 Dec 2024; also ISO/IEC 40500:2025); W3C/WebAIM guidance establishes that automated tools catch ~30% of issues, and the WebAIM Million only counts automatically detectable failures, so true conformance is lower than the reported figures.",
+    "where_to_apply": "03.mdx — Core Concept (badge-mismatch paragraph, lines 38-40) + References (lines 153-158); reinforces practice item cat531_supplement_5_3_..._ai_boundary",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "W3C (2023). Web Content Accessibility Guidelines (WCAG) 2.2 — W3C Recommendation",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/",
+      "finding": "WCAG 2.2 was published as a W3C Recommendation on 5 October 2023 (updated 12 December 2024) and is the current version; W3C encourages using the latest version. This makes WCAG 2.2 the appropriate current standard to cite rather than generic 'WCAG AA'."
+     },
+     {
+      "cite": "WebAIM (2026). The WebAIM Million — annual accessibility analysis of the top 1,000,000 home pages",
+      "url_or_doi": "https://webaim.org/projects/million/",
+      "finding": "WebAIM evaluates only automatically detectable WCAG failures and notes that not all conformance failures can be detected automatically, so the true rate of WCAG 2 A/AA conformance is certainly lower than the reported (~4%) figure. Per W3C guidance, automated tools catch roughly 30% of accessibility issues, so an automated 'no issues found' is not a clearance and a screen-reader/keyboard task walkthrough is required."
+     },
+     {
+      "cite": "Alsaeedi, A. (2020). Comparing Web Accessibility Evaluation Tools and Evaluating the Accessibility of Webpages. Information, 11(1), 40",
+      "url_or_doi": "https://doi.org/10.3390/info11010040",
+      "finding": "Peer-reviewed comparison of automated accessibility evaluation tools (WAVE, SiteImprove) against WCAG showing tools differ in and are limited in the barriers they detect, supporting the claim that automated audits cover only part of conformance and must be paired with manual testing."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section invokes federal-equity-adjacent concepts (home internet, device ownership, data plans, minors using assistive tech) but cites NO specific statutes or current standards. For an equity/accessibility section, ADA Title II / Section 504 are directly on-point and absent. The single 2020 datafication DOI (line 40, 157) is reused verbatim across all sections and is dated.",
+    "proposed_change": "Add a short callout after the Core Concept anchors paragraph (line 40) connecting the accessibility check to the legal floor: the 2024 DOJ ADA Title II final rule adopting WCAG 2.1 AA for state/local government web content and mobile apps, which explicitly covers public K-12 schools, community colleges, and public universities. This makes accessibility a compliance obligation, not just good practice, and gives the badge-mismatch trap teeth. Note current compliance timeline. Also refresh the aging 2020 datafication anchor with a 2024 critical-edtech/AI-literacy-in-teacher-education source. Confirmed facts: DOJ issued the Title II final rule on 24 April 2024 setting WCAG 2.1 AA as the technical standard; public schools/colleges/universities are covered entities; a 2026 interim final rule extended compliance to 26 April 2027 (population >= 50,000) and 26 April 2028 (smaller entities / special districts).",
+    "where_to_apply": "03.mdx — new callout after Core Concept anchors paragraph (line 40); update References (lines 155-158)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "U.S. Department of Justice / ADA.gov (2024). Fact Sheet: New Rule on the Accessibility of Web Content and Mobile Apps Provided by State and Local Governments",
+      "url_or_doi": "https://www.ada.gov/resources/2024-03-08-web-rule/",
+      "finding": "The DOJ ADA Title II final rule (issued April 24, 2024) sets WCAG 2.1 Level AA as the technical standard for web content and mobile apps of state and local government entities; public schools, community colleges, and public universities are among the covered entities, making accessibility a legal compliance floor for most public K-12."
+     },
+     {
+      "cite": "Federal Register (2026). Extension of Compliance Dates — Accessibility of Web Information and Services of State and Local Government Entities (Interim Final Rule, April 20, 2026)",
+      "url_or_doi": "https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web",
+      "finding": "Compliance dates were extended: entities with population >= 50,000 must comply by April 26, 2027; entities under 50,000 and special districts by April 26, 2028. Current as of June 2026, so the section should cite the extended timeline rather than the original 2026/2027 dates."
+     },
+     {
+      "cite": "Sperling, K. et al. (2024). In search of artificial intelligence (AI) literacy in teacher education: A scoping review. Computers and Education Open, 5, 100169",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169",
+      "finding": "Recent (2024), well-cited peer-reviewed scoping review on AI/datafication-adjacent teacher knowledge; serviceable as a 2023-2026 critical-edtech anchor to replace sole reliance on the 2020 datafication DOI. (Note: did not locate a single best-fit 2024-2026 'datafication of education' critical-data-studies article via OpenAlex; this is the strongest current teacher-education-facing substitute, so the datafication-specific refresh is partially unverified.)"
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The TPACK anchor (lines 40, 134, 155) is Wikipedia + the 2006 Mishra & Koehler DOI. Fine as canonical, but for a 2026 section whose accessibility argument is about whether the tech fits THIS core task for THESE students, current AI-TPACK / generative-AI teacher-literacy frameworks (2023-2026) would strengthen the 'TPACK keeps the accessibility test focused on the core learning task' claim.",
+    "proposed_change": "Optionally add a brief current generative-AI teacher-competency / AI-literacy-in-teacher-education citation alongside the 2006 anchor in References (line 155), so the TPACK reference is not solely Wikipedia + a 20-year-old DOI. Low priority since 2006 is legitimately canonical. Confirmed: recent well-cited peer-reviewed sources exist (Sperling 2024 scoping review on AI literacy in teacher education; Casal-Otero 2023 K-12 AI literacy review calling for a competency framework).",
+    "where_to_apply": "03.mdx — References (line 155)",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Sperling, K. et al. (2024). In search of artificial intelligence (AI) literacy in teacher education: A scoping review. Computers and Education Open, 5, 100169",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169",
+      "finding": "Recent (2024), well-cited (300+) peer-reviewed scoping review conceptualizing AI literacy relative to teacher professional knowledge (episteme/techne/phronesis); a current complement to the 2006 TPACK anchor for the 'keep the test on the core teaching task' argument."
+     },
+     {
+      "cite": "Casal-Otero, L. et al. (2023). AI literacy in K-12: a systematic literature review. International Journal of STEM Education, 10, 29",
+      "url_or_doi": "https://doi.org/10.1186/s40594-023-00418-7",
+      "finding": "Highly cited (500+) 2023 review noting that a competency framework is required to guide AI integration; supports adding a current AI-teacher-knowledge anchor beside the 2006 TPACK DOI."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/05/04",
+  "section_title": "Cost and Sustainability",
+  "dir": "frontend/content/cat531-supplement/05",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's strongest and most distinctive move is the 'exit check' / data-portability / 'can it strand your students' work' argument, which appears in Why-This-Matters, Core Concept, Decision Rule, Transfer Case, and Final Check. Yet there is no legal or standards anchor for student-data export, retention, or ownership. The only datafication citation is the reused 2020 DOI, which speaks to monetization, not portability/retention rights.",
+    "proposed_change": "Add a one-line 'Recent Evidence' anchor (and a References entry) grounding the data-portability/exit argument in current standards. Verified facts to cite: (1) FERPA vendor obligations: the U.S. Dept. of Education Student Privacy Policy Office guidance on third-party service providers (school-official exception requires the school to retain direct control, including return/destruction of data on contract end); DoE released updated FERPA resources in 2025. (2) The FTC's amended COPPA Rule (finalized Jan 16, 2025; effective June 23, 2025; full compliance by April 22, 2026) adds explicit data-retention limits (no indefinite retention; retain only as long as reasonably necessary) and tightens monetization of children's data, and notably did NOT add an ed-tech school-authorization exemption, so ed-tech operators remain directly regulated. Add one current source so the 'get your data back' claim is evidence-grounded rather than asserted.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\05\\04.mdx -> Core Concept 'Data portability' bullet (line 35) and/or References list (lines 152-157)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Federal Trade Commission (2025) FTC Finalizes Changes to Children's Privacy Rule Limiting Companies' Ability to Monetize Kids' Data (amended COPPA Rule)",
+      "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+      "finding": "First COPPA Rule amendment since 2013, finalized Jan 16 2025, effective June 23 2025 (full compliance Apr 22 2026): adds data-retention limits (operators may not retain children's data indefinitely, only as long as reasonably necessary), restricts monetization/targeted advertising, and declines to add an ed-tech school-authorization exemption, so ed-tech vendors remain directly regulated."
+     },
+     {
+      "cite": "U.S. Department of Education, Student Privacy Policy Office, Responsibilities of Third-Party Service Providers under FERPA (Vendor FAQ); 2025 FERPA resource update",
+      "url_or_doi": "https://studentprivacy.ed.gov/sites/default/files/resource_document/file/Vendor%20FAQ.pdf",
+      "finding": "Under FERPA's school-official exception a school must retain direct control of student data held by a vendor, including the right to return/destruction of records when the contract ends; ED issued updated FERPA guidance in 2025 clarifying third-party data handling, supporting the contractual data-export-on-exit standard the section teaches."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "TPACK is anchored only to Wikipedia + the 2006 Mishra & Koehler DOI, and the 'critical edtech studies' reference is an unnamed DOI (Selwyn not named in-text). For a 2026 graduate course these are dated/under-attributed.",
+    "proposed_change": "Confirmed under-attribution: 04.mdx Core Concept (line 45) cites 'Critical edtech studies' with no author and References (line 155) lists only a bare Routledge DOI (10.4324/9781315670160). Name Neil Selwyn explicitly in-text and in References as the critical-edtech anchor for labor/lock-in costs (his book-length critical work, e.g. Distrusting Educational Technology, Routledge; and his data/datafication scholarship). Add one current (2023-2026) AI-TPACK / generative-AI teacher-literacy reference so the cost-vs-learning-value argument is anchored to a current source rather than only a 2006 DOI + Wikipedia. Verified candidates: Ning et al. (2024) Teachers' AI-TPACK and Al-Abdullatif (2024) modeling generative-AI acceptance via AI literacy + intelligent TPACK.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\05\\04.mdx -> Core Concept three-anchors paragraph (line 45) and References list (lines 152-157)",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "Ning, Y. et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability 16(3), 978.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Develops a seven-component AI-TPACK framework and models the interconnections among teachers' AI knowledge elements via SEM, providing a current (2024) AI-extended TPACK anchor to refresh the dated 2006-only TPACK citation."
+     },
+     {
+      "cite": "Al-Abdullatif, A. M. (2024) Modeling Teachers' Acceptance of Generative Artificial Intelligence Use in Higher Education. Education Sciences 14(11), 1209.",
+      "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+      "finding": "Empirically links AI literacy, intelligent TPACK, and perceived trust to faculty adoption of generative AI, supporting a current cost-vs-learning-value teacher-literacy framing."
+     },
+     {
+      "cite": "Selwyn, N. (2014) Distrusting Educational Technology: Critical Questions for Changing Times. Routledge.",
+      "url_or_doi": "https://doi.org/10.4324/9781315886350",
+      "finding": "Canonical critical-edtech work by the author who should be named in-text for the section's 'labor and lock-in vendors externalize onto schools and teachers' claim; Selwyn's broader datafication scholarship (e.g., 'Data entry: towards the critical study of digital data and education', 2014, doi 10.1080/17439884.2014.921628) further grounds the hidden-cost argument."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/05/05",
+  "section_title": "Classroom Fit Matrix",
+  "dir": "frontend/content/cat531-supplement/05",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin and Wikipedia-anchored: TPACK -> Wikipedia + 2006 DOI; 'critical edtech studies' is a bare DOI (10.4324/9781315670160) with no author/title; datafication is the single reused 2020 DOI (10.1080/17439884.2020.1686017); 'teacher professional judgment' is a bare DOI with no name. A reader cannot identify who is cited.",
+    "proposed_change": "Name the critical-edtech source with author/title/year rather than a bare DOI. NOTE: the bare DOI 10.4324/9781315670160 did NOT resolve (HTTP 404) and could not be confirmed as Selwyn; do not assert that attribution. Instead anchor to a confirmed Selwyn critical-edtech work (e.g., Selwyn, 'Is Technology Good for Education?', Polity, 2016) and ADD at least one 2023-2026 critical-edtech / AI-datafication source so this is not the 2020 DOI reused across all 64 sections, e.g. Williamson, Macgilchrist & Potter (2023) 'Re-examining AI, automation and datafication in education' (Learning, Media and Technology). Also add a current AI-TPACK / generative-AI teacher-literacy framework (2023-2026) alongside the 2006 Mishra & Koehler TPACK reference, since TPACK is used to justify weight selection here, e.g. Ning et al. (2024) 'Teachers' AI-TPACK' or Al-Abdullatif (2024) 'intelligent TPACK'.",
+    "where_to_apply": "05.mdx References (lines 155-158); inline anchors at lines 46 and 134",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Williamson, B., Macgilchrist, F., & Potter, J. (2023). Re-examining AI, automation and datafication in education. Learning, Media and Technology.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "Current (2023) critical-edtech / datafication editorial from the same journal family as the existing 2020 datafication DOI; suitable to refresh the reused 2020 anchor. 136 citations."
+     },
+     {
+      "cite": "Ning, Y. et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability, 16(3), 978.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Recent (2024) AI-TPACK framework extending TPACK to generative-AI teaching knowledge; pairs with the 2006 TPACK reference to support the section's use of TPACK for weight selection."
+     },
+     {
+      "cite": "Al-Abdullatif, A. M. (2024). Modeling Teachers' Acceptance of Generative AI Use in Higher Education: The Role of AI Literacy, Intelligent TPACK, and Perceived Trust. Education Sciences, 14(11), 1209.",
+      "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+      "finding": "2024 'intelligent TPACK' construct for generative-AI teacher adoption; alternative recent AI-TPACK anchor. Note Selwyn DOI 10.4324/9781315670160 returned 404 and could not be confirmed; recommend Selwyn (2016) 'Is Technology Good for Education?' (Polity, ISBN 9780745696478) as a verifiable critical-edtech attribution."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/05/06",
+  "section_title": "Adoption Recommendation",
+  "dir": "frontend/content/cat531-supplement/05",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's gating condition and reversal trigger turn entirely on an unsigned data-processing agreement for an adaptive-math platform used by grades 6-8 minors, but the MDX (06.mdx lines 30-31, 92) cites NO statute. For a graduate teacher-ed course stressing FERPA/COPPA and student-data retention/opt-out, the privacy condition needs a real legal anchor explaining WHY an unsigned DPA is a genuine gate.",
+    "proposed_change": "Add a 1-2 sentence 'Legal anchor' note after the Condition bullet (line 30) or as a callout after line 35: a signed data-processing/DPA agreement is the written contract that confers FERPA's 'school official' status under the direct-control test (34 CFR 99.31(a)(1)(i)(B)), so without it the vendor has no lawful basis to receive student PII; for under-13 components COPPA's verifiable-parental-consent obligations also apply (amended FTC COPPA Rule effective June 23, 2025, full compliance by April 22, 2026). Cite the US ED AI Toolkit (Oct 2024) as current school-AI guidance tying adoption to FERPA/COPPA + opt-out. Add these to the References list (lines 148-153). Keep to 1-2 sentences per the NOVELTY brief.",
+    "where_to_apply": "06.mdx Core Concept Condition bullet (line 30) or callout after line 35 + References (lines 148-153)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "34 CFR § 99.31 (FERPA), school-official/contractor exception; U.S. Dept. of Education Protecting Student Privacy / Vendor FAQ",
+      "url_or_doi": "https://www.law.cornell.edu/cfr/text/34/99.31 ; https://studentprivacy.ed.gov/faq/must-school-have-written-agreement-or-contract-community-based-organization-which-it-non",
+      "finding": "Under 99.31(a)(1)(i)(B) an outside party (edtech vendor) qualifies as a 'school official' permitted to receive student PII without consent only if the school retains 'direct control' over the data; a written contract is the mechanism that establishes that direct control and binds the vendor to use PII only for authorized purposes. An unsigned DPA leaves no contracted school-official status, making it a genuine legal gate."
+     },
+     {
+      "cite": "FTC, Children's Online Privacy Protection Rule (COPPA) final amended rule (2025)",
+      "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+      "finding": "FTC finalized amended COPPA Rule Jan 2025, effective June 23, 2025 with full compliance required by April 22, 2026; it tightens verifiable parental consent and data-monetization limits. FTC declined ed-tech-specific carve-outs pending DOE FERPA updates but continues to enforce COPPA in the ed-tech context, so under-13 platform components carry COPPA obligations."
+     },
+     {
+      "cite": "U.S. Department of Education, Empowering Education Leaders: A Toolkit for Safe, Ethical, and Equitable AI Integration (Oct 2024)",
+      "url_or_doi": "https://www.k12dive.com/news/education-department-ai-guidance-school-leaders/731038/",
+      "finding": "Federal non-regulatory K-12 AI guidance (Oct 2024) directs leaders making AI-adoption decisions to comply with FERPA and COPPA, safeguard student privacy, and give students/parents opt-out opportunities; current 2024-2026 anchor that an unresolved data-handling gap must gate AI adoption."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "References (06.mdx lines 148-153) are thin, Wikipedia/old-DOI anchored, and partly mislabeled: TPACK -> Wikipedia + 2006 DOI; 'critical edtech studies' -> unnamed Routledge DOI (Selwyn not named); 'teacher professional judgment' -> DOI 10.1177/002205741319300304; datafication -> single 2020 DOI reused course-wide. No 2023-2026 anchor for the section's evidence-drives-scope/conditions claim.",
+    "proposed_change": "Name authors: Mishra & Koehler (2006) for 10.1111/j.1467-9620.2006.00684.x (confirmed) and Selwyn (2016), Is Technology Good for Education? for the Routledge DOI 10.4324/9781315670160 (confirmed). FIX the mislabeled 'teacher professional judgment' entry: DOI 10.1177/002205741319300304 actually resolves to Mecoli (2013), an article on the PCK theoretical framework in preservice teacher education, NOT teacher professional judgment, so relabel it or replace it. Add a 2023-2026 AI-in-education governance anchor such as Chan (2023), A comprehensive AI policy education framework, whose governance dimension names privacy/security/accountability and supports the evidence-should-drive-conditions claim.",
+    "where_to_apply": "06.mdx References (lines 148-153) and inline anchors at lines 35, 51, 129",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra, P. & Koehler, M. J. (2006). Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge. Teachers College Record, 108(6), 1017-1054.",
+      "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+      "finding": "OpenAlex confirms DOI 10.1111/j.1467-9620.2006.00684.x is the canonical Mishra & Koehler 2006 TPACK framework article; the reference list should name these authors rather than only linking Wikipedia."
+     },
+     {
+      "cite": "Mecoli, S. (2013). The Influence of the Pedagogical Content Knowledge Theoretical Framework on Research on Preservice Teacher Education. Journal of Education.",
+      "url_or_doi": "https://doi.org/10.1177/002205741319300304",
+      "finding": "The DOI labeled 'teacher professional judgment' in the reference list actually resolves to Mecoli (2013), an article about the PCK theoretical framework, not teacher professional judgment. The label is incorrect and must be reconciled or replaced."
+     },
+     {
+      "cite": "Chan, C. K. Y. (2023). A comprehensive AI policy education framework for university teaching and learning. International Journal of Educational Technology in Higher Education, 20:38.",
+      "url_or_doi": "https://doi.org/10.1186/s41239-023-00408-3",
+      "finding": "Well-cited 2023 governance-oriented AI-in-education source proposing an Ecological Education Policy Framework whose governance dimension addresses privacy, security, and accountability; a current anchor for the section's claim that evidence and unresolved risk should drive adoption scope and conditions. (Selwyn 2016, Is Technology Good for Education?, Polity/Routledge, confirmed as the source behind DOI 10.4324/9781315670160.)"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/05/07",
+  "section_title": "Peer Review of Evaluation Briefs",
+  "dir": "frontend/content/cat531-supplement/05",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "Citations are weak: TPACK is a Wikipedia link + 2006 DOI; 'critical edtech studies' is a bare Routledge ebook DOI (10.4324/9781315670160) with no author in prose; the datafication anchor is a single 2020 DOI reused across all sections; 'teacher professional judgment' is a 2013 DOI with no author/title. Selwyn is never named in-text even though the course thesis leans on him. Nothing is anchored to 2024-2026.",
+    "proposed_change": "Name Selwyn in prose where 'critical edtech studies' appears (Core Concept line 36, Adaptive Support line 131, Worked Example line 48). Replace the bare anchors with labeled author-year references: Selwyn, N. (2016), Is Technology Good for Education? (Polity) for the critical-edtech anchor, and Perrotta & Selwyn (2019/2020) for the datafication DOI already present (which IS that article, currently unlabeled). Add one 2024 source so the datafication/equity-metric anchor is not the same DOI as every section — recommend Khalil et al. (2023) on learning analytics inclusiveness/equity. Keep TPACK 2006 as canonical but add an AI-TPACK citation (Ning et al., 2024) since the brief discusses AI tools.",
+    "where_to_apply": "07.mdx — References list (lines 147-152) + in-text mentions in Core Concept (line 36), Worked Example (line 48), and Adaptive Support (line 131)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Selwyn, N. (2016). Is Technology Good for Education? Cambridge: Polity Press.",
+      "finding": "Confirmed: the canonical critical-edtech monograph the course thesis leans on (ISBN-13 978-0-7456-9646-1 hardcover / 978-0-7456-9647-8 paperback, Polity, 2016). It is a Polity print book with no Routledge DOI, so the existing bare DOI 10.4324/9781315670160 does NOT correspond to it (that 10.4324 prefix is a Routledge ebook and is unresolved/unconfirmed). The reference should be a labeled author-year book citation, not the bare Routledge DOI.",
+      "url_or_doi": "https://www.politybooks.com/bookdetail?book_slug=is-technology-good-for-education--9780745696461"
+     },
+     {
+      "cite": "Perrotta, C., & Selwyn, N. (2019). Deep learning goes to school: toward a relational understanding of AI in education. Learning, Media and Technology.",
+      "finding": "The datafication anchor DOI already in the References (10.1080/17439884.2020.1686017) resolves to this Perrotta & Selwyn article — so Selwyn is already cited but unnamed. The fix is to label this reference with its authors/title rather than leaving it as a bare DOI, which also lets Selwyn be named in prose without adding a new source.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017"
+     },
+     {
+      "cite": "Ning, Y., et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability, 16(3), 978.",
+      "finding": "Recent (2024) extension of TPACK to AI — the AI-TPACK framework integrating AI technology with pedagogical and content knowledge — providing a current AI-TPACK citation to pair with the 2006 canonical TPACK source for a brief that discusses AI tools. Companion recent option: Khalil, M., et al. (2023), 'Learning analytics in support of inclusiveness and disabled students: a systematic review' (doi.org/10.1007/s12528-023-09363-4) for a current data-driven equity/learning-analytics validity anchor distinct from the reused datafication DOI.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978"
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/05/08",
+  "section_title": "Module 5 Evaluation Studio",
+  "dir": "frontend/content/cat531-supplement/05",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Internal inconsistency about how many sub-sections the capstone assembles. 'Why This Section Matters' frames synthesis of 'the seven moves of this module' and 'seven sections,' but the Opening Case, Worked Example ('pulling the six earlier sections together'), and branching scenario consistently say SIX sections (question, evidence vs vendor claims, usability+accessibility, cost, fit matrix, recommendation). The Decision Rule and checks then revert to 'seven correct sections.' A learner counting the listed parts gets six.",
+    "proposed_change": "Adopt fix (b): standardize on SEVEN everywhere and add the missing seventh named part to every enumeration. The directory confirms Module 5 = sections 01-08, with 05/08 the capstone and 05/07 the prereq, so there ARE seven prior studio moves and 'seven' is the accurate count. The 'Why This Section Matters' paragraph already names all seven moves: (1) writing the question, (2) separating evidence from vendor claims, (3) splitting usability/accessibility/equity, (4) costing honestly, (5) gating the fit matrix, (6) conditioning the recommendation, (7) surviving peer review. The six-part enumerations in Opening Case, Worked Example step 1, branching-scenario 'start' node, and Textbook Walkthrough omit the seventh move (peer review / 'survive review'). Add it to each enumeration so the named list = seven, matching 'seven moves'/'seven sections'/'seven correct sections.' Do NOT downgrade to six.",
+    "where_to_apply": "08.mdx — Opening Case (line 20 six-item list), Worked Example step 1 (line 58 'lists six sections'), branching-scenario start node (line 67 'Your six sections each read fine'), Textbook Walkthrough (line 89 'Lay the six sections'); leave 'seven moves'/'seven sections' (line 7) and 'seven correct sections' (lines 40, 79) as-is",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "ALGET content directory — cat531-supplement/05/",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\05",
+      "finding": "Module 5 contains sections 01-08; 05/08 is the capstone studio and 08.meta.json lists prereq 05/07. Seven prior studio moves (01-07) precede the capstone, so 'seven' is the accurate count and the six-item enumerations are the error (missing the peer-review/'survive review' move)."
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The section turns on an equity gate driven by device-dependent exclusion of 5 shared-device students, yet no privacy/access statute or critical-edtech source is named in-prose. The 'AI and education datafication' anchor is described as something that 'can introduce a late gate, a data-handling fact from one section that overrides preferences,' but no concrete data-handling fact (FERPA/COPPA, vendor retention, third-party processor) is ever instantiated.",
+    "proposed_change": "Add a short 'Recent Evidence' callout before 'Decision Rule' (or two sentences in Core Concept at the datafication anchor) instantiating a concrete late-gate fact tied to the existing example: if Tool A's required personal account shares children's behavioral data with third parties for targeted advertising, the 2025 amended COPPA Rule now requires SEPARATE verifiable parental consent for that disclosure and bars indefinite retention — and for the school-official sharing path, FERPA (20 U.S.C. 1232g) requires the district keep direct contractual control and bar onward disclosure. Phrase as a stacked gate: 'device dependence excludes 5 students AND, if Tool A's account-creation shares behavioral data with third parties, a COPPA/FERPA data-handling gate stacks on the equity gate.' Add the citations below to References.",
+    "where_to_apply": "08.mdx — Core Concept paragraph at line 34 ('AI and education datafication can introduce a late gate') + new 'Recent Evidence' callout before 'Decision Rule' (line 69); add FTC COPPA 2025 and ED FERPA vendor citations to 'References' (lines 149-154)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "FTC (2025), Children's Online Privacy Protection Rule — Final Amendments",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "First major COPPA update since 2013: effective June 23, 2025, full compliance by April 22, 2026. Requires SEPARATE verifiable parental consent before disclosing a child's personal information to third parties for targeted advertising; bars indefinite data retention (retain only as long as reasonably necessary); expands 'personal information' to include biometric and government identifiers — a concrete late data-handling gate for under-13 students."
+     },
+     {
+      "cite": "U.S. Dept. of Education, Student Privacy Policy Office — Responsibilities of Third-Party Service Providers under FERPA",
+      "url_or_doi": "https://studentprivacy.ed.gov/resources/responsibilities-third-party-service-providers-under-ferpa",
+      "finding": "Under FERPA (20 U.S.C. 1232g) the 'school official' exception lets a district share education records with an edtech vendor without parental consent only if the vendor performs an institutional service, has a legitimate educational interest, is under the school's direct control via contract, and is barred from further disclosure — a concrete data-handling constraint a vendor's account/data-sharing model can trip."
+     },
+     {
+      "cite": "Mouta, A. et al. (2023), Uncovering Blind Spots in Education Ethics: Insights from a Systematic Literature Review on Artificial Intelligence in Education, Int. J. of AI in Education",
+      "url_or_doi": "https://doi.org/10.1007/s40593-023-00384-9",
+      "finding": "Systematic review documenting that enthusiasm for AIED can overshadow ethical/equity challenges including data handling — supports framing the datafication anchor as a source of overriding late gates rather than a footnote."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin/dated: TPACK is Wikipedia + a 2006 DOI; 'critical edtech studies' is an unnamed Routledge DOI (Selwyn never named in prose despite being the course's critical-edtech anchor); 'AI and education datafication' is a single 2020 DOI reused verbatim across all 64 sections.",
+    "proposed_change": "Name authors in-prose and refresh. (1) Attribute critical edtech studies to Selwyn explicitly: the existing Routledge DOI 10.4324/9781315670160 corresponds to Selwyn's critical-edtech monograph line ('Distrusting Educational Technology', Routledge, 2014/2016); change the in-prose 'Critical edtech studies' (line 34) to '[Selwyn's] critical edtech studies' and keep the DOI. Add one 2024 AI-equity/AIED-ethics source (Mouta 2023 or an inclusion review). (2) For TPACK, keep canonical Mishra & Koehler 2006 but add a current AI-TPACK reference since the brief now reasons about an AI tool — Ning et al. (2024) 'Teachers' AI-TPACK' is a clean match. (3) Refresh the datafication anchor with a post-2020 source. Keep the four reused entries differentiated from sibling sections.",
+    "where_to_apply": "08.mdx — Core Concept three-anchors paragraph (line 34) and 'References' (lines 149-154): name Selwyn in-prose, add AI-TPACK 2024 entry alongside the 2006 DOI, add a post-2020 datafication/AI-equity entry",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Selwyn, N. — critical educational technology scholarship (e.g., 'Data entry: towards the critical study of digital data and education', Learning, Media and Technology, 2014; 'Distrusting Educational Technology', Routledge)",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2014.921628",
+      "finding": "OpenAlex confirms Selwyn is the canonical critical-edtech author behind the course anchor and the Routledge 10.4324/... critical-edtech monograph line; his work explicitly frames data/datafication and equity tensions, supporting in-prose attribution to Selwyn rather than an unnamed Routledge DOI."
+     },
+     {
+      "cite": "Ning, Y. et al. (2024), Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements, Sustainability 16(3):978",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Current (2024) framework extending TPACK to a seven-component 'AI-TPACK' for teachers' AI-enhanced pedagogy — an appropriate post-2006 companion to Mishra & Koehler now that the brief reasons about an AI tool."
+     },
+     {
+      "cite": "Al-Abdullatif, A. M. (2024), Modeling Teachers' Acceptance of Generative AI Use in Higher Education: AI Literacy, Intelligent TPACK, and Perceived Trust, Education Sciences 14(11):1209",
+      "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+      "finding": "2024 generative-AI teacher-knowledge study (Intelligent TPACK + AI literacy + trust) — alternative/supplementary current AI-TPACK citation for the three-anchors refresh."
+     }
+    ]
+   }
+  ]
+ }
+]

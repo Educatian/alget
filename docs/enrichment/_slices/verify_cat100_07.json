@@ -1,0 +1,19 @@
+[
+ {
+  "section_key": "cat100/07/07",
+  "section_title": "Personal Workflow Audit",
+  "dir": "frontend/content/cat100-supplement/07",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Internal arithmetic contradiction on the load-bearing weekly-cost formula. The MDX consistently uses 5 weekdays = 25 min/week (Core Concept line 30, inline-check line 40, Worked Example table line 49-56, step-reveal line 74, Stronger Artifact line 117). But practice #2 (cat100_supplement_7_7_personal_workflow_audit_annotation_signal) explanation in 07.practice.json line 38 says '5 min daily is about 35 min a week' (5 x 7 days). A 25-vs-35 discrepancy between body and assessment undermines the worked example.",
+    "proposed_change": "Edit 07.practice.json line 38 explanation to match the MDX convention: change '5 min daily is about 35 min a week and grows; the 40-min task happens once a term.' to '5 min daily is about 25 min a week (5 weekdays), far more than a 40-minute task done once a term (~3 min/week).' Optionally add a one-line note in MDX Core Concept clarifying 'daily means the ~5 school days you actually do it.'",
+    "where_to_apply": "07.practice.json field 'explanation' of cat100_supplement_7_7_personal_workflow_audit_annotation_signal (line 38); cross-checked against 07.mdx Core Concept (line 30) and Worked Example (lines 49-56)",
+    "priority": "high",
+    "sources": [],
+    "verified": "unverified"
+   }
+  ]
+ }
+]

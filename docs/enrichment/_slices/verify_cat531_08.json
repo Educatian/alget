@@ -1,0 +1,65 @@
+[
+ {
+  "section_key": "cat531/08/03",
+  "section_title": "Ethobot Setup and Debrief",
+  "dir": "frontend/content/cat531-supplement/08",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Assistant-name inconsistency within the section. The whole section is built around 'Ethobot' (course context names it 'Ethobot 3.2'), but the 'Stronger Artifact Standard' block tells students to 'ask BigAL to compare your debrief against an exemplar.' BigAL is the assistant named in 04/05 artifact copy, not the Ethobot-debrief flow. Within one section a student is told to debrief Ethobot transcripts but invoke a differently-named assistant (BigAL) for revision support. This is the exact Ethobot/BigAL branding tension flagged in the course currency-watch.",
+    "proposed_change": "Reconcile the assistant name. Either (a) replace 'ask BigAL' with the section's own revision-support assistant name consistent with the Adaptive Support block (which references no named assistant, only ALGET), or (b) if BigAL is the canonical course-wide revision companion, add one clause distinguishing roles: Ethobot = the in-class ethical-dialogue provocateur students debrief; BigAL = the revision-coaching assistant. Pick one and apply consistently so a single section does not name two assistants without explaining their different roles.",
+    "needs_research": true,
+    "where_to_apply": "03.mdx — 'Stronger Artifact Standard' section, sentence beginning 'annotate the gap and ask BigAL to compare your debrief'. Cross-check against live CAT 531 syllabus and 04/05 to confirm canonical names.",
+    "search_terms": [
+     "CAT 531 syllabus Ethobot BigAL assistant name",
+     "ALGET CAT531 revision assistant naming"
+    ],
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/08/05",
+  "section_title": "Discussion Prompts by Module",
+  "dir": "frontend/content/cat531-supplement/08",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin and Wikipedia/legacy-DOI anchored, matching the repo-wide pattern. TPACK links to Wikipedia + the 2006 Mishra & Koehler DOI; 'critical edtech studies' is an unnamed 9781315670160 DOI (Selwyn never named in-prose here); 'AI and education datafication' is the single reused 2020 DOI (10.1080/17439884.2020.1686017). For a 2026 graduate course these are dated and impersonal. Selwyn should be named in prose, and a current TPACK-for-AI / generative-AI teacher-literacy framework would modernize the 'anchor' set students are told to cite.",
+    "proposed_change": "Name Selwyn explicitly in the Core Concept where 'critical edtech studies' is introduced and in References. Refresh the datafication anchor with a 2023-2026 source on AI/datafication in schools, and add one current AI-TPACK / generative-AI teacher-literacy reference so the 'one course anchor' menu students cite is not frozen at 2006/2016/2020.",
+    "needs_research": true,
+    "search_terms": [
+     "Selwyn critical edtech 2023 2024 datafication schools",
+     "AI-TPACK generative AI teacher literacy framework 2024 2025",
+     "datafication education AI 2025 critical review",
+     "TPACK generative AI teacher knowledge 2026"
+    ],
+    "where_to_apply": "05.mdx — 'Core Concept' (sentence introducing critical edtech studies / TPACK) + 'References' list",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/08/06",
+  "section_title": "Low-Tech Fallbacks",
+  "dir": "frontend/content/cat531-supplement/08",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "References are the documented boilerplate set: TPACK -> Wikipedia + 2006 DOI; 'critical edtech studies' as an unnamed DOI (Selwyn 2016, named only by DOI not author); 'AI and education datafication' as the single 2020 DOI (10.1080/17439884.2020.1686017) reused verbatim across all 64 sections. For a 2026 course the datafication/critical-edtech anchor is dated and the Selwyn work should be named, not hidden behind a DOI.",
+    "proposed_change": "Name Selwyn in the reference entry rather than 'critical edtech studies' as a bare label, and add one 2023-2026 critical-edtech / education-datafication source so the anchor is not a single 2020 DOI. Consider an AI-TPACK / generative-AI teacher-literacy citation (2023-2026) alongside the canonical 2006 Mishra & Koehler.",
+    "needs_research": true,
+    "where_to_apply": "06.mdx — References (lines 127-130); Core Concept line 31 (where 'Critical edtech studies' is named in prose)",
+    "search_terms": [
+     "Selwyn critical edtech studies 2016 distrusting educational technology",
+     "education datafication 2024 2025 critical review",
+     "AI-TPACK generative AI teacher literacy framework 2024 2025"
+    ],
+    "priority": "high"
+   }
+  ]
+ }
+]

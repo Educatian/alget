@@ -46,16 +46,16 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "In class you wrote =VLOOKUP(A2,Products,2,FALSE) over 40 rows. At a part-time job the lookup table has 4,000 rows and you will copy the formula down a full column. What must you check when transferring it?",
+      "stem": "At a part-time job, Copilot in Excel offers to fill your class lookup formula =VLOOKUP(A2,D2:E4000,2,FALSE) down 4,000 rows exactly as written, with the table range left relative. Your transfer map's adaptation note must document the AI move. What is the correct accept/modify/reject decision?",
       "options": [
-        "Nothing; the formula works the same at any size.",
-        "Lock the table range with absolute references like Products being a fixed range, or the lookup area will shift as you copy the formula down.",
-        "Switch to a bar chart instead.",
-        "Delete the FALSE argument because large tables are always sorted."
+        "Accept as offered; Copilot suggestions are already optimized for large datasets.",
+        "Modify: anchor the table range with absolute references ($D$2:$E$4000) before accepting the fill, and record the rejected relative-range version and the reason in the adaptation note.",
+        "Reject all AI help; formulas only count as your work if typed manually.",
+        "Accept, but delete the FALSE argument because large tables are always sorted."
       ],
       "correct_index": 1,
-      "explanation": "Transfer adapts to the new constraint. Across 4,000 rows you must anchor the lookup range (absolute reference) so copying does not slide it off the data.",
-      "misconception_id": "cat100_supplement_8_3_assume_identical_context",
+      "explanation": "A bounded AI move is judged, not obeyed. The relative range would slide off the data as the fill copies down, so the right decision is modify (anchor the range), and the transfer map documents both what was accepted and what was rejected and why.",
+      "misconception_id": "cat100_supplement_8_3_ai_suggestion_unjudged",
       "difficulty": "hard"
     },
     {

@@ -23,6 +23,8 @@ These are not exotic mistakes; they are the default outcome of treating a small 
 
 Two ideas do the heavy lifting here. The first is re-identification through quasi-identifiers. A direct identifier (a name, an ID number) names someone outright, but a quasi-identifier is any attribute that, combined with others, narrows the field to one person: major, dorm, age, hometown. In a large dataset many people share each combination; in a seven-row table a single rare combination can be unique. So anonymizing means looking at combinations of columns, not just deleting the name.
 
+**Recent evidence:** this is a documented finding, not just instructor caution. Latanya Sweeney showed that about 87% of the US population (216 of 248 million people, using 1990 Census data) were likely uniquely identifiable from just three quasi-identifiers: 5-digit ZIP code, gender, and date of birth (Sweeney, 2000). Her follow-up work formalized the protection as k-anonymity: a released record should be indistinguishable from at least k-1 other records on its quasi-identifiers (Sweeney, 2002). In a 7-row table the mechanism is even sharper, because almost any combination of two columns can be unique.
+
 The second idea is honest reporting at small n (the number of observations). At small n, two habits protect the reader:
 
 | Practice | Why it matters at small n |
@@ -153,3 +155,5 @@ Before you move on, make sure your trace links claim, evidence, tool boundary, r
 - [ISTE digital citizenship](https://iste.org/standards/students)
 - data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi
 - [WCAG accessibility](https://www.w3.org/TR/WCAG22/)
+- Sweeney, L. (2000). Simple demographics often identify people uniquely (Data Privacy Working Paper 3). Carnegie Mellon University. https://dataprivacylab.org/projects/identifiability/paper1.pdf
+- Sweeney, L. (2002). k-anonymity: A model for protecting privacy. International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems, 10(5), 557-570. https://doi.org/10.1142/S0218488502001648

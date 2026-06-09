@@ -36,13 +36,15 @@ The decision worth recording is not "we picked the free one." It is whether the 
 
 A tool with a low sticker price but a discontinuable free tier and no data export sits on a **sustainability cliff**: cheap until the day it strands your students' work.
 
+**Recent Evidence.** The exit check has legal backing, not just prudence. Under FERPA's school-official exception, a school must retain direct control over student data held by a vendor, including the return or destruction of records when the contract ends, and the FTC's amended COPPA Rule (effective June 23, 2025, with full compliance required by April 22, 2026) bars vendors from retaining children's data longer than reasonably necessary and declined to exempt ed-tech operators from regulation. Getting your data back is a contractual obligation to negotiate up front, not a courtesy to hope for at exit.
+
 Build the ledger yourself with the explorer. Set the roster, the years, the per-seat tier that triggers above the free cap, and the unpaid teacher hours. Watch the "free" tool's true total climb as soon as your roster crosses the seat cap and the labor is counted in dollars. The model assumes the free tier covers up to 40 seats; above that the whole roster moves to the paid per-seat tier.
 
 <parameter-explorer config='{"title":"What \"Free for Educators\" Actually Costs Over the Window","sliders":[{"name":"students","label":"Students on the roster","min":10,"max":300,"step":5,"unit":"students","default":120},{"name":"years","label":"Years you will use the tool","min":1,"max":5,"step":1,"unit":"years","default":3},{"name":"seatcost","label":"Paid per-seat license once you exceed 40 free seats","min":0,"max":20,"step":1,"unit":"$/seat/yr","default":7.5},{"name":"hours","label":"Unpaid teacher setup per year","min":0,"max":60,"step":5,"unit":"hours","default":30},{"name":"wage","label":"Value of a teacher hour","min":0,"max":80,"step":5,"unit":"$/hr","default":40}],"outputs":[{"label":"Licensing total over the window (paid tier on full roster once over 40 seats)","unit":"$","expr":"students * seatcost * years"},{"label":"Unpaid teacher labor over the window","unit":"$","expr":"hours * wage * years"},{"label":"True total cost of ownership (license + labor)","unit":"$","expr":"students * seatcost * years + hours * wage * years"}],"plot":{"x":"students","output":2}}'></parameter-explorer>
 
 <inline-check question="Tool B is 'free for educators' but its free tier caps at 40 seats; you have 120 students for 3 years. A colleague says 'free is the lowest cost.' What is wrong with that claim?" explanation="'Free' names the invoice, not the total. With 120 students you exceed the 40-seat cap, so the whole roster moves to the paid per-seat tier, and the setup still costs unpaid teacher hours every year. The true total includes the tier you triggered and the labor no line item names." options='[{"text":"Nothing; if it says free, the lowest cost is free.","correct":false},{"text":"Free names the invoice, not the total; 120 students trigger the paid per-seat tier plus unpaid teacher hours.","correct":true},{"text":"It is wrong only if the tool is bad.","correct":false}]'></inline-check>
 
-Three course anchors keep the accounting honest. **[TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)** asks whether the cost buys learning value or only features. **Critical edtech studies** names the labor and lock-in vendors externalize onto schools and teachers. **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** flags "free" tools whose real price is student data monetized elsewhere, the cost that never appears in dollars.
+Three course anchors keep the accounting honest. **[TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge)** asks whether the cost buys learning value or only features. **Critical edtech studies** (Selwyn, 2014) names the labor and lock-in vendors externalize onto schools and teachers. **[AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)** flags "free" tools whose real price is student data monetized elsewhere, the cost that never appears in dollars.
 
 ## Worked Example
 
@@ -152,6 +154,9 @@ Before you move on, confirm the brief shows a multi-year total cost of ownership
 ## References
 
 - [TPACK](https://en.wikipedia.org/wiki/Technological_pedagogical_content_knowledge). https://doi.org/10.1111/j.1467-9620.2006.00684.x
-- critical edtech studies. https://doi.org/10.4324/9781315670160
+- Ning et al. (2024), Teachers' AI-TPACK: Exploring the relationship between knowledge elements. https://doi.org/10.3390/su16030978
+- Selwyn, N. (2014), Distrusting Educational Technology: Critical Questions for Changing Times (critical edtech studies). https://doi.org/10.4324/9781315886350
 - [AI and education datafication](https://doi.org/10.1080/17439884.2020.1686017)
+- Federal Trade Commission (2025), amended Children's Online Privacy Protection Rule (COPPA): data-retention limits and third-party-disclosure consent. https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data
+- U.S. Department of Education, Student Privacy Policy Office, Responsibilities of third-party service providers under FERPA (Vendor FAQ). https://studentprivacy.ed.gov/sites/default/files/resource_document/file/Vendor%20FAQ.pdf
 - teacher professional judgment. https://doi.org/10.1177/002205741319300304

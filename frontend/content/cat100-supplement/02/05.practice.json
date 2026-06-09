@@ -79,6 +79,26 @@
       "explanation": "The defensibility test, \"could I stand behind this if asked?\", separates real improvements from edits that add length, jargon, or false confidence.",
       "misconception_id": "cat100_supplement_2_5_confidence_signals_quality",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_2_5_ai_feedback_you_should_reject_identity_guessing",
+      "type": "multiple_choice",
+      "concept_id": "cat100_supplement_ai_feedback_you_should_reject",
+      "concept_ids": [
+        "cat100_supplement_ai_feedback_you_should_reject",
+        "ai_supported_learning"
+      ],
+      "stem": "An AI tool adds \"fluent in Spanish\" and \"first-generation college student\" to your resume because it inferred them from your name. Why should you reject these additions?",
+      "options": [
+        "Keep them; they make the resume more relatable.",
+        "Reject them only if the posting does not ask for language skills.",
+        "Reject them: this is identity guessing, where the AI invents facts about your background from your name, a known algorithmic-bias failure rather than evidence.",
+        "Keep \"fluent in Spanish\" but cut \"first-generation college student.\""
+      ],
+      "correct_index": 2,
+      "explanation": "An AI cannot know your language fluency or family history; inferring them from your name is a documented algorithmic-bias failure. Both additions are invented facts about you, so both fail the defensibility test regardless of how plausible they sound.",
+      "misconception_id": "cat100_supplement_2_5_identity_guessing",
+      "difficulty": "medium"
     }
   ]
 }

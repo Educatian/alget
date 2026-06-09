@@ -1,0 +1,122 @@
+[
+ {
+  "section_key": "ail606/04/01",
+  "section_title": "Problem Statement and Learner Profile",
+  "dir": "frontend/content/ail606-supplement/04",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Artifact mislabel (the documented 04.x pattern). The ArtifactStudio, download link, Adaptive Support, and dynamic-scenario all name the artifact 'storyboard frame sequence with narration, signaling, and reader-action notes.' But section 04.01 is about the problem statement and learner profile, which the section's own prose calls the 'cover panel' that sits BEFORE the storyboard frame sequence (lines 72, 78, 92, 117). Asking learners to produce a storyboard frame sequence here contradicts the section scope and the before/after worked example, which revises a cover panel.",
+    "proposed_change": "Change the artifact for this section to a 'problem statement and learner profile cover panel' (design-brief cover panel). Update artifact-studio artifact=..., the download link text/anchor on line 117, the Adaptive Support bullets (127-130), and the dynamic-scenario prompt (132) to reference the cover-panel artifact whose rubric-scored before/after state the Worked Example already demonstrates.",
+    "needs_research": false,
+    "where_to_apply": "01.mdx — line 117 download link, line 119 <artifact-studio artifact=...>, lines 127-132 Adaptive Support bullets + <dynamic-scenario prompt>",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/04/03",
+  "section_title": "Wireframes That Show Learning Logic",
+  "dir": "frontend/content/ail606-supplement/04",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The artifact is mislabeled. This is a WIREFRAMES / design-rationale section, but the artifact-studio tag, the studio packet download link, the Adaptive Support 'confusion' branch, and the dynamic-scenario prompt all name 'storyboard frame sequence with narration, signaling, and reader-action notes' — the ch.03 storyboard artifact, not a wireframe. This is the exact artifact-studio mis-label flagged in the course known-issues (03.03/04.06 embed the generic storyboard artifact). The studio instrument the learner is told to open does not match the section's actual artifact (an annotated wireframe / design-rationale layout).",
+    "proposed_change": "Replace every 'storyboard frame sequence with narration, signaling, and reader-action notes' string in 03.mdx with the correct section artifact, e.g. 'annotated wireframe with per-region learner-action and sequence-phase labels' (an AIL606 design-rationale/wireframe instrument). Update line 132 packet link text and the /downloads path, line 134 artifact-studio artifact= attribute, line 143 Adaptive Support confusion bullet, and line 147 dynamic-scenario prompt. Mirror the same fix in 03.meta.json (description + learning_objectives[0], which also says 'storyboard frame sequence...').",
+    "needs_research": false,
+    "where_to_apply": "03.mdx lines 132, 134, 143, 147 (artifact-studio / packet link / Adaptive Support / dynamic-scenario); 03.meta.json description and learning_objectives[0]",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/04/05",
+  "section_title": "Accessibility and WCAG Checks",
+  "dir": "frontend/content/ail606-supplement/04",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The MDX body, Learning Targets, Opening Case logic, Core Concept, and Worked Example all reference WCAG 2.1 AA (lines 9, 13, 46), and practice items 1/2 and misconception feedback all say 'WCAG 2.1 AA'. WCAG 2.2 became a W3C Recommendation on 5 October 2023 (updated Dec 2024) and is the current standard as of 2026; WCAG 3.0 remains a Working Draft (March 2026) not expected to reach Recommendation before ~2028-2029. The course currency-watch explicitly expects sections to reference WCAG 2.2 AA, so this section is out of step with its sibling sections. The three criteria taught (1.4.3 Contrast, 1.1.1 Non-text Content, 1.4.1 Use of Color) are unchanged from 2.1 to 2.2, so the update is safe and purely a version-label refresh.",
+    "proposed_change": "Replace 'WCAG 2.1 AA' with 'WCAG 2.2 AA' throughout 05.mdx (lines 9, 13, 46) and in 05.practice.json stems/explanations for the artifact_signal and annotation_signal items ('Against WCAG 2.2 AA...', 'WCAG 2.2 AA requires 4.5:1...'). Optionally add a one-clause parenthetical that the three criteria cited are identical in 2.1 and 2.2 so learners trained on 2.1 are not confused. Consider a one-line 'Standards note' callout stating WCAG 2.2 is the current Recommendation and WCAG 3.0 is still a Working Draft (not yet enforceable), so audits should target 2.2 AA today.",
+    "needs_research": false,
+    "where_to_apply": "05.mdx Learning Targets (line 13), Why This Section Matters (line 9), Worked Example heading (line 46); 05.practice.json artifact_signal and annotation_signal stems/explanations",
+    "priority": "high",
+    "search_terms": []
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/04/06",
+  "section_title": "AI-Assisted Authoring With Codex",
+  "dir": "frontend/content/ail606-supplement/04",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The section is titled and framed around 'Codex' as the named AI coding assistant. By 2026 'Codex' is a dated brand; the live general-purpose AI coding agents are GitHub Copilot, Claude Code, Cursor, and the GPT-5/Claude agent families. A graduate LXD course that teaches 'commission-then-verify' and tool-critical use should not pin its central case to a deprecated product name, since that signals the material is stale and quietly misrepresents the current toolscape designers will actually use.",
+    "proposed_change": "Reframe the named tool from the brand 'Codex' to a tool-agnostic category (e.g., 'an AI coding agent such as GitHub Copilot, Cursor, or Claude Code') while keeping the division-of-labor pedagogy intact. Concretely: change the H1 from 'AI-Assisted Authoring With Codex' to something like 'AI-Assisted Authoring With Code-Generating Agents' (or add a one-line currency note in 'Why This Section Matters' that names current 2026 tools and states the principle is tool-independent). Update repeated 'Codex' mentions in prose to 'the coding agent' on first introduction. Keep the slug/concept_ids unchanged to avoid breaking the DAG/validator. Verify the exact current product names and their code-generation capabilities before final wording.",
+    "needs_research": true,
+    "search_terms": [
+     "GitHub Copilot agent mode 2026",
+     "Cursor AI coding assistant capabilities 2026",
+     "Claude Code coding agent",
+     "OpenAI Codex deprecated status"
+    ],
+    "where_to_apply": "06.mdx H1 line 1 and 'Why This Section Matters' (lines 5-9); 06.meta.json 'title' field; consider a one-line currency callout rather than renaming the slug",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/04/07",
+  "section_title": "README and Repository Disclosure",
+  "dir": "frontend/content/ail606-supplement/04",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The MDX uses 'Codex' as the named AI coding assistant in the canonical disclosure examples (Core Concept table line 32 'Codex generated the flashcard component', Worked Example before/after line 66, Opening Case line 20) and the practice item options. 'Codex' is a dated OpenAI brand; by 2026 the live AI coding agents are GitHub Copilot, Claude Code, Cursor, and GPT-5/Claude coding agents. Because this section is specifically ABOUT naming the exact tool in a disclosure, using a stale brand name in every example undercuts the lesson's own credibility.",
+    "proposed_change": "Update the example tool names to current 2026 coding agents (e.g., 'Claude Code generated the flashcard component (commit a3f9c1)' or 'GitHub Copilot') consistently across the Opening Case (line 20), Core Concept table (line 32), Worked Example before/after (lines 66-69), and the corresponding option in 07.practice.json artifact_signal item. Keep the disclosure STRUCTURE identical; only refresh the brand. Optionally add a one-clause note that the specific tool name matters precisely because it must be auditable, turning the currency fix into a teaching point. Coordinate with ch04.06 'AI-Assisted Authoring With Codex' which carries the same dated brand.",
+    "needs_research": true,
+    "search_terms": [
+     "AI coding assistant 2026 GitHub Copilot Claude Code Cursor",
+     "OpenAI Codex deprecated current coding agent naming 2025 2026"
+    ],
+    "where_to_apply": "07.mdx Opening Case (line 20), Core Concept comparison table (line 32), Worked Example After block (lines 66-69); 07.practice.json artifact_signal option (correct_index 1)",
+    "priority": "high"
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "The Adaptive Support dynamic-scenario (line 144) anchors a README-disclosure revision to '[cognitive load theory](https://en.wikipedia.org/wiki/Cognitive_load)' via a generic Wikipedia link. CLT is irrelevant to a section about AI-use disclosure and traceability auditing; this is templated boilerplate carried over from the section template, and a Wikipedia link is a weak citation for a graduate course. The 'question' rail in Adaptive Support (line 139) similarly routes every question to Mayer multimedia learning, which has no bearing on disclosure norms.",
+    "proposed_change": "Replace the irrelevant CLT/Wikipedia anchor in the dynamic-scenario with a disclosure-relevant concept and a real source (e.g., research-integrity / AI-use transparency norms, or the section's own specificity-linkage-colocation rule). Retarget the Adaptive Support 'question' rail from Mayer to a disclosure/integrity source rather than a multimedia-learning citation that does not apply here.",
+    "needs_research": true,
+    "search_terms": [
+     "AI use disclosure academic integrity guidelines 2024 2025",
+     "generative AI authorship transparency policy higher education",
+     "reproducibility commit history provenance documentation research"
+    ],
+    "where_to_apply": "07.mdx Adaptive Support section: dynamic-scenario prompt (line 144) and the 'question' rail bullet (line 139)",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/04/08",
+  "section_title": "Module 4 Design Draft Clinic",
+  "dir": "frontend/content/ail606-supplement/04",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The artifact label is wrong for this section. 04.08 is a design-draft *clinic* whose entire MDX body teaches synthesizing the module's seven artifacts into a prioritized, evidence-ranked REVISION PLAN. Yet the artifact-studio component, the download packet link, the meta description, and meta LO #1 all name the artifact as 'storyboard frame sequence with narration, signaling, and reader-action notes' (a Chapter 3 artifact). This is the exact mis-labeling pattern the known-issues list flags (03.03 and 04.06 also embed the generic storyboard artifact). The Adaptive Support confusion bullet and dynamic-scenario also tell the learner to compare weak/strong versions of a 'storyboard frame sequence,' contradicting the whole section.",
+    "proposed_change": "Re-tag the artifact across all layers to the actual section artifact, e.g. 'prioritized evidence-ranked revision plan' (or 'design-clinic revision plan'). Update artifact-studio artifact attribute, the /downloads packet link text and target, the Adaptive Support confusion/connection bullets, the dynamic-scenario prompt, and meta.json description + LO #1 to reference the revision plan rather than the storyboard frame sequence.",
+    "needs_research": false,
+    "where_to_apply": "08.mdx Artifact Studio (artifact-studio artifact=... and download link lines 125-127), Adaptive Support (lines 136, 140), and 08.meta.json description + learning_objectives[0]",
+    "priority": "high"
+   }
+  ]
+ }
+]

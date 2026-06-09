@@ -54,6 +54,8 @@ Goal: generate an image that explains a three-stage data pipeline rather than de
 
 The reversed-order output is the teaching moment. The picture looked clean and professional and was still wrong, which is exactly how a generated diagram fails. Your critique log should record that you rejected the first output for transposing two stages, modified the prompt to fix it, and accepted the second only after checking every arrow against your real pipeline.
 
+As of 2026, tools differ sharply in rendering correct in-image text: GPT Image 2 (ChatGPT) and Ideogram render labels most reliably, with Google Gemini Nano Banana 2 (Gemini 3 Flash Image) and Adobe Firefly close behind, while older diffusion models like Midjourney still garble label text. Microsoft Copilot / Designer offers an in-suite option for a presentations workflow. Even the strongest tools still transpose letters or add phantom characters on longer labels, which is exactly why label verification (step 4) is mandatory.
+
 Run the specify-then-verify loop yourself, predicting each move before you reveal it:
 
 <step-reveal title="Generate a pipeline diagram that explains, not decorates" steps='[{"prompt":"You need a diagram of your three-stage pipeline. What kind of prompt do you write first?","predictType":"choice","choices":["\"Make a cool tech graphic for data\"","Three labeled boxes, Collect then Clean then Analyze, arrows showing flow, no people","A glowing brain wired to floating numbers","\"Something modern and professional about data\""],"answerIndex":1,"reveal":"You write a specification: exact parts, exact labels, exact relationship. A vibe prompt produces decoration; a specification produces an explanation you can check."},{"prompt":"The first output reads Collect then Analyze then Clean. Before placing it, what do you do?","predictType":"choice","choices":["Place it; it looks clean and professional","Reject it and re-prompt to lock the order, because analysis cannot precede cleaning","Keep it but shrink it so the error is less visible","Add a caption apologizing for the order"],"answerIndex":1,"reveal":"Reject and re-prompt. The polished look does not make the order correct. You lock the sequence: \"in this exact order: Collect, then Clean, then Analyze.\""},{"reveal":"Verify the regenerated image: every label, arrow, and order must match your real pipeline before it goes on the slide. Only then is it accepted, and your log records the rejection and the check."}]'></step-reveal>
@@ -62,13 +64,14 @@ Run the specify-then-verify loop yourself, predicting each move before you revea
 
 ## Decision Rule
 
-Decide whether the image explains or decorates, specify generated explanations precisely, and verify every element against reality before it goes on the slide. A polished image you did not check is a liability, not an asset.
+Decide whether the image explains or decorates, specify generated explanations precisely, and verify every element against reality before it goes on the slide (as of 2026, even the strongest generators still err on label text). A polished image you did not check is a liability, not an asset.
 
-Run a generated image through three questions before you use it:
+Run a generated image through four questions before you use it:
 
 1. **Purpose check:** Does this image carry information the audience needs, or is it decoration standing in for content?
 2. **Evidence check:** Does every label, count, order, and arrow match your real process or data, and where did you confirm it?
 3. **Revision check:** Which generated output did you reject or re-prompt, and what was wrong with it?
+4. **Accessibility check:** Does every explanatory image have a text alternative that states what it shows (the same parts, labels, and order you specified), and do the label text and its background meet sufficient contrast (WCAG 1.4.3: 4.5:1 for normal text, 3:1 for large text; non-text graphical objects 3:1 per 1.4.11)? For a complex diagram like a flowchart, use the W3C two-part pattern: a short alt identifying the image plus a longer description carrying the detail, which your verified spec already contains.
 
 If you cannot point to where you verified the image, treat it as unverified and do not present it as an explanation.
 
@@ -103,7 +106,7 @@ A strong reader of this section can answer four questions:
 
 The critique log is strong when a reviewer can see, for each generated image, the prompt, the flaw you caught, the fix, and the final verification. Treat the polished final image as the least interesting part of the record. The decisions that matter are the rejection and the check.
 
-A useful entry would sound like this: "I rejected the first pipeline diagram because it ordered the stages Collect, Analyze, Clean, which is impossible since cleaning precedes analysis. I re-prompted to lock the order and accepted the second only after confirming all three labels and both arrows matched my real steps. I rejected a third, flashier version with a glowing background because the glow carried no meaning and reduced contrast on the labels."
+A useful entry would sound like this: "I rejected the first pipeline diagram because it ordered the stages Collect, Analyze, Clean, which is impossible since cleaning precedes analysis. I re-prompted to lock the order and accepted the second only after confirming all three labels and both arrows matched my real steps. I rejected a third, flashier version with a glowing background because the glow carried no meaning and reduced contrast on the labels below the 3:1 minimum WCAG 1.4.11 sets for graphical objects."
 
 ## Transfer Case
 
@@ -142,7 +145,7 @@ Before moving on, use the check to separate surface completion from a decision t
 
 ## Final Check
 
-Before you move on, confirm each generated image is labeled explanatory or decorative, every explanatory image has been verified against your real content, and your log records at least one output you rejected and why.
+Before you move on, confirm each generated image is labeled explanatory or decorative, every explanatory image has been verified against your real content and has a text alternative matching its verified content, and your log records at least one output you rejected and why.
 
 ## References
 

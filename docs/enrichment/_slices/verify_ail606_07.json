@@ -1,0 +1,34 @@
+[
+ {
+  "section_key": "ail606/07/05",
+  "section_title": "Reflection as Data",
+  "dir": "frontend/content/ail606-supplement/07",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The entire support/studio scaffold embeds the wrong signature artifact. This section teaches reflection-as-data (qualitative coding: excerpt selection, defined codes, decision linkage, inference boundary), but the Artifact Studio component, the download-packet link, the Adaptive Support 'confusion' bullet, the dynamic-scenario, and the Final Check all reference 'storyboard frame sequence with narration, signaling, and reader-action notes' — an artifact from the Ch3 storyboarding module that has nothing to do with reflection coding. This is the known artifact-mislabel P0 issue (cf. 03.03/04.06). The Final Check even demands the artifact record 'cognitive-load diagnosis' fields that do not match a reflection codebook.",
+    "proposed_change": "Replace the embedded artifact across all four touchpoints with a reflection-coding artifact, e.g. 'reflection codebook with coded excerpts and decision-linkage trace' (or 'coded reflection excerpt sheet'). Update artifact-studio artifact=, the /downloads link slug, the Adaptive Support confusion bullet ('compare a weak and strong coded reflection excerpt'), and the Final Check field list to: codeable-excerpt selection, defined code + inclusion rule, linked design decision, rejected over-code, and inference boundary (perceived vs measured).",
+    "needs_research": false,
+    "where_to_apply": "05.mdx — Artifact Studio block (line 100-102 download link + artifact-studio tag), Adaptive Support confusion bullet (line 111), dynamic-scenario (line 115), Final Check (line 125)",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/07/08",
+  "section_title": "Research Translation Studio",
+  "dir": "frontend/content/ail606-supplement/07",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Artifact mislabeling. This is a chapter 07 research-translation section whose entire MDX is about assembling and auditing a translation-argument package (finding/principle/decision/evidence/disclosure). But the Artifact Studio embeds the generic ch3 artifact 'storyboard frame sequence with narration, signaling, and reader-action notes' (artifact-studio tag, the download packet link text, the meta description, and the Adaptive Support confusion bullet). This is the documented artifact-tag mislabel pattern (cf. 03.03, 04.06). The signature artifact for this section should be the research-translation argument package / traceability chain, not a storyboard.",
+    "proposed_change": "Relabel the artifact to the research-translation argument package (e.g., 'research-translation argument trace: finding -> principle -> decision -> evidence -> disclosed revision'). Update the artifact-studio artifact= attribute (08.mdx line 105), the download packet link text (line 103), the Adaptive Support 'confusion' bullet (line 114), the dynamic-scenario prompt (line 118), and the meta description (08.meta.json) so they describe a translation-chain/traceability-matrix artifact instead of a storyboard frame sequence.",
+    "needs_research": false,
+    "where_to_apply": "08.mdx Artifact Studio (lines 103-105), Adaptive Support (lines 114, 118); 08.meta.json description field",
+    "priority": "high"
+   }
+  ]
+ }
+]

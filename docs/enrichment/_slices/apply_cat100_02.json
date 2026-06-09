@@ -1,0 +1,371 @@
+[
+ {
+  "section_key": "cat100/02/01",
+  "section_title": "Resume Claims and Evidence",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's single concrete empirical claim, 'Studies of resume review put the first pass at roughly six to eight seconds' (Why This Section Matters, line 9), is uncited, which is self-undermining in a course whose through-line is 'attach a verifiable fact to every claim.' The figure traces to the Ladders recruiter eye-tracking study (2012 ~6s; 2018 update 7.4s average initial screen), and there is a live practitioner debate about whether the '6-second scan' is a myth.",
+    "proposed_change": "Add an inline citation to the Ladders eye-tracking study and tighten the figure to model the claim-plus-source move the section teaches, e.g. 'Eye-tracking research on recruiters (Ladders, 2018) found an average initial resume screen of about 7.4 seconds, up from roughly 6 seconds in 2012, though the exact number is debated.' Add the Ladders study to the References list (PRNewswire release or theladders.com career-advice page as the citable source, since the original PDF is no longer reliably hosted). Optionally note that peer-reviewed eye-tracking-on-resume work exists (Pina et al., 2023) to back the method.",
+    "where_to_apply": "01.mdx — 'Why This Section Matters' (line 9 sentence about six to eight seconds) and 'References' section (lines 143-146)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Ladders, Inc. (2018) press release: 'Ladders Updates Popular Recruiter Eye-Tracking Study'",
+      "url_or_doi": "https://www.prnewswire.com/news-releases/ladders-updates-popular-recruiter-eye-tracking-study-with-new-key-insights-on-how-job-seekers-can-improve-their-resumes-300744217.html",
+      "finding": "Ladders' 2018 update to its 2012 eye-tracking study found recruiters spend an average of 7.4 seconds on an initial resume screen, up from the ~6-second average measured in 2012."
+     },
+     {
+      "cite": "HR Daily Advisor (2018) 'Eye-Tracking: Recruiters Average 7.4 Seconds Reviewing a Resume'",
+      "url_or_doi": "https://hrdailyadvisor.hci.org/2018/11/15/eye-tracking-recruiters-average-7-4-seconds-reviewing-a-resume/",
+      "finding": "Independently reports the 7.4-second figure and that recruiters skim for layout, job titles, and keywords, corroborating the Ladders number; the '6-second scan a myth?' debate is documented by practitioners (Spectacle Talent Partners), supporting 'though debated.'"
+     },
+     {
+      "cite": "Pina, A. et al. (2023) 'Using Machine Learning with Eye-Tracking Data to Predict if a Recruiter Will Approve a Resume', Machine Learning and Knowledge Extraction 5(3)",
+      "url_or_doi": "https://doi.org/10.3390/make5030038",
+      "finding": "Peer-reviewed study using eye-trackers on hiring professionals reviewing resumes, providing scholarly grounding that recruiter resume review is a measurable, fast visual-scan process."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI is referenced only generically ('If an AI tool had suggested...', line 68; 'An AI tool suggests...', practice ai_boundary). The currency-watch flags that CAT100 AI references should be grounded in current 2026 named tools with a model-churn note. The AI-boundary teaching (reject + log) is the course's most-repeated construct, so a concrete 2026 grounding here sets the pattern for the chapter.",
+    "proposed_change": "In Worked Example Step 5 (line 68) or as a small callout, name concrete current tools without over-committing, e.g. 'A resume assistant (ChatGPT, Microsoft Copilot, or a LinkedIn resume tool) might suggest \"Boosted store revenue 30%\"...' plus a one-line note that specific tools and model versions change but the reject-and-log discipline does not. No conflicting course-level institutional AI tool naming was found, so the addition is safe.",
+    "where_to_apply": "01.mdx — Worked Example 'Step 5. Record the AI boundary' (line 68), optionally a small tool-note callout",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Zapier (2026) 'The 6 best AI resume builders in 2026'",
+      "url_or_doi": "https://zapier.com/blog/best-resume-builder/",
+      "finding": "ChatGPT, Microsoft Copilot, and dedicated AI resume builders are the current (2026) named tools for resume drafting, confirming these are accurate, current tool names to cite with a model-churn caveat."
+     },
+     {
+      "cite": "Microsoft Copilot (2026) 'Polish Resumes and Cover Letters with AI' + Jobscan (2026) 'Best AI Job Search Tools in 2026'",
+      "url_or_doi": "https://www.jobscan.co/blog/ai-job-search-tools/",
+      "finding": "Microsoft Copilot integrates resume rewriting across Microsoft 365 and LinkedIn (a Microsoft property), and current guidance explicitly warns AI should never fabricate or misrepresent experience — directly supporting the reject-and-log framing as the durable, tool-agnostic discipline."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section links to a NACE 'career-readiness-defined' anchor (line 120, 143). NACE published a December 2025 revision of the Career Readiness Competencies and reorganized its document paths; the trailing '/career-readiness-defined' slug is the legacy (pre-2024) path and the current canonical page is '/career-readiness/competencies'.",
+    "proposed_change": "Update the href from 'https://www.naceweb.org/career-readiness/competencies/career-readiness-defined' to the current canonical page 'https://www.naceweb.org/career-readiness/competencies' in both the Adaptive Support link (line 120) and References (line 143). No prose rewrite is needed because the section uses NACE only as a generic competency reference and does not quote specific competency wording in Adaptive Support; just update the URL. (NACE blocks automated fetches with HTTP 403, so the live 200-status of the exact slug could not be machine-confirmed, but search indexing shows '/career-readiness/competencies' as the current page and the December 2025 PDF as the current edition.)",
+    "where_to_apply": "01.mdx — Adaptive Support link (line 120) and References (line 143)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "NACE 'Competencies - Career Readiness' (current page)",
+      "url_or_doi": "https://www.naceweb.org/career-readiness/competencies",
+      "finding": "The current canonical NACE competencies page is /career-readiness/competencies (no /career-readiness-defined sub-slug); the framework now centers the NACE 8 Competencies plus Social Capital, Life Design, and Career Mobility assessments."
+     },
+     {
+      "cite": "NACE (2025) 'Competencies for a Career-Ready Workforce' — December 2025 edition PDF",
+      "url_or_doi": "https://www.naceweb.org/docs/default-source/default-document-library/2025/career-readiness/competencies/nace-career-readiness-competencies-december-2025.pdf",
+      "finding": "A December 2025 revision of the Career Readiness Competencies exists, confirming the competency set was updated and the link should point to the current document/page rather than the legacy slug."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/02/02",
+  "section_title": "Two-AI Critique Workflow",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI tools are named only loosely (\"ChatGPT and Microsoft Copilot, or Gemini\") with no model/version anchoring and no note on how the two-tool workflow maps to current 2026 reality (Copilot now lives inside Word, ChatGPT and Gemini both ship free tiers, model versions churn). The named pairings could date the section quickly.",
+    "proposed_change": "In 'Why This Section Matters' (line 7), after the parenthetical tool examples, add a one-sentence currency note naming 2-3 concrete current consumer assistants as of 2026 (ChatGPT, Google Gemini, and Microsoft Copilot embedded in Word) and cautioning that specific model names/versions change often (e.g., as of early 2026 free tiers run flagship-class models: ChatGPT GPT-5.2, Copilot on GPT-5.1, Gemini 3 Pro), so the transferable skill is the workflow (compare two independent tools, anchor on the disagreement), not the tool brand. Optionally note that since Copilot is embedded in Word, the 'two tools' can be one in-app assistant plus one standalone chatbot. Verified=confirmed: Copilot is embedded in Word/Excel/PowerPoint and free tiers exist for all three; treat the specific GPT-5.x/Gemini-3 version numbers as illustrative-and-volatile rather than load-bearing.",
+    "where_to_apply": "02.mdx, 'Why This Section Matters' section (line 7); optionally a short inline note after the Core Concept table (lines 30-34)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Copilot (Wikipedia, accessed 2026-06-09)",
+      "url_or_doi": "https://en.wikipedia.org/wiki/Microsoft_Copilot",
+      "finding": "Copilot can rewrite and generate text based on user prompts directly inside Microsoft 365 apps including Word, Excel, and PowerPoint; it runs on OpenAI GPT-4/GPT-4o-class foundational models fine-tuned by Microsoft and operates on a freemium model where free-tier users access most features. This confirms the 'Copilot is embedded in Word' framing for the currency note."
+     },
+     {
+      "cite": "AI pricing/tool comparison reporting (TechSifted / AIViewer / tech-insider, 2026)",
+      "url_or_doi": "https://aiviewer.ai/guides/ai-pricing-comparison-2026/",
+      "finding": "As of early 2026, ChatGPT, Google Gemini, and Microsoft Copilot each offer free tiers (Copilot free powered by a GPT-class model; Gemini free tier on Gemini 3 Pro; ChatGPT free tier raised to flagship baseline GPT-5.2 on 2026-02-13). Paid tiers converge near $20/mo. Confirms 'free tiers exist' and that model version labels churn quickly, supporting the 'learn the workflow, not the brand/version' caution."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/02/03",
+  "section_title": "Professional Bio Drafting",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed generically ('an AI tool' line 92, 'AI bio generators' line 92, 'an AI draft' line 69) with no named 2026 tools, in a chapter specifically about responsible/disclosed AI use. A bio-generation section is a natural place to name what students actually use.",
+    "proposed_change": "Add a brief parenthetical grounding the generic 'AI tool' in current named tools where they already appear (Worked Example Step 5 line 69; Common Misreadings second paragraph line 92; optionally the step-reveal final AI item line 71), e.g. 'a general assistant (ChatGPT, Claude, Gemini, or Microsoft Copilot), or LinkedIn's own AI writing assistant for the About section' - noting these are profile-drafting helpers, not fact sources, plus a one-line note that model versions and outputs change month to month so the disclosure should name the tool and date used. Keep it light; do not over-list.",
+    "where_to_apply": "03.mdx Worked Example Step 5 (line 69); '## Common Misreadings' second paragraph (line 92); optionally the step-reveal final item (line 71)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Learn (2025) Enhance Your LinkedIn Profile With Microsoft Copilot",
+      "url_or_doi": "https://learn.microsoft.com/en-us/training/modules/enhance-linkedin-profile-with-copilot-ace-your-interview/",
+      "finding": "Microsoft officially documents using Copilot to refine LinkedIn headline, summary/About, and experience sections, confirming Microsoft Copilot is a current (2025-2026) named tool students use for profile/bio drafting."
+     },
+     {
+      "cite": "LinkedIn Help (2025-2026) Enhance your profile with LinkedIn's AI-powered writing assistant",
+      "url_or_doi": "https://www.linkedin.com/help/linkedin/answer/a1444194",
+      "finding": "LinkedIn ships its own Premium AI-powered writing assistant that generates editable suggestions specifically for the Headline and About sections; users edit suggestions in the text box before saving. Supports naming LinkedIn's built-in assistant alongside general tools, and the 'edit before saving' workflow mirrors the section's strike-and-keep-only-if-true rule."
+     },
+     {
+      "cite": "eWeek (2026) Microsoft Copilot Cheat Sheet / 2026 guide",
+      "url_or_doi": "https://www.eweek.com/news/microsoft-copilot-cheat-sheet-complete-guide-2026/",
+      "finding": "Copilot remains a current, widely adopted general assistant as of 2026, supporting the named-tool list (ChatGPT, Claude, Gemini, Microsoft Copilot) being current rather than dated."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/02/04",
+  "section_title": "LinkedIn and Portfolio Alignment",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed generically ('When an AI tool proposed the headline' in Worked Example Step 5, line 62; 'An AI tool rewrites your LinkedIn headline' in the ai_boundary practice stem) with no named current tool, and LinkedIn's own built-in AI profile-writing feature is not acknowledged. Verified current: LinkedIn ships an AI-powered writing assistant that generates suggestions specifically for the profile Headline and About section (a Premium feature, English plus a few languages), which is exactly the surface where an inflated headline like 'Award-Winning Developer' gets generated. Naming it grounds the AI-boundary lesson in the concrete tool students will actually meet.",
+    "proposed_change": "In Worked Example Step 5 (line 62) name a current tool concretely: e.g. 'When LinkedIn's built-in AI writing assistant (or a chatbot like ChatGPT, Claude, or Copilot) proposed the headline \"Award-Winning Developer,\" the student rejected it (no awards exist)...'. Add one sentence that LinkedIn's AI suggestions optimize for engagement and keywords, not truth, so its headline drafts must pass the same cross-check as any other AI output. Keep tool-agnostic phrasing as a fallback but anchor at least one concrete example. The 04.practice.json ai_boundary stem (line 51) may likewise reference 'LinkedIn's AI writing assistant rewrites your headline.'",
+    "where_to_apply": "04.mdx '## Worked Example' Step 5 (line 62), optionally a new note after line 62; 04.practice.json item cat100_supplement_2_4_linkedin_and_portfolio_alignment_ai_boundary stem (line 51).",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "LinkedIn Help: Enhance your profile with LinkedIn's AI-powered writing assistant",
+      "url_or_doi": "https://www.linkedin.com/help/linkedin/answer/a1444194",
+      "finding": "LinkedIn offers an AI-powered writing assistant that gives personalized suggestions for the profile Headline and About section; available to select Premium subscribers; users click Save to apply or edit the suggestion before saving. Confirms LinkedIn itself can generate a profile headline, the exact surface the section's AI-boundary lesson targets."
+     },
+     {
+      "cite": "LinkedIn Help: Enhance your profile's About section with LinkedIn's AI writing assistant",
+      "url_or_doi": "https://www.linkedin.com/help/linkedin/answer/a7146413",
+      "finding": "Confirms the AI writing assistant also drafts the About section, reinforcing that LinkedIn's native AI produces profile copy that students must cross-check for truth."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/02/05",
+  "section_title": "AI Feedback You Should Reject",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "assessment_align",
+    "gap": "The Core Concept taxonomy table and the Opening Case both foreground 'identity guessing' as a failure category (the AI assuming Lena speaks Spanish because her name 'looked Hispanic'), and this is the most ethically loaded, bias-related category and the natural ISTE digital-citizenship hook. Yet none of the four practice problems and none of the four misconceptions assess identity guessing. Practice/misconceptions cover keyword stuffing, feedback-overrides-requirements, reject-all-AI, and confidence-signals-quality. The taxonomy is therefore only 3/4 assessed, and the missing one is the one tied to algorithmic bias.",
+    "proposed_change": "Add a fifth practice item (or replace the lowest-value one) testing identity guessing: e.g., 'An AI adds \"fluent in Spanish\" and \"first-generation college student\" to your resume because it inferred them from your name. Why reject?' with the keyed answer naming identity guessing / invented facts about you and tying to algorithmic bias. Register its id in 05.meta.json practice_ids[]. Add a matching misconception entry (id cat100_supplement_2_5_identity_guessing, pattern 'ai_can_infer_my_background', rail_action 'explain'). This closes the taxonomy and gives the ISTE digital-citizenship anchor (already linked in Adaptive Support and References) a concrete assessment to point at. Scholarly grounding: demographic inference from names/text is a documented source of bias in algorithmic hiring (Fabris 2024) and in LLM outputs (Ferrara 2023), so framing this category as a fairness/bias issue is defensible.",
+    "where_to_apply": "cat100-supplement/02/05.practice.json (add a 5th problem in problems[]) + 05.meta.json practice_ids[] + 05.misconceptions.json (add a 5th misconception object)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Fabris et al. (2024) Fairness and Bias in Algorithmic Hiring: A Multidisciplinary Survey",
+      "url_or_doi": "https://doi.org/10.1145/3696457",
+      "finding": "Peer-reviewed survey documenting how algorithmic hiring systems infer and act on protected/demographic attributes, establishing identity/background inference as a recognized fairness-and-bias category, which grounds treating 'identity guessing' as the bias-linked failure mode."
+     },
+     {
+      "cite": "Ferrara (2023) Should ChatGPT be biased? Challenges and risks of bias in large language models",
+      "url_or_doi": "https://doi.org/10.5210/fm.v28i11.13346",
+      "finding": "Documents that LLMs encode and reproduce demographic biases and make stereotyped inferences from names and text, supporting the claim that an AI inferring language/background from a name is an algorithmic-bias failure, not a neutral suggestion."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI tools are entirely generic and unnamed throughout ('an AI assistant', 'an AI tool', 'a writing tool'). The course currency-watch flags grounding AI use in current 2026 named tools and noting model/version churn. A learner cannot connect the abstract advice to the specific tools they use to revise resumes.",
+    "proposed_change": "Add one short dated 'Recent context (2026)' parenthetical or callout after 'Why This Section Matters' naming the concrete tools students plausibly use for resume rewriting (ChatGPT, Claude, Microsoft Copilot, Google Gemini, plus the AI resume features now bundled in LinkedIn and in Microsoft 365 / Google Workspace), and note that all of them produce confident fabrications, so the defensibility test is tool-agnostic. Keep it light and dated so it can be refreshed; do not rewrite the worked example.",
+    "where_to_apply": "cat100-supplement/02/05.mdx - new short callout after 'Why This Section Matters' (after line 9) or inside 'What Strong Reading Looks Like'",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Enhancv (2026) Which AI Is Best for Resume Writing?",
+      "url_or_doi": "https://enhancv.com/blog/which-ai-is-best-for-resume-writing/",
+      "finding": "As of 2026 the mainstream resume-writing AI tools are ChatGPT, Claude, Google Gemini, and Microsoft Copilot, with Copilot tied to Microsoft 365 + LinkedIn and Gemini to Google Workspace; confirms the specific named tools to cite."
+     },
+     {
+      "cite": "3BOX AI (2026) ChatGPT vs Claude vs Gemini: Which AI is Best for Writing Your Resume in 2026?",
+      "url_or_doi": "https://3box.ai/blog/chatgpt-vs-claude-vs-gemini-resume-2026",
+      "finding": "Confirms ChatGPT, Claude, and Gemini are the current (2026) head-to-head resume-rewrite tools and that all produce polished output requiring fact-verification, supporting the 'all of them produce confident fabrications, so the test is tool-agnostic' note."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/02/06",
+  "section_title": "Revision Logs",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI involvement is described only generically as 'AI tool suggested' (Worked Example Step 3 / row 06/04, line 49 and Step 3 line 53) and 'an AI tool suggests labeling your Word skills as expert' (Textbook Walkthrough, line 84). No named, current tool is given, so learners cannot reproduce the move or appreciate model/version churn. Verified that across the section the AI move is entirely tool-agnostic.",
+    "proposed_change": "In the Worked Example Step 3 (line 53) and the Textbook Walkthrough (line 84), name a concrete current tool in a parenthetical, e.g. 'an AI assistant (such as ChatGPT, Microsoft Copilot, or Claude) suggested...'. Add one sentence noting that model versions change, so the log should record which tool/version produced the suggestion as part of 'what prompted it.' Keep the pedagogy tool-agnostic but make at least one instance concrete. These three product names are current and shipping as of 2026.",
+    "where_to_apply": "C:/Users/jewoo/Projects/alget/frontend/content/cat100-supplement/02/06.mdx — Worked Example Step 3 (line 53; optionally the table row at line 49) and Textbook Walkthrough (line 84).",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "OpenAI ChatGPT / Microsoft Copilot / Anthropic Claude (product names current as of June 2026)",
+      "url_or_doi": "https://www.anthropic.com/claude",
+      "finding": "ChatGPT, Microsoft Copilot, and Claude are concrete, currently-shipping general-purpose AI assistants suitable as named examples; all release versioned models, supporting the added note that the log should record which tool/version produced a suggestion."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/02/07",
+  "section_title": "Peer Review for Professional Materials",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's load-bearing privacy claim — that a free AI tool 'can store it on servers you cannot audit' and that a resume 'carries exactly the data that fuels identity theft' (lines 74, 95) — carries no citation, in a course that explicitly values evidence-grounding. The 'Common Misreadings' rebuttal of 'privacy boundary is paranoia' (line 95) asserts harms (identity theft, unwanted contact, server retention) with no source.",
+    "proposed_change": "Add one short 'Recent Evidence' callout near 'Common Misreadings' (lines 91-95) grounding the claim in two authoritative primary sources: (1) FTC consumer guidance that identity thieves use exactly the PII a resume carries — name, address, account numbers, and SSN to open accounts, take loans, file taxes, or get a job; and (2) OpenAI's published policy that consumer ChatGPT conversations may be retained and used to train models unless the user opts out or uses Temporary Chat. Add both to References (lines 144-149), replacing the orphaned Tufte entry. Note: an OpenAlex scholarly search (resume / PII / identity theft / privacy) returned only tangential works (cloud-security and IoT-health surveys), so the FTC and vendor primary sources are the correct grounding rather than a forced citation.",
+    "where_to_apply": "07.mdx — callout near 'Common Misreadings' (lines 91-95) and References (lines 144-149)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "FTC, 'What To Know About Identity Theft' (Consumer Advice)",
+      "url_or_doi": "https://consumer.ftc.gov/articles/what-know-about-identity-theft",
+      "finding": "FTC states identity thieves steal a victim's name and address, credit card or bank account numbers, Social Security number, or medical insurance numbers, and use them to open new accounts, take out loans, file taxes, or get a job — the exact data a resume's contact block and work history expose."
+     },
+     {
+      "cite": "OpenAI, 'How your data is used to improve model performance' / 'Chat and File Retention Policies in ChatGPT' (Help Center)",
+      "url_or_doi": "https://help.openai.com/en/articles/5722486-how-your-data-is-used-to-improve-model-performance",
+      "finding": "OpenAI's published policy confirms consumer ChatGPT content may be used to train models unless the user opts out (Settings > Data Controls > 'Improve model for everyone'); Temporary Chats and deleted chats are removed within 30 days and are not used for training — establishing that pasted content can otherwise be retained and used."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI tools are entirely generic and unnamed ('a free AI tool', 'a public AI chatbot', 'an AI assistant'; lines 7, 20, 70, 101) and no current data-control feature is referenced, despite the section turning on tool data practices. The objective and Final Check invoke a 'bounded AI/software support move' (lines 15, 142) but the section never grounds it in 2026 reality.",
+    "proposed_change": "Add an 'as of 2026' note (Core Concept privacy boundary, lines 28-35, or a callout after Decision Rule item 3, line 86) naming 1-2 current tools by category and the control that matters: general assistants such as ChatGPT or Claude offer a temporary-chat / no-training mode; an institution-provided assistant such as Microsoft 365 Copilot with Enterprise Data Protection does not train on signed-in organizational data by default. Tie the bounded-AI move to two checks: does the tool train on input, and are you uploading someone else's PII — with the safe default still being to strip identifying data first. Verified current as of 2026: ChatGPT Temporary Chat / Data Controls opt-out exists; Microsoft 365 Copilot EDP (replaced 'commercial data protection' in Sept 2024) does not use signed-in org data for training.",
+    "where_to_apply": "07.mdx — Core Concept privacy boundary (lines 28-35) or new callout after Decision Rule item 3 (line 86)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "OpenAI Help Center, 'Chat and File Retention Policies in ChatGPT' / Temporary Chat",
+      "url_or_doi": "https://help.openai.com/en/articles/8983778-chat-and-file-retention-policies-in-chatgpt",
+      "finding": "Temporary Chat conversations do not appear in history, are not used to train models, and are deleted from OpenAI systems within 30 days; users can also disable training via Settings > Data Controls — confirming a 'no-training' mode exists in current consumer ChatGPT."
+     },
+     {
+      "cite": "Microsoft Learn, 'Enterprise data protection in Microsoft 365 Copilot and Microsoft 365 Copilot Chat'",
+      "url_or_doi": "https://learn.microsoft.com/en-us/microsoft-365/copilot/enterprise-data-protection",
+      "finding": "Microsoft 365 Copilot prompts, responses, and Microsoft Graph data are not used to train foundation models for users signed in with an organizational Entra ID; Enterprise Data Protection (which replaced commercial data protection in Sept 2024) is enabled by default — supporting the 'institution-provided assistant with stronger data terms' framing."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "The References list (line 148) includes 'data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi' (Tufte). This section is about peer review of resume text feedback and privacy; there is no data-visualization, chart, or data-ink content anywhere. The Tufte reference is an orphaned template artifact.",
+    "proposed_change": "Remove the Tufte 'data-ink and visual evidence' reference (line 148). Replace it with a source actually used by this section, e.g. the FTC identity-theft page and/or the OpenAI data-use policy added in the evidence_add opportunity, so every reference maps to in-section content. Confirmed: the Tufte VDQI page is about data visualization, which does not appear anywhere in this section.",
+    "where_to_apply": "07.mdx — References (line 148)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Edward Tufte, The Visual Display of Quantitative Information (publisher page)",
+      "url_or_doi": "https://www.edwardtufte.com/tufte/books_vdqi",
+      "finding": "The cited page is the publisher listing for a data-visualization book (data-ink, charts); none of these concepts appear in a section about peer-review feedback shape and PII privacy, confirming the reference is an irrelevant template artifact safe to remove."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "Anchor links may be stale/edition-specific. The NACE link (lines 127, 146) uses a deep slug (.../career-readiness/competencies/career-readiness-defined); NACE periodically revises competencies and restructures URLs. The ISTE link (lines 132, 147) is the generic standards page. Neither is dated.",
+    "proposed_change": "Both links are current and resolve to live pages; no URL change is required. Add an 'accessed 2026' note in References (lines 146-147) so currency is auditable. Verified: the NACE deep slug 'career-readiness/competencies/career-readiness-defined' is the live 'What is Career Readiness?' page (returned HTTP 403 to the automated fetch due to anti-bot filtering, but appears as a current indexed result); NACE's current set is the 8 competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology), last revised April 2024, with Equity & Inclusion currently under review. ISTE Standards for Students resolves live as the 2024 v4.02 edition with Digital Citizen as standard 1.2 — exactly the anchor this section uses.",
+    "where_to_apply": "07.mdx — Adaptive Support (lines 127, 132) and References (lines 146-147)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "NACE, 'Competencies — Career Readiness' / 'What is Career Readiness?'",
+      "url_or_doi": "https://www.naceweb.org/career-readiness/competencies",
+      "finding": "NACE's current career-readiness framework is the 8 competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology), most recently revised April 2024; the 'career-readiness-defined' slug is the live definition page, so the section's link is current though undated."
+     },
+     {
+      "cite": "ISTE, 'Standards for Students' (live page, fetched 2026)",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "Page resolves live and cites 'ISTE Standards © 2024 4.02'; Digital Citizen is standard 1.2 of the seven student standards, confirming the section's ISTE digital-citizenship anchor points to the current edition."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/02/08",
+  "section_title": "Module 2 Branding Studio",
+  "dir": "frontend/content/cat100-supplement/02",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed generically ('used AI to brainstorm 5 LinkedIn headlines' at lines 68-69; 'a bounded AI/software support move' at LO3) with no concrete 2026 tool named, and the section omits any reference to an institutional AI-use / academic-integrity disclosure norm even though the graded deliverable is an 'AI-use log' (lines 65-70, 142). This is the course-wide tool-agnostic-to-vagueness gap, and it matters most in the capstone where the log is graded.",
+    "proposed_change": "Add one concrete current example in Worked Example Step 4 (lines 65-70) or the AI-use-log prose, naming a representative 2026 assistant (ChatGPT, Microsoft Copilot, or Claude) for the headline brainstorm, kept illustrative so it stays tool-agnostic in spirit but concrete in practice. Add a one-line note at the Final Check (line 142) that the AI-use log should follow the course/institution's AI-use disclosure expectation — research confirms disclosure is now the default norm in higher ed (2025-26), and that substantive AI use such as generating text must be declared while light proofreading may not. This directly supports framing the AI-use log as a disclosure artifact.",
+    "where_to_apply": "08.mdx — Worked Example Step 4 (lines 65-70) and/or Final Check (line 142)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Thesify (2025) Generative AI Policies at the World's Top Universities: October 2025 Update",
+      "url_or_doi": "https://www.thesify.ai/blog/gen-ai-policies-update-2025",
+      "finding": "By early 2025 the dominant enforcement model shifted from 'AI is banned' to 'AI rules must be explicit,' with disclosure becoming the standard norm; supports adding an institutional-disclosure note to the AI-use log."
+     },
+     {
+      "cite": "Princeton University Library (2025) Disclosing the Use of AI — Generative AI for Research and Scholarship",
+      "url_or_doi": "https://libguides.princeton.edu/generativeAI/disclosure",
+      "finding": "Students must confirm AI is permitted by the instructor and disclose any AI use in academic work; substantive AI use (generating/interpreting data, creating visuals, paraphrasing) must be declared while basic proofreading may not — grounds the 'follow the course/institution disclosure expectation' line."
+     },
+     {
+      "cite": "Microsoft Copilot / OpenAI ChatGPT / Anthropic Claude — current mainstream assistants (2026)",
+      "url_or_doi": "https://www.microsoft.com/microsoft-copilot",
+      "finding": "ChatGPT, Microsoft Copilot, and Claude are representative, currently-available 2026 general-purpose assistants suitable as a concrete-but-illustrative example for the headline-brainstorm step."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The NACE 'career-readiness-defined' link (lines 127, 146) and the ISTE Standards for Students link (lines 132, 147) are cited as anchors; the currency-watch flagged both for verification. The dynamic-scenario (line 132) asserts an 'evidence move issue connected to ISTE digital citizenship' without grounding a specific standard/indicator.",
+    "proposed_change": "Both anchors verified CURRENT — no URL changes required. (1) NACE: the career-readiness-defined URL is live and the 8 competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology) are current, last revised April 2024 and reissued Dec 2025; wording is up to date. (2) ISTE Standards for Students current edition is © 2024 (v4.02); the link resolves to the live standards page. Optional concreteness improvement: name the specific ISTE Digital Citizen indicator the dynamic-scenario invokes — the most fitting is 1.2.a (Digital Footprint: 'students cultivate and manage their digital identity and reputation'), which directly maps to keeping a professional brand consistent and truthful across artifacts. Updating line 132 to cite ISTE 1.2.a Digital Footprint makes the anchor concrete rather than a generic drop.",
+    "where_to_apply": "08.mdx — References (lines 146-147), Adaptive Support link (line 127), dynamic-scenario (line 132)",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "NACE (2024, rev. Apr 2024; Dec 2025 reissue) Career Readiness: Competencies for a Career-Ready Workforce",
+      "url_or_doi": "https://www.naceweb.org/career-readiness/competencies/career-readiness-defined",
+      "finding": "The 8 NACE career-readiness competencies (Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology) and the cited URL are current; competencies were last revised April 2024 with a December 2025 PDF reissue, so the existing link/wording need no change."
+     },
+     {
+      "cite": "ISTE (2024) ISTE Standards for Students (© 2024, v4.02)",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "Current edition is ISTE Standards © 2024 4.02; seven categories include Digital Citizen (1.2) with indicators 1.2.a Digital Footprint, 1.2.b Online Interactions, 1.2.c Safeguard Well-being, 1.2.d Digital Privacy — 1.2.a (Digital Footprint / managing digital identity and reputation) is the indicator that grounds the dynamic-scenario's brand-consistency claim."
+     }
+    ]
+   }
+  ]
+ }
+]

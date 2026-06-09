@@ -1,0 +1,431 @@
+[
+ {
+  "section_key": "cat100/05/01",
+  "section_title": "Presentation Purpose and Audience",
+  "dir": "frontend/content/cat100-supplement/05",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed entirely generically in 01.mdx ('a bounded AI/software support move'; 'the AI's suggestion to add a metric'; 'rejected its suggestion to add a fourth slide' line 105; dynamic-scenario 'interface move issue' line 134). No current 2026 named tools/features appear, though the chapter is specifically about AI-enhanced presentations. The proposed grounding in named assistants is accurate as of June 2026.",
+    "proposed_change": "Ground the AI references in current named assistants without tool-locking. In '## Stronger Artifact Standard' AI-note (line 105), attribute the suggestion concretely, e.g. 'Copilot in PowerPoint (or Gemini in Google Slides) suggested adding a fourth slide; I rejected it because three minutes leaves no room.' Add one parenthetical in '## Core Concept' or '## Adaptive Support' naming current slide-design/coaching features as the explicitly 'tool-last' decoration layer, e.g. '(Copilot Design Suggestions auto-layout, or Speaker Coach for delivery)'. CURRENCY NOTE for the author: as of 2026, Copilot in PowerPoint generates full decks from a prompt or from up to five files and added an Agent Mode (Jan 2026); Gemini in Google Slides assists slide-by-slide via 'Help me visualize' (image/infographic/slide) and does NOT yet generate a full deck from a single prompt — so do not claim Gemini builds the whole deck. PowerPoint's 'Designer' has been rebranded to Copilot 'Design Suggestions'/'Slide Starters' (2025-2026) and now requires a Copilot-enabled M365 plan, so prefer 'Copilot Design Suggestions' over the legacy 'PowerPoint Designer' name. Speaker Coach is current in M365 (pace, filler words, monotone, inclusiveness; English UI only).",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\05\\01.mdx '## Stronger Artifact Standard' AI-note (line 105); and the 'tool third' clause in '## Core Concept' (line 36) / '## Adaptive Support' (lines 125-134)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Microsoft Support, 'Create a new presentation with Copilot in PowerPoint' / Copilot in PowerPoint product page (accessed 2026)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d",
+      "finding": "Copilot in PowerPoint is a current, named feature that builds a full presentation from a prompt or from up to five source files (Word/PDF/Excel); Jan 2026 updates added Agent Mode on Mac/web. Product name 'Copilot in PowerPoint' is current as of 2026."
+     },
+     {
+      "cite": "Google Docs Editors Help, 'Generate & edit images with Gemini in Google Slides & Vids' (accessed 2026)",
+      "url_or_doi": "https://support.google.com/docs/answer/16443280?hl=en",
+      "finding": "Gemini in Google Slides works slide-by-slide via Insert > 'Help me visualize' (image, infographic, or full slide); as of early 2026 it does NOT generate a complete deck from a single topic prompt. Confirms the assistant name and constrains the wording so the section does not overstate Gemini's deck-level capability."
+     },
+     {
+      "cite": "Office Watch, 'PowerPoint Designer is now Copilot Design Suggestions' (2025); Microsoft Support, 'Rehearse your slide show with Speaker Coach'",
+      "url_or_doi": "https://office-watch.com/2025/powerpoint-designer-is-now-copilot-design-suggestions/",
+      "finding": "Legacy 'PowerPoint Designer' auto-layout has been rebranded to Copilot 'Design Suggestions'/'Slide Starters' (2025-2026) and now requires a Copilot-enabled M365 plan; Speaker Coach remains a current M365 delivery-coaching feature (pace, filler words, monotone, inclusiveness). Use 'Copilot Design Suggestions' rather than the deprecated 'Designer' label."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/05/02",
+  "section_title": "Slide Structure Before Decoration",
+  "dir": "frontend/content/cat100-supplement/05",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The central construct, the assertion-evidence pattern, is taught as a named technique but grounded only loosely in Tufte's data-ink idea. Assertion-evidence is itself a researched method (Alley & Neeley; Garner & Alley empirical study), and this evidence-valuing course should cite it directly where the construct is named (Core Concept, line 24) and in References (lines 156-161).",
+    "proposed_change": "After the sentence introducing the assertion-evidence pattern (line 24), add an inline 'Recent Evidence' attribution citing Alley & Neeley (2005) and the Garner & Alley comprehension study (2020), plus markdown reference entries. IMPORTANT WORDING CORRECTION: the proposed sentence ('audiences recalled key points significantly better') OVERSTATES the Garner et al. 2020 result, which reported a positive TREND that was NOT statistically significant. Use accurate hedged wording instead, e.g.: 'The assertion-evidence pattern comes from presentation-design research (Alley & Neeley, 2005); a controlled study found a positive trend toward better comprehension and recall of complex concepts when points appeared in a sentence-assertion headline rather than a topic-label-plus-bullets layout (Garner et al., 2020).' Add references: '- [Alley & Neeley (2005), Discovering the power of PowerPoint: Rethinking the design of presentation slides](https://doi.org/10.1080/00335630500350292)' and '- [Garner & Alley et al. (2020), Assertion-Evidence slides appear to lead to better comprehension and recall of more complex concepts](https://doi.org/10.18260/1-2--17510)'. Verify the Alley & Neeley DOI before publishing if a link is required; the OpenAlex record did not return a DOI for that 2005 paper.",
+    "where_to_apply": "02.mdx — Core Concept paragraph (line 24) for inline attribution; References section (lines 156-161) for two citation entries",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Alley & Neeley (2005), Discovering the power of PowerPoint: Rethinking the design of presentation slides from a skillful user's perspective",
+      "url_or_doi": "https://openalex.org/works?search=Alley+Neeley+rethinking+design+presentation+slides (OpenAlex record confirms title/authors/2005; no DOI returned by OpenAlex)",
+      "finding": "Confirms the assertion-evidence / sentence-headline approach originates in a 2005 Alley & Neeley publication, validating direct attribution of the named technique."
+     },
+     {
+      "cite": "Garner, Alley, Wolfe, Zappe & Sawarynski (2020), Assertion-Evidence Slides Appear to Lead to Better Comprehension and Recall of More Complex Concepts",
+      "url_or_doi": "https://doi.org/10.18260/1-2--17510",
+      "finding": "Empirical study found a POSITIVE TREND for assertion-evidence slides improving comprehension/recall of complex concepts, but the result was NOT statistically significant — so the construct is researched, yet the 'significantly better' phrasing must be softened to 'a positive trend toward.'"
+     },
+     {
+      "cite": "Alzayed & Alzamel (2022), Assertion-Evidence versus Traditional PowerPoint (108 engineering students)",
+      "url_or_doi": "https://doi.org/10.36909/jer.16963",
+      "finding": "Experimental study found assertion-evidence slides produced lower perceived cognitive load, supporting the comprehension benefit framing even though understanding/motivation effects were not significant; a strong corroborating citation if a second source is wanted."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed entirely generically ('a bounded AI/software support move', 'the AI's tighter wording', 'an AI or template suggestion'), with no named 2026 tools. Chapter 5 covers AI-assisted presentations and the currency-watch flags this; a learner gets no concrete anchor for what the bounded move looks like with current tools, nor a disclosure-norm reminder.",
+    "proposed_change": "Add one concrete, version-dated example to the Stronger Artifact Standard note (line 115) or the Common Misreadings AI sentence (line 88): 'Tools like Copilot in PowerPoint or Gemini in Google Slides (2026) can propose headline rewrites, auto-designed layouts, or generated images; treat any layout or image suggestion as decoration to evaluate only after your assertion already works, and log accepted/modified/rejected moves in your AI-use note. Features and models churn quickly, so name the tool and date in your note.' Keep framing tool-agnostic but ground it in at least one named 2026 tool.",
+    "where_to_apply": "02.mdx — Stronger Artifact Standard note (line 115) or Common Misreadings AI sentence (line 88)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft, Copilot in PowerPoint / Designer (PowerPoint Copilot review, 2026)",
+      "url_or_doi": "https://powerpoint.cloud.microsoft/create/en/copilot-in-powerpoint/",
+      "finding": "As of 2026, Copilot in PowerPoint drafts slide content and Designer converts bullet lists into layouts/timelines/SmartArt; January 2026 added Agent Mode (Mac/web), SharePoint brand assets, and Claude-powered document agents — confirming 'Copilot in PowerPoint (2026)' as a current, accurate named tool that auto-designs layouts."
+     },
+     {
+      "cite": "Google Workspace, Gemini in Google Slides (Google Docs Editors Help; Workspace presentation-AI page, 2026)",
+      "url_or_doi": "https://support.google.com/docs/answer/13951829?hl=en",
+      "finding": "As of April 2026, Gemini in Google Slides generates/edits images and offers text/speaker-note/summary suggestions per slide via the side panel but cannot build a full multi-slide deck from one prompt — confirming 'Gemini in Google Slides (2026)' as accurate and that layout/image generation is a per-element suggestion to evaluate."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/05/03",
+  "section_title": "Image Generation for Explaining Ideas",
+  "dir": "frontend/content/cat100-supplement/05",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accessibility",
+    "gap": "The section is entirely about placing generated images on slides yet never addresses alt text / a non-text alternative for those images, despite a11y being a project gate and WCAG 2.2 already in References. Line 106 ('glow reduced contrast on the labels') gestures at contrast but never makes the WCAG 1.1.1 or 1.4.3/1.4.11 connection explicit. For an explanatory diagram the alt text is exactly the verified spec the learner already wrote, so it folds into the existing specify-then-verify loop.",
+    "proposed_change": "Add an 'Accessibility check' as a fourth question in the Decision Rule list (lines 67-73): 'Accessibility check: does every explanatory image have a text alternative that states what it shows (the same parts, labels, and order you specified), and do the label text and its background meet sufficient contrast (WCAG 1.4.3, 4.5:1 for normal text / 3:1 for large text; non-text graphical objects 3:1 per 1.4.11)?' Reinforce in Final Check (line 145): add 'each explanatory image has a text alternative matching its verified content.' Optionally one line in Stronger Artifact Standard tying the line-106 contrast remark to 1.4.11. Tie to the existing WCAG 2.2 reference; no new anchor needed. For a complex diagram, note the W3C two-part pattern (short alt + longer description) since a flowchart carries more than a short phrase.",
+    "where_to_apply": "03.mdx — Decision Rule (lines 67-73) and Final Check (line 145); optional note in Stronger Artifact Standard (line 104-106). Mirror in 03.meta.json only if an LO is differentiated for it.",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "W3C, Web Content Accessibility Guidelines (WCAG) 2.2 (2023, W3C Recommendation)",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/",
+      "finding": "SC 1.1.1 Non-text Content (Level A): all non-text content has a text alternative serving an equivalent purpose, except purely decorative content. SC 1.4.3 Contrast Minimum (Level AA): text contrast at least 4.5:1, large text 3:1. SC 1.4.11 Non-text Contrast (Level AA): UI components and graphical objects at least 3:1 against adjacent colors. This directly grounds both the alt-text and contrast additions and matches the existing WCAG 2.2 reference."
+     },
+     {
+      "cite": "W3C WAI, Complex Images tutorial",
+      "url_or_doi": "https://www.w3.org/WAI/tutorials/images/complex/",
+      "finding": "For diagrams, flowcharts, and charts W3C recommends a two-part text alternative: a short alt identifying the image plus a longer description conveying the essential information, because complex images carry more than a short phrase. This supports framing the verified spec (parts/labels/order) as the diagram's text alternative."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI image generation is described in fully generic terms throughout ('an image tool', 'the model', 'a generated diagram') with zero named 2026 tools and no note about which tools reliably render legible in-image text. This is the course's flagged currency-watch item. The pipeline-label example depends entirely on legible label text, so naming the tool churn (and that text rendering varies sharply by tool/version) makes the verification lesson sharper.",
+    "proposed_change": "Add one dated sentence in Core Concept (after line 31) or after the Worked Example (after line 55): 'As of 2026, tools differ sharply in rendering correct in-image text: GPT Image 2 (ChatGPT) and Ideogram render labels most reliably, with Google Gemini Nano Banana 2 (Gemini 3 Flash Image) and Adobe Firefly close behind, while older diffusion models like Midjourney still garble label text. Microsoft Copilot / Designer offers an in-suite option for a presentations workflow. Even the strongest tools still transpose letters or add phantom characters on longer labels, which is exactly why label verification (step 4) is mandatory.' Keep the Decision Rule tool-agnostic but add an 'as of 2026' parenthetical so the churn is visible.",
+    "where_to_apply": "03.mdx — Core Concept (after line 31) or end of Worked Example (after line 55).",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "AI/ML API Blog, 'The Best AI Image Generators in 2026: 12 Models Tested' (2026)",
+      "url_or_doi": "https://aimlapi.com/blog/the-best-ai-image-generators",
+      "finding": "Text rendering is the headline 2026 industry improvement; Ideogram and GPT Image 2 lead at rendering legible in-image text (GPT Image 2 reported near-99% text accuracy), while Midjourney remains unreliable at readable words (distorted logos, misspelled titles, garbled signage). Confirms the tool-by-tool legibility split the proposed sentence asserts."
+     },
+     {
+      "cite": "MindStudio / fal.ai, GPT Image 2 vs Nano Banana 2 comparisons (2026)",
+      "url_or_doi": "https://www.mindstudio.ai/blog/gpt-image-2-vs-gemini-image-generation",
+      "finding": "Nano Banana 2 (Gemini 3.x Flash Image, released Feb 2026) renders legible marketing text and trails GPT Image 2 only slightly; longer phrases still show letter transpositions/phantom characters ~30-40% of the time. Grounds both the named-tools list and the 'even strong tools err on long labels, so verify' point."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/05/04",
+  "section_title": "AI Narration Pathways",
+  "dir": "frontend/content/cat100-supplement/05",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "accessibility",
+    "gap": "The section teaches narrated/synthetic-voice slides but never mentions captions or a transcript. Under WCAG 2.2 (the named accessibility anchor, already cited in References), prerecorded audio and audio-in-video must have a text alternative/transcript (SC 1.2.1, Level A) and captions (SC 1.2.2, Level A). A section devoted to adding a voice channel that omits the single most important accessibility obligation for audio content is a real content gap, especially since a11y is a project gate.",
+    "proposed_change": "Add a short accessibility callout (or sentence in 'Core Concept' pathway discussion) and a fourth Decision Rule check: 'Accessibility check: does every narrated slide have a caption or transcript?' Make it concrete: AI text-to-speech tools produce the narration script as editable text, so the transcript is essentially free (it IS the script); recorded own-voice needs captions/transcript added afterward. Tie to the artifact: the critique log should record that a caption or transcript exists for each narrated slide. Confirmed scope: SC 1.2.1 (Level A) is satisfied by a text transcript for audio-only; SC 1.2.2 (Level A) requires synchronized captions when audio is in synchronized media (e.g., a narrated slide video).",
+    "where_to_apply": "04.mdx — '## Core Concept' (pathway table/obligations near lines 30-36) and '## Decision Rule' three-question list (add a 4th check after line 75); optionally a dedicated accessibility callout",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "W3C, Web Content Accessibility Guidelines (WCAG) 2.2 — SC 1.2.1 Audio-only and Video-only (Prerecorded), Level A",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/#audio-only-and-video-only-prerecorded",
+      "finding": "SC 1.2.1 (Level A) requires an alternative for time-based media that presents equivalent information for prerecorded audio-only content; the Understanding doc confirms a text transcript satisfies this ('A link to a text transcript is provided immediately after the link to the audio clip')."
+     },
+     {
+      "cite": "W3C, Web Content Accessibility Guidelines (WCAG) 2.2 — SC 1.2.2 Captions (Prerecorded), Level A",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/#captions-prerecorded",
+      "finding": "SC 1.2.2 (Level A) mandates that 'Captions are provided for all prerecorded audio content in synchronized media,' which is exactly the case for a slide deck with synthetic or recorded narration played as video."
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The central claims — the redundancy effect and the multimedia principle — are stated in prose with no citation (lines 7, 24, 65, 81). This is exactly the kind of well-established learning-science claim the course's evidence-grounding through-line expects to anchor to a real source, and it would strengthen the inline-check explanation that references 'working memory.'",
+    "proposed_change": "Add a 'Recent Evidence' callout (or References entries) grounding the redundancy principle at line 24 ('the multimedia principle in practice') and the inline-check at line 65: cite Kalyuga & Sweller's redundancy-principle chapter in Mayer's Cambridge Handbook of Multimedia Learning, and Chan et al. (2020), which directly tests adding on-screen text that duplicates narration and finds it depresses learning — an exact match for the section's 'do not duplicate narration with on-screen text' claim. Add both to the References list.",
+    "where_to_apply": "04.mdx — '## Core Concept' (line 24) and inline-check explanation (line 65); '## References' list (lines 151-156)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Kalyuga, S. & Sweller, J. (2014). The Redundancy Principle in Multimedia Learning. In R. E. Mayer (Ed.), The Cambridge Handbook of Multimedia Learning (2nd ed.)",
+      "url_or_doi": "https://doi.org/10.1017/cbo9781139547369.013",
+      "finding": "Authoritative treatment within Mayer's framework: redundant material (e.g., audio narration plus identical on-screen text) interferes with rather than facilitates learning, grounding the section's redundancy-effect claim."
+     },
+     {
+      "cite": "Chan, K. Y. et al. (2020). Effect of on-screen text on multimedia learning with native and foreign-accented narration. Learning and Instruction, 70",
+      "url_or_doi": "https://doi.org/10.1016/j.learninstruc.2020.101305",
+      "finding": "Direct empirical study of on-screen text duplicating narration in multimedia learning — supports the specific instructional claim that audio reciting the visible text harms comprehension (the redundancy effect)."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI text-to-speech is entirely tool-agnostic ('AI text-to-speech tool', 'a text-to-speech tool') with no 2026 named tools, matching the course currency-watch flag that AI tools/models are unnamed to the point of vagueness. Students cannot connect the abstract pathway to anything they would actually open.",
+    "proposed_change": "Add a brief grounded parenthetical or short callout after the pathway table (lines 30-36) naming 1-3 current 2026 options: ElevenLabs (Eleven v3 model), the built-in AI narration in PowerPoint via Microsoft Copilot/Clipchamp (which can voice your speaker notes), and a churning-field tool like Murf — with a one-line caveat that tool names and voice quality change fast and the obligations (proofread by ear, caption/transcript, disclose, own every word) are tool-independent.",
+    "where_to_apply": "04.mdx — '## Core Concept' pathway table (lines 30-36) or a new short callout after the table",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "ElevenLabs — Text to Speech / Presentations (2026)",
+      "url_or_doi": "https://elevenlabs.io/use-cases/presentations",
+      "finding": "ElevenLabs (Eleven v3 model, 74 languages) is the most recognized current AI TTS platform for presentation narration as of 2026; widely cited in 2026 TTS comparisons."
+     },
+     {
+      "cite": "Microsoft — Narrate a PowerPoint with Copilot/Clipchamp (2026)",
+      "url_or_doi": "https://clipchamp.com/en/blog/how-to-narrate-a-powerpoint-presentation/",
+      "finding": "Microsoft provides built-in AI narration: Copilot and Clipchamp generate AI voiceover from a deck's speaker notes, a tool CAT 100 students plausibly already have via Microsoft 365."
+     },
+     {
+      "cite": "BasedLabs — Best AI Text to Speech Tools Compared 2026",
+      "url_or_doi": "https://www.basedlabs.ai/articles/best-ai-text-to-speech-tools-compared-2026",
+      "finding": "2026 landscape confirms rapid churn (ElevenLabs Eleven v3, Fish Audio S2, Murf with 200+ voices), supporting the 'names and quality churn; obligations are tool-independent' caveat."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Disclosure is framed generically throughout ('disclose AI voice where required', 'where the assignment or audience expects to know', lines 36, 89, 110) with no anchor to current 2026 GenAI academic-integrity / AI-use disclosure norms, which the course's currency-watch flags as evolving fast. Students get the obligation but no model of what a disclosure actually says or where current norms come from.",
+    "proposed_change": "Add a one-line concrete disclosure example to the sample log entry (line 110) or the Core Concept disclosure sentence (line 36), e.g. a closing-slide line: 'Narration generated with [tool, e.g., ElevenLabs] and edited by the author.' Add a brief note that AI-use disclosure expectations are evolving and students should check their own course/institution policy. The current best-practice model (name the tool, state how it was used, note what reflects AI assistance) is well documented for 2026 and matches the existing disclosure prose, so keep it short to reinforce rather than duplicate.",
+    "where_to_apply": "04.mdx — '## Stronger Artifact Standard' sample log entry (around line 110) or '## Core Concept' disclosure sentence (line 36)",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Princeton University Library — Disclosing the Use of AI (Generative AI for Research and Scholarship)",
+      "url_or_doi": "https://libguides.princeton.edu/generativeAI/disclosure",
+      "finding": "Current best practice = a brief author's note naming the tool used, how it was used (drafting/editing/research), and what portions reflect AI assistance — a concrete model for the section's disclosure example."
+     },
+     {
+      "cite": "Inside Higher Ed (2026) — A Different Kind of AI Disclosure Statement",
+      "url_or_doi": "https://www.insidehighered.com/opinion/career-advice/teaching/2026/03/30/different-kind-ai-disclosure-statement-opinion",
+      "finding": "Confirms 2026 disclosure norms in higher ed are still forming and instructor/institution policies vary, supporting the 'check your course/institution policy' caveat."
+     },
+     {
+      "cite": "Exploring Emerging Norms of AI Attribution and Disclosure in Programming Education (arXiv 2026)",
+      "url_or_doi": "https://arxiv.org/abs/2602.04023",
+      "finding": "2026 study shows attribution judgments turn on level of AI assistance vs human refinement and proposes process-oriented disclosure, evidencing that norms are actively evolving."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/05/05",
+  "section_title": "Self-Recording With AI Coaching",
+  "dir": "frontend/content/cat100-supplement/05",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The 'AI speech coach' is entirely generic across the whole section (mdx 'Core Concept', 'Worked Example', practice, misconceptions). No real 2026 tool is ever named, which is the exact course-level currency-watch flag. Learners cannot act on this without knowing what software actually produces wpm/filler/clarity metrics.",
+    "proposed_change": "Add a short 'Tools that do this in 2026' callout after the 'Core Concept' two-disciplines list (before 'Worked Example') naming concrete coaches and what each measures: Microsoft PowerPoint Speaker Coach (pace, filler words, monotone/pitch, pronunciation, originality, plus a Rehearsal Report with a pace graph and filler counts), Yoodli (filler words, pace/speaking speed, word choice, eye contact, with real-time nudges and progress tracking), and Poised (real-time filler words, pace, clarity, confidence during live video calls + a post-meeting recap/Poised Score). Add one verifiable sentence: exact metric names and the existence of a numeric 'clarity score' vary by tool (e.g., PowerPoint reports pace/pitch/fillers but no single 'clarity' number, while Poised surfaces a clarity metric), and model/UI churn means the labels you see may differ. Keep the body tool-agnostic but anchor it. Optionally reference Speaker Coach in 05.meta.json description.",
+    "where_to_apply": "05.mdx new callout after 'Core Concept' two-disciplines list (before 'Worked Example'); optionally reference one tool in 05.meta.json description",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft Support, 'Suggestions from Speaker Coach' (accessed 2026)",
+      "url_or_doi": "https://support.microsoft.com/en-us/office/suggestions-from-speaker-coach-25e7d866-c895-4aa1-9b90-089b70a4ea38",
+      "finding": "PowerPoint Speaker Coach reports pace (recommended 100-165 wpm), filler words, pitch/monotone, pronunciation, originality, inclusiveness, speech refinements, and repetitive words; there is no single numeric 'clarity score' — it gives a post-session Rehearsal Report with a pace graph and filler-word counts."
+     },
+     {
+      "cite": "Yoodli product/use-cases page and Research.com Yoodli Review 2026",
+      "url_or_doi": "https://yoodli.ai/use-cases/speech-coaches",
+      "finding": "Yoodli tracks filler words ('um','like'), speaking pace/speed, word choice, and eye contact, gives discreet real-time pacing nudges, and tracks progress over time; 2026 added multi-persona panel simulations."
+     },
+     {
+      "cite": "Poised, 'AI-Powered Communication Coach' (poised.com, accessed 2026)",
+      "url_or_doi": "https://www.poised.com/",
+      "finding": "Poised runs during live video calls (Zoom, Teams, Meet, Slack) and reports filler/crutch words, pace, clarity, confidence and energy in real time, plus an overall 'Poised Score' and a post-meeting recap — confirming a tool that does surface a 'clarity' metric, unlike Speaker Coach."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/05/06",
+  "section_title": "Citation and Attribution",
+  "dir": "frontend/content/cat100-supplement/05",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The section repeatedly labels U.S. Bureau of Labor Statistics data as 'CC BY 4.0' (Opening Case line 20, Core Concept line 27, Worked Example steps 47/50, step-reveal first reveal line 61, Stronger Artifact Standard sample entry line 108, and artifact_signal practice option). This is factually wrong: U.S. federal-government works (incl. BLS charts/tables) are in the U.S. public domain under 17 U.S.C. 105 and are NOT released under a Creative Commons license. The section internally contradicts itself: Core Concept correctly says BLS releases are public-domain government data, then tags BLS 'CC BY 4.0' in the same paragraph and every example.",
+    "proposed_change": "Replace every 'CC BY 4.0' label attached to BLS with the correct status (Option a preferred): caption convention 'Chart: U.S. Bureau of Labor Statistics, 2025 (public domain / U.S. government work; cite the source).' Update Worked Example step 1, the step-reveal first reveal, the Stronger Artifact Standard sample entry, and the artifact_signal practice option (06.practice.json option index 1, currently 'Chart: U.S. BLS, 2025, CC BY 4.0'). This lets the section teach the high-value distinction: U.S. government data = public domain (cite, no license needed) vs third-party charts that may carry CC or all-rights-reserved licenses. Add the caveat that BLS photographs (Getty/Shutterstock/Adobe Stock) are NOT public domain and need permission, reinforcing 'check the license per asset.'",
+    "where_to_apply": "06.mdx lines 20, 27, 47/50, 61, 108; 06.practice.json artifact_signal option index 1.",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "U.S. Bureau of Labor Statistics, BLS Copyright Information",
+      "url_or_doi": "https://www.bls.gov/opub/copyright-information.htm",
+      "finding": "BLS public-domain material is free to use without specific permission, but BLS asks that you cite the Bureau of Labor Statistics as the source. Photographs are NOT public domain: they are used by BLS under subscription with Getty Images, Shutterstock, and Adobe Stock and require the copyright holder's permission to reproduce. BLS data is public domain, never released under a CC license."
+     },
+     {
+      "cite": "17 U.S. Code Sec. 105 - Subject matter of copyright: United States Government works (Cornell LII)",
+      "url_or_doi": "https://www.law.cornell.edu/uscode/text/17/105",
+      "finding": "Section 105 places all works of the United States Government (a work prepared by an officer or employee as part of official duties) in the public domain; such works are not eligible for copyright, hence cannot be released under a CC BY license."
+     },
+     {
+      "cite": "Creative Commons, Attribution 4.0 International (CC BY 4.0) legal code",
+      "url_or_doi": "https://creativecommons.org/licenses/by/4.0/",
+      "finding": "CC BY 4.0 is a license applied by a copyright holder; it requires reusers to give appropriate credit, provide a link to the license, and indicate if changes were made. A public-domain work has no copyright holder to apply a CC license, so labeling BLS data 'CC BY 4.0' misstates both the legal status and the reuse obligations."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed entirely generically ('AI assistance,' 'drafted with AI assistance,' 'image generated with AI') with no named 2026 tools and no concrete institutional AI-use/academic-integrity policy hook. For a section about honest disclosure, the disclosure example is vague about what students actually write in 2026 (which tool/model, what the institution requires) and there is no anchor to evolving GenAI disclosure norms.",
+    "proposed_change": "Ground the disclosure example in current named tools and norms without making the section tool-bound. In the Worked Example / step-reveal final reveal, add a concrete form: 'Summary drafted with AI assistance (e.g., ChatGPT, Claude, or Copilot; [date]), edited and verified by me.' Add a one-line callout near the Core Concept disclosure paragraph that disclosure wording should follow the course's stated AI-use policy / syllabus statement, noting that GenAI disclosure expectations are evolving and vary by instructor. Anchor to current style-guide AI-citation standards (APA Sept 2025 update; MLA prompt-first works-cited guidance) as evidence.",
+    "where_to_apply": "06.mdx Worked Example step 4 (lines 54-55), step-reveal final reveal (line 61), and a small policy/Recent-Evidence callout near Core Concept disclosure paragraph (line 30).",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "APA Style, How to cite ChatGPT / Citing generative AI in APA Style (updated Sept 2025)",
+      "url_or_doi": "https://apastyle.apa.org/blog/cite-generative-ai-references",
+      "finding": "As of September 2025 APA recommends citing the specific AI chat (company as author, dated, model named, shareable URL), e.g. OpenAI. (2025, August 21). [title] [Generative AI chat]. ChatGPT. <url>. AI cannot be an author; the company (OpenAI for ChatGPT, Google for Gemini) is the author. Confirms named-tool, dated, model-specific disclosure is current 2025-2026 practice."
+     },
+     {
+      "cite": "MLA Style Center, How do I cite generative AI in MLA style? (updated/revised)",
+      "url_or_doi": "https://style.mla.org/citing-generative-ai-updated-revised/",
+      "finding": "MLA recommends citing AI whenever you paraphrase/quote/incorporate AI-created content, beginning the entry with the prompt text plus the tool, model name/number, date, and a stable shareable URL; for process uses (brainstorming, proofreading) acknowledge rather than cite. AI-generated images should carry a caption naming the prompt, tool, version, and date. Supports the proposed concrete disclosure wording and per-tool/model specificity."
+     },
+     {
+      "cite": "Chan, C. K. Y. (2023). A comprehensive AI policy education framework for university teaching and learning. Int. J. Educ. Technol. High. Educ.",
+      "url_or_doi": "https://doi.org/10.1186/s41239-023-00408-3",
+      "finding": "Peer-reviewed framework establishing that GenAI use/disclosure expectations in higher education are governed by evolving institutional policy that varies across instructors and contexts, supporting the 'follow your course's stated AI-use policy / syllabus statement' callout."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/05/07",
+  "section_title": "Accessibility Checks for Slides",
+  "dir": "frontend/content/cat100-supplement/05",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The contrast value for #BBBBBB on white is stated as 'about 1.7:1' in four places (Core Concept line 31, Worked Example step 1 line 51, step-reveal first reveal line 66, Stronger Artifact Standard sample note line 113). The WCAG-computed ratio is ~1.9:1, not 1.7:1. This undercuts the section's own message that contrast is a precise computed number you do not eyeball.",
+    "proposed_change": "Replace 'about 1.7:1' with 'about 1.9:1' everywhere it appears (lines 31, 51, 66, 113). Keep the surrounding point intact ('far below the 4.5:1 line'). I verified the exact value by running the WCAG relative-luminance formula: #BBBBBB linearizes to relative luminance 0.4969, giving (1.0+0.05)/(0.4969+0.05) = 1.92:1, which rounds to ~1.9:1. The original 1.7:1 is wrong. Optionally name '1.92:1' to model the precision the section demands. (#1A2A4F on white = 14.11:1, so the 'exceeds 4.5:1' claim is fine.)",
+    "where_to_apply": "07.mdx — Core Concept Contrast bullet (line 31), Worked Example step 1 (line 51), step-reveal first reveal (line 66), Stronger Artifact Standard sample note (line 113)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "WCAG 2 / WebAIM relative-luminance contrast formula (computed by reviewer)",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/#dfn-relative-luminance",
+      "finding": "Applying the WCAG relative-luminance + (L1+0.05)/(L2+0.05) contrast formula: #BBBBBB on #FFFFFF = 1.92:1 (~1.9:1), not 1.7:1. #1A2A4F on white = 14.11:1."
+     },
+     {
+      "cite": "WebAIM: Contrast Checker (independent verification tool)",
+      "url_or_doi": "https://webaim.org/resources/contrastchecker/",
+      "finding": "Entering foreground #BBBBBB and background #FFFFFF returns a 1.92:1 ratio, matching the computed value and confirming 1.7:1 is incorrect."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed generically ('Ask AI to draft alt text'; 'a suggestion to use a lighter, trendier title color'). No current 2026 named tool is grounded, and the section misses that PowerPoint ships a built-in Accessibility Checker plus (on Copilot+ PCs) automatic AI alt-text generation. A 2026 digital-fluency learner meets these by default.",
+    "proposed_change": "Add a short 'Recent Evidence'/transfer callout naming current 2026 tools: (1) PowerPoint's built-in Accessibility Checker (Review > Check Accessibility), which flags missing alt text and color-only issues; (2) automatic on-device AI alt-text generation in Word/PowerPoint on Copilot+ PCs (Microsoft 365 v2512+, runs on the NPU, toggle at File > Options > Accessibility); (3) the WebAIM Contrast Checker as a free standalone tool. IMPORTANT CORRECTION to the gap's framing: Google Slides does NOT have a built-in accessibility checker as of 2026 — it relies on third-party add-ons (e.g., Grackle Slides, Accessibility Checker for Slides), so phrase it as 'add-ons' for Slides, not a native checker. Reinforce the bounded-AI move: auto-generated alt text must be verified against what the chart actually shows, exactly as the existing ai_boundary practice item teaches. Note model/UI churn (Copilot+ build numbers and menu paths change).",
+    "where_to_apply": "07.mdx — add as a callout after Core Concept (after line 35) or extend the Transfer Case section",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft 365 Insider Blog (2025) Automatic alt text generation in Word and PowerPoint on Copilot+ PCs",
+      "url_or_doi": "https://techcommunity.microsoft.com/blog/microsoft365insiderblog/automatic-alt-text-generation-in-word-and-powerpoint-on-copilot-pcs/4479186",
+      "finding": "PowerPoint on Copilot+ PCs auto-suggests alt text on-device (NPU, image stays local); accessible via Review > Check Accessibility > Missing Alt Text; available in Microsoft 365 v2512 (Build 19530.20006)+; can be disabled at File > Options > Accessibility. Confirms a built-in checker + AI alt text exist by default in 2026."
+     },
+     {
+      "cite": "Section508.gov, How to Use the WebAIM Contrast Checker",
+      "url_or_doi": "https://www.section508.gov/training/create/making-color-usage-accessible/webaim-contrast-checker/",
+      "finding": "WebAIM Contrast Checker takes foreground/background hex, instantly returns the ratio, and shows Pass/Fail for Normal Text (AA), Large Text (AA), Normal (AAA), Large (AAA). Free standalone tool, current in 2026."
+     },
+     {
+      "cite": "Google Workspace Marketplace / BrightCarbon (2026) Google Slides accessibility tools",
+      "url_or_doi": "https://workspace.google.com/marketplace/app/accessibility_checker_for_slides/437536886016",
+      "finding": "Unlike PowerPoint, Google Slides has NO built-in accessibility checker; users rely on add-ons (Grackle Slides, Accessibility Checker for Slides) to check against WCAG. This corrects the gap's assumption that Slides ships a native checker."
+     }
+    ]
+   },
+   {
+    "type": "scaffolding",
+    "gap": "The section repeatedly says to 'measure' contrast and 'you do not eyeball it, you check it' (lines 31, 51, 66) but never tells the learner HOW to obtain the ratio — no concrete tool, no input, no output description. This is the single load-bearing skill of the section and it is left implicit, weakening the Decision Rule's 'evidence check' (line 77) and Strong Reading Q1 (line 104), both of which reference 'the measured contrast ratio.'",
+    "proposed_change": "Add one concrete step in Worked Example step 1 (line 51) or the Core Concept Contrast bullet (line 31): open a contrast checker (e.g., the WebAIM Contrast Checker), paste the foreground hex (e.g., #BBBBBB) into Foreground Color and the background hex (#FFFFFF) into Background Color, and read the ratio; the tool instantly reports the number and a Pass/Fail against Normal Text (AA, 4.5:1) and Large Text (AA, 3:1). In PowerPoint, the built-in Accessibility Checker (Review > Check Accessibility) flags low-contrast and missing alt text as you author. This makes 'the measured contrast ratio' actionable.",
+    "where_to_apply": "07.mdx — Worked Example step 1 (line 51) or Core Concept Contrast bullet (line 31)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "WebAIM: Contrast Checker",
+      "url_or_doi": "https://webaim.org/resources/contrastchecker/",
+      "finding": "The checker has Foreground Color and Background Color fields accepting six-digit hex (e.g., #0000FF); it instantly computes the ratio and shows Pass/Fail for Normal Text (AA), Large Text (AA), and AAA tiers, with sliders to adjust until it passes — exactly the concrete 'how' the section omits."
+     },
+     {
+      "cite": "Microsoft 365 Insider Blog (2025) Automatic alt text generation in Word and PowerPoint on Copilot+ PCs",
+      "url_or_doi": "https://techcommunity.microsoft.com/blog/microsoft365insiderblog/automatic-alt-text-generation-in-word-and-powerpoint-on-copilot-pcs/4479186",
+      "finding": "PowerPoint's built-in Accessibility Checker is reached via Review > Check Accessibility and surfaces issues (e.g., Missing Alt Text) in-app, giving a tool-based path to checking a deck."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/05/08",
+  "section_title": "Module 5 Presentation Studio",
+  "dir": "frontend/content/cat100-supplement/05",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "Every AI/software support move is fully generic: the only named agent is the course persona 'BigAL' (alt-text help), and 'AI narration', 'AI image generation', and the capstone reference no current 2026 tools. This is the tool-agnostic-to-vagueness risk for the course. A capstone is the natural place to ground the pipeline in concrete named tools so learners can execute it, while modeling that model/version churn must be disclosed.",
+    "proposed_change": "In the Worked Example step 3 (mdx line 58, the revision-trail/BigAL alt-text sentence) and/or a small new callout after the Core Concept six-layer table, name concrete 2026 tools per layer while keeping the bounded-use framing: Copilot in PowerPoint / Gemini in Google Slides (Ask Gemini side panel) for structure-and-headline critique; the slide app's built-in alt-text generator (on Copilot+ PCs, PowerPoint auto-suggests on-device alt text on image insert with Approve/Edit, toggle in File > Options > Accessibility; Slides via Ask Gemini / accessibility checker) for the Accessibility layer; and the built-in Accessibility Checker or the free WebAIM Contrast Checker for the 4.5:1 contrast check. Add one sentence noting tool names and model versions change, so the disclosure note must record which tool/version was used, not just 'AI'.",
+    "where_to_apply": "08.mdx — Worked Example Steps list (step 3, line 58); optionally a new callout right after the Core Concept six-layer table",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Microsoft 365 Insider Blog (2025) 'Automatic alt text generation in Word and PowerPoint on Copilot+ PCs'",
+      "url_or_doi": "https://techcommunity.microsoft.com/blog/microsoft365insiderblog/automatic-alt-text-generation-in-word-and-powerpoint-on-copilot-pcs/4479186",
+      "finding": "As of Dec 2025 (Version 2512+, Copilot+ PCs), PowerPoint auto-generates an alt-text suggestion on the local NPU when an image is inserted; users Approve/Edit it, and it can be toggled in File > Options > Accessibility. Confirms a concrete, current named alt-text tool for the Accessibility layer."
+     },
+     {
+      "cite": "Google Workspace Help (2026) 'Collaborate with Gemini in Google Slides'",
+      "url_or_doi": "https://support.google.com/docs/answer/14207419",
+      "finding": "Gemini in Google Slides ('Ask Gemini' side panel) generates slides, text, and images and is available on Google AI Pro/Ultra; as of May 2026 it still generates one slide at a time (multi-slide announced, not yet shipped). Confirms a current named structure/media assistant and illustrates version churn worth disclosing."
+     },
+     {
+      "cite": "WebAIM Contrast Checker",
+      "url_or_doi": "https://webaim.org/resources/contrastchecker/",
+      "finding": "WebAIM's free tool reports the foreground/background contrast ratio and pass/fail against WCAG Level AA (>=4.5:1 normal text, 3:1 large text) and AAA, matching the section's 4.5:1 check. Confirms a real, locatable contrast tool to name."
+     }
+    ]
+   }
+  ]
+ }
+]

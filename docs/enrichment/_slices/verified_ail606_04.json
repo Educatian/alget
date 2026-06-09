@@ -1,0 +1,58 @@
+[
+ {
+  "section_key": "ail606/04/01",
+  "type": "accuracy_fix",
+  "gap_summary": "Artifact Studio/download/Adaptive Support/dynamic-scenario name ch.03 storyboard artifact; section artifact is the cover panel",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 01.mdx prose and Worked Example revise a 'cover panel' (problem statement + learner profile), but artifact tags said storyboard frame sequence. Verified by direct read.",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/04/03",
+  "type": "accuracy_fix",
+  "gap_summary": "Wireframe section's artifact-studio/packet/Adaptive Support/scenario and meta.json mislabeled as the storyboard artifact",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 03.mdx teaches annotated wireframes with learner-action/phase labels, yet all artifact strings said storyboard frame sequence. Verified by direct read; meta.json matched.",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/04/05",
+  "type": "currency_update",
+  "gap_summary": "Section and practice items cite WCAG 2.1 AA; WCAG 2.2 is the current Recommendation and the three criteria are unchanged",
+  "verdict": "confirmed",
+  "evidence": "https://www.w3.org/TR/WCAG22/ : WCAG 2.2 W3C Recommendation (latest 12 Dec 2024); 1.4.3 AA, 1.1.1 A, 1.4.1 A unchanged from 2.1.",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/04/06",
+  "type": "currency_update",
+  "gap_summary": "Claim: 'Codex' is a dated/deprecated brand by 2026 and should be replaced with current coding agents",
+  "verdict": "refuted",
+  "evidence": "OpenAI relaunched Codex in 2025; Codex app (Feb 2026), GPT-5.5-Codex, 2M+ weekly users (Mar 2026). https://openai.com/codex/ and https://developers.openai.com/codex/changelog. Codex is current, not stale.",
+  "applied": false
+ },
+ {
+  "section_key": "ail606/04/07",
+  "type": "currency_update",
+  "gap_summary": "Claim: disclosure examples naming 'Codex' use a stale brand and should be swapped to 2026 coding agents",
+  "verdict": "refuted",
+  "evidence": "Same premise refuted: OpenAI Codex is a live flagship coding agent as of 2026 (Codex app, GPT-5.5-Codex, https://openai.com/codex/). Naming Codex in a disclosure example is accurate and auditable.",
+  "applied": false
+ },
+ {
+  "section_key": "ail606/04/07",
+  "type": "accuracy_fix",
+  "gap_summary": "Adaptive Support routes disclosure-section questions to Mayer/CLT Wikipedia boilerplate irrelevant to AI-use disclosure",
+  "verdict": "confirmed",
+  "evidence": "Internal read confirmed boilerplate; replaced with COPE position on authorship and AI tools (requires naming tool + how used): https://publicationethics.org/guidance/cope-position/authorship-and-ai-tools",
+  "applied": true
+ },
+ {
+  "section_key": "ail606/04/08",
+  "type": "accuracy_fix",
+  "gap_summary": "Clinic section's artifact-studio/packet/Adaptive Support/scenario and meta.json mislabeled as the storyboard artifact",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: 08.mdx teaches a prioritized, evidence-ranked revision plan synthesizing seven artifacts; all artifact strings said storyboard frame sequence. Verified by direct read.",
+  "applied": true
+ }
+]

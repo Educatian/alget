@@ -4,7 +4,7 @@
       "id": "ail606_supplement_4_5_accessibility_and_wcag_checks_artifact_signal",
       "type": "multiple_choice",
       "concept_id": "accessibility",
-      "stem": "A draft screen uses light gray text (#999999) on a white background for body copy. Against WCAG 2.1 AA, which is the correct judgment?",
+      "stem": "A draft screen uses light gray text (#999999) on a white background for body copy. Against WCAG 2.2 AA, which is the correct judgment?",
       "options": [
         "It passes, because gray on white is a common, clean look.",
         "It fails AA: body text needs a contrast ratio of at least 4.5:1, and #999 on white is about 2.8:1, so the text must be darkened.",
@@ -12,7 +12,7 @@
         "Contrast cannot be evaluated until the final colors are chosen."
       ],
       "correct_index": 1,
-      "explanation": "WCAG 2.1 AA requires 4.5:1 contrast for normal-size body text. #999 on white falls well short, so this is a measurable failure, not a style preference.",
+      "explanation": "WCAG 2.2 AA (unchanged from 2.1 on this criterion) requires 4.5:1 contrast for normal-size body text. #999 on white falls well short, so this is a measurable failure, not a style preference.",
       "misconception_id": "ail606_supplement_4_5_a11y_contrast_as_taste",
       "difficulty": "medium",
       "concept_ids": [

@@ -1,0 +1,81 @@
+[
+ {
+  "section_key": "ail606/08/02",
+  "section_title": "Feedback Templates for Design Drafts",
+  "dir": "frontend/content/ail606-supplement/08",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The artifact/metadata layer is mislabeled. The MDX teaches feedback templates, but meta.description, learning_objectives[0], the Artifact Studio component (artifact=\"storyboard frame sequence with narration, signaling, and reader-action notes\"), the studio download link, the Adaptive Support 'confusion' bullet, and the Final Check all name the storyboard-frame-sequence artifact. This is the known 192-supplement artifact-mislabel pattern (TOP_TIER P0): the signature artifact for a feedback-templates section should be the feedback template itself, which the MDX body already treats as the artifact ('The artifact is the comment template itself, not a single student's draft', line 52). The mismatch makes the studio instructions incoherent with the lesson.",
+    "proposed_change": "Replace the storyboard-frame-sequence artifact label throughout the metadata/components with a feedback-template artifact (e.g., 'design-draft feedback template with criterion-location-action lines and one prioritized process-level move'). Update meta.description, learning_objectives[0], the <artifact-studio artifact=...> tag, the download-packet link text, the Adaptive Support 'confusion' bullet ('compare a weak and strong version of the feedback template'), and the Final Check sentence so the studio captures a before/after feedback-template revision (the same before/after the Worked Example and Stronger Artifact Standard already describe).",
+    "needs_research": false,
+    "search_terms": [],
+    "where_to_apply": "02.meta.json (description, learning_objectives[0]); 02.mdx Artifact Studio block (lines 115-117), Adaptive Support (line 126), Final Check (line 140)",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/08/03",
+  "section_title": "Rubric Calibration",
+  "dir": "frontend/content/ail606-supplement/08",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The artifact-studio component and the studio packet link both embed the generic 'storyboard frame sequence with narration, signaling, and reader-action notes' artifact, but this entire section is about rubric calibration (inter-rater reliability, descriptor rewriting, scored drafts). This is the documented artifact mis-label pattern (TOP_TIER P0). The signature artifact for a calibration section should be a calibration packet: an analytic rubric, a set of independently scored drafts, the before/after exact-agreement record, and the rewritten descriptor with the split it resolved.",
+    "proposed_change": "Change the artifact-studio tag and the download-packet line to a calibration-specific artifact, e.g. artifact=\"calibrated analytic rubric with scored-draft reconciliation log (before/after agreement, traced split, rewritten descriptor)\". Update the studio prompt prose (lines 113-114) to ask for a before/after agreement trace on a rubric criterion rather than a storyboard revision. Keep storyboard drafts only as the scored material, not as the artifact under revision.",
+    "needs_research": false,
+    "where_to_apply": "03.mdx — <artifact-studio> at line 112, packet link at line 110, and studio prose lines 113-114; also reconcile with the storyboard-keyed LOs",
+    "priority": "high"
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Two of the three inline hyperlinks point to literature that has nothing to do with the move being made. Line 54 attributes 'observable anchors remove the interpretive load' to cognitive load theory via a Wikipedia link, and the Adaptive Support / dynamic-scenario blocks (lines 120, 125) frame a rubric-calibration revision through Mayer multimedia learning and cognitive load theory. Rubric calibration and inter-rater reliability are not multimedia-principle or CLT constructs; these are gratuitous, mismatched citations carried over from the template.",
+    "proposed_change": "Replace the CLT framing on line 54 with the construct that actually governs the claim: descriptor ambiguity as a source of construct-irrelevant variance in scoring (cite rubric-reliability literature, see evidence_add below). In Adaptive Support (line 120) and the dynamic-scenario (line 125), swap the Mayer/CLT anchors for a rubric-reliability source so the 'tie to evidence' move points at the right discipline.",
+    "needs_research": false,
+    "where_to_apply": "03.mdx line 54 (Worked Example step 2), line 120 (Adaptive Support question bullet), line 125 (dynamic-scenario prompt)",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/08/05",
+  "section_title": "Accessibility Review Workflow",
+  "dir": "frontend/content/ail606-supplement/08",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The MDX defines WCAG only as 'Web Content Accessibility Guidelines (WCAG)' with no version pinned, while the rest of the AIL 606 chapter standard (and the project currency-watch) is WCAG 2.2 AA. An accessibility-specific section that never names the version it audits against is a regression and leaves the AA conformance level (which sets the 4.5:1 and 3:1 contrast floors it relies on) implicit. The course currency-watch explicitly asks to confirm WCAG 2.2 AA is still current vs WCAG 3.0 draft status as of 2026.",
+    "proposed_change": "In the Core Concept paragraph defining WCAG/POUR, pin the version and conformance level explicitly: 'the Web Content Accessibility Guidelines (WCAG) 2.2 at conformance level AA'. Add a one-line note that WCAG 3.0 remains a W3C Working Draft (not a recommendation) as of 2026, so 2.2 AA is the operative standard. Note that the 4.5:1 / 3:1 contrast floors and the success-criterion IDs (1.1.1, 1.4.1, 1.4.3, 2.1.1, 2.2.1) used in the section are WCAG 2.2 SC IDs.",
+    "needs_research": true,
+    "search_terms": [
+     "WCAG 2.2 current W3C Recommendation 2026",
+     "WCAG 3.0 Working Draft status 2026",
+     "WCAG 2.2 AA contrast 4.5:1 success criterion"
+    ],
+    "where_to_apply": "05.mdx, Core Concept section, the paragraph beginning 'An accessibility review workflow is a repeatable procedure...' and the POUR sentence; also update the References list.",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/08/07",
+  "section_title": "Blackboard-to-ALGET Alignment",
+  "dir": "frontend/content/ail606-supplement/08",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Artifact mislabeling (the known TOP_TIER P0 / artifact-studio mis-tag issue). This section is about constructive-alignment tables during an LMS migration, but the Artifact Studio embeds artifact=\"storyboard frame sequence with narration, signaling, and reader-action notes\" (line 112), the download packet is named the storyboard packet (line 110), meta LO1 says 'Analyze how the storyboard frame sequence ... shows a defensible decision' (07.meta.json line 6), and the Adaptive Support 'confusion' branch tells learners to 'compare a weak and strong version of the storyboard frame sequence' (line 121). The actual artifact the whole section builds is the before/after objective-to-activity ALIGNMENT TABLE (Stronger Artifact Standard, lines 98-102, describes exactly this). The storyboard label is wrong for the content.",
+    "proposed_change": "Change the artifact-studio artifact attribute and the meta LO1, download link text, and Adaptive Support references from 'storyboard frame sequence...' to the section-accurate artifact, e.g. 'before/after constructive-alignment table (objective-to-activity-to-assessment map)'. Align 07.meta.json learning_objectives[0] to the alignment-table artifact rather than the storyboard.",
+    "needs_research": false,
+    "search_terms": [],
+    "where_to_apply": "07.mdx artifact-studio tag (line 112), download link (line 110), Adaptive Support confusion bullet (line 121), dynamic-scenario (line 125); 07.meta.json learning_objectives[0] (line 6) and description (line 4)",
+    "priority": "high"
+   }
+  ]
+ }
+]

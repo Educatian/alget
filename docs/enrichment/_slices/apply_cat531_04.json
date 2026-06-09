@@ -1,0 +1,601 @@
+[
+ {
+  "section_key": "cat531/04/01",
+  "section_title": "Ethical Dialogue as Learning Activity",
+  "dir": "frontend/content/cat531-supplement/04",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section asserts that a transcript annotation is a 'defensible artifact' a colleague can 'inspect and check whether your reading of the shift holds up' (Why This Section Matters; Stronger Artifact Standard), and the course frames the Ethobot annotation as a 'reproducible coding scheme (codes + warrants + inter-rater agreement).' But inter-rater agreement and discourse/transcript-coding methodology are never grounded in any source. The 'a colleague can reconstruct my judgment' standard is asserted without coding-reliability literature.",
+    "proposed_change": "Add a one-to-two-sentence 'Recent Evidence' note after the Decision Rule or Stronger Artifact Standard: treating a shift annotation as a coding decision means another rater applying the same shift criteria should agree, which is exactly how classroom-discourse research establishes that a dialogue reading is reproducible rather than impressionistic. Cite Hennessy et al. (2016) SEDA (a validated coding scheme for classroom dialogue developed with inter-rater reliability) and/or Kranzfelder et al. (2019) CDOP (a discourse-move coding protocol with reported reliability). Add to References, replacing one thin bare-DOI entry (e.g., the unnamed 2013 'teacher professional judgment' DOI).",
+    "where_to_apply": "01.mdx — new 'Recent Evidence' note under 'Stronger Artifact Standard' or 'Decision Rule'; add citation to References list",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Hennessy, S., et al. (2016). Developing a coding scheme for analysing classroom dialogue across educational contexts. Learning, Culture and Social Interaction.",
+      "url_or_doi": "https://doi.org/10.1016/j.lcsi.2015.12.001",
+      "finding": "Presents the Scheme for Educational Dialogue Analysis (SEDA), a systematically developed and reliability-tested coding scheme for classroom dialogue; canonical grounding that reading a transcript for a reasoning move can be a reproducible coding decision other raters can apply and agree on (325+ citations)."
+     },
+     {
+      "cite": "Kranzfelder, P., et al. (2019). The Classroom Discourse Observation Protocol (CDOP): A quantitative method for characterizing teacher discourse moves. PLOS ONE.",
+      "url_or_doi": "https://doi.org/10.1371/journal.pone.0219019",
+      "finding": "A reliability-reported protocol for coding discourse moves in real classrooms, directly supporting the claim that a shift/turn annotation can be operationalized as inter-rater-checkable codes rather than a private impression."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The pivotal AI-ethics claim that the Ethobot prompt is NOT neutral and that a 'good' shift 'may partly be an artifact of how the bot framed the question' (Common Misreadings; ai_boundary practice item; bot_prompt_as_neutral misconception) is the section's central insight but is entirely uncited, despite current empirical literature on LLM/chatbot framing and steering effects.",
+    "proposed_change": "Add a brief citation supporting the prompt-framing/steering claim and wire it into the 'Common Misreadings' paragraph ('treating the Ethobot prompt as neutral'). Krügel, Ostermaier & Uhl (2023, Scientific Reports) is an ideal anchor: it experimentally shows that an AI assistant's (ChatGPT's) framing influences users' moral judgments and that users underestimate that influence — precisely the 'the bot's framing co-shapes the reasoning, so flag it rather than hide it' point. Add to References.",
+    "where_to_apply": "01.mdx — 'Common Misreadings' paragraph + References list",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Krügel, S., Ostermaier, A., & Uhl, M. (2023). ChatGPT's inconsistent moral advice influences users' judgment. Scientific Reports.",
+      "url_or_doi": "https://doi.org/10.1038/s41598-023-31341-0",
+      "finding": "Experimental evidence that an AI chatbot's framing of a moral question shifts users' moral judgments, and that users underestimate how much the AI influenced them — direct empirical grounding for 'the Ethobot prompt is not neutral; a shift may partly be an artifact of how the bot framed the question' (163+ citations)."
+     },
+     {
+      "cite": "Krügel, S., Ostermaier, A., & Uhl, M. (2023). The moral authority of ChatGPT (preprint).",
+      "url_or_doi": "https://doi.org/10.48550/arxiv.2301.07098",
+      "finding": "Companion analysis arguing AI dialogue systems carry unearned moral authority that steers user reasoning; reinforces treating the bot prompt as a non-neutral design choice."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section names two assistant tools: chapter tool 'Ethobot 3.2' (used throughout) and 'BigAL' (Stronger Artifact Standard: 'ask BigAL for a side-by-side'). Risk that two assistant names confuse students about which tool to use.",
+    "proposed_change": "Confirmed via repo cross-check that the dual reference is intentional, not drift: 'BigAL' is the course-wide study assistant (appears in 39 CAT 531 files across chapters 01/04/06/08 and is the standard exemplar/side-by-side helper), while 'Ethobot 3.2' is the chapter-04-specific ethics-dialogue chatbot (appears only in ch04 files). No external syllabus is present in the repo to verify branding currency, so recommend adding a one-clause clarifier distinguishing Ethobot 3.2 (the ethics-dialogue chatbot students run sessions in) from BigAL (the course study assistant for weak/strong exemplars), making the dual reference clearly intentional. Do not collapse to one name.",
+    "where_to_apply": "01.mdx — 'Stronger Artifact Standard' paragraph ('ask BigAL'); cross-check against chapter tool name 'Ethobot 3.2'",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "ALGET repo cross-check, cat531-supplement (BigAL in 39 files chs 01/04/06/08; Ethobot only in ch04)",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement",
+      "finding": "BigAL is the recurring course-wide study assistant; Ethobot 3.2 is scoped to the ch04 ethics chapter — the two-name usage is consistent design intent, not version drift. No live syllabus file exists in-repo for external branding verification."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "References are the thin, repo-wide reused set: TPACK = Wikipedia + 2006 DOI; 'critical edtech studies' = bare 2016 DOI (Selwyn, unnamed); 'AI and education datafication' = the single 2020 DOI reused across all 64 sections; 'teacher professional judgment' = a 2013 DOI. For a 2026 AI-ethics section, the critical-edtech anchor is unnamed and the datafication anchor is dated.",
+    "proposed_change": "Name Selwyn in the critical-edtech reference (the bare 2016 DOI 10.4324/9781315670160 corresponds to Selwyn, confirmed author OpenAlex A5003881064), and add a current critical-AI-in-education source to refresh the datafication/critical anchor: Selwyn (2022) 'The Future of AI and Education: Some Cautionary Notes' (European Journal of Education) and/or Bearman et al. (2022) 'Discourses of artificial intelligence in higher education: a critical literature review.' Optionally pair an AI-TPACK / generative-AI teacher-literacy framework alongside the 2006 TPACK DOI.",
+    "where_to_apply": "01.mdx — 'References' list",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "Selwyn, N. (2022). The Future of AI and Education: Some Cautionary Notes. European Journal of Education.",
+      "url_or_doi": "https://doi.org/10.1111/ejed.12532",
+      "finding": "Current (2022) critical perspective by Selwyn on AI in education; refreshes the dated critical-edtech anchor and lets the reference be named rather than a bare DOI (267+ citations; OpenAlex author A5003881064 confirms Selwyn)."
+     },
+     {
+      "cite": "Bearman, M., et al. (2022). Discourses of artificial intelligence in higher education: a critical literature review. Higher Education.",
+      "url_or_doi": "https://doi.org/10.1007/s10734-022-00937-2",
+      "finding": "Recent critical review of how AI is framed in education; a current substitute/supplement for the 2020 datafication DOI in an AI-ethics section (377+ citations)."
+     },
+     {
+      "cite": "Selwyn, N., et al. (2024). The impact of generative AI on socioeconomic inequalities and policy making. PNAS Nexus.",
+      "url_or_doi": "https://doi.org/10.1093/pnasnexus/pgae191",
+      "finding": "2024 Selwyn-coauthored critical treatment of generative AI's equity/data implications; the most current option to refresh the datafication anchor (283+ citations)."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/04/02",
+  "section_title": "Facial Recognition as Classroom Case",
+  "dir": "frontend/content/cat531-supplement/04",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The load-bearing empirical claim — facial recognition has higher false-non-match rates for darker-skinned faces — is asserted four times (Why This Section Matters line 7, Opening Case line 20, Core Concept line 29, Worked Example lines 42/47) but cited to nothing; 'independent testing shows' / 'the vendor's own documentation shows' carry no real source. For an evidence-grounded-judgment course this central fact should carry the canonical citations (NIST FRVT Part 3 and Gender Shades).",
+    "proposed_change": "Add an inline 'Recent Evidence' anchor to the Core Concept Equity bullet (line 29) citing NIST IR 8280 (Grother, Ngan & Hanaoka, 2019, Face Recognition Vendor Test Part 3: Demographic Effects) for the disaggregated false-non-match finding, and Buolamwini & Gebru (2018) Gender Shades for the intersectional accuracy disparity. Add both to References (lines 137-142). NIST FRVT documents elevated false-non-match (and false-positive) rates for some demographic groups across the majority of tested algorithms; Gender Shades documents up to ~34 percentage-point error gaps for darker-skinned women vs lighter-skinned men in commercial gender classification.",
+    "where_to_apply": "02.mdx — Core Concept Equity bullet (line 29) inline + References (lines 137-142); optionally a 'Recent Evidence' callout after Core Concept (line 32)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Grother, Ngan & Hanaoka (2019) Face Recognition Vendor Test (FRVT) Part 3: Demographic Effects (NIST IR 8280)",
+      "url_or_doi": "https://doi.org/10.6028/NIST.IR.8280",
+      "finding": "NIST's large-scale vendor test found demographic differentials in error rates: false-non-match and false-positive rates varied by race/skin tone/sex/age across the large majority of the 189 algorithms tested, empirically grounding the section's subgroup-failure claim."
+     },
+     {
+      "cite": "Buolamwini & Gebru (2018) Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification, PMLR 81:77-91",
+      "url_or_doi": "https://openalex.org/W2788481061 (proceedings.mlr.press/v81/buolamwini18a.html)",
+      "finding": "Commercial facial-analysis systems were most accurate for lighter-skinned men and least accurate for darker-skinned women, with error gaps up to ~34 percentage points — the canonical disaggregated-accuracy result the section's equity pole rests on."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section invokes biometric privacy and 24-month retention as the privacy pole (Core Concept line 30, Decision Rule step 2 line 66, Worked Example line 42) but names no legal standard, despite the course stressing FERPA/COPPA and data retention/opt-out. Biometric face templates specifically trigger Illinois BIPA and the FTC's 2025 COPPA rule update, none referenced.",
+    "proposed_change": "Add a short statute anchor to the Privacy bullet (line 30) and Decision Rule step 2 (line 66): biometric face templates implicate FERPA educational-record limits, Illinois BIPA (written-consent requirement plus a public written retention/destruction schedule capping retention at the earlier of purpose-completion or 3 years), and the FTC's 2025 COPPA amendments, which now explicitly classify facial templates/faceprints as personal information, bar indefinite retention, require a written deletion-timeframe policy, and add a separate consent requirement for using children's data to train AI. Frame: the privacy pole is not just prudence — specific law constrains biometric retention. Note the case's 24-month vendor retention is already in tension with BIPA's 3-year-max/purpose-limited schedule and COPPA's no-indefinite-retention rule. Add 1-2 citations to References.",
+    "where_to_apply": "02.mdx — Core Concept Privacy bullet (line 30) and Decision Rule step 2 (line 66); References (lines 137-142)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "FTC (2025) Children's Online Privacy Protection Rule, Final Amendments (Federal Register, Apr 22, 2025)",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "Effective June 23, 2025 (compliance by April 22, 2026): COPPA's 'personal information' definition now includes biometric identifiers usable for automated recognition, explicitly listing facial templates/faceprints; operators may not retain children's data indefinitely, must keep a written policy stating the retention need and a deletion timeframe, and a separate consent is required to use children's data for AI training."
+     },
+     {
+      "cite": "Illinois Biometric Information Privacy Act, 740 ILCS 14 (§15(a)-(b))",
+      "url_or_doi": "https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004",
+      "finding": "BIPA requires informed written consent before collecting a face scan and a publicly available written retention/destruction schedule; biometric data must be destroyed when the collection purpose is satisfied or within 3 years of last interaction, whichever comes first — a concrete legal constraint that the case's 24-month vendor retention would have to satisfy."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "No real-world facial-recognition-in-schools case is named, though the most prominent one directly models this section's exact decision and outcome: the Lockport City School District (NY) Aegis deployment that triggered New York's statewide moratorium on biometric tech in schools.",
+    "proposed_change": "Add a brief real-case sentence (2-3 sentences) to the Opening Case or a 'Recent Evidence' callout after line 20: name the Lockport/Aegis (SN Technologies) deployment, the 2020 New York statewide moratorium on biometric/facial-recognition technology in schools (in force pending the state Education Commissioner's authorization), and the NY Office of Information Technology Services / NYSED report finding the risks outweighed the benefits and recommending against facial recognition in schools. Note the Freed Maxick audit found the Aegis false-match rate for Black females was ~16x that for white males — a real instance where exactly the negotiated decision this section teaches was reached at state scale.",
+    "where_to_apply": "02.mdx — new 'Recent Evidence' callout after Opening Case (line 20) or short addition to Worked Example (lines 49-53)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Biometric Update (2020) Facial biometrics in New York state schools blocked as legislature passes 2-year moratorium; and NY ITS/NYSED report",
+      "url_or_doi": "https://www.biometricupdate.com/202007/facial-biometrics-in-new-york-state-schools-blocked-as-legislature-passes-2-year-moratorium",
+      "finding": "New York enacted a moratorium (signed Dec 2020) on purchase/use of biometric identifying technology in schools until at least July 1, 2022 or until a state report and Commissioner authorization; the NY Office of Information Technology Services report concluded the risks and potential harms of facial recognition in schools outweigh the benefits."
+     },
+     {
+      "cite": "BuzzFeed News / Lockport Journal (2020-2023) Lockport City School District to stop using facial recognition; Aegis (SN Technologies) deployment",
+      "url_or_doi": "https://www.buzzfeednews.com/article/carolinehaskins1/new-york-stops-school-facial-recognition",
+      "finding": "Lockport CSD was the only NY district using facial recognition (the Aegis system) for security; a Freed Maxick audit found the system's false-match rate for Black females was 16x and for Black males ~4x that of white males, mirroring the section's disaggregated-error and biometric-retention concerns."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/04/03",
+  "section_title": "Stakeholders in School AI",
+  "dir": "frontend/content/cat531-supplement/04",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The load-bearing claim that automated essay-scoring grammar models penalize English learners' and non-standard-dialect phrasing as 'error rather than dialect' is asserted repeatedly across the section (Why This Matters, Opening Case, Core Concept, Worked Example, branching scenario, Stronger Artifact Standard) with zero citation.",
+    "proposed_change": "Add a 'Recent Evidence' callout after Core Concept (and footnote the Worked Example 'Evidence for the EL concern' line, mdx line 49) citing documented bias/validity concerns in automated essay scoring for English learners. Replace the bare assertion with one sourced sentence. Add matching entries to the References list.",
+    "where_to_apply": "mdx — new 'Recent Evidence' callout after 'Core Concept' (after line 32); footnote the Worked Example 'Evidence for the EL concern' line (line 49); add entries to References (lines 136-139)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Wilson & Huang (2024) Validity of automated essay scores for elementary-age English language learners: Evidence of bias?",
+      "url_or_doi": "https://doi.org/10.1016/j.asw.2024.100815",
+      "finding": "Peer-reviewed study in Assessing Writing (vol. 60) directly investigating whether automated essay scoring produces biased/invalid scores for elementary-age English learners — a current, on-point anchor for the section's central EL-bias claim."
+     },
+     {
+      "cite": "Ramesh & Sanampudi (2022) An automated essay scoring systems: a systematic literature review",
+      "url_or_doi": "https://doi.org/10.1007/s10462-021-10068-2",
+      "finding": "Systematic review of AES documenting recurring construct-irrelevant variance and fairness limitations across systems; supports the general claim that AES grammar models can score non-standard phrasing as error."
+     },
+     {
+      "cite": "Klebanov & Madnani (2020) Automated Evaluation of Writing - 50 Years and Counting",
+      "url_or_doi": "https://doi.org/10.18653/v1/2020.acl-main.697",
+      "finding": "Authoritative field overview (ETS authors) noting validity/fairness concerns in automated writing evaluation, including subgroup bias; useful secondary anchor for construct-irrelevant variance."
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The attendance/dropout 'at-risk' prediction example (Decision Rule inline-check, line 72; Textbook Walkthrough, line 80) is presented as illustrative but uncited, even though documented real cases of biased dropout early-warning systems exist. A real case would make 'tracked into lowered expectations by a label they cannot see or contest' a documented harm rather than speculation.",
+    "proposed_change": "Add a one-line real-case anchor to the Textbook Walkthrough (line 80) citing the Wisconsin DEWS dropout early-warning system racial-bias findings (The Markup, 2023) and/or a peer-reviewed equity audit of dropout-prediction models, so the 'flagged student as silent stakeholder' claim is grounded in a documented harm. Add reference entry.",
+    "where_to_apply": "mdx — 'Textbook Walkthrough' (line 80, attendance-prediction example); add reference entry to References (lines 136-139)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "The Markup (Feathers, 2023) False Alarm: How Wisconsin Uses Race and Income to Label Students 'High Risk'",
+      "url_or_doi": "https://themarkup.org/machine-learning/2023/04/27/false-alarm-how-wisconsin-uses-race-and-income-to-label-students-high-risk",
+      "finding": "Investigation found Wisconsin's DEWS dropout algorithm raises false alarms about Black and Hispanic students at significantly higher rates than White students, is wrong ~75% of the time when predicting non-graduation, and that students received color-coded 'high risk' labels they could not see or contest — a precise real-world match for the section's 'silent stakeholder / contestable label' example."
+     },
+     {
+      "cite": "Yu et al. (2021) Should College Dropout Prediction Models Include Protected Attributes? (LAK/L@S)",
+      "url_or_doi": "https://doi.org/10.1145/3430895.3460139",
+      "finding": "Peer-reviewed fairness audit of dropout-prediction models examining protected attributes (race/URM, first-gen, financial need) and algorithmic fairness — a scholarly companion to the Markup journalistic case."
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The section repeatedly recommends 'a parent consent step' (lines 49, 80) and protecting 'the student whose data is most sensitive,' and frames the vendor interest as 'access to student writing to train on' (Core Concept line 28), but cites no privacy/consent statute. The consent move is hollow without the legal hook (FERPA/COPPA), which the course audit flagged as missing across CAT531 prose.",
+    "proposed_change": "Add a short 'Legal anchor' note where the parent-consent step and vendor data interest are introduced, naming FERPA (educational records; parental consent for disclosure) and COPPA (under-13 data collection), and noting the 2025 FTC COPPA rule amendments that tighten data-retention limits and require separate verifiable parental consent for third-party disclosure. Add reference entries.",
+    "where_to_apply": "mdx — 'Core Concept' (vendor data interest, line 28) and 'Worked Example' After-strong (parent consent step, line 49); new short 'Legal anchor' note + References (lines 136-139)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Federal Trade Commission (2025) FTC Finalizes Changes to Children's Privacy Rule (amended COPPA Rule)",
+      "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+      "finding": "Amended COPPA Rule published April 22, 2025 (effective June 23, 2025; compliance by April 22, 2026) now requires separate verifiable parental consent to disclose children's data to third parties (e.g., for training/targeted advertising), limits data retention to what is reasonably necessary, and adds biometric identifiers to 'personal information' — current legal basis for the section's parent-consent and vendor-data-interest moves."
+     },
+     {
+      "cite": "Federal Register (2025) Children's Online Privacy Protection Rule (final rule, 2025-05904)",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "Official final-rule text; notes the FTC declined to codify the school-authorization-of-consent guidance pending possible U.S. Dept. of Education FERPA changes, so schools still rely on existing FERPA/COPPA edtech guidance — supports naming both statutes and flagging the 2024-2026 regulatory flux."
+     },
+     {
+      "cite": "U.S. Dept. of Education, FERPA (educational records / parental consent for disclosure)",
+      "url_or_doi": "https://studentprivacy.ed.gov/ferpa",
+      "finding": "FERPA governs access to and disclosure of student education records and the parental-consent requirement that underpins the 'parent consent step'; the named statutory hook the section currently omits."
+     }
+    ]
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Vocabulary drift between the learner-facing Adaptive Support block (lines 109-114), which maps question/confusion/insight/connection -> explain/compare/transfer/show, and misconceptions.json rail_action values (ask/explain/represent). The two vocabularies are unreconciled, so 'represent' and 'compare' are orphaned terms and the advertised adaptive routing does not visibly correspond to the misconception rail actions.",
+    "proposed_change": "Reconcile to one canonical support-move vocabulary: either map rail_action values (ask/explain/represent) onto the Adaptive Support support-move set, or add a one-line crosswalk so 'represent' (vendor-neutral misconception) and 'compare' are not orphaned. Confirmed present: rail_action uses ask/explain/represent (misconceptions.json lines 10/18/26) while Adaptive Support uses explain/compare/transfer/show (mdx lines 111-114).",
+    "where_to_apply": "mdx 'Adaptive Support' block (lines 109-114) and misconceptions.json rail_action fields (lines 10, 18, 26)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Section source files (this section)",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\04\\03.mdx and 03.misconceptions.json",
+      "finding": "Direct inspection confirms the drift: misconceptions.json rail_action = {ask, explain, represent}; mdx Adaptive Support move set = {explain, compare, transfer, show}. Only 'explain' overlaps; 'represent' and 'compare' have no counterpart, confirming the fix is warranted."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "References are thin and Wikipedia-anchored (lines 136-139): TPACK = Wikipedia + 2006 DOI; 'critical edtech studies' is a bare unnamed Routledge DOI (10.4324/9781315670160, no author/title); datafication = a single 2020 DOI; 'teacher professional judgment' = a bare 2300-series DOI with no author. None reflect 2023-2026 work on AI-in-education ethics or stakeholder/equity analysis.",
+    "proposed_change": "Name the critical-edtech anchor explicitly as Selwyn with title, and add one current (2023-2026) source on generative-AI teacher competence / stakeholder-equity analysis of school AI. Convert bare DOIs to author-titled entries.",
+    "where_to_apply": "mdx — 'References' section (lines 136-139)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Selwyn, N. (2014) Distrusting Educational Technology: Critical Questions for Changing Times (Routledge)",
+      "url_or_doi": "https://doi.org/10.4324/9781315886350",
+      "finding": "Selwyn is the canonical critical-edtech author; this Routledge title is the flagship 'who benefits / who is burdened' critical-edtech anchor and replaces the section's bare, author-less Routledge DOI (10.4324/9781315670160 did not resolve in OpenAlex or Crossref, confirming the existing entry is unreliable and should be named explicitly)."
+     },
+     {
+      "cite": "Ning, Y. et al. (2024) Teachers' AI-TPACK: Exploring the Relationship Between Knowledge Elements",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Current (2024) peer-reviewed AI-TPACK framework extending TPACK to AI competence — a 2023-2026 anchor that modernizes the section's 2006 Wikipedia/TPACK reference."
+     },
+     {
+      "cite": "Sperling, K. et al. (2024) In search of artificial intelligence (AI) literacy in teacher education: A scoping review",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169",
+      "finding": "Current scoping review on AI literacy in teacher education; supports a 2023-2026 reference on generative-AI teacher literacy/stakeholder framing so the list is not byte-identical to other sections."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/04/04",
+  "section_title": "Privacy and Consent With Minors",
+  "dir": "frontend/content/cat531-supplement/04",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section turns on the legal distinction between notification, assent, and consent for minors and on parental opt-in, yet cites NO governing statute. The 'minors cannot legally give consent' and 'opt-in not opt-out' argument is the textbook definition of COPPA (under-13 verifiable parental consent) and FERPA (education records / school-official exception), but neither is named in the MDX, practice, or misconceptions. For an evidence-grounding graduate course the foundational legal claims are unsourced.",
+    "proposed_change": "Add a short 'Legal anchor' note in the Core Concept block (after the notification/assent/consent table) naming the statutes the consent design implements: COPPA (verifiable parental consent for under-13 students; opt-in is the COPPA standard) and FERPA (whether a vendor counts as a 'school official' under the exception, and the limits on what it may do with education records). Add citations to References. Include a one-line currency note: the FTC finalized amendments to the COPPA Rule (published in the Federal Register April 22, 2025; effective June 23, 2025; full compliance by April 22, 2026) that now require SEPARATE verifiable parental consent before disclosing children's data to third parties (e.g., for advertising or other purposes), prohibit indefinite retention (retain only as long as reasonably necessary for the stated purpose), and add biometric and government identifiers to 'personal information' plus new consent methods (knowledge-based authentication, text-plus). These changes directly reinforce the section's opt-in, purpose-limitation, and retention-override tests.",
+    "where_to_apply": "04.mdx -- Core Concept section, add 'Legal anchor' callout after the notification/assent/consent table (after line 30); add COPPA and FERPA citations to References (lines 134-139)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "FTC (2025) 'FTC Finalizes Changes to Children's Privacy Rule Limiting Companies' Ability to Monetize Kids' Data'",
+      "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-finalizes-changes-childrens-privacy-rule-limiting-companies-ability-monetize-kids-data",
+      "finding": "FTC finalized the 2025 COPPA Rule amendments; final rule published in the Federal Register April 22, 2025, effective June 23, 2025, with full compliance required by April 22, 2026. Adds separate verifiable parental consent for third-party disclosure, prohibits indefinite retention of children's data, expands 'personal information' to biometric and government identifiers, and adds new consent methods (knowledge-based authentication, text-plus). Confirms the 2024-2026 currency note and grounds opt-in/retention claims."
+     },
+     {
+      "cite": "U.S. Dept. of Education, Student Privacy Policy Office -- 'Responsibilities of Third-Party Service Providers under FERPA' (Vendor FAQ)",
+      "url_or_doi": "https://studentprivacy.ed.gov/sites/default/files/resource_document/file/Vendor%20FAQ.pdf",
+      "finding": "A vendor qualifies for FERPA's school-official exception only if it (1) performs an institutional service/function, (2) has a legitimate educational interest, (3) is under the school's direct control as to use/maintenance of education records, and (4) uses records only for authorized purposes and does not redisclose PII without consent. Using student data for advertising or building marketing profiles is a FERPA violation. Grounds naming FERPA and the school-official-exception limits in the Legal anchor."
+     },
+     {
+      "cite": "Future of Privacy Forum (2024) 'New US Dept of Ed Finding: Schools Cannot Require Parents or Students to Waive Their FERPA Rights Through Ed Tech Company's Terms of Service'",
+      "url_or_doi": "https://fpf.org/blog/agoraletter/",
+      "finding": "2024 Department of Education finding that schools cannot force families to waive FERPA rights via an edtech vendor's Terms of Service, confirming current (2024) federal interpretation of vendor-data limits and supporting the one-line currency note."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin and Wikipedia-anchored. TPACK links to Wikipedia + a 2006 DOI; 'critical edtech studies' and 'teacher professional judgment' are bare unnamed DOIs (Selwyn not named); the datafication anchor is a single 2020 DOI (10.1080/17439884.2020.1686017) reused verbatim across all sections. For a 2026 privacy-and-AI section this set is dated and generic.",
+    "proposed_change": "Name the authors in References. The datafication DOI 10.1080/17439884.2020.1686017 is in fact Perrotta & Selwyn 'Deep learning goes to school: toward a relational understanding of AI in education' (Learning, Media and Technology, 2019/2020) -- so Selwyn is ALREADY the datafication anchor and should be named inline where 'Critical edtech studies' is invoked (Core Concept, line 34) and in the reference list, rather than left bare. Name Mishra & Koehler (2006) for the TPACK reference. Add at least one 2023-2026 source specific to children's data-privacy / edtech surveillance / AI-in-schools rather than relying on the 2020 datafication DOI alone (candidates below).",
+    "where_to_apply": "04.mdx -- References section (lines 134-139); name Selwyn inline in Core Concept (line 34) where 'Critical edtech studies' is invoked",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Perrotta, C., & Selwyn, N. (2019/2020) 'Deep learning goes to school: toward a relational understanding of AI in education'",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "The datafication anchor DOI (10.1080/17439884.2020.1686017) reused course-wide is authored by Perrotta and Selwyn in Learning, Media and Technology -- so the 'Critical edtech studies' / datafication anchor should be attributed to Selwyn (with Perrotta) by name, not left as a bare DOI."
+     },
+     {
+      "cite": "Selwyn, N. (2019) 'What's the Problem with Learning Analytics?' Journal of Learning Analytics",
+      "url_or_doi": "https://doi.org/10.18608/jla.2019.63.3",
+      "finding": "Provides a named, citable Selwyn critical-edtech source (sociotechnical critique of data-driven education) that can replace the bare 'critical edtech studies' DOI inline attribution."
+     },
+     {
+      "cite": "Center for Democracy & Technology -- 'Commercial Companies and FERPA's School Official Exception: A Survey of Privacy Policies'",
+      "url_or_doi": "https://cdt.org/insights/commercial-companies-and-ferpas-school-official-exception-a-survey-of-privacy-policies/",
+      "finding": "Recent applied analysis of how edtech vendors invoke the FERPA school-official exception and where their privacy policies fall short, serving as a current (2020s) student-data-privacy/datafication anchor to supplement the 2020 DOI."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/04/05",
+  "section_title": "Ethobot Transcript Annotation",
+  "dir": "frontend/content/cat531-supplement/04",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's central equity warrant is stated twice as fact with zero citation (Why This Section Matters; self-explain answer): a subjective annotation method quietly credits 'reasoning' to phrasing matching the teacher's own discourse style, 'which usually favors dominant-culture students.' In an evidence-grounding course this is unsupported; the course currency-watch even names AAVE essay-scoring bias as a citable example.",
+    "proposed_change": "Add a one-line 'Recent Evidence' note grounding the discourse-style/dialect-bias claim with a specific 2024 source, tying it to why a defined warrant-based scheme is an equity safeguard, and add the citation to References (replacing reliance on the generic 'critical edtech studies' DOI for this claim). Fleisig et al. (2024, EMNLP) and Hofmann et al. (2024) both directly document that scoring/judgment systems penalize non-standard (notably African American English) discourse, empirically confirming the mechanism the section asserts.",
+    "where_to_apply": "05.mdx — new 'Recent Evidence' callout near the self-explain block in 'Stronger Artifact Standard', or appended to 'Why This Section Matters'; add the citation to References.",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Fleisig, E., et al. (2024) Linguistic Bias in ChatGPT: Language Models Reinforce Dialect Discrimination. EMNLP 2024",
+      "url_or_doi": "https://doi.org/10.18653/v1/2024.emnlp-main.750",
+      "finding": "Empirically shows language models reproduce and reinforce discrimination against non-standard English dialects (including African American English), confirming that text-judgment tools penalize discourse style diverging from a 'standard,' grounding the section's claim that subjective credit favors dominant-culture phrasing."
+     },
+     {
+      "cite": "Hofmann, V., et al. (2024) Dialect prejudice predicts AI decisions about people's character, employability, and criminality. Nature/arXiv",
+      "url_or_doi": "https://doi.org/10.48550/arxiv.2403.00742",
+      "finding": "Documents covert dialect prejudice in which African American English speakers are systematically judged less favorably, providing a peer-cited basis for the claim that non-standard discourse style is penalized when judgments rest on phrasing rather than observable criteria."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "References are the thin/dated set reused across sections: datafication is a single 2020 DOI (10.1080/17439884.2020.1686017), TPACK is Wikipedia + the 2006 DOI, and 'critical edtech studies' is an unnamed DOI (Selwyn 2016, 9781315670160) with no author named in-text. For a 2026 ethics/judgment course this base is stale and the unnamed Selwyn link undercuts the scholarly-anchor framing.",
+    "proposed_change": "Name Selwyn explicitly in-text and in References (replace 'critical edtech studies'); add a current source — Pangrazio & Selwyn (2023, MIT Press, Critical Data Literacies) and/or Williamson (2023) 'Re-examining AI, automation and datafication in education' — alongside the 2020 anchor; and add an AI-era TPACK reference (Ning et al. 2024, Teachers' AI-TPACK) so the TPACK anchor in Adaptive Support is not Wikipedia-only. All three are verified real with DOIs below.",
+    "where_to_apply": "05.mdx — References list, the in-text 'Critical edtech studies' mention in Core Concept, and the TPACK link in Adaptive Support.",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Pangrazio, L. & Selwyn, N. (2023) Critical Data Literacies: Rethinking Data and Everyday Life. MIT Press",
+      "url_or_doi": "https://doi.org/10.7551/mitpress/14155.001.0001",
+      "finding": "Current (2023) Selwyn-authored critical-data/datafication book; supports naming Selwyn explicitly and refreshing the stale 2016/2020 critical-edtech and datafication anchors with a 2023 source on data-in-everyday-life and minors."
+     },
+     {
+      "cite": "Williamson, B., et al. (2023) Re-examining AI, automation and datafication in education. Learning, Media and Technology",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "A current (2023) datafication-of-education source in the same journal as the existing 2020 anchor, suitable as the refreshed critical-edtech/datafication-of-minors citation."
+     },
+     {
+      "cite": "Ning, Y., et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "A 2024 AI-TPACK framework extending TPACK to generative-AI teacher knowledge, suitable to add so the Adaptive Support TPACK anchor is not Wikipedia + 2006-only."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "Line 92 tells students to ask 'BigAL' to compare definitions, but the rest of the CAT531 supplement uses 'TeachGen@i' (Ch2 sections 02/02, 02/04; Ch8 02) and the chapter is branded 'Ethobot 3.2'. An inconsistent assistant name across the same student's textbook is a concrete confusion/trust risk.",
+    "proposed_change": "Reconcile the assistant name. Internal evidence is decisive: 'TeachGen@i' is the canonical student-facing AI assistant across CAT531 (it appears as section titles, artifact names, scenario walkthroughs, and practice stems in 02/02, 02/04, and 08/02), whereas 'Ethobot 3.2' is the chatbot whose transcripts are the OBJECT of study, not the assistant the student invokes. 'BigAL' appears only as a stray verb in scattered 'ask BigAL to compare' lines (01/02, 01/03, 04/05) and is not used consistently anywhere. Replace 'ask BigAL to compare your definition' in line 92 with 'ask TeachGen@i to compare your definition' and sweep the other 'ask BigAL' instances (01/02, 01/03) for the same fix. (No external syllabus was reachable; the canonical name is established by intra-course consistency, not an external source.)",
+    "where_to_apply": "05.mdx — 'Stronger Artifact Standard' paragraph, the phrase 'ask BigAL to compare your definition' (line 92).",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "CAT531 supplement internal corpus (02/02, 02/04, 08/02 .mdx + .meta.json + .practice.json)",
+      "url_or_doi": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement",
+      "finding": "'TeachGen@i' is used consistently as the student-facing AI assistant across multiple chapters (section titles 'TeachGen@i Scenario Setup'/'TeachGen@i Troubleshooting', artifact names, scenario steps, and practice stems), while 'BigAL' appears only in isolated 'ask BigAL' phrases (01/02, 01/03, 04/05). 'Ethobot 3.2' is the studied chatbot, not the invoked assistant. This establishes TeachGen@i as canonical."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/04/06",
+  "section_title": "Moving From Debate to Policy",
+  "dir": "frontend/content/cat531-supplement/04",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's load-bearing empirical claim, that AI-text detectors misfire and that their false positives 'land disproportionately on English learners / non-native writers,' is asserted at least four times (Core Concept line 34, branching-scenario n2/n5 feedback, Common Misreadings, self-explain answer, closing artifact line) but is never cited. The entire 'enforce by disclosure not detection' decision rule rests on it, yet it has zero source.",
+    "proposed_change": "Wire Liang et al. (2023), 'GPT detectors are biased against non-native English writers' (Patterns, Cell Press) into the Core Concept enforcement-reality sentence (line 34) and add it to the References list; optionally add a short 'Recent Evidence' callout after Common Misreadings. The study empirically supports the exact claim made: detectors flagged TOEFL (non-native) essays as AI-generated at an average false-positive rate of 61.22% while accuracy on native US 8th-grade essays was near-perfect, and the bias is tied to lexical/linguistic features (perplexity), not actual AI use.",
+    "where_to_apply": "06.mdx — Core Concept line 34 (datafication-anchor sentence about AI detectors) + References (lines 142-145, add entry); optional new <callout> 'Recent Evidence' after Common Misreadings",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., & Zou, J. (2023). GPT detectors are biased against non-native English writers. Patterns, 4(7), 100779.",
+      "url_or_doi": "https://doi.org/10.1016/j.patter.2023.100779",
+      "finding": "Across seven widely-used GPT detectors, non-native-authored TOEFL essays were misclassified as AI-generated at an average false-positive rate of 61.22%, while detectors were near-perfect (essentially 0% false positives) on native-speaker US 8th-grade essays; 97.8% of TOEFL essays were flagged by at least one detector. Enriching TOEFL word choice cut false positives to 11.77%, confirming the bias tracks linguistic features, not AI use. Peer-reviewed, Cell Press, canonical for this claim."
+     }
+    ]
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The artifact is a 'school AI policy memo with privacy, equity, consent, and learning-purpose checks' and the Final Check asks learners to capture an 'equity or privacy boundary,' but the MDX cites no student-data-privacy statute. A graduate policy-memo task naming privacy/consent as a required check, grounded in no law (FERPA/COPPA), is a real evidence gap given the 2025 amended COPPA rule and recent state K-12 AI guidance.",
+    "proposed_change": "Add one or two sentences (and reference entries) grounding the privacy/consent dimension in FERPA (34 CFR Part 99) and COPPA, noting the FTC's 2025 amended COPPA Final Rule (effective June 23, 2025; full compliance by April 22, 2026), which expands the definition of personal information (biometric/government identifiers), requires separate parental consent for third-party disclosures, and newly addresses consent for using children's data to train AI. Place near the equity-exception/enforcement discussion or as a short 'Legal Floor' callout before Artifact Studio.",
+    "where_to_apply": "06.mdx — Stronger Artifact Standard or a new short 'Legal Floor' callout before Artifact Studio; add FERPA/COPPA entries to References",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "U.S. Department of Education, Family Educational Rights and Privacy Act (FERPA), 34 CFR Part 99 (20 U.S.C. § 1232g).",
+      "url_or_doi": "https://studentprivacy.ed.gov/ferpa",
+      "finding": "FERPA (regulations at 34 CFR Part 99) defines 'education records' as records directly related to a student maintained by an educational agency, and generally prohibits disclosure of personally identifiable information from those records without prior parental/eligible-student consent. This is the federal legal floor for the memo's privacy/consent check."
+     },
+     {
+      "cite": "Federal Trade Commission, Children's Online Privacy Protection Rule, Final Amendments, 90 Fed. Reg. (Apr. 22, 2025).",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "The amended COPPA Rule was published Apr 22, 2025 and is effective June 23, 2025, with full compliance required by April 22, 2026. It expands 'personal information' to include biometric and government-issued identifiers, requires separate verifiable parental consent for third-party disclosures, and adds requirements bearing on using children's data to train AI, anchoring the memo's consent check for under-13 students."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin and dated. TPACK links to Wikipedia + the 2006 Mishra & Koehler DOI; 'critical edtech studies' is a bare DOI (Selwyn, author not named); datafication is a single reused DOI. Research reveals a deeper problem: the DOI labeled 'AI and education datafication' (10.1080/17439884.2020.1686017) does NOT resolve to a datafication source, and the 'critical edtech studies' book DOI does not resolve at all.",
+    "proposed_change": "Fix the mislabeled/broken references and modernize anchors: (1) The DOI 10.1080/17439884.2020.1686017 actually resolves to Perrotta & Selwyn (2019/2020), 'Deep learning goes to school: toward a relational understanding of AI in education' (Learning, Media and Technology) — relabel the 'datafication' entry to this correct title/authors, or replace with a genuine datafication source. (2) The 'critical edtech studies' DOI 10.4324/9781315670160 returns 404 on Crossref; name Selwyn explicitly and cite his current book, 'Education and Technology: Key Issues and Debates' (3rd ed., Bloomsbury, 2022). (3) Optionally add one current AI-TPACK / generative-AI teacher-literacy anchor (2024) for the 'observable rule'/teacher-judgment move.",
+    "where_to_apply": "06.mdx — References (lines 142-145); inline anchors at Core Concept line 34",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Perrotta, C., & Selwyn, N. (2019/2020). Deep learning goes to school: toward a relational understanding of AI in education. Learning, Media and Technology, 45(3), 251-269.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "The DOI the section labels 'AI and education datafication' actually resolves (via OpenAlex and Crossref) to this Perrotta & Selwyn article, which is about a relational/critical understanding of AI in education, not datafication per se. The reference label is inaccurate and should be corrected or the source replaced."
+     },
+     {
+      "cite": "Selwyn, N. (2022). Education and Technology: Key Issues and Debates (3rd ed.). Bloomsbury Academic.",
+      "url_or_doi": "https://www.bloomsbury.com/us/education-and-technology-9781350145559/ (ISBN 9781350145559)",
+      "finding": "The current authoritative Selwyn 'critical edtech' monograph is Education and Technology: Key Issues and Debates (3rd ed., Bloomsbury, 2022). The DOI 10.4324/9781315670160 cited for 'critical edtech studies' returns HTTP 404 on Crossref and should be replaced with a resolving citation naming Selwyn."
+     },
+     {
+      "cite": "Ning, Y., et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements. Sustainability, 16(3), 978.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "A current (2024) peer-reviewed AI-TPACK source extending Mishra & Koehler's 2006 framework to AI, suitable as a supplementary anchor for the teacher-judgment / 'observable rule' move; alternatives include Sperling et al. (2024), Computers and Education Open, https://doi.org/10.1016/j.caeo.2024.100169."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/04/07",
+  "section_title": "Adapting Ethobot Prompts",
+  "dir": "frontend/content/cat531-supplement/04",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's load-bearing mechanism, that baking a teacher opinion into a prompt produces 'manufactured agreement' where the bot 'echoes' the teacher rather than drawing out reasoning (Why This Matters L9, Core Concept L34, Common Misreadings L82, inline-check L74, self-explain L98), is asserted repeatedly but never grounded in evidence in a course that prizes evidence-grounding.",
+    "proposed_change": "CONFIRMED. Add a one-line 'Recent Evidence' anchor in Core Concept (after L34) and one citation to References (L142-145) noting documented LLM sycophancy: models systematically tailor responses to agree with opinions stated by the user, which is the empirical reason a steered prompt yields convergent agreement rather than reasoning. Suggested wording: 'This is not just a pedagogical worry: LLMs exhibit documented sycophancy, tailoring answers to the user's stated view even when it is not warranted (Wei et al., 2023; Ranaldi & Pucci, 2023), so a prompt that states the teacher's opinion reliably manufactures agreement.'",
+    "where_to_apply": "07.mdx — Core Concept after the 'line you must not cross' paragraph (line 34) + References list (lines 142-145).",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Wei, J., et al. (2023). Simple synthetic data reduces sycophancy in large language models",
+      "url_or_doi": "https://doi.org/10.48550/arxiv.2308.03958",
+      "finding": "Documents that LLMs 'tailor their responses to follow a human user's view even when that view is not objectively correct' — directly grounds the 'manufactured agreement / echoing the teacher' claim."
+     },
+     {
+      "cite": "Ranaldi, L., & Pucci, G. (2023). When Large Language Models contradict humans? Large Language Models' Sycophantic Behaviour",
+      "url_or_doi": "https://doi.org/10.48550/arxiv.2311.09410",
+      "finding": "Characterizes sycophantic behaviour in which LLMs conform to opinions expressed by the user, supporting the steered-prompt-causes-convergence mechanism."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "TPACK is anchored only to a Wikipedia link plus the 2006 Mishra & Koehler DOI (L142), and 'critical edtech studies' / 'AI and education datafication' use bare unnamed DOIs reused verbatim across sections (L143-144). For a 2026 course where TPACK is the explicit purpose-fit anchor used to judge generative-AI prompt adaptation, the reference set is dated and generic.",
+    "proposed_change": "CONFIRMED (partial). Keep the 2006 Mishra & Koehler canonical citation but add one current AI-TPACK framework: Ning et al. (2024), 'Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements' (Sustainability, 221 citations), which extends TPACK explicitly to AI-tool integration and is on-point for adapting a generative-AI tool's prompts. Also name the critical-edtech anchor explicitly: the bare DOI 10.4324/9781315670160 is Selwyn's 'Is Technology Good for Education?' (2016), and DOI 10.1080/17439884.2020.1686017 is from the Williamson/datafication line — naming them (Selwyn 2016; Williamson 2023, 'Re-examining AI, automation and datafication in education', DOI 10.1080/17439884.2023.2167830) replaces opaque DOIs with auditable, current critical anchors. Note: searches surfaced Ben Williamson, not Neil Selwyn, as the dominant current 'datafication' author, so name whichever the course intends rather than leaving it bare.",
+    "where_to_apply": "07.mdx — References (lines 142-145); inline TPACK link in Core Concept (line 36) and Adaptive Support (line 117).",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Ning, Y., et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Current (2024) AI-TPACK framework extending Mishra & Koehler's TPACK to AI-tool integration; 221 citations — a strong contemporary anchor alongside the 2006 canonical reference."
+     },
+     {
+      "cite": "Williamson, B., et al. (2023). Re-examining AI, automation and datafication in education",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "Current named critical-edtech / datafication anchor to replace the bare reused DOI for 'critical edtech studies' / 'AI and education datafication'."
+     },
+     {
+      "cite": "Sperling, K., et al. (2024). In search of AI literacy in teacher education: A scoping review",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169",
+      "finding": "2024 scoping review of AI literacy frameworks in teacher education; supports refreshing the generative-AI teacher-literacy framing of the references."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/04/08",
+  "section_title": "Module 4 Ethics Studio",
+  "dir": "frontend/content/cat531-supplement/04",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The section's central privacy claim, repeated four times (Core Concept line 30, Worked Example Step 3, Stronger Artifact closing line, practice ai_boundary), that 'voice is biometric, so parental opt-in and a deletion rule are required,' is a legal-category claim left entirely unsupported in a course that values evidence-grounding and currently cites no statute.",
+    "proposed_change": "Add a short 'Recent Evidence' callout near the Core Concept biometric paragraph (line 30) and a privacy/consent citation to References (lines 136-141), grounding the biometric-voice/minor-consent rule in current statute. Confirmed anchors: the 2025 amended COPPA Rule (effective June 23, 2025; compliance by April 22, 2026) which expanded 'personal information' to include biometric identifiers and sets specific terms for collecting a child's voice recording (notice describing use and deletion; no-consent path only if no other data is collected, the audio serves the child's request, and the file is deleted immediately); and Illinois BIPA (740 ILCS 14), which names 'voiceprint' as a biometric identifier and requires written notice, written consent, and a published retention/destruction schedule, applying to schools. Reinforce one citation in 08.practice.json ai_boundary explanation so 'voice is biometric' is statute-backed, not asserted.",
+    "where_to_apply": "08.mdx Core Concept (line 30) + References (lines 136-141); reinforce in 08.practice.json ai_boundary explanation (lines 47-55)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "FTC, Children's Online Privacy Protection Rule, Final Rule (2025) — Federal Register 90 FR 16164",
+      "url_or_doi": "https://www.federalregister.gov/documents/2025/04/22/2025-05904/childrens-online-privacy-protection-rule",
+      "finding": "The 2025 amended COPPA Rule (effective June 23, 2025; compliance by April 22, 2026) expands the definition of 'personal information' to include biometric identifiers and sets specific notice/use/deletion requirements for collecting a child's voice recording; a no-consent path exists only when no other personal information is collected, the audio is used solely for the child's request, and the file is deleted immediately."
+     },
+     {
+      "cite": "Illinois Biometric Information Privacy Act, 740 ILCS 14 (BIPA, 2008)",
+      "url_or_doi": "https://law.justia.com/codes/illinois/chapter-740/act-740-ilcs-14/",
+      "finding": "BIPA defines 'biometric identifier' to expressly include a voiceprint, and requires private entities (including schools collecting student biometrics) to give written notice of purpose and duration, obtain written consent, and publish a retention schedule with destruction when the purpose is met or within 3 years of last interaction."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The integration repeatedly hinges on equity/accent-bias claims (vendor fluency model trained on a single national accent; the AAVE/dialect essay-scoring case in the Textbook Walkthrough; weapons-scanner higher false-positive rates for certain body types/wheelchairs in branching-scenario n3/n5). These are presented as known facts but are uncited illustrative scenarios.",
+    "proposed_change": "Add a brief 'Recent Evidence' callout (fits existing structure) after the Worked Example (~line 53) or in the Textbook Walkthrough (line 82) citing current algorithmic-fairness work. Confirmed anchors for all three legs: (1) ASR/fluency accent bias against non-native and minority speakers (Mengesha et al. 2021 on ASR errors harming African American users; Hutiri & Ding 2022 documenting performance degradation for non-US nationalities in speaker recognition); (2) automated essay-scoring bias by dialect/race (Yamashita 2025 on GPT-4o's biased ratings of English language learners' essays in Language Testing; reported ChatGPT lower scores for Black/African American writers, d~0.71); (3) a real weapons-scanner case — the FTC's November 2024 action against Evolv Technologies for deceptive accuracy claims to K-12 schools, with documented high false-positive rates (e.g., a school raised sensitivity producing a ~50% false-alarm rate). Anchor at least one specific source so accent-risk and false-positive claims are evidence, not assertion; this also strengthens branching-scenario n5.",
+    "where_to_apply": "08.mdx after Worked Example (~line 53) or Textbook Walkthrough (line 82); strengthens branching-scenario n5 (line 74)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Mengesha, Z. et al. (2021) 'I don't Think These Devices are Very Culturally Sensitive.' — Impact of Automated Speech Recognition Errors on African Americans",
+      "url_or_doi": "https://doi.org/10.3389/frai.2021.725911",
+      "finding": "ASR errors disproportionately affect African American users, who feel 'othered' by technology powered by ASR errors — empirical grounding for the accent/dialect misreading risk in a voice-fluency tool."
+     },
+     {
+      "cite": "Yamashita, T. (2025) Exploring potential biases in GPT-4o's ratings of English language learners' essays, Language Testing",
+      "url_or_doi": "https://doi.org/10.1177/02655322251329435",
+      "finding": "Documents potential bias in GPT-4o's automated essay ratings across writers' race/ethnicity and other characteristics, grounding the Textbook Walkthrough's dialect/AAVE essay-scoring claim; corroborated by reports that ChatGPT scored Black/African American writers lower (medium effect, d~0.71)."
+     },
+     {
+      "cite": "FTC (2024) FTC Takes Action Against Evolv Technologies for Deceiving Users About its AI-Powered Security Screening Systems",
+      "url_or_doi": "https://www.ftc.gov/news-events/news/press-releases/2024/11/ftc-takes-action-against-evolv-technologies-deceiving-users-about-its-ai-powered-security-screening",
+      "finding": "FTC found Evolv made false claims to K-12 schools about its AI weapons scanner's detection ability and false-alarm reduction; documented failures and high false-positive rates (a school raised sensitivity to a ~50% false-alarm rate) provide a real-world anchor for the branching-scenario weapons-scanner case."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "References are thin and Wikipedia/dated-DOI anchored (TPACK -> Wikipedia + 2006 DOI; 'critical edtech studies' -> bare unnamed DOI with Selwyn never named; datafication -> the reused 2020 DOI; 'teacher professional judgment' -> a 1993 DOI), reading as stamped placeholders rather than a curated 2026 reference list.",
+    "proposed_change": "Name authors in References (Mishra & Koehler for TPACK; name a critical-edtech author such as Selwyn or Williamson rather than a bare DOI) and add at least one 2023-2026 anchor so the list is not byte-identical to other sections. Confirmed current anchors: Williamson (2023) 'Re-examining AI, automation and datafication in education' (doi:10.1080/17439884.2023.2167830) for the critical-edtech/datafication line; Ning et al. (2024) on teachers' AI-TPACK (doi:10.3390/su16030978) and/or Sperling et al. (2024) AI literacy in teacher education scoping review (doi:10.1016/j.caeo.2024.100169) for a generative-AI teacher-knowledge anchor. Note: a confident OpenAlex author-ID lookup for Neil Selwyn did not resolve, so name Selwyn only against a specific verified work, or use Williamson (2023) as the named current critical-edtech anchor.",
+    "where_to_apply": "08.mdx References (lines 136-141); inline datafication link (line 34) and TPACK link (line 113)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Williamson, B. (2023) Re-examining AI, automation and datafication in education, Learning, Media and Technology",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "A 2023 critical-edtech/datafication piece that can replace or supplement the reused 2020 datafication DOI and name a current author in the critical-edtech line."
+     },
+     {
+      "cite": "Ning, Y. et al. (2024) Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements, Sustainability",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "A 2024 AI-TPACK framework extending Mishra & Koehler's TPACK for AI, providing a current teacher-knowledge anchor to add alongside the named 2006 TPACK source."
+     },
+     {
+      "cite": "Sperling, K. et al. (2024) In search of artificial intelligence (AI) literacy in teacher education: A scoping review, Computers and Education Open",
+      "url_or_doi": "https://doi.org/10.1016/j.caeo.2024.100169",
+      "finding": "A 2024 scoping review of AI literacy in teacher education, suitable as a current generative-AI teacher-literacy anchor for a 2026 graduate ethics course."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ }
+]

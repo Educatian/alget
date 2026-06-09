@@ -31,6 +31,8 @@ A usable maintenance plan has three properties.
 
 **It is matched to the platform.** Maintenance tasks depend on what kind of site you run. A static GitHub Pages site has no backend, so server patching and dependency updates do not apply, and Pages provides HTTPS automatically, so certificate renewal is GitHub's job, not yours. What does apply to a static portfolio is content freshness (resume, projects) and link integrity (renamed files break internal links). Filtering a generic list down to platform-relevant tasks is itself the skill.
 
+> **Recent evidence (as of 2026).** The platform claims hold: GitHub Pages still auto-provisions and auto-renews free HTTPS through Let's Encrypt for github.io addresses and correctly configured custom domains, so certificate renewal is never your task. One nuance is worth a line in your plan: all Pages sites now build and deploy through GitHub Actions, and if you publish via your own Actions workflow file, that file is a dependency you own that can break when Actions or runner versions are deprecated. For that path, "confirm the latest deploy succeeded" is a real platform-relevant maintenance item; for a plain deploy-from-a-branch site like this portfolio, content freshness and link integrity remain the whole job.
+
 The table shows that filtering applied to a typical AI checklist:
 
 | AI checklist item | Keep for static GitHub Pages? | Reason |

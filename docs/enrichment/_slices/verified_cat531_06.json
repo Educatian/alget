@@ -1,0 +1,26 @@
+[
+ {
+  "section_key": "cat531/06/03",
+  "type": "accuracy_fix",
+  "gap_summary": "Adaptive Support learner verbs (explain/compare/transfer/show) diverge from backend rail_action vocabulary",
+  "verdict": "confirmed",
+  "evidence": "researchService.js:321 enum ['explain','represent','practice','ask','advance']; 03.misconceptions.json uses explain/ask/represent/practice; MDX bullets 135-138 use compare/transfer/show",
+  "applied": true
+ },
+ {
+  "section_key": "cat531/06/04",
+  "type": "accuracy_fix",
+  "gap_summary": "Claim that 'BigAL' on line 109 should be the course assistant TeachGen@i",
+  "verdict": "refuted",
+  "evidence": "BigAL is the platform-wide ALGET tutor (ChatWidget.jsx 'BigAL Tutor', apiConfig.js 'BigAL rail'); TeachGen@i is the CAT531 in-course scenario tool (chs 02/08). Two distinct tools; usage is consistent; no public syllabus names either (uateachingacademy.ua.edu)",
+  "applied": false
+ },
+ {
+  "section_key": "cat531/06/07",
+  "type": "accuracy_fix",
+  "gap_summary": "Learner-facing support moves vs misconceptions rail_action vocabulary incoherent; routing not auditable",
+  "verdict": "confirmed",
+  "evidence": "Divergence real (07.mdx 126-131 vs 07.misconceptions.json). Applied option (b): documented the explain/represent/practice/ask/advance policy in MDX. Proposed rail_action values 'compare'/'transfer' rejected: out-of-vocabulary per researchService.js:321 enum",
+  "applied": true
+ }
+]

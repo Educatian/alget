@@ -1,0 +1,55 @@
+[
+ {
+  "section_key": "ail606/06/04",
+  "section_title": "Final Prototype Quality Review",
+  "dir": "frontend/content/ail606-supplement/06",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The artifact-studio tag (04.mdx) and the meta description label this section's signature artifact as 'prototype README traceability matrix connecting theory to screen changes.' But the section, worked example, decision rule, and practice all teach a criterion-referenced quality-review rubric/scorecard (criterion / score / evidence / severity columns). The README traceability matrix is a different ch6 artifact. This is the known artifact-mislabel pattern (like 03.03/04.06). The artifact-studio instrument is mismatched to what the learner is actually asked to produce.",
+    "proposed_change": "Change artifact='prototype README traceability matrix connecting theory to screen changes' to a quality-review-appropriate artifact, e.g. 'criterion-referenced prototype quality-review scorecard (criterion / score / evidence / severity)'. Update the download-packet link text, the artifact-studio artifact attribute, the meta.json description, and the Adaptive Support bullets that name the artifact, so the studio captures the rubric-scored before/after the section actually teaches.",
+    "needs_research": false,
+    "search_terms": [],
+    "where_to_apply": "04.mdx 'Artifact Studio' (download link text + <artifact-studio artifact=...>) and 'Adaptive Support' bullets; 04.meta.json description",
+    "priority": "high"
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/06/05",
+  "section_title": "Theoretical Defense",
+  "dir": "frontend/content/ail606-supplement/06",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The Mayer citation throughout (References line 144; Adaptive Support line 125; step-reveal links) is pinned to the 2nd-edition Cambridge DOI 10.1017/CBO9781139164603 (~2009/2014). Verified that Mayer's Multimedia Learning 3rd edition (Cambridge, 978-1-107-18750-4, DOI 10.1017/9781316941355) now exists and contains the segmenting principle that is THIS section's central worked example. Citing the superseded edition is a currency miss in the one section that leans hardest on Mayer's segmenting chapter.",
+    "proposed_change": "Update the Mayer reference and inline DOI links to the 3rd edition (https://doi.org/10.1017/9781316941355). Optionally add the Cambridge Handbook of Multimedia Learning 3rd ed. (2021, doi 10.1017/9781108894333) as the field's current synthesis, since the section discusses multiple Mayer principles (segmenting, signaling, redundancy).",
+    "needs_research": false,
+    "where_to_apply": "05.mdx References list (line 144) and inline Mayer links (lines 125, 56 worked example); 05.meta.json has no citation field so MDX only. Practice/misconception files reference 'cognitive load theory' generically and need no change.",
+    "priority": "high",
+    "search_terms": [
+     "Mayer Multimedia Learning 3rd edition DOI 10.1017/9781316941355",
+     "Cambridge Handbook of Multimedia Learning 3rd edition 2021 DOI"
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "ail606/06/06",
+  "section_title": "Peer Scholarly Critique",
+  "dir": "frontend/content/ail606-supplement/06",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The section is 'Peer Scholarly Critique' in Ch06 (Refined Prototype and Capstone Defense), but the ArtifactStudio component, the download-packet link, and the Adaptive Support block all reference the Chapter-03 artifact 'storyboard frame sequence with narration, signaling, and reader-action notes'. The genuine artifact for this section is the critique-and-disposition round trip the prose itself defines ('the critique you gave, the dispositions you logged'). This is the known artifact-studio mis-label pattern (cf. 03.03/04.06) and it directly contradicts the body text, which never asks the learner to build a storyboard.",
+    "proposed_change": "Retag the artifact to a section-appropriate instrument such as a 'peer-critique-and-disposition-log' (giving side: element/problem/criterion points with one flagged preference; receiving side: accept/modify/reject disposition with reason and at least one reasoned reject). Update artifact-studio artifact=, the download link text/anchor in '## Artifact Studio', and the Adaptive Support 'confusion' bullet ('compare a weak and strong version of...') to name the critique exchange rather than the storyboard.",
+    "needs_research": false,
+    "where_to_apply": "06.mdx: '## Artifact Studio' (artifact-studio tag + download link line ~119-121) and '## Adaptive Support' (~130); also the dynamic-scenario prompt (~134)",
+    "priority": "high"
+   }
+  ]
+ }
+]

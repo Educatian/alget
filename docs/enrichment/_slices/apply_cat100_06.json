@@ -1,0 +1,446 @@
+[
+ {
+  "section_key": "cat100/06/01",
+  "section_title": "Website Purpose and Information Architecture",
+  "dir": "frontend/content/cat100-supplement/06",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The core usability claims are stated as fact with no source: the 'one click from Home' click-budget target (line 30), 'Flat beats deep for a five-to-seven-page site' (line 30), and 'Visitors abandon sites that bury content' (line 30). This is a course that explicitly values evidence-grounding, yet the only cited anchors (NACE, ISTE, Tufte, WCAG) do not support the navigation-depth claim that drives the whole Decision Rule. The 'reach in one click' target as written reads like a hard rule, which usability research has debunked.",
+    "proposed_change": "Add a short 'Recent Evidence' callout (or References entries) grounding the depth/abandonment claims and honestly flagging that the popular three-click rule is a heuristic, not a hard limit. Reframe the section's claim from a strict click count to 'clear information scent and shallow paths reduce abandonment': users tolerate more clicks when each click has strong scent, and abandon when scent is weak regardless of depth. Keep the one-click target as a practical default for a 5-7 page portfolio but anchor the *why* in information scent / interaction cost, not raw click counting. Cite NN/g (Laubheimer 2019; Budiu 2020), Spool/UIE, and optionally the Pirolli information-foraging line for scholarly weight.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\06\\01.mdx 'Core Concept' section, 'Navigation depth and the click budget' paragraph (line 30); add a callout after it and entries to the References list (lines 169-174)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Laubheimer, P. / Nielsen Norman Group (2019) 'The 3-Click Rule for Navigation Is False'",
+      "url_or_doi": "https://www.nngroup.com/articles/3-click-rule/",
+      "finding": "The 3-click rule is not supported by data; a study by Joshua Porter found user dropoff does not increase past 3 clicks and satisfaction does not decrease. What matters is information scent, wayfinding, and interaction cost, not raw click count. Directly supports reframing the click budget away from a hard limit."
+     },
+     {
+      "cite": "Budiu, R. / Nielsen Norman Group (2020) 'Information Scent: How Users Decide Where to Go Next'",
+      "url_or_doi": "https://www.nngroup.com/articles/information-scent/",
+      "finding": "Users decide which links to follow based on information scent (cues from link labels and context); when scent is weak they 'quickly decide the page is not worth exploring and simply leave.' Grounds the abandonment claim in scent quality and ties directly to the section's Labeling principle."
+     },
+     {
+      "cite": "Pirolli, P. & Card, S. — information foraging / information scent (Pirolli 2005, 'Rational Analyses of Information Foraging on the Web')",
+      "url_or_doi": "https://doi.org/10.1207/s15516709cog0000_20",
+      "finding": "Peer-reviewed foundation (top-1% cited) for information scent as the cue that drives web navigation choices; optional scholarly anchor showing navigation behavior is governed by perceived scent toward goal content rather than depth alone."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "scaffolding",
+    "gap": "The chapter title, meta description, and named artifact all explicitly include 'accessibility, privacy, and publishing checks,' and the project flagged accessibility as a release gate, yet the body prose teaches purpose/depth/labeling with zero accessibility content. The artifact is an accessibility-checked file tree, but the section never says what an IA-level accessibility check is. There is an IA-accessibility connection right here (descriptive labels = descriptive link text = screen-reader navigability) that is never made, so the WCAG reference (line 174) is decorative.",
+    "proposed_change": "Add a short 'Accessibility of your IA' callout tying the labeling principle to WCAG: descriptive page names double as accessible link text (WCAG 2.4.4 Link Purpose, Level A); a shallow, consistent nav with a skip-to-content link and proper landmark/heading structure is what lets screen-reader users jump between sections (WCAG 2.4.1 Bypass Blocks, Level A) using descriptive headings/labels (WCAG 2.4.6 Headings and Labels, Level AA). This makes the artifact's 'accessibility checks' real and gives the learner one concrete IA-level a11y check before they write HTML in 06.02. Note the correct levels: 2.4.4 and 2.4.1 are Level A; 2.4.6 is Level AA.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\06\\01.mdx after 'Decision Rule' (line 95) or as a callout following the 'Labeling' bullet in Core Concept (line 32)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "W3C WCAG 2.2 — Success Criterion 2.4.4 Link Purpose (In Context), Level A",
+      "url_or_doi": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
+      "finding": "Requires that the purpose of each link be determinable from the link text alone (or text plus programmatic context); meaningful link text helps assistive-technology users who tab link-to-link or pull up a link list. Directly grounds 'descriptive page names = accessible link text.' Level A."
+     },
+     {
+      "cite": "W3C WCAG 2.2 — Success Criterion 2.4.1 Bypass Blocks, Level A",
+      "url_or_doi": "https://w3c.github.io/wcag/understanding/bypass-blocks.html",
+      "finding": "Requires a mechanism to bypass repeated blocks (nav/header) so sequential/screen-reader users reach main content directly; satisfied via skip links plus ARIA landmarks or headings. Grounds the 'shallow consistent nav + skip-to-content + landmark/heading structure' claim. Level A."
+     },
+     {
+      "cite": "W3C WCAG 2.2 — Success Criterion 2.4.6 Headings and Labels, Level AA",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/",
+      "finding": "Requires that headings and labels describe topic or purpose, supporting navigation by screen-reader users who jump by heading. Reinforces the section's Labeling principle at the a11y level. Note: this is Level AA (2.4.4 and 2.4.1 are Level A)."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI is referenced only generically: 'You ask an AI tool to propose a sitemap' (ai_boundary practice item, line 51) and 'a bounded AI/software support move' (prose). For a 2026 digital-fluency course the AI-sitemap scenario is a natural place to ground the bounded-AI move in concretely named current tools, but it is tool-agnostic to the point of vagueness.",
+    "proposed_change": "In the worked AI-boundary example (prose Adaptive Support / Artifact Studio and the ai_boundary practice stem) name a current 2026 assistant, e.g. 'ask ChatGPT, Gemini, or Claude to propose a sitemap,' and add a one-line note that model behavior and naming churn so learners should disclose which tool/version they used in their AI-use note. As of June 2026 the consumer leaders by US web-visit share are ChatGPT (~59%), Gemini (~19%), and Claude (~12.5%), with Microsoft Copilot embedded across Microsoft 365; this ordering supports naming ChatGPT/Gemini/Claude as the concrete instances. The disclosure note aligns with the 2026 'undisclosed AI use is the violation' norm. Keep the pedagogy tool-agnostic but show at least one concrete current instance.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\06\\01.practice.json ai_boundary item stem (line 51) and C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat100-supplement\\06\\01.mdx 'Adaptive Support' / 'Artifact Studio' (lines 136-153)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Momentic / First Page Sage (June 2026) 'Top Generative AI Chatbots by Market Share'",
+      "url_or_doi": "https://firstpagesage.com/reports/top-generative-ai-chatbots/",
+      "finding": "As of April 2026 US web-visit share: ChatGPT ~58.9%, Google Gemini ~19.2%, Claude ~12.5% (Similarweb); Microsoft Copilot usage is largely embedded in Windows/Edge/Microsoft 365 rather than the standalone web app. Confirms ChatGPT/Gemini/Claude as the current named leaders to cite in a 2026 course."
+     },
+     {
+      "cite": "Princeton University Library — 'Disclosing the Use of AI' (Generative AI research guide, 2026)",
+      "url_or_doi": "https://libguides.princeton.edu/generativeAI/disclosure",
+      "finding": "2026 academic-integrity norm has shifted from prohibition to 'undisclosed AI use is the violation'; students must confirm AI is permitted and disclose its use. Grounds the proposed one-line 'disclose which tool/version you used' note."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/06/02",
+  "section_title": "Starter HTML and CSS",
+  "dir": "frontend/content/cat100-supplement/06",
+  "section_file_base": "02",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The References list (line 166) includes an off-topic Tufte entry: 'data-ink and visual evidence. https://www.edwardtufte.com/tufte/books_vdqi'. Tufte's data-ink ratio is a data-visualization principle with no bearing on starter HTML/CSS, accessibility, or the cascade. It is leftover boilerplate from the Ch3 Excel/data-storytelling chapter and is the only un-anchored, un-cited-in-body reference in this section, weakening an evidence-grounded course's credibility.",
+    "proposed_change": "Remove the Tufte/data-ink reference line (02.mdx line 166). Replace it with a relevant authoritative anchor actually used in the body's 'read the source, not the preview' through-line: the W3C Markup Validation Service (https://validator.w3.org/) for HTML structure and/or the MDN Web Docs HTML element reference (https://developer.mozilla.org/en-US/docs/Web/HTML/Element). Both are live and authoritative as of 2026.",
+    "where_to_apply": "02.mdx, ## References section, line 166 ('data-ink and visual evidence' bullet)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "W3C Markup Validation Service",
+      "url_or_doi": "https://validator.w3.org/",
+      "finding": "Free W3C service that checks markup validity of HTML/XHTML/HTML5 documents (uses the Nu validator for HTML5/HTML LS); live and current as of 2026. A topic-relevant replacement directly supporting the section's 'read the markup' through-line, unlike the Tufte data-visualization reference which has no bearing on HTML/CSS."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "The AI dimension is framed entirely generically ('a bounded AI/software support move', 'AI assistant gives you CSS', 02.practice.json ai_boundary item lines 50-58), with no named 2026 tools. For an HTML/CSS section in 2026 the realistic AI-assist surface is concrete and nameable, and the practice item about AI-generated CSS referencing a non-existent .container class lands harder grounded in a real tool/workflow.",
+    "proposed_change": "Name a current tool family without over-coupling: in the ## Adaptive Support / Artifact Studio prose and in the ai_boundary practice stem (02.practice.json), reference 'a coding assistant such as GitHub Copilot (in VS Code) or ChatGPT/Claude' and add a one-line version-churn caveat ('the exact tool and model version change often; the verification habit does not'). Keep the pedagogy (verify selectors match real markup) tool-agnostic but make the example concrete. Confirmed current: GitHub Copilot provides inline ghost-text code suggestions for HTML/CSS in VS Code as of mid-2026 (e.g., suggests <!DOCTYPE html>, CSS property/value completions), and the May/June 2026 VS Code releases added an Agents window in Stable.",
+    "where_to_apply": "02.mdx '## Artifact Studio'/'## Adaptive Support' prose (lines 137-146) and 02.practice.json ai_boundary item stem (lines 50-58)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "GitHub Docs / VS Code Docs - Copilot code suggestions",
+      "url_or_doi": "https://code.visualstudio.com/docs/editing/ai-powered-suggestions",
+      "finding": "GitHub Copilot in VS Code provides AI-powered inline (ghost-text) code suggestions across many languages including HTML/CSS as of 2026; e.g., typing <!DOCTYPE prompts the full <!DOCTYPE html> line and 'button {' prompts common CSS properties. Confirms 'GitHub Copilot in VS Code' is an accurate, current named tool."
+     },
+     {
+      "cite": "GitHub Changelog - Copilot in VS Code, May releases (2026-06-03)",
+      "url_or_doi": "https://github.blog/changelog/2026-06-03-github-copilot-in-visual-studio-code-may-releases/",
+      "finding": "As of June 2026, GitHub Copilot in VS Code is actively shipping monthly updates (Agents window in Stable as preview; inline-completion noise tuning), confirming the tool is current and supporting the version-churn caveat."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/06/03",
+  "section_title": "GitHub Repository Setup",
+  "dir": "frontend/content/cat100-supplement/06",
+  "section_file_base": "03",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The Worked Example (Step 2, line 51-58) and Textbook Walkthrough run `git push -u origin main` against an HTTPS remote (https://github.com/mlopez/mlopez.github.io.git) with no mention that GitHub removed account-password authentication for Git over HTTPS on August 13, 2021. A real beginner following these exact commands will be prompted for credentials, type their account password, and the push fails. The section never names a Personal Access Token (PAT) or SSH, so the single most common first-push failure in 2024-2026 is invisible.",
+    "proposed_change": "Add one sentence or a small callout after the Step 2 code block noting that the first push over HTTPS prompts for credentials, and that GitHub no longer accepts the account password here -- you supply a Personal Access Token (PAT) in its place, or set up an SSH key. Frame it as a real setup snag alongside the URL and secret snags the section already names.",
+    "where_to_apply": "03.mdx -- Worked Example, after the Step 2 code block (lines 51-58); optionally mirror in Textbook Walkthrough (line 102)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "GitHub Blog (2020) Token authentication requirements for Git operations",
+      "url_or_doi": "https://github.blog/security/application-security/token-authentication-requirements-for-git-operations/",
+      "finding": "Beginning August 13, 2021, GitHub.com no longer accepts account passwords when authenticating Git operations; all authenticated Git operations over HTTPS require a token (e.g., a personal access token), and SSH keys remain a supported alternative."
+     },
+     {
+      "cite": "GitHub Docs, Managing your personal access tokens",
+      "url_or_doi": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens",
+      "finding": "A personal access token can be used instead of a password for Git operations over HTTPS; it is the credential a user enters at the HTTPS credential prompt."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The section's only defense against a leaked credential is 'rotate the key' (lines 32, 68, 83, 94). As of March 2024, GitHub secret scanning push protection is enabled by default on new public repositories owned by personal accounts and can block the push before the secret enters history -- a stronger, more current line of defense that directly reinforces the section's own 'prevention beats cleanup' thesis. The section also calls cleaning history 'hard' (line 32) without naming the current standard tool (git filter-repo, which superseded the deprecated filter-branch).",
+    "proposed_change": "Add a short 'Recent Evidence' style callout near the 'History is permanent; .gitignore is prevention' paragraph (line 32) noting that (a) GitHub now offers default-on push protection for new public personal repos that can catch a committed secret at push time, and (b) if a secret does reach history, the current cleanup tool is git filter-repo (not the deprecated filter-branch) -- but rotation is still mandatory because the key may already have been seen. Empirical evidence (Meli et al. 2019) shows secrets in public repos are scraped within seconds, which is why rotation, not deletion, is the rule.",
+    "where_to_apply": "03.mdx -- Core Concept, after the 'History is permanent; .gitignore is prevention' paragraph (line 32), or a new callout block",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "GitHub Changelog (2024-03-11) Secret scanning and push protection enabled by default on new public repositories",
+      "url_or_doi": "https://github.blog/changelog/2024-03-11-secret-scanning-and-push-protection-are-enabled-by-default-on-new-public-repositories/",
+      "finding": "Starting March 2024, secret scanning and push protection are enabled by default on new public repositories owned by personal accounts; pushes containing known secrets are blocked before reaching the repository (existing public repos and org-owned repos are not auto-enabled)."
+     },
+     {
+      "cite": "GitHub Docs, Removing sensitive data from a repository",
+      "url_or_doi": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository",
+      "finding": "GitHub recommends git filter-repo (a tool recommended by core git developers) for purging files/secrets from history; it replaces the older, slower git filter-branch and BFG; and any exposed credential must be considered compromised and rotated."
+     },
+     {
+      "cite": "Meli, Bryan, McNiece & Reaves (2019) How Bad Can It Git? Characterizing Secret Leakage in Public GitHub Repositories (NDSS)",
+      "url_or_doi": "https://doi.org/10.14722/ndss.2019.23418",
+      "finding": "Large-scale empirical study finds thousands of API keys/credentials leaked across public GitHub repositories, many collectible in near-real-time from commits, grounding the claim that a committed secret must be rotated rather than merely deleted."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI use is framed generically ('Document a bounded AI/software support move', lines 15/132/137-141) with no named 2026 tool, the course-wide vagueness issue. The section's strongest AI moment is concrete (the force-push practice item shows an AI giving a dangerous git suggestion), but the Artifact Studio / Adaptive Support prose stays abstract. For a git/GitHub section in 2026, the obvious concrete grounding is an in-terminal AI assistant suggesting git commands.",
+    "proposed_change": "Name a concrete current class of tool in the AI-boundary framing, e.g. an in-IDE or in-terminal AI assistant (GitHub Copilot CLI, which reached general availability in 2026 and translates natural language into git/shell commands, or Copilot Chat) suggesting git commands, and tie the 'rejected suggestion' requirement to the force-push example already in practice. Note that tool names/models churn (Copilot CLI already shifted to GPT-5.4/Autopilot), so the documented judgment, not the tool, is the artifact.",
+    "where_to_apply": "03.mdx -- Artifact Studio / Adaptive Support prose (lines 125-142) and LO3 wording (line 15 / meta line 11)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "InfoQ (2026-04) GitHub Copilot CLI Reaches General Availability",
+      "url_or_doi": "https://www.infoq.com/news/2026/04/github-copilot-cli-ga/",
+      "finding": "GitHub Copilot CLI reached general availability in 2026; its 'suggest' feature translates natural-language prompts into shell commands and Git operations directly in the terminal, with recent updates adding agentic Autopilot mode and GPT-5.4 support -- a concrete, current example of an AI assistant proposing git commands."
+     },
+     {
+      "cite": "GitHub Docs, Using GitHub Copilot CLI",
+      "url_or_doi": "https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/overview",
+      "finding": "Copilot CLI suggests and explains git/shell commands across Bash, Zsh, and PowerShell, requiring an active Copilot subscription; the user must review/accept the suggested command (the accept/reject judgment the section's artifact targets)."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/06/04",
+  "section_title": "Publishing With GitHub Pages",
+  "dir": "frontend/content/cat100-supplement/06",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The Core Concept and Worked Example present 'Deploy from a branch' as if it is the only publishing source. As of 2026, GitHub's Settings > Pages screen shows a 'Build and deployment / Source' control with two options: 'Deploy from a branch' (recommended for ready-to-serve HTML/CSS/JS, this course's case) and 'GitHub Actions' (for framework builds). The section never acknowledges the Actions option exists, so a student seeing the two-way toggle in the real UI may be confused about which to pick.",
+    "proposed_change": "Add one sentence to the Core Concept 'Pages is a build-and-serve pipeline' paragraph (or a parenthetical in Worked Example Step 1) noting the Pages settings screen shows a 'Build and deployment / Source' choice with two options, and that for a hand-written HTML/CSS portfolio the correct choice is 'Deploy from a branch' (GitHub's recommended path when there is no build framework), while 'GitHub Actions' is for framework projects like React/Next.js. This pre-empts the toggle confusion. Verified against current GitHub Docs.",
+    "where_to_apply": "04.mdx, Core Concept 'Pages is a build-and-serve pipeline' paragraph (line 28) and/or Worked Example Step 1 (line 42); optionally a one-line note on the artifact_signal practice item in 04.practice.json (lines 11-21)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "GitHub Docs, 'Configuring a publishing source for your GitHub Pages site' (2026)",
+      "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "finding": "Source control offers exactly two options, 'Deploy from a branch' and 'GitHub Actions'. GitHub states: 'If you do not need any control over the build process for your site, we recommend that you publish your site when changes are pushed to a specific branch.' It also notes a Pages site 'will always be deployed with a GitHub Actions workflow run, even if you've configured your GitHub Pages site to be built using a different CI tool.'"
+     }
+    ]
+   },
+   {
+    "type": "assessment_align",
+    "gap": "LO1 explicitly names accessibility and privacy as part of the artifact and the References cite WCAG 2.2, but the body prose never teaches a single accessibility or privacy check for the published page (alt text, contrast, heading order, not committing personal data to a public repo). The four practice items and four misconceptions all concern paths, build delay, source config, and live-URL verification. The a11y/privacy strand named in LO1 and the chapter title is asserted but never instructed or assessed.",
+    "proposed_change": "Add a short 'Accessibility and privacy on the live page' callout (2-3 sentences) after 'Stronger Artifact Standard': when verifying on the live URL, also confirm images have meaningful alt text, text contrast meets WCAG 2.2 (4.5:1 for normal text per SC 1.4.3, non-text 3:1 per SC 1.4.11), and no private data (home address, personal email, unredacted info) was committed, because a GitHub Pages repo is world-readable including its source. Add one practice MCQ mapped to LO1 on accessibility/privacy, and one misconception ('a public Pages repo only exposes the rendered site, not the source files'). This makes LO1's a11y/privacy claim actually assessed.",
+    "where_to_apply": "04.mdx (new callout after 'Stronger Artifact Standard', line 105); 04.practice.json (add a 5th problem mapped to cat100_supplement_publishing_with_github_pages / LO1); 04.misconceptions.json (add a public-repo-exposes-source misconception)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "W3C, Web Content Accessibility Guidelines (WCAG) 2.2, W3C Recommendation (12 Dec 2024)",
+      "url_or_doi": "https://www.w3.org/TR/WCAG22/",
+      "finding": "WCAG 2.2 is the current W3C Recommendation (published 12 December 2024; W3C advises its use to maximize future applicability). SC 1.1.1 requires a text alternative for all non-text content; SC 1.4.3 requires 4.5:1 contrast for normal text and SC 1.4.11 requires 3:1 for non-text content. These give concrete, citable checks the body can teach to honor the cited reference."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "The AI-use strand is fully generic: LO3, the ai_boundary practice item, and the Adaptive Support block reference 'an AI tool' with no named 2026 tool. For a GitHub Pages debugging scenario the realistic current tools are concrete (GitHub Copilot / Copilot Chat in the editor or repo, ChatGPT/Claude pasting an error). The ai_boundary premise ('An AI tool says the deploy is broken, recreate the repo') would be sharper grounded in a named, plausible 2026 assistant.",
+    "proposed_change": "Lightly ground the AI references in a current named tool: in the ai_boundary stem and/or the Adaptive Support note reference a concrete 2026 assistant (e.g., 'GitHub Copilot Chat' or 'a chat assistant like ChatGPT/Claude'), and add a one-line tool-churn/disclosure caveat in the body so the example does not read as tool-agnostic vagueness. Keep the pedagogy (reject the destructive suggestion, verify first) unchanged. Confirmed that GitHub Copilot Chat is a current, named 2026 tool that performs exactly this repo-context error/stack-trace debugging, so the named grounding is realistic.",
+    "where_to_apply": "04.practice.json (ai_boundary stem, lines 50-58); 04.mdx Adaptive Support (lines 119-128) or a short AI-tool/disclosure note in the body",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "GitHub Changelog, 'Better debugging with GitHub Copilot on the web' (23 Apr 2026)",
+      "url_or_doi": "https://github.blog/changelog/2026-04-23-better-debugging-with-github-copilot-on-the-web/",
+      "finding": "GitHub Copilot Chat on github.com is a current 2026 tool that debugs from a pasted stack trace plus repository code context, returning what/where failed, likely root cause, evidence, a confidence level, suggested fix, and next checks. Grounds the ai_boundary scenario in a real, named assistant a student would plausibly use for a Pages bug."
+     },
+     {
+      "cite": "Gonsalves, C. (2024) 'Addressing student non-compliance in AI use declarations: implications for academic integrity and assessment in higher education', Assessment & Evaluation in Higher Education",
+      "url_or_doi": "https://doi.org/10.1080/02602938.2024.2415654",
+      "finding": "Supports adding a one-line AI-use disclosure caveat: explicit declaration of AI assistance is an established 2024-2026 academic-integrity expectation, so naming the tool plus a disclosure note aligns the AI strand with current coursework norms."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/06/05",
+  "section_title": "Debugging With AI Assistance",
+  "dir": "frontend/content/cat100-supplement/06",
+  "section_file_base": "05",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "The worked-example markup (two adjacent <a> tags: <a href=\"about.html\">About<a href=\"projects.html\">Projects</a>) is used throughout to justify the symptom that runaway blue 'swallows everything below' the nav. Under the HTML5 parsing spec, when the parser meets the SECOND <a> start tag while the first <a> is still open, it acts as if a </a> end tag had been seen (invoking the adoption agency algorithm), implicitly closing the first anchor. So in THIS exact two-anchor block 'About' renders as its own closed link and the styling does NOT propagate to paragraphs below the nav. The strong 'swallows every paragraph below' effect specifically requires a single unclosed <a> followed by NON-anchor content. A browser-savvy reader/instructor can disprove the stated symptom for the shown markup. Affected: 05.mdx Opening Case (line 20), Core Concept (line 28), Worked Example Step 1 (lines 44-51), Textbook Walkthrough (line 93); 05.practice.json artifact_signal stem/explanation (lines 11,19); 05.misconceptions.json browser_blamed pattern.",
+    "proposed_change": "Recommend option (a): make the unclosed anchor the LAST/only link before body content so the following paragraphs really are swallowed, OR add a paragraph after the nav and remove the second link's correctness so the open <a> reaches non-anchor content. Concretely: change the Step-1 block to a single unclosed nav link followed by a body element, e.g. '<nav>\\n  <a href=\"about.html\">About\\n</nav>\\n<p>Welcome to my portfolio.</p>' so the open anchor swallows the <p>. Then the 'everything below turns blue' prose is literally true. If two links are kept, soften the prose: note the parser auto-closes the first anchor at the second <a>, so the visible bug there is the odd/duplicated link rendering, while the runaway-swallow effect occurs when an unclosed anchor is followed by non-anchor content. Keep the practice item (artifact_signal) accurate by mirroring whichever markup is chosen; the option text 'wraps everything until the next close tag' is actually fine because the second <a> is what supplies that next implicit close.",
+    "where_to_apply": "05.mdx -> Worked Example Step 1 code block (lines 44-51) and symptom prose in Opening Case (line 20), Core Concept (line 28), Textbook Walkthrough (line 93); also 05.practice.json problem cat100_supplement_6_5_debugging_with_ai_assistance_artifact_signal stem/explanation (lines 11, 19)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "W3C HTML5 Tree construction, 'in body' insertion mode, start tag 'a' rule (W3C WD)",
+      "url_or_doi": "https://www.w3.org/TR/2011/WD-html5-20110525/tree-construction.html",
+      "finding": "Spec text: 'If the list of active formatting elements contains an element whose tag name is \"a\" between the end of the list and the last marker... then this is a parse error; act as if an end tag with the tag name \"a\" had been seen, then remove that element from the list of active formatting elements and the stack of open elements if the end tag didn't already remove it.' I.e., a second <a> start tag implicitly closes the still-open first anchor, so the runaway effect does not reach content past the second <a>."
+     },
+     {
+      "cite": "WHATWG HTML Living Standard, Parsing section (adoption agency algorithm; 'a' is a formatting element)",
+      "url_or_doi": "https://html.spec.whatwg.org/multipage/parsing.html",
+      "finding": "The 'a' element is in the formatting category placed in the list of active formatting elements; misnested formatting elements are resolved by the adoption agency algorithm, which is what the implicit </a> on a second <a> triggers. Confirms the parser does not nest two anchors."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI assistance is fully generic ('an AI assistant', 'an AI coding assistant') with no named 2026 tools, even though debugging-with-AI is the section's whole topic and the named assistants are exactly what a CAT 100 student will use for HTML/CSS on a GitHub Pages workflow.",
+    "proposed_change": "Add one sentence in Core Concept (after line 32) or a small callout before the Worked Example naming current named assistants, e.g. 'Whether you use GitHub Copilot Chat in VS Code, ChatGPT, Claude, or Gemini, the method is the same.' Add a one-line note that model versions and behavior change frequently, so the supervision method (read symptom -> verifiable prompt -> accept/modify/reject with a reason -> verify in the browser), not the specific tool, is what transfers.",
+    "where_to_apply": "05.mdx -> Core Concept section (after line 32) or as a brief tools callout before the Worked Example (line 38)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "GitHub Copilot features / VS Code Copilot Chat docs (2026)",
+      "url_or_doi": "https://code.visualstudio.com/docs/copilot/chat/copilot-chat",
+      "finding": "As of 2026 GitHub Copilot (with Copilot Chat natively in VS Code) is the most widely adopted AI developer tool, with a Free tier (2,000 completions/month) and support for multiple models including GPT-5.x, Claude Opus 4.x, and Gemini. Confirms these are the current, student-relevant named assistants for a VS Code / GitHub Pages workflow."
+     },
+     {
+      "cite": "Visual Studio Magazine, 'Top 5 AI Tools for Visual Studio 2026'",
+      "url_or_doi": "https://visualstudiomagazine.com/articles/2026/01/20/top-5-ai-tools-for-visual-studio-2026.aspx",
+      "finding": "January 2026 roundup confirms Copilot-class assistants and beginner-friendly free options (e.g., Gemini Code Assist) are current in 2026, supporting a tool-agnostic-method-but-concrete-examples framing."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/06/06",
+  "section_title": "Portfolio Evidence and Reflection",
+  "dir": "frontend/content/cat100-supplement/06",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "AI is referenced only generically in 06.mdx ('AI rewriter' line 20, 'an AI rewrite' line 59, 'AI assisted with wording' line 32). No 2026 named tools and no acknowledgment that resume-rewrite features are now built into mainstream tools. Tool-agnostic to the point of reading as undated.",
+    "proposed_change": "In the Opening Case (line 20) or Core Concept, ground the 'AI rewriter' in 1-2 concrete current examples, e.g., 'a resume rewriter such as ChatGPT, Claude, Gemini, Microsoft 365 Copilot in Word, or LinkedIn's Resume Copilot', and add a note in Common Misreadings (line 85) that these tools commonly inflate or invent specifics, so the truth check applies regardless of which tool produced the draft. Keep tool-agnostic in spirit but name current 2026 examples.",
+    "where_to_apply": "06.mdx — 'Opening Case' (line 20, the 'runs it through an AI rewriter' sentence) and 'Common Misreadings' second paragraph (line 85).",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Microsoft Copilot — Refine/Overhaul Your Resume with Copilot (2026)",
+      "url_or_doi": "https://www.microsoft.com/en-us/microsoft-copilot/for-individuals/do-more-with-ai/ai-for-professional-life/overhaul-your-resume-with-ai",
+      "finding": "Microsoft 365 Copilot in Word is a mainstream built-in resume rewriter that summarizes experience into achievement-focused bullets and rewrites responsibilities with action verbs; April 2026 testing reported Copilot-tailored resumes scoring 80% on Jobscan vs 60% baseline. Confirms naming Copilot as a current concrete tool."
+     },
+     {
+      "cite": "LinkedIn — Resume Copilot showcase (2026)",
+      "url_or_doi": "https://www.linkedin.com/showcase/resume-copilot/",
+      "finding": "LinkedIn ships an AI resume-writing assistant (Resume Copilot), and guidance from these tools explicitly warns to use AI as an assistant 'without misrepresenting your experience' — confirms both the named-tool currency and the inflation/fabrication caveat the proposed change adds."
+     },
+     {
+      "cite": "Enhancv — Which AI Is Best for Resume Writing? (2026)",
+      "url_or_doi": "https://enhancv.com/blog/which-ai-is-best-for-resume-writing/",
+      "finding": "Contemporary comparisons treat ChatGPT, Claude, and Gemini as the standard general-purpose resume rewriters (ChatGPT for customization, Gemini for industry phrasing, Claude for tone/readability), confirming the specific 2026 tool names proposed for the Opening Case."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "NACE career-readiness and ISTE student-standards links are cited (06.mdx lines 34, 126, 131, 149-150) and the currency-watch flags that NACE periodically revises the eight competencies, the ISTE edition should be confirmed, and the 'career-readiness-defined' deep-link anchor may have moved.",
+    "proposed_change": "Verified current — no link change required. Keep the NACE 'career-readiness-defined' URL and the ISTE '/standards/students' URL as-is. Optionally update prose to reflect that ISTE Standards for Students are the 2024 refresh edition if an edition label is desired.",
+    "where_to_apply": "06.mdx — 'Core Concept' inline links (line 34) and 'References' list (lines 149-150) NACE and ISTE entries.",
+    "priority": "low",
+    "sources": [
+     {
+      "cite": "NACE — What is Career Readiness? (Competencies)",
+      "url_or_doi": "https://naceweb.org/career-readiness/competencies/career-readiness-defined",
+      "finding": "URL still resolves (live in 2026 search index, exact path matches the .mdx link). The set is still EIGHT competencies: Career & Self-Development, Communication, Critical Thinking, Equity & Inclusion, Leadership, Professionalism, Teamwork, Technology. No revision invalidates the current link or wording."
+     },
+     {
+      "cite": "ISTE — Standards for Students (2024 refresh, v4.02)",
+      "url_or_doi": "https://iste.org/standards/students",
+      "finding": "Current edition is the 2024 refresh (v4.02), still 7 student standards including 'Digital Citizen' (the dimension the section invokes). The /standards/students URL resolves; no edition change breaks the citation."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/06/07",
+  "section_title": "Maintenance Plan",
+  "dir": "frontend/content/cat100-supplement/06",
+  "section_file_base": "07",
+  "opportunities": [
+   {
+    "type": "currency_update",
+    "gap": "The section asserts 'Pages provides HTTPS automatically' and 'static site has no backend / no server to patch' as core teaching but never grounds it in current (2026) GitHub Pages reality, where GitHub Pages builds and deploys via GitHub Actions by default, and a user-authored Actions workflow file is itself a maintainable dependency that can break on Actions/runner deprecations. Branch-deploy framing is correct but less clean for the Actions path.",
+    "proposed_change": "Add a one-line 'Recent Evidence' note after the Core Concept platform-check paragraph confirming GitHub Pages still auto-provisions and auto-renews free HTTPS via Let's Encrypt for github.io and correctly-configured custom domains as of 2026 (no manual cert renewal), AND noting the one exception worth maintaining: if you publish via a GitHub Actions workflow (the now-default build/deploy mechanism), the workflow file can break on Actions/runner deprecations, so 'confirm the deploy still succeeds' is a real platform-relevant maintenance item for that path. The core 'no server to patch' claim remains accurate for content/HTTPS; the Actions workflow is the nuance to add.",
+    "where_to_apply": "07.mdx new note after '## Core Concept' platform-check paragraph (after line 32)",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "GitHub Docs — Securing your GitHub Pages site with HTTPS",
+      "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https",
+      "finding": "GitHub Pages partners with Let's Encrypt to automatically issue and renew TLS certificates for github.io and correctly-configured custom domains at no cost and with no manual CSR/installation or renewal by the site owner; confirms the 'HTTPS is GitHub's job, not yours' teaching is current as of 2026."
+     },
+     {
+      "cite": "GitHub Blog — GitHub Pages now uses Actions by default",
+      "url_or_doi": "https://github.blog/news-insights/product-news/github-pages-now-uses-actions-by-default/",
+      "finding": "All GitHub Pages sites now build and deploy with GitHub Actions; deployments occur in a github-pages environment and 'a source branch is not required anymore.' This makes the deploy workflow (for custom-workflow publishing) a maintainable dependency, supporting the proposed 'check the deploy still succeeds' maintenance item."
+     },
+     {
+      "cite": "GitHub Docs — Configuring a publishing source for your GitHub Pages site",
+      "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "finding": "GitHub Pages still offers two publishing sources: 'Deploy from a branch' (GitHub auto-generates the Jekyll workflow) vs. a user-authored 'GitHub Actions' custom workflow; the latter is the path where the workflow file itself is an author-owned, breakable maintenance dependency."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat100/06/08",
+  "section_title": "Module 6 Website Studio",
+  "dir": "frontend/content/cat100-supplement/06",
+  "section_file_base": "08",
+  "opportunities": [
+   {
+    "type": "accuracy_fix",
+    "gap": "Internal inconsistency: the Opening Case, step-reveal 'Live check' reveal, Decision Rule live check, and Stronger Artifact Standard quote all turn on project links '404 from the subpath because the paths are absolute' with the remedy being relative paths. But the Worked Example (Step 1 tree, Step 4) and Textbook Walkthrough use a USER site at mlopez.github.io served from root (/), where absolute root paths like /assets/style.css do NOT 404. The absolute-vs-relative 404 trap is specifically a PROJECT-site phenomenon (username.github.io/reponame/). As written, the decisive failure the studio teaches cannot occur for the example artifact, undercutting the section's central proof. Confirmed against GitHub Docs: project sites publish under https://<owner>.github.io/<repositoryname> (a subdirectory base path), so a leading-slash absolute path resolves against the domain root and misses the /reponame/ prefix; user sites publish at https://<owner>.github.io (root) where the same path is correct.",
+    "proposed_change": "Reconcile example with lesson. Option (a), preferred for the cleanest internal proof: change the Worked Example/Walkthrough artifact from the user site mlopez.github.io to a PROJECT site (e.g., mlopez.github.io/portfolio/, repo 'portfolio'), so absolute paths like /assets/style.css genuinely 404 on the live subpath and relative paths (assets/style.css or ./assets/style.css) genuinely fix it. Option (b), lighter touch: keep the user-site example but rewrite the subpath-404 language to state explicitly that the 404 trap applies to PROJECT repos served at /reponame/, and add one sentence distinguishing 'user/org site served at root (/), where /assets/style.css is safe' from 'project site served at /reponame/, where leading-slash absolute paths 404 and relative paths are required.' Update the Opening Case (line 20), Core Concept publishing row (line 30, 'relative paths'), the step-reveal 'Live check' reveal (line 87), the Decision Rule Live check (line 80), and the Stronger Artifact Standard quote (line 116) to be internally consistent. Note the inline-check at line 36 and practice items (which use 'user site') would also need alignment under option (a).",
+    "where_to_apply": "cat100-supplement/06/08.mdx — Opening Case (line 20), Core Concept 'One combined checklist' Publishing row + publishing dimension (line 28, 30), Worked Example Step 1 tree (lines 44-55) and Step 4 (line 67), step-reveal 'Live check' reveal (line 87), Decision Rule Live check (line 80), Stronger Artifact Standard quote (line 116), Textbook Walkthrough (line 99)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "GitHub Docs — About GitHub Pages (user/org vs project sites)",
+      "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages",
+      "finding": "User/organization sites publish at https://<owner>.github.io (root); project sites publish at https://<owner>.github.io/<repositoryname>, i.e., served from a /reponame/ subdirectory base path."
+     },
+     {
+      "cite": "Pluralsight — Fixing Broken Relative Links on GitHub Pages",
+      "url_or_doi": "https://www.pluralsight.com/resources/blog/guides/fixing-broken-relative-links-on-github-pages",
+      "finding": "On a project site under /repo-name/, absolute paths beginning with '/' resolve against the domain root and miss the repository subdirectory, breaking CSS/JS/image links; removing the leading slash (relative paths) or setting a <base>/baseurl fixes it. GitHub Pages does no runtime URL rewriting."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "GitHub Pages capstone for a Summer-2026 course that never names the current publishing flow and omits the GitHub Actions deploy path now offered as one of two source options. The Opening Case turns on 'never enabled Pages on the right branch' and the checklist says 'Pages source set,' but no concrete current UI anchor is given (Settings > Pages > Build and deployment > Source) and the two current source options are not named.",
+    "proposed_change": "Add a short 'Recent flow' callout near the Decision Rule Live check or inside the Core Concept publishing dimension naming the current path: Settings > Pages > Build and deployment > Source, with the two options 'Deploy from a branch' and 'GitHub Actions,' plus a one-line note that GitHub periodically changes this UI so the live URL remains the source of truth. Cross-reference section 06/04 for the step-by-step. Labels verified current as of June 2026 against GitHub Docs.",
+    "where_to_apply": "cat100-supplement/06/08.mdx — new callout after 'Decision Rule' (after line 83) or inside Core Concept publishing dimension (line 30)",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "GitHub Docs — Configuring a publishing source for your GitHub Pages site",
+      "url_or_doi": "https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site",
+      "finding": "Current path: Settings > (Code and automation) Pages > 'Build and deployment' > 'Source'; the two source options are 'Deploy from a branch' and 'GitHub Actions'. Labels confirmed current as of June 2026."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "AI-use note example (Worked Example Step 3, line 65) and the ai_boundary practice item are entirely generic ('AI assisted with drafting starter HTML, debugging one unclosed tag, rewording one resume bullet'); no current 2026 named tools/models and no institutional AI-use policy pointer, despite course currency-watch flagging this and Ch1/Ch8 carrying AI-disclosure norms. A capstone AI-use note is a missed teaching moment when left abstract.",
+    "proposed_change": "In the Worked Example Step 3 AI-use note, optionally name a class of current tools (e.g., 'an LLM coding assistant such as GitHub Copilot, Claude/Claude Code, ChatGPT, or Cursor') while keeping tool-agnostic phrasing, and add a one-line pointer to 'follow your course's GenAI disclosure policy in Blackboard.' Mirror in 08.practice.json ai_boundary item stem/explanation so learners see a concrete, current disclosure model. Tool names confirmed as the dominant 2026 coding assistants.",
+    "where_to_apply": "cat100-supplement/06/08.mdx — Worked Example Step 3 AI-use note (line 65) and Textbook Walkthrough (line 99); cross-check 08.practice.json cat100_supplement_6_8_module_6_website_studio_ai_boundary item",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Scrimba — Best AI Coding Assistants 2026: Cursor vs Copilot vs Claude Code",
+      "url_or_doi": "https://scrimba.com/articles/best-ai-coding-assistants-2026/",
+      "finding": "As of 2026 the dominant AI coding assistants are GitHub Copilot, Claude Code, and Cursor; Copilot routes to OpenAI GPT-5.x, Anthropic Claude (Sonnet/Opus 4.x), and Google Gemini 3 models — concrete, current named tools/models for a disclosure example."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ }
+]

@@ -32,7 +32,7 @@ A pivot table has a small set of zones, and once you know what each does, you ca
 | Values | A number field (Sales) | The cells being aggregated |
 | Filters | Any field | Limits which source rows are included |
 
-The decisive setting lives inside Values: the aggregation function. Drag Sales to Values and Excel defaults to Sum, which answers "how much money?" Open Value Field Settings and switch to Count and the same layout answers "how many orders?" Switch to Average and it answers "what was the typical order size?" Same fields, different aggregation, different question. Choosing the aggregation is therefore choosing the question your summary answers.
+The decisive setting lives inside Values: the aggregation function. Drag Sales to Values and Excel defaults to Sum, which answers "how much money?" Open Value Field Settings and switch to Count and the same layout answers "how many orders?" Switch to Average and it answers "what was the typical order size?" Same fields, different aggregation, different question. Choosing the aggregation is therefore choosing the question your summary answers. (In Excel for the web, you reach the same setting via the arrow to the right of the value field name, or by right-clicking a value and choosing Summarize Values By, since the web version routes through the field dropdown rather than a separate dialog.)
 
 Two structural facts govern correctness. A pivot reports per-category rows plus a Grand Total; the Grand Total is the all-data figure, so quoting it when you meant one category is a category error. And a pivot reads from a fixed source range captured when it was built, so new rows and edits do not appear until you click Refresh, and only if the source range still covers the data.
 
@@ -120,6 +120,8 @@ When you can look at a summary and immediately ask "sum or count?" and "refreshe
 A strong pivot artifact states which aggregation it uses and proves the headline against the source. The trace should name the question, the aggregation chosen, and a reconciliation step. A model line reads: "The question was total sales per region, so Values is set to Sum; West shows 1200, which equals 400 plus 600 plus 200 from the three West rows in the source log, and I refreshed after adding the latest order."
 
 The weak version pastes a pivot and quotes a number. The strong version lets a reviewer add the underlying rows by hand and reach the same figure, and shows that the source range and refresh state make the number current.
+
+**Recent tools (as of 2026):** Copilot in Excel will offer to build a PivotTable and pick an aggregation for you. Treat it as a suggestion, not an answer: run the three checks (the aggregation matches the question, you are reading a category row rather than the Grand Total, the refreshed range covers all the data) before you accept it. A defensible AI-use note records when you accepted the suggested pivot, when you switched its Sum to Count, and when you rejected its Grand-Total headline.
 
 ## Transfer Case
 

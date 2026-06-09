@@ -1,0 +1,26 @@
+[
+ {
+  "section_key": "cat531/08/03",
+  "type": "accuracy_fix",
+  "gap_summary": "Section debriefs Ethobot transcripts but tells students to 'ask BigAL' with no role distinction between the two assistants.",
+  "verdict": "confirmed",
+  "evidence": "Internal consistency: grep shows BigAL is the course-wide revision companion (modules 01/04/06/08, 38 hits) while Ethobot is the dialogue tool; option (b) role clause applied.",
+  "applied": true
+ },
+ {
+  "section_key": "cat531/08/05",
+  "type": "currency_update",
+  "gap_summary": "Anchors frozen at 2006/2016/2020; Selwyn unnamed; 'critical edtech studies' DOI 10.4324/9781315670160 is dead.",
+  "verdict": "confirmed",
+  "evidence": "10.4324/9781315670160 404s at doi.org/Crossref; Crossref confirms Perrotta & Selwyn 2020 (10.1080/17439884.2020.1686017), Williamson et al. 2023 (10.1080/17439884.2023.2167830), Mishra et al. 2023 (10.1080/21532974.2023.2247480).",
+  "applied": true
+ },
+ {
+  "section_key": "cat531/08/06",
+  "type": "currency_update",
+  "gap_summary": "References boilerplate: Selwyn hidden behind dead DOI 10.4324/9781315670160; single 2020 datafication DOI; no current AI-TPACK anchor.",
+  "verdict": "confirmed",
+  "evidence": "Dead DOI verified (404 doi.org/Crossref); Selwyn (2016) Is Technology Good for Education? Polity verified (politybooks.com); Williamson et al. 2023 + Mishra et al. 2023 DOIs verified via api.crossref.org.",
+  "applied": true
+ }
+]

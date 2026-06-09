@@ -2,27 +2,27 @@
   "section_id": "cat100_supplement_4_8_module_4_dialogue_studio",
   "misconceptions": [
     {
-      "id": "cat100_supplement_4_8_loads_means_correct",
-      "pattern": "renders_equals_valid",
-      "description": "Believing that because a page loads in the browser the HTML is complete and correct",
-      "trigger": "learner ships HTML with no title, no real heading, or empty links because it still displays",
-      "feedback": "Loading is not the bar. Run a publish checklist: a page needs a title, real heading tags, and working links even though broken HTML may still render.",
+      "id": "cat100_supplement_4_8_fluent_equals_correct",
+      "pattern": "fluent_equals_correct",
+      "description": "Treating confident, fluent AI teaching advice as accurate without checking it against evidence or developmental appropriateness",
+      "trigger": "learner accepts or publishes AI advice because it sounds authoritative, without verifying its claims",
+      "feedback": "Fluency is a style property, not an evidence check. Break the advice into claims and verify each one before it goes into the artifact or onto the page.",
       "rail_action": "explain"
     },
     {
-      "id": "cat100_supplement_4_8_bare_text_not_heading",
-      "pattern": "visual_size_instead_of_heading_tag",
-      "description": "Making text look like a heading by size alone instead of using an h1 element",
-      "trigger": "the main title is bare text or a styled span, not an h1",
-      "feedback": "Use an h1 for the main heading. A real heading tag is structure a screen reader and a reviewer can rely on; big text is not.",
+      "id": "cat100_supplement_4_8_persona_is_decoration",
+      "pattern": "persona_is_decoration",
+      "description": "Treating the teacher persona as flavor text rather than a constraint that shapes tone, audience, and what the AI may assert",
+      "trigger": "the persona block is present but the dialogue ignores its audience, knowledge bound, or hard stops",
+      "feedback": "The persona is the contract the dialogue must honor. Check each AI turn against the persona's audience, knowledge bound, and hard stops, not just its mood.",
       "rail_action": "represent"
     },
     {
-      "id": "cat100_supplement_4_8_empty_href",
-      "pattern": "link_with_no_target",
-      "description": "Writing an anchor with no href, or href pointing to nothing, so the link goes nowhere",
-      "trigger": "an a element has no working href to a real file or URL",
-      "feedback": "Every link needs a target. Point the href at the real artifact file and open the published page to confirm it works.",
+      "id": "cat100_supplement_4_8_one_draft_is_revision",
+      "pattern": "one_draft_is_revision",
+      "description": "Pasting the AI's first dialogue output as the finished artifact with no accepted, modified, and rejected trace",
+      "trigger": "the submitted artifact is a single unedited AI draft with no accept/modify/reject log",
+      "feedback": "One unedited draft shows no judgment. Keep the trace of what you accepted, modified, and rejected so a reviewer can audit the steering.",
       "rail_action": "ask"
     }
   ]

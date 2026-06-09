@@ -4,9 +4,9 @@
     {
       "id": "ail606_supplement_1_1_cma_channels_are_modalities",
       "pattern": "channel_modality_confusion",
-      "description": "Believing the two channels are defined by the sense organ (eyes vs ears) rather than by the processing route, so printed text and pictures are treated as separate channels.",
+      "description": "Believing printed text travels through the auditory/verbal channel because its content is verbal, so pairing an animation with on-screen text is treated as balancing the two channels.",
       "trigger": "learner pairs an animation with simultaneous on-screen text and assumes the two channels are balanced",
-      "feedback": "Printed text enters through the eyes but is processed in the verbal channel, the same route used for narration. On-screen text plus a picture both compete in the visual channel. Route the explanation to spoken narration to use both channels.",
+      "feedback": "Printed text enters through the eyes, so it loads the visual channel alongside the picture or animation, and the two compete for the same limited capacity. Route the explanation to spoken narration so the verbal stream travels through the idle auditory channel.",
       "rail_action": "represent"
     },
     {

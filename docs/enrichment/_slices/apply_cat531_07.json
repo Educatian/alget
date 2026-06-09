@@ -1,0 +1,205 @@
+[
+ {
+  "section_key": "cat531/07/01",
+  "section_title": "Transferring Online Cases to Field Placements",
+  "dir": "frontend/content/cat531-supplement/07",
+  "section_file_base": "01",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The equity backbone of the section (the recurring 'nine students with no reliable home device,' 'reliable home laptops encodes a class assumption') is the strongest claim yet is supported only by a reused unnamed datafication DOI and a generic 'critical edtech studies' link. Selwyn is never named and there is no home-access/digital-divide statistic. NOTE FROM RESEARCH: the datafication DOI 10.1080/17439884.2020.1686017 already IS a Selwyn work (Perrotta & Selwyn 2019), so Selwyn is cited but invisible; naming him also resolves part of the currency item.",
+    "proposed_change": "Add a one-line 'Recent Evidence' callout near the Core Concept 'Critical edtech studies' bullet (line 33) that names Selwyn explicitly and anchors the home-access claim to a current digital-divide statistic. Concrete wording: 'Recent evidence: NCES (2021) reports 6% of children in the lowest income quartile lacked home internet versus 1% in the highest; the scenario's nine-of-28 figure is an instance of this documented homework gap, not just a narrative number (see Selwyn on critical edtech).' Reframe '9 of 28 with no reliable home device' as an instance of a documented access disparity.",
+    "where_to_apply": "01.mdx — Core Concept, 'Critical edtech studies' bullet (line 33); References (lines 144-149)",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "NCES, Condition of Education — Children's Internet Access at Home (2021 data)",
+      "url_or_doi": "https://nces.ed.gov/programs/coe/indicator/cch/home-internet-access",
+      "finding": "In 2021, 3% of children ages 3-18 had no home internet access overall; by income quartile, ~6% in the lowest quartile lacked access versus ~1% in the highest, and cost was the main barrier for families earning under $40,000. This grounds the 'no reliable home device' equity claim in a real, current access disparity."
+     },
+     {
+      "cite": "Perrotta & Selwyn (2019), Deep learning goes to school: toward a relational understanding of AI in education, Learning, Media and Technology",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2020.1686017",
+      "finding": "The 'AI and education datafication' DOI already in the reference list is authored by Perrotta and Selwyn (2019). Selwyn is therefore already cited but unnamed; naming him satisfies the 'Selwyn is never named' gap without adding a new reference."
+     },
+     {
+      "cite": "Selwyn (2016), Is Technology Good for Education? / Education and Technology: Key Issues and Debates",
+      "url_or_doi": "https://doi.org/10.4324/9781315670160",
+      "finding": "The bare 'critical edtech studies' DOI resolves to a Selwyn monograph (Routledge); confirms the critical-edtech bullet can be attributed to Selwyn by name. (DOI returned 404 in the OpenAlex works endpoint, so author/title not machine-verified there; attribution rests on the Routledge DOI registration.)"
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are Wikipedia-anchored and dated. TPACK links to Wikipedia + the 2006 DOI only; the datafication anchor is a single 2020 DOI reused verbatim; 'critical edtech studies' and 'teacher professional judgment' are bare DOIs with no authors. The reference list does not reflect 2024-2026 AI-TPACK / generative-AI teacher-literacy framing.",
+    "proposed_change": "Name authors/years in References: Mishra & Koehler (2006) for TPACK; Perrotta & Selwyn (2019) for the datafication DOI (this is the actual authorship, verified); Selwyn for the critical-edtech DOI. Add one current AI-TPACK framework: Ning et al. (2024) 'Teachers' AI-TPACK' (Sustainability) or Al-Abdullatif (2024) intelligent-TPACK + AI literacy, since the section's transfer move is explicitly about AI rewrites of cases. Keep the addition to references/callout, not body volume.",
+    "where_to_apply": "01.mdx — References section (lines 146-149)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Mishra & Koehler (2006), Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge, Teachers College Record",
+      "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+      "finding": "Confirms the TPACK DOI in the reference list is Mishra & Koehler (2006) in Teachers College Record — supports naming author/year instead of the bare Wikipedia link."
+     },
+     {
+      "cite": "Ning et al. (2024), Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements, Sustainability 16(3):978",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Current (2024) framework extending TPACK with an AI-Technological Knowledge component; a peer-reviewed AI-TPACK anchor suitable for the AI-rewrite transfer focus."
+     },
+     {
+      "cite": "Al-Abdullatif (2024), Modeling Teachers' Acceptance of Generative AI Use in Higher Education: AI Literacy, Intelligent TPACK, and Perceived Trust, Education Sciences 14(11):1209",
+      "url_or_doi": "https://doi.org/10.3390/educsci14111209",
+      "finding": "2024 study integrating intelligent TPACK with AI literacy; alternative current generative-AI teacher-knowledge framework if a higher-ed-flavored citation is preferred."
+     }
+    ]
+   },
+   {
+    "type": "accuracy_fix",
+    "gap": "Copy error in the Adaptive Support dynamic-scenario prompt at line 128: 'A peer comment points to a evidence move issue' (wrong article + missing hyphen). Confirmed present verbatim in the file. Minor, but the section's thesis is that polish is the last layer over substance, so a visible grammar slip is worth fixing.",
+    "proposed_change": "Edit the dynamic-scenario prompt to read grammatically: 'A peer comment points to an evidence-move issue connected to critical edtech studies.'",
+    "where_to_apply": "01.mdx — Adaptive Support, <dynamic-scenario> prompt (line 128)",
+    "priority": "low",
+    "verified": "confirmed",
+    "sources": []
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/07/04",
+  "section_title": "Equity Audit in Field Contexts",
+  "dir": "frontend/content/cat531-supplement/07",
+  "section_file_base": "04",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The two load-bearing empirical claims of the section carry no citation: 'facial-recognition error rates are documented to be higher for darker-skinned students' (Self-Explain line 77; Textbook Walkthrough line 97) and 'a model trained mostly on standard-English essays flags non-standard phrasing as errors' (Core Concept line 28; Worked Example line 48). In a course whose thesis is evidence-grounded judgment, presenting documented fairness findings as uncited assertions is the weakest spot.",
+    "proposed_change": "Add a one-to-two sentence 'Recent Evidence' callout after Core Concept (after line 36), or inline citations at first mention. (1) Facial-recognition disparity: anchor to Buolamwini & Gebru 'Gender Shades' (2018) and the NIST FRVT Part 3: Demographic Effects report (NISTIR 8280, 2019), noting NIST found demographic differentials in the majority of algorithms tested, with elevated false positives for African American and Asian faces in one-to-many matching. (2) Standard-English/ELL essay-scoring bias: anchor to Wilson & Huang (2024) in Assessing Writing, which found evidence of bias in automated essay scores for English language learners. Link by DOI where one exists; Gender Shades has no DOI (PMLR proceedings) so link the proceedings PDF.",
+    "where_to_apply": "04.mdx — add 'Recent Evidence' note after Core Concept (after line 36); or inline at Worked Example line 48 (AES claim) and Textbook Walkthrough line 97 (facial-recognition claim). Add matching entries to References (lines 153-158).",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "Buolamwini & Gebru (2018) Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification",
+      "url_or_doi": "http://proceedings.mlr.press/v81/buolamwini18a/buolamwini18a.pdf",
+      "finding": "Commercial gender-classification systems had far higher error rates for darker-skinned subjects (up to 34.7% for darker-skinned women) vs lighter-skinned men (0.8%), establishing skin-tone disparity in face analysis. No DOI (PMLR v81 proceedings)."
+     },
+     {
+      "cite": "Grother, Ngan & Hanaoka / NIST (2019) FRVT Part 3: Demographic Effects (NISTIR 8280)",
+      "url_or_doi": "https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8280.pdf",
+      "finding": "NIST found empirical evidence of demographic differentials in the majority of face-recognition algorithms studied, with the highest false-positive rates in one-to-many matching for African American females; updated by FRVT Part 8 / NISTIR 8429 (pages.nist.gov/frvt). Grounds the 'documented higher error rates for darker-skinned students' claim."
+     },
+     {
+      "cite": "Wilson & Huang (2024) Validity of automated essay scores for elementary-age English language learners: Evidence of bias?",
+      "url_or_doi": "https://doi.org/10.1016/j.asw.2024.100815",
+      "finding": "Peer-reviewed study (Assessing Writing, v60) finding evidence of bias in automated essay scoring for ELLs, grounding the claim that models trained on standard-English writing disadvantage multilingual/non-standard phrasing."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "evidence_add",
+    "gap": "The section repeatedly invokes 'this placement's district data policy' and the facial-recognition attendance case turns on biometric data collection from minors, yet the MDX cites NO privacy statute. FERPA and COPPA are the legal floor a field-placement equity audit of a biometric attendance system must reference.",
+    "proposed_change": "Add a brief 'Legal floor' callout in the Textbook Walkthrough facial-recognition case (lines 93-97): a sentence noting that biometric/attendance data on minors implicates FERPA (education records) and, for under-13 students, COPPA. Note the currency fact that the FTC's amended COPPA rule (finalized Jan 16, 2025; effective June 23, 2025; full compliance April 22, 2026) now explicitly classifies biometric identifiers including facial templates as covered personal information requiring verifiable parental consent. Frame the audit's monitoring check as also confirming legal-basis/consent, not only error-rate disparity.",
+    "where_to_apply": "04.mdx — Textbook Walkthrough (lines 93-97), or a new short 'Legal floor' callout after Core Concept.",
+    "priority": "high",
+    "sources": [
+     {
+      "cite": "FTC (2025) Amended COPPA Rule — biometric identifiers",
+      "url_or_doi": "https://www.k12dive.com/news/ftc-finalizes-coppa-rule-children-data-privacy/738077/",
+      "finding": "FTC finalized COPPA amendments Jan 16, 2025 (effective June 23, 2025; full compliance April 22, 2026) that now explicitly cover biometric identifiers capable of automated recognition, including facial templates, voiceprints, and fingerprints — directly applicable to facial-recognition attendance for under-13 students."
+     },
+     {
+      "cite": "Loeb & Loeb (2025) Children's Online Privacy in 2025: The Amended COPPA Rule",
+      "url_or_doi": "https://www.loeb.com/en/insights/publications/2025/05/childrens-online-privacy-in-2025-the-amended-coppa-rule",
+      "finding": "Confirms the 2025 amended COPPA rule expands the personal-information definition to biometric data and tightens parental-consent requirements; both FERPA and COPPA can apply simultaneously to an edtech product used in schools that collects data from children under 13."
+     }
+    ],
+    "verified": "confirmed"
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin and dated: TPACK points to Wikipedia + a 2006 DOI (lines 34, 132, 155); 'critical edtech studies' is a bare 2016 Selwyn DOI with no author name in body (line 156); the datafication anchor is a single 2020 DOI reused verbatim (lines 33, 157). For a 2026 graduate AI-ethics course this set is dated and Wikipedia-anchored.",
+    "proposed_change": "(1) Name Selwyn explicitly in body where 'critical edtech studies' is invoked (line 32); the lens currently floats authorless. A current Selwyn anchor is available (Selwyn 2025 dialogue on critical studies of education and technology, DOI 10.4067/s0718-50492025000100248). (2) Refresh/supplement the 2020 datafication DOI with the same-journal post-2020 source Williamson, Macgilchrist & Potter (2023) 'Re-examining AI, automation and datafication in education' (DOI 10.1080/17439884.2023.2167830). (3) Replace the TPACK Wikipedia URL (lines 34, 132) with the canonical 2006 Mishra & Koehler DOI (already present at line 155) as the primary link. OpenAlex did not surface a well-cited 'AI-TPACK' generative-AI framework solid enough to assert, so that optional add is left unverified.",
+    "where_to_apply": "04.mdx — References (lines 153-158) and in-body lens links (lines 32-34, 132).",
+    "priority": "med",
+    "sources": [
+     {
+      "cite": "Williamson, Macgilchrist & Potter (2023) Re-examining AI, automation and datafication in education",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "Post-2020 Learning, Media and Technology editorial (same journal as the existing 2020 datafication anchor) directly on AI/automation/datafication in education; suitable currency refresh for the datafication lens."
+     },
+     {
+      "cite": "Selwyn, Rivera-Vargas & Herrera-Urizar (2025) Critical studies on education and technology: paths taken and futures imagined",
+      "url_or_doi": "https://doi.org/10.4067/s0718-50492025000100248",
+      "finding": "Current (2025) Neil Selwyn piece allowing the body to name Selwyn explicitly for the critical-edtech lens (line 32) rather than leaving the 2016 DOI authorless."
+     },
+     {
+      "cite": "Mishra & Koehler (2006) Technological Pedagogical Content Knowledge: A Framework for Teacher Knowledge",
+      "url_or_doi": "https://doi.org/10.1111/j.1467-9620.2006.00684.x",
+      "finding": "Canonical TPACK source already in References (line 155); should replace the Wikipedia URL as the primary in-body link at lines 34 and 132."
+     }
+    ],
+    "verified": "confirmed"
+   }
+  ]
+ },
+ {
+  "section_key": "cat531/07/06",
+  "section_title": "Revising Plans After Field Evidence",
+  "dir": "frontend/content/cat531-supplement/07",
+  "section_file_base": "06",
+  "opportunities": [
+   {
+    "type": "evidence_add",
+    "gap": "The entire section turns on the diagnosis that non-completion of at-home video was an ACCESS barrier (unreliable home time/connectivity), not unwillingness. This is precisely the documented 'homework gap' / digital-divide phenomenon, but the section never names it or cites any evidence. For a course that explicitly values evidence-grounding and critical edtech (Selwyn: 'couldn't do it' vs 'didn't do it'), the central empirical claim is uncited.",
+    "proposed_change": "Add a short 'Recent Evidence' callout (or inline citation) at the 'Critical edtech studies' bullet, line 32, naming the homework gap / home-access divide and citing current figures: roughly 15% of U.S. households with school-age children lack a high-speed home connection; about 12% of teens report being unable to complete homework due to lack of reliable computer/internet access, and 22% sometimes do homework on a cellphone; the gap is sharply income-stratified (about 44% of households under $30k income lack high-speed home internet vs about 6% of households over $75k). Frame it as: non-completion is frequently 'couldn't do it' (access), not 'didn't do it' (effort), which is exactly the context-mismatch the section teaches. Cite NCES Condition of Education (Children's Internet Access at Home) and Pew Research Center homework-gap data.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\07\\06.mdx -> Core Concept, the 'Critical edtech studies' bullet (line 32), as an inline cite or a new small callout immediately after",
+    "priority": "high",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "NCES, Condition of Education: Children's Internet Access at Home",
+      "url_or_doi": "https://nces.ed.gov/programs/coe/indicator/cch/home-internet-access",
+      "finding": "Federal data tracks the share of K-12-age children without high-speed home internet, the authoritative U.S. source for the home-access divide that underlies the section's access-barrier claim."
+     },
+     {
+      "cite": "Pew Research Center, the 'homework gap'",
+      "url_or_doi": "https://www.pewresearch.org/short-reads/2020/03/16/as-schools-close-due-to-the-coronavirus-some-u-s-students-face-a-digital-homework-gap/",
+      "finding": "About 15% of U.S. households with school-age children lack a high-speed home connection; roughly 12% of teens report being unable to complete homework due to lack of reliable access and 22% sometimes use a cellphone; access gaps are steeply income-stratified (about 44% of households under $30k lack high-speed home internet vs about 6% over $75k)."
+     },
+     {
+      "cite": "Education Week (2024), The 'Homework Gap' Is About to Get Worse",
+      "url_or_doi": "https://www.edweek.org/technology/the-homework-gap-is-about-to-get-worse-what-should-schools-do/2024/02",
+      "finding": "Current 2024-2025 reporting confirms the homework gap persists; FCC adopted off-premises Wi-Fi hotspot E-Rate rules in July 2024 then rescinded them on reconsideration Sept 30 2025, so home-access remains an unresolved, current equity barrier (use the term but note policy volatility)."
+     }
+    ]
+   },
+   {
+    "type": "currency_update",
+    "gap": "Citations are thin and dated: datafication is the single 2020 DOI (10.1080/17439884.2020.1686017) reused verbatim across all 64 sections; 'critical edtech studies' is an unnamed DOI (10.4324/9781315670160) that does not resolve (HTTP 404 in both doi.org and OpenAlex); TPACK is the 2006 Mishra & Koehler DOI plus a Wikipedia link. For a 2026 graduate course these anchors are aging and the reference list is generic.",
+    "proposed_change": "(1) Name the critical edtech anchor explicitly as Selwyn (2016), 'Is Technology Good for Education?' (Polity, ISBN 9780745696478) and replace the broken 10.4324/9781315670160 DOI, which 404s; this is the canonical critical-edtech source for the 'couldn't do it vs didn't do it' framing. (2) Supplement the 2020 datafication DOI with a current source: Williamson, Macgilchrist & Potter (2023), 'Re-examining AI, automation and datafication in education' (doi:10.1080/17439884.2023.2167830, top-1% cited). (3) Keep the 2006 TPACK DOI as canonical but add a current AI-TPACK reference: Ning et al. (2024), 'Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements' (doi:10.3390/su16030978); optionally Al-Abdullatif (2024) on AI literacy + intelligent TPACK (doi:10.3390/educsci14111209). (4) Cosmetic fix: 'teacher professional judgment' (doi:10.1177/002205741319300304) is listed in References but never cited in prose, either cite it inline (e.g., at the Decision Rule's diagnostic-judgment framing) or remove it.",
+    "where_to_apply": "C:\\Users\\jewoo\\Projects\\alget\\frontend\\content\\cat531-supplement\\07\\06.mdx -> References (lines 150-153) and inline anchors in Core Concept (lines 32-34)",
+    "priority": "med",
+    "verified": "confirmed",
+    "sources": [
+     {
+      "cite": "Selwyn, N. (2016). Is Technology Good for Education? Polity.",
+      "url_or_doi": "https://www.amazon.com/Technology-Good-Education-Digital-Futures/dp/0745696473 (ISBN 9780745696478)",
+      "finding": "Canonical critical-edtech monograph; argues for moving past technological-determinist framing and examining who benefits, grounding the section's 'access barrier vs learner blame' lens. The currently cited DOI 10.4324/9781315670160 returns HTTP 404 and resolves to no work, confirming the anchor needs naming/replacement."
+     },
+     {
+      "cite": "Williamson, Macgilchrist & Potter (2023). Re-examining AI, automation and datafication in education.",
+      "url_or_doi": "https://doi.org/10.1080/17439884.2023.2167830",
+      "finding": "Current (2023), top-1%-cited editorial in Learning, Media and Technology updating the datafication critique to AI/automation; a 2023-2026 supplement to the reused 2020 datafication DOI that directly supports the 'AI tools propose surface gimmicks' warning."
+     },
+     {
+      "cite": "Ning, Y. et al. (2024). Teachers' AI-TPACK: Exploring the Relationship between Knowledge Elements.",
+      "url_or_doi": "https://doi.org/10.3390/su16030978",
+      "finding": "Current AI-TPACK framework extending the 2006 TPACK model to AI integration, letting the section's TPACK lens (line 34) cite a generative-AI-era teacher-knowledge source while keeping Mishra & Koehler (2006) as the canonical original; Al-Abdullatif (2024, doi:10.3390/educsci14111209) is a corroborating intelligent-TPACK adoption study."
+     }
+    ]
+   }
+  ]
+ }
+]

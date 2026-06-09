@@ -34,7 +34,7 @@
         "The teacher's own login credentials so the tool can pull records."
       ],
       "correct_index": 1,
-      "explanation": "Describe learner needs in de-identified, aggregate terms. Naming individual students or pasting records into a generative tool is a privacy violation, not a setup detail.",
+      "explanation": "Describe learner needs in de-identified, aggregate terms. Naming individual students or pasting records into a generative tool is a privacy violation, not a setup detail: FERPA (34 CFR Part 99) protects personally identifiable information in education records even when it reaches a vendor, which may use it only for school-authorized purposes, and COPPA requires stricter parental consent where students are under 13.",
       "misconception_id": "cat531_supplement_2_2_teachgen_i_scenario_setup_invented_student_data",
       "difficulty": "medium",
       "concept_ids": [

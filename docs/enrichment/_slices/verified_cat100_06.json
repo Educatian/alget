@@ -1,0 +1,10 @@
+[
+ {
+  "section_key": "cat100/06/03",
+  "type": "accuracy_fix",
+  "gap_summary": "Step 2 git sequence pushes to main without git branch -M main; pre-2.28 git init creates master, push fails",
+  "verdict": "confirmed",
+  "evidence": "github.blog/2020-07-27-highlights-from-git-2-28: init.defaultBranch added in 2.28, unset defaults to master; docs.github.com adding-locally-hosted-code: GitHub default branch is main",
+  "applied": true
+ }
+]

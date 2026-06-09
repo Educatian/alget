@@ -46,7 +46,7 @@
       "concept_ids": [
         "ai_supported_learning"
       ],
-      "stem": "With 20 minutes left in the sprint, an AI tool suggests rebuilding your whole HTML layout with a CSS grid. You have three small known bugs. What is the disciplined move?",
+      "stem": "With 20 minutes left in the sprint, your AI coding assistant (GitHub Copilot, Claude Code, or Cursor) suggests rebuilding your whole HTML layout with a CSS grid. You have three small known bugs. What is the disciplined move?",
       "options": [
         "Start the full grid rebuild; the AI knows best.",
         "Decline the rebuild for now, fix the three known bugs within the time box, and log the grid idea as a future item.",
