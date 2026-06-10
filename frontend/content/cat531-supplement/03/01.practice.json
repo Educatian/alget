@@ -34,7 +34,7 @@
         "The app is fine because students enjoy using it."
       ],
       "correct_index": 1,
-      "explanation": "Tools embed design and data assumptions that shape outcomes independent of teacher use. Naming the built-in assumption is the AI-literacy move.",
+      "explanation": "Tools embed design and data assumptions that shape outcomes independent of teacher use. A recommender trained on past borrowing data inherits and amplifies those patterns; the recommender-systems fairness literature documents exactly this feedback-loop bias, where yesterday's popular choices steer today's exposure (Wang et al., 2022, ACM TOIS survey on recommender fairness). Naming the built-in assumption is the AI-literacy move.",
       "misconception_id": "cat531_supplement_3_1_tool_neutrality",
       "difficulty": "medium",
       "concept_ids": [
