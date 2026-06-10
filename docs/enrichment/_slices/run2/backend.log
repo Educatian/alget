@@ -1,0 +1,320 @@
+INFO:     Started server process [24564]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[INFO] GEMINI_API_KEY loaded: Yes
+[RAG Service] Initialized (backend=in-memory).
+[INFO] Application startup: Indexing Bio-Inspired curriculum for RAG...
+[RAG Service] Indexing curriculum from C:\Users\jewoo\Projects\alget\frontend\content\bio-inspired...
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Embedding call failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API Key not found. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.ErrorInfo', 'reason': 'API_KEY_INVALID', 'domain': 'googleapis.com', 'metadata': {'service': 'generativelanguage.googleapis.com'}}, {'@type': 'type.googleapis.com/google.rpc.LocalizedMessage', 'locale': 'en-US', 'message': 'API Key not found. Please pass a valid API key.'}]}}
+[RAG Service] Curriculum loaded (embedded=0, cached=0, total=10).
+[INFO] Solver registry check passed: all content solver_ids resolve.
+INFO:     127.0.0.1:60277 - "GET /api/book/ail606-supplement/01/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/search/index HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ai-ethics/toc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/diagnostic/questions/ai-ethics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ai-ethics/01/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ai-ethics/01/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ai-ethics/02/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ai-ethics/02/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ai-ethics/03/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ai-ethics/03/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ai-ethics/04/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ai-ethics/04/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ai-ethics/05/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ai-ethics/05/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ai-ethics/06/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ai-ethics/06/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/toc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/diagnostic/questions/ail606-supplement HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/01/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/01/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/01/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/01/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/01/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/01/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/01/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/01/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/02/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/02/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/02/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/02/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/02/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/02/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/02/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/02/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/03/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/03/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/03/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/03/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/03/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/03/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/03/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/03/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/04/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/04/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/04/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/04/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/04/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/04/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/04/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/04/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/05/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/05/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/05/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/05/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/05/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/05/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/05/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/05/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/06/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/06/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/06/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/06/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/06/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/06/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/06/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/06/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/07/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/07/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/07/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/07/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/07/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/07/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/07/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/07/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/08/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/08/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/08/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/08/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/08/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/08/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/ail606-supplement/08/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/ail606-supplement/08/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/bio-inspired/toc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/diagnostic/questions/bio-inspired HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/bio-inspired/01/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/bio-inspired/01/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/bio-inspired/01/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/bio-inspired/02/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/bio-inspired/03/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/bio-inspired/04/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/bio-inspired/05/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/bio-inspired/06/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/bio-inspired/07/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/bio-inspired/08/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/toc HTTP/1.1" 200 OK
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\01\02.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\01\05.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\01\06.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\01\07.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\01\08.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\02\06.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\02\07.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\02\08.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\04\05.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\04\06.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\04\07.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\04\08.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\05\06.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\06\02.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\07\01.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\07\02.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\07\03.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\07\05.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\07\06.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\07\07.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\07\08.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\08\01.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\08\03.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\08\06.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\08\07.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+Skipping diagnostic meta C:\Users\jewoo\Projects\alget\frontend\content\cat100-supplement\08\08.meta.json: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+INFO:     127.0.0.1:60278 - "GET /api/diagnostic/questions/cat100-supplement HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/01/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/01/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/01/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/01/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/01/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/01/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/01/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/01/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/02/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/02/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/02/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/02/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/02/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/02/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/02/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/02/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/03/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/03/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/03/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/03/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/03/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/03/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/03/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/03/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/04/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/04/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/04/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/04/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/04/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/04/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/04/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/04/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/05/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/05/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/05/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/05/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/05/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/05/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/05/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/05/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/06/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/06/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/06/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/06/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/06/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/06/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/06/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/06/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/07/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/07/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/07/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/07/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/07/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/07/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/07/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/07/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/08/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/08/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/08/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/08/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/08/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/08/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat100-supplement/08/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat100-supplement/08/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/toc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/diagnostic/questions/cat531-supplement HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/01/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/01/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/01/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/01/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/01/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/01/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/01/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/01/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/02/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/02/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/02/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/02/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/02/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/02/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/02/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/02/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/03/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/03/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/03/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/03/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/03/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/03/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/03/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/03/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/04/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/04/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/04/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/04/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/04/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/04/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/04/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/04/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/05/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/05/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/05/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/05/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/05/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/05/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/05/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/05/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/06/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/06/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/06/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/06/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/06/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/06/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/06/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/06/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/07/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/07/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/07/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/07/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/07/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/07/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/07/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/07/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/08/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/08/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/08/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/08/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/08/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/08/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/cat531-supplement/08/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/cat531-supplement/08/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/dynamics/toc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/diagnostic/questions/dynamics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/dynamics/01/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/dynamics/01/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/dynamics/01/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/dynamics/01/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/dynamics/02/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/dynamics/02/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/dynamics/02/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/dynamics/03/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/dynamics/03/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/dynamics/03/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/dynamics/03/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/toc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/diagnostic/questions/inst-design HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/01/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/inst-design/01/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/01/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/inst-design/02/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/02/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/inst-design/02/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/02/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/inst-design/02/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/02/06 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/inst-design/02/07 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/02/08 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/inst-design/03/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/04/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/inst-design/05/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/06/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/inst-design/07/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/inst-design/08/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/statics/toc HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/diagnostic/questions/statics HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/statics/01/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/statics/01/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/statics/01/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/statics/01/04 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/statics/01/05 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/statics/02/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/statics/02/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/statics/02/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/statics/03/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/statics/03/02 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/statics/03/03 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/statics/04/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60279 - "GET /api/book/statics/05/01 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60278 - "GET /api/book/statics/06/01 HTTP/1.1" 200 OK
