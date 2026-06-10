@@ -32,6 +32,14 @@
       "trigger": "learner reports full readiness while one skill is still shaky",
       "feedback": "Mark the gap honestly and request practice on that specific skill; a flagged weakness is more useful than a false all-clear.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_1_8_module_1_readiness_studio_fix_without_recheck",
+      "pattern": "gap_marked_pass_without_reinspection",
+      "description": "Marking a checklist row 'pass' as soon as a fix is intended or applied, without re-inspecting the actual artifact to confirm the fix took effect.",
+      "trigger": "learner flips a flagged row to pass right after making a change, with no re-check on the artifact itself",
+      "feedback": "A fix is a claim until you re-inspect. Re-open the setting, the page, or the document and confirm the gap is actually closed on the artifact; only then does the row earn its pass. Inspect, fix, re-inspect is one loop, not two steps.",
+      "rail_action": "practice"
     }
   ]
 }

@@ -55,7 +55,7 @@
       ],
       "correct_index": 1,
       "explanation": "The AI can draft the checklist, but the learner verifies each item against the real artifact. The tool cannot confirm your file opens or your link is public; even an assistant that can fetch a URL does so through its own service, not the grader's signed-out session.",
-      "misconception_id": "cat100_supplement_8_7_untested_link",
+      "misconception_id": "cat100_supplement_8_7_ai_confirms_complete",
       "difficulty": "hard"
     },
     {

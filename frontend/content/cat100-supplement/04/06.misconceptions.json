@@ -24,6 +24,14 @@
       "trigger": "a decision row has no reason tied to a constraint or observation",
       "feedback": "Every accept or override needs a reason a reader can check, such as a standard you pasted or a fact you could not observe.",
       "rail_action": "explain"
+    },
+    {
+      "id": "cat100_supplement_4_6_reject_not_logged",
+      "pattern": "unrequested_addition_accepted",
+      "description": "Accepting (or silently omitting) an unrequested AI addition instead of logging it as REJECTED with a reason, which inflates the artifact and hides a judgment call.",
+      "trigger": "the AI volunteers an extra line or claim you did not ask for and it ships, or disappears, without a log row",
+      "feedback": "Unrequested additions are decisions too. A confident-sounding extra line that you did not ask for gets its own log row: REJECT, with the reason. Silent omission hides the judgment; silent acceptance inflates the artifact. The log exists to show both.",
+      "rail_action": "explain"
     }
   ]
 }

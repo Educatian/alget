@@ -78,6 +78,25 @@
       "explanation": "Role fit means surfacing the evidence the specific posting asks for. Promoting the relevant bullets and trimming the rest signals fit better than length or decoration.",
       "misconception_id": "cat100_supplement_6_6_one_resume_fits_all",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_6_6_resume_and_reflection_page_live_evidence",
+      "type": "multiple_choice",
+      "concept_id": "evidence_based_revision",
+      "stem": "Your GitHub Pages portfolio lists a project as 'Built a website.' Which revision gives a reviewer verifiable evidence?",
+      "options": [
+        "Add a stylish screenshot of the homepage next to the claim.",
+        "Link the live URL and state what it shows: 'My CAT 100 data story (live at the linked page) with the published chart and source note.'",
+        "Change the wording to 'Built a professional, responsive website.'",
+        "Move the claim higher on the page so it is seen first."
+      ],
+      "correct_index": 1,
+      "explanation": "On a published portfolio, the strongest evidence is the live artifact itself: a working link a reviewer can open plus a sentence naming what it demonstrates. A screenshot is unverifiable and ages; adjectives inflate without proving; placement changes salience, not evidence.",
+      "misconception_id": "cat100_supplement_6_6_screenshot_or_claim_replaces_live_artifact",
+      "difficulty": "medium",
+      "concept_ids": [
+        "evidence_based_revision"
+      ]
     }
   ]
 }

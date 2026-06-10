@@ -24,6 +24,14 @@
       "trigger": "teacher adopts a suggestion without checking it against the class's reading levels, accommodations, or language needs",
       "feedback": "Compare the suggestion against your actual learner variability, not a generic class. A good median move can still fail the margins.",
       "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_2_4_comparing_ai_suggestions_to_pedagogy_objective_lowered_to_fit_activity",
+      "pattern": "objective_quietly_lowered_to_fit_activity",
+      "description": "Quietly downgrading the objective verb (explain becomes match, analyze becomes identify) so an appealing AI-suggested activity fits the lesson.",
+      "trigger": "teacher rewrites or reinterprets the objective at a lower cognitive level so the engaging activity can stay unchanged",
+      "feedback": "Hold the verb fixed and raise the activity to it; never lower the goal to fit the activity. If the activity only produces matching, add the component that forces explaining (a sentence-stem justification, a compare-and-defend step) or replace the activity.",
+      "rail_action": "ask"
     }
   ]
 }

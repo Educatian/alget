@@ -24,6 +24,22 @@
       "trigger": "learner prompts with 'fix my spreadsheet' and no specifics",
       "feedback": "Include the exact formula text, the error message, and the expected result for one specific row so the tool can diagnose the real cause.",
       "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_3_5_error_absence_equals_correct",
+      "pattern": "error_absence_equals_correct",
+      "description": "Treating the disappearance of the red error code as proof the formula is now correct.",
+      "trigger": "learner applies a fix, sees #DIV/0! or #REF! vanish, and copies the formula down without checking a value",
+      "feedback": "A fix can replace an error with a wrong number; silence is not correctness. Verify the repaired formula on a known-answer row (one you can compute by hand) before trusting or copying it.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "cat100_supplement_3_5_pasting_sensitive_data_to_ai",
+      "pattern": "pasting_sensitive_data_to_ai",
+      "description": "Pasting classmates' names, grades, or other private values into an AI tool to get formula help.",
+      "trigger": "learner pastes a real data range containing personal information into a chat prompt",
+      "feedback": "The tool needs the formula, the error, and the intended behavior, not the people's data. Describe the structure ('column B has scores, some blank') or use dummy values; the debugging prompt works exactly as well without the private cells.",
+      "rail_action": "ask"
     }
   ]
 }

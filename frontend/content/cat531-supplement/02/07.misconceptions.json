@@ -24,6 +24,14 @@
       "trigger": "a single lesson plan is tagged to five competencies it does not all evidence",
       "feedback": "Match each claim to the artifact that genuinely shows it. Overclaiming weakens the entries that are real.",
       "rail_action": "explain"
+    },
+    {
+      "id": "cat531_supplement_2_7_evidence_for_portfolio_entry_ai_polish_mistaken_for_skill",
+      "pattern": "ai_polish_mistaken_for_skill_evidence",
+      "description": "Treating the polished quality of an AI-assisted artifact as evidence of the competency, when polish is exactly what a tool can fabricate.",
+      "trigger": "portfolio entry leans on artifact quality rather than an inspectable warrant and a measured outcome",
+      "feedback": "Foreground what a tool cannot fabricate: the warrant linking the artifact to the standard and the measured outcome it produced. A beautiful artifact with no inspectable reasoning is weaker evidence than a rough one with a verifiable warrant.",
+      "rail_action": "represent"
     }
   ]
 }

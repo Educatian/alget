@@ -24,6 +24,22 @@
       "trigger": "folder includes items that map to no claim",
       "feedback": "Cut files that prove nothing on their own. Evidence strength comes from each file backing a claim, not from the file count.",
       "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_4_7_rename_as_proof",
+      "pattern": "overwrite_passed_off_as_revision",
+      "description": "Renaming or keeping only the final file and claiming it proves revision happened, when no before/after evidence exists.",
+      "trigger": "a claim of revision is backed by a single saved version",
+      "feedback": "Save both versions (persona_v1.txt and persona_v2.txt) or drop the claim. A single final file, whatever it is named, cannot back 'I revised it'; the evidence of revision is the pair a reviewer can compare.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "cat100_supplement_4_7_unverified_ai_claim_kept",
+      "pattern": "unverifiable_ai_claim_in_evidence",
+      "description": "Keeping an AI-suggested claim in the evidence package when its source cannot be verified.",
+      "trigger": "an AI-drafted statistic or citation enters the manifest without a verification row",
+      "feedback": "Every AI suggestion that touches the evidence package gets a decision-log row: accepted with its verified source, or rejected with the reason it could not be verified. An unverifiable statistic is rejected, not softened.",
+      "rail_action": "ask"
     }
   ]
 }

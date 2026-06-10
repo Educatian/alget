@@ -32,6 +32,14 @@
       "trigger": "learner records \"used AI to fix it\" with no comparison or reason",
       "feedback": "Log each tool's suggestion, your decision, the exact change, and what you rejected, so a reader can follow your judgment.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_2_2_blend_is_deliverable",
+      "pattern": "merged_output_as_deliverable",
+      "description": "Treating a smooth merge of both AI tools' outputs as the deliverable, instead of the critique log that records the comparison and the decisions.",
+      "trigger": "learner submits blended, polished text with no comparison or decision trace",
+      "feedback": "The deliverable is the log: the agreement, conflict, and unique buckets, the tie-breaks against the posting or rubric, and what you accepted or rejected from each tool. A merged paragraph hides exactly the judgment the assignment exists to show.",
+      "rail_action": "represent"
     }
   ]
 }

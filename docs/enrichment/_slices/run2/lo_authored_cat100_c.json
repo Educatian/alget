@@ -1,0 +1,10 @@
+{
+  "cat100/04/05": {
+    "los": [
+      "Classify loaded language into the four bias patterns (unobservable cause, person label, false urgency, audience mismatch) and select the matching repair move.",
+      "Apply the observability, behavior, and audience checks to flag and replace audience-wrong words, naming the reader before scanning.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    ]
+  }
+}

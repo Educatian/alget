@@ -24,6 +24,22 @@
       "trigger": "learner says the deck is done because the template looks consistent",
       "feedback": "Structure is the arc of headlines, not the theme. Read the headlines alone and check they tell the story.",
       "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_5_2_slide_structure_before_decoration_minimalism_means_structure",
+      "pattern": "minimalism_means_structure",
+      "description": "Equating fewer words with a structured slide, as if cutting the title to a short topic word were the same as making it an assertion.",
+      "trigger": "learner cuts a title down to a three-word topic label and calls the slide structured",
+      "feedback": "A short title is not the goal; a claim is. 'Results' is shorter than the assertion, but it states no point a reader could agree or disagree with. Structure means the title asserts the finding and the bullets prove it, at any length.",
+      "rail_action": "represent"
+    },
+    {
+      "id": "cat100_supplement_5_2_slide_structure_before_decoration_beautiful_redesign_loses_claim",
+      "pattern": "beautiful_redesign_loses_claim",
+      "description": "Accepting an AI or template redesign that demotes the headline claim to a small caption while centering a beautiful image.",
+      "trigger": "learner accepts a redesign that centers an image and shrinks or buries the assertion",
+      "feedback": "Before accepting a redesign, check what happened to the claim. A layout that turns your assertion into a caption has traded the argument for decoration; reject or modify the suggestion so the claim stays the headline.",
+      "rail_action": "ask"
     }
   ]
 }

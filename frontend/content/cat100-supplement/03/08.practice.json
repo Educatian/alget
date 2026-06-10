@@ -27,15 +27,15 @@
       "concept_ids": [
         "cat100_supplement_module_3_data_story_studio"
       ],
-      "stem": "Your finished data story shows a chart whose total (1,900) does not match the headline number (2,400). Before publishing, what is the right move?",
+      "stem": "Your finished data story says 'West led at 2,400' in the headline, but the West pivot cell reads 1,200 and the West bar matches the pivot. Before publishing, what is the right move?",
       "options": [
         "Publish anyway because the chart looks finished.",
-        "Trace the mismatch: the headline likely counted rows the pivot range excluded, so reconcile the two before publishing.",
+        "Trace the mismatch for that category: a stale pivot range or an active filter likely left the headline and the pivot out of sync, so reconcile headline, pivot cell, and bar before publishing.",
         "Change the headline to a vaguer claim so no one checks.",
         "Delete the chart and keep only the headline."
       ],
       "correct_index": 1,
-      "explanation": "The headline and the chart must come from the same reconciled numbers. A mismatch means a step in the pipeline (range, filter, or stale pivot) is out of sync and must be fixed first.",
+      "explanation": "The three-way match runs per category: the West headline number, the West pivot cell, and the West bar height must agree. A category-level mismatch usually means a stale pivot range or a filter applied to one representation but not another; reconcile before any formatting or publishing.",
       "misconception_id": "cat100_supplement_3_8_module_3_data_story_studio_unreconciled_numbers",
       "difficulty": "hard"
     },

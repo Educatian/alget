@@ -24,6 +24,14 @@
       "trigger": "file is named 'final' or 'document1' with no name, course, or assignment",
       "feedback": "Use a clear convention like lastname_cat100_capstone.pdf. A meaningful, consistent name makes the file identifiable and avoids overwrite collisions.",
       "rail_action": "represent"
+    },
+    {
+      "id": "cat100_supplement_8_7_ai_confirms_complete",
+      "pattern": "trust_ai_completeness_claim",
+      "description": "Treating an AI tool's claim that the submission is complete as verification, rather than running each test yourself.",
+      "trigger": "learner accepts an AI 'everything is done' confirmation without opening files or testing links",
+      "feedback": "An AI cannot open your exported PDF or load your link signed out. Let it draft the checklist, but verify every row against the real artifact yourself; the recipient's environment is the only test that counts.",
+      "rail_action": "represent"
     }
   ]
 }

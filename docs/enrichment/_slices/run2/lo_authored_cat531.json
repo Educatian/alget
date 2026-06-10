@@ -1,0 +1,34 @@
+{
+  "cat531/01/05": {
+    "los": [
+      "Perform a graded, variable-by-variable comparison of a study's or vendor pilot's reported context against your own classroom to decide whether a borrowed result transfers, is suspended, or must be locally piloted.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    ]
+  },
+  "cat531/01/08": {
+    "los": [
+      "Distinguish a synthesis reflection (names a sourced principle, shows a revised belief, transfers to a new dilemma, leaves an honest open tension) from a vague recap.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Transfer a module principle to a classroom dilemma the module never used.",
+      "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    ]
+  },
+  "cat531/03/02": {
+    "los": [
+      "Distinguish product evidence from process evidence and explain why generative AI weakened product evidence.",
+      "Distinguish artifact polish from evidence-based revision.",
+      "Apply an allowed-use boundary to judge whether a student did the reserved work, rather than whether AI touched the document.",
+      "Critique AI-detector scores as probabilistic, equity-biased hypotheses rather than integrity evidence."
+    ]
+  },
+  "cat531/03/03": {
+    "los": [
+      "Identify training-data bias, proxy variables, and aggregate masking in an educational AI tool.",
+      "Match the standard of proof for an AI decision to the stakes of its errors, using disaggregated subgroup performance.",
+      "Document a bounded AI/software support move with accepted and rejected suggestions.",
+      "Use annotations, support requests, and revision notes to make a classroom technology decision more defensible."
+    ]
+  }
+}

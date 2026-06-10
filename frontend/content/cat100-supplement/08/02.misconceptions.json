@@ -24,6 +24,14 @@
       "trigger": "learner says the audience does not change the storyboard",
       "feedback": "Audience sets the constraint. A hiring manager wants outcomes and fit; a peer panel wants the technique. Keep the artifacts, but reorder and reframe the slides for who is in the room.",
       "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_8_2_accept_all_ai_suggestions",
+      "pattern": "accept_ai_reorder_without_reason",
+      "description": "Accepting an AI's proposed slide order or framing without checking it against the audience question the deck must answer.",
+      "trigger": "learner accepts the AI's reordering (such as opening with the resume) without testing it against the named audience's question",
+      "feedback": "An AI reorder is a suggestion, not a decision. Test it against the audience question first; if the suggested opening answers a question this audience is not asking, reject it and record the reason, as with the rejected 'open with the resume' suggestion.",
+      "rail_action": "explain"
     }
   ]
 }

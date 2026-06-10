@@ -32,6 +32,14 @@
       "trigger": "learner leaves unrelated bullets at the top and ignores the posting's named skills",
       "feedback": "Tailor to the posting: promote the bullets that match its required skills and trim the rest. Role fit beats length or decoration.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_6_6_screenshot_or_claim_replaces_live_artifact",
+      "pattern": "screenshot_or_claim_replaces_live_artifact",
+      "description": "Treating a screenshot or a bare claim as sufficient portfolio evidence when the live published URL is the strongest, checkable evidence.",
+      "trigger": "portfolio lists 'Built a website' with no link, or shows only a screenshot of the page",
+      "feedback": "A reviewer trusts what they can open. Link the live URL and name what the artifact shows ('my CAT 100 data story, published at <URL>, with a working evidence link'); a screenshot can rot quietly and a claim cannot be checked at all.",
+      "rail_action": "represent"
     }
   ]
 }

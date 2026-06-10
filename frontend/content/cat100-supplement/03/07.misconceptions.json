@@ -24,6 +24,14 @@
       "trigger": "learner keeps inflated wording that does not match the actual numbers",
       "feedback": "Match the words to the magnitude. State the actual percentage and reject AI or draft wording that exaggerates the size of the change.",
       "rail_action": "ask"
+    },
+    {
+      "id": "cat100_supplement_3_7_narrating_a_data_finding_percent_base_error",
+      "pattern": "wrong_base_for_percent_change",
+      "description": "Computing percentage change against the wrong denominator, such as dividing the gap by the sum of both values or by the new value instead of the old.",
+      "trigger": "learner reports a percentage change that does not equal (new - old) / old",
+      "feedback": "Percentage change is (new - old) divided by the OLD value: (700 - 500) / 500 = 40%. Dividing by 1,000 (the sum) or by 700 (the new value) produces a different, wrong number that misstates the finding.",
+      "rail_action": "represent"
     }
   ]
 }

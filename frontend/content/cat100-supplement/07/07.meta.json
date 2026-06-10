@@ -6,8 +6,8 @@
   "title": "Personal Workflow Audit",
   "description": "CAT 100 textbook section on personal workflow audit, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the personal workflow audit log shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
+    "Rank tasks by weekly cost (frequency times duration) to identify the true highest-cost target rather than the task that feels worst.",
+    "Convert a felt improvement into a measured one using a before/after baseline of time and error rate.",
     "Document a bounded AI/software support move with accepted and rejected suggestions.",
     "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
   ],
@@ -30,4 +30,3 @@
     "cat100_supplement_7_7_personal_workflow_audit_calibration"
   ]
 }
-

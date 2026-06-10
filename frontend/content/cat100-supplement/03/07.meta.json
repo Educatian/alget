@@ -6,10 +6,10 @@
   "title": "Narrating a Data Finding",
   "description": "CAT 100 textbook section connecting narrating a data finding to Excel pivot-table finding with unit labels, source note, and claim-first chart title, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
-    "Analyze how the Excel pivot-table finding with unit labels, source note, and claim-first chart title shows a defensible decision in CAT 100.",
-    "Distinguish artifact polish from evidence-based revision.",
-    "Document a bounded AI/software support move with accepted and rejected suggestions.",
-    "Use feedback, support requests, and revision notes to improve the artifact before sharing it."
+    "Compute a percentage change correctly as (new - old) / old and state it without rounding-up inflation.",
+    "Write a finding-first sentence that leads with the result before the procedure.",
+    "Match the verb to the magnitude (a 40% gap is 'higher,' not 'skyrocketed') and flag a correlation as a correlation, naming a competing explanation rather than asserting cause.",
+    "Accept or reject AI rewrites of a data sentence based on whether they inflate magnitude or smuggle in causal verbs, logging each call."
   ],
   "concept_ids": [
     "cat100_supplement_data_storytelling_with_excel",

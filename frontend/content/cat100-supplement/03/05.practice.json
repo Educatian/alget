@@ -78,6 +78,25 @@
       "explanation": "A precise debugging prompt gives the formula text, the error message, and the expected result for a concrete row. Vague prompts produce vague or wrong fixes.",
       "misconception_id": "cat100_supplement_3_5_ai_help_for_excel_debugging_vague_prompt",
       "difficulty": "medium"
+    },
+    {
+      "id": "cat100_supplement_3_5_ai_help_for_excel_debugging_privacy_boundary",
+      "type": "multiple_choice",
+      "concept_id": "ai_supported_learning",
+      "stem": "Your gradebook formula returns #VALUE! and you want AI help. The sheet contains classmates' names and scores. What belongs in the prompt?",
+      "options": [
+        "A screenshot of the whole sheet, so the AI has full context.",
+        "The formula, the error code, and a description of the data's structure with dummy values; the names and real scores stay out.",
+        "The names column only, since scores are the sensitive part.",
+        "Nothing; AI tools may never be used on coursework files."
+      ],
+      "correct_index": 1,
+      "explanation": "The four-part debugging prompt needs the formula, the wrong result, the suspected cause, and the desired behavior. None of those requires real people's data. Describing the structure or substituting dummy values gets the same quality of help without exposing private information.",
+      "misconception_id": "cat100_supplement_3_5_pasting_sensitive_data_to_ai",
+      "difficulty": "easy",
+      "concept_ids": [
+        "ai_supported_learning"
+      ]
     }
   ]
 }

@@ -32,6 +32,14 @@
       "trigger": "learner logs only changes they made and not suggestions they declined",
       "feedback": "A complete critique log records accepted, modified, and rejected suggestions, each with a one-line reason.",
       "rail_action": "practice"
+    },
+    {
+      "id": "cat100_supplement_1_3_accept_or_reject_only",
+      "pattern": "accept_or_reject_only",
+      "description": "Treating every tutor or AI suggestion as a binary accept-or-reject and skipping the modify path that trims an overreaching suggestion down to a defensible claim.",
+      "trigger": "learner logs only accepted and rejected suggestions and never records a modified one",
+      "feedback": "Many suggestions are directionally right but overreach. The third move is modify: keep the direction, trim the claim to what you can defend, and log the change. A log with no modified rows usually means overreaching suggestions were swallowed whole or discarded wholesale.",
+      "rail_action": "represent"
     }
   ]
 }
