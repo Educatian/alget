@@ -1,7 +1,7 @@
 {
   "chapter_title": "Design Draft and Theory-to-Prototype Alignment",
   "title": "Accessibility and WCAG Checks",
-  "description": "AIL 606 textbook section connecting accessibility and wcag checks to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
+  "description": "AIL 606 textbook section connecting accessibility and WCAG checks to a WCAG 2.2 audit in which every change cites a success criterion and a reproducible result, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
     "Audit a screen against specific WCAG 2.2 AA success criteria, not general \"looks accessible\" impressions.",
     "Compute and check color contrast against the 4.5:1 threshold for normal text.",

@@ -1,7 +1,7 @@
 {
   "chapter_title": "Design Draft and Theory-to-Prototype Alignment",
   "title": "Principle-to-Feature Traceability",
-  "description": "AIL 606 textbook section connecting principle-to-feature traceability to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
+  "description": "AIL 606 textbook section connecting principle-to-feature traceability to a traceability matrix that maps one controlling principle to one feature with its processing demand named, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
     "Map one controlling principle to one feature, with the processing demand named explicitly.",
     "Detect post-hoc justification (many principles attached to one cosmetic change).",

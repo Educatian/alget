@@ -1,7 +1,7 @@
 {
   "chapter_title": "Design Draft and Theory-to-Prototype Alignment",
   "title": "AI-Assisted Authoring With Codex",
-  "description": "AIL 606 textbook section connecting ai-assisted authoring with codex to storyboard frame sequence with narration, signaling, and reader-action notes, reader notes, support moments, and revision evidence.",
+  "description": "AIL 606 textbook section connecting AI-assisted authoring to a prompt specification that fixes every instructional decision, a pedagogy audit of the generated code, and a log of accepted and rejected suggestions, reader notes, support moments, and revision evidence.",
   "learning_objectives": [
     "Specify the instructional interaction precisely enough that the tool implements your design, not its defaults.",
     "Keep design decisions (sequence, feedback, separation of content) with the human author.",
