@@ -141,6 +141,10 @@ def load_section(course: str, chapter: str, section: str) -> dict:
         "simulation": None,  # Will be loaded separately if exists
         "illustration": None,
         "practice": load_practice_for_section(course, chapter, section),
+        # Baked misconceptions array so the static snapshot can serve the
+        # diagnostic rail without a live backend (verify_static_snapshot.mjs
+        # checks for this key on every exported section).
+        "misconceptions": load_misconceptions(course, chapter, section).get("misconceptions", []),
         "content_version": content_version,
     }
 
